@@ -75,8 +75,7 @@ public class Client extends EETest {
      * @assertion_ids: WS4EE:SPEC:183; WS4EE:SPEC:141; JavaEE:SPEC:247;
      *
      *
-     * @test_Strategy: call method on deployed web services implementation, which
-     * is deployed from a .war file
+     * @test_Strategy: call method on deployed web services implementation, which is deployed from a .war file
      */
     public void warDeployCall() throws Fault {
         TestUtil.logMsg("WarDeployCall");

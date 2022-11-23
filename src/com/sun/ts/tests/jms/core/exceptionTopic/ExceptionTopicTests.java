@@ -85,8 +85,7 @@ public class ExceptionTopicTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -131,8 +130,8 @@ public class ExceptionTopicTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -154,15 +153,11 @@ public class ExceptionTopicTests extends ServiceEETest {
     /*
      * @testName: xInvalidDestinationExceptionTopicTest
      *
-     * @assertion_ids: JMS:SPEC:174; JMS:JAVADOC:83; JMS:JAVADOC:85;
-     * JMS:JAVADOC:87; JMS:JAVADOC:89; JMS:JAVADOC:91; JMS:JAVADOC:95;
-     * JMS:JAVADOC:625; JMS:JAVADOC:626; JMS:JAVADOC:628; JMS:JAVADOC:629;
-     * JMS:JAVADOC:631; JMS:JAVADOC:632;
+     * @assertion_ids: JMS:SPEC:174; JMS:JAVADOC:83; JMS:JAVADOC:85; JMS:JAVADOC:87; JMS:JAVADOC:89; JMS:JAVADOC:91;
+     * JMS:JAVADOC:95; JMS:JAVADOC:625; JMS:JAVADOC:626; JMS:JAVADOC:628; JMS:JAVADOC:629; JMS:JAVADOC:631; JMS:JAVADOC:632;
      *
-     * @test_Strategy: pass an invalid Topic object to createSubscriber(null)
-     * createSubscriber(null,selector,nolocal)
-     * createDurableSubscriber(null,subscriber)
-     * createDurableSubscriber(null,String,selector,nolocal) createPublisher(null)
+     * @test_Strategy: pass an invalid Topic object to createSubscriber(null) createSubscriber(null,selector,nolocal)
+     * createDurableSubscriber(null,subscriber) createDurableSubscriber(null,String,selector,nolocal) createPublisher(null)
      * - null is valid here. unsubscribe(invalidSubscriptionName)
      */
 
@@ -245,7 +240,8 @@ public class ExceptionTopicTests extends ServiceEETest {
             logMsg("Test createPublisher(null) - This is valid");
             try {
                 tPublisher = tool.getDefaultTopicSession().createPublisher(dummy);
-                if (tPublisher != null) logMsg("tPublisher=" + tPublisher);
+                if (tPublisher != null)
+                    logMsg("tPublisher=" + tPublisher);
                 TestUtil.logTrace("PASS: null allowed for unidentified producer");
             } catch (Exception ee) {
                 TestUtil.printStackTrace(ee);
@@ -297,8 +293,8 @@ public class ExceptionTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:179; JMS:SPEC:70; JMS:JAVADOC:766;
      *
-     * @test_Strategy: When a client receives a text message it is in read-only
-     * mode. Publish a message and have the client attempt to write to it.
+     * @test_Strategy: When a client receives a text message it is in read-only mode. Publish a message and have the client
+     * attempt to write to it.
      */
 
     public void xMessageNotWriteableExceptionTTestforTextMessage() throws Fault {
@@ -342,8 +338,8 @@ public class ExceptionTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:73; JMS:SPEC:179; JMS:JAVADOC:702;
      *
-     * @test_Strategy: When a client receives a Bytes message it is in read-only
-     * mode. Publish a message and have the client attempt to write to it.
+     * @test_Strategy: When a client receives a Bytes message it is in read-only mode. Publish a message and have the client
+     * attempt to write to it.
      */
 
     public void xMessageNotWriteableExceptionTestforBytesMessage() throws Fault {
@@ -387,8 +383,8 @@ public class ExceptionTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:73; JMS:SPEC:179; JMS:JAVADOC:760;
      *
-     * @test_Strategy: When a client receives a Stream message it is in read-only
-     * mode. Publish a message and have the client attempt to write to it.
+     * @test_Strategy: When a client receives a Stream message it is in read-only mode. Publish a message and have the
+     * client attempt to write to it.
      */
 
     public void xMessageNotWriteableExceptionTTestforStreamMessage() throws Fault {
@@ -432,8 +428,8 @@ public class ExceptionTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:73; JMS:SPEC:179; JMS:JAVADOC:822;
      *
-     * @test_Strategy: When a client receives a Map message it is in read-only
-     * mode. Publish a message and have the client attempt to write to it.
+     * @test_Strategy: When a client receives a Map message it is in read-only mode. Publish a message and have the client
+     * attempt to write to it.
      */
     public void xMessageNotWriteableExceptionTTestforMapMessage() throws Fault {
         try {
@@ -476,8 +472,7 @@ public class ExceptionTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:86.1;
      *
-     * @test_Strategy: Create a bytes message. Attempt to write null to it. Verify
-     * that a NullPointerException is thrown.
+     * @test_Strategy: Create a bytes message. Attempt to write null to it. Verify that a NullPointerException is thrown.
      *
      */
 
@@ -504,8 +499,7 @@ public class ExceptionTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:176;
      *
-     * @test_Strategy: Publish a bytes message to a topic with one byte. Retreive
-     * message from the topic and read two bytes.
+     * @test_Strategy: Publish a bytes message to a topic with one byte. Retreive message from the topic and read two bytes.
      */
 
     public void xMessageEOFExceptionTTestforBytesMessage() throws Fault {
@@ -555,8 +549,8 @@ public class ExceptionTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:176;
      *
-     * @test_Strategy: Publish a Stream message to a topic with one byte. Retreive
-     * message from the topic and read two bytes.
+     * @test_Strategy: Publish a Stream message to a topic with one byte. Retreive message from the topic and read two
+     * bytes.
      */
 
     public void xMessageEOFExceptionTTestforStreamMessage() throws Fault {
@@ -651,7 +645,7 @@ public class ExceptionTopicTests extends ServiceEETest {
         try {
             StreamMessage messageSent = null;
             StreamMessage messageReceived = null;
-            byte[] bValues = {127, 0, 3};
+            byte[] bValues = { 127, 0, 3 };
 
             // set up test tool for Topic
             tool = new JmsTool(JmsTool.TOPIC, jmsUser, jmsPassword, lookup, mode);
@@ -690,11 +684,9 @@ public class ExceptionTopicTests extends ServiceEETest {
     /*
      * @testName: xInvalidSelectorExceptionTopicTest
      *
-     * @assertion_ids: JMS:SPEC:69; JMS:SPEC:175; JMS:JAVADOC:627;
-     * JMS:JAVADOC:630;
+     * @assertion_ids: JMS:SPEC:69; JMS:SPEC:175; JMS:JAVADOC:627; JMS:JAVADOC:630;
      *
-     * @test_Strategy: Call createSubscriber/createDurableSubscriber with an
-     * invalid selector string
+     * @test_Strategy: Call createSubscriber/createDurableSubscriber with an invalid selector string
      */
 
     public void xInvalidSelectorExceptionTopicTest() throws Fault {
@@ -726,8 +718,8 @@ public class ExceptionTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:171; JMS:JAVADOC:634;
      *
-     * @test_Strategy: Call session.commit() when there is no transaction to be
-     * committed. Verify that the proper exception is thrown.
+     * @test_Strategy: Call session.commit() when there is no transaction to be committed. Verify that the proper exception
+     * is thrown.
      */
 
     public void xIllegalStateExceptionTopicTest() throws Fault {
@@ -759,9 +751,8 @@ public class ExceptionTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:658; JMS:JAVADOC:661;
      *
-     * @test_Strategy: Create a TopicPublisher with a null Topic. Verify that
-     * UnsupportedOperationException is thrown when publish is called without a
-     * valid Topic.
+     * @test_Strategy: Create a TopicPublisher with a null Topic. Verify that UnsupportedOperationException is thrown when
+     * publish is called without a valid Topic.
      */
 
     public void xUnsupportedOperationExceptionTTest1() throws Fault {
@@ -820,7 +811,8 @@ public class ExceptionTopicTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("xUnsupportedOperationExceptionTTest1 Failed!");
+            if (pass != true)
+                throw new Fault("xUnsupportedOperationExceptionTTest1 Failed!");
 
         } catch (Exception e) {
             logErr("xUnsupportedOperationExceptionTTest1 Failed!", e);
@@ -839,13 +831,11 @@ public class ExceptionTopicTests extends ServiceEETest {
     /*
      * @testName: xInvalidDestinationExceptionTTests
      *
-     * @assertion_ids: JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510;
-     * JMS:JAVADOC:638; JMS:JAVADOC:639; JMS:JAVADOC:641; JMS:JAVADOC:643;
-     * JMS:JAVADOC:644; JMS:JAVADOC:646; JMS:JAVADOC:647; JMS:JAVADOC:649;
+     * @assertion_ids: JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:638; JMS:JAVADOC:639; JMS:JAVADOC:641;
+     * JMS:JAVADOC:643; JMS:JAVADOC:644; JMS:JAVADOC:646; JMS:JAVADOC:647; JMS:JAVADOC:649;
      *
-     * @test_Strategy: Create a Session with Topic Configuration, using a null
-     * Destination/Topic to verify InvalidDestinationException is thrown with
-     * various methods
+     * @test_Strategy: Create a Session with Topic Configuration, using a null Destination/Topic to verify
+     * InvalidDestinationException is thrown with various methods
      */
 
     public void xInvalidDestinationExceptionTTests() throws Fault {
@@ -900,7 +890,8 @@ public class ExceptionTopicTests extends ServiceEETest {
                 logErr("Error closing default Connection", ex);
             }
 
-            if (pass != true) throw new Fault("xInvalidDestinationExceptionTTests");
+            if (pass != true)
+                throw new Fault("xInvalidDestinationExceptionTTests");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -917,14 +908,12 @@ public class ExceptionTopicTests extends ServiceEETest {
     /*
      * @testName: xMessageNotReadableExceptionTBytesMsgTest
      *
-     * @assertion_ids: JMS:JAVADOC:676; JMS:JAVADOC:678; JMS:JAVADOC:682;
-     * JMS:JAVADOC:684; JMS:JAVADOC:686; JMS:JAVADOC:688; JMS:JAVADOC:690;
-     * JMS:JAVADOC:692; JMS:JAVADOC:694; JMS:JAVADOC:696; JMS:JAVADOC:698;
-     * JMS:JAVADOC:699; JMS:JAVADOC:700;
+     * @assertion_ids: JMS:JAVADOC:676; JMS:JAVADOC:678; JMS:JAVADOC:682; JMS:JAVADOC:684; JMS:JAVADOC:686; JMS:JAVADOC:688;
+     * JMS:JAVADOC:690; JMS:JAVADOC:692; JMS:JAVADOC:694; JMS:JAVADOC:696; JMS:JAVADOC:698; JMS:JAVADOC:699;
+     * JMS:JAVADOC:700;
      *
-     * @test_Strategy: Create a BytesMessage, call various read methods on it
-     * before sending. Verify that jakarta.jms.MessageNotReadableException is
-     * thrown.
+     * @test_Strategy: Create a BytesMessage, call various read methods on it before sending. Verify that
+     * jakarta.jms.MessageNotReadableException is thrown.
      */
 
     public void xMessageNotReadableExceptionTBytesMsgTest() throws Fault {
@@ -933,8 +922,8 @@ public class ExceptionTopicTests extends ServiceEETest {
             boolean pass = true;
             boolean booleanValue = false;
             byte byteValue = 127;
-            byte[] bytesValue = {127, -127, 1, 0};
-            byte[] bytesValueRecvd = {0, 0, 0, 0};
+            byte[] bytesValue = { 127, -127, 1, 0 };
+            byte[] bytesValueRecvd = { 0, 0, 0, 0 };
             char charValue = 'Z';
             double doubleValue = 6.02e23;
             float floatValue = 6.02e23f;
@@ -1124,7 +1113,8 @@ public class ExceptionTopicTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("xMessageNotReadableExceptionTBytesMsgTest Failed!");
+            if (pass != true)
+                throw new Fault("xMessageNotReadableExceptionTBytesMsgTest Failed!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -1141,14 +1131,12 @@ public class ExceptionTopicTests extends ServiceEETest {
     /*
      * @testName: xMessageNotReadableExceptionTStreamMsgTest
      *
-     * @assertion_ids: JMS:SPEC:73.1; JMS:JAVADOC:431; JMS:JAVADOC:721;
-     * JMS:JAVADOC:724; JMS:JAVADOC:727; JMS:JAVADOC:730; JMS:JAVADOC:733;
-     * JMS:JAVADOC:736; JMS:JAVADOC:739; JMS:JAVADOC:742; JMS:JAVADOC:745;
-     * JMS:JAVADOC:748; JMS:JAVADOC:751;
+     * @assertion_ids: JMS:SPEC:73.1; JMS:JAVADOC:431; JMS:JAVADOC:721; JMS:JAVADOC:724; JMS:JAVADOC:727; JMS:JAVADOC:730;
+     * JMS:JAVADOC:733; JMS:JAVADOC:736; JMS:JAVADOC:739; JMS:JAVADOC:742; JMS:JAVADOC:745; JMS:JAVADOC:748;
+     * JMS:JAVADOC:751;
      *
-     * @test_Strategy: Create a StreamMessage, send and receive via a Topic; Call
-     * clearBoldy right after receiving the message; Call various read methods on
-     * received message; Verify jakarta.jms.MessageNotReadableException is thrown.
+     * @test_Strategy: Create a StreamMessage, send and receive via a Topic; Call clearBoldy right after receiving the
+     * message; Call various read methods on received message; Verify jakarta.jms.MessageNotReadableException is thrown.
      */
 
     public void xMessageNotReadableExceptionTStreamMsgTest() throws Fault {
@@ -1158,9 +1146,9 @@ public class ExceptionTopicTests extends ServiceEETest {
             boolean pass = true;
             byte bValue = 127;
             boolean abool = false;
-            byte[] bValues = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-            byte[] bValues2 = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-            byte[] bValuesReturned = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            byte[] bValues = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            byte[] bValues2 = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+            byte[] bValuesReturned = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             char charValue = 'Z';
             short sValue = 32767;
             long lValue = 9223372036854775807L;
@@ -1326,7 +1314,8 @@ public class ExceptionTopicTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("xMessageNotReadableExceptionTStreamMsgTest Failed!");
+            if (pass != true)
+                throw new Fault("xMessageNotReadableExceptionTStreamMsgTest Failed!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -1343,12 +1332,10 @@ public class ExceptionTopicTests extends ServiceEETest {
     /*
      * @testName: xIllegalStateExceptionTestQueueMethodsT
      *
-     * @assertion_ids: JMS:SPEC:185.6; JMS:SPEC:185.7; JMS:SPEC:185.8;
-     * JMS:SPEC:185;
+     * @assertion_ids: JMS:SPEC:185.6; JMS:SPEC:185.7; JMS:SPEC:185.8; JMS:SPEC:185;
      *
-     * @test_Strategy: Create a TopicSession and call Queue specific methods
-     * inherited from Session, and verify that jakarta.jms.IllegalStateException is
-     * thrown.
+     * @test_Strategy: Create a TopicSession and call Queue specific methods inherited from Session, and verify that
+     * jakarta.jms.IllegalStateException is thrown.
      */
 
     public void xIllegalStateExceptionTestQueueMethodsT() throws Fault {
@@ -1408,7 +1395,8 @@ public class ExceptionTopicTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("xIllegalStateExceptionTestQueueMethodsT Failed!");
+            if (pass != true)
+                throw new Fault("xIllegalStateExceptionTestQueueMethodsT Failed!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);

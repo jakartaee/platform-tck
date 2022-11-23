@@ -39,7 +39,7 @@ import java.net.URL;
 import javax.sql.DataSource;
 
 @Stateless(name = "ResourceFieldBean")
-@Remote({ResourceIF.class})
+@Remote({ ResourceIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
 
@@ -54,79 +54,49 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
         return "myUserTransaction";
     }
 
-    @Resource(
-            name = "dataSource",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION,
-            type = Object.class)
+    @Resource(name = "dataSource", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION, type = Object.class)
     private DataSource dataSource;
 
     protected String getDataSourceName() {
         return "dataSource";
     }
 
-    @Resource(
-            name = "myDataSource2",
-            type = DataSource.class,
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION,
-            description = "<resource-ref>")
+    @Resource(name = "myDataSource2", type = DataSource.class, shareable = false, authenticationType = AuthenticationType.APPLICATION, description = "<resource-ref>")
     private DataSource dataSource2;
 
     protected String getDataSource2Name() {
         return "myDataSource2";
     }
 
-    @Resource(
-            name = "mailSession",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION,
-            description = "<resource-ref>")
+    @Resource(name = "mailSession", shareable = false, authenticationType = AuthenticationType.APPLICATION, description = "<resource-ref>")
     private jakarta.mail.Session mailSession;
 
     protected String getMailSessionName() {
         return "mailSession";
     }
 
-    @Resource(
-            name = "url",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "url", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private URL url;
 
     protected String getUrlName() {
         return "url";
     }
 
-    @Resource(
-            name = "queueConnectionFactory",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "queueConnectionFactory", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private QueueConnectionFactory queueConnectionFactory;
 
     protected String getQueueConnectionFactoryName() {
         return "queueConnectionFactory";
     }
 
-    @Resource(
-            name = "topicConnectionFactory",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "topicConnectionFactory", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private TopicConnectionFactory topicConnectionFactory;
 
     protected String getTopicConnectionFactoryName() {
         return "topicConnectionFactory";
     }
 
-    @Resource(
-            name = "connectionFactoryQ",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "connectionFactoryQ", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private ConnectionFactory connectionFactoryQ;
 
     protected String getConnectionFactoryQName() {
@@ -137,11 +107,7 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
         return connectionFactoryQ;
     }
 
-    @Resource(
-            name = "connectionFactoryT",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "connectionFactoryT", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private ConnectionFactory connectionFactoryT;
 
     protected String getConnectionFactoryTName() {
@@ -166,9 +132,11 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
         return "queue";
     }
 
-    public ResourceFieldBean() {}
+    public ResourceFieldBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected jakarta.ejb.EJBContext getEJBContext() {
         return sessionContext;

@@ -24,4 +24,5 @@ import com.sun.ts.tests.ejb30.lite.basic.common.BasicBeanBase;
 import jakarta.ejb.Stateful;
 
 @Stateful
-public class StatefulBean extends BasicBeanBase {}
+public class StatefulBean extends BasicBeanBase {
+}

@@ -26,7 +26,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -51,18 +52,15 @@ public class Client extends PMClientBase {
     /*
      * @testName: persist1XMTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:618; PERSISTENCE:SPEC:622;
-     * PERSISTENCE:JAVADOC:7; PERSISTENCE:JAVADOC:130
+     * @assertion_ids: PERSISTENCE:SPEC:618; PERSISTENCE:SPEC:622; PERSISTENCE:JAVADOC:7; PERSISTENCE:JAVADOC:130
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows: The perist
-     * operation is cascaded to entities referenced by X, if the relationship from
-     * X to these other entities is annotated with cascade=PERSIST annotation
-     * member.
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows: The perist operation is cascaded to
+     * entities referenced by X, if the relationship from X to these other entities is annotated with cascade=PERSIST
+     * annotation member.
      *
-     * Invoke persist on a OneToMany relationship from X annotated with
-     * cascade=PERSIST and ensure the persist operation is cascaded.
+     * Invoke persist on a OneToMany relationship from X annotated with cascade=PERSIST and ensure the persist operation is
+     * cascaded.
      *
      */
     public void persist1XMTest1() throws Fault {
@@ -120,20 +118,16 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:644
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows: The perist
-     * operation is cascaded to entities referenced by X, if the relationship from
-     * X to these other entities is annotated with cascade=PERSIST annotation
-     * member.
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows: The perist operation is cascaded to
+     * entities referenced by X, if the relationship from X to these other entities is annotated with cascade=PERSIST
+     * annotation member.
      *
-     * For all entities Y referenced by a relationship from X, if the relationship
-     * to Y has been annotated with the cascade member value cascade=PERSIST, the
-     * persist operation is applied to Y.
+     * For all entities Y referenced by a relationship from X, if the relationship to Y has been annotated with the cascade
+     * member value cascade=PERSIST, the persist operation is applied to Y.
      *
-     * Invoke persist on a relationship from X annotated where Y IS NOT annotated
-     * with cascade=PERSIST and ensure the persist operation is not cascaded. An
-     * IllegalStateException should be thrown.
+     * Invoke persist on a relationship from X annotated where Y IS NOT annotated with cascade=PERSIST and ensure the
+     * persist operation is not cascaded. An IllegalStateException should be thrown.
      *
      */
     public void persist1XMTest2() throws Fault {
@@ -181,14 +175,12 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:618; PERSISTENCE:SPEC:624
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows:
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows:
      *
      * If X is a removed entity, it becomes managed.
      *
-     * Create an entity, persist it, remove it, and invoke persist again. Check
-     * that it is managed and is accessible.
+     * Create an entity, persist it, remove it, and invoke persist again. Check that it is managed and is accessible.
      *
      */
     public void persist1XMTest3() throws Fault {
@@ -260,13 +252,11 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:628; PERSISTENCE:SPEC:632
      *
-     * @test_Strategy: A managed entity instance becomes removed by invoking the
-     * remove method on it or by cascading the remove operation. The semantics of
-     * the remove operation, applied to an entity X are as follows:
+     * @test_Strategy: A managed entity instance becomes removed by invoking the remove method on it or by cascading the
+     * remove operation. The semantics of the remove operation, applied to an entity X are as follows:
      *
-     * Test the remove semantics of a OneToMany relationship and when the
-     * relationship is NOT annotated with REMOVE. Ensure the remove is NOT
-     * cascaded.
+     * Test the remove semantics of a OneToMany relationship and when the relationship is NOT annotated with REMOVE. Ensure
+     * the remove is NOT cascaded.
      *
      */
     public void persist1XMTest4() throws Fault {
@@ -336,11 +326,10 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:667; PERSISTENCE:SPEC:668
      *
-     * @test_Strategy: The contains method [used to determine whether an entity
-     * instance is in the managed state] returns true:
+     * @test_Strategy: The contains method [used to determine whether an entity instance is in the managed state] returns
+     * true:
      *
-     * If the entity has been retrieved from the database and has not been removed
-     * or detached.
+     * If the entity has been retrieved from the database and has not been removed or detached.
      */
     public void persist1XMTest5() throws Fault {
         TestUtil.logTrace("Begin persist1XMTest5");
@@ -393,13 +382,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: persist1XMTest6
      *
-     * @assertion_ids: PERSISTENCE:SPEC:667; PERSISTENCE:SPEC:669;
-     * PERSISTENCE:SPEC:677
+     * @assertion_ids: PERSISTENCE:SPEC:667; PERSISTENCE:SPEC:669; PERSISTENCE:SPEC:677
      *
-     * @test_Strategy: The contains method [used to determine whether an entity
-     * instance is in the managed state] returns true: If the entity instance is
-     * new and the persist method has been called on the entity. The effect of
-     * cascading persist is immediately visible visible to the contains method.
+     * @test_Strategy: The contains method [used to determine whether an entity instance is in the managed state] returns
+     * true: If the entity instance is new and the persist method has been called on the entity. The effect of cascading
+     * persist is immediately visible visible to the contains method.
      */
     public void persist1XMTest6() throws Fault {
         TestUtil.logTrace("Begin persist1XMTest6");
@@ -454,15 +441,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: persist1XMTest7
      *
-     * @assertion_ids: PERSISTENCE:SPEC:667; PERSISTENCE:SPEC:669;
-     * PERSISTENCE:SPEC:677
+     * @assertion_ids: PERSISTENCE:SPEC:667; PERSISTENCE:SPEC:669; PERSISTENCE:SPEC:677
      *
-     * @test_Strategy: The contains method [used to determine whether an entity
-     * instance is in the managed state] returns true: If the entity instance is
-     * new and the persist operation has been cascaded to it.
+     * @test_Strategy: The contains method [used to determine whether an entity instance is in the managed state] returns
+     * true: If the entity instance is new and the persist operation has been cascaded to it.
      *
-     * Create an entity instance where cascade=persist is not used. Verify the
-     * contains method returns false.
+     * Create an entity instance where cascade=persist is not used. Verify the contains method returns false.
      */
     public void persist1XMTest7() throws Fault {
         TestUtil.logTrace("Begin persist1XMTest7");
@@ -501,12 +485,11 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:646;
      *
-     * @test_Strategy: The contains method [used to determine whether an entity
-     * instance is in the managed state] returns true: If the entity instance is
-     * new and the persist operation has been cascaded to it.
+     * @test_Strategy: The contains method [used to determine whether an entity instance is in the managed state] returns
+     * true: If the entity instance is new and the persist operation has been cascaded to it.
      *
-     * Create an entity instance where cascade=persist is not used. Verify that an
-     * illegalStateException is thrown when the flush is executed
+     * Create an entity instance where cascade=persist is not used. Verify that an illegalStateException is thrown when the
+     * flush is executed
      */
     public void persist1XMTest7IllegalStateException() throws Fault {
         TestUtil.logTrace("Begin persist1XMTest7IllegalStateException");
@@ -548,11 +531,10 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:675
      *
-     * @test_Strategy: The contains method [used to determine whether an entity
-     * instance is in the managed state] returns false:
+     * @test_Strategy: The contains method [used to determine whether an entity instance is in the managed state] returns
+     * false:
      *
-     * If the entity instance is new and the persist operation not been called on
-     * it.
+     * If the entity instance is new and the persist operation not been called on it.
      *
      */
     public void persist1XMTest8() throws Fault {
@@ -597,11 +579,10 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:676
      *
-     * @test_Strategy: The contains method [used to determine whether an entity
-     * instance is in the managed state] returns false:
+     * @test_Strategy: The contains method [used to determine whether an entity instance is in the managed state] returns
+     * false:
      *
-     * If the entity instance is new and the persist operation has not been
-     * cascaded to it.
+     * If the entity instance is new and the persist operation has not been cascaded to it.
      */
     public void persist1XMTest9() throws Fault {
         boolean pass = false;
@@ -639,8 +620,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:619; PERSISTENCE:SPEC:642
      *
-     * @test_Strategy: Using a 1xmany bi-directional relationship between entity
-     * objects. Ensure the proper relationship results are correct.
+     * @test_Strategy: Using a 1xmany bi-directional relationship between entity objects. Ensure the proper relationship
+     * results are correct.
      *
      */
     public void persist1XMTest10() throws Fault {
@@ -709,20 +690,17 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:618; PERSISTENCE:SPEC:622
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows: The perist
-     * operation is cascaded to entities referenced by X, if the relationship from
-     * X to these other entities is annotated with cascade=PERSIST annotation
-     * member.
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows: The perist operation is cascaded to
+     * entities referenced by X, if the relationship from X to these other entities is annotated with cascade=PERSIST
+     * annotation member.
      *
-     * Invoke persist on a OneToMany relationship from X annotated with
-     * cascade=PERSIST and ensure the persist operation is cascaded.
+     * Invoke persist on a OneToMany relationship from X annotated with cascade=PERSIST and ensure the persist operation is
+     * cascaded.
      *
-     * If X is a pre-existing managed entity, it is ignored by the persist
-     * operation. However, the persist operation is cascaded to entities
-     * referenced by X, if the relationships from X to these other entities is
-     * annotated with cascade=PERSIST annotation member value.
+     * If X is a pre-existing managed entity, it is ignored by the persist operation. However, the persist operation is
+     * cascaded to entities referenced by X, if the relationships from X to these other entities is annotated with
+     * cascade=PERSIST annotation member value.
      *
      */
     public void persist1XMTest11() throws Fault {
@@ -774,8 +752,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:642
      *
-     * @test_Strategy: The flush method can be used for force synchronization. The
-     * semantics of the flush operation applied to an entity X is as follows:
+     * @test_Strategy: The flush method can be used for force synchronization. The semantics of the flush operation applied
+     * to an entity X is as follows:
      *
      * If X is a managed entity, it is synchronized to the database.
      *
@@ -827,12 +805,11 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:644
      *
-     * @test_Strategy: The flush method can be used for force synchronization. The
-     * semantics of the flush operation applied to an entity X is as follows:
+     * @test_Strategy: The flush method can be used for force synchronization. The semantics of the flush operation applied
+     * to an entity X is as follows:
      *
-     * For all entities Y referenced by a relationship from X, if the relationship
-     * to Y has been annotated with the cascade member value cascade=PERSIST, the
-     * persist operation is applied to Y.
+     * For all entities Y referenced by a relationship from X, if the relationship to Y has been annotated with the cascade
+     * member value cascade=PERSIST, the persist operation is applied to Y.
      *
      */
     public void persist1XMTest13() throws Fault {
@@ -876,13 +853,12 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:646
      *
-     * @test_Strategy: The flush method can be used for force synchronization. The
-     * semantics of the flush operation applied to an entity X is as follows:
+     * @test_Strategy: The flush method can be used for force synchronization. The semantics of the flush operation applied
+     * to an entity X is as follows:
      *
-     * For any new entity Y referenced by a relationship from X, where the
-     * relationship to Y has not been annotated with the cascade member value
-     * cascade=PERSIST, an exception will be thrown by the container or the
-     * transaction commit will fail.
+     * For any new entity Y referenced by a relationship from X, where the relationship to Y has not been annotated with the
+     * cascade member value cascade=PERSIST, an exception will be thrown by the container or the transaction commit will
+     * fail.
      *
      */
     public void persist1XMTest14() throws Fault {
@@ -922,15 +898,13 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:646
      *
-     * @test_Strategy: The flush method can be used for force synchronization. The
-     * semantics of the flush operation applied to an entity X is as follows:
+     * @test_Strategy: The flush method can be used for force synchronization. The semantics of the flush operation applied
+     * to an entity X is as follows:
      *
-     * For any detached entity Y referenced by a relationship from X, where the
-     * relationship to Y has not been annotated with the cascade member value
-     * cascade=PERSIST the semantics depend upon the ownership of the
-     * relationship. If X owns the relationship, any changes to the relationship
-     * are synchronized with the database, otherwise, if Y owns the relationship,
-     * the behavior is undefined.
+     * For any detached entity Y referenced by a relationship from X, where the relationship to Y has not been annotated
+     * with the cascade member value cascade=PERSIST the semantics depend upon the ownership of the relationship. If X owns
+     * the relationship, any changes to the relationship are synchronized with the database, otherwise, if Y owns the
+     * relationship, the behavior is undefined.
      *
      */
     public void persist1XMTest15() throws Fault {

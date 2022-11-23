@@ -58,11 +58,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:279
      *
-     * @test_Strategy: Deploy an application client with two String environment
-     *                 entries whose name differ only by case and are assigned to
-     *                 two distinct values. Check that we can lookup the two
-     *                 environment entries. Check that their runtime values are
-     *                 distinct and match the ones specified in the DD.
+     * @test_Strategy: Deploy an application client with two String environment entries whose name differ only by case and
+     * are assigned to two distinct values. Check that we can lookup the two environment entries. Check that their runtime
+     * values are distinct and match the ones specified in the DD.
      */
     public void testCaseSensitivity() throws Fault {
         boolean pass;

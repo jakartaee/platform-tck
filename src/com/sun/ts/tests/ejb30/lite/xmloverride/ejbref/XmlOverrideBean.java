@@ -37,9 +37,7 @@ public class XmlOverrideBean implements NumberIF {
     /*
      * (non-Javadoc)
      *
-     * @see
-     * com.sun.ts.tests.ejb30.common.lite.NumberIF#add(com.sun.ts.tests.ejb30.
-     * common.lite.NumberIF)
+     * @see com.sun.ts.tests.ejb30.common.lite.NumberIF#add(com.sun.ts.tests.ejb30. common.lite.NumberIF)
      */
     public NumberIF add(NumberIF toAdd) {
         return null;

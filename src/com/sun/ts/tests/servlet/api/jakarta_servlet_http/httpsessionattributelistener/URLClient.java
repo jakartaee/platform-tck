@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,9 +58,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:460;Servlet:JAVADOC:485
      *
-     * @test_Strategy: Client calls a servlet that adds an attribute. The listener
-     * should detect the add and writes a message out to a static log. Servlet
-     * then reads the log and verifies the result
+     * @test_Strategy: Client calls a servlet that adds an attribute. The listener should detect the add and writes a
+     * message out to a static log. Servlet then reads the log and verifies the result
      *
      */
 
@@ -76,9 +73,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:461;Servlet:JAVADOC:491
      *
-     * @test_Strategy: Client calls a servlet that adds/Removes an attribute. The
-     * listener should detect the changes and writes a message out to a static
-     * log. Servlet then reads the log and verifies the result
+     * @test_Strategy: Client calls a servlet that adds/Removes an attribute. The listener should detect the changes and
+     * writes a message out to a static log. Servlet then reads the log and verifies the result
      */
 
     public void attributeRemovedTest() throws Fault {
@@ -91,9 +87,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:462
      *
-     * @test_Strategy: Client calls a servlet that adds/Replaces an attribute. The
-     * listener should detect the changes and writes a message out to a static
-     * log. Servlet then reads the log and verifies the result
+     * @test_Strategy: Client calls a servlet that adds/Replaces an attribute. The listener should detect the changes and
+     * writes a message out to a static log. Servlet then reads the log and verifies the result
      */
 
     public void attributeReplacedTest() throws Fault {

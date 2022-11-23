@@ -63,8 +63,7 @@ public class TCFTestTag extends BodyTagSupport implements TryCatchFinally {
     /**
      * Sets the location where an exception will occur.
      *
-     * @param location
-     *          - the location
+     * @param location - the location
      */
     public void setLocation(String location) throws JspException {
         this._location = location;
@@ -78,8 +77,7 @@ public class TCFTestTag extends BodyTagSupport implements TryCatchFinally {
      * Default processing of the start tag returning EVAL_BODY_BUFFERED
      *
      * @return EVAL_BODY_BUFFERED
-     * @throws JspException
-     *           if an error occurred while processing this tag
+     * @throws JspException if an error occurred while processing this tag
      * @see BodyTag#doStartTag
      */
     public int doStartTag() throws JspException {
@@ -93,8 +91,7 @@ public class TCFTestTag extends BodyTagSupport implements TryCatchFinally {
      * Default processing of the end tag returning EVAL_PAGE.
      *
      * @return EVAL_PAGE
-     * @throws JspException
-     *           if an error occurred while processing this tag
+     * @throws JspException if an error occurred while processing this tag
      * @see Tag#doEndTag
      */
     public int doEndTag() throws JspException {
@@ -105,11 +102,9 @@ public class TCFTestTag extends BodyTagSupport implements TryCatchFinally {
     }
 
     /**
-     * Prepare for evaluation of the body just before the first body evaluation:
-     * no action.
+     * Prepare for evaluation of the body just before the first body evaluation: no action.
      *
-     * @throws JspException
-     *           if an error occurred while processing this tag
+     * @throws JspException if an error occurred while processing this tag
      * @see #setBodyContent
      * @see #doAfterBody
      * @see BodyTag#doInitBody
@@ -122,12 +117,11 @@ public class TCFTestTag extends BodyTagSupport implements TryCatchFinally {
     }
 
     /**
-     * After the body evaluation: do not reevaluate and continue with the page. By
-     * default nothing is done with the bodyContent data (if any).
+     * After the body evaluation: do not reevaluate and continue with the page. By default nothing is done with the
+     * bodyContent data (if any).
      *
      * @return SKIP_BODY
-     * @throws JspException
-     *           if an error occurred while processing this tag
+     * @throws JspException if an error occurred while processing this tag
      * @see #doInitBody
      * @see BodyTag#doAfterBody
      */
@@ -139,24 +133,20 @@ public class TCFTestTag extends BodyTagSupport implements TryCatchFinally {
     }
 
     /**
-     * Invoked if a Throwable occurs while evaluating the BODY inside a tag or in
-     * any of the following methods: Tag.doStartTag(), Tag.doEndTag(),
-     * IterationTag.doAfterBody() and BodyTag.doInitBody().
+     * Invoked if a Throwable occurs while evaluating the BODY inside a tag or in any of the following methods:
+     * Tag.doStartTag(), Tag.doEndTag(), IterationTag.doAfterBody() and BodyTag.doInitBody().
      *
      * <p>
-     * This method is not invoked if the Throwable occurs during one of the setter
-     * methods.
+     * This method is not invoked if the Throwable occurs during one of the setter methods.
      *
      * <p>
-     * This method may throw an exception (the same or a new one) that will be
-     * propagated further the nest chain. If an exception is thrown, doFinally()
-     * will be invoked.
+     * This method may throw an exception (the same or a new one) that will be propagated further the nest chain. If an
+     * exception is thrown, doFinally() will be invoked.
      *
      * <p>
      * This method is intended to be used to respond to an exceptional condition.
      *
-     * @param t
-     *          The throwable exception navigating through this tag.
+     * @param t The throwable exception navigating through this tag.
      */
     public void doCatch(Throwable t) throws Throwable {
         List list = (List) pageContext.getAttribute("cresults");
@@ -168,22 +158,18 @@ public class TCFTestTag extends BodyTagSupport implements TryCatchFinally {
     }
 
     /**
-     * Invoked in all cases after doEndTag() for any class implementing Tag,
-     * IterationTag or BodyTag. This method is invoked even if an exception has
-     * occurred in the BODY of the tag, or in any of the following methods:
-     * Tag.doStartTag(), Tag.doEndTag(), IterationTag.doAfterBody() and
-     * BodyTag.doInitBody().
+     * Invoked in all cases after doEndTag() for any class implementing Tag, IterationTag or BodyTag. This method is invoked
+     * even if an exception has occurred in the BODY of the tag, or in any of the following methods: Tag.doStartTag(),
+     * Tag.doEndTag(), IterationTag.doAfterBody() and BodyTag.doInitBody().
      *
      * <p>
-     * This method is not invoked if the Throwable occurs during one of the setter
-     * methods.
+     * This method is not invoked if the Throwable occurs during one of the setter methods.
      *
      * <p>
      * This method should not throw an Exception.
      *
      * <p>
-     * This method is intended to maintain per-invocation data integrity and
-     * resource management actions.
+     * This method is intended to maintain per-invocation data integrity and resource management actions.
      */
     public void doFinally() {
         List list = (List) pageContext.getAttribute("fresults");

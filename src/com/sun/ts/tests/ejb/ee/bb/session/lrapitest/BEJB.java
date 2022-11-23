@@ -60,12 +60,14 @@ public class BEJB implements SessionBean {
     public boolean test2() {
         TestUtil.logTrace("test2");
         boolean pass = true;
-        if (getObjectTest()) TestUtil.logMsg("getEJBObject ... PASSED");
+        if (getObjectTest())
+            TestUtil.logMsg("getEJBObject ... PASSED");
         else {
             TestUtil.logMsg("getEJBObject ... FAILED");
             pass = false;
         }
-        if (getLocalObjectTest()) TestUtil.logMsg("getEJBLocalObject ... PASSED");
+        if (getLocalObjectTest())
+            TestUtil.logMsg("getEJBLocalObject ... PASSED");
         else {
             TestUtil.logMsg("getEJBLocalObject ... FAILED");
             pass = false;
@@ -83,7 +85,8 @@ public class BEJB implements SessionBean {
             EJBObject object = context.getEJBObject();
             if (object != null) {
                 TestUtil.logMsg("getEJBObject() returned EJBObject reference");
-                if (object instanceof B) TestUtil.logMsg("An B object");
+                if (object instanceof B)
+                    TestUtil.logMsg("An B object");
                 else {
                     TestUtil.logErr("Not an B object");
                     pass = false;

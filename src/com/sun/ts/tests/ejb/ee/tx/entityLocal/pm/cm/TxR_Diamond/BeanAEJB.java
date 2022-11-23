@@ -146,14 +146,16 @@ public class BeanAEJB implements SessionBean {
             TestUtil.logMsg("Verify the tx commit occured via the Container - BeanB");
             tempName1 = RefTxEPMBean.getBrandName();
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
-            if (tempName1.equals(expNameB)) b3 = true;
+            if (tempName1.equals(expNameB))
+                b3 = true;
 
             b2 = RefC.helloC();
 
             TestUtil.logMsg("Verify the tx commit occured via the Container - BeanC");
             tempName3 = RefTxEPMBean.getBrandName();
             TestUtil.logTrace("Instance Brand Name is " + tempName3);
-            if (tempName3.equals(expNameC)) b4 = true;
+            if (tempName3.equals(expNameC))
+                b4 = true;
 
             // Verify the results
             if (!b3) {
@@ -165,7 +167,8 @@ public class BeanAEJB implements SessionBean {
                 TestUtil.logMsg("Expected: " + expNameC + ", Actual: " + tempName3);
             }
 
-            if (b1 && b2 && b3 && b4) testResult = true;
+            if (b1 && b2 && b3 && b4)
+                testResult = true;
             return testResult;
 
         } catch (Exception e) {

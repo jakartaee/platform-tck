@@ -129,8 +129,7 @@ public class ToolRunner {
         /**
          * Constructs a new StreamReader instance for the specified input stream.
          *
-         * @param is
-         *          the input stream.
+         * @param is the input stream.
          */
         public StreamReader(InputStream is) {
             super();

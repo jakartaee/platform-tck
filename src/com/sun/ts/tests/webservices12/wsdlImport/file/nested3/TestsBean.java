@@ -19,18 +19,12 @@ package com.sun.ts.tests.webservices12.wsdlImport.file.nested3;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "TestsPort",
-        serviceName = "Nested3FileSvc",
-        targetNamespace = "http://Nested3FileSvc.org/wsdl",
-        wsdlLocation = "META-INF/wsdl/nestedimportwsdl.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.nested3.Tests")
+@WebService(portName = "TestsPort", serviceName = "Nested3FileSvc", targetNamespace = "http://Nested3FileSvc.org/wsdl", wsdlLocation = "META-INF/wsdl/nestedimportwsdl.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.nested3.Tests")
 @Stateless(name = "WSNested3File")
 public class TestsBean {
 
     public com.sun.ts.tests.webservices12.wsdlImport.file.nested3.Astring invokeTest1() {
-        com.sun.ts.tests.webservices12.wsdlImport.file.nested3.Astring result =
-                new com.sun.ts.tests.webservices12.wsdlImport.file.nested3.Astring();
+        com.sun.ts.tests.webservices12.wsdlImport.file.nested3.Astring result = new com.sun.ts.tests.webservices12.wsdlImport.file.nested3.Astring();
         result.setResult("Hello");
         return result;
     }

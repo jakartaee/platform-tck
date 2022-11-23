@@ -56,8 +56,7 @@ public class Client extends EETest {
 
     private TSLoginContext lc = null;
 
-    private static final String SEC_MGR_WARNING =
-            "ERROR:  Security Manager is NOT enabled and must be for these tests.  If you have passed these tests while running with Security Manager enabled, you can use keywords to bypass the running of these tests when Security Manager is disabled.";
+    private static final String SEC_MGR_WARNING = "ERROR:  Security Manager is NOT enabled and must be for these tests.  If you have passed these tests while running with Security Manager enabled, you can use keywords to bypass the running of these tests when Security Manager is disabled.";
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -97,14 +96,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:290; JavaEE:SPEC:293;
      *
-     * @test_Strategy: This validates that we have a particular grant under the
-     * following conditions: - using locally declared Permission impl
-     * (SecurityPermission) (note: this perm does not support actions) - have
-     * declared grant for this (SecurityPermission) in permissions.xml - also
-     * declared grant for SecurityPermission at higher app server level (thus we
-     * have grant declared twice.) (Must have grant for SecurityPermission
-     * "CTSPermission1_name") - within ejb, use AccessController.checkPermission()
-     * to confirm our permissons are as expected
+     * @test_Strategy: This validates that we have a particular grant under the following conditions: - using locally
+     * declared Permission impl (SecurityPermission) (note: this perm does not support actions) - have declared grant for
+     * this (SecurityPermission) in permissions.xml - also declared grant for SecurityPermission at higher app server level
+     * (thus we have grant declared twice.) (Must have grant for SecurityPermission "CTSPermission1_name") - within ejb, use
+     * AccessController.checkPermission() to confirm our permissons are as expected
      */
     public void ValidateCustomPerm() throws Fault {
         logTrace("Enterred ValidateCustomPerm()");
@@ -137,14 +133,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:290; JavaEE:SPEC:293;
      *
-     * @test_Strategy: This validates that we have a particular grant under the
-     * following conditions: - using locally declared Permission impl
-     * (SecurityPermission) (note: this perm does not support actions) - have
-     * declared grant for this (SecurityPermission) in permissions.xml - also
-     * declared grant for SecurityPermission at higher app server level (thus we
-     * have grant declared twice.) (Must have grant for SecurityPermission
-     * "CTSPermission1_name") - within ACC, use AccessController.checkPermission()
-     * to confirm our permissons are as expected
+     * @test_Strategy: This validates that we have a particular grant under the following conditions: - using locally
+     * declared Permission impl (SecurityPermission) (note: this perm does not support actions) - have declared grant for
+     * this (SecurityPermission) in permissions.xml - also declared grant for SecurityPermission at higher app server level
+     * (thus we have grant declared twice.) (Must have grant for SecurityPermission "CTSPermission1_name") - within ACC, use
+     * AccessController.checkPermission() to confirm our permissons are as expected
      */
     public void ValidateCustomPermInACC() throws Fault {
         logTrace("Starting ValidateCustomPermInACC test");
@@ -173,16 +166,12 @@ public class Client extends EETest {
     /*
      * @testName: ValidateLocalGrantForCustomPerm
      *
-     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303;
-     * JavaEE:SPEC:304;
+     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303; JavaEE:SPEC:304;
      *
-     * @test_Strategy: This validates that we have a particular grant under the
-     * following conditions: - using locally declared Permission impl
-     * (SecurityPermission) note: SecurityPermission does NOT have support for
-     * actions. - have declared grant in permissions.xml - have NO declared grant
-     * at higher app server level (e.g. server.policy etc) - within ejb, use
-     * AccessController.checkPermission() to confirm our permissons are as
-     * expected
+     * @test_Strategy: This validates that we have a particular grant under the following conditions: - using locally
+     * declared Permission impl (SecurityPermission) note: SecurityPermission does NOT have support for actions. - have
+     * declared grant in permissions.xml - have NO declared grant at higher app server level (e.g. server.policy etc) -
+     * within ejb, use AccessController.checkPermission() to confirm our permissons are as expected
      *
      */
     public void ValidateLocalGrantForCustomPerm() throws Fault {
@@ -208,16 +197,12 @@ public class Client extends EETest {
     /*
      * @testName: ValidateLocalGrantForCustomPermInACC
      *
-     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303;
-     * JavaEE:SPEC:304;
+     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303; JavaEE:SPEC:304;
      *
-     * @test_Strategy: This validates that we have a particular grant under the
-     * following conditions: - using locally declared Permission impl
-     * (SecurityPermission) note: SecurityPermission does NOT have support for
-     * actions. - have declared grant in permissions.xml - have NO declared grant
-     * at higher app server level (e.g. server.policy etc) - within ACC, use
-     * AccessController.checkPermission() to confirm our permissons are as
-     * expected
+     * @test_Strategy: This validates that we have a particular grant under the following conditions: - using locally
+     * declared Permission impl (SecurityPermission) note: SecurityPermission does NOT have support for actions. - have
+     * declared grant in permissions.xml - have NO declared grant at higher app server level (e.g. server.policy etc) -
+     * within ACC, use AccessController.checkPermission() to confirm our permissons are as expected
      *
      */
     public void ValidateLocalGrantForCustomPermInACC() throws Fault {
@@ -251,17 +236,13 @@ public class Client extends EETest {
     /*
      * @testName: ValidateRestrictedLocalPerm
      *
-     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303;
-     * JavaEE:SPEC:304;
+     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303; JavaEE:SPEC:304;
      *
-     * @test_Strategy: This validates that we have a particular grant under the
-     * following conditions: - using perm (PropertyPermission) that is referenced
-     * in permission.xml and has read but not write assigned note:
-     * PropertyPermission has support for actions - have NO declared grants for
-     * PropertyPermission at higher app server level (e.g. server.policy etc) so
-     * that it is ONLY bundled in this local app and ref'd in permission.xml -
-     * within ejb, use AccessController.checkPermission() to confirm our
-     * permissons are as expected
+     * @test_Strategy: This validates that we have a particular grant under the following conditions: - using perm
+     * (PropertyPermission) that is referenced in permission.xml and has read but not write assigned note:
+     * PropertyPermission has support for actions - have NO declared grants for PropertyPermission at higher app server
+     * level (e.g. server.policy etc) so that it is ONLY bundled in this local app and ref'd in permission.xml - within ejb,
+     * use AccessController.checkPermission() to confirm our permissons are as expected
      *
      */
     public void ValidateRestrictedLocalPerm() throws Fault {
@@ -285,17 +266,13 @@ public class Client extends EETest {
     /*
      * @testName: ValidateRestrictedLocalPermInACC
      *
-     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303;
-     * JavaEE:SPEC:304;
+     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303; JavaEE:SPEC:304;
      *
-     * @test_Strategy: This validates that we have a particular grant under the
-     * following conditions: - using perm (PropertyPermission) that is referenced
-     * in permission.xml and has read but not write assigned note:
-     * PropertyPermission has support for actions - have NO declared grants for
-     * PropertyPermission at higher app server level (e.g. server.policy etc) so
-     * that it is ONLY bundled in this local app and ref'd in permission.xml -
-     * within ACC, use AccessController.checkPermission() to confirm our
-     * permissons are as expected
+     * @test_Strategy: This validates that we have a particular grant under the following conditions: - using perm
+     * (PropertyPermission) that is referenced in permission.xml and has read but not write assigned note:
+     * PropertyPermission has support for actions - have NO declared grants for PropertyPermission at higher app server
+     * level (e.g. server.policy etc) so that it is ONLY bundled in this local app and ref'd in permission.xml - within ACC,
+     * use AccessController.checkPermission() to confirm our permissons are as expected
      *
      */
     public void ValidateRestrictedLocalPermInACC() throws Fault {
@@ -327,21 +304,17 @@ public class Client extends EETest {
             }
 
             /*
-             * // XXXX: if EE were to conclusively state it supports local
-             * permissions, we could // validate using customPermissions that a write
-             * was not assigned but when // using common EE permissions, we can not be
-             * sure that EE perms restrict // allowing PropertyPermission "write"
-             * actions so we cant assume its restricted // by default and won't test
-             * for this at this current rev. PropertyPermission writePropertyPerm =
-             * new PropertyPermission("TestPropertyPerm", "write"); try {
-             * doCheckPermission(writePropertyPerm); // should NOT get here - we
-             * should have had an excpetion thrown throw new
+             * // XXXX: if EE were to conclusively state it supports local permissions, we could // validate using customPermissions
+             * that a write was not assigned but when // using common EE permissions, we can not be sure that EE perms restrict //
+             * allowing PropertyPermission "write" actions so we cant assume its restricted // by default and won't test for this at
+             * this current rev. PropertyPermission writePropertyPerm = new PropertyPermission("TestPropertyPerm", "write"); try {
+             * doCheckPermission(writePropertyPerm); // should NOT get here - we should have had an excpetion thrown throw new
              * Fault("FAILURE:  ValidateRestrictedLocalPermInACC() did not throw expected exception for write of TestPropertyPerm."
              * ); } catch (AccessControlException ex) {
-             * logMsg("ValidateRestrictedLocalPermInACC() threw expected exception for write of TestPropertyPerm."
-             * ); } catch (NullPointerException ex) { throw new
-             * Fault("FAILURE:  ValidateRestrictedLocalPermInACC() threw NullPointerException for write of TestPropertyPerm."
-             * , ex); }
+             * logMsg("ValidateRestrictedLocalPermInACC() threw expected exception for write of TestPropertyPerm." ); } catch
+             * (NullPointerException ex) { throw new
+             * Fault("FAILURE:  ValidateRestrictedLocalPermInACC() threw NullPointerException for write of TestPropertyPerm." , ex);
+             * }
              */
         } catch (Exception ex) {
             throw new Fault("FAILURE:  ValidateRestrictedLocalPermInACC had unexpected exception.");
@@ -355,14 +328,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:289; JavaEE:SPEC:290;
      *
-     * @test_Strategy: This validates that we are NOT granted a certain permission
-     * and so when we try to do our access checks, we expect to see an
-     * AccessControl exception returned. This validates that we have no grant
-     * under the following conditions: - using locally declared Permission impl
-     * (SecurityPermission) - have NO declared grant in permissions.xml - have NO
-     * declared grant at higher app server level (e.g. server.policy etc) - within
-     * ejb, use AccessController.checkPermission() to confirm our permissons are
-     * as expected
+     * @test_Strategy: This validates that we are NOT granted a certain permission and so when we try to do our access
+     * checks, we expect to see an AccessControl exception returned. This validates that we have no grant under the
+     * following conditions: - using locally declared Permission impl (SecurityPermission) - have NO declared grant in
+     * permissions.xml - have NO declared grant at higher app server level (e.g. server.policy etc) - within ejb, use
+     * AccessController.checkPermission() to confirm our permissons are as expected
      *
      */
     public void ValidateMissingPermFails() throws Fault {
@@ -389,14 +359,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:289; JavaEE:SPEC:290;
      *
-     * @test_Strategy: This validates that we are NOT granted a certain permission
-     * and so when we try to do our access checks, we expect to see an
-     * AccessControl exception returned. This validates that we have no grant
-     * under the following conditions: - using locally declared Permission impl
-     * (SecurityPermission) - have NO declared grant in permissions.xml - have NO
-     * declared grant at higher app server level (e.g. server.policy etc) - within
-     * ACC, use AccessController.checkPermission() to confirm our permissons are
-     * as expected
+     * @test_Strategy: This validates that we are NOT granted a certain permission and so when we try to do our access
+     * checks, we expect to see an AccessControl exception returned. This validates that we have no grant under the
+     * following conditions: - using locally declared Permission impl (SecurityPermission) - have NO declared grant in
+     * permissions.xml - have NO declared grant at higher app server level (e.g. server.policy etc) - within ACC, use
+     * AccessController.checkPermission() to confirm our permissons are as expected
      *
      */
     public void ValidateMissingPermFailsInACC() throws Fault {
@@ -431,14 +398,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:290; JavaEE:SPEC:296;
      *
-     * @test_Strategy: This validates that we are NOT granted a certain permission
-     * and so when we try to do our access checks, we expect to see an
-     * AccessControl exception returned. This validates that we have no grant
-     * under the following conditions: - using locally declared Permission impl
-     * (SecurityPermission) - have NO declared grant in permissions.xml - have NO
-     * declared grant at higher app server level (e.g. server.policy etc) - within
-     * ejb, use AccessController.checkPermission() to confirm our permissons are
-     * as expected
+     * @test_Strategy: This validates that we are NOT granted a certain permission and so when we try to do our access
+     * checks, we expect to see an AccessControl exception returned. This validates that we have no grant under the
+     * following conditions: - using locally declared Permission impl (SecurityPermission) - have NO declared grant in
+     * permissions.xml - have NO declared grant at higher app server level (e.g. server.policy etc) - within ejb, use
+     * AccessController.checkPermission() to confirm our permissons are as expected
      *
      */
     public void ValidateRequiredPermSet() throws Fault {
@@ -465,14 +429,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:290; JavaEE:SPEC:296;
      *
-     * @test_Strategy: This validates that we are NOT granted a certain permission
-     * and so when we try to do our access checks, we expect to see an
-     * AccessControl exception returned. This validates that we have no grant
-     * under the following conditions: - using locally declared Permission impl
-     * (SecurityPermission) - have NO declared grant in permissions.xml - have NO
-     * declared grant at higher app server level (e.g. server.policy etc) - within
-     * ACC, use AccessController.checkPermission() to confirm our permissons are
-     * as expected
+     * @test_Strategy: This validates that we are NOT granted a certain permission and so when we try to do our access
+     * checks, we expect to see an AccessControl exception returned. This validates that we have no grant under the
+     * following conditions: - using locally declared Permission impl (SecurityPermission) - have NO declared grant in
+     * permissions.xml - have NO declared grant at higher app server level (e.g. server.policy etc) - within ACC, use
+     * AccessController.checkPermission() to confirm our permissons are as expected
      *
      */
     public void ValidateRequiredPermSetInACC() throws Fault {
@@ -520,21 +481,17 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:290; JavaEE:SPEC:296;
      *
-     * @test_Strategy: This validates that a perm (PropertyPermission) that is
-     * bundled with the app. Additionally, we want to verify the perm for
-     * class=PropertyPermission does NOT pass the access check since we will be
-     * trying to access a non-existing/invalid named perm. Then, as a sanity
-     * check, access a perm using a name that IS validly defined in
+     * @test_Strategy: This validates that a perm (PropertyPermission) that is bundled with the app. Additionally, we want
+     * to verify the perm for class=PropertyPermission does NOT pass the access check since we will be trying to access a
+     * non-existing/invalid named perm. Then, as a sanity check, access a perm using a name that IS validly defined in
      * permissions.xml (but not defined at any higher appserver level).
      *
-     * This tests the following conditions: - NO permission declared in app server
-     * nor in permissions.xml for PropertyPermission named "NonExistingName" w/
-     * READ action (should get AccessControlException since no grant exists for
-     * this) - using locally declared Permission impl (SecurityPermission named
-     * "CTSPermission_second_name") (should be allowed to pass AccessController
-     * check for this.) - have NO declared grant at higher app server level (e.g.
-     * server.policy etc) - within ejb, use AccessController.checkPermission() to
-     * confirm our permissons are treated as expected
+     * This tests the following conditions: - NO permission declared in app server nor in permissions.xml for
+     * PropertyPermission named "NonExistingName" w/ READ action (should get AccessControlException since no grant exists
+     * for this) - using locally declared Permission impl (SecurityPermission named "CTSPermission_second_name") (should be
+     * allowed to pass AccessController check for this.) - have NO declared grant at higher app server level (e.g.
+     * server.policy etc) - within ejb, use AccessController.checkPermission() to confirm our permissons are treated as
+     * expected
      *
      */
     public void ValidateLocalPermsInvalidName() throws Fault {
@@ -562,21 +519,17 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:290; JavaEE:SPEC:296;
      *
-     * @test_Strategy: This validates that a perm (PropertyPermission) that is
-     * bundled with the app. Additionally, we want to verify the perm for
-     * class=PropertyPermission does NOT pass the access check since we will be
-     * trying to access a non-existing/invalid named perm. Then, as a sanity
-     * check, access a perm using a name that IS validly defined in
+     * @test_Strategy: This validates that a perm (PropertyPermission) that is bundled with the app. Additionally, we want
+     * to verify the perm for class=PropertyPermission does NOT pass the access check since we will be trying to access a
+     * non-existing/invalid named perm. Then, as a sanity check, access a perm using a name that IS validly defined in
      * permissions.xml (but not defined at any higher appserver level).
      *
-     * This tests the following conditions: - NO permission declared in app server
-     * nor in permissions.xml for PropertyPermission named "NonExistingName" w/
-     * READ action (should get AccessControlException since no grant exists for
-     * this) - using locally declared Permission impl (SecurityPermission named
-     * "CTSPermission_second_name") (should be allowed to pass AccessController
-     * check for this.) - have NO declared grant at higher app server level (e.g.
-     * server.policy etc) - within ejb, use AccessController.checkPermission() to
-     * confirm our permissons are treated as expected
+     * This tests the following conditions: - NO permission declared in app server nor in permissions.xml for
+     * PropertyPermission named "NonExistingName" w/ READ action (should get AccessControlException since no grant exists
+     * for this) - using locally declared Permission impl (SecurityPermission named "CTSPermission_second_name") (should be
+     * allowed to pass AccessController check for this.) - have NO declared grant at higher app server level (e.g.
+     * server.policy etc) - within ejb, use AccessController.checkPermission() to confirm our permissons are treated as
+     * expected
      *
      */
     public void ValidateLocalPermsInvalidNameInACC() throws Fault {

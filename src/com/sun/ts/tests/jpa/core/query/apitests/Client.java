@@ -54,7 +54,8 @@ public class Client extends PMClientBase {
 
     private static final DecimalFormat df = new DecimalFormat();
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -110,19 +111,15 @@ public class Client extends PMClientBase {
     /*
      * @testName: setFirstResultTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:728; PERSISTENCE:SPEC:400;
-     * PERSISTENCE:JAVADOC:636; PERSISTENCE:JAVADOC:172; PERSISTENCE:JAVADOC:399;
-     * PERSISTENCE:JAVADOC:440; PERSISTENCE:JAVADOC:665; PERSISTENCE:JAVADOC:682;
+     * @assertion_ids: PERSISTENCE:SPEC:728; PERSISTENCE:SPEC:400; PERSISTENCE:JAVADOC:636; PERSISTENCE:JAVADOC:172;
+     * PERSISTENCE:JAVADOC:399; PERSISTENCE:JAVADOC:440; PERSISTENCE:JAVADOC:665; PERSISTENCE:JAVADOC:682;
      *
-     * @test_Strategy: Verify results of setFirstResult using JOIN in the FROM
-     * clause projecting on state_field in the select clause. Verify that number
-     * of rows skipped are 1-1 with specified value for setFirstResult.
+     * @test_Strategy: Verify results of setFirstResult using JOIN in the FROM clause projecting on state_field in the
+     * select clause. Verify that number of rows skipped are 1-1 with specified value for setFirstResult.
      *
-     * The elements of a query result whose SELECT clause consists of more than
-     * one value are of type Object[].
+     * The elements of a query result whose SELECT clause consists of more than one value are of type Object[].
      *
-     * Create a TypedQuery where id <= 10 sorted by id. setFirstResult(5) and
-     * verify the results that were returned
+     * Create a TypedQuery where id <= 10 sorted by id. setFirstResult(5) and verify the results that were returned
      */
     public void setFirstResultTest() throws Fault {
         List q;
@@ -135,14 +132,14 @@ public class Client extends PMClientBase {
         boolean pass13 = false;
         boolean pass14 = true;
         final Object[][] expectedResultSet = new Object[][] {
-            new Object[] {4, 4},
-            new Object[] {4, 9},
-            new Object[] {4, 14},
-            new Object[] {4, 19},
-            new Object[] {5, 5},
-            new Object[] {5, 10},
-            new Object[] {5, 15},
-            new Object[] {5, 20}
+                new Object[] { 4, 4 },
+                new Object[] { 4, 9 },
+                new Object[] { 4, 14 },
+                new Object[] { 4, 19 },
+                new Object[] { 5, 5 },
+                new Object[] { 5, 10 },
+                new Object[] { 5, 15 },
+                new Object[] { 5, 20 }
         };
 
         try {
@@ -290,11 +287,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:585; PERSISTENCE:JAVADOC:618
      *
-     * @test_Strategy: Create a Query. setFirstResult(-5) and verify
-     * IllegalArgumentException is thrown
+     * @test_Strategy: Create a Query. setFirstResult(-5) and verify IllegalArgumentException is thrown
      *
-     * Create a TypedQuery. setFirstResult(-5) and verify IllegalArgumentException
-     * is thrown
+     * Create a TypedQuery. setFirstResult(-5) and verify IllegalArgumentException is thrown
      */
     public void setFirstResultIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -337,10 +332,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:405; PERSISTENCE:JAVADOC:645
      *
-     * @test_Strategy: call query.getParameter(String, Class) and verify returned
-     * Parameter or that IllegalStateException is thrown. call
-     * TypedQuery.getParameter(String, Class) and verify returned Parameter or
-     * that IllegalStateException is thrown.
+     * @test_Strategy: call query.getParameter(String, Class) and verify returned Parameter or that IllegalStateException is
+     * thrown. call TypedQuery.getParameter(String, Class) and verify returned Parameter or that IllegalStateException is
+     * thrown.
      */
     public void getParameterTest() throws Fault {
         boolean pass1 = false;
@@ -396,11 +390,11 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:558; PERSISTENCE:JAVADOC:646
      *
-     * @test_Strategy: call Query.getParameter(String, String) with a name that
-     * does not exist and verify that IllegalArgumentException is thrown.
+     * @test_Strategy: call Query.getParameter(String, String) with a name that does not exist and verify that
+     * IllegalArgumentException is thrown.
      *
-     * call TypedQuery.getParameter(String, String) with a name that does not
-     * match and verify that IllegalArgumentException is thrown.
+     * call TypedQuery.getParameter(String, String) with a name that does not match and verify that IllegalArgumentException
+     * is thrown.
      */
     public void getParameterIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -442,9 +436,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:556; PERSISTENCE:JAVADOC:643
      *
-     * @test_Strategy: call Query.getParameter(String) with name that does not
-     * exist and verify that IllegalArgumentException is thrown. call
-     * TypedQuery.getParameter(String) with name that does not exist and verify
+     * @test_Strategy: call Query.getParameter(String) with name that does not exist and verify that
+     * IllegalArgumentException is thrown. call TypedQuery.getParameter(String) with name that does not exist and verify
      * that IllegalArgumentException is thrown.
      */
     public void getParameterIllegalArgumentException2Test() throws Fault {
@@ -486,11 +479,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:407; PERSISTENCE:JAVADOC:648
      *
-     * @test_Strategy: call Query.getParameter(int, Class) and verify returned
-     * Parameter or that IllegalStateException is thrown. Also a null should be
-     * returned by getName() for a positional parameter call
-     * TypedQuery.getParameter(int, Class) and verify returned Parameter or that
-     * IllegalStateException is thrown. Also a null should be returned by
+     * @test_Strategy: call Query.getParameter(int, Class) and verify returned Parameter or that IllegalStateException is
+     * thrown. Also a null should be returned by getName() for a positional parameter call TypedQuery.getParameter(int,
+     * Class) and verify returned Parameter or that IllegalStateException is thrown. Also a null should be returned by
      * getName() for a positional parameter
      *
      */
@@ -550,11 +541,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:560; PERSISTENCE:JAVADOC:649
      *
-     * @test_Strategy: create query and set a positional parameter. Verify
-     * getParameter for a position that does not exist throws
-     * IllegalArgumentException create TypedQuery and set a positional parameter.
-     * Verify getParameter for a position that does not exist throws
-     * IllegalArgumentException*
+     * @test_Strategy: create query and set a positional parameter. Verify getParameter for a position that does not exist
+     * throws IllegalArgumentException create TypedQuery and set a positional parameter. Verify getParameter for a position
+     * that does not exist throws IllegalArgumentException*
      */
     public void getParameterIntIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -598,11 +587,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:562; PERSISTENCE:JAVADOC:652
      *
-     * @test_Strategy: create query and set a positional parameter. Verify calling
-     * getParameter with a class that is not assignable to the type throws
-     * IllegalArgumentException create TypedQuery and set a positional parameter.
-     * Verify calling getParameter with a class that is not assignable to the type
-     * throws IllegalArgumentException
+     * @test_Strategy: create query and set a positional parameter. Verify calling getParameter with a class that is not
+     * assignable to the type throws IllegalArgumentException create TypedQuery and set a positional parameter. Verify
+     * calling getParameter with a class that is not assignable to the type throws IllegalArgumentException
      */
     @SetupMethod(name = "setupNoData")
     @CleanupMethod(name = "cleanupNoData")
@@ -644,14 +631,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: getParameterValueParameterTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:404; PERSISTENCE:JAVADOC:409;
-     * PERSISTENCE:JAVADOC:645; PERSISTENCE:JAVADOC:656; PERSISTENCE:SPEC:1540;
+     * @assertion_ids: PERSISTENCE:JAVADOC:404; PERSISTENCE:JAVADOC:409; PERSISTENCE:JAVADOC:645; PERSISTENCE:JAVADOC:656;
+     * PERSISTENCE:SPEC:1540;
      *
-     * @test_Strategy: create query and set a String parameter. Verify
-     * getParameterValue can retrieve that value
+     * @test_Strategy: create query and set a String parameter. Verify getParameterValue can retrieve that value
      *
-     * create TypedQuery and set a String parameter. Verify getParameterValue can
-     * retrieve that value
+     * create TypedQuery and set a String parameter. Verify getParameterValue can retrieve that value
      */
     public void getParameterValueParameterTest() throws Fault {
         boolean pass1 = false;
@@ -715,11 +700,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:565; PERSISTENCE:JAVADOC:657
      *
-     * @test_Strategy: create two querys and set a String parameter. Try to get
-     * the first parameter value from the second query and verify
-     * IllegalArgumentException is thrown create two TypedQuerys and set a String
-     * parameter. Try to get the first parameter value from the second query and
-     * verify IllegalArgumentException is thrown*
+     * @test_Strategy: create two querys and set a String parameter. Try to get the first parameter value from the second
+     * query and verify IllegalArgumentException is thrown create two TypedQuerys and set a String parameter. Try to get the
+     * first parameter value from the second query and verify IllegalArgumentException is thrown*
      */
     public void getParameterValueParameterIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -772,11 +755,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:566; PERSISTENCE:JAVADOC:658
      *
-     * @test_Strategy: create query with a parameter that is not set. call
-     * getParameterValue(Parameter) for that parameter and verify
-     * IllegalArgumentException is thrown create TypedQuery with a parameter that
-     * is not set. call getParameterValue(Parameter) for that parameter and verify
-     * IllegalArgumentException is thrown
+     * @test_Strategy: create query with a parameter that is not set. call getParameterValue(Parameter) for that parameter
+     * and verify IllegalArgumentException is thrown create TypedQuery with a parameter that is not set. call
+     * getParameterValue(Parameter) for that parameter and verify IllegalArgumentException is thrown
      */
     public void getParameterValueParameterIllegalStateExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -810,8 +791,7 @@ public class Client extends PMClientBase {
         }
         TestUtil.logMsg("Testing TypedQuery version");
 
-        TypedQuery<Employee> tquery1 =
-                getEntityManager().createQuery("select e from Employee e where e.firstName = :fName1", Employee.class);
+        TypedQuery<Employee> tquery1 = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName1", Employee.class);
         set = tquery1.getParameters();
         if (set.size() != 1) {
             TestUtil.logErr("Expected one parameter, actual=" + set.size());
@@ -840,14 +820,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterParameterObjectIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:589; PERSISTENCE:JAVADOC:622;
-     * PERSISTENCE:JAVADOC:692;
+     * @assertion_ids: PERSISTENCE:JAVADOC:589; PERSISTENCE:JAVADOC:622; PERSISTENCE:JAVADOC:692;
      *
-     * @test_Strategy: create query with a parameter that is not set. call
-     * setParameter(Parameter,Object) for that parameter and verify
-     * IllegalArgumentException is thrown create TypedQuery with a parameter that
-     * is not set. call setParameter(Parameter,Object) for that parameter and
-     * verify IllegalArgumentException is thrown
+     * @test_Strategy: create query with a parameter that is not set. call setParameter(Parameter,Object) for that parameter
+     * and verify IllegalArgumentException is thrown create TypedQuery with a parameter that is not set. call
+     * setParameter(Parameter,Object) for that parameter and verify IllegalArgumentException is thrown
      */
     public void setParameterParameterObjectIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -881,11 +858,9 @@ public class Client extends PMClientBase {
         }
         TestUtil.logMsg("Testing TypedQuery version");
 
-        TypedQuery<Employee> tquery1 =
-                getEntityManager().createQuery("select e from Employee e where e.firstName = :fName1", Employee.class);
+        TypedQuery<Employee> tquery1 = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName1", Employee.class);
 
-        TypedQuery<Employee> tquery2 =
-                getEntityManager().createQuery("select e from Employee e where e.firstName = :fName2", Employee.class);
+        TypedQuery<Employee> tquery2 = getEntityManager().createQuery("select e from Employee e where e.firstName = :fName2", Employee.class);
         set = tquery2.getParameters();
         if (set.size() != 1) {
             TestUtil.logErr("Expected one parameter, actual=" + set.size());
@@ -912,17 +887,13 @@ public class Client extends PMClientBase {
     }
 
     /*
-     * @testName:
-     * setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest
+     * @testName: setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:590; PERSISTENCE:JAVADOC:623;
-     * PERSISTENCE:JAVADOC:694;
+     * @assertion_ids: PERSISTENCE:JAVADOC:590; PERSISTENCE:JAVADOC:623; PERSISTENCE:JAVADOC:694;
      *
-     * @test_Strategy: create query with a parameter that is not set. call
-     * setParameter(Parameter,Calendar,TemporalType) for that parameter and verify
-     * IllegalArgumentException is thrown create TypedQuery with a parameter that
-     * is not set. call setParameter(Parameter,Calendar,TemporalType) for that
-     * parameter and verify IllegalArgumentException is thrown
+     * @test_Strategy: create query with a parameter that is not set. call setParameter(Parameter,Calendar,TemporalType) for
+     * that parameter and verify IllegalArgumentException is thrown create TypedQuery with a parameter that is not set. call
+     * setParameter(Parameter,Calendar,TemporalType) for that parameter and verify IllegalArgumentException is thrown
      */
     public void setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -956,11 +927,9 @@ public class Client extends PMClientBase {
         }
         TestUtil.logMsg("Testing TypedQuery version");
 
-        TypedQuery<Employee> tquery1 =
-                getEntityManager().createQuery("select e from Employee e where e.hireDate = :date1", Employee.class);
+        TypedQuery<Employee> tquery1 = getEntityManager().createQuery("select e from Employee e where e.hireDate = :date1", Employee.class);
 
-        TypedQuery<Employee> tquery2 =
-                getEntityManager().createQuery("select e from Employee e where e.hireDate = :date2", Employee.class);
+        TypedQuery<Employee> tquery2 = getEntityManager().createQuery("select e from Employee e where e.hireDate = :date2", Employee.class);
         set = tquery2.getParameters();
         if (set.size() != 1) {
             TestUtil.logErr("Expected one parameter, actual=" + set.size());
@@ -987,17 +956,13 @@ public class Client extends PMClientBase {
     }
 
     /*
-     * @testName:
-     * setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest
+     * @testName: setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:591; PERSISTENCE:JAVADOC:624;
-     * PERSISTENCE:JAVADOC:696;
+     * @assertion_ids: PERSISTENCE:JAVADOC:591; PERSISTENCE:JAVADOC:624; PERSISTENCE:JAVADOC:696;
      *
-     * @test_Strategy: create query with a parameter that is not set. call
-     * setParameter(Parameter,Date,TemporalType) for that parameter and verify
-     * IllegalArgumentException is thrown create TypedQuery with a parameter that
-     * is not set. call setParameter(Parameter,Date,TemporalType) for that
-     * parameter and verify IllegalArgumentException is thrown
+     * @test_Strategy: create query with a parameter that is not set. call setParameter(Parameter,Date,TemporalType) for
+     * that parameter and verify IllegalArgumentException is thrown create TypedQuery with a parameter that is not set. call
+     * setParameter(Parameter,Date,TemporalType) for that parameter and verify IllegalArgumentException is thrown
      */
     public void setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -1031,11 +996,9 @@ public class Client extends PMClientBase {
         }
         TestUtil.logMsg("Testing TypedQuery version");
 
-        TypedQuery<Employee> tquery1 =
-                getEntityManager().createQuery("select e from Employee e where e.hireDate = :date1", Employee.class);
+        TypedQuery<Employee> tquery1 = getEntityManager().createQuery("select e from Employee e where e.hireDate = :date1", Employee.class);
 
-        TypedQuery<Employee> tquery2 =
-                getEntityManager().createQuery("select e from Employee e where e.hireDate = :date2", Employee.class);
+        TypedQuery<Employee> tquery2 = getEntityManager().createQuery("select e from Employee e where e.hireDate = :date2", Employee.class);
         set = tquery2.getParameters();
         if (set.size() != 1) {
             TestUtil.logErr("Expected one parameter, actual=" + set.size());
@@ -1066,9 +1029,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:410;PERSISTENCE:JAVADOC:659
      *
-     * @test_Strategy: create query and set a String parameter. Verify
-     * getParameterValue can retrieve that value create TypedQuery and set a
-     * String parameter. Verify getParameterValue can retrieve that value
+     * @test_Strategy: create query and set a String parameter. Verify getParameterValue can retrieve that value create
+     * TypedQuery and set a String parameter. Verify getParameterValue can retrieve that value
      */
 
     public void getParameterValueStringTest() throws Fault {
@@ -1123,11 +1085,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:568; PERSISTENCE:JAVADOC:661
      *
-     * @test_Strategy: create a query and set a String parameter. Try to get the
-     * parameter value from the query and verify IllegalArgumentException is
-     * thrown create a TypedQuery and set a String parameter. Try to get the
-     * parameter value from the query and verify IllegalArgumentException is
-     * thrown*
+     * @test_Strategy: create a query and set a String parameter. Try to get the parameter value from the query and verify
+     * IllegalArgumentException is thrown create a TypedQuery and set a String parameter. Try to get the parameter value
+     * from the query and verify IllegalArgumentException is thrown*
      */
     public void getParameterValueStringIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -1172,9 +1132,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:567; PERSISTENCE:JAVADOC:660
      *
-     * @test_Strategy: create a query and don't set a name parameter. Verify
-     * getParameterValue for a parameter that is not bound throws an
-     * IllegalStateException
+     * @test_Strategy: create a query and don't set a name parameter. Verify getParameterValue for a parameter that is not
+     * bound throws an IllegalStateException
      */
     public void getParameterValueStringIllegalStateExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -1216,9 +1175,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:411; PERSISTENCE:JAVADOC:662
      *
-     * @test_Strategy: create query and set a positional parameter. Verify
-     * getParameterValue can retrieve that value create TypedQuery and set a
-     * positional parameter. Verify getParameterValue can retrieve that value
+     * @test_Strategy: create query and set a positional parameter. Verify getParameterValue can retrieve that value create
+     * TypedQuery and set a positional parameter. Verify getParameterValue can retrieve that value
      */
     public void getParameterValueIntTest() throws Fault {
         boolean pass1 = false;
@@ -1271,11 +1229,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:570; PERSISTENCE:JAVADOC:664
      *
-     * @test_Strategy: create query and set a positional parameter. Verify
-     * getParameterValue for a position that does not exist throws
-     * IllegalArgumentException create TypedQuery and set a positional parameter.
-     * Verify getParameterValue for a position that does not exist throws
-     * IllegalArgumentException
+     * @test_Strategy: create query and set a positional parameter. Verify getParameterValue for a position that does not
+     * exist throws IllegalArgumentException create TypedQuery and set a positional parameter. Verify getParameterValue for
+     * a position that does not exist throws IllegalArgumentException
      */
     public void getParameterValueIntIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -1318,11 +1274,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:569; PERSISTENCE:JAVADOC:663
      *
-     * @test_Strategy: create query and don't set a positional parameter. Verify
-     * getParameterValue for a position that is not bound throws
-     * IllegalStateException create TypedQuery and don't set a positional
-     * parameter. Verify getParameterValue for a position that is not bound throws
-     * IllegalStateException
+     * @test_Strategy: create query and don't set a positional parameter. Verify getParameterValue for a position that is
+     * not bound throws IllegalStateException create TypedQuery and don't set a positional parameter. Verify
+     * getParameterValue for a position that is not bound throws IllegalStateException
      */
     public void getParameterValueIntIllegalStateExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -1341,8 +1295,7 @@ public class Client extends PMClientBase {
         TestUtil.logMsg("Testing TypedQuery version");
 
         try {
-            TypedQuery<Employee> query =
-                    getEntityManager().createQuery("select e from Employee e where e.firstName = ?1", Employee.class);
+            TypedQuery<Employee> query = getEntityManager().createQuery("select e from Employee e where e.firstName = ?1", Employee.class);
             query.getParameterValue(1);
             TestUtil.logErr("IllegalStateException not thrown");
         } catch (IllegalStateException e) {
@@ -1359,11 +1312,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameter1Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:176; PERSISTENCE:JAVADOC:412;
-     * PERSISTENCE:JAVADOC:448; PERSISTENCE:JAVADOC:697; PERSISTENCE:SPEC:1305;
+     * @assertion_ids: PERSISTENCE:JAVADOC:176; PERSISTENCE:JAVADOC:412; PERSISTENCE:JAVADOC:448; PERSISTENCE:JAVADOC:697;
+     * PERSISTENCE:SPEC:1305;
      *
-     * @test_Strategy: Obtain employees using valid name/value data in query.
-     * Obtain employees using valid name/value data in a TypedQuery.
+     * @test_Strategy: Obtain employees using valid name/value data in query. Obtain employees using valid name/value data
+     * in a TypedQuery.
      */
     public void setParameter1Test() throws Fault {
         boolean pass1 = false;
@@ -1499,13 +1452,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterStringObject1IllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:732; PERSISTENCE:JAVADOC:176;
-     * PERSISTENCE:JAVADOC:625
+     * @assertion_ids: PERSISTENCE:SPEC:732; PERSISTENCE:JAVADOC:176; PERSISTENCE:JAVADOC:625
      *
-     * @test_Strategy: setParameter(String, Object) containing an argument of an
-     * incorrect type should throw an IllegalArgumentException.
-     * TypedQuery.setParameter(String, Object) containing an argument of an
-     * incorrect type should throw an IllegalArgumentException.*
+     * @test_Strategy: setParameter(String, Object) containing an argument of an incorrect type should throw an
+     * IllegalArgumentException. TypedQuery.setParameter(String, Object) containing an argument of an incorrect type should
+     * throw an IllegalArgumentException.*
      */
     public void setParameterStringObject1IllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -1545,13 +1496,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterStringObject2IllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:732; PERSISTENCE:JAVADOC:176;
-     * PERSISTENCE:JAVADOC:592; PERSISTENCE:JAVADOC:625; PERSISTENCE:JAVADOC:698;
+     * @assertion_ids: PERSISTENCE:SPEC:732; PERSISTENCE:JAVADOC:176; PERSISTENCE:JAVADOC:592; PERSISTENCE:JAVADOC:625;
+     * PERSISTENCE:JAVADOC:698;
      *
-     * @test_Strategy: setParameter(String, Object) containing a parameter name
-     * that does not exist should throw an IllegalArgumentException.
-     * TypedQuery.setParameter(String, Object) containing a parameter name that
-     * does not exist should throw an IllegalArgumentException.
+     * @test_Strategy: setParameter(String, Object) containing a parameter name that does not exist should throw an
+     * IllegalArgumentException. TypedQuery.setParameter(String, Object) containing a parameter name that does not exist
+     * should throw an IllegalArgumentException.
      *
      */
     public void setParameterStringObject2IllegalArgumentExceptionTest() throws Fault {
@@ -1592,11 +1542,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterStringDateTemporalTypeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:177; PERSISTENCE:JAVADOC:450;
-     * PERSISTENCE:JAVADOC:701; PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.1;
+     * @assertion_ids: PERSISTENCE:JAVADOC:177; PERSISTENCE:JAVADOC:450; PERSISTENCE:JAVADOC:701; PERSISTENCE:SPEC:1514;
+     * PERSISTENCE:SPEC:1514.1;
      *
-     * @test_Strategy: Obtain employees using valid name/value data in query.
-     * Obtain employees using valid name/value data in TypedQuery.
+     * @test_Strategy: Obtain employees using valid name/value data in query. Obtain employees using valid name/value data
+     * in TypedQuery.
      */
     public void setParameterStringDateTemporalTypeTest() throws Fault {
         boolean pass1 = false;
@@ -1612,8 +1562,7 @@ public class Client extends PMClientBase {
             getEntityTransaction().begin();
 
             Query query = getEntityManager().createQuery("select e from Employee e where e.hireDate = :hDate");
-            Collection<Employee> q =
-                    query.setParameter("hDate", d1, TemporalType.DATE).getResultList();
+            Collection<Employee> q = query.setParameter("hDate", d1, TemporalType.DATE).getResultList();
 
             if (!checkEntityPK(q, cEmp)) {
                 TestUtil.logErr(
@@ -1647,8 +1596,7 @@ public class Client extends PMClientBase {
             TypedQuery<Employee> tquery = getEntityManager()
                     .createQuery("select e from Employee e where e.hireDate = :hDate", Employee.class);
 
-            Collection<Employee> q =
-                    tquery.setParameter("hDate", d1, TemporalType.DATE).getResultList();
+            Collection<Employee> q = tquery.setParameter("hDate", d1, TemporalType.DATE).getResultList();
 
             if (!checkEntityPK(q, cEmp)) {
                 TestUtil.logErr(
@@ -1681,14 +1629,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterStringDateTemporalTypeIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:730; PERSISTENCE:JAVADOC:594;
-     * PERSISTENCE:JAVADOC:627; PERSISTENCE:JAVADOC:702;
+     * @assertion_ids: PERSISTENCE:SPEC:730; PERSISTENCE:JAVADOC:594; PERSISTENCE:JAVADOC:627; PERSISTENCE:JAVADOC:702;
      *
-     * @test_Strategy: Query.setParameter(String name, Date value, TemporalType
-     * type) containing a parameter name that does not correspond to parameter in
-     * query string should throw an IllegalArgumentException.
-     * TypedQuery.setParameter(String name, Date value, TemporalType type)
-     * containing a parameter name that does not correspond to parameter in query
+     * @test_Strategy: Query.setParameter(String name, Date value, TemporalType type) containing a parameter name that does
+     * not correspond to parameter in query string should throw an IllegalArgumentException. TypedQuery.setParameter(String
+     * name, Date value, TemporalType type) containing a parameter name that does not correspond to parameter in query
      * string should throw an IllegalArgumentException.
      */
     public void setParameterStringDateTemporalTypeIllegalArgumentExceptionTest() throws Fault {
@@ -1729,12 +1674,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterStringCalendarTemporalTypeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:178; PERSISTENCE:JAVADOC:449;
-     * PERSISTENCE:JAVADOC:699;
+     * @assertion_ids: PERSISTENCE:JAVADOC:178; PERSISTENCE:JAVADOC:449; PERSISTENCE:JAVADOC:699;
      *
-     * @test_Strategy: Obtain employees using Query.setParameter(String, Calendar,
-     * TemporalType). Obtain employees using TypedQuery.setParameter(String,
-     * Calendar, TemporalType).
+     * @test_Strategy: Obtain employees using Query.setParameter(String, Calendar, TemporalType). Obtain employees using
+     * TypedQuery.setParameter(String, Calendar, TemporalType).
      */
     public void setParameterStringCalendarTemporalTypeTest() throws Fault {
         boolean pass1 = false;
@@ -1749,8 +1692,7 @@ public class Client extends PMClientBase {
             getEntityTransaction().begin();
 
             Query query = getEntityManager().createQuery("select e from Employee e where e.hireDate = :hDate");
-            Collection<Employee> q =
-                    query.setParameter("hDate", getCalDate(), TemporalType.DATE).getResultList();
+            Collection<Employee> q = query.setParameter("hDate", getCalDate(), TemporalType.DATE).getResultList();
 
             if (!checkEntityPK(q, cEmp)) {
                 TestUtil.logErr(
@@ -1812,19 +1754,15 @@ public class Client extends PMClientBase {
     }
 
     /*
-     * @testName:
-     * setParameterStringCalendarTemporalTypeTestIllegalArgumentExceptionTest
+     * @testName: setParameterStringCalendarTemporalTypeTestIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:178; PERSISTENCE:JAVADOC:593;
-     * PERSISTENCE:JAVADOC:626; PERSISTENCE:JAVADOC:700;
+     * @assertion_ids: PERSISTENCE:JAVADOC:178; PERSISTENCE:JAVADOC:593; PERSISTENCE:JAVADOC:626; PERSISTENCE:JAVADOC:700;
      *
-     * @test_Strategy: Query.setParameter(String, Calendar, TemporalType)
-     * containing a parameter name that does not correspond to parameter in query
-     * string should throw an IllegalArgumentException.
+     * @test_Strategy: Query.setParameter(String, Calendar, TemporalType) containing a parameter name that does not
+     * correspond to parameter in query string should throw an IllegalArgumentException.
      *
-     * TypedQuery.setParameter(String, Calendar, TemporalType) containing a
-     * parameter name that does not correspond to parameter in query string should
-     * throw an IllegalArgumentException.
+     * TypedQuery.setParameter(String, Calendar, TemporalType) containing a parameter name that does not correspond to
+     * parameter in query string should throw an IllegalArgumentException.
      */
     public void setParameterStringCalendarTemporalTypeTestIllegalArgumentExceptionTest() throws Fault {
         final java.util.Calendar c = Calendar.getInstance();
@@ -1864,11 +1802,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterIntObjectTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:179; PERSISTENCE:JAVADOC:451;
-     * PERSISTENCE:JAVADOC:703;
+     * @assertion_ids: PERSISTENCE:JAVADOC:179; PERSISTENCE:JAVADOC:451; PERSISTENCE:JAVADOC:703;
      *
-     * @test_Strategy: Obtain employees using positional parameter data in query.
-     * Obtain employees using positional parameter data in TypedQuery.
+     * @test_Strategy: Obtain employees using positional parameter data in query. Obtain employees using positional
+     * parameter data in TypedQuery.
      */
     public void setParameterIntObjectTest() throws Fault {
         boolean pass1 = false;
@@ -1914,8 +1851,7 @@ public class Client extends PMClientBase {
         try {
             getEntityTransaction().begin();
 
-            TypedQuery<Employee> tquery =
-                    getEntityManager().createQuery("select e from Employee e where e.firstName = ?1", Employee.class);
+            TypedQuery<Employee> tquery = getEntityManager().createQuery("select e from Employee e where e.firstName = ?1", Employee.class);
             Collection<Employee> q = tquery.setParameter(1, "Stephen").getResultList();
 
             if (!checkEntityPK(q, cEmp)) {
@@ -1949,16 +1885,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterIntObjectIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:595; PERSISTENCE:JAVADOC:628;
-     * PERSISTENCE:JAVADOC:704;
+     * @assertion_ids: PERSISTENCE:JAVADOC:595; PERSISTENCE:JAVADOC:628; PERSISTENCE:JAVADOC:704;
      *
-     * @test_Strategy: Query.setParameter(int position, Object value) which sets a
-     * positional parameter which is not used in the query string. An
-     * IllegalArgumentException should be thrown.
+     * @test_Strategy: Query.setParameter(int position, Object value) which sets a positional parameter which is not used in
+     * the query string. An IllegalArgumentException should be thrown.
      *
-     * TypedQuery.setParameter(int position, Object value) which sets a positional
-     * parameter which is not used in the query string. An
-     * IllegalArgumentException should be thrown.
+     * TypedQuery.setParameter(int position, Object value) which sets a positional parameter which is not used in the query
+     * string. An IllegalArgumentException should be thrown.
      */
     public void setParameterIntObjectIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -2029,11 +1962,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterIntDateTemporalTypeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:180; PERSISTENCE:JAVADOC:453;
-     * PERSISTENCE:JAVADOC:707;
+     * @assertion_ids: PERSISTENCE:JAVADOC:180; PERSISTENCE:JAVADOC:453; PERSISTENCE:JAVADOC:707;
      *
-     * @test_Strategy: Obtain employees using positional parameter data in the
-     * query.
+     * @test_Strategy: Obtain employees using positional parameter data in the query.
      *
      * Obtain employees using positional parameter data in the TypedQuery.
      */
@@ -2080,10 +2011,8 @@ public class Client extends PMClientBase {
 
         try {
             getEntityTransaction().begin();
-            TypedQuery<Employee> tquery =
-                    getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1", Employee.class);
-            Collection<Employee> q =
-                    tquery.setParameter(1, d1, TemporalType.DATE).getResultList();
+            TypedQuery<Employee> tquery = getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1", Employee.class);
+            Collection<Employee> q = tquery.setParameter(1, d1, TemporalType.DATE).getResultList();
 
             if (!checkEntityPK(q, cEmp)) {
                 TestUtil.logErr(
@@ -2116,15 +2045,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterIntDateTemporalTypeIllegalArgumentException1Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:180; PERSISTENCE:JAVADOC:597;
-     * PERSISTENCE:JAVADOC:630; PERSISTENCE:JAVADOC:708;
+     * @assertion_ids: PERSISTENCE:JAVADOC:180; PERSISTENCE:JAVADOC:597; PERSISTENCE:JAVADOC:630; PERSISTENCE:JAVADOC:708;
      *
-     * @test_Strategy: Query.setParameter(int position, Date value, TemporalType
-     * type) containing a positional parameter that does not correspond to
-     * parameter in query string should throw an IllegalArgumentException.
-     * TypedQuery.setParameter(int position, Date value, TemporalType type)
-     * containing a positional parameter that does not correspond to parameter in
-     * query string should throw an IllegalArgumentException.
+     * @test_Strategy: Query.setParameter(int position, Date value, TemporalType type) containing a positional parameter
+     * that does not correspond to parameter in query string should throw an IllegalArgumentException.
+     * TypedQuery.setParameter(int position, Date value, TemporalType type) containing a positional parameter that does not
+     * correspond to parameter in query string should throw an IllegalArgumentException.
      */
     public void setParameterIntDateTemporalTypeIllegalArgumentException1Test() throws Fault {
         boolean pass1 = false;
@@ -2163,14 +2089,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterIntCalendarTemporalTypeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:181; PERSISTENCE:JAVADOC:452;
-     * PERSISTENCE:JAVADOC:705;
+     * @assertion_ids: PERSISTENCE:JAVADOC:181; PERSISTENCE:JAVADOC:452; PERSISTENCE:JAVADOC:705;
      *
-     * @test_Strategy: Obtain employees using Query.setParameter(int position,
-     * Calendar value, TemporalType type).
+     * @test_Strategy: Obtain employees using Query.setParameter(int position, Calendar value, TemporalType type).
      *
-     * Obtain employees using TypedQuery.setParameter(int position, Calendar
-     * value, TemporalType type).
+     * Obtain employees using TypedQuery.setParameter(int position, Calendar value, TemporalType type).
      */
     public void setParameterIntCalendarTemporalTypeTest() throws Fault {
         boolean pass1 = false;
@@ -2215,11 +2138,9 @@ public class Client extends PMClientBase {
 
         try {
             getEntityTransaction().begin();
-            TypedQuery<Employee> tquery =
-                    getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1", Employee.class);
+            TypedQuery<Employee> tquery = getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1", Employee.class);
 
-            Collection<Employee> q =
-                    tquery.setParameter(1, getCalDate(), TemporalType.DATE).getResultList();
+            Collection<Employee> q = tquery.setParameter(1, getCalDate(), TemporalType.DATE).getResultList();
 
             if (!checkEntityPK(q, cEmp)) {
                 TestUtil.logErr(
@@ -2252,16 +2173,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:596; PERSISTENCE:JAVADOC:629;
-     * PERSISTENCE:JAVADOC:706
+     * @assertion_ids: PERSISTENCE:JAVADOC:596; PERSISTENCE:JAVADOC:629; PERSISTENCE:JAVADOC:706
      *
-     * @test_Strategy: Query.setParameter(int position, Calendar value,
-     * TemporalType type) containing a parameter name that does not correspond to
-     * parameter in query string should throw an IllegalArgumentException.
+     * @test_Strategy: Query.setParameter(int position, Calendar value, TemporalType type) containing a parameter name that
+     * does not correspond to parameter in query string should throw an IllegalArgumentException.
      *
-     * TypedQuery.setParameter(int position, Calendar value, TemporalType type)
-     * containing a parameter name that does not correspond to parameter in query
-     * string should throw an IllegalArgumentException.
+     * TypedQuery.setParameter(int position, Calendar value, TemporalType type) containing a parameter name that does not
+     * correspond to parameter in query string should throw an IllegalArgumentException.
      */
     public void setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest() throws Fault {
         final java.util.Calendar c = Calendar.getInstance();
@@ -2301,16 +2219,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameter7Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:414; PERSISTENCE:JAVADOC:445;
-     * PERSISTENCE:JAVADOC:691;
+     * @assertion_ids: PERSISTENCE:JAVADOC:414; PERSISTENCE:JAVADOC:445; PERSISTENCE:JAVADOC:691;
      *
-     * @test_Strategy: create Query and set a positional parameter. Use
-     * setParameter(Parameter, Object) to change the original parameter value then
-     * execute query.
+     * @test_Strategy: create Query and set a positional parameter. Use setParameter(Parameter, Object) to change the
+     * original parameter value then execute query.
      *
-     * create TypedQuery and set a positional parameter. Use
-     * setParameter(Parameter, Object) to change the original parameter value then
-     * execute query.
+     * create TypedQuery and set a positional parameter. Use setParameter(Parameter, Object) to change the original
+     * parameter value then execute query.
      */
     public void setParameter7Test() throws Fault {
         boolean pass1 = false;
@@ -2401,14 +2316,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterParameterCalendarTemporalTypeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:415; PERSISTENCE:JAVADOC:446;
-     * PERSISTENCE:JAVADOC:693;
+     * @assertion_ids: PERSISTENCE:JAVADOC:415; PERSISTENCE:JAVADOC:446; PERSISTENCE:JAVADOC:693;
      *
-     * @test_Strategy: create query with a parameter. call
-     * setParameter(Parameter,Calendar,TemporalType) for that parameter and verify
-     * the correct result is returned create TypedQuery with a parameter. call
-     * setParameter(Parameter,Calendar,TemporalType) for that parameter and verify
-     * the correct result is returned
+     * @test_Strategy: create query with a parameter. call setParameter(Parameter,Calendar,TemporalType) for that parameter
+     * and verify the correct result is returned create TypedQuery with a parameter. call
+     * setParameter(Parameter,Calendar,TemporalType) for that parameter and verify the correct result is returned
      */
     public void setParameterParameterCalendarTemporalTypeTest() throws Fault {
         boolean pass1 = false;
@@ -2445,8 +2357,7 @@ public class Client extends PMClientBase {
         try {
             getEntityTransaction().begin();
 
-            TypedQuery<Employee> tquery =
-                    getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1", Employee.class);
+            TypedQuery<Employee> tquery = getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1", Employee.class);
 
             Parameter p = tquery.getParameter(1);
             tquery.setParameter(p, getCalDate(), TemporalType.DATE);
@@ -2473,14 +2384,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: setParameterParameterDateTemporalTypeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:416; PERSISTENCE:JAVADOC:447;
-     * PERSISTENCE:JAVADOC:695;
+     * @assertion_ids: PERSISTENCE:JAVADOC:416; PERSISTENCE:JAVADOC:447; PERSISTENCE:JAVADOC:695;
      *
-     * @test_Strategy: create query with a parameter. call
-     * setParameter(Parameter,Date,TemporalType) for that parameter and verify the
-     * correct result is returned create TypedQuery with a parameter. call
-     * setParameter(Parameter,Date,TemporalType) for that parameter and verify the
-     * correct result is returned
+     * @test_Strategy: create query with a parameter. call setParameter(Parameter,Date,TemporalType) for that parameter and
+     * verify the correct result is returned create TypedQuery with a parameter. call
+     * setParameter(Parameter,Date,TemporalType) for that parameter and verify the correct result is returned
      */
     public void setParameterParameterDateTemporalTypeTest() throws Fault {
         boolean pass1 = false;
@@ -2518,8 +2426,7 @@ public class Client extends PMClientBase {
         try {
             getEntityTransaction().begin();
 
-            TypedQuery<Employee> tquery =
-                    getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1", Employee.class);
+            TypedQuery<Employee> tquery = getEntityManager().createQuery("select e from Employee e where e.hireDate = ?1", Employee.class);
 
             Parameter p = tquery.getParameter(1);
             tquery.setParameter(p, getUtilDate("2005-02-18"), TemporalType.DATE);
@@ -2548,11 +2455,9 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:416
      *
-     * @test_Strategy: Obtain employees using Query.setParameter(int position,
-     * Date value, TemporalType type).
+     * @test_Strategy: Obtain employees using Query.setParameter(int position, Date value, TemporalType type).
      *
-     * Obtain employees using TypedQuery.setParameter(int position, Date value,
-     * TemporalType type).
+     * Obtain employees using TypedQuery.setParameter(int position, Date value, TemporalType type).
      */
     public void setParameter8Test() throws Fault {
         boolean pass1 = false;
@@ -2634,13 +2539,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: getSingleResultNoResultExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:744; PERSISTENCE:JAVADOC:577;
-     * PERSISTENCE:JAVADOC:610; PERSISTENCE:JAVADOC:2706; PERSISTENCE:JAVADOC:673;
+     * @assertion_ids: PERSISTENCE:SPEC:744; PERSISTENCE:JAVADOC:577; PERSISTENCE:JAVADOC:610; PERSISTENCE:JAVADOC:2706;
+     * PERSISTENCE:JAVADOC:673;
      *
-     * @test_Strategy: Query.getSingleResult() is expected to return a single
-     * result. If the query does not return a result, an NoResultException is
-     * thrown. TypedQuery.getSingleResult() is expected to return a single result.
-     * If the query does not return a result, an NoResultException is thrown.
+     * @test_Strategy: Query.getSingleResult() is expected to return a single result. If the query does not return a result,
+     * an NoResultException is thrown. TypedQuery.getSingleResult() is expected to return a single result. If the query does
+     * not return a result, an NoResultException is thrown.
      */
     public void getSingleResultNoResultExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -2701,14 +2605,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: getSingleResultTransactionRequiredException
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:581; PERSISTENCE:JAVADOC:614;
-     * PERSISTENCE:JAVADOC:2710; PERSISTENCE:JAVADOC:677;
+     * @assertion_ids: PERSISTENCE:JAVADOC:581; PERSISTENCE:JAVADOC:614; PERSISTENCE:JAVADOC:2710; PERSISTENCE:JAVADOC:677;
      *
-     * @test_Strategy: create query that is an update which has a lock mode set
-     * without a transaction being active then call getSingleResult() and verify a
-     * TransactionRequiredException is thrown create TypedQuery that is an update
-     * which has a lock mode set without a transaction being active then call
-     * getSingleResult() and verify a TransactionRequiredException is thrown
+     * @test_Strategy: create query that is an update which has a lock mode set without a transaction being active then call
+     * getSingleResult() and verify a TransactionRequiredException is thrown create TypedQuery that is an update which has a
+     * lock mode set without a transaction being active then call getSingleResult() and verify a
+     * TransactionRequiredException is thrown
      */
     public void getSingleResultTransactionRequiredException() throws Fault {
         boolean pass1 = false;
@@ -2739,8 +2641,7 @@ public class Client extends PMClientBase {
         TestUtil.logMsg("Testing TypedQuery version");
 
         try {
-            TypedQuery<Department> q =
-                    getEntityManager().createQuery("select d from  Department d where d.id = 1", Department.class);
+            TypedQuery<Department> q = getEntityManager().createQuery("select d from  Department d where d.id = 1", Department.class);
 
             q.setLockMode(LockModeType.WRITE);
             q.getSingleResult();
@@ -2769,14 +2670,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: getSingleResultNonUniqueResultExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:745; PERSISTENCE:JAVADOC:578;
-     * PERSISTENCE:JAVADOC:611; PERSISTENCE:JAVADOC:2707; PERSISTENCE:JAVADOC:674;
+     * @assertion_ids: PERSISTENCE:SPEC:745; PERSISTENCE:JAVADOC:578; PERSISTENCE:JAVADOC:611; PERSISTENCE:JAVADOC:2707;
+     * PERSISTENCE:JAVADOC:674;
      *
-     * @test_Strategy: Query.getSingleResult() is expected to return a single
-     * result. If the query returns more than one result, a
-     * NonUniqueResultException is thrown. TypedQuery.getSingleResult() is
-     * expected to return a single result. If the query returns more than one
-     * result, a NonUniqueResultException is thrown.
+     * @test_Strategy: Query.getSingleResult() is expected to return a single result. If the query returns more than one
+     * result, a NonUniqueResultException is thrown. TypedQuery.getSingleResult() is expected to return a single result. If
+     * the query returns more than one result, a NonUniqueResultException is thrown.
      */
     public void getSingleResultNonUniqueResultExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -2840,9 +2739,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:412; PERSISTENCE:JAVADOC:681
      *
-     * @test_Strategy: Create a query and set a parameter. Verify isbound knows
-     * setParameter has set a value. Create a TypedQuery and set a parameter.
-     * Verify isbound knows setParameter has set a value.
+     * @test_Strategy: Create a query and set a parameter. Verify isbound knows setParameter has set a value. Create a
+     * TypedQuery and set a parameter. Verify isbound knows setParameter has set a value.
      */
     public void isBoundTest() throws Fault {
         boolean pass1 = false;
@@ -2905,9 +2803,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:172
      *
-     * @test_Strategy: If the select clause selects an object, then the number of
-     * rows skipped with setFirstResult will correspond to the number of objects
-     * specified by setFirstResult."
+     * @test_Strategy: If the select clause selects an object, then the number of rows skipped with setFirstResult will
+     * correspond to the number of objects specified by setFirstResult."
      */
     public void setFirstResult() throws Fault {
         boolean pass1 = false;
@@ -2977,10 +2874,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:729; PERSISTENCE:SPEC:731
      *
-     * @test_Strategy: setParameter(int position, Object value) which has a
-     * positional parameter value specified that does not correspond to a
-     * positional parameter in the query string. An IllegalArgumentException is
-     * thrown.
+     * @test_Strategy: setParameter(int position, Object value) which has a positional parameter value specified that does
+     * not correspond to a positional parameter in the query string. An IllegalArgumentException is thrown.
      */
     public void queryAPITest11() throws Fault {
         boolean pass = false;
@@ -3033,8 +2928,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:729; PERSISTENCE:SPEC:731
      *
-     * @test_Strategy: setParameter(int position, Object value) which defines a
-     * value of the incorrect type should throw an IllegalArgumentException.
+     * @test_Strategy: setParameter(int position, Object value) which defines a value of the incorrect type should throw an
+     * IllegalArgumentException.
      */
     public void queryAPITest12() throws Fault {
         boolean pass = false;
@@ -3088,8 +2983,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:172; PERSISTENCE:JAVADOC:683;
      *
-     * @test_Strategy: setFirstResult(int startPosition) with a negative value for
-     * startPosition should throw an IllegalArgumentException.
+     * @test_Strategy: setFirstResult(int startPosition) with a negative value for startPosition should throw an
+     * IllegalArgumentException.
      */
     public void setFirstResultIllegalArgumentException() throws Fault {
         boolean pass1 = false;
@@ -3133,22 +3028,19 @@ public class Client extends PMClientBase {
     /*
      * @testName: setGetMaxResultsTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:175; PERSISTENCE:JAVADOC:403;
-     * PERSISTENCE:JAVADOC:444; PERSISTENCE:JAVADOC:641; PERSISTENCE:JAVADOC:170;
-     * PERSISTENCE:JAVADOC:438
+     * @assertion_ids: PERSISTENCE:JAVADOC:175; PERSISTENCE:JAVADOC:403; PERSISTENCE:JAVADOC:444; PERSISTENCE:JAVADOC:641;
+     * PERSISTENCE:JAVADOC:170; PERSISTENCE:JAVADOC:438
      *
-     * @test_Strategy: Using Query.setMaxResult() set the maximum number of
-     * results to a value which exceeds number of expected result and verify the
-     * result set. Using TypedQuery.setMaxResult() set the maximum number of
-     * results to a value which exceeds number of expected result and verify the
-     * result set.
+     * @test_Strategy: Using Query.setMaxResult() set the maximum number of results to a value which exceeds number of
+     * expected result and verify the result set. Using TypedQuery.setMaxResult() set the maximum number of results to a
+     * value which exceeds number of expected result and verify the result set.
      */
     public void setGetMaxResultsTest() throws Fault {
         Collection<Department> q;
         boolean pass1 = false;
         boolean pass2 = false;
 
-        final Integer expected[] = {1, 2, 3, 4, 5};
+        final Integer expected[] = { 1, 2, 3, 4, 5 };
 
         try {
             TestUtil.logMsg("Testing Query version");
@@ -3198,8 +3090,7 @@ public class Client extends PMClientBase {
         try {
             getEntityTransaction().begin();
 
-            TypedQuery<Department> query =
-                    getEntityManager().createQuery("select d from Department d order by d.id", Department.class);
+            TypedQuery<Department> query = getEntityManager().createQuery("select d from Department d order by d.id", Department.class);
 
             int gmr = query.getMaxResults();
             if (gmr != Integer.MAX_VALUE) {
@@ -3246,12 +3137,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: setMaxResultsIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:588; PERSISTENCE:JAVADOC:621;
-     * PERSISTENCE:JAVADOC:690;
+     * @assertion_ids: PERSISTENCE:JAVADOC:588; PERSISTENCE:JAVADOC:621; PERSISTENCE:JAVADOC:690;
      *
-     * @test_Strategy: Call Query.setMaxResult(-1) and verify an
-     * IllegalArgumentException is thrown Call TypedQuery.setMaxResult(-1) and
-     * verify an IllegalArgumentException is thrown
+     * @test_Strategy: Call Query.setMaxResult(-1) and verify an IllegalArgumentException is thrown Call
+     * TypedQuery.setMaxResult(-1) and verify an IllegalArgumentException is thrown
      */
     public void setMaxResultsIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -3313,14 +3202,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: getResultListTransactionRequiredExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:573; PERSISTENCE:JAVADOC:606;
-     * PERSISTENCE:JAVADOC:668;
+     * @assertion_ids: PERSISTENCE:JAVADOC:573; PERSISTENCE:JAVADOC:606; PERSISTENCE:JAVADOC:668;
      *
-     * @test_Strategy: Using Query.setMaxResult() set the maximum number of
-     * results to a value which exceeds number of expected result and verify the
-     * result set. Using TypedQuery.setMaxResult() set the maximum number of
-     * results to a value which exceeds number of expected result and verify the
-     * result set.
+     * @test_Strategy: Using Query.setMaxResult() set the maximum number of results to a value which exceeds number of
+     * expected result and verify the result set. Using TypedQuery.setMaxResult() set the maximum number of results to a
+     * value which exceeds number of expected result and verify the result set.
      */
     public void getResultListTransactionRequiredExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -3343,8 +3229,7 @@ public class Client extends PMClientBase {
         TestUtil.logMsg("Testing TypedQuery version");
 
         try {
-            TypedQuery<Department> query =
-                    getEntityManager().createQuery("select d from Department d ", Department.class);
+            TypedQuery<Department> query = getEntityManager().createQuery("select d from Department d ", Department.class);
             query.setLockMode(LockModeType.READ);
 
             query.getResultList();
@@ -3365,16 +3250,14 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:175
      *
-     * @test_Strategy: Using setMaxResult() set the maximum number of results to a
-     * value which is less than that of the expected results and verify the result
-     * set returned is only contains the number of results requested to be
-     * retrieved.
+     * @test_Strategy: Using setMaxResult() set the maximum number of results to a value which is less than that of the
+     * expected results and verify the result set returned is only contains the number of results requested to be retrieved.
      */
     public void setMaxResults() throws Fault {
         Collection<Department> q;
         boolean pass = false;
         int found = 0;
-        final Integer expected[] = {4, 1};
+        final Integer expected[] = { 4, 1 };
 
         try {
             TestUtil.logTrace("Invoking query");
@@ -3415,8 +3298,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:571;
      *
-     * @test_Strategy: getResultList() should throw an IllegalStateException if
-     * called for an EJB QL Update statement.
+     * @test_Strategy: getResultList() should throw an IllegalStateException if called for an EJB QL Update statement.
      */
     public void queryAPITest16() throws Fault {
         boolean pass1 = false;
@@ -3456,8 +3338,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:170
      *
-     * @test_Strategy: getResultList() should throw an IllegalStateException if
-     * called for an EJB QL Delete statement.
+     * @test_Strategy: getResultList() should throw an IllegalStateException if called for an EJB QL Delete statement.
      */
     public void queryAPITest17() throws Fault {
         Query q;
@@ -3496,11 +3377,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: getSingleResultTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:171; PERSISTENCE:JAVADOC:439;
-     * PERSISTENCE:JAVADOC:672;
+     * @assertion_ids: PERSISTENCE:JAVADOC:171; PERSISTENCE:JAVADOC:439; PERSISTENCE:JAVADOC:672;
      *
-     * @test_Strategy: create query and call getSingleResult() and verify result
-     * create TypedQuery and call getSingleResult() and verify result
+     * @test_Strategy: create query and call getSingleResult() and verify result create TypedQuery and call
+     * getSingleResult() and verify result
      */
     public void getSingleResultTest() throws Fault {
         boolean pass1 = false;
@@ -3537,8 +3417,7 @@ public class Client extends PMClientBase {
 
         try {
             getEntityTransaction().begin();
-            TypedQuery<Employee> q =
-                    getEntityManager().createQuery("select e from Employee e where e.id = 1", Employee.class);
+            TypedQuery<Employee> q = getEntityManager().createQuery("select e from Employee e where e.id = 1", Employee.class);
             Employee e = q.getSingleResult();
             if (e.getId() != 1) {
                 TestUtil.logErr("Expected employee with id:1, actual:" + e.getId());
@@ -3570,8 +3449,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:2708; PERSISTENCE:JAVADOC:579;
      *
-     * @test_Strategy: getSingleResult() should throw an IllegalStateException if
-     * called for an update or delete statement.
+     * @test_Strategy: getSingleResult() should throw an IllegalStateException if called for an update or delete statement.
      */
     public void getSingleResultIllegalStateException() throws Fault {
         Query q;
@@ -3620,9 +3498,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:551; PERSISTENCE:JAVADOC:632
      *
-     * @test_Strategy: Query.executeUpdate() should throw an IllegalStateException
-     * if called for a JPQL Select statement. TypedQuery.executeUpdate() should
-     * throw an IllegalStateException if called for a JPQL Select statement.
+     * @test_Strategy: Query.executeUpdate() should throw an IllegalStateException if called for a JPQL Select statement.
+     * TypedQuery.executeUpdate() should throw an IllegalStateException if called for a JPQL Select statement.
      */
     public void executeUpdateIllegalStateException() throws Fault {
         boolean pass1 = false;
@@ -3689,8 +3566,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:552;
      *
-     * @test_Strategy: Query.executeUpdate() should throw an
-     * TransactionRequiredException when no Transaction is active
+     * @test_Strategy: Query.executeUpdate() should throw an TransactionRequiredException when no Transaction is active
      */
     public void executeUpdateTransactionRequiredExceptionTest() throws Fault {
         boolean pass1 = false;
@@ -3827,8 +3703,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryAPITest23
      *
-     * @assertion_ids: PERSISTENCE:SPEC:746.3; PERSISTENCE:SPEC:786;
-     * PERSISTENCE:SPEC:840; PERSISTENCE:SPEC:841; PERSISTENCE:SPEC:1596;
+     * @assertion_ids: PERSISTENCE:SPEC:746.3; PERSISTENCE:SPEC:786; PERSISTENCE:SPEC:840; PERSISTENCE:SPEC:841;
+     * PERSISTENCE:SPEC:1596;
      *
      * @test_Strategy: Delete Query
      *
@@ -3872,8 +3748,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryAPITest24
      *
-     * @assertion_ids: PERSISTENCE:SPEC:759; PERSISTENCE:SPEC:787;
-     * PERSISTENCE:SPEC:837; PERSISTENCE:SPEC:838; PERSISTENCE:SPEC:839;
+     * @assertion_ids: PERSISTENCE:SPEC:759; PERSISTENCE:SPEC:787; PERSISTENCE:SPEC:837; PERSISTENCE:SPEC:838;
+     * PERSISTENCE:SPEC:839;
      *
      * @test_Strategy: Bulk Update Query
      *
@@ -4114,8 +3990,7 @@ public class Client extends PMClientBase {
 
             TestUtil.logTrace("Retrieving all results first");
 
-            Collection<DataTypes2> cDataTypes2 =
-                    getEntityManager().createQuery("select d from DataTypes2 d").getResultList();
+            Collection<DataTypes2> cDataTypes2 = getEntityManager().createQuery("select d from DataTypes2 d").getResultList();
             for (DataTypes2 d : cDataTypes2) {
                 TestUtil.logTrace("result:" + d.toString());
             }
@@ -4303,12 +4178,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: noTransactionLockModeTypeNoneTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1518;PERSISTENCE:SPEC:1519;
-     * PERSISTENCE:SPEC:1520; PERSISTENCE:SPEC:1521;
+     * @assertion_ids: PERSISTENCE:SPEC:1518;PERSISTENCE:SPEC:1519; PERSISTENCE:SPEC:1520; PERSISTENCE:SPEC:1521;
      *
-     * @test_Strategy: execute query/TypedQuery with no transaction and lock mode
-     * type set to none and getSingleResult and getResultList should execute
-     * successfully.
+     * @test_Strategy: execute query/TypedQuery with no transaction and lock mode type set to none and getSingleResult and
+     * getResultList should execute successfully.
      */
     public void noTransactionLockModeTypeNoneTest() throws Fault {
         boolean pass1 = false;
@@ -4346,8 +4219,7 @@ public class Client extends PMClientBase {
         }
         TestUtil.logMsg("TypedQuery getSingleResult test");
         try {
-            TypedQuery<Employee> q =
-                    getEntityManager().createQuery("select e from Employee e where e.id = 1", Employee.class);
+            TypedQuery<Employee> q = getEntityManager().createQuery("select e from Employee e where e.id = 1", Employee.class);
             q.setLockMode(LockModeType.NONE);
             Employee e = q.getSingleResult();
             if (e.getId() == 1) {
@@ -4402,8 +4274,7 @@ public class Client extends PMClientBase {
         }
         TestUtil.logMsg("TypedQuery getResultList test");
         try {
-            TypedQuery<Employee> q =
-                    getEntityManager().createQuery("select e from Employee e where e.id = 1", Employee.class);
+            TypedQuery<Employee> q = getEntityManager().createQuery("select e from Employee e where e.id = 1", Employee.class);
             q.setLockMode(LockModeType.NONE);
             List<Employee> le = q.getResultList();
             if (le.size() == 1) {

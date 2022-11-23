@@ -17,9 +17,8 @@
 package com.sun.ts.tests.ejb32.mdb.modernconnector.connector;
 
 /**
- * EJB 3.2 no-method interface indicating connector wishes to have an
- * no-interface view of the MessageEndpoint proxy. Future versions of the
- * specification could allow this class to be used as an annotation on bean
- * class.
+ * EJB 3.2 no-method interface indicating connector wishes to have an no-interface view of the MessageEndpoint proxy.
+ * Future versions of the specification could allow this class to be used as an annotation on bean class.
  */
-public interface NoUseListener {}
+public interface NoUseListener {
+}

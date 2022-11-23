@@ -37,9 +37,9 @@ import jakarta.interceptor.InvocationContext;
 import java.util.Properties;
 
 @Stateful(name = "AllowedBean")
-@Remote({AllowedIF.class})
-@Local({AllowedLocalIF.class})
-@Interceptors({com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class})
+@Remote({ AllowedIF.class })
+@Local({ AllowedLocalIF.class })
+@Interceptors({ com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class })
 @EJB(name = "ejb/TimerEJB", beanName = "TimerEJB", beanInterface = TimerLocalIF.class)
 
 // implements SessionSynchronization indirectly

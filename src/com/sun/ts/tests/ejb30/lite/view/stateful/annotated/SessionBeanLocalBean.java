@@ -27,5 +27,6 @@ import jakarta.ejb.Stateful;
 
 @Stateful
 public class SessionBeanLocalBean extends SessionBeanLocalBeanBase implements BusinessLocalIF1, SessionBean {
-    public void remove() {}
+    public void remove() {
+    }
 }

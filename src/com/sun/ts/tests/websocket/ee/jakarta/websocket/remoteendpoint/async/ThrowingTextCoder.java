@@ -25,10 +25,12 @@ public class ThrowingTextCoder implements Encoder.Text<String> {
     public static final String ERROR = "TCK intended Exception on transmition";
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 
     @Override
     public String encode(String object) throws EncodeException {

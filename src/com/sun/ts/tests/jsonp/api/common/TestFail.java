@@ -33,10 +33,8 @@ public class TestFail {
     /**
      * Creates an instance of test failure notification.
      *
-     * @param name
-     *          Test name.
-     * @param message
-     *          Error message.
+     * @param name Test name.
+     * @param message Error message.
      */
     public TestFail(final String name, final String message) {
         this.name = name;

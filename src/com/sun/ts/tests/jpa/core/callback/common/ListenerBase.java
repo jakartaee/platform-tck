@@ -23,9 +23,8 @@ package com.sun.ts.tests.jpa.core.callback.common;
 import com.sun.ts.lib.util.TestUtil;
 
 /**
- * An annotation-free class that holds the logics for recording entity lifecycle
- * calls. This is extended to form entity callback listener classes. This class
- * must not be specified as a entity callback listener.
+ * An annotation-free class that holds the logics for recording entity lifecycle calls. This is extended to form entity
+ * callback listener classes. This class must not be specified as a entity callback listener.
  */
 public abstract class ListenerBase {
     protected ListenerBase() {

@@ -33,8 +33,7 @@ public class Worker {
     }
 
     /**
-     * @param lastName
-     *          the lastName to set
+     * @param lastName the lastName to set
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -48,8 +47,7 @@ public class Worker {
     }
 
     /**
-     * @param firstName
-     *          the firstName to set
+     * @param firstName the firstName to set
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;

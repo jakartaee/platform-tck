@@ -30,8 +30,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: postConstructRecordsEJB
      *
-     * @test_Strategy: look up the data sources declared with annotation in EJB,
-     * and verify the injected datasource inside its PostConstruct method.
+     * @test_Strategy: look up the data sources declared with annotation in EJB, and verify the injected datasource inside
+     * its PostConstruct method.
      */
     public void postConstructRecordsEJB() {
         appendReason(dataSourceBean.getPostConstructRecords());
@@ -40,9 +40,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: postConstructRecordsInterceptor
      *
-     * @test_Strategy: look up the data sources declared with annotation in
-     * Interceptor1, and verify the injected datasource inside its PostConstruct
-     * method.
+     * @test_Strategy: look up the data sources declared with annotation in Interceptor1, and verify the injected datasource
+     * inside its PostConstruct method.
      */
     public void postConstructRecordsInterceptor() {
         appendReason(dataSourceBean.getPostConstructRecords());

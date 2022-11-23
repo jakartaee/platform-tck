@@ -20,4 +20,5 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.descriptor;
 
-public interface SameMethodRemoteIF extends SameMethodLocalIF {}
+public interface SameMethodRemoteIF extends SameMethodLocalIF {
+}

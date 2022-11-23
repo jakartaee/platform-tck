@@ -21,7 +21,8 @@ import java.util.Comparator;
 
 public class RetailOrderCostComparatorDESC implements Comparator, Serializable {
 
-    public RetailOrderCostComparatorDESC() {}
+    public RetailOrderCostComparatorDESC() {
+    }
 
     public int compare(Object o1, Object o2) {
         RetailOrder order1 = (RetailOrder) o1;

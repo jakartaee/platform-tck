@@ -54,8 +54,7 @@ public class Client extends ServiceEETest implements SOAPConstants, WSIConstants
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client client = new Client();
@@ -87,9 +86,8 @@ public class Client extends ServiceEETest implements SOAPConstants, WSIConstants
      *
      * @assertion_ids: WSI:SPEC:R1012
      *
-     * @test_Strategy: A valid request is made to the endpoint and the returned
-     *                 response is investigated in order to determine the
-     *                 encoding.
+     * @test_Strategy: A valid request is made to the endpoint and the returned response is investigated in order to
+     * determine the encoding.
      *
      * @throws Fault
      */
@@ -103,7 +101,8 @@ public class Client extends ServiceEETest implements SOAPConstants, WSIConstants
                 int index = contentType.toLowerCase().indexOf("charset=");
                 if (index > 0) {
                     String name = contentType.substring(index + 8).trim();
-                    if (name.charAt(0) == '"') name = name.substring(1, name.length() - 1);
+                    if (name.charAt(0) == '"')
+                        name = name.substring(1, name.length() - 1);
                     if ((name.equalsIgnoreCase("UTF-8")) || name.equalsIgnoreCase("UTF-16")) {
                         char c = name.charAt(0);
                         if ((c == '\"') || (c == '\'')) {
@@ -141,9 +140,8 @@ public class Client extends ServiceEETest implements SOAPConstants, WSIConstants
      *
      * @assertion_ids: WSI:SPEC:R1012
      *
-     * @test_Strategy: A request is made from the generated client. A handler
-     *                 verifies the encoding. The returned string indicates the
-     *                 success or failure.
+     * @test_Strategy: A request is made from the generated client. A handler verifies the encoding. The returned string
+     * indicates the success or failure.
      *
      * @throws Fault
      */

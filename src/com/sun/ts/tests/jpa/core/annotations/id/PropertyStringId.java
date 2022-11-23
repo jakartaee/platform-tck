@@ -34,7 +34,8 @@ public class PropertyStringId implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public PropertyStringId() {}
+    public PropertyStringId() {
+    }
 
     public PropertyStringId(String id, String name) {
 

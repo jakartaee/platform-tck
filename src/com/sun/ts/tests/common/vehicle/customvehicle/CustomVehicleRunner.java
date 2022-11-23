@@ -21,18 +21,15 @@ import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 import java.util.Properties;
 
 /**
- * This class is to be modified and rebuilt by any vendor needing to build their
- * own custom vehicles. This should only be used as allowed on a case by case
- * basis and must be explicitly stated as a viable option in the TCK user guide.
+ * This class is to be modified and rebuilt by any vendor needing to build their own custom vehicles. This should only
+ * be used as allowed on a case by case basis and must be explicitly stated as a viable option in the TCK user guide.
  *
- * This class should be edited, compiled, and packaged as needed for the
- * environment it is to be used in. This vehicle will be recognized as the
- * "customvehicle" and it will be necessary to make appropriate changes to the
+ * This class should be edited, compiled, and packaged as needed for the environment it is to be used in. This vehicle
+ * will be recognized as the "customvehicle" and it will be necessary to make appropriate changes to the
  * TS_HOME/src/vehicle.properties file to indicate the use of this vehicle.
  *
- * It is suggested that you use other vehicles as a model for implementing this.
- * Additional information for using this class should be referenced in the TCK
- * user guides for those technologies that support the definition and use of a
+ * It is suggested that you use other vehicles as a model for implementing this. Additional information for using this
+ * class should be referenced in the TCK user guides for those technologies that support the definition and use of a
  * custom vehicle.
  *
  */

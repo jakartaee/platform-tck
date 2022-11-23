@@ -20,13 +20,12 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * This class implements a BASE64 Character encoder as specified in RFC1521.
- * This RFC is part of the MIME specification as published by the Internet
- * Engineering Task Force (IETF). Unlike some other encoding schemes there is
- * nothing in this encoding that indicates where a buffer starts or ends.
+ * This class implements a BASE64 Character encoder as specified in RFC1521. This RFC is part of the MIME specification
+ * as published by the Internet Engineering Task Force (IETF). Unlike some other encoding schemes there is nothing in
+ * this encoding that indicates where a buffer starts or ends.
  *
- * This means that the encoded text will simply start with the first line of
- * encoded text and end with the last line of encoded text.
+ * This means that the encoded text will simply start with the first line of encoded text and end with the last line of
+ * encoded text.
  *
  * @version 1.23, 11/17/05
  * @author Chuck McManis
@@ -41,8 +40,8 @@ public class BASE64Encoder extends CharacterEncoder {
     }
 
     /**
-     * this class encodes 57 bytes per line. This results in a maximum of 57/3 * 4
-     * or 76 characters per output line. Not counting the line termination.
+     * this class encodes 57 bytes per line. This results in a maximum of 57/3 * 4 or 76 characters per output line. Not
+     * counting the line termination.
      */
     protected int bytesPerLine() {
         return (57);
@@ -50,21 +49,20 @@ public class BASE64Encoder extends CharacterEncoder {
 
     /** This array maps the characters to their 6 bit values */
     private static final char pem_array[] = {
-        // 0 1 2 3 4 5 6 7
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', // 0
-        'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', // 1
-        'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', // 2
-        'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', // 3
-        'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', // 4
-        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', // 5
-        'w', 'x', 'y', 'z', '0', '1', '2', '3', // 6
-        '4', '5', '6', '7', '8', '9', '+', '/' // 7
+            // 0 1 2 3 4 5 6 7
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', // 0
+            'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', // 1
+            'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', // 2
+            'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', // 3
+            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', // 4
+            'o', 'p', 'q', 'r', 's', 't', 'u', 'v', // 5
+            'w', 'x', 'y', 'z', '0', '1', '2', '3', // 6
+            '4', '5', '6', '7', '8', '9', '+', '/' // 7
     };
 
     /**
-     * encodeAtom - Take three bytes of input and encode it as 4 printable
-     * characters. Note that if the length in len is less than three is encodes
-     * either one or two '=' signs to indicate padding characters.
+     * encodeAtom - Take three bytes of input and encode it as 4 printable characters. Note that if the length in len is
+     * less than three is encodes either one or two '=' signs to indicate padding characters.
      */
     protected void encodeAtom(OutputStream outStream, byte data[], int offset, int len) throws IOException {
         byte a, b, c;

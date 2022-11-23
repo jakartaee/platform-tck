@@ -102,12 +102,10 @@ public class CAJSigTest extends SigTest {
     /***** Abstract Method Implementation *****/
 
     /**
-     * Returns a list of strings where each string represents a package name. Each
-     * package name will have it's signature tested by the signature test
-     * framework.
+     * Returns a list of strings where each string represents a package name. Each package name will have it's signature
+     * tested by the signature test framework.
      *
-     * @return String[] The names of the packages whose signatures should be
-     *         verified.
+     * @return String[] The names of the packages whose signatures should be verified.
      */
     protected String[] getPackages() {
         return new String[] {};
@@ -168,9 +166,8 @@ public class CAJSigTest extends SigTest {
     /***** Boilerplate Code *****/
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         CAJSigTest theTests = new CAJSigTest();
@@ -179,8 +176,7 @@ public class CAJSigTest extends SigTest {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -188,10 +184,9 @@ public class CAJSigTest extends SigTest {
     }
 
     /*
-     * The following comments are specified in the base class that defines the
-     * signature tests. This is done so the test finders will find the right class
-     * to run. The implementation of these methods is inherited from the super
-     * class which is part of the signature test framework.
+     * The following comments are specified in the base class that defines the signature tests. This is done so the test
+     * finders will find the right class to run. The implementation of these methods is inherited from the super class which
+     * is part of the signature test framework.
      */
 
     // NOTE: If the API under test is not part of your testing runtime
@@ -203,13 +198,10 @@ public class CAJSigTest extends SigTest {
     // signature tests need. Please do not use both comments.
 
     /*
-     * @class.setup_props: ts_home; sigTestClasspath, Location of ca jar files;
-     * ca.sig.generated; ca.sig.managedbean; ca.sig.postconstruct;
-     * ca.sig.priority; ca.sig.predestroy; ca.sig.resource; ca.sig.resources;
-     * ca.sig.securitydeclareroles; ca.sig.securitydenyall;
-     * ca.sig.securitypermitall; ca.sig.securityrolesallowed;
-     * ca.sig.securityrunas; ca.sig.sqldatasourcedefinition;
-     * ca.sig.sqldatasourcedefinitions;
+     * @class.setup_props: ts_home; sigTestClasspath, Location of ca jar files; ca.sig.generated; ca.sig.managedbean;
+     * ca.sig.postconstruct; ca.sig.priority; ca.sig.predestroy; ca.sig.resource; ca.sig.resources;
+     * ca.sig.securitydeclareroles; ca.sig.securitydenyall; ca.sig.securitypermitall; ca.sig.securityrolesallowed;
+     * ca.sig.securityrunas; ca.sig.sqldatasourcedefinition; ca.sig.sqldatasourcedefinitions;
      */
     public void setup(String[] args, Properties p) throws Fault {
         super.setup(args, p);
@@ -217,24 +209,17 @@ public class CAJSigTest extends SigTest {
         // read in the values from the ts.jte file
         ca_generated = Boolean.valueOf(p.getProperty("ca.sig.generated")).booleanValue();
         ca_managedbean = Boolean.valueOf(p.getProperty("ca.sig.managedbean")).booleanValue();
-        ca_postconstruct =
-                Boolean.valueOf(p.getProperty("ca.sig.postconstruct")).booleanValue();
+        ca_postconstruct = Boolean.valueOf(p.getProperty("ca.sig.postconstruct")).booleanValue();
         ca_priority = Boolean.valueOf(p.getProperty("ca.sig.priority")).booleanValue();
         ca_predestroy = Boolean.valueOf(p.getProperty("ca.sig.predestroy")).booleanValue();
         ca_resource = Boolean.valueOf(p.getProperty("ca.sig.resource")).booleanValue();
         ca_resources = Boolean.valueOf(p.getProperty("ca.sig.resources")).booleanValue();
-        ca_securitydeclareroles =
-                Boolean.valueOf(p.getProperty("ca.sig.securitydeclareroles")).booleanValue();
-        ca_securitydenyall =
-                Boolean.valueOf(p.getProperty("ca.sig.securitydenyall")).booleanValue();
-        ca_securitypermitall =
-                Boolean.valueOf(p.getProperty("ca.sig.securitypermitall")).booleanValue();
-        ca_securityrolesallowed =
-                Boolean.valueOf(p.getProperty("ca.sig.securityrolesallowed")).booleanValue();
-        ca_securityrunas =
-                Boolean.valueOf(p.getProperty("ca.sig.securityrunas")).booleanValue();
-        ca_sqldatasourcedefinition =
-                Boolean.valueOf(p.getProperty("ca.sig.sqldatasourcedefinition")).booleanValue();
+        ca_securitydeclareroles = Boolean.valueOf(p.getProperty("ca.sig.securitydeclareroles")).booleanValue();
+        ca_securitydenyall = Boolean.valueOf(p.getProperty("ca.sig.securitydenyall")).booleanValue();
+        ca_securitypermitall = Boolean.valueOf(p.getProperty("ca.sig.securitypermitall")).booleanValue();
+        ca_securityrolesallowed = Boolean.valueOf(p.getProperty("ca.sig.securityrolesallowed")).booleanValue();
+        ca_securityrunas = Boolean.valueOf(p.getProperty("ca.sig.securityrunas")).booleanValue();
+        ca_sqldatasourcedefinition = Boolean.valueOf(p.getProperty("ca.sig.sqldatasourcedefinition")).booleanValue();
         ca_sqldatasourcedefinitions = Boolean.valueOf(p.getProperty("ca.sig.sqldatasourcedefinitions"))
                 .booleanValue();
     }
@@ -242,12 +227,10 @@ public class CAJSigTest extends SigTest {
     /*
      * @testName: signatureTest
      *
-     * @assertion: A CAJ platform must implement the required classes and APIs
-     * specified in the CAJ Specification.
+     * @assertion: A CAJ platform must implement the required classes and APIs specified in the CAJ Specification.
      *
-     * @test_Strategy: Using reflection, gather the implementation specific
-     * classes and APIs. Compare these results with the expected (required)
-     * classes and APIs.
+     * @test_Strategy: Using reflection, gather the implementation specific classes and APIs. Compare these results with the
+     * expected (required) classes and APIs.
      *
      */
 

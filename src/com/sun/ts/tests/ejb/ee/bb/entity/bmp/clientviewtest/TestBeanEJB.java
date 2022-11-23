@@ -236,8 +236,10 @@ public class TestBeanEJB implements EntityBean {
             }
             dao.startSession();
             Collection c = dao.nameToKeyCollection(name);
-            if (c.size() > 0) return c;
-            else throw new FinderException("Name not found: " + name);
+            if (c.size() > 0)
+                return c;
+            else
+                throw new FinderException("Name not found: " + name);
         } catch (DAOException de) {
             TestUtil.printStackTrace(de);
             throw new FinderException("DAOException " + de);
@@ -260,7 +262,8 @@ public class TestBeanEJB implements EntityBean {
             }
             dao.startSession();
             Collection c = dao.priceToKeyCollection(price);
-            if (c.size() > 0) return c;
+            if (c.size() > 0)
+                return c;
             throw new FinderException("Price not found: " + price);
         } catch (DAOException e) {
             TestUtil.printStackTrace(e);
@@ -284,8 +287,10 @@ public class TestBeanEJB implements EntityBean {
             }
             dao.startSession();
             Collection c = dao.priceRangeToCollection(pmin, pmax);
-            if (c.size() > 0) return c;
-            else throw new FinderException("Price Range not found: [" + pmin + "-" + pmax + "]");
+            if (c.size() > 0)
+                return c;
+            else
+                throw new FinderException("Price Range not found: [" + pmin + "-" + pmax + "]");
         } catch (DAOException de) {
             TestUtil.printStackTrace(de);
             throw new FinderException("DAOException in price range finder");
@@ -308,8 +313,10 @@ public class TestBeanEJB implements EntityBean {
             }
             dao.startSession();
             Collection c = dao.primaryKeyRangeToCollection(kmin, kmax);
-            if (c.size() > 0) return c;
-            else throw new FinderException("Primary Key Range not found: [" + kmin + "-" + kmax + "]");
+            if (c.size() > 0)
+                return c;
+            else
+                throw new FinderException("Primary Key Range not found: [" + kmin + "-" + kmax + "]");
         } catch (DAOException de) {
             TestUtil.printStackTrace(de);
             throw new FinderException("DAOException in primary key range finder");

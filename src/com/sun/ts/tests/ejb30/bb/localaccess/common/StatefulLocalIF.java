@@ -20,4 +20,5 @@
 
 package com.sun.ts.tests.ejb30.bb.localaccess.common;
 
-public interface StatefulLocalIF extends CommonIF {}
+public interface StatefulLocalIF extends CommonIF {
+}

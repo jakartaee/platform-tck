@@ -214,7 +214,8 @@ public class TxBeanEJB implements SessionBean {
             return false;
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 dbUnConnect2(tName);
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + tName, se);
@@ -255,7 +256,8 @@ public class TxBeanEJB implements SessionBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 dbUnConnect2(tName);
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + tName, se);
@@ -293,13 +295,15 @@ public class TxBeanEJB implements SessionBean {
             TestUtil.logMsg("Deleted row(s) " + fromKey + " thru " + toKey + " from the table " + tName);
 
             // Check for intended exceptions to be thrown or rollbacks
-            if (flag == FLAGAPPEXCEPTION) throwAppException();
+            if (flag == FLAGAPPEXCEPTION)
+                throwAppException();
 
             if (flag == FLAGAPPEXCEPTIONWITHROLLBACK) {
                 TestUtil.logTrace("calling setRollbackOnly");
                 sctx.setRollbackOnly();
                 TestUtil.logTrace("Calling getRollbackOnly method");
-                if (sctx.getRollbackOnly()) isRolledback = true;
+                if (sctx.getRollbackOnly())
+                    isRolledback = true;
                 throwAppException();
             }
 
@@ -319,7 +323,8 @@ public class TxBeanEJB implements SessionBean {
                 TestUtil.logTrace("Calling setRollbackOnly method");
                 sctx.setRollbackOnly();
                 TestUtil.logTrace("Calling getRollbackOnly method");
-                if (sctx.getRollbackOnly()) isRolledback = true;
+                if (sctx.getRollbackOnly())
+                    isRolledback = true;
             }
         } catch (AppException e) {
             TestUtil.printStackTrace(e);
@@ -329,7 +334,8 @@ public class TxBeanEJB implements SessionBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 dbUnConnect2(tName);
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + tName, se);
@@ -373,7 +379,8 @@ public class TxBeanEJB implements SessionBean {
             TestUtil.logErr("Exception updating a row in the table " + tName, e);
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 dbUnConnect2(tName);
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + tName, se);
@@ -415,7 +422,8 @@ public class TxBeanEJB implements SessionBean {
             TestUtil.logErr("Exception updating a row in the table " + tName, e);
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 dbUnConnect2(tName);
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + tName, se);
@@ -529,7 +537,8 @@ public class TxBeanEJB implements SessionBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (stmt != null) stmt.close();
+                if (stmt != null)
+                    stmt.close();
                 dbUnConnect2(tName);
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + tName, se);
@@ -592,7 +601,8 @@ public class TxBeanEJB implements SessionBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 dbUnConnect2(tName);
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + tName, se);
@@ -612,7 +622,8 @@ public class TxBeanEJB implements SessionBean {
         }
     }
 
-    public void initLogging() {}
+    public void initLogging() {
+    }
 
     // Exception methods
     public void throwAppException() throws AppException {
@@ -641,7 +652,8 @@ public class TxBeanEJB implements SessionBean {
         initSetup();
 
         try {
-            if (dbResults.isEmpty()) TestUtil.logTrace("Empty vector!!!");
+            if (dbResults.isEmpty())
+                TestUtil.logTrace("Empty vector!!!");
             else {
                 for (int j = 0; j < dbResults.size(); j++)
                     TestUtil.logTrace(dbResults.elementAt(j).toString());
@@ -721,7 +733,8 @@ public class TxBeanEJB implements SessionBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException pStmt/stmt for " + this.tName1 + ":" + se.getMessage(), se);
                 throw new EJBException(se.getMessage());
@@ -767,7 +780,8 @@ public class TxBeanEJB implements SessionBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException pStmt/stmt for " + this.tName2 + se.getMessage(), se);
                 throw new EJBException(se.getMessage());
@@ -790,7 +804,8 @@ public class TxBeanEJB implements SessionBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (stmt != null) stmt.close();
+                if (stmt != null)
+                    stmt.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException stmt for " + this.tName1, se);
                 throw new EJBException(se.getMessage());
@@ -814,7 +829,8 @@ public class TxBeanEJB implements SessionBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (stmt != null) stmt.close();
+                if (stmt != null)
+                    stmt.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException stmt for " + this.tName2, se);
                 throw new EJBException(se.getMessage());

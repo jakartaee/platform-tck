@@ -61,13 +61,12 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeRequired_withoutTransaction
      *
-     * @test_Strategy: TxType.REQUIRED: If called outside a transaction context,
-     * the interceptor must begin a new JTA transaction, the managed bean method
-     * execution must then continue inside this transaction context, and the
+     * @test_Strategy: TxType.REQUIRED: If called outside a transaction context, the interceptor must begin a new JTA
+     * transaction, the managed bean method execution must then continue inside this transaction context, and the
      * transaction must be completed by the interceptor.
      *
-     * If called inside a transaction context, the managed bean method execution
-     * must then continue inside this transaction context.
+     * If called inside a transaction context, the managed bean method execution must then continue inside this transaction
+     * context.
      */
     public void txTypeRequired_withoutTransaction() throws Fault {
 
@@ -79,13 +78,12 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeRequired_withTransaction
      *
-     * @test_Strategy: TxType.REQUIRED: If called outside a transaction context,
-     * the interceptor must begin a new JTA transaction, the managed bean method
-     * execution must then continue inside this transaction context, and the
+     * @test_Strategy: TxType.REQUIRED: If called outside a transaction context, the interceptor must begin a new JTA
+     * transaction, the managed bean method execution must then continue inside this transaction context, and the
      * transaction must be completed by the interceptor.
      *
-     * If called inside a transaction context, the managed bean method execution
-     * must then continue inside this transaction context.
+     * If called inside a transaction context, the managed bean method execution must then continue inside this transaction
+     * context.
      */
     public void txTypeRequired_withTransaction() throws Fault {
         try {
@@ -103,11 +101,10 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeRequired_IllegalStateException
      *
-     * @test_Strategy: If an attempt is made to call any method of the
-     * UserTransaction interface from within a bean or method annotated with
+     * @test_Strategy: If an attempt is made to call any method of the UserTransaction interface from within a bean or
+     * method annotated with
      *
-     * @Transactional and a Transactional.TxType other than NOT_SUPPORTED or
-     * NEVER, an IllegalStateException must be thrown.
+     * @Transactional and a Transactional.TxType other than NOT_SUPPORTED or NEVER, an IllegalStateException must be thrown.
      */
     public void txTypeRequired_IllegalStateException() throws Fault {
 
@@ -119,16 +116,13 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeRequiresNew
      *
-     * @test_Strategy: If called outside a transaction context, the interceptor
-     * must begin a new JTA transaction, the managed bean method execution must
-     * then continue inside this transaction context, and the transaction must be
+     * @test_Strategy: If called outside a transaction context, the interceptor must begin a new JTA transaction, the
+     * managed bean method execution must then continue inside this transaction context, and the transaction must be
      * completed by the interceptor.
      *
-     * If called inside a transaction context, the current transaction context
-     * must be suspended, a new JTA transaction will begin, the managed bean
-     * method execution must then continue inside this transaction context, the
-     * transaction must be completed, and the previously suspended transaction
-     * must be resumed.
+     * If called inside a transaction context, the current transaction context must be suspended, a new JTA transaction will
+     * begin, the managed bean method execution must then continue inside this transaction context, the transaction must be
+     * completed, and the previously suspended transaction must be resumed.
      */
     public void txTypeRequiresNew() throws Fault {
 
@@ -140,16 +134,13 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeRequiresNew_withTransaction
      *
-     * @test_Strategy: If called outside a transaction context, the interceptor
-     * must begin a new JTA transaction, the managed bean method execution must
-     * then continue inside this transaction context, and the transaction must be
+     * @test_Strategy: If called outside a transaction context, the interceptor must begin a new JTA transaction, the
+     * managed bean method execution must then continue inside this transaction context, and the transaction must be
      * completed by the interceptor.
      *
-     * If called inside a transaction context, the current transaction context
-     * must be suspended, a new JTA transaction will begin, the managed bean
-     * method execution must then continue inside this transaction context, the
-     * transaction must be completed, and the previously suspended transaction
-     * must be resumed.
+     * If called inside a transaction context, the current transaction context must be suspended, a new JTA transaction will
+     * begin, the managed bean method execution must then continue inside this transaction context, the transaction must be
+     * completed, and the previously suspended transaction must be resumed.
      */
     public void txTypeRequiresNew_withTransaction() throws Fault {
         try {
@@ -167,12 +158,10 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeMandatory_withoutTransaction
      *
-     * @test_Strategy: If called outside a transaction context, a
-     * TransactionalException with a nested TransactionRequiredException must be
-     * thrown.
+     * @test_Strategy: If called outside a transaction context, a TransactionalException with a nested
+     * TransactionRequiredException must be thrown.
      *
-     * If called inside a transaction context, managed bean method execution will
-     * then continue under that context.
+     * If called inside a transaction context, managed bean method execution will then continue under that context.
      */
     public void txTypeMandatory_withoutTransaction() throws Fault {
         String result = "TransactionalException not received";
@@ -203,12 +192,10 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeMandatory_withTransaction
      *
-     * @test_Strategy: If called outside a transaction context, a
-     * TransactionalException with a nested TransactionRequiredException must be
-     * thrown.
+     * @test_Strategy: If called outside a transaction context, a TransactionalException with a nested
+     * TransactionRequiredException must be thrown.
      *
-     * If called inside a transaction context, managed bean method execution will
-     * then continue under that context.
+     * If called inside a transaction context, managed bean method execution will then continue under that context.
      */
     public void txTypeMandatory_withTransaction() throws Fault {
         try {
@@ -226,11 +213,11 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeSupports_withoutTransaction
      *
-     * @test_Strategy: If called outside a transaction context, managed bean
-     * method execution must then continue outside a transaction context.
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
      *
-     * If called inside a transaction context, the managed bean method execution
-     * must then continue inside this transaction context.
+     * If called inside a transaction context, the managed bean method execution must then continue inside this transaction
+     * context.
      */
     public void txTypeSupports_withoutTransaction() throws Fault {
 
@@ -247,11 +234,11 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeSupports_withTransaction
      *
-     * @test_Strategy: If called outside a transaction context, managed bean
-     * method execution must then continue outside a transaction context.
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
      *
-     * If called inside a transaction context, the managed bean method execution
-     * must then continue inside this transaction context.
+     * If called inside a transaction context, the managed bean method execution must then continue inside this transaction
+     * context.
      */
     public void txTypeSupports_withTransaction() throws Fault {
         try {
@@ -269,14 +256,12 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeNotSupported_withoutTransaction
      *
-     * @test_Strategy: If called outside a transaction context, managed bean
-     * method execution must then continue outside a transaction context.
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
      *
-     * If called inside a transaction context, the current transaction context
-     * must be suspended, the managed bean method execution must then continue
-     * outside a transaction context, and the previously suspended transaction
-     * must be resumed by the interceptor that suspended it after the method
-     * execution has completed.
+     * If called inside a transaction context, the current transaction context must be suspended, the managed bean method
+     * execution must then continue outside a transaction context, and the previously suspended transaction must be resumed
+     * by the interceptor that suspended it after the method execution has completed.
      */
     public void txTypeNotSupported_withoutTransaction() throws Fault {
 
@@ -290,14 +275,12 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeNotSupported_withTransaction
      *
-     * @test_Strategy: If called outside a transaction context, managed bean
-     * method execution must then continue outside a transaction context.
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
      *
-     * If called inside a transaction context, the current transaction context
-     * must be suspended, the managed bean method execution must then continue
-     * outside a transaction context, and the previously suspended transaction
-     * must be resumed by the interceptor that suspended it after the method
-     * execution has completed.
+     * If called inside a transaction context, the current transaction context must be suspended, the managed bean method
+     * execution must then continue outside a transaction context, and the previously suspended transaction must be resumed
+     * by the interceptor that suspended it after the method execution has completed.
      */
     public void txTypeNotSupported_withTransaction() throws Fault {
         try {
@@ -317,11 +300,11 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeNever_withoutTransaction
      *
-     * @test_Strategy: If called outside a transaction context, managed bean
-     * method execution must then continue outside a transaction context.
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
      *
-     * If called inside a transaction context, a TransactionalException with a
-     * nested InvalidTransactionException must be thrown
+     * If called inside a transaction context, a TransactionalException with a nested InvalidTransactionException must be
+     * thrown
      */
     public void txTypeNever_withoutTransaction() throws Fault {
         Helper.assertEquals(null, "txTypeNever run without active transaction", one.txTypeNever(), callRecords);
@@ -332,11 +315,11 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: txTypeNever_withTransaction
      *
-     * @test_Strategy: If called outside a transaction context, managed bean
-     * method execution must then continue outside a transaction context.
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
      *
-     * If called inside a transaction context, a TransactionalException with a
-     * nested InvalidTransactionException must be thrown
+     * If called inside a transaction context, a TransactionalException with a nested InvalidTransactionException must be
+     * thrown
      */
     public void txTypeNever_withTransaction() throws Fault {
         String result = "Expected TransactionalException not received";
@@ -370,11 +353,11 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: rollbackOnException
      *
-     * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-     * that must cause the interceptor to mark the transaction for rollback.
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
      *
-     * Conversely, the dontRollbackOn element can be set to indicate exceptions
-     * that must not cause the interceptor to mark the transaction for rollback.
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
      */
     public void rollbackOnException() throws Fault {
         String result = "failed to set STATUS_MARKED_ROLLBACK on CTSRollbackException";
@@ -424,14 +407,14 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: rollbackOnExceptionTwo
      *
-     * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-     * that must cause the interceptor to mark the transaction for rollback.
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
      *
-     * Conversely, the dontRollbackOn element can be set to indicate exceptions
-     * that must not cause the interceptor to mark the transaction for rollback.
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
      *
-     * When a class is specified for either of these elements, the designated
-     * behavior applies to subclasses of that class as well.
+     * When a class is specified for either of these elements, the designated behavior applies to subclasses of that class
+     * as well.
      *
      * Note: This test verifies the behavior in SubClass
      *
@@ -484,11 +467,11 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: dontRollbackOnException
      *
-     * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-     * that must cause the interceptor to mark the transaction for rollback.
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
      *
-     * Conversely, the dontRollbackOn element can be set to indicate exceptions
-     * that must not cause the interceptor to mark the transaction for rollback.
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
      */
     public void dontRollbackOnException() throws Fault {
         String result = "";
@@ -539,14 +522,14 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: dontRollbackOnExceptionTwo
      *
-     * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-     * that must cause the interceptor to mark the transaction for rollback.
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
      *
-     * Conversely, the dontRollbackOn element can be set to indicate exceptions
-     * that must not cause the interceptor to mark the transaction for rollback.
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
      *
-     * When a class is specified for either of these elements, the designated
-     * behavior applies to subclasses of that class as well.
+     * When a class is specified for either of these elements, the designated behavior applies to subclasses of that class
+     * as well.
      *
      * Note: This test verifies the behavior in SubClass
      *
@@ -600,15 +583,14 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: rollbackAndDontRollback
      *
-     * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-     * that must cause the interceptor to mark the transaction for rollback.
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
      *
-     * Conversely, the dontRollbackOn element can be set to indicate exceptions
-     * that must not cause the interceptor to mark the transaction for rollback.
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
      *
-     * When a class is specified for either of these elements, the designated
-     * behavior applies to subclasses of that class as well. If both elements are
-     * specified, dontRollbackOn takes precedence.
+     * When a class is specified for either of these elements, the designated behavior applies to subclasses of that class
+     * as well. If both elements are specified, dontRollbackOn takes precedence.
      */
     public void rollbackAndDontRollback() throws Fault {
         String result = "";
@@ -658,15 +640,14 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: rollbackAndDontRollbackTwo
      *
-     * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-     * that must cause the interceptor to mark the transaction for rollback.
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
      *
-     * Conversely, the dontRollbackOn element can be set to indicate exceptions
-     * that must not cause the interceptor to mark the transaction for rollback.
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
      *
-     * When a class is specified for either of these elements, the designated
-     * behavior applies to subclasses of that class as well. If both elements are
-     * specified, dontRollbackOn takes precedence.
+     * When a class is specified for either of these elements, the designated behavior applies to subclasses of that class
+     * as well. If both elements are specified, dontRollbackOn takes precedence.
      *
      * Note: This test verifies the behavior in SubClass
      *
@@ -721,19 +702,16 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
      *
      * @test_Strategy:
      *
-     * The jakarta.transaction.TransactionScoped annotation provides the ability to
-     * specify a standard CDI scope to define bean instances whose lifecycle is
-     * scoped to the currently active JTA transaction.
+     * The jakarta.transaction.TransactionScoped annotation provides the ability to specify a standard CDI scope to define
+     * bean instances whose lifecycle is scoped to the currently active JTA transaction.
      *
-     * The transaction scope is active when the return from a call to
-     * UserTransaction.getStatus or TransactionManager.getStatus is one of the
-     * following states: Status.STATUS_ACTIVE Status.STATUS_MARKED_ROLLBACK
-     * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING
-     * Status.STATUS_COMMITTING Status.STATUS_ROLLING_BACK
+     * The transaction scope is active when the return from a call to UserTransaction.getStatus or
+     * TransactionManager.getStatus is one of the following states: Status.STATUS_ACTIVE Status.STATUS_MARKED_ROLLBACK
+     * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING Status.STATUS_COMMITTING
+     * Status.STATUS_ROLLING_BACK
      *
-     * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a
-     * bean with this annotation is used when the transaction context is not
-     * active.
+     * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a bean with this annotation is used when the
+     * transaction context is not active.
      *
      */
     public void transactionScopedBean_withoutTransaction() throws Fault {
@@ -764,19 +742,16 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
      *
      * @test_Strategy:
      *
-     * The jakarta.transaction.TransactionScoped annotation provides the ability to
-     * specify a standard CDI scope to define bean instances whose lifecycle is
-     * scoped to the currently active JTA transaction.
+     * The jakarta.transaction.TransactionScoped annotation provides the ability to specify a standard CDI scope to define
+     * bean instances whose lifecycle is scoped to the currently active JTA transaction.
      *
-     * The transaction scope is active when the return from a call to
-     * UserTransaction.getStatus or TransactionManager.getStatus is one of the
-     * following states: Status.STATUS_ACTIVE Status.STATUS_MARKED_ROLLBACK
-     * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING
-     * Status.STATUS_COMMITTING Status.STATUS_ROLLING_BACK
+     * The transaction scope is active when the return from a call to UserTransaction.getStatus or
+     * TransactionManager.getStatus is one of the following states: Status.STATUS_ACTIVE Status.STATUS_MARKED_ROLLBACK
+     * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING Status.STATUS_COMMITTING
+     * Status.STATUS_ROLLING_BACK
      *
-     * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a
-     * bean with this annotation is used when the transaction context is not
-     * active.
+     * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a bean with this annotation is used when the
+     * transaction context is not active.
      */
     public void transactionScopedBean_withTransaction() throws Fault {
 
@@ -803,8 +778,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: getInterceptorPriorityForTxTypeRequired
      *
-     * @test_Strategy: The Transactional interceptors must have a priority of
-     * Interceptor.Priority.PLATFORM_BEFORE+200
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
      *
      */
     public void getInterceptorPriorityForTxTypeRequired() throws Fault {
@@ -816,8 +790,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: getInterceptorPriorityForTxTypeRequiresNew
      *
-     * @test_Strategy: The Transactional interceptors must have a priority of
-     * Interceptor.Priority.PLATFORM_BEFORE+200
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
      *
      */
     public void getInterceptorPriorityForTxTypeRequiresNew() throws Fault {
@@ -829,8 +802,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: getInterceptorPriorityForTxTypeMandatory
      *
-     * @test_Strategy: The Transactional interceptors must have a priority of
-     * Interceptor.Priority.PLATFORM_BEFORE+200
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
      *
      */
     public void getInterceptorPriorityForTxTypeMandatory() throws Fault {
@@ -842,8 +814,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: getInterceptorPriorityForTxTypeSupports
      *
-     * @test_Strategy: The Transactional interceptors must have a priority of
-     * Interceptor.Priority.PLATFORM_BEFORE+200
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
      *
      */
     public void getInterceptorPriorityForTxTypeSupports() throws Fault {
@@ -855,8 +826,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: getInterceptorPriorityForTxTypeNotSupported
      *
-     * @test_Strategy: The Transactional interceptors must have a priority of
-     * Interceptor.Priority.PLATFORM_BEFORE+200
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
      *
      */
     public void getInterceptorPriorityForTxTypeNotSupported() throws Fault {
@@ -868,8 +838,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: getInterceptorPriorityForTxTypeNever
      *
-     * @test_Strategy: The Transactional interceptors must have a priority of
-     * Interceptor.Priority.PLATFORM_BEFORE+200
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
      *
      */
     public void getInterceptorPriorityForTxTypeNever() throws Fault {
@@ -891,6 +860,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
                     + Interceptor.Priority.PLATFORM_BEFORE + 200);
         }
 
-        if (result != null) appendReason(result);
+        if (result != null)
+            appendReason(result);
     }
 }

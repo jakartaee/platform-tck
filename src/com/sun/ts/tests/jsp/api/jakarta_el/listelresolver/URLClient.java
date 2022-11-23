@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,12 +58,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: listElResolverTest
      *
-     * @assertion_ids: EL:JAVADOC:68; EL:JAVADOC:69; EL:JAVADOC:70; EL:JAVADOC:71;
-     * EL:JAVADOC:72; EL:JAVADOC:73
+     * @assertion_ids: EL:JAVADOC:68; EL:JAVADOC:69; EL:JAVADOC:70; EL:JAVADOC:71; EL:JAVADOC:72; EL:JAVADOC:73
      *
-     * @test_Strategy: Obtain an ListELResolver via the PageContext and verify
-     * that API calls work as expected: setValue() getValue() getType()
-     * isReadOnly() getCommonPropertyType() getFeatureDescriptors()
+     * @test_Strategy: Obtain an ListELResolver via the PageContext and verify that API calls work as expected: setValue()
+     * getValue() getType() isReadOnly() getCommonPropertyType() getFeatureDescriptors()
      */
     public void listElResolverTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "listElResolverTest");

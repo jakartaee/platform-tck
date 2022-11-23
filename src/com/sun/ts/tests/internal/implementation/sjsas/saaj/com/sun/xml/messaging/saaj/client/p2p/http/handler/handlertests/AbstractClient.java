@@ -39,8 +39,7 @@ import sun.net.www.http.HttpClient;
 import sun.net.www.protocol.http.AuthenticationInfo;
 
 public class AbstractClient extends EETest {
-    private String srcDir =
-            "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/client/p2p/http/handler/handlertests";
+    private String srcDir = "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/client/p2p/http/handler/handlertests";
 
     private String testDir = null;
 
@@ -84,8 +83,7 @@ public class AbstractClient extends EETest {
 
     private static final String authPasswordProp = "authpassword";
 
-    private static final String GoodSoapMessage =
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/wsdl\"><soap:Body><ns:hello><parameters><string>World</string></parameters></ns:hello></soap:Body></soap:Envelope>";
+    private static final String GoodSoapMessage = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/wsdl\"><soap:Body><ns:hello><parameters><string>World</string></parameters></ns:hello></soap:Body></soap:Envelope>";
 
     private HttpURLConnection conn = null;
 
@@ -102,8 +100,10 @@ public class AbstractClient extends EETest {
             String tsHome = p.getProperty("ts_home");
             testDir = tsHome + "/" + srcDir;
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -177,7 +177,8 @@ public class AbstractClient extends EETest {
             throw new Fault("BasicAuthenticationTest failed", e);
         }
 
-        if (!pass) throw new Fault("BasicAuthenticationTest failed");
+        if (!pass)
+            throw new Fault("BasicAuthenticationTest failed");
     }
 
     public void DigestAuthenticationTest() throws Fault {
@@ -216,7 +217,8 @@ public class AbstractClient extends EETest {
             throw new Fault("DigestAuthenticationTest failed", e);
         }
 
-        if (!pass) throw new Fault("DigestAuthenticationTest failed");
+        if (!pass)
+            throw new Fault("DigestAuthenticationTest failed");
     }
 
     public void HttpURLConnectionTest() throws Fault {
@@ -277,7 +279,8 @@ public class AbstractClient extends EETest {
             throw new Fault("HttpURLConnectionTest failed", e);
         }
 
-        if (!pass) throw new Fault("HttpURLConnectionTest failed");
+        if (!pass)
+            throw new Fault("HttpURLConnectionTest failed");
     }
 
     public void HandlerTest() throws Fault {
@@ -298,7 +301,8 @@ public class AbstractClient extends EETest {
             throw new Fault("HandlerTest failed", e);
         }
 
-        if (!pass) throw new Fault("HandlerTest failed");
+        if (!pass)
+            throw new Fault("HandlerTest failed");
     }
 
     public void EmptyInputStreamTest() throws Fault {
@@ -319,7 +323,8 @@ public class AbstractClient extends EETest {
             throw new Fault("EmptyInputStreamTest failed", e);
         }
 
-        if (!pass) throw new Fault("EmptyInputStreamTest failed");
+        if (!pass)
+            throw new Fault("EmptyInputStreamTest failed");
     }
 
     private int sendRequest(HttpURLConnection conn, String request) throws IOException {
@@ -351,7 +356,8 @@ public class AbstractClient extends EETest {
 
         TestUtil.logMsg("ResponseCode=" + responseCode);
         TestUtil.logMsg("ResponseMessage=" + responseMessage);
-        if (responseCode == HttpURLConnection.HTTP_OK) isFailure = false;
+        if (responseCode == HttpURLConnection.HTTP_OK)
+            isFailure = false;
         TestUtil.logMsg("Call HttpURLConnection.getInputStream() method");
         InputStream tmp = conn.getInputStream();
         TestUtil.logMsg("Call HttpURLConnection.getErrorStream() method");
@@ -362,8 +368,10 @@ public class AbstractClient extends EETest {
             String buf = null;
             BufferedReader reader = new BufferedReader(new InputStreamReader(istream));
             while ((buf = reader.readLine()) != null) {
-                if (response != null) response += buf;
-                else response = buf;
+                if (response != null)
+                    response += buf;
+                else
+                    response = buf;
             }
         }
         return responseCode;

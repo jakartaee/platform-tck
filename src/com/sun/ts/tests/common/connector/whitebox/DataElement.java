@@ -72,13 +72,10 @@ public class DataElement {
     private int version;
 
     /**
-     * If key and value is inserted, this constructor will be used to construct
-     * the <code> DataElement </code> object.
+     * If key and value is inserted, this constructor will be used to construct the <code> DataElement </code> object.
      *
-     * @param key
-     *          Key of the <code> DataElement </code> object.
-     * @param data
-     *          Value of the <code> DataElement </code> object.
+     * @param key Key of the <code> DataElement </code> object.
+     * @param data Value of the <code> DataElement </code> object.
      */
     public DataElement(String key, String data) {
         this.key = key;
@@ -87,11 +84,9 @@ public class DataElement {
     }
 
     /**
-     * If only key is inserted, this constructor will be used to construct the
-     * <code> DataElement </code> object.
+     * If only key is inserted, this constructor will be used to construct the <code> DataElement </code> object.
      *
-     * @param key
-     *          Key of the <code> DataElement </code> object.
+     * @param key Key of the <code> DataElement </code> object.
      */
     public DataElement(String key) {
         this.key = key;
@@ -101,8 +96,7 @@ public class DataElement {
     /**
      * Sets the status of the object to the value provided.
      *
-     * @param status
-     *          Status to be set.
+     * @param status Status to be set.
      */
     public void setStatus(int status) {
         this.status = status;
@@ -138,8 +132,7 @@ public class DataElement {
     /**
      * Set the value of <code> DataElement </code> object.
      *
-     * @param value
-     *          Value.
+     * @param value Value.
      */
     public void setValue(String value) {
         this.data = value;
@@ -148,8 +141,7 @@ public class DataElement {
     /**
      * Prepare the value for 2PC commit.
      *
-     * @param value
-     *          Value to be prepared.
+     * @param value Value to be prepared.
      */
     public void prepare(DataElement value, Xid xid) {
         this.preparedData = value;

@@ -39,7 +39,8 @@ public class Customer implements java.io.Serializable {
 
     private List<String> phones = new ArrayList<String>();
 
-    public Customer() {}
+    public Customer() {
+    }
 
     public Customer(String id) {
         this.id = id;

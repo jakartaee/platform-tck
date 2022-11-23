@@ -24,7 +24,8 @@ import jakarta.websocket.EndpointConfig;
 public class StringBeanTextEncoder implements Text<StringBean> {
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
     public String encode(StringBean bean) throws EncodeException {
@@ -32,5 +33,6 @@ public class StringBeanTextEncoder implements Text<StringBean> {
     }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

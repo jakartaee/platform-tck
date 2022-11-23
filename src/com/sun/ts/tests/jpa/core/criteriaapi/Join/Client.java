@@ -70,11 +70,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1052; PERSISTENCE:JAVADOC:1040;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders o JOIN o.lineItems l where (l.id =
-     * 1)
+     * select c FROM Customer c JOIN c.orders o JOIN o.lineItems l where (l.id = 1)
      */
     @SetupMethod(name = "setupOrderData")
     public void joinStringTest() throws Fault {
@@ -94,7 +92,7 @@ public class Client extends Util {
             Set sJoins = customer.getJoins();
             if (!sJoins.isEmpty()) {
                 TestUtil.logErr("Expected getJoins() to return empty set instead got:");
-                for (Iterator<Join<Order, ?>> i = sJoins.iterator(); i.hasNext(); ) {
+                for (Iterator<Join<Order, ?>> i = sJoins.iterator(); i.hasNext();) {
                     Join j = i.next();
                     TestUtil.logErr("join:" + j.toString());
                 }
@@ -112,7 +110,7 @@ public class Client extends Util {
 
                 if (s.size() == 1) {
                     TestUtil.logTrace("getJoins returned:");
-                    for (Iterator<Join<Customer, ?>> i = s.iterator(); i.hasNext(); ) {
+                    for (Iterator<Join<Customer, ?>> i = s.iterator(); i.hasNext();) {
                         pass2 = true;
                         Join j = i.next();
                         TestUtil.logTrace("join:" + j.toString());
@@ -128,7 +126,7 @@ public class Client extends Util {
                     pass3 = false;
                     TestUtil.logErr("Expected getJoins to return 1 join, actual:" + s.size());
                     TestUtil.logErr("getJoins returned:");
-                    for (Iterator<Join<Customer, ?>> i = s.iterator(); i.hasNext(); ) {
+                    for (Iterator<Join<Customer, ?>> i = s.iterator(); i.hasNext();) {
                         Join j = i.next();
                         TestUtil.logErr("join:" + j.toString());
                     }
@@ -164,11 +162,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1054;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders o INNER JOIN o.lineItems l where
-     * (l.id = 1)
+     * select c FROM Customer c JOIN c.orders o INNER JOIN o.lineItems l where (l.id = 1)
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -275,8 +271,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1042;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
      */
@@ -320,11 +315,9 @@ public class Client extends Util {
     /*
      * @testName: joinSingularAttributeJoinTypeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1043; PERSISTENCE:SPEC:1698;
-     * PERSISTENCE:SPEC:1786; PERSISTENCE:SPEC:1786.1;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1043; PERSISTENCE:SPEC:1698; PERSISTENCE:SPEC:1786; PERSISTENCE:SPEC:1786.1;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
      */
@@ -370,11 +363,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1044; PERSISTENCE:JAVADOC:729
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders o JOIN o.lineItems l where (l.id =
-     * 1)
+     * select c FROM Customer c JOIN c.orders o JOIN o.lineItems l where (l.id = 1)
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -427,11 +418,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1048;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders o INNER JOIN o.lineItems l where
-     * (l.id = 1)
+     * select c FROM Customer c JOIN c.orders o INNER JOIN o.lineItems l where (l.id = 1)
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -475,11 +464,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1056; PERSISTENCE:JAVADOC:728;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders o JOIN o.lineItems l where (l.id =
-     * 1)
+     * select c FROM Customer c JOIN c.orders o JOIN o.lineItems l where (l.id = 1)
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -528,11 +515,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1058;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders o INNER JOIN o.lineItems l where
-     * (l.id = 1)
+     * select c FROM Customer c JOIN c.orders o INNER JOIN o.lineItems l where (l.id = 1)
      */
     @SetupMethod(name = "setupOrderData")
     public void joinCollectionStringJoinTypeTest() throws Fault {
@@ -636,11 +621,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1045
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders2 o JOIN o.lineItemsSet l where (l.id
-     * = 1)
+     * select c FROM Customer c JOIN c.orders2 o JOIN o.lineItemsSet l where (l.id = 1)
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -683,11 +666,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1049
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders2 o INNER JOIN o.lineItemsSet l where
-     * (l.id = 1)
+     * select c FROM Customer c JOIN c.orders2 o INNER JOIN o.lineItemsSet l where (l.id = 1)
      */
     @SetupMethod(name = "setupOrderData")
     public void joinSetAttributeJoinTypeTest() throws Fault {
@@ -729,11 +710,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1068;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders2 o JOIN o.lineItemsSet l where (l.id
-     * = 1)
+     * select c FROM Customer c JOIN c.orders2 o JOIN o.lineItemsSet l where (l.id = 1)
      */
     @SetupMethod(name = "setupOrderData")
     public void joinSetStringTest() throws Fault {
@@ -775,11 +754,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1070;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders2 o INNER JOIN o.lineItemsSet l where
-     * (l.id = 1)
+     * select c FROM Customer c JOIN c.orders2 o INNER JOIN o.lineItemsSet l where (l.id = 1)
      */
     @SetupMethod(name = "setupOrderData")
     public void joinSetStringJoinTypeTest() throws Fault {
@@ -819,8 +796,7 @@ public class Client extends Util {
     /*
      * @testName: joinSetIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1069; PERSISTENCE:JAVADOC:1027;
-     * PERSISTENCE:JAVADOC:1071;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1069; PERSISTENCE:JAVADOC:1027; PERSISTENCE:JAVADOC:1071;
      *
      * @test_Strategy:
      *
@@ -883,11 +859,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1046; PERSISTENCE:JAVADOC:1076;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders3 o JOIN o.lineItemsList l where
-     * (l.id = 1)
+     * select c FROM Customer c JOIN c.orders3 o JOIN o.lineItemsList l where (l.id = 1)
      */
     @SetupMethod(name = "setupOrderData")
     public void joinListAttributeTest() throws Fault {
@@ -936,11 +910,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1050;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders3 o INNER JOIN o.lineItemsList l
-     * where (l.id = 1)
+     * select c FROM Customer c JOIN c.orders3 o INNER JOIN o.lineItemsList l where (l.id = 1)
      */
     @SetupMethod(name = "setupOrderData")
     public void joinListAttributeJoinTypeTest() throws Fault {
@@ -1043,11 +1015,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1060; PERSISTENCE:JAVADOC:1074;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders3 o JOIN o.lineItemsList l where
-     * (l.id = 1)
+     * select c FROM Customer c JOIN c.orders3 o JOIN o.lineItemsList l where (l.id = 1)
      */
     @SetupMethod(name = "setupOrderData")
     public void joinListStringTest() throws Fault {
@@ -1097,11 +1067,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1062;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders3 o INNER JOIN o.lineItemsList l
-     * where (l.id = 1)
+     * select c FROM Customer c JOIN c.orders3 o INNER JOIN o.lineItemsList l where (l.id = 1)
      */
     @SetupMethod(name = "setupOrderData")
     public void joinListStringJoinTypeTest() throws Fault {
@@ -1141,14 +1109,11 @@ public class Client extends Util {
     /*
      * @testName: joinMapAttributeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1047; PERSISTENCE:JAVADOC:1081;
-     * PERSISTENCE:JAVADOC:1078;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1047; PERSISTENCE:JAVADOC:1081; PERSISTENCE:JAVADOC:1078;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * SELECT e FROM Employee e JOIN e.department d JOIN d.lastNameEmployees e1
-     * WHERE (e1.id = 1)
+     * SELECT e FROM Employee e JOIN e.department d JOIN d.lastNameEmployees e1 WHERE (e1.id = 1)
      *
      */
     @SetupMethod(name = "setupDepartmentEmployeeData")
@@ -1200,11 +1165,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1051;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * SELECT e FROM Employee e JOIN e.department d INNER JOIN d.lastNameEmployees
-     * e1 WHERE (e1.id = 1)
+     * SELECT e FROM Employee e JOIN e.department d INNER JOIN d.lastNameEmployees e1 WHERE (e1.id = 1)
      *
      */
     @SetupMethod(name = "setupDepartmentEmployeeData")
@@ -1219,8 +1182,7 @@ public class Client extends Util {
             CriteriaQuery<Employee> cquery = cbuilder.createQuery(Employee.class);
             Root<Employee> employee = cquery.from(Employee.class);
             Join<Employee, Department> department = employee.join(Employee_.department);
-            MapJoin<Department, String, Employee> mEmployee =
-                    department.join(Department_.lastNameEmployees, JoinType.INNER);
+            MapJoin<Department, String, Employee> mEmployee = department.join(Department_.lastNameEmployees, JoinType.INNER);
             cquery.where(cbuilder.equal(mEmployee.get("id"), "1")).select(employee);
             TypedQuery<Employee> tquery = getEntityManager().createQuery(cquery);
             List<Employee> clist = tquery.getResultList();
@@ -1250,11 +1212,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1064; PERSISTENCE:JAVADOC:1112;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * SELECT e FROM Employee e JOIN e.department d JOIN d.lastNameEmployees e1
-     * WHERE (e1.id = 1)
+     * SELECT e FROM Employee e JOIN e.department d JOIN d.lastNameEmployees e1 WHERE (e1.id = 1)
      *
      */
     @SetupMethod(name = "setupDepartmentEmployeeData")
@@ -1305,11 +1265,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1066;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * SELECT e FROM Employee e JOIN e.department d INNER JOIN d.lastNameEmployees
-     * e1 WHERE (e1.id = 1)
+     * SELECT e FROM Employee e JOIN e.department d INNER JOIN d.lastNameEmployees e1 WHERE (e1.id = 1)
      *
      */
     @SetupMethod(name = "setupDepartmentEmployeeData")
@@ -1414,14 +1372,12 @@ public class Client extends Util {
     /*
      * @testName: pluralJoinTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1113; PERSISTENCE:JAVADOC:1114;
-     * PERSISTENCE:JAVADOC:1115; PERSISTENCE:JAVADOC:1112;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1113; PERSISTENCE:JAVADOC:1114; PERSISTENCE:JAVADOC:1115;
+     * PERSISTENCE:JAVADOC:1112;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * select c FROM Customer c JOIN c.orders o JOIN o.lineItems l where (l.id =
-     * 1)
+     * select c FROM Customer c JOIN c.orders o JOIN o.lineItems l where (l.id = 1)
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -1497,8 +1453,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1723; PERSISTENCE:JAVADOC:1722;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void pluralJoinOnExpressionTest() throws Fault {
@@ -1553,8 +1508,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1724; PERSISTENCE:JAVADOC:1722;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void pluralJoinOnPredicateArrayTest() throws Fault {
@@ -1572,7 +1526,7 @@ public class Client extends Util {
 
             Predicate pred1 = cbuilder.equal(customer.get("id"), "1");
             Predicate pred2 = cbuilder.equal(customer.get("country").get("code"), "USA");
-            Predicate[] pred = {pred1, pred2};
+            Predicate[] pred = { pred1, pred2 };
             Join join = order.on(pred);
 
             Predicate pred3 = join.getOn();
@@ -1608,8 +1562,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1668;
      *
-     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id =
-     * o.ID) where (l.QUANTITY > 5))
+     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id = o.ID) where (l.QUANTITY > 5))
      */
     @SetupMethod(name = "setupOrderData")
     public void collectionJoinOnExpressionTest() throws Fault {
@@ -1645,7 +1598,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("collectionJoinOnExpressionTest failed");
+        if (!pass)
+            throw new Fault("collectionJoinOnExpressionTest failed");
     }
 
     /*
@@ -1653,8 +1607,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1669
      *
-     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id =
-     * o.ID) where ((l.QUANTITY > 5) AND (l.QUANTITY < 8))
+     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id = o.ID) where ((l.QUANTITY > 5) AND (l.QUANTITY
+     * < 8))
      */
     @SetupMethod(name = "setupOrderData")
     public void collectionJoinOnPredicateArrayTest() throws Fault {
@@ -1668,7 +1622,7 @@ public class Client extends Util {
             Root<Order> order = cquery.from(Order.class);
             CollectionJoin<Order, LineItem> lineItem = order.joinCollection("lineItemsCollection", JoinType.INNER);
             Predicate[] pred = {
-                cbuilder.gt(lineItem.<Number>get("quantity"), 5), cbuilder.lt(lineItem.<Number>get("quantity"), 8)
+                    cbuilder.gt(lineItem.<Number>get("quantity"), 5), cbuilder.lt(lineItem.<Number>get("quantity"), 8)
             };
             lineItem.on(pred);
             cquery.select(order);
@@ -1692,7 +1646,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("collectionJoinOnPredicateArrayTest failed");
+        if (!pass)
+            throw new Fault("collectionJoinOnPredicateArrayTest failed");
     }
 
     /*
@@ -1700,8 +1655,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1718
      *
-     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id =
-     * o.ID) where (l.QUANTITY > 5)
+     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id = o.ID) where (l.QUANTITY > 5)
      */
     @SetupMethod(name = "setupOrderData")
     public void listJoinOnExpressionTest() throws Fault {
@@ -1738,7 +1692,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("listJoinOnExpressionTest failed");
+        if (!pass)
+            throw new Fault("listJoinOnExpressionTest failed");
     }
 
     /*
@@ -1746,8 +1701,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1719
      *
-     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id =
-     * o.ID) where ((l.QUANTITY > 5) AND (l.QUANTITY < 8))
+     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id = o.ID) where ((l.QUANTITY > 5) AND (l.QUANTITY
+     * < 8))
      */
     @SetupMethod(name = "setupOrderData")
     public void listJoinOnPredicateArrayTest() throws Fault {
@@ -1761,7 +1716,7 @@ public class Client extends Util {
             Root<Order> order = cquery.from(Order.class);
             ListJoin<Order, LineItem> lineItem = order.joinList("lineItemsList", JoinType.INNER);
             Predicate[] pred = {
-                cbuilder.gt(lineItem.<Number>get("quantity"), 5), cbuilder.lt(lineItem.<Number>get("quantity"), 8)
+                    cbuilder.gt(lineItem.<Number>get("quantity"), 5), cbuilder.lt(lineItem.<Number>get("quantity"), 8)
             };
             lineItem.on(pred);
             cquery.select(order);
@@ -1785,7 +1740,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("listJoinOnPredicateArrayTest failed");
+        if (!pass)
+            throw new Fault("listJoinOnPredicateArrayTest failed");
     }
 
     /*
@@ -1793,8 +1749,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1725
      *
-     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id =
-     * o.ID) where (l.QUANTITY > 5)
+     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id = o.ID) where (l.QUANTITY > 5)
      */
     @SetupMethod(name = "setupOrderData")
     public void setJoinOnExpressionTest() throws Fault {
@@ -1831,7 +1786,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("setJoinOnExpressionTest failed");
+        if (!pass)
+            throw new Fault("setJoinOnExpressionTest failed");
     }
 
     /*
@@ -1839,8 +1795,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1726
      *
-     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id =
-     * o.ID) where ((l.QUANTITY > 5) AND (l.QUANTITY < 8))
+     * @test_Strategy: SELECT o FROM LineItem l INNER JOIN Order o ON (l.id = o.ID) where ((l.QUANTITY > 5) AND (l.QUANTITY
+     * < 8))
      */
     @SetupMethod(name = "setupOrderData")
     public void setJoinOnPredicateArrayTest() throws Fault {
@@ -1854,7 +1810,7 @@ public class Client extends Util {
             Root<Order> order = cquery.from(Order.class);
             SetJoin<Order, LineItem> lineItem = order.joinSet("lineItemsSet", JoinType.INNER);
             Predicate[] pred = {
-                cbuilder.gt(lineItem.<Number>get("quantity"), 5), cbuilder.lt(lineItem.<Number>get("quantity"), 8)
+                    cbuilder.gt(lineItem.<Number>get("quantity"), 5), cbuilder.lt(lineItem.<Number>get("quantity"), 8)
             };
             lineItem.on(pred);
             cquery.select(order);
@@ -1878,7 +1834,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("setJoinOnPredicateArrayTest failed");
+        if (!pass)
+            throw new Fault("setJoinOnPredicateArrayTest failed");
     }
 
     /*
@@ -1888,8 +1845,7 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * SELECT e.id, e.firstname, d.LASTNAME FROM Employee e Join
-     * e.lastNameEmployees d
+     * SELECT e.id, e.firstname, d.LASTNAME FROM Employee e Join e.lastNameEmployees d
      *
      */
     @SetupMethod(name = "setupDepartmentEmployeeData")

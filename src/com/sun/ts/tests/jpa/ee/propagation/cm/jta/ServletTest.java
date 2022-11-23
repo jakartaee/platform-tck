@@ -43,8 +43,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 @PersistenceContexts({
-    @PersistenceContext(name = "persistence/cmpropagation", unitName = "CTS-JTA-UNIT"),
-    @PersistenceContext(name = "persistence/cmpropagation2", unitName = "CTS-JTA-UNIT2")
+        @PersistenceContext(name = "persistence/cmpropagation", unitName = "CTS-JTA-UNIT"),
+        @PersistenceContext(name = "persistence/cmpropagation2", unitName = "CTS-JTA-UNIT2")
 })
 public class ServletTest extends HttpTCKServlet {
 
@@ -152,7 +152,8 @@ public class ServletTest extends HttpTCKServlet {
         } catch (Exception e) {
             System.out.println("Unexpected exception caught in test1:" + convertExceptionToString(e));
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (Exception se) {
                 System.out.println("Unexpected exception caught in test1 while checking TX status:"
                         + convertExceptionToString(se));
@@ -166,7 +167,8 @@ public class ServletTest extends HttpTCKServlet {
                 System.out.println(
                         "Unexpected exception caught cleaning up test data in test1:" + convertExceptionToString(e));
                 try {
-                    if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                    if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                        ut.rollback();
                 } catch (Exception se) {
                     System.out.println("Unexpected exception caught in test1 while checking TX status :"
                             + convertExceptionToString(e));
@@ -212,7 +214,8 @@ public class ServletTest extends HttpTCKServlet {
         } catch (Exception e) {
             System.out.println("Unexpected exception caught in test1a:" + convertExceptionToString(e));
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (Exception se) {
                 System.out.println("Unexpected exception caught in test1a while checking TX status:"
                         + convertExceptionToString(se));
@@ -226,7 +229,8 @@ public class ServletTest extends HttpTCKServlet {
                 System.out.println(
                         "Unexpected exception caught cleaning up test data in test1a:" + convertExceptionToString(e));
                 try {
-                    if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                    if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                        ut.rollback();
                 } catch (Exception se) {
                     System.out.println("Unexpected exception caught in test1a while checking TX status:"
                             + convertExceptionToString(se));
@@ -287,7 +291,8 @@ public class ServletTest extends HttpTCKServlet {
         } catch (Exception e) {
             System.out.println("Unexpected exception caught in test2:" + convertExceptionToString(e));
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (Exception se) {
                 System.out.println("Unexpected exception caught in test2 while checking TX status:"
                         + convertExceptionToString(se));
@@ -301,7 +306,8 @@ public class ServletTest extends HttpTCKServlet {
                 System.out.println("Unexpected exception caught in test2 while cleaning up test data:"
                         + convertExceptionToString(e));
                 try {
-                    if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                    if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                        ut.rollback();
                 } catch (Exception se) {
                     System.out.println("Unexpected exception caught in test2 while checking TX status :"
                             + convertExceptionToString(se));
@@ -360,7 +366,8 @@ public class ServletTest extends HttpTCKServlet {
         } catch (Exception e) {
             System.out.println("Unexpected exception caught in test3:" + convertExceptionToString(e));
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (Exception se) {
                 System.out.println("Unexpected exception caught in test3 while checking TX status:"
                         + convertExceptionToString(se));
@@ -374,7 +381,8 @@ public class ServletTest extends HttpTCKServlet {
                 System.out.println("Unexpected exception caught in test3 while cleaning up test data:"
                         + convertExceptionToString(e));
                 try {
-                    if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                    if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                        ut.rollback();
                 } catch (Exception se) {
                     System.out.println("Unexpected exception caught in test3 while checking TX status :"
                             + convertExceptionToString(se));

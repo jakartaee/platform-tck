@@ -23,4 +23,5 @@ package com.sun.ts.tests.ejb30.misc.nomethodbean;
 import jakarta.ejb.Remote;
 
 @Remote()
-public interface NoMethodRemoteIF {}
+public interface NoMethodRemoteIF {
+}

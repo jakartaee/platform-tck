@@ -27,26 +27,29 @@ import jakarta.websocket.Session;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Default empty implementation of merged functionality of {@link Endpoint}
- * interface with {@link MessageHandler} interface.
+ * Default empty implementation of merged functionality of {@link Endpoint} interface with {@link MessageHandler}
+ * interface.
  * </p>
- * Depending on what {@link WebSocketCommonClient.Entity} is defined (partial,
- * whole), {@link Whole} or {@link Partial} functionality is used
- * with onMessage
+ * Depending on what {@link WebSocketCommonClient.Entity} is defined (partial, whole), {@link Whole} or {@link Partial}
+ * functionality is used with onMessage
  */
 public class EndpointCallback {
 
     @SuppressWarnings("unused")
-    public void onError(Session session, Throwable t) {}
+    public void onError(Session session, Throwable t) {
+    }
 
     @SuppressWarnings("unused")
-    public void onMessage(Object o) {}
+    public void onMessage(Object o) {
+    }
 
     @SuppressWarnings("unused")
-    public void onOpen(Session session, EndpointConfig config) {}
+    public void onOpen(Session session, EndpointConfig config) {
+    }
 
     @SuppressWarnings("unused")
-    public void onClose(Session session, CloseReason closeReason) {}
+    public void onClose(Session session, CloseReason closeReason) {
+    }
 
     public CountDownLatch getCountDownLatch() {
         return ClientEndpoint.getCountDownLatch();

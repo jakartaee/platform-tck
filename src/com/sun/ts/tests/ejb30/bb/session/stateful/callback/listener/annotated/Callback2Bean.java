@@ -31,8 +31,8 @@ import jakarta.ejb.Stateful;
 import jakarta.interceptor.Interceptors;
 
 @Stateful(name = "Callback2Bean")
-@Remote({Callback2IF.class})
-@Interceptors({StatefulCallbackListener2.class})
+@Remote({ Callback2IF.class })
+@Interceptors({ StatefulCallbackListener2.class })
 public class Callback2Bean extends Callback2BeanBase implements Callback2IF, java.io.Serializable {
     @Resource
     private SessionContext sctx;
@@ -50,5 +50,6 @@ public class Callback2Bean extends Callback2BeanBase implements Callback2IF, jav
     // ================== business methods ====================================
 
     @Remove
-    public void removeFoo() {}
+    public void removeFoo() {
+    }
 }

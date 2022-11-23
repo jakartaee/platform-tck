@@ -77,17 +77,23 @@ public class TestBeanEJB implements SessionBean {
     public TestBeanEJB() {
         TestUtil.logTrace("newInstance => default constructor called");
         ejbNewInstanceFlag = true;
-        if (ejbSessionContextFlag || ejbCreateFlag) createLifeCycleFlag = false;
-        if (ejbSessionContextFlag) TestUtil.logErr("newInstance() not called before setSessionContext()");
-        if (ejbCreateFlag) TestUtil.logErr("newInstance() not called before ejbCreate()");
+        if (ejbSessionContextFlag || ejbCreateFlag)
+            createLifeCycleFlag = false;
+        if (ejbSessionContextFlag)
+            TestUtil.logErr("newInstance() not called before setSessionContext()");
+        if (ejbCreateFlag)
+            TestUtil.logErr("newInstance() not called before ejbCreate()");
     }
 
     public void ejbCreate() throws CreateException {
         TestUtil.logTrace("ejbCreate");
         ejbCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbSessionContextFlag) createLifeCycleFlag = false;
-        if (!ejbNewInstanceFlag) TestUtil.logErr("newInstance() not called before ejbCreate()");
-        if (!ejbSessionContextFlag) TestUtil.logErr("setSessionContext() not called before ejbCreate()");
+        if (!ejbNewInstanceFlag || !ejbSessionContextFlag)
+            createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag)
+            TestUtil.logErr("newInstance() not called before ejbCreate()");
+        if (!ejbSessionContextFlag)
+            TestUtil.logErr("setSessionContext() not called before ejbCreate()");
         createMethodCalled = 1;
     }
 
@@ -95,9 +101,12 @@ public class TestBeanEJB implements SessionBean {
         TestUtil.logTrace("ejbCreate");
         ref = r;
         ejbCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbSessionContextFlag) createLifeCycleFlag = false;
-        if (!ejbNewInstanceFlag) TestUtil.logErr("newInstance() not called before ejbCreate()");
-        if (!ejbSessionContextFlag) TestUtil.logErr("setSessionContext() not called before ejbCreate()");
+        if (!ejbNewInstanceFlag || !ejbSessionContextFlag)
+            createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag)
+            TestUtil.logErr("newInstance() not called before ejbCreate()");
+        if (!ejbSessionContextFlag)
+            TestUtil.logErr("setSessionContext() not called before ejbCreate()");
         createMethodCalled = 2;
     }
 
@@ -105,9 +114,12 @@ public class TestBeanEJB implements SessionBean {
         TestUtil.logTrace("setSessionContext");
         this.sctx = sc;
         ejbSessionContextFlag = true;
-        if (!ejbNewInstanceFlag || ejbCreateFlag) createLifeCycleFlag = false;
-        if (!ejbNewInstanceFlag) TestUtil.logErr("newInstance() not called before setSessionContext()");
-        if (ejbCreateFlag) TestUtil.logErr("ejbCreate() called before setSessionContext()");
+        if (!ejbNewInstanceFlag || ejbCreateFlag)
+            createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag)
+            TestUtil.logErr("newInstance() not called before setSessionContext()");
+        if (ejbCreateFlag)
+            TestUtil.logErr("ejbCreate() called before setSessionContext()");
         initNaming();
     }
 
@@ -149,8 +161,10 @@ public class TestBeanEJB implements SessionBean {
 
         boolean status;
 
-        if (createLifeCycleFlag && createMethodCalled == 1) status = true;
-        else status = false;
+        if (createLifeCycleFlag && createMethodCalled == 1)
+            status = true;
+        else
+            status = false;
         reset();
         return status;
     }
@@ -158,8 +172,10 @@ public class TestBeanEJB implements SessionBean {
     public boolean isCreateLifeCycle2() {
         TestUtil.logTrace("isCreateLifeCycle2");
         boolean status;
-        if (createLifeCycleFlag && createMethodCalled == 2) status = true;
-        else status = false;
+        if (createLifeCycleFlag && createMethodCalled == 2)
+            status = true;
+        else
+            status = false;
         reset();
         return status;
     }
@@ -192,7 +208,8 @@ public class TestBeanEJB implements SessionBean {
             TestBeanTxHome beanHome = (TestBeanTxHome) nctx.lookup(jndiName, TestBeanTxHome.class);
             TestUtil.logMsg("Create EJB instance");
             TestBeanTx beanRef = (TestBeanTx) beanHome.create(harnessProps);
-            if (!openConn) beanRef.syncTest(true);
+            if (!openConn)
+                beanRef.syncTest(true);
             else
                 try {
                     beanRef.syncTestWithDbConnection(true, b);
@@ -201,7 +218,8 @@ public class TestBeanEJB implements SessionBean {
                 }
             ;
             boolean result = beanRef.isSyncLifeCycle2();
-            if (openConn) beanRef.dbUnConnect();
+            if (openConn)
+                beanRef.dbUnConnect();
             return result;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
@@ -219,7 +237,8 @@ public class TestBeanEJB implements SessionBean {
             TestBeanTxHome beanHome = (TestBeanTxHome) nctx.lookup(jndiName, TestBeanTxHome.class);
             TestUtil.logMsg("Create EJB instance");
             TestBeanTx beanRef = (TestBeanTx) beanHome.create(harnessProps);
-            if (!openConn) beanRef.syncTest(true);
+            if (!openConn)
+                beanRef.syncTest(true);
             else
                 try {
                     beanRef.syncTestWithDbConnection(true, b);
@@ -228,7 +247,8 @@ public class TestBeanEJB implements SessionBean {
                 }
             ;
             boolean result = beanRef.isSyncLifeCycle3();
-            if (openConn) beanRef.dbUnConnect();
+            if (openConn)
+                beanRef.dbUnConnect();
             return result;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
@@ -341,13 +361,20 @@ public class TestBeanEJB implements SessionBean {
     // ===========================================================
 
     private String getJndiName(String tx) {
-        if (tx.equals("TxRequired")) return txRequired;
-        else if (tx.equals("TxRequiresNew")) return txRequiresNew;
-        else if (tx.equals("TxSupports")) return txSupports;
-        else if (tx.equals("TxNotSupported")) return txNotSupported;
-        else if (tx.equals("TxMandatory")) return txMandatory;
-        else if (tx.equals("TxNever")) return txNever;
-        else return null;
+        if (tx.equals("TxRequired"))
+            return txRequired;
+        else if (tx.equals("TxRequiresNew"))
+            return txRequiresNew;
+        else if (tx.equals("TxSupports"))
+            return txSupports;
+        else if (tx.equals("TxNotSupported"))
+            return txNotSupported;
+        else if (tx.equals("TxMandatory"))
+            return txMandatory;
+        else if (tx.equals("TxNever"))
+            return txNever;
+        else
+            return null;
     }
 
     private void reset() {

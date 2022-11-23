@@ -29,7 +29,7 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(decoders = {WillDecodeFirstTextDecoder.class, WillDecodeSecondTextDecoder.class})
+@ClientEndpoint(decoders = { WillDecodeFirstTextDecoder.class, WillDecodeSecondTextDecoder.class })
 public class WSCEndpointWithTextDecoders extends AnnotatedClientEndpoint<StringBean> {
 
     public WSCEndpointWithTextDecoders() {

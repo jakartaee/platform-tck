@@ -61,15 +61,13 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-7.2-3;
      *
-     * @test_Strategy: In the case where a websocket endpoint is a protected
-     * resource in the web application (see Chapter 8), that is to say, requires
-     * an authorized user to access it, then the websocket implementation must
-     * ensure that the websocket endpoint does not remain connected to its peer
-     * after the underlying implementation has decided the authenticated identity
-     * is no longer valid.
+     * @test_Strategy: In the case where a websocket endpoint is a protected resource in the web application (see Chapter
+     * 8), that is to say, requires an authorized user to access it, then the websocket implementation must ensure that the
+     * websocket endpoint does not remain connected to its peer after the underlying implementation has decided the
+     * authenticated identity is no longer valid.
      *
-     * In this situation, the websocket implementation must immediately close the
-     * connection using the websocket close status code 1008.
+     * In this situation, the websocket implementation must immediately close the connection using the websocket close
+     * status code 1008.
      */
     public void connectionHasBeenClosedWithStatus1008AfterInvalidationTest() throws Fault {
         connectionHasBeenClosedWithStatus1008After(0);

@@ -104,14 +104,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: postConstructTest
      *
-     * @assertion_ids: EJB:SPEC:81; EJB:SPEC:81.1; EJB:SPEC:81.2; EJB:SPEC:81.3;
-     * EJB:SPEC:81.4; EJB:SPEC:81.6; EJB:SPEC:81.7; EJB:SPEC:81.10;
-     * EJB:SPEC:81.11; EJB:SPEC:81.12; EJB:SPEC:81.13; EJB:SPEC:81.14;
-     * EJB:SPEC:81.15; EJB:JAVADOC:54
+     * @assertion_ids: EJB:SPEC:81; EJB:SPEC:81.1; EJB:SPEC:81.2; EJB:SPEC:81.3; EJB:SPEC:81.4; EJB:SPEC:81.6;
+     * EJB:SPEC:81.7; EJB:SPEC:81.10; EJB:SPEC:81.11; EJB:SPEC:81.12; EJB:SPEC:81.13; EJB:SPEC:81.14; EJB:SPEC:81.15;
+     * EJB:JAVADOC:54
      *
-     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method
-     * of a stateful session bean with container-managed transaction demarcation
-     * are:
+     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      */
 
@@ -154,14 +152,11 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: setSessionContextTest
      *
-     * @assertion_ids: EJB:SPEC:82; EJB:SPEC:82.1; EJB:SPEC:82.2; EJB:SPEC:82.3;
-     * EJB:SPEC:82.4; EJB:SPEC:82.6; EJB:SPEC:82.7; EJB:SPEC:82.10;
-     * EJB:SPEC:82.11; EJB:SPEC:82.12; EJB:SPEC:82.14; EJB:JAVADOC:54;
-     * EJB:JAVADOC:73
+     * @assertion_ids: EJB:SPEC:82; EJB:SPEC:82.1; EJB:SPEC:82.2; EJB:SPEC:82.3; EJB:SPEC:82.4; EJB:SPEC:82.6;
+     * EJB:SPEC:82.7; EJB:SPEC:82.10; EJB:SPEC:82.11; EJB:SPEC:82.12; EJB:SPEC:82.14; EJB:JAVADOC:54; EJB:JAVADOC:73
      *
-     * @test_Strategy: Operations allowed and not allowed in the setSessionContext
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in the setSessionContext method of a stateful session bean with
+     * container-managed transaction demarcation are:
      */
 
     public void setSessionContextTest() throws Fault {
@@ -202,14 +197,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: businessTest
      *
-     * @assertion_ids: EJB:SPEC:83; EJB:SPEC:83.1; EJB:SPEC:83.2; EJB:SPEC:83.3;
-     * EJB:SPEC:83.4; EJB:SPEC:83.6; EJB:SPEC:83.7; EJB:SPEC:83.10;
-     * EJB:SPEC:83.11; EJB:SPEC:83.12; EJB:SPEC:83.13; EJB:SPEC:83.14;
-     * EJB:SPEC:83.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93;
-     * EJB:JAVADOC:97; EJB:JAVADOC:101
+     * @assertion_ids: EJB:SPEC:83; EJB:SPEC:83.1; EJB:SPEC:83.2; EJB:SPEC:83.3; EJB:SPEC:83.4; EJB:SPEC:83.6;
+     * EJB:SPEC:83.7; EJB:SPEC:83.10; EJB:SPEC:83.11; EJB:SPEC:83.12; EJB:SPEC:83.13; EJB:SPEC:83.14; EJB:SPEC:83.15;
+     * EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93; EJB:JAVADOC:97; EJB:JAVADOC:101
      *
-     * @test_Strategy: Operations allowed and not allowed in a business method of
-     * a stateful session bean with container-managed transaction demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in a business method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      */
     public void businessTest() throws Fault {
@@ -251,14 +244,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: preInvokeTest
      *
-     * @assertion_ids: EJB:SPEC:83; EJB:SPEC:83.1; EJB:SPEC:83.2; EJB:SPEC:83.3;
-     * EJB:SPEC:83.4; EJB:SPEC:83.6; EJB:SPEC:83.7; EJB:SPEC:83.10;
-     * EJB:SPEC:83.11; EJB:SPEC:83.12; EJB:SPEC:83.13; EJB:SPEC:83.14;
-     * EJB:SPEC:83.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93;
-     * EJB:JAVADOC:97; EJB:JAVADOC:101
+     * @assertion_ids: EJB:SPEC:83; EJB:SPEC:83.1; EJB:SPEC:83.2; EJB:SPEC:83.3; EJB:SPEC:83.4; EJB:SPEC:83.6;
+     * EJB:SPEC:83.7; EJB:SPEC:83.10; EJB:SPEC:83.11; EJB:SPEC:83.12; EJB:SPEC:83.13; EJB:SPEC:83.14; EJB:SPEC:83.15;
+     * EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93; EJB:JAVADOC:97; EJB:JAVADOC:101
      *
-     * @test_Strategy: Operations allowed and not allowed in a preInvoke method of
-     * a stateful session bean with container-managed transaction demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in a preInvoke method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      */
     public void preInvokeTest() throws Fault {
@@ -300,15 +291,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: postInvokeTest
      *
-     * @assertion_ids: EJB:SPEC:83; EJB:SPEC:83.1; EJB:SPEC:83.2; EJB:SPEC:83.3;
-     * EJB:SPEC:83.4; EJB:SPEC:83.6; EJB:SPEC:83.7; EJB:SPEC:83.10;
-     * EJB:SPEC:83.11; EJB:SPEC:83.12; EJB:SPEC:83.13; EJB:SPEC:83.14;
-     * EJB:SPEC:83.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93;
-     * EJB:JAVADOC:97; EJB:JAVADOC:101
+     * @assertion_ids: EJB:SPEC:83; EJB:SPEC:83.1; EJB:SPEC:83.2; EJB:SPEC:83.3; EJB:SPEC:83.4; EJB:SPEC:83.6;
+     * EJB:SPEC:83.7; EJB:SPEC:83.10; EJB:SPEC:83.11; EJB:SPEC:83.12; EJB:SPEC:83.13; EJB:SPEC:83.14; EJB:SPEC:83.15;
+     * EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93; EJB:JAVADOC:97; EJB:JAVADOC:101
      *
-     * @test_Strategy: Operations allowed and not allowed in a postInvoke method
-     * of a stateful session bean with container-managed transaction demarcation
-     * are:
+     * @test_Strategy: Operations allowed and not allowed in a postInvoke method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      */
     public void postInvokeTest() throws Fault {
@@ -351,15 +339,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: afterBeginTest
      *
-     * @assertion_ids: EJB:SPEC:83; EJB:SPEC:83.1; EJB:SPEC:83.2; EJB:SPEC:83.3;
-     * EJB:SPEC:83.4; EJB:SPEC:83.6; EJB:SPEC:83.7; EJB:SPEC:83.10;
-     * EJB:SPEC:83.11; EJB:SPEC:83.12; EJB:SPEC:83.13; EJB:SPEC:83.14;
-     * EJB:SPEC:83.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93;
-     * EJB:JAVADOC:97; EJB:JAVADOC:101
+     * @assertion_ids: EJB:SPEC:83; EJB:SPEC:83.1; EJB:SPEC:83.2; EJB:SPEC:83.3; EJB:SPEC:83.4; EJB:SPEC:83.6;
+     * EJB:SPEC:83.7; EJB:SPEC:83.10; EJB:SPEC:83.11; EJB:SPEC:83.12; EJB:SPEC:83.13; EJB:SPEC:83.14; EJB:SPEC:83.15;
+     * EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93; EJB:JAVADOC:97; EJB:JAVADOC:101
      *
-     * @test_Strategy: Operations allowed and not allowed in a afterBegin method
-     * of a stateful session bean with container-managed transaction demarcation
-     * are:
+     * @test_Strategy: Operations allowed and not allowed in a afterBegin method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      */
     public void afterBeginTest() throws Fault {
@@ -402,15 +387,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: beforeCompletionTest
      *
-     * @assertion_ids: EJB:SPEC:86; EJB:SPEC:86.1; EJB:SPEC:86.2; EJB:SPEC:86.3;
-     * EJB:SPEC:86.4; EJB:SPEC:86.6; EJB:SPEC:86.7; EJB:SPEC:86.10;
-     * EJB:SPEC:86.11; EJB:SPEC:86.12; EJB:SPEC:86.13; EJB:SPEC:86.14;
-     * EJB:SPEC:86.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93;
-     * EJB:JAVADOC:97; EJB:JAVADOC:101
+     * @assertion_ids: EJB:SPEC:86; EJB:SPEC:86.1; EJB:SPEC:86.2; EJB:SPEC:86.3; EJB:SPEC:86.4; EJB:SPEC:86.6;
+     * EJB:SPEC:86.7; EJB:SPEC:86.10; EJB:SPEC:86.11; EJB:SPEC:86.12; EJB:SPEC:86.13; EJB:SPEC:86.14; EJB:SPEC:86.15;
+     * EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93; EJB:JAVADOC:97; EJB:JAVADOC:101
      *
-     * @test_Strategy: Operations allowed and not allowed in the beforeCompletion
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in the beforeCompletion method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      */
     public void beforeCompletionTest() throws Fault {
@@ -456,14 +438,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: afterCompletionTest
      *
-     * @assertion_ids: EJB:SPEC:87; EJB:SPEC:87.1; EJB:SPEC:87.2; EJB:SPEC:87.3;
-     * EJB:SPEC:87.4; EJB:SPEC:87.6; EJB:SPEC:87.7; EJB:SPEC:87.10;
-     * EJB:SPEC:87.11; EJB:SPEC:87.12; EJB:SPEC:87.13; EJB:SPEC:87.14;
-     * EJB:SPEC:87.15; EJB:JAVADOC:54
+     * @assertion_ids: EJB:SPEC:87; EJB:SPEC:87.1; EJB:SPEC:87.2; EJB:SPEC:87.3; EJB:SPEC:87.4; EJB:SPEC:87.6;
+     * EJB:SPEC:87.7; EJB:SPEC:87.10; EJB:SPEC:87.11; EJB:SPEC:87.12; EJB:SPEC:87.13; EJB:SPEC:87.14; EJB:SPEC:87.15;
+     * EJB:JAVADOC:54
      *
-     * @test_Strategy: Operations allowed and not allowed in the afterCompletion
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in the afterCompletion method of a stateful session bean with
+     * container-managed transaction demarcation are:
      */
     public void afterCompletionTest() throws Fault {
         Properties results = null;
@@ -508,13 +488,11 @@ public class Client extends ClientBase implements Constants {
      *
      * @assertion_ids: EJB:SPEC:90; EJB:SPEC:91
      *
-     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the
-     * SessionContext interface should be used only in the session bean methods
-     * that execute in the context of a transaction. The container must throw the
-     * java.lang.IllegalStateException if the methods are invoked while the
-     * instance is not associated with a transaction. The following operations are
-     * executed in a business method with transaction attribute NotSupported. o
-     * getRollbackOnly - not allowed o setRollbackOnly - not allowed
+     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the SessionContext interface should be used only
+     * in the session bean methods that execute in the context of a transaction. The container must throw the
+     * java.lang.IllegalStateException if the methods are invoked while the instance is not associated with a transaction.
+     * The following operations are executed in a business method with transaction attribute NotSupported. o getRollbackOnly
+     * - not allowed o setRollbackOnly - not allowed
      *
      *
      */
@@ -531,13 +509,11 @@ public class Client extends ClientBase implements Constants {
      *
      * @assertion_ids: EJB:SPEC:90; EJB:SPEC:91
      *
-     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the
-     * SessionContext interface should be used only in the session bean methods
-     * that execute in the context of a transaction. The container must throw the
-     * java.lang.IllegalStateException if the methods are invoked while the
-     * instance is not associated with a transaction. The following operations are
-     * executed in a business method with transaction attribute Supports. o
-     * getRollbackOnly - not allowed o setRollbackOnly - not allowed
+     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the SessionContext interface should be used only
+     * in the session bean methods that execute in the context of a transaction. The container must throw the
+     * java.lang.IllegalStateException if the methods are invoked while the instance is not associated with a transaction.
+     * The following operations are executed in a business method with transaction attribute Supports. o getRollbackOnly -
+     * not allowed o setRollbackOnly - not allowed
      */
     public void txSupportsTest() throws Fault {
         try {
@@ -552,13 +528,11 @@ public class Client extends ClientBase implements Constants {
      *
      * @assertion_ids: EJB:SPEC:90; EJB:SPEC:91
      *
-     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the
-     * SessionContext interface should be used only in the session bean methods
-     * that execute in the context of a transaction. The container must throw the
-     * java.lang.IllegalStateException if the methods are invoked while the
-     * instance is not associated with a transaction. The following operations are
-     * executed in a business method with transaction attribute Never. o
-     * getRollbackOnly - not allowed o setRollbackOnly - not allowed
+     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the SessionContext interface should be used only
+     * in the session bean methods that execute in the context of a transaction. The container must throw the
+     * java.lang.IllegalStateException if the methods are invoked while the instance is not associated with a transaction.
+     * The following operations are executed in a business method with transaction attribute Never. o getRollbackOnly - not
+     * allowed o setRollbackOnly - not allowed
      */
     public void txNeverTest() throws Fault {
         try {
@@ -573,8 +547,8 @@ public class Client extends ClientBase implements Constants {
      *
      * @assertion_ids: EJB:SPEC:83.5
      *
-     * @test_Strategy: Operations allowed and not allowed in a business method of
-     * a stateful session bean with container-managed transaction demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in a business method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      * o setRollbackOnly - allowed
      *
@@ -603,9 +577,8 @@ public class Client extends ClientBase implements Constants {
      *
      * @assertion_ids: EJB:SPEC:83.5
      *
-     * @test_Strategy: Operations allowed and not allowed in a afterBegin method
-     * of a stateful session bean with container-managed transaction demarcation
-     * are:
+     * @test_Strategy: Operations allowed and not allowed in a afterBegin method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      * o setRollbackOnly - allowed
      *
@@ -634,9 +607,8 @@ public class Client extends ClientBase implements Constants {
      *
      * @assertion_ids: EJB:SPEC:83.5
      *
-     * @test_Strategy: Operations allowed and not allowed in a beforeCompletion
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in a beforeCompletion method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      * o setRollbackOnly - allowed
      *
@@ -669,9 +641,8 @@ public class Client extends ClientBase implements Constants {
      *
      * @assertion_ids: EJB:SPEC:83.5
      *
-     * @test_Strategy: Operations allowed and not allowed in a afterCompletion
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in a afterCompletion method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      * o setRollbackOnly - allowed
      *

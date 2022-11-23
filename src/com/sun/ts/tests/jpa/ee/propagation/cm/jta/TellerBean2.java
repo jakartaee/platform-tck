@@ -34,15 +34,15 @@ import java.util.Iterator;
 import java.util.List;
 
 @Stateful(name = "TellerBean2")
-@Local({Teller.class})
+@Local({ Teller.class })
 public class TellerBean2 implements Teller {
 
     public SessionContext sessionContext;
 
     // instance variables
-    private static final int ACCOUNTS[] = {5555};
+    private static final int ACCOUNTS[] = { 5555 };
 
-    private static final double BALANCES[] = {5678.90};
+    private static final double BALANCES[] = { 5678.90 };
 
     private Account accountRef;
 

@@ -39,16 +39,16 @@ public class TestServlet extends HttpTCKServlet {
         boolean passed = true;
 
         String[] expected = {
-            "SessionListener sessionCreated",
-            "passed DataSource",
-            "passed QueueConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed ConnectionFactory",
-            "passed Queue",
-            "passed Topic",
-            "passed Session",
-            "passed URL"
+                "SessionListener sessionCreated",
+                "passed DataSource",
+                "passed QueueConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed ConnectionFactory",
+                "passed Queue",
+                "passed Topic",
+                "passed Session",
+                "passed URL"
         };
 
         HttpSession session = request.getSession(true);
@@ -85,16 +85,16 @@ public class TestServlet extends HttpTCKServlet {
         boolean passed = true;
 
         String[] expected = {
-            "SessionAttributeListener attributeAdded",
-            "passed DataSource",
-            "passed QueueConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed ConnectionFactory",
-            "passed Queue",
-            "passed Topic",
-            "passed Session",
-            "passed URL"
+                "SessionAttributeListener attributeAdded",
+                "passed DataSource",
+                "passed QueueConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed ConnectionFactory",
+                "passed Queue",
+                "passed Topic",
+                "passed Session",
+                "passed URL"
         };
 
         HttpSession session = request.getSession(true);

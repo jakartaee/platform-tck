@@ -28,7 +28,8 @@ public class Client extends PMClientBase {
 
     Properties props = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public void setup(String[] args, Properties p) throws Fault {
         TestUtil.logTrace("setup");
@@ -45,14 +46,14 @@ public class Client extends PMClientBase {
         super.cleanup();
     }
 
-    public void nullCleanup() throws Fault {}
+    public void nullCleanup() throws Fault {
+    }
 
     /*
      * @testName: exceptionsTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:536; PERSISTENCE:JAVADOC:538;
-     * PERSISTENCE:JAVADOC:537; PERSISTENCE:JAVADOC:531; PERSISTENCE:JAVADOC:532;
-     * PERSISTENCE:JAVADOC:533; PERSISTENCE:JAVADOC:534; PERSISTENCE:JAVADOC:535
+     * @assertion_ids: PERSISTENCE:JAVADOC:536; PERSISTENCE:JAVADOC:538; PERSISTENCE:JAVADOC:537; PERSISTENCE:JAVADOC:531;
+     * PERSISTENCE:JAVADOC:532; PERSISTENCE:JAVADOC:533; PERSISTENCE:JAVADOC:534; PERSISTENCE:JAVADOC:535
      *
      * @test_Strategy: Close the EntityManagerFactory, then call various methods
      */

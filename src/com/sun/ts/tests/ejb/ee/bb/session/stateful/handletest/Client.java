@@ -89,8 +89,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:33
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Obtain handle and ensure it is serializable.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Obtain handle and ensure it is
+     * serializable.
      */
 
     public void test1() throws Fault {
@@ -108,8 +108,10 @@ public class Client extends EETest {
                 pass = false;
                 ;
                 logErr("getHandle() is not serializable");
-            } else logMsg("got handle and handle is serializable");
-            if (!pass) throw new Fault("test1 failed");
+            } else
+                logMsg("got handle and handle is serializable");
+            if (!pass)
+                throw new Fault("test1 failed");
             beanRef.remove();
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
@@ -121,9 +123,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:37
      *
-     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE
-     * server. Obtain handle, serialize/deserialize handle, invoke bean object
-     * with deserialized handle.
+     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE server. Obtain handle, serialize/deserialize
+     * handle, invoke bean object with deserialized handle.
      */
 
     public void test2() throws Fault {
@@ -160,7 +161,8 @@ public class Client extends EETest {
             if (!beanRef.isIdentical(beanRef2)) {
                 logErr("bean references not equal - unexpected");
                 pass = false;
-            } else logMsg("bean references equal - expected");
+            } else
+                logMsg("bean references equal - expected");
 
             logMsg("ping object via deserialized object reference");
             int ping2Count = beanRef2.ping(0);
@@ -170,15 +172,18 @@ public class Client extends EETest {
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test2 failed");
+            if (!pass)
+                throw new Fault("test2 failed");
             beanRef2.remove();
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {
             try {
                 logMsg("closing object streams");
-                if (is != null) is.close();
-                if (os != null) os.close();
+                if (is != null)
+                    is.close();
+                if (os != null)
+                    os.close();
             } catch (Exception e) {
             }
         }
@@ -189,10 +194,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:47
      *
-     * @test_Strategy: Create a stateful Session EJB. Deploy it on the J2EE
-     * server. Obtain handle, serialize/deserialize handle, invoke bean object
-     * with deserialized handle. A NoSuchObject exception should occur since the
-     * bean object no longer exists.
+     * @test_Strategy: Create a stateful Session EJB. Deploy it on the J2EE server. Obtain handle, serialize/deserialize
+     * handle, invoke bean object with deserialized handle. A NoSuchObject exception should occur since the bean object no
+     * longer exists.
      */
 
     public void test3() throws Fault {
@@ -243,14 +247,17 @@ public class Client extends EETest {
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test3 failed");
+            if (!pass)
+                throw new Fault("test3 failed");
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         } finally {
             try {
                 logMsg("closing object streams");
-                if (is != null) is.close();
-                if (os != null) os.close();
+                if (is != null)
+                    is.close();
+                if (os != null)
+                    os.close();
             } catch (Exception e) {
             }
         }
@@ -261,8 +268,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:20
      *
-     * @test_Strategy: Create a Session Bean. Deploy it on the J2EE server. Obtain
-     * handle and ensure it is serializable.
+     * @test_Strategy: Create a Session Bean. Deploy it on the J2EE server. Obtain handle and ensure it is serializable.
      */
 
     public void test4() throws Fault {
@@ -277,12 +283,14 @@ public class Client extends EETest {
                 pass = false;
                 ;
                 logErr("getHomeHandle() is not serializable");
-            } else logMsg("got home handle and handle is serializable");
+            } else
+                logMsg("got home handle and handle is serializable");
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         }
 
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
@@ -290,9 +298,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:48
      *
-     * @test_Strategy: A session EJB home handle can be held beyond the Deploy a
-     * Session Bean on the J2EE server. Obtain home handle, serialize/deserialize
-     * handle, invoke bean home with deserialized handle.
+     * @test_Strategy: A session EJB home handle can be held beyond the Deploy a Session Bean on the J2EE server. Obtain
+     * home handle, serialize/deserialize handle, invoke bean home with deserialized handle.
      */
 
     public void test5() throws Fault {
@@ -316,8 +323,7 @@ public class Client extends EETest {
             HomeHandle deserializedHandle = (HomeHandle) is.readObject();
 
             logMsg("getEJBHome from HomeHandle");
-            TestBeanHome beanHome2 =
-                    (TestBeanHome) PortableRemoteObject.narrow(deserializedHandle.getEJBHome(), TestBeanHome.class);
+            TestBeanHome beanHome2 = (TestBeanHome) PortableRemoteObject.narrow(deserializedHandle.getEJBHome(), TestBeanHome.class);
 
             // create EJB instance
             logMsg("Create EJB instance from deserialized home handle");
@@ -333,13 +339,16 @@ public class Client extends EETest {
         } finally {
             try {
                 logMsg("closing object streams");
-                if (is != null) is.close();
-                if (os != null) os.close();
+                if (is != null)
+                    is.close();
+                if (os != null)
+                    os.close();
             } catch (Exception e) {
             }
         }
 
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     public void cleanup() throws Fault {

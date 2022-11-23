@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -49,8 +47,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; ts_home;
-     * servlet_waittime;
+     * @class.setup_props: webServerHost; webServerPort; ts_home; servlet_waittime;
      */
 
     /* Run test */
@@ -96,8 +93,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:467
      *
-     * @test_Strategy: Create a HttpSession; invalidate it; Verify that no
-     * IllegalStateException is thrown when getId is called.
+     * @test_Strategy: Create a HttpSession; invalidate it; Verify that no IllegalStateException is thrown when getId is
+     * called.
      */
     public void getIdIllegalStateExceptionTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getIdIllegalStateExceptionTest");
@@ -281,8 +278,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:491
      *
-     * @test_Strategy: Servlet removes non-existant attribute then tries to tries
-     * to get it.
+     * @test_Strategy: Servlet removes non-existant attribute then tries to tries to get it.
      */
     public void removeAttributeDoNothingTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "removeAttributeDoNothingTest");

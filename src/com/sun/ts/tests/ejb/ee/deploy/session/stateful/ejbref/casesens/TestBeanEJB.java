@@ -38,8 +38,8 @@ public class TestBeanEJB extends StatefulWrapper {
     private static final String bean2RefName = "Rousseau";
 
     /**
-     * Check that two ejbref entries whose names differ only by case are
-     * associated with different runtime values (as specified in DD).
+     * Check that two ejbref entries whose names differ only by case are associated with different runtime values (as
+     * specified in DD).
      */
     public boolean testCaseSensitivity(Properties p) {
         CaseBeanHome home1 = null;

@@ -29,8 +29,8 @@ import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
 
 @Stateless(name = "Callback3Bean")
-@Remote({Callback2IF.class})
-@Interceptors({InterceptorF.class, InterceptorG.class})
+@Remote({ Callback2IF.class })
+@Interceptors({ InterceptorF.class, InterceptorG.class })
 public class Callback3Bean extends Callback3BeanSuper {
     public Callback3Bean() {
         super();

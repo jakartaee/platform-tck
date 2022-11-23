@@ -26,8 +26,7 @@ import jakarta.servlet.jsp.tagext.TagAttributeInfo;
 import java.util.Arrays;
 
 /**
- * A TagExtraInfo implementation to validate the methods of
- * <tt>jakarta.servlet.jsp.tagext.TagAttributeInfo.</tt>
+ * A TagExtraInfo implementation to validate the methods of <tt>jakarta.servlet.jsp.tagext.TagAttributeInfo.</tt>
  *
  */
 public class TagAttributeInfoTEI extends BaseTCKExtraInfo {
@@ -50,15 +49,15 @@ public class TagAttributeInfoTEI extends BaseTCKExtraInfo {
     /**
      * Default constructor.
      */
-    public TagAttributeInfoTEI() {}
+    public TagAttributeInfoTEI() {
+    }
 
     // ------------------------------------------- Test Definitions ----------
 
     /**
      * Validate the behavior of <tt>TagAttributeInfo.getName()</tt>.
      *
-     * @return null if the test passes, otherwise a String containing the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String containing the cause of the failure.
      */
     public String getName() {
         TagAttributeInfo[] info = this.getTagInfo().getAttributes();
@@ -66,7 +65,7 @@ public class TagAttributeInfoTEI extends BaseTCKExtraInfo {
 
         if (info != null) {
             if (info.length == 3) {
-                String[] names = {info[0].getName(), info[1].getName(), info[2].getName()};
+                String[] names = { info[0].getName(), info[1].getName(), info[2].getName() };
                 Arrays.sort(names);
                 if (Arrays.binarySearch(names, "test") < 0) {
                     message = "Test FAILED.  Expected attribute 'test' to be present"
@@ -94,8 +93,7 @@ public class TagAttributeInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validate the behavior of <tt>TagAttributeInfo.getTypeName()</tt>.
      *
-     * @return null if the test passes, otherwise a String containing the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String containing the cause of the failure.
      */
     public String getTypeName() {
         TagAttributeInfo[] info = this.getTagInfo().getAttributes();
@@ -136,8 +134,7 @@ public class TagAttributeInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validate the behavior of <tt>TagAttributeInfo.canBeRequestTime()</tt>.
      *
-     * @return null if the test passes, otherwise a String containing the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String containing the cause of the failure.
      */
     public String canBeRequestTime() {
         TagAttributeInfo[] info = this.getTagInfo().getAttributes();
@@ -171,8 +168,7 @@ public class TagAttributeInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validate the behavior of <tt>TagAttributeInfo.isRequired()</tt>.
      *
-     * @return null if the test passes, otherwise a String containing the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String containing the cause of the failure.
      */
     public String isRequired() {
         TagAttributeInfo[] info = this.getTagInfo().getAttributes();
@@ -204,8 +200,7 @@ public class TagAttributeInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validate the behavior of <tt>TagAttributeInfo.getIdAttribute()</tt>.
      *
-     * @return null if the test passes, otherwise a String containing the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String containing the cause of the failure.
      */
     public String getIdAttributeTest() {
         TagAttributeInfo[] info = this.getTagInfo().getAttributes();
@@ -232,8 +227,7 @@ public class TagAttributeInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validate the behavior of <tt>TagAttributeInfo.isFragment()</tt>.
      *
-     * @return null if the test passes, otherwise a String containing the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String containing the cause of the failure.
      */
     public String isFragment() {
         TagAttributeInfo[] info = this.getTagInfo().getAttributes();
@@ -266,8 +260,7 @@ public class TagAttributeInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validate the behavior of <tt>TagAttributeInfo.toString()</tt>.
      *
-     * @return null if the test passes, otherwise a String containing the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String containing the cause of the failure.
      */
     public String toStringTest() {
         TagAttributeInfo[] info = this.getTagInfo().getAttributes();
@@ -302,11 +295,9 @@ public class TagAttributeInfoTEI extends BaseTCKExtraInfo {
     }
 
     /**
-     * Initialize the TagAttributeInfo instance variables based on the provided
-     * array.
+     * Initialize the TagAttributeInfo instance variables based on the provided array.
      *
-     * @param infos
-     *          - an array of TagAttributeInfo objects.
+     * @param infos - an array of TagAttributeInfo objects.
      */
     private void initTagAttributeInfos(TagAttributeInfo[] infos) {
         for (int i = 0; i < infos.length; i++) {

@@ -34,7 +34,8 @@ public class DID4Person implements Serializable {
 
     private String name;
 
-    public DID4Person() {}
+    public DID4Person() {
+    }
 
     public DID4Person(String ssn, String name) {
         this.ssn = ssn;

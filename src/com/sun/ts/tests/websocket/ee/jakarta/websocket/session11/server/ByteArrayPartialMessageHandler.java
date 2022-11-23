@@ -38,7 +38,8 @@ public class ByteArrayPartialMessageHandler implements MessageHandler.Partial<by
     public void onMessage(byte[] message, boolean finite) {
         sb.append(new String(message));
         try {
-            if (finite) session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
+            if (finite)
+                session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -136,14 +136,10 @@ public class Client extends ServiceEETest {
     }
 
     private void getPortStandalone() throws Exception {
-        port = (MarshallTest)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME1, MarshallTest.class);
-        port2 = (NewSchemaTest)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME2, NewSchemaTest.class);
-        port3 = (CompoundTest)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME3, CompoundTest.class);
-        port4 = (OneWayTest)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME4, OneWayTest.class);
+        port = (MarshallTest) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME1, MarshallTest.class);
+        port2 = (NewSchemaTest) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME2, NewSchemaTest.class);
+        port3 = (CompoundTest) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME3, CompoundTest.class);
+        port4 = (OneWayTest) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME4, OneWayTest.class);
         JAXWS_Util.setTargetEndpointAddress(port, url);
         JAXWS_Util.setTargetEndpointAddress(port2, url2);
         JAXWS_Util.setTargetEndpointAddress(port3, url3);
@@ -199,8 +195,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -255,12 +253,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each primitive type pass its value as input to the
-     * corresponding RPC method and receive it back as the return value. Compare
-     * results of each value/type of what was sent and what was returned. Verify
-     * they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each primitive type pass its value as input to the
+     * corresponding RPC method and receive it back as the return value. Compare results of each value/type of what was sent
+     * and what was returned. Verify they are equal.
      *
      * Description
      */
@@ -268,15 +264,23 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("MarshallPrimitiveTest");
         boolean pass = true;
 
-        if (!booleanTest()) pass = false;
-        if (!byteTest()) pass = false;
-        if (!shortTest()) pass = false;
-        if (!intTest()) pass = false;
-        if (!longTest()) pass = false;
-        if (!floatTest()) pass = false;
-        if (!doubleTest()) pass = false;
+        if (!booleanTest())
+            pass = false;
+        if (!byteTest())
+            pass = false;
+        if (!shortTest())
+            pass = false;
+        if (!intTest())
+            pass = false;
+        if (!longTest())
+            pass = false;
+        if (!floatTest())
+            pass = false;
+        if (!doubleTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallPrimitiveTest failed");
+        if (!pass)
+            throw new Fault("MarshallPrimitiveTest failed");
     }
 
     // ====================================================================
@@ -288,12 +292,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * standard java class type. For each standard java class above pass its value
-     * as input to the corresponding RPC method and receive it back as the return
-     * value. Compare results of each value/type of what was sent sent and what
-     * was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each standard java class type. For each standard java class above pass its value as
+     * input to the corresponding RPC method and receive it back as the return value. Compare results of each value/type of
+     * what was sent sent and what was returned. Verify they are equal.
      *
      * Description
      */
@@ -301,12 +303,17 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("MarshallStandardJavaClassesTest");
         boolean pass = true;
 
-        if (!StringTest()) pass = false;
-        if (!CalendarTest()) pass = false;
-        if (!BigIntegerTest()) pass = false;
-        if (!BigDecimalTest()) pass = false;
+        if (!StringTest())
+            pass = false;
+        if (!CalendarTest())
+            pass = false;
+        if (!BigIntegerTest())
+            pass = false;
+        if (!BigDecimalTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallStandardJavaClassesTest failed");
+        if (!pass)
+            throw new Fault("MarshallStandardJavaClassesTest failed");
     }
 
     // ====================================================================
@@ -318,11 +325,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method
-     * JavaBeanTest. Pass a JavaBean value to the RPC method and receive it back
-     * as the return value. Compare results of JavaBean value from what was sent
-     * and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method JavaBeanTest. Pass a JavaBean value to the RPC method and receive it back as the return
+     * value. Compare results of JavaBean value from what was sent and what was returned. Verify they are equal.
      *
      * Description
      */
@@ -340,7 +345,8 @@ public class Client extends ServiceEETest {
                 request = new JavaBeanTest();
                 request.setJavaBean(values[i]);
                 response = port.javaBeanTest(request);
-                if (!compareJavaBeans(values[i], response.getJavaBean())) pass = false;
+                if (!compareJavaBeans(values[i], response.getJavaBean()))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -348,7 +354,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallJavaBeanTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallJavaBeanTest failed");
+        if (!pass)
+            throw new Fault("MarshallJavaBeanTest failed");
     }
 
     // ====================================================================
@@ -360,12 +367,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, invoke the RPC methods for each
-     * java type supported. For each java type supported pass an arrary of values
-     * as input to the corresponding RPC method and receive it back as the return
-     * value. Compare results of each array type of what was sent and what was
-     * returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * invoke the RPC methods for each java type supported. For each java type supported pass an arrary of values as input
+     * to the corresponding RPC method and receive it back as the return value. Compare results of each array type of what
+     * was sent and what was returned. Verify they are equal.
      *
      * Description
      */
@@ -373,21 +378,35 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("MarshallJavaArrayTest");
         boolean pass = true;
 
-        if (!booleanArrayTest()) pass = false;
-        if (!byteArrayTest()) pass = false;
-        if (!shortArrayTest()) pass = false;
-        if (!intArrayTest()) pass = false;
-        if (!longArrayTest()) pass = false;
-        if (!floatArrayTest()) pass = false;
-        if (!doubleArrayTest()) pass = false;
-        if (!StringArrayTest()) pass = false;
-        if (!CalendarArrayTest()) pass = false;
-        if (!BigIntegerArrayTest()) pass = false;
-        if (!BigDecimalArrayTest()) pass = false;
-        if (!JavaBeanArrayTest()) pass = false;
-        if (!QNameArrayTest()) pass = false;
+        if (!booleanArrayTest())
+            pass = false;
+        if (!byteArrayTest())
+            pass = false;
+        if (!shortArrayTest())
+            pass = false;
+        if (!intArrayTest())
+            pass = false;
+        if (!longArrayTest())
+            pass = false;
+        if (!floatArrayTest())
+            pass = false;
+        if (!doubleArrayTest())
+            pass = false;
+        if (!StringArrayTest())
+            pass = false;
+        if (!CalendarArrayTest())
+            pass = false;
+        if (!BigIntegerArrayTest())
+            pass = false;
+        if (!BigDecimalArrayTest())
+            pass = false;
+        if (!JavaBeanArrayTest())
+            pass = false;
+        if (!QNameArrayTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallJavaArrayTest failed");
+        if (!pass)
+            throw new Fault("MarshallJavaArrayTest failed");
     }
     // ====================================================================
     // The void type
@@ -398,9 +417,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method voidTest.
-     * Verify normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method voidTest. Verify normal invocation and return.
      *
      * Description
      */
@@ -417,7 +435,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallVoidTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallVoidTest failed");
+        if (!pass)
+            throw new Fault("MarshallVoidTest failed");
     }
 
     // =======================================================================
@@ -429,9 +448,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -448,14 +466,16 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("MarshallNormalizedStringTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallNormalizedStringTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallNormalizedStringTypeTest failed");
     }
 
     /*
@@ -463,9 +483,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -483,14 +502,16 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("MarshallIntegerRangeTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallIntegerRangeTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallIntegerRangeTypeTest failed");
     }
 
     /*
@@ -498,9 +519,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -508,17 +528,27 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("MarshallEnumTypesTest");
         boolean pass = true;
 
-        if (!StringEnumTypeTest()) pass = false;
-        if (!ByteEnumTypeTest()) pass = false;
-        if (!ShortEnumTypeTest()) pass = false;
-        if (!IntegerEnumTypeTest()) pass = false;
-        if (!IntEnumTypeTest()) pass = false;
-        if (!LongEnumTypeTest()) pass = false;
-        if (!DecimalEnumTypeTest()) pass = false;
-        if (!FloatEnumTypeTest()) pass = false;
-        if (!DoubleEnumTypeTest()) pass = false;
+        if (!StringEnumTypeTest())
+            pass = false;
+        if (!ByteEnumTypeTest())
+            pass = false;
+        if (!ShortEnumTypeTest())
+            pass = false;
+        if (!IntegerEnumTypeTest())
+            pass = false;
+        if (!IntEnumTypeTest())
+            pass = false;
+        if (!LongEnumTypeTest())
+            pass = false;
+        if (!DecimalEnumTypeTest())
+            pass = false;
+        if (!FloatEnumTypeTest())
+            pass = false;
+        if (!DoubleEnumTypeTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallEnumTypesTest failed");
+        if (!pass)
+            throw new Fault("MarshallEnumTypesTest failed");
     }
 
     /*
@@ -526,9 +556,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -540,14 +569,16 @@ public class Client extends ServiceEETest {
             init_FooAnonymousType_Data();
             FooAnonymousType request = FooAnonymousType_data;
             FooAnonymousType response = port2.echoAnonymousTypeTest(request);
-            if (!compareFooAnonymousTypeData(request, response)) pass = false;
+            if (!compareFooAnonymousTypeData(request, response))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("MarshallAnonymousTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallAnonymousTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallAnonymousTypeTest failed");
     }
 
     /*
@@ -555,9 +586,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -592,18 +622,18 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallVariousSchemaTypesTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallVariousSchemaTypesTest failed");
+        if (!pass)
+            throw new Fault("MarshallVariousSchemaTypesTest failed");
     }
 
     /*
      * @testName: MarshallVariousSchemaTypesListTypeTest
      *
-     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:2080;
-     * JAXWS:SPEC:3054; JAXWS:SPEC:3052; JAXWS:SPEC:2084; JAXWS:SPEC:2085;
+     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:2080; JAXWS:SPEC:3054; JAXWS:SPEC:3052; JAXWS:SPEC:2084;
+     * JAXWS:SPEC:2085;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -645,7 +675,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallVariousSchemaTypesListTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallVariousSchemaTypesListTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallVariousSchemaTypesListTypeTest failed");
     }
 
     /*
@@ -653,9 +684,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -678,7 +708,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallAnnotationTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallAnnotationTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallAnnotationTypeTest failed");
     }
 
     /*
@@ -686,9 +717,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -715,7 +745,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallAnySimpleTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallAnySimpleTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallAnySimpleTypeTest failed");
     }
 
     /*
@@ -723,9 +754,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -751,7 +781,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallAnyURITypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallAnyURITypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallAnyURITypeTest failed");
     }
 
     /*
@@ -759,9 +790,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -789,7 +819,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallLanguageTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallLanguageTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallLanguageTypeTest failed");
     }
 
     /*
@@ -797,9 +828,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -826,7 +856,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallTokenTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallTokenTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallTokenTypeTest failed");
     }
 
     /*
@@ -834,9 +865,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -863,7 +893,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallNameTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallNameTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallNameTypeTest failed");
     }
 
     /*
@@ -871,9 +902,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -900,7 +930,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallNCNameTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallNCNameTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallNCNameTypeTest failed");
     }
 
     /*
@@ -908,9 +939,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -937,7 +967,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallIDTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallIDTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallIDTypeTest failed");
     }
 
     /*
@@ -945,9 +976,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method voidTest.
-     * Verify normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method voidTest. Verify normal invocation and return.
      *
      * Description
      */
@@ -957,15 +987,18 @@ public class Client extends ServiceEETest {
 
         try {
             InitExpectedFooTypeData();
-            if (!sendFoo1Test()) pass = false;
-            if (!sendFoo2Test()) pass = false;
+            if (!sendFoo1Test())
+                pass = false;
+            if (!sendFoo2Test())
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("MarshallStructXMLSchemaTypesTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallStructXMLSchemaTypesTest failed");
+        if (!pass)
+            throw new Fault("MarshallStructXMLSchemaTypesTest failed");
     }
 
     // =======================================================================
@@ -976,9 +1009,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:2044;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method voidTest.
-     * Verify literal faults.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method voidTest. Verify literal faults.
      *
      * Description
      */
@@ -986,9 +1018,11 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("MarshallLiteralFaults");
         boolean pass = true;
 
-        if (!fooFaultTest()) pass = false;
+        if (!fooFaultTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallLiteralFaults failed");
+        if (!pass)
+            throw new Fault("MarshallLiteralFaults failed");
     }
 
     // =======================================================================
@@ -999,12 +1033,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods. Test
-     * with complex types. For each type pass its value as input to the
-     * corresponding RPC method and receive it back as the return value. Compare
-     * results of each value/type of what was sent and what was returned. Verify
-     * they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods. Test with complex types. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      *
      */
     public void MarshallComplexTypesTest() throws Fault {
@@ -1013,12 +1045,16 @@ public class Client extends ServiceEETest {
         boolean pass = true;
         try {
             boolean b1 = doPersonTest();
-            if (b1) TestUtil.logMsg("Person echo success!");
+            if (b1)
+                TestUtil.logMsg("Person echo success!");
             boolean b2 = doEmployeeTest();
-            if (b2) TestUtil.logMsg("Employee echo success!");
+            if (b2)
+                TestUtil.logMsg("Employee echo success!");
             boolean b3 = doDocumentTest();
-            if (b3) TestUtil.logMsg("Document echo success!");
-            if (!b1 || !b2 || !b3) pass = false;
+            if (b3)
+                TestUtil.logMsg("Document echo success!");
+            if (!b1 || !b2 || !b3)
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1026,7 +1062,8 @@ public class Client extends ServiceEETest {
             throw new Fault(testname);
         }
 
-        if (!pass) throw new Fault(testname + " failed");
+        if (!pass)
+            throw new Fault(testname + " failed");
     }
 
     // ====================================================================
@@ -1038,9 +1075,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method voidTest.
-     * Verify normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method voidTest. Verify normal invocation and return.
      *
      * Description
      */
@@ -1058,7 +1094,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallOneWayTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallOneWayTest failed");
+        if (!pass)
+            throw new Fault("MarshallOneWayTest failed");
     }
 
     // ====================================================================
@@ -1070,23 +1107,24 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * standard java class type. For each other simple type above (QName,
-     * Base64Binary, and HexBinary) pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent sent and what was returned. Verify they are
-     * equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each standard java class type. For each other simple type above (QName, Base64Binary,
+     * and HexBinary) pass its value as input to the corresponding RPC method and receive it back as the return value.
+     * Compare results of each value/type of what was sent sent and what was returned. Verify they are equal.
      */
     public void MarshallOtherSimpleTypesTest() throws Fault {
         TestUtil.logMsg("MarshallOtherSimpleTypesTest");
         boolean pass = true;
 
-        if (!QNameTest()) pass = false;
-        if (!Base64BinaryTest()) pass = false;
-        if (!HexBinaryTest()) pass = false;
+        if (!QNameTest())
+            pass = false;
+        if (!Base64BinaryTest())
+            pass = false;
+        if (!HexBinaryTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallOtherSimpleTypesTest failed");
+        if (!pass)
+            throw new Fault("MarshallOtherSimpleTypesTest failed");
     }
 
     /*
@@ -1094,23 +1132,26 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * standard java class type. For each supported unsigned simple type pass its
-     * value as input to the corresponding RPC method and receive it back as the
-     * return value. Compare results of each value/type of what was sent sent and
-     * what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each standard java class type. For each supported unsigned simple type pass its value
+     * as input to the corresponding RPC method and receive it back as the return value. Compare results of each value/type
+     * of what was sent sent and what was returned. Verify they are equal.
      */
     public void MarshallUnsignedTypesTest() throws Fault {
         TestUtil.logMsg("MarshallUnsignedTypesTest");
         boolean pass = true;
 
-        if (!UnsignedShortTest()) pass = false;
-        if (!UnsignedIntTest()) pass = false;
-        if (!UnsignedByteTest()) pass = false;
-        if (!UnsignedLongTest()) pass = false;
+        if (!UnsignedShortTest())
+            pass = false;
+        if (!UnsignedIntTest())
+            pass = false;
+        if (!UnsignedByteTest())
+            pass = false;
+        if (!UnsignedLongTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallUnsignedTypesTest failed");
+        if (!pass)
+            throw new Fault("MarshallUnsignedTypesTest failed");
     }
 
     /*
@@ -1118,23 +1159,26 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * standard java class type. For each supported unsigned simple type pass its
-     * value as input to the corresponding RPC method and receive it back as the
-     * return value. Compare results of each value/type of what was sent sent and
-     * what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each standard java class type. For each supported unsigned simple type pass its value
+     * as input to the corresponding RPC method and receive it back as the return value. Compare results of each value/type
+     * of what was sent sent and what was returned. Verify they are equal.
      */
     public void MarshallBigIntegerTypesTest() throws Fault {
         TestUtil.logMsg("MarshallBigIntegerTypesTest");
         boolean pass = true;
 
-        if (!NonPositiveIntegerTest()) pass = false;
-        if (!NonNegativeIntegerTest()) pass = false;
-        if (!PositiveIntegerTest()) pass = false;
-        if (!NegativeIntegerTest()) pass = false;
+        if (!NonPositiveIntegerTest())
+            pass = false;
+        if (!NonNegativeIntegerTest())
+            pass = false;
+        if (!PositiveIntegerTest())
+            pass = false;
+        if (!NegativeIntegerTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallBigIntegerTypesTest failed");
+        if (!pass)
+            throw new Fault("MarshallBigIntegerTypesTest failed");
     }
 
     /*
@@ -1142,9 +1186,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method. Verify
-     * normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method. Verify normal invocation and return.
      *
      * Description
      */
@@ -1152,45 +1195,61 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("MarshallDateTimeTest");
         boolean pass = true;
 
-        if (!TimeTest()) pass = false;
-        if (!DateTest()) pass = false;
-        if (!GYearMonthTest()) pass = false;
-        if (!GYearTest()) pass = false;
-        if (!GMonthDayTest()) pass = false;
-        if (!GDayTest()) pass = false;
-        if (!GMonthTest()) pass = false;
+        if (!TimeTest())
+            pass = false;
+        if (!DateTest())
+            pass = false;
+        if (!GYearMonthTest())
+            pass = false;
+        if (!GYearTest())
+            pass = false;
+        if (!GMonthDayTest())
+            pass = false;
+        if (!GDayTest())
+            pass = false;
+        if (!GMonthTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallDateTimeTest failed");
+        if (!pass)
+            throw new Fault("MarshallDateTimeTest failed");
     }
 
     /*
      * @testName: MarshallListTypesTest
      *
-     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:2080;
-     * JAXWS:SPEC:3054; JAXWS:SPEC:3052; JAXWS:SPEC:2084; JAXWS:SPEC:2085;
+     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:2080; JAXWS:SPEC:3054; JAXWS:SPEC:3052; JAXWS:SPEC:2084;
+     * JAXWS:SPEC:2085;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * standard java class type. For each supported unsigned simple type pass its
-     * value as input to the corresponding RPC method and receive it back as the
-     * return value. Compare results of each value/type of what was sent sent and
-     * what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each standard java class type. For each supported unsigned simple type pass its value
+     * as input to the corresponding RPC method and receive it back as the return value. Compare results of each value/type
+     * of what was sent sent and what was returned. Verify they are equal.
      */
     public void MarshallListTypesTest() throws Fault {
         TestUtil.logMsg("MarshallListTypesTest");
         boolean pass = true;
 
-        if (!StringListTest()) pass = false;
-        if (!IntListTest()) pass = false;
-        if (!FloatListTest()) pass = false;
-        if (!DecimalListTest()) pass = false;
-        if (!DoubleListTest()) pass = false;
-        if (!IntegerListTest()) pass = false;
-        if (!LongListTest()) pass = false;
-        if (!ShortListTest()) pass = false;
-        if (!ByteListTest()) pass = false;
+        if (!StringListTest())
+            pass = false;
+        if (!IntListTest())
+            pass = false;
+        if (!FloatListTest())
+            pass = false;
+        if (!DecimalListTest())
+            pass = false;
+        if (!DoubleListTest())
+            pass = false;
+        if (!IntegerListTest())
+            pass = false;
+        if (!LongListTest())
+            pass = false;
+        if (!ShortListTest())
+            pass = false;
+        if (!ByteListTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallListTypesTest failed");
+        if (!pass)
+            throw new Fault("MarshallListTypesTest failed");
     }
 
     /*
@@ -1212,14 +1271,16 @@ public class Client extends ServiceEETest {
                 request = new DurationTest();
                 request.setDurationValue(values[i]);
                 response = port.durationTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getDurationValue(), "Duration")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getDurationValue(), "Duration"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MarshallDurationTest failed");
+        if (!pass)
+            throw new Fault("MarshallDurationTest failed");
     }
 
     /*
@@ -1227,10 +1288,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: In NewSchemaDefs.xsd create a schema of simpletypes derived
-     * via restriction for string, integer, int, long, short, decimal, float,
-     * double, boolean, byte and qname. Verify that what was sent to the service
-     * endpoint is echoed back. Description
+     * @test_Strategy: In NewSchemaDefs.xsd create a schema of simpletypes derived via restriction for string, integer, int,
+     * long, short, decimal, float, double, boolean, byte and qname. Verify that what was sent to the service endpoint is
+     * echoed back. Description
      */
     public void MarshallMapSimpleTypesTest() throws Fault {
         TestUtil.logMsg("MarshallMapSimpleTypesTest");
@@ -1246,7 +1306,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Simple String passes");
+            } else
+                TestUtil.logMsg("Simple String passes");
 
             // -----------------------------------------------
             BigInteger birequest = new BigInteger("5");
@@ -1257,7 +1318,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Integer failed");
                 pass = false;
 
-            } else TestUtil.logMsg("Simple Integer passes");
+            } else
+                TestUtil.logMsg("Simple Integer passes");
 
             // -----------------------------------------------
             int irequest = 10;
@@ -1266,7 +1328,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + irequest + ", received: " + iresponse);
                 TestUtil.logErr("Simple int failed");
                 pass = false;
-            } else TestUtil.logMsg("Simple int passes");
+            } else
+                TestUtil.logMsg("Simple int passes");
 
             // -----------------------------------------------
 
@@ -1277,7 +1340,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Simple long failed");
                 pass = false;
 
-            } else TestUtil.logMsg("Simple long passes");
+            } else
+                TestUtil.logMsg("Simple long passes");
 
             // -----------------------------------------------
 
@@ -1288,7 +1352,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Simple short failed");
                 pass = false;
 
-            } else TestUtil.logMsg("Simple short passes");
+            } else
+                TestUtil.logMsg("Simple short passes");
 
             // -----------------------------------------------
             TestUtil.logMsg("Testing BigDecimal");
@@ -1300,7 +1365,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("decimal failed");
                 pass = false;
 
-            } else TestUtil.logMsg("Simple decimal passes");
+            } else
+                TestUtil.logMsg("Simple decimal passes");
 
             // -----------------------------------------------
             TestUtil.logMsg("Testing float");
@@ -1311,7 +1377,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("float failed");
                 pass = false;
 
-            } else TestUtil.logMsg("Simple float passes");
+            } else
+                TestUtil.logMsg("Simple float passes");
 
             // -----------------------------------------------
             TestUtil.logMsg("Testing double ");
@@ -1322,7 +1389,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("double failed");
                 pass = false;
 
-            } else TestUtil.logMsg("Simple double passes");
+            } else
+                TestUtil.logMsg("Simple double passes");
 
             // -----------------------------------------------
             TestUtil.logMsg("Testing boolean");
@@ -1333,7 +1401,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("boolean failed");
                 pass = false;
 
-            } else TestUtil.logMsg("Simple boolean passes");
+            } else
+                TestUtil.logMsg("Simple boolean passes");
             // -----------------------------------------------
             TestUtil.logMsg("Testing byte");
             byte btrequest = 127;
@@ -1343,7 +1412,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("byte failed");
                 pass = false;
 
-            } else TestUtil.logMsg("Simple byte passes");
+            } else
+                TestUtil.logMsg("Simple byte passes");
 
             // -----------------------------------------------
             TestUtil.logMsg("Testing QName");
@@ -1355,14 +1425,16 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("QName failed");
                 pass = false;
 
-            } else TestUtil.logMsg("Simple QName passes");
+            } else
+                TestUtil.logMsg("Simple QName passes");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MarshallMapSimpleTypesTest failed");
+        if (!pass)
+            throw new Fault("MarshallMapSimpleTypesTest failed");
     }
 
     /*
@@ -1370,8 +1442,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040;
      *
-     * @test_Strategy: test xsd:include by including a schema with a simpleType in
-     * NewSchemaDefs.xsd.
+     * @test_Strategy: test xsd:include by including a schema with a simpleType in NewSchemaDefs.xsd.
      *
      *
      * Description
@@ -1390,14 +1461,16 @@ public class Client extends ServiceEETest {
             if (!myString.equals(resp)) {
                 pass = false;
                 TestUtil.logMsg("Expected: " + myString + " but returned " + resp);
-            } else TestUtil.logMsg("Good String echoed back as expected");
+            } else
+                TestUtil.logMsg("Good String echoed back as expected");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("MarshallNOTATIONTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallIncludedStringTypeTest failed");
+        if (!pass)
+            throw new Fault("MarshallIncludedStringTypeTest failed");
     }
 
     /*
@@ -1405,8 +1478,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:3040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method voidTest.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method voidTest.
      *
      */
     public void ClientPassNullTest() throws Fault {
@@ -1422,7 +1495,8 @@ public class Client extends ServiceEETest {
         } catch (WebServiceException e) {
             TestUtil.logMsg("WebServiceException was thrown when client tries passing a null");
         }
-        if (!pass) throw new Fault("ClientPassNullTest failed");
+        if (!pass)
+            throw new Fault("ClientPassNullTest failed");
     }
 
     /*
@@ -1430,8 +1504,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:3040;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method voidTest.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method voidTest.
      *
      */
     public void EndpointPassNullTest() throws Fault {
@@ -1449,12 +1523,15 @@ public class Client extends ServiceEETest {
         } catch (WebServiceException e) {
             TestUtil.logMsg("WebServiceException was thrown when endpoint tries passing a null");
         }
-        if (!pass) throw new Fault("EndpointPassNullTest failed");
+        if (!pass)
+            throw new Fault("EndpointPassNullTest failed");
     }
 
     private boolean printTestStatus(boolean pass, String test) {
-        if (pass) TestUtil.logMsg("" + test + " ... PASSED");
-        else TestUtil.logErr("" + test + " ... FAILED");
+        if (pass)
+            TestUtil.logMsg("" + test + " ... PASSED");
+        else
+            TestUtil.logErr("" + test + " ... FAILED");
 
         return pass;
     }
@@ -1465,7 +1542,8 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Passing/Returning OtherXMLSchemaDataTypes to/from JAXWS Service");
         try {
             FooStatusType response = port2.sendFoo1Test(FooType_data);
-            if (!response.isFooA()) pass = false;
+            if (!response.isFooA())
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -1481,7 +1559,8 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Passing/Returning StructXMLSchemaDataTypes to/from JAXWS Service");
         try {
             FooType response = port2.sendFoo2Test(FooType_data);
-            if (!CompareWithExpectedFooTypeData(response)) pass = false;
+            if (!CompareWithExpectedFooTypeData(response))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -1506,7 +1585,8 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Did throw a FooFault");
             FooFaultException ffe = e.getFaultInfo();
             TestUtil.logMsg("Reason=" + ffe.getWhyTheFault());
-            if (ffe.getWhyTheFault().equals("FooBad1")) TestUtil.logMsg("Reason for exception - expected");
+            if (ffe.getWhyTheFault().equals("FooBad1"))
+                TestUtil.logMsg("Reason for exception - expected");
             else {
                 pass = false;
                 TestUtil.logErr("Reason for exception - unexpected", e);
@@ -1527,7 +1607,8 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Did throw a FooFault");
             FooFaultException ffe = e.getFaultInfo();
             TestUtil.logMsg("Reason=" + ffe.getWhyTheFault());
-            if (ffe.getWhyTheFault().equals("FooBad5")) TestUtil.logMsg("Reason for exception - expected");
+            if (ffe.getWhyTheFault().equals("FooBad5"))
+                TestUtil.logMsg("Reason for exception - expected");
             else {
                 pass = false;
                 TestUtil.logErr("Reason for exception - unexpected", e);
@@ -1553,7 +1634,8 @@ public class Client extends ServiceEETest {
                 request = new BooleanTest();
                 request.setBooleanValue(values[i]);
                 response = port.booleanTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.isBooleanValue())) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.isBooleanValue()))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1576,7 +1658,8 @@ public class Client extends ServiceEETest {
                 request = new ByteTest();
                 request.setByteValue(values[i]);
                 response = port.byteTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getByteValue())) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getByteValue()))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1599,7 +1682,8 @@ public class Client extends ServiceEETest {
                 request = new ShortTest();
                 request.setShortValue(values[i]);
                 response = port.shortTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getShortValue())) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getShortValue()))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1622,7 +1706,8 @@ public class Client extends ServiceEETest {
                 request = new IntTest();
                 request.setIntValue(values[i]);
                 response = port.intTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getIntValue())) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getIntValue()))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1645,7 +1730,8 @@ public class Client extends ServiceEETest {
                 request = new LongTest();
                 request.setLongValue(values[i]);
                 response = port.longTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getLongValue())) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getLongValue()))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1668,7 +1754,8 @@ public class Client extends ServiceEETest {
                 request = new FloatTest();
                 request.setFloatValue(values[i]);
                 response = port.floatTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getFloatValue())) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getFloatValue()))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1691,7 +1778,8 @@ public class Client extends ServiceEETest {
                 request = new DoubleTest();
                 request.setDoubleValue(values[i]);
                 response = port.doubleTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getDoubleValue())) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getDoubleValue()))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1714,7 +1802,8 @@ public class Client extends ServiceEETest {
                 request = new StringTest();
                 request.setStringValue(values[i]);
                 response = port.stringTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getStringValue(), "String")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getStringValue(), "String"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1737,7 +1826,8 @@ public class Client extends ServiceEETest {
                 request = new CalendarTest();
                 request.setCalendar(values[i]);
                 response = port.calendarTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getCalendar(), "XMLGregorianCalendar")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getCalendar(), "XMLGregorianCalendar"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1760,7 +1850,8 @@ public class Client extends ServiceEETest {
                 request = new BigIntegerTest();
                 request.setBigInteger(values[i]);
                 response = port.bigIntegerTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getBigInteger(), "BigInteger")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getBigInteger(), "BigInteger"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1783,7 +1874,8 @@ public class Client extends ServiceEETest {
                 request = new BigDecimalTest();
                 request.setBigDecimal(values[i]);
                 response = port.bigDecimalTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response.getBigDecimal(), "BigDecimal")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response.getBigDecimal(), "BigDecimal"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1803,7 +1895,8 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Passing/Returning boolean array to/from JAXWS Service");
         try {
             request = new BooleanArrayTest();
-            for (int i = 0; i < values.length; i++) request.getBooleanArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getBooleanArray().add(values[i]);
             response = port.booleanArrayTest(request);
             pass = JAXWS_Data.compareArrayValues(values, response.getBooleanArray(), "boolean");
         } catch (Exception e) {
@@ -1843,7 +1936,8 @@ public class Client extends ServiceEETest {
         ShortArrayTest request;
         try {
             request = new ShortArrayTest();
-            for (int i = 0; i < values.length; i++) request.getShortArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getShortArray().add(values[i]);
             response = port.shortArrayTest(request);
             pass = JAXWS_Data.compareArrayValues(values, response.getShortArray(), "short");
         } catch (Exception e) {
@@ -1863,7 +1957,8 @@ public class Client extends ServiceEETest {
         IntArrayTest request;
         try {
             request = new IntArrayTest();
-            for (int i = 0; i < values.length; i++) request.getIntArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getIntArray().add(values[i]);
             response = port.intArrayTest(request);
             pass = JAXWS_Data.compareArrayValues(values, response.getIntArray(), "int");
         } catch (Exception e) {
@@ -1883,7 +1978,8 @@ public class Client extends ServiceEETest {
         LongArrayTest request;
         try {
             request = new LongArrayTest();
-            for (int i = 0; i < values.length; i++) request.getLongArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getLongArray().add(values[i]);
             response = port.longArrayTest(request);
             pass = JAXWS_Data.compareArrayValues(values, response.getLongArray(), "long");
         } catch (Exception e) {
@@ -1903,7 +1999,8 @@ public class Client extends ServiceEETest {
         FloatArrayTest request;
         try {
             request = new FloatArrayTest();
-            for (int i = 0; i < values.length; i++) request.getFloatArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getFloatArray().add(values[i]);
             response = port.floatArrayTest(request);
             pass = JAXWS_Data.compareArrayValues(values, response.getFloatArray(), "float");
         } catch (Exception e) {
@@ -1923,7 +2020,8 @@ public class Client extends ServiceEETest {
         DoubleArrayTest request;
         try {
             request = new DoubleArrayTest();
-            for (int i = 0; i < values.length; i++) request.getDoubleArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getDoubleArray().add(values[i]);
             response = port.doubleArrayTest(request);
             pass = JAXWS_Data.compareArrayValues(values, response.getDoubleArray(), "double");
         } catch (Exception e) {
@@ -1943,7 +2041,8 @@ public class Client extends ServiceEETest {
         StringArrayTest request;
         try {
             request = new StringArrayTest();
-            for (int i = 0; i < values.length; i++) request.getStringArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getStringArray().add(values[i]);
             response = port.stringArrayTest(request);
             pass = JAXWS_Data.compareArrayValues(values, response.getStringArray(), "String");
         } catch (Exception e) {
@@ -1963,7 +2062,8 @@ public class Client extends ServiceEETest {
         CalendarArrayTest request;
         try {
             request = new CalendarArrayTest();
-            for (int i = 0; i < values.length; i++) request.getCalendarArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getCalendarArray().add(values[i]);
             response = port.calendarArrayTest(request);
             pass = JAXWS_Data.compareArrayValues(values, response.getCalendarArray(), "XMLGregorianCalendar");
         } catch (Exception e) {
@@ -1984,7 +2084,8 @@ public class Client extends ServiceEETest {
         BigIntegerArrayTest request;
         try {
             request = new BigIntegerArrayTest();
-            for (int i = 0; i < values.length; i++) request.getBigIntegerArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getBigIntegerArray().add(values[i]);
             response = port.bigIntegerArrayTest(request);
             pass = JAXWS_Data.compareArrayValues(values, response.getBigIntegerArray(), "BigInteger");
         } catch (Exception e) {
@@ -2004,7 +2105,8 @@ public class Client extends ServiceEETest {
         BigDecimalArrayTest request;
         try {
             request = new BigDecimalArrayTest();
-            for (int i = 0; i < values.length; i++) request.getBigDecimalArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getBigDecimalArray().add(values[i]);
             response = port.bigDecimalArrayTest(request);
             pass = JAXWS_Data.compareArrayValues(values, response.getBigDecimalArray(), "BigDecimal");
         } catch (Exception e) {
@@ -2027,7 +2129,8 @@ public class Client extends ServiceEETest {
         JavaBean result[] = new JavaBean[values.length];
         try {
             request = new JavaBeanArrayTest();
-            for (int i = 0; i < values.length; i++) request.getJavaBeanArray().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getJavaBeanArray().add(values[i]);
             response = port.javaBeanArrayTest(request);
             List<JavaBean> l = response.getJavaBeanArray();
             Iterator i = l.iterator();
@@ -2156,7 +2259,8 @@ public class Client extends ServiceEETest {
         System.out.println("Dumping " + t + " array, size=" + getArraySize(o, t));
         if (t.equals("JavaBean")) {
             JavaBean[] v = (JavaBean[]) o;
-            for (int i = 0; i < v.length; i++) System.out.println("- " + toStringJavaBean(v[i]));
+            for (int i = 0; i < v.length; i++)
+                System.out.println("- " + toStringJavaBean(v[i]));
         }
     }
 
@@ -2174,7 +2278,8 @@ public class Client extends ServiceEETest {
         if (t.equals("JavaBean")) {
             JavaBean exp = (JavaBean) e;
             JavaBean rec = (JavaBean) r;
-            if (rec == exp) return true;
+            if (rec == exp)
+                return true;
             if ((rec == null && exp != null) || (rec != null && exp == null)) {
                 pass = false;
             } else if (!compareJavaBeans(exp, rec)) {
@@ -2198,7 +2303,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
             for (int i = 0; i < rec.length; i++) {
-                if (rec[i] == exp[i]) continue;
+                if (rec[i] == exp[i])
+                    continue;
                 if ((rec[i] == null && exp[i] != null) || (rec[i] != null && exp[i] == null)) {
                     pass = false;
                 } else if (!compareJavaBeans(exp[i], rec[i])) {
@@ -2215,7 +2321,8 @@ public class Client extends ServiceEETest {
         StringBuilder values = new StringBuilder();
         if (t.equals("JavaBean")) {
             JavaBean[] v = (JavaBean[]) o;
-            for (int i = 0; i < v.length; i++) values.append(", ").append(toStringJavaBean(v[i]));
+            for (int i = 0; i < v.length; i++)
+                values.append(", ").append(toStringJavaBean(v[i]));
         }
         return values.toString();
     }
@@ -2539,7 +2646,8 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("getFooM() returned " + f.getFooM() + ", expected hello,there");
             valid = false;
         }
-        if (!compareFooAnonymousTypeData(f.getFooN(), FooAnonymousType_data)) valid = false;
+        if (!compareFooAnonymousTypeData(f.getFooN(), FooAnonymousType_data))
+            valid = false;
         return valid;
     }
 
@@ -2609,7 +2717,8 @@ public class Client extends ServiceEETest {
                     valid = false;
                     TestUtil.logErr("Element results mismatch ...");
                     break;
-                } else TestUtil.logMsg("Element results match ...");
+                } else
+                    TestUtil.logMsg("Element results match ...");
             }
         } else {
             TestUtil.logErr("Array length mismatch - expected: " + req.length + ", received: " + res.length);
@@ -2645,7 +2754,8 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Passing/Returning array data to/from JAXWS Service");
         try {
             request = new QNameArrayTest();
-            for (int i = 0; i < values.length; i++) request.getQnameArray1().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getQnameArray1().add(values[i]);
             response = port.qnameArrayTest(request);
             List<QName> l = response.getResult();
             Iterator i = l.iterator();
@@ -2675,7 +2785,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2695,7 +2806,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2715,7 +2827,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2735,7 +2848,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2755,7 +2869,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2775,7 +2890,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2795,7 +2911,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2815,7 +2932,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2835,7 +2953,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2856,7 +2975,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2877,7 +2997,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2898,7 +3019,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2919,7 +3041,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2940,7 +3063,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2961,7 +3085,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -2982,7 +3107,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3003,7 +3129,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Result mismatch - expected: " + request + ", received: " + response);
                 pass = false;
 
-            } else TestUtil.logMsg("Result match");
+            } else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3023,7 +3150,8 @@ public class Client extends ServiceEETest {
             for (int i = 0; i < values.length; i++) {
                 request = values[i];
                 response = port2.echoTimeTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response, "XMLGregorianCalendar")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "XMLGregorianCalendar"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -3045,7 +3173,8 @@ public class Client extends ServiceEETest {
             for (int i = 0; i < values.length; i++) {
                 request = values[i];
                 response = port2.echoDateTest(request);
-                if (!JAXWS_Data.compareValues(values[i], response, "XMLGregorianCalendar")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "XMLGregorianCalendar"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -3059,11 +3188,13 @@ public class Client extends ServiceEETest {
     private boolean StringListTest() {
         TestUtil.logTrace("StringListTest ...");
         boolean pass = true;
-        String[] request = new String[] {"foo", "bar", "foobar"};
+        String[] request = new String[] { "foo", "bar", "foobar" };
         try {
             String[] response = port2.echoStringListTypeTest(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "String")) pass = false;
-            else TestUtil.logMsg("Result match");
+            if (!JAXWS_Data.compareArrayValues(request, response, "String"))
+                pass = false;
+            else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3075,12 +3206,13 @@ public class Client extends ServiceEETest {
     private boolean DecimalListTest() {
         TestUtil.logTrace("DecimalListTest...");
         boolean pass = true;
-        BigDecimal[] request =
-                new BigDecimal[] {new BigDecimal("3512359.1456"), new BigDecimal("1"), new BigDecimal("2")};
+        BigDecimal[] request = new BigDecimal[] { new BigDecimal("3512359.1456"), new BigDecimal("1"), new BigDecimal("2") };
         try {
             BigDecimal[] response = port2.echoDecimalListTypeTest(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "BigDecimal")) pass = false;
-            else TestUtil.logMsg("Result match");
+            if (!JAXWS_Data.compareArrayValues(request, response, "BigDecimal"))
+                pass = false;
+            else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3092,12 +3224,13 @@ public class Client extends ServiceEETest {
     private boolean FloatListTest() {
         TestUtil.logTrace("FloatListTest...");
         boolean pass = true;
-        Float[] request =
-                new Float[] {Float.valueOf(Float.MIN_VALUE), Float.valueOf(Float.MAX_VALUE), Float.valueOf(1)};
+        Float[] request = new Float[] { Float.valueOf(Float.MIN_VALUE), Float.valueOf(Float.MAX_VALUE), Float.valueOf(1) };
         try {
             Float[] response = port2.echoFloatListTypeTest(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "Float")) pass = false;
-            else TestUtil.logMsg("Result match");
+            if (!JAXWS_Data.compareArrayValues(request, response, "Float"))
+                pass = false;
+            else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3110,12 +3243,14 @@ public class Client extends ServiceEETest {
         TestUtil.logTrace("IntListTest...");
         boolean pass = true;
         Integer[] request = new Integer[] {
-            Integer.valueOf(Integer.MIN_VALUE), Integer.valueOf(Integer.MAX_VALUE), Integer.valueOf(1)
+                Integer.valueOf(Integer.MIN_VALUE), Integer.valueOf(Integer.MAX_VALUE), Integer.valueOf(1)
         };
         try {
             Integer[] response = port2.echoIntListTypeTest(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "Integer")) pass = false;
-            else TestUtil.logMsg("Result match");
+            if (!JAXWS_Data.compareArrayValues(request, response, "Integer"))
+                pass = false;
+            else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3127,11 +3262,13 @@ public class Client extends ServiceEETest {
     private boolean IntegerListTest() {
         TestUtil.logTrace("IntegerListTest...");
         boolean pass = true;
-        BigInteger[] request = new BigInteger[] {new BigInteger("0"), new BigInteger("1"), new BigInteger("2")};
+        BigInteger[] request = new BigInteger[] { new BigInteger("0"), new BigInteger("1"), new BigInteger("2") };
         try {
             BigInteger[] response = port2.echoIntegerListTypeTest(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "BigInteger")) pass = false;
-            else TestUtil.logMsg("Result match");
+            if (!JAXWS_Data.compareArrayValues(request, response, "BigInteger"))
+                pass = false;
+            else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3143,12 +3280,13 @@ public class Client extends ServiceEETest {
     private boolean DoubleListTest() {
         TestUtil.logTrace("DoubleListTest...");
         boolean pass = true;
-        Double[] request =
-                new Double[] {Double.valueOf(Double.MIN_VALUE), Double.valueOf(Double.MAX_VALUE), Double.valueOf(1)};
+        Double[] request = new Double[] { Double.valueOf(Double.MIN_VALUE), Double.valueOf(Double.MAX_VALUE), Double.valueOf(1) };
         try {
             Double[] response = port2.echoDoubleListTypeTest(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "Double")) pass = false;
-            else TestUtil.logMsg("Result match");
+            if (!JAXWS_Data.compareArrayValues(request, response, "Double"))
+                pass = false;
+            else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3160,11 +3298,13 @@ public class Client extends ServiceEETest {
     private boolean ByteListTest() {
         TestUtil.logTrace("ByteListTest...");
         boolean pass = true;
-        Byte[] request = new Byte[] {Byte.valueOf(Byte.MIN_VALUE), Byte.valueOf(Byte.MAX_VALUE)};
+        Byte[] request = new Byte[] { Byte.valueOf(Byte.MIN_VALUE), Byte.valueOf(Byte.MAX_VALUE) };
         try {
             Byte[] response = port2.echoByteListTypeTest(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "Byte")) pass = false;
-            else TestUtil.logMsg("Result match");
+            if (!JAXWS_Data.compareArrayValues(request, response, "Byte"))
+                pass = false;
+            else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3176,11 +3316,13 @@ public class Client extends ServiceEETest {
     private boolean LongListTest() {
         TestUtil.logTrace("LongListTest...");
         boolean pass = true;
-        Long[] request = new Long[] {Long.valueOf(Long.MIN_VALUE), Long.valueOf(Long.MAX_VALUE), Long.valueOf(1)};
+        Long[] request = new Long[] { Long.valueOf(Long.MIN_VALUE), Long.valueOf(Long.MAX_VALUE), Long.valueOf(1) };
         try {
             Long[] response = port2.echoLongListTypeTest(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "Long")) pass = false;
-            else TestUtil.logMsg("Result match");
+            if (!JAXWS_Data.compareArrayValues(request, response, "Long"))
+                pass = false;
+            else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3192,11 +3334,13 @@ public class Client extends ServiceEETest {
     private boolean ShortListTest() {
         TestUtil.logTrace("ShortListTest...");
         boolean pass = true;
-        Short[] request = new Short[] {Short.valueOf(Short.MIN_VALUE), Short.valueOf(Short.MAX_VALUE)};
+        Short[] request = new Short[] { Short.valueOf(Short.MIN_VALUE), Short.valueOf(Short.MAX_VALUE) };
         try {
             Short[] response = port2.echoShortListTypeTest(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "Short")) pass = false;
-            else TestUtil.logMsg("Result match");
+            if (!JAXWS_Data.compareArrayValues(request, response, "Short"))
+                pass = false;
+            else
+                TestUtil.logMsg("Result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -3217,7 +3361,8 @@ public class Client extends ServiceEETest {
                 request = new GYearMonthTest();
                 request.setValue(values[i]);
                 response = port.gYearMonthTest(request);
-                if (!JAXWS_Data.compareDate(values[i], response.getResult(), "YM")) pass = false;
+                if (!JAXWS_Data.compareDate(values[i], response.getResult(), "YM"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -3240,7 +3385,8 @@ public class Client extends ServiceEETest {
                 request = new GYearTest();
                 request.setValue(values[i]);
                 response = port.gYearTest(request);
-                if (!JAXWS_Data.compareDate(values[i], response.getResult(), "Y")) pass = false;
+                if (!JAXWS_Data.compareDate(values[i], response.getResult(), "Y"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -3263,7 +3409,8 @@ public class Client extends ServiceEETest {
                 request = new GMonthDayTest();
                 request.setValue(values[i]);
                 response = port.gMonthDayTest(request);
-                if (!JAXWS_Data.compareDate(values[i], response.getResult(), "MD")) pass = false;
+                if (!JAXWS_Data.compareDate(values[i], response.getResult(), "MD"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -3286,7 +3433,8 @@ public class Client extends ServiceEETest {
                 request = new GDayTest();
                 request.setValue(values[i]);
                 response = port.gDayTest(request);
-                if (!JAXWS_Data.compareDate(values[i], response.getResult(), "D")) pass = false;
+                if (!JAXWS_Data.compareDate(values[i], response.getResult(), "D"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -3313,7 +3461,8 @@ public class Client extends ServiceEETest {
                     pass = false;
                     TestUtil.logErr("response.getResult() is null");
                 }
-                if (!JAXWS_Data.compareDate(values[i], response.getResult(), "M")) pass = false;
+                if (!JAXWS_Data.compareDate(values[i], response.getResult(), "M"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

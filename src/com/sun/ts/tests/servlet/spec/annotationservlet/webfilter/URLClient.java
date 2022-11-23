@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setServletName("TestServlet");
@@ -56,14 +54,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: test1
      *
-     * @assertion_ids: Servlet:JAVADOC:804; Servlet:JAVADOC:811;
-     * Servlet:JAVADOC:825;
+     * @assertion_ids: Servlet:JAVADOC:804; Servlet:JAVADOC:811; Servlet:JAVADOC:825;
      *
-     * @test_Strategy: Create a servlet Servlet1; Create a filter TestFilter1;
-     * Define TestFilter1 using annotation
+     * @test_Strategy: Create a servlet Servlet1; Create a filter TestFilter1; Define TestFilter1 using annotation
      *
-     * @WebFilter(...,urlPatterns="servlet1",...,); Send a request to Servlet1;
-     * Veriy TestFilter1 is invoked properly.
+     * @WebFilter(...,urlPatterns="servlet1",...,); Send a request to Servlet1; Veriy TestFilter1 is invoked properly.
      */
     public void test1() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/Servlet1 HTTP/1.1");
@@ -74,20 +69,17 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: test2
      *
-     * @assertion_ids: Servlet:JAVADOC:802; Servlet:JAVADOC:804;
-     * Servlet:JAVADOC:806; Servlet:JAVADOC:807; Servlet:JAVADOC:809;
-     * Servlet:JAVADOC:811; Servlet:JAVADOC:812; Servlet:JAVADOC:814;
-     * Servlet:JAVADOC:815; Servlet:JAVADOC:825;
+     * @assertion_ids: Servlet:JAVADOC:802; Servlet:JAVADOC:804; Servlet:JAVADOC:806; Servlet:JAVADOC:807;
+     * Servlet:JAVADOC:809; Servlet:JAVADOC:811; Servlet:JAVADOC:812; Servlet:JAVADOC:814; Servlet:JAVADOC:815;
+     * Servlet:JAVADOC:825;
      *
-     * @test_Strategy: Create a servlet Servlet1; Create a filter TestFilter1;
-     * Define TestFilter1 using annotation
+     * @test_Strategy: Create a servlet Servlet1; Create a filter TestFilter1; Define TestFilter1 using annotation
      *
-     * @WebFilter(...,urlPatterns="servlet1",...,dispatcherTypes=REQUEST); Create
-     * a filter TestFilter2; Define TestFilter2 using annotation
+     * @WebFilter(...,urlPatterns="servlet1",...,dispatcherTypes=REQUEST); Create a filter TestFilter2; Define TestFilter2
+     * using annotation
      *
-     * @WebFilter(...,urlPatterns="servlet1",..., dispatcherTypes=FORWARD); Create
-     * another Servlet which forward to Servlet1 Send a request to the second
-     * Servlet; Veriy TestFilter2 is invoked. Veriy TestFilter1 is not invoked.
+     * @WebFilter(...,urlPatterns="servlet1",..., dispatcherTypes=FORWARD); Create another Servlet which forward to Servlet1
+     * Send a request to the second Servlet; Veriy TestFilter2 is invoked. Veriy TestFilter1 is not invoked.
      */
     public void test2() throws Fault {
         TEST_PROPS.setProperty(APITEST, "forward1");
@@ -104,15 +96,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: test3
      *
-     * @assertion_ids: Servlet:JAVADOC:804; Servlet:JAVADOC:811;
-     * Servlet:JAVADOC:825;
+     * @assertion_ids: Servlet:JAVADOC:804; Servlet:JAVADOC:811; Servlet:JAVADOC:825;
      *
-     * @test_Strategy: Create a servlet Servlet1; Create a filter TestFilter1;
-     * Define TestFilter1 using annotation
+     * @test_Strategy: Create a servlet Servlet1; Create a filter TestFilter1; Define TestFilter1 using annotation
      *
-     * @WebFilter(...,urlPatterns="servlet1",..., dispatcherTypes=REQUEST); Create
-     * another Servlet which include to Servlet1 Send a request to the second
-     * Servlet; Veriy TestFilter1 is not invoked.
+     * @WebFilter(...,urlPatterns="servlet1",..., dispatcherTypes=REQUEST); Create another Servlet which include to Servlet1
+     * Send a request to the second Servlet; Veriy TestFilter1 is not invoked.
      */
     public void test3() throws Fault {
         TEST_PROPS.setProperty(APITEST, "include1");

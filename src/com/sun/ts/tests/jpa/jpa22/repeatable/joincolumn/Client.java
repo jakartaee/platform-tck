@@ -26,7 +26,8 @@ public class Client extends PMClientBase {
 
     private static final long serialVersionUID = 22L;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();

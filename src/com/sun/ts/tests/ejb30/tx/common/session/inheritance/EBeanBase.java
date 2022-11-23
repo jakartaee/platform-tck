@@ -26,7 +26,8 @@ import jakarta.ejb.TransactionAttributeType;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public abstract class EBeanBase extends TxBeanBase {
 
-    public EBeanBase() {}
+    public EBeanBase() {
+    }
 
     // All business methods are inherited from superclass, along with their
     // transaction attribute MANDATORY.

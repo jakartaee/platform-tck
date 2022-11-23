@@ -73,9 +73,8 @@ public class send_Test extends ServiceEETest implements Serializable {
     /* Test setup: */
     /*
      *
-     * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
-     * javamail.password ; javamail.mailbox; transport_protocol; mailuser1;
-     * smtp.port; imap.port;
+     * @class.setup_props: javamail.protocol; javamail.server; javamail.username; javamail.password ; javamail.mailbox;
+     * transport_protocol; mailuser1; smtp.port; imap.port;
      */
     public void setup(String[] args, Properties props) throws Fault {
         try {
@@ -99,11 +98,13 @@ public class send_Test extends ServiceEETest implements Serializable {
 
             // mail recipient
             mailTo = TestUtil.getProperty("mailuser1");
-            if (mailTo.length() == 0) throw new Fault("Invalid mailuser1 - the mail to property");
+            if (mailTo.length() == 0)
+                throw new Fault("Invalid mailuser1 - the mail to property");
 
             transport_protocol = TestUtil.getProperty("transport_protocol");
             ;
-            if (transport_protocol.length() == 0) throw new Fault("Invalid transport_protocol");
+            if (transport_protocol.length() == 0)
+                throw new Fault("Invalid transport_protocol");
 
         } catch (Exception e) {
             logErr("Exception : " + e.getMessage());
@@ -117,8 +118,7 @@ public class send_Test extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:235; JavaEE:SPEC:238;
      *
-     * @test_Strategy: Send this message. If success return void, else throw
-     * error.
+     * @test_Strategy: Send this message. If success return void, else throw error.
      */
     // derived from javamail suite send_Test class
     public void testSend() throws Fault {
@@ -161,8 +161,7 @@ public class send_Test extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:235; JavaEE:SPEC:238;
      *
-     * @test_Strategy: Send this message. If success return void, else throw
-     * error.
+     * @test_Strategy: Send this message. If success return void, else throw error.
      */
     // derived from javamail suite send_Test class
     public void testSend2() throws Fault {
@@ -201,8 +200,7 @@ public class send_Test extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:235; JavaEE:SPEC:238;
      *
-     * @test_Strategy: construct the message - check the type verify that addtype
-     * returns rfc822
+     * @test_Strategy: construct the message - check the type verify that addtype returns rfc822
      */
     // derived from javamail suite getType class
     public void testSend3() throws Fault {
@@ -224,7 +222,8 @@ public class send_Test extends ServiceEETest implements Serializable {
             String addtype = addrs[0].getType(); // API TEST
             TestUtil.logTrace("addtype is " + addtype);
             if (addtype != null) {
-                if (addtype.equals("rfc822")) TestUtil.logTrace("UNIT TEST  passed\n");
+                if (addtype.equals("rfc822"))
+                    TestUtil.logTrace("UNIT TEST  passed\n");
                 else {
                     throw new Fault("UNIT TEST  FAILED\n");
                 }
@@ -247,8 +246,7 @@ public class send_Test extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:235; JavaEE:SPEC:238;
      *
-     * @test_Strategy: Send this message. If success return void, else throw
-     * error.
+     * @test_Strategy: Send this message. If success return void, else throw error.
      */
     // derived from javamail suite connect_Test class
     public void testconnect1() throws Fault {
@@ -300,8 +298,8 @@ public class send_Test extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:238; JavaEE:SPEC:235;
      *
-     * @test_Strategy: Call this API for given message objects with address list.
-     * If this invocation is successful then this testcase passes.
+     * @test_Strategy: Call this API for given message objects with address list. If this invocation is successful then this
+     * testcase passes.
      */
     // derived from javamail suite sendMessage_Test class
     public void testSendMessage() throws Fault {
@@ -347,18 +345,15 @@ public class send_Test extends ServiceEETest implements Serializable {
      *
      * @test_Strategy:
      *
-     * This test tests the <strong>send()</strong> API. It does this by passing
-     * various valid input values and then checking the type of the returned
-     * object. <p>
+     * This test tests the <strong>send()</strong> API. It does this by passing various valid input values and then checking
+     * the type of the returned object. <p>
      *
-     * Send this message. <p> api2test: public void send(msg) <p> Send this
-     * message to the specified addresses. <p> api2test: public void send(Message,
-     * Address[]) <p> Send this message using the specified username and password.
-     * <p> api2test: public void send(Message, String, String) <p>
+     * Send this message. <p> api2test: public void send(msg) <p> Send this message to the specified addresses. <p>
+     * api2test: public void send(Message, Address[]) <p> Send this message using the specified username and password. <p>
+     * api2test: public void send(Message, String, String) <p>
      *
-     * how2test: Call these APIs for given message objects with or without address
-     * list. If this invocation is successfull then this testcase passes otherwise
-     * it fails. <p>
+     * how2test: Call these APIs for given message objects with or without address list. If this invocation is successfull
+     * then this testcase passes otherwise it fails. <p>
      *
      * derived from javamail suite send_Test
      */
@@ -432,8 +427,10 @@ public class send_Test extends ServiceEETest implements Serializable {
     }
 
     public void checkStatus() {
-        if (errors == 0) status = Status.passed("OKAY");
-        else status = Status.failed("");
+        if (errors == 0)
+            status = Status.passed("OKAY");
+        else
+            status = Status.failed("");
     }
 
     /* cleanup */

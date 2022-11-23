@@ -87,14 +87,12 @@ public class eventClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testConnectionEventListener
      *
-     * @assertion_ids: Connector:SPEC:32; Connector:SPEC:35; Connector:SPEC:28;
-     * Connector:JAVADOC:155; Connector:JAVADOC:156; Connector:JAVADOC:157;
-     * Connector:JAVADOC:158; Connector:JAVADOC:159; Connector:JAVADOC:160;
+     * @assertion_ids: Connector:SPEC:32; Connector:SPEC:35; Connector:SPEC:28; Connector:JAVADOC:155;
+     * Connector:JAVADOC:156; Connector:JAVADOC:157; Connector:JAVADOC:158; Connector:JAVADOC:159; Connector:JAVADOC:160;
      * Connector:JAVADOC:152; Connector:JAVADOC:153; Connector:JAVADOC:154;
      *
-     * @test_Strategy: Call Con.close and verify CONNECTION_CLOSED event has been
-     * sent to the ConnectionEventListener through
-     * JdbcConnectionEventListerner.sendEvent.
+     * @test_Strategy: Call Con.close and verify CONNECTION_CLOSED event has been sent to the ConnectionEventListener
+     * through JdbcConnectionEventListerner.sendEvent.
      */
     public void testConnectionEventListener() throws Fault {
         boolean b = false;

@@ -18,12 +18,7 @@ package com.sun.ts.tests.webservices12.deploy.warDeploy;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HelloWsPort",
-        serviceName = "HelloWsService",
-        targetNamespace = "http://WarDeploy.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WarDeploy.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.deploy.warDeploy.HelloWs")
+@WebService(portName = "HelloWsPort", serviceName = "HelloWsService", targetNamespace = "http://WarDeploy.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WarDeploy.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.deploy.warDeploy.HelloWs")
 public class HelloWsBean implements HelloWs {
 
     public HelloResponse sayHello(HelloRequest input) {

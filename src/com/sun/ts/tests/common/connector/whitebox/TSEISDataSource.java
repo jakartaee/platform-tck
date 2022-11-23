@@ -124,8 +124,10 @@ public class TSEISDataSource implements TSDataSource, Serializable, Referenceabl
      */
     public boolean checkConnectionManager() {
 
-        if (cm instanceof Serializable) return true;
-        else return false;
+        if (cm instanceof Serializable)
+            return true;
+        else
+            return false;
     }
 
     /*

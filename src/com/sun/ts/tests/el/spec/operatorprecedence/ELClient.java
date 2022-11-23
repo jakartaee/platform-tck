@@ -34,15 +34,15 @@ public class ELClient extends ServiceEETest {
 
     Properties testProps;
 
-    private static final String[] MODOPER = {"%", "mod"};
+    private static final String[] MODOPER = { "%", "mod" };
 
-    private static final String[] DIVOPER = {"/", "div"};
+    private static final String[] DIVOPER = { "/", "div" };
 
-    private static final String[] ANDOPER = {"&&", "and"};
+    private static final String[] ANDOPER = { "&&", "and" };
 
-    private static final String[] OROPER = {"||", "or"};
+    private static final String[] OROPER = { "||", "or" };
 
-    private final boolean[] deferred = {true, false};
+    private final boolean[] deferred = { true, false };
 
     public static void main(String[] args) {
         ELClient theTests = new ELClient();
@@ -55,15 +55,15 @@ public class ELClient extends ServiceEETest {
         this.testProps = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: elMultiPreBinaryTest
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
      * Rules tested: "*" is evaluated before "+" "*" is evaluated before "-"
      */
@@ -78,11 +78,9 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
-     * Rules tested: "div, /" is evaluated before "+" "div, /" is evaluated before
-     * "-"
+     * Rules tested: "div, /" is evaluated before "+" "div, /" is evaluated before "-"
      */
     public void elDivPreBinaryTest() throws Fault {
 
@@ -97,11 +95,9 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
-     * Rules tested: "mod, %" is evaluated before "+" "mod, %" is evaluated before
-     * "-"
+     * Rules tested: "mod, %" is evaluated before "+" "mod, %" is evaluated before "-"
      */
     public void elModPreBinaryTest() throws Fault {
 
@@ -116,16 +112,13 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
-     * Rules tested: "*" is evaluated before ">" "*" is evaluated before "<" "*"
-     * is evaluated before ">=" "*" is evaluated before "<=" "*" is evaluated
-     * before "lt" "*" is evaluated before "gt" "*" is evaluated before "le" "*"
-     * is evaluated before "ge"
+     * Rules tested: "*" is evaluated before ">" "*" is evaluated before "<" "*" is evaluated before ">=" "*" is evaluated
+     * before "<=" "*" is evaluated before "lt" "*" is evaluated before "gt" "*" is evaluated before "le" "*" is evaluated
+     * before "ge"
      *
-     * "*" is evaluated before "==" "*" is evaluated before "!=" "*" is evaluated
-     * before "eq" "*" is evaluated before "ne"
+     * "*" is evaluated before "==" "*" is evaluated before "!=" "*" is evaluated before "eq" "*" is evaluated before "ne"
      */
     public void elMultiPreRelationalTest() throws Fault {
 
@@ -149,16 +142,14 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
-     * Rules tested: "div, /" is evaluated before ">" "div, /" is evaluated before
-     * "<" "div, /" is evaluated before ">=" "div, /" is evaluated before "<="
-     * "div, /" is evaluated before "lt" "div, /" is evaluated before "gt"
-     * "div, /" is evaluated before "le" "div, /" is evaluated before "ge"
+     * Rules tested: "div, /" is evaluated before ">" "div, /" is evaluated before "<" "div, /" is evaluated before ">="
+     * "div, /" is evaluated before "<=" "div, /" is evaluated before "lt" "div, /" is evaluated before "gt" "div, /" is
+     * evaluated before "le" "div, /" is evaluated before "ge"
      *
-     * "div, /" is evaluated before "==" "div, /" is evaluated before "!="
-     * "div, /" is evaluated before "eq" "div, /" is evaluated before "ne"
+     * "div, /" is evaluated before "==" "div, /" is evaluated before "!=" "div, /" is evaluated before "eq" "div, /" is
+     * evaluated before "ne"
      */
     public void elDivPreRelationalTest() throws Fault {
 
@@ -184,16 +175,14 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
-     * Rules tested: "mod, %" is evaluated before ">" "mod, %" is evaluated before
-     * "<" "mod, %" is evaluated before ">=" "mod, %" is evaluated before "<="
-     * "mod, %" is evaluated before "lt" "mod, %" is evaluated before "gt"
-     * "mod, %" is evaluated before "le" "mod, %" is evaluated before "ge"
+     * Rules tested: "mod, %" is evaluated before ">" "mod, %" is evaluated before "<" "mod, %" is evaluated before ">="
+     * "mod, %" is evaluated before "<=" "mod, %" is evaluated before "lt" "mod, %" is evaluated before "gt" "mod, %" is
+     * evaluated before "le" "mod, %" is evaluated before "ge"
      *
-     * "mod, %" is evaluated before "==" "mod, %" is evaluated before "!="
-     * "mod, %" is evaluated before "eq" "mod, %" is evaluated before "ne"
+     * "mod, %" is evaluated before "==" "mod, %" is evaluated before "!=" "mod, %" is evaluated before "eq" "mod, %" is
+     * evaluated before "ne"
      */
     public void elModPreRelationalTest() throws Fault {
 
@@ -219,8 +208,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
      * Rules tested: "*, ==" is evaluated before "&&, and"
      */
@@ -237,8 +225,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
      * Rules tested: "div, /, ==" is evaluated before "&&, and"
      */
@@ -257,8 +244,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
      * Rules tested: "mod, %, ==" is evaluated before "&&, and"
      */
@@ -277,8 +263,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
      * Rules tested: "*, ==" is evaluated before "||, or"
      */
@@ -296,8 +281,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
      * Rules tested: "div, /, ==" is evaluated before "||, or"
      */
@@ -317,8 +301,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
      * Rules tested: "mod, %, ==" is evaluated before "||, or"
      */
@@ -338,8 +321,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
      * Rules tested: "*" is evaluated before "? :"
      */
@@ -355,8 +337,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
      * Rules tested: "div, /, ==" is evaluated before "? :"
      */
@@ -374,8 +355,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
      * Rules tested: "mod, %, ==" is evaluated before "||, or"
      */
@@ -392,12 +372,10 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:28; EL:SPEC:27
      *
-     * @test_Strategy: Validate that the order of precedence is followed when an
-     * EL Expression is evaluated.
+     * @test_Strategy: Validate that the order of precedence is followed when an EL Expression is evaluated.
      *
-     * Rules tested: "( )" is evaluated before "+" "( )" is evaluated before "-"
-     * "( )" is evaluated before "*" "( )" is evaluated before "/" "( )" is
-     * evaluated before "%"
+     * Rules tested: "( )" is evaluated before "+" "( )" is evaluated before "-" "( )" is evaluated before "*" "( )" is
+     * evaluated before "/" "( )" is evaluated before "%"
      */
     public void elParenPreBinaryTest() throws Fault {
 
@@ -427,9 +405,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:29
      *
-     * @test_Strategy: Validate that qualified functions with a namespace prefix
-     * have precedence over the operators by constructing an expression which
-     * cannot be parsed due to this rule.
+     * @test_Strategy: Validate that qualified functions with a namespace prefix have precedence over the operators by
+     * constructing an expression which cannot be parsed due to this rule.
      */
     public void functionPrecedenceTest() throws Fault {
 
@@ -444,7 +421,8 @@ public class ELClient extends ServiceEETest {
             pass = true;
         }
 
-        if (!pass) throw new Fault("function precedence failed");
+        if (!pass)
+            throw new Fault("function precedence failed");
     }
 
     // ---------------------------------------------------------- private methods
@@ -453,7 +431,7 @@ public class ELClient extends ServiceEETest {
 
         boolean pass = false;
 
-        String[] symbol = {"$", "#"};
+        String[] symbol = { "$", "#" };
         String expr;
 
         try {
@@ -467,7 +445,8 @@ public class ELClient extends ServiceEETest {
                 TestUtil.logTrace("result is " + result.toString());
                 pass = (ExprEval.compareValue(result, expectedResult));
 
-                if (!pass) throw new Fault("TEST FAILED: pass = false");
+                if (!pass)
+                    throw new Fault("TEST FAILED: pass = false");
             }
         } catch (Exception e) {
             throw new Fault(e);

@@ -121,15 +121,18 @@ public class MimeHeaderTestServlet extends HttpServlet {
             } else if (!name.equals("Content-Type")) {
                 TestUtil.logErr("name mismatch - expected: Content-Type, received: " + name);
                 pass = false;
-            } else TestUtil.logMsg("name matches: " + name);
+            } else
+                TestUtil.logMsg("name matches: " + name);
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -157,15 +160,18 @@ public class MimeHeaderTestServlet extends HttpServlet {
             } else if (!value.equals("application/xml")) {
                 TestUtil.logErr("value mismatch - expected: application/xml, received: " + value);
                 pass = false;
-            } else TestUtil.logMsg("value matches: " + value);
+            } else
+                TestUtil.logMsg("value matches: " + value);
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

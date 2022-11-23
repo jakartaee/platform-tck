@@ -40,8 +40,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-2.1.7-1;
      *
-     * @test_Strategy: In server deployments of websocket implementations, there
-     * is one unique WebSocketContainer instance per application per Java VM
+     * @test_Strategy: In server deployments of websocket implementations, there is one unique WebSocketContainer instance
+     * per application per Java VM
      */
     public void webSocketContainerIsOnePerVMTest() throws Fault {
         invoke("srv", "anything", "", false);

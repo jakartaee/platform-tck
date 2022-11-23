@@ -37,7 +37,8 @@ public abstract class Employee implements Serializable {
 
     private Date hireDate;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(int id, String firstName, String lastName, Date hireDate) {
         this.id = id;

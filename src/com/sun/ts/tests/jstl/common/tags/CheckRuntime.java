@@ -39,21 +39,19 @@ public class CheckRuntime extends TagSupport {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Sets the name of the scoped attribute in which to export the result of the
-     * runtime check
+     * Sets the name of the scoped attribute in which to export the result of the runtime check
      */
     public void setVar(String var) {
         _var = var;
     }
 
     /**
-     * Actions may behave differently based on the available runtime version. This
-     * action will check to see if we're a 1.4 runtime or an earlier version.
+     * Actions may behave differently based on the available runtime version. This action will check to see if we're a 1.4
+     * runtime or an earlier version.
      */
     public int doEndTag() throws JspException {
         boolean is14 = false;

@@ -28,7 +28,7 @@ import java.io.IOException;
 public class WSCMsgServer {
     static final String EMPTY = "empty";
 
-    static final String MESSAGES[] = {"reset", "lastmsg"};
+    static final String MESSAGES[] = { "reset", "lastmsg" };
 
     static String message = EMPTY;
 

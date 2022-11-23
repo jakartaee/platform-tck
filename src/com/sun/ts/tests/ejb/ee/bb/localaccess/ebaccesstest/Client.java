@@ -47,8 +47,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -80,9 +79,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:2; EJB:SPEC:2.2; EJB:SPEC:123.2
      *
-     * @test_Strategy: Create an Entity Bean that accesses a Local Entity Bean
-     * within the same EAR. Deploy EAR on the J2EE server. Verify local access
-     * from Entity Bean to a local Entity Bean (CMP).
+     * @test_Strategy: Create an Entity Bean that accesses a Local Entity Bean within the same EAR. Deploy EAR on the J2EE
+     * server. Verify local access from Entity Bean to a local Entity Bean (CMP).
      */
 
     public void test1() throws Fault {
@@ -103,7 +101,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -111,9 +110,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:2.1; EJB:SPEC:123.1
      *
-     * @test_Strategy: An entity bean instance has access to the LocalHome and
-     * Local Interfaces of a Local stateless Session Bean. Verify local access
-     * from Entity Bean to a local stateful session bean.
+     * @test_Strategy: An entity bean instance has access to the LocalHome and Local Interfaces of a Local stateless Session
+     * Bean. Verify local access from Entity Bean to a local stateful session bean.
      */
 
     public void test2() throws Fault {
@@ -135,7 +133,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -143,9 +142,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:2.2; EJB:SPEC:123.2
      *
-     * @test_Strategy: An entity bean instance has access to the LocalHome and
-     * Local Interfaces of a Local Entity Bean (BMP). Verify local access from
-     * Entity Bean to a local Entity Bean (BMP).
+     * @test_Strategy: An entity bean instance has access to the LocalHome and Local Interfaces of a Local Entity Bean
+     * (BMP). Verify local access from Entity Bean to a local Entity Bean (BMP).
      */
 
     public void test3() throws Fault {
@@ -166,7 +164,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -174,9 +173,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:2.1; EJB:SPEC:123.1
      *
-     * @test_Strategy: An entity bean instance has access to the LocalHome and
-     * Local Interfaces of a Local stateful Session Bean. Verify local access from
-     * Entity Bean to a local stateless session bean.
+     * @test_Strategy: An entity bean instance has access to the LocalHome and Local Interfaces of a Local stateful Session
+     * Bean. Verify local access from Entity Bean to a local stateless session bean.
      */
 
     public void test4() throws Fault {
@@ -197,6 +195,7 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 }

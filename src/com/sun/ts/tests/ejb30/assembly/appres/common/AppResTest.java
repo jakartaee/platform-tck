@@ -36,7 +36,8 @@ import jakarta.validation.ValidatorFactory;
 import javax.sql.DataSource;
 
 public class AppResTest {
-    private AppResTest() {}
+    private AppResTest() {
+    }
 
     public static HelloRemoteIF getHelloBeanRemote() {
         return (HelloRemoteIF) lookupNoTry("java:app/env/hello");

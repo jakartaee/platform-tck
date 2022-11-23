@@ -30,9 +30,8 @@ public class Client extends AbstractUrlClient {
     public static final String SERVLET_NAME = "TestServlet";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -41,8 +40,7 @@ public class Client extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setServletName(SERVLET_NAME);
@@ -69,10 +67,9 @@ public class Client extends AbstractUrlClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-     * deployed separately. It client view jar is packaged inside current ear and
-     * referenced by both war and ejb jar thru MANIFEST.MF httpclient ->
-     * TestServlet -> helloBean
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and deployed separately. It client view jar is
+     * packaged inside current ear and referenced by both war and ejb jar thru MANIFEST.MF httpclient -> TestServlet ->
+     * helloBean
      */
     public void remoteAddByHelloEJB() throws Fault {
         TEST_PROPS.setProperty(APITEST, "remoteAddByHelloEJB");
@@ -84,10 +81,9 @@ public class Client extends AbstractUrlClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-     * deployed separately. It client view jar is packaged inside current ear and
-     * referenced by both war and ejb jar thru MANIFEST.MF httpclient ->
-     * TestServlet -> assemblyBean -> helloBean
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and deployed separately. It client view jar is
+     * packaged inside current ear and referenced by both war and ejb jar thru MANIFEST.MF httpclient -> TestServlet ->
+     * assemblyBean -> helloBean
      */
     public void remoteAddByHelloEJBFromAssemblyBean() throws Fault {
         TEST_PROPS.setProperty(APITEST, "remoteAddByHelloEJBFromAssemblyBean");
@@ -99,15 +95,12 @@ public class Client extends AbstractUrlClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-     * deployed separately. It client view jar is packaged inside current ear and
-     * referenced by both war and ejb jar thru MANIFEST.MF. The ejb-ref to
-     * assemblyBean is a local ejb ref, and the ejb-ref to helloBean is remote ejb
-     * ref. httpclient -> filter -> TestServlet
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and deployed separately. It client view jar is
+     * packaged inside current ear and referenced by both war and ejb jar thru MANIFEST.MF. The ejb-ref to assemblyBean is a
+     * local ejb ref, and the ejb-ref to helloBean is remote ejb ref. httpclient -> filter -> TestServlet
      *
-     * @todo See bug 6589464 (Missing optional ejb-ref-type leaves web app in
-     * unusable state) Due to this bug, the filter is not initialized and put into
-     * service. At request time, this filter is silently ignored.
+     * @todo See bug 6589464 (Missing optional ejb-ref-type leaves web app in unusable state) Due to this bug, the filter is
+     * not initialized and put into service. At request time, this filter is silently ignored.
      */
     public void ejbInjectionInFilterTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "ejbInjectionInFilterTest");

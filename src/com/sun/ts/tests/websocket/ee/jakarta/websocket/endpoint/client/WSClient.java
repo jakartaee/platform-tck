@@ -41,11 +41,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: onErrorWorksTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:68;WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:66;
+     * @assertion_ids: WebSocket:JAVADOC:68;WebSocket:JAVADOC:69; WebSocket:JAVADOC:66;
      *
-     * @test_Strategy: check @OnError works on Endpoint on Client Side
-     * jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
+     * @test_Strategy: check @OnError works on Endpoint on Client Side jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
      */
     public void onErrorWorksTest() throws Fault {
         WSCErrorClientEndpoint endpoint = new WSCErrorClientEndpoint();
@@ -64,11 +62,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: onCloseWorksTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:67;WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:66;
+     * @assertion_ids: WebSocket:JAVADOC:67;WebSocket:JAVADOC:69; WebSocket:JAVADOC:66;
      *
-     * @test_Strategy: check @OnClose works on Endpoint on Client side
-     * jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
+     * @test_Strategy: check @OnClose works on Endpoint on Client side jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
      */
     public void onCloseWorksTest() throws Fault {
         WSCCloseClientEndpoint endpoint = new WSCCloseClientEndpoint();

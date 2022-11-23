@@ -45,9 +45,8 @@ public abstract class ClientBase extends AbstractUrlClient {
      *
      * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1
      *
-     * @test_Strategy:client -> TestServlet -> TxServlet -> Remote bean TxServlet
-     * begins tx, invokes remote bean, whic setRollbackOnly. The tx status must
-     * not be active in TestServlet at the end of this request processing
+     * @test_Strategy:client -> TestServlet -> TxServlet -> Remote bean TxServlet begins tx, invokes remote bean, whic
+     * setRollbackOnly. The tx status must not be active in TestServlet at the end of this request processing
      */
 
     public void servletRemoteCmt() throws Fault {
@@ -60,9 +59,8 @@ public abstract class ClientBase extends AbstractUrlClient {
      *
      * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1
      *
-     * @test_Strategy:client -> TestServlet -> TxServlet -> local bean TxServlet
-     * begins tx, invokes local bean, whic setRollbackOnly. The tx status must not
-     * be active in TestServlet at the end of this request processing
+     * @test_Strategy:client -> TestServlet -> TxServlet -> local bean TxServlet begins tx, invokes local bean, whic
+     * setRollbackOnly. The tx status must not be active in TestServlet at the end of this request processing
      */
 
     public void servletLocalCmt() throws Fault {
@@ -73,18 +71,14 @@ public abstract class ClientBase extends AbstractUrlClient {
     /*
      * testName: servletRemoteCmtRequiresNew
      *
-     * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1; JavaEE:SPEC:39;
-     * JavaEE:SPEC:40
+     * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1; JavaEE:SPEC:39; JavaEE:SPEC:40
      *
-     * @test_Strategy: client -> TestServlet -> TxServlet -> Remote bean
-     * TestServlet begins UserTransaction, calls
-     * RequestDispatcher.include(TxServlet). TxServlet invokes the remote bean,
-     * which requires new tx and setRollbackOnly. TestServlet verifies tx status
-     * is active after the include call.
+     * @test_Strategy: client -> TestServlet -> TxServlet -> Remote bean TestServlet begins UserTransaction, calls
+     * RequestDispatcher.include(TxServlet). TxServlet invokes the remote bean, which requires new tx and setRollbackOnly.
+     * TestServlet verifies tx status is active after the include call.
      *
-     * This test verifies the tx propagation between servlets, and between servlet
-     * and EJB. Since the EJB has tx attribute RequiresNew, the tx started in
-     * servlet is not propagated to EJB.
+     * This test verifies the tx propagation between servlets, and between servlet and EJB. Since the EJB has tx attribute
+     * RequiresNew, the tx started in servlet is not propagated to EJB.
      */
 
     public void servletRemoteCmtRequiresNew() throws Fault {
@@ -95,18 +89,14 @@ public abstract class ClientBase extends AbstractUrlClient {
     /*
      * testName: servletLocalCmtRequiresNew
      *
-     * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1; JavaEE:SPEC:39;
-     * JavaEE:SPEC:40
+     * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1; JavaEE:SPEC:39; JavaEE:SPEC:40
      *
-     * @test_Strategy: client -> TestServlet -> TxServlet -> local bean
-     * TestServlet begins UserTransaction, calls
-     * RequestDispatcher.include(TxServlet). TxServlet invokes the local bean,
-     * which requires new tx and setRollbackOnly. TestServlet verifies tx status
-     * is active after the include call.
+     * @test_Strategy: client -> TestServlet -> TxServlet -> local bean TestServlet begins UserTransaction, calls
+     * RequestDispatcher.include(TxServlet). TxServlet invokes the local bean, which requires new tx and setRollbackOnly.
+     * TestServlet verifies tx status is active after the include call.
      *
-     * This test verifies the tx propagation between servlets, and between servlet
-     * and EJB. Since the EJB has tx attribute RequiresNew, the tx started in
-     * servlet is not propagated to EJB.
+     * This test verifies the tx propagation between servlets, and between servlet and EJB. Since the EJB has tx attribute
+     * RequiresNew, the tx started in servlet is not propagated to EJB.
      */
 
     public void servletLocalCmtRequiresNew() throws Fault {
@@ -119,9 +109,8 @@ public abstract class ClientBase extends AbstractUrlClient {
      *
      * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1
      *
-     * @test_Strategy: client -> TestServlet -> TxServlet -> Remote bean TxServlet
-     * begins UserTransaction, and invokes the remote bean, which setRollbackOnly.
-     * At the end of the http request, the tx must not be active in TestServlet.
+     * @test_Strategy: client -> TestServlet -> TxServlet -> Remote bean TxServlet begins UserTransaction, and invokes the
+     * remote bean, which setRollbackOnly. At the end of the http request, the tx must not be active in TestServlet.
      */
 
     public void servletRemoteCmtMandatory() throws Fault {
@@ -134,9 +123,8 @@ public abstract class ClientBase extends AbstractUrlClient {
      *
      * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1
      *
-     * @test_Strategy:client -> TestServlet -> TxServlet -> local bean TxServlet
-     * begins UserTransaction, and invokes the local bean, which setRollbackOnly.
-     * At the end of the http request, the tx must not be active in TestServlet.
+     * @test_Strategy:client -> TestServlet -> TxServlet -> local bean TxServlet begins UserTransaction, and invokes the
+     * local bean, which setRollbackOnly. At the end of the http request, the tx must not be active in TestServlet.
      */
 
     public void servletLocalCmtMandatory() throws Fault {
@@ -147,19 +135,16 @@ public abstract class ClientBase extends AbstractUrlClient {
     /*
      * testName: servletRemoteCmtNever
      *
-     * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1; JavaEE:SPEC:39;
-     * JavaEE:SPEC:40
+     * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1; JavaEE:SPEC:39; JavaEE:SPEC:40
      *
-     * @test_Strategy: client -> TestServlet -> TxServlet -> Remote bean
-     * TestServlet begins UserTransaction, calls
-     * RequestDispatcher.include(TxServlet). TxServlet invokes the remote bean,
-     * which requires tx attribute Never and setRollbackOnly.
+     * @test_Strategy: client -> TestServlet -> TxServlet -> Remote bean TestServlet begins UserTransaction, calls
+     * RequestDispatcher.include(TxServlet). TxServlet invokes the remote bean, which requires tx attribute Never and
+     * setRollbackOnly.
      *
      * TestServlet verifies tx status is active after the include call.
      *
-     * This test verifies the tx propagation between servlets, and between servlet
-     * and EJB. Since the EJB has tx attribute Never, the tx started in servlet is
-     * not propagated to EJB.
+     * This test verifies the tx propagation between servlets, and between servlet and EJB. Since the EJB has tx attribute
+     * Never, the tx started in servlet is not propagated to EJB.
      */
 
     public void servletRemoteCmtNever() throws Fault {
@@ -172,19 +157,16 @@ public abstract class ClientBase extends AbstractUrlClient {
     /*
      * testName: servletLocalCmtNever
      *
-     * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1; JavaEE:SPEC:39;
-     * JavaEE:SPEC:40
+     * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1; JavaEE:SPEC:39; JavaEE:SPEC:40
      *
-     * @test_Strategy: client -> TestServlet -> TxServlet -> local bean
-     * TestServlet begins UserTransaction, calls
-     * RequestDispatcher.include(TxServlet). TxServlet invokes the local bean,
-     * which requires tx attribute Never and setRollbackOnly.
+     * @test_Strategy: client -> TestServlet -> TxServlet -> local bean TestServlet begins UserTransaction, calls
+     * RequestDispatcher.include(TxServlet). TxServlet invokes the local bean, which requires tx attribute Never and
+     * setRollbackOnly.
      *
      * TestServlet verifies tx status is active after the include call.
      *
-     * This test verifies the tx propagation between servlets, and between servlet
-     * and EJB. Since the EJB has tx attribute Never, the tx started in servlet is
-     * not propagated to EJB.
+     * This test verifies the tx propagation between servlets, and between servlet and EJB. Since the EJB has tx attribute
+     * Never, the tx started in servlet is not propagated to EJB.
      */
     public void servletLocalCmtNever() throws Fault {
         TEST_PROPS.setProperty(APITEST, servletLocalCmtNever);
@@ -198,10 +180,9 @@ public abstract class ClientBase extends AbstractUrlClient {
      *
      * @assertion_ids: JavaEE:SPEC:54; JavaEE:SPEC:54.1
      *
-     * @test_Strategy: repeat the request to make sure the transaction in previous
-     * request has been properly terminated by the container. If you see server
-     * errors about nested transaction not supported, most likely the container
-     * has not properly cleared previous transaction.
+     * @test_Strategy: repeat the request to make sure the transaction in previous request has been properly terminated by
+     * the container. If you see server errors about nested transaction not supported, most likely the container has not
+     * properly cleared previous transaction.
      */
 
     public void servletTxTerminate() throws Fault {
@@ -234,10 +215,8 @@ public abstract class ClientBase extends AbstractUrlClient {
      *
      * @assertion_ids: JavaEE:SPEC:53
      *
-     * @test_Strategy: start UserTransaction in TestServlet, dispatch to
-     * TxServlet, check the status should be active in TxServlet. TxServlet
-     * rollbacks UserTransaction, and make sure the status in TestServlet is not
-     * active.
+     * @test_Strategy: start UserTransaction in TestServlet, dispatch to TxServlet, check the status should be active in
+     * TxServlet. TxServlet rollbacks UserTransaction, and make sure the status in TestServlet is not active.
      */
 
     public void interServletTxPropagation2() throws Fault {
@@ -252,8 +231,8 @@ public abstract class ClientBase extends AbstractUrlClient {
      *
      * @assertion_ids: JavaEE:SPEC:50
      *
-     * @test_Strategy: start UserTransaction in TestServlet, spawn a new thread,
-     * and check this new thread is not associated with any jta transaction.
+     * @test_Strategy: start UserTransaction in TestServlet, spawn a new thread, and check this new thread is not associated
+     * with any jta transaction.
      */
 
     public void newThreadNoTx() throws Fault {

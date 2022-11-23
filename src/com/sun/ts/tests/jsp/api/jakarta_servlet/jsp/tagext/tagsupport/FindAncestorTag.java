@@ -39,12 +39,11 @@ public class FindAncestorTag extends TagSupport {
     }
 
     /**
-     * Validate the behavior of TagSupport.findAncestorWithClass() behaves as
-     * expected when test tag is nested within multiple parent tags.
+     * Validate the behavior of TagSupport.findAncestorWithClass() behaves as expected when test tag is nested within
+     * multiple parent tags.
      *
      * @return Tag.EVAL_PAGE
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doEndTag() throws JspException {
         Tag tag = findAncestorWithClass(this, ParentTag.class);

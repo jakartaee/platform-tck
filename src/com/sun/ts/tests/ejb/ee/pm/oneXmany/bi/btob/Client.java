@@ -50,8 +50,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -105,15 +104,13 @@ public class Client extends EETest {
     /*
      * @testName: btob_1xM_bi_test0
      *
-     * @assertion_ids: EJB:SPEC:232.1; EJB:SPEC:219; EJB:SPEC:219.1; EJB:SPEC:220;
-     * EJB:SPEC:221; EJB:SPEC:222; EJB:SPEC:223; EJB:SPEC:224; EJB:SPEC:225
+     * @assertion_ids: EJB:SPEC:232.1; EJB:SPEC:219; EJB:SPEC:219.1; EJB:SPEC:220; EJB:SPEC:221; EJB:SPEC:222; EJB:SPEC:223;
+     * EJB:SPEC:224; EJB:SPEC:225
      *
-     * @test_Strategy: A 1xmany bi-directional relationship between entitybean
-     * objects. Create a 1xmany bi-directional relationship between entitybean
-     * objects. Do not set the relationship fields. The results should be set to
-     * empty or null. Deploy EAR on the J2EE server. Ensure the entity beans were
-     * created and that the persistence manager has null settings for the
-     * relationship fields not set.
+     * @test_Strategy: A 1xmany bi-directional relationship between entitybean objects. Create a 1xmany bi-directional
+     * relationship between entitybean objects. Do not set the relationship fields. The results should be set to empty or
+     * null. Deploy EAR on the J2EE server. Ensure the entity beans were created and that the persistence manager has null
+     * settings for the relationship fields not set.
      *
      */
 
@@ -129,7 +126,8 @@ public class Client extends EETest {
             bRef.init(props);
 
             // Bi-Directional relationship fields should be empty or null for beans
-            if (bRef.test0()) TestUtil.logMsg("relationship fields are empty or null - expected");
+            if (bRef.test0())
+                TestUtil.logMsg("relationship fields are empty or null - expected");
             else {
                 TestUtil.logErr("relationship fields are not empty or null - unexpected");
                 pass = false;
@@ -146,7 +144,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_bi_test0 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_bi_test0 failed");
     }
 
     /*
@@ -154,13 +153,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:232.1; EJB:SPEC:215
      *
-     * @test_Strategy: A 1xmany bi-directional relationship between entitybean
-     * objects. Create a 1xmany bi-directional relationship between entitybean
-     * objects. Do set relationship fields to null. The results should be set to
-     * null for single-valued relatonships and raise IllegaArgumentException for
-     * Collection fields. Deploy EAR on the J2EE server. Ensure the entity beans
-     * were created and that the persistence manager has null settings for the
-     * relationship fields not set.
+     * @test_Strategy: A 1xmany bi-directional relationship between entitybean objects. Create a 1xmany bi-directional
+     * relationship between entitybean objects. Do set relationship fields to null. The results should be set to null for
+     * single-valued relatonships and raise IllegaArgumentException for Collection fields. Deploy EAR on the J2EE server.
+     * Ensure the entity beans were created and that the persistence manager has null settings for the relationship fields
+     * not set.
      *
      */
 
@@ -176,7 +173,8 @@ public class Client extends EETest {
             bRef.init(props);
 
             // Bi-Directional relationship fields should be empty or null for beans
-            if (bRef.test0()) TestUtil.logMsg("relationship fields are empty or null - expected");
+            if (bRef.test0())
+                TestUtil.logMsg("relationship fields are empty or null - expected");
             else {
                 TestUtil.logErr("relationship fields are not empty or null - unexpected");
                 pass = false;
@@ -196,7 +194,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_bi_test0a failed");
+        if (!pass)
+            throw new Fault("btob_1xM_bi_test0a failed");
     }
 
     /*
@@ -204,10 +203,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:227
      *
-     * @test_Strategy: A 1xmany bi-directional relationship between entitybean
-     * objects. If the collection cmr-fields are set to the wrong relationship
-     * type than the persistence manager should raise the
-     * IllegalArgumentException. Uses set accessor method.
+     * @test_Strategy: A 1xmany bi-directional relationship between entitybean objects. If the collection cmr-fields are set
+     * to the wrong relationship type than the persistence manager should raise the IllegalArgumentException. Uses set
+     * accessor method.
      *
      */
 
@@ -236,7 +234,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_bi_test0b failed");
+        if (!pass)
+            throw new Fault("btob_1xM_bi_test0b failed");
     }
 
     /*
@@ -244,10 +243,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:227
      *
-     * @test_Strategy: A 1xmany bi-directional relationship between entitybean
-     * objects. If the collection cmr-fields are set to the wrong relationship
-     * type than the persistence manager should raise the IllegalArgumentException
-     * to null. Uses the Collection API add method.
+     * @test_Strategy: A 1xmany bi-directional relationship between entitybean objects. If the collection cmr-fields are set
+     * to the wrong relationship type than the persistence manager should raise the IllegalArgumentException to null. Uses
+     * the Collection API add method.
      *
      */
 
@@ -276,7 +274,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_bi_test0c failed");
+        if (!pass)
+            throw new Fault("btob_1xM_bi_test0c failed");
     }
 
     /*
@@ -284,11 +283,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:205; EJB:SPEC:165; EJB:SPEC:164
      *
-     * @test_Strategy: A 1xmany bi-directional relationship between entitybean
-     * objects. Create a 1xmany bi-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Perform the relationship assignment
-     * per assertion tags. Ensure the proper relationship results are correct
-     * after the assignment by the persistence manager.
+     * @test_Strategy: A 1xmany bi-directional relationship between entitybean objects. Create a 1xmany bi-directional
+     * relationship between entitybean objects. Deploy EAR on the J2EE server. Perform the relationship assignment per
+     * assertion tags. Ensure the proper relationship results are correct after the assignment by the persistence manager.
      *
      */
 
@@ -321,7 +318,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_bi_test1 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_bi_test1 failed");
     }
 
     /*
@@ -329,11 +327,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:205.1; EJB:SPEC:163
      *
-     * @test_Strategy: A 1xmany bi-directional relationship between entitybean
-     * objects. Create a 1xmany bi-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Perform the relationship assignment
-     * per assertion tag. Ensure the proper relationship results are correct after
-     * the assignment by the persistence manager.
+     * @test_Strategy: A 1xmany bi-directional relationship between entitybean objects. Create a 1xmany bi-directional
+     * relationship between entitybean objects. Deploy EAR on the J2EE server. Perform the relationship assignment per
+     * assertion tag. Ensure the proper relationship results are correct after the assignment by the persistence manager.
      *
      */
 
@@ -366,7 +362,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_bi_test2 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_bi_test2 failed");
     }
 
     /*
@@ -374,10 +371,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:205.2
      *
-     * @test_Strategy: Create a 1xmany bi-directional relationship between
-     * entitybean objects. Deploy it on the J2EE server. Perform the relationship
-     * assignment listed above. Ensure the proper relationship results are correct
-     * after the assignment by the persistence manager.
+     * @test_Strategy: Create a 1xmany bi-directional relationship between entitybean objects. Deploy it on the J2EE server.
+     * Perform the relationship assignment listed above. Ensure the proper relationship results are correct after the
+     * assignment by the persistence manager.
      *
      */
 
@@ -410,7 +406,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_bi_test3 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_bi_test3 failed");
     }
 
     /*
@@ -418,10 +415,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:205.3
      *
-     * @test_Strategy: Create a 1xmany bi-directional relationship between
-     * entitybean objects. Deploy EAR on the J2EE server. Perform the relationship
-     * assignment per assertion tag. Ensure the proper relationship results are
-     * correct after the assignment by the persistence manager.
+     * @test_Strategy: Create a 1xmany bi-directional relationship between entitybean objects. Deploy EAR on the J2EE
+     * server. Perform the relationship assignment per assertion tag. Ensure the proper relationship results are correct
+     * after the assignment by the persistence manager.
      *
      */
 
@@ -455,7 +451,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_bi_test4 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_bi_test4 failed");
     }
 
     /*
@@ -463,8 +460,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:201
      *
-     * @test_Strategy: A 1xmany bi-directional relationship between entitybean
-     * objects. Verify bi-directional data access between relationships.
+     * @test_Strategy: A 1xmany bi-directional relationship between entitybean objects. Verify bi-directional data access
+     * between relationships.
      *
      */
 
@@ -503,9 +500,12 @@ public class Client extends EETest {
             if (!bInfo.containsAll(b) || !aInfo.containsAll(a)) {
                 pass = false;
                 logErr("DataMismatch error");
-                if (!bInfo.containsAll(b)) logErr("bInfo does not match expected results");
-                if (!aInfo.containsAll(a)) logErr("aInfo does not match expected results");
-            } else logMsg("Data matches as expected");
+                if (!bInfo.containsAll(b))
+                    logErr("bInfo does not match expected results");
+                if (!aInfo.containsAll(a))
+                    logErr("aInfo does not match expected results");
+            } else
+                logMsg("Data matches as expected");
         } catch (Exception e) {
             throw new Fault("btob_1xM_bi_test5 failed", e);
         } finally {
@@ -518,6 +518,7 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_bi_test5 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_bi_test5 failed");
     }
 }

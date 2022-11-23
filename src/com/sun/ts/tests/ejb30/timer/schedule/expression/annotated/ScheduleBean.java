@@ -269,7 +269,7 @@ public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {
             exp.start(start);
             Helper.assertEquals("Check getStart()", start, exp.getStart(), sb);
         }
-        Date[] starts = {start, null};
+        Date[] starts = { start, null };
         for (Date aStart : starts) {
             Timer timer = timerService.createCalendarTimer(exp.start(aStart), (TimerConfig) null);
             Helper.assertEquals("Check getStart()", aStart, timer.getSchedule().getStart(), sb);
@@ -287,7 +287,7 @@ public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {
         }
         // verify that start can be set to the same value as end, and that
         // start and end can be null
-        Date[] dates = {end, null};
+        Date[] dates = { end, null };
         TimerConfig timerConfig = null;
         for (Date d : dates) {
             // set hour minute second to DEFAULT_ATTRIBUTE_VALUE_STAR so the timer
@@ -381,9 +381,8 @@ public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {
             }
         }
         if (result == null) {
-            result =
-                    "Got expected IllegalArgumentException when creating ScheduleExpression and Timer with all invalid int values for "
-                            + attributeType + ": " + Arrays.toString(values);
+            result = "Got expected IllegalArgumentException when creating ScheduleExpression and Timer with all invalid int values for "
+                    + attributeType + ": " + Arrays.toString(values);
         }
         return result;
     }
@@ -403,9 +402,8 @@ public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {
             }
         }
         if (result == null) {
-            result =
-                    "Got expected IllegalArgumentException when creating ScheduleExpression and Timer with all invalid int values for "
-                            + attributeType + ": " + Arrays.toString(values);
+            result = "Got expected IllegalArgumentException when creating ScheduleExpression and Timer with all invalid int values for "
+                    + attributeType + ": " + Arrays.toString(values);
         }
         return result;
     }

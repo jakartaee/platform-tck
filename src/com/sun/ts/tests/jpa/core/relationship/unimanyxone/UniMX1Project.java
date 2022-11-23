@@ -32,7 +32,8 @@ public class UniMX1Project implements Serializable {
         this.name = name;
     }
 
-    public UniMX1Project() {}
+    public UniMX1Project() {
+    }
 
     private static final long serialVersionUID = 1L;
 

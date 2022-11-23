@@ -37,12 +37,9 @@ import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-@MessageDriven(
-        name = "AroundInvokeBean",
-        description = "a simple MDB AroundInvokeBean",
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
-        })
+@MessageDriven(name = "AroundInvokeBean", description = "a simple MDB AroundInvokeBean", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+})
 
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -75,11 +72,13 @@ public class AroundInvokeBean extends AroundInvokeBase implements MessageListene
 
     // also declared in ejb-jar.xml
     @PostConstruct
-    private void postConstruct() {}
+    private void postConstruct() {
+    }
 
     // also declared in ejb-jar.xml
     @PreDestroy
-    private void preDestroy() {}
+    private void preDestroy() {
+    }
 
     // ============ abstract methods from super ==========================
     protected jakarta.ejb.EJBContext getEJBContext() {

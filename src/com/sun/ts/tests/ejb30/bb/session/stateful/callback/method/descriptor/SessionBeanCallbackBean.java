@@ -31,7 +31,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
 @Stateful(name = "SessionBeanCallbackBean")
-@Remote({CallbackIF.class})
+@Remote({ CallbackIF.class })
 public class SessionBeanCallbackBean extends CallbackBeanBase implements CallbackIF, jakarta.ejb.SessionBean {
 
     @Resource
@@ -47,13 +47,16 @@ public class SessionBeanCallbackBean extends CallbackBeanBase implements Callbac
 
     // ================= callback methods ====================================
 
-    public void setSessionContext(SessionContext sessionContext) {}
+    public void setSessionContext(SessionContext sessionContext) {
+    }
 
     // @PrePassivate
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 
     // @PostActivate
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
     // @PostConstruct
     private void ejbCreate() throws RuntimeException {
@@ -79,5 +82,6 @@ public class SessionBeanCallbackBean extends CallbackBeanBase implements Callbac
 
     // ================== business methods ====================================
     @Remove
-    public void removeFoo() {}
+    public void removeFoo() {
+    }
 }

@@ -28,12 +28,7 @@ import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.soap.MTOM;
 import jakarta.xml.ws.soap.SOAPBinding;
 
-@WebService(
-        portName = "MTOMFeatureTest4Port",
-        serviceName = "MTOMFeatureTestService",
-        targetNamespace = "http://mtomfeatureservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/MTOMFeatureTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTest4")
+@WebService(portName = "MTOMFeatureTest4Port", serviceName = "MTOMFeatureTestService", targetNamespace = "http://mtomfeatureservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/MTOMFeatureTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTest4")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @MTOM(enabled = false, threshold = 2000)
 public class MTOMFeatureTestImpl4 implements MTOMFeatureTest4 {

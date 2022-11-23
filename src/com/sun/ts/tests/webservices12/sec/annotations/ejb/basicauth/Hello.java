@@ -33,7 +33,7 @@ import jakarta.xml.ws.WebServiceContext;
 
 @WebService
 @Stateless
-@DeclareRoles({"Administrator", "Manager"})
+@DeclareRoles({ "Administrator", "Manager" })
 public class Hello {
 
     @Resource

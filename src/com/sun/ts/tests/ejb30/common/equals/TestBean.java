@@ -51,7 +51,8 @@ public class TestBean extends TestBeanBase implements TestIF {
     @EJB(name = "shoppingCartOther")
     private LocalShoppingCartIF shoppingCartOther;
 
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
     public void selfEquals() throws TestFailedException {

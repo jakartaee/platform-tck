@@ -27,15 +27,14 @@ import java.net.URL;
 import java.util.Properties;
 
 /**
- * This class will be used to perform simple servlet invocations. The servlet
- * invocations should be used to test these assertions on the server.
+ * This class will be used to perform simple servlet invocations. The servlet invocations should be used to test these
+ * assertions on the server.
  *
- * We will check for success or failure from within this file. So the actual
- * testcases in this class will simply consist of checking the server side
- * servlet invocations for success or failure.
+ * We will check for success or failure from within this file. So the actual testcases in this class will simply consist
+ * of checking the server side servlet invocations for success or failure.
  *
- * The tests in this class are intended to test the Servlets
- * deny-uncovered-http-methods DD semantic (Servlet 3.1 spec, section 13.8.4.2).
+ * The tests in this class are intended to test the Servlets deny-uncovered-http-methods DD semantic (Servlet 3.1 spec,
+ * section 13.8.4.2).
  *
  */
 public class Client extends ServiceEETest implements Serializable {
@@ -70,9 +69,8 @@ public class Client extends ServiceEETest implements Serializable {
     }
 
     /**
-     * @class.setup_props: logical.hostname.servlet; webServerHost; webServerPort;
-     *                     authuser; authpassword; user; password;
-     *                     securedWebServicePort;
+     * @class.setup_props: logical.hostname.servlet; webServerHost; webServerPort; authuser; authpassword; user; password;
+     * securedWebServicePort;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -89,22 +87,19 @@ public class Client extends ServiceEETest implements Serializable {
         }
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
      * @testName: testAllMethodsAllowedAnno
      *
      * @assertion_ids: Servlet:SPEC:310
      *
-     * @test_Strategy: This validates that we have a deny-uncovered-http-method
-     *                 set in our web.xml and NO methods explicitly listed in our
-     *                 security constraints. Details for this test include the
-     *                 following : - we are working with servlet:
-     *                 AllMethodsAllowedAnno which uses servlet annotations only
-     *                 and has no web.xml references - the only security that
-     *                 should be in effect should be whatever is defined in
-     *                 annotations. - attempts to access all denied methods shall
-     *                 return 200
+     * @test_Strategy: This validates that we have a deny-uncovered-http-method set in our web.xml and NO methods explicitly
+     * listed in our security constraints. Details for this test include the following : - we are working with servlet:
+     * AllMethodsAllowedAnno which uses servlet annotations only and has no web.xml references - the only security that
+     * should be in effect should be whatever is defined in annotations. - attempts to access all denied methods shall
+     * return 200
      *
      */
     public void testAllMethodsAllowedAnno() throws Fault {
@@ -141,15 +136,11 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Servlet:SPEC:309;
      *
-     * @test_Strategy: This validates that we have a deny-uncovered-http-method
-     *                 set in our web.xml for a servlet that explicitly specifies
-     *                 protection for Get and Post. This means that Get and Post
-     *                 can be access but because we are using
-     *                 deny-uncovered-http-methods element, everything else will
-     *                 be protected/denied access. - this uses servlet TestServlet
-     *                 and it's Get & Post methods. - get & put are specified in
-     *                 security constraint - so we should be able to access them -
-     *                 attempts to access get & put must be alloed (return 200=ok)
+     * @test_Strategy: This validates that we have a deny-uncovered-http-method set in our web.xml for a servlet that
+     * explicitly specifies protection for Get and Post. This means that Get and Post can be access but because we are using
+     * deny-uncovered-http-methods element, everything else will be protected/denied access. - this uses servlet TestServlet
+     * and it's Get & Post methods. - get & put are specified in security constraint - so we should be able to access them -
+     * attempts to access get & put must be alloed (return 200=ok)
      *
      */
     public void testAccessToMethodAllowed() throws Fault {
@@ -174,15 +165,11 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Servlet:SPEC:309;
      *
-     * @test_Strategy: This validates that we have a deny-uncovered-http-method
-     *                 set in our web.xml for a servlet that explicitly specifies
-     *                 protection for Get and Post. This means that Get and Post
-     *                 can be access but because we are using
-     *                 deny-uncovered-http-methods element, everything else will
-     *                 be protected/denied access. - this uses servlet TestServlet
-     *                 and it's Get & Post methods. - get & put are specified in
-     *                 security constraint - so we should be able to access them -
-     *                 attempts to access get & put must be alloed (return 200=ok)
+     * @test_Strategy: This validates that we have a deny-uncovered-http-method set in our web.xml for a servlet that
+     * explicitly specifies protection for Get and Post. This means that Get and Post can be access but because we are using
+     * deny-uncovered-http-methods element, everything else will be protected/denied access. - this uses servlet TestServlet
+     * and it's Get & Post methods. - get & put are specified in security constraint - so we should be able to access them -
+     * attempts to access get & put must be alloed (return 200=ok)
      *
      */
     public void testDenySomeUncovered() throws Fault {
@@ -207,20 +194,13 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Servlet:SPEC:309;
      *
-     * @test_Strategy: This validates that we have a deny-uncovered-http-method
-     *                 set in our web.xml on a servlet that uses an
-     *                 excluded-auth-constraint in combination with the
-     *                 http-method-omission element. Normally using
-     *                 http-method-omissions with excluded-auth-constraint would
-     *                 cause the listed methods (get & put in this case) to be
-     *                 considered uncovered. Adding in the
-     *                 deny-uncovered-http-method means we should be denied access
-     *                 to get & put. This test has the following details: - this
-     *                 uses servlet ExcludeAuthConstraint - get & put are
-     *                 specified in security constraint within
-     *                 http-method-omission - get & put should be uncovered (based
-     *                 on http-method-mission) BUT because of the
-     *                 deny-uncovered-http-method elelent, they must be denied!
+     * @test_Strategy: This validates that we have a deny-uncovered-http-method set in our web.xml on a servlet that uses an
+     * excluded-auth-constraint in combination with the http-method-omission element. Normally using http-method-omissions
+     * with excluded-auth-constraint would cause the listed methods (get & put in this case) to be considered uncovered.
+     * Adding in the deny-uncovered-http-method means we should be denied access to get & put. This test has the following
+     * details: - this uses servlet ExcludeAuthConstraint - get & put are specified in security constraint within
+     * http-method-omission - get & put should be uncovered (based on http-method-mission) BUT because of the
+     * deny-uncovered-http-method elelent, they must be denied!
      *
      */
     public void testExcludeAuthConstraint() throws Fault {
@@ -245,21 +225,14 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Servlet:SPEC:309;
      *
-     * @test_Strategy: This validates that we have a deny-uncovered-http-method
-     *                 set in our web.xml on a servlet that uses settings from
-     *                 both DD and annotations. The security constraints are set
-     *                 in the annotated servlet but the web.xml defines
-     *                 deny-uncovered-http-method - and that will apply to all
-     *                 uncovered methods in the annotated servlet.
+     * @test_Strategy: This validates that we have a deny-uncovered-http-method set in our web.xml on a servlet that uses
+     * settings from both DD and annotations. The security constraints are set in the annotated servlet but the web.xml
+     * defines deny-uncovered-http-method - and that will apply to all uncovered methods in the annotated servlet.
      *
-     *                 This test has the following details: - this uses servlet
-     *                 PartialDDServlet (with both annotation and DD settings) -
-     *                 get & put are specified in security constraint within
-     *                 annotation - get & put should be covered (and accessible by
-     *                 role Administrato) but all other methods should be
-     *                 uncovered from annotation POV - DD decares
-     *                 deny-uncovered-http-method and servlet refs so should cause
-     *                 the other "uncovered" methods to get "denied"
+     * This test has the following details: - this uses servlet PartialDDServlet (with both annotation and DD settings) -
+     * get & put are specified in security constraint within annotation - get & put should be covered (and accessible by
+     * role Administrato) but all other methods should be uncovered from annotation POV - DD decares
+     * deny-uncovered-http-method and servlet refs so should cause the other "uncovered" methods to get "denied"
      *
      */
     public void testPartialDDServlet() throws Fault {
@@ -296,10 +269,8 @@ public class Client extends ServiceEETest implements Serializable {
     }
 
     /*
-     * Convenience method that will establish a url connections and perform a
-     * get/post request. A username and password will be passed in the request
-     * header and they will be encoded using the BASE64Encoder class. returns the
-     * http status code.
+     * Convenience method that will establish a url connections and perform a get/post request. A username and password will
+     * be passed in the request header and they will be encoded using the BASE64Encoder class. returns the http status code.
      */
     private int invokeServlet(String sContext, String requestMethod) {
         int code = 200;
@@ -340,12 +311,10 @@ public class Client extends ServiceEETest implements Serializable {
             String str = conn.getResponseMessage();
             TestUtil.logMsg("Got response string of: " + str);
             /*
-             * // not used right now but left here in case we need it InputStream
-             * content = (InputStream)conn.getInputStream(); BufferedReader in = new
-             * BufferedReader(new InputStreamReader(content));
+             * // not used right now but left here in case we need it InputStream content = (InputStream)conn.getInputStream();
+             * BufferedReader in = new BufferedReader(new InputStreamReader(content));
              *
-             * try { String line; while ((line = in.readLine()) != null) {
-             * TestUtil.logMsg(line); } } finally { in.close(); }
+             * try { String line; while ((line = in.readLine()) != null) { TestUtil.logMsg(line); } } finally { in.close(); }
              */
 
         } catch (Exception e) {

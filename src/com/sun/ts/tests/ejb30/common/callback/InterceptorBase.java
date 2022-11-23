@@ -77,9 +77,8 @@ public abstract class InterceptorBase extends InterceptorBaseBase {
     }
 
     /**
-     * myRemove() is declared as an @PreDestroy method in some descriptors, and
-     * overriding it would remove it from the interceptor call chain. myRemove0 is
-     * thus added to do the same thing while not overriding myRemove().
+     * myRemove() is declared as an @PreDestroy method in some descriptors, and overriding it would remove it from the
+     * interceptor call chain. myRemove0 is thus added to do the same thing while not overriding myRemove().
      */
     protected void myRemove0(InvocationContext inv) throws RuntimeException {
         myRemove(inv);
@@ -106,9 +105,8 @@ public abstract class InterceptorBase extends InterceptorBaseBase {
     }
 
     /**
-     * Asserts that InvocationContext.getMethod() returns null for lifecycle
-     * interceptor methods. This method should only be used for checking lifecycle
-     * interceptor methods.
+     * Asserts that InvocationContext.getMethod() returns null for lifecycle interceptor methods. This method should only be
+     * used for checking lifecycle interceptor methods.
      */
     public static void assertNullGetMethod(InvocationContext inv) throws IllegalStateException {
         Method meth = inv.getMethod();

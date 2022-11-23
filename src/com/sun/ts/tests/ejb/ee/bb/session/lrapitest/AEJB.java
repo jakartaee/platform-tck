@@ -65,12 +65,14 @@ public class AEJB implements SessionBean {
     public boolean test1() {
         TestUtil.logTrace("test1");
         boolean pass = true;
-        if (getObjectTest()) TestUtil.logMsg("getEJBObject ... PASSED");
+        if (getObjectTest())
+            TestUtil.logMsg("getEJBObject ... PASSED");
         else {
             TestUtil.logMsg("getEJBObject ... FAILED");
             pass = false;
         }
-        if (getLocalObjectTest()) TestUtil.logMsg("getEJBLocalObject ... PASSED");
+        if (getLocalObjectTest())
+            TestUtil.logMsg("getEJBLocalObject ... PASSED");
         else {
             TestUtil.logMsg("getEJBLocalObject ... FAILED");
             pass = false;
@@ -110,7 +112,8 @@ public class AEJB implements SessionBean {
             EJBLocalObject object = context.getEJBLocalObject();
             if (object != null) {
                 TestUtil.logMsg("getEJBLocalObject() returned EJBLocalObject reference");
-                if (object instanceof ALocal) TestUtil.logMsg("An ALocal object");
+                if (object instanceof ALocal)
+                    TestUtil.logMsg("An ALocal object");
                 else {
                     TestUtil.logErr("Not an ALocal object");
                     pass = false;
@@ -134,7 +137,8 @@ public class AEJB implements SessionBean {
             EJBObject object = context.getEJBObject();
             if (object != null) {
                 TestUtil.logMsg("getEJBObject() returned EJBObject reference");
-                if (object instanceof A) TestUtil.logMsg("An A object");
+                if (object instanceof A)
+                    TestUtil.logMsg("An A object");
                 else {
                     TestUtil.logErr("Not an A object");
                     pass = false;

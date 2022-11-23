@@ -19,4 +19,5 @@ package com.sun.ts.tests.servlet.ee.platform.cdi;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class TCKTestBean {}
+public class TCKTestBean {
+}

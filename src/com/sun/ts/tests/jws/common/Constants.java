@@ -40,8 +40,7 @@ public class Constants {
 
     public static final String NSURI_SOAP12_ROLE_NONE = "http://www.w3.org/2003/05/soap-envelope/role/none";
 
-    public static final String NSURI_SOAP12_ROLE_ULTIMATE_RECEIVER =
-            "http://www.w3.org/2003/05/soap-envelope/role/ultimateReceiver";
+    public static final String NSURI_SOAP12_ROLE_ULTIMATE_RECEIVER = "http://www.w3.org/2003/05/soap-envelope/role/ultimateReceiver";
 
     public static final String NSURI_WSDL_SOAP = "http://schemas.xmlsoap.org/wsdl/soap/";
 

@@ -23,8 +23,7 @@ import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 
 /**
- * This class has READ locktype at class-level, which applies to all business
- * methods in this class.
+ * This class has READ locktype at class-level, which applies to all business methods in this class.
  */
 @Lock(LockType.READ)
 public abstract class ReadLockBeanBase extends DefaultLockBeanBase {

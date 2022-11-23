@@ -26,18 +26,18 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * A collection of test methods that are used by both server- and client-sides.
- * Test logics are grouped here to make it easier to share between ejb30 and
- * ejb30 lite tests.
+ * A collection of test methods that are used by both server- and client-sides. Test logics are grouped here to make it
+ * easier to share between ejb30 and ejb30 lite tests.
  */
 public class InvocationContextTestImpl {
-    private static final String[] paramsNew = new String[] {"new", "new"};
+    private static final String[] paramsNew = new String[] { "new", "new" };
 
-    private static final String[] paramsOld = new String[] {"old", "old"};
+    private static final String[] paramsOld = new String[] { "old", "old" };
 
     private static final String paramsCombined = "newnew";
 
-    private InvocationContextTestImpl() {}
+    private InvocationContextTestImpl() {
+    }
 
     public static void interceptAll(InvocationContext inv) throws TestFailedException {
         InvocationContextTestImpl impl = new InvocationContextTestImpl();
@@ -128,7 +128,7 @@ public class InvocationContextTestImpl {
                     "Expecting null/empty from InvocationContext.getParameters(), but got " + params);
         }
         try {
-            inv.setParameters(new Object[] {Boolean.TRUE});
+            inv.setParameters(new Object[] { Boolean.TRUE });
             throw new TestFailedException(
                     "Expecting IllegalArgumentException from InvocationContext.setParameters, but got none.");
         } catch (IllegalArgumentException e) {
@@ -193,7 +193,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Object[] {new Integer(0)};
+            objects = new Object[] { new Integer(0) };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -206,7 +206,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Object[] {new Integer(0), new Integer(1), new Integer(2)};
+            objects = new Object[] { new Integer(0), new Integer(1), new Integer(2) };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -219,7 +219,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Object[] {"a", "b"};
+            objects = new Object[] { "a", "b" };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -233,7 +233,7 @@ public class InvocationContextTestImpl {
 
         // this one is valid, and the target business method should still be
         // (Number, Number)
-        Integer[] ints = new Integer[] {5, 5};
+        Integer[] ints = new Integer[] { 5, 5 };
         inv.setParameters(ints);
 
         Object[] paramsAgain = inv.getParameters();
@@ -263,7 +263,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Object[] {new Character('0')};
+            objects = new Object[] { new Character('0') };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -276,7 +276,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Character[] {'0', '1', '2'};
+            objects = new Character[] { '0', '1', '2' };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -289,7 +289,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Object[] {"a", "b"};
+            objects = new Object[] { "a", "b" };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -303,7 +303,7 @@ public class InvocationContextTestImpl {
 
         // this one is valid, and the target business method should still be
         // (char, char), not (Object, Object)
-        objects = new Object[] {new Character('5'), new Character('5')};
+        objects = new Object[] { new Character('5'), new Character('5') };
         inv.setParameters(objects);
 
         Object[] paramsAgain = inv.getParameters();
@@ -334,7 +334,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Object[] {"0"};
+            objects = new Object[] { "0" };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -347,7 +347,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new String[] {"", "", ""};
+            objects = new String[] { "", "", "" };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -360,7 +360,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Object[] {new Object(), new Object()};
+            objects = new Object[] { new Object(), new Object() };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -374,7 +374,7 @@ public class InvocationContextTestImpl {
 
         // this one is valid, and the target business method should still be
         // (String, String), not (Object, Object)
-        objects = new Object[] {null, null};
+        objects = new Object[] { null, null };
         inv.setParameters(objects);
 
         Object[] paramsAgain = inv.getParameters();
@@ -405,7 +405,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new String[] {"0"};
+            objects = new String[] { "0" };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -418,7 +418,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Object[] {new Object[] {"0"}};
+            objects = new Object[] { new Object[] { "0" } };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -431,7 +431,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Object[] {new Object()};
+            objects = new Object[] { new Object() };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -445,7 +445,7 @@ public class InvocationContextTestImpl {
 
         // this one is valid, and the target business method should still be
         // (String[])
-        objects = new Object[] {new String[] {null}};
+        objects = new Object[] { new String[] { null } };
         inv.setParameters(objects);
 
         Object[] paramsAgain = inv.getParameters();
@@ -463,7 +463,7 @@ public class InvocationContextTestImpl {
         Object[] objects = null;
 
         try {
-            objects = new Object[] {Short.MIN_VALUE - 1, new Long(1)};
+            objects = new Object[] { Short.MIN_VALUE - 1, new Long(1) };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -476,7 +476,7 @@ public class InvocationContextTestImpl {
         }
 
         try {
-            objects = new Object[] {Integer.MAX_VALUE, new Long(1)};
+            objects = new Object[] { Integer.MAX_VALUE, new Long(1) };
             inv.setParameters(objects);
             throw new TestFailedException("Didn't get IllegalArgumentException when setParameters to "
                     + Arrays.asList(objects) + ".  The original business method is "
@@ -489,7 +489,7 @@ public class InvocationContextTestImpl {
         }
 
         // this one is valid
-        objects = new Object[] {Short.valueOf((short) 5), Long.valueOf(5)};
+        objects = new Object[] { Short.valueOf((short) 5), Long.valueOf(5) };
         inv.setParameters(objects);
 
         Object[] paramsAgain = inv.getParameters();
@@ -568,7 +568,7 @@ public class InvocationContextTestImpl {
         Number m = 8;
         Number n = 9;
         Number[] result = null;
-        Number[] expected = new Number[] {5, 5};
+        Number[] expected = new Number[] { 5, 5 };
         result = bean.setParametersIllegalArgumentExceptionForNumber(m, n);
         if (Arrays.equals(expected, result)) {
             Helper.getLogger().info("Got expected return value " + Arrays.asList(result) + " from bean " + bean);
@@ -583,7 +583,7 @@ public class InvocationContextTestImpl {
         char m = '8';
         char n = '9';
         char[] result = null;
-        char[] expected = new char[] {'5', '5'};
+        char[] expected = new char[] { '5', '5' };
         result = bean.setParametersIllegalArgumentExceptionForChar(m, n);
         if (Arrays.equals(expected, result)) {
             Helper.getLogger().info("Got expected return value " + Arrays.asList(result) + " from bean " + bean);
@@ -598,7 +598,7 @@ public class InvocationContextTestImpl {
         String m = "8";
         String n = "9";
         String[] result = null;
-        String[] expected = new String[] {null, null};
+        String[] expected = new String[] { null, null };
         result = bean.setParametersIllegalArgumentExceptionForString(m, n);
         if (Arrays.equals(expected, result)) {
             Helper.getLogger().info("Got expected return value " + Arrays.asList(result) + " from bean " + bean);
@@ -611,9 +611,9 @@ public class InvocationContextTestImpl {
     private static void setParametersIllegalArgumentExceptionForStringArray0(InvocationContextIF bean)
             throws TestFailedException {
         String m = "8";
-        String[] strings = new String[] {m};
+        String[] strings = new String[] { m };
         String[] result = null;
-        String[] expected = new String[] {null};
+        String[] expected = new String[] { null };
         result = bean.setParametersIllegalArgumentExceptionForStringArray(strings);
         if (Arrays.equals(expected, result)) {
             Helper.getLogger().info("Got expected return value " + Arrays.asList(result) + " from bean " + bean);
@@ -628,7 +628,7 @@ public class InvocationContextTestImpl {
         short m = 0;
         long n = 1;
         Number[] result = null;
-        Number[] expected = {new Byte((byte) 5), new Integer(5)};
+        Number[] expected = { new Byte((byte) 5), new Integer(5) };
         result = bean.setParametersIllegalArgumentExceptionForShortLong(m, n);
 
         // using Arrays.equals will return false, since numeirc coersion changed

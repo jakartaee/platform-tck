@@ -32,13 +32,15 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @Stateful(name = "StatefulTestBean")
-@Remote({RemoteIF.class})
-@Local({LocalIF.class})
+@Remote({ RemoteIF.class })
+@Local({ LocalIF.class })
 public class StatefulTestBean implements LocalIF {
-    public StatefulTestBean() {}
+    public StatefulTestBean() {
+    }
 
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 
     @Resource(name = "sessionContext")
     private SessionContext sessionContext;
@@ -62,5 +64,6 @@ public class StatefulTestBean implements LocalIF {
     }
 
     @TransactionAttribute(TransactionAttributeType.NEVER)
-    public void never() {}
+    public void never() {
+    }
 }

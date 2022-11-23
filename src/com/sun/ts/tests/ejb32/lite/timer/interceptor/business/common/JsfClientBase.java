@@ -24,8 +24,7 @@ public class JsfClientBase extends com.sun.ts.tests.ejb30.timer.common.JsfClient
      *
      * @assertion_ids:
      *
-     * @test_Strategy: create a timer in all interceptor methods. Verify they
-     * expire as expected.
+     * @test_Strategy: create a timer in all interceptor methods. Verify they expire as expected.
      */
     public void aroundInvokeMethods() {
         businessTimerBean.createMillisecondLaterTimer(getTestName());

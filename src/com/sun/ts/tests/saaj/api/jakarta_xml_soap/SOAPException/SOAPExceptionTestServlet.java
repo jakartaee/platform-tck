@@ -97,8 +97,10 @@ public class SOAPExceptionTestServlet extends HttpServlet {
             }
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -116,7 +118,8 @@ public class SOAPExceptionTestServlet extends HttpServlet {
         } catch (Exception e) {
             if (e instanceof SOAPException) {
                 String reason = e.getMessage();
-                if (reason.equals("foobar")) TestUtil.logMsg("SOAPExceptionConstructor2Test test PASSED");
+                if (reason.equals("foobar"))
+                    TestUtil.logMsg("SOAPExceptionConstructor2Test test PASSED");
                 else {
                     TestUtil.logErr("SOAPExceptionConstructor2Test test FAILED");
                     TestUtil.logErr("reason: expected foobar, received " + reason);
@@ -129,8 +132,10 @@ public class SOAPExceptionTestServlet extends HttpServlet {
             }
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -149,7 +154,8 @@ public class SOAPExceptionTestServlet extends HttpServlet {
         } catch (Exception e) {
             if (e instanceof SOAPException) {
                 String reason = e.getMessage();
-                if (reason.equals("foobar")) TestUtil.logMsg("SOAPExceptionConstructor3Test test PASSED");
+                if (reason.equals("foobar"))
+                    TestUtil.logMsg("SOAPExceptionConstructor3Test test PASSED");
                 else {
                     TestUtil.logErr("SOAPExceptionConstructor3Test test FAILED");
                     TestUtil.logErr("reason: expected foobar, received " + reason);
@@ -158,8 +164,8 @@ public class SOAPExceptionTestServlet extends HttpServlet {
                 /*
                  * Throwable t = ((SOAPException)e).getCause(); if (t.equals(foo))
                  * TestUtil.logMsg("SOAPExceptionConstructor3Test test PASSED"); else {
-                 * TestUtil.logErr("SOAPExceptionConstructor3Test test FAILED");
-                 * TestUtil.logErr("Throwable objects do not match"); pass = false; }
+                 * TestUtil.logErr("SOAPExceptionConstructor3Test test FAILED"); TestUtil.logErr("Throwable objects do not match"); pass
+                 * = false; }
                  */
             } else {
                 TestUtil.logErr("SOAPExceptionConstructor3Test test FAILED");
@@ -168,8 +174,10 @@ public class SOAPExceptionTestServlet extends HttpServlet {
             }
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -189,7 +197,8 @@ public class SOAPExceptionTestServlet extends HttpServlet {
             if (e instanceof SOAPException) {
                 TestUtil.logMsg("SOAPExceptionConstructor4Test test PASSED");
                 Throwable t = ((SOAPException) e).getCause();
-                if (t.equals(foo)) TestUtil.logMsg("SOAPExceptionConstructor4Test test PASSED");
+                if (t.equals(foo))
+                    TestUtil.logMsg("SOAPExceptionConstructor4Test test PASSED");
                 else {
                     TestUtil.logErr("SOAPExceptionConstructor4Test test FAILED");
                     TestUtil.logErr("Throwable objects do not match");
@@ -201,8 +210,10 @@ public class SOAPExceptionTestServlet extends HttpServlet {
             }
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -223,7 +234,8 @@ public class SOAPExceptionTestServlet extends HttpServlet {
         } catch (Exception e) {
             if (e instanceof SOAPException) {
                 Throwable t = ((SOAPException) e).getCause();
-                if (t.equals(foo)) TestUtil.logMsg("InitGetCauseTest test PASSED");
+                if (t.equals(foo))
+                    TestUtil.logMsg("InitGetCauseTest test PASSED");
                 else {
                     TestUtil.logErr("InitGetCauseTest test FAILED");
                     TestUtil.logErr("Throwable objects do not match");
@@ -236,8 +248,10 @@ public class SOAPExceptionTestServlet extends HttpServlet {
             }
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

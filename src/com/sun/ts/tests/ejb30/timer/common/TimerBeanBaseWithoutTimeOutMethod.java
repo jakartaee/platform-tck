@@ -37,9 +37,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Since most bean classes have no business interface, all public methods in
- * this class are considered as business methods. In this class, method timeout
- * is not annotated with @TimeOut so that subclass may configure its own timeout
+ * Since most bean classes have no business interface, all public methods in this class are considered as business
+ * methods. In this class, method timeout is not annotated with @TimeOut so that subclass may configure its own timeout
  * method.
  */
 public class TimerBeanBaseWithoutTimeOutMethod {

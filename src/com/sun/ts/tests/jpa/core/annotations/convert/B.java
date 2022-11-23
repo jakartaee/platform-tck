@@ -40,11 +40,10 @@ public class B implements java.io.Serializable {
     protected Integer value;
 
     @Embedded
-    @Converts(
-            value = {
-                @Convert(attributeName = "street", converter = DotConverter.class),
-                @Convert(attributeName = "state", converter = NumberToStateConverter.class)
-            })
+    @Converts(value = {
+            @Convert(attributeName = "street", converter = DotConverter.class),
+            @Convert(attributeName = "state", converter = NumberToStateConverter.class)
+    })
     protected Address address;
 
     // ===========================================================

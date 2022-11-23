@@ -21,8 +21,8 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * This class serves as an abstract implementation of the DeliverableInterface.
- * It can be extended to customize values for a particular deliverable.
+ * This class serves as an abstract implementation of the DeliverableInterface. It can be extended to customize values
+ * for a particular deliverable.
  *
  * @author Kyle Grucci
  */
@@ -46,7 +46,7 @@ public abstract class AbstractDeliverable implements DeliverableInterface {
             // TS hash table
             htTSValidVehicles = new Hashtable();
             // add default values
-            htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"ejb", "servlet", "jsp"});
+            htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] { "ejb", "servlet", "jsp" });
         }
         return htTSValidVehicles;
     }

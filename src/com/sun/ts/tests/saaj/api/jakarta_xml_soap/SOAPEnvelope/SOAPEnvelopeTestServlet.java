@@ -167,11 +167,15 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("addBodyTest() test PASSED");
-        else TestUtil.logErr("addBodyTest() test FAILED");
+        if (pass)
+            TestUtil.logMsg("addBodyTest() test PASSED");
+        else
+            TestUtil.logErr("addBodyTest() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -212,11 +216,15 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("getBodyTest() test PASSED");
-        else TestUtil.logErr("getBodyTest() test FAILED");
+        if (pass)
+            TestUtil.logMsg("getBodyTest() test PASSED");
+        else
+            TestUtil.logErr("getBodyTest() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -251,11 +259,15 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("addHeaderTest() test PASSED");
-        else TestUtil.logErr("addHeaderTest() test FAILED");
+        if (pass)
+            TestUtil.logMsg("addHeaderTest() test PASSED");
+        else
+            TestUtil.logErr("addHeaderTest() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -296,11 +308,15 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("getHeaderTest() test PASSED");
-        else TestUtil.logErr("getHeaderTest() test FAILED");
+        if (pass)
+            TestUtil.logMsg("getHeaderTest() test PASSED");
+        else
+            TestUtil.logErr("getHeaderTest() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -345,11 +361,15 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("createNameTest1() test PASSED");
-        else TestUtil.logErr("createNameTest1() test FAILED");
+        if (pass)
+            TestUtil.logMsg("createNameTest1() test PASSED");
+        else
+            TestUtil.logErr("createNameTest1() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -400,11 +420,15 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("createNameTest2() test PASSED");
-        else TestUtil.logErr("createNameTest2() test FAILED");
+        if (pass)
+            TestUtil.logMsg("createNameTest2() test PASSED");
+        else
+            TestUtil.logErr("createNameTest2() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -447,11 +471,15 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("createNameTest3() test PASSED");
-        else TestUtil.logErr("createNameTest3() test FAILED");
+        if (pass)
+            TestUtil.logMsg("createNameTest3() test PASSED");
+        else
+            TestUtil.logErr("createNameTest3() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

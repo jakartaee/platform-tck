@@ -68,13 +68,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgClearBodyQueueTextTest
      *
-     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473;
-     * JMS:JAVADOC:449; JMS:SPEC:178; JMS:JAVADOC:291;
+     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473; JMS:JAVADOC:449; JMS:SPEC:178;
+     * JMS:JAVADOC:291;
      *
-     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to
-     * Create and send a Text message. Have the mdb read the message call
-     * clearBody, verify body is empty after clearBody. verify properties are not
-     * effected by clearBody. Write to the message again 3.11
+     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to Create and send a Text message. Have the
+     * mdb read the message call clearBody, verify body is empty after clearBody. verify properties are not effected by
+     * clearBody. Write to the message again 3.11
      */
     public void mdbMsgClearBodyQueueTextTest() throws Fault {
         String testCase1 = "msgClearBodyQueueTextTestCreate";
@@ -97,13 +96,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgClearBodyQueueObjectTest
      *
-     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473;
-     * JMS:JAVADOC:449; JMS:SPEC:178; JMS:JAVADOC:291;
+     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473; JMS:JAVADOC:449; JMS:SPEC:178;
+     * JMS:JAVADOC:291;
      *
-     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to
-     * Create and send a Object message. Have the mdb read the message call
-     * clearBody, verify body is empty after clearBody. verify properties are not
-     * effected by clearBody. Write to the message again 3.11
+     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to Create and send a Object message. Have
+     * the mdb read the message call clearBody, verify body is empty after clearBody. verify properties are not effected by
+     * clearBody. Write to the message again 3.11
      */
     public void mdbMsgClearBodyQueueObjectTest() throws Fault {
         String testCase1 = "msgClearBodyQueueObjectTestCreate";
@@ -126,13 +124,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgClearBodyQueueMapTest
      *
-     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473;
-     * JMS:JAVADOC:449; JMS:SPEC:178; JMS:JAVADOC:291;
+     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473; JMS:JAVADOC:449; JMS:SPEC:178;
+     * JMS:JAVADOC:291;
      *
-     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to
-     * Create and send a Map message. Have the mdb read the message call
-     * clearBody, verify body is empty after clearBody. verify properties are not
-     * effected by clearBody. Write to the message again 3.11
+     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to Create and send a Map message. Have the
+     * mdb read the message call clearBody, verify body is empty after clearBody. verify properties are not effected by
+     * clearBody. Write to the message again 3.11
      */
     public void mdbMsgClearBodyQueueMapTest() throws Fault {
         String testCase1 = "msgClearBodyQueueMapTestCreate";
@@ -155,13 +152,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgClearBodyQueueBytesTest
      *
-     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473;
-     * JMS:JAVADOC:449; JMS:SPEC:178; JMS:JAVADOC:291;
+     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473; JMS:JAVADOC:449; JMS:SPEC:178;
+     * JMS:JAVADOC:291;
      *
-     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to
-     * Create and send a Bytes message. Have the mdb read the message call
-     * clearBody, verify body is empty after clearBody. verify properties are not
-     * effected by clearBody. Write to the message again 3.11
+     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to Create and send a Bytes message. Have the
+     * mdb read the message call clearBody, verify body is empty after clearBody. verify properties are not effected by
+     * clearBody. Write to the message again 3.11
      */
     public void mdbMsgClearBodyQueueBytesTest() throws Fault {
         String testCase1 = "msgClearBodyQueueBytesTestCreate";
@@ -184,13 +180,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgClearBodyQueueStreamTest
      *
-     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473;
-     * JMS:JAVADOC:449; JMS:SPEC:178; JMS:JAVADOC:291;
+     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473; JMS:JAVADOC:449; JMS:SPEC:178;
+     * JMS:JAVADOC:291;
      *
-     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to
-     * Create and send a Stream message. Have the mdb read the message call
-     * clearBody, verify body is empty after clearBody. verify properties are not
-     * effected by clearBody. Write to the message again 3.11
+     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to Create and send a Stream message. Have
+     * the mdb read the message call clearBody, verify body is empty after clearBody. verify properties are not effected by
+     * clearBody. Write to the message again 3.11
      */
     public void mdbMsgClearBodyQueueStreamTest() throws Fault {
         String testCase1 = "msgClearBodyQueueStreamTestCreate";
@@ -215,9 +210,8 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:JAVADOC:174; JMS:JAVADOC:584;
      *
-     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to
-     * create a stream message and a byte message. write to the message body, call
-     * the reset method, try to write to the body expect a
+     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to create a stream message and a byte
+     * message. write to the message body, call the reset method, try to write to the body expect a
      * MessageNotWriteableException to be thrown.
      */
     public void mdbMsgResetQueueTest() throws Fault {
@@ -242,9 +236,8 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:79; JMS:JAVADOC:134; JMS:JAVADOC:439;
      *
-     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to
-     * write a null string to a MapMessage. Attempt to read the null value as a
-     * char.
+     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to write a null string to a MapMessage.
+     * Attempt to read the null value as a char.
      */
     public void mdbReadNullCharNotValidQueueMapTest() throws Fault {
         String testCase1 = "readNullCharNotValidQueueMapTestCreate";
@@ -268,9 +261,8 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:79; JMS:JAVADOC:134; JMS:JAVADOC:439;
      *
-     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to
-     * write a null string to a StreamMessage. Attempt to read the null value as a
-     * char.
+     * @test_Strategy: Call a session bean. Have the session bean invoke an mdb to write a null string to a StreamMessage.
+     * Attempt to read the null value as a char.
      */
 
     public void mdbReadNullCharNotValidQueueStreamTest() throws Fault {

@@ -31,7 +31,8 @@ public class PropertyUtilDateId implements java.io.Serializable {
 
     private java.util.Date date;
 
-    public PropertyUtilDateId() {}
+    public PropertyUtilDateId() {
+    }
 
     public PropertyUtilDateId(java.util.Date id, java.util.Date date) {
         this.id = id;

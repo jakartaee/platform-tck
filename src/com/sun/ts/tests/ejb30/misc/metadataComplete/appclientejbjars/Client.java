@@ -31,10 +31,7 @@ import java.util.Properties;
 import javax.naming.NamingException;
 
 @EJBs({
-    @EJB(
-            name = "typeLevelBeanNotInjected",
-            beanInterface = RemoteCalculator.class,
-            beanName = "StatelessRemoteCalculatorBean")
+        @EJB(name = "typeLevelBeanNotInjected", beanInterface = RemoteCalculator.class, beanName = "StatelessRemoteCalculatorBean")
 })
 public class Client extends EETest {
     // injected in descriptor
@@ -83,7 +80,8 @@ public class Client extends EETest {
         }
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: annotationNotProcessedForStateless

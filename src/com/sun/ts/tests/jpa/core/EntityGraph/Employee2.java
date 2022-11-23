@@ -30,7 +30,7 @@ import jakarta.persistence.TemporalType;
 import java.util.Date;
 
 @NamedEntityGraphs({
-    @NamedEntityGraph(attributeNodes = {@NamedAttributeNode("firstName"), @NamedAttributeNode(value = "lastName")})
+        @NamedEntityGraph(attributeNodes = { @NamedAttributeNode("firstName"), @NamedAttributeNode(value = "lastName") })
 })
 @Entity
 @Table(name = "EMPLOYEE")
@@ -49,7 +49,8 @@ public class Employee2 implements java.io.Serializable, Comparable<Employee2> {
 
     private Department department;
 
-    public Employee2() {}
+    public Employee2() {
+    }
 
     public Employee2(int id, String firstName, String lastName) {
         this.id = id;
@@ -136,8 +137,10 @@ public class Employee2 implements java.io.Serializable, Comparable<Employee2> {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Employee2)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Employee2))
+            return false;
 
         Employee2 o1 = (Employee2) o;
 

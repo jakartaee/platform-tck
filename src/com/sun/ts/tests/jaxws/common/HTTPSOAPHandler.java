@@ -45,7 +45,8 @@ public abstract class HTTPSOAPHandler implements SOAPHandler<SOAPMessageContext>
         return true;
     }
 
-    public void close(MessageContext context) {}
+    public void close(MessageContext context) {
+    }
 
     public boolean handleFault(SOAPMessageContext context) {
         return true;
@@ -55,7 +56,9 @@ public abstract class HTTPSOAPHandler implements SOAPHandler<SOAPMessageContext>
         return null;
     }
 
-    protected void processOutboundMessage(SOAPMessageContext context) {}
+    protected void processOutboundMessage(SOAPMessageContext context) {
+    }
 
-    protected void processInboundMessage(SOAPMessageContext context) {}
+    protected void processInboundMessage(SOAPMessageContext context) {
+    }
 }

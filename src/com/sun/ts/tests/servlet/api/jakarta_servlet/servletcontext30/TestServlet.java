@@ -151,16 +151,16 @@ public class TestServlet extends GenericTCKServlet {
         PrintWriter pw = response.getWriter();
 
         String[] names = {
-            "SERVLET_TEST",
-            "FILTER_TEST",
-            "LISTENER_TEST",
-            "SCC_LISTENER_TEST",
-            "SCS_LISTENER_TEST",
-            "CSC_LISTENER_TEST",
-            "DUPLICATEC_SERVLET_TEST",
-            "DUPLICATES_SERVLET_TEST",
-            "DUPLICATEC_FILTER_TEST",
-            "DUPLICATES_FILTER_TEST"
+                "SERVLET_TEST",
+                "FILTER_TEST",
+                "LISTENER_TEST",
+                "SCC_LISTENER_TEST",
+                "SCS_LISTENER_TEST",
+                "CSC_LISTENER_TEST",
+                "DUPLICATEC_SERVLET_TEST",
+                "DUPLICATES_SERVLET_TEST",
+                "DUPLICATEC_FILTER_TEST",
+                "DUPLICATES_FILTER_TEST"
         };
 
         for (String name : names) {
@@ -176,7 +176,7 @@ public class TestServlet extends GenericTCKServlet {
             throws ServletException, IOException {
         PrintWriter pw = response.getWriter();
 
-        String[] names = {"DUPLICATEC_SERVLET_TEST", "DUPLICATES_SERVLET_TEST"};
+        String[] names = { "DUPLICATEC_SERVLET_TEST", "DUPLICATES_SERVLET_TEST" };
 
         for (String name : names) {
             pw.println(name + "=" + getServletContext().getInitParameter(name).toUpperCase());
@@ -191,7 +191,7 @@ public class TestServlet extends GenericTCKServlet {
             throws ServletException, IOException {
         PrintWriter pw = response.getWriter();
 
-        String[] names = {"DUPLICATEC_FILTER_TEST", "DUPLICATES_FILTER_TEST"};
+        String[] names = { "DUPLICATEC_FILTER_TEST", "DUPLICATES_FILTER_TEST" };
 
         for (String name : names) {
             pw.println(name + "=" + getServletContext().getInitParameter(name).toUpperCase());

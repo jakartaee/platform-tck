@@ -70,7 +70,8 @@ public class ELDeferredMethodStringLiteralTag extends SimpleTagSupport {
                         + dblResult);
             }
 
-            if (pass == true) out.println("Test PASSED.");
+            if (pass == true)
+                out.println("Test PASSED.");
 
         } catch (Throwable t) {
             JspTestUtil.handleThrowable(t, out, "ELDeferredMethodStringLiteralTag");

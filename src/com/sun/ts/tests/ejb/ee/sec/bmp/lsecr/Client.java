@@ -95,18 +95,15 @@ public class Client extends EETest {
     /*
      * @testName: test1
      *
-     * @assertion_ids: EJB:SPEC:827; EJB:SPEC:822; EJB:SPEC:817; EJB:SPEC:815;
-     * EJB:SPEC:814; EJB:SPEC:786; EJB:SPEC:785
+     * @assertion_ids: EJB:SPEC:827; EJB:SPEC:822; EJB:SPEC:817; EJB:SPEC:815; EJB:SPEC:814; EJB:SPEC:786; EJB:SPEC:785
      *
      *
-     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing
-     * a local method of the second bean. 2. Protect the method within the bean
-     * with multiple security roles, including run-as identity. 3. Call the bean
-     * method using run-as identity 4. Verify call returns successfully.
+     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing a local method of the second bean. 2.
+     * Protect the method within the bean with multiple security roles, including run-as identity. 3. Call the bean method
+     * using run-as identity 4. Verify call returns successfully.
      *
-     * Note: A caller principal who is in at least one of the security roles
-     * defined on a method permission element for an EJB method must be allowed to
-     * execute the method.
+     * Note: A caller principal who is in at least one of the security roles defined on a method permission element for an
+     * EJB method must be allowed to execute the method.
      *
      * Test one ejb using run-as identity accessing another EJB's local interface.
      */
@@ -116,7 +113,8 @@ public class Client extends EETest {
         try {
             ejbref = ejbhome.create(props, newTable, 1, "coffee-1", 1);
 
-            if (!ejbref.EjbIsAuthz(props)) throw new Fault("Caller authorization test failed");
+            if (!ejbref.EjbIsAuthz(props))
+                throw new Fault("Caller authorization test failed");
             logMsg("Caller authorization test passed");
         } catch (Exception e) {
             throw new Fault("Caller authorization test failed: ", e);
@@ -126,20 +124,16 @@ public class Client extends EETest {
     /*
      * @testName: test3
      *
-     * @assertion_ids: EJB:SPEC:61.7; EJB:SPEC:81.4; EJB:SPEC:827; EJB:SPEC:822;
-     * EJB:SPEC:817; EJB:SPEC:815; EJB:SPEC:814; EJB:SPEC:786; EJB:SPEC:785
+     * @assertion_ids: EJB:SPEC:61.7; EJB:SPEC:81.4; EJB:SPEC:827; EJB:SPEC:822; EJB:SPEC:817; EJB:SPEC:815; EJB:SPEC:814;
+     * EJB:SPEC:786; EJB:SPEC:785
      *
-     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing
-     * a local method of the second bean. 2. Protect the method in the second bean
-     * using a security role (role1), which run-as identity is in. 3. Link a
-     * security role name - emp_secrole - to role1 in the bean. 4. Invoke the
-     * method with emp_secrole as parameter. 5. bean calls
-     * isCallerInRole(emp_secrole) and returns return value. 6. Verify return
-     * value is true.
+     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing a local method of the second bean. 2.
+     * Protect the method in the second bean using a security role (role1), which run-as identity is in. 3. Link a security
+     * role name - emp_secrole - to role1 in the bean. 4. Invoke the method with emp_secrole as parameter. 5. bean calls
+     * isCallerInRole(emp_secrole) and returns return value. 6. Verify return value is true.
      *
-     * Note: A security role reference name must be the security role name used in
-     * isCallerInRole() api call as specified in EJB 2.0 specification, section
-     * 21.2.5.3. This is a positive test.
+     * Note: A security role reference name must be the security role name used in isCallerInRole() api call as specified in
+     * EJB 2.0 specification, section 21.2.5.3. This is a positive test.
      *
      * Test one ejb using run-as identity accessing another EJB's local interface.
      */
@@ -162,16 +156,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61.8; EJB:SPEC:786
      *
-     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing
-     * a local method of the second bean. 2. Link a security role name -
-     * mrg_secrole - to role1, which run-as identity is not in. 3. Invoke the
-     * method with mgr_secrole as a parameter. 4. bean calls
-     * isCallerInRole(mgr_secrole) and returns return value. 5. Verify return
+     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing a local method of the second bean. 2.
+     * Link a security role name - mrg_secrole - to role1, which run-as identity is not in. 3. Invoke the method with
+     * mgr_secrole as a parameter. 4. bean calls isCallerInRole(mgr_secrole) and returns return value. 5. Verify return
      * value is false.
      *
-     * Note: A security role reference name must be the security role name used in
-     * isCallerInRole() api call as specified in EJB 2.0 specification, section
-     * 21.2.5.3. This is a negative test.
+     * Note: A security role reference name must be the security role name used in isCallerInRole() api call as specified in
+     * EJB 2.0 specification, section 21.2.5.3. This is a negative test.
      *
      * Test one ejb using run-as identity accessing another EJB's local interface.
      */
@@ -194,18 +185,14 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:799;EJB:SPEC:804
      *
-     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing
-     * two bmp entity beans (ejb1 and ejb2). 2. Link security role name (roleref)
-     * to role1 in ejb1 and role2 in ejb2. 3. Ensure run-as identity is in role1
-     * but not in role2. 4. Invoke method in ejb1 that returns value of
-     * isCallerInRole(roleref). Verify return value is true. 5. Invoke method in
-     * ejb2 that returns value of isCallerInRole(roleref). Verify return value is
-     * false.
+     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing two bmp entity beans (ejb1 and ejb2). 2.
+     * Link security role name (roleref) to role1 in ejb1 and role2 in ejb2. 3. Ensure run-as identity is in role1 but not
+     * in role2. 4. Invoke method in ejb1 that returns value of isCallerInRole(roleref). Verify return value is true. 5.
+     * Invoke method in ejb2 that returns value of isCallerInRole(roleref). Verify return value is false.
      *
-     * Note: Security role references are scoped to a bean as specified in EJB
-     * Specification 21.2.5.3 . So two ejbs in the same application can each
-     * define an identical security role reference that is linked to different
-     * security roles in each ejb.
+     * Note: Security role references are scoped to a bean as specified in EJB Specification 21.2.5.3 . So two ejbs in the
+     * same application can each define an identical security role reference that is linked to different security roles in
+     * each ejb.
      *
      */
 
@@ -229,16 +216,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:811
      *
-     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing
-     * the second bean with overloaded methods: method1 and method2. 2. Call
-     * method1 passing emp_secrole. 3. Method1 returns isCallerInRole(emp_secrole)
-     * which must be true. 4. Call method2 passing two role references as
-     * parameters. 5. Method must return false (run-as not in both security
-     * roles).
+     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing the second bean with overloaded methods:
+     * method1 and method2. 2. Call method1 passing emp_secrole. 3. Method1 returns isCallerInRole(emp_secrole) which must
+     * be true. 4. Call method2 passing two role references as parameters. 5. Method must return false (run-as not in both
+     * security roles).
      *
-     * Note: Methods declared in a method-permission element can be overloaded as
-     * specified in EJB Specification 2.0 21.3.2. This test verifies that correct
-     * overloaded method is called depending upon the number of arguments.
+     * Note: Methods declared in a method-permission element can be overloaded as specified in EJB Specification 2.0 21.3.2.
+     * This test verifies that correct overloaded method is called depending upon the number of arguments.
      */
 
     public void test2() throws Fault {
@@ -260,19 +244,16 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:647.5 ; EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing
-     * a local method of the second bean. 2. Protect bean method with multiple
-     * security roles. 3. Make sure that run-as identity is not in any of the
-     * security roles that protects the method. 4. Verify jakarta.ejb.EJBException
-     * is generated. Note: If a caller principal is not in one of the security
-     * roles defined in a method permission element for the method, then the ejb
-     * container must generate a jakarta.ejb.EJBException.
+     * @test_Strategy: 1. Create a bmp entity bean using run-as identity accessing a local method of the second bean. 2.
+     * Protect bean method with multiple security roles. 3. Make sure that run-as identity is not in any of the security
+     * roles that protects the method. 4. Verify jakarta.ejb.EJBException is generated. Note: If a caller principal is not
+     * in one of the security roles defined in a method permission element for the method, then the ejb container must
+     * generate a jakarta.ejb.EJBException.
      *
      * This is a local interface test.
      *
-     * EJB Specification v2.0 specifies that jakarta.ejb.EJBException is returned
-     * not only for authorization failures but also for communicaton errors. The
-     * test may pass instead of failing if the exception is generated because of a
+     * EJB Specification v2.0 specifies that jakarta.ejb.EJBException is returned not only for authorization failures but
+     * also for communicaton errors. The test may pass instead of failing if the exception is generated because of a
      * communication failure.
      */
 
@@ -281,7 +262,8 @@ public class Client extends EETest {
         try {
             ejbref = ejbhome.create(props, newTable, 1, "coffee-1", 1);
 
-            if (!ejbref.EjbNotAuthz(props)) throw new Fault("No caller authorization test failed");
+            if (!ejbref.EjbNotAuthz(props))
+                throw new Fault("No caller authorization test failed");
             logMsg("No authorization test passed");
         } catch (Exception e) {
             throw new Fault("No caller authorization test failed:", e);
@@ -293,16 +275,14 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create a bmp entity bean invokes a local method of the
-     * second bean. 2. Have this local method with method permission unchecked 3.
-     * Verify that access is allowed.
+     * @test_Strategy: 1. Create a bmp entity bean invokes a local method of the second bean. 2. Have this local method with
+     * method permission unchecked 3. Verify that access is allowed.
      *
-     * Note: "The unchecked element specifies that a method is not checked for
-     * authorization by the container prior to invocation of the method."
+     * Note: "The unchecked element specifies that a method is not checked for authorization by the container prior to
+     * invocation of the method."
      *
-     * This test tests that when an ejb using runas identity access local
-     * interface method, which has method permission unchecked, access should be
-     * allowed.
+     * This test tests that when an ejb using runas identity access local interface method, which has method permission
+     * unchecked, access should be allowed.
      */
 
     public void test7() throws Fault {
@@ -310,7 +290,8 @@ public class Client extends EETest {
         try {
             ejbref = ejbhome.create(props, newTable, 1, "coffee-1", 1);
 
-            if (!ejbref.checktest1(props)) throw new Fault("checktest1 returned false");
+            if (!ejbref.checktest1(props))
+                throw new Fault("checktest1 returned false");
             logMsg("unchecked test passed");
         } catch (Exception e) {
             throw new Fault("unchecked test failed:", e);
@@ -322,18 +303,15 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:808
      *
-     * @test_Strategy: 1. Create a bmp entity bean using runas identity invokes a
-     * local method of the second bean. 2. Put this local method on exclude-list.
-     * 3. Verify jakarta.ejb.EJBException is generated.
+     * @test_Strategy: 1. Create a bmp entity bean using runas identity invokes a local method of the second bean. 2. Put
+     * this local method on exclude-list. 3. Verify jakarta.ejb.EJBException is generated.
      *
-     * Note: "The exclude-list element defines a set of methods which the
-     * assembler marks to be uncallable. It contains one or more methods. If the
-     * method permission relation contains methods that are in the exclude list,
-     * the deployer should consider those methods to be uncallable."
+     * Note: "The exclude-list element defines a set of methods which the assembler marks to be uncallable. It contains one
+     * or more methods. If the method permission relation contains methods that are in the exclude list, the deployer should
+     * consider those methods to be uncallable."
      *
-     * This test tests an ejb using runas identity accessing a local interface
-     * method in the exclude list, jakarta.ejb.EJBException will be thrown when
-     * invoked.
+     * This test tests an ejb using runas identity accessing a local interface method in the exclude list,
+     * jakarta.ejb.EJBException will be thrown when invoked.
      *
      */
 
@@ -342,7 +320,8 @@ public class Client extends EETest {
         try {
             ejbref = ejbhome.create(props, newTable, 1, "coffee-1", 1);
 
-            if (!ejbref.excludetest1(props)) throw new Fault("excludetest1 returned false");
+            if (!ejbref.excludetest1(props))
+                throw new Fault("excludetest1 returned false");
             logMsg("exclude-list test passed");
         } catch (Exception e) {
             throw new Fault("exclude-list test failed:", e);
@@ -351,7 +330,8 @@ public class Client extends EETest {
 
     public void cleanup() throws Fault {
         try {
-            if (ejbref != null) ejbref.remove();
+            if (ejbref != null)
+                ejbref.remove();
         } catch (Exception e) {
             logErr("Cleanup failed: ", e);
         }

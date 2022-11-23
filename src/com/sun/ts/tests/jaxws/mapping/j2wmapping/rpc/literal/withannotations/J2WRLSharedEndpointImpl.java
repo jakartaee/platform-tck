@@ -23,11 +23,7 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
 
-@WebService(
-        portName = "J2WRLSharedEndpointPort",
-        serviceName = "J2WRLSharedService",
-        targetNamespace = "http://rpclitservice.org/wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.J2WRLSharedEndpoint")
+@WebService(portName = "J2WRLSharedEndpointPort", serviceName = "J2WRLSharedService", targetNamespace = "http://rpclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.J2WRLSharedEndpoint")
 @BindingType(value = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING)
 public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {
     public String oneTwoThree(int one, long two, double three) {
@@ -62,7 +58,7 @@ public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {
     }
 
     public String[] arrayOperation() {
-        return new String[] {"one", "two", "three"};
+        return new String[] { "one", "two", "three" };
     }
 
     public J2WRLSharedBean getBean() {
@@ -73,12 +69,15 @@ public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {
         return "success";
     }
 
-    public void oneWayOperation() {}
+    public void oneWayOperation() {
+    }
 
-    public void oneWayOperationWithParams(Integer i, Long l, Double d) {}
+    public void oneWayOperationWithParams(Integer i, Long l, Double d) {
+    }
 
     public void operationWithHeaderAndHeaderFaultAndFault(ConfigHeader configheader)
-            throws ConfigHeaderFault, MyFault, MyOtherFault {}
+            throws ConfigHeaderFault, MyFault, MyOtherFault {
+    }
 
     public String hello(String hello) {
         return hello;

@@ -23,9 +23,8 @@ package com.sun.ts.tests.ejb30.lite.appexception.common.inheritance;
 import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 
 /**
- * A runtime exception and also an ApplicationException. Its superclass is
- * annotated as ApplicationException without specifying inherited attribute. So
- * all subclass by default become ApplicationException.
+ * A runtime exception and also an ApplicationException. Its superclass is annotated as ApplicationException without
+ * specifying inherited attribute. So all subclass by default become ApplicationException.
  */
 public class Exception1 extends AtUncheckedAppException {
     public Exception1(String message) {

@@ -22,4 +22,5 @@ package com.sun.ts.tests.ejb30.common.generics;
 import jakarta.ejb.Local;
 
 @Local
-public interface LocalParameterizedIF extends ParameterizedIF {}
+public interface LocalParameterizedIF extends ParameterizedIF {
+}

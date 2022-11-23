@@ -79,8 +79,10 @@ public class B implements java.io.Serializable {
 
     public boolean isA() {
         TestUtil.logTrace("isA");
-        if (getA1() != null) TestUtil.logTrace("Relationship to A is not null...");
-        else TestUtil.logTrace("Relationship to A is null...");
+        if (getA1() != null)
+            TestUtil.logTrace("Relationship to A is not null...");
+        else
+            TestUtil.logTrace("Relationship to A is null...");
         return getA1() != null;
     }
 
@@ -89,7 +91,8 @@ public class B implements java.io.Serializable {
         if (isA()) {
             A a1 = getA1();
             return a1;
-        } else return null;
+        } else
+            return null;
     }
 
     public String getBId() {
@@ -126,17 +129,25 @@ public class B implements java.io.Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
         final B other = (B) obj;
         if (id == null) {
-            if (other.id != null) return false;
-        } else if (!id.equals(other.id)) return false;
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
         if (name == null) {
-            if (other.name != null) return false;
-        } else if (!name.equals(other.name)) return false;
-        if (value != other.value) return false;
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        if (value != other.value)
+            return false;
         return true;
     }
 }

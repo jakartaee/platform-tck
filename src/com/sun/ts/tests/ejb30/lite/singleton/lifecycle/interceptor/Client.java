@@ -27,17 +27,16 @@ import java.util.Vector;
 import java.util.logging.Level;
 
 /**
- * Interceptors of singleton beans have the same lifecycle behavior as that
- * singleton. Use identityHashCode to verify different instances. Though
- * identityHashCode is not guaranteed to be unique, but it's reasonable and
- * common practice for them to be unique.
+ * Interceptors of singleton beans have the same lifecycle behavior as that singleton. Use identityHashCode to verify
+ * different instances. Though identityHashCode is not guaranteed to be unique, but it's reasonable and common practice
+ * for them to be unique.
  */
 public class Client extends EJBLiteClientBase {
     private static final int NUM_OF_CONCURRENT_REQUESTS = 1000;
 
     private static final String[] INTERCEPTORS = new String[] {
-        Interceptor0.class.getSimpleName(), Interceptor1.class.getSimpleName(),
-        Interceptor2.class.getSimpleName(), Interceptor3.class.getSimpleName()
+            Interceptor0.class.getSimpleName(), Interceptor1.class.getSimpleName(),
+            Interceptor2.class.getSimpleName(), Interceptor3.class.getSimpleName()
     };
 
     @EJB(name = "ejb/aSingleton", beanName = "ASingletonBean")
@@ -52,8 +51,7 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: sameInterceptorInstanceA
      *
-     * @test_Strategy: Only 1 instance of each interceptor is associated with
-     * ASingletonBean.
+     * @test_Strategy: Only 1 instance of each interceptor is associated with ASingletonBean.
      */
     public void sameInterceptorInstanceA() {
         for (String i : INTERCEPTORS) {
@@ -64,8 +62,7 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: sameInterceptorInstanceC
      *
-     * @test_Strategy: Only 1 instance of each interceptor is associated with
-     * CSingletonBean.
+     * @test_Strategy: Only 1 instance of each interceptor is associated with CSingletonBean.
      */
     public void sameInterceptorInstanceC() {
         for (String i : INTERCEPTORS) {
@@ -90,7 +87,7 @@ public class Client extends EJBLiteClientBase {
      * @test_Strategy: interceptors are not destructed after system exception.
      */
     public void noDestructionAfterSystemExceptionC() {
-        for (CommonSingletonIF b : new CommonSingletonIF[] {c2Singleton, cSingleton}) {
+        for (CommonSingletonIF b : new CommonSingletonIF[] { c2Singleton, cSingleton }) {
             for (String i : INTERCEPTORS) {
                 noDestructionAfterSystemException(b, i);
             }

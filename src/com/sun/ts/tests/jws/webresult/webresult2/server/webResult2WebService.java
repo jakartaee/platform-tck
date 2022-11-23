@@ -30,10 +30,7 @@ import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 
 @WebService(wsdlLocation = "WEB-INF/wsdl/WebResult2WebServiceService.wsdl")
-@SOAPBinding(
-        style = SOAPBinding.Style.DOCUMENT,
-        use = SOAPBinding.Use.LITERAL,
-        parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
+@SOAPBinding(style = SOAPBinding.Style.DOCUMENT, use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
 public class webResult2WebService {
 
     @WebMethod(operationName = "helloString", action = "urn:HelloString")

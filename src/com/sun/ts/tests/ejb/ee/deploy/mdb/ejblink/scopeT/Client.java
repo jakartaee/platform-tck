@@ -57,19 +57,14 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:766
      *
-     * @test_Strategy: A MDB bean references two other beans. One in the same JAR
-     *                 file, the other in a distinct JAR file. Both referenced
-     *                 beans use the same ejb-name in their respective JAR file,
-     *                 and their are identified by a String environment entry
-     *                 ('myName').
+     * @test_Strategy: A MDB bean references two other beans. One in the same JAR file, the other in a distinct JAR file.
+     * Both referenced beans use the same ejb-name in their respective JAR file, and their are identified by a String
+     * environment entry ('myName').
      *
-     *                 The ejb-link for the external bean is in the form
-     *                 '../external.jar#BeanName'.
+     * The ejb-link for the external bean is in the form '../external.jar#BeanName'.
      *
-     *                 Check that we can deploy the application, that the
-     *                 referencing bean can lookup the two other ones. Check that
-     *                 referenced beans's identities (as reported by the String
-     *                 env. entry) match the ones specified in the DD.
+     * Check that we can deploy the application, that the referencing bean can lookup the two other ones. Check that
+     * referenced beans's identities (as reported by the String env. entry) match the ones specified in the DD.
      */
     public void testEjblinkScope() throws Fault {
 

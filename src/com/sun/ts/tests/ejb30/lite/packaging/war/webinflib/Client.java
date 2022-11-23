@@ -30,9 +30,8 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * .war packaging of EJB classes are used in many other test directories. This
- * directory covers uncommon packaging structures. Also covers: same class
- * loader, and same naming context between web components and EJBs, and across
+ * .war packaging of EJB classes are used in many other test directories. This directory covers uncommon packaging
+ * structures. Also covers: same class loader, and same naming context between web components and EJBs, and across
  * multiple EJBs packaged in the same .war
  */
 public class Client extends EJBLiteClientBase {
@@ -65,9 +64,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: circularInjection
      *
-     * @test_Strategy: package a stateless bean class in WEB-INF/lib/1.jar, and a
-     * singleton bean class in WEB-INF/lib/2.jar, and a stateful in
-     * WEB-INF/classes. Circular injections.
+     * @test_Strategy: package a stateless bean class in WEB-INF/lib/1.jar, and a singleton bean class in WEB-INF/lib/2.jar,
+     * and a stateful in WEB-INF/classes. Circular injections.
      */
     public void circularInjection() {
         for (BeanBase b : beans) {
@@ -78,8 +76,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: sameClassLoader
      *
-     * @test_Strategy: EJBs packaged in a .war have the same class loading
-     * requirements as other non-EJB classes packaged in a .war.
+     * @test_Strategy: EJBs packaged in a .war have the same class loading requirements as other non-EJB classes packaged in
+     * a .war.
      */
     public void sameClassLoader() {
         int expected = System.identityHashCode(getClass().getClassLoader());
@@ -91,9 +89,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: clientToBeanClassLookup
      *
-     * @test_Strategy: client looking up ejb-ref injections in bean class. It must
-     * succeed since cleint and ejb packaged together share the same naming. Not
-     * for standalone client.
+     * @test_Strategy: client looking up ejb-ref injections in bean class. It must succeed since cleint and ejb packaged
+     * together share the same naming. Not for standalone client.
      */
     public void clientToBeanClassLookup() {
         for (BeanBase b : beans) {
@@ -110,9 +107,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: beanClassToClientLookup
      *
-     * @test_Strategy: bean looking up resource injected into client. It must
-     * succeed since cleint and ejb packaged together share the same naming. Not
-     * for standalone client.
+     * @test_Strategy: bean looking up resource injected into client. It must succeed since cleint and ejb packaged together
+     * share the same naming. Not for standalone client.
      */
     public void beanClassToClientLookup() {
         for (BeanBase b : beans) {
@@ -124,8 +120,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: crossEJBLookup
      *
-     * @test_Strategy: EJBContext looking up ejb-ref injected into other beans. It
-     * must succeed since ejbs packaged together share the same naming context.
+     * @test_Strategy: EJBContext looking up ejb-ref injected into other beans. It must succeed since ejbs packaged together
+     * share the same naming context.
      */
     public void crossEJBLookup() {
         for (BeanBase lookupFrom : beans) {

@@ -162,7 +162,7 @@ public class LocalTxMessageWork1 implements Work {
         Method onMessageMethod = null;
         try {
             Class msgListenerClass = TSMessageListenerInterface.class;
-            Class[] paramTypes = {java.lang.String.class};
+            Class[] paramTypes = { java.lang.String.class };
             onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
 
         } catch (NoSuchMethodException ex) {
@@ -172,7 +172,8 @@ public class LocalTxMessageWork1 implements Work {
     }
 
     @Override
-    public void release() {}
+    public void release() {
+    }
 
     public void stop() {
         this.stop = true;

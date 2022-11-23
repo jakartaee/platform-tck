@@ -35,12 +35,10 @@ public class BodySynchronizationTag extends BodyContainerInteractionTag {
     }
 
     /**
-     * Adds two attributes to the PageContext to be synchronized after
-     * doStartTag() has been called.
+     * Adds two attributes to the PageContext to be synchronized after doStartTag() has been called.
      *
      * @return an int value based on what the tag has been configured to return
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doStartTag() throws JspException {
         JspTestUtil.debug("[BodySynchronizationTag] in doStartTag()");
@@ -50,11 +48,9 @@ public class BodySynchronizationTag extends BodyContainerInteractionTag {
     }
 
     /**
-     * Adds two attributes to the PageContext to be synchronized after
-     * doInitBody() has been called.
+     * Adds two attributes to the PageContext to be synchronized after doInitBody() has been called.
      *
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public void doInitBody() throws JspException {
         JspTestUtil.debug("[BodySynchronizationTag] in doInitBody()");
@@ -64,12 +60,10 @@ public class BodySynchronizationTag extends BodyContainerInteractionTag {
     }
 
     /**
-     * Adds two attributes to the PageContext to be synchronized after doEndTag()
-     * has been called.
+     * Adds two attributes to the PageContext to be synchronized after doEndTag() has been called.
      *
      * @return an int value based on what the tag has been configured to return
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doEndTag() throws JspException {
         JspTestUtil.debug("[BodySynchronizationTag] in doEndTag()");
@@ -80,12 +74,10 @@ public class BodySynchronizationTag extends BodyContainerInteractionTag {
     }
 
     /**
-     * Adds two attributes to the PageContext to be synchronized after
-     * doAfterBody() has been called.
+     * Adds two attributes to the PageContext to be synchronized after doAfterBody() has been called.
      *
      * @return an int value based on what the tag has been configured to return
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doAfterBody() throws JspException {
         JspTestUtil.debug("[BodySynchronizationTag] in doAfterBody()");
@@ -105,8 +97,7 @@ public class BodySynchronizationTag extends BodyContainerInteractionTag {
     /**
      * Called by container to set the body content of the action.
      *
-     * @param content
-     *          - the body content
+     * @param content - the body content
      */
     public void setBodyContent(BodyContent content) {
         super.setBodyContent(content);

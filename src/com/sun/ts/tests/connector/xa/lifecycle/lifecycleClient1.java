@@ -88,12 +88,10 @@ public class lifecycleClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:5;
      *
-     * @test_Strategy: Check to see if
-     * XAManagedConnectionFacotry.setResourceAdapter and ResourceAdatper.start was
-     * called once. If both are called once then the test passes.
+     * @test_Strategy: Check to see if XAManagedConnectionFacotry.setResourceAdapter and ResourceAdatper.start was called
+     * once. If both are called once then the test passes.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis.
      *
      *
      */
@@ -166,9 +164,8 @@ public class lifecycleClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:227;
      *
-     * @test_Strategy: Check to see if
-     * XAManagedConnectionFacotry.setResourceAdapter is called twice. If it is,
-     * that is a violation against Connector:SPEC:227.
+     * @test_Strategy: Check to see if XAManagedConnectionFacotry.setResourceAdapter is called twice. If it is, that is a
+     * violation against Connector:SPEC:227.
      *
      */
     public void testAssociationMCFandRA2() throws Fault {
@@ -216,11 +213,10 @@ public class lifecycleClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:4;
      *
-     * @test_Strategy: Check to see if Bootstrap was passed from the application
-     * server. and check to see if it was not null.
+     * @test_Strategy: Check to see if Bootstrap was passed from the application server. and check to see if it was not
+     * null.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis.
      *
      *
      */
@@ -289,12 +285,10 @@ public class lifecycleClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:3; Connector:SPEC:162;
      *
-     * @test_Strategy: Check to see if XAManagedConnectionFacotry constructor was
-     * called atleast once. If it was then ResourceAdapter is instantiated atleast
-     * once per resource adapter deployment and the test passes.
+     * @test_Strategy: Check to see if XAManagedConnectionFacotry constructor was called atleast once. If it was then
+     * ResourceAdapter is instantiated atleast once per resource adapter deployment and the test passes.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis.
      *
      *
      */
@@ -363,11 +357,11 @@ public class lifecycleClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:11;
      *
-     * @test_Strategy: Check to see if XAResourceAdapter.start was called more
-     * than once. If it has then it is not being shared or reused.
+     * @test_Strategy: Check to see if XAResourceAdapter.start was called more than once. If it has then it is not being
+     * shared or reused.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis. for end-to-end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis. for end-to-end
+     * verification.
      *
      */
     public void testRASharability() throws Fault {
@@ -439,12 +433,11 @@ public class lifecycleClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:6;
      *
-     * @test_Strategy: Check to see if
-     * XAManagedConnectionFactory.setResourceAdapter was called exactly once. If
-     * it has then the test passes.
+     * @test_Strategy: Check to see if XAManagedConnectionFactory.setResourceAdapter was called exactly once. If it has then
+     * the test passes.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis for end-to-end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis for end-to-end
+     * verification.
      *
      */
     public void testMCFcalledOnce() throws Fault {
@@ -511,12 +504,11 @@ public class lifecycleClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:1;
      *
-     * @test_Strategy: Check to see if XAResourceAdapter.setRAName is called. If
-     * it has then the test passes. We are checking the the app server side
-     * contract to see if the method is called.
+     * @test_Strategy: Check to see if XAResourceAdapter.setRAName is called. If it has then the test passes. We are
+     * checking the the app server side contract to see if the method is called.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis for end-to-end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis for end-to-end
+     * verification.
      *
      */
     public void testRAforJavaBean() throws Fault {

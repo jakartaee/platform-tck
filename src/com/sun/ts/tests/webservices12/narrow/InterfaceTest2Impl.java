@@ -22,12 +22,7 @@ package com.sun.ts.tests.webservices12.narrow;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "InterfaceTest2Port",
-        serviceName = "InterfaceTestService",
-        targetNamespace = "http://interfacetestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/InterfaceTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.narrow.InterfaceTest2")
+@WebService(portName = "InterfaceTest2Port", serviceName = "InterfaceTestService", targetNamespace = "http://interfacetestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/InterfaceTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.narrow.InterfaceTest2")
 public class InterfaceTest2Impl implements InterfaceTest2 {
 
     public String hello1(String v) {

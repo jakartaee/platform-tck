@@ -26,8 +26,7 @@ import jakarta.servlet.jsp.tagext.TagVariableInfo;
 import jakarta.servlet.jsp.tagext.VariableInfo;
 
 /**
- * A TagExtraInfo implementation to validate the methods of
- * <tt>jakarta.servlet.jsp.tagext.TagVariableInfo.</tt>
+ * A TagExtraInfo implementation to validate the methods of <tt>jakarta.servlet.jsp.tagext.TagVariableInfo.</tt>
  */
 public class TagVarInfoTEI extends BaseTCKExtraInfo {
 
@@ -54,8 +53,7 @@ public class TagVarInfoTEI extends BaseTCKExtraInfo {
     /**
      * Returns any variables defined by this TEI.
      *
-     * @param data
-     *          - TagData
+     * @param data - TagData
      * @return - returns null so a translation error isn't raised.
      */
     public VariableInfo[] getVariableInfo(TagData data) {
@@ -67,8 +65,7 @@ public class TagVarInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validates TagVariableInfo.getClassName().
      *
-     * @return null if the test passes, otherwise a String indicating the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String indicating the cause of the failure.
      */
     public String getClassName() {
         initVariableInfos(this.getTagInfo().getTagVariableInfos());
@@ -93,13 +90,11 @@ public class TagVarInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validates TagVariableInfo.getDeclare().
      *
-     * @return null if the test passes, otherwise a String indicating the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String indicating the cause of the failure.
      */
     public String getDeclare() {
         /*
-         * var1 should return true var2 should return false var3 not specified, so
-         * return true
+         * var1 should return true var2 should return false var3 not specified, so return true
          */
         initVariableInfos(this.getTagInfo().getTagVariableInfos());
         if (_var1.getDeclare()) {
@@ -120,8 +115,7 @@ public class TagVarInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validates TagVariableInfo.getNameFromAttribute().
      *
-     * @return null if the test passes, otherwise a String indicating the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String indicating the cause of the failure.
      */
     public String getNameFromAttribute() {
         initVariableInfos(this.getTagInfo().getTagVariableInfos());
@@ -135,8 +129,7 @@ public class TagVarInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validates TagVariableInfo.getNameGiven().
      *
-     * @return null if the test passes, otherwise a String indicating the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String indicating the cause of the failure.
      */
     public String getNameGiven() {
         initVariableInfos(this.getTagInfo().getTagVariableInfos());
@@ -150,8 +143,7 @@ public class TagVarInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validates TagVariableInfo.getScope().
      *
-     * @return null if the test passes, otherwise a String indicating the cause of
-     *         the failure.
+     * @return null if the test passes, otherwise a String indicating the cause of the failure.
      */
     public String getScope() {
         initVariableInfos(this.getTagInfo().getTagVariableInfos());
@@ -189,8 +181,7 @@ public class TagVarInfoTEI extends BaseTCKExtraInfo {
     /**
      * Utility method to get a meaningful representation of the provided scope.
      *
-     * @param scope
-     *          - the variable scope
+     * @param scope - the variable scope
      * @return a String representation of the provided scope
      */
     private String getVariableScope(int scope) {
@@ -208,10 +199,8 @@ public class TagVarInfoTEI extends BaseTCKExtraInfo {
     /**
      * Initializes the VariableInfo instance variables used by the test.
      *
-     * @param varInfo
-     *          - an array of TagVariableInfo objects
-     * @return - null if the initialization process succeeds, otherwise a String
-     *         indicating the failure.
+     * @param varInfo - an array of TagVariableInfo objects
+     * @return - null if the initialization process succeeds, otherwise a String indicating the failure.
      */
     private String initVariableInfos(TagVariableInfo[] varInfo) {
         if (varInfo.length != 4) {

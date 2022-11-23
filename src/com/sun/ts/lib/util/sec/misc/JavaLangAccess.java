@@ -25,21 +25,18 @@ public interface JavaLangAccess {
     ConstantPool getConstantPool(Class klass);
 
     /**
-     * Set the AnnotationType instance corresponding to this class. (This method
-     * only applies to annotation types.)
+     * Set the AnnotationType instance corresponding to this class. (This method only applies to annotation types.)
      */
     void setAnnotationType(Class klass, AnnotationType annotationType);
 
     /**
-     * Get the AnnotationType instance corresponding to this class. (This method
-     * only applies to annotation types.)
+     * Get the AnnotationType instance corresponding to this class. (This method only applies to annotation types.)
      */
     AnnotationType getAnnotationType(Class klass);
 
     /**
-     * Returns the elements of an enum class or null if the Class object does not
-     * represent an enum type; the result is uncloned, cached, and shared by all
-     * callers.
+     * Returns the elements of an enum class or null if the Class object does not represent an enum type; the result is
+     * uncloned, cached, and shared by all callers.
      */
     <E extends Enum<E>> E[] getEnumConstantsShared(Class<E> klass);
 

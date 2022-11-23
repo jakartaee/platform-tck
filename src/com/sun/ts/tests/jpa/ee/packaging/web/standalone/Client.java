@@ -31,9 +31,8 @@ public class Client extends AbstractUrlClient {
     public static final String CONTEXT_ROOT = "/jpa_ee_packaging_web_standalone";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -42,8 +41,7 @@ public class Client extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setServletName(SERVLET_NAME);
@@ -58,20 +56,16 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: test1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:894; PERSISTENCE:SPEC:895;
-     * PERSISTENCE:SPEC:900; PERSISTENCE:SPEC:903; PERSISTENCE:SPEC:907;
-     * PERSISTENCE:SPEC:886; PERSISTENCE:SPEC:883; PERSISTENCE:SPEC:893;
-     * PERSISTENCE:SPEC:911
+     * @assertion_ids: PERSISTENCE:SPEC:894; PERSISTENCE:SPEC:895; PERSISTENCE:SPEC:900; PERSISTENCE:SPEC:903;
+     * PERSISTENCE:SPEC:907; PERSISTENCE:SPEC:886; PERSISTENCE:SPEC:883; PERSISTENCE:SPEC:893; PERSISTENCE:SPEC:911
      *
-     * @test_Strategy: In JavaEE environments, the root of the persistence unit
-     * may be a jar file in the WEB-INF/lib directory of a WAR file.
+     * @test_Strategy: In JavaEE environments, the root of the persistence unit may be a jar file in the WEB-INF/lib
+     * directory of a WAR file.
      *
-     * It is not required tha a WAR containing a persistence unit be packaged in
-     * an EAR unless the persistence unit contains persistence classes in addition
-     * to those contained in the WAR.
+     * It is not required tha a WAR containing a persistence unit be packaged in an EAR unless the persistence unit contains
+     * persistence classes in addition to those contained in the WAR.
      *
-     * Within a Java EE environnment, an entity manager factory may be obtained
-     * through JNDI lookup.
+     * Within a Java EE environnment, an entity manager factory may be obtained through JNDI lookup.
      *
      * Client -> SERVLET -> ENTITY -> DB
      *

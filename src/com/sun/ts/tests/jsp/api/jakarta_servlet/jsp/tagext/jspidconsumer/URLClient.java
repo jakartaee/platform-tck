@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -62,9 +60,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:434
      *
-     * @test_Strategy: Validate the behavior of JspIdConsumer.setJspId() Implement
-     * the setJspId() method in a tag handler. Verify that the ID generated
-     * conforms to the rules set forth in the javadoc.
+     * @test_Strategy: Validate the behavior of JspIdConsumer.setJspId() Implement the setJspId() method in a tag handler.
+     * Verify that the ID generated conforms to the rules set forth in the javadoc.
      */
     public void setJspIdTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_jspidconsumer_web/SetJspIdTest.jsp HTTP 1.1");
@@ -77,9 +74,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:434
      *
-     * @test_Strategy: Validate the behavior of JspIdConsumer.setJspId() Implement
-     * the setJspId() method in multiple tag handlers. Verify that each tag has a
-     * unique ID. [JspConsumerIdUniqueIdString]
+     * @test_Strategy: Validate the behavior of JspIdConsumer.setJspId() Implement the setJspId() method in multiple tag
+     * handlers. Verify that each tag has a unique ID. [JspConsumerIdUniqueIdString]
      */
     public void multipleJspIdTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_jspidconsumer_web/MultipleJspIdTest.jsp HTTP 1.1");
@@ -92,9 +88,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:434
      *
-     * @test_Strategy: Validate the behavior of JspIdConsumer.setJspId() Implement
-     * the setJspId() method in a single tag handler. Verify that when the jsp
-     * page is invoked multiple times, the tag's ID does not change.
+     * @test_Strategy: Validate the behavior of JspIdConsumer.setJspId() Implement the setJspId() method in a single tag
+     * handler. Verify that when the jsp page is invoked multiple times, the tag's ID does not change.
      * [JspConsumerIdUniqueIdString]
      */
     public void sameJspIdTest() throws Fault {

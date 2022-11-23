@@ -24,9 +24,8 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * For comparable purposes, this implementation is either case sensitive, or
- * case insensitive. As the extension parameters appear in the http headers and
- * RFC 2616 says : Field names are case-insensitive, the default is case
+ * For comparable purposes, this implementation is either case sensitive, or case insensitive. As the extension
+ * parameters appear in the http headers and RFC 2616 says : Field names are case-insensitive, the default is case
  * insensitive.
  */
 public class ExtensionImpl implements Extension, Comparable<Extension> {
@@ -44,10 +43,8 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
     /**
      * An Extension Implementation. For empty parameter list, use null
      *
-     * @param name
-     *          Extension name, see {@link Extension#getName()}
-     * @param params
-     *          Extension Parameter list, see {@link Extension#getParameters()}
+     * @param name Extension name, see {@link Extension#getName()}
+     * @param params Extension Parameter list, see {@link Extension#getParameters()}
      */
     public ExtensionImpl(String name, Parameter... params) {
         super();
@@ -60,7 +57,9 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
     }
 
     public void addParameters(Parameter... params) {
-        if (params != null) for (Parameter param : params) list.add(param);
+        if (params != null)
+            for (Parameter param : params)
+                list.add(param);
     }
 
     @Override
@@ -76,9 +75,11 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
     @Override
     public int compareTo(Extension o) {
         int cmp = caseSensitive ? name.compareTo(o.getName()) : name.compareToIgnoreCase(o.getName());
-        if (cmp != 0) return cmp;
+        if (cmp != 0)
+            return cmp;
         cmp = getParameters().size() - o.getParameters().size();
-        if (cmp != 0) return (int) Math.signum(cmp);
+        if (cmp != 0)
+            return (int) Math.signum(cmp);
 
         List<ExtensionParameterImpl> newThisList = getExtensionParameters(this);
         List<ExtensionParameterImpl> newOtherList = getExtensionParameters(o);
@@ -96,7 +97,8 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Extension) return compareTo((Extension) obj) == 0;
+        if (obj instanceof Extension)
+            return compareTo((Extension) obj) == 0;
         return false;
     }
 
@@ -112,7 +114,8 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
                 .append("(name=\"")
                 .append(name)
                 .append("\", parameters=[");
-        for (Parameter p : getExtensionParameters(this)) sb.append(p.toString()).append(",");
+        for (Parameter p : getExtensionParameters(this))
+            sb.append(p.toString()).append(",");
         sb.append("])");
         return sb.toString();
     }
@@ -122,7 +125,8 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
      */
     public List<ExtensionParameterImpl> getExtensionParameters(Extension extension) {
         List<ExtensionParameterImpl> params = new ArrayList<>();
-        for (Parameter item : extension.getParameters()) params.add(new ExtensionParameterImpl(item, caseSensitive));
+        for (Parameter item : extension.getParameters())
+            params.add(new ExtensionParameterImpl(item, caseSensitive));
         Collections.sort(params);
         return params;
     }
@@ -135,20 +139,23 @@ public class ExtensionImpl implements Extension, Comparable<Extension> {
      */
     public static List<ExtensionImpl> transformToImpl(List<? extends Extension> extensions) {
         List<ExtensionImpl> list = new ArrayList<>();
-        if (extensions != null) for (Extension ex : extensions) list.add(new ExtensionImpl(ex));
+        if (extensions != null)
+            for (Extension ex : extensions)
+                list.add(new ExtensionImpl(ex));
         // do not sort, the order of extensions is significant
         // (rfc6455#section-9.1)
         return list;
     }
 
     /**
-     * For proper output, make sure the list contains ExtensionImpl items, see
-     * {@link #transformToImpl(List)}, otherwise the output depends on overridden
-     * {@linkplain #toString()} of given Extensions
+     * For proper output, make sure the list contains ExtensionImpl items, see {@link #transformToImpl(List)}, otherwise the
+     * output depends on overridden {@linkplain #toString()} of given Extensions
      */
     public static String toString(List<? extends Extension> list) {
         StringBuilder sb = new StringBuilder().append("{");
-        if (list != null) for (Extension ex : list) sb.append(ex.toString()).append(";");
+        if (list != null)
+            for (Extension ex : list)
+                sb.append(ex.toString()).append(";");
         sb.append("}");
         return sb.toString();
     }

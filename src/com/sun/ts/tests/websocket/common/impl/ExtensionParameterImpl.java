@@ -20,9 +20,8 @@ package com.sun.ts.tests.websocket.common.impl;
 import jakarta.websocket.Extension.Parameter;
 
 /**
- * For comparable purposes, this implementation is either case sensitive, or
- * case insensitive. As the extension parameters appear in the http headers and
- * RFC 2616 says : Field names are case-insensitive, the default is case
+ * For comparable purposes, this implementation is either case sensitive, or case insensitive. As the extension
+ * parameters appear in the http headers and RFC 2616 says : Field names are case-insensitive, the default is case
  * insensitive.
  */
 public class ExtensionParameterImpl implements Parameter, Comparable<Parameter> {
@@ -34,8 +33,7 @@ public class ExtensionParameterImpl implements Parameter, Comparable<Parameter> 
     }
 
     /**
-     * @param caseSensitive
-     *          states whether compares case sensitively or not
+     * @param caseSensitive states whether compares case sensitively or not
      */
     public ExtensionParameterImpl(String name, String value, boolean caseSensitive) {
         this(name, value);
@@ -74,8 +72,10 @@ public class ExtensionParameterImpl implements Parameter, Comparable<Parameter> 
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Parameter) return compareTo((Parameter) obj) == 0;
-        else return false;
+        if (obj instanceof Parameter)
+            return compareTo((Parameter) obj) == 0;
+        else
+            return false;
     }
 
     @Override

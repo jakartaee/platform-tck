@@ -142,7 +142,8 @@ public class TestBeanEJB implements SessionBean {
 
         } catch (Exception e) {
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (SystemException se) {
                 TestUtil.logErr("Exception checking transaction status: " + se.getMessage(), se);
             }
@@ -213,13 +214,15 @@ public class TestBeanEJB implements SessionBean {
             ut.rollback();
             TestUtil.logTrace("Rollback finished");
 
-            if (t1 && t2) testResult = true;
+            if (t1 && t2)
+                testResult = true;
 
             return (testResult);
 
         } catch (Exception e) {
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (SystemException se) {
                 TestUtil.logErr("Exception checking transaction status: " + se.getMessage(), se);
             }
@@ -284,7 +287,8 @@ public class TestBeanEJB implements SessionBean {
 
         } catch (Exception e) {
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (SystemException se) {
                 TestUtil.logErr("Exception checking transaction status: " + se.getMessage(), se);
             }
@@ -375,7 +379,8 @@ public class TestBeanEJB implements SessionBean {
 
         } catch (Exception e) {
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (SystemException se) {
                 TestUtil.logErr("Exception checking transaction status: " + se.getMessage(), se);
             }
@@ -436,7 +441,8 @@ public class TestBeanEJB implements SessionBean {
 
         } catch (Exception e) {
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (SystemException se) {
                 TestUtil.logErr("Exception checking transaction status: " + se.getMessage(), se);
             }
@@ -486,7 +492,8 @@ public class TestBeanEJB implements SessionBean {
             TestUtil.logTrace("RemoveException received as expected");
         } catch (Exception e) {
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (SystemException se) {
                 TestUtil.logErr("Exception checking transaction status: " + se.getMessage(), se);
             }
@@ -567,13 +574,15 @@ public class TestBeanEJB implements SessionBean {
             ut.rollback();
             TestUtil.logTrace("Rollback finished");
 
-            if (t1 && t2) testResult = true;
+            if (t1 && t2)
+                testResult = true;
 
             return (testResult);
 
         } catch (Exception e) {
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (SystemException se) {
                 TestUtil.logErr("Exception checking transaction status: " + se.getMessage(), se);
             }
@@ -644,13 +653,15 @@ public class TestBeanEJB implements SessionBean {
             ut.rollback();
             TestUtil.logTrace("Rollback finished");
 
-            if (t1 && t2) testResult = true;
+            if (t1 && t2)
+                testResult = true;
 
             return (testResult);
 
         } catch (Exception e) {
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (SystemException se) {
                 TestUtil.logErr("Exception checking transaction status: " + se.getMessage(), se);
             }

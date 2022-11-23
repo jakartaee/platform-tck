@@ -32,7 +32,8 @@ public class TSConnectionImpl implements TSConnection {
 
     private Hashtable tempTable = new Hashtable();
 
-    public TSConnectionImpl() {}
+    public TSConnectionImpl() {
+    }
 
     public TSConnection getConnection() throws Exception {
         try {

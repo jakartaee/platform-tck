@@ -33,7 +33,8 @@ import java.io.Serializable;
  */
 public class TSConnectionManager implements ConnectionManager, Serializable {
 
-    public TSConnectionManager() {}
+    public TSConnectionManager() {
+    }
 
     @Override
     public Object allocateConnection(ManagedConnectionFactory mcf, ConnectionRequestInfo info)

@@ -31,7 +31,8 @@ public class XInsurance implements java.io.Serializable {
 
     private String xCarrier;
 
-    public XInsurance() {}
+    public XInsurance() {
+    }
 
     public XInsurance(int xInsId, String xCarrier) {
         this.xInsId = xInsId;

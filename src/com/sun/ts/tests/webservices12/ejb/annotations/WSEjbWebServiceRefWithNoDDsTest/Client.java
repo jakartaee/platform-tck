@@ -104,8 +104,10 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -138,23 +140,22 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbWebServiceRefWithNoDDsTestCallHello
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:115; WS4EE:SPEC:213;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef and @WebService annotations. The EJBBean
-     * class and SEI class are packaged in the ear file. The @WebServiceRef uses
-     * no field attributes. No deployment descriptors are uses in the packaging.
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. Tests @WebServiceRef
+     * and @WebService annotations. The EJBBean class and SEI class are packaged in the ear file. The @WebServiceRef uses no
+     * field attributes. No deployment descriptors are uses in the packaging.
      */
     public void WSEjbWebServiceRefWithNoDDsTestCallHello() throws Fault {
         TestUtil.logMsg("WSEjbWebServiceRefWithNoDDsTestCallHello");
         try {
             String txt = port.hello("Hi there");
-            if (txt.equals("Hi there to you too!")) TestUtil.logMsg("WSEjbWebServiceRefWithNoDDsTestCallHello passed");
-            else throw new RuntimeException("Msg returned from hello() incorrect");
+            if (txt.equals("Hi there to you too!"))
+                TestUtil.logMsg("WSEjbWebServiceRefWithNoDDsTestCallHello passed");
+            else
+                throw new RuntimeException("Msg returned from hello() incorrect");
         } catch (Throwable t) {
             throw new Fault("WSEjbWebServiceRefWithNoDDsTestCallHello failed");
         }
@@ -164,23 +165,22 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbWebServiceRefWithNoDDsTestCallBye
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:115; WS4EE:SPEC:213;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef and @WebService annotations. The EJBBean
-     * class and SEI class are packaged in the ear file. The @WebServiceRef uses
-     * no field attributes. No deployment descriptors are uses in the packaging.
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. Tests @WebServiceRef
+     * and @WebService annotations. The EJBBean class and SEI class are packaged in the ear file. The @WebServiceRef uses no
+     * field attributes. No deployment descriptors are uses in the packaging.
      */
     public void WSEjbWebServiceRefWithNoDDsTestCallBye() throws Fault {
         TestUtil.logMsg("WSEjbWebServiceRefWithNoDDsTestCallBye");
         try {
             String txt = port.bye("Bye-bye");
-            if (txt.equals("Bye-bye and take care")) TestUtil.logMsg("WSEjbWebServiceRefWithNoDDsTestCallBye passed");
-            else throw new RuntimeException("Msg returned from bye() incorrect");
+            if (txt.equals("Bye-bye and take care"))
+                TestUtil.logMsg("WSEjbWebServiceRefWithNoDDsTestCallBye passed");
+            else
+                throw new RuntimeException("Msg returned from bye() incorrect");
         } catch (Throwable t) {
             throw new Fault("WSEjbWebServiceRefWithNoDDsTestCallBye failed");
         }

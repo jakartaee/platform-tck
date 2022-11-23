@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,13 +62,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveSetTimezoneValueTest
      *
-     * @assertion_ids: JSTL:SPEC:93; JSTL:SPEC:93.1; JSTL:SPEC:93.1.1;
-     * JSTL:SPEC:93.1.2; JSTL:SPEC:93.1.3; JSTL:SPEC:93.1.4; JSTL:SPEC:93.1.5;
-     * JSTL:SPEC:93.1.6
+     * @assertion_ids: JSTL:SPEC:93; JSTL:SPEC:93.1; JSTL:SPEC:93.1.1; JSTL:SPEC:93.1.2; JSTL:SPEC:93.1.3; JSTL:SPEC:93.1.4;
+     * JSTL:SPEC:93.1.5; JSTL:SPEC:93.1.6
      *
-     * @testStrategy: Validate that the value attribute can accept dynamic values
-     * as well as three letter timezones (ex. PST) or fully qualified values (ex.
-     * America/Los_Angeles).
+     * @testStrategy: Validate that the value attribute can accept dynamic values as well as three letter timezones (ex.
+     * PST) or fully qualified values (ex. America/Los_Angeles).
      */
     public void positiveSetTimezoneValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueTest");
@@ -83,8 +79,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:93.2; JSTL:SPEC:93.2.1
      *
-     * @testStrategy: Validate that a scoped variable of type java.util.TimeZone
-     * is properly set and associated with the variable name specified by var.
+     * @testStrategy: Validate that a scoped variable of type java.util.TimeZone is properly set and associated with the
+     * variable name specified by var.
      */
     public void positiveSetTimezoneVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneVarTest");
@@ -94,13 +90,12 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveSetTimezoneScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:93.3; JSTL:SPEC:93.3.1; JSTL:SPEC:93.3.2;
-     * JSTL:SPEC:93.3.3; JSTL:SPEC:93.3.4; JSTL:SPEC:93.3.5
+     * @assertion_ids: JSTL:SPEC:93.3; JSTL:SPEC:93.3.1; JSTL:SPEC:93.3.2; JSTL:SPEC:93.3.3; JSTL:SPEC:93.3.4;
+     * JSTL:SPEC:93.3.5
      *
-     * @testStrategy: Validate that the through explicit use of the scope
-     * attribute, var is exported to the appropriate scope. Additionally, validate
-     * that if var is specified and scope is not, that var is exported to the page
-     * scope by default.
+     * @testStrategy: Validate that the through explicit use of the scope attribute, var is exported to the appropriate
+     * scope. Additionally, validate that if var is specified and scope is not, that var is exported to the page scope by
+     * default.
      */
     public void positiveSetTimezoneScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneScopeTest");
@@ -112,8 +107,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:93.7
      *
-     * @testStrategy: Validate that if the value attribute is null or empty, the
-     * GMT+0 timezone is used by the formatting actions that rely on timezone.
+     * @testStrategy: Validate that if the value attribute is null or empty, the GMT+0 timezone is used by the formatting
+     * actions that rely on timezone.
      */
     public void positiveSetTimezoneValueNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueNullEmptyTest");
@@ -126,8 +121,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:93.4
      *
-     * @testStrategy: Validate that if var is not set, the scoped variable
-     * jakarta.servlet.jsp.jstl.fmt.timeZone is properly set.
+     * @testStrategy: Validate that if var is not set, the scoped variable jakarta.servlet.jsp.jstl.fmt.timeZone is properly
+     * set.
      */
     public void positiveSetTimezoneSetAttrTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneSetAttrTest");
@@ -137,12 +132,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveSetTimezoneAttrScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:93.3; JSTL:SPEC:93.3.1; JSTL:SPEC:93.3.2;
-     * JSTL:SPEC:93.3.3; JSTL:SPEC:93.3.4; JSTL:SPEC:93.3.5; JSTL:SPEC:93.4
+     * @assertion_ids: JSTL:SPEC:93.3; JSTL:SPEC:93.3.1; JSTL:SPEC:93.3.2; JSTL:SPEC:93.3.3; JSTL:SPEC:93.3.4;
+     * JSTL:SPEC:93.3.5; JSTL:SPEC:93.4
      *
-     * @testStrategy: Validate that if var is not specified, but scope is, that
-     * the scoped variable, jakarta.servlet.jsp.jstl.fmt.timeZone is exported to the
-     * appropriate scope.
+     * @testStrategy: Validate that if var is not specified, but scope is, that the scoped variable,
+     * jakarta.servlet.jsp.jstl.fmt.timeZone is exported to the appropriate scope.
      */
     public void positiveSetTimezoneAttrScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneAttrScopeTest");

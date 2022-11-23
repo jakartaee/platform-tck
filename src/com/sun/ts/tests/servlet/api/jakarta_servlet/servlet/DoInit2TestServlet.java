@@ -71,8 +71,8 @@ import java.io.PrintWriter;
 public class DoInit2TestServlet extends CoreServletTest {
 
     /**
-     * inside coreServletTest we are implementing init(ServletConfig) and setting
-     * a bool var to true we'll check for that here
+     * inside coreServletTest we are implementing init(ServletConfig) and setting a bool var to true we'll check for that
+     * here
      */
     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
         boolean passed = false;

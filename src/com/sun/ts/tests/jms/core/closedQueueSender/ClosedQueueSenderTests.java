@@ -75,11 +75,9 @@ public class ClosedQueueSenderTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /**
-     * Used by tests that need a closed sender for testing. Passes any exceptions
-     * up to caller.
+     * Used by tests that need a closed sender for testing. Passes any exceptions up to caller.
      *
-     * @param int
-     *          The type of session that needs to be created and closed
+     * @param int The type of session that needs to be created and closed
      */
     private void createAndCloseSender() throws Exception {
         tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
@@ -95,10 +93,9 @@ public class ClosedQueueSenderTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the TestTools object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the TestTools object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -141,8 +138,8 @@ public class ClosedQueueSenderTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -186,8 +183,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:303;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderGetDeliveryModeTest() throws Fault {
@@ -220,8 +216,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:295;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderGetDisableMessageIDTest() throws Fault {
@@ -254,8 +249,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:299;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderGetDisableMessageTimestampTest() throws Fault {
@@ -288,8 +282,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:307;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderGetPriorityTest() throws Fault {
@@ -322,8 +315,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:311;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderGetTimeToLiveTest() throws Fault {
@@ -356,8 +348,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:301;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderSetDeliveryModeTest() throws Fault {
@@ -389,8 +380,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:293;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderSetDisableMessageIDTest() throws Fault {
@@ -422,8 +412,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:297;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderSetDisableMessageTimestampTest() throws Fault {
@@ -455,8 +444,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:305;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderSetPriorityTest() throws Fault {
@@ -488,8 +476,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:309;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderSetTimeToLiveTest() throws Fault {
@@ -521,8 +508,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:196;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderGetQueueTest() throws Fault {
@@ -555,8 +541,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:198;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderSend1Test() throws Fault {
@@ -589,8 +574,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:200;
      *
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderSend2Test() throws Fault {
@@ -627,8 +611,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:202;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderSend3Test() throws Fault {
@@ -660,8 +643,7 @@ public class ClosedQueueSenderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:204;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSenderSend4Test() throws Fault {

@@ -23,7 +23,8 @@ import java.util.Iterator;
 
 public class FooELResolver extends ELResolver {
     public Object getValue(ELContext context, Object base, Object property) throws ELException {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
         Object result = null;
 
@@ -45,7 +46,8 @@ public class FooELResolver extends ELResolver {
     }
 
     public Class getType(ELContext context, Object base, Object property) throws ELException {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
         if (base instanceof String && base.toString().equals("Foo")) {
             context.setPropertyResolved(true);
@@ -57,7 +59,8 @@ public class FooELResolver extends ELResolver {
 
     public void setValue(ELContext context, Object base, Object property, Object value) throws ELException {
 
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
         if (base == null && property instanceof String && property.toString().equals("Foo")) {
             context.setPropertyResolved(true);
@@ -65,7 +68,8 @@ public class FooELResolver extends ELResolver {
     }
 
     public boolean isReadOnly(ELContext context, Object base, Object property) throws ELException {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
         if (base == null && property instanceof String && property.toString().equals("Foo")) {
             context.setPropertyResolved(true);
@@ -75,14 +79,17 @@ public class FooELResolver extends ELResolver {
     }
 
     public Iterator getFeatureDescriptors(ELContext context, Object base) {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
         return null;
     }
 
     public Class getCommonPropertyType(ELContext context, Object base) {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
-        if (base == null) return String.class;
+        if (base == null)
+            return String.class;
         return null;
     }
 }

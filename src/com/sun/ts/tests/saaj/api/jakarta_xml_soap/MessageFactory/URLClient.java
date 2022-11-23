@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -100,8 +102,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call MessageFactory.createMessage().
      *
-     * Description: Creates a new SOAPMessage object with default SOAPPart,
-     * SOAPEnvelope, SOAPBody, and SOAPHeader objects.
+     * Description: Creates a new SOAPMessage object with default SOAPPart, SOAPEnvelope, SOAPBody, and SOAPHeader objects.
      *
      */
     public void createMessageTest1() throws Fault {
@@ -114,12 +115,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "createMessageTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -128,7 +132,8 @@ public class URLClient extends EETest {
             throw new Fault("createMessageTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("createMessageTest1 failed");
+        if (!pass)
+            throw new Fault("createMessageTest1 failed");
     }
 
     /*
@@ -136,11 +141,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:116; SAAJ:JAVADOC:117; SAAJ:JAVADOC:118;
      *
-     * @test_Strategy: Call MessageFactory.createMessage(MimeHeaders,
-     * java.io.InputStream)
+     * @test_Strategy: Call MessageFactory.createMessage(MimeHeaders, java.io.InputStream)
      *
-     * Description: Internalizes the contents of the given InputStream object into
-     * a new SOAPMessage object and returns the SOAPMessage object.
+     * Description: Internalizes the contents of the given InputStream object into a new SOAPMessage object and returns the
+     * SOAPMessage object.
      *
      */
     public void createMessageTest2() throws Fault {
@@ -153,12 +157,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "createMessageTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -167,7 +174,8 @@ public class URLClient extends EETest {
             throw new Fault("createMessageTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("createMessageTest2 failed");
+        if (!pass)
+            throw new Fault("createMessageTest2 failed");
     }
 
     /*
@@ -177,8 +185,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call MessageFactory.newInstance()
      *
-     * Description: Creates a new MessageFactory object that is an instance of the
-     * default implementation.
+     * Description: Creates a new MessageFactory object that is an instance of the default implementation.
      *
      */
     public void newInstanceTest1() throws Fault {
@@ -194,14 +201,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("newInstanceTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("newInstanceTest1 failed");
+        if (!pass)
+            throw new Fault("newInstanceTest1 failed");
     }
 
     /*
@@ -209,11 +218,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:112;
      *
-     * @test_Strategy: Call MessageFactory.newInstance(
-     * SOAPConstants.SOAP_1_1_PROTOCOL)
+     * @test_Strategy: Call MessageFactory.newInstance( SOAPConstants.SOAP_1_1_PROTOCOL)
      *
-     * Description: Creates a new MessageFactory object that is a SOAP 1.1
-     * implementation.
+     * Description: Creates a new MessageFactory object that is a SOAP 1.1 implementation.
      *
      */
     public void newInstanceTest2() throws Fault {
@@ -230,14 +237,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("newInstanceTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("newInstanceTest3 failed");
+        if (!pass)
+            throw new Fault("newInstanceTest3 failed");
     }
 
     /*
@@ -245,11 +254,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:112;
      *
-     * @test_Strategy: Call MessageFactory.newInstance(
-     * SOAPConstants.SOAP_1_2_PROTOCOL)
+     * @test_Strategy: Call MessageFactory.newInstance( SOAPConstants.SOAP_1_2_PROTOCOL)
      *
-     * Description: Creates a new MessageFactory object that is a SOAP1.2
-     * implementation.
+     * Description: Creates a new MessageFactory object that is a SOAP1.2 implementation.
      *
      */
     public void newInstanceTest3() throws Fault {
@@ -266,14 +273,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("newInstanceTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("newInstanceTest3 failed");
+        if (!pass)
+            throw new Fault("newInstanceTest3 failed");
     }
 
     /*
@@ -281,11 +290,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:112;
      *
-     * @test_Strategy: Call MessageFactory.newInstance()
-     * SOAPConstants.DYNAMIC_SOAP_PROTOCOL)
+     * @test_Strategy: Call MessageFactory.newInstance() SOAPConstants.DYNAMIC_SOAP_PROTOCOL)
      *
-     * Description: Creates a new MessageFactory object that is a dynamic message
-     * factory implementation.
+     * Description: Creates a new MessageFactory object that is a dynamic message factory implementation.
      *
      */
     public void newInstanceTest4() throws Fault {
@@ -302,14 +309,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("newInstanceTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("newInstanceTest4 failed");
+        if (!pass)
+            throw new Fault("newInstanceTest4 failed");
     }
 
     /*
@@ -317,11 +326,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:113;
      *
-     * @test_Strategy: Call MessageFactory.newInstance()
-     * SOAPConstants.DYNAMIC_SOAP_PROTOCOL)
+     * @test_Strategy: Call MessageFactory.newInstance() SOAPConstants.DYNAMIC_SOAP_PROTOCOL)
      *
-     * Description: Creates a new MessageFactory object that is a dynamic message
-     * factory implementation.
+     * Description: Creates a new MessageFactory object that is a dynamic message factory implementation.
      *
      */
     public void newInstanceTest4b() throws Fault {
@@ -338,14 +345,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("newInstanceTest4b failed", e);
         }
 
-        if (!pass) throw new Fault("newInstanceTest4b failed");
+        if (!pass)
+            throw new Fault("newInstanceTest4b failed");
     }
 
     /*
@@ -355,8 +364,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call MessageFactory.newInstance(BOGUS)
      *
-     * Description: Call MessageFactory.newInstance(String) with a BOGUS value and
-     * expect a SOAPException.
+     * Description: Call MessageFactory.newInstance(String) with a BOGUS value and expect a SOAPException.
      *
      */
     public void newInstanceTest5() throws Fault {
@@ -373,14 +381,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("newInstanceTest5 failed", e);
         }
 
-        if (!pass) throw new Fault("newInstanceTest5 failed");
+        if (!pass)
+            throw new Fault("newInstanceTest5 failed");
     }
 
     /*
@@ -388,11 +398,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:112
      *
-     * @test_Strategy: Call MessageFactory.newInstance()
-     * SOAPConstants.DEFAULT_SOAP_PROTOCOL)
+     * @test_Strategy: Call MessageFactory.newInstance() SOAPConstants.DEFAULT_SOAP_PROTOCOL)
      *
-     * Description: Creates a new MessageFactory object that is a dynamic message
-     * factory implementation.
+     * Description: Creates a new MessageFactory object that is a dynamic message factory implementation.
      *
      */
     public void newInstanceTest6() throws Fault {
@@ -409,13 +417,15 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("newInstanceTest6 failed", e);
         }
 
-        if (!pass) throw new Fault("newInstanceTest6 failed");
+        if (!pass)
+            throw new Fault("newInstanceTest6 failed");
     }
 }

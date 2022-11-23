@@ -33,11 +33,14 @@ import java.util.TreeSet;
 import javax.xml.namespace.QName;
 
 public final class LogHandler implements SOAPHandler<SOAPMessageContext> {
-    public void init(java.util.Map<String, Object> config) {}
+    public void init(java.util.Map<String, Object> config) {
+    }
 
-    public void destroy() {}
+    public void destroy() {
+    }
 
-    public void close(MessageContext context) {}
+    public void close(MessageContext context) {
+    }
 
     public Set<QName> getHeaders() {
         return new TreeSet<QName>();

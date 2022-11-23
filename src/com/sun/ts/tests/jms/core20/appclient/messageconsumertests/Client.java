@@ -92,8 +92,7 @@ public class Client extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -174,19 +173,16 @@ public class Client extends ServiceEETest {
     /*
      * @testName: queueSendRecvMessageListenerTest
      *
-     * @assertion_ids: JMS:JAVADOC:317; JMS:JAVADOC:328; JMS:JAVADOC:330;
-     * JMS:SPEC:264.4; JMS:SPEC:264; JMS:SPEC:137;
+     * @assertion_ids: JMS:JAVADOC:317; JMS:JAVADOC:328; JMS:JAVADOC:330; JMS:SPEC:264.4; JMS:SPEC:264; JMS:SPEC:137;
      *
-     * @test_Strategy: Creates a new consumer on the specified destination that
-     * will deliver messages to the specified MessageListener. Tests the following
-     * API method:
+     * @test_Strategy: Creates a new consumer on the specified destination that will deliver messages to the specified
+     * MessageListener. Tests the following API method:
      *
-     * MessageProducer.send(Message)
-     * MessageConsumer.setMessageListener(MessageListener)
+     * MessageProducer.send(Message) MessageConsumer.setMessageListener(MessageListener)
      * MessageConsumer.getMessageListener()
      *
-     * 1 Setup MessageListener for the specified destination 2 Send a message to
-     * the destination 3 Verify message received by listener
+     * 1 Setup MessageListener for the specified destination 2 Send a message to the destination 3 Verify message received
+     * by listener
      */
     public void queueSendRecvMessageListenerTest() throws Fault {
         boolean pass = true;
@@ -228,7 +224,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage (actTextMessage=NULL)");
@@ -266,19 +263,16 @@ public class Client extends ServiceEETest {
     /*
      * @testName: topicSendRecvMessageListenerTest
      *
-     * @assertion_ids: JMS:JAVADOC:317; JMS:JAVADOC:328; JMS:JAVADOC:330;
-     * JMS:SPEC:264.4; JMS:SPEC:264;
+     * @assertion_ids: JMS:JAVADOC:317; JMS:JAVADOC:328; JMS:JAVADOC:330; JMS:SPEC:264.4; JMS:SPEC:264;
      *
-     * @test_Strategy: Creates a new consumer on the specified destination that
-     * will deliver messages to the specified MessageListener. Tests the following
-     * API method:
+     * @test_Strategy: Creates a new consumer on the specified destination that will deliver messages to the specified
+     * MessageListener. Tests the following API method:
      *
-     * MessageProducer.send(Message)
-     * MessageConsumer.setMessageListener(MessageListener)
+     * MessageProducer.send(Message) MessageConsumer.setMessageListener(MessageListener)
      * MessageConsumer.getMessageListener()
      *
-     * 1 Setup MessageListener for the specified destination 2 Send a message to
-     * the destination 3 Verify message received by listener
+     * 1 Setup MessageListener for the specified destination 2 Send a message to the destination 3 Verify message received
+     * by listener
      */
     public void topicSendRecvMessageListenerTest() throws Fault {
         boolean pass = true;
@@ -320,7 +314,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage (actTextMessage=NULL)");

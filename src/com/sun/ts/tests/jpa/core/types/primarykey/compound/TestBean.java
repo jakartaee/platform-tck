@@ -36,7 +36,8 @@ public class TestBean implements java.io.Serializable {
 
     private float price;
 
-    public TestBean() {}
+    public TestBean() {
+    }
 
     public TestBean(CompoundPK pk, String brandName, float price) {
         this.compoundPK = pk;

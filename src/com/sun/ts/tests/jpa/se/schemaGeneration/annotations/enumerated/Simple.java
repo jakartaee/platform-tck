@@ -34,7 +34,8 @@ public class Simple implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public Simple() {}
+    public Simple() {
+    }
 
     public Simple(int id) {
         this.id = id;
@@ -61,8 +62,10 @@ public class Simple implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Simple)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Simple))
+            return false;
 
         Simple o1 = (Simple) o;
 

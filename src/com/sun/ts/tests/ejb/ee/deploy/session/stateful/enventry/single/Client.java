@@ -82,9 +82,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:762
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares
-     *                 a Character environment entry. Lookup this entry and check
-     *                 that its runtime value match the DD value.
+     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares a Character environment entry. Lookup
+     * this entry and check that its runtime value match the DD value.
      *
      */
     public void testCharacter() throws Fault {
@@ -117,9 +116,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:762
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares
-     *                 a String environment entry. Lookup this entry and check
-     *                 that its runtime value match the DD value.
+     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares a String environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testString() throws Fault {
@@ -151,9 +149,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:762
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares
-     *                 a Boolean environment entry. Lookup this entry and check
-     *                 that its runtime value match the DD value.
+     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares a Boolean environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testBoolean() throws Fault {
@@ -185,9 +182,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:762
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares
-     *                 a Byte environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares a Byte environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testByte() throws Fault {
@@ -219,9 +215,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:762
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares
-     *                 a Short environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares a Short environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testShort() throws Fault {
@@ -253,9 +248,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:762
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares
-     *                 a Integer environment entry. Lookup this entry and check
-     *                 that its runtime value match the DD value.
+     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares a Integer environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testInteger() throws Fault {
@@ -287,9 +281,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:762
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares
-     *                 a Long environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares a Long environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testLong() throws Fault {
@@ -321,9 +314,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:762
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares
-     *                 a Float environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares a Float environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testFloat() throws Fault {
@@ -355,9 +347,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:762
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares
-     *                 a Double environment entry. Lookup this entry and check
-     *                 that its runtime value match the DD value.
+     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares a Double environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testDouble() throws Fault {
@@ -389,9 +380,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:762
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares
-     *                 an environment entry of each type. Lookup these entries and
-     *                 check that their runtime value match their DD value.
+     * @test_Strategy: Deploy and create a Stateful Session Bean whose DD declares an environment entry of each type. Lookup
+     * these entries and check that their runtime value match their DD value.
      *
      */
     public void testAll() throws Fault {

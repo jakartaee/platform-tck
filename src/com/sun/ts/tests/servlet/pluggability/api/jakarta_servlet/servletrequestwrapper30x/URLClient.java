@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/servlet_plu_servletrequestwrapper30x_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setContextRoot(CONTEXT_ROOT);
@@ -58,9 +56,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:724; Servlet:JAVADOC:725;
      *
-     * @test_Strategy: Create a Servlets isWrapperForTest; In the servlet, wrap
-     * the Resquest a few time and in different ways; verifies the following
-     * works: - jakarta.servlet.ServletRequestWrapper.isWrapperFor(ServletRequest) -
+     * @test_Strategy: Create a Servlets isWrapperForTest; In the servlet, wrap the Resquest a few time and in different
+     * ways; verifies the following works: - jakarta.servlet.ServletRequestWrapper.isWrapperFor(ServletRequest) -
      * jakarta.servlet.ServletRequestWrapper.isWrapperFor(Class)
      */
     public void isWrapperForTest() throws Fault {

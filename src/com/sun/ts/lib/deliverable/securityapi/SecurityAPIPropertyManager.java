@@ -22,8 +22,7 @@ import com.sun.ts.lib.deliverable.tck.TCKPropertyManager;
 import java.util.*;
 
 /**
- * This class serves as a well known place for harness, util, and porting
- * classes to retrieve property values.
+ * This class serves as a well known place for harness, util, and porting classes to retrieve property values.
  *
  * @author
  */
@@ -31,12 +30,10 @@ public class SecurityAPIPropertyManager extends TCKPropertyManager {
     private static SecurityAPIPropertyManager jteMgr = new SecurityAPIPropertyManager();
 
     /**
-     * This method returns the singleton instance of SecurityAPIPropertyManager
-     * which provides access to all ts.jte properties. This is only called once by
-     * the test harness.
+     * This method returns the singleton instance of SecurityAPIPropertyManager which provides access to all ts.jte
+     * properties. This is only called once by the test harness.
      *
-     * @param env
-     *          - TestEnvironment object from JavaTest
+     * @param env - TestEnvironment object from JavaTest
      * @return SecurityAPIPropertyManager - singleton property manager object
      */
     public static final SecurityAPIPropertyManager getSecurityAPIPropertyManager(TestEnvironment env) throws Exception {
@@ -45,12 +42,10 @@ public class SecurityAPIPropertyManager extends TCKPropertyManager {
     }
 
     /**
-     * This method returns the singleton instance of SecurityAPIPropertyManager
-     * which provides access to all ts.jte properties. This is only called by the
-     * init() method in ManualDeployment.java
+     * This method returns the singleton instance of SecurityAPIPropertyManager which provides access to all ts.jte
+     * properties. This is only called by the init() method in ManualDeployment.java
      *
-     * @param p
-     *          - Properties object from JavaTest
+     * @param p - Properties object from JavaTest
      * @return SecurityAPIPropertyManager - singleton property manager object
      */
     public static final SecurityAPIPropertyManager getSecurityAPIPropertyManager(Properties p) throws Exception {
@@ -63,11 +58,9 @@ public class SecurityAPIPropertyManager extends TCKPropertyManager {
     }
 
     /**
-     * This method is called by the test harness to retrieve all properties needed
-     * by a particular test.
+     * This method is called by the test harness to retrieve all properties needed by a particular test.
      *
-     * @param sPropKeys
-     *          - Properties to retrieve
+     * @param sPropKeys - Properties to retrieve
      * @return Properties - property/value pairs
      */
     public Properties getTestSpecificProperties(String[] sPropKeys) throws PropertyNotSetException {
@@ -78,8 +71,10 @@ public class SecurityAPIPropertyManager extends TCKPropertyManager {
                 "porting.ts.HttpsURLConnection.class.1", getProperty("porting.ts.HttpsURLConnection.class.1", null));
 
         String tsHome = getProperty("TS_HOME", null);
-        if (tsHome == null) tsHome = getProperty("cts_home", null);
-        if (tsHome != null) pTestProps.put("cts_home", tsHome);
+        if (tsHome == null)
+            tsHome = getProperty("cts_home", null);
+        if (tsHome != null)
+            pTestProps.put("cts_home", tsHome);
 
         return pTestProps;
     }

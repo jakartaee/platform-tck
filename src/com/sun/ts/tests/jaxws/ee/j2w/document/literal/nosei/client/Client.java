@@ -131,8 +131,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -179,10 +181,13 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("test");
         boolean pass = true;
 
-        if (!stringTest()) pass = false;
-        if (!stringArrayTest()) pass = false;
+        if (!stringTest())
+            pass = false;
+        if (!stringArrayTest())
+            pass = false;
 
-        if (!pass) throw new Fault("test failed");
+        if (!pass)
+            throw new Fault("test failed");
     }
 
     public boolean stringTest() throws Fault {
@@ -192,7 +197,8 @@ public class Client extends ServiceEETest {
 
         try {
             String response = port.echoString(request);
-            if (!JAXWS_Data.compareValues(request, response, "String")) pass = false;
+            if (!JAXWS_Data.compareValues(request, response, "String"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -208,7 +214,8 @@ public class Client extends ServiceEETest {
 
         try {
             List<String> response = port.echoStringArray(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "String")) pass = false;
+            if (!JAXWS_Data.compareArrayValues(request, response, "String"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);

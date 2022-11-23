@@ -198,7 +198,8 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
                 if (name.indexOf(s) < 0) {
                     TestUtil.logErr("principal - expected: " + s + ", received: " + name);
                     return false;
-                } else return true;
+                } else
+                    return true;
             } else {
                 TestUtil.logErr("getCallerPrincipal() returned null reference");
                 return false;
@@ -215,8 +216,10 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
         String role = s;
         try {
             boolean inRole = ectx.isCallerInRole(role);
-            if (inRole) TestUtil.logMsg("isCallerInRole(" + role + ") is true");
-            else TestUtil.logMsg("isCallerInRole(" + role + ") is false");
+            if (inRole)
+                TestUtil.logMsg("isCallerInRole(" + role + ") is true");
+            else
+                TestUtil.logMsg("isCallerInRole(" + role + ") is false");
             return inRole;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

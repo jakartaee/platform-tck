@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -116,13 +118,15 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("SOAPConstantsTest failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPConstantsTest failed");
+        if (!pass)
+            throw new Fault("SOAPConstantsTest failed");
     }
 }

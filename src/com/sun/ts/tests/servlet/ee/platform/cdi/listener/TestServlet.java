@@ -23,9 +23,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(
-        name = "TCKTestServlet",
-        urlPatterns = {"/TCKTestServletURL"})
+@WebServlet(name = "TCKTestServlet", urlPatterns = { "/TCKTestServletURL" })
 public class TestServlet extends HttpTCKServlet {
 
     public void srTest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

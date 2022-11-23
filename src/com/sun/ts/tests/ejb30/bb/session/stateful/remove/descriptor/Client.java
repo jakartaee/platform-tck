@@ -162,8 +162,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: a bean must always be removed after a system exception,
-     * even though the remove method is retainIfException true.
+     * @test_Strategy: a bean must always be removed after a system exception, even though the remove method is
+     * retainIfException true.
      *
      */
 
@@ -197,8 +197,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF.
      *
      */
     /*
@@ -206,8 +205,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF2.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF2.
      *
      */
     /*
@@ -215,8 +213,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF.
      *
      */
     /*
@@ -224,8 +221,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF2.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF2.
      *
      */
 

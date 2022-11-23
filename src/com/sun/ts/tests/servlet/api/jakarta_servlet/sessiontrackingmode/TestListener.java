@@ -31,19 +31,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class TestListener implements ServletContextListener {
 
     /**
-     * Receives notification that the web application initialization process is
-     * starting.
+     * Receives notification that the web application initialization process is starting.
      *
-     * @param sce
-     *          The servlet context event
+     * @param sce The servlet context event
      */
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext context = sce.getServletContext();
         Boolean pass = true;
         StringBuilder log = new StringBuilder();
         StringBuilder modes = new StringBuilder();
-        List<SessionTrackingMode> defaults =
-                new CopyOnWriteArrayList<SessionTrackingMode>(context.getDefaultSessionTrackingModes());
+        List<SessionTrackingMode> defaults = new CopyOnWriteArrayList<SessionTrackingMode>(context.getDefaultSessionTrackingModes());
         List<SessionTrackingMode> complete = new CopyOnWriteArrayList<SessionTrackingMode>();
 
         complete.add(SessionTrackingMode.COOKIE);
@@ -102,8 +99,7 @@ public class TestListener implements ServletContextListener {
     /**
      * Receives notification that the servlet context is about to be shut down.
      *
-     * @param sce
-     *          The servlet context event
+     * @param sce The servlet context event
      */
     public void contextDestroyed(ServletContextEvent sce) {
         // Do nothing

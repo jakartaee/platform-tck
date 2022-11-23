@@ -24,11 +24,12 @@ import jakarta.annotation.PostConstruct;
 
 public abstract class ClientBase2 extends ClientBase2NoAnnotation {
 
-    public ClientBase2() {}
+    public ClientBase2() {
+    }
 
     /**
-     * When this method is invoked, all injections, including those in this class,
-     * and all of its subclasses, should have been completed.
+     * When this method is invoked, all injections, including those in this class, and all of its subclasses, should have
+     * been completed.
      */
     @PostConstruct
     private static void postConstructInBase2() {

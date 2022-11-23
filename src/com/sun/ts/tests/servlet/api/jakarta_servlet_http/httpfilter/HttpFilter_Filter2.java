@@ -88,5 +88,6 @@ public final class HttpFilter_Filter2 extends HttpFilter {
     }
 
     // remove the filter configuration object for this filter.
-    public void destroy() {}
+    public void destroy() {
+    }
 }

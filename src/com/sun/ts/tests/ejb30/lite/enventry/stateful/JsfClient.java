@@ -36,14 +36,13 @@ public class JsfClient extends com.sun.ts.tests.ejb30.lite.enventry.common.JsfCl
     /*
      * @testName: ejbPostConstructRecords
      *
-     * @test_Strategy: verify all env-entry are injected properly by the time
-     * post-construct method is invoked.
+     * @test_Strategy: verify all env-entry are injected properly by the time post-construct method is invoked.
      */
 
     /*
      * @testName: clientPostConstructRecords
      *
-     * @test_Strategy: verify all env-entry injected into ejb can also be looked
-     * up from web client. In embeddable usage, this test is noop.
+     * @test_Strategy: verify all env-entry injected into ejb can also be looked up from web client. In embeddable usage,
+     * this test is noop.
      */
 }

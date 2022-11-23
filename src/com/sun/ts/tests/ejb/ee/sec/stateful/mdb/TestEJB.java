@@ -28,17 +28,21 @@ public class TestEJB implements SessionBean {
 
     private SessionContext sctx = null;
 
-    public void ejbCreate() throws CreateException {}
+    public void ejbCreate() throws CreateException {
+    }
 
     public void setSessionContext(SessionContext sc) {
         sctx = sc;
     }
 
-    public void ejbRemove() {}
+    public void ejbRemove() {
+    }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 
     public boolean EjbNotAuthz() {
         return true;

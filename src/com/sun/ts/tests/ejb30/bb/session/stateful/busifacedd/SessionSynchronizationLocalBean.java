@@ -33,14 +33,19 @@ public class SessionSynchronizationLocalBean extends BusinessLocal1Base
     @Resource
     private SessionContext sessionContext;
 
-    public SessionSynchronizationLocalBean() {}
+    public SessionSynchronizationLocalBean() {
+    }
 
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 
-    public void afterCompletion(boolean param) {}
+    public void afterCompletion(boolean param) {
+    }
 
-    public void beforeCompletion() {}
+    public void beforeCompletion() {
+    }
 
-    public void afterBegin() {}
+    public void afterBegin() {
+    }
 }

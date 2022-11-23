@@ -93,14 +93,11 @@ public class TestWorkManager {
     }
 
     /*
-     * There are 2 choices related to establishing Caller identity which need to
-     * considered when using TSSecurityContextWithListener/TSSecurityContext:
-     * choice 1: RA flows in an identity to the AppServers security domain. (eg no
-     * mapping/transalation done the identity is used as-is when passed into the
-     * App Servers security domain) choice 2: RA flows in an identity that belongs
-     * to the EIS domain only and a mapping of that identity to an AppServer
-     * identity then needs to be done to map the EIS id to an id that exists
-     * within the AppServers security domain.
+     * There are 2 choices related to establishing Caller identity which need to considered when using
+     * TSSecurityContextWithListener/TSSecurityContext: choice 1: RA flows in an identity to the AppServers security domain.
+     * (eg no mapping/transalation done the identity is used as-is when passed into the App Servers security domain) choice
+     * 2: RA flows in an identity that belongs to the EIS domain only and a mapping of that identity to an AppServer
+     * identity then needs to be done to map the EIS id to an id that exists within the AppServers security domain.
      */
     public void submitSecurityContextWork() {
 
@@ -121,10 +118,9 @@ public class TestWorkManager {
     }
 
     /*
-     * Test handling of a CPC - where no principals will be added to the CPC
-     * subject and the CPC has a non-null principal. This is testing the CPC being
-     * handled in a case-2 scenario with security-mapping on such that the EIS
-     * creds need to be used and mapped.
+     * Test handling of a CPC - where no principals will be added to the CPC subject and the CPC has a non-null principal.
+     * This is testing the CPC being handled in a case-2 scenario with security-mapping on such that the EIS creds need to
+     * be used and mapped.
      *
      */
     public void cbTestEISCPCandPrin() {
@@ -148,9 +144,8 @@ public class TestWorkManager {
     }
 
     /*
-     * Test handling of a CPC - where no principals will be added to the CPC
-     * subject and the CPC has a non-null principal. (This tests it using Case-1
-     * security creds)
+     * Test handling of a CPC - where no principals will be added to the CPC subject and the CPC has a non-null principal.
+     * (This tests it using Case-1 security creds)
      */
     public void cbTestCPCandPrin() {
         String str = "Enterred cbTestCPCandPrin() and Testing that A CPC ";
@@ -173,9 +168,8 @@ public class TestWorkManager {
     }
 
     /*
-     * Test handling of a CPC - where no principals will be added to the CPC
-     * execSubject and the CPC has a null principal. Also, this CPC follows a GPC
-     * and PVC.
+     * Test handling of a CPC - where no principals will be added to the CPC execSubject and the CPC has a null principal.
+     * Also, this CPC follows a GPC and PVC.
      */
     public void cbTestAllCallbacksNullPrin() {
 
@@ -199,9 +193,8 @@ public class TestWorkManager {
     }
 
     /*
-     * Test handling of a CPC - where no principals will be added to the CPC
-     * execSubject and the CPC has a non-null principal. Also, the CPC is done
-     * after a GPC and PVC.
+     * Test handling of a CPC - where no principals will be added to the CPC execSubject and the CPC has a non-null
+     * principal. Also, the CPC is done after a GPC and PVC.
      *
      */
     public void cbTestAllCallbacksAndPrin() {
@@ -228,8 +221,7 @@ public class TestWorkManager {
     }
 
     /*
-     * Test handling of a CPC - where no principals will be added to the CPC
-     * subject and the CPC has a null principal.
+     * Test handling of a CPC - where no principals will be added to the CPC subject and the CPC has a null principal.
      *
      */
     public void cbTestCPCandNullPrin() {
@@ -252,9 +244,8 @@ public class TestWorkManager {
     }
 
     /*
-     * Test case where GPC is followed by CPC - no principals are added to the
-     * execSubject, the CPC (with a non-null principal), and one or more GPC's
-     * (each non-null group) are handled.
+     * Test case where GPC is followed by CPC - no principals are added to the execSubject, the CPC (with a non-null
+     * principal), and one or more GPC's (each non-null group) are handled.
      */
     public void cbTestCPCandGPC() {
         String str = "Enterred cbTestCPCandGPC() and Testing that ";
@@ -277,8 +268,7 @@ public class TestWorkManager {
     }
 
     /*
-     * Test case where PVC is followed by CPC - no principals are added to the
-     * execSubject.
+     * Test case where PVC is followed by CPC - no principals are added to the execSubject.
      */
     public void cbTestCPCandPVC() {
         String str = "Enterred cbTestCPCandPVC() and Testing that ";
@@ -300,10 +290,9 @@ public class TestWorkManager {
     }
 
     /*
-     * Test that a single (presumably non-group) principal was added to the
-     * execSubject and the CPC is NOT handled. This uses invalid creds that are
-     * used in a case-2 scenario (with security mappings). The assumption is that
-     * this is only called for case-2 security.
+     * Test that a single (presumably non-group) principal was added to the execSubject and the CPC is NOT handled. This
+     * uses invalid creds that are used in a case-2 scenario (with security mappings). The assumption is that this is only
+     * called for case-2 security.
      */
     public void cbTestGPCandCPCFail() {
         String str = "Enterred cbTestGPCandCPCFail() and Testing a GPC, and CPC fail";
@@ -327,12 +316,10 @@ public class TestWorkManager {
     }
 
     /*
-     * This will need to submit a work object that has SIC set on it and then we
-     * will need to verify that the work object was recieved by the AppServer (via
-     * MDB) and we will want to verify the values that got set within the SIC
-     * setting to confirm the subject info is correct. (note that invoking
-     * MDB.isCallerInRole() is one thing we can use to assist with credential
-     * validation.
+     * This will need to submit a work object that has SIC set on it and then we will need to verify that the work object
+     * was recieved by the AppServer (via MDB) and we will want to verify the values that got set within the SIC setting to
+     * confirm the subject info is correct. (note that invoking MDB.isCallerInRole() is one thing we can use to assist with
+     * credential validation.
      *
      */
     public void submitSICWork() {
@@ -366,11 +353,9 @@ public class TestWorkManager {
     }
 
     /*
-     * This method is testing the order in which notifications occur. (see JCA
-     * spec assertions 224, 225, 262) This method makes use of a counter and some
-     * dedicated classes that will use the counter to record the calling order
-     * order of notifications for workAccepted, workStarted,
-     * contextSetupCompleted, and workAccepted.
+     * This method is testing the order in which notifications occur. (see JCA spec assertions 224, 225, 262) This method
+     * makes use of a counter and some dedicated classes that will use the counter to record the calling order order of
+     * notifications for workAccepted, workStarted, contextSetupCompleted, and workAccepted.
      *
      */
     public void testWorkContextLifecycleListener() {
@@ -455,16 +440,13 @@ public class TestWorkManager {
      *
      * ARGS:
      *
-     * SecurityContext: this is the sic that is passed in. It must be constructed
-     * befor being passed in. writeToDB: this is used to indicate if we want to
-     * commit/write our transaction to the db or roll it back.
+     * SecurityContext: this is the sic that is passed in. It must be constructed befor being passed in. writeToDB: this is
+     * used to indicate if we want to commit/write our transaction to the db or roll it back.
      *
-     * There are 2 choices related to establishing Caller identity: choice 1: RA
-     * flows in an identify to the AppServers security domain. (eg no transalation
-     * is done as the identity is used as is) choice 2: RA flows in an identity
-     * that belongs to the EIS domain only and a mapping of that identity to an
-     * AppServer identity then needs to be done to map the EIS id to an id that
-     * exists within the AppServers security domain.
+     * There are 2 choices related to establishing Caller identity: choice 1: RA flows in an identify to the AppServers
+     * security domain. (eg no transalation is done as the identity is used as is) choice 2: RA flows in an identity that
+     * belongs to the EIS domain only and a mapping of that identity to an AppServer identity then needs to be done to map
+     * the EIS id to an id that exists within the AppServers security domain.
      *
      */
     public void testSecurityInflow(SecurityContext sic, boolean writeToDB) {
@@ -547,8 +529,7 @@ public class TestWorkManager {
     }
 
     /*
-     * this will try to test API assertions which basically means we are testing
-     * the API.
+     * this will try to test API assertions which basically means we are testing the API.
      */
     public void doAPITests() {
         APIAssertionTest apiTest = new APIAssertionTest();
@@ -652,15 +633,13 @@ public class TestWorkManager {
     }
 
     /*
-     * JCA 1.6 spec 9section 16.3 and 16.4 state there are two types of security a
-     * RA can use: "Case 1" and "Case 2". Case 1 is when the RA passes in an
-     * identity and that identity is assumed to exist within the app server
-     * security domain. "Case 2" takes and EIS identity, which will not exist in
-     * AppServer domain, so this case requires a mapping/translation from and
-     * EIS-Identity to an i AppServer-Identity.
+     * JCA 1.6 spec 9section 16.3 and 16.4 state there are two types of security a RA can use: "Case 1" and "Case 2". Case 1
+     * is when the RA passes in an identity and that identity is assumed to exist within the app server security domain.
+     * "Case 2" takes and EIS identity, which will not exist in AppServer domain, so this case requires a
+     * mapping/translation from and EIS-Identity to an i AppServer-Identity.
      *
-     * set useSecurityMapping to true to specify we want Case 2 security mapping
-     * use. set useSecurityMapping to false to indicate Case 1 security.
+     * set useSecurityMapping to true to specify we want Case 2 security mapping use. set useSecurityMapping to false to
+     * indicate Case 1 security.
      */
     public void setUseSecurityMapping(boolean val) {
         this.useSecurityMapping = val;
@@ -710,8 +689,8 @@ public class TestWorkManager {
     }
 
     /*
-     * verify we can find config properties that should be set as part of our
-     * configuration process. (See ts.jte prop for values.)
+     * verify we can find config properties that should be set as part of our configuration process. (See ts.jte prop for
+     * values.)
      */
     private void verifyConfigSettings() {
         String err = "WARNING - TestWorkManager could not find required system property: ";

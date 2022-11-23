@@ -23,10 +23,8 @@ package com.sun.ts.tests.jaxws.sharedwebservices.faultservice;
 public class DummyException extends Exception {
 
     /**
-     * These dummy fields exist to testMessage Java -> WSDL mapping for
-     * Exceptions. JAXWS spec says that fields map to extra elements in the
-     * soap:Fault. Basic Profile R1000 says extra fields aren't allowed in
-     * soap:Faults
+     * These dummy fields exist to testMessage Java -> WSDL mapping for Exceptions. JAXWS spec says that fields map to extra
+     * elements in the soap:Fault. Basic Profile R1000 says extra fields aren't allowed in soap:Faults
      */
     private String dummyField1;
 

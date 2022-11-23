@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,11 +62,9 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveForTokensTest
      *
-     * @assertion_ids: JSTL:SPEC:22; JSTL:SPEC:22.1; JSTL:SPEC:22.2;
-     * JSTL:SPEC:22.3
+     * @assertion_ids: JSTL:SPEC:22; JSTL:SPEC:22.1; JSTL:SPEC:22.2; JSTL:SPEC:22.3
      *
-     * @testStrategy: Validate that forTokens can properly Iterate over a String
-     * provided with specified delimiters.
+     * @testStrategy: Validate that forTokens can properly Iterate over a String provided with specified delimiters.
      */
     public void positiveForTokensTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForTokensTest");
@@ -80,8 +76,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.4; JSTL:SPEC:22.4.1
      *
-     * @testStrategy: Validate that when varStatus is specified that the exported
-     * var name is of type jakarta.servlet.jsp.jstl.LoopTagStatus
+     * @testStrategy: Validate that when varStatus is specified that the exported var name is of type
+     * jakarta.servlet.jsp.jstl.LoopTagStatus
      */
     public void positiveVarStatusTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveVarStatusTest");
@@ -93,8 +89,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.5
      *
-     * @testStrategy: Validate that 'begin' starts in the proper location of the
-     * tokens created from the passed String.
+     * @testStrategy: Validate that 'begin' starts in the proper location of the tokens created from the passed String.
      */
     public void positiveBeginTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveBeginTest");
@@ -106,8 +101,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.6
      *
-     * @testStrategy: Validate that when 'end' is specified, that the action stops
-     * processing once it reaches the appropriate token in the list.
+     * @testStrategy: Validate that when 'end' is specified, that the action stops processing once it reaches the
+     * appropriate token in the list.
      */
     public void positiveEndTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveEndTest");
@@ -119,8 +114,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.7
      *
-     * @testStrategy: Validate that when 'step' is specified, the action only
-     * processes every 'step' tokens.
+     * @testStrategy: Validate that when 'step' is specified, the action only processes every 'step' tokens.
      */
     public void positiveStepTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveStepTest");
@@ -132,8 +126,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.8
      *
-     * @testStrategy: Validate that the 'forEach' action can handle bodies
-     * containing content as well as empty bodies.
+     * @testStrategy: Validate that the 'forEach' action can handle bodies containing content as well as empty bodies.
      */
     public void positiveBodyBehaviorTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveBodyBehaviorTest");
@@ -157,8 +150,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.16
      *
-     * @testStrategy: Validate that if delims is null, items is treated as a
-     * single token, i.e, only one iteration is performed.
+     * @testStrategy: Validate that if delims is null, items is treated as a single token, i.e, only one iteration is
+     * performed.
      */
     public void positiveDelimsNullTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveDelimsNullTest");
@@ -170,8 +163,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.15
      *
-     * @testStrategy: Validate that if both delims and items is null, no iteration
-     * is performed.
+     * @testStrategy: Validate that if both delims and items is null, no iteration is performed.
      */
     public void positiveItemsDelimsNullTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveItemsDelimsNullTest");
@@ -183,8 +175,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.5.3
      *
-     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
-     * the EL expression passed to begin evaluates to an incorrect type.
+     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if the EL expression passed to begin
+     * evaluates to an incorrect type.
      */
     public void negativeFTBeginTypeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeFTBeginTypeTest");
@@ -196,8 +188,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.6.2
      *
-     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
-     * the EL expression passed to end evaluates to an incorrect type.
+     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if the EL expression passed to end
+     * evaluates to an incorrect type.
      */
     public void negativeFTEndTypeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeFTEndTypeTest");
@@ -209,8 +201,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.7.2
      *
-     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
-     * the EL expression passed to step evaluates to an incorrect type.
+     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if the EL expression passed to step
+     * evaluates to an incorrect type.
      */
     public void negativeFTStepTypeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeFTStepTypeTest");
@@ -222,8 +214,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.17
      *
-     * @testStrategy: Validate that an exception caused by the actions's body
-     * content is properly propagated.
+     * @testStrategy: Validate that an exception caused by the actions's body content is properly propagated.
      */
     public void negativeFTExcBodyContentTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeFTExcBodyContentTest");
@@ -235,8 +226,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.18
      *
-     * @test_Strategy: Validate an end attribute value that is less than the begin
-     * attribute value will result in the action not being executed.
+     * @test_Strategy: Validate an end attribute value that is less than the begin attribute value will result in the action
+     * not being executed.
      */
     public void positiveForTokensEndLTBeginTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jstl_core_iter_fortok_web/positiveForTokensEndLTBeginTest.jsp HTTP/1.1");
@@ -249,10 +240,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:22.19
      *
-     * @test_Strategy: Create a String containing several tokens. In a c:forTokens
-     * tag, reference the String as a deferred value in the items attribute. In
-     * the body of the tag, set each item to have application scope. Verify that
-     * the items can be retrieved after the execution of the tag.
+     * @test_Strategy: Create a String containing several tokens. In a c:forTokens tag, reference the String as a deferred
+     * value in the items attribute. In the body of the tag, set each item to have application scope. Verify that the items
+     * can be retrieved after the execution of the tag.
      */
     public void positiveForTokensDeferredValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForTokensDeferredValueTest");

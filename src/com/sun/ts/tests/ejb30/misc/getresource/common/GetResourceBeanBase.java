@@ -26,7 +26,8 @@ public class GetResourceBeanBase implements GetResourceIF {
 
     private GetResourceTest tester = new GetResourceTest();
 
-    protected GetResourceBeanBase() {}
+    protected GetResourceBeanBase() {
+    }
 
     public void getResourceSamePackage() throws TestFailedException {
         tester.getResourceWithClass(getClass(), RESOURCE_NAME, RESOURCE_CONTENT);

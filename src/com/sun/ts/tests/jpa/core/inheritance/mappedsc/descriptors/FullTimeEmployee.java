@@ -32,7 +32,8 @@ public class FullTimeEmployee extends Employee implements Serializable {
 
     private float salary;
 
-    public FullTimeEmployee() {}
+    public FullTimeEmployee() {
+    }
 
     public FullTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
         super(id, firstName, lastName, hireDate);

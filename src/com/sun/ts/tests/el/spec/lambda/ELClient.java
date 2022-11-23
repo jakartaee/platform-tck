@@ -56,26 +56,20 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLambdaExprBigDecimalTest
      *
-     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
-     *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
+     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4; EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
      *
-     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
-     *                 rules are followed.
+     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion rules are followed.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
-     *                 (x,y)->x [operator] y" "z(a, b)", "func = (x,y)->x
-     *                 [operator] y; func(a, b)", "(cond->[true/false]? a
-     *                 [operator] b: a [operator] 2)(a)"
+     * Expressions: "(((x, y)-> x [operator] y)(a, b))", "z = (x,y)->x [operator] y" "z(a, b)", "func = (x,y)->x [operator]
+     * y; func(a, b)", "(cond->[true/false]? a [operator] b: a [operator] 2)(a)"
      *
-     *                 Variable A - BigDecimal
+     * Variable A - BigDecimal
      *
-     *                 Variable B - Rotating through the following types:
-     *                 BigDecimal, BigInteger, Integer, Float, Long, Short,
-     *                 Double, Byte
+     * Variable B - Rotating through the following types: BigDecimal, BigInteger, Integer, Float, Long, Short, Double, Byte
      *
-     *                 Excluded: none
+     * Excluded: none
      *
      * @since: 3.0
      *
@@ -116,25 +110,20 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLambdaExprFloatTest
      *
-     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
-     *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
+     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4; EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
      *
-     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
-     *                 rules are followed.
+     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion rules are followed.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
-     *                 (x,y)->x [operator] y" "z(a, b)", "func = (x,y)->x
-     *                 [operator] y; func(a, b)", "(cond->[true/false]? a
-     *                 [operator] b: a [operator] 2)(a)"
+     * Expressions: "(((x, y)-> x [operator] y)(a, b))", "z = (x,y)->x [operator] y" "z(a, b)", "func = (x,y)->x [operator]
+     * y; func(a, b)", "(cond->[true/false]? a [operator] b: a [operator] 2)(a)"
      *
-     *                 Variable A - Float
+     * Variable A - Float
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal
+     * Exclude: BigDecimal
      *
      * @since: 3.0
      *
@@ -208,25 +197,20 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLambdaExprDoubleTest
      *
-     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
-     *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
+     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4; EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
      *
-     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
-     *                 rules are followed.
+     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion rules are followed.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
-     *                 (x,y)->x [operator] y" "z(a, b)", "func = (x,y)->x
-     *                 [operator] y; func(a, b)", "(cond->[true/false]? a
-     *                 [operator] b: a [operator] 2)(a)"
+     * Expressions: "(((x, y)-> x [operator] y)(a, b))", "z = (x,y)->x [operator] y" "z(a, b)", "func = (x,y)->x [operator]
+     * y; func(a, b)", "(cond->[true/false]? a [operator] b: a [operator] 2)(a)"
      *
-     *                 Variable A - Double
+     * Variable A - Double
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, Float
+     * Exclude: BigDecimal, Float
      *
      * @since: 3.0
      *
@@ -300,23 +284,19 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLambdaExprBigIntegerTest
      *
-     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
-     *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
+     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4; EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
      *
-     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
-     *                 rules are followed.
+     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion rules are followed.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
-     *                 (x,y)->x [operator] y" "z(a, b)"
+     * Expressions: "(((x, y)-> x [operator] y)(a, b))", "z = (x,y)->x [operator] y" "z(a, b)"
      *
-     *                 Variable A - BigInteger
+     * Variable A - BigInteger
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, Float, Double
+     * Exclude: BigDecimal, Float, Double
      *
      * @since: 3.0
      *
@@ -368,23 +348,19 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLambdaExprIntegerTest
      *
-     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
-     *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
+     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4; EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
      *
-     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
-     *                 rules are followed.
+     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion rules are followed.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
-     *                 (x,y)->x [operator] y" "z(a, b)"
+     * Expressions: "(((x, y)-> x [operator] y)(a, b))", "z = (x,y)->x [operator] y" "z(a, b)"
      *
-     *                 Variable A - Integer
+     * Variable A - Integer
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double
+     * Exclude: BigDecimal, BigInteger, Float, Double
      *
      * @since: 3.0
      *
@@ -437,23 +413,19 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLambdaExprLongTest
      *
-     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
-     *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
+     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4; EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
      *
-     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
-     *                 rules are followed.
+     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion rules are followed.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
-     *                 (x,y)->x [operator] y" "z(a, b)"
+     * Expressions: "(((x, y)-> x [operator] y)(a, b))", "z = (x,y)->x [operator] y" "z(a, b)"
      *
-     *                 Variable A - Long
+     * Variable A - Long
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer
+     * Exclude: BigDecimal, BigInteger, Float, Double, Integer
      *
      * @since: 3.0
      *
@@ -507,24 +479,19 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLambdaExprShortTest
      *
-     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
-     *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
+     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4; EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
      *
-     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
-     *                 rules are followed.
+     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion rules are followed.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
-     *                 (x,y)->x [operator] y" "z(a, b)"
+     * Expressions: "(((x, y)-> x [operator] y)(a, b))", "z = (x,y)->x [operator] y" "z(a, b)"
      *
-     *                 Variable A - Short
+     * Variable A - Short
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
-     *                 Long
+     * Exclude: BigDecimal, BigInteger, Float, Double, Integer, Long
      *
      * @since: 3.0
      *
@@ -579,24 +546,19 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLambdaExprByteTest
      *
-     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
-     *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
+     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4; EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
      *
-     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
-     *                 rules are followed.
+     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion rules are followed.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
-     *                 (x,y)->x [operator] y" "z(a, b)"
+     * Expressions: "(((x, y)-> x [operator] y)(a, b))", "z = (x,y)->x [operator] y" "z(a, b)"
      *
-     *                 Variable A - Byte
+     * Variable A - Byte
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
-     *                 Long, Short
+     * Exclude: BigDecimal, BigInteger, Float, Double, Integer, Long, Short
      *
      * @since: 3.0
      *
@@ -654,17 +616,16 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:49.1; EL:JAVADOC:212
      *
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +
+     * Operators: +
      *
-     *                 Expression: "(((x, y)-> x cat y)(a, b))"
+     * Expression: "(((x, y)-> x cat y)(a, b))"
      *
-     *                 Variable A - String
+     * Variable A - String
      *
-     *                 Variable B - String
+     * Variable B - String
      *
      * @since: 3.0
      *
@@ -686,19 +647,17 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLambdaExprNullTest
      *
-     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
-     *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
+     * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4; EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
      *
-     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
-     *                 rules are followed.
+     * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion rules are followed.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expression: "(((x, y)-> x [operator] y)(a, b))"
+     * Expression: "(((x, y)-> x [operator] y)(a, b))"
      *
-     *                 Variable A - null
+     * Variable A - null
      *
-     *                 Variable B - null
+     * Variable B - null
      *
      * @since: 3.0
      *

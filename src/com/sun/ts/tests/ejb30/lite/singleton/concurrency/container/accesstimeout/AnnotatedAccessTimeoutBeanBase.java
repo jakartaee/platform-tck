@@ -25,10 +25,9 @@ import jakarta.ejb.LockType;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The purpose of this class is to verify its @AccessTimeout is inherited by its
- * subclasses and all their business methods. There is no @AccessTimeout in its
- * subclasses or their business methods. It also verifies that method-level can
- * override class-level @AccessTimeout.
+ * The purpose of this class is to verify its @AccessTimeout is inherited by its subclasses and all their business
+ * methods. There is no @AccessTimeout in its subclasses or their business methods. It also verifies that method-level
+ * can override class-level @AccessTimeout.
  */
 @AccessTimeout(unit = TimeUnit.DAYS, value = 1)
 public abstract class AnnotatedAccessTimeoutBeanBase extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {

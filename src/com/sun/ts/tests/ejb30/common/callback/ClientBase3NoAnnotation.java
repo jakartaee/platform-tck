@@ -21,13 +21,13 @@
 package com.sun.ts.tests.ejb30.common.callback;
 
 /**
- * the direct superclass of Client classes that test application client
- * PostConstruct and injection-complete, e.g.,
+ * the direct superclass of Client classes that test application client PostConstruct and injection-complete, e.g.,
  * stateless/callback/method/descriptor/Client.
  */
 public abstract class ClientBase3NoAnnotation extends ClientBase2NoAnnotation {
 
-    public ClientBase3NoAnnotation() {}
+    public ClientBase3NoAnnotation() {
+    }
 
     // @PostConstruct
     private static void postConstructInBase3NoAnnotation() {

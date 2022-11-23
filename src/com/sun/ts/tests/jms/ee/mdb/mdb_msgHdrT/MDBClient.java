@@ -41,8 +41,7 @@ public class MDBClient extends EETest {
 
     /* Test setup: */
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.port;
-     * harness.log.traceflag;
+     * @class.setup_props: jms_timeout; user; password; harness.log.port; harness.log.traceflag;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -68,11 +67,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:7; JMS:JAVADOC:347;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to Send a single Text, map, bytes, stream, and object message check
-     * time of send against time send returns JMSTimeStamp should be between these
-     * two Send Pass/Fail message to MDB_QUEUE_REPLY Have session bean check the
-     * queue for pass/fail results
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to Send a single Text, map, bytes,
+     * stream, and object message check time of send against time send returns JMSTimeStamp should be between these two Send
+     * Pass/Fail message to MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
      */
     public void mdbMsgHdrTimeStampTTest() throws Fault {
         String testCase = "msgHdrTimeStampTTest";
@@ -95,10 +92,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to Send a text message to a Topic with CorrelationID set. Receive
-     * msg and verify the correlationid is as set by client Send Pass/Fail message
-     * to MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to Send a text message to a Topic
+     * with CorrelationID set. Receive msg and verify the correlationid is as set by client Send Pass/Fail message to
+     * MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
      *
      */
     public void mdbMsgHdrCorlIdTTextTest() throws Fault {
@@ -123,10 +119,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to send a Bytes message to a Topic with CorrelationID set. Receive
-     * msg and verify the correlationid is as set by client Send Pass/Fail message
-     * to MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to send a Bytes message to a Topic
+     * with CorrelationID set. Receive msg and verify the correlationid is as set by client Send Pass/Fail message to
+     * MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
      */
     public void mdbMsgHdrCorlIdTBytesTest() throws Fault {
         String testCase1 = "msgHdrCorlIdTBytesTestCreate";
@@ -150,9 +145,8 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to send a map message to a Topic with CorrelationID set. Receive msg
-     * and verify the correlationid is as set by client Send Pass/Fail message to
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to send a map message to a Topic
+     * with CorrelationID set. Receive msg and verify the correlationid is as set by client Send Pass/Fail message to
      * MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
      *
      */
@@ -176,13 +170,11 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgHdrCorlIdTStreamTest
      *
-     * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:119; JMS:SPEC:12;
-     * JMS:JAVADOC:355; JMS:JAVADOC:357;
+     * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:119; JMS:SPEC:12; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to send a stream message to a Topic with CorrelationID set. Receive
-     * msg and verify the correlationid is as set by client Send Pass/Fail message
-     * to MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to send a stream message to a Topic
+     * with CorrelationID set. Receive msg and verify the correlationid is as set by client Send Pass/Fail message to
+     * MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
      *
      */
     public void mdbMsgHdrCorlIdTStreamTest() throws Fault {
@@ -205,13 +197,11 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgHdrCorlIdTObjectTest
      *
-     * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:119; JMS:SPEC:12;
-     * JMS:JAVADOC:355; JMS:JAVADOC:357;
+     * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:119; JMS:SPEC:12; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to send a stream message to a Topic with CorrelationID set. Receive
-     * msg and verify the correlationid is as set by client Send Pass/Fail message
-     * to MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to send a stream message to a Topic
+     * with CorrelationID set. Receive msg and verify the correlationid is as set by client Send Pass/Fail message to
+     * MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
      *
      */
     public void mdbMsgHdrCorlIdTObjectTest() throws Fault {
@@ -234,14 +224,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgHdrReplyToTTest
      *
-     * @assertion_ids: JMS:SPEC:12; JMS:JAVADOC:359; JMS:JAVADOC:361;
-     * JMS:JAVADOC:286; JMS:JAVADOC:289; JMS:JAVADOC:562; JMS:JAVADOC:166;
-     * JMS:SPEC:246.8;
+     * @assertion_ids: JMS:SPEC:12; JMS:JAVADOC:359; JMS:JAVADOC:361; JMS:JAVADOC:286; JMS:JAVADOC:289; JMS:JAVADOC:562;
+     * JMS:JAVADOC:166; JMS:SPEC:246.8;
      *
-     * @test_Strategy: Invoke a session bean. Have the session bean request an mdb
-     * to send a message to a Topic with ReplyTo set to a destination. Have the
-     * mdb verify on receive. Send Pass/Fail message to MDB_QUEUE_REPLY Have
-     * session bean check the queue for pass/fail results
+     * @test_Strategy: Invoke a session bean. Have the session bean request an mdb to send a message to a Topic with ReplyTo
+     * set to a destination. Have the mdb verify on receive. Send Pass/Fail message to MDB_QUEUE_REPLY Have session bean
+     * check the queue for pass/fail results
      *
      */
     public void mdbMsgHdrReplyToTTest() throws Fault {
@@ -266,10 +254,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:246.9; JMS:JAVADOC:375; JMS:JAVADOC:377;
      *
-     * @test_Strategy: Invoke a session bean. Have the session bean request an mdb
-     * to send a message to a Topic with JMSType set to TESTMSG verify on receive.
-     * Send Pass/Fail message to MDB_QUEUE_REPLY Have session bean check the queue
-     * for pass/fail results
+     * @test_Strategy: Invoke a session bean. Have the session bean request an mdb to send a message to a Topic with JMSType
+     * set to TESTMSG verify on receive. Send Pass/Fail message to MDB_QUEUE_REPLY Have session bean check the queue for
+     * pass/fail results
      *
      */
     public void mdbMsgHdrJMSTypeTTest() throws Fault {
@@ -292,13 +279,11 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgHdrJMSPriorityTTest
      *
-     * @assertion_ids: JMS:SPEC:16; JMS:SPEC:18; JMS:SPEC:140; JMS:JAVADOC:305;
-     * JMS:JAVADOC:383;
+     * @assertion_ids: JMS:SPEC:16; JMS:SPEC:18; JMS:SPEC:140; JMS:JAVADOC:305; JMS:JAVADOC:383;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to send a message to a Topic with JMSPriority set to 2 test with
-     * Text, map, object, byte, and stream messages Send Pass/Fail message to
-     * MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to send a message to a Topic with
+     * JMSPriority set to 2 test with Text, map, object, byte, and stream messages Send Pass/Fail message to MDB_QUEUE_REPLY
+     * Have session bean check the queue for pass/fail results
      *
      */
     public void mdbMsgHdrJMSPriorityTTest() throws Fault {
@@ -321,14 +306,11 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgHdrJMSExpirationTopicTest
      *
-     * @assertion_ids: JMS:SPEC:15.2; JMS:SPEC:15.3; JMS:SPEC:140;
-     * JMS:JAVADOC:309; JMS:JAVADOC:379;
+     * @assertion_ids: JMS:SPEC:15.2; JMS:SPEC:15.3; JMS:SPEC:140; JMS:JAVADOC:309; JMS:JAVADOC:379;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to send a message to a Topic with time to live set to 0 Verify that
-     * JMSExpiration gets set to 0 test with Text, map, object, byte, and stream
-     * messages Send Pass/Fail message to MDB_QUEUE_REPLY Have session bean check
-     * the queue for pass/fail results
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to send a message to a Topic with
+     * time to live set to 0 Verify that JMSExpiration gets set to 0 test with Text, map, object, byte, and stream messages
+     * Send Pass/Fail message to MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
      *
      */
     public void mdbMsgHdrJMSExpirationTopicTest() throws Fault {
@@ -353,11 +335,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:2; JMS:JAVADOC:363; JMS:JAVADOC:286;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to create and send a message to the mdb Topic. Receive msg and
-     * verify that JMSDestination is set as expected test with Text, map, object,
-     * byte, and stream messages Send Pass/Fail message to MDB_QUEUE_REPLY Have
-     * session bean check the queue for pass/fail results
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to create and send a message to the
+     * mdb Topic. Receive msg and verify that JMSDestination is set as expected test with Text, map, object, byte, and
+     * stream messages Send Pass/Fail message to MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
      */
     public void mdbMsgHdrJMSDestinationTTest() throws Fault {
         String testCase1 = "msgHdrJMSDestinationTTestCreate";
@@ -379,16 +359,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgHdrJMSDeliveryModeTTest
      *
-     * @assertion_ids: JMS:SPEC:3; JMS:SPEC:140; JMS:JAVADOC:367; JMS:SPEC:246.2;
-     * JMS:JAVADOC:301;
+     * @assertion_ids: JMS:SPEC:3; JMS:SPEC:140; JMS:JAVADOC:367; JMS:SPEC:246.2; JMS:JAVADOC:301;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to create and send a message to the default Topic. Receive the msg
-     * and verify that JMSDeliveryMode is set the default delivery mode of
-     * persistent. Create and test another message with a nonpersistent delivery
-     * mode. test with Text, map, object, byte, and stream messages Send Pass/Fail
-     * message to MDB_QUEUE_REPLY Have session bean check the queue for pass/fail
-     * results
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to create and send a message to the
+     * default Topic. Receive the msg and verify that JMSDeliveryMode is set the default delivery mode of persistent. Create
+     * and test another message with a nonpersistent delivery mode. test with Text, map, object, byte, and stream messages
+     * Send Pass/Fail message to MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
      */
     public void mdbMsgHdrJMSDeliveryModeTTest() throws Fault {
         String testCase1 = "msgHdrJMSDeliveryModeTTestCreate";
@@ -412,11 +388,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:4; JMS:JAVADOC:343;
      *
-     * @test_Strategy: Invoke a stateful session bean have the session bean call
-     * an mdb to send and receive single Text, map, bytes, stream, and object
-     * message call getJMSMessageID and verify that it starts with ID: Send
-     * Pass/Fail message to MDB_QUEUE_REPLY Have session bean check the queue for
-     * pass/fail results
+     * @test_Strategy: Invoke a stateful session bean have the session bean call an mdb to send and receive single Text,
+     * map, bytes, stream, and object message call getJMSMessageID and verify that it starts with ID: Send Pass/Fail message
+     * to MDB_QUEUE_REPLY Have session bean check the queue for pass/fail results
      */
     public void mdbMsgHdrIDTTest() throws Fault {
 

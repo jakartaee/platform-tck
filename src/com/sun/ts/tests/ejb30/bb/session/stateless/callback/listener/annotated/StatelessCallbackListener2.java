@@ -28,8 +28,7 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * A callback listerner for stateless session beans. Two callback annotations
- * are applied on the same method.
+ * A callback listerner for stateless session beans. Two callback annotations are applied on the same method.
  */
 public class StatelessCallbackListener2 {
 

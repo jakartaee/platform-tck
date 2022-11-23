@@ -39,7 +39,7 @@ import jakarta.persistence.Table;
 @Entity
 @Cacheable(false)
 @Table(name = "PRODUCT_TABLE")
-@SecondaryTables({@SecondaryTable(name = "PRODUCT_DETAILS", pkJoinColumns = @PrimaryKeyJoinColumn(name = "ID"))})
+@SecondaryTables({ @SecondaryTable(name = "PRODUCT_DETAILS", pkJoinColumns = @PrimaryKeyJoinColumn(name = "ID")) })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "PRODUCT_TYPE", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Product2")
@@ -51,7 +51,8 @@ public class Product2 implements java.io.Serializable {
 
     private int quantity;
 
-    public Product2() {}
+    public Product2() {
+    }
 
     public Product2(String id, int quantity) {
         this.id = id;

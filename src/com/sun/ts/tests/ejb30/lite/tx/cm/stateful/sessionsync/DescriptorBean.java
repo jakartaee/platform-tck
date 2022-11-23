@@ -23,9 +23,8 @@ package com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync;
 import jakarta.ejb.Stateful;
 
 /**
- * SessionSynchronization methods are specified in ejb-jar.xml. afterCompletion
- * method is not implemented and there should be no callback calls for
- * afterCompletion.
+ * SessionSynchronization methods are specified in ejb-jar.xml. afterCompletion method is not implemented and there
+ * should be no callback calls for afterCompletion.
  */
 @Stateful
 public class DescriptorBean extends SessionSyncBeanBase implements SessionSyncIF {

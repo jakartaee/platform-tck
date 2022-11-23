@@ -27,23 +27,24 @@ import com.sun.ts.lib.util.TestUtil;
 
 interface TransactionStatus {
     public static final String[] transStatusArray = {
-        "STATUS_ACTIVE",
-        "STATUS_MARKED_ROLLBACK",
-        "STATUS_PREPARED",
-        "STATUS_COMMITED",
-        "STATUS_ROLLBACK",
-        "STATUS_UNKNOWN",
-        "STATUS_NO_TRANSACTION",
-        "STATUS_PREPARING",
-        "STATUS_COMMITTING",
-        "STATUS_ROLLING_BACK"
+            "STATUS_ACTIVE",
+            "STATUS_MARKED_ROLLBACK",
+            "STATUS_PREPARED",
+            "STATUS_COMMITED",
+            "STATUS_ROLLBACK",
+            "STATUS_UNKNOWN",
+            "STATUS_NO_TRANSACTION",
+            "STATUS_PREPARING",
+            "STATUS_COMMITTING",
+            "STATUS_ROLLING_BACK"
     };
 } // End of TransactionStatus
 
 public class Transact extends ServiceEETest implements TransactionStatus {
     public static TSNamingContext nctx = null;
 
-    public Transact() {}
+    public Transact() {
+    }
 
     private static void prepareTM() throws Exception {
         // Gets Naming Context

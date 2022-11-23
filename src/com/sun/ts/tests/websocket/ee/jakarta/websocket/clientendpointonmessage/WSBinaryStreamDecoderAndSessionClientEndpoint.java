@@ -31,7 +31,7 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import java.io.IOException;
 
-@ClientEndpoint(decoders = {StringBeanBinaryStreamDecoder.class})
+@ClientEndpoint(decoders = { StringBeanBinaryStreamDecoder.class })
 public class WSBinaryStreamDecoderAndSessionClientEndpoint extends AnnotatedClientEndpoint<StringBean> {
 
     public WSBinaryStreamDecoderAndSessionClientEndpoint() {

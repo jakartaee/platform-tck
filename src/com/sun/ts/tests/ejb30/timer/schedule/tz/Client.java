@@ -57,8 +57,8 @@ public class Client extends ClientBase {
     /*
      * @testName: onlyForTZScheduleBareBean
      *
-     * @test_Strategy: declare a timer in ejb-jar.xml for TZScheduleBareBean only.
-     * Verify this timer is not available in TZScheduleBean.
+     * @test_Strategy: declare a timer in ejb-jar.xml for TZScheduleBareBean only. Verify this timer is not available in
+     * TZScheduleBean.
      */
     public void onlyForTZScheduleBareBean() {
         final String timerName = "TZScheduleBareBean.only";
@@ -82,8 +82,8 @@ public class Client extends ClientBase {
     /*
      * @testName: expireInLaterTZ
      *
-     * @test_Strategy: create programmatic timers with a TZ that is later than the
-     * default TZ. The timer should not expire now.
+     * @test_Strategy: create programmatic timers with a TZ that is later than the default TZ. The timer should not expire
+     * now.
      */
     public void expireInLaterTZ() {
         Timer t = tzBean.expireInLaterTZ();

@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -62,8 +60,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:410
      *
-     * @test_Strategy: Validate the behavior of
-     * JspApplicationContext.addELResolver() Verify that once an ELResolver has
+     * @test_Strategy: Validate the behavior of JspApplicationContext.addELResolver() Verify that once an ELResolver has
      * been registered with the JSP container it performs as expected.
      */
     public void addELResolverTest() throws Fault {
@@ -77,11 +74,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:410
      *
-     * @test_Strategy: Validate the behavior of
-     * JspApplicationContext.addELResolver() throws IllegalStateException Verify
-     * that once an application has received a request from the clienT, A call to
-     * JspApplicationContext.addELResolver() will cause the container to throw an
-     * IllegalStateException.
+     * @test_Strategy: Validate the behavior of JspApplicationContext.addELResolver() throws IllegalStateException Verify
+     * that once an application has received a request from the clienT, A call to JspApplicationContext.addELResolver() will
+     * cause the container to throw an IllegalStateException.
      */
     public void invokeIllegalStateExceptionTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_jspapplicationcontext_web/IllegalStateExceptionTest.jsp HTTP 1.1");

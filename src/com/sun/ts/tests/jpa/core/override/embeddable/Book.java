@@ -30,7 +30,8 @@ public class Book implements Serializable {
     @Embedded
     private Publisher1 publisher1;
 
-    public Book() {}
+    public Book() {
+    }
 
     public int hashCode() {
         int hash = 0;

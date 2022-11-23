@@ -30,9 +30,8 @@ public class Client extends AbstractUrlClient {
     public static final String SERVLET_NAME = "TestServlet";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -41,8 +40,7 @@ public class Client extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setServletName(SERVLET_NAME);
@@ -58,9 +56,8 @@ public class Client extends AbstractUrlClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy:client -> TestServlet -> SameEJBClassBean and
-     * SameEJBClassBean2 See issue 6653 (session bean resource values not being
-     * set correctly)
+     * @test_Strategy:client -> TestServlet -> SameEJBClassBean and SameEJBClassBean2 See issue 6653 (session bean resource
+     * values not being set correctly)
      */
     public void checkEnvEntry() throws Fault {
         TEST_PROPS.setProperty(APITEST, "checkEnvEntry");
@@ -72,9 +69,8 @@ public class Client extends AbstractUrlClient {
      *
      * @assertion_ids: EJB:JAVADOC:185; EJB:JAVADOC:147
      *
-     * @test_Strategy: invokes the bean and pass in a simple Data Transfer Object
-     * type. verifies the pass by value behaviors, and proper serializabion of
-     * params.
+     * @test_Strategy: invokes the bean and pass in a simple Data Transfer Object type. verifies the pass by value
+     * behaviors, and proper serializabion of params.
      */
     public void testDTO() throws Fault {
         TEST_PROPS.setProperty(APITEST, "testDTO");

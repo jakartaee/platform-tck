@@ -31,9 +31,8 @@ public class Client extends AbstractUrlClient {
     public static final String SERVLET_NAME = "TestServlet";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -42,8 +41,7 @@ public class Client extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     @Override
     public Status run(String args[], PrintWriter out, PrintWriter err) {
@@ -59,8 +57,8 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: initOrder
      *
-     * @test_Strategy: verify <initialize-in-order> set to true. The web module is
-     * initialized before ejb module. The ejb module contains a singleton ejb with
+     * @test_Strategy: verify <initialize-in-order> set to true. The web module is initialized before ejb module. The ejb
+     * module contains a singleton ejb with
      *
      * @Startup set to true.
      */
@@ -72,8 +70,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: appName
      *
-     * @test_Strategy: verify <application-name> value is used instead of the
-     * default app-name.
+     * @test_Strategy: verify <application-name> value is used instead of the default app-name.
      */
     public void appName() throws Fault {
         TEST_PROPS.setProperty(APITEST, "appName");

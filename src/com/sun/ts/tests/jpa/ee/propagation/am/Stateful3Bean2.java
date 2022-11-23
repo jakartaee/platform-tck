@@ -33,11 +33,11 @@ import java.math.BigInteger;
 import java.util.Properties;
 
 @PersistenceUnits({
-    @PersistenceUnit(name = "persistence/cau", unitName = "CTS-APPMANAGED-UNIT"),
-    @PersistenceUnit(name = "persistence/cau2", unitName = "CTS-APPMANAGED-UNIT2")
+        @PersistenceUnit(name = "persistence/cau", unitName = "CTS-APPMANAGED-UNIT"),
+        @PersistenceUnit(name = "persistence/cau2", unitName = "CTS-APPMANAGED-UNIT2")
 })
 @Stateful(name = "Stateful3Bean2")
-@Remote({Stateful3IF2.class})
+@Remote({ Stateful3IF2.class })
 public class Stateful3Bean2 implements Stateful3IF2 {
 
     private static final String EMF_LOOKUP_NAME = "java:comp/env/persistence/cau";

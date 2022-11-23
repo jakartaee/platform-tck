@@ -91,7 +91,7 @@ public class TS extends TestSuite {
         String[] args = null;
         if (jtd.exists() && !Boolean.getBoolean("no.binary.finder")) {
             finder = new BinaryTestFinder();
-            args = new String[] {"-binary", jtd.getPath()};
+            args = new String[] { "-binary", jtd.getPath() };
             TestUtil.logHarness("Use BinaryTestFinder...");
         } else {
             String finderFilePath = getFinderFilePath();
@@ -101,7 +101,7 @@ public class TS extends TestSuite {
                 TestUtil.logHarness("Use TSTestFinder...");
             } else {
                 finder = new ChameleonTestFinder();
-                args = new String[] {"-f", finderFilePath};
+                args = new String[] { "-f", finderFilePath };
                 TestUtil.logHarness("Use ChameleonTestFinder...");
             }
         }

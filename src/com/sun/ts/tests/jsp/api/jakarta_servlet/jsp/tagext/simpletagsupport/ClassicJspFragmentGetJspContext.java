@@ -37,8 +37,7 @@ public class ClassicJspFragmentGetJspContext extends TagSupport {
     /**
      * Sets _fragment. This should be an instance of JspFragment.
      *
-     * @param o
-     *          - a JspFragment instance
+     * @param o - a JspFragment instance
      */
     public void setFragment(Object o) {
         _fragment = o;

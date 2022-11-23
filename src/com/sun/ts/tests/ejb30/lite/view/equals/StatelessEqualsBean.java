@@ -31,7 +31,7 @@ import jakarta.ejb.Stateless;
 
 @Stateless
 @LocalBean
-@Local({BusinessLocalIF1.class, BusinessLocalIF2.class, AnnotatedLocalBusinessInterface1.class})
+@Local({ BusinessLocalIF1.class, BusinessLocalIF2.class, AnnotatedLocalBusinessInterface1.class })
 public class StatelessEqualsBean implements BusinessLocalIF1, BusinessLocalIF2 {
     @Resource
     private SessionContext sctx;

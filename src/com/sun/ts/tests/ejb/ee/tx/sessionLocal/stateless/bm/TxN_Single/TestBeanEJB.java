@@ -121,7 +121,8 @@ public class TestBeanEJB implements SessionBean {
             }
 
             // Final check and return result
-            if (b1) testResult = true;
+            if (b1)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

@@ -34,7 +34,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless
-@Local({EJBContext2IF.class, EJBContextIF.class})
+@Local({ EJBContext2IF.class, EJBContextIF.class })
 public class EJBContext2Bean extends EJBContextBeanBase implements EJBContext2IF, EJBContextIF {
 
     @Resource

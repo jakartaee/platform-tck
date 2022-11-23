@@ -55,8 +55,7 @@ public class Client extends ServiceEETest {
 
     private static final String PKG_NAME = "com.sun.ts.tests.jaxws.api.jakarta_xml_ws.LogicalMessage.";
 
-    private static final String SHARED_CLIENT_PKG =
-            "com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient.";
+    private static final String SHARED_CLIENT_PKG = "com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient.";
 
     private static final String NAMESPACEURI = "http://helloservice.org/wsdl";
 
@@ -68,8 +67,7 @@ public class Client extends ServiceEETest {
 
     private QName PORT_QNAME = new QName(NAMESPACEURI, PORT_NAME);
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient.HelloService.class;
 
     private TSURL ctsurl = new TSURL();
 
@@ -94,11 +92,9 @@ public class Client extends ServiceEETest {
 
     private BindingProvider bpDispatch = null;
 
-    private static final Class JAXB_OBJECT_FACTORY =
-            com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient.ObjectFactory.class;
+    private static final Class JAXB_OBJECT_FACTORY = com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient.ObjectFactory.class;
 
-    private String helloReq =
-            "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest>";
+    private String helloReq = "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest>";
 
     private JAXBContext createJAXBContext() {
         try {
@@ -146,8 +142,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -181,8 +179,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: getHTTPBindingTest
      *
-     * @assertion_ids: JAXWS:SPEC:11000; WS4EE:SPEC:5005; JAXWS:SPEC:7012;
-     * JAXWS:SPEC:3039;
+     * @assertion_ids: JAXWS:SPEC:11000; WS4EE:SPEC:5005; JAXWS:SPEC:7012; JAXWS:SPEC:3039;
      *
      * @test_Strategy:
      */
@@ -202,7 +199,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("getHTTPBindingTest failed");
+        if (!pass)
+            throw new Fault("getHTTPBindingTest failed");
     }
 
     /*
@@ -223,7 +221,8 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Expected: [" + Constants.EXPECTED_HTTP_BINDING + "]");
             pass = false;
         }
-        if (!pass) throw new Fault("HTTPBindingConstantsTest failed");
+        if (!pass)
+            throw new Fault("HTTPBindingConstantsTest failed");
     }
 
     /*
@@ -259,19 +258,20 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("After invoke ....");
             TestUtil.logMsg("HelloRequest=" + helloReq.getArgument());
             TestUtil.logMsg("HelloResponse=" + helloRes.getArgument());
-            if (!helloRes.getArgument().equals(helloReq.getArgument())) pass = false;
+            if (!helloRes.getArgument().equals(helloReq.getArgument()))
+                pass = false;
         } catch (Exception e) {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTestJAXB failed");
+        if (!pass)
+            throw new Fault("invokeTestJAXB failed");
     }
 
     /*
      * @testName: invokeTestXML
      *
-     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:8; WS4EE:SPEC:5005;
-     * JAXWS:SPEC:7012;
+     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:8; WS4EE:SPEC:5005; JAXWS:SPEC:7012;
      *
      * @test_Strategy:
      */
@@ -294,14 +294,14 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTestXML failed");
+        if (!pass)
+            throw new Fault("invokeTestXML failed");
     }
 
     /*
      * @testName: invokeTestJAXBBad
      *
-     * @assertion_ids: JAXWS:SPEC:11000; WS4EE:SPEC:5005; JAXWS:SPEC:6004;
-     * JAXWS:SPEC:4012; JAXWS:SPEC:4019;
+     * @assertion_ids: JAXWS:SPEC:11000; WS4EE:SPEC:5005; JAXWS:SPEC:6004; JAXWS:SPEC:4012; JAXWS:SPEC:4019;
      *
      * @test_Strategy:
      */
@@ -330,14 +330,14 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Unexpected exception occurred: " + e);
             pass = false;
         }
-        if (!pass) throw new Fault("invokeTestJAXBBad failed");
+        if (!pass)
+            throw new Fault("invokeTestJAXBBad failed");
     }
 
     /*
      * @testName: invokeTestJAXBNull
      *
-     * @assertion_ids: JAXWS:SPEC:11000; WS4EE:SPEC:5005; JAXWS:SPEC:2036;
-     * JAXWS:SPEC:4013; JAXWS:SPEC:4015;
+     * @assertion_ids: JAXWS:SPEC:11000; WS4EE:SPEC:5005; JAXWS:SPEC:2036; JAXWS:SPEC:4013; JAXWS:SPEC:4015;
      *
      * @test_Strategy:
      */
@@ -366,7 +366,8 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Received unexpected exception", e);
         }
-        if (!pass) throw new Fault("invokeTestJAXBNull failed");
+        if (!pass)
+            throw new Fault("invokeTestJAXBNull failed");
     }
 
     /*
@@ -389,8 +390,7 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("binding is a HTTPBinding instance");
                 try {
                     List<Handler> handlerList = new ArrayList<Handler>();
-                    Handler handler =
-                            new com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient.SOAPHandler();
+                    Handler handler = new com.sun.ts.tests.jaxws.sharedclients.xmlbinddlhelloproviderclient.SOAPHandler();
                     handlerList.add(handler);
                     TestUtil.logMsg("HandlerChain=" + handlerList);
                     TestUtil.logMsg("HandlerChain size = " + handlerList.size());
@@ -406,7 +406,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("incompatibleHandlerTest failed");
+        if (!pass)
+            throw new Fault("incompatibleHandlerTest failed");
     }
 
     /*
@@ -429,6 +430,7 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             TestUtil.logErr("Received unexpected exception", e);
         }
-        if (!pass) throw new Fault("getEndpointReferenceTest failed");
+        if (!pass)
+            throw new Fault("getEndpointReferenceTest failed");
     }
 }

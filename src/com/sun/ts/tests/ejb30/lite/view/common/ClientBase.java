@@ -31,9 +31,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ClientBase extends EJBLiteClientBase {
-    protected static final String[] args = {Constants.VALUE};
+    protected static final String[] args = { Constants.VALUE };
 
-    protected static final String[] resultReset = {Constants.VALUE_RESET};
+    protected static final String[] resultReset = { Constants.VALUE_RESET };
 
     @EJB(beanName = "SerializableLocalBean")
     protected BusinessLocalIF1 serializableLocalBean;
@@ -141,14 +141,12 @@ public class ClientBase extends EJBLiteClientBase {
     /*
      * testName: getBusinessObjectInSuperclassBean
      *
-     * @test_Strategy: Try to get the business object with a particular interface,
-     * and call a method on the obtained business object. It verifies that the
-     * bean SuperclassBean only expose a local interface BusinessLocalIF1, and no
+     * @test_Strategy: Try to get the business object with a particular interface, and call a method on the obtained
+     * business object. It verifies that the bean SuperclassBean only expose a local interface BusinessLocalIF1, and no
      * no-interface view.
      */
     public void getBusinessObjectInSuperclassBean() {
-        List<String> expected =
-                Arrays.asList(IllegalStateException.class.getSimpleName(), SuperclassBean.class.getSimpleName());
+        List<String> expected = Arrays.asList(IllegalStateException.class.getSimpleName(), SuperclassBean.class.getSimpleName());
         String[] businessObjects = new String[2];
         superclassBean.businessMethodLocal1(businessObjects);
         assertEquals(null, expected, Arrays.asList(businessObjects));

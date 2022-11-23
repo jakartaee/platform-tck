@@ -23,4 +23,5 @@ import jakarta.ejb.Stateless;
 
 @Stateless
 public class OneRemoteAnnotationOnInterfaceBean extends BaseBean
-        implements RemoteAnnotationInterface1, NormalInterface2 {}
+        implements RemoteAnnotationInterface1, NormalInterface2 {
+}

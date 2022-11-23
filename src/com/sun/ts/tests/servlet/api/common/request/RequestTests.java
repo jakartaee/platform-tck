@@ -155,7 +155,7 @@ public class RequestTests {
 
         request.setAttribute(attribute1, "value1");
         request.setAttribute(attribute2, "value2");
-        String[] expected = {attribute1, attribute2};
+        String[] expected = { attribute1, attribute2 };
 
         e = request.getAttributeNames();
 
@@ -677,7 +677,7 @@ public class RequestTests {
         String parameter1 = "parameter1";
         String parameter2 = "parameter2";
 
-        String[] expected = {parameter1, parameter2};
+        String[] expected = { parameter1, parameter2 };
 
         Enumeration e = request.getParameterNames();
 
@@ -1763,7 +1763,7 @@ public class RequestTests {
 
         String expected1 = "If-Modified-Since";
         String expected2 = "Cookie";
-        String[] expected = {expected1, expected2};
+        String[] expected = { expected1, expected2 };
 
         Enumeration e = request.getHeaderNames();
         if (e == null) {
@@ -1783,9 +1783,9 @@ public class RequestTests {
 
         boolean passed = true;
 
-        final String[] expected = {"en-us, ga-us"};
+        final String[] expected = { "en-us, ga-us" };
 
-        final String[] expected1 = {"en-us", "ga-us"};
+        final String[] expected1 = { "en-us", "ga-us" };
 
         pw.println("lower case");
         String param = "accept-language";

@@ -67,10 +67,8 @@ public class SessionThread extends Thread {
     /**
      * Default constructor creates Session Thread with connections specified.
      *
-     * @param QueueConnection
-     *          for creating QueueSessions
-     * @param TopicConnection
-     *          for creating TopicSessions
+     * @param QueueConnection for creating QueueSessions
+     * @param TopicConnection for creating TopicSessions
      */
     public SessionThread(QueueConnection qC, TopicConnection tC) throws JMSException {
 
@@ -94,10 +92,8 @@ public class SessionThread extends Thread {
     /**
      * Method for specifying the QueueSession attributes.
      *
-     * @param boolean
-     *          transacted
-     * @param int
-     *          acknowledgement mode
+     * @param boolean transacted
+     * @param int acknowledgement mode
      */
     public void setQueueSession(boolean transacted, int mode) throws JMSException {
         if (qConnection != null) {
@@ -108,10 +104,8 @@ public class SessionThread extends Thread {
     /**
      * Method for specifying the TopicSession attributes..
      *
-     * @param boolean
-     *          transacted
-     * @param int
-     *          acknowledgement mode
+     * @param boolean transacted
+     * @param int acknowledgement mode
      */
     public void setTopicSession(boolean transacted, int mode) throws JMSException {
         if (tConnection != null) {
@@ -138,9 +132,8 @@ public class SessionThread extends Thread {
     }
 
     /**
-     * Used to start the Queue and Topic Connections when they are not the default
-     * Connections. May also be used in place of someConnection.start() within the
-     * main testing method.
+     * Used to start the Queue and Topic Connections when they are not the default Connections. May also be used in place of
+     * someConnection.start() within the main testing method.
      */
     public void startConnection() throws JMSException {
         if (qConnection != null) {
@@ -158,8 +151,7 @@ public class SessionThread extends Thread {
     }
 
     /**
-     * Used to start only the specified Connection. Useful when it is not the
-     * default Connection.
+     * Used to start only the specified Connection. Useful when it is not the default Connection.
      */
     public void startQueueConnection() throws Exception {
         if (stdebug) {
@@ -169,8 +161,7 @@ public class SessionThread extends Thread {
     }
 
     /**
-     * Used to start only the specified Connection. Useful when it is not the
-     * default Connection.
+     * Used to start only the specified Connection. Useful when it is not the default Connection.
      */
     public void startTopicConnection() throws Exception {
         if (stdebug) {
@@ -182,8 +173,7 @@ public class SessionThread extends Thread {
     /**
      * Create message producers
      *
-     * @param Destination
-     *          Queue or Topic
+     * @param Destination Queue or Topic
      */
     public void createProducer(Destination dest) throws Exception {
         if (qSession != null) {
@@ -205,8 +195,7 @@ public class SessionThread extends Thread {
     /**
      * Create message consumers
      *
-     * @param Destination
-     *          Queue or Topic
+     * @param Destination Queue or Topic
      */
     public void createConsumer(Destination dest) throws Exception {
         if (qSession != null) {
@@ -228,8 +217,7 @@ public class SessionThread extends Thread {
     /**
      * Set to true to have SessionThread reply automatically to messages.
      *
-     * @param boolean
-     *          true for automatic request/reply
+     * @param boolean true for automatic request/reply
      */
     public void setReplyToMessages(boolean boo) {
         replyToMessages = boo;
@@ -241,8 +229,7 @@ public class SessionThread extends Thread {
     /**
      * Set to true to have SessionThread keep receiving messages indefinitely.
      *
-     * @param boolean
-     *          true for indefinite receive()
+     * @param boolean true for indefinite receive()
      */
     public void setStayAlive(boolean boo) {
         stayAlive = boo;
@@ -261,8 +248,7 @@ public class SessionThread extends Thread {
     }
 
     /**
-     * Reset the number of messages that have been received by this thread. Useful
-     * once "steady-state" has been reached.
+     * Reset the number of messages that have been received by this thread. Useful once "steady-state" has been reached.
      */
     public void resetMessagesReceivedCount() {
         messagesReceivedCount = 0;

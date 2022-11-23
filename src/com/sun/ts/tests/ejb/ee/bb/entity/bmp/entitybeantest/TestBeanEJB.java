@@ -79,7 +79,8 @@ public class TestBeanEJB implements EntityBean {
     public TestBeanEJB() {
         TestUtil.logTrace("newInstance => default constructor called");
         ejbNewInstanceFlag = true;
-        if (ejbEntityContextFlag || ejbCreateFlag || ejbPostCreateFlag) createLifeCycleFlag = false;
+        if (ejbEntityContextFlag || ejbCreateFlag || ejbPostCreateFlag)
+            createLifeCycleFlag = false;
     }
 
     public Integer ejbCreate(Properties p, int cofID, String cofName, float cofPrice, Helper r)
@@ -90,7 +91,8 @@ public class TestBeanEJB implements EntityBean {
                 + "\nejbEntityContextFlag=" + ejbEntityContextFlag + "\nejbCreateFlag="
                 + ejbCreateFlag + "\nejbPostCreateFlag=" + ejbPostCreateFlag);
         ejbCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || ejbPostCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || ejbPostCreateFlag)
+            createLifeCycleFlag = false;
         try {
             TestUtil.logMsg("Initialize remote logging");
             TestUtil.init(p);
@@ -104,7 +106,8 @@ public class TestBeanEJB implements EntityBean {
             if (dao.exists(cofID)) {
                 TestUtil.logErr("key exists - duplicate");
                 throw new DuplicateKeyException();
-            } else TestUtil.logMsg("key does not exist - create entity");
+            } else
+                TestUtil.logMsg("key does not exist - create entity");
 
             TestUtil.logTrace("DAO: Create new row...");
             dao.create(cofID, cofName, cofPrice);
@@ -138,7 +141,8 @@ public class TestBeanEJB implements EntityBean {
     public void ejbPostCreate(Properties p, int cofID, String cofName, float cofPrice, Helper r) {
         TestUtil.logTrace("ejbPostCreate");
         ejbPostCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || !ejbCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || !ejbCreateFlag)
+            createLifeCycleFlag = false;
     }
 
     public Integer ejbCreate(Properties p, int cofID, Helper r) throws CreateException, DuplicateKeyException {
@@ -148,7 +152,8 @@ public class TestBeanEJB implements EntityBean {
                 + "\nejbEntityContextFlag=" + ejbEntityContextFlag + "\nejbCreateFlag="
                 + ejbCreateFlag + "\nejbPostCreateFlag=" + ejbPostCreateFlag);
         ejbCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || ejbPostCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || ejbPostCreateFlag)
+            createLifeCycleFlag = false;
         try {
             TestUtil.logMsg("initialize remote logging");
             TestUtil.init(p);
@@ -163,7 +168,8 @@ public class TestBeanEJB implements EntityBean {
             if (dao.exists(cofID)) {
                 TestUtil.logErr("key exists - duplicate");
                 throw new DuplicateKeyException();
-            } else TestUtil.logMsg("key does not exist - create entity");
+            } else
+                TestUtil.logMsg("key does not exist - create entity");
 
             TestUtil.logTrace("DAO: Create new row...");
             dao.create(cofID, "unknown", 0);
@@ -197,14 +203,16 @@ public class TestBeanEJB implements EntityBean {
     public void ejbPostCreate(Properties p, int n, Helper r) {
         TestUtil.logTrace("ejbPostCreate");
         ejbPostCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || !ejbCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || !ejbCreateFlag)
+            createLifeCycleFlag = false;
     }
 
     public void setEntityContext(EntityContext c) {
         TestUtil.logTrace("setEntityContext");
         ectx = c;
         ejbEntityContextFlag = true;
-        if (!ejbNewInstanceFlag || ejbCreateFlag || ejbPostCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag || ejbCreateFlag || ejbPostCreateFlag)
+            createLifeCycleFlag = false;
         try {
             TestUtil.logMsg("Obtain naming context");
             nctx = new TSNamingContext();
@@ -224,7 +232,8 @@ public class TestBeanEJB implements EntityBean {
     public void ejbRemove() throws RemoveException {
         TestUtil.logTrace("ejbRemove");
         try {
-            if (ref != null) ref.setRemove(true);
+            if (ref != null)
+                ref.setRemove(true);
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred contacting callback bean", e);
             throw new RemoveException("callback not notified");
@@ -286,7 +295,8 @@ public class TestBeanEJB implements EntityBean {
         }
 
         try {
-            if (ref != null) ref.setStore(true);
+            if (ref != null)
+                ref.setStore(true);
         } catch (Exception e) {
             TestUtil.logErr("exception occurred contacting callback bean", e);
             throw new EJBException("callback not notified");
@@ -317,7 +327,8 @@ public class TestBeanEJB implements EntityBean {
         }
 
         try {
-            if (ref != null) ref.setLoad(true);
+            if (ref != null)
+                ref.setLoad(true);
         } catch (Exception e) {
             TestUtil.logErr("exception occurred contacting callback bean", e);
             throw new EJBException("callback not notified");

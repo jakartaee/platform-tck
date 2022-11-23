@@ -27,22 +27,21 @@ import java.io.PrintWriter;
 public class JSTLClient extends SqlUrlClient {
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; ts_home; jstl.db.url;
-     * jstl.db.user; jstl.db.password; jstl.db.driver;
+     * @class.setup_props: webServerHost; webServerPort; ts_home; jstl.db.url; jstl.db.user; jstl.db.password;
+     * jstl.db.driver;
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -51,8 +50,7 @@ public class JSTLClient extends SqlUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,14 +64,12 @@ public class JSTLClient extends SqlUrlClient {
     /*
      * @testName: positiveSetDataSourceQueryDriverManagerTest
      *
-     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2;
-     * JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1; JSTL:SPEC:62.4;
-     * JSTL:SPEC:62.4.1
+     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2; JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1;
+     * JSTL:SPEC:62.4; JSTL:SPEC:62.4.1
      *
-     * @testStrategy: Validate sql:setDataSource and sql:query actions specifying
-     * a dataSource attribute to sql:setDataSource which contains JDBC
-     * DriverManager properties (URL, driver, user, password) The query is passed
-     * as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:query actions specifying a dataSource attribute to
+     * sql:setDataSource which contains JDBC DriverManager properties (URL, driver, user, password) The query is passed as
+     * body content.
      */
     public void positiveSetDataSourceQueryDriverManagerTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceQueryDriverManagerTest");
@@ -83,13 +79,11 @@ public class JSTLClient extends SqlUrlClient {
     /*
      * @testName: positiveSetDataSourceQueryDataSourceTest
      *
-     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2;
-     * JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1; JSTL:SPEC:62.4;
-     * JSTL:SPEC:62.4.1
+     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2; JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1;
+     * JSTL:SPEC:62.4; JSTL:SPEC:62.4.1
      *
-     * @testStrategy: Validate sql:setDataSource and sql:query actions specifying
-     * a dataSource attribute to sql:setDataSource which contains a DataSource
-     * Object. The query is passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:query actions specifying a dataSource attribute to
+     * sql:setDataSource which contains a DataSource Object. The query is passed as body content.
      */
     public void positiveSetDataSourceQueryDataSourceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceQueryDataSourceTest");
@@ -99,13 +93,11 @@ public class JSTLClient extends SqlUrlClient {
     /*
      * @testName: positiveSetDataSourceQueryURLTest
      *
-     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2;
-     * JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1; JSTL:SPEC:62.4;
-     * JSTL:SPEC:62.4.1
+     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2; JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1;
+     * JSTL:SPEC:62.4; JSTL:SPEC:62.4.1
      *
-     * @testStrategy: Validate sql:setDataSource and sql:query actions specifying
-     * sql:setDataSource the attributes: url, driver, user and password. The query
-     * is passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:query actions specifying sql:setDataSource the attributes: url,
+     * driver, user and password. The query is passed as body content.
      */
     public void positiveSetDataSourceQueryURLTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceQueryURLTest");
@@ -117,10 +109,9 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.3
      *
-     * @testStrategy: Validate sql:setDataSource and sql:update actions specifying
-     * a dataSource attribute to sql:setDataSource which contains JDBC
-     * DriverManager properties (URL, driver, user, password) The query is passed
-     * as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:update actions specifying a dataSource attribute to
+     * sql:setDataSource which contains JDBC DriverManager properties (URL, driver, user, password) The query is passed as
+     * body content.
      */
     public void positiveSetDataSourceUpdateDriverManagerTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceUpdateDriverManagerTest");
@@ -130,13 +121,11 @@ public class JSTLClient extends SqlUrlClient {
     /*
      * @testName: positiveSetDataSourceUpdateDataSourceTest
      *
-     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2;
-     * JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1; JSTL:SPEC:62.4;
-     * JSTL:SPEC:62.4.1
+     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2; JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1;
+     * JSTL:SPEC:62.4; JSTL:SPEC:62.4.1
      *
-     * @testStrategy: Validate sql:setDataSource and sql:update actions specifying
-     * a dataSource attribute to sql:setDataSource which contains a DataSource
-     * Object. The query is passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:update actions specifying a dataSource attribute to
+     * sql:setDataSource which contains a DataSource Object. The query is passed as body content.
      */
     public void positiveSetDataSourceUpdateDataSourceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceUpdateDataSourceTest");
@@ -146,13 +135,11 @@ public class JSTLClient extends SqlUrlClient {
     /*
      * @testName: positiveSetDataSourceUpdateURLTest
      *
-     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2;
-     * JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1; JSTL:SPEC:62.4;
-     * JSTL:SPEC:62.4.1
+     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2; JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1;
+     * JSTL:SPEC:62.4; JSTL:SPEC:62.4.1
      *
-     * @testStrategy: Validate sql:setDataSource and sql:query actions specifying
-     * sql:setDataSource the attributes: url, driver, user and password. The query
-     * is passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:query actions specifying sql:setDataSource the attributes: url,
+     * driver, user and password. The query is passed as body content.
      */
     public void positiveSetDataSourceUpdateURLTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceUpdateURLTest");
@@ -162,14 +149,12 @@ public class JSTLClient extends SqlUrlClient {
     /*
      * @testName: positiveSetDataSourceTxDriverManagerTest
      *
-     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2;
-     * JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1; JSTL:SPEC:62.4;
-     * JSTL:SPEC:62.4.1
+     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2; JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1;
+     * JSTL:SPEC:62.4; JSTL:SPEC:62.4.1
      *
-     * @testStrategy: Validate sql:setDataSource and sql:transaction actions
-     * specifying a dataSource attribute to sql:setDataSource which contains JDBC
-     * DriverManager properties (URL, driver, user, password) The query is passed
-     * as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:transaction actions specifying a dataSource attribute to
+     * sql:setDataSource which contains JDBC DriverManager properties (URL, driver, user, password) The query is passed as
+     * body content.
      */
     public void positiveSetDataSourceTxDriverManagerTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceTxDriverManagerTest");
@@ -179,13 +164,11 @@ public class JSTLClient extends SqlUrlClient {
     /*
      * @testName: positiveSetDataSourceTxDataSourceTest
      *
-     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2;
-     * JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1; JSTL:SPEC:62.4;
-     * JSTL:SPEC:62.4.1
+     * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.1; JSTL:SPEC:62.2; JSTL:SPEC:62.2.1; JSTL:SPEC:62.3; JSTL:SPEC:62.3.1;
+     * JSTL:SPEC:62.4; JSTL:SPEC:62.4.1
      *
-     * @testStrategy: Validate sql:setDataSource and sql:transaction actions
-     * specifying a dataSource attribute to sql:setDataSource which contains a
-     * DataSource Object. The query is passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:transaction actions specifying a dataSource attribute to
+     * sql:setDataSource which contains a DataSource Object. The query is passed as body content.
      */
     public void positiveSetDataSourceTxDataSourceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceTxDataSourceTest");
@@ -197,9 +180,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62.13; JSTL:SPEC:62.13.1
      *
-     * @testStrategy: Validate sql:setDataSource and sql:transaction actions
-     * specifying sql:setDataSource the attributes: url, driver, user and
-     * password. The query is passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:transaction actions specifying sql:setDataSource the attributes:
+     * url, driver, user and password. The query is passed as body content.
      */
     public void positiveSetDataSourceTxURLTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceTxURLTest");
@@ -211,9 +193,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
      *
-     * @testStrategy: Validate sql:setDataSource and sql:query actions by setting
-     * jakarta.servlet.jsp.jstl.sql.dataSource to JDBC DriverManager properties
-     * (URL, driver, user, password) The query is passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:query actions by setting jakarta.servlet.jsp.jstl.sql.dataSource to
+     * JDBC DriverManager properties (URL, driver, user, password) The query is passed as body content.
      */
     public void positiveSetDataSourceQueryNoVarAttributeDriverManagerTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceQueryNoVarAttributeDriverManagerTest");
@@ -225,9 +206,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
      *
-     * @testStrategy: Validate sql:setDataSource and sql:query actions by setting
-     * jakarta.servlet.jsp.jstl.sql.dataSource to a DataSource Object. The query is
-     * passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:query actions by setting jakarta.servlet.jsp.jstl.sql.dataSource to
+     * a DataSource Object. The query is passed as body content.
      */
     public void positiveSetDataSourceQueryNoVarAttributeDataSourceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceQueryNoVarAttributeDataSourceTest");
@@ -239,9 +219,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
      *
-     * @testStrategy: Validate sql:setDataSource and sql:update actions by setting
-     * jakarta.servlet.jsp.jstl.sql.dataSource to JDBC DriverManager properties
-     * (URL, driver, user, password) The query is passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:update actions by setting jakarta.servlet.jsp.jstl.sql.dataSource
+     * to JDBC DriverManager properties (URL, driver, user, password) The query is passed as body content.
      */
     public void positiveSetDataSourceUpdateNoVarAttributeDriverManagerTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceUpdateNoVarAttributeDriverManagerTest");
@@ -253,9 +232,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
      *
-     * @testStrategy: Validate sql:setDataSource and sql:update actions by setting
-     * jakarta.servlet.jsp.jstl.sql.dataSource to a DataSource Object. The query is
-     * passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:update actions by setting jakarta.servlet.jsp.jstl.sql.dataSource
+     * to a DataSource Object. The query is passed as body content.
      */
     public void positiveSetDataSourceUpdateNoVarAttributeDataSourceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceUpdateNoVarAttributeDataSourceTest");
@@ -267,10 +245,9 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
      *
-     * @testStrategy: Validate sql:setDataSource and sql:transaction actions by
-     * setting jakarta.servlet.jsp.jstl.sql.dataSource to JDBC DriverManager
-     * properties (URL, driver, user, password) The query is passed as body
-     * content.
+     * @testStrategy: Validate sql:setDataSource and sql:transaction actions by setting
+     * jakarta.servlet.jsp.jstl.sql.dataSource to JDBC DriverManager properties (URL, driver, user, password) The query is
+     * passed as body content.
      */
     public void positiveSetDataSourceTxNoVarAttributeDriverManagerTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceTxNoVarAttributeDriverManagerTest");
@@ -282,9 +259,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.6; JSTL:SPEC:62.6.5
      *
-     * @testStrategy: Validate sql:setDataSource and sql:transaction actions by
-     * setting jakarta.servlet.jsp.jstl.sql.dataSource to a DataSource Object. The
-     * query is passed as body content.
+     * @testStrategy: Validate sql:setDataSource and sql:transaction actions by setting
+     * jakarta.servlet.jsp.jstl.sql.dataSource to a DataSource Object. The query is passed as body content.
      */
     public void positiveSetDataSourceTxNoVarAttributeDataSourceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceTxNoVarAttributeDataSourceTest");
@@ -294,11 +270,9 @@ public class JSTLClient extends SqlUrlClient {
     /*
      * @testName: positiveSetDataSourceScopeVarAttributeTest
      *
-     * @assertion_ids: JSTL:SPEC:62.7.1; JSTL:SPEC:62.7.2; JSTL:SPEC:62.7.3;
-     * JSTL:SPEC:62.7.4
+     * @assertion_ids: JSTL:SPEC:62.7.1; JSTL:SPEC:62.7.2; JSTL:SPEC:62.7.3; JSTL:SPEC:62.7.4
      *
-     * @testStrategy: Validate sql:setDataSource exports the var attribute to the
-     * correct scope.
+     * @testStrategy: Validate sql:setDataSource exports the var attribute to the correct scope.
      */
     public void positiveSetDataSourceScopeVarAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDataSourceScopeVarAttributeTest");
@@ -308,11 +282,9 @@ public class JSTLClient extends SqlUrlClient {
     /*
      * @testName: positiveSetDataSourceScopeNoVarAttributeTest
      *
-     * @assertion_ids: JSTL:SPEC:62.7.1; JSTL:SPEC:62.7.2; JSTL:SPEC:62.7.3;
-     * JSTL:SPEC:62.7.4
+     * @assertion_ids: JSTL:SPEC:62.7.1; JSTL:SPEC:62.7.2; JSTL:SPEC:62.7.3; JSTL:SPEC:62.7.4
      *
-     * @testStrategy: Validate sql:setDataSource exports the var attribute to the
-     * correct scope.
+     * @testStrategy: Validate sql:setDataSource exports the var attribute to the correct scope.
      */
     public void positiveSetDataSourceScopeNoVarAttributeTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -327,8 +299,7 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.2.2
      *
-     * @testStrategy: Pass an invalid String as the dataSource attribute to
-     * sql:setDataSource
+     * @testStrategy: Pass an invalid String as the dataSource attribute to sql:setDataSource
      */
     public void negativeSetDataSourceDataSourceAttributeDriverManagerTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeSetDataSourceDataSourceAttributeDriverManagerTest");
@@ -340,8 +311,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.2
      *
-     * @testStrategy: Validate that if a sql:setDataSource action utilizes the
-     * scope attribute that is invalid, that a translation error will occur.
+     * @testStrategy: Validate that if a sql:setDataSource action utilizes the scope attribute that is invalid, that a
+     * translation error will occur.
      */
     public void negativeSetDataSourceScopeAttributeTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeSetDataSourceScopeAttributeTest");
@@ -355,8 +326,7 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.2.2
      *
-     * @testStrategy: Pass an invalid Object as the dataSource attribute to
-     * sql:setDataSource
+     * @testStrategy: Pass an invalid Object as the dataSource attribute to sql:setDataSource
      */
     public void negativeSetDataSourceDataSourceAttributeDataSourceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeSetDataSourceDataSourceAttributeDataSourceTest");
@@ -368,8 +338,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.1.4
      *
-     * @testStrategy: Validate the sql:setDataSource action which specifies a null
-     * for the dataSource attribute will generate a JspException.
+     * @testStrategy: Validate the sql:setDataSource action which specifies a null for the dataSource attribute will
+     * generate a JspException.
      */
     public void negativeSetDataSourceDataSourceNullAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeSetDataSourceDataSourceNullAttributeTest");
@@ -381,9 +351,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:62; JSTL:SPEC:62.3.2
      *
-     * @testStrategy: Validate the sql:setDataSource action which specifies an
-     * DataSource Object which is uninitialized for the dataSource attribute will
-     * generate a JspException the first attempt to use it.
+     * @testStrategy: Validate the sql:setDataSource action which specifies an DataSource Object which is uninitialized for
+     * the dataSource attribute will generate a JspException the first attempt to use it.
      */
     public void negativeSetDataSourceDataSourceAttributeEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeSetDataSourceDataSourceAttributeEmptyTest");

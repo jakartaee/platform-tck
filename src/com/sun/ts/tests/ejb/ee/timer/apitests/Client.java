@@ -56,8 +56,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * ejb_timeout; ejb_wait; user; password;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; ejb_timeout; ejb_wait; user; password;
      *
      * @class.testArgs:
      */
@@ -98,8 +97,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:215
      *
-     * @test_Strategy: Pass a negative duration value to createTimer and verify an
-     * IllegalArgumentException is thrown.
+     * @test_Strategy: Pass a negative duration value to createTimer and verify an IllegalArgumentException is thrown.
      *
      */
 
@@ -123,7 +121,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
             }
 
-        if (!pass) throw new Fault("apiTimerTest1 failed");
+        if (!pass)
+            throw new Fault("apiTimerTest1 failed");
     }
 
     /*
@@ -131,8 +130,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:219
      *
-     * @test_Strategy: Pass a negative initialDuration value to createTimer and
-     * verify an IllegalArgumentException is thrown.
+     * @test_Strategy: Pass a negative initialDuration value to createTimer and verify an IllegalArgumentException is
+     * thrown.
      *
      */
 
@@ -156,7 +155,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
             }
 
-        if (!pass) throw new Fault("apiTimerTest2 failed");
+        if (!pass)
+            throw new Fault("apiTimerTest2 failed");
     }
 
     /*
@@ -164,8 +164,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:219
      *
-     * @test_Strategy: Pass a negative intervalDuration value to createTimer and
-     * verify an IllegalArgumentException is thrown.
+     * @test_Strategy: Pass a negative intervalDuration value to createTimer and verify an IllegalArgumentException is
+     * thrown.
      *
      */
 
@@ -189,7 +189,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
             }
 
-        if (!pass) throw new Fault("apiTimerTest3 failed");
+        if (!pass)
+            throw new Fault("apiTimerTest3 failed");
     }
 
     /*
@@ -197,8 +198,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:223
      *
-     * @test_Strategy: Pass a null expiration value to createTimer and verify an
-     * IllegalArgumentException is thrown.
+     * @test_Strategy: Pass a null expiration value to createTimer and verify an IllegalArgumentException is thrown.
      *
      */
 
@@ -222,7 +222,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
             }
 
-        if (!pass) throw new Fault("apiTimerTest4 failed");
+        if (!pass)
+            throw new Fault("apiTimerTest4 failed");
     }
 
     /*
@@ -230,8 +231,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:227
      *
-     * @test_Strategy: If initialExpiration is null, verify createTimer throws an
-     * IllegalArgumentException.
+     * @test_Strategy: If initialExpiration is null, verify createTimer throws an IllegalArgumentException.
      *
      */
 
@@ -255,7 +255,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
             }
 
-        if (!pass) throw new Fault("apiTimerTest5 failed");
+        if (!pass)
+            throw new Fault("apiTimerTest5 failed");
     }
 
     /*
@@ -263,8 +264,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:192
      *
-     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
-     * attempting to cancel a timer that has already been cancelled.
+     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when attempting to cancel a timer that has already
+     * been cancelled.
      *
      */
 
@@ -288,7 +289,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
             }
 
-        if (!pass) throw new Fault("apiTimerTest6 failed");
+        if (!pass)
+            throw new Fault("apiTimerTest6 failed");
     }
 
     /*
@@ -296,8 +298,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:208
      *
-     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
-     * attempting to getTimeRemaining on a timer that has already been cancelled.
+     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when attempting to getTimeRemaining on a timer
+     * that has already been cancelled.
      *
      */
 
@@ -321,7 +323,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
             }
 
-        if (!pass) throw new Fault("apiTimerTest7 failed");
+        if (!pass)
+            throw new Fault("apiTimerTest7 failed");
     }
 
     /*
@@ -329,8 +332,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:204
      *
-     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
-     * attempting to getNextTimeout on a timer that has already been cancelled.
+     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when attempting to getNextTimeout on a timer that
+     * has already been cancelled.
      *
      */
 
@@ -354,7 +357,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
             }
 
-        if (!pass) throw new Fault("apiTimerTest8 failed");
+        if (!pass)
+            throw new Fault("apiTimerTest8 failed");
     }
 
     /*
@@ -362,8 +366,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:200
      *
-     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
-     * attempting to getInfo on a timer that has already been cancelled.
+     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when attempting to getInfo on a timer that has
+     * already been cancelled.
      *
      */
 
@@ -387,7 +391,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
             }
 
-        if (!pass) throw new Fault("apiTimerTest9 failed");
+        if (!pass)
+            throw new Fault("apiTimerTest9 failed");
     }
 
     /*
@@ -395,8 +400,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:196
      *
-     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when
-     * attempting to getHandle on a timer that has already been cancelled.
+     * @test_Strategy: Ensure that a NoSuchObjectLocalException is thrown when attempting to getHandle on a timer that has
+     * already been cancelled.
      *
      */
 
@@ -420,7 +425,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Unexpected Exception caught removing bean:" + e, e);
             }
 
-        if (!pass) throw new Fault("apiTimerTest10 failed");
+        if (!pass)
+            throw new Fault("apiTimerTest10 failed");
     }
 
     public void cleanup() throws Fault {

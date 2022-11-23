@@ -25,7 +25,7 @@ import java.util.Properties;
 /**
  * This class serves as a place for JSONP Deliverable specific info.
  *
- * @author	Art Frechette
+ * @author Art Frechette
  */
 public class JSONPDeliverable extends AbstractDeliverable {
     public PropertyManagerInterface createPropertyManager(TestEnvironment te) throws Exception {
@@ -56,7 +56,7 @@ public class JSONPDeliverable extends AbstractDeliverable {
         super.getValidVehicles();
 
         // add default values
-        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"standalone"});
+        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] { "standalone" });
 
         return htTSValidVehicles;
     }

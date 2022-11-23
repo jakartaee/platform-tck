@@ -38,7 +38,8 @@ public class ImplicitObjELResolverTag extends SimpleTagSupport {
             boolean pass = JspResolverTest.testImplicitObjELResolver(
                     context, implicitobjResolver, null, "pageContext", "foo", buf);
             out.println(buf.toString());
-            if (pass == true) out.println("Test PASSED");
+            if (pass == true)
+                out.println("Test PASSED");
         } catch (Throwable t) {
             out.println("contents of buffer:\n" + buf.toString());
             JspTestUtil.handleThrowable(t, out, "ImplicitObjELResolverTag");

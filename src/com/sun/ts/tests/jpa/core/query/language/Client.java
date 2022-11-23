@@ -57,13 +57,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:312; PERSISTENCE:SPEC:322;
-     * PERSISTENCE:SPEC:602; PERSISTENCE:SPEC:603; PERSISTENCE:JAVADOC:91;
-     * PERSISTENCE:SPEC:785; PERSISTENCE:SPEC:786; PERSISTENCE:SPEC:1595;
-     * PERSISTENCE:SPEC:1600;
+     * @assertion_ids: PERSISTENCE:SPEC:312; PERSISTENCE:SPEC:322; PERSISTENCE:SPEC:602; PERSISTENCE:SPEC:603;
+     * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:785; PERSISTENCE:SPEC:786; PERSISTENCE:SPEC:1595; PERSISTENCE:SPEC:1600;
      *
-     * @test_Strategy: This query is defined on a many-one relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a many-one relationship. Verify the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -94,17 +91,16 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest1 failed");
+        if (!pass)
+            throw new Fault("queryTest1 failed");
     }
 
     /*
      * @testName: queryTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:317.1; PERSISTENCE:SPEC:750;
-     * PERSISTENCE:SPEC:764; PERSISTENCE:SPEC:746.1
+     * @assertion_ids: PERSISTENCE:SPEC:317.1; PERSISTENCE:SPEC:750; PERSISTENCE:SPEC:764; PERSISTENCE:SPEC:746.1
      *
-     * @test_Strategy: Find All Customers. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Find All Customers. Verify the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -119,7 +115,8 @@ public class Client extends Util {
                     .getResultList();
 
             expectedPKs = new String[customerRef.length];
-            for (int i = 0; i < customerRef.length; i++) expectedPKs[i] = Integer.toString(i + 1);
+            for (int i = 0; i < customerRef.length; i++)
+                expectedPKs[i] = Integer.toString(i + 1);
 
             if (!checkEntityPK(result, expectedPKs)) {
                 TestUtil.logErr("Did not get expected results.  Expected " + customerRef.length + " references, got: "
@@ -133,19 +130,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest2 failed");
+        if (!pass)
+            throw new Fault("queryTest2 failed");
     }
 
     /*
      * @testName: queryTest3
      *
-     * @assertion_ids: PERSISTENCE:SPEC:321; PERSISTENCE:SPEC:317.2;
-     * PERSISTENCE:SPEC:332; PERSISTENCE:SPEC:323; PERSISTENCE:SPEC:517;
-     * PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519; PERSISTENCE:JAVADOC:93;
-     * PERSISTENCE:JAVADOC:94
+     * @assertion_ids: PERSISTENCE:SPEC:321; PERSISTENCE:SPEC:317.2; PERSISTENCE:SPEC:332; PERSISTENCE:SPEC:323;
+     * PERSISTENCE:SPEC:517; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519; PERSISTENCE:JAVADOC:93; PERSISTENCE:JAVADOC:94
      *
-     * @test_Strategy: This query is defined on a many-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a many-many relationship. Verify the results were accurately returned.
      */
 
     @SetupMethod(name = "setupAliasData")
@@ -174,18 +169,18 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest3 failed");
+        if (!pass)
+            throw new Fault("queryTest3 failed");
     }
 
     /*
      * @testName: queryTest4
      *
-     * @assertion_ids: PERSISTENCE:SPEC:322; PERSISTENCE:SPEC:394;
-     * PERSISTENCE:SPEC:751; PERSISTENCE:SPEC:753; PERSISTENCE:SPEC:754;
-     * PERSISTENCE:SPEC:755
+     * @assertion_ids: PERSISTENCE:SPEC:322; PERSISTENCE:SPEC:394; PERSISTENCE:SPEC:751; PERSISTENCE:SPEC:753;
+     * PERSISTENCE:SPEC:754; PERSISTENCE:SPEC:755
      *
-     * @test_Strategy: This query is defined on a one-one relationship and used
-     * conditional AND in query. Verify the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-one relationship and used conditional AND in query. Verify the results
+     * were accurately returned.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -220,18 +215,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest4 failed");
+        if (!pass)
+            throw new Fault("queryTest4 failed");
     }
 
     /*
      * @testName: queryTest5
      *
-     * @assertion_ids: PERSISTENCE:SPEC:323; PERSISTENCE:SPEC:760;
-     * PERSISTENCE:SPEC:761
+     * @assertion_ids: PERSISTENCE:SPEC:323; PERSISTENCE:SPEC:760; PERSISTENCE:SPEC:761
      *
-     * @test_Strategy: Execute a query to find customers with a certain credit
-     * card type. This query is defined on a one-many relationship. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute a query to find customers with a certain credit card type. This query is defined on a
+     * one-many relationship. Verify the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -267,7 +261,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest5 failed");
+        if (!pass)
+            throw new Fault("queryTest5 failed");
     }
 
     /*
@@ -275,8 +270,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:348.4; PERSISTENCE:SPEC:338;
      *
-     * @test_Strategy: This query is defined on a one-one relationship using
-     * conditional OR in query. Verify the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-one relationship using conditional OR in query. Verify the results
+     * were accurately returned.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -314,17 +309,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest6 failed");
+        if (!pass)
+            throw new Fault("queryTest6 failed");
     }
 
     /*
      * @testName: queryTest7
      *
-     * @assertion_ids: PERSISTENCE:SPEC:319; PERSISTENCE:SPEC:735;
-     * PERSISTENCE:SPEC:784
+     * @assertion_ids: PERSISTENCE:SPEC:319; PERSISTENCE:SPEC:735; PERSISTENCE:SPEC:784
      *
-     * @test_Strategy: Ensure identification variables can be interpreted
-     * correctly regardless of case. Verify the results were accurately returned.
+     * @test_Strategy: Ensure identification variables can be interpreted correctly regardless of case. Verify the results
+     * were accurately returned.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -354,7 +349,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest7 failed");
+        if (!pass)
+            throw new Fault("queryTest7 failed");
     }
 
     /*
@@ -362,9 +358,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:348.4; PERSISTENCE:SPEC:345
      *
-     * @test_Strategy: Execute a query containing a conditional expression
-     * composed with logical operator NOT. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query containing a conditional expression composed with logical operator NOT. Verify the
+     * results were accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -395,7 +390,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest8 failed");
+        if (!pass)
+            throw new Fault("queryTest8 failed");
     }
 
     /*
@@ -403,9 +399,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:348.4; PERSISTENCE:SPEC:345
      *
-     * @test_Strategy: Execute a query containing a a conditional expression
-     * composed with logical operator OR. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query containing a a conditional expression composed with logical operator OR. Verify the
+     * results were accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -440,19 +435,18 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest9 failed");
+        if (!pass)
+            throw new Fault("queryTest9 failed");
     }
 
     /*
      * @testName: queryTest10
      *
-     * @assertion_ids: PERSISTENCE:SPEC:346; PERSISTENCE:SPEC:347;
-     * PERSISTENCE:SPEC:348.2; PERSISTENCE:SPEC:344
+     * @assertion_ids: PERSISTENCE:SPEC:346; PERSISTENCE:SPEC:347; PERSISTENCE:SPEC:348.2; PERSISTENCE:SPEC:344
      *
-     * @test_Strategy: Execute a query containing a conditional expression
-     * composed with AND and OR and using standard bracketing () for ordering. The
-     * comparison operator < and arithmetic operations are also used in the query.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute a query containing a conditional expression composed with AND and OR and using standard
+     * bracketing () for ordering. The comparison operator < and arithmetic operations are also used in the query. Verify
+     * the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -487,7 +481,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest10 failed");
+        if (!pass)
+            throw new Fault("queryTest10 failed");
     }
 
     /*
@@ -495,10 +490,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:338;
      *
-     * @test_Strategy: Execute the findOrdersByQuery9 method using conditional
-     * expression composed with AND with an input parameter as a conditional
-     * factor. The comparison operator < is also used in the query. Verify the
-     * results were accurately returned. //CHANGE THIS TO INPUT/NAMED PARAMETER
+     * @test_Strategy: Execute the findOrdersByQuery9 method using conditional expression composed with AND with an input
+     * parameter as a conditional factor. The comparison operator < is also used in the query. Verify the results were
+     * accurately returned. //CHANGE THIS TO INPUT/NAMED PARAMETER
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -528,7 +522,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest11 failed");
+        if (!pass)
+            throw new Fault("queryTest11 failed");
     }
 
     /*
@@ -536,8 +531,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:349; PERSISTENCE:SPEC:348.3
      *
-     * @test_Strategy: Execute a query containing the comparison operator BETWEEN.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute a query containing the comparison operator BETWEEN. Verify the results were accurately
+     * returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -570,7 +565,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest12 failed");
+        if (!pass)
+            throw new Fault("queryTest12 failed");
     }
 
     /*
@@ -578,8 +574,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:349
      *
-     * @test_Strategy: Execute a query containing NOT BETWEEN. Verify the results
-     * were accurately returned.
+     * @test_Strategy: Execute a query containing NOT BETWEEN. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest13() throws Fault {
@@ -621,7 +616,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest13 failed");
+        if (!pass)
+            throw new Fault("queryTest13 failed");
     }
 
     /*
@@ -629,13 +625,11 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:345; PERSISTENCE:SPEC:334
      *
-     * @test_Strategy: Conditional expressions are composed of other conditional
-     * expressions, comparison operators, logical operations, path expressions
-     * that evaluate to boolean values and boolean literals.
+     * @test_Strategy: Conditional expressions are composed of other conditional expressions, comparison operators, logical
+     * operations, path expressions that evaluate to boolean values and boolean literals.
      *
-     * Execute a query method that contains a conditional expression with a path
-     * expression that evaluates to a boolean literal. Verify the results were
-     * accurately returned.
+     * Execute a query method that contains a conditional expression with a path expression that evaluates to a boolean
+     * literal. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest14() throws Fault {
@@ -668,7 +662,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest14 failed");
+        if (!pass)
+            throw new Fault("queryTest14 failed");
     }
 
     /*
@@ -676,10 +671,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:330;
      *
-     * @test_Strategy: Execute a query method with a string literal enclosed in
-     * single quotes (the string includes a single quote) in the conditional
-     * expression of the WHERE clause. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query method with a string literal enclosed in single quotes (the string includes a single
+     * quote) in the conditional expression of the WHERE clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest15() throws Fault {
@@ -709,7 +702,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest15 failed");
+        if (!pass)
+            throw new Fault("queryTest15 failed");
     }
 
     /*
@@ -717,9 +711,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:352; PERSISTENCE:SPEC:348.3
      *
-     * @test_Strategy: Execute a query method using comparison operator IN in a
-     * comparison expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query method using comparison operator IN in a comparison expression within the WHERE
+     * clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest16() throws Fault {
@@ -746,7 +739,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest16 failed");
+        if (!pass)
+            throw new Fault("queryTest16 failed");
     }
 
     /*
@@ -754,9 +748,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:352; PERSISTENCE:SPEC:353
      *
-     * @test_Strategy: Execute a query using comparison operator NOT IN in a
-     * comparison expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query using comparison operator NOT IN in a comparison expression within the WHERE clause.
+     * Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest17() throws Fault {
@@ -799,7 +792,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest17 failed");
+        if (!pass)
+            throw new Fault("queryTest17 failed");
     }
 
     /*
@@ -807,9 +801,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:358; PERSISTENCE:SPEC:348.3
      *
-     * @test_Strategy: Execute a query using the comparison operator LIKE in a
-     * comparison expression within the WHERE clause. The pattern-value includes a
-     * percent character. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator LIKE in a comparison expression within the WHERE
+     * clause. The pattern-value includes a percent character. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest18() throws Fault {
@@ -836,7 +829,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest18 failed");
+        if (!pass)
+            throw new Fault("queryTest18 failed");
     }
 
     /*
@@ -844,9 +838,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:358; PERSISTENCE:SPEC:348.3
      *
-     * @test_Strategy: Execute a query using the comparison operator NOT LIKE in a
-     * comparison expression within the WHERE clause. The pattern-value includes a
-     * percent character and an underscore. Verify the results were accurately
+     * @test_Strategy: Execute a query using the comparison operator NOT LIKE in a comparison expression within the WHERE
+     * clause. The pattern-value includes a percent character and an underscore. Verify the results were accurately
      * returned.
      *
      */
@@ -890,7 +883,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest19 failed");
+        if (!pass)
+            throw new Fault("queryTest19 failed");
     }
 
     /*
@@ -898,8 +892,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:361; PERSISTENCE:SPEC:348.3;
      *
-     * @test_Strategy: Execute a query using the comparison operator IS EMPTY.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator IS EMPTY. Verify the results were accurately returned.
      *
      *
      */
@@ -935,7 +928,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest20 failed");
+        if (!pass)
+            throw new Fault("queryTest20 failed");
     }
 
     /*
@@ -943,8 +937,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:361; PERSISTENCE:SPEC:348.3
      *
-     * @test_Strategy: Execute a query using the comparison operator IS NOT EMPTY.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator IS NOT EMPTY. Verify the results were accurately
+     * returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest21() throws Fault {
@@ -984,7 +978,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest21 failed");
+        if (!pass)
+            throw new Fault("queryTest21 failed");
     }
 
     /*
@@ -992,8 +987,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:359; PERSISTENCE:SPEC:763
      *
-     * @test_Strategy: Execute a query using the IS NULL comparison operator in
-     * the WHERE clause. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the IS NULL comparison operator in the WHERE clause. Verify the results were
+     * accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest22() throws Fault {
@@ -1020,7 +1015,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest22 failed");
+        if (!pass)
+            throw new Fault("queryTest22 failed");
     }
 
     /*
@@ -1028,10 +1024,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:359
      *
-     * @test_Strategy: Execute a query using the IS NOT NULL comparison operator
-     * within the WHERE clause. Verify the results were accurately returned. (This
-     * query is executed against non-NULL data. For NULL data, see test
-     * queryTest47)
+     * @test_Strategy: Execute a query using the IS NOT NULL comparison operator within the WHERE clause. Verify the results
+     * were accurately returned. (This query is executed against non-NULL data. For NULL data, see test queryTest47)
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest23() throws Fault {
@@ -1075,7 +1069,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest23 failed");
+        if (!pass)
+            throw new Fault("queryTest23 failed");
     }
 
     /*
@@ -1083,9 +1078,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.1
      *
-     * @test_Strategy: Execute a query which includes the string function CONCAT
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the string function CONCAT in a functional expression within the WHERE
+     * clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest24() throws Fault {
@@ -1112,7 +1106,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest24 failed");
+        if (!pass)
+            throw new Fault("queryTest24 failed");
     }
 
     /*
@@ -1120,9 +1115,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.2
      *
-     * @test_Strategy: Execute a query which includes the string function
-     * SUBSTRING in a functional expression within the WHERE clause. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute a query which includes the string function SUBSTRING in a functional expression within the
+     * WHERE clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest25() throws Fault {
@@ -1153,7 +1147,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest25 failed");
+        if (!pass)
+            throw new Fault("queryTest25 failed");
     }
 
     /*
@@ -1161,9 +1156,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.4
      *
-     * @test_Strategy: Execute a query which includes the string function LENGTH
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the string function LENGTH in a functional expression within the WHERE
+     * clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest26() throws Fault {
@@ -1196,7 +1190,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest26 failed");
+        if (!pass)
+            throw new Fault("queryTest26 failed");
     }
 
     /*
@@ -1204,9 +1199,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.5; PERSISTENCE:SPEC:368;
      *
-     * @test_Strategy: Execute a query which includes the arithmetic function ABS
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the arithmetic function ABS in a functional expression within the
+     * WHERE clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest27() throws Fault {
@@ -1268,7 +1262,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("queryTest27 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("queryTest27 failed");
     }
 
     /*
@@ -1276,9 +1271,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.3
      *
-     * @test_Strategy: Execute a query which includes the string function LOCATE
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the string function LOCATE in a functional expression within the WHERE
+     * clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest28() throws Fault {
@@ -1307,7 +1301,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest28 failed");
+        if (!pass)
+            throw new Fault("queryTest28 failed");
     }
 
     /*
@@ -1315,9 +1310,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:363.1; PERSISTENCE:SPEC:365
      *
-     * @test_Strategy: Execute a query using the comparison operator MEMBER OF in
-     * a collection member expression. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query using the comparison operator MEMBER OF in a collection member expression. Verify the
+     * results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest29() throws Fault {
@@ -1344,7 +1338,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest29 failed");
+        if (!pass)
+            throw new Fault("queryTest29 failed");
     }
 
     /*
@@ -1352,9 +1347,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:363; PERSISTENCE:SPEC:365
      *
-     * @test_Strategy: Execute a query using the comparison operator NOT MEMBER in
-     * a collection member expression. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query using the comparison operator NOT MEMBER in a collection member expression. Verify
+     * the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest30() throws Fault {
@@ -1370,7 +1364,8 @@ public class Client extends Util {
                     .getResultList();
 
             expectedPKs = new String[aliasRef.length];
-            for (int i = 0; i < aliasRef.length; i++) expectedPKs[i] = Integer.toString(i + 1);
+            for (int i = 0; i < aliasRef.length; i++)
+                expectedPKs[i] = Integer.toString(i + 1);
             if (!checkEntityPK(a, expectedPKs)) {
                 TestUtil.logErr(
                         "Did not get expected results.  Expected " + aliasRef.length + "references, got: " + a.size());
@@ -1383,7 +1378,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest30 failed");
+        if (!pass)
+            throw new Fault("queryTest30 failed");
     }
 
     /*
@@ -1391,10 +1387,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:358
      *
-     * @test_Strategy: Execute a query using the comparison operator LIKE in a
-     * comparison expression within the WHERE clause. The optional ESCAPE syntax
-     * is used to escape the underscore. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query using the comparison operator LIKE in a comparison expression within the WHERE
+     * clause. The optional ESCAPE syntax is used to escape the underscore. Verify the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -1423,7 +1417,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest31 failed");
+        if (!pass)
+            throw new Fault("queryTest31 failed");
     }
 
     /*
@@ -1431,9 +1426,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:363
      *
-     * @test_Strategy: Execute a query using the comparison operator MEMBER in a
-     * collection member expression with an identification variable and omitting
-     * the optional reserved word OF. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator MEMBER in a collection member expression with an
+     * identification variable and omitting the optional reserved word OF. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest32() throws Fault {
@@ -1449,7 +1443,8 @@ public class Client extends Util {
                     .getResultList();
 
             expectedPKs = new String[orderRef.length];
-            for (int i = 0; i < orderRef.length; i++) expectedPKs[i] = Integer.toString(i + 1);
+            for (int i = 0; i < orderRef.length; i++)
+                expectedPKs[i] = Integer.toString(i + 1);
 
             if (!checkEntityPK(o, expectedPKs)) {
                 TestUtil.logErr(
@@ -1463,7 +1458,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest32 failed");
+        if (!pass)
+            throw new Fault("queryTest32 failed");
     }
 
     /*
@@ -1471,9 +1467,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:352.1
      *
-     * @test_Strategy: Execute a query using the comparison operator NOT MEMBER in
-     * a collection member expression with input parameter omitting the optional
-     * use of 'OF'. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator NOT MEMBER in a collection member expression with input
+     * parameter omitting the optional use of 'OF'. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest33() throws Fault {
@@ -1522,7 +1517,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest33 failed");
+        if (!pass)
+            throw new Fault("queryTest33 failed");
     }
 
     /*
@@ -1530,10 +1526,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:363.1
      *
-     * @test_Strategy: Execute a query using the comparison operator MEMBER OF in
-     * a collection member expression using
-     * single_valued_association_path_expression. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator MEMBER OF in a collection member expression using
+     * single_valued_association_path_expression. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest34() throws Fault {
@@ -1562,7 +1556,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest34 failed");
+        if (!pass)
+            throw new Fault("queryTest34 failed");
     }
 
     /*
@@ -1570,10 +1565,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:352
      *
-     * @test_Strategy: Execute a query using comparison operator NOT IN in a
-     * comparison expression within the WHERE clause where the value for the
-     * state_field_path_expression contains numeric values. Verify the results
-     * were accurately returned.
+     * @test_Strategy: Execute a query using comparison operator NOT IN in a comparison expression within the WHERE clause
+     * where the value for the state_field_path_expression contains numeric values. Verify the results were accurately
+     * returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest35() throws Fault {
@@ -1609,7 +1603,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest35 failed");
+        if (!pass)
+            throw new Fault("queryTest35 failed");
     }
 
     /*
@@ -1617,10 +1612,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:352
      *
-     * @test_Strategy: Execute a query using comparison operator IN in a
-     * conditional expression within the WHERE clause where the value for the IN
-     * expression is an input parameter. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query using comparison operator IN in a conditional expression within the WHERE clause
+     * where the value for the IN expression is an input parameter. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest36() throws Fault {
@@ -1648,7 +1641,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest36 failed");
+        if (!pass)
+            throw new Fault("queryTest36 failed");
     }
 
     /*
@@ -1656,10 +1650,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:354
      *
-     * @test_Strategy: Execute two methods using the comparison operator IN in a
-     * comparison expression within the WHERE clause and verify the results of the
-     * two queries are equivalent regardless of the way the expression is
-     * composed.
+     * @test_Strategy: Execute two methods using the comparison operator IN in a comparison expression within the WHERE
+     * clause and verify the results of the two queries are equivalent regardless of the way the expression is composed.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest37() throws Fault {
@@ -1717,7 +1709,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("queryTest37 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("queryTest37 failed");
     }
 
     /*
@@ -1725,9 +1718,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.7; PERSISTENCE:SPEC:368;
      *
-     * @test_Strategy: Execute a query which includes the arithmetic function MOD
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the arithmetic function MOD in a functional expression within the
+     * WHERE clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupProductData")
     public void queryTest38() throws Fault {
@@ -1777,18 +1769,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("queryTest38 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("queryTest38 failed");
     }
 
     /*
      * @testName: queryTest39
      *
-     * @assertion_ids: PERSISTENCE:SPEC:369.6; PERSISTENCE:SPEC:814;
-     * PERSISTENCE:SPEC:816; PERSISTENCE:SPEC:368;
+     * @assertion_ids: PERSISTENCE:SPEC:369.6; PERSISTENCE:SPEC:814; PERSISTENCE:SPEC:816; PERSISTENCE:SPEC:368;
      *
-     * @test_Strategy: Execute a query which includes the arithmetic function SQRT
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the arithmetic function SQRT in a functional expression within the
+     * WHERE clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest39() throws Fault {
@@ -1839,7 +1830,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("queryTest39 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("queryTest39 failed");
     }
 
     /*
@@ -1847,10 +1839,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:350
      *
-     * @test_Strategy: Execute two methods using the comparison operator BETWEEN
-     * in a comparison expression within the WHERE clause and verify the results
-     * of the two queries are equivalent regardless of the way the expression is
-     * composed.
+     * @test_Strategy: Execute two methods using the comparison operator BETWEEN in a comparison expression within the WHERE
+     * clause and verify the results of the two queries are equivalent regardless of the way the expression is composed.
      */
     @SetupMethod(name = "setupProductData")
     public void queryTest40() throws Fault {
@@ -1911,7 +1901,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("queryTest40 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("queryTest40 failed");
     }
 
     /*
@@ -1919,10 +1910,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:350
      *
-     * @test_Strategy: Execute two methods using the comparison operator NOT
-     * BETWEEN in a comparison expression within the WHERE clause and verify the
-     * results of the two queries are equivalent regardless of the way the
-     * expression is composed.
+     * @test_Strategy: Execute two methods using the comparison operator NOT BETWEEN in a comparison expression within the
+     * WHERE clause and verify the results of the two queries are equivalent regardless of the way the expression is
+     * composed.
      */
     @SetupMethod(name = "setupProductData")
     public void queryTest41() throws Fault {
@@ -1990,7 +1980,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("queryTest41 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("queryTest41 failed");
     }
 
     /*
@@ -1998,9 +1989,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:423
      *
-     * @test_Strategy: This tests that nulls are eliminated using a
-     * single-valued_association_field with IS NOT NULL. Verify results are
-     * accurately returned.
+     * @test_Strategy: This tests that nulls are eliminated using a single-valued_association_field with IS NOT NULL. Verify
+     * results are accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -2047,7 +2037,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest42 failed");
+        if (!pass)
+            throw new Fault("queryTest42 failed");
     }
 
     /*
@@ -2055,8 +2046,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: Execute a query using Boolean operator AND in a conditional
-     * test ( False AND False = False) where the second condition is not NULL.
+     * @test_Strategy: Execute a query using Boolean operator AND in a conditional test ( False AND False = False) where the
+     * second condition is not NULL.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -2085,7 +2076,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest43 failed");
+        if (!pass)
+            throw new Fault("queryTest43 failed");
     }
 
     /*
@@ -2093,8 +2085,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:416
      *
-     * @test_Strategy: If an input parameter is NULL, comparison operations
-     * involving the input parameter will return an unknown value.
+     * @test_Strategy: If an input parameter is NULL, comparison operations involving the input parameter will return an
+     * unknown value.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -2123,7 +2115,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest44 failed");
+        if (!pass)
+            throw new Fault("queryTest44 failed");
     }
 
     /*
@@ -2131,8 +2124,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:361
      *
-     * @test_Strategy: Execute a query using IS NOT EMPTY in a
-     * collection_valued_association_field where the field is EMPTY.
+     * @test_Strategy: Execute a query using IS NOT EMPTY in a collection_valued_association_field where the field is EMPTY.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest45() throws Fault {
@@ -2178,27 +2170,26 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest45 failed");
+        if (!pass)
+            throw new Fault("queryTest45 failed");
     }
 
     /*
      * @testName: queryTest47
      *
-     * @assertion_ids: PERSISTENCE:SPEC:376; PERSISTENCE:SPEC:401;
-     * PERSISTENCE:SPEC:399.3; PERSISTENCE:SPEC:422; PERSISTENCE:SPEC:752;
-     * PERSISTENCE:SPEC:753
+     * @assertion_ids: PERSISTENCE:SPEC:376; PERSISTENCE:SPEC:401; PERSISTENCE:SPEC:399.3; PERSISTENCE:SPEC:422;
+     * PERSISTENCE:SPEC:752; PERSISTENCE:SPEC:753
      *
-     * @test_Strategy: The IS NOT NULL construct can be used to eliminate the null
-     * values from the result set of the query. Verify the results are accurately
-     * returned.
+     * @test_Strategy: The IS NOT NULL construct can be used to eliminate the null values from the result set of the query.
+     * Verify the results are accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest47() throws Fault {
         boolean pass = false;
         List c;
         final String[] expectedZips = new String[] {
-            "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
-            "00252", "00252", "00252", "00252", "11345"
+                "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
+                "00252", "00252", "00252", "00252", "11345"
         };
         try {
             getEntityTransaction().begin();
@@ -2216,25 +2207,25 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest47 failed");
+        if (!pass)
+            throw new Fault("queryTest47 failed");
     }
 
     /*
      * @testName: queryTest48
      *
-     * @assertion_ids: PERSISTENCE:SPEC:329; PERSISTENCE:SPEC:348.1;
-     * PERSISTENCE:SPEC:399.1;
+     * @assertion_ids: PERSISTENCE:SPEC:329; PERSISTENCE:SPEC:348.1; PERSISTENCE:SPEC:399.1;
      *
-     * @test_Strategy: This query, which includes a null non-terminal
-     * association-field, verifies the null is not included in the result set.
+     * @test_Strategy: This query, which includes a null non-terminal association-field, verifies the null is not included
+     * in the result set.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest48() throws Fault {
         boolean pass = false;
         List o;
         final Double[] expectedBalances = new Double[] {
-            400D, 500D, 750D, 1000D, 1400D, 1500D, 2000D, 2500D, 4400D, 5000D, 5500D, 7000D, 7400D, 8000D, 9500D,
-            13000D, 15000D, 23000D
+                400D, 500D, 750D, 1000D, 1400D, 1500D, 2000D, 2500D, 4400D, 5000D, 5500D, 7000D, 7400D, 8000D, 9500D,
+                13000D, 15000D, 23000D
         };
         try {
             getEntityTransaction().begin();
@@ -2256,7 +2247,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest48 failed");
+        if (!pass)
+            throw new Fault("queryTest48 failed");
     }
 
     /*
@@ -2264,9 +2256,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:359
      *
-     * @test_Strategy: Use the operator IS NULL in a null comparison expression
-     * using a single_valued_path_expression. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Use the operator IS NULL in a null comparison expression using a single_valued_path_expression.
+     * Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest49() throws Fault {
@@ -2308,7 +2299,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest49 failed");
+        if (!pass)
+            throw new Fault("queryTest49 failed");
     }
 
     /*
@@ -2316,10 +2308,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:358
      *
-     * @test_Strategy: Execute a query using the comparison operator LIKE in a
-     * comparison expression within the WHERE clause using percent (%) to wild
-     * card any expression including the optional ESCAPE syntax. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator LIKE in a comparison expression within the WHERE clause
+     * using percent (%) to wild card any expression including the optional ESCAPE syntax. Verify the results were
+     * accurately returned.
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -2348,7 +2339,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest50 failed");
+        if (!pass)
+            throw new Fault("queryTest50 failed");
     }
 
     /*
@@ -2356,9 +2348,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:359
      *
-     * @test_Strategy: Use the operator IS NOT NULL in a null comparision
-     * expression within the WHERE clause where the single_valued_path_expression
-     * is NULL. Verify the results were accurately returned.
+     * @test_Strategy: Use the operator IS NOT NULL in a null comparision expression within the WHERE clause where the
+     * single_valued_path_expression is NULL. Verify the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -2384,7 +2375,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest51 failed");
+        if (!pass)
+            throw new Fault("queryTest51 failed");
     }
 
     /*
@@ -2392,9 +2384,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:424; PERSISTENCE:SPEC:789
      *
-     * @test_Strategy: Define a query using Boolean operator AND in a conditional
-     * test ( True AND True = True) where the second condition is NULL. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Define a query using Boolean operator AND in a conditional test ( True AND True = True) where the
+     * second condition is NULL. Verify the results were accurately returned.
      */
 
     @SetupMethod(name = "setupAliasData")
@@ -2424,7 +2415,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest52 failed");
+        if (!pass)
+            throw new Fault("queryTest52 failed");
     }
 
     /*
@@ -2432,9 +2424,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: Define a query using Boolean operator OR in a conditional
-     * test (True OR True = True) where the second condition is NULL. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Define a query using Boolean operator OR in a conditional test (True OR True = True) where the second
+     * condition is NULL. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest53() throws Fault {
@@ -2476,7 +2467,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest53 failed");
+        if (!pass)
+            throw new Fault("queryTest53 failed");
     }
 
     /*
@@ -2484,9 +2476,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:426
      *
-     * @test_Strategy: Define a query using Boolean operator NOT in a conditional
-     * test (NOT True = False) where the relationship is NULL. Verify the results
-     * were accurately returned.
+     * @test_Strategy: Define a query using Boolean operator NOT in a conditional test (NOT True = False) where the
+     * relationship is NULL. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest54() throws Fault {
@@ -2512,7 +2503,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest54 failed");
+        if (!pass)
+            throw new Fault("queryTest54 failed");
     }
 
     /*
@@ -2520,8 +2512,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:358
      *
-     * @test_Strategy: The LIKE expression uses an input parameter for the
-     * condition. Verify the results were accurately returned.
+     * @test_Strategy: The LIKE expression uses an input parameter for the condition. Verify the results were accurately
+     * returned.
      *
      */
     @SetupMethod(name = "setupPhoneData")
@@ -2554,17 +2546,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest55 failed");
+        if (!pass)
+            throw new Fault("queryTest55 failed");
     }
 
     /*
      * @testName: queryTest56
      *
-     * @assertion_ids: PERSISTENCE:SPEC:375; PERSISTENCE:SPEC:410;
-     * PERSISTENCE:SPEC:403; PERSISTENCE:SPEC:814; PERSISTENCE:SPEC:816
+     * @assertion_ids: PERSISTENCE:SPEC:375; PERSISTENCE:SPEC:410; PERSISTENCE:SPEC:403; PERSISTENCE:SPEC:814;
+     * PERSISTENCE:SPEC:816
      *
-     * @test_Strategy: This query returns a null
-     * single_valued_association_path_expression. Verify the results were
+     * @test_Strategy: This query returns a null single_valued_association_path_expression. Verify the results were
      * accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
@@ -2574,8 +2566,8 @@ public class Client extends Util {
         boolean pass2 = true;
         List c;
         String[] expectedZips = new String[] {
-            "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
-            "00252", "00252", "00252", "00252", "11345"
+                "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
+                "00252", "00252", "00252", "00252", "11345"
         };
 
         try {
@@ -2622,7 +2614,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("queryTest56 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("queryTest56 failed");
     }
 
     /*
@@ -2630,8 +2623,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:410;
      *
-     * @test_Strategy: This query returns a null
-     * single_valued_association_path_expression. Verify the results are
+     * @test_Strategy: This query returns a null single_valued_association_path_expression. Verify the results are
      * accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
@@ -2656,7 +2648,8 @@ public class Client extends Util {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: ", e);
         }
-        if (!pass) throw new Fault("queryTest58 failed");
+        if (!pass)
+            throw new Fault("queryTest58 failed");
     }
 
     /*
@@ -2664,8 +2657,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:408
      *
-     * @test_Strategy: This tests a null single_valued_association_path_expression
-     * is returned using IS NULL. Verify the results are accurately returned.
+     * @test_Strategy: This tests a null single_valued_association_path_expression is returned using IS NULL. Verify the
+     * results are accurately returned.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -2694,7 +2687,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest59 failed");
+        if (!pass)
+            throw new Fault("queryTest59 failed");
     }
 
     /*
@@ -2702,10 +2696,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:775; PERSISTENCE:SPEC:773
      *
-     * @test_Strategy: This query contains an identification variable defined in a
-     * collection member declaration which is not used in the rest of the query
-     * however, a JOIN operation needs to be performed for the correct result set.
-     * Verify the results are accurately returned.
+     * @test_Strategy: This query contains an identification variable defined in a collection member declaration which is
+     * not used in the rest of the query however, a JOIN operation needs to be performed for the correct result set. Verify
+     * the results are accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -2751,18 +2744,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest60 failed");
+        if (!pass)
+            throw new Fault("queryTest60 failed");
     }
 
     /*
      * @testName: queryTest61
      *
-     * @assertion_ids: PERSISTENCE:SPEC:778;PERSISTENCE:SPEC:780;
-     * PERSISTENCE:SPEC:1714; PERSISTENCE:SPEC:1715;
+     * @assertion_ids: PERSISTENCE:SPEC:778;PERSISTENCE:SPEC:780; PERSISTENCE:SPEC:1714; PERSISTENCE:SPEC:1715;
      *
-     * @test_Strategy: Execute a query defining an identification variable for
-     * c.work in an OUTER JOIN clause. The JOIN operation will include customers
-     * without addresses. Verify the results are accurately returned.
+     * @test_Strategy: Execute a query defining an identification variable for c.work in an OUTER JOIN clause. The JOIN
+     * operation will include customers without addresses. Verify the results are accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest61() throws Fault {
@@ -2793,7 +2785,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest61 failed");
+        if (!pass)
+            throw new Fault("queryTest61 failed");
     }
 
     /*
@@ -2802,10 +2795,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.8
      *
-     * @test_Strategy: Execute a query which includes the arithmetic function SIZE
-     * in a functional expression within the WHERE clause. The SIZE function
-     * returns an integer value the number of elements of the Collection. Verify
-     * the results were accurately returned.
+     * @test_Strategy: Execute a query which includes the arithmetic function SIZE in a functional expression within the
+     * WHERE clause. The SIZE function returns an integer value the number of elements of the Collection. Verify the results
+     * were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest62() throws Fault {
@@ -2836,7 +2828,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest62 failed");
+        if (!pass)
+            throw new Fault("queryTest62 failed");
     }
 
     /*
@@ -2844,9 +2837,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.8
      *
-     * @test_Strategy: Execute a query which includes the arithmetic function SIZE
-     * in a functional expression within the WHERE clause. The SIZE function
-     * returns an integer value the number of elements of the Collection.
+     * @test_Strategy: Execute a query which includes the arithmetic function SIZE in a functional expression within the
+     * WHERE clause. The SIZE function returns an integer value the number of elements of the Collection.
      *
      * If the Collection is empty, the SIZE function evaluates to zero.
      *
@@ -2879,19 +2871,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest63 failed");
+        if (!pass)
+            throw new Fault("queryTest63 failed");
     }
 
     /*
      * @testName: queryTest64
      *
-     * @assertion_ids: PERSISTENCE:SPEC:372.5;PERSISTENCE:SPEC:817;
-     * PERSISTENCE:SPEC:395
+     * @assertion_ids: PERSISTENCE:SPEC:372.5;PERSISTENCE:SPEC:817; PERSISTENCE:SPEC:395
      *
-     * @test_Strategy: A constructor may be used in the SELECT list to return a
-     * collection of Java instances. The specified class is not required to be an
-     * entity or mapped to the database. The constructor name must be fully
-     * qualified.
+     * @test_Strategy: A constructor may be used in the SELECT list to return a collection of Java instances. The specified
+     * class is not required to be an entity or mapped to the database. The constructor name must be fully qualified.
      *
      * Verify the results were accurately returned.
      */
@@ -2942,17 +2932,18 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("queryTest64 failed");
+        if (!pass)
+            throw new Fault("queryTest64 failed");
     }
 
     /*
      * @testName: queryTest65
      *
-     * @assertion_ids: PERSISTENCE:SPEC:381; PERSISTENCE:SPEC:406;
-     * PERSISTENCE:SPEC:825; PERSISTENCE:SPEC:822; PERSISTENCE:SPEC:1674
+     * @assertion_ids: PERSISTENCE:SPEC:381; PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:825; PERSISTENCE:SPEC:822;
+     * PERSISTENCE:SPEC:1674
      *
-     * @test_Strategy: Execute a query which contains the aggregate function MIN.
-     * Verify the results are accurately returned.
+     * @test_Strategy: Execute a query which contains the aggregate function MIN. Verify the results are accurately
+     * returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3014,17 +3005,18 @@ public class Client extends Util {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: ", e);
         }
-        if (!pass1 || !pass2) throw new Fault("queryTest65 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("queryTest65 failed");
     }
 
     /*
      * @testName: queryTest66
      *
-     * @assertion_ids: PERSISTENCE:SPEC:382; PERSISTENCE:SPEC:406;
-     * PERSISTENCE:SPEC:825; PERSISTENCE:SPEC:822; PERSISTENCE:SPEC:1674
+     * @assertion_ids: PERSISTENCE:SPEC:382; PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:825; PERSISTENCE:SPEC:822;
+     * PERSISTENCE:SPEC:1674
      *
-     * @test_Strategy: Execute a query which contains the aggregate function MAX.
-     * Verify the results are accurately returned.
+     * @test_Strategy: Execute a query which contains the aggregate function MAX. Verify the results are accurately
+     * returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3086,18 +3078,17 @@ public class Client extends Util {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: ", e);
         }
-        if (!pass1 || !pass2) throw new Fault("queryTest66 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("queryTest66 failed");
     }
 
     /*
      * @testName: queryTest67
      *
-     * @assertion_ids: PERSISTENCE:SPEC:380; PERSISTENCE:SPEC:406;
-     * PERSISTENCE:SPEC:826; PERSISTENCE:SPEC:821; PERSISTENCE:SPEC:814;
-     * PERSISTENCE:SPEC:818
+     * @assertion_ids: PERSISTENCE:SPEC:380; PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:826; PERSISTENCE:SPEC:821;
+     * PERSISTENCE:SPEC:814; PERSISTENCE:SPEC:818
      *
-     * @test_Strategy: Execute a query using the aggregate function AVG. Verify
-     * the results are accurately returned.
+     * @test_Strategy: Execute a query using the aggregate function AVG. Verify the results are accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3123,7 +3114,8 @@ public class Client extends Util {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: ", e);
         }
-        if (!pass) throw new Fault("queryTest67 failed");
+        if (!pass)
+            throw new Fault("queryTest67 failed");
     }
 
     /*
@@ -3131,9 +3123,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:383; PERSISTENCE:SPEC:406;
      *
-     * @test_Strategy: Execute a query which contains the aggregate function SUM.
-     * SUM returns Double when applied to state-fields of floating types. Verify
-     * the results are accurately returned.
+     * @test_Strategy: Execute a query which contains the aggregate function SUM. SUM returns Double when applied to
+     * state-fields of floating types. Verify the results are accurately returned.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -3159,20 +3150,19 @@ public class Client extends Util {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: ", e);
         }
-        if (!pass) throw new Fault("queryTest68 failed");
+        if (!pass)
+            throw new Fault("queryTest68 failed");
     }
 
     /*
      * @testName: queryTest69
      *
-     * @assertion_ids: PERSISTENCE:SPEC:384; PERSISTENCE:SPEC:389;
-     * PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:824; PERSISTENCE:SPEC:392;
-     * PERSISTENCE:SPEC:393;
+     * @assertion_ids: PERSISTENCE:SPEC:384; PERSISTENCE:SPEC:389; PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:824;
+     * PERSISTENCE:SPEC:392; PERSISTENCE:SPEC:393;
      *
-     * @test_Strategy: This test verifies the same results of two queries using
-     * the keyword DISTINCT or not using DISTINCT in the query with the aggregate
-     * keyword COUNT to verity the NULL values are eliminated before the aggregate
-     * is applied.
+     * @test_Strategy: This test verifies the same results of two queries using the keyword DISTINCT or not using DISTINCT
+     * in the query with the aggregate keyword COUNT to verity the NULL values are eliminated before the aggregate is
+     * applied.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -3212,18 +3202,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("queryTest69 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("queryTest69 failed");
     }
 
     /*
      * @testName: queryTest70
      *
-     * @assertion_ids: PERSISTENCE:SPEC:383; PERSISTENCE:SPEC:406;
-     * PERSISTENCE:SPEC:827; PERSISTENCE:SPEC:821
+     * @assertion_ids: PERSISTENCE:SPEC:383; PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:827; PERSISTENCE:SPEC:821
      *
-     * @test_Strategy: Execute a query which contains the aggregate function SUM.
-     * SUM returns Long when applied to state-fields of integral types. Verify the
-     * results are accurately returned.
+     * @test_Strategy: Execute a query which contains the aggregate function SUM. SUM returns Long when applied to
+     * state-fields of integral types. Verify the results are accurately returned.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -3248,7 +3237,8 @@ public class Client extends Util {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception queryTest70: ", e);
         }
-        if (!pass) throw new Fault("queryTest70 failed");
+        if (!pass)
+            throw new Fault("queryTest70 failed");
     }
 
     /*
@@ -3256,9 +3246,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:744;PERSISTENCE:JAVADOC:128
      *
-     * @test_Strategy: The NoResultException is thrown by the persistence provider
-     * when Query.getSingleResult is invoked and there are not results to return.
-     * Verify the results are accurately returned.
+     * @test_Strategy: The NoResultException is thrown by the persistence provider when Query.getSingleResult is invoked and
+     * there are not results to return. Verify the results are accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest71() throws Fault {
@@ -3279,7 +3268,8 @@ public class Client extends Util {
             TestUtil.logErr("Unexpected exception caught in queryTest71: " + e);
         }
 
-        if (!pass) throw new Fault("queryTest71 failed");
+        if (!pass)
+            throw new Fault("queryTest71 failed");
     }
 
     /*
@@ -3287,8 +3277,8 @@ public class Client extends Util {
      **
      * @assertion_ids: PERSISTENCE:SPEC:780
      *
-     * @test_Strategy: LEFT OUTER JOIN for 1-M relationship. Retrieve credit card
-     * information for a customer with name like Caruso.
+     * @test_Strategy: LEFT OUTER JOIN for 1-M relationship. Retrieve credit card information for a customer with name like
+     * Caruso.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -3320,17 +3310,16 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_leftouterjoin_1x1 failed");
+        if (!pass)
+            throw new Fault("test_leftouterjoin_1x1 failed");
     }
 
     /*
      * @testName: test_leftouterjoin_Mx1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:780; PERSISTENCE:SPEC:399.1;
-     * PERSISTENCE:SPEC:399
+     * @assertion_ids: PERSISTENCE:SPEC:780; PERSISTENCE:SPEC:399.1; PERSISTENCE:SPEC:399
      *
-     * @test_Strategy: Left Outer Join for M-1 relationship. Retrieve customer
-     * information from Order.
+     * @test_Strategy: Left Outer Join for M-1 relationship. Retrieve customer information from Order.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3338,7 +3327,7 @@ public class Client extends Util {
         List q;
         boolean pass1 = false;
         boolean pass2 = true;
-        Object[][] expectedResultSet = new Object[][] {new Object[] {"15", "14"}, new Object[] {"16", "14"}};
+        Object[][] expectedResultSet = new Object[][] { new Object[] { "15", "14" }, new Object[] { "16", "14" } };
 
         try {
             getEntityTransaction().begin();
@@ -3383,17 +3372,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("test_leftouterjoin_Mx1 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("test_leftouterjoin_Mx1 failed");
     }
 
     /*
      * @testName: test_leftouterjoin_MxM
      *
-     * @assertion_ids: PERSISTENCE:SPEC:780; PERSISTENCE:SPEC:317;
-     * PERSISTENCE:SPEC:317.3; PERSISTENCE:SPEC:320; PERSISTENCE:SPEC:811
+     * @assertion_ids: PERSISTENCE:SPEC:780; PERSISTENCE:SPEC:317; PERSISTENCE:SPEC:317.3; PERSISTENCE:SPEC:320;
+     * PERSISTENCE:SPEC:811
      *
-     * @test_Strategy: Left Outer Join for M-M relationship. Retrieve all aliases
-     * where customer name like Ste.
+     * @test_Strategy: Left Outer Join for M-M relationship. Retrieve all aliases where customer name like Ste.
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -3403,12 +3392,12 @@ public class Client extends Util {
         boolean pass1 = false;
         boolean pass2 = true;
         Object[][] expectedResultSet = new Object[][] {
-            new Object[] {"7", "sjc"},
-            new Object[] {"5", "ssd"},
-            new Object[] {"7", "stevec"},
-            new Object[] {"5", "steved"},
-            new Object[] {"5", "stevie"},
-            new Object[] {"7", "stevie"}
+                new Object[] { "7", "sjc" },
+                new Object[] { "5", "ssd" },
+                new Object[] { "7", "stevec" },
+                new Object[] { "5", "steved" },
+                new Object[] { "5", "stevie" },
+                new Object[] { "7", "stevie" }
         };
         try {
             getEntityTransaction().begin();
@@ -3452,7 +3441,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("test_leftouterjoin_MxM failed");
+        if (!pass1 || !pass2)
+            throw new Fault("test_leftouterjoin_MxM failed");
     }
 
     /*
@@ -3460,8 +3450,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.11
      *
-     * @test_Strategy: Test for Upper expression in the Where Clause Select the
-     * customer with alias name = UPPER(SJC)
+     * @test_Strategy: Test for Upper expression in the Where Clause Select the customer with alias name = UPPER(SJC)
      *
      */
 
@@ -3492,7 +3481,8 @@ public class Client extends Util {
             TestUtil.logErr("Unexpected exception caught exception in test_upperStringExpression: ", e);
         }
 
-        if (!pass) throw new Fault("test_upperStringExpression failed");
+        if (!pass)
+            throw new Fault("test_upperStringExpression failed");
     }
 
     /*
@@ -3500,8 +3490,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.10
      *
-     * @test_Strategy: Test for Lower expression in the Where Clause Select the
-     * customer with alias name = LOWER(sjc)
+     * @test_Strategy: Test for Lower expression in the Where Clause Select the customer with alias name = LOWER(sjc)
      *
      */
 
@@ -3532,24 +3521,23 @@ public class Client extends Util {
             TestUtil.logErr("Unexpected exception caught exception in test_lowerStringExpression: ", e);
         }
 
-        if (!pass) throw new Fault("test_lowerStringExpression failed");
+        if (!pass)
+            throw new Fault("test_lowerStringExpression failed");
     }
 
     /*
      * @testName: test_groupBy
      *
-     * @assertion_ids: PERSISTENCE:SPEC:810; PERSISTENCE:SPEC:756;
-     * PERSISTENCE:SPEC:1623;
+     * @assertion_ids: PERSISTENCE:SPEC:810; PERSISTENCE:SPEC:756; PERSISTENCE:SPEC:1623;
      *
-     * @test_Strategy: Test for Only Group By in a simple select statement.
-     * Country is an Embeddable entity.
+     * @test_Strategy: Test for Only Group By in a simple select statement. Country is an Embeddable entity.
      *
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_groupBy() throws Fault {
         boolean pass = false;
         List result;
-        String expected[] = new String[] {"CHA", "GBR", "IRE", "JPN", "USA"};
+        String expected[] = new String[] { "CHA", "GBR", "IRE", "JPN", "USA" };
 
         try {
             getEntityTransaction().begin();
@@ -3577,7 +3565,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_groupBy failed");
+        if (!pass)
+            throw new Fault("test_groupBy failed");
     }
 
     /*
@@ -3585,15 +3574,14 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:810
      *
-     * @test_Strategy: Test for Only Group By in a simple select statement without
-     * using an Embeddable Entity in the query.
+     * @test_Strategy: Test for Only Group By in a simple select statement without using an Embeddable Entity in the query.
      *
      */
     @SetupMethod(name = "setupOrderData")
     public void test_groupBy_1() throws Fault {
         boolean pass = false;
         List result;
-        String expected[] = new String[] {"AXP", "MCARD", "VISA"};
+        String expected[] = new String[] { "AXP", "MCARD", "VISA" };
 
         try {
             getEntityTransaction().begin();
@@ -3620,17 +3608,16 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_groupBy_1 failed");
+        if (!pass)
+            throw new Fault("test_groupBy_1 failed");
     }
 
     /*
      * @testName: test_innerjoin_1x1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:779; PERSISTENCE:SPEC:372;
-     * PERSISTENCE:SPEC:372.2
+     * @assertion_ids: PERSISTENCE:SPEC:779; PERSISTENCE:SPEC:372; PERSISTENCE:SPEC:372.2
      *
-     * @test_Strategy: Inner Join for 1-1 relationship. Select all customers with
-     * spouses.
+     * @test_Strategy: Inner Join for 1-1 relationship. Select all customers with spouses.
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_innerjoin_1x1() throws Fault {
@@ -3662,7 +3649,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_innerjoin_1x1 failed");
+        if (!pass)
+            throw new Fault("test_innerjoin_1x1 failed");
     }
 
     /*
@@ -3670,8 +3658,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:779
      *
-     * @test_Strategy: Inner Join for 1-M relationship. Retrieve credit card
-     * information for all customers.
+     * @test_Strategy: Inner Join for 1-M relationship. Retrieve credit card information for all customers.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_innerjoin_1xM() throws Fault {
@@ -3709,7 +3696,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_innerjoin_1xM failed");
+        if (!pass)
+            throw new Fault("test_innerjoin_1xM failed");
     }
 
     /*
@@ -3717,8 +3705,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:779; PERSISTENCE:SPEC:373
      *
-     * @test_Strategy: Inner Join for M-1 relationship. Retrieve customer
-     * information from Order. customer name = Kellie A. Sanborn
+     * @test_Strategy: Inner Join for M-1 relationship. Retrieve customer information from Order. customer name = Kellie A.
+     * Sanborn
      */
     @SetupMethod(name = "setupOrderData")
     public void test_innerjoin_Mx1() throws Fault {
@@ -3748,7 +3736,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_innerjoin_Mx1 failed");
+        if (!pass)
+            throw new Fault("test_innerjoin_Mx1 failed");
     }
 
     /*
@@ -3756,8 +3745,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:779
      *
-     * @test_Strategy: Inner Join for M-M relationship. Retrieve aliases for alias
-     * name=fish.
+     * @test_Strategy: Inner Join for M-M relationship. Retrieve aliases for alias name=fish.
      */
     @SetupMethod(name = "setupAliasData")
     public void test_innerjoin_MxM() throws Fault {
@@ -3787,17 +3775,16 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_innerjoin_MxM failed");
+        if (!pass)
+            throw new Fault("test_innerjoin_MxM failed");
     }
 
     /*
      * @testName: test_fetchjoin_1x1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:781; PERSISTENCE:SPEC:774;
-     * PERSISTENCE:SPEC:776
+     * @assertion_ids: PERSISTENCE:SPEC:781; PERSISTENCE:SPEC:774; PERSISTENCE:SPEC:776
      *
-     * @test_Strategy: JOIN FETCH for 1-1 relationship. Prefetch the spouses for
-     * all Customers.
+     * @test_Strategy: JOIN FETCH for 1-1 relationship. Prefetch the spouses for all Customers.
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_fetchjoin_1x1() throws Fault {
@@ -3829,17 +3816,16 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_fetchjoin_1x1 failed");
+        if (!pass)
+            throw new Fault("test_fetchjoin_1x1 failed");
     }
 
     /*
      * @testName: test_fetchjoin_1xM
      *
-     * @assertion_ids: PERSISTENCE:SPEC:782; PERSISTENCE:SPEC:374;
-     * PERSISTENCE:SPEC:777; PERSISTENCE:SPEC:783
+     * @assertion_ids: PERSISTENCE:SPEC:782; PERSISTENCE:SPEC:374; PERSISTENCE:SPEC:777; PERSISTENCE:SPEC:783
      *
-     * @test_Strategy: Fetch Join for 1-M relationship. Retrieve customers from NY
-     * or RI who have orders.
+     * @test_Strategy: Fetch Join for 1-M relationship. Retrieve customers from NY or RI who have orders.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3870,7 +3856,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_fetchjoin_1xM failed");
+        if (!pass)
+            throw new Fault("test_fetchjoin_1xM failed");
     }
 
     /*
@@ -3909,7 +3896,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_fetchjoin_Mx1 failed");
+        if (!pass)
+            throw new Fault("test_fetchjoin_Mx1 failed");
     }
 
     /*
@@ -3949,7 +3937,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_fetchjoin_Mx1_1 failed");
+        if (!pass)
+            throw new Fault("test_fetchjoin_Mx1_1 failed");
     }
 
     /*
@@ -3957,8 +3946,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:781
      *
-     * @test_Strategy: Left Join Fetch for M-M relationship. Retrieve customers
-     * with orders that live in NH.
+     * @test_Strategy: Left Join Fetch for M-M relationship. Retrieve customers with orders that live in NH.
      */
     @SetupMethod(name = "setupAliasData")
     public void test_fetchjoin_MxM() throws Fault {
@@ -3991,18 +3979,18 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_fetchjoin_MxM failed");
+        if (!pass)
+            throw new Fault("test_fetchjoin_MxM failed");
     }
 
     /*
      * @testName: test_betweenDates
      *
-     * @assertion_ids: PERSISTENCE:SPEC:349.2; PERSISTENCE:SPEC:553;
-     * PERSISTENCE:JAVADOC:15; PERSISTENCE:JAVADOC:166; PERSISTENCE:JAVADOC:189;
-     * PERSISTENCE:SPEC:1049; PERSISTENCE:SPEC:1059; PERSISTENCE:SPEC:1060
+     * @assertion_ids: PERSISTENCE:SPEC:349.2; PERSISTENCE:SPEC:553; PERSISTENCE:JAVADOC:15; PERSISTENCE:JAVADOC:166;
+     * PERSISTENCE:JAVADOC:189; PERSISTENCE:SPEC:1049; PERSISTENCE:SPEC:1059; PERSISTENCE:SPEC:1060
      *
-     * @test_Strategy: Execute a query containing using the operator BETWEEN with
-     * datetime_expression. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query containing using the operator BETWEEN with datetime_expression. Verify the results
+     * were accurately returned.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -4041,7 +4029,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_betweenDates failed");
+        if (!pass)
+            throw new Fault("test_betweenDates failed");
     }
 
     /*
@@ -4049,8 +4038,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:349
      *
-     * @test_Strategy: Execute a query containing using the operator BETWEEN and
-     * NOT BETWEEN. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query containing using the operator BETWEEN and NOT BETWEEN. Verify the results were
+     * accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_notBetweenArithmetic() throws Fault {
@@ -4092,7 +4081,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_notBetweenArithmetic failed");
+        if (!pass)
+            throw new Fault("test_notBetweenArithmetic failed");
     }
 
     /*
@@ -4100,8 +4090,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:349.2; PERSISTENCE:SPEC:600
      *
-     * @test_Strategy: Execute a query containing using the operator NOT BETWEEN.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute a query containing using the operator NOT BETWEEN. Verify the results were accurately
+     * returned.
      */
     @SetupMethod(name = "setupProductData")
     public void test_notBetweenDates() throws Fault {
@@ -4134,7 +4124,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_notBetweenDates failed");
+        if (!pass)
+            throw new Fault("test_notBetweenDates failed");
     }
 
     /*
@@ -4142,8 +4133,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:424;
      *
-     * @test_Strategy: Both the conditions in the WHERE Clause are True and hence
-     * the result is also TRUE Verify the results were accurately returned.
+     * @test_Strategy: Both the conditions in the WHERE Clause are True and hence the result is also TRUE Verify the results
+     * were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ANDconditionTT() throws Fault {
@@ -4172,7 +4163,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_ANDconditionTT failed");
+        if (!pass)
+            throw new Fault("test_ANDconditionTT failed");
     }
 
     /*
@@ -4180,8 +4172,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:424
      *
-     * @test_Strategy: First condition is True and Second is False and hence the
-     * result is also False
+     * @test_Strategy: First condition is True and Second is False and hence the result is also False
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ANDconditionTF() throws Fault {
@@ -4207,7 +4198,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_ANDconditionTF failed");
+        if (!pass)
+            throw new Fault("test_ANDconditionTF failed");
     }
 
     /*
@@ -4215,8 +4207,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:424
      *
-     * @test_Strategy: First condition is FALSE and Second is TRUE and hence the
-     * result is also False
+     * @test_Strategy: First condition is FALSE and Second is TRUE and hence the result is also False
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ANDconditionFT() throws Fault {
@@ -4242,7 +4233,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_ANDconditionFT failed");
+        if (!pass)
+            throw new Fault("test_ANDconditionFT failed");
     }
 
     /*
@@ -4250,8 +4242,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:424
      *
-     * @test_Strategy: First condition is FALSE and Second is FALSE and hence the
-     * result is also False
+     * @test_Strategy: First condition is FALSE and Second is FALSE and hence the result is also False
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ANDconditionFF() throws Fault {
@@ -4277,7 +4268,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_ANDconditionFF failed");
+        if (!pass)
+            throw new Fault("test_ANDconditionFF failed");
     }
 
     /*
@@ -4285,8 +4277,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: First condition is TRUE OR Second is TRUE and hence the
-     * result is also TRUE
+     * @test_Strategy: First condition is TRUE OR Second is TRUE and hence the result is also TRUE
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ORconditionTT() throws Fault {
@@ -4317,7 +4308,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_ORconditionTT failed");
+        if (!pass)
+            throw new Fault("test_ORconditionTT failed");
     }
 
     /*
@@ -4325,8 +4317,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: First condition is TRUE OR Second is FALSE and hence the
-     * result is also TRUE
+     * @test_Strategy: First condition is TRUE OR Second is FALSE and hence the result is also TRUE
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ORconditionTF() throws Fault {
@@ -4355,7 +4346,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_ORconditionTF failed");
+        if (!pass)
+            throw new Fault("test_ORconditionTF failed");
     }
 
     /*
@@ -4363,8 +4355,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: First condition is FALSE OR Second is TRUE and hence the
-     * result is also TRUE
+     * @test_Strategy: First condition is FALSE OR Second is TRUE and hence the result is also TRUE
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ORconditionFT() throws Fault {
@@ -4399,7 +4390,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_ORconditionFT failed");
+        if (!pass)
+            throw new Fault("test_ORconditionFT failed");
     }
 
     /*
@@ -4407,8 +4399,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: First condition is FALSE OR Second is FALSE and hence the
-     * result is also FALSE
+     * @test_Strategy: First condition is FALSE OR Second is FALSE and hence the result is also FALSE
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ORconditionFF() throws Fault {
@@ -4434,7 +4425,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_ORconditionFF failed");
+        if (!pass)
+            throw new Fault("test_ORconditionFF failed");
     }
 
     /*
@@ -4448,7 +4440,7 @@ public class Client extends Util {
     public void test_groupByWhereClause() throws Fault {
         boolean pass = false;
         List result;
-        final String[] expected = new String[] {"Jonathan K. Smith", "Kellie A. Sanborn", "Robert E. Bissett"};
+        final String[] expected = new String[] { "Jonathan K. Smith", "Kellie A. Sanborn", "Robert E. Bissett" };
 
         try {
             getEntityTransaction().begin();
@@ -4477,18 +4469,18 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_groupByWhereClause failed");
+        if (!pass)
+            throw new Fault("test_groupByWhereClause failed");
     }
 
     /*
      * @testName: test_groupByHaving
      *
-     * @assertion_ids: PERSISTENCE:SPEC:808; PERSISTENCE:SPEC:353;
-     * PERSISTENCE:SPEC:757; PERSISTENCE:SPEC:391; PERSISTENCE:SPEC:786;
-     * PERSISTENCE:SPEC:1595; PERSISTENCE:SPEC:1624;
+     * @assertion_ids: PERSISTENCE:SPEC:808; PERSISTENCE:SPEC:353; PERSISTENCE:SPEC:757; PERSISTENCE:SPEC:391;
+     * PERSISTENCE:SPEC:786; PERSISTENCE:SPEC:1595; PERSISTENCE:SPEC:1624;
      *
-     * @test_Strategy: Test for Group By and Having in a select statement Select
-     * the count of customers in each country where Country is China, England
+     * @test_Strategy: Test for Group By and Having in a select statement Select the count of customers in each country
+     * where Country is China, England
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_groupByHaving() throws Fault {
@@ -4532,7 +4524,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_groupByHaving failed");
+        if (!pass)
+            throw new Fault("test_groupByHaving failed");
     }
 
     /*
@@ -4540,8 +4533,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:807
      *
-     * @test_Strategy:Test for Functional Expression: substring in Having Clause
-     * Select all customers with alias = fish
+     * @test_Strategy:Test for Functional Expression: substring in Having Clause Select all customers with alias = fish
      */
     @SetupMethod(name = "setupAliasData")
     public void test_substringHavingClause() throws Fault {
@@ -4575,18 +4567,18 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_substringHavingClause failed");
+        if (!pass)
+            throw new Fault(" test_substringHavingClause failed");
     }
 
     /*
      * @testName: test_concatHavingClause
      *
-     * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:803;
-     * PERSISTENCE:SPEC:804; PERSISTENCE:SPEC:805; PERSISTENCE:SPEC:806;
-     * PERSISTENCE:SPEC:734
+     * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:803; PERSISTENCE:SPEC:804; PERSISTENCE:SPEC:805;
+     * PERSISTENCE:SPEC:806; PERSISTENCE:SPEC:734
      *
-     * @test_Strategy:Test for Functional Expression: concat in Having Clause Find
-     * customer Margaret Mills by firstname-lastname concatenation.
+     * @test_Strategy:Test for Functional Expression: concat in Having Clause Find customer Margaret Mills by
+     * firstname-lastname concatenation.
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_concatHavingClause() throws Fault {
@@ -4617,7 +4609,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_concatHavingClause failed");
+        if (!pass)
+            throw new Fault("test_concatHavingClause failed");
     }
 
     /*
@@ -4625,8 +4618,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:369.10
      *
-     * @test_Strategy:Test for Functional Expression: lower in Having Clause
-     * Select all customers in country with code GBR
+     * @test_Strategy:Test for Functional Expression: lower in Having Clause Select all customers in country with code GBR
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_lowerHavingClause() throws Fault {
@@ -4658,7 +4650,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_lowerHavingClause failed");
+        if (!pass)
+            throw new Fault(" test_lowerHavingClause failed");
     }
 
     /*
@@ -4666,8 +4659,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:369.11
      *
-     * @test_Strategy:Test for Functional Expression: upper in Having Clause
-     * Select all customers in country ENGLAND
+     * @test_Strategy:Test for Functional Expression: upper in Having Clause Select all customers in country ENGLAND
      */
 
     @SetupMethod(name = "setupCustomerData")
@@ -4700,24 +4692,23 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_upperHavingClause failed");
+        if (!pass)
+            throw new Fault("test_upperHavingClause failed");
     }
 
     /*
      * @testName: test_lengthHavingClause
      *
-     * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:369.4;
-     * PERSISTENCE:SPEC:1626;
+     * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:369.4; PERSISTENCE:SPEC:1626;
      *
-     * @test_Strategy:Test for Functional Expression: length in Having Clause
-     * Select all customer names having the length of the city of the home address
-     * = 10
+     * @test_Strategy:Test for Functional Expression: length in Having Clause Select all customer names having the length of
+     * the city of the home address = 10
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_lengthHavingClause() throws Fault {
         boolean pass = false;
         List result;
-        final String[] expected = new String[] {"Burlington", "Chelmsford", "Roslindale"};
+        final String[] expected = new String[] { "Burlington", "Chelmsford", "Roslindale" };
 
         try {
             getEntityTransaction().begin();
@@ -4746,7 +4737,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_lengthHavingClause failed");
+        if (!pass)
+            throw new Fault("test_lengthHavingClause failed");
     }
 
     /*
@@ -4754,15 +4746,14 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:369.3
      *
-     * @test_Strategy: Test for LOCATE expression in the Having Clause Select
-     * customer names if there the string "Frechette" is located in the customer
-     * name.
+     * @test_Strategy: Test for LOCATE expression in the Having Clause Select customer names if there the string "Frechette"
+     * is located in the customer name.
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_locateHavingClause() throws Fault {
         boolean pass = false;
         List result;
-        final String[] expected = new String[] {"Alan E. Frechette", "Arthur D. Frechette"};
+        final String[] expected = new String[] { "Alan E. Frechette", "Arthur D. Frechette" };
 
         try {
             getEntityTransaction().begin();
@@ -4791,126 +4782,100 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_locateHavingClause failed");
+        if (!pass)
+            throw new Fault(" test_locateHavingClause failed");
     }
 
     /*
-     * testName: test_trimHavingClause_01 assertion_ids: PERSISTENCE:SPEC:369.9
-     * test_Strategy: Test for TRIM BOTH characters (blank) in the Having Clause
+     * testName: test_trimHavingClause_01 assertion_ids: PERSISTENCE:SPEC:369.9 test_Strategy: Test for TRIM BOTH characters
+     * (blank) in the Having Clause
      *
      * DISABLE THIS TEST FOR NOW
      *
-     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_01()
-     * throws Fault { boolean pass = false; String result; Query q; final String
-     * expected = " David R. Vincent             "; final String expected2 =
+     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_01() throws Fault { boolean pass = false;
+     * String result; Query q; final String expected = " David R. Vincent             "; final String expected2 =
      * "'David R. Vincent'";
      *
      *
      * try { getEntityTransaction().begin();
      *
-     * Trim tTrim = getEntityManager().find(Trim.class, "19");
-     * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-     * (!tTrim.getName().equals(expected)) {
-     * TestUtil.logErr("Name returned by find does not match expected");
-     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
-     * "|"); }
+     * Trim tTrim = getEntityManager().find(Trim.class, "19"); TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+     * (!tTrim.getName().equals(expected)) { TestUtil.logErr("Name returned by find does not match expected");
+     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() + "|"); }
      *
      *
-     * String stmt = "select t.name  FROM Trim t Group by t.name HAVING " +
-     * "trim(BOTH from t.name) = " + expected2; TestUtil.logTrace("sql query:" +
-     * stmt); q = getEntityManager().createQuery(stmt);
+     * String stmt = "select t.name  FROM Trim t Group by t.name HAVING " + "trim(BOTH from t.name) = " + expected2;
+     * TestUtil.logTrace("sql query:" + stmt); q = getEntityManager().createQuery(stmt);
      *
      * result = (String) q.getSingleResult();
      *
-     * if (expected.equals(result)) { pass = true;
-     * TestUtil.logTrace("Expected results received"); pass = true; } else {
-     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected +
-     * "|, got: |" + result + "|"); }
+     * if (expected.equals(result)) { pass = true; TestUtil.logTrace("Expected results received"); pass = true; } else {
+     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected + "|, got: |" + result + "|"); }
      *
-     * getEntityTransaction().commit(); } catch (Exception e) {
-     * TestUtil.logErr("Caught exception:", e); }
+     * getEntityTransaction().commit(); } catch (Exception e) { TestUtil.logErr("Caught exception:", e); }
      *
      * if (!pass) throw new Fault(" test_trimHavingClause_01 failed"); }
      *
      */
 
     /*
-     * testName: test_trimHavingClause_02 assertion_ids: PERSISTENCE:SPEC:369.9
-     * test_Strategy: Test for TRIM LEADING characters (blank) in the Having
-     * Clause
+     * testName: test_trimHavingClause_02 assertion_ids: PERSISTENCE:SPEC:369.9 test_Strategy: Test for TRIM LEADING
+     * characters (blank) in the Having Clause
      *
      * DISABLE THIS TEST FOR NOW
      *
      *
-     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_02()
-     * throws Fault { boolean pass = false; Query q; String result; final String
-     * expected = " David R. Vincent             "; final String expected2 =
+     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_02() throws Fault { boolean pass = false;
+     * Query q; String result; final String expected = " David R. Vincent             "; final String expected2 =
      * "'David R. Vincent             '";
      *
      *
      * try { getEntityTransaction().begin();
      *
-     * Trim tTrim = getEntityManager().find(Trim.class, "19");
-     * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-     * (!tTrim.getName().equals(expected)) {
-     * TestUtil.logErr("Name returned by find does not match expected");
-     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
-     * "|"); } String stmt = "select t.name  FROM Trim t Group by t.name HAVING "
-     * + "trim(LEADING from t.name) = " + expected2;
-     * TestUtil.logTrace("sql query:" + stmt); q =
-     * getEntityManager().createQuery(stmt);
+     * Trim tTrim = getEntityManager().find(Trim.class, "19"); TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+     * (!tTrim.getName().equals(expected)) { TestUtil.logErr("Name returned by find does not match expected");
+     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() + "|"); } String stmt =
+     * "select t.name  FROM Trim t Group by t.name HAVING " + "trim(LEADING from t.name) = " + expected2;
+     * TestUtil.logTrace("sql query:" + stmt); q = getEntityManager().createQuery(stmt);
      *
      * result = (String) q.getSingleResult();
      *
-     * if (expected.equals(result)) { pass = true;
-     * TestUtil.logTrace("Expected results received"); pass = true; } else {
-     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected +
-     * "|, got: |" + result + "|"); }
+     * if (expected.equals(result)) { pass = true; TestUtil.logTrace("Expected results received"); pass = true; } else {
+     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected + "|, got: |" + result + "|"); }
      *
-     * getEntityTransaction().commit(); } catch (Exception e) {
-     * TestUtil.logErr("Caught exception:", e); }
+     * getEntityTransaction().commit(); } catch (Exception e) { TestUtil.logErr("Caught exception:", e); }
      *
      * if (!pass) throw new Fault("test_trimHavingClause_02 failed"); }
      */
 
     /*
-     * testName: test_trimHavingClause_03 assertion_ids: PERSISTENCE:SPEC:369.9
-     * test_Strategy: Test for TRIM TRAILING characters (blank) in the Having
-     * Clause
+     * testName: test_trimHavingClause_03 assertion_ids: PERSISTENCE:SPEC:369.9 test_Strategy: Test for TRIM TRAILING
+     * characters (blank) in the Having Clause
      *
      * DISABLE THIS TEST FOR NOW
      *
      *
-     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_03()
-     * throws Fault {
+     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_03() throws Fault {
      *
      * boolean pass = false; String result; Query q;
      *
-     * final String expected = " David R. Vincent             "; final String
-     * expected2 = "' David R. Vincent'";
+     * final String expected = " David R. Vincent             "; final String expected2 = "' David R. Vincent'";
      *
      * try { getEntityTransaction().begin();
      *
-     * Trim tTrim = getEntityManager().find(Trim.class, "19");
-     * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-     * (!tTrim.getName().equals(expected)) {
-     * TestUtil.logErr("Name returned by find does not match expected");
-     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
-     * "|"); }
+     * Trim tTrim = getEntityManager().find(Trim.class, "19"); TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+     * (!tTrim.getName().equals(expected)) { TestUtil.logErr("Name returned by find does not match expected");
+     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() + "|"); }
      *
-     * String stmt = "select t.name  FROM Trim t Group by t.name HAVING " +
-     * "trim(TRAILING from t.name) = " + expected2; TestUtil.logTrace("sql query:"
-     * + stmt); q = getEntityManager().createQuery(stmt);
+     * String stmt = "select t.name  FROM Trim t Group by t.name HAVING " + "trim(TRAILING from t.name) = " + expected2;
+     * TestUtil.logTrace("sql query:" + stmt); q = getEntityManager().createQuery(stmt);
      *
      * result = (String) q.getSingleResult();
      *
-     * if (expected.equals(result)) { pass = true;
-     * TestUtil.logTrace("Expected results received"); pass = true; } else {
-     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected +
-     * "|, got: |" + result + "|"); }
+     * if (expected.equals(result)) { pass = true; TestUtil.logTrace("Expected results received"); pass = true; } else {
+     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected + "|, got: |" + result + "|"); }
      *
-     * getEntityTransaction().commit(); } catch (Exception e) {
-     * TestUtil.logErr("Caught exception:", e); }
+     * getEntityTransaction().commit(); } catch (Exception e) { TestUtil.logErr("Caught exception:", e); }
      *
      * if (!pass) throw new Fault("test_trimHavingClause_03 failed"); }
      *
@@ -4951,7 +4916,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_ABSHavingClause failed");
+        if (!pass)
+            throw new Fault("test_ABSHavingClause failed");
     }
 
     /*
@@ -4991,23 +4957,22 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_SQRTWhereClause failed");
+        if (!pass)
+            throw new Fault(" test_SQRTWhereClause failed");
     }
 
     /*
      * @testName: test_subquery_exists_01
      *
-     * @assertion_ids: PERSISTENCE:SPEC:791;PERSISTENCE:SPEC:792;
-     * PERSISTENCE:SPEC:1599;
+     * @assertion_ids: PERSISTENCE:SPEC:791;PERSISTENCE:SPEC:792; PERSISTENCE:SPEC:1599;
      *
-     * @test_Strategy: Test NOT EXISTS in the Where Clause for a correlated query.
-     * Select the customers without orders.
+     * @test_Strategy: Test NOT EXISTS in the Where Clause for a correlated query. Select the customers without orders.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_exists_01() throws Fault {
         boolean pass = false;
         List result;
-        final String[] expectedPKs = {"19", "20"};
+        final String[] expectedPKs = { "19", "20" };
 
         try {
             getEntityTransaction().begin();
@@ -5027,7 +4992,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_subquery_exists_01 failed");
+        if (!pass)
+            throw new Fault(" test_subquery_exists_01 failed");
     }
 
     /*
@@ -5035,8 +5001,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:791;PERSISTENCE:SPEC:792
      *
-     * @test_Strategy: Test for EXISTS in the Where Clause for a correlated query.
-     * Select the customers with orders where total order > 1500.
+     * @test_Strategy: Test for EXISTS in the Where Clause for a correlated query. Select the customers with orders where
+     * total order > 1500.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_exists_02() throws Fault {
@@ -5070,17 +5036,18 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_subquery_exists_02 failed");
+        if (!pass)
+            throw new Fault(" test_subquery_exists_02 failed");
     }
 
     /*
      * @testName: test_subquery_like
      *
-     * @assertion_ids: PERSISTENCE:SPEC:791;PERSISTENCE:SPEC:792;
-     * PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801; PERSISTENCE:SPEC:802
+     * @assertion_ids: PERSISTENCE:SPEC:791;PERSISTENCE:SPEC:792; PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801;
+     * PERSISTENCE:SPEC:802
      *
-     * @test_Strategy: Use LIKE expression in a sub query. Select the customers
-     * with name like Caruso. The name Caruso is derived in the subquery.
+     * @test_Strategy: Use LIKE expression in a sub query. Select the customers with name like Caruso. The name Caruso is
+     * derived in the subquery.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_like() throws Fault {
@@ -5111,14 +5078,14 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_subquery_like failed");
+        if (!pass)
+            throw new Fault(" test_subquery_like failed");
     }
 
     /*
      * @testName: test_subquery_in
      *
-     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801;
-     * PERSISTENCE:SPEC:802; PERSISTENCE:SPEC:352.2
+     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801; PERSISTENCE:SPEC:802; PERSISTENCE:SPEC:352.2
      *
      * @test_Strategy: Use IN expression in a sub query.
      */
@@ -5160,17 +5127,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_subquery_in failed");
+        if (!pass)
+            throw new Fault("test_subquery_in failed");
     }
 
     /*
      * @testName: test_subquery_between
      *
-     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801;
-     * PERSISTENCE:SPEC:802
+     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801; PERSISTENCE:SPEC:802
      *
-     * @test_Strategy: Use BETWEEN expression in a sub query. Select the customers
-     * whose orders total price is between 1000 and 2000.
+     * @test_Strategy: Use BETWEEN expression in a sub query. Select the customers whose orders total price is between 1000
+     * and 2000.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_between() throws Fault {
@@ -5205,17 +5172,16 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_subquery_between failed");
+        if (!pass)
+            throw new Fault(" test_subquery_between failed");
     }
 
     /*
      * @testName: test_subquery_join
      *
-     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801;
-     * PERSISTENCE:SPEC:802; PERSISTENCE:SPEC:765
+     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801; PERSISTENCE:SPEC:802; PERSISTENCE:SPEC:765
      *
-     * @test_Strategy: Use JOIN in a sub query. Select the customers whose orders
-     * have line items of quantity > 2.
+     * @test_Strategy: Use JOIN in a sub query. Select the customers whose orders have line items of quantity > 2.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_join() throws Fault {
@@ -5250,18 +5216,18 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_subquery_join failed");
+        if (!pass)
+            throw new Fault(" test_subquery_join failed");
     }
 
     /*
      * @testName: test_subquery_ALL_GT
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797;
-     * PERSISTENCE:SPEC:766; PERSISTENCE:SPEC:793; PERSISTENCE:SPEC:799
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:766; PERSISTENCE:SPEC:793;
+     * PERSISTENCE:SPEC:799
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * ">". Select all customers where total price of orders is greater than ALL
-     * the values in the result set.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator ">". Select all customers where total price
+     * of orders is greater than ALL the values in the result set.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_GT() throws Fault {
@@ -5295,7 +5261,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_subquery_ALL_GT failed");
+        if (!pass)
+            throw new Fault(" test_subquery_ALL_GT failed");
     }
 
     /*
@@ -5303,9 +5270,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * "<". Select all customers where total price of orders is less than ALL the
-     * values in the result set.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator "<". Select all customers where total price
+     * of orders is less than ALL the values in the result set.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_LT() throws Fault {
@@ -5336,7 +5302,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_subquery_ALL_LT failed");
+        if (!pass)
+            throw new Fault("test_subquery_ALL_LT failed");
     }
 
     /*
@@ -5344,10 +5311,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * "=". Select all customers where total price of orders is = ALL the values
-     * in the result set. The result set contains the min of total price of
-     * orders.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator "=". Select all customers where total price
+     * of orders is = ALL the values in the result set. The result set contains the min of total price of orders.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_EQ() throws Fault {
@@ -5378,7 +5343,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_subquery_ALL_EQ failed");
+        if (!pass)
+            throw new Fault("test_subquery_ALL_EQ failed");
     }
 
     /*
@@ -5386,10 +5352,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * "<=". Select all customers where total price of orders is <= ALL the values
-     * in the result set. The result set contains the total price of orders where
-     * count of lineItems > 3.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator "<=". Select all customers where total price
+     * of orders is <= ALL the values in the result set. The result set contains the total price of orders where count of
+     * lineItems > 3.
      */
 
     @SetupMethod(name = "setupOrderData")
@@ -5421,7 +5386,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_subquery_ALL_LTEQ failed");
+        if (!pass)
+            throw new Fault("test_subquery_ALL_LTEQ failed");
     }
 
     /*
@@ -5429,9 +5395,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * ">=". Select all customers where total price of orders is >= ALL the values
-     * in the result set.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator ">=". Select all customers where total price
+     * of orders is >= ALL the values in the result set.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_GTEQ() throws Fault {
@@ -5462,18 +5427,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_subquery_ALL_GTEQ failed");
+        if (!pass)
+            throw new Fault("test_subquery_ALL_GTEQ failed");
     }
 
     /*
      * @testName: test_subquery_ALL_NOTEQ
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797;
-     * PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * "<>". Select all customers where total price of orders is <> ALL the values
-     * in the result set.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator "<>". Select all customers where total price
+     * of orders is <> ALL the values in the result set.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_NOTEQ() throws Fault {
@@ -5519,19 +5483,18 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_subquery_ALL_NOTEQ failed");
+        if (!pass)
+            throw new Fault("test_subquery_ALL_NOTEQ failed");
     }
 
     /*
      * @testName: test_subquery_ANY_GT
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797;
-     * PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: Test for ANY in a subquery with the relational operator
-     * ">". Select all customers where total price of orders is greater than ANY
-     * of the values in the result. The result set contains the total price of
-     * orders where count of lineItems = 3.
+     * @test_Strategy: Test for ANY in a subquery with the relational operator ">". Select all customers where total price
+     * of orders is greater than ANY of the values in the result. The result set contains the total price of orders where
+     * count of lineItems = 3.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ANY_GT() throws Fault {
@@ -5575,19 +5538,18 @@ public class Client extends Util {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception:", e);
         }
-        if (!pass) throw new Fault("test_subquery_ANY_GT failed");
+        if (!pass)
+            throw new Fault("test_subquery_ANY_GT failed");
     }
 
     /*
      * @testName: test_subquery_ANY_LT
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797;
-     * PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: Test for ANY in a subquery with the relational operator
-     * "<". Select all customers where total price of orders is less than ANY of
-     * the values in the result set. The result set contains the total price of
-     * orders where count of lineItems = 3.
+     * @test_Strategy: Test for ANY in a subquery with the relational operator "<". Select all customers where total price
+     * of orders is less than ANY of the values in the result set. The result set contains the total price of orders where
+     * count of lineItems = 3.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ANY_LT() throws Fault {
@@ -5633,19 +5595,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_subquery_ANY_LT failed");
+        if (!pass)
+            throw new Fault("test_subquery_ANY_LT failed");
     }
 
     /*
      * @testName: test_subquery_ANY_EQ
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797;
-     * PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: Test for ANY in a subquery with the relational operator
-     * "=". Select all customers where total price of orders is = ANY the values
-     * in the result set. The result set contains the min and avg of total price
-     * of orders.
+     * @test_Strategy: Test for ANY in a subquery with the relational operator "=". Select all customers where total price
+     * of orders is = ANY the values in the result set. The result set contains the min and avg of total price of orders.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ANY_EQ() throws Fault {
@@ -5676,17 +5636,17 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_subquery_ANY_EQ failed");
+        if (!pass)
+            throw new Fault("test_subquery_ANY_EQ failed");
     }
 
     /*
      * @testName: test_subquery_SOME_LTEQ
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:795;
-     * PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:795; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: SOME with less than or equal to The result set contains the
-     * total price of orders where count of lineItems = 3.
+     * @test_Strategy: SOME with less than or equal to The result set contains the total price of orders where count of
+     * lineItems = 3.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_SOME_LTEQ() throws Fault {
@@ -5735,19 +5695,18 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault(" test_subquery_SOME_LTEQ failed");
+        if (!pass)
+            throw new Fault(" test_subquery_SOME_LTEQ failed");
     }
 
     /*
      * @testName: test_subquery_SOME_GTEQ
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:795;
-     * PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:795; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: Test for SOME in a subquery with the relational operator
-     * ">=". Select all customers where total price of orders is >= SOME the
-     * values in the result set. The result set contains the total price of orders
-     * where count of lineItems = 3.
+     * @test_Strategy: Test for SOME in a subquery with the relational operator ">=". Select all customers where total price
+     * of orders is >= SOME the values in the result set. The result set contains the total price of orders where count of
+     * lineItems = 3.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_SOME_GTEQ() throws Fault {
@@ -5795,7 +5754,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("test_subquery_SOME_GTEQ failed");
+        if (!pass)
+            throw new Fault("test_subquery_SOME_GTEQ failed");
     }
 
     /*
@@ -5803,8 +5763,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:980
      *
-     * @test_Strategy: JOIN FETCH for 1-1 relationship. Prefetch the spouses for
-     * all Customers.
+     * @test_Strategy: JOIN FETCH for 1-1 relationship. Prefetch the spouses for all Customers.
      */
     @SetupMethod(name = "setupCustomerData")
     public void fetchStringJoinTypeTest() throws Fault {
@@ -6080,7 +6039,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("joinOnExpressionTest failed");
+        if (!pass)
+            throw new Fault("joinOnExpressionTest failed");
     }
 
     /*
@@ -6088,8 +6048,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:828; PERSISTENCE:SPEC:829;
      *
-     * @test_Strategy: Execute a query which contains aggregate functions when
-     * there are no values and see that null or zero is returned.
+     * @test_Strategy: Execute a query which contains aggregate functions when there are no values and see that null or zero
+     * is returned.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -6174,14 +6134,14 @@ public class Client extends Util {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: ", e);
         }
-        if (!pass) throw new Fault("aggregateFunctionsWithNoValuesTest failed");
+        if (!pass)
+            throw new Fault("aggregateFunctionsWithNoValuesTest failed");
     }
 
     /*
      * @testName: primaryKeyJoinColumnTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1120; PERSISTENCE:SPEC:1121;
-     * PERSISTENCE:SPEC:1121.1;
+     * @assertion_ids: PERSISTENCE:SPEC:1120; PERSISTENCE:SPEC:1121; PERSISTENCE:SPEC:1121.1;
      *
      * @test_Strategy: Select p from Product p where p.whouse = "WH5"
      */
@@ -6292,7 +6252,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception:", e);
         }
 
-        if (!pass) throw new Fault("subqueryVariableOverridesQueryVariableTest failed");
+        if (!pass)
+            throw new Fault("subqueryVariableOverridesQueryVariableTest failed");
     }
 
     /*
@@ -6300,8 +6261,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1586; PERSISTENCE:SPEC:1590
      *
-     * @test_Strategy: verify a long identifier name can be used and that the
-     * identifier evaluates to a value of the type of the expression
+     * @test_Strategy: verify a long identifier name can be used and that the identifier evaluates to a value of the type of
+     * the expression
      */
     @SetupMethod(name = "setupOrderData")
     public void longIdentifierNameTest() throws Fault {
@@ -6344,7 +6305,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("longIdentifierNameTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("longIdentifierNameTest failed");
     }
 
     /*
@@ -6364,8 +6326,7 @@ public class Client extends Util {
         try {
             getEntityTransaction().begin();
             TestUtil.logTrace("find All Orders for Customer: Robert E. Bissett");
-            String variable =
-                    "_01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
+            String variable = "_01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
             if (checkIdentifierValues(variable)) {
                 TestUtil.logTrace("Identifier is valid");
                 pass1 = true;
@@ -6394,7 +6355,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("underscoreIdentifierNameTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("underscoreIdentifierNameTest failed");
     }
 
     /*
@@ -6415,8 +6377,7 @@ public class Client extends Util {
             getEntityTransaction().begin();
             TestUtil.logTrace("find All Orders for Customer: Robert E. Bissett");
 
-            String variable =
-                    "$01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
+            String variable = "$01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
             if (checkIdentifierValues(variable)) {
                 TestUtil.logTrace("Identifier is valid");
                 pass1 = true;
@@ -6445,7 +6406,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("dollarsignIdentifierNameTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("dollarsignIdentifierNameTest failed");
     }
 
     /*
@@ -6485,7 +6447,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("entityTypeLiteralTest failed");
+        if (!pass)
+            throw new Fault("entityTypeLiteralTest failed");
     }
 
     /*
@@ -6551,7 +6514,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("scalarExpressionsTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("scalarExpressionsTest failed");
     }
 
     /*
@@ -6559,8 +6523,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1664;
      *
-     * @test_Strategy: Verify duplicates are returned when distinct is not
-     * specified
+     * @test_Strategy: Verify duplicates are returned when distinct is not specified
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -6610,7 +6573,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("distinctNotSpecifiedTest failed");
+        if (!pass)
+            throw new Fault("distinctNotSpecifiedTest failed");
     }
 
     /*
@@ -6618,8 +6582,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1666;
      *
-     * @test_Strategy: A result variable may be used to name a select item in the
-     * query result
+     * @test_Strategy: A result variable may be used to name a select item in the query result
      */
     @SetupMethod(name = "setupOrderData")
     public void resultVariableTest() throws Fault {
@@ -6652,7 +6615,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("resultVariableTest failed");
+        if (!pass)
+            throw new Fault("resultVariableTest failed");
     }
 
     /*
@@ -6660,8 +6624,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1671;
      *
-     * @test_Strategy: verify modified detached entity does not effect managed
-     * entity
+     * @test_Strategy: verify modified detached entity does not effect managed entity
      */
     @SetupMethod(name = "setupCustomerData")
     public void embeddableNotManagedTest() throws Fault {
@@ -6721,7 +6684,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("embeddableNotManagedTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("embeddableNotManagedTest failed");
     }
 
     /*
@@ -6729,8 +6693,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1718;
      *
-     * @test_Strategy: SELECT d FROM Department d LEFT JOIN FETCH
-     * d.lastNameEmployees WHERE d.id = 1
+     * @test_Strategy: SELECT d FROM Department d LEFT JOIN FETCH d.lastNameEmployees WHERE d.id = 1
      */
     @SetupMethod(name = "setupDepartmentEmployeeData")
     public void resultContainsFetchReference() throws Fault {

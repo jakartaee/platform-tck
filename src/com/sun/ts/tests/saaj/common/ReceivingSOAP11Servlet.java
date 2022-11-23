@@ -103,7 +103,8 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
                     dumpSOAPMessage(respMsg);
                 }
 
-            } else resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            } else
+                resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
         } catch (Exception e) {
             System.err.println("Exception occurred: " + e.getMessage());
             e.printStackTrace();
@@ -153,7 +154,8 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
             MimeHeader header = (MimeHeader) it.next();
 
             String[] values = headers.getHeader(header.getName());
-            if (values.length == 1) res.setHeader(header.getName(), header.getValue());
+            if (values.length == 1)
+                res.setHeader(header.getName(), header.getValue());
             if (debug) {
                 System.out.println(
                         "HeaderName" + k + "=" + header.getName() + "\nHeaderValue" + k + "=" + header.getValue());
@@ -162,7 +164,8 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
                 StringBuffer concat = new StringBuffer();
                 int i = 0;
                 while (i < values.length) {
-                    if (i != 0) concat.append(',');
+                    if (i != 0)
+                        concat.append(',');
                     concat.append(values[i++]);
                 }
                 res.setHeader(header.getName(), concat.toString());
@@ -189,7 +192,8 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
             respMsg = mf.createMessage();
             respMsg.getSOAPPart().setContent(reqMsg.getSOAPPart().getContent());
             Iterator i = reqMsg.getAttachments();
-            while (i.hasNext()) respMsg.addAttachmentPart((AttachmentPart) i.next());
+            while (i.hasNext())
+                respMsg.addAttachmentPart((AttachmentPart) i.next());
             respMsg.saveChanges();
         } catch (Exception e) {
             System.err.println("Exception occurred: " + e);

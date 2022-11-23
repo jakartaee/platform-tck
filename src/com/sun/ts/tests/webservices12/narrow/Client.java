@@ -90,11 +90,9 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy:
      *
-     * @test_Strategy: Get ports using PortableRemoteObject.narrow to cast the
-     *                 SEI's and call a method on each to verify it.
+     * @test_Strategy: Get ports using PortableRemoteObject.narrow to cast the SEI's and call a method on each to verify it.
      *
-     *                 port1 - Interface1 - is narrowed from service.getPort.
-     *                 port2 - Interface2 - is narrowed from service.getPort.
+     * port1 - Interface1 - is narrowed from service.getPort. port2 - Interface2 - is narrowed from service.getPort.
      *
      */
     public void narrowTest() throws Fault {
@@ -117,7 +115,8 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("interface 2 test FAILED ...");
         }
 
-        if (!pass) throw new Fault("narrowTest failed");
+        if (!pass)
+            throw new Fault("narrowTest failed");
     }
 
     private boolean interface1Test() throws Fault {

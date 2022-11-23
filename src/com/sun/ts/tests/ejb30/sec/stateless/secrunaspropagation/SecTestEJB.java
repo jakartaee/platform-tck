@@ -33,14 +33,14 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @Stateless(name = "SecTestEJB")
-@Remote({SecTest.class})
+@Remote({ SecTest.class })
 // @DeclareRoles("Administrator", "VP", "Manager", "Employee")
 
 public class SecTestEJB implements SecTest {
 
     private SessionContext sctx;
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void initLogging(java.util.Properties p) {
         try {
@@ -53,36 +53,38 @@ public class SecTestEJB implements SecTest {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean IsCaller(String caller) {
-        if (sctx.getCallerPrincipal().getName().indexOf(caller) < 0) return false;
-        else return true;
+        if (sctx.getCallerPrincipal().getName().indexOf(caller) < 0)
+            return false;
+        else
+            return true;
     }
 
-    @RolesAllowed({"Administrator"})
+    @RolesAllowed({ "Administrator" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean EjbNotAuthz() {
         return true;
     }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean EjbIsAuthz() {
         return true;
     }
 
-    @RolesAllowed({"Manager", "Employee"})
+    @RolesAllowed({ "Manager", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean EjbSecRoleRef(String role) {
         return sctx.isCallerInRole(role);
     }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean EjbOverloadedSecRoleRefs(String role1) {
         TestUtil.logMsg("isCallerInRole(" + role1 + ") = " + sctx.isCallerInRole(role1));
         return sctx.isCallerInRole(role1);
     }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean EjbOverloadedSecRoleRefs(String role1, String role2) {
         TestUtil.logMsg("isCallerInRole(" + role1 + ")= " + sctx.isCallerInRole(role1) + "isCallerInRole(" + role2

@@ -64,9 +64,8 @@ public class WebUtil {
     }
 
     /**
-     * Use information provided in a HTTPRequest to execute a test method on a
-     * testDriver object. The test method is "discovered" at runtime using the
-     * reflection API. The testDriver could be any java object.
+     * Use information provided in a HTTPRequest to execute a test method on a testDriver object. The test method is
+     * "discovered" at runtime using the reflection API. The testDriver could be any java object.
      */
     public static Properties executeTest(Object testDriver, TSNamingContext nctx, HttpServletRequest req)
             throws ServletException {
@@ -76,7 +75,7 @@ public class WebUtil {
         Class testDriverClass;
         String testName;
         Method testMethod;
-        Class params[] = {Properties.class};
+        Class params[] = { Properties.class };
         Object args[] = new Object[1];
 
         logTrace("[WebUtil] executeTestOnInstance()");
@@ -147,8 +146,7 @@ public class WebUtil {
     }
 
     /**
-     * Convert Java Properties to a String, as expected by on the client side
-     * (WebServer)
+     * Convert Java Properties to a String, as expected by on the client side (WebServer)
      */
     public static String propsToString(Properties props) {
         StringBuffer sb = new StringBuffer(1000);

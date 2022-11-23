@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,12 +62,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveTimezoneValueTest
      *
-     * @assertion_ids: JSTL:SPEC:54; JSTL:SPEC:54.1; JSTL:SPEC:54.1.1;
-     * JSTL:SPEC:54.1.2; JSTL:SPEC:54.1.3
+     * @assertion_ids: JSTL:SPEC:54; JSTL:SPEC:54.1; JSTL:SPEC:54.1.1; JSTL:SPEC:54.1.2; JSTL:SPEC:54.1.3
      *
-     * @testStrategy: Validate that the value attribute can accept both static
-     * values as well as three letter timezones (ex. PST) or fully qualified
-     * values (ex. America/Los_Angeles).
+     * @testStrategy: Validate that the value attribute can accept both static values as well as three letter timezones (ex.
+     * PST) or fully qualified values (ex. America/Los_Angeles).
      */
     public void positiveTimezoneValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveTimezoneValueTest");
@@ -82,8 +78,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:54.7
      *
-     * @testStrategy: Validate that if the value attribute is null or emtpy, the
-     * GMT+0 timezone is used by the formatting actions that rely on timezone.
+     * @testStrategy: Validate that if the value attribute is null or emtpy, the GMT+0 timezone is used by the formatting
+     * actions that rely on timezone.
      */
     public void positiveTimezoneValueNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveTimezoneValueNullEmptyTest");

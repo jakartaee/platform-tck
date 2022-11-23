@@ -32,7 +32,8 @@ public class BiDir1X1Project implements java.io.Serializable {
 
     private BiDir1X1Person biDir1X1Person;
 
-    public BiDir1X1Project() {}
+    public BiDir1X1Project() {
+    }
 
     public BiDir1X1Project(long projId, String name, float budget) {
         this.projId = projId;

@@ -28,7 +28,8 @@ import javax.sql.DataSource;
 
 public final class DataSourceTest {
 
-    private DataSourceTest() {}
+    private DataSourceTest() {
+    }
 
     public static void verifyDataSource(StringBuilder reason, boolean connect, String... names) {
         for (String name : names) {

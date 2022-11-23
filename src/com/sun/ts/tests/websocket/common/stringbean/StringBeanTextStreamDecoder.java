@@ -27,7 +27,8 @@ import java.io.Reader;
 public class StringBeanTextStreamDecoder implements TextStream<StringBean> {
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
     public StringBean decode(Reader r) throws DecodeException, IOException {
@@ -36,5 +37,6 @@ public class StringBeanTextStreamDecoder implements TextStream<StringBean> {
     }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

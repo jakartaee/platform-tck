@@ -56,32 +56,29 @@ public class TckDataSourceWrapper implements DataSource {
     private String _password;
 
     /**
-     * Creates a new TckDataSourceWrapper. The returned Connection will not be
-     * wrapped by an instance of TCKConnectionWrapper.
+     * Creates a new TckDataSourceWrapper. The returned Connection will not be wrapped by an instance of
+     * TCKConnectionWrapper.
      */
-    public TckDataSourceWrapper() {}
+    public TckDataSourceWrapper() {
+    }
 
     /**
-     * Creates a new TckDataSourceWrapper. The returned Connection will be wrapped
-     * by an instance of TCKConnectionWrapper.
+     * Creates a new TckDataSourceWrapper. The returned Connection will be wrapped by an instance of TCKConnectionWrapper.
      *
-     * @param ServletContext
-     *          context to store "log" information from TCKConnectionWrapper
+     * @param ServletContext context to store "log" information from TCKConnectionWrapper
      */
     public TckDataSourceWrapper(ServletContext context) {
         _context = context;
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * Sets the driver implementation class.
      *
-     * @param driverClassName
-     *          driver class
+     * @param driverClassName driver class
      */
     public void setDriverClassName(String driverClassName)
             throws ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -93,8 +90,7 @@ public class TckDataSourceWrapper implements DataSource {
     /**
      * Sets the connection URL.
      *
-     * @param jdbcURL
-     *          connection URL
+     * @param jdbcURL connection URL
      */
     public void setJdbcURL(String jdbcURL) {
         _jdbcURL = jdbcURL;
@@ -103,8 +99,7 @@ public class TckDataSourceWrapper implements DataSource {
     /**
      * Sets the username.
      *
-     * @param userName
-     *          valid database user name
+     * @param userName valid database user name
      */
     public void setUserName(String userName) {
         _userName = userName;
@@ -113,17 +108,16 @@ public class TckDataSourceWrapper implements DataSource {
     /**
      * Sets the password
      *
-     * @param password
-     *          valid password for the specified user.
+     * @param password valid password for the specified user.
      */
     public void setPassword(String password) {
         _password = password;
     }
 
     /**
-     * Returns a Connection using the DriverManager and all set properties. If the
-     * DataSource was created with a ServletContext, the connection obtained from
-     * the DriverManager will be wrapped by an instance of TckConnectionWrapper.
+     * Returns a Connection using the DriverManager and all set properties. If the DataSource was created with a
+     * ServletContext, the connection obtained from the DriverManager will be wrapped by an instance of
+     * TckConnectionWrapper.
      */
     public Connection getConnection() throws SQLException {
         Connection conn = null;
@@ -146,8 +140,7 @@ public class TckDataSourceWrapper implements DataSource {
     }
 
     /**
-     * Always throws a SQLException. Username and password are set in the
-     * constructor and can not be changed.
+     * Always throws a SQLException. Username and password are set in the constructor and can not be changed.
      */
     public Connection getConnection(String username, String password) throws SQLException {
         throw new SQLException();

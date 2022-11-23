@@ -27,7 +27,8 @@ import jakarta.servlet.jsp.tagext.ValidationMessage;
 
 public class FailingValidator extends TagLibraryValidator {
 
-    public FailingValidator() {}
+    public FailingValidator() {
+    }
 
     public ValidationMessage[] validate(String s, String s1, PageData pageData) {
         return JspTestUtil.getValidationMessage(null, "Test PASSED.  Translation failure occurred.");

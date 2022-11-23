@@ -59,8 +59,7 @@ public class annotationClient extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: whitebox-anno_no_md; whitebox-mixedmode; rauser1;
-     * rapassword1;
+     * @class.setup_props: whitebox-anno_no_md; whitebox-mixedmode; rauser1; rapassword1;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -103,21 +102,15 @@ public class annotationClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testConnectorAnnotation
      *
-     * @assertion_ids: Connector:SPEC:268; Connector:JAVADOC:306;
-     * Connector:SPEC:267; Connector:JAVADOC:259; Connector:JAVADOC:123;
-     * Connector:JAVADOC:123; Connector:JAVADOC:123; Connector:JAVADOC:149;
-     * Connector:JAVADOC:165; Connector:JAVADOC:166; Connector:JAVADOC:167;
-     * Connector:JAVADOC:168; Connector:JAVADOC:168; Connector:JAVADOC:170;
-     * Connector:JAVADOC:171; Connector:JAVADOC:172; Connector:JAVADOC:173;
-     * Connector:JAVADOC:174; Connector:JAVADOC:176; Connector:JAVADOC:177;
-     * Connector:JAVADOC:178; Connector:JAVADOC:287; Connector:JAVADOC:288;
-     * Connector:JAVADOC:295; Connector:JAVADOC:296; Connector:JAVADOC:124;
-     * Connector:JAVADOC:126; Connector:JAVADOC:125;
+     * @assertion_ids: Connector:SPEC:268; Connector:JAVADOC:306; Connector:SPEC:267; Connector:JAVADOC:259;
+     * Connector:JAVADOC:123; Connector:JAVADOC:123; Connector:JAVADOC:123; Connector:JAVADOC:149; Connector:JAVADOC:165;
+     * Connector:JAVADOC:166; Connector:JAVADOC:167; Connector:JAVADOC:168; Connector:JAVADOC:168; Connector:JAVADOC:170;
+     * Connector:JAVADOC:171; Connector:JAVADOC:172; Connector:JAVADOC:173; Connector:JAVADOC:174; Connector:JAVADOC:176;
+     * Connector:JAVADOC:177; Connector:JAVADOC:178; Connector:JAVADOC:287; Connector:JAVADOC:288; Connector:JAVADOC:295;
+     * Connector:JAVADOC:296; Connector:JAVADOC:124; Connector:JAVADOC:126; Connector:JAVADOC:125;
      *
-     * @test_Strategy: This is testing that the @Connector annotation is processed
-     * when there is no DD (eg ra.xml). (no DD also means there is no DD value for
-     * the DD element of "metadata-complete".) This also uses the authMechanism
-     * anno.
+     * @test_Strategy: This is testing that the @Connector annotation is processed when there is no DD (eg ra.xml). (no DD
+     * also means there is no DD value for the DD element of "metadata-complete".) This also uses the authMechanism anno.
      */
     public void testConnectorAnnotation() throws Fault {
 
@@ -181,8 +174,7 @@ public class annotationClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:278; Connector:JAVADOC:306;
      *
-     * @test_Strategy: This is testing that the @ConfigProperty annotation is
-     * processed.
+     * @test_Strategy: This is testing that the @ConfigProperty annotation is processed.
      *
      */
     public void testSetterMethodConfigPropAnno() throws Fault {
@@ -222,13 +214,12 @@ public class annotationClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testConfigPropertyAnnotation
      *
-     * @assertion_ids: Connector:SPEC:268; Connector:SPEC:279; Connector:SPEC:277;
-     * Connector:JAVADOC:306; Connector:SPEC:280; Connector:JAVADOC:234;
+     * @assertion_ids: Connector:SPEC:268; Connector:SPEC:279; Connector:SPEC:277; Connector:JAVADOC:306;
+     * Connector:SPEC:280; Connector:JAVADOC:234;
      *
-     * @test_Strategy: This is testing that the @ConfigProperty annotation is
-     * processed for both the @Conenction and @ConenctionDefinition annos. This
-     * also tests that Config tools properly used interospection to discover
-     * config properties that were not defined in the DD.
+     * @test_Strategy: This is testing that the @ConfigProperty annotation is processed for both the @Conenction
+     * and @ConenctionDefinition annos. This also tests that Config tools properly used interospection to discover config
+     * properties that were not defined in the DD.
      */
     public void testConfigPropertyAnnotation() throws Fault {
 
@@ -274,12 +265,10 @@ public class annotationClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:301;
      *
-     * @test_Strategy: This is testing that the resource-ref'd annotation jar file
-     * classes of the standalone rar are made available to this application. In
-     * order to test this, we will attempt to submit a logmessage using the RA's
-     * logging mechanism; then we will retrieve the log and ensure that (a) the
-     * client side log succeeded and (b) we logged it to the same log file that
-     * our RA is using.
+     * @test_Strategy: This is testing that the resource-ref'd annotation jar file classes of the standalone rar are made
+     * available to this application. In order to test this, we will attempt to submit a logmessage using the RA's logging
+     * mechanism; then we will retrieve the log and ensure that (a) the client side log succeeded and (b) we logged it to
+     * the same log file that our RA is using.
      *
      */
     public void testRAAccessibility() throws Fault {

@@ -22,4 +22,5 @@ package com.sun.ts.tests.ejb30.assembly.initorder.common;
 import jakarta.ejb.Remote;
 
 @Remote
-public interface InitOrderRemoteIF {}
+public interface InitOrderRemoteIF {
+}

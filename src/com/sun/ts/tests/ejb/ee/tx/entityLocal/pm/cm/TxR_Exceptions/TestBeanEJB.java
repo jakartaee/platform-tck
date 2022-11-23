@@ -164,7 +164,8 @@ public class TestBeanEJB implements SessionBean {
                 t1 = true;
             }
 
-            if (t1) testResult = true;
+            if (t1)
+                testResult = true;
 
             return (testResult);
 
@@ -213,7 +214,8 @@ public class TestBeanEJB implements SessionBean {
                 t1 = true;
             }
 
-            if (t1) testResult = true;
+            if (t1)
+                testResult = true;
 
             return (testResult);
 
@@ -262,7 +264,8 @@ public class TestBeanEJB implements SessionBean {
                 t1 = true;
             }
 
-            if (t1) testResult = true;
+            if (t1)
+                testResult = true;
 
             return (testResult);
 

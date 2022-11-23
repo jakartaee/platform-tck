@@ -119,25 +119,29 @@ public class TestBeanEJB implements SessionBean {
             beanRef.createData(tName);
 
             TestUtil.logTrace("Inserting a new row");
-            if (beanRef.insert(tName, size + 1)) size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
 
             // Get the test results and check for auto commit
             // from the Container.
             TestUtil.logTrace("Getting the test results");
             dbResults = beanRef.getResults(tName);
             // Check insert
-            if (dbResults.contains(new Integer(size))) b1 = true;
+            if (dbResults.contains(new Integer(size)))
+                b1 = true;
 
             // Insert another new row
             TestUtil.logTrace("Inserting a new row");
-            if (beanRef.insert(tName, size + 1)) size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
 
             // Get the test results and check for auto commit
             // from the Container.
             TestUtil.logTrace("Getting the test results");
             dbResults = beanRef.getResults(tName);
             // Check insert
-            if (dbResults.contains(new Integer(size - 1))) b2 = true;
+            if (dbResults.contains(new Integer(size - 1)))
+                b2 = true;
 
             // Delete a range of rows
             TestUtil.logTrace("Deleting a row");
@@ -148,12 +152,14 @@ public class TestBeanEJB implements SessionBean {
             TestUtil.logTrace("Getting the test results");
             dbResults = beanRef.getResults(tName);
             // Check delete
-            if (!dbResults.contains(new Integer(tRng))) b3 = true;
+            if (!dbResults.contains(new Integer(tRng)))
+                b3 = true;
 
             beanRef.destroyData(tName);
 
             // Final check and return result
-            if (b1 && b2 && b3) testResult = true;
+            if (b1 && b2 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

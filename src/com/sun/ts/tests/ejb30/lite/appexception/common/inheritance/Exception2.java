@@ -21,9 +21,8 @@
 package com.sun.ts.tests.ejb30.lite.appexception.common.inheritance;
 
 /**
- * A runtime exception and also an ApplicationException. Its super-super-class
- * is annotated as ApplicationException without specifying inherited attribute.
- * So all subclass by default become ApplicationException. Its direct
+ * A runtime exception and also an ApplicationException. Its super-super-class is annotated as ApplicationException
+ * without specifying inherited attribute. So all subclass by default become ApplicationException. Its direct
  * superclass, Exception1, contains no annotations.
  */
 public class Exception2 extends Exception1 {

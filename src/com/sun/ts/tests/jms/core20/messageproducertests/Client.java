@@ -154,8 +154,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:321; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * MessageProducer.send(Destination, Message) MessageConsumer.receive(timeout)
      */
@@ -216,11 +215,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:323; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
-     * MessageProducer.send(Destination, Message, int, int, long)
-     * MessageConsumer.receive(timeout)
+     * MessageProducer.send(Destination, Message, int, int, long) MessageConsumer.receive(timeout)
      */
     public void queueSendAndRecvTest2() throws Fault {
         boolean pass = true;
@@ -288,8 +285,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:317; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * MessageProducer.send(Message) MessageConsumer.receive(timeout)
      */
@@ -344,11 +340,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:319; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
-     * MessageProducer.send(Message, int, int, long)
-     * MessageConsumer.receive(timeout)
+     * MessageProducer.send(Message, int, int, long) MessageConsumer.receive(timeout)
      */
     public void queueSendAndRecvTest4() throws Fault {
         boolean pass = true;
@@ -522,8 +516,7 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy: Test the following APIs:
      *
-     * MessageProducer.setDisableMessageID(int).
-     * MessageProducer.getDisableMessageID().
+     * MessageProducer.setDisableMessageID(int). MessageProducer.getDisableMessageID().
      */
     public void queueSetGetDisableMessageIDTest() throws Fault {
         boolean pass = true;
@@ -581,8 +574,7 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy: Test the following APIs:
      *
-     * MessageProducer.setDisableMessageTimestamp(int).
-     * MessageProducer.getDisableMessageTimestamp().
+     * MessageProducer.setDisableMessageTimestamp(int). MessageProducer.getDisableMessageTimestamp().
      */
     public void queueSetGetDisableMessageTimestampTest() throws Fault {
         boolean pass = true;
@@ -671,7 +663,7 @@ public class Client extends ServiceEETest {
         }
 
         // Test non-default
-        int expPriority[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int expPriority[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         // Cycle through all priorties
         for (int i = 0; i < expPriority.length; i++) {
@@ -748,14 +740,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: queueInvalidDestinationExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:598; JMS:JAVADOC:601; JMS:JAVADOC:604;
-     * JMS:JAVADOC:607;
+     * @assertion_ids: JMS:JAVADOC:598; JMS:JAVADOC:601; JMS:JAVADOC:604; JMS:JAVADOC:607;
      *
-     * @test_Strategy: Test for InvalidDestinationException from MessageProducer
-     * API's.
+     * @test_Strategy: Test for InvalidDestinationException from MessageProducer API's.
      *
-     * MessageProducer.send(Destination, Message)
-     * MessageProducer.send(Destination, Message, init, int, int)
+     * MessageProducer.send(Destination, Message) MessageProducer.send(Destination, Message, init, int, int)
      */
     public void queueInvalidDestinationExceptionTests() throws Fault {
         boolean pass = true;
@@ -817,14 +806,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: queueUnsupportedOperationExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:599; JMS:JAVADOC:602; JMS:JAVADOC:605;
-     * JMS:JAVADOC:1318;
+     * @assertion_ids: JMS:JAVADOC:599; JMS:JAVADOC:602; JMS:JAVADOC:605; JMS:JAVADOC:1318;
      *
-     * @test_Strategy: Test for UnsupportedOperationException from MessageProducer
-     * API's.
+     * @test_Strategy: Test for UnsupportedOperationException from MessageProducer API's.
      *
-     * MessageProducer.send(Destination, Message)
-     * MessageProducer.send(Destination, Message, init, int, int)
+     * MessageProducer.send(Destination, Message) MessageProducer.send(Destination, Message, init, int, int)
      * MessageProducer.send(Message) MessageProducer.send(Message, init, int, int)
      */
     public void queueUnsupportedOperationExceptionTests() throws Fault {
@@ -912,12 +898,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:261; JMS:JAVADOC:907;
      *
-     * @test_Strategy: Send message and verify that message is not delivered until
-     * the DeliveryDelay of 30 seconds is reached. Test DeliveryMode.PERSISTENT
-     * and DeliveryMode.NON_PERSISTENT.
+     * @test_Strategy: Send message and verify that message is not delivered until the DeliveryDelay of 30 seconds is
+     * reached. Test DeliveryMode.PERSISTENT and DeliveryMode.NON_PERSISTENT.
      *
-     * MessageProducer.setDeliveryDelay(30000) MessageProducer.send(Destination,
-     * Message, int, int, long)
+     * MessageProducer.setDeliveryDelay(30000) MessageProducer.send(Destination, Message, int, int, long)
      */
     public void queueDeliveryDelayTest() throws Fault {
         boolean pass = true;
@@ -1007,8 +991,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:321; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * MessageProducer.send(Destination, Message) MessageConsumer.receive(timeout)
      */ public void topicSendAndRecvTest1() throws Fault {
@@ -1069,11 +1052,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:323; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
-     * MessageProducer.send(Destination, Message, int, int, long)
-     * MessageConsumer.receive(timeout)
+     * MessageProducer.send(Destination, Message, int, int, long) MessageConsumer.receive(timeout)
      */
     public void topicSendAndRecvTest2() throws Fault {
         boolean pass = true;
@@ -1141,8 +1122,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:317; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * MessageProducer.send(Message) MessageConsumer.receive(timeout)
      */
@@ -1197,11 +1177,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:319; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
-     * MessageProducer.send(Message, int, int, long)
-     * MessageConsumer.receive(timeout)
+     * MessageProducer.send(Message, int, int, long) MessageConsumer.receive(timeout)
      */
     public void topicSendAndRecvTest4() throws Fault {
         boolean pass = true;
@@ -1375,8 +1353,7 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy: Test the following APIs:
      *
-     * MessageProducer.setDisableMessageID(int).
-     * MessageProducer.getDisableMessageID().
+     * MessageProducer.setDisableMessageID(int). MessageProducer.getDisableMessageID().
      */
     public void topicSetGetDisableMessageIDTest() throws Fault {
         boolean pass = true;
@@ -1434,8 +1411,7 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy: Test the following APIs:
      *
-     * MessageProducer.setDisableMessageTimestamp(int).
-     * MessageProducer.getDisableMessageTimestamp().
+     * MessageProducer.setDisableMessageTimestamp(int). MessageProducer.getDisableMessageTimestamp().
      */
     public void topicSetGetDisableMessageTimestampTest() throws Fault {
         boolean pass = true;
@@ -1524,7 +1500,7 @@ public class Client extends ServiceEETest {
         }
 
         // Test non-default
-        int expPriority[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int expPriority[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         // Cycle through all priorties
         for (int i = 0; i < expPriority.length; i++) {
@@ -1559,28 +1535,20 @@ public class Client extends ServiceEETest {
      *
      * public void topicSetGetTimeToLiveTest() throws Fault { boolean pass = true;
      *
-     * try { // set up test tool for Topic tool = new JmsTool(JmsTool.COMMON_T,
-     * user, password, mode); producer = tool.getDefaultProducer(); connection =
-     * tool.getDefaultConnection(); session = tool.getDefaultSession();
-     * destination = tool.getDefaultDestination(); queueTest = false;
+     * try { // set up test tool for Topic tool = new JmsTool(JmsTool.COMMON_T, user, password, mode); producer =
+     * tool.getDefaultProducer(); connection = tool.getDefaultConnection(); session = tool.getDefaultSession(); destination
+     * = tool.getDefaultDestination(); queueTest = false;
      *
-     * // Test default long expTimeToLive = 0;
-     * TestUtil.logMsg("Calling getTimeToLive and expect " + expTimeToLive +
-     * " to be returned"); long actTimeToLive = producer.getTimeToLive();
-     * if(actTimeToLive != expTimeToLive) {
-     * TestUtil.logErr("getTimeToLive() returned "+ actTimeToLive + ", expected "
-     * + expTimeToLive); pass = false; }
+     * // Test default long expTimeToLive = 0; TestUtil.logMsg("Calling getTimeToLive and expect " + expTimeToLive +
+     * " to be returned"); long actTimeToLive = producer.getTimeToLive(); if(actTimeToLive != expTimeToLive) {
+     * TestUtil.logErr("getTimeToLive() returned "+ actTimeToLive + ", expected " + expTimeToLive); pass = false; }
      *
-     * // Test non-default long expTimeToLive = 1000;
-     * TestUtil.logMsg("Calling setTimeToLive("+expTimeToLive+")");
-     * producer.setTimeToLive(expTimeToLive);
-     * TestUtil.logMsg("Calling getTimeToLive and expect " + expTimeToLive +
-     * " to be returned"); long actTimeToLive = producer.getTimeToLive();
-     * if(actTimeToLive != expTimeToLive) {
-     * TestUtil.logErr("getTimeToLive() returned "+ actTimeToLive + ", expected "
-     * + expTimeToLive); pass = false; } } catch (Exception e) {
-     * TestUtil.logErr("Caught exception: " + e.getMessage()); throw new
-     * Fault("topicSetGetTimeToLiveTest"); }
+     * // Test non-default long expTimeToLive = 1000; TestUtil.logMsg("Calling setTimeToLive("+expTimeToLive+")");
+     * producer.setTimeToLive(expTimeToLive); TestUtil.logMsg("Calling getTimeToLive and expect " + expTimeToLive +
+     * " to be returned"); long actTimeToLive = producer.getTimeToLive(); if(actTimeToLive != expTimeToLive) {
+     * TestUtil.logErr("getTimeToLive() returned "+ actTimeToLive + ", expected " + expTimeToLive); pass = false; } } catch
+     * (Exception e) { TestUtil.logErr("Caught exception: " + e.getMessage()); throw new Fault("topicSetGetTimeToLiveTest");
+     * }
      *
      * if (!pass) { throw new Fault("topicSetGetTimeToLiveTest failed"); } }
      *
@@ -1588,14 +1556,11 @@ public class Client extends ServiceEETest {
      *
      * @testName: topicInvalidDestinationExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:598; JMS:JAVADOC:601; JMS:JAVADOC:604;
-     * JMS:JAVADOC:607;
+     * @assertion_ids: JMS:JAVADOC:598; JMS:JAVADOC:601; JMS:JAVADOC:604; JMS:JAVADOC:607;
      *
-     * @test_Strategy: Test for InvalidDestinationException from MessageProducer
-     * API's.
+     * @test_Strategy: Test for InvalidDestinationException from MessageProducer API's.
      *
-     * MessageProducer.send(Destination, Message)
-     * MessageProducer.send(Destination, Message, init, int, int)
+     * MessageProducer.send(Destination, Message) MessageProducer.send(Destination, Message, init, int, int)
      */
     public void topicInvalidDestinationExceptionTests() throws Fault {
         boolean pass = true;
@@ -1657,14 +1622,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: topicUnsupportedOperationExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:599; JMS:JAVADOC:602; JMS:JAVADOC:605;
-     * JMS:JAVADOC:1318;
+     * @assertion_ids: JMS:JAVADOC:599; JMS:JAVADOC:602; JMS:JAVADOC:605; JMS:JAVADOC:1318;
      *
-     * @test_Strategy: Test for UnsupportedOperationException from MessageProducer
-     * API's.
+     * @test_Strategy: Test for UnsupportedOperationException from MessageProducer API's.
      *
-     * MessageProducer.send(Destination, Message)
-     * MessageProducer.send(Destination, Message, init, int, int)
+     * MessageProducer.send(Destination, Message) MessageProducer.send(Destination, Message, init, int, int)
      * MessageProducer.send(Message) MessageProducer.send(Message, init, int, int)
      *
      */
@@ -1753,12 +1715,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:261; JMS:JAVADOC:907;
      *
-     * @test_Strategy: Send message and verify that message is not delivered until
-     * the DeliveryDelay of 30 seconds is reached. Test DeliveryMode.PERSISTENT
-     * and DeliveryMode.NON_PERSISTENT.
+     * @test_Strategy: Send message and verify that message is not delivered until the DeliveryDelay of 30 seconds is
+     * reached. Test DeliveryMode.PERSISTENT and DeliveryMode.NON_PERSISTENT.
      *
-     * MessageProducer.setDeliveryDelay(30000) MessageProducer.send(Destination,
-     * Message, int, int, long)
+     * MessageProducer.setDeliveryDelay(30000) MessageProducer.send(Destination, Message, int, int, long)
      */
     public void topicDeliveryDelayTest() throws Fault {
         boolean pass = true;
@@ -1846,16 +1806,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: JMSExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:302; JMS:JAVADOC:306; JMS:JAVADOC:908;
-     * JMS:JAVADOC:310; JMS:JAVADOC:320;
+     * @assertion_ids: JMS:JAVADOC:302; JMS:JAVADOC:306; JMS:JAVADOC:908; JMS:JAVADOC:310; JMS:JAVADOC:320;
      *
      * @test_Strategy: Test for JMSException from MessageProducer API's.
      *
-     * MessageProducer.setPriority(int) MessageProducer.setDeliveryMode(int)
-     * MessageProducer.send(Message, int, int, long) MessageProducer.send(Message,
-     * int, int, long, CompletionListener) MessageProducer.send(Destination,
-     * Message, int, int, long) MessageProducer.send(Destination, Message, int,
-     * int, long, CompletionListener)
+     * MessageProducer.setPriority(int) MessageProducer.setDeliveryMode(int) MessageProducer.send(Message, int, int, long)
+     * MessageProducer.send(Message, int, int, long, CompletionListener) MessageProducer.send(Destination, Message, int,
+     * int, long) MessageProducer.send(Destination, Message, int, int, long, CompletionListener)
      */
     public void JMSExceptionTests() throws Fault {
         boolean pass = true;

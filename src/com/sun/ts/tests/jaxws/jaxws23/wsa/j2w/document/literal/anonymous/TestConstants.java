@@ -21,15 +21,11 @@
 package com.sun.ts.tests.jaxws.jaxws23.wsa.j2w.document.literal.anonymous;
 
 public class TestConstants {
-    public static final String TEST_ANONYMOUS_RESPONSES_ASSERTION_IN_ACTION =
-            "http://example.com/AddNumbersPortType23001/add";
+    public static final String TEST_ANONYMOUS_RESPONSES_ASSERTION_IN_ACTION = "http://example.com/AddNumbersPortType23001/add";
 
-    public static final String TEST_ANONYMOUS_RESPONSES_ASSERTION_OUT_ACTION =
-            "http://example.com/AddNumbersPortType23001/addResponse";
+    public static final String TEST_ANONYMOUS_RESPONSES_ASSERTION_OUT_ACTION = "http://example.com/AddNumbersPortType23001/addResponse";
 
-    public static final String TEST_NONANONYMOUS_RESPONSES_ASSERTION_IN_ACTION =
-            "http://example.com/AddNumbersPortType23002/add";
+    public static final String TEST_NONANONYMOUS_RESPONSES_ASSERTION_IN_ACTION = "http://example.com/AddNumbersPortType23002/add";
 
-    public static final String TEST_NONANONYMOUS_RESPONSES_ASSERTION_OUT_ACTION =
-            "http://example.com/AddNumbersPortType23002/addResponse";
+    public static final String TEST_NONANONYMOUS_RESPONSES_ASSERTION_OUT_ACTION = "http://example.com/AddNumbersPortType23002/addResponse";
 }

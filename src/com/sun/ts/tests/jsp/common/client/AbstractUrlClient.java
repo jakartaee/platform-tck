@@ -53,8 +53,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     /**
      * Sets the test properties for this testCase.
      *
-     * @param testCase
-     *          - the current test case
+     * @param testCase - the current test case
      */
     protected void setTestProperties(WebTestCase testCase) {
 
@@ -67,8 +66,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     /**
      * Sets the name of the JSP when building the request.
      *
-     * @param jsp
-     *          - JSP name
+     * @param jsp - JSP name
      */
     public void setTestJsp(String jsp) {
         _jspName = jsp;
@@ -77,10 +75,8 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     /**
      * Sets the request and test name properties.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setApiTest1Properties(String testValue, WebTestCase testCase) {
         if (testValue == null) {
@@ -95,13 +91,11 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     }
 
     /**
-     * Sets the request, testname, and a search string for test passed. A search
-     * is also added for test failure. If found, the test will fail.
+     * Sets the request, testname, and a search string for test passed. A search is also added for test failure. If found,
+     * the test will fail.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setApiTestProperties(String testValue, WebTestCase testCase) {
         if (testValue == null) {
@@ -127,10 +121,8 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     /**
      * Consists of a test name, a request, and a goldenfile.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setStandardProperties(String testValue, WebTestCase testCase) {
 
@@ -163,15 +155,11 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     }
 
     /**
-     * Returns full request based of provided context root, jsp name, and test
-     * name.
+     * Returns full request based of provided context root, jsp name, and test name.
      *
-     * @param contextRoot
-     *          - request context root
-     * @param jspName
-     *          - JSP name
-     * @param testName
-     *          - test name to execute.
+     * @param contextRoot - request context root
+     * @param jspName - JSP name
+     * @param testName - test name to execute.
      * @return - Absolution URL to invoke the specified test.
      */
     private static String getApiTestRequest(String contextRoot, String jspName, String testName) {

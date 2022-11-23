@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String[] args, PrintWriter out, PrintWriter err) {
         setContextRoot("/servlet_spec_defaultmapping_web");
@@ -55,11 +53,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:134.4;
      *
-     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*,
-     * TestServlet2 with URL /foo/baR/*, TestServlet3 with URL /TestServlet3,
-     * TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5.
-     * TestServlet6 with URL / 2. Send request with path /TestServlet3/xyz. 3.
-     * Verify that TestServlet6 is invoked based on Servlet Spec(11.1)
+     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*, TestServlet2 with URL /foo/baR/*, TestServlet3
+     * with URL /TestServlet3, TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5. TestServlet6 with
+     * URL / 2. Send request with path /TestServlet3/xyz. 3. Verify that TestServlet6 is invoked based on Servlet Spec(11.1)
      */
     public void defaultservletTest1() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet6");
@@ -72,12 +68,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:134.4;
      *
-     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*,
-     * TestServlet2 with URL /foo/baR/*, TestServlet3 with URL /TestServlet3,
-     * TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5
-     * TestServlet6 with URL / 2. Send request with path /test/foo/bar/xxx 3.
-     * Verify that default Servlet TestServlet6 should be invoked. Since no match
-     * is found.
+     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*, TestServlet2 with URL /foo/baR/*, TestServlet3
+     * with URL /TestServlet3, TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5 TestServlet6 with
+     * URL / 2. Send request with path /test/foo/bar/xxx 3. Verify that default Servlet TestServlet6 should be invoked.
+     * Since no match is found.
      */
     public void defaultservletTest() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet6");

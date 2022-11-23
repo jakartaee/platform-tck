@@ -38,28 +38,12 @@ import jakarta.resource.spi.work.WorkManager;
 import javax.transaction.xa.XAResource;
 
 /**
- * This is a sample resource adapter that will use no ra.xml info. This RA is
- * used to assist with verifying the server supports annotations when there is
- * no ra.xml (Assertion 268) and the transaction support is Local.
+ * This is a sample resource adapter that will use no ra.xml info. This RA is used to assist with verifying the server
+ * supports annotations when there is no ra.xml (Assertion 268) and the transaction support is Local.
  *
  */
-@Connector(
-        description = "CTS Test Resource Adapter with No DD",
-        displayName = "whitebox-anno_no_md.rar",
-        vendorName = "Java Software",
-        eisType = "TS EIS",
-        version = "1.6",
-        licenseDescription = "CTS License Required",
-        licenseRequired = true,
-        authMechanisms =
-                @AuthenticationMechanism(
-                        credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential,
-                        authMechanism = "BasicPassword",
-                        description = "Basic Password Authentication"),
-        reauthenticationSupport = false,
-        securityPermissions = @SecurityPermission(description = "Security Perm description"),
-        transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction,
-        requiredWorkContexts = {HintsContext.class, SecurityContext.class})
+@Connector(description = "CTS Test Resource Adapter with No DD", displayName = "whitebox-anno_no_md.rar", vendorName = "Java Software", eisType = "TS EIS", version = "1.6", licenseDescription = "CTS License Required", licenseRequired = true, authMechanisms = @AuthenticationMechanism(credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential, authMechanism = "BasicPassword", description = "Basic Password Authentication"), reauthenticationSupport = false, securityPermissions = @SecurityPermission(description = "Security Perm description"), transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction, requiredWorkContexts = {
+        HintsContext.class, SecurityContext.class })
 public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Serializable {
 
     private transient BootstrapContext bsc;
@@ -167,15 +151,20 @@ public class AnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Se
 
         AnnotatedResourceAdapterImpl that = (AnnotatedResourceAdapterImpl) obj;
 
-        if (!Util.isEqual(this.serverSideUser, that.getServerSideUser())) return false;
+        if (!Util.isEqual(this.serverSideUser, that.getServerSideUser()))
+            return false;
 
-        if (!Util.isEqual(this.serverSidePwd, that.getServerSidePwd())) return false;
+        if (!Util.isEqual(this.serverSidePwd, that.getServerSidePwd()))
+            return false;
 
-        if (!Util.isEqual(this.eisUser, that.getEisUser())) return false;
+        if (!Util.isEqual(this.eisUser, that.getEisUser()))
+            return false;
 
-        if (!Util.isEqual(this.eisPwd, that.getEisPwd())) return false;
+        if (!Util.isEqual(this.eisPwd, that.getEisPwd()))
+            return false;
 
-        if (!Util.isEqual(this.raName, that.getRaName())) return false;
+        if (!Util.isEqual(this.raName, that.getRaName()))
+            return false;
 
         return true;
     }

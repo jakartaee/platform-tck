@@ -48,54 +48,48 @@ public class JsfClient extends com.sun.ts.tests.ejb30.lite.interceptor.common.bu
     /*
      * @testName: allInterceptors
      *
-     * @test_Strategy: all interceptors (Interceptor1-7) at default, class-level,
-     * and method-level should be invoked, as well as AroundInvoke methods on bean
-     * class.
+     * @test_Strategy: all interceptors (Interceptor1-7) at default, class-level, and method-level should be invoked, as
+     * well as AroundInvoke methods on bean class.
      */
     /*
      * @testName: excludeDefaultInterceptors
      *
-     * @test_Strategy: all interceptors except default interceptors should be
-     * invoked in the correct order.
+     * @test_Strategy: all interceptors except default interceptors should be invoked in the correct order.
      */
     /*
      * @testName: excludeClassInterceptors
      *
-     * @test_Strategy: all interceptors except class interceptors should be
-     * invoked in the correct order.
+     * @test_Strategy: all interceptors except class interceptors should be invoked in the correct order.
      */
     /*
      * @testName: overrideInterceptorMethod
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked, whether the overriding method is an interceptor method or not.
-     * This test also excludes default and class-level interceptors.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked, whether the overriding method is an
+     * interceptor method or not. This test also excludes default and class-level interceptors.
      */
     /*
      * @testName: overrideBeanInterceptorMethod
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with a non-interceptor method. This test also
-     * excludes default and class-level interceptors.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with a
+     * non-interceptor method. This test also excludes default and class-level interceptors.
      */
     /*
      * @testName: overrideBeanInterceptorMethod2
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with a non-interceptor method. This test also
-     * excludes default and declares no class-level interceptors.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with a
+     * non-interceptor method. This test also excludes default and declares no class-level interceptors.
      */
     /*
      * @testName: overrideBeanInterceptorMethod3
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with an interceptor method.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with an
+     * interceptor method.
      */
     /*
      * @testName: overrideBeanInterceptorMethod4
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with an interceptor method.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with an
+     * interceptor method.
      */
     /*
      * @testName: skipProceed
@@ -105,18 +99,15 @@ public class JsfClient extends com.sun.ts.tests.ejb30.lite.interceptor.common.bu
     /*
      * @testName: getContextData
      *
-     * @test_Strategy: add data to InvocationContext context data, and retrieve
-     * them in EJBContext.getContextData().
+     * @test_Strategy: add data to InvocationContext context data, and retrieve them in EJBContext.getContextData().
      */
     /*
      * @testName: applicationExceptionRollback
      *
-     * @test_Strategy: invokes TestBean, a BMT bean, which in turn invokes
-     * InterceptorBean. InterceptorBean.applicationExceptionRollback has only a
-     * method interceptor (9). Its around-invoke method throws
-     * AtCheckedRollbackAppException. Verifies that the client should get
-     * AtCheckedRollbackAppException, and this application exception from
-     * interceptor's around-invoke method should cause the tx to rollback.
+     * @test_Strategy: invokes TestBean, a BMT bean, which in turn invokes InterceptorBean.
+     * InterceptorBean.applicationExceptionRollback has only a method interceptor (9). Its around-invoke method throws
+     * AtCheckedRollbackAppException. Verifies that the client should get AtCheckedRollbackAppException, and this
+     * application exception from interceptor's around-invoke method should cause the tx to rollback.
      */
 
 }

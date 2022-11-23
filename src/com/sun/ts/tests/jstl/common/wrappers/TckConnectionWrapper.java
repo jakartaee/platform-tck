@@ -90,17 +90,16 @@ public class TckConnectionWrapper implements java.sql.Connection {
     /**
      * Creates new TckConnectionWrapper
      *
-     * @param context
-     *          context in which to export log results
-     * @param conn
-     *          connection to the underlying RDBMS
+     * @param context context in which to export log results
+     * @param conn connection to the underlying RDBMS
      */
     public TckConnectionWrapper(ServletContext context, Connection conn) {
         _context = context;
         _conn = conn;
         _log = new ArrayList(MAXLIFECYCLE_SIZE);
 
-        for (int i = 0; i < MAXLIFECYCLE_SIZE; i++) _log.add(i, "");
+        for (int i = 0; i < MAXLIFECYCLE_SIZE; i++)
+            _log.add(i, "");
 
         _setIsolationLevel = false;
         _resetIsolationLevel = false;
@@ -115,13 +114,14 @@ public class TckConnectionWrapper implements java.sql.Connection {
 
         Integer newIsoLevel = (Integer) context.getAttribute("isoLevel");
 
-        if (newIsoLevel != null) _newIsolationSetting = newIsoLevel.intValue();
-        else _newIsolationSetting = isoLevel;
+        if (newIsoLevel != null)
+            _newIsolationSetting = newIsoLevel.intValue();
+        else
+            _newIsolationSetting = isoLevel;
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
@@ -142,7 +142,8 @@ public class TckConnectionWrapper implements java.sql.Connection {
         /* prune out any unitialized entries */
         while (i.hasNext()) {
             String buf = (String) i.next();
-            if (!buf.equals("")) lifeCycle.add(buf);
+            if (!buf.equals(""))
+                lifeCycle.add(buf);
         }
         _context.setAttribute("connLog", lifeCycle);
         _conn.close();
@@ -427,18 +428,18 @@ public class TckConnectionWrapper implements java.sql.Connection {
         // TRANSACTION_SERIALIZABLE=8 (iso 3)
 
         switch (param) {
-            case Connection.TRANSACTION_READ_UNCOMMITTED:
-                isolationLevel = "TRANSACTION_READ_UNCOMMITTED";
-                break;
-            case Connection.TRANSACTION_READ_COMMITTED:
-                isolationLevel = "TRANSACTION_READ_COMMITTED";
-                break;
-            case Connection.TRANSACTION_REPEATABLE_READ:
-                isolationLevel = "TRANSACTION_REPEATABLE_READ";
-                break;
-            case Connection.TRANSACTION_SERIALIZABLE:
-                isolationLevel = "TRANSACTION_SERIALIZABLE";
-                break;
+        case Connection.TRANSACTION_READ_UNCOMMITTED:
+            isolationLevel = "TRANSACTION_READ_UNCOMMITTED";
+            break;
+        case Connection.TRANSACTION_READ_COMMITTED:
+            isolationLevel = "TRANSACTION_READ_COMMITTED";
+            break;
+        case Connection.TRANSACTION_REPEATABLE_READ:
+            isolationLevel = "TRANSACTION_REPEATABLE_READ";
+            break;
+        case Connection.TRANSACTION_SERIALIZABLE:
+            isolationLevel = "TRANSACTION_SERIALIZABLE";
+            break;
         }
         if (slot == RESET_TX_ISOLATION) {
             isolationLevel = "";

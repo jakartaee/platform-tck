@@ -30,8 +30,8 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "AcceptBean")
-@Remote({AcceptIF.class})
-@Local({AcceptLocalIF.class})
+@Remote({ AcceptIF.class })
+@Local({ AcceptLocalIF.class })
 public class AcceptBean extends AcceptBeanBase {
     @Resource(name = "sessionContext")
     private SessionContext sessionContext;
@@ -40,7 +40,9 @@ public class AcceptBean extends AcceptBeanBase {
         return sessionContext;
     }
 
-    public AcceptBean() {}
+    public AcceptBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

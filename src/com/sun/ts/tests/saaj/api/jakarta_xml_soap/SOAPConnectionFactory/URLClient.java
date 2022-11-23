@@ -35,8 +35,7 @@ public class URLClient extends EETest {
 
     private static final int PORTNUM = 8000;
 
-    private static final String SOAPCONNECTIONFACTORY_TESTSERVLET =
-            "/SOAPConnectionFactory_web/SOAPConnectionFactoryTestServlet";
+    private static final String SOAPCONNECTIONFACTORY_TESTSERVLET = "/SOAPConnectionFactory_web/SOAPConnectionFactoryTestServlet";
 
     private static final String WEBSERVERHOSTPROP = "webServerHost";
 
@@ -72,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -101,8 +102,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPConnectionFactory.newInstance().
      *
-     * Description: Creates an instance of the default SOAPConnectionFactory
-     * object.
+     * Description: Creates an instance of the default SOAPConnectionFactory object.
      *
      */
     public void newInstanceTest() throws Fault {
@@ -115,12 +115,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "newInstanceTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -129,7 +132,8 @@ public class URLClient extends EETest {
             throw new Fault("newInstanceTest failed", e);
         }
 
-        if (!pass) throw new Fault("newInstanceTest failed");
+        if (!pass)
+            throw new Fault("newInstanceTest failed");
     }
 
     /*
@@ -152,12 +156,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "createConnectionTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -166,6 +173,7 @@ public class URLClient extends EETest {
             throw new Fault("createConnectionTest failed", e);
         }
 
-        if (!pass) throw new Fault("createConnectionTest failed");
+        if (!pass)
+            throw new Fault("createConnectionTest failed");
     }
 }

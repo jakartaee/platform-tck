@@ -19,4 +19,5 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.containerprovider.metain
 
 import jakarta.websocket.WebSocketContainer;
 
-public interface TCKWebSocketContainer extends WebSocketContainer {}
+public interface TCKWebSocketContainer extends WebSocketContainer {
+}

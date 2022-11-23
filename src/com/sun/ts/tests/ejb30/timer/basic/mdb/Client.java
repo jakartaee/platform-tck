@@ -30,8 +30,7 @@ public class Client extends com.sun.ts.tests.ejb30.timer.common.MDBClientBase {
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
 
     /*
@@ -46,7 +45,6 @@ public class Client extends com.sun.ts.tests.ejb30.timer.common.MDBClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: @TimeOut is at the superclass of MDB; access resource files
-     * from TimeOut method
+     * @test_Strategy: @TimeOut is at the superclass of MDB; access resource files from TimeOut method
      */
 }

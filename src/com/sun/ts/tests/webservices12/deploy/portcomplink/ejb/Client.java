@@ -70,13 +70,11 @@ public class Client extends EETest {
     /*
      * @testName: PortCompLinkEjbTest
      *
-     * @assertion_ids: WS4EE:SPEC:175; WS4EE:SPEC:71; WS4EE:SPEC:72;
-     * WS4EE:SPEC:73; WS4EE:SPEC:74; WS4EE:SPEC:76; WS4EE:SPEC:77; WS4EE:SPEC:78;
-     * WS4EE:SPEC:79; WS4EE:SPEC:111;
+     * @assertion_ids: WS4EE:SPEC:175; WS4EE:SPEC:71; WS4EE:SPEC:72; WS4EE:SPEC:73; WS4EE:SPEC:74; WS4EE:SPEC:76;
+     * WS4EE:SPEC:77; WS4EE:SPEC:78; WS4EE:SPEC:79; WS4EE:SPEC:111;
      *
      *
-     * @test_Strategy: Call InterModuleSei implementation, which will in turn call
-     * IntraModuleSei implementation.
+     * @test_Strategy: Call InterModuleSei implementation, which will in turn call IntraModuleSei implementation.
      */
     public void PortCompLinkEjbTest() throws Fault {
         TestUtil.logMsg("PortCompLinkEjbTest");

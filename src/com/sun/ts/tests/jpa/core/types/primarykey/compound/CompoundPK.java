@@ -61,7 +61,8 @@ public class CompoundPK implements java.io.Serializable {
     }
 
     /** No-arg Constructor */
-    public CompoundPK() {}
+    public CompoundPK() {
+    }
 
     /** Standard Constructor */
     public CompoundPK(int intID, String strID, float floatID) {

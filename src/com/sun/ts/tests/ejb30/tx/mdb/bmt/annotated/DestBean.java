@@ -35,11 +35,9 @@ import jakarta.transaction.UserTransaction;
 // This MDB implements jakarta.jms.MessageListener interface, so no need to
 // use annotation element messageListenerInterface, nor descritpor element
 // messaging-type
-@MessageDriven(
-        name = "DestBean",
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
-        })
+@MessageDriven(name = "DestBean", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+})
 @TransactionManagement(TransactionManagementType.BEAN)
 public class DestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase implements MessageListener {
     @Resource(name = "mdc")

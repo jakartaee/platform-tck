@@ -31,8 +31,7 @@ public class AbstractUrlClient extends BaseUrlClient {
     /**
      * Sets the test properties for this testCase.
      *
-     * @param testCase
-     *          - the current test case
+     * @param testCase - the current test case
      */
     protected void setTestProperties(WebTestCase testCase) {
         setStandardProperties(TEST_PROPS.getProperty(STANDARD), testCase);
@@ -62,8 +61,7 @@ public class AbstractUrlClient extends BaseUrlClient {
     /**
      * Sets the goldenfile directory
      *
-     * @param goldenDir
-     *          goldenfile directory based off test directory
+     * @param goldenDir goldenfile directory based off test directory
      */
     public void setGoldenFileDir(String goldenDir) {
         GOLDENFILEDIR = goldenDir;
@@ -72,10 +70,8 @@ public class AbstractUrlClient extends BaseUrlClient {
     /**
      * Consists of a test name, a request, and a goldenfile.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setStandardProperties(String testValue, WebTestCase testCase) {
 
@@ -112,10 +108,8 @@ public class AbstractUrlClient extends BaseUrlClient {
     /**
      * Consists of a test name, a request, and a goldenfile.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setStandardCompatProperties(String testValue, WebTestCase testCase) {
 

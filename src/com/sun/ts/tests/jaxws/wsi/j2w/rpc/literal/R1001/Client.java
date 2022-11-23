@@ -40,8 +40,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -72,9 +71,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1001
      *
-     * @test_Strategy: Make a request and inspect response to ensure When a
-     *                 MESSAGE contains a soap:Fault element its element children
-     *                 MUST be unqualified.
+     * @test_Strategy: Make a request and inspect response to ensure When a MESSAGE contains a soap:Fault element its
+     * element children MUST be unqualified.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -98,9 +96,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1001
      *
-     * @test_Strategy: Make a request and inspect response to ensure When a
-     *                 MESSAGE contains a soap:Fault element its element children
-     *                 MUST be unqualified.
+     * @test_Strategy: Make a request and inspect response to ensure When a MESSAGE contains a soap:Fault element its
+     * element children MUST be unqualified.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -120,8 +117,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     }
 
     private void validateUnqualifiedFaultChildrenNames(SOAPMessage response) throws EETest.Fault, SOAPException {
-        Iterator children =
-                response.getSOAPPart().getEnvelope().getBody().getFault().getChildElements();
+        Iterator children = response.getSOAPPart().getEnvelope().getBody().getFault().getChildElements();
         SOAPElement child;
         String prefix;
         while (children.hasNext()) {

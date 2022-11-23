@@ -36,5 +36,6 @@ public final class BadListener implements ServletRequestListener {
         // do nothing
     }
 
-    public void requestInitialized(ServletRequestEvent event) {}
+    public void requestInitialized(ServletRequestEvent event) {
+    }
 }

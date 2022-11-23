@@ -82,12 +82,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:613
      *
-     * @test_Strategy: Bean managed Tx commit - RequiresNew Entity EJBs. Create
-     * Session EJBs A (bean managed), B (RequiresNew), C (RequiresNew). Create
-     * Entity EJB D (RequiresNew). Begin a transaction in Bean A, involving Beans
-     * B & C. Beans B & C update data in Bean D. Ensure the DB updates are
-     * committed in Beans B & C. Bean A commits the transaction, but this action
-     * should be a no-op due to the nature of Bean D which is RequiresNew.
+     * @test_Strategy: Bean managed Tx commit - RequiresNew Entity EJBs. Create Session EJBs A (bean managed), B
+     * (RequiresNew), C (RequiresNew). Create Entity EJB D (RequiresNew). Begin a transaction in Bean A, involving Beans B &
+     * C. Beans B & C update data in Bean D. Ensure the DB updates are committed in Beans B & C. Bean A commits the
+     * transaction, but this action should be a no-op due to the nature of Bean D which is RequiresNew.
      */
     public void test1() throws Fault {
         try {
@@ -99,8 +97,10 @@ public class Client extends EETest {
             logMsg("Execute BeanA:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -118,12 +118,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:613
      *
-     * @test_Strategy: Bean managed Tx rollback - RequiresNew Entity EJBs. Create
-     * Session EJBs A (bean managed), B (RequiresNew), C (RequiresNew). Create
-     * Entity EJB D (RequiresNew). Begin a transaction in Bean A, involving Beans
-     * B & C. Beans B & C update data in Bean D. Ensure the DB updates are
-     * committed in Beans B & C. Bean A rolls back the transaction, but this
-     * action should be a no-op due to the nature of Bean D which is RequiresNew.
+     * @test_Strategy: Bean managed Tx rollback - RequiresNew Entity EJBs. Create Session EJBs A (bean managed), B
+     * (RequiresNew), C (RequiresNew). Create Entity EJB D (RequiresNew). Begin a transaction in Bean A, involving Beans B &
+     * C. Beans B & C update data in Bean D. Ensure the DB updates are committed in Beans B & C. Bean A rolls back the
+     * transaction, but this action should be a no-op due to the nature of Bean D which is RequiresNew.
      */
     public void test2() throws Fault {
         try {
@@ -135,8 +133,10 @@ public class Client extends EETest {
             logMsg("Execute BeanA:test2");
             testResult = beanRef.test2();
 
-            if (!testResult) throw new Fault("test2 failed");
-            else logMsg("test2 passed");
+            if (!testResult)
+                throw new Fault("test2 failed");
+            else
+                logMsg("test2 passed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {

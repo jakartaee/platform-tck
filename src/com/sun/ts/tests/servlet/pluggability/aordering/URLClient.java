@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String[] args, PrintWriter out, PrintWriter err) {
         setContextRoot("/servlet_spec_aordering_web");
@@ -53,15 +51,12 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:230; Servlet:SPEC:231; Servlet:SPEC:232;
      *
-     * @test_Strategy: 1. Define six RequestListeners and one servlet, in web.xml
-     * and six web-fragment.xml: web.xml - define and package TestServlet1,
-     * RequestListener, with <absolute-ordering> of all fragments: fragment1 -
-     * define and package TestServlet1, RequestListener1, fragment2 - define and
-     * package RequestListener2 fragment3 - define and package RequestListener3,
-     * fragment4 - define and package RequestListener4, fragment5 - define and
-     * package RequestListener5, 2. Send request to TestServlet1 3. Verify that
-     * web.xml is always processed first; 4. Verify that <absolute-ordering> works
-     * accordingly.
+     * @test_Strategy: 1. Define six RequestListeners and one servlet, in web.xml and six web-fragment.xml: web.xml - define
+     * and package TestServlet1, RequestListener, with <absolute-ordering> of all fragments: fragment1 - define and package
+     * TestServlet1, RequestListener1, fragment2 - define and package RequestListener2 fragment3 - define and package
+     * RequestListener3, fragment4 - define and package RequestListener4, fragment5 - define and package RequestListener5,
+     * 2. Send request to TestServlet1 3. Verify that web.xml is always processed first; 4. Verify that <absolute-ordering>
+     * works accordingly.
      */
     public void absoluteOrderingTest() throws Fault {
         TEST_PROPS.setProperty(

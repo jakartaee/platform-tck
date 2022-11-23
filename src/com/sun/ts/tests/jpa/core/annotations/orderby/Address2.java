@@ -30,7 +30,8 @@ public class Address2 implements java.io.Serializable {
 
     protected ZipCode2 zipcode;
 
-    public Address2() {}
+    public Address2() {
+    }
 
     public Address2(String street, String city, String state) {
         this.street = street;

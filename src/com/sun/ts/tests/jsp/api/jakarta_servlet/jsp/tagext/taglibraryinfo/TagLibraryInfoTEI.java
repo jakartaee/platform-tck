@@ -29,15 +29,15 @@ import jakarta.servlet.jsp.tagext.TagLibraryInfo;
 import java.util.Arrays;
 
 /**
- * A TagExtraInfo implementation to validate the methods of
- * jakarta.servlet.jsp.tagext.TagLibraryInfo.
+ * A TagExtraInfo implementation to validate the methods of jakarta.servlet.jsp.tagext.TagLibraryInfo.
  */
 public class TagLibraryInfoTEI extends BaseTCKExtraInfo {
 
     /**
      * Default constructor.
      */
-    public TagLibraryInfoTEI() {}
+    public TagLibraryInfoTEI() {
+    }
 
     // ------------------------------------------- Test Definitions ----------
 
@@ -230,7 +230,7 @@ public class TagLibraryInfoTEI extends BaseTCKExtraInfo {
                     + " to be 2, but the actual length was " + infos.length;
         }
 
-        String[] controlUris = {"http://java.sun.com/tck/jsp/taglibinfo", "http://java.sun.com/tck/jsp/taglibinfo2"};
+        String[] controlUris = { "http://java.sun.com/tck/jsp/taglibinfo", "http://java.sun.com/tck/jsp/taglibinfo2" };
 
         String[] testUris = new String[2];
 

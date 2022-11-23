@@ -98,17 +98,13 @@ public class Client extends ServiceEETest implements Serializable {
     /*
      * @testName: testMDCompleteConfigProp
      *
-     * @assertion_ids: Connector:SPEC:266; Connector:JAVADOC:140;
-     * Connector:JAVADOC:142; Connector:JAVADOC:144; Connector:JAVADOC:139;
-     * Connector:JAVADOC:143;
+     * @assertion_ids: Connector:SPEC:266; Connector:JAVADOC:140; Connector:JAVADOC:142; Connector:JAVADOC:144;
+     * Connector:JAVADOC:139; Connector:JAVADOC:143;
      *
-     * @test_Strategy: This is testing that a RA with annotations and a
-     * metadata-complete DD will take the DD's config property and set it within
-     * the ManagedConnectionFactory. The DD takes precedence and this is confirmed
-     * by checking that the setter for the config property was called. The DD
-     * (which has metadata-complete = true) should have all its attrs used and any
-     * duplicate annotation attrs should NOT get used. This is another variant of
-     * testing assertion 266.
+     * @test_Strategy: This is testing that a RA with annotations and a metadata-complete DD will take the DD's config
+     * property and set it within the ManagedConnectionFactory. The DD takes precedence and this is confirmed by checking
+     * that the setter for the config property was called. The DD (which has metadata-complete = true) should have all its
+     * attrs used and any duplicate annotation attrs should NOT get used. This is another variant of testing assertion 266.
      */
     public void testMDCompleteConfigProp() throws Fault {
 
@@ -156,11 +152,9 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:266;
      *
-     * @test_Strategy: This is testing that an RA with that has ra.xml with
-     * metadata-complete DD will use the DD's specified MCF and will NOT use an
-     * annotated MCF that is bundled in the same jar. Thus the metadata-complete
-     * DD gets its MCF used and the other is ignored. This is another variant of
-     * testing assertion 266.
+     * @test_Strategy: This is testing that an RA with that has ra.xml with metadata-complete DD will use the DD's specified
+     * MCF and will NOT use an annotated MCF that is bundled in the same jar. Thus the metadata-complete DD gets its MCF
+     * used and the other is ignored. This is another variant of testing assertion 266.
      */
     public void testMDCompleteMCFAnno() throws Fault {
 

@@ -32,8 +32,8 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "InjectionAllowedBean")
-@Remote({SessionContextAllowedIF.class})
-@Local({SessionContextAllowedLocalIF.class})
+@Remote({ SessionContextAllowedIF.class })
+@Local({ SessionContextAllowedLocalIF.class })
 // @Interceptors({com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class})
 @TransactionManagement(TransactionManagementType.BEAN)
 public class InjectionAllowedBean extends InjectiontAllowedBeanBase

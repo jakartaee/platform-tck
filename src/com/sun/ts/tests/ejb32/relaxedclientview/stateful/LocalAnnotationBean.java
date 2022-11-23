@@ -24,4 +24,5 @@ import jakarta.ejb.Stateful;
 
 @Local
 @Stateful
-public class LocalAnnotationBean extends BaseBean implements NormalInterface1, NormalInterface2 {}
+public class LocalAnnotationBean extends BaseBean implements NormalInterface1, NormalInterface2 {
+}

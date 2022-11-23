@@ -31,17 +31,15 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
- * The default {@link EndpointCallback} that is used in tests. This callback
- * sends an entity on onOpen to a server endpoint set by
- * {@link WebSocketCommonClient#setEntity(Object...)} or by
+ * The default {@link EndpointCallback} that is used in tests. This callback sends an entity on onOpen to a server
+ * endpoint set by {@link WebSocketCommonClient#setEntity(Object...)} or by
  *
  * <pre>
  * setProperty(Property.CONTENT, ...)
  * </pre>
  *
  * </p>
- * Note that no callback is used when no entity is defined to be sent to a
- * server side
+ * Note that no callback is used when no entity is defined to be sent to a server side
  */
 public class SendMessageCallback extends EndpointCallback {
     protected Entity entity;
@@ -57,11 +55,14 @@ public class SendMessageCallback extends EndpointCallback {
         logMsg("Sending entity", entity);
         RemoteEndpoint.Basic endpoint = session.getBasicRemote();
         try {
-            if (entity.isInstance(String.class)) sendString(endpoint, entity, 0);
-            else if (entity.isInstance(ByteBuffer.class)) sendBytes(endpoint, entity, 0);
+            if (entity.isInstance(String.class))
+                sendString(endpoint, entity, 0);
+            else if (entity.isInstance(ByteBuffer.class))
+                sendBytes(endpoint, entity, 0);
             else if (entity.isInstance(PongMessage.class))
                 sendPingPong(endpoint, entity.getEntityAt(PongMessage.class, 0));
-            else sendObject(endpoint, entity.getEntityAt(Object.class, 0));
+            else
+                sendObject(endpoint, entity.getEntityAt(Object.class, 0));
         } catch (Exception i) {
             throw new RuntimeException(i);
         }
@@ -112,8 +113,10 @@ public class SendMessageCallback extends EndpointCallback {
 
     protected void sendObject(RemoteEndpoint.Basic endpoint, Object message) throws Exception {
         String entity = null;
-        if (message.getClass().getName().equals("[B")) entity = new String((byte[]) message);
-        else entity = message.toString();
+        if (message.getClass().getName().equals("[B"))
+            entity = new String((byte[]) message);
+        else
+            entity = message.toString();
         logTrace("RemoteEndpoint.Basic.sendObject(", entity, ")");
         endpoint.sendObject(message);
     }

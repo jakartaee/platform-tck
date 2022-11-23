@@ -36,11 +36,11 @@ public class TestServlet extends GenericTCKServlet {
 
         DispatcherType[] types = jakarta.servlet.DispatcherType.values();
         DispatcherType[] expected_types = {
-            DispatcherType.FORWARD,
-            DispatcherType.INCLUDE,
-            DispatcherType.REQUEST,
-            DispatcherType.ASYNC,
-            DispatcherType.ERROR
+                DispatcherType.FORWARD,
+                DispatcherType.INCLUDE,
+                DispatcherType.REQUEST,
+                DispatcherType.ASYNC,
+                DispatcherType.ERROR
         };
 
         int i = 0;
@@ -59,13 +59,13 @@ public class TestServlet extends GenericTCKServlet {
         Boolean pass = true;
         PrintWriter pw = response.getWriter();
 
-        String[] types = {"FORWARD", "INCLUDE", "REQUEST", "ASYNC", "ERROR"};
+        String[] types = { "FORWARD", "INCLUDE", "REQUEST", "ASYNC", "ERROR" };
         DispatcherType[] expected_types = {
-            DispatcherType.FORWARD,
-            DispatcherType.INCLUDE,
-            DispatcherType.REQUEST,
-            DispatcherType.ASYNC,
-            DispatcherType.ERROR
+                DispatcherType.FORWARD,
+                DispatcherType.INCLUDE,
+                DispatcherType.REQUEST,
+                DispatcherType.ASYNC,
+                DispatcherType.ERROR
         };
 
         int i = 0;
@@ -102,7 +102,7 @@ public class TestServlet extends GenericTCKServlet {
         Boolean pass = true;
         PrintWriter pw = response.getWriter();
 
-        String[] names = {"Forward", " INCLUDE", "REQUEST ", "ASYNc", "ERROr ", "bogus"};
+        String[] names = { "Forward", " INCLUDE", "REQUEST ", "ASYNc", "ERROr ", "bogus" };
 
         for (String name : names) {
             try {

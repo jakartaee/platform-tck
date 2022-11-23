@@ -31,7 +31,8 @@ public class Client extends PMClientBase {
 
     private Map<Course, Semester> student7EnrollmentMap;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -57,8 +58,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:364;
      *
-     * @test_Strategy: follow core/annotations/mapkeyclass test but
-     * without @mapkeyjoincolumns
+     * @test_Strategy: follow core/annotations/mapkeyclass test but without @mapkeyjoincolumns
      */
     public void mapKeyJoinColumnTest() throws Fault {
         boolean pass = false;
@@ -74,7 +74,8 @@ public class Client extends PMClientBase {
             final Set<Course> courses = student.getCourses();
             if (courses.containsAll(student7EnrollmentMap.keySet())
                     && student7EnrollmentMap.keySet().containsAll(courses)
-                    && courses.size() == student7EnrollmentMap.keySet().size()) pass = true;
+                    && courses.size() == student7EnrollmentMap.keySet().size())
+                pass = true;
             clearCache();
             getEntityTransaction().commit();
 

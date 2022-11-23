@@ -33,7 +33,7 @@ public class ELClient extends ServiceEETest {
 
     Properties testProps;
 
-    private final boolean[] deferred = {true, false};
+    private final boolean[] deferred = { true, false };
 
     public static void main(String[] args) {
         ELClient theTests = new ELClient();
@@ -46,20 +46,21 @@ public class ELClient extends ServiceEETest {
         this.testProps = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: elNullUnaryTest
      *
      * @assertion_ids: EL:SPEC:20.1
      *
-     * @test_Strategy: Validate that if null is passed with the unary minus
-     * operator, the result is (Long) 0. Test both ${-null} & #{-null}
+     * @test_Strategy: Validate that if null is passed with the unary minus operator, the result is (Long) 0. Test both
+     * ${-null} & #{-null}
      */
     public void elNullUnaryTest() throws Fault {
 
         boolean pass = false;
-        String[] symbols = {"$", "#"};
+        String[] symbols = { "$", "#" };
 
         Long expectedResult = Long.valueOf("0");
 
@@ -74,7 +75,8 @@ public class ELClient extends ServiceEETest {
                         && ExprEval.compareValue((Long) result, expectedResult, 0));
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -86,9 +88,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:20.2
      *
-     * @test_Strategy: Validate that if a BigDecimal A is passed with the unary
-     * minus operator (-), the result is A.negate(). Test both ${- value} & #{-
-     * value}
+     * @test_Strategy: Validate that if a BigDecimal A is passed with the unary minus operator (-), the result is
+     * A.negate(). Test both ${- value} & #{- value}
      */
     public void elBigDecimalUnaryTest() throws Fault {
 
@@ -110,7 +111,8 @@ public class ELClient extends ServiceEETest {
                         && ExprEval.compareValue((BigDecimal) result, expectedResult, 0));
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -122,9 +124,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:20.2
      *
-     * @test_Strategy: Validate that if a BigInteger A is passed with the unary
-     * minus operator (-), the result is A.negate(). Test both ${- value} & #{-
-     * value}
+     * @test_Strategy: Validate that if a BigInteger A is passed with the unary minus operator (-), the result is
+     * A.negate(). Test both ${- value} & #{- value}
      */
     public void elBigIntegerUnaryTest() throws Fault {
 
@@ -146,7 +147,8 @@ public class ELClient extends ServiceEETest {
                         && ExprEval.compareValue((BigInteger) result, expectedResult, 0));
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -158,9 +160,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:20.3.1
      *
-     * @test_Strategy: Validate that if a String is passed with the unary minus
-     * operator (-), the result is as follows: - If the String contains ".", "e",
-     * or "E" coerce to Double, apply operator.
+     * @test_Strategy: Validate that if a String is passed with the unary minus operator (-), the result is as follows: - If
+     * the String contains ".", "e", or "E" coerce to Double, apply operator.
      *
      * Test both ${- value} & #{- value}
      */
@@ -168,7 +169,7 @@ public class ELClient extends ServiceEETest {
 
         boolean pass = false;
 
-        String[] values = {"10.0", "10E0", "10e0"};
+        String[] values = { "10.0", "10E0", "10e0" };
 
         Double expectedResult = Double.valueOf("-10");
 
@@ -186,7 +187,8 @@ public class ELClient extends ServiceEETest {
                 }
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -198,9 +200,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:20.3.2
      *
-     * @test_Strategy: Validate that if a String is passed with the unary minus
-     * operator (-), the result is as follows: - If the String does not contain
-     * ".", "e", or "E" coerce to Long, apply operator.
+     * @test_Strategy: Validate that if a String is passed with the unary minus operator (-), the result is as follows: - If
+     * the String does not contain ".", "e", or "E" coerce to Long, apply operator.
      *
      * Test both ${- value} & #{- value}
      */
@@ -224,7 +225,8 @@ public class ELClient extends ServiceEETest {
                         && ExprEval.compareValue((Long) result, expectedResult));
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -236,8 +238,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:20.4.1
      *
-     * @test_Strategy: Validate that if a Byte is passed with the unary minus
-     * operator (-), the type is retained and the operator is applied.
+     * @test_Strategy: Validate that if a Byte is passed with the unary minus operator (-), the type is retained and the
+     * operator is applied.
      *
      * Test both ${- value} & #{- value}
      */
@@ -261,7 +263,8 @@ public class ELClient extends ServiceEETest {
                         && ExprEval.compareValue((Byte) result, expectedResult));
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -273,8 +276,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:20.4.1
      *
-     * @test_Strategy: Validate that if a Short is passed with the unary minus
-     * operator (-), the type is retained and the operator is applied.
+     * @test_Strategy: Validate that if a Short is passed with the unary minus operator (-), the type is retained and the
+     * operator is applied.
      *
      * Test both ${- value} & #{- value}
      */
@@ -298,7 +301,8 @@ public class ELClient extends ServiceEETest {
                         && ExprEval.compareValue((Short) result, expectedResult));
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -310,8 +314,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:20.4.1
      *
-     * @test_Strategy: Validate that if an Integer is passed with the unary minus
-     * operator (-), the type is retained and the operator is applied.
+     * @test_Strategy: Validate that if an Integer is passed with the unary minus operator (-), the type is retained and the
+     * operator is applied.
      *
      * Test both ${- value} & #{- value}
      */
@@ -335,7 +339,8 @@ public class ELClient extends ServiceEETest {
                         && ExprEval.compareValue((Integer) result, expectedResult));
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -347,8 +352,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:20.4.1
      *
-     * @test_Strategy: Validate that if a Long is passed with the unary minus
-     * operator (-), the type is retained and the operator is applied.
+     * @test_Strategy: Validate that if a Long is passed with the unary minus operator (-), the type is retained and the
+     * operator is applied.
      *
      * Test both ${- value} & #{- value}
      */
@@ -372,7 +377,8 @@ public class ELClient extends ServiceEETest {
                         && ExprEval.compareValue((Long) result, expectedResult));
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -384,8 +390,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:20.4.1
      *
-     * @test_Strategy: Validate that if a Float is passed with the unary minus
-     * operator (-), the type is retained and the operator is applied.
+     * @test_Strategy: Validate that if a Float is passed with the unary minus operator (-), the type is retained and the
+     * operator is applied.
      *
      * Test both ${- value} & #{- value}
      */
@@ -409,7 +415,8 @@ public class ELClient extends ServiceEETest {
                         && ExprEval.compareValue((Float) result, expectedResult, 0));
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -421,8 +428,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:20.4.1
      *
-     * @test_Strategy: Validate that if a Double is passed with the unary minus
-     * operator (-), the type is retained and the operator is applied.
+     * @test_Strategy: Validate that if a Double is passed with the unary minus operator (-), the type is retained and the
+     * operator is applied.
      *
      * Test both ${- value} & #{- value}
      */
@@ -446,7 +453,8 @@ public class ELClient extends ServiceEETest {
                         && ExprEval.compareValue((Double) result, expectedResult));
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (Exception e) {
             throw new Fault(e);
@@ -458,8 +466,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:24.1.1
      *
-     * @test_Strategy: Validate that if a String("false") is passed with the unary
-     * "not" operator, the type is coerced to Boolean and the operator is applied.
+     * @test_Strategy: Validate that if a String("false") is passed with the unary "not" operator, the type is coerced to
+     * Boolean and the operator is applied.
      *
      * Equations Tested: ${not value} & #{not value} ${! value} & #{! value}
      */
@@ -473,8 +481,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:24.1.1
      *
-     * @test_Strategy: Validate that if a String("true") is passed with the unary
-     * "not" operator, the type is coerced to Boolean and the operator is applied.
+     * @test_Strategy: Validate that if a String("true") is passed with the unary "not" operator, the type is coerced to
+     * Boolean and the operator is applied.
      *
      * Equations Tested: ${not value} & #{not value} ${! value} & #{! value}
      */
@@ -489,7 +497,7 @@ public class ELClient extends ServiceEETest {
 
         boolean pass = false;
 
-        String[] operator = {"unary_not", "unary_bang"};
+        String[] operator = { "unary_not", "unary_bang" };
         NameValuePair value[] = NameValuePair.buildUnaryNameValue(testVal);
 
         try {
@@ -502,7 +510,8 @@ public class ELClient extends ServiceEETest {
                     pass = (ExprEval.compareClass(result, Boolean.class)
                             && ExprEval.compareValue((Boolean) result, expectedResult));
 
-                    if (!pass) throw new Fault("TEST FAILED: pass = false");
+                    if (!pass)
+                        throw new Fault("TEST FAILED: pass = false");
                 }
             }
         } catch (Exception e) {

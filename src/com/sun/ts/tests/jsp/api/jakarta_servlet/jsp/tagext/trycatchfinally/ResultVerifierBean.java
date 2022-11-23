@@ -35,7 +35,8 @@ public class ResultVerifierBean {
     /**
      * Default constructor.
      */
-    public ResultVerifierBean() {}
+    public ResultVerifierBean() {
+    }
 
     public void setResult(String result) {
         // No-Op...just trying to be a good bean
@@ -57,8 +58,7 @@ public class ResultVerifierBean {
     /**
      * Sets the PageContext of this bean.
      *
-     * @param context
-     *          - the PageContext
+     * @param context - the PageContext
      */
     public void setContext(PageContext context) {
         _context = context;
@@ -69,7 +69,7 @@ public class ResultVerifierBean {
      */
     private String checkResults() {
         final int SIZE = 5;
-        final String[] EXPECTED = {"doStartTag", "doEndTag", "body", "doInitBody", "doAfterBody"};
+        final String[] EXPECTED = { "doStartTag", "doEndTag", "body", "doInitBody", "doAfterBody" };
         String message = "Test PASSED";
         List catchList = (List) _context.getAttribute("cresults");
         List finallyList = (List) _context.getAttribute("fresults");
@@ -102,8 +102,7 @@ public class ResultVerifierBean {
                     Arrays.sort(ffinally);
                     for (int i = 0; i < SIZE; i++) {
                         if (Arrays.binarySearch(ccatch, EXPECTED[i]) < 0) {
-                            message =
-                                    "Test FAILED.  doCatch not invoked when" + " Exception thrown from " + EXPECTED[i];
+                            message = "Test FAILED.  doCatch not invoked when" + " Exception thrown from " + EXPECTED[i];
                             break;
                         }
                     }

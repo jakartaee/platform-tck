@@ -30,11 +30,14 @@ public abstract class SessionBeanLocalBeanBase extends BusinessLocal1Base implem
         this.sessionContext = sessionContext;
     }
 
-    public void ejbRemove() {}
+    public void ejbRemove() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
     // ////////////////////////////////////////////////////////////////////
     @Override

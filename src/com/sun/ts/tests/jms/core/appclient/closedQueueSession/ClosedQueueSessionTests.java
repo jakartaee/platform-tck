@@ -32,8 +32,7 @@ import java.util.Properties;
  * JMS TS tests. Testing method calls on closed QueueSession objects.
  */
 public class ClosedQueueSessionTests extends ServiceEETest {
-    private static final String TestName =
-            "com.sun.ts.tests.jms.core.appclient.closedQueueSession.ClosedQueueSessionTests";
+    private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedQueueSession.ClosedQueueSessionTests";
 
     private static final String testDir = System.getProperty("user.dir");
 
@@ -71,11 +70,9 @@ public class ClosedQueueSessionTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /**
-     * Used by tests that need a closed session for testing. Passes any exceptions
-     * up to caller.
+     * Used by tests that need a closed session for testing. Passes any exceptions up to caller.
      *
-     * @param int
-     *          The type of session that needs to be created and closed
+     * @param int The type of session that needs to be created and closed
      */
     private void createAndCloseSession(int type, String user, String password) throws Exception {
         if ((type == JmsTool.QUEUE) || (type == JmsTool.TX_QUEUE)) {
@@ -88,8 +85,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
     }
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -106,10 +102,9 @@ public class ClosedQueueSessionTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -153,8 +148,8 @@ public class ClosedQueueSessionTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -180,8 +175,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:328;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionGetMessageListenerTest() throws Fault {
@@ -214,8 +208,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:330; JMS:JAVADOC:325;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSetMessageListenerTest() throws Fault {
@@ -227,7 +220,8 @@ public class ClosedQueueSessionTests extends ServiceEETest {
             try {
                 MessageListener foo = new MessageListener() {
 
-                    public void onMessage(Message m) {}
+                    public void onMessage(Message m) {
+                    }
                 };
 
                 tool.getDefaultQueueReceiver().setMessageListener(foo);

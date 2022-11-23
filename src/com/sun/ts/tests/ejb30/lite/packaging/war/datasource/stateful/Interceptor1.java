@@ -30,23 +30,7 @@ import jakarta.interceptor.InvocationContext;
 import java.sql.Connection;
 import javax.sql.DataSource;
 
-@DataSourceDefinition(
-        name = "java:module/env/moduleds",
-        description = "override with <data-source> in ejb-jar.xml",
-        className = "jdbc.ClientDataSource",
-        portNumber = 8080,
-        serverName = "x",
-        databaseName = "x",
-        user = "x",
-        password = "x",
-        initialPoolSize = 1,
-        isolationLevel = Connection.TRANSACTION_SERIALIZABLE,
-        loginTimeout = 300,
-        maxIdleTime = 1000,
-        maxPoolSize = 2,
-        minPoolSize = 1,
-        transactional = true,
-        url = "jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true")
+@DataSourceDefinition(name = "java:module/env/moduleds", description = "override with <data-source> in ejb-jar.xml", className = "jdbc.ClientDataSource", portNumber = 8080, serverName = "x", databaseName = "x", user = "x", password = "x", initialPoolSize = 1, isolationLevel = Connection.TRANSACTION_SERIALIZABLE, loginTimeout = 300, maxIdleTime = 1000, maxPoolSize = 2, minPoolSize = 1, transactional = true, url = "jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true")
 public class Interceptor1 extends ComponentBase {
     @Resource(lookup = "java:app/env/appds")
     private DataSource appds;

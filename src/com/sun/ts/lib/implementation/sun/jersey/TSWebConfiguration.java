@@ -35,11 +35,10 @@ import java.util.Properties;
 import java.util.Vector;
 
 /**
- * This is a utility class that borrowed from Kyle Grucci's original work in
- * TSRuntimeConfiguration.java. It is called to replace any configurable
- * properties in the web xml files with the implementation specific values
- * specified in ts.jte. A copy is made of each web xml file (with the
- * substituted values) in the same location with file extension .new.
+ * This is a utility class that borrowed from Kyle Grucci's original work in TSRuntimeConfiguration.java. It is called
+ * to replace any configurable properties in the web xml files with the implementation specific values specified in
+ * ts.jte. A copy is made of each web xml file (with the substituted values) in the same location with file extension
+ * .new.
  *
  * @author Dianne Jiao
  */
@@ -62,8 +61,7 @@ public class TSWebConfiguration {
 
     private StringReplacer replacer = new StringReplacer();
 
-    private static File jteFile =
-            new File(System.getProperty("TS_HOME") + File.separator + "bin" + File.separator + "ts.jte");
+    private static File jteFile = new File(System.getProperty("TS_HOME") + File.separator + "bin" + File.separator + "ts.jte");
 
     private static String servlet_adaptor = "servlet_adaptor";
 
@@ -92,8 +90,7 @@ public class TSWebConfiguration {
 
         PrintWriter logOut = new PrintWriter(System.out, true);
 
-        File fileList =
-                new File(System.getProperty("TS_HOME") + File.separator + "bin" + File.separator + "jaxrs_filelist");
+        File fileList = new File(System.getProperty("TS_HOME") + File.separator + "bin" + File.separator + "jaxrs_filelist");
 
         try {
             BufferedReader input = new BufferedReader(new FileReader(fileList));
@@ -203,14 +200,14 @@ public class TSWebConfiguration {
                 vInfoObjects = new Vector();
                 String sKey = "";
                 // create ReplacementInfo objects
-                for (Enumeration e = htFindAndReplace.keys(); e.hasMoreElements(); ) {
+                for (Enumeration e = htFindAndReplace.keys(); e.hasMoreElements();) {
                     sKey = (String) e.nextElement();
                     vInfoObjects.addElement(new ReplacementInfo(sKey, (String) htFindAndReplace.get(sKey)));
                 }
                 // add in the table the custom table of replacement strings
                 // if any
                 if (htCustomTable != null) {
-                    for (Enumeration e = htCustomTable.keys(); e.hasMoreElements(); ) {
+                    for (Enumeration e = htCustomTable.keys(); e.hasMoreElements();) {
                         sKey = (String) e.nextElement();
                         vInfoObjects.addElement(new ReplacementInfo(sKey, (String) htCustomTable.get(sKey)));
                     }
@@ -260,7 +257,7 @@ public class TSWebConfiguration {
                     sTemp = new String(sFoundBuffer);
 
                     // get all ris that still match
-                    for (Enumeration e = vMatchingInfoObjects.elements(); e.hasMoreElements(); ) {
+                    for (Enumeration e = vMatchingInfoObjects.elements(); e.hasMoreElements();) {
 
                         ri = (ReplacementInfo) e.nextElement();
                         if (ri.sFind.startsWith(sTemp)) {
@@ -346,17 +343,16 @@ public class TSWebConfiguration {
     }
 
     /**
-     * Parse the HashTable which contains strings retrieved via calls into the
-     * porting classes for deployment. We must substitute on these strings prior
-     * to substituting them into the web.xml.
+     * Parse the HashTable which contains strings retrieved via calls into the porting classes for deployment. We must
+     * substitute on these strings prior to substituting them into the web.xml.
      */
     private Hashtable replaceOnWebInfoStrings(Hashtable extras) {
 
         boolean changeIt = false;
 
-        String searchFor[] = {"servlet_adaptor"};
+        String searchFor[] = { "servlet_adaptor" };
 
-        for (Enumeration e = extras.keys(); e.hasMoreElements(); ) {
+        for (Enumeration e = extras.keys(); e.hasMoreElements();) {
             String sKey = (String) e.nextElement();
             String val = (String) extras.get(sKey);
             String oldJndi = val;

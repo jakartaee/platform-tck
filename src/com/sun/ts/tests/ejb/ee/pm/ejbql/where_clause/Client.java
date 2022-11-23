@@ -80,9 +80,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:331; EJB:SPEC:412.2
      *
-     * @test_Strategy: Execute the findOrdersByQuery1 method using an exact
-     * numeric literal in a conditional expression of the WHERE clause. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute the findOrdersByQuery1 method using an exact numeric literal in a conditional expression of
+     * the WHERE clause. Verify the results were accurately returned.
      *
      */
 
@@ -111,7 +110,8 @@ public class Client extends EETest {
             throw new Fault("whereTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest1 failed");
+        if (!pass)
+            throw new Fault("whereTest1 failed");
     }
 
     /*
@@ -119,9 +119,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:333
      *
-     * @test_Strategy: Execute the findOrdersByQuery2 method using an approximate
-     * numeric literal in the conditional expression of the WHERE clause. Verify
-     * the results were accurately returned.
+     * @test_Strategy: Execute the findOrdersByQuery2 method using an approximate numeric literal in the conditional
+     * expression of the WHERE clause. Verify the results were accurately returned.
      *
      */
 
@@ -157,7 +156,8 @@ public class Client extends EETest {
             throw new Fault("whereTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest2 failed");
+        if (!pass)
+            throw new Fault("whereTest2 failed");
     }
 
     /*
@@ -165,9 +165,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:348.4; EJB:SPEC:345
      *
-     * @test_Strategy: Execute the findOrdersByQuery3 method containing a
-     * conditional expression composed with logical operator NOT. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute the findOrdersByQuery3 method containing a conditional expression composed with logical
+     * operator NOT. Verify the results were accurately returned.
      *
      */
 
@@ -195,7 +194,8 @@ public class Client extends EETest {
             throw new Fault("whereTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest3 failed");
+        if (!pass)
+            throw new Fault("whereTest3 failed");
     }
 
     /*
@@ -203,9 +203,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:348.4; EJB:SPEC:345
      *
-     * @test_Strategy: Execute the findOrdersByQuery4 method containing a
-     * conditional expression composed with logical operator AND. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute the findOrdersByQuery4 method containing a conditional expression composed with logical
+     * operator AND. Verify the results were accurately returned.
      *
      */
 
@@ -233,7 +232,8 @@ public class Client extends EETest {
             throw new Fault("whereTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest4 failed");
+        if (!pass)
+            throw new Fault("whereTest4 failed");
     }
 
     /*
@@ -241,9 +241,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:348.4; EJB:SPEC:345
      *
-     * @test_Strategy: Execute the findOrdersByQuery5 method containing a a
-     * conditional expression composed with logical operator OR. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute the findOrdersByQuery5 method containing a a conditional expression composed with logical
+     * operator OR. Verify the results were accurately returned.
      *
      */
 
@@ -274,7 +273,8 @@ public class Client extends EETest {
             throw new Fault("whereTest5 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest5 failed");
+        if (!pass)
+            throw new Fault("whereTest5 failed");
     }
 
     /*
@@ -282,11 +282,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:346; EJB:SPEC:347; EJB:SPEC:348.2; EJB:SPEC:344
      *
-     * @test_Strategy: Execute the findOrdersByQuery6 method containing a
-     * conditional expression composed with AND and OR and using standard
-     * bracketing () for ordering. The comparison operator < and arithmetic
-     * operations are also used in the query. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute the findOrdersByQuery6 method containing a conditional expression composed with AND and OR
+     * and using standard bracketing () for ordering. The comparison operator < and arithmetic operations are also used in
+     * the query. Verify the results were accurately returned.
      *
      */
 
@@ -316,7 +314,8 @@ public class Client extends EETest {
             throw new Fault("whereTest6 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest6 failed");
+        if (!pass)
+            throw new Fault("whereTest6 failed");
     }
 
     /*
@@ -324,10 +323,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:338; EJB:SPEC:339; EJB:SPEC:341
      *
-     * @test_strategy: Execute the findOrdersByQuery9 method using a WHERE clause
-     * conditional expression composed with AND with an input parameter as a
-     * conditional factor. The comparison operator < is also used in the query.
-     * Verify the results were accurately returned.
+     * @test_strategy: Execute the findOrdersByQuery9 method using a WHERE clause conditional expression composed with AND
+     * with an input parameter as a conditional factor. The comparison operator < is also used in the query. Verify the
+     * results were accurately returned.
      *
      */
 
@@ -353,7 +351,8 @@ public class Client extends EETest {
             throw new Fault("whereTest7 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest7 failed");
+        if (!pass)
+            throw new Fault("whereTest7 failed");
     }
 
     /*
@@ -361,8 +360,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:349
      *
-     * @test_Strategy: Execute the findOrdersByQuery12 method containing the
-     * comparison operator BETWEEN. Verify the results were accurately returned.
+     * @test_Strategy: Execute the findOrdersByQuery12 method containing the comparison operator BETWEEN. Verify the results
+     * were accurately returned.
      *
      */
 
@@ -392,7 +391,8 @@ public class Client extends EETest {
             throw new Fault("whereTest8 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest8 failed");
+        if (!pass)
+            throw new Fault("whereTest8 failed");
     }
 
     /*
@@ -400,9 +400,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:349
      *
-     * @test_Strategy: Execute the findOrdersByQuery13 method containing the
-     * comparison operator NOT BETWEEN. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute the findOrdersByQuery13 method containing the comparison operator NOT BETWEEN. Verify the
+     * results were accurately returned.
      */
 
     public void whereTest9() throws Fault {
@@ -437,7 +436,8 @@ public class Client extends EETest {
             throw new Fault("whereTest9 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest9 failed");
+        if (!pass)
+            throw new Fault("whereTest9 failed");
     }
 
     /*
@@ -445,13 +445,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:345; EJB:SPEC:334
      *
-     * @test_Strategy: Conditional expressions are composed of other conditional
-     * expressions, comparison operators, logical operations, path expressions
-     * that evaluate to boolean values and boolean literals.
+     * @test_Strategy: Conditional expressions are composed of other conditional expressions, comparison operators, logical
+     * operations, path expressions that evaluate to boolean values and boolean literals.
      *
-     * Execute the findOrdersByQuery14 method that contains a conditional
-     * expression with a path expression that evaluates to a boolean literal.
-     * Verify the results were accurately returned.
+     * Execute the findOrdersByQuery14 method that contains a conditional expression with a path expression that evaluates
+     * to a boolean literal. Verify the results were accurately returned.
      */
 
     public void whereTest10() throws Fault {
@@ -479,7 +477,8 @@ public class Client extends EETest {
             throw new Fault("whereTest10 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest10 failed");
+        if (!pass)
+            throw new Fault("whereTest10 failed");
     }
 
     /*
@@ -487,10 +486,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:330; EJB:SPEC:313.6; EJB:SPEC:412.1
      *
-     * @test_Strategy: Execute the findCustomerByName method using a string
-     * literal enclosed in single quotes (the string includes a single quote) in
-     * the conditional expression of the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute the findCustomerByName method using a string literal enclosed in single quotes (the string
+     * includes a single quote) in the conditional expression of the WHERE clause. Verify the results were accurately
+     * returned.
      */
 
     public void whereTest11() throws Fault {
@@ -511,7 +509,8 @@ public class Client extends EETest {
             throw new Fault("whereTest11 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest11 failed");
+        if (!pass)
+            throw new Fault("whereTest11 failed");
     }
 
     /*
@@ -519,9 +518,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:352
      *
-     * @test_Strategy: Execute the findCustomersByQuery8 method using comparison
-     * operator IN in a comparison expression within the WHERE clause. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute the findCustomersByQuery8 method using comparison operator IN in a comparison expression
+     * within the WHERE clause. Verify the results were accurately returned.
      */
 
     public void whereTest12() throws Fault {
@@ -545,7 +543,8 @@ public class Client extends EETest {
             throw new Fault("whereTest12 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest12 failed");
+        if (!pass)
+            throw new Fault("whereTest12 failed");
     }
 
     /*
@@ -553,9 +552,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:352; EJB:SPEC:353
      *
-     * @test_Strategy: Execute the findCustomersByQuery9 method using comparison
-     * operator NOT IN in a comparison expression within the WHERE clause. Verify
-     * the results were accurately returned.
+     * @test_Strategy: Execute the findCustomersByQuery9 method using comparison operator NOT IN in a comparison expression
+     * within the WHERE clause. Verify the results were accurately returned.
      */
 
     public void whereTest13() throws Fault {
@@ -589,7 +587,8 @@ public class Client extends EETest {
             throw new Fault("whereTest13 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest13 failed");
+        if (!pass)
+            throw new Fault("whereTest13 failed");
     }
 
     /*
@@ -597,10 +596,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:358
      *
-     * @test_Strategy: Execute the findCustomersByQuery10 method using the
-     * comparison operator LIKE in a comparison expression within the WHERE
-     * clause. The pattern-value includes a percent character. Verify the results
-     * were accurately returned.
+     * @test_Strategy: Execute the findCustomersByQuery10 method using the comparison operator LIKE in a comparison
+     * expression within the WHERE clause. The pattern-value includes a percent character. Verify the results were
+     * accurately returned.
      */
 
     public void whereTest14() throws Fault {
@@ -624,7 +622,8 @@ public class Client extends EETest {
             throw new Fault("whereTest14 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest14 failed");
+        if (!pass)
+            throw new Fault("whereTest14 failed");
     }
 
     /*
@@ -632,10 +631,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:358
      *
-     * @test_Strategy: Execute the findCustomersByQuery11 method using the
-     * comparison operator NOT LIKE in a comparison expression within the WHERE
-     * clause. The pattern-value includes a percent character and an underscore.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute the findCustomersByQuery11 method using the comparison operator NOT LIKE in a comparison
+     * expression within the WHERE clause. The pattern-value includes a percent character and an underscore. Verify the
+     * results were accurately returned.
      *
      */
 
@@ -671,7 +669,8 @@ public class Client extends EETest {
             throw new Fault("whereTest15 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest15 failed");
+        if (!pass)
+            throw new Fault("whereTest15 failed");
     }
 
     /*
@@ -679,9 +678,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:361
      *
-     * @test_Strategy: Execute the findCustomersByQuery12 method using the
-     * comparison operator IS EMPTY in a comparison expression within the WHERE
-     * clause. Verify the results were accurately returned.
+     * @test_Strategy: Execute the findCustomersByQuery12 method using the comparison operator IS EMPTY in a comparison
+     * expression within the WHERE clause. Verify the results were accurately returned.
      *
      */
 
@@ -706,7 +704,8 @@ public class Client extends EETest {
             throw new Fault("whereTest16 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest16 failed");
+        if (!pass)
+            throw new Fault("whereTest16 failed");
     }
 
     /*
@@ -714,9 +713,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:361
      *
-     * @test_Strategy: Execute the findCustomersByQuery13 method using the
-     * comparison operator IS NOT EMPTY in a comparison expression within the
-     * WHERE clause. Verify the results were accurately returned.
+     * @test_Strategy: Execute the findCustomersByQuery13 method using the comparison operator IS NOT EMPTY in a comparison
+     * expression within the WHERE clause. Verify the results were accurately returned.
      */
 
     public void whereTest17() throws Fault {
@@ -752,7 +750,8 @@ public class Client extends EETest {
             throw new Fault("whereTest17 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest17 failed");
+        if (!pass)
+            throw new Fault("whereTest17 failed");
     }
 
     /*
@@ -760,11 +759,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:359; EJB:SPEC:316
      *
-     * @test_Strategy: Execute the findCustomersByQuery25 method using the IS NULL
-     * comparison operator within the WHERE clause. Verify the results were
-     * accurately returned. (This test is executed against non-NULL data. For NULL
-     * data tests with this comparison operator, see the tests in the
-     * ejbql/null_values test directory.)
+     * @test_Strategy: Execute the findCustomersByQuery25 method using the IS NULL comparison operator within the WHERE
+     * clause. Verify the results were accurately returned. (This test is executed against non-NULL data. For NULL data
+     * tests with this comparison operator, see the tests in the ejbql/null_values test directory.)
      */
 
     public void whereTest18() throws Fault {
@@ -788,7 +785,8 @@ public class Client extends EETest {
             throw new Fault("whereTest18 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest18 failed");
+        if (!pass)
+            throw new Fault("whereTest18 failed");
     }
 
     /*
@@ -796,11 +794,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:359
      *
-     * @test_Strategy: Execute the findCustomersByQuery26 method using the IS NOT
-     * NULL comparison operator within the WHERE clause. Verify the results were
-     * accurately returned. (This test is executed against non-NULL data. For NULL
-     * data tests with this comparison operator, see the tests in the
-     * ejbql/null_values test directory.)
+     * @test_Strategy: Execute the findCustomersByQuery26 method using the IS NOT NULL comparison operator within the WHERE
+     * clause. Verify the results were accurately returned. (This test is executed against non-NULL data. For NULL data
+     * tests with this comparison operator, see the tests in the ejbql/null_values test directory.)
      */
 
     public void whereTest19() throws Fault {
@@ -836,7 +832,8 @@ public class Client extends EETest {
             throw new Fault("whereTest19 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest19 failed");
+        if (!pass)
+            throw new Fault("whereTest19 failed");
     }
 
     /*
@@ -844,9 +841,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:369.1
      *
-     * @test_Strategy: Execute the findAliasesByQuery2 method which includes the
-     * string function CONCAT in a functional expression within the WHERE clause.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute the findAliasesByQuery2 method which includes the string function CONCAT in a functional
+     * expression within the WHERE clause. Verify the results were accurately returned.
      */
 
     public void whereTest20() throws Fault {
@@ -870,7 +866,8 @@ public class Client extends EETest {
             throw new Fault("whereTest20 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest20 failed");
+        if (!pass)
+            throw new Fault("whereTest20 failed");
     }
 
     /*
@@ -878,9 +875,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:369.2
      *
-     * @test_Strategy: Execute the findAliasesByQuery3 method which includes the
-     * string function SUBSTRING in a functional expression within the WHERE
-     * clause. Verify the results were accurately returned.
+     * @test_Strategy: Execute the findAliasesByQuery3 method which includes the string function SUBSTRING in a functional
+     * expression within the WHERE clause. Verify the results were accurately returned.
      */
 
     public void whereTest21() throws Fault {
@@ -904,7 +900,8 @@ public class Client extends EETest {
             throw new Fault("whereTest21 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest21 failed");
+        if (!pass)
+            throw new Fault("whereTest21 failed");
     }
 
     /*
@@ -912,9 +909,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:369.4
      *
-     * @test_Strategy: Execute the findAliasesByQuery4 method which includes the
-     * string function LENGTH in a functional expression within the WHERE clause.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute the findAliasesByQuery4 method which includes the string function LENGTH in a functional
+     * expression within the WHERE clause. Verify the results were accurately returned.
      */
 
     public void whereTest22() throws Fault {
@@ -944,7 +940,8 @@ public class Client extends EETest {
             throw new Fault("whereTest22 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest22 failed");
+        if (!pass)
+            throw new Fault("whereTest22 failed");
     }
 
     /*
@@ -952,9 +949,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:369.5
      *
-     * @test_Strategy: Execute the findOrdersByQuery16 method which includes the
-     * arithmetic function ABS in a functional expression within the WHERE clause.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute the findOrdersByQuery16 method which includes the arithmetic function ABS in a functional
+     * expression within the WHERE clause. Verify the results were accurately returned.
      */
 
     public void whereTest23() throws Fault {
@@ -984,7 +980,8 @@ public class Client extends EETest {
             throw new Fault("whereTest23 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest23 failed");
+        if (!pass)
+            throw new Fault("whereTest23 failed");
     }
 
     /*
@@ -992,9 +989,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:369.3
      *
-     * @test_Strategy: Execute the findAliasesByQuery5 method which includes the
-     * string function LOCATE in a functional expression within the WHERE clause.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute the findAliasesByQuery5 method which includes the string function LOCATE in a functional
+     * expression within the WHERE clause. Verify the results were accurately returned.
      */
 
     public void whereTest24() throws Fault {
@@ -1020,7 +1016,8 @@ public class Client extends EETest {
             throw new Fault("whereTest24 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest24 failed");
+        if (!pass)
+            throw new Fault("whereTest24 failed");
     }
 
     /*
@@ -1028,9 +1025,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:363.1; EJB:SPEC:365
      *
-     * @test_Strategy: Execute the findAliasesByQuery6 method using the comparison
-     * operator MEMBER OF in a collection member expression. Verify the results
-     * were accurately returned.
+     * @test_Strategy: Execute the findAliasesByQuery6 method using the comparison operator MEMBER OF in a collection member
+     * expression. Verify the results were accurately returned.
      */
 
     public void whereTest25() throws Fault {
@@ -1053,7 +1049,8 @@ public class Client extends EETest {
             throw new Fault("whereTest25 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest25 failed");
+        if (!pass)
+            throw new Fault("whereTest25 failed");
     }
 
     /*
@@ -1061,9 +1058,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:363; EJB:SPEC:365
      *
-     * @test_Strategy: Execute the findAliasesByQuery7 method using the comparison
-     * operator NOT MEMBER in a collection member expression. Verify the results
-     * were accurately returned.
+     * @test_Strategy: Execute the findAliasesByQuery7 method using the comparison operator NOT MEMBER in a collection
+     * member expression. Verify the results were accurately returned.
      */
 
     public void whereTest26() throws Fault {
@@ -1074,7 +1070,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Find aliases who are NOT members of collection");
             a = aliasHome.findAliasesByQuery7();
             expectedPKs = new String[Schema.NUMOFALIASES];
-            for (int i = 0; i < Schema.NUMOFALIASES; i++) expectedPKs[i] = Integer.toString(i + 1);
+            for (int i = 0; i < Schema.NUMOFALIASES; i++)
+                expectedPKs[i] = Integer.toString(i + 1);
             if (!Util.checkEJBs(a, Schema.ALIASREF, expectedPKs)) {
                 TestUtil.logErr("UnSuccessfully found aliases NOT in member collection");
                 pass = false;
@@ -1087,7 +1084,8 @@ public class Client extends EETest {
             throw new Fault("whereTest26 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest26 failed");
+        if (!pass)
+            throw new Fault("whereTest26 failed");
     }
 
     /*
@@ -1095,10 +1093,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:358
      *
-     * @test_Strategy: Execute the findCustomersByQuery28 method using the
-     * comparison operator LIKE in a comparison expression within the WHERE
-     * clause. The optional ESCAPE syntax is used to escape the underscore. Verify
-     * the results were accurately returned.
+     * @test_Strategy: Execute the findCustomersByQuery28 method using the comparison operator LIKE in a comparison
+     * expression within the WHERE clause. The optional ESCAPE syntax is used to escape the underscore. Verify the results
+     * were accurately returned.
      *
      */
 
@@ -1123,7 +1120,8 @@ public class Client extends EETest {
             throw new Fault("whereTest27 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest27 failed");
+        if (!pass)
+            throw new Fault("whereTest27 failed");
     }
 
     /*
@@ -1131,9 +1129,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:341; EJB:SPEC:340; EJB:SPEC:266
      *
-     * @test_Strategy: Execute the findCustomerByQuery29 method on the local home
-     * interface. The method name and signature of this method is the same as in
-     * the remote home interface. Verify the results were accurately returned.
+     * @test_Strategy: Execute the findCustomerByQuery29 method on the local home interface. The method name and signature
+     * of this method is the same as in the remote home interface. Verify the results were accurately returned.
      *
      */
 
@@ -1155,7 +1152,8 @@ public class Client extends EETest {
             throw new Fault("whereTest28 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest28 failed");
+        if (!pass)
+            throw new Fault("whereTest28 failed");
     }
 
     /*
@@ -1163,10 +1161,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:340; EJB:SPEC:341; EJB:SPEC:266
      *
-     * @test_Strategy: Execute the findCustomerByQuery29 method defined on the
-     * remote home interface only providing two of the input parameters in the
-     * query. The method name and signature of this method is the same as in the
-     * local home interface. Verify the results were accurately returned.
+     * @test_Strategy: Execute the findCustomerByQuery29 method defined on the remote home interface only providing two of
+     * the input parameters in the query. The method name and signature of this method is the same as in the local home
+     * interface. Verify the results were accurately returned.
      *
      */
 
@@ -1188,7 +1185,8 @@ public class Client extends EETest {
             throw new Fault("whereTest29 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest29 failed");
+        if (!pass)
+            throw new Fault("whereTest29 failed");
     }
 
     /*
@@ -1199,10 +1197,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:266
      *
-     * @test_Strategy: In the case that both the remote home interface and local
-     * home interface define a finder method with the same name and argument
-     * types, the EJB QL query string specified by the query element defines the
-     * semantics of both. Verify the results were accurately returned.
+     * @test_Strategy: In the case that both the remote home interface and local home interface define a finder method with
+     * the same name and argument types, the EJB QL query string specified by the query element defines the semantics of
+     * both. Verify the results were accurately returned.
      *
      */
 
@@ -1228,7 +1225,8 @@ public class Client extends EETest {
             throw new Fault("whereTest30 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest30 failed");
+        if (!pass)
+            throw new Fault("whereTest30 failed");
     }
 
     /*
@@ -1236,16 +1234,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:266
      *
-     * @test_Strategy: In the case that both the remote home interface and local
-     * home interface define a finder method with the same name and argument
-     * types, the EJB QL query string specified by the query element defines the
-     * semantics of both.
+     * @test_Strategy: In the case that both the remote home interface and local home interface define a finder method with
+     * the same name and argument types, the EJB QL query string specified by the query element defines the semantics of
+     * both.
      *
-     * Execute the findCustomersByQuery32 method defined on the remote home
-     * interface only providing two of the input parameters in the query. The
-     * method name and signature of this method is the same as in the local home
-     * interface and returns a Collection of EJBObjects. Verify the results were
-     * accurately returned.
+     * Execute the findCustomersByQuery32 method defined on the remote home interface only providing two of the input
+     * parameters in the query. The method name and signature of this method is the same as in the local home interface and
+     * returns a Collection of EJBObjects. Verify the results were accurately returned.
      *
      */
 
@@ -1271,7 +1266,8 @@ public class Client extends EETest {
             throw new Fault("whereTest31 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest31 failed");
+        if (!pass)
+            throw new Fault("whereTest31 failed");
     }
 
     /*
@@ -1279,10 +1275,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:363
      *
-     * @test_Strategy: Execute the findOrdersByQuery17 method using the comparison
-     * operator MEMBER in a collection member expression with an identification
-     * variable and omitting the optional reserved word OF. Verify the results
-     * were accurately returned.
+     * @test_Strategy: Execute the findOrdersByQuery17 method using the comparison operator MEMBER in a collection member
+     * expression with an identification variable and omitting the optional reserved word OF. Verify the results were
+     * accurately returned.
      */
 
     public void whereTest32() throws Fault {
@@ -1293,7 +1288,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Find all orders where line items are members of the orders");
             o = orderHome.findOrdersByQuery17();
             expectedPKs = new String[Schema.NUMOFORDERS];
-            for (int i = 0; i < Schema.NUMOFORDERS; i++) expectedPKs[i] = Integer.toString(i + 1);
+            for (int i = 0; i < Schema.NUMOFORDERS; i++)
+                expectedPKs[i] = Integer.toString(i + 1);
             if (!Util.checkEJBs(o, Schema.ORDERREF, expectedPKs)) {
                 TestUtil.logErr("UnSuccessfully found all orders with line item members");
                 pass = false;
@@ -1306,7 +1302,8 @@ public class Client extends EETest {
             throw new Fault("whereTest32 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest32 failed");
+        if (!pass)
+            throw new Fault("whereTest32 failed");
     }
 
     /*
@@ -1314,9 +1311,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:363.3
      *
-     * @test_Strategy: Execute the ejbSelectSampleLineItems method using the
-     * comparison operator NOT MEMBER OF in a collection member expression with
-     * input parameter. Verify the results were accurately returned.
+     * @test_Strategy: Execute the ejbSelectSampleLineItems method using the comparison operator NOT MEMBER OF in a
+     * collection member expression with input parameter. Verify the results were accurately returned.
      */
 
     public void whereTest33() throws Fault {
@@ -1357,7 +1353,8 @@ public class Client extends EETest {
             throw new Fault("whereTest33 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest33 failed");
+        if (!pass)
+            throw new Fault("whereTest33 failed");
     }
 
     /*
@@ -1365,9 +1362,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:363.1
      *
-     * @test_Strategy: Execute the findOrdersByQuery18 method using the comparison
-     * operator MEMBER OF in a collection member expression using
-     * single_valued_navigation. Verify the results were accurately returned.
+     * @test_Strategy: Execute the findOrdersByQuery18 method using the comparison operator MEMBER OF in a collection member
+     * expression using single_valued_navigation. Verify the results were accurately returned.
      */
 
     public void whereTest34() throws Fault {
@@ -1392,7 +1388,8 @@ public class Client extends EETest {
             throw new Fault("whereTest34 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest34 failed");
+        if (!pass)
+            throw new Fault("whereTest34 failed");
     }
 
     /*
@@ -1400,10 +1397,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:352
      *
-     * @test_Strategy: Execute the findOrdersByQuery19 method using comparison
-     * operator NOT IN in a comparison expression within the WHERE clause where
-     * the value for the cmp_path_expression contains numeric values. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute the findOrdersByQuery19 method using comparison operator NOT IN in a comparison expression
+     * within the WHERE clause where the value for the cmp_path_expression contains numeric values. Verify the results were
+     * accurately returned.
      */
 
     public void whereTest35() throws Fault {
@@ -1431,7 +1427,8 @@ public class Client extends EETest {
             throw new Fault("whereTest35 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest35 failed");
+        if (!pass)
+            throw new Fault("whereTest35 failed");
     }
 
     /*
@@ -1439,9 +1436,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:352
      *
-     * @test_Strategy: Execute the findCustomersByQuery37 method using comparison
-     * operator IN in a comparison expression within the WHERE clause where the
-     * value for the IN expression is an input parameter. Verify the results were
+     * @test_Strategy: Execute the findCustomersByQuery37 method using comparison operator IN in a comparison expression
+     * within the WHERE clause where the value for the IN expression is an input parameter. Verify the results were
      * accurately returned.
      */
 
@@ -1466,7 +1462,8 @@ public class Client extends EETest {
             throw new Fault("whereTest36 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest36 failed");
+        if (!pass)
+            throw new Fault("whereTest36 failed");
     }
 
     /*
@@ -1474,10 +1471,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:354
      *
-     * @test_Strategy: Execute two methods using the comparison operator IN in a
-     * comparison expression within the WHERE clause and verify the results of the
-     * two queries are equivalent regardless of the way the expression is
-     * composed.
+     * @test_Strategy: Execute two methods using the comparison operator IN in a comparison expression within the WHERE
+     * clause and verify the results of the two queries are equivalent regardless of the way the expression is composed.
      */
 
     public void whereTest37() throws Fault {
@@ -1524,7 +1519,8 @@ public class Client extends EETest {
             throw new Fault("whereTest37 failed", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("whereTest37 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("whereTest37 failed");
     }
 
     /*
@@ -1532,10 +1528,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:355; EJB:SPEC:348.1
      *
-     * @test_Strategy: Execute two methods using the comparison operator NOT IN in
-     * a comparison expression within the WHERE clause and verify the results of
-     * the two queries are equivalent regardless of the way the expression is
-     * composed.
+     * @test_Strategy: Execute two methods using the comparison operator NOT IN in a comparison expression within the WHERE
+     * clause and verify the results of the two queries are equivalent regardless of the way the expression is composed.
      *
      */
 
@@ -1594,7 +1588,8 @@ public class Client extends EETest {
             throw new Fault("whereTest38 failed", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("whereTest38 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("whereTest38 failed");
     }
 
     /*
@@ -1602,10 +1597,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:350
      *
-     * @test_Strategy: Execute two methods using the comparison operator BETWEEN
-     * in a comparison expression within the WHERE clause and verify the results
-     * of the two queries are equivalent regardless of the way the expression is
-     * composed.
+     * @test_Strategy: Execute two methods using the comparison operator BETWEEN in a comparison expression within the WHERE
+     * clause and verify the results of the two queries are equivalent regardless of the way the expression is composed.
      */
 
     public void whereTest39() throws Fault {
@@ -1649,7 +1642,8 @@ public class Client extends EETest {
             throw new Fault("whereTest39 failed", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("whereTest39 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("whereTest39 failed");
     }
 
     /*
@@ -1657,10 +1651,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:350
      *
-     * @test_Strategy: Execute two methods using the comparison operator NOT
-     * BETWEEN in a comparison expression within the WHERE clause and verify the
-     * results of the two queries are equivalent regardless of the way the
-     * expression is composed.
+     * @test_Strategy: Execute two methods using the comparison operator NOT BETWEEN in a comparison expression within the
+     * WHERE clause and verify the results of the two queries are equivalent regardless of the way the expression is
+     * composed.
      */
 
     public void whereTest40() throws Fault {
@@ -1729,7 +1722,8 @@ public class Client extends EETest {
             throw new Fault("whereTest40 failed", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("whereTest40 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("whereTest40 failed");
     }
 
     /*
@@ -1737,9 +1731,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:369.7
      *
-     * @test_Strategy: Execute the findProductsByQuery6 method which includes the
-     * arithmetic function MOD in a functional expression within the WHERE clause.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute the findProductsByQuery6 method which includes the arithmetic function MOD in a functional
+     * expression within the WHERE clause. Verify the results were accurately returned.
      */
 
     public void whereTest41() throws Fault {
@@ -1764,7 +1757,8 @@ public class Client extends EETest {
             throw new Fault("whereTest41 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest41 failed");
+        if (!pass)
+            throw new Fault("whereTest41 failed");
     }
 
     /*
@@ -1772,8 +1766,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:290
      *
-     * @test_Strategy: Execute the overloaded findOrdersByQuery21. Use variable
-     * for finder argument. Verify the results were accurately returned.
+     * @test_Strategy: Execute the overloaded findOrdersByQuery21. Use variable for finder argument. Verify the results were
+     * accurately returned.
      */
 
     public void whereTest42() throws Fault {
@@ -1799,7 +1793,8 @@ public class Client extends EETest {
             throw new Fault("whereTest42 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest42 failed");
+        if (!pass)
+            throw new Fault("whereTest42 failed");
     }
 
     /*
@@ -1807,8 +1802,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:290
      *
-     * @test_Strategy: Execute the overloaded findOrdersByQuery21. Verify the
-     * correct query results are returned.
+     * @test_Strategy: Execute the overloaded findOrdersByQuery21. Verify the correct query results are returned.
      */
 
     public void whereTest43() throws Fault {
@@ -1836,7 +1830,8 @@ public class Client extends EETest {
             throw new Fault("whereTest43 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest43 failed");
+        if (!pass)
+            throw new Fault("whereTest43 failed");
     }
 
     /*
@@ -1844,9 +1839,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:369.6
      *
-     * @test_Strategy: Execute the findCustomersByQuery42 method which includes
-     * the arithmetic function SQRT in a functional expression within the WHERE
-     * clause. Verify the results were accurately returned.
+     * @test_Strategy: Execute the findCustomersByQuery42 method which includes the arithmetic function SQRT in a functional
+     * expression within the WHERE clause. Verify the results were accurately returned.
      */
 
     public void whereTest44() throws Fault {
@@ -1873,7 +1867,8 @@ public class Client extends EETest {
             throw new Fault("whereTest44 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest44 failed");
+        if (!pass)
+            throw new Fault("whereTest44 failed");
     }
 
     /*
@@ -1881,9 +1876,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:358
      *
-     * @test_Strategy: Execute the findCustomersByQuery44 method using the
-     * comparison operator LIKE in a comparison expression within the WHERE clause
-     * using percent (%) to wild card any expression including the optional ESCAPE
+     * @test_Strategy: Execute the findCustomersByQuery44 method using the comparison operator LIKE in a comparison
+     * expression within the WHERE clause using percent (%) to wild card any expression including the optional ESCAPE
      * syntax. Verify the results were accurately returned.
      *
      */
@@ -1909,7 +1903,8 @@ public class Client extends EETest {
             throw new Fault("whereTest45 failed", e);
         }
 
-        if (!pass) throw new Fault("whereTest45 failed");
+        if (!pass)
+            throw new Fault("whereTest45 failed");
     }
 
     public void cleanup() throws Fault {

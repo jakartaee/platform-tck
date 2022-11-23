@@ -109,8 +109,7 @@ public class TSDbUtil {
 
         try {
             statement = con.createStatement();
-            ResultSet resultSet =
-                    statement.executeQuery("SELECT MESSAGE FROM EJB_AUTOCLOSE_TAB WHERE NAME='" + key + "'");
+            ResultSet resultSet = statement.executeQuery("SELECT MESSAGE FROM EJB_AUTOCLOSE_TAB WHERE NAME='" + key + "'");
 
             while (resultSet.next()) {
                 result = resultSet.getString(1);

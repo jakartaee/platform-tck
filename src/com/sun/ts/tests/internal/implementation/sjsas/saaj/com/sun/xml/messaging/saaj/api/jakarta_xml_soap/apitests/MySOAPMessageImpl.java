@@ -76,14 +76,14 @@ public class MySOAPMessageImpl extends SOAPMessage {
     }
 
     /**
-     * Construct a message from an input stream. When messages are received,
-     * there's two parts -- the transport headers and the message content in a
-     * transport specific stream.
+     * Construct a message from an input stream. When messages are received, there's two parts -- the transport headers and
+     * the message content in a transport specific stream.
      */
     public MySOAPMessageImpl(MimeHeaders headers, final InputStream in) throws IOException, SOAPException {
         this.headers = headers;
         final String ct = getContentType();
-        if (ct == null) throw new SOAPException("Absent Content-Type");
+        if (ct == null)
+            throw new SOAPException("Absent Content-Type");
 
         try {
             ContentType contentType = new ContentType(ct);
@@ -148,13 +148,18 @@ public class MySOAPMessageImpl extends SOAPMessage {
         String sub = contentType.getSubType();
 
         if (!primary.equalsIgnoreCase("multipart")) {
-            if (primary.equalsIgnoreCase("text") && sub.equalsIgnoreCase("xml")) return 1;
-            else throw new SOAPException("Invalid Content-Type:" + primary + "/" + sub);
+            if (primary.equalsIgnoreCase("text") && sub.equalsIgnoreCase("xml"))
+                return 1;
+            else
+                throw new SOAPException("Invalid Content-Type:" + primary + "/" + sub);
         } else if (sub.equalsIgnoreCase("related")) {
             String type = contentType.getParameter("type").toLowerCase();
-            if (type.startsWith("text/xml")) return 2;
-            else throw new SOAPException("Content-Type needs to be Multipart/Related " + "and with \"type=text/xml\"");
-        } else throw new SOAPException("Invalid Content-Type: " + primary + "/" + sub);
+            if (type.startsWith("text/xml"))
+                return 2;
+            else
+                throw new SOAPException("Content-Type needs to be Multipart/Related " + "and with \"type=text/xml\"");
+        } else
+            throw new SOAPException("Invalid Content-Type: " + primary + "/" + sub);
     }
 
     public MimeHeaders getMimeHeaders() {
@@ -163,13 +168,15 @@ public class MySOAPMessageImpl extends SOAPMessage {
 
     final String getContentType() {
         String[] values = headers.getHeader("Content-Type");
-        if (values == null) return null;
-        else return values[0];
+        if (values == null)
+            return null;
+        else
+            return values[0];
     }
 
     /**
-     * All write methods (i.e setters) should call this method in order to make
-     * sure that a save is necessary since the state has been modified.
+     * All write methods (i.e setters) should call this method in order to make sure that a save is necessary since the
+     * state has been modified.
      */
     private final void needsSave() {
         saved = false;
@@ -181,7 +188,8 @@ public class MySOAPMessageImpl extends SOAPMessage {
 
     public String getContentDescription() {
         String[] values = headers.getHeader("Content-Description");
-        if (values.length > 0) return values[0];
+        if (values.length > 0)
+            return values[0];
         return null;
     }
 
@@ -205,12 +213,14 @@ public class MySOAPMessageImpl extends SOAPMessage {
     }
 
     public int countAttachments() {
-        if (attachments != null) return attachments.size();
+        if (attachments != null)
+            return attachments.size();
         return 0;
     }
 
     public void addAttachmentPart(AttachmentPart attachment) {
-        if (attachments == null) attachments = new Vector();
+        if (attachments == null)
+            attachments = new Vector();
 
         attachments.addElement(attachment);
 
@@ -232,7 +242,8 @@ public class MySOAPMessageImpl extends SOAPMessage {
     };
 
     public Iterator getAttachments() {
-        if (attachments == null) return nullIter;
+        if (attachments == null)
+            return nullIter;
         return attachments.iterator();
     }
 
@@ -249,7 +260,8 @@ public class MySOAPMessageImpl extends SOAPMessage {
         private Object nextAttachment;
 
         public boolean hasNext() {
-            if (nextAttachment == null) nextAttachment = nextMatch();
+            if (nextAttachment == null)
+                nextAttachment = nextMatch();
             return nextAttachment != null;
         }
 
@@ -260,7 +272,8 @@ public class MySOAPMessageImpl extends SOAPMessage {
                 return ret;
             }
 
-            if (hasNext()) return nextAttachment;
+            if (hasNext())
+                return nextAttachment;
 
             return null;
         }
@@ -268,7 +281,8 @@ public class MySOAPMessageImpl extends SOAPMessage {
         Object nextMatch() {
             while (iter.hasNext()) {
                 AttachmentPartImpl ap = (AttachmentPartImpl) iter.next();
-                if (ap.hasAllHeaders(headers)) return ap;
+                if (ap.hasAllHeaders(headers))
+                    return ap;
             }
             return null;
         }
@@ -279,7 +293,8 @@ public class MySOAPMessageImpl extends SOAPMessage {
     }
 
     public Iterator getAttachments(MimeHeaders headers) {
-        if (attachments == null) return nullIter;
+        if (attachments == null)
+            return nullIter;
 
         return new MimeMatchingIterator(headers);
     }
@@ -300,7 +315,7 @@ public class MySOAPMessageImpl extends SOAPMessage {
             SOAPPartImpl sp = (SOAPPartImpl) getSOAPPart();
             headerAndBody.addBodyPart(sp.getMimePart());
 
-            for (Iterator i = getAttachments(); i.hasNext(); )
+            for (Iterator i = getAttachments(); i.hasNext();)
                 headerAndBody.addBodyPart(((AttachmentPartImpl) i.next()).getMimePart());
 
             ContentType contentType = new ContentType(headerAndBody.getContentType());
@@ -361,13 +376,15 @@ public class MySOAPMessageImpl extends SOAPMessage {
 
         String[] soapAction = headers.getHeader("SOAPAction");
 
-        if (soapAction == null || soapAction.length == 0) headers.setHeader("SOAPAction", "\"\"");
+        if (soapAction == null || soapAction.length == 0)
+            headers.setHeader("SOAPAction", "\"\"");
 
         saved = true;
     }
 
     public void writeTo(OutputStream out) throws SOAPException, IOException {
-        if (saveRequired()) saveChanges();
+        if (saveRequired())
+            saveChanges();
 
         out.write(messageBytes, 0, messageByteCount);
         messageBytes = null;

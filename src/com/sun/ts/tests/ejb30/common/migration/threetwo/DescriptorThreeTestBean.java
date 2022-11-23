@@ -43,9 +43,11 @@ public class DescriptorThreeTestBean extends ThreeTestBeanBase implements ThreeT
     // @Resource
     private SessionContext sctx;
 
-    public DescriptorThreeTestBean() {}
+    public DescriptorThreeTestBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected TwoRemoteHome getTwoRemoteHome() {
         if (twoRemoteHome == null) {

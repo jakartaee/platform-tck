@@ -37,8 +37,10 @@ public class TestServlet extends HttpTCKServlet {
         String path = "/include/IncludedServlet?querySemicolonIncludeQuebec;libre";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-        if (rd == null) pw.println("Null RequestDispatcher got for path=" + path);
-        else rd.include(request, response);
+        if (rd == null)
+            pw.println("Null RequestDispatcher got for path=" + path);
+        else
+            rd.include(request, response);
     }
 
     public void querySemicolonForward(HttpServletRequest request, HttpServletResponse response)
@@ -48,7 +50,9 @@ public class TestServlet extends HttpTCKServlet {
         String path = "/include/IncludedServlet?querySemicolonForwardQuebec;libre";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-        if (rd == null) pw.println("Null RequestDispatcher got for path=" + path);
-        else rd.forward(request, response);
+        if (rd == null)
+            pw.println("Null RequestDispatcher got for path=" + path);
+        else
+            rd.forward(request, response);
     }
 }

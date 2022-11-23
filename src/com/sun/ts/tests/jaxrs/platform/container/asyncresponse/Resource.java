@@ -45,7 +45,7 @@ public class Resource {
 
     //
     private static final AsyncResponseBlockingQueue[] stage = {
-        new AsyncResponseBlockingQueue(1), new AsyncResponseBlockingQueue(1), new AsyncResponseBlockingQueue(1)
+            new AsyncResponseBlockingQueue(1), new AsyncResponseBlockingQueue(1), new AsyncResponseBlockingQueue(1)
     };
 
     @GET
@@ -57,7 +57,8 @@ public class Resource {
     @GET
     @Path("clear")
     public void clear() {
-        for (int i = 0; i != stage.length; i++) stage[i].clear();
+        for (int i = 0; i != stage.length; i++)
+            stage[i].clear();
     }
 
     @GET
@@ -193,7 +194,8 @@ public class Resource {
 
     protected static final void addResponse(AsyncResponse response, String stageId) {
         int id = Integer.parseInt(stageId) + 1;
-        if (id != stage.length) stage[id].add(response);
+        if (id != stage.length)
+            stage[id].add(response);
     }
 
     protected static boolean resume(AsyncResponse takenResponse, Object response) {

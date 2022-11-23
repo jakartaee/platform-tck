@@ -53,7 +53,8 @@ public class MyManagedBean implements Serializable {
     @Resource(name = "jms/MY_TOPIC")
     private transient Topic topic;
 
-    public MyManagedBean() {}
+    public MyManagedBean() {
+    }
 
     @PostConstruct
     public void postConstruct() {

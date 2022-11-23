@@ -62,8 +62,7 @@ public class ServerSOAPHandler extends HTTPSOAPHandler {
     }
 
     /**
-     * Verifies that the part accessor for rpc-literal SOAP messages parameter and
-     * return values have no namespace.
+     * Verifies that the part accessor for rpc-literal SOAP messages parameter and return values have no namespace.
      */
     protected String verifyNamespacesForChildrenOfPartAccessors(SOAPMessageContext context) throws Exception {
         System.out.println("in ServerSOAPHandler:verifyNamespacesForChildrenOfPartAccessors");
@@ -90,7 +89,8 @@ public class ServerSOAPHandler extends HTTPSOAPHandler {
                     uri = child.getElementName().getURI();
                     System.out.println("  child localname: " + localName);
                     System.out.println("  child uri: " + uri);
-                    if (localName.equals(PART_ACCESSOR_NAME) && (uri == null || uri.equals(""))) flg1 = true;
+                    if (localName.equals(PART_ACCESSOR_NAME) && (uri == null || uri.equals("")))
+                        flg1 = true;
                     // All children of part accessors MUST be namespace qualified
                     if (!children.hasNext()) {
                         System.out.println("Getting children of part accessor ...");
@@ -105,19 +105,22 @@ public class ServerSOAPHandler extends HTTPSOAPHandler {
                             System.out.println("    child localname: " + localName);
                             System.out.println("    child uri: " + uri);
                             switch (i) {
-                                case 1:
-                                    if (localName.equals(PART1_NAME) && uri.equals(PART1_URI)) flg2 = true;
-                                    break;
-                                case 2:
-                                    if (localName.equals(PART2_NAME) && uri.equals(PART2_URI)) flg3 = true;
-                                    break;
+                            case 1:
+                                if (localName.equals(PART1_NAME) && uri.equals(PART1_URI))
+                                    flg2 = true;
+                                break;
+                            case 2:
+                                if (localName.equals(PART2_NAME) && uri.equals(PART2_URI))
+                                    flg3 = true;
+                                break;
                             }
                         }
                     }
                 }
             }
         }
-        if (flg1 && flg2 && flg3) result = "PASSED";
+        if (flg1 && flg2 && flg3)
+            result = "PASSED";
         System.out.println("result=" + result);
         JAXWS_Util.printSOAPMessage(sm, System.out);
         return result;

@@ -24,11 +24,7 @@ import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.Style;
 
-@WebService(
-        name = "EchoTest",
-        portName = "EchoTest",
-        serviceName = "MyEchoWebService",
-        targetNamespace = "http://echo.org/wsdl")
+@WebService(name = "EchoTest", portName = "EchoTest", serviceName = "MyEchoWebService", targetNamespace = "http://echo.org/wsdl")
 @SOAPBinding(style = Style.DOCUMENT)
 public class EchoTest {
     @WebMethod

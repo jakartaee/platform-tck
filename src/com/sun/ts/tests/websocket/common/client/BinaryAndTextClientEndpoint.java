@@ -24,8 +24,8 @@ import jakarta.websocket.Session;
 import java.nio.ByteBuffer;
 
 /**
- * Receive any of ByteBuffer (binary) and String (Text) messages, the client
- * behaves without making any difference on type of message received.
+ * Receive any of ByteBuffer (binary) and String (Text) messages, the client behaves without making any difference on
+ * type of message received.
  */
 public class BinaryAndTextClientEndpoint extends ClientEndpoint<String> {
     @Override

@@ -38,8 +38,7 @@ import java.util.Properties;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The scalarClient4 class tests methods of scalar Functions interface using
- * Sun's J2EE Reference Implementation.
+ * The scalarClient4 class tests methods of scalar Functions interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -76,14 +75,11 @@ public class scalarClient4 extends ServiceEETest {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -92,7 +88,8 @@ public class scalarClient4 extends ServiceEETest {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 if (drManager.equals("yes")) {
                     logTrace("Using DriverManager");
@@ -121,9 +118,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampadd with the interval
-     * value as SQL_TSI_FRAC_SECOND. It should return a timestamp value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampadd with the interval value as SQL_TSI_FRAC_SECOND. It should return a timestamp value.
      *
      */
     public void testTimestampAdd01() throws Fault {
@@ -169,9 +165,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampadd with the interval
-     * value as SQL_TSI_SECOND. It should return a timestamp value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampadd with the interval value as SQL_TSI_SECOND. It should return a timestamp value.
      *
      */
     public void testTimestampAdd02() throws Fault {
@@ -217,9 +212,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampadd with the interval
-     * value as SQL_TSI_MINUTE. It should return a timestamp value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampadd with the interval value as SQL_TSI_MINUTE. It should return a timestamp value.
      *
      */
     public void testTimestampAdd03() throws Fault {
@@ -265,9 +259,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampadd with the interval
-     * value as SQL_TSI_HOUR. It should return a timestamp value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampadd with the interval value as SQL_TSI_HOUR. It should return a timestamp value.
      *
      */
     public void testTimestampAdd04() throws Fault {
@@ -313,9 +306,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampadd with the interval
-     * value as SQL_TSI_DAY. It should return a timestamp value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampadd with the interval value as SQL_TSI_DAY. It should return a timestamp value.
      *
      */
     public void testTimestampAdd05() throws Fault {
@@ -361,9 +353,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampadd with the interval
-     * value as SQL_TSI_WEEK. It should return a timestamp value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampadd with the interval value as SQL_TSI_WEEK. It should return a timestamp value.
      *
      */
     public void testTimestampAdd06() throws Fault {
@@ -409,9 +400,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampadd with the interval
-     * value as SQL_TSI_MONTH. It should return a timestamp value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampadd with the interval value as SQL_TSI_MONTH. It should return a timestamp value.
      *
      */
     public void testTimestampAdd07() throws Fault {
@@ -457,9 +447,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampadd with the interval
-     * value as SQL_TSI_QUARTER. It should return a timestamp value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampadd with the interval value as SQL_TSI_QUARTER. It should return a timestamp value.
      *
      */
     public void testTimestampAdd08() throws Fault {
@@ -505,9 +494,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampadd with the interval
-     * value as SQL_TSI_YEAR. It should return a timestamp value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampadd with the interval value as SQL_TSI_YEAR. It should return a timestamp value.
      *
      */
     public void testTimestampAdd09() throws Fault {
@@ -554,9 +542,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampdiff with the interval
-     * value as SQL_TSI_FRAC_SECOND. It should return an integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampdiff with the interval value as SQL_TSI_FRAC_SECOND. It should return an integer.
      *
      */
     public void testTimestampDiff01() throws Fault {
@@ -602,9 +589,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampdiff with the interval
-     * value as SQL_TSI_SECOND. It should return an integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampdiff with the interval value as SQL_TSI_SECOND. It should return an integer.
      *
      */
     public void testTimestampDiff02() throws Fault {
@@ -650,9 +636,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampdiff with the interval
-     * value as SQL_TSI_MINUTE. It should return an integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampdiff with the interval value as SQL_TSI_MINUTE. It should return an integer.
      *
      */
     public void testTimestampDiff03() throws Fault {
@@ -698,9 +683,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampdiff with the interval
-     * value as SQL_TSI_HOUR. It should return an integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampdiff with the interval value as SQL_TSI_HOUR. It should return an integer.
      *
      */
     public void testTimestampDiff04() throws Fault {
@@ -746,9 +730,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampdiff with the interval
-     * value as SQL_TSI_DAY. It should return an integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampdiff with the interval value as SQL_TSI_DAY. It should return an integer.
      *
      */
     public void testTimestampDiff05() throws Fault {
@@ -794,9 +777,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampdiff with the interval
-     * value as SQL_TSI_WEEK. It should return an integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampdiff with the interval value as SQL_TSI_WEEK. It should return an integer.
      *
      */
     public void testTimestampDiff06() throws Fault {
@@ -843,9 +825,8 @@ public class scalarClient4 extends ServiceEETest {
      * @assertion_ids: JDBC:SPEC:4;
      *
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampdiff with the interval
-     * value as SQL_TSI_MONTH. It should return an integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampdiff with the interval value as SQL_TSI_MONTH. It should return an integer.
      *
      */
     public void testTimestampDiff07() throws Fault {
@@ -891,9 +872,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampdiff with the interval
-     * value as SQL_TSI_QUARTER. It should return an integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampdiff with the interval value as SQL_TSI_QUARTER. It should return an integer.
      *
      */
     public void testTimestampDiff08() throws Fault {
@@ -939,9 +919,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function timestampdiff with the interval
-     * value as SQL_TSI_YEAR. It should return an integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * timestampdiff with the interval value as SQL_TSI_YEAR. It should return an integer.
      *
      */
     public void testTimestampDiff09() throws Fault {
@@ -987,8 +966,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a left outer join. It should return a ResultSet object.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a left outer join. It
+     * should return a ResultSet object.
      *
      */
     public void testLeftOuterjoin() throws Fault {
@@ -1039,8 +1018,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a right outer join. It should return a ResultSet object.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a right outer join. It
+     * should return a ResultSet object.
      *
      */
     public void testRightOuterjoin() throws Fault {
@@ -1090,8 +1069,8 @@ public class scalarClient4 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a full outer join. It should return a ResultSet object.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a full outer join. It
+     * should return a ResultSet object.
      *
      */
     public void testFullOuterjoin() throws Fault {

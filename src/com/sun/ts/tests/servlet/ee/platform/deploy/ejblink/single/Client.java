@@ -41,9 +41,8 @@ public class Client extends EETest {
     /**
      * Test setup
      *
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     webServerHost, the web server host; webServerPort, the
-     *                     web server port; generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; webServerHost, the web server host;
+     * webServerPort, the web server port; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -64,13 +63,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:SPEC:116.2; JavaEE:SPEC:10118
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares an EJB reference to a Stateless Session bean.
-     *                 Deploy the WAR and have the servlet lookup the bean home
-     *                 interface. Use it to create a bean. Then invoke on that
-     *                 bean instance a business method to be found only in this
-     *                 particular bean (to check that the EJB reference was
-     *                 resolved consistently with the DD).
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares an EJB reference to a Stateless
+     * Session bean. Deploy the WAR and have the servlet lookup the bean home interface. Use it to create a bean. Then
+     * invoke on that bean instance a business method to be found only in this particular bean (to check that the EJB
+     * reference was resolved consistently with the DD).
      */
     public void testStateless() throws Fault {
         try {
@@ -91,13 +87,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:SPEC:116.2; JavaEE:SPEC:10118
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares an EJB reference to a Stateful Session bean.
-     *                 Deploy the WAR and have the servlet lookup the bean home
-     *                 interface. Use it to create a bean. Then invoke on that
-     *                 bean instance a business method to be found only in this
-     *                 particular bean (to check that the EJB reference was
-     *                 resolved consistently with the DD).
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares an EJB reference to a Stateful
+     * Session bean. Deploy the WAR and have the servlet lookup the bean home interface. Use it to create a bean. Then
+     * invoke on that bean instance a business method to be found only in this particular bean (to check that the EJB
+     * reference was resolved consistently with the DD).
      */
     public void testStateful() throws Fault {
         try {
@@ -119,13 +112,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:SPEC:116.2; JavaEE:SPEC:10118
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares an EJB reference to a BMP Session bean. Deploy the
-     *                 WAR and have the servlet lookup the bean home interface.
-     *                 Use it to create a bean. Then invoke on that bean instance
-     *                 a business method to be found only in this particular bean
-     *                 (to check that the EJB reference was resolved consistently
-     *                 with the DD).
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares an EJB reference to a BMP
+     * Session bean. Deploy the WAR and have the servlet lookup the bean home interface. Use it to create a bean. Then
+     * invoke on that bean instance a business method to be found only in this particular bean (to check that the EJB
+     * reference was resolved consistently with the DD).
      */
     public void testBMP() throws Fault {
         boolean pass = true;
@@ -149,13 +139,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:SPEC:116.2; JavaEE:SPEC:10118
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares an EJB reference to a CMP 1.1 Session bean. Deploy
-     *                 the WAR and have the servlet lookup the bean home
-     *                 interface. Use it to create a bean. Then invoke on that
-     *                 bean instance a business method to be found only in this
-     *                 particular bean (to check that the EJB reference was
-     *                 resolved consistently with the DD).
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares an EJB reference to a CMP 1.1
+     * Session bean. Deploy the WAR and have the servlet lookup the bean home interface. Use it to create a bean. Then
+     * invoke on that bean instance a business method to be found only in this particular bean (to check that the EJB
+     * reference was resolved consistently with the DD).
      */
     public void testCMP11() throws Fault {
         try {
@@ -176,13 +163,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:SPEC:116.2; JavaEE:SPEC:10118
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares an EJB reference to a CMP 2.0 Session bean. Deploy
-     *                 the WAR and have the servlet lookup the bean home
-     *                 interface. Use it to create a bean. Then invoke on that
-     *                 bean instance a business method to be found only in this
-     *                 particular bean (to check that the EJB reference was
-     *                 resolved consistently with the DD).
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares an EJB reference to a CMP 2.0
+     * Session bean. Deploy the WAR and have the servlet lookup the bean home interface. Use it to create a bean. Then
+     * invoke on that bean instance a business method to be found only in this particular bean (to check that the EJB
+     * reference was resolved consistently with the DD).
      */
     public void testCMP20() throws Fault {
         try {

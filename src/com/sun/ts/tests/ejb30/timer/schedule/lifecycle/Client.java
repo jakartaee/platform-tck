@@ -85,11 +85,9 @@ public class Client extends ClientBase {
     /*
      * @testName: timerHandle
      *
-     * @test_Strategy: verify Timer.getHandler(), pass it locally to web
-     * component, write it to disk, read it back, and compare it to the original
-     * one with Timer.equals(Object). Also verifies that calling Handle.getTimer()
-     * after the associated timer is cancelled will result in
-     * NoSuchObjectLocalException.
+     * @test_Strategy: verify Timer.getHandler(), pass it locally to web component, write it to disk, read it back, and
+     * compare it to the original one with Timer.equals(Object). Also verifies that calling Handle.getTimer() after the
+     * associated timer is cancelled will result in NoSuchObjectLocalException.
      */
     public void timerHandle() throws IOException, ClassNotFoundException {
         deleteTimerStore();
@@ -117,8 +115,7 @@ public class Client extends ClientBase {
     /*
      * @testName: timerHandleIllegalStateException
      *
-     * @test_Strategy: verify Timer.getHandler() throws IllegalStateException for
-     * non-persistent timers.
+     * @test_Strategy: verify Timer.getHandler() throws IllegalStateException for non-persistent timers.
      */
     public void timerHandleIllegalStateException() {
         appendReason(scheduleBean.timerHandleIllegalStateException());
@@ -127,9 +124,8 @@ public class Client extends ClientBase {
     /*
      * @testName: isCalendarTimerAndGetSchedule
      *
-     * @test_Strategy: test isCalendarTimer for auto and programmatic timer, and
-     * getSchedule returns the schedule expression for calendar timer and throws
-     * IllegalStateException for non-calendar timer.
+     * @test_Strategy: test isCalendarTimer for auto and programmatic timer, and getSchedule returns the schedule expression
+     * for calendar timer and throws IllegalStateException for non-calendar timer.
      */
     public void isCalendarTimerAndGetSchedule() {
         appendReason(scheduleBean.isCalendarTimerAndGetSchedule());
@@ -172,8 +168,7 @@ public class Client extends ClientBase {
     /*
      * @testName: timerHash
      *
-     * @test_Strategy: serialize a TimerHandle, deserialize it to get the timer,
-     * verify it with a HashMap.
+     * @test_Strategy: serialize a TimerHandle, deserialize it to get the timer, verify it with a HashMap.
      */
     public void timerHash() throws IOException, ClassNotFoundException {
         deleteTimerStore();
@@ -209,8 +204,7 @@ public class Client extends ClientBase {
     /*
      * @testName: completeAndNoSuchObjectLocalException
      *
-     * @test_Strategy: after a timer completes, further access will result in
-     * jakarta.ejb.NoSuchObjectLocalException
+     * @test_Strategy: after a timer completes, further access will result in jakarta.ejb.NoSuchObjectLocalException
      */
     public void completeAndNoSuchObjectLocalException() {
         Timer t = scheduleBean.createSecondLaterTimer(getTestName());
@@ -221,8 +215,7 @@ public class Client extends ClientBase {
     /*
      * @testName: cancelAndNoSuchObjectLocalException
      *
-     * @test_Strategy: after a timer cancellation, further access will result in
-     * jakarta.ejb.NoSuchObjectLocalException
+     * @test_Strategy: after a timer cancellation, further access will result in jakarta.ejb.NoSuchObjectLocalException
      */
     public void cancelAndNoSuchObjectLocalException() {
         Timer t = scheduleBean.createFarFutureTimer(getTestName());
@@ -233,8 +226,8 @@ public class Client extends ClientBase {
     /*
      * @testName: cancelWithTxAndNoSuchObjectLocalException
      *
-     * @test_Strategy: after a timer cancellation within a tx context, further
-     * access will result in jakarta.ejb.NoSuchObjectLocalException
+     * @test_Strategy: after a timer cancellation within a tx context, further access will result in
+     * jakarta.ejb.NoSuchObjectLocalException
      */
     public void cancelWithTxAndNoSuchObjectLocalException() {
         Timer t = scheduleBean.createFarFutureTimer(getTestName());

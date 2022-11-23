@@ -24,4 +24,5 @@ import jakarta.ejb.Singleton;
 
 @Remote(NormalInterface1.class)
 @Singleton
-public class OneRemoteAnnotationOnEjbBean extends BaseBean implements NormalInterface1, NormalInterface2 {}
+public class OneRemoteAnnotationOnEjbBean extends BaseBean implements NormalInterface1, NormalInterface2 {
+}

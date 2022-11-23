@@ -34,7 +34,8 @@ public abstract class Employee2 {
 
     private char[] lastName;
 
-    protected Employee2() {}
+    protected Employee2() {
+    }
 
     protected Employee2(int id, String firstName, char[] lastName) {
         this.id = id;

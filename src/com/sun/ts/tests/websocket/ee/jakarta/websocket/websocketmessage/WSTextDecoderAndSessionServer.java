@@ -26,9 +26,7 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/textdecodersession",
-        decoders = {StringBeanTextDecoder.class})
+@ServerEndpoint(value = "/textdecodersession", decoders = { StringBeanTextDecoder.class })
 public class WSTextDecoderAndSessionServer {
 
     @SuppressWarnings("unused")

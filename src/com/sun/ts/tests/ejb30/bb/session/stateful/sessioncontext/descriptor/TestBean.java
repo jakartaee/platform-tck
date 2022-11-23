@@ -81,7 +81,8 @@ public class TestBean extends TestBeanBase {
         return (ThreeLocal2IF) (sessionContext.lookup("local2"));
     }
 
-    public TestBean() {}
+    public TestBean() {
+    }
 
     @Remove(retainIfException = false)
     public void remove() {

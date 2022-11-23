@@ -40,11 +40,9 @@ public class Client extends ServiceEETest {
     // need to create jaxbContext
     private static final ObjectFactory of = new ObjectFactory();
 
-    private String helloReq =
-            "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest>";
+    private String helloReq = "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest>";
 
-    private String helloResp =
-            "<HelloResponse xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloResponse>";
+    private String helloResp = "<HelloResponse xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloResponse>";
 
     // The webserver defaults (overidden by harness properties)
     private static final String PROTOCOL = "http";
@@ -95,11 +93,9 @@ public class Client extends ServiceEETest {
 
     private Dispatch<Source> dispatchSrc = null;
 
-    private static final Class JAXB_OBJECT_FACTORY =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.ObjectFactory.class;
+    private static final Class JAXB_OBJECT_FACTORY = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.ObjectFactory.class;
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
 
     static HelloService service = null;
 
@@ -144,8 +140,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -189,12 +187,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: getXMLTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:9; WS4EE:SPEC:4005; WS4EE:SPEC:4006;
-     * WS4EE:SPEC:4007;
+     * @assertion_ids: JAXWS:JAVADOC:9; WS4EE:SPEC:4005; WS4EE:SPEC:4006; WS4EE:SPEC:4007;
      *
-     * @test_Strategy: Get a Response<Object> using the invokeAsync method passing
-     * an stream that contains xml and verify the response returned via "get()" is
-     * correct
+     * @test_Strategy: Get a Response<Object> using the invokeAsync method passing an stream that contains xml and verify
+     * the response returned via "get()" is correct
      */
     public void getXMLTest() throws Fault {
         TestUtil.logTrace("getXMLTest");
@@ -212,7 +208,7 @@ public class Client extends ServiceEETest {
         typeList.add("StreamSource");
         typeList.add("SAXSource");
         int i = 0;
-        for (Iterator<Source> iter = requestList.iterator(); iter.hasNext(); ) {
+        for (Iterator<Source> iter = requestList.iterator(); iter.hasNext();) {
             try {
                 Source requestObject = iter.next();
 
@@ -248,17 +244,17 @@ public class Client extends ServiceEETest {
             }
             i++;
         }
-        if (!pass) throw new Fault("getXMLTest failed");
+        if (!pass)
+            throw new Fault("getXMLTest failed");
     }
 
     /*
      * @testName: getContextXMLTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:9; JAXWS:JAVADOC:42; WS4EE:SPEC:4005;
-     * WS4EE:SPEC:4006; WS4EE:SPEC:4007;
+     * @assertion_ids: JAXWS:JAVADOC:9; JAXWS:JAVADOC:42; WS4EE:SPEC:4005; WS4EE:SPEC:4006; WS4EE:SPEC:4007;
      *
-     * @test_Strategy: Get a Response<Object> using the invokeAsync method passing
-     * an stream that contains xml and get the JAXWSontext from that object
+     * @test_Strategy: Get a Response<Object> using the invokeAsync method passing an stream that contains xml and get the
+     * JAXWSontext from that object
      */
     public void getContextXMLTest() throws Fault {
         TestUtil.logTrace("getContextXMLTest");
@@ -282,7 +278,7 @@ public class Client extends ServiceEETest {
             if (jrc != null) {
                 TestUtil.logMsg("Properties/Keys from java.util.Map<String,Object>:");
                 int i = 1;
-                for (Iterator iter = jrc.keySet().iterator(); iter.hasNext(); ) {
+                for (Iterator iter = jrc.keySet().iterator(); iter.hasNext();) {
                     TestUtil.logMsg("Property[" + i + "]=" + (String) iter.next());
                     i++;
                 }
@@ -291,17 +287,17 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("getContextXMLTest failed");
+        if (!pass)
+            throw new Fault("getContextXMLTest failed");
     }
 
     /*
      * @testName: getJAXBTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:9; WS4EE:SPEC:4005; WS4EE:SPEC:4006;
-     * WS4EE:SPEC:4007;
+     * @assertion_ids: JAXWS:JAVADOC:9; WS4EE:SPEC:4005; WS4EE:SPEC:4006; WS4EE:SPEC:4007;
      *
-     * @test_Strategy: Get a Response<Object> using the invokeAsync method passing
-     * a JAXB Object and verify the response returned via "get()" is correct
+     * @test_Strategy: Get a Response<Object> using the invokeAsync method passing a JAXB Object and verify the response
+     * returned via "get()" is correct
      */
     public void getJAXBTest() throws Fault {
         TestUtil.logTrace("getJAXBTest");
@@ -348,17 +344,17 @@ public class Client extends ServiceEETest {
                 e.printStackTrace();
             }
         }
-        if (!pass) throw new Fault("getJAXBTest failed");
+        if (!pass)
+            throw new Fault("getJAXBTest failed");
     }
 
     /*
      * @testName: getContextJAXBTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:9; JAXWS:JAVADOC:42; WS4EE:SPEC:4005;
-     * WS4EE:SPEC:4006; WS4EE:SPEC:4007;
+     * @assertion_ids: JAXWS:JAVADOC:9; JAXWS:JAVADOC:42; WS4EE:SPEC:4005; WS4EE:SPEC:4006; WS4EE:SPEC:4007;
      *
-     * @test_Strategy: Get a Response<Object> using the invokeAsync method passing
-     * an stream that contains xml and get the JAXWSontext from that object
+     * @test_Strategy: Get a Response<Object> using the invokeAsync method passing an stream that contains xml and get the
+     * JAXWSontext from that object
      */
     public void getContextJAXBTest() throws Fault {
         TestUtil.logTrace("getContextJAXBTest");
@@ -394,7 +390,7 @@ public class Client extends ServiceEETest {
                 if (jrc != null) {
                     TestUtil.logMsg("Properties/Keys from java.util.Map<String,Object>:");
                     int i = 1;
-                    for (Iterator iter = jrc.keySet().iterator(); iter.hasNext(); ) {
+                    for (Iterator iter = jrc.keySet().iterator(); iter.hasNext();) {
                         TestUtil.logMsg("Property[" + i + "]=" + (String) iter.next());
                         i++;
                     }
@@ -404,6 +400,7 @@ public class Client extends ServiceEETest {
                 e.printStackTrace();
             }
         }
-        if (!pass) throw new Fault("getContextJAXBTest failed");
+        if (!pass)
+            throw new Fault("getContextJAXBTest failed");
     }
 }

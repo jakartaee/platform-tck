@@ -33,7 +33,8 @@ public class TSNamingContext implements TSNamingContextInterface, Serializable {
 
     Properties props = null;
 
-    public TSNamingContext() throws Exception {}
+    public TSNamingContext() throws Exception {
+    }
 
     public TSNamingContext(Properties pp) throws Exception {
         if (pp != null) {
@@ -44,11 +45,8 @@ public class TSNamingContext implements TSNamingContextInterface, Serializable {
     /**
      * Provides lookup of an object.
      *
-     * @param s
-     *          object name to lookup
-     * @param c
-     *          object class to narrow to if remote object if null no narrow is
-     *          performed.
+     * @param s object name to lookup
+     * @param c object class to narrow to if remote object if null no narrow is performed.
      */
     public Object lookup(String s, Class c) throws Exception {
         Object o = lookup(s);
@@ -58,8 +56,7 @@ public class TSNamingContext implements TSNamingContextInterface, Serializable {
     /**
      * Provides lookup of an object.
      *
-     * @param s
-     *          object name to lookup
+     * @param s object name to lookup
      */
     public Object lookup(String s) throws Exception {
         if (props != null) {

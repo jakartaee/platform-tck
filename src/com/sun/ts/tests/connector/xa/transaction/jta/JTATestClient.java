@@ -49,8 +49,7 @@ public class JTATestClient extends EETest {
     /* Test setup: */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * whitebox-xa; rauser1; rapassword1;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; whitebox-xa; rauser1; rapassword1;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -77,18 +76,14 @@ public class JTATestClient extends EETest {
     /*
      * @testName: testXAResource1
      *
-     * @assertion_ids: Connector:SPEC:54; Connector:JAVADOC:187;
-     * Connector:JAVADOC:229;
+     * @assertion_ids: Connector:SPEC:54; Connector:JAVADOC:187; Connector:JAVADOC:229;
      *
      *
-     * @test_Strategy: Check to see if getXAResource method on the
-     * ManagedConnectionFactory was called. If it was then check if the
-     * XAResource.start method was called to begin the transaction. This verfies
-     * that the Transaction Manager is using the XAResource to perform the JTA
-     * transaction.
+     * @test_Strategy: Check to see if getXAResource method on the ManagedConnectionFactory was called. If it was then check
+     * if the XAResource.start method was called to begin the transaction. This verfies that the Transaction Manager is
+     * using the XAResource to perform the JTA transaction.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis.
      *
      *
      */
@@ -120,9 +115,8 @@ public class JTATestClient extends EETest {
      * @assertion_ids: Connector:SPEC:46; Connector:SPEC:48;
      *
      *
-     * @test_Strategy: Check for the validity of the connection which is returned
-     * by performing some queries to the TSeis. Check to see if TM calls
-     * XAResourceImpl.commit without calling prepare.
+     * @test_Strategy: Check for the validity of the connection which is returned by performing some queries to the TSeis.
+     * Check to see if TM calls XAResourceImpl.commit without calling prepare.
      *
      */
     public void testXAResource2() throws Fault {

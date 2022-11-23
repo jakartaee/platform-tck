@@ -64,8 +64,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void linkedListHashSetTextHandlerTest() throws Fault {
         setDecoder(TypeEnum.LINKEDLIST_HASHSET_TEXT, LinkedListHashSetTextDecoder.class);
@@ -79,8 +78,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void textStringBeanHandlerTest() throws Fault {
         setDecoder(TypeEnum.STRINGBEAN, StringBeanTextDecoder.class);
@@ -93,8 +91,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void textStreamStringBeanHandlerTest() throws Fault {
         setDecoder(TypeEnum.STRINGBEAN, StringBeanTextStreamDecoder.class);
@@ -107,8 +104,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void linkedListTextHandlerTest() throws Fault {
         setDecoder(TypeEnum.LIST_TEXT, StringListTextDecoder.class);
@@ -121,8 +117,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void stringTextHandlerTest() throws Fault {
         setDecoder(TypeEnum.STRING_WHOLE, null);
@@ -135,8 +130,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:38;
      *
-     * @test_Strategy: test the binary decoder throws decoderException and it is
-     * caught in @OnError
+     * @test_Strategy: test the binary decoder throws decoderException and it is caught in @OnError
      */
     public void readerMessageHandlerTest() throws Fault {
         setDecoderAndEntity(TypeEnum.READER, null, ECHO);
@@ -153,8 +147,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void pongMessageHandlerTest() throws Fault {
         setDecoderAndEntity(TypeEnum.PONG, null, new StringPingMessage(ECHO));
@@ -171,8 +164,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void byteBufferMessageHandlerTest() throws Fault {
         setDecoderAndEntity(TypeEnum.BYTEBUFFER_WHOLE, null, ByteBuffer.wrap(ECHO.getBytes()));
@@ -185,8 +177,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void byteArrayMessageHandlerTest() throws Fault {
         setDecoderAndEntity(TypeEnum.BYTEARRAY_WHOLE, null, ECHO.getBytes());
@@ -199,8 +190,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void inputStreamMessageHandlerTest() throws Fault {
         setDecoderAndEntity(TypeEnum.INPUTSTREAM, null, ByteBuffer.wrap(ECHO.getBytes()));
@@ -213,8 +203,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void binaryStringBeanMessageHandlerTest() throws Fault {
         setDecoderAndEntity(TypeEnum.STRINGBEAN, StringBeanBinaryDecoder.class, ByteBuffer.wrap(ECHO.getBytes()));
@@ -227,8 +216,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void binaryStreamStringBeanMessageHandlerTest() throws Fault {
         setDecoderAndEntity(TypeEnum.STRINGBEAN, StringBeanBinaryStreamDecoder.class, ByteBuffer.wrap(ECHO.getBytes()));
@@ -244,8 +232,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:213;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void stringPartialHandlerTest() throws Fault {
         setDecoderAndEntity(TypeEnum.STRING_PARTIAL, null, ECHO, ECHO_PARTIAL);
@@ -264,8 +251,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:213;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void byteBufferPartialMessageHandlerTest() throws Fault {
         setDecoderAndEntity(
@@ -288,8 +274,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:213;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void byteArrayPartialMessageHandlerTest() throws Fault {
         setDecoderAndEntity(
@@ -316,8 +301,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void annotatedTextReaderClientTest() throws Fault {
         setAnnotatedClientEndpoint(new AnnotatedTextClient());
@@ -336,8 +320,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void annotatedBinaryInputStreamClientTest() throws Fault {
         setAnnotatedClientEndpoint(new AnnotatedBinaryClient());
@@ -360,8 +343,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Adding more than one of any one type will result in a
-     * runtime exception.
+     * @test_Strategy: Adding more than one of any one type will result in a runtime exception.
      */
     public void twiceAddMessageHandlerReaderThrowsExceptionTest() throws Fault {
         AnnotatedThrowingClient client = new AnnotatedThrowingClient(TypeEnum.READER);
@@ -378,8 +360,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Adding more than one of any one type will result in a
-     * runtime exception.
+     * @test_Strategy: Adding more than one of any one type will result in a runtime exception.
      */
     public void twiceAddMessageHandlerInputStreamThrowsExceptionTest() throws Fault {
         AnnotatedThrowingClient client = new AnnotatedThrowingClient(TypeEnum.INPUTSTREAM);
@@ -401,8 +382,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Adding more than one of any one type will result in a
-     * runtime exception.
+     * @test_Strategy: Adding more than one of any one type will result in a runtime exception.
      */
     public void twiceAddMessageHandlerPongMessageThrowsExceptionTest() throws Fault {
         AnnotatedThrowingClient client = new AnnotatedThrowingClient(TypeEnum.PONG);
@@ -419,8 +399,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:213;
      *
-     * @test_Strategy: Adding more than one of any one type will result in a
-     * runtime exception.
+     * @test_Strategy: Adding more than one of any one type will result in a runtime exception.
      */
     public void twiceAddMessageHandlerPartialStringThrowsExceptionTest() throws Fault {
         AnnotatedThrowingClient client = new AnnotatedThrowingClient(TypeEnum.STRING_PARTIAL);
@@ -448,9 +427,9 @@ public class WSCClient extends WebSocketCommonClient {
         MixedProgramaticEndpoint endpoint = new MixedProgramaticEndpoint(type, this.entity);
         setClientEndpointInstance(endpoint);
         List<Class<? extends Decoder>> list = new LinkedList<>();
-        if (decoderClass != null) list.add(decoderClass);
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().decoders(list).build();
+        if (decoderClass != null)
+            list.add(decoderClass);
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().decoders(list).build();
         setClientEndpointConfig(config);
     }
 }

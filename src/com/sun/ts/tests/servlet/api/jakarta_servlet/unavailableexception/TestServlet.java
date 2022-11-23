@@ -83,9 +83,8 @@ public class TestServlet extends GenericTCKServlet {
     }
 
     /**
-     * UnavailableException(String mesg,int sec) constructs an
-     * UnavailabaleException object for the specified servlet. This constructor
-     * reports Temporary Unavailability
+     * UnavailableException(String mesg,int sec) constructs an UnavailabaleException object for the specified servlet. This
+     * constructor reports Temporary Unavailability
      */
     public void unavailableException_Constructor2Test(ServletRequest request, ServletResponse response)
             throws ServletException, IOException {

@@ -32,11 +32,10 @@ import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
 
 /**
- * A basic ELContext that meets the needs of most EL tests. The no-args
- * constructor builds the ELContext from a VariableELResolver that enables the
- * setting and resolution of variables when base is null. The single- argument
- * constructor allows the user to build the ELContext from any ELResolver. This
- * ELContext is "simple" because no VariableMapper or FunctionMapper are used.
+ * A basic ELContext that meets the needs of most EL tests. The no-args constructor builds the ELContext from a
+ * VariableELResolver that enables the setting and resolution of variables when base is null. The single- argument
+ * constructor allows the user to build the ELContext from any ELResolver. This ELContext is "simple" because no
+ * VariableMapper or FunctionMapper are used.
  */
 public class SimpleELContext extends ELContext {
 
@@ -116,25 +115,25 @@ public class SimpleELContext extends ELContext {
     private ELResolver getMyResolver(ResolverType enumResolver) {
 
         switch (enumResolver) {
-            case EMPLOYEE_ELRESOLVER:
-                myResolver = new EmployeeELResolver();
-                TestUtil.logTrace("Setting ELResolver == EmployeeELResolver");
-                break;
+        case EMPLOYEE_ELRESOLVER:
+            myResolver = new EmployeeELResolver();
+            TestUtil.logTrace("Setting ELResolver == EmployeeELResolver");
+            break;
 
-            case VARIABLE_ELRESOLVER:
-                myResolver = new VariableELResolver();
-                TestUtil.logTrace("Setting ELResolver == VariableELResolver");
-                break;
+        case VARIABLE_ELRESOLVER:
+            myResolver = new VariableELResolver();
+            TestUtil.logTrace("Setting ELResolver == VariableELResolver");
+            break;
 
-            case VECT_ELRESOLVER:
-                myResolver = new VectELResolver();
-                TestUtil.logTrace("Setting ELResolver == VectELResolver");
-                break;
+        case VECT_ELRESOLVER:
+            myResolver = new VectELResolver();
+            TestUtil.logTrace("Setting ELResolver == VectELResolver");
+            break;
 
-            default:
-                TestUtil.logTrace("Unknown ELResolver! " + enumResolver + " trying to use default" + NLINE + "Setting"
-                        + " ELResolver == VariableELResolver");
-                break;
+        default:
+            TestUtil.logTrace("Unknown ELResolver! " + enumResolver + " trying to use default" + NLINE + "Setting"
+                    + " ELResolver == VariableELResolver");
+            break;
         }
 
         return myResolver;

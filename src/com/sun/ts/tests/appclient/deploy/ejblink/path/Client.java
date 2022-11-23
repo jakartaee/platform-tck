@@ -51,8 +51,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -73,18 +72,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:118; JavaEE:SPEC:119; JavaEE:SPEC:120
      *
-     * @test_Strategy: An application client references two beans packaged in two
-     *                 different ejb-jar's. Both referenced bean use the same
-     *                 ejb-name in their respective JAR file, and they are
-     *                 identified by a String environment entry ('myName').
+     * @test_Strategy: An application client references two beans packaged in two different ejb-jar's. Both referenced bean
+     * use the same ejb-name in their respective JAR file, and they are identified by a String environment entry ('myName').
      *
-     *                 The ejb-link for the external bean is in the form
-     *                 'ejbjar#EJBName'.
+     * The ejb-link for the external bean is in the form 'ejbjar#EJBName'.
      *
-     *                 Check that we can deploy the application, that the client
-     *                 can lookup the two beans. Check that referenced beans
-     *                 identities (as reported by the String env. entry) match the
-     *                 ones specified in the DD.
+     * Check that we can deploy the application, that the client can lookup the two beans. Check that referenced beans
+     * identities (as reported by the String env. entry) match the ones specified in the DD.
      */
     public void testScope() throws Fault {
         ReferencedBeanHome home1 = null;

@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,15 +56,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: unBoundTest
      *
-     * @assertion_ids:
-     * Servlet:JAVADOC:459;Servlet:JAVADOC:485;Servlet:JAVADOC:486;Servlet:JAVADOC
-     * :491
+     * @assertion_ids: Servlet:JAVADOC:459;Servlet:JAVADOC:485;Servlet:JAVADOC:486;Servlet:JAVADOC :491
      *
-     * @test_Strategy: Client calls a servlet that sets/sets/removes an attribute
-     * from the session. That attribute happens to be a Binding listener. The
-     * Listeners valueBound/valueUnbound methods should be called and messages
-     * written to a static log. The servlet then reads the log and verifies the
-     * result.
+     * @test_Strategy: Client calls a servlet that sets/sets/removes an attribute from the session. That attribute happens
+     * to be a Binding listener. The Listeners valueBound/valueUnbound methods should be called and messages written to a
+     * static log. The servlet then reads the log and verifies the result.
      */
 
     public void unBoundTest() throws Fault {
@@ -79,10 +73,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:458;Servlet:JAVADOC:485;Servlet:JAVADOC:486
      *
-     * @test_Strategy: Client calls a servlet that sets an attribute to the
-     * session. That attribute happens to be a Binding listener. The Listeners
-     * valueBound/valueUnbound methods should be called and messages written to a
-     * static log. The servlet then reads the log and verifies the result.
+     * @test_Strategy: Client calls a servlet that sets an attribute to the session. That attribute happens to be a Binding
+     * listener. The Listeners valueBound/valueUnbound methods should be called and messages written to a static log. The
+     * servlet then reads the log and verifies the result.
      */
 
     public void boundTest() throws Fault {

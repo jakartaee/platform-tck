@@ -34,7 +34,8 @@ import java.util.Iterator;
 public class FunctionELResolver extends ELResolver {
 
     public Object getValue(ELContext context, Object base, Object property) throws ELException {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
         Object result = null;
         if (base == null) {
@@ -50,23 +51,29 @@ public class FunctionELResolver extends ELResolver {
     }
 
     public Class getType(ELContext context, Object base, Object property) throws ELException {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
-        if (base == null) context.setPropertyResolved(true);
+        if (base == null)
+            context.setPropertyResolved(true);
 
         return null;
     }
 
     public void setValue(ELContext context, Object base, Object property, Object value) {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
-        if (base == null) context.setPropertyResolved(true);
+        if (base == null)
+            context.setPropertyResolved(true);
     }
 
     public boolean isReadOnly(ELContext context, Object base, Object property) {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
-        if (base == null) context.setPropertyResolved(true);
+        if (base == null)
+            context.setPropertyResolved(true);
         return false;
     }
 
@@ -75,7 +82,8 @@ public class FunctionELResolver extends ELResolver {
     }
 
     public Class getCommonPropertyType(ELContext context, Object base) {
-        if (base == null) return Object.class;
+        if (base == null)
+            return Object.class;
         return null;
     }
 }

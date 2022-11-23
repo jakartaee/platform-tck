@@ -107,8 +107,7 @@ public class Client extends ServiceEETest {
     static WSIDLSwaRefTestService service = null;
 
     /***********************************************************************
-     * All the test cases in this file test all of the assertions specified in the
-     * WSI Attachment Profile 1.0 specification.
+     * All the test cases in this file test all of the assertions specified in the WSI Attachment Profile 1.0 specification.
      **********************************************************************/
     private void getTestURLs() throws Exception {
         TestUtil.logMsg("Get URL's used by the test");
@@ -125,8 +124,7 @@ public class Client extends ServiceEETest {
     SwaRefTest port = null;
 
     private void getPortStandalone() throws Exception {
-        port = (SwaRefTest)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, WSIDLSwaRefTestService.class, PORT_QNAME, SwaRefTest.class);
+        port = (SwaRefTest) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, WSIDLSwaRefTestService.class, PORT_QNAME, SwaRefTest.class);
         JAXWS_Util.setTargetEndpointAddress(port, surl);
     }
 
@@ -166,8 +164,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -223,11 +223,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: EchoSingleSwaRefAttachmentTest
      *
-     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909;
-     * WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931; WSI:SPEC:R2921;
-     * WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011;
-     * WSI:SPEC:R2927; JAXWS:SPEC:2051; JAXWS:SPEC:2052; JAXWS:SPEC:2053;
-     * WSI:SPEC:R2940; WSI:SPEC:R2928;
+     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909; WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931;
+     * WSI:SPEC:R2921; WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011; WSI:SPEC:R2927; JAXWS:SPEC:2051;
+     * JAXWS:SPEC:2052; JAXWS:SPEC:2053; WSI:SPEC:R2940; WSI:SPEC:R2928;
      *
      * @test_Strategy: Send and Receive a single attachment via swaRef type.
      *
@@ -242,28 +240,29 @@ public class Client extends ServiceEETest {
             DataHandler swaRefInput = dh3;
             request.setAttachment(swaRefInput);
             SwaRefTypeResponse response = port.echoSingleSwaRefAttachment(request);
-            if (!ValidateSingleSwaRefAttachmentTestCase(request, response, "text/xml")) pass = false;
+            if (!ValidateSingleSwaRefAttachmentTestCase(request, response, "text/xml"))
+                pass = false;
             TestUtil.logMsg("Send and receive (text/plain) attachment via the swaRef type");
             swaRefInput = dh1;
             request.setAttachment(swaRefInput);
             response = port.echoSingleSwaRefAttachment(request);
-            if (!ValidateSingleSwaRefAttachmentTestCase(request, response, "text/plain")) pass = false;
+            if (!ValidateSingleSwaRefAttachmentTestCase(request, response, "text/plain"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("EchoSingleSwaRefAttachmentTest failed", e);
         }
-        if (!pass) throw new Fault("EchoSingleSwaRefAttachmentTest failed");
+        if (!pass)
+            throw new Fault("EchoSingleSwaRefAttachmentTest failed");
     }
 
     /*
      * @testName: EchoMultipleSwaRefAttachmentsTest
      *
-     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909;
-     * WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931; WSI:SPEC:R2921;
-     * WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011;
-     * WSI:SPEC:R2927; JAXWS:SPEC:2051; JAXWS:SPEC:2052; JAXWS:SPEC:2053;
-     * WSI:SPEC:R2940; WSI:SPEC:R2928;
+     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909; WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931;
+     * WSI:SPEC:R2921; WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011; WSI:SPEC:R2927; JAXWS:SPEC:2051;
+     * JAXWS:SPEC:2052; JAXWS:SPEC:2053; WSI:SPEC:R2940; WSI:SPEC:R2928;
      *
      * @test_Strategy: Send and Receive multiple attachments via swaRef type.
      *
@@ -279,13 +278,15 @@ public class Client extends ServiceEETest {
             request.setAttachment2(dh1);
             request.setAttachment3(dh4);
             SwaRefTypeResponse2 response = port.echoMultipleSwaRefAttachments(request);
-            if (!ValidateMultipleSwaRefAttachmentsTestCase(request, response)) pass = false;
+            if (!ValidateMultipleSwaRefAttachmentsTestCase(request, response))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("EchoMultipleSwaRefAttachmentsTest failed", e);
         }
-        if (!pass) throw new Fault("EchoMultipleSwaRefAttachmentsTest failed");
+        if (!pass)
+            throw new Fault("EchoMultipleSwaRefAttachmentsTest failed");
     }
 
     /*******************************************************************************
@@ -313,10 +314,8 @@ public class Client extends ServiceEETest {
             }
         } else if (type.equals("image/jpeg")) {
             try {
-                Image image1 =
-                        javax.imageio.ImageIO.read(request.getAttachment().getInputStream());
-                Image image2 =
-                        javax.imageio.ImageIO.read(response.getAttachment().getInputStream());
+                Image image1 = javax.imageio.ImageIO.read(request.getAttachment().getInputStream());
+                Image image2 = javax.imageio.ImageIO.read(response.getAttachment().getInputStream());
                 if (!AttachmentHelper.compareImages(image1, image2, new Rectangle(0, 0, 100, 120), "JpegAttachment"))
                     result = false;
             } catch (Exception e) {

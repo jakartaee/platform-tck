@@ -53,80 +53,83 @@ public class WSCServer {
     @OnMessage
     public void echo(@PathParam("param") String op, String echo, Session session) {
         switch (state) {
-            case INIT:
-                state = State.SECOND;
-                op(op, echo, session);
-                break;
-            case SECOND:
-                state = State.FINAL;
-                op(op, echo, session);
-                break;
-            case FINAL:
-                // do not send anything, otherwise it would not ever stop
-                try {
-                    session.close();
-                } catch (IOException e) {
-                    onError(session, e);
-                }
-                break;
+        case INIT:
+            state = State.SECOND;
+            op(op, echo, session);
+            break;
+        case SECOND:
+            state = State.FINAL;
+            op(op, echo, session);
+            break;
+        case FINAL:
+            // do not send anything, otherwise it would not ever stop
+            try {
+                session.close();
+            } catch (IOException e) {
+                onError(session, e);
+            }
+            break;
         }
     }
 
     private void op(String param, String echo, Session session) {
-        if (param == null) throw new RuntimeException("Path param is null");
+        if (param == null)
+            throw new RuntimeException("Path param is null");
         OPS op = OPS.valueOf(param);
         switch (op) {
-            case TEXT:
+        case TEXT:
+            try {
+                session.getBasicRemote().sendText(echo);
+            } catch (IOException e) {
+                onError(session, e);
+            }
+            break;
+        case TEXTPARTIAL:
+            String[] tokens = echo.split("_");
+            for (int i = 0; i != tokens.length; i++)
                 try {
-                    session.getBasicRemote().sendText(echo);
+                    boolean isLast = i == tokens.length - 1;
+                    if (isLast)
+                        session.getBasicRemote().sendText(tokens[i], true);
+                    else
+                        session.getBasicRemote().sendText(tokens[i] + "_", false);
                 } catch (IOException e) {
                     onError(session, e);
                 }
-                break;
-            case TEXTPARTIAL:
-                String[] tokens = echo.split("_");
-                for (int i = 0; i != tokens.length; i++)
-                    try {
-                        boolean isLast = i == tokens.length - 1;
-                        if (isLast) session.getBasicRemote().sendText(tokens[i], true);
-                        else session.getBasicRemote().sendText(tokens[i] + "_", false);
-                    } catch (IOException e) {
-                        onError(session, e);
+            break;
+        case BINARY:
+            try {
+                session.getBasicRemote().sendBinary(ByteBuffer.wrap(echo.getBytes()));
+            } catch (IOException e) {
+                onError(session, e);
+            }
+            break;
+        case BINARYPARTIAL:
+            tokens = echo.split("_");
+            for (int i = 0; i != tokens.length; i++)
+                try {
+                    boolean isLast = i == tokens.length - 1;
+                    ByteBuffer buf;
+                    if (isLast) {
+                        buf = ByteBuffer.wrap(tokens[i].getBytes());
+                        session.getBasicRemote().sendBinary(buf, true);
+                    } else {
+                        buf = ByteBuffer.wrap((tokens[i] + "_").getBytes());
+                        session.getBasicRemote().sendBinary(buf, false);
                     }
-                break;
-            case BINARY:
-                try {
-                    session.getBasicRemote().sendBinary(ByteBuffer.wrap(echo.getBytes()));
                 } catch (IOException e) {
                     onError(session, e);
                 }
-                break;
-            case BINARYPARTIAL:
-                tokens = echo.split("_");
-                for (int i = 0; i != tokens.length; i++)
-                    try {
-                        boolean isLast = i == tokens.length - 1;
-                        ByteBuffer buf;
-                        if (isLast) {
-                            buf = ByteBuffer.wrap(tokens[i].getBytes());
-                            session.getBasicRemote().sendBinary(buf, true);
-                        } else {
-                            buf = ByteBuffer.wrap((tokens[i] + "_").getBytes());
-                            session.getBasicRemote().sendBinary(buf, false);
-                        }
-                    } catch (IOException e) {
-                        onError(session, e);
-                    }
-                break;
-            case PONG:
-                try {
-                    session.getBasicRemote().sendPong(ByteBuffer.wrap(echo.getBytes()));
-                } catch (IOException e) {
-                    onError(session, e);
-                }
-                break;
-            default:
-                throw new IllegalStateException(op + " not implemented");
+            break;
+        case PONG:
+            try {
+                session.getBasicRemote().sendPong(ByteBuffer.wrap(echo.getBytes()));
+            } catch (IOException e) {
+                onError(session, e);
+            }
+            break;
+        default:
+            throw new IllegalStateException(op + " not implemented");
         }
     }
 
@@ -136,7 +139,8 @@ public class WSCServer {
         t.printStackTrace(); // Write to error log, too
         String message = IOUtil.printStackTrace(t);
         try {
-            if (session.isOpen()) session.getBasicRemote().sendText(message);
+            if (session.isOpen())
+                session.getBasicRemote().sendText(message);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -57,15 +55,13 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:302
      *
-     * @test_Strategy: [TagHandlerResourceInjection] Create a tag handler that
-     * implements the Tag interface. Package the tag handler in a WAR file without
-     * declaring several resource references in the deployment descriptor -
-     * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
-     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
-     * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
+     * @test_Strategy: [TagHandlerResourceInjection] Create a tag handler that implements the Tag interface. Package the tag
+     * handler in a WAR file without declaring several resource references in the deployment descriptor -
+     * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory - jakarta.jms.TopicConnectionFactory -
+     * jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
      *
-     * Check that: - We can deploy the application. - We can lookup the all the
-     * above resources using annotations in a tag handler.
+     * Check that: - We can deploy the application. - We can lookup the all the above resources using annotations in a tag
+     * handler.
      */
 
     public void ResourceTagHandlerTest() throws Fault {
@@ -79,15 +75,13 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:302
      *
-     * @test_Strategy: [TagHandlerResourceInjection] Create a tag handler that
-     * implements the SimpleTag interface. Package the tag handler in a WAR file
-     * without declaring several resource references in the deployment descriptor
-     * - javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
-     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
-     * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
+     * @test_Strategy: [TagHandlerResourceInjection] Create a tag handler that implements the SimpleTag interface. Package
+     * the tag handler in a WAR file without declaring several resource references in the deployment descriptor -
+     * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory - jakarta.jms.TopicConnectionFactory -
+     * jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
      *
-     * Check that: - We can deploy the application. - We can lookup the all the
-     * above resources using annotations in a tag handler.
+     * Check that: - We can deploy the application. - We can lookup the all the above resources using annotations in a tag
+     * handler.
      */
 
     public void ResourceSimpleTagHandlerTest() throws Fault {
@@ -102,12 +96,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:303
      *
-     * @test_Strategy: [TagHandlerResourceInjectionTiming] Create a tag handler
-     * that implements the Tag interface. Package the tag handler in a WAR file
-     * without declaring a reference for a resource in the deployment descriptor.
-     * Show that injection occurs immediately after an instance of the tag handler
-     * is constructed, and before any of the tag properties are initialized, by
-     * using a value derived from an injected resource in a setter method.
+     * @test_Strategy: [TagHandlerResourceInjectionTiming] Create a tag handler that implements the Tag interface. Package
+     * the tag handler in a WAR file without declaring a reference for a resource in the deployment descriptor. Show that
+     * injection occurs immediately after an instance of the tag handler is constructed, and before any of the tag
+     * properties are initialized, by using a value derived from an injected resource in a setter method.
      */
 
     public void ResourceTagHandlerTimingTest() throws Fault {
@@ -122,13 +114,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:303
      *
-     * @test_Strategy: [TagHandlerResourceInjectionTiming] Create a tag handler
-     * that implements the SimpleTag interface. Package the tag handler in a WAR
-     * file without declaring a reference for a resource in the deployment
-     * descriptor. Show that injection occurs immediately after an instance of the
-     * tag handler is constructed, and before any of the tag properties are
-     * initialized, by using a value derived from an injected resource in a setter
-     * method.
+     * @test_Strategy: [TagHandlerResourceInjectionTiming] Create a tag handler that implements the SimpleTag interface.
+     * Package the tag handler in a WAR file without declaring a reference for a resource in the deployment descriptor. Show
+     * that injection occurs immediately after an instance of the tag handler is constructed, and before any of the tag
+     * properties are initialized, by using a value derived from an injected resource in a setter method.
      */
 
     public void ResourceSimpleTagHandlerTimingTest() throws Fault {

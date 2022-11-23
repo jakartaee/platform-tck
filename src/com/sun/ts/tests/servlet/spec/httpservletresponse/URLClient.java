@@ -29,9 +29,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/servlet_spec_httpservletresponse_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -40,8 +39,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -61,9 +59,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:33;
      *
-     * @test_Strategy: 1. Call setIntHeader to set header; 2. Commit it and set
-     * the header again; 3. Verify that only the first header value is set, the
-     * second set is ignored
+     * @test_Strategy: 1. Call setIntHeader to set header; 2. Commit it and set the header again; 3. Verify that only the
+     * first header value is set, the second set is ignored
      */
 
     public void intHeaderTest() throws Fault {
@@ -80,9 +77,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:32; Servlet:SPEC:33; Servlet:SPEC:42.2;
      *
-     * @test_Strategy: 1. First call setContentLength to set the length of
-     * content; 2. Then write to the buffer to fill up the buffer. 2. Call
-     * setIntHeader to set header 3. Verify that the header value is not set,
+     * @test_Strategy: 1. First call setContentLength to set the length of content; 2. Then write to the buffer to fill up
+     * the buffer. 2. Call setIntHeader to set header 3. Verify that the header value is not set,
      */
 
     public void flushBufferTest() throws Fault {
@@ -98,9 +94,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:36; Servlet:SPEC:42.3; Servlet:SPEC:41;
      *
-     * @test_Strategy: 1. Call sendError; 2. then setIntHeader to set header 3.
-     * then write to buffer; 4. Verify that the header value is not set, content
-     * wrote to buffer is ignored
+     * @test_Strategy: 1. Call sendError; 2. then setIntHeader to set header 3. then write to buffer; 4. Verify that the
+     * header value is not set, content wrote to buffer is ignored
      */
 
     public void sendErrorCommitTest() throws Fault {
@@ -117,9 +112,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:37; Servlet:SPEC:42.4; Servlet:SPEC:40;
      *
-     * @test_Strategy: 1. Call sendRedirect; 2. then setIntHeader to set header 3.
-     * then write to buffer; 4. Verify that the header value is not set, content
-     * wrote to buffer is ignored
+     * @test_Strategy: 1. Call sendRedirect; 2. then setIntHeader to set header 3. then write to buffer; 4. Verify that the
+     * header value is not set, content wrote to buffer is ignored
      */
 
     public void sendRedirectCommitTest() throws Fault {
@@ -137,8 +131,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:38;
      *
-     * @test_Strategy: 1. First write to buffer 2. Call sendRedirect; 3. Verify
-     * that content wrote to buffer is cleared
+     * @test_Strategy: 1. First write to buffer 2. Call sendRedirect; 3. Verify that content wrote to buffer is cleared
      */
 
     public void sendRedirectClearBufferTest() throws Fault {

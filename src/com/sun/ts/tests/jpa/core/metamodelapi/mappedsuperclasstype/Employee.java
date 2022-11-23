@@ -41,7 +41,8 @@ public abstract class Employee implements Serializable {
 
     private Date hireDate;
 
-    protected Employee() {}
+    protected Employee() {
+    }
 
     // ===========================================================
     // getters and setters for the state fields

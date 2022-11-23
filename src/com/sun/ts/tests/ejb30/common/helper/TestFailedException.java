@@ -23,8 +23,7 @@ package com.sun.ts.tests.ejb30.common.helper;
 import java.io.Serializable;
 
 /**
- * An application exception for reporting test failure status and reason back to
- * test client.
+ * An application exception for reporting test failure status and reason back to test client.
  */
 public class TestFailedException extends Exception implements Serializable {
 

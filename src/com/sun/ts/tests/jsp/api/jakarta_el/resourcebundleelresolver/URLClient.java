@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,12 +58,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: resourceBundleElResolverTest
      *
-     * @assertion_ids: EL:JAVADOC:103; EL:JAVADOC:104; EL:JAVADOC:105;
-     * EL:JAVADOC:106; EL:JAVADOC:107; EL:JAVADOC:109
+     * @assertion_ids: EL:JAVADOC:103; EL:JAVADOC:104; EL:JAVADOC:105; EL:JAVADOC:106; EL:JAVADOC:107; EL:JAVADOC:109
      *
-     * @test_Strategy: Obtain an ResourceBundleELResolver via the PageContext and
-     * verify that API calls work as expected: setValue() getValue() getType()
-     * isReadOnly() getCommonPropertyType() getFeatureDescriptors()
+     * @test_Strategy: Obtain an ResourceBundleELResolver via the PageContext and verify that API calls work as expected:
+     * setValue() getValue() getType() isReadOnly() getCommonPropertyType() getFeatureDescriptors()
      */
     public void resourceBundleElResolverTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "resourcebundleElResolverTest");

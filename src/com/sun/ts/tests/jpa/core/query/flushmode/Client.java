@@ -42,7 +42,8 @@ public class Client extends Util {
 
     private final Date d1 = getSQLDate("2000-02-14");
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -68,16 +69,13 @@ public class Client extends Util {
     /*
      * @testName: flushModeTest1
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:173; PERSISTENCE:JAVADOC:400;
-     * PERSISTENCE:JAVADOC:637; PERSISTENCE:JAVADOC:684;
+     * @assertion_ids: PERSISTENCE:JAVADOC:173; PERSISTENCE:JAVADOC:400; PERSISTENCE:JAVADOC:637; PERSISTENCE:JAVADOC:684;
      *
-     * @test_Strategy: Query accessing a simple field The following updates the
-     * name of a customer and then executes an EJBQL query selecting customers
-     * having the updated name.
+     * @test_Strategy: Query accessing a simple field The following updates the name of a customer and then executes an
+     * EJBQL query selecting customers having the updated name.
      *
-     * TypedQuery accessing a simple field The following updates the name of a
-     * customer and then executes an EJBQL query selecting customers having the
-     * updated name.*
+     * TypedQuery accessing a simple field The following updates the name of a customer and then executes an EJBQL query
+     * selecting customers having the updated name.*
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -145,8 +143,7 @@ public class Client extends Util {
             TestUtil.logTrace("Calling find");
             Customer cust1 = em.find(Customer.class, "1");
             cust1.setName("Michael Bouschen");
-            TypedQuery<Customer> q =
-                    em.createQuery("SELECT c FROM Customer c WHERE c.name = 'Michael Bouschen'", Customer.class);
+            TypedQuery<Customer> q = em.createQuery("SELECT c FROM Customer c WHERE c.name = 'Michael Bouschen'", Customer.class);
             TestUtil.logTrace("Calling getFlushMode()");
             FlushModeType fmt = q.getFlushMode();
             if (!fmt.equals(em.getFlushMode())) {
@@ -185,7 +182,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
 
-        if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6) throw new Fault("flushModeTest1 failed");
+        if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)
+            throw new Fault("flushModeTest1 failed");
     }
 
     /*
@@ -193,10 +191,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:173
      *
-     * @test_Strategy: Query navigating a single-valued relationship. The
-     * following updates the customer relationship of an order. It then executes
-     * an EJBQL query selecting orders where the related customer has the name of
-     * the customer used in the setCustomer call.
+     * @test_Strategy: Query navigating a single-valued relationship. The following updates the customer relationship of an
+     * order. It then executes an EJBQL query selecting orders where the related customer has the name of the customer used
+     * in the setCustomer call.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -230,7 +227,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught unexception: " + e);
         }
 
-        if (!pass) throw new Fault("flushModeTest2 failed");
+        if (!pass)
+            throw new Fault("flushModeTest2 failed");
     }
 
     /*
@@ -238,9 +236,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:173
      *
-     * @test_Strategy: Query navigating a single-valued relationship. The
-     * following updates the name of a customer. It then executes an EJBQL query
-     * selecting orders where the related customer has the updated name.
+     * @test_Strategy: Query navigating a single-valued relationship. The following updates the name of a customer. It then
+     * executes an EJBQL query selecting orders where the related customer has the updated name.
      */
     @SetupMethod(name = "setupOrderData")
     public void flushModeTest3() throws Fault {
@@ -274,7 +271,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught unexception: " + e);
         }
 
-        if (!pass) throw new Fault("flushModeTest3 failed");
+        if (!pass)
+            throw new Fault("flushModeTest3 failed");
     }
 
     /*
@@ -282,10 +280,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:173; PERSISTENCE:SPEC:2079;
      *
-     * @test_Strategy: Query navigating multiple single-valued relationships The
-     * following updates the spouse relationship of a customer. It then executes
-     * an EJBQL query selecting orders where the spouse of the related customer
-     * has the name of the new spouse.
+     * @test_Strategy: Query navigating multiple single-valued relationships The following updates the spouse relationship
+     * of a customer. It then executes an EJBQL query selecting orders where the spouse of the related customer has the name
+     * of the new spouse.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -321,7 +318,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught unexception: " + e);
         }
 
-        if (!pass) throw new Fault("flushModeTest4 failed");
+        if (!pass)
+            throw new Fault("flushModeTest4 failed");
     }
 
     /*
@@ -329,10 +327,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:173
      *
-     * @test_Strategy: Query navigating multiple single-valued relationships The
-     * following updates the name of a spouse. It then executes an EJBQL query
-     * selecting orders where the related spouse of the related customer has the
-     * updated name.
+     * @test_Strategy: Query navigating multiple single-valued relationships The following updates the name of a spouse. It
+     * then executes an EJBQL query selecting orders where the related spouse of the related customer has the updated name.
      */
     @SetupMethod(name = "setupOrderData")
     public void flushModeTest5() throws Fault {
@@ -363,7 +359,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught unexception: " + e);
         }
 
-        if (!pass) throw new Fault("flushModeTest5 failed");
+        if (!pass)
+            throw new Fault("flushModeTest5 failed");
     }
 
     /*
@@ -371,10 +368,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:173
      *
-     * @test_Strategy: Query navigating a collection-valued relationship The
-     * following removes an order from the customer's orders relationship. It then
-     * executes an EJBQL query selecting customers having an order with the
-     * removed number.
+     * @test_Strategy: Query navigating a collection-valued relationship The following removes an order from the customer's
+     * orders relationship. It then executes an EJBQL query selecting customers having an order with the removed number.
      */
     @SetupMethod(name = "setupOrderData")
     public void flushModeTest6() throws Fault {
@@ -413,7 +408,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("flushModeTest6 failed");
+        if (!pass)
+            throw new Fault("flushModeTest6 failed");
     }
 
     /*
@@ -421,10 +417,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:173
      *
-     * @test_Strategy: Query navigating a single-valued and a collection-valued
-     * relationship The following changes the number of a credit card. It then
-     * executes an EJBQL query selecting a spouse whose customer has an order with
-     * an credit card having the new number.
+     * @test_Strategy: Query navigating a single-valued and a collection-valued relationship The following changes the
+     * number of a credit card. It then executes an EJBQL query selecting a spouse whose customer has an order with an
+     * credit card having the new number.
      */
     @SetupMethod(name = "setupOrderData")
     public void flushModeTest7() throws Fault {
@@ -457,7 +452,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("flushModeTest7 failed");
+        if (!pass)
+            throw new Fault("flushModeTest7 failed");
     }
 
     /*
@@ -497,6 +493,7 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("secondaryTablesValueTest failed");
+        if (!pass)
+            throw new Fault("secondaryTablesValueTest failed");
     }
 }

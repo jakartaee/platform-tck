@@ -51,8 +51,7 @@ public class LogicalHandler implements jakarta.xml.ws.handler.LogicalHandler<Log
         Handler_Util.dumpMsg(context);
 
         String tmp = Handler_Util.getMessageAsString(context);
-        String newTmp =
-                tmp.replaceAll("HandlerChainOnProviderTest", "HandlerChainOnProviderTest" + direction + HANDLER_NAME);
+        String newTmp = tmp.replaceAll("HandlerChainOnProviderTest", "HandlerChainOnProviderTest" + direction + HANDLER_NAME);
         context.getMessage().setPayload(new StreamSource(new StringReader(newTmp)));
         Handler_Util.dumpMsg(context);
 

@@ -43,8 +43,8 @@ public abstract class ClientBase extends EETest {
     }
 
     /**
-     * Removes all beans used in this client. It should only be used by sfsb,
-     * though other bean types may also have a remove business method.
+     * Removes all beans used in this client. It should only be used by sfsb, though other bean types may also have a remove
+     * business method.
      */
     protected void remove() {
         if (getEnvEntrySetterBean() != null) {
@@ -68,7 +68,8 @@ public abstract class ClientBase extends EETest {
         }
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * testName: stringTest

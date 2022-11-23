@@ -61,7 +61,7 @@ public class ELClient extends ServiceEETest {
         LambdaExpression le = new LambdaExpression(params, null);
 
         ELTestUtil.checkForNPE(
-                le, "invoke", new Class<?>[] {ELContext.class, Object[].class}, new Object[] {null, new Object[] {"one"}
+                le, "invoke", new Class<?>[] { ELContext.class, Object[].class }, new Object[] { null, new Object[] { "one" }
                 });
     } // End invokeNPETest
 
@@ -91,6 +91,7 @@ public class ELClient extends ServiceEETest {
                     + e.getClass().getSimpleName());
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL);
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL);
     } // End invokeELETest
 }

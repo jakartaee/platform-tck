@@ -30,11 +30,9 @@ import jakarta.persistence.Table;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "PRODUCT_TYPE", discriminatorType = DiscriminatorType.STRING)
 /*
- * If the DiscriminatorValue annotation is not specified, a provider-specific
- * function to generate a value representing the entity type is used for the
- * value of the discriminator column. If the DiscriminatorType is STRING, the
- * discriminator value default is the entity name.
- * //@DiscriminatorValue("Product")
+ * If the DiscriminatorValue annotation is not specified, a provider-specific function to generate a value representing
+ * the entity type is used for the value of the discriminator column. If the DiscriminatorType is STRING, the
+ * discriminator value default is the entity name. //@DiscriminatorValue("Product")
  */
 public class Product implements java.io.Serializable {
     private String id;

@@ -42,8 +42,8 @@ public class ScheduleBean extends TimerBeanBase {
 
     @SuppressWarnings("unused")
     @Schedules({
-        @Schedule(year = "5000", info = YEAR_5000),
-        @Schedule(year = "5000", info = NON_PERSISTENT_TIMER, persistent = false)
+            @Schedule(year = "5000", info = YEAR_5000),
+            @Schedule(year = "5000", info = NON_PERSISTENT_TIMER, persistent = false)
     })
     private void year5000() {
         throw new IllegalStateException("We will not see this in our life.");

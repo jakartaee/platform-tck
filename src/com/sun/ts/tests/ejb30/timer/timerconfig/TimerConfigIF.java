@@ -27,10 +27,9 @@ import java.util.Collection;
 import java.util.Date;
 
 /**
- * This interface is extracted from TimerConfigBean and its superclasses. It
- * serves as the local business interface for TimerConfigBean to avoid exposing
- * ejbTimeout callback method as business method when no-interface view is used.
- * The name of a business method cannot start with "ejb".
+ * This interface is extracted from TimerConfigBean and its superclasses. It serves as the local business interface for
+ * TimerConfigBean to avoid exposing ejbTimeout callback method as business method when no-interface view is used. The
+ * name of a business method cannot start with "ejb".
  */
 public interface TimerConfigIF {
 

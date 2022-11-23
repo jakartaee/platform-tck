@@ -31,7 +31,8 @@ public class OnErrorStringHolderServerEndpoint {
 
     @OnMessage
     public String echo(String echo) {
-        if ("throw".equals(echo)) throw new RuntimeException(echo);
+        if ("throw".equals(echo))
+            throw new RuntimeException(echo);
         return exception + echo;
     }
 

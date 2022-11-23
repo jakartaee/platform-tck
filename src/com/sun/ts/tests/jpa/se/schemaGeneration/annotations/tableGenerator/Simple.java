@@ -25,14 +25,7 @@ import jakarta.persistence.TableGenerator;
 
 @Entity
 @Table(name = "SCHEMAGENSIMPLE")
-@TableGenerator(
-        name = "mySeAnnotationTableGenerator",
-        table = "SE_ANNOTATION_GENERATOR_TABLE",
-        pkColumnName = "PK_COL",
-        valueColumnName = "VAL_COL",
-        pkColumnValue = "DT1_ID",
-        allocationSize = 1,
-        initialValue = 2)
+@TableGenerator(name = "mySeAnnotationTableGenerator", table = "SE_ANNOTATION_GENERATOR_TABLE", pkColumnName = "PK_COL", valueColumnName = "VAL_COL", pkColumnValue = "DT1_ID", allocationSize = 1, initialValue = 2)
 public class Simple implements java.io.Serializable {
 
     private static final long serialVersionUID = 22L;
@@ -43,7 +36,8 @@ public class Simple implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public Simple() {}
+    public Simple() {
+    }
 
     public Simple(int id) {
         this.id = id;
@@ -62,8 +56,10 @@ public class Simple implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Simple)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Simple))
+            return false;
 
         Simple o1 = (Simple) o;
 

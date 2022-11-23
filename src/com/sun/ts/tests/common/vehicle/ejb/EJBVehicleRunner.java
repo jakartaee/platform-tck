@@ -45,8 +45,7 @@ public class EJBVehicleRunner implements VehicleRunnable {
                 loginContext.login(username, password);
             } catch (Exception e) {
                 TestUtil.logErr("login failed", e);
-                sTestStatus =
-                        Status.failed("Test login in appclient failed for user " + username + " password " + password);
+                sTestStatus = Status.failed("Test login in appclient failed for user " + username + " password " + password);
             }
         }
 

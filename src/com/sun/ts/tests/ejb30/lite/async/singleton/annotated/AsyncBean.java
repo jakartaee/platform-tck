@@ -25,4 +25,5 @@ import jakarta.ejb.Singleton;
 
 @Singleton
 @Asynchronous
-public class AsyncBean extends AsyncBeanBase {}
+public class AsyncBean extends AsyncBeanBase {
+}

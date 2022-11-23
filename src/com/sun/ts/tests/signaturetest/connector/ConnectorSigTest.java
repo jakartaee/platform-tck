@@ -21,30 +21,27 @@ import com.sun.ts.tests.signaturetest.SigTest;
 import java.io.PrintWriter;
 
 /**
- * The ConnectorSigTest class provides signature tests for the Java EE TCK. This
- * class extends SigTest which contains the signature test code. This class is
- * responsible for providing implementations of the abstract method defined in
+ * The ConnectorSigTest class provides signature tests for the Java EE TCK. This class extends SigTest which contains
+ * the signature test code. This class is responsible for providing implementations of the abstract method defined in
  * SigTest, namely the getPackages method.
  */
 public class ConnectorSigTest extends SigTest {
 
     /*
-     * Returns a list of strings where each string represents a package or
-     * classname. Each package or classname have it's signature tested by the
-     * signature test framework.
+     * Returns a list of strings where each string represents a package or classname. Each package or classname have it's
+     * signature tested by the signature test framework.
      *
      */
     protected String[] getPackages() {
         return new String[] {
-            "jakarta.resource",
-            "jakarta.resource.cci",
-            "jakarta.resource.spi",
-            "jakarta.resource.spi.work",
-            "jakarta.resource.spi.endpoint",
-            "jakarta.resource.spi.security"
+                "jakarta.resource",
+                "jakarta.resource.cci",
+                "jakarta.resource.spi",
+                "jakarta.resource.spi.work",
+                "jakarta.resource.spi.endpoint",
+                "jakarta.resource.spi.security"
         };
-    }
-    ;
+    };
 
     /**
      * ** Boilerplate Code ****
@@ -60,18 +57,16 @@ public class ConnectorSigTest extends SigTest {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         return super.run(args, out, err);
     }
 
     /*
-     * The following comments are specified in the base class that defines the
-     * signature tests. This is done so the test finders will find the right class
-     * to run. The implementation of these methods is inherited from the super
-     * class which is part of the signature test framework.
+     * The following comments are specified in the base class that defines the signature tests. This is done so the test
+     * finders will find the right class to run. The implementation of these methods is inherited from the super class which
+     * is part of the signature test framework.
      */
 
     // NOTE: If the API under test is not part of your testing runtime
@@ -89,12 +84,11 @@ public class ConnectorSigTest extends SigTest {
     /*
      * @testName: signatureTest
      *
-     * @assertion: A Connector implementation must provide the required classes
-     * and and APIs specified in the JavaEE Connector Architecture Spec.
+     * @assertion: A Connector implementation must provide the required classes and and APIs specified in the JavaEE
+     * Connector Architecture Spec.
      *
-     * @test_Strategy: Using reflection, gather the implementation specific
-     * classes and APIs. Compare these results with the expected (required)
-     * classes and APIs.
+     * @test_Strategy: Using reflection, gather the implementation specific classes and APIs. Compare these results with the
+     * expected (required) classes and APIs.
      *
      */
 

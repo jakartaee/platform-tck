@@ -33,8 +33,7 @@ public class GreetingBean extends GreetingBeanBase
     /*
      * (non-Javadoc)
      *
-     * @see
-     * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowed()
+     * @see com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowed()
      */
     @RolesAllowed("Administrator")
     public Integer rolesAllowed(Integer i) {
@@ -44,9 +43,7 @@ public class GreetingBean extends GreetingBeanBase
     /*
      * (non-Javadoc)
      *
-     * @see
-     * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowedNoArg(
-     * )
+     * @see com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowedNoArg( )
      */
     @RolesAllowed("Manager")
     public Integer rolesAllowedNoArg() {

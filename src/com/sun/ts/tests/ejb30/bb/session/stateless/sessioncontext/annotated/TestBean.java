@@ -36,7 +36,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "TestBean")
-@Remote({TestIF.class})
+@Remote({ TestIF.class })
 public class TestBean extends TestBeanBase {
     @Resource(name = "sessionContext")
     private SessionContext sessionContext;
@@ -79,7 +79,9 @@ public class TestBean extends TestBeanBase {
         return (ThreeLocal2IF) (sessionContext.lookup("local2"));
     }
 
-    public TestBean() {}
+    public TestBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

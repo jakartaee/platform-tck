@@ -43,9 +43,8 @@ public class Client extends ClientBase {
     /*
      * @testName: createRollback
      *
-     * @test_Strategy: create a timer that is to expire in 1 second, and 1.5
-     * seconds later, set the transaction to rollback only. The timer must not be
-     * present, and no timeout event for this timer.
+     * @test_Strategy: create a timer that is to expire in 1 second, and 1.5 seconds later, set the transaction to rollback
+     * only. The timer must not be present, and no timeout event for this timer.
      */
     /*
      * @testName: createRollbackBMT
@@ -55,9 +54,8 @@ public class Client extends ClientBase {
     /*
      * @testName: createRollbackTxPropagation
      *
-     * @test_Strategy: Inside propagated transaction, create a timer that is to
-     * expire in 2 seconds. The client transaction is rolled back. The timer must
-     * not be present, and no timeout event for this timer.
+     * @test_Strategy: Inside propagated transaction, create a timer that is to expire in 2 seconds. The client transaction
+     * is rolled back. The timer must not be present, and no timeout event for this timer.
      */
     /*
      * @testName: createRollbackTxPropagationBMT
@@ -67,10 +65,9 @@ public class Client extends ClientBase {
     /*
      * @testName: cancelRollback
      *
-     * @test_Strategy: create a timer that is to expire in the far future. The
-     * subsequent business method cancels the timer, and then set the tx to
-     * rollback. This timer must still be present, and has not yet expired. These
-     * business methods have default transaction attribute type (REQUIRED)
+     * @test_Strategy: create a timer that is to expire in the far future. The subsequent business method cancels the timer,
+     * and then set the tx to rollback. This timer must still be present, and has not yet expired. These business methods
+     * have default transaction attribute type (REQUIRED)
      */
     /*
      * @testName: cancelRollbackBMT
@@ -80,11 +77,9 @@ public class Client extends ClientBase {
     /*
      * @testName: cancelRollbackPropagation
      *
-     * @test_Strategy: create a timer that is to expire in the far future. The
-     * subsequent business method cancels the timer within a client-initiated tx.
-     * The client tx is rolled back. This timer must still be present, and has not
-     * yet expired. These business methods have default transaction attribute type
-     * (REQUIRED)
+     * @test_Strategy: create a timer that is to expire in the far future. The subsequent business method cancels the timer
+     * within a client-initiated tx. The client tx is rolled back. This timer must still be present, and has not yet
+     * expired. These business methods have default transaction attribute type (REQUIRED)
      */
     /*
      * @testName: cancelRollbackPropagationBMT
@@ -94,23 +89,20 @@ public class Client extends ClientBase {
     /*
      * @testName: timeoutRollback
      *
-     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
-     * method sets rollback for this timeout event. This event must be retried at
-     * least once. The timeout method has default transaction attribute type
-     * (REQUIRED)
+     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout method sets rollback for this timeout
+     * event. This event must be retried at least once. The timeout method has default transaction attribute type (REQUIRED)
      */
     /*
      * @testName: timeoutSystemException
      *
-     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
-     * throws system exception. This event must be retried at least once. The
-     * timeout method has default transaction attribute type (REQUIRED)
+     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout throws system exception. This event must
+     * be retried at least once. The timeout method has default transaction attribute type (REQUIRED)
      */
     /*
      * @testName: timeoutSystemExceptionBMT
      *
-     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
-     * throws system exception. This event must be retried at least once.
+     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout throws system exception. This event must
+     * be retried at least once.
      */
     /*
      * @testName: createTimerWithoutTx
@@ -120,7 +112,7 @@ public class Client extends ClientBase {
     /*
      * @testName: createTimerWithoutTxHavingClientTx
      *
-     * @test_Strategy: invoke the BMT bean to create a timer without tx. The
-     * client does have a UserTransaction but it is not propagated.
+     * @test_Strategy: invoke the BMT bean to create a timer without tx. The client does have a UserTransaction but it is
+     * not propagated.
      */
 }

@@ -116,8 +116,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -145,23 +144,21 @@ public class Client extends EETest {
     /*
      * @testName: cmpAllowedMethodsTest1
      *
-     * @assertion_ids: EJB:SPEC:453.1; EJB:SPEC:453.3; EJB:SPEC:453.4;
-     * EJB:SPEC:453.5; EJB:SPEC:453.7; EJB:SPEC:453.9; EJB:SPEC:453.12
+     * @assertion_ids: EJB:SPEC:453.1; EJB:SPEC:453.3; EJB:SPEC:453.4; EJB:SPEC:453.5; EJB:SPEC:453.7; EJB:SPEC:453.9;
+     * EJB:SPEC:453.12
      *
-     * @test_Strategy: The following operations tests for ejbCreate are: o
-     * getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly -
-     * allowed o isCallerInRole - allowed o getEJBObject - not allowed o
-     * getPrimaryKey - not allowed o JNDI_Access - allowed
+     * @test_Strategy: The following operations tests for ejbCreate are: o getEJBHome - allowed o getCallerPrincipal -
+     * allowed o getRollbackOnly - allowed o isCallerInRole - allowed o getEJBObject - not allowed o getPrimaryKey - not
+     * allowed o JNDI_Access - allowed
      *
-     * Create Entity CMP 1.1 bean. Deploy it on the J2EE server. Verify correct
-     * operations.
+     * Create Entity CMP 1.1 bean. Deploy it on the J2EE server. Verify correct operations.
      *
      */
 
     public void cmpAllowedMethodsTest1() throws Fault {
         logTrace("Operation Tests for ejbCreate");
         boolean pass = true;
-        String expected[] = {"true", "true", "true", "true", "false", "false", "true"};
+        String expected[] = { "true", "true", "true", "true", "false", "false", "true" };
         try {
             // create Helper EJB instance
             logMsg("Create Helper EJB instance");
@@ -184,29 +181,28 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean:" + e, e);
         }
 
-        if (!pass) throw new Fault("cmpAllowedMethodsTest1 failed");
+        if (!pass)
+            throw new Fault("cmpAllowedMethodsTest1 failed");
     }
 
     /*
      * @testName: cmpAllowedMethodsTest2
      *
-     * @assertion_ids: EJB:SPEC:454.1; EJB:SPEC:454.3; EJB:SPEC:454.4;
-     * EJB:SPEC:454.5; EJB:SPEC:454.7; EJB:SPEC:454.9; EJB:SPEC:454.12
+     * @assertion_ids: EJB:SPEC:454.1; EJB:SPEC:454.3; EJB:SPEC:454.4; EJB:SPEC:454.5; EJB:SPEC:454.7; EJB:SPEC:454.9;
+     * EJB:SPEC:454.12
      *
-     * @test_Strategy: The following operations tests for ejbPostCreate are: o
-     * getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly -
-     * allowed o isCallerInRole - allowed o getEJBObject - allowed o getPrimaryKey
-     * - allowed o JNDI_Access - allowed
+     * @test_Strategy: The following operations tests for ejbPostCreate are: o getEJBHome - allowed o getCallerPrincipal -
+     * allowed o getRollbackOnly - allowed o isCallerInRole - allowed o getEJBObject - allowed o getPrimaryKey - allowed o
+     * JNDI_Access - allowed
      *
-     * Create Entity CMP 1.1 bean. Deploy it on the J2EE server. Verify correct
-     * operations.
+     * Create Entity CMP 1.1 bean. Deploy it on the J2EE server. Verify correct operations.
      *
      */
 
     public void cmpAllowedMethodsTest2() throws Fault {
         TestUtil.logTrace("Operation Tests for ejbPostCreate");
         boolean pass = true;
-        String expected[] = {"true", "true", "true", "true", "true", "true", "true"};
+        String expected[] = { "true", "true", "true", "true", "true", "true", "true" };
         try {
             // create Helper EJB instance
             logMsg("Create Helper EJB instance");
@@ -229,29 +225,28 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean:" + e, e);
         }
 
-        if (!pass) throw new Fault("cmpAllowedMethodsTest2 failed");
+        if (!pass)
+            throw new Fault("cmpAllowedMethodsTest2 failed");
     }
 
     /*
      * @testName: cmpAllowedMethodsTest3
      *
-     * @assertion_ids: EJB:SPEC:463.1; EJB:SPEC:463.3; EJB:SPEC:463.4;
-     * EJB:SPEC:463.5; EJB:SPEC:463.7; EJB:SPEC:463.9; EJB:SPEC:463.12
+     * @assertion_ids: EJB:SPEC:463.1; EJB:SPEC:463.3; EJB:SPEC:463.4; EJB:SPEC:463.5; EJB:SPEC:463.7; EJB:SPEC:463.9;
+     * EJB:SPEC:463.12
      *
-     * @test_Strategy: The following operations tests for setEntityContext are: o
-     * getEJBHome - allowed o getCallerPrincipal - not allowed o getRollbackOnly -
-     * not allowed o isCallerInRole - not allowed o getEJBObject - not allowed o
+     * @test_Strategy: The following operations tests for setEntityContext are: o getEJBHome - allowed o getCallerPrincipal
+     * - not allowed o getRollbackOnly - not allowed o isCallerInRole - not allowed o getEJBObject - not allowed o
      * getPrimaryKey - not allowed o JNDI_Access - allowed
      *
-     * Create Entity CMP 1.1 bean. Deploy it on the J2EE server. Verify correct
-     * operations.
+     * Create Entity CMP 1.1 bean. Deploy it on the J2EE server. Verify correct operations.
      *
      */
 
     public void cmpAllowedMethodsTest3() throws Fault {
         TestUtil.logTrace("Operation Tests for setEntityContext");
         boolean pass = true;
-        String expected[] = {"true", "false", "false", "false", "false", "false", "true"};
+        String expected[] = { "true", "false", "false", "false", "false", "false", "true" };
         try {
             // create EJB instance
             logMsg("Create EJB instance");
@@ -270,19 +265,19 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean:" + e, e);
         }
 
-        if (!pass) throw new Fault("cmpAllowedMethodsTest3 failed");
+        if (!pass)
+            throw new Fault("cmpAllowedMethodsTest3 failed");
     }
 
     /*
      * @testName: cmpAllowedMethodsTest4
      *
-     * @assertion_ids: EJB:SPEC:461.1; EJB:SPEC:461.3; EJB:SPEC:461.4;
-     * EJB:SPEC:461.5; EJB:SPEC:461.7; EJB:SPEC:461.9; EJB:SPEC:461.12
+     * @assertion_ids: EJB:SPEC:461.1; EJB:SPEC:461.3; EJB:SPEC:461.4; EJB:SPEC:461.5; EJB:SPEC:461.7; EJB:SPEC:461.9;
+     * EJB:SPEC:461.12
      *
-     * @test_Strategy: The following operations tests for businessMethod are: o
-     * getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly -
-     * allowed o isCallerInRole - allowed o getEJBObject - allowed o getPrimaryKey
-     * - allowed o JNDI_Access - allowed
+     * @test_Strategy: The following operations tests for businessMethod are: o getEJBHome - allowed o getCallerPrincipal -
+     * allowed o getRollbackOnly - allowed o isCallerInRole - allowed o getEJBObject - allowed o getPrimaryKey - allowed o
+     * JNDI_Access - allowed
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -291,7 +286,7 @@ public class Client extends EETest {
     public void cmpAllowedMethodsTest4() throws Fault {
         TestUtil.logTrace("Operation Tests for businessMethod");
         boolean pass = true;
-        String expected[] = {"true", "true", "true", "true", "true", "true", "true"};
+        String expected[] = { "true", "true", "true", "true", "true", "true", "true" };
         try {
             // create Helper EJB instance
             logMsg("Create Helper EJB instance");
@@ -316,29 +311,28 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean:" + e, e);
         }
 
-        if (!pass) throw new Fault("cmpAllowedMethodsTest4 failed");
+        if (!pass)
+            throw new Fault("cmpAllowedMethodsTest4 failed");
     }
 
     /*
      * @testName: cmpAllowedMethodsTest5
      *
-     * @assertion_ids: EJB:SPEC:459.1; EJB:SPEC:459.3; EJB:SPEC:459.4;
-     * EJB:SPEC:459.5; EJB:SPEC:459.7; EJB:SPEC:459.9; EJB:SPEC:459.12
+     * @assertion_ids: EJB:SPEC:459.1; EJB:SPEC:459.3; EJB:SPEC:459.4; EJB:SPEC:459.5; EJB:SPEC:459.7; EJB:SPEC:459.9;
+     * EJB:SPEC:459.12
      *
-     * @test_Strategy: The following operations tests for ejbLoad are: o
-     * getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly -
-     * allowed o isCallerInRole - allowed o getEJBObject - allowed o getPrimaryKey
-     * - allowed o JNDI_Access - allowed
+     * @test_Strategy: The following operations tests for ejbLoad are: o getEJBHome - allowed o getCallerPrincipal - allowed
+     * o getRollbackOnly - allowed o isCallerInRole - allowed o getEJBObject - allowed o getPrimaryKey - allowed o
+     * JNDI_Access - allowed
      *
-     * Create Entity CMP 1.1 bean. Deploy it on the J2EE server. Verify correct
-     * operations.
+     * Create Entity CMP 1.1 bean. Deploy it on the J2EE server. Verify correct operations.
      *
      */
 
     public void cmpAllowedMethodsTest5() throws Fault {
         TestUtil.logTrace("Operation Tests for ejbLoad");
         boolean pass = true;
-        String expected[] = {"true", "true", "true", "true", "true", "true", "true"};
+        String expected[] = { "true", "true", "true", "true", "true", "true", "true" };
         try {
             // create Helper EJB instance
             logMsg("Create Helper EJB instance");
@@ -367,7 +361,8 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean:" + e, e);
         }
 
-        if (!pass) throw new Fault("cmpAllowedMethodsTest5 failed");
+        if (!pass)
+            throw new Fault("cmpAllowedMethodsTest5 failed");
     }
 
     public void cleanup() throws Fault {

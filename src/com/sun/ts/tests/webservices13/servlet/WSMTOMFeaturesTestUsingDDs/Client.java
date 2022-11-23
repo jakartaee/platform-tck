@@ -150,8 +150,10 @@ public class Client extends EETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -190,12 +192,10 @@ public class Client extends EETest {
     /*
      * @testName: ClientEnabledServerEnabledMTOMInTest
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013; WS4EE:SPEC:4015;
-     * WS4EE:SPEC:4019;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013;
+     * WS4EE:SPEC:4015; WS4EE:SPEC:4019;
      *
-     * @test_Strategy: Test MTOM attachments on input where mtom is enabled in the
-     * endpoint and the client.
+     * @test_Strategy: Test MTOM attachments on input where mtom is enabled in the endpoint and the client.
      */
     public void ClientEnabledServerEnabledMTOMInTest() throws Fault {
         TestUtil.logMsg("ClientEnabledServerEnabledMTOMInTest");
@@ -232,18 +232,17 @@ public class Client extends EETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientEnabledServerEnabledMTOMInTest failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledMTOMInTest failed");
     }
 
     /*
      * @testName: ClientEnabledServerDisabledMTOMInTest
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013; WS4EE:SPEC:4015;
-     * WS4EE:SPEC:4019;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013;
+     * WS4EE:SPEC:4015; WS4EE:SPEC:4019;
      *
-     * @test_Strategy: Test MTOM attachments on input where mtom is disabled in
-     * the endpoint but enabled on the client.
+     * @test_Strategy: Test MTOM attachments on input where mtom is disabled in the endpoint but enabled on the client.
      */
     public void ClientEnabledServerDisabledMTOMInTest() throws Fault {
         TestUtil.logMsg("ClientEnabledServerDisabledMTOMInTest");
@@ -281,18 +280,17 @@ public class Client extends EETest {
         if (!execute_ejb_client("ClientEnabledServerDisabledMTOMInTest", SDOC1, sdocURL1)) {
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerDisabledMTOMInTest failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerDisabledMTOMInTest failed");
     }
 
     /*
      * @testName: ClientEnabledServerEnabledMTOMInDefaultTest
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013; WS4EE:SPEC:4015;
-     * WS4EE:SPEC:4019;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013;
+     * WS4EE:SPEC:4015; WS4EE:SPEC:4019;
      *
-     * @test_Strategy: Test MTOM attachments on input where mtom is enabled in the
-     * endpoint and the client.
+     * @test_Strategy: Test MTOM attachments on input where mtom is enabled in the endpoint and the client.
      */
     public void ClientEnabledServerEnabledMTOMInDefaultTest() throws Fault {
         TestUtil.logMsg("ClientEnabledServerEnabledMTOMInDefaultTest");
@@ -330,19 +328,18 @@ public class Client extends EETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientEnabledServerEnabledMTOMInTest failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledMTOMInTest failed");
     }
 
     /*
      * @testName: ClientEnabledServerEnabledGT2000Test
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013; WS4EE:SPEC:4015;
-     * WS4EE:SPEC:4019;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013;
+     * WS4EE:SPEC:4015; WS4EE:SPEC:4019;
      *
-     * @test_Strategy: Test that XOP is enabled when sending an attachment that is
-     * greater than 2000 bytes. The client and endpoint have mtom enabled with the
-     * threshold set to 2000
+     * @test_Strategy: Test that XOP is enabled when sending an attachment that is greater than 2000 bytes. The client and
+     * endpoint have mtom enabled with the threshold set to 2000
      */
     public void ClientEnabledServerEnabledGT2000Test() throws Fault {
         TestUtil.logMsg("ClientEnabledServerEnabledGT2000Test");
@@ -378,19 +375,18 @@ public class Client extends EETest {
         if (!execute_ejb_client("ClientEnabledServerEnabledGT2000Test", SDOC2, sdocURL2)) {
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerEnabledGT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledGT2000Test failed");
     }
 
     /*
      * @testName: ClientEnabledServerEnabledGT2000DefaultTest
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013; WS4EE:SPEC:4015;
-     * WS4EE:SPEC:4019;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013;
+     * WS4EE:SPEC:4015; WS4EE:SPEC:4019;
      *
-     * @test_Strategy: Test that XOP is enabled when sending an attachment that is
-     * greater than 0 bytes. The endpoint has mtom enabled with the threshold set
-     * to 2000
+     * @test_Strategy: Test that XOP is enabled when sending an attachment that is greater than 0 bytes. The endpoint has
+     * mtom enabled with the threshold set to 2000
      */
     public void ClientEnabledServerEnabledGT2000DefaultTest() throws Fault {
         TestUtil.logMsg("ClientEnabledServerEnabledGT2000DefaultTest");
@@ -427,19 +423,18 @@ public class Client extends EETest {
         if (!execute_ejb_client("ClientEnabledServerEnabledGT2000DefaultTest", SDOC2, sdocURL2)) {
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerEnabledGT2000DefaultTest failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledGT2000DefaultTest failed");
     }
 
     /*
      * @testName: ClientDisabledServerEnabledGT2000Test
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013; WS4EE:SPEC:4015;
-     * WS4EE:SPEC:4019;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013;
+     * WS4EE:SPEC:4015; WS4EE:SPEC:4019;
      *
-     * @test_Strategy: Test that XOP is disabled when sending an attachment that
-     * is greater than 2000 bytes. The client has mtom disabled and the endpoint
-     * has mtom enabled with the threshold set to 2000
+     * @test_Strategy: Test that XOP is disabled when sending an attachment that is greater than 2000 bytes. The client has
+     * mtom disabled and the endpoint has mtom enabled with the threshold set to 2000
      */
     public void ClientDisabledServerEnabledGT2000Test() throws Fault {
         TestUtil.logMsg("ClientDisabledServerEnabledGT2000Test");
@@ -475,19 +470,18 @@ public class Client extends EETest {
         if (!execute_ejb_client("ClientDisabledServerEnabledGT2000Test", SDOC2, sdocURL2)) {
             pass = false;
         }
-        if (!pass) throw new Fault("ClientDisabledServerEnabledGT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientDisabledServerEnabledGT2000Test failed");
     }
 
     /*
      * @testName: ClientEnabledServerDisabledGT2000Test
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013; WS4EE:SPEC:4015;
-     * WS4EE:SPEC:4019;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013;
+     * WS4EE:SPEC:4015; WS4EE:SPEC:4019;
      *
-     * @test_Strategy: Test that XOP is enabled when sending an attachment that is
-     * greater than 2000 bytes. The client has mtom enabled and the endpoint has
-     * mtom disbled with the threshold set to 2000
+     * @test_Strategy: Test that XOP is enabled when sending an attachment that is greater than 2000 bytes. The client has
+     * mtom enabled and the endpoint has mtom disbled with the threshold set to 2000
      */
     public void ClientEnabledServerDisabledGT2000Test() throws Fault {
         TestUtil.logMsg("ClientEnabledServerDisabledGT2000Test");
@@ -522,19 +516,18 @@ public class Client extends EETest {
         if (!execute_ejb_client("ClientEnabledServerDisabledGT2000Test", SDOC2, sdocURL2)) {
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerDisabledGT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerDisabledGT2000Test failed");
     }
 
     /*
      * @testName: ClientEnabledServerEnabledLT2000Test
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013; WS4EE:SPEC:4015;
-     * WS4EE:SPEC:4019;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4013;
+     * WS4EE:SPEC:4015; WS4EE:SPEC:4019;
      *
-     * @test_Strategy: Test that XOP is enabled when sending an attachment that is
-     * greater than 2000 bytes. The client and endpoint have mtom enabled with the
-     * threshold set to 2000
+     * @test_Strategy: Test that XOP is enabled when sending an attachment that is greater than 2000 bytes. The client and
+     * endpoint have mtom enabled with the threshold set to 2000
      */
     public void ClientEnabledServerEnabledLT2000Test() throws Fault {
         TestUtil.logMsg("ClientEnabledServerEnabledLT2000Test");
@@ -570,7 +563,8 @@ public class Client extends EETest {
         if (!execute_ejb_client("ClientEnabledServerEnabledLT2000Test", SDOC3, sdocURL3)) {
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerEnabledLT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledLT2000Test failed");
     }
 
     private boolean execute_servlet_client(String testname, String SDOC, String sdocURL) {

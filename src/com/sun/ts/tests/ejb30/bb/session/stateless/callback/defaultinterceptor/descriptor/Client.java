@@ -27,9 +27,8 @@ import com.sun.ts.tests.ejb30.common.callback.ClientBase;
 import jakarta.ejb.EJB;
 
 /**
- * A test client for callback methods. Note that since callback methods cannot
- * throw application exception, so we can only convey test result back to client
- * through the returned value.
+ * A test client for callback methods. Note that since callback methods cannot throw application exception, so we can
+ * only convey test result back to client through the returned value.
  */
 public class Client extends ClientBase {
     @EJB(beanName = "CallbackBean")
@@ -82,9 +81,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o verify callback methods in handler class are invoked o
-     * Callback methods may throw RuntimeException
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o verify callback methods in
+     * handler class are invoked o Callback methods may throw RuntimeException
      */
 
     /*
@@ -92,9 +90,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o Resource o verify dependency injection has occurred when
-     * callback method is called o Callback methods may throw RuntimeException
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o Resource o verify dependency
+     * injection has occurred when callback method is called o Callback methods may throw RuntimeException
      */
 
     /*
@@ -102,8 +99,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default interceptors are configured for an ejb
-     * jar. Verifies they are invoked in the correct order.
+     * @test_Strategy: multiple default interceptors are configured for an ejb jar. Verifies they are invoked in the correct
+     * order.
      *
      */
     /*
@@ -111,8 +108,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default interceptors are configured for an ejb
-     * jar. Verifies they are invoked in the correct order.
+     * @test_Strategy: multiple default interceptors are configured for an ejb jar. Verifies they are invoked in the correct
+     * order.
      *
      */
     /*
@@ -120,8 +117,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default interceptors are configured for an ejb
-     * jar, but they are excluded for this CallbackBean3 with
+     * @test_Strategy: multiple default interceptors are configured for an ejb jar, but they are excluded for this
+     * CallbackBean3 with
      *
      * @ExcludeDefaultInterceptors on bean class. Verifies they are not invoked.
      *
@@ -131,11 +128,9 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default interceptors are configured for an ejb
-     * jar, but they are excluded for this CallbackBean4 with
-     * exclude-default-interceptors in ejb-jar.xml. Verifies they are not invoked.
-     * This test is the same as defaultInterceptorsForCallbackBean3 except this
-     * one uses descriptor to exclude default interceptors.
+     * @test_Strategy: multiple default interceptors are configured for an ejb jar, but they are excluded for this
+     * CallbackBean4 with exclude-default-interceptors in ejb-jar.xml. Verifies they are not invoked. This test is the same
+     * as defaultInterceptorsForCallbackBean3 except this one uses descriptor to exclude default interceptors.
      *
      */
     /*
@@ -143,8 +138,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: single default interceptors are configured for an ejb jar.
-     * Verifies only one is invoked.
+     * @test_Strategy: single default interceptors are configured for an ejb jar. Verifies only one is invoked.
      *
      */
 

@@ -90,13 +90,11 @@ public class Client extends ServiceEETest implements Serializable {
      * @assertion_ids: JavaEE:SPEC:304; JavaEE:SPEC:293;
      *
      *
-     * @test_Strategy: This validates that a permission is bundled with the app
-     * and that the app does have grants for that perm. This perm should be
-     * granted at both: - configuration (config.vi) to add perm to appserver polcy
-     * - in local permissions.xml This should validate we can have the perm
-     * declared in both places and it still works. This tests the permission.xml
-     * from within a rar by doing the following: a. check that
-     * whitebox-permissiondd ran its tests and logged the proper success message.
+     * @test_Strategy: This validates that a permission is bundled with the app and that the app does have grants for that
+     * perm. This perm should be granted at both: - configuration (config.vi) to add perm to appserver polcy - in local
+     * permissions.xml This should validate we can have the perm declared in both places and it still works. This tests the
+     * permission.xml from within a rar by doing the following: a. check that whitebox-permissiondd ran its tests and logged
+     * the proper success message.
      *
      */
     public void testValidateCustomPerm() throws Fault {
@@ -141,27 +139,21 @@ public class Client extends ServiceEETest implements Serializable {
     }
 
     /*
-     * The test is commented as this test case is not supported by Java EE
-     * Platform Specification
+     * The test is commented as this test case is not supported by Java EE Platform Specification
      *
      * testName: testValidateCustomPermFromAppServer
      *
-     * @assertion_ids: JavaEE:SPEC:290; JavaEE:SPEC:293; JavaEE:SPEC:295;
-     * JavaEE:SPEC:304;
+     * @assertion_ids: JavaEE:SPEC:290; JavaEE:SPEC:293; JavaEE:SPEC:295; JavaEE:SPEC:304;
      *
-     * @test_Strategy: This is basically testing that when a permission is set
-     * within the app server but NOT listed/set within the permissions.xml, our
-     * deployed app will still be granted that permission. Thus omitting it from
-     * the permissions.xml must not cause the permission to be denied.
+     * @test_Strategy: This is basically testing that when a permission is set within the app server but NOT listed/set
+     * within the permissions.xml, our deployed app will still be granted that permission. Thus omitting it from the
+     * permissions.xml must not cause the permission to be denied.
      *
-     * This validates that we have a particular grant under the following
-     * conditions: - this is testing permissions.xml within a Servlet - using a
-     * custom Permission defined wihtin app server (via initial config) (note:
-     * this custom perm is CTSPermission1 named "ConnectorPermission1_name2") -
-     * have NO declared grant for this (CTSPermission1_name2) in permissions.xml -
-     * since the perm IS defined within the appserver but is not defined within
-     * the local permissions.xml, the app componets must still have permission as
-     * set within app server.
+     * This validates that we have a particular grant under the following conditions: - this is testing permissions.xml
+     * within a Servlet - using a custom Permission defined wihtin app server (via initial config) (note: this custom perm
+     * is CTSPermission1 named "ConnectorPermission1_name2") - have NO declared grant for this (CTSPermission1_name2) in
+     * permissions.xml - since the perm IS defined within the appserver but is not defined within the local permissions.xml,
+     * the app componets must still have permission as set within app server.
      *
      */
     public void testValidateCustomPermFromAppServer() throws Fault {
@@ -208,17 +200,14 @@ public class Client extends ServiceEETest implements Serializable {
     /*
      * @testName: testValidateLocalGrantForCustomPerm
      *
-     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303;
-     * JavaEE:SPEC:304;
+     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303; JavaEE:SPEC:304;
      *
      *
-     * @test_Strategy: This validates that we have a particular grant under the
-     * following conditions: - this is testing permissions.xml within a Servlet -
-     * using locally declared custom Permission (CTSPermission2) declared for
-     * property "CTSPermission2_name"; note: CTSPermission2 does NOT have support
-     * for actions. - have declared grant in permissions.xml - have NO declared
-     * grant at higher app server level (e.g. server.policy etc) We should be
-     * allowed access control.
+     * @test_Strategy: This validates that we have a particular grant under the following conditions: - this is testing
+     * permissions.xml within a Servlet - using locally declared custom Permission (CTSPermission2) declared for property
+     * "CTSPermission2_name"; note: CTSPermission2 does NOT have support for actions. - have declared grant in
+     * permissions.xml - have NO declared grant at higher app server level (e.g. server.policy etc) We should be allowed
+     * access control.
      *
      */
     public void testValidateLocalGrantForCustomPerm() throws Fault {
@@ -268,18 +257,14 @@ public class Client extends ServiceEETest implements Serializable {
      * @assertion_ids: JavaEE:SPEC:290; JavaEE:SPEC:296; JavaEE:SPEC:291;
      *
      *
-     * @test_Strategy: This validates that the required set of perms are properly
-     * granted so when we try to do our access checks, we expect to see NO
-     * AccessControl exception returned. This validates that we have grants for
-     * multiple perms under the following conditions: - this is testing
-     * permissions.xml within a resource adapter - have locally declared grants in
-     * permissions.xml - we shouldnt care if grants are declared (or not declared)
-     * at the higher app server level (e.g. via server.policy) - This is
-     * validating the following are properly granted thru permissions.xml:
-     * RuntimePermission("loadLibrary.*") RuntimePermission("queuePrintJob")
-     * SocketPermission("*", "connect") FilePermission("*", "read")
-     * PropertyPermission("*", "read") note: there is a more comprehendive listing
-     * in the Java EE7 spec, Table EE.6-2. We are testing a subset of those.
+     * @test_Strategy: This validates that the required set of perms are properly granted so when we try to do our access
+     * checks, we expect to see NO AccessControl exception returned. This validates that we have grants for multiple perms
+     * under the following conditions: - this is testing permissions.xml within a resource adapter - have locally declared
+     * grants in permissions.xml - we shouldnt care if grants are declared (or not declared) at the higher app server level
+     * (e.g. via server.policy) - This is validating the following are properly granted thru permissions.xml:
+     * RuntimePermission("loadLibrary.*") RuntimePermission("queuePrintJob") SocketPermission("*", "connect")
+     * FilePermission("*", "read") PropertyPermission("*", "read") note: there is a more comprehendive listing in the Java
+     * EE7 spec, Table EE.6-2. We are testing a subset of those.
      *
      */
     public void testValidateRequiredPermSet() throws Fault {
@@ -328,15 +313,12 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:289; JavaEE:SPEC:290; JavaEE:SPEC:304;
      *
-     * @test_Strategy: This validates that we are NOT granted a certain permission
-     * and so when we try to do our access checks, we expect to see an
-     * AccessControl exception returned. This validates that we have no grant
-     * under the following conditions: - this is testing permissions.xml within a
-     * resource adapter - using locally declared Permission impl (CTSPermission1)
-     * - have NO declared grant in permissions.xml for locally defined permission
-     * CTSPermission1 with name="CTSPermission2_name" - have NO declared grant at
-     * higher app server level (e.g. server.policy etc) This validates that an
-     * AccessControlException is properly thrown.
+     * @test_Strategy: This validates that we are NOT granted a certain permission and so when we try to do our access
+     * checks, we expect to see an AccessControl exception returned. This validates that we have no grant under the
+     * following conditions: - this is testing permissions.xml within a resource adapter - using locally declared Permission
+     * impl (CTSPermission1) - have NO declared grant in permissions.xml for locally defined permission CTSPermission1 with
+     * name="CTSPermission2_name" - have NO declared grant at higher app server level (e.g. server.policy etc) This
+     * validates that an AccessControlException is properly thrown.
      *
      */
     public void testValidateMissingPermFails() throws Fault {
@@ -383,16 +365,13 @@ public class Client extends ServiceEETest implements Serializable {
     /*
      * @testName: testValidateRestrictedLocalPerm
      *
-     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303;
-     * JavaEE:SPEC:304;
+     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303; JavaEE:SPEC:304;
      *
-     * @test_Strategy: This validates that we have a particular grant under the
-     * following conditions: - this is testing permissions.xml within a resource
-     * adapter - using our own perm (CTSPropertyPermission) that is referenced in
-     * permission.xml and has read but not write assigned note:
-     * CTSPropertyPermission has support for actions - have NO declared grants for
-     * CTSPropertyPermission at higher app server level (e.g. server.policy etc)
-     * so that it is ONLY bundled in this local app and ref'd in permission.xml
+     * @test_Strategy: This validates that we have a particular grant under the following conditions: - this is testing
+     * permissions.xml within a resource adapter - using our own perm (CTSPropertyPermission) that is referenced in
+     * permission.xml and has read but not write assigned note: CTSPropertyPermission has support for actions - have NO
+     * declared grants for CTSPropertyPermission at higher app server level (e.g. server.policy etc) so that it is ONLY
+     * bundled in this local app and ref'd in permission.xml
      *
      */
     public void testValidateRestrictedLocalPerm() throws Fault {
@@ -439,20 +418,15 @@ public class Client extends ServiceEETest implements Serializable {
     /*
      * @testName: testValidateLocalPermsInvalidName
      *
-     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303;
-     * JavaEE:SPEC:304; JavaEE:SPEC:314;
+     * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303; JavaEE:SPEC:304; JavaEE:SPEC:314;
      *
-     * @test_Strategy: This validates that we have a particular grant under the
-     * following conditions: - this is testing permissions.xml within a resource
-     * adapter - using our own perm (CTSPropertyPermission) that is referenced in
-     * permission.xml and has read but not write assigned note:
-     * CTSPropertyPermission has support for actions - we have perm
-     * (CTSPropertyPermission) WITH read action *but* the perm that is declared in
-     * permissions.xml has a different name then what we are trying to validate in
-     * our call to AccessController.checkPermission - so we expect
-     * AccessControlException to be thrown - also, have NO declared grants for
-     * CTSPropertyPermission at higher app server level (e.g. server.policy etc)
-     * so that it is ONLY bundled in this local app and ref'd in permission.xml
+     * @test_Strategy: This validates that we have a particular grant under the following conditions: - this is testing
+     * permissions.xml within a resource adapter - using our own perm (CTSPropertyPermission) that is referenced in
+     * permission.xml and has read but not write assigned note: CTSPropertyPermission has support for actions - we have perm
+     * (CTSPropertyPermission) WITH read action *but* the perm that is declared in permissions.xml has a different name then
+     * what we are trying to validate in our call to AccessController.checkPermission - so we expect AccessControlException
+     * to be thrown - also, have NO declared grants for CTSPropertyPermission at higher app server level (e.g. server.policy
+     * etc) so that it is ONLY bundled in this local app and ref'd in permission.xml
      *
      */
     public void testValidateLocalPermsInvalidName() throws Fault {

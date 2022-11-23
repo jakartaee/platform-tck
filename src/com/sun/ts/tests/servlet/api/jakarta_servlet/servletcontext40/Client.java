@@ -62,8 +62,10 @@ public class Client extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -163,8 +165,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: NA
      *
-     * @test_Strategy: IllegalStateException - if this ServletContext has already
-     * been initialized
+     * @test_Strategy: IllegalStateException - if this ServletContext has already been initialized
      */
     public void addJspContextInitialized() throws Fault {
         try {
@@ -201,8 +202,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: NA
      *
-     * @test_Strategy: IllegalStateException - if this ServletContext has already
-     * been initialized
+     * @test_Strategy: IllegalStateException - if this ServletContext has already been initialized
      */
     public void setSessionTimeoutContextInitialized() throws Fault {
         try {
@@ -239,10 +239,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: NA
      *
-     * @test_Strategy: UnsupportedOperationException - if this ServletContext was
-     * passed to the ServletContextListener.contextInitialized(jakarta.servlet.
-     * ServletContextEvent) method of a ServletContextListener that was neither
-     * declared in web.xml or web-fragment.xml, nor annotated with WebListener
+     * @test_Strategy: UnsupportedOperationException - if this ServletContext was passed to the
+     * ServletContextListener.contextInitialized(jakarta.servlet. ServletContextEvent) method of a ServletContextListener
+     * that was neither declared in web.xml or web-fragment.xml, nor annotated with WebListener
      */
     public void addJspContextListenerInTLD() throws Fault {
         try {
@@ -278,10 +277,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: NA
      *
-     * @test_Strategy: UnsupportedOperationException - if this ServletContext was
-     * passed to the ServletContextListener.contextInitialized(jakarta.servlet.
-     * ServletContextEvent) method of a ServletContextListener that was neither
-     * declared in web.xml or web-fragment.xml, nor annotated with WebListener
+     * @test_Strategy: UnsupportedOperationException - if this ServletContext was passed to the
+     * ServletContextListener.contextInitialized(jakarta.servlet. ServletContextEvent) method of a ServletContextListener
+     * that was neither declared in web.xml or web-fragment.xml, nor annotated with WebListener
      */
     public void setSessionTimeoutContextListenerInTLD() throws Fault {
         try {
@@ -317,8 +315,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: NA
      *
-     * @test_Strategy: IllegalArgumentException - if servletName is null or an
-     * empty String
+     * @test_Strategy: IllegalArgumentException - if servletName is null or an empty String
      */
     public void addJspEmptyAndNullName() throws Fault {
         try {
@@ -503,8 +500,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: NA
      *
-     * @test_Strategy: with no setEffectiveSesssionTrackingModes, default is in
-     * effective
+     * @test_Strategy: with no setEffectiveSesssionTrackingModes, default is in effective
      */
     public void getEffectiveSessionTrackingModes() throws Fault {
         try {

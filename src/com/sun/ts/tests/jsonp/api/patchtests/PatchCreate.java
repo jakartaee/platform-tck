@@ -33,14 +33,12 @@ import jakarta.json.JsonValue;
 
 // $Id$
 /**
- * JavaScript Object Notation (JSON) compatibility tests: {@link JsonPatch} API
- * factory methods added in JSON-P 1.1.<br>
+ * JavaScript Object Notation (JSON) compatibility tests: {@link JsonPatch} API factory methods added in JSON-P 1.1.<br>
  */
 public class PatchCreate {
 
     /**
-     * Creates an instance of {@link JsonPatch} API factory methods added in
-     * JSON-P 1.1 test.
+     * Creates an instance of {@link JsonPatch} API factory methods added in JSON-P 1.1 test.
      */
     PatchCreate() {
         super();
@@ -63,8 +61,7 @@ public class PatchCreate {
     /**
      * Test {@link Json#createDiff(JsonStructure,JsonStructure)} method.
      *
-     * @param result
-     *          Test suite result.
+     * @param result Test suite result.
      */
     private void testCreateDiff(final TestResult result) {
         TestUtil.logMsg(" - Json#createDiff(JsonStructure,JsonStructure)");
@@ -82,8 +79,7 @@ public class PatchCreate {
     /**
      * Test {@link Json#createPatch(JsonArray)} method.
      *
-     * @param result
-     *          Test suite result.
+     * @param result Test suite result.
      */
     private void testCreatePatch(final TestResult result) {
         TestUtil.logMsg(" - Json#createPatch(JsonArray)");
@@ -102,8 +98,7 @@ public class PatchCreate {
     /**
      * Test {@link Json#createPatchBuilder(JsonArray)} method.
      *
-     * @param result
-     *          Test suite result.
+     * @param result Test suite result.
      */
     private void testCreatePatchBuilder(final TestResult result) {
         TestUtil.logMsg(" - Json#createPatchBuilder(JsonArray)");
@@ -122,12 +117,9 @@ public class PatchCreate {
     /**
      * Operation result check.
      *
-     * @param check
-     *          Expected modified JSON value.
-     * @param out
-     *          Operation output.
-     * @return Value of {@code true} if operation passed or {@code false}
-     *         otherwise.
+     * @param check Expected modified JSON value.
+     * @param out Operation output.
+     * @return Value of {@code true} if operation passed or {@code false} otherwise.
      */
     protected boolean operationFailed(final JsonValue check, final JsonValue out) {
         return out == null || !assertEquals(check, out);

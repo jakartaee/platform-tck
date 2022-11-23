@@ -70,8 +70,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: jms_timeout; user; password; platform.mode;
-     * webServerHost; webServerPort;
+     * @class.setup_props: jms_timeout; user; password; platform.mode; webServerHost; webServerPort;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -125,12 +124,10 @@ public class Client extends EETest {
     /*
      * @testName: testCDIInjectionOfMDBWithQueueReplyFromEjb
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:280;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:280;
      *
-     * @test_Strategy: Test CDI injection in a MDB. Send a message to the MDB and
-     * MDB sends a reply back to the Reply Queue using the CDI injected
-     * JMSContext.
+     * @test_Strategy: Test CDI injection in a MDB. Send a message to the MDB and MDB sends a reply back to the Reply Queue
+     * using the CDI injected JMSContext.
      */
     public void testCDIInjectionOfMDBWithQueueReplyFromEjb() throws Fault {
         boolean pass = true;
@@ -165,12 +162,10 @@ public class Client extends EETest {
     /*
      * @testName: testCDIInjectionOfMDBWithTopicReplyFromEjb
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:280;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:280;
      *
-     * @test_Strategy: Test CDI injection in a MDB. Send a message to the MDB and
-     * MDB sends a reply back to the Reply Topic using the CDI injected
-     * JMSContext.
+     * @test_Strategy: Test CDI injection in a MDB. Send a message to the MDB and MDB sends a reply back to the Reply Topic
+     * using the CDI injected JMSContext.
      */
     public void testCDIInjectionOfMDBWithTopicReplyFromEjb() throws Fault {
         boolean pass = true;

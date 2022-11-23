@@ -28,12 +28,8 @@ import java.util.List;
 /**
  * Tests the type substitution.
  */
-@WebService(
-        name = "CarDealer",
-        portName = "CarDealerPort",
-        serviceName = "CarDealerService",
-        targetNamespace = "http://typesubstitution/wsdl")
-@XmlSeeAlso({Toyota.class, Ford.class})
+@WebService(name = "CarDealer", portName = "CarDealerPort", serviceName = "CarDealerService", targetNamespace = "http://typesubstitution/wsdl")
+@XmlSeeAlso({ Toyota.class, Ford.class })
 public class CarDealerImpl {
     public List<Car> getSedans() {
         List<Car> cars = new ArrayList<Car>();

@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -92,14 +94,12 @@ public class URLClient extends EETest {
     /*
      * @testName: SendVariousMimeAttachmentsSOAP11Test
      *
-     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4;
-     * SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7; SAAJ:SPEC:8; SAAJ:SPEC:9;
-     * SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14;
-     * SAAJ:SPEC:15; SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
+     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4; SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7;
+     * SAAJ:SPEC:8; SAAJ:SPEC:9; SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14; SAAJ:SPEC:15;
+     * SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
      *
-     * @test_Strategy: Create a soap message with various MIME attachments and
-     * then send the soap message. Verify that all MIME attachments are received
-     * correctly. Sends a soap 1.1 protocol message.
+     * @test_Strategy: Create a soap message with various MIME attachments and then send the soap message. Verify that all
+     * MIME attachments are received correctly. Sends a soap 1.1 protocol message.
      *
      * Description: Send soap message with various MIME attachments.
      *
@@ -119,9 +119,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("SendVariousMimeAttachmentsSOAP11Test failed");
+            if (!pass)
+                throw new Fault("SendVariousMimeAttachmentsSOAP11Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -133,14 +135,12 @@ public class URLClient extends EETest {
     /*
      * @testName: SendVariousMimeAttachmentsSOAP12Test
      *
-     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4;
-     * SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7; SAAJ:SPEC:8; SAAJ:SPEC:9;
-     * SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14;
-     * SAAJ:SPEC:15; SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
+     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4; SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7;
+     * SAAJ:SPEC:8; SAAJ:SPEC:9; SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14; SAAJ:SPEC:15;
+     * SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
      *
-     * @test_Strategy: Create a soap message with various MIME attachments and
-     * then send the soap message. Verify that all MIME attachments are received
-     * correctly. Sends a soap 1.2 protocol message.
+     * @test_Strategy: Create a soap message with various MIME attachments and then send the soap message. Verify that all
+     * MIME attachments are received correctly. Sends a soap 1.2 protocol message.
      *
      * Description: Send soap message with various MIME attachments.
      *
@@ -160,9 +160,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("SendVariousMimeAttachmentsSOAP12Test failed");
+            if (!pass)
+                throw new Fault("SendVariousMimeAttachmentsSOAP12Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

@@ -61,7 +61,8 @@ public class ClientConfigurator extends Configurator {
     @Override
     public void beforeRequest(Map<String, List<String>> headers) {
         super.beforeRequest(headers);
-        for (Entry<String, List<String>> set : requestMap.entrySet()) headers.put(set.getKey(), set.getValue());
+        for (Entry<String, List<String>> set : requestMap.entrySet())
+            headers.put(set.getKey(), set.getValue());
         hasBeenBeforeRequest = true;
     }
 
@@ -98,6 +99,7 @@ public class ClientConfigurator extends Configurator {
     }
 
     protected static void assertTrue(boolean t, String... msg) {
-        if (!t) throw new RuntimeException(StringUtil.objectsToString((Object[]) msg));
+        if (!t)
+            throw new RuntimeException(StringUtil.objectsToString((Object[]) msg));
     }
 }

@@ -30,8 +30,7 @@ import java.sql.Statement;
 import java.util.Properties;
 
 /**
- * The fnSchema class creates the database using Sun's J2EE Reference
- * Implementation.
+ * The fnSchema class creates the database using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -83,9 +82,8 @@ public class fnSchema extends ServiceEETest {
             // Since the scrollable resultSet is optional, the
             // parameters are commented out.
             Statement stmt = conn.createStatement(/*
-                                             * ResultSet.TYPE_SCROLL_INSENSITIVE
-                                             * ,ResultSet.CONCUR_READ_ONLY
-                                             */ );
+                                                   * ResultSet.TYPE_SCROLL_INSENSITIVE ,ResultSet.CONCUR_READ_ONLY
+                                                   */ );
             stmt.executeUpdate(dropString1);
             TestUtil.logTrace("Executed: '" + dropString1 + "' successfully");
             stmt.executeUpdate(dropString2);
@@ -122,8 +120,10 @@ public class fnSchema extends ServiceEETest {
             String formatFuncName = ',' + funcName + ',';
             int index;
             index = formatStrFuncList.indexOf(formatFuncName);
-            if (index >= 0) return true;
-            else return false;
+            if (index >= 0)
+                return true;
+            else
+                return false;
         } catch (Exception e) {
             TestUtil.logErr("Exception thrown while trying to check the presence of the string func.", e);
             throw new RemoteException(e.getMessage());
@@ -142,8 +142,10 @@ public class fnSchema extends ServiceEETest {
             String formatFuncName = ',' + funcName + ',';
             int index;
             index = formatSystemFuncList.indexOf(formatFuncName);
-            if (index >= 0) return true;
-            else return false;
+            if (index >= 0)
+                return true;
+            else
+                return false;
         } catch (Exception e) {
             TestUtil.logErr("Exception thrown while trying to check the presence of the system func.", e);
             throw new RemoteException(e.getMessage());
@@ -162,8 +164,10 @@ public class fnSchema extends ServiceEETest {
             String formatFuncName = ',' + funcName + ',';
             int index;
             index = formatNumericFuncList.indexOf(formatFuncName);
-            if (index >= 0) return true;
-            else return false;
+            if (index >= 0)
+                return true;
+            else
+                return false;
         } catch (Exception e) {
             TestUtil.logErr("Exception thrown while trying to check the presence of the Numeric func.", e);
             throw new RemoteException(e.getMessage());
@@ -182,8 +186,10 @@ public class fnSchema extends ServiceEETest {
             String formatFuncName = ',' + funcName + ',';
             int index;
             index = formatTimeDateFuncList.indexOf(formatFuncName);
-            if (index >= 0) return true;
-            else return false;
+            if (index >= 0)
+                return true;
+            else
+                return false;
         } catch (Exception e) {
             TestUtil.logErr("Exception thrown while trying to check the presence of the Time & Date func.", e);
             throw new RemoteException(e.getMessage());

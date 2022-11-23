@@ -107,7 +107,8 @@ public abstract class EnvSharingBeanBase extends ResourceBeanBase implements Res
 
     //////////////////////////////////////////////////////////////////////
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected String getOrbName() {
         return null;

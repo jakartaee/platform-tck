@@ -32,11 +32,14 @@ public class BusinessBean extends BusinessBeanBase implements java.io.Serializab
     @Resource
     private SessionContext sessionContext;
 
-    public BusinessBean() {}
+    public BusinessBean() {
+    }
 
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 
     @Remove
-    public void remove2() {}
+    public void remove2() {
+    }
 }

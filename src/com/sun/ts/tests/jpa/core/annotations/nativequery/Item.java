@@ -37,7 +37,8 @@ public class Item implements java.io.Serializable {
 
     private Order1 order1;
 
-    public Item() {}
+    public Item() {
+    }
 
     public Item(int id, String itemName) {
         this.id = id;

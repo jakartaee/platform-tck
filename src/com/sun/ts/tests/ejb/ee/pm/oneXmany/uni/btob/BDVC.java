@@ -30,8 +30,10 @@ public class BDVC implements java.io.Serializable {
 
     public boolean equals(Object o) {
         BDVC v = (BDVC) o;
-        if (id.equals(v.getId()) && name.equals(v.getName()) && value == v.getValue()) return true;
-        else return false;
+        if (id.equals(v.getId()) && name.equals(v.getName()) && value == v.getValue())
+            return true;
+        else
+            return false;
     }
 
     public BDVC(String id, String name, int value) {

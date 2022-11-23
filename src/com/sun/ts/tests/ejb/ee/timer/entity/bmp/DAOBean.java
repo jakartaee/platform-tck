@@ -75,7 +75,8 @@ public class DAOBean implements EntityBean {
         return new Integer(coffeeID);
     }
 
-    public void ejbPostCreate(Properties p, int coffeeID, String coffeName, float coffeePrice, int flag) {}
+    public void ejbPostCreate(Properties p, int coffeeID, String coffeName, float coffeePrice, int flag) {
+    }
 
     public Integer ejbCreate(Properties p, int coffeeID, String coffeName, float coffeePrice) throws CreateException {
         TestUtil.logTrace("ejbCreate");
@@ -141,8 +142,10 @@ public class DAOBean implements EntityBean {
         try {
             TestUtil.logMsg("Check if Primary Key Exists");
             boolean foundKey = keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (Exception e) {
             throw new FinderException("Exception occurred: " + e);
         }
@@ -204,7 +207,8 @@ public class DAOBean implements EntityBean {
             throw new SQLException("SQL Exception in tableInit:" + s.getMessage());
         } finally {
             try {
-                if (stmt != null) stmt.close();
+                if (stmt != null)
+                    stmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.logErr("SQLException occurred closing DB Connection", e);
@@ -236,7 +240,8 @@ public class DAOBean implements EntityBean {
             throw new SQLException("SQL Exception in createNewRow" + e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.logErr("SQLException occurred in createNewRow", e);
@@ -258,14 +263,18 @@ public class DAOBean implements EntityBean {
             pStmt = dbConnection.prepareStatement(sqlStr);
             pStmt.setInt(1, pkey);
             result = pStmt.executeQuery();
-            if (!result.next()) return false;
-            else return true;
+            if (!result.next())
+                return false;
+            else
+                return true;
         } catch (SQLException e) {
             throw new SQLException("Caught SQL Exception in keyExists" + e.getMessage());
         } finally {
             try {
-                if (result != null) result.close();
-                if (pStmt != null) pStmt.close();
+                if (result != null)
+                    result.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.logErr("SQLException occurred in keyExists", e);
@@ -292,7 +301,8 @@ public class DAOBean implements EntityBean {
             throw new SQLException("SQL Exception in removeRow:" + e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.logErr("SQLException occurred in removeRow", e);

@@ -92,7 +92,7 @@ public class TestServletSuper extends HttpTCKServlet {
     public void passByValueTest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter pw = response.getWriter();
-        String[] args = new String[] {Constants.CLIENT_MSG};
+        String[] args = new String[] { Constants.CLIENT_MSG };
         String expected = args[0];
         try {
             testBean.passByValueTest(args);

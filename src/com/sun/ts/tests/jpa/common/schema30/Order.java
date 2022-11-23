@@ -56,7 +56,8 @@ public class Order implements java.io.Serializable, Comparable<Order> {
 
     private Set<LineItem> lineItemsSet = new HashSet();
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(String id, double totalPrice) {
         this.id = id;

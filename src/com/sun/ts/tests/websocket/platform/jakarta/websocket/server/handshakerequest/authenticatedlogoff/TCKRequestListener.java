@@ -27,7 +27,8 @@ import jakarta.servlet.http.HttpServletRequest;
 public class TCKRequestListener implements ServletRequestListener {
 
     @Override
-    public void requestDestroyed(ServletRequestEvent arg0) {}
+    public void requestDestroyed(ServletRequestEvent arg0) {
+    }
 
     @Override
     public void requestInitialized(ServletRequestEvent evnt) {

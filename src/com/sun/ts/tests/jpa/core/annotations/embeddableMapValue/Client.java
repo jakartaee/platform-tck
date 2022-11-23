@@ -27,7 +27,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();

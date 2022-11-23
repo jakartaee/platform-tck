@@ -110,8 +110,7 @@ public class JsfClient extends JsfClientBase implements Serializable {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: verify all bean instances of the same EJB share the same
-     * set of timers, invoking stateless bean
+     * @test_Strategy: verify all bean instances of the same EJB share the same set of timers, invoking stateless bean
      */
     public void accessTimersStateless() {
         accessTimers0(statelessTimerBean);
@@ -122,8 +121,7 @@ public class JsfClient extends JsfClientBase implements Serializable {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: verify all bean instances of the same EJB share the same
-     * set of timers, invoking singleton bean
+     * @test_Strategy: verify all bean instances of the same EJB share the same set of timers, invoking singleton bean
      */
     public void accessTimersSingleton() {
         accessTimers0(singletonTimerBean);

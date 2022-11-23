@@ -151,8 +151,7 @@ public class Client extends ServiceEETest {
     }
 
     /*
-     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost;
-     * webServerPort; platform.mode;
+     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost; webServerPort; platform.mode;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -160,8 +159,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -208,14 +209,16 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Invoke the hello() method of DefaultWebMethodWebService");
             result = port.hello("jsr181");
 
-            if (!result.equals(EXPECTED_RESULT_1)) pass = false;
+            if (!result.equals(EXPECTED_RESULT_1))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHello failed", e);
         }
 
-        if (!pass) throw new Fault("testHello failed invoking hello returned " + result);
+        if (!pass)
+            throw new Fault("testHello failed invoking hello returned " + result);
         TestUtil.logMsg("Invocation of hello(String) passed");
     }
 
@@ -235,14 +238,16 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Invoke the hello2() method of DefaultWebMethodWebService");
             result = port.hello2("jsr181", "jaxws");
 
-            if (!result.equals(EXPECTED_RESULT_2)) pass = false;
+            if (!result.equals(EXPECTED_RESULT_2))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHello2 failed", e);
         }
 
-        if (!pass) throw new Fault("testHello2 failed invoking hello2 returned " + result);
+        if (!pass)
+            throw new Fault("testHello2 failed invoking hello2 returned " + result);
         TestUtil.logMsg("Invocation of hello2(String, String) passed");
     }
 
@@ -262,14 +267,16 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Invoke the hello3() method of DefaultWebMethodWebService");
             result = port.hello3("jsr181", "jaxws", "jsr109");
 
-            if (!result.equals(EXPECTED_RESULT_3)) pass = false;
+            if (!result.equals(EXPECTED_RESULT_3))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHello3 failed", e);
         }
 
-        if (!pass) throw new Fault("testHello3 failed invoking hello2 returned " + result);
+        if (!pass)
+            throw new Fault("testHello3 failed invoking hello2 returned " + result);
         TestUtil.logMsg("Invocation of hello3(String, String, String) passed");
     }
 
@@ -304,7 +311,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testPingWSDL failed", e);
         }
 
-        if (!pass) throw new Fault("testPingWSDL failed");
+        if (!pass)
+            throw new Fault("testPingWSDL failed");
     }
 
     // Method to check the operation Name and the action value in the WSDL
@@ -332,7 +340,8 @@ public class Client extends ServiceEETest {
 
                 soapOperationElement = WsdlUtils.findSoapOperationElement(doc, EXPECTED_SOAP_ACTION, operationElement);
 
-                if (soapOperationElement != null) pass = true;
+                if (soapOperationElement != null)
+                    pass = true;
             }
 
         } catch (Exception ex) {

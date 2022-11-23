@@ -62,12 +62,12 @@ public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
 
         AppResRemoteIF lookupResult = null;
         String[] names = {
-            "java:module/ModuleMBean",
-            "java:module/ModuleBean",
-            "java:app/renamed_twojars_ejb/ModuleMBean",
-            "java:app/renamed_twojars_ejb/ModuleBean",
-            "java:global/ejb3_misc_moduleName_twojars/renamed_twojars_ejb/ModuleBean",
-            "java:global/renamed2_twojars_ejb/Module2Bean"
+                "java:module/ModuleMBean",
+                "java:module/ModuleBean",
+                "java:app/renamed_twojars_ejb/ModuleMBean",
+                "java:app/renamed_twojars_ejb/ModuleBean",
+                "java:global/ejb3_misc_moduleName_twojars/renamed_twojars_ejb/ModuleBean",
+                "java:global/renamed2_twojars_ejb/Module2Bean"
         };
         for (String name : names) {
             postConstructRecords.append("About to look up " + name);

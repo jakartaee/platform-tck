@@ -30,8 +30,10 @@ public class ScheduleBean extends ScheduleTxBeanBase {
     }
 
     @Override
-    protected void beginTransaction() {}
+    protected void beginTransaction() {
+    }
 
     @Override
-    protected void commitTransaction() {}
+    protected void commitTransaction() {
+    }
 }

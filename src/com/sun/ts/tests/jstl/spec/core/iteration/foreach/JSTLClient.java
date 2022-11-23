@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,11 +64,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.1; JSTL:SPEC:21.1.1
      *
-     * @testStrategy: Validated the behavior of the 'var' attribute. - the type
-     * should be the type of the object in the underlying collection. - the
-     * exported var has nested visibility meaning if the variable name reference
-     * by var, previously existed, it should no longer exist after completion of
-     * the action.
+     * @testStrategy: Validated the behavior of the 'var' attribute. - the type should be the type of the object in the
+     * underlying collection. - the exported var has nested visibility meaning if the variable name reference by var,
+     * previously existed, it should no longer exist after completion of the action.
      */
     public void positiveVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveVarTest");
@@ -82,9 +78,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.2.1.2
      *
-     * @testStrategy: Validate that arrays of all primitive types can be handled
-     * by 'forEach' and that the values in the underlying array are wrapped with
-     * its corresponding wrapper type.
+     * @testStrategy: Validate that arrays of all primitive types can be handled by 'forEach' and that the values in the
+     * underlying array are wrapped with its corresponding wrapper type.
      */
     public void positiveItemsPrimArrayTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveItemsPrimArrayTest");
@@ -96,8 +91,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.2.1.1
      *
-     * @testStrategy: Validate that arrays of Object types can be handled by
-     * 'forEach'.
+     * @testStrategy: Validate that arrays of Object types can be handled by 'forEach'.
      */
     public void positiveItemsObjArrayTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveItemsObjArrayTest");
@@ -109,8 +103,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.2.2
      *
-     * @testStrategy: Validate that 'forEach' can handle various Collection
-     * objects.
+     * @testStrategy: Validate that 'forEach' can handle various Collection objects.
      */
     public void positiveItemsCollectionTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveItemsCollectionTest");
@@ -145,8 +138,7 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveItemsMapTest
      *
-     * @assertion_ids: JSTL:SPEC:21.2.5.1; JSTL:SPEC:21.2.5.1.1;
-     * JSTL:SPEC:21.2.5.1.2
+     * @assertion_ids: JSTL:SPEC:21.2.5.1; JSTL:SPEC:21.2.5.1.1; JSTL:SPEC:21.2.5.1.2
      *
      * @testStrategy: Validate that 'forEach' can handle Map objects
      */
@@ -173,9 +165,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.5.1; JSTL:SPEC:21.5.1.1; JSTL:SPEC:21.5.3
      *
-     * @testStrategy: Validate the following: - Both EL and RT actions' 'begin'
-     * attribute accept dynamic and static attribute values - Behavior of the
-     * action when the 'begin' attribute is specified
+     * @testStrategy: Validate the following: - Both EL and RT actions' 'begin' attribute accept dynamic and static
+     * attribute values - Behavior of the action when the 'begin' attribute is specified
      */
     public void positiveItemsBeginTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveItemsBeginTest");
@@ -187,9 +178,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.6.1; JSTL:SPEC:21.6.3
      *
-     * @testStrategy: Validate the following: - Both EL and RT actions' 'end'
-     * attribute accept dynamic and static attribute values - Behavior of the
-     * action when the 'end' attribute is specified
+     * @testStrategy: Validate the following: - Both EL and RT actions' 'end' attribute accept dynamic and static attribute
+     * values - Behavior of the action when the 'end' attribute is specified
      */
     public void positiveItemsEndTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveItemsEndTest");
@@ -201,9 +191,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.7.1
      *
-     * @testStrategy: Validate the following: - Both EL and RT actions' 'step'
-     * attribute accept dynamic and static attribute values - Behavior of the
-     * action when the 'step' attribute is specified
+     * @testStrategy: Validate the following: - Both EL and RT actions' 'step' attribute accept dynamic and static attribute
+     * values - Behavior of the action when the 'step' attribute is specified
      */
     public void positiveItemsStepTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveItemsStepTest");
@@ -215,8 +204,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.4
      *
-     * @testStrategy: Validate that varStatus is properly exported with nested
-     * scope and is of type jakarta.servlet.jsp.jstl. LoopTagStatus.
+     * @testStrategy: Validate that varStatus is properly exported with nested scope and is of type
+     * jakarta.servlet.jsp.jstl. LoopTagStatus.
      */
     public void positiveVarStatusTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveVarStatusTest");
@@ -228,8 +217,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.3; JSTL:SPEC:21.5.2; JSTL:SPEC:21.6.2
      *
-     * @testStrategy: Validate tag behavior when no 'items' attribute is
-     * specified.
+     * @testStrategy: Validate tag behavior when no 'items' attribute is specified.
      */
     public void positiveNoItemsIterationTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveNoItemsIterationTest");
@@ -241,8 +229,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.8
      *
-     * @testStrategy: Validate that the 'forEach' action can handle body content
-     * as well as an empty body.
+     * @testStrategy: Validate that the 'forEach' action can handle body content as well as an empty body.
      */
     public void positiveBodyBehaviorTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveBodyBehaviorTest");
@@ -254,8 +241,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.12
      *
-     * @testStrategy: Validate that no iteration is performed by forEach if items
-     * is null.
+     * @testStrategy: Validate that no iteration is performed by forEach if items is null.
      */
     public void positiveItemsNullTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveItemsNullTest");
@@ -267,8 +253,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.2.8
      *
-     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
-     * the EL expression passed to items evaluates to an incorrect type.
+     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if the EL expression passed to items
+     * evaluates to an incorrect type.
      */
     public void negativeFEItemsTypeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeFEItemsTypeTest");
@@ -280,8 +266,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.5.4
      *
-     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
-     * the EL expression passed to begin evaluates to an incorrect type.
+     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if the EL expression passed to begin
+     * evaluates to an incorrect type.
      */
     public void negativeFEBeginTypeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeFEBeginTypeTest");
@@ -293,8 +279,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.6.3
      *
-     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
-     * the EL expression passed to end evaluates to an incorrect type.
+     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if the EL expression passed to end
+     * evaluates to an incorrect type.
      */
     public void negativeFEEndTypeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeFEEndTypeTest");
@@ -306,8 +292,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.7.2
      *
-     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
-     * the EL expression passed to step evaluates to an incorrect type.
+     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if the EL expression passed to step
+     * evaluates to an incorrect type.
      */
     public void negativeFEStepTypeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeFEStepTypeTest");
@@ -319,8 +305,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.13
      *
-     * @testStrategy: Validate that an exception caused by the body content is
-     * propagated.
+     * @testStrategy: Validate that an exception caused by the body content is propagated.
      */
     public void negativeFEExcBodyContentTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeFEExcBodyContentTest");
@@ -332,8 +317,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.15
      *
-     * @test_Strategy: Validate an end attribute value that is less than the begin
-     * attribute value will result in the action not being executed.
+     * @test_Strategy: Validate an end attribute value that is less than the begin attribute value will result in the action
+     * not being executed.
      */
     public void positiveForEachEndLTBeginTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jstl_core_iter_foreach_web/positiveForEachEndLTBeginTest.jsp HTTP/1.1");
@@ -346,10 +331,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.14
      *
-     * @test_Strategy: Add some items to a Vector. In a c:forEach tag, reference
-     * the Vector as a deferred value in the items attribute. In the body of the
-     * tag, set each item to have application scope. Verify that the items can be
-     * retrieved after the execution of the tag.
+     * @test_Strategy: Add some items to a Vector. In a c:forEach tag, reference the Vector as a deferred value in the items
+     * attribute. In the body of the tag, set each item to have application scope. Verify that the items can be retrieved
+     * after the execution of the tag.
      */
     public void positiveForEachDeferredValueTest1() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForEachDeferredValueTest1");
@@ -361,11 +345,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.14
      *
-     * @test_Strategy: Create a String containing several items delimited by
-     * spaces. In a c:forEach tag, reference the String as a deferred value in the
-     * items attribute. In the body of the tag, set each item to have application
-     * scope. Verify that the items can be retrieved after the execution of the
-     * tag.
+     * @test_Strategy: Create a String containing several items delimited by spaces. In a c:forEach tag, reference the
+     * String as a deferred value in the items attribute. In the body of the tag, set each item to have application scope.
+     * Verify that the items can be retrieved after the execution of the tag.
      */
     public void positiveForEachDeferredValueTest2() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForEachDeferredValueTest2");
@@ -377,10 +359,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:21.14
      *
-     * @test_Strategy: Create a HashMap containing several items. In a c:forEach
-     * tag, reference the HashMap as a deferred value in the items attribute. In
-     * the body of the tag, set each item to have application scope. Verify that
-     * the items can be retrieved after the execution of the tag.
+     * @test_Strategy: Create a HashMap containing several items. In a c:forEach tag, reference the HashMap as a deferred
+     * value in the items attribute. In the body of the tag, set each item to have application scope. Verify that the items
+     * can be retrieved after the execution of the tag.
      */
     public void positiveForEachDeferredValueTest3() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForEachDeferredValueTest3");

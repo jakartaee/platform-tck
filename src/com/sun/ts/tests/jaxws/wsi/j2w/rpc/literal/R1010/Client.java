@@ -39,8 +39,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -71,8 +70,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1010
      *
-     * @test_Strategy: Make a request with XML declaration, inpsect response to
-     *                 make sure it is expected response (not a soap:Fault).
+     * @test_Strategy: Make a request with XML declaration, inpsect response to make sure it is expected response (not a
+     * soap:Fault).
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

@@ -23,7 +23,8 @@ import java.io.Serializable;
 @Embeddable
 public class Publisher implements Serializable {
 
-    public Publisher() {}
+    public Publisher() {
+    }
 
     private String name;
 

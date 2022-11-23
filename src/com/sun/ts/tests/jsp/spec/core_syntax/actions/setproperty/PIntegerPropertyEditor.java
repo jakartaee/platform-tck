@@ -23,15 +23,14 @@ package com.sun.ts.tests.jsp.spec.core_syntax.actions.setproperty;
 import java.beans.PropertyEditorSupport;
 
 public class PIntegerPropertyEditor extends PropertyEditorSupport {
-    public PIntegerPropertyEditor() {}
+    public PIntegerPropertyEditor() {
+    }
 
     /**
      *
-     * @param param1
-     *          a valid String-based integer value. The String value of "314" will
-     *          be appended to whatever value is passed.
-     * @exception java.lang.IllegalArgumentException
-     *              if unable to set property
+     * @param param1 a valid String-based integer value. The String value of "314" will be appended to whatever value is
+     * passed.
+     * @exception java.lang.IllegalArgumentException if unable to set property
      */
     public void setAsText(String param1) throws IllegalArgumentException {
         setValue(new Integer(param1 + "314"));

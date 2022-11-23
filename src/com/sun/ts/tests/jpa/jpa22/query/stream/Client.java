@@ -33,7 +33,8 @@ public class Client extends PMClientBase {
 
     final Department deptRef[] = new Department[5];
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -67,7 +68,8 @@ public class Client extends PMClientBase {
      */
     public void getResultStreamTest() throws Fault {
         List<Integer> expected = new LinkedList<>();
-        for (int i = 1; i != 22; i++) expected.add(i);
+        for (int i = 1; i != 22; i++)
+            expected.add(i);
 
         Query query = getEntityManager().createQuery("select e.id from Employee e");
 
@@ -129,7 +131,8 @@ public class Client extends PMClientBase {
     }
 
     private void checkPK(int pk) {
-        if (pk < 1 || pk > 21) throw new RuntimeException("Unexepcted pk: " + pk);
+        if (pk < 1 || pk > 21)
+            throw new RuntimeException("Unexepcted pk: " + pk);
     }
 
     private void createTestData() throws Exception {
@@ -322,7 +325,8 @@ public class Client extends PMClientBase {
     }
 
     private void assertTrue(boolean condition, String message) throws Fault {
-        if (!condition) throw new Fault(message);
+        if (!condition)
+            throw new Fault(message);
     }
 
     static class ObjectCounter {

@@ -29,9 +29,7 @@ import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-@ServerEndpoint(
-        value = "/iotextstreamencoder",
-        encoders = {ThrowingIOTextStreamEncoder.class})
+@ServerEndpoint(value = "/iotextstreamencoder", encoders = { ThrowingIOTextStreamEncoder.class })
 public class WSCIOTextStreamEncoderServer {
 
     @OnMessage
@@ -39,7 +37,8 @@ public class WSCIOTextStreamEncoderServer {
         WaitingSendHandler handler = new WaitingSendHandler();
         session.getAsyncRemote().sendObject(new StringBean(data), handler);
         SendResult result = handler.waitForResult(4);
-        if (result.getException() != null) throw new RuntimeException(result.getException());
+        if (result.getException() != null)
+            throw new RuntimeException(result.getException());
     }
 
     @OnError

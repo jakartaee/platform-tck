@@ -48,9 +48,8 @@ public class WSTestServerByte {
                 "TCKTestServerByte got Direct ByteBuffer message: " + message_string + " from session " + session);
         try {
             ByteBuffer data = ByteBuffer.allocate(("========TCKTestServerByte received ByteBuffer: "
-                                    + "========TCKTestServerByte responds: Message in bytes")
-                            .getBytes()
-                            .length
+                    + "========TCKTestServerByte responds: Message in bytes")
+                    .getBytes().length
                     + message.capacity());
             data.put(("========TCKTestServerByte received ByteBuffer: ").getBytes());
             data.put(message_string.getBytes());

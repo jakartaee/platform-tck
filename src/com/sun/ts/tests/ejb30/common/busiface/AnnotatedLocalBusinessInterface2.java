@@ -23,4 +23,5 @@ package com.sun.ts.tests.ejb30.common.busiface;
 import jakarta.ejb.Local;
 
 @Local
-public interface AnnotatedLocalBusinessInterface2 extends AnnotatedLocalBusinessInterface1 {}
+public interface AnnotatedLocalBusinessInterface2 extends AnnotatedLocalBusinessInterface1 {
+}

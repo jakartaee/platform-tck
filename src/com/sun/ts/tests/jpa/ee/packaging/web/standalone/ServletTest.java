@@ -40,9 +40,9 @@ public class ServletTest extends HttpTCKServlet {
 
     private static final int ACCOUNT = 1075;
 
-    private static final int ACCOUNTS[] = {1000, 1075, 40, 30564, 387};
+    private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
 
-    private static final double BALANCES[] = {50000.0, 10490.75, 200.50, 25000.0, 1000000.0};
+    private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0, 1000000.0 };
 
     private static final String emfRef = "java:comp/env/persistence/MyPersistenceUnit";
 
@@ -133,7 +133,8 @@ public class ServletTest extends HttpTCKServlet {
             pw.println(Data.FAILED + ".  ERROR: Unexpected Exception caught in test1");
             e.printStackTrace();
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (Exception se) {
                 System.out.println("Unexpected exception caught in test1 while checking TX status ");
                 se.printStackTrace();
@@ -151,9 +152,8 @@ public class ServletTest extends HttpTCKServlet {
                 }
 
                 /*
-                 * If the [EntityManager] close method is invoked when a transaction is
-                 * active, the persistence context remains managed until the transaction
-                 * completes.
+                 * If the [EntityManager] close method is invoked when a transaction is active, the persistence context remains managed
+                 * until the transaction completes.
                  */
 
                 entityManager.close();
@@ -163,7 +163,8 @@ public class ServletTest extends HttpTCKServlet {
                 System.out.println("Unexpected exception caught in test1 while cleaning up test data");
                 e.printStackTrace();
                 try {
-                    if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                    if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                        ut.rollback();
                 } catch (Exception se) {
                     System.out.println("Unexpected exception caught in test1 while checking TX status ");
                     se.printStackTrace();

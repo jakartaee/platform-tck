@@ -22,12 +22,7 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2744;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "DummyPort",
-        serviceName = "W2JRLR2744TestService",
-        targetNamespace = "http://w2jrlr2744testservice.org/W2JRLR2744TestService.wsdl",
-        wsdlLocation = "WEB-INF/wsdl/W2JRLR2744TestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2744.Dummy")
+@WebService(portName = "DummyPort", serviceName = "W2JRLR2744TestService", targetNamespace = "http://w2jrlr2744testservice.org/W2JRLR2744TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2744TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2744.Dummy")
 public class DummyImpl implements Dummy {
     public NonNullString echoString(NonNullString str) {
         return str;

@@ -51,9 +51,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Make a WebSocket client connection request to the path
-     * mapped to WSTestServlet. Confirm that a WebSocket connection is
-     * established. Send a message. Confirm the message is echoed back.
+     * @test_Strategy: Make a WebSocket client connection request to the path mapped to WSTestServlet. Confirm that a
+     * WebSocket connection is established. Send a message. Confirm the message is echoed back.
      */
     public void upgradeHttpToWebSocketTest() throws Fault {
         boolean passed = false;

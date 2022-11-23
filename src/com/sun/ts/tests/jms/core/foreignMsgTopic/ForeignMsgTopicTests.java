@@ -95,10 +95,9 @@ public class ForeignMsgTopicTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -138,8 +137,8 @@ public class ForeignMsgTopicTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -164,8 +163,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88;
      *
-     * @test_Strategy: Send message with appropriate data Receive message and
-     * check data
+     * @test_Strategy: Send message with appropriate data Receive message and check data
      */
 
     public void sendReceiveBytesMsgTopicTest() throws Fault {
@@ -250,8 +248,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88;
      *
-     * @test_Strategy: Send message with appropriate data Receive message and
-     * check data
+     * @test_Strategy: Send message with appropriate data Receive message and check data
      */
 
     public void sendReceiveMsgTopicTest() throws Fault {
@@ -282,8 +279,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88;
      *
-     * @test_Strategy: Send message with appropriate data Receive message and
-     * check data
+     * @test_Strategy: Send message with appropriate data Receive message and check data
      */
 
     public void sendReceiveMapMsgTopicTest() throws Fault {
@@ -365,8 +361,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88;
      *
-     * @test_Strategy: Send message with appropriate data Receive message and
-     * check data
+     * @test_Strategy: Send message with appropriate data Receive message and check data
      */
 
     public void sendReceiveObjectMsgTopicTest() throws Fault {
@@ -405,8 +400,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88;
      *
-     * @test_Strategy: Send message with appropriate data Receive message and
-     * check data
+     * @test_Strategy: Send message with appropriate data Receive message and check data
      */
 
     public void sendReceiveStreamMsgTopicTest() throws Fault {
@@ -488,8 +482,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88;
      *
-     * @test_Strategy: Send message with appropriate data Receive message and
-     * check data
+     * @test_Strategy: Send message with appropriate data Receive message and check data
      */
 
     public void sendReceiveTextMsgTopicTest() throws Fault {
@@ -526,8 +519,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
     /*
      * @testName: sendSetsJMSDestinationTopicTest
      *
-     * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88; JMS:SPEC:246.1; JMS:SPEC:246;
-     * JMS:JAVADOC:365; JMS:JAVADOC:363;
+     * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88; JMS:SPEC:246.1; JMS:SPEC:246; JMS:JAVADOC:365; JMS:JAVADOC:363;
      *
      * @test_Strategy: Send message verify that JMSDestination was set
      */
@@ -565,8 +557,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
     /*
      * @testName: sendSetsJMSExpirationTopicTest
      *
-     * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88; JMS:SPEC:246.3; JMS:SPEC:246;
-     * JMS:JAVADOC:381; JMS:JAVADOC:379;
+     * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88; JMS:SPEC:246.3; JMS:SPEC:246; JMS:JAVADOC:381; JMS:JAVADOC:379;
      *
      * @test_Strategy: Send message verify that JMSExpiration was set
      */
@@ -606,8 +597,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
     /*
      * @testName: sendSetsJMSPriorityTopicTest
      *
-     * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88; JMS:SPEC:246.4; JMS:SPEC:246;
-     * JMS:JAVADOC:385; JMS:JAVADOC:383;
+     * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88; JMS:SPEC:246.4; JMS:SPEC:246; JMS:JAVADOC:385; JMS:JAVADOC:383;
      *
      * @test_Strategy: Send message verify that JMSPriority was set
      */
@@ -647,8 +637,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
     /*
      * @testName: sendSetsJMSMessageIDTopicTest
      *
-     * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88; JMS:SPEC:246.5; JMS:SPEC:246;
-     * JMS:JAVADOC:345; JMS:JAVADOC:343;
+     * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88; JMS:SPEC:246.5; JMS:SPEC:246; JMS:JAVADOC:345; JMS:JAVADOC:343;
      *
      * @test_Strategy: Send message verify that JMSMessageID was set
      */
@@ -689,8 +678,7 @@ public class ForeignMsgTopicTests extends ServiceEETest {
     /*
      * @testName: sendSetsJMSTimestampTopicTest
      *
-     * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88; JMS:SPEC:246.6; JMS:SPEC:246;
-     * JMS:JAVADOC:349; JMS:JAVADOC:347;
+     * @assertion_ids: JMS:SPEC:84; JMS:SPEC:88; JMS:SPEC:246.6; JMS:SPEC:246; JMS:JAVADOC:349; JMS:JAVADOC:347;
      *
      * @test_Strategy: Send message verify that JMSTimestamp was set
      */

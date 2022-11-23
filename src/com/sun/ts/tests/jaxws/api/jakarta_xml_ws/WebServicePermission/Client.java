@@ -56,8 +56,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:76;
      *
-     * @test_Strategy: Create instance via WebServicePermission(String)
-     * constructor. Verify WebServicePermission object created successfully.
+     * @test_Strategy: Create instance via WebServicePermission(String) constructor. Verify WebServicePermission object
+     * created successfully.
      */
     public void WebServicePermissionConstructorTest1() throws Fault {
         TestUtil.logTrace("WebServicePermissionConstructorTest1");
@@ -77,7 +77,8 @@ public class Client extends ServiceEETest {
             throw new Fault("WebServicePermissionConstructorTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("WebServicePermissionConstructorTest1 failed");
+        if (!pass)
+            throw new Fault("WebServicePermissionConstructorTest1 failed");
     }
 
     /*
@@ -85,8 +86,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:77;
      *
-     * @test_Strategy: Create instance via WebServicePermission(String, String)
-     * constructor. Verify WebServicePermission object created successfully.
+     * @test_Strategy: Create instance via WebServicePermission(String, String) constructor. Verify WebServicePermission
+     * object created successfully.
      */
     public void WebServicePermissionConstructorTest2() throws Fault {
         TestUtil.logTrace("WebServicePermissionConstructorTest2");
@@ -106,7 +107,8 @@ public class Client extends ServiceEETest {
             throw new Fault("WebServicePermissionConstructorTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("WebServicePermissionConstructorTest2 failed");
+        if (!pass)
+            throw new Fault("WebServicePermissionConstructorTest2 failed");
     }
 
     /*
@@ -114,8 +116,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:77;
      *
-     * @test_Strategy: Create instance via WebServicePermission(String, String)
-     * constructor. Verify WebServicePermission object created successfully.
+     * @test_Strategy: Create instance via WebServicePermission(String, String) constructor. Verify WebServicePermission
+     * object created successfully.
      */
     public void WebServicePermissionConstructorTest2a() throws Fault {
         TestUtil.logTrace("WebServicePermissionConstructorTest2a");
@@ -135,6 +137,7 @@ public class Client extends ServiceEETest {
             throw new Fault("WebServicePermissionConstructorTest2a failed", e);
         }
 
-        if (!pass) throw new Fault("WebServicePermissionConstructorTest2a failed");
+        if (!pass)
+            throw new Fault("WebServicePermissionConstructorTest2a failed");
     }
 }

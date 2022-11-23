@@ -29,7 +29,8 @@ public class Client extends PMClientBase {
 
     private static final long serialVersionUID = 22L;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -53,8 +54,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: subClassInheritsCacheableTrue
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:189; PERSISTENCE:JAVADOC:190;
-     * PERSISTENCE:SPEC:1979; PERSISTENCE:SPEC:1980;
+     * @assertion_ids: PERSISTENCE:JAVADOC:189; PERSISTENCE:JAVADOC:190; PERSISTENCE:SPEC:1979; PERSISTENCE:SPEC:1980;
      *
      * @test_Strategy: follow se/cache/inherit but without @SecondaryTables
      */

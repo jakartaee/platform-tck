@@ -77,10 +77,9 @@ public class QueueConnectionTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue
-     * Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue Connection, as well as a default Queue and Topic. Tests that require multiple Destinations create
+     * the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -124,8 +123,8 @@ public class QueueConnectionTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -151,10 +150,9 @@ public class QueueConnectionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:97;
      *
-     * @test_Strategy: Send two messages to a queue; Receive only the second
-     * message using selectors; Close receiver; Create another connection without
-     * starting it; Create a new receiver in new connection and try to receive
-     * first message with receiveNoWait() Should not get a message
+     * @test_Strategy: Send two messages to a queue; Receive only the second message using selectors; Close receiver; Create
+     * another connection without starting it; Create a new receiver in new connection and try to receive first message with
+     * receiveNoWait() Should not get a message
      */
     public void connNotStartedQueueTest() throws Fault {
         boolean pass = true;
@@ -227,12 +225,11 @@ public class QueueConnectionTests extends ServiceEETest {
     /*
      * @testName: metaDataTests
      *
-     * @assertion_ids: JMS:JAVADOC:486; JMS:JAVADOC:488; JMS:JAVADOC:490;
-     * JMS:JAVADOC:492; JMS:JAVADOC:494; JMS:JAVADOC:496; JMS:JAVADOC:498;
+     * @assertion_ids: JMS:JAVADOC:486; JMS:JAVADOC:488; JMS:JAVADOC:490; JMS:JAVADOC:492; JMS:JAVADOC:494; JMS:JAVADOC:496;
+     * JMS:JAVADOC:498;
      *
-     * @test_Strategy: Create a QueueConnection to get ConnectionMetaData. Verify
-     * that all Content of the ConnectionMetaData matches the type defined in API
-     * and JMS API version is correct.
+     * @test_Strategy: Create a QueueConnection to get ConnectionMetaData. Verify that all Content of the ConnectionMetaData
+     * matches the type defined in API and JMS API version is correct.
      */
 
     public void metaDataTests() throws Fault {
@@ -243,7 +240,8 @@ public class QueueConnectionTests extends ServiceEETest {
             tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
             data = tool.getDefaultQueueConnection().getMetaData();
 
-            if (!verifyMetaData(data)) pass = false;
+            if (!verifyMetaData(data))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -260,7 +258,8 @@ public class QueueConnectionTests extends ServiceEETest {
             tool = new JmsTool(JmsTool.COMMON_Q, user, password, mode);
             data = tool.getDefaultConnection().getMetaData();
 
-            if (!verifyMetaData(data)) pass = false;
+            if (!verifyMetaData(data))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);

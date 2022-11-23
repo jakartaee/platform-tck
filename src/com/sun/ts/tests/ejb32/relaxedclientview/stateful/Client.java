@@ -41,22 +41,19 @@ public class Client extends ClientBase {
     /*
      * @testName: oneRemoteAnnotationOnInterfaceTest
      *
-     * @test_Strategy: a remote annotation on one interface and another interface
-     * has nothing
+     * @test_Strategy: a remote annotation on one interface and another interface has nothing
      */
 
     /*
      * @testName: oneRemoteAnnotationOnEjbTest
      *
-     * @test_Strategy: a remote annotation on ejb for one interface and another
-     * interface has nothing
+     * @test_Strategy: a remote annotation on ejb for one interface and another interface has nothing
      */
 
     /*
      * @testName: noInterfaceViewTest
      *
-     * @test_Strategy: an ejb has no interface view, so all business interfaces
-     * must be explicitly designated
+     * @test_Strategy: an ejb has no interface view, so all business interfaces must be explicitly designated
      */
 
     /*

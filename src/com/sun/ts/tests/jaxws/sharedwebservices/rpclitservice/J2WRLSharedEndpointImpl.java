@@ -22,11 +22,7 @@ package com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "J2WRLSharedEndpointPort",
-        serviceName = "J2WRLShared",
-        targetNamespace = "http://rpclitservice.org/wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice.J2WRLSharedEndpoint")
+@WebService(portName = "J2WRLSharedEndpointPort", serviceName = "J2WRLShared", targetNamespace = "http://rpclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.rpclitservice.J2WRLSharedEndpoint")
 public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {
     public String helloWorld() {
         return "hello world";
@@ -37,7 +33,7 @@ public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {
     }
 
     public String[] arrayOperation() {
-        return new String[] {"one", "two", "three"};
+        return new String[] { "one", "two", "three" };
     }
 
     public J2WRLSharedBean getBean() {

@@ -32,7 +32,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "COLTAB")
-@AttributeOverrides({@AttributeOverride(name = "name", column = @Column(name = "NAME"))})
+@AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
 public class A implements java.io.Serializable {
 
     private static final long serialVersionUID = 20L;
@@ -41,7 +41,8 @@ public class A implements java.io.Serializable {
 
     protected List<Address> lAddress = new ArrayList<Address>();
 
-    public A() {}
+    public A() {
+    }
 
     public A(String id, String name) {
         this.id = id;

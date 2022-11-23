@@ -35,13 +35,15 @@ public class NodeListIterator implements Iterator {
     }
 
     public boolean hasNext() {
-        if (_list == null) return false;
+        if (_list == null)
+            return false;
         return _index < _list.getLength();
     }
 
     public Object next() {
         Object obj = _list.item(_index);
-        if (obj != null) ++_index;
+        if (obj != null)
+            ++_index;
         return obj;
     }
 

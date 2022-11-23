@@ -57,22 +57,17 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getUserPrincipalTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:179; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210; WebSocket:SPEC:WSC-8.3-1;
-     * WebSocket:SPEC:WSC-7.2-2;
+     * @assertion_ids: WebSocket:JAVADOC:179; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * WebSocket:SPEC:WSC-8.3-1; WebSocket:SPEC:WSC-7.2-2;
      *
-     * @test_Strategy: HandshakeRequest.getUserPrincipal
-     * HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake A transport guarantee of
-     * NONE
+     * @test_Strategy: HandshakeRequest.getUserPrincipal HandshakeResponse.getHeaders
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake A transport
+     * guarantee of NONE
      *
-     * Similarly, if the opening handshake request is already authenticated with
-     * the server, the opening handshake API allows the developer to query the
-     * user Principal of the request. If the connection is established with the
-     * requesting client, the websocket implementation considers the user
-     * Principal for the associated websocket Session to be the user Principal
-     * that was present on the opening handshake.
+     * Similarly, if the opening handshake request is already authenticated with the server, the opening handshake API
+     * allows the developer to query the user Principal of the request. If the connection is established with the requesting
+     * client, the websocket implementation considers the user Principal for the associated websocket Session to be the user
+     * Principal that was present on the opening handshake.
      *
      * Return the authenticated user
      */
@@ -88,13 +83,12 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: isUserInRoleTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:180; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210; WebSocket:SPEC:WSC-8.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:180; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * WebSocket:SPEC:WSC-8.3-1;
      *
      * @test_Strategy: HandshakeRequest.isUserInRole HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake A transport guarantee of
-     * NONE
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake A transport
+     * guarantee of NONE
      */
     public void isUserInRoleTest() throws Fault {
         // check DIRECTOR role is not known
@@ -124,9 +118,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-8.1-1; WebSocket:SPEC:WSC-8.3-1;
      *
-     * @test_Strategy: the websocket implementation must return a 401
-     * (Unauthorized) response to the opening handshake request and may not
-     * initiate a websocket connection A transport guarantee of NONE
+     * @test_Strategy: the websocket implementation must return a 401 (Unauthorized) response to the opening handshake
+     * request and may not initiate a websocket connection A transport guarantee of NONE
      *
      * 401 is not possible to check, but the websocket connection we can check
      */
@@ -147,9 +140,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-8.3-1; WebSocket:SPEC:WSC-8.2-1;
      *
-     * @test_Strategy: The <url-pattern> used in the security constraint must be
-     * used by the container to match the request URI of the opening handshake of
-     * the websocket A transport guarantee of NONE
+     * @test_Strategy: The <url-pattern> used in the security constraint must be used by the container to match the request
+     * URI of the opening handshake of the websocket A transport guarantee of NONE
      */
     public void authorizationIsNotUsedForUrlTest() throws Fault {
         invoke("unauth/echo", "echo", "echo");
@@ -160,9 +152,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-8.2-2; WebSocket:SPEC:WSC-8.3-1;
      *
-     * @test_Strategy: The implementation must interpret any http-method other
-     * than GET (or the default, missing) as not applying to the websocket. A
-     * transport guarantee of NONE
+     * @test_Strategy: The implementation must interpret any http-method other than GET (or the default, missing) as not
+     * applying to the websocket. A transport guarantee of NONE
      */
     public void authorizationIsNotAppliedForPOSTTest() throws Fault {
         invoke("post/echo", "echo", "echo");

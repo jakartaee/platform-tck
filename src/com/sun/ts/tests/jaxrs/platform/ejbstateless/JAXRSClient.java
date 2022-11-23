@@ -33,9 +33,8 @@ public class JAXRSClient extends JAXRSCommonClient {
     }
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         new JAXRSClient().run(args);
@@ -47,8 +46,8 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:51; JAXRS:SPEC:57;
      *
-     * @test_Strategy: Client sends a request on a no-interface stateless EJB root
-     * resource located at /ssb; Verify that correct resource method invoked
+     * @test_Strategy: Client sends a request on a no-interface stateless EJB root resource located at /ssb; Verify that
+     * correct resource method invoked
      */
     public void test1() throws Fault {
         setProperty(REQUEST, buildRequest(Request.GET, ""));
@@ -62,8 +61,8 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:51; JAXRS:SPEC:57;
      *
-     * @test_Strategy: Client sends a request on a no-interface stateless EJB root
-     * resource located at /ssb/sub; Verify that correct resource method invoked
+     * @test_Strategy: Client sends a request on a no-interface stateless EJB root resource located at /ssb/sub; Verify that
+     * correct resource method invoked
      */
     public void test2() throws Fault {
         setProperty(REQUEST, buildRequest(Request.GET, "sub"));
@@ -77,9 +76,8 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:51; JAXRS:SPEC:57;
      *
-     * @test_Strategy: Client sends a request on a stateless EJB's local interface
-     * root resource located at /ssb/localsub; Verify that correct resource method
-     * invoked
+     * @test_Strategy: Client sends a request on a stateless EJB's local interface root resource located at /ssb/localsub;
+     * Verify that correct resource method invoked
      */
     public void test3() throws Fault {
         setProperty(REQUEST, buildRequest(Request.GET, "localsub"));
@@ -93,10 +91,9 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:52;
      *
-     * @test_Strategy: If an Exception-Mapper for a EJBException or subclass is
-     * not included with an application then exceptions thrown by an EJB resource
-     * class or provider method MUST be unwrapped and processed as described in
-     * Section 3.3.4.
+     * @test_Strategy: If an Exception-Mapper for a EJBException or subclass is not included with an application then
+     * exceptions thrown by an EJB resource class or provider method MUST be unwrapped and processed as described in Section
+     * 3.3.4.
      */
     public void ejbExceptionTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "exception"));
@@ -109,19 +106,16 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.1; JAXRS:SPEC:53.3;
      *
-     * @test_Strategy: The following additional requirements apply when using EJBs
-     * as resource classes:
+     * @test_Strategy: The following additional requirements apply when using EJBs as resource classes:
      *
-     * Field and property injection of JAX-RS resources MUST be performed prior to
-     * the container invoking any
+     * Field and property injection of JAX-RS resources MUST be performed prior to the container invoking any
      *
      * @PostConstruct annotated method
      *
      * Implementations MUST NOT require use of @Inject or
      *
-     * @Resource to trigger injection of JAX-RS annotated fields or properties.
-     * Implementations MAY support such usage but SHOULD warn users about
-     * non-portability.
+     * @Resource to trigger injection of JAX-RS annotated fields or properties. Implementations MAY support such usage but
+     * SHOULD warn users about non-portability.
      */
     public void jaxrsInjectPriorPostConstructOnRootResourceTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "priorroot"));

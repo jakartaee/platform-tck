@@ -20,12 +20,7 @@ import jakarta.jws.WebService;
 import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.RespectBinding;
 
-@WebService(
-        portName = "EchoPort",
-        serviceName = "EchoService",
-        targetNamespace = "http://Echo.org",
-        wsdlLocation = "WEB-INF/wsdl/EchoService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo")
+@WebService(portName = "EchoPort", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "WEB-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSRespBindAndAddressingTestUsingDDs.Echo")
 @RespectBinding(enabled = true)
 public class EchoImpl {
 

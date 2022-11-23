@@ -79,8 +79,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:428
      *
-     * @test_Strategy: Execute findCustomerByQuery16 method to compare the
-     * equality of strings.
+     * @test_Strategy: Execute findCustomerByQuery16 method to compare the equality of strings.
      *
      */
 
@@ -104,7 +103,8 @@ public class Client extends EETest {
             throw new Fault("equalityTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("equalityTest1 failed");
+        if (!pass)
+            throw new Fault("equalityTest1 failed");
     }
 
     /*
@@ -112,8 +112,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:427
      *
-     * @test_Strategy: Execute findCustomerByQuery17 method to compare the
-     * equality of entity objects.
+     * @test_Strategy: Execute findCustomerByQuery17 method to compare the equality of entity objects.
      *
      */
 
@@ -137,7 +136,8 @@ public class Client extends EETest {
             throw new Fault("equalityTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("equalityTest2 failed");
+        if (!pass)
+            throw new Fault("equalityTest2 failed");
     }
 
     /*
@@ -145,8 +145,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:428
      *
-     * @test_Strategy: Execute findCustomersByQuery27 method to compare like
-     * types; in this case, strings.
+     * @test_Strategy: Execute findCustomersByQuery27 method to compare like types; in this case, strings.
      *
      *
      */
@@ -186,7 +185,8 @@ public class Client extends EETest {
             throw new Fault("equalityTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("equalityTest3 failed");
+        if (!pass)
+            throw new Fault("equalityTest3 failed");
     }
 
     /*
@@ -194,8 +194,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:429
      *
-     * @test_Strategy: Execute the findApprovedCreditCards method to compare
-     * booleans using <>.
+     * @test_Strategy: Execute the findApprovedCreditCards method to compare booleans using <>.
      *
      */
 
@@ -225,7 +224,8 @@ public class Client extends EETest {
             throw new Fault("equalityTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("equalityTest4 failed");
+        if (!pass)
+            throw new Fault("equalityTest4 failed");
     }
 
     /*
@@ -258,7 +258,8 @@ public class Client extends EETest {
             throw new Fault("equalityTest5 failed", e);
         }
 
-        if (!pass) throw new Fault("equalityTest5 failed");
+        if (!pass)
+            throw new Fault("equalityTest5 failed");
     }
 
     /*
@@ -266,8 +267,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:430
      *
-     * @test_Strategy: Execute findProductsByQuery1 method to determine the
-     * validity of the comparison.
+     * @test_Strategy: Execute findProductsByQuery1 method to determine the validity of the comparison.
      *
      */
 
@@ -294,7 +294,8 @@ public class Client extends EETest {
             throw new Fault("equalityTest6 failed", e);
         }
 
-        if (!pass) throw new Fault("equalityTest6 failed");
+        if (!pass)
+            throw new Fault("equalityTest6 failed");
     }
 
     public void cleanup() throws Fault {

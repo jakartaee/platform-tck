@@ -31,10 +31,8 @@ public final class Client extends com.sun.ts.tests.ejb30.lite.packaging.embed.cl
      * -additionalModule
      * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/ejbembed_vehicle_ejb.jar"
      *
-     * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-     * modules. Also jakarta.ejb.embeddable.modules property is set to include the
-     * file location of the additional ejb modules. Module name is set in
-     * ejb-jar.xml.
+     * @test_Strategy: use a custom ContextClassLoader to find additional ejb modules. Also jakarta.ejb.embeddable.modules
+     * property is set to include the file location of the additional ejb modules. Module name is set in ejb-jar.xml.
      */
     @Override
     public void additionalModuleJar() throws Exception {
@@ -44,15 +42,12 @@ public final class Client extends com.sun.ts.tests.ejb30.lite.packaging.embed.cl
     /*
      * @testName: additionalModuleDir
      *
-     * @testArgs: -additionalModule
-     * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/23/"
+     * @testArgs: -additionalModule "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/23/"
      * -additionalModule
      * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/ejbembed_vehicle_ejb.jar"
      *
-     * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-     * modules. Also jakarta.ejb.embeddable.modules property is set to include the
-     * file location of the additional ejb modules. Module name is set in
-     * ejb-jar.xml.
+     * @test_Strategy: use a custom ContextClassLoader to find additional ejb modules. Also jakarta.ejb.embeddable.modules
+     * property is set to include the file location of the additional ejb modules. Module name is set in ejb-jar.xml.
      */
     @Override
     public void additionalModuleDir() throws Exception {
@@ -64,15 +59,12 @@ public final class Client extends com.sun.ts.tests.ejb30.lite.packaging.embed.cl
      *
      * @testArgs: -additionalModule
      * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/ejbembed_three_ejb.jar"
-     * -additionalModule
-     * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/2/"
+     * -additionalModule "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/2/"
      * -additionalModule
      * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/descriptor/ejbembed_vehicle_ejb.jar"
      *
-     * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-     * modules. Also jakarta.ejb.embeddable.modules property is set to include the
-     * file location of the additional ejb modules. Module name is set in
-     * ejb-jar.xml.
+     * @test_Strategy: use a custom ContextClassLoader to find additional ejb modules. Also jakarta.ejb.embeddable.modules
+     * property is set to include the file location of the additional ejb modules. Module name is set in ejb-jar.xml.
      */
     @Override
     public void additionalModuleJarDir() throws Exception {

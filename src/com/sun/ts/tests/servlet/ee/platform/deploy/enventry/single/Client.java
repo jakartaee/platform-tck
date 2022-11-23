@@ -40,9 +40,8 @@ public class Client extends EETest {
     /**
      * Test setup
      *
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     webServerHost, the web server host; webServerPort, the
-     *                     web server port;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; webServerHost, the web server host;
+     * webServerPort, the web server port;
      */
     public void setup(String[] args, Properties props) throws Fault {
         boolean ok;
@@ -60,11 +59,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:platform:116.1; JavaEE:platform:103.2
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares a Character environment entry. Deploy the WAR and
-     *                 have the servlet lookup the environment entry at runtime.
-     *                 Check that the runtime value match the one declared in the
-     *                 Deployment Descriptor.
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares a Character environment entry.
+     * Deploy the WAR and have the servlet lookup the environment entry at runtime. Check that the runtime value match the
+     * one declared in the Deployment Descriptor.
      */
     public void testCharacterEntry() throws Fault {
         try {
@@ -85,11 +82,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:platform:116.1; JavaEE:platform:103.1
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares a String environment entry. Deploy the WAR and
-     *                 have the servlet lookup the environment entry at runtime.
-     *                 Check that the runtime value match the one declared in the
-     *                 Deployment Descriptor.
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares a String environment entry.
+     * Deploy the WAR and have the servlet lookup the environment entry at runtime. Check that the runtime value match the
+     * one declared in the Deployment Descriptor.
      */
     public void testStringEntry() throws Fault {
         try {
@@ -110,11 +105,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:platform:116.1; JavaEE:platform:103.7
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares a Boolean environment entry. Deploy the WAR and
-     *                 have the servlet lookup the environment entry at runtime.
-     *                 Check that the runtime value match the one declared in the
-     *                 Deployment Descriptor.
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares a Boolean environment entry.
+     * Deploy the WAR and have the servlet lookup the environment entry at runtime. Check that the runtime value match the
+     * one declared in the Deployment Descriptor.
      */
     public void testBooleanEntry() throws Fault {
         try {
@@ -135,11 +128,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:platform:116.1; JavaEE:platform:103.3
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares a Byte environment entry. Deploy the WAR and have
-     *                 the servlet lookup the environment entry at runtime. Check
-     *                 that the runtime value match the one declared in the
-     *                 Deployment Descriptor.
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares a Byte environment entry. Deploy
+     * the WAR and have the servlet lookup the environment entry at runtime. Check that the runtime value match the one
+     * declared in the Deployment Descriptor.
      */
     public void testByteEntry() throws Fault {
         try {
@@ -160,11 +151,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:platform:116.1; JavaEE:platform:103.4
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares a Short environment entry. Deploy the WAR and have
-     *                 the servlet lookup the environment entry at runtime. Check
-     *                 that the runtime value match the one declared in the
-     *                 Deployment Descriptor.
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares a Short environment entry.
+     * Deploy the WAR and have the servlet lookup the environment entry at runtime. Check that the runtime value match the
+     * one declared in the Deployment Descriptor.
      */
     public void testShortEntry() throws Fault {
         try {
@@ -185,11 +174,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:platform:116.1; JavaEE:platform:103.5
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares a Integer environment entry. Deploy the WAR and
-     *                 have the servlet lookup the environment entry at runtime.
-     *                 Check that the runtime value match the one declared in the
-     *                 Deployment Descriptor.
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares a Integer environment entry.
+     * Deploy the WAR and have the servlet lookup the environment entry at runtime. Check that the runtime value match the
+     * one declared in the Deployment Descriptor.
      * @test_Strategy:
      *
      */
@@ -212,11 +199,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:platform:116.1; JavaEE:platform:103.8
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares a Long environment entry. Deploy the WAR and have
-     *                 the servlet lookup the environment entry at runtime. Check
-     *                 that the runtime value match the one declared in the
-     *                 Deployment Descriptor.
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares a Long environment entry. Deploy
+     * the WAR and have the servlet lookup the environment entry at runtime. Check that the runtime value match the one
+     * declared in the Deployment Descriptor.
      * @test_Strategy:
      *
      */
@@ -239,11 +224,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:platform:116.1; JavaEE:platform:103.9
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares a Float environment entry. Deploy the WAR and have
-     *                 the servlet lookup the environment entry at runtime. Check
-     *                 that the runtime value match the one declared in the
-     *                 Deployment Descriptor.
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares a Float environment entry.
+     * Deploy the WAR and have the servlet lookup the environment entry at runtime. Check that the runtime value match the
+     * one declared in the Deployment Descriptor.
      * @test_Strategy:
      *
      */
@@ -266,11 +249,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:platform:116.1; JavaEE:platform:103.6
      *
-     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor
-     *                 declares a Double environment entry. Deploy the WAR and
-     *                 have the servlet lookup the environment entry at runtime.
-     *                 Check that the runtime value match the one declared in the
-     *                 Deployment Descriptor.
+     * @test_Strategy: Package a servlet in a WAR file whose Deployment Descriptor declares a Double environment entry.
+     * Deploy the WAR and have the servlet lookup the environment entry at runtime. Check that the runtime value match the
+     * one declared in the Deployment Descriptor.
      */
     public void testDoubleEntry() throws Fault {
         try {

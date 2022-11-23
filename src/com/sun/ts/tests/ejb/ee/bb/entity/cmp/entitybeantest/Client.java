@@ -66,8 +66,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -99,10 +98,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:431
      *
-     * @test_Strategy: Create an CMP 1.1 entity bean. Deploy it on the J2EE
-     * server. Check creation life cycle call flow occurs. Verifies proper
-     * ejbCreate/ejbPostCreate method called and correct lifecycle creation call
-     * flow.
+     * @test_Strategy: Create an CMP 1.1 entity bean. Deploy it on the J2EE server. Check creation life cycle call flow
+     * occurs. Verifies proper ejbCreate/ejbPostCreate method called and correct lifecycle creation call flow.
      *
      */
 
@@ -118,7 +115,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         }
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -126,10 +124,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:431
      *
-     * @test_Strategy: Create an CMP 1.1 entity bean. Deploy it on the J2EE
-     * server. Check creation life cycle call flow occurs. Verifies proper
-     * ejbCreate/ejbPostCreate method called and correct lifecycle creation call
-     * flow. This test uses a different create method than above.
+     * @test_Strategy: Create an CMP 1.1 entity bean. Deploy it on the J2EE server. Check creation life cycle call flow
+     * occurs. Verifies proper ejbCreate/ejbPostCreate method called and correct lifecycle creation call flow. This test
+     * uses a different create method than above.
      *
      */
 
@@ -145,7 +142,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         }
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -153,11 +151,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:144.6; EJB:SPEC:145
      *
-     * @test_Strategy: Create an entity CMP 1.1 bean. Deploy it on the J2EE
-     * server. Call ejbRemove() and check a Helper object was notified to ensure
-     * ejbRemove was called. Invoke remove via EJBObject interface twice. A
-     * subsequent call to remove should return NoSuchObjectException or
-     * RemoteException.
+     * @test_Strategy: Create an entity CMP 1.1 bean. Deploy it on the J2EE server. Call ejbRemove() and check a Helper
+     * object was notified to ensure ejbRemove was called. Invoke remove via EJBObject interface twice. A subsequent call to
+     * remove should return NoSuchObjectException or RemoteException.
      *
      */
 
@@ -172,7 +168,8 @@ public class Client extends EETest {
             beanRef.remove();
             // Bean may not have handle on helperRef
             pass = helperRef.isRemove();
-            if (pass) logMsg("ejbRemove was called - expected");
+            if (pass)
+                logMsg("ejbRemove was called - expected");
             else {
                 try {
                     TestBean theBean = beanHome.findByPrimaryKey(new Integer(1));
@@ -203,7 +200,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         }
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -211,10 +209,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:144.6; EJB:SPEC:145
      *
-     * @test_Strategy: Create a CMP 1.1 entity bean. Deploy it on the J2EE server.
-     * Call ejbRemove() and check a Helper object was notified to ensure ejbRemove
-     * was called. Invoke remove through EJBHome via handle twice. A subsequent
-     * call to remove should return NoSuchObjectException or RemoteException.
+     * @test_Strategy: Create a CMP 1.1 entity bean. Deploy it on the J2EE server. Call ejbRemove() and check a Helper
+     * object was notified to ensure ejbRemove was called. Invoke remove through EJBHome via handle twice. A subsequent call
+     * to remove should return NoSuchObjectException or RemoteException.
      *
      */
 
@@ -230,7 +227,8 @@ public class Client extends EETest {
             beanHome.remove(handle);
             // Bean may not have handle on helperRef
             pass = helperRef.isRemove();
-            if (pass) logMsg("ejbRemove was called - expected");
+            if (pass)
+                logMsg("ejbRemove was called - expected");
             else {
                 try {
                     TestBean theBean = beanHome.findByPrimaryKey(new Integer(1));
@@ -261,7 +259,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test3a failed", e);
         }
-        if (!pass) throw new Fault("test3a failed");
+        if (!pass)
+            throw new Fault("test3a failed");
     }
 
     /*
@@ -269,9 +268,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:144.6; EJB:SPEC:145
      *
-     * @test_Strategy: Create a CMP 1.1 entity bean. Deploy it on the J2EE server.
-     * Call ejbRemove() and check a Helper object was notified to ensure ejbRemove
-     * was called. Invoke remove through EJBHome via PKEY twice. A subsequent call
+     * @test_Strategy: Create a CMP 1.1 entity bean. Deploy it on the J2EE server. Call ejbRemove() and check a Helper
+     * object was notified to ensure ejbRemove was called. Invoke remove through EJBHome via PKEY twice. A subsequent call
      * to remove should return NoSuchObjectException or RemoteException.
      *
      */
@@ -288,7 +286,8 @@ public class Client extends EETest {
             beanHome.remove(pkey);
             // Bean may not have handle on helperRef
             pass = helperRef.isRemove();
-            if (pass) logMsg("ejbRemove was called - expected");
+            if (pass)
+                logMsg("ejbRemove was called - expected");
             else {
                 try {
                     TestBean theBean = beanHome.findByPrimaryKey(new Integer(1));
@@ -319,7 +318,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test3b failed", e);
         }
-        if (!pass) throw new Fault("test3b failed");
+        if (!pass)
+            throw new Fault("test3b failed");
     }
 
     /*
@@ -327,11 +327,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:431
      *
-     * @test_Strategy: Container provides notification to bean of removal via
-     * callback ejbRemove(). Invoke remove through EJBObject interface and attempt
-     * to call a business method afterwards. Create a CMP 1.1 entity bean. Deploy
-     * it on the J2EE server. Call ejbRemove() and check a Helper object was
-     * notified to ensure ejbRemove was called.
+     * @test_Strategy: Container provides notification to bean of removal via callback ejbRemove(). Invoke remove through
+     * EJBObject interface and attempt to call a business method afterwards. Create a CMP 1.1 entity bean. Deploy it on the
+     * J2EE server. Call ejbRemove() and check a Helper object was notified to ensure ejbRemove was called.
      *
      */
 
@@ -346,7 +344,8 @@ public class Client extends EETest {
             beanRef.remove();
             // Bean may not have handle on helperRef
             pass = helperRef.isRemove();
-            if (pass) logMsg("ejbRemove was called - expected");
+            if (pass)
+                logMsg("ejbRemove was called - expected");
             else {
                 try {
                     TestBean theBean = beanHome.findByPrimaryKey(new Integer(1));
@@ -374,7 +373,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test3c failed", e);
         }
-        if (!pass) throw new Fault("test3c failed");
+        if (!pass)
+            throw new Fault("test3c failed");
     }
 
     /*
@@ -382,11 +382,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:431
      *
-     * @test_Strategy: Container provides notification to bean of removal via
-     * callback ejbRemove(). Invoke remove through EJBObject interface via handle
-     * and attempt to call a business method afterwards. Create a CMP 1.1 entity
-     * bean. Deploy it on the J2EE server. Call ejbRemove() and check a Helper
-     * object was notified to ensure ejbRemove was called.
+     * @test_Strategy: Container provides notification to bean of removal via callback ejbRemove(). Invoke remove through
+     * EJBObject interface via handle and attempt to call a business method afterwards. Create a CMP 1.1 entity bean. Deploy
+     * it on the J2EE server. Call ejbRemove() and check a Helper object was notified to ensure ejbRemove was called.
      *
      */
 
@@ -402,7 +400,8 @@ public class Client extends EETest {
             beanHome.remove(handle);
             // Bean may not have handle on helperRef
             pass = helperRef.isRemove();
-            if (pass) logMsg("ejbRemove was called - expected");
+            if (pass)
+                logMsg("ejbRemove was called - expected");
             else {
                 try {
                     TestBean theBean = beanHome.findByPrimaryKey(new Integer(1));
@@ -430,7 +429,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test3d failed", e);
         }
-        if (!pass) throw new Fault("test3d failed");
+        if (!pass)
+            throw new Fault("test3d failed");
     }
 
     /*
@@ -438,11 +438,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:431
      *
-     * @test_Strategy: Container provides notification to bean of removal via
-     * callback ejbRemove(). Invoke remove through EJBObject via PKEY twice.
-     * Create a CMP 1.1 entity bean. Deploy it on the J2EE server. Call
-     * ejbRemove() and check a Helper object was notified to ensure ejbRemove was
-     * called.
+     * @test_Strategy: Container provides notification to bean of removal via callback ejbRemove(). Invoke remove through
+     * EJBObject via PKEY twice. Create a CMP 1.1 entity bean. Deploy it on the J2EE server. Call ejbRemove() and check a
+     * Helper object was notified to ensure ejbRemove was called.
      *
      */
 
@@ -458,7 +456,8 @@ public class Client extends EETest {
             beanHome.remove(pkey);
             // Bean may not have handle on helperRef
             pass = helperRef.isRemove();
-            if (pass) logMsg("ejbRemove was called - expected");
+            if (pass)
+                logMsg("ejbRemove was called - expected");
             else {
                 try {
                     TestBean theBean = beanHome.findByPrimaryKey(new Integer(1));
@@ -486,7 +485,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test3e failed", e);
         }
-        if (!pass) throw new Fault("test3e failed");
+        if (!pass)
+            throw new Fault("test3e failed");
     }
 
     /*
@@ -494,8 +494,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:135
      *
-     * @test_Strategy: Create an entity bean. Deploy it on the J2EE server.
-     * Perform a findByPrimaryKey and ensure entity object is obtained.
+     * @test_Strategy: Create an entity bean. Deploy it on the J2EE server. Perform a findByPrimaryKey and ensure entity
+     * object is obtained.
      *
      */
 
@@ -510,18 +510,21 @@ public class Client extends EETest {
             if (beanRef2 == null) {
                 TestUtil.logErr("find by primaryKey did not yield entity bean");
                 pass = false;
-            } else TestUtil.logMsg("find by primaryKey did yield entity bean");
+            } else
+                TestUtil.logMsg("find by primaryKey did yield entity bean");
 
             TestUtil.logMsg("Check if primary keys match");
             if (((Integer) beanRef2.getPrimaryKey()).intValue() != 2)
                 TestUtil.logErr("primary key does not match expected");
-            else TestUtil.logMsg("primary key does match expected");
+            else
+                TestUtil.logMsg("primary key does match expected");
 
             beanRef.remove();
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         }
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
@@ -529,8 +532,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:633.2; EJB:SPEC:633.3
      *
-     * @test_Strategy: Create an entity bean. Deploy it on the J2EE server. Throw
-     * a EJBException instance will be discarded.
+     * @test_Strategy: Create an entity bean. Deploy it on the J2EE server. Throw a EJBException instance will be discarded.
      *
      */
 
@@ -555,7 +557,8 @@ public class Client extends EETest {
             if (beanRef.iAmDestroyed()) {
                 TestUtil.logErr("instance has not been destroyed");
                 pass = false;
-            } else TestUtil.logMsg("instance has been destroyed");
+            } else
+                TestUtil.logMsg("instance has been destroyed");
         } catch (Exception e) {
             throw new Fault("test7 failed", e);
         } finally {
@@ -565,7 +568,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (!pass) throw new Fault("test7 failed");
+        if (!pass)
+            throw new Fault("test7 failed");
     }
 
     /*
@@ -573,8 +577,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:633.2; EJB:SPEC:633.3
      *
-     * @test_Strategy: Create an entity bean. Deploy it on the J2EE server. Throw
-     * a Error instance will be discarded.
+     * @test_Strategy: Create an entity bean. Deploy it on the J2EE server. Throw a Error instance will be discarded.
      *
      */
 
@@ -600,7 +603,8 @@ public class Client extends EETest {
             if (beanRef.iAmDestroyed()) {
                 TestUtil.logErr("instance has not been destroyed");
                 pass = false;
-            } else TestUtil.logMsg("instance has been destroyed");
+            } else
+                TestUtil.logMsg("instance has been destroyed");
         } catch (Exception e) {
             throw new Fault("test8 failed", e);
         } finally {
@@ -610,7 +614,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (!pass) throw new Fault("test8 failed");
+        if (!pass)
+            throw new Fault("test8 failed");
     }
 
     /*
@@ -618,8 +623,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:431; EJB:SPEC:502
      *
-     * @test_Strategy: Create an entity bean. Deploy it on the J2EE server. Check
-     * that ejbStore was called after invoking business method.
+     * @test_Strategy: Create an entity bean. Deploy it on the J2EE server. Check that ejbStore was called after invoking
+     * business method.
      *
      */
 
@@ -632,7 +637,8 @@ public class Client extends EETest {
             helperRef.reset();
             logMsg("check if ejbStore was invoked");
             beanRef.loadOrStoreTest(helperRef);
-            if (helperRef.isStore()) logMsg("ejbStore was called");
+            if (helperRef.isStore())
+                logMsg("ejbStore was called");
             else {
                 logErr("ejbStore was not called");
                 pass = false;
@@ -646,7 +652,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (!pass) throw new Fault("test10 failed");
+        if (!pass)
+            throw new Fault("test10 failed");
     }
 
     public void cleanup() throws Fault {

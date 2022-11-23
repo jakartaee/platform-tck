@@ -33,11 +33,9 @@ import java.util.Map;
 public class TestListener implements ServletContextListener {
 
     /**
-     * Receives notification that the web application initialization process is
-     * starting.
+     * Receives notification that the web application initialization process is starting.
      *
-     * @param sce
-     *          The servlet context event
+     * @param sce The servlet context event
      */
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext context = sce.getServletContext();
@@ -67,8 +65,7 @@ public class TestListener implements ServletContextListener {
          */
         ServletRegistration sr3 = null;
         try {
-            Servlet servlet3 =
-                    context.createServlet(com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet3.class);
+            Servlet servlet3 = context.createServlet(com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet3.class);
             sr3 = context.addServlet(addServletName3, servlet3);
             sr3.addMapping("/Servlet3APIURL");
             params.put("name1", "servlet3");
@@ -84,8 +81,7 @@ public class TestListener implements ServletContextListener {
     /**
      * Receives notification that the servlet context is about to be shut down.
      *
-     * @param sce
-     *          The servlet context event
+     * @param sce The servlet context event
      */
     public void contextDestroyed(ServletContextEvent sce) {
         // Do nothing

@@ -30,9 +30,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -41,8 +40,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,9 +61,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the following usage contexts of jsp:invoke: -
-     * jsp:invoke present in a JSP or JSP document is a translation error. -
-     * jsp:invoke is valid within a tag file.
+     * @test_Strategy: Validate the following usage contexts of jsp:invoke: - jsp:invoke present in a JSP or JSP document is
+     * a translation error. - jsp:invoke is valid within a tag file.
      */
     public void jspInvokeUsageContextTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeUsageContextTest1.jsp HTTP/1.1");
@@ -84,10 +81,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the behavior of jsp:invoke when the var attribute
-     * is specified. The tag file should export the result of the invocation to a
-     * request-scoped variable. The type and value of the exported variable will
-     * be validated by the invoking page.
+     * @test_Strategy: Validate the behavior of jsp:invoke when the var attribute is specified. The tag file should export
+     * the result of the invocation to a request-scoped variable. The type and value of the exported variable will be
+     * validated by the invoking page.
      */
     public void jspInvokeVarTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeVarTest.jsp HTTP/1.1");
@@ -101,11 +97,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the behavior of jsp:invoke when the varReader
-     * attribute is specified. The tag file should export the result of the
-     * invocation to a request-scoped variable. The type and value of the exported
-     * variable will be validated by the invoking page as well as verification
-     * that the exported reader is resettable.
+     * @test_Strategy: Validate the behavior of jsp:invoke when the varReader attribute is specified. The tag file should
+     * export the result of the invocation to a request-scoped variable. The type and value of the exported variable will be
+     * validated by the invoking page as well as verification that the exported reader is resettable.
      */
     public void jspInvokeVarReaderTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeVarReaderTest.jsp HTTP/1.1");
@@ -119,13 +113,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the behavior of jsp:invoke when the scope
-     * attribute is and is not specified. If not specified, the result of the
-     * invocation should be in the page scope of the tag file. If the scope is
-     * 'page' the result of the invocation should be in the page scope of the tag
-     * file. If scope is specified as 'request', 'session', or 'application', the
-     * result of the invocation should be in the page context of the invoking
-     * page.
+     * @test_Strategy: Validate the behavior of jsp:invoke when the scope attribute is and is not specified. If not
+     * specified, the result of the invocation should be in the page scope of the tag file. If the scope is 'page' the
+     * result of the invocation should be in the page scope of the tag file. If scope is specified as 'request', 'session',
+     * or 'application', the result of the invocation should be in the page context of the invoking page.
      */
     public void jspInvokeScopeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeScopeTest.jsp HTTP/1.1");
@@ -139,9 +130,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that if both var and varReader are specified
-     * within one particular jsp:invoke action, a translation- time error is
-     * raised.
+     * @test_Strategy: Validate that if both var and varReader are specified within one particular jsp:invoke action, a
+     * translation- time error is raised.
      */
     public void jspInvokeVarVarReaderTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeVarVarReaderTest.jsp HTTP/1.1");
@@ -154,9 +144,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that if the scope attribute of jsp:invoke is
-     * specified but neither the var nor varReader are specified, a
-     * translation-time error is raised.
+     * @test_Strategy: Validate that if the scope attribute of jsp:invoke is specified but neither the var nor varReader are
+     * specified, a translation-time error is raised.
      */
     public void jspInvokeNoVarVarReaderTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeNoVarVarReaderScopeTest.jsp HTTP/1.1");
@@ -169,10 +158,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that jsp:invoke will cause an
-     * IllegalStateException to be raised if the jsp:invoke action tries to export
-     * a result into the session scope where the calling page does not participate
-     * in a session.
+     * @test_Strategy: Validate that jsp:invoke will cause an IllegalStateException to be raised if the jsp:invoke action
+     * tries to export a result into the session scope where the calling page does not participate in a session.
      */
     public void jspInvokeNotInSessionTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeNotInSessionTest.jsp HTTP/1.1");
@@ -186,8 +173,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the attributes of jspInvoke can all be specified
-     * using the jsp:attribute action.
+     * @test_Strategy: Validate the attributes of jspInvoke can all be specified using the jsp:attribute action.
      */
     public void jspInvokeJspAttributeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeJspAttributeTest.jsp HTTP/1.1");
@@ -201,9 +187,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that a translation-time error is generated if the
-     * scope attribute of jsp:invoke is provided an invalid value (i.e. not
-     * 'page', 'request', 'session', or 'application').
+     * @test_Strategy: Validate that a translation-time error is generated if the scope attribute of jsp:invoke is provided
+     * an invalid value (i.e. not 'page', 'request', 'session', or 'application').
      */
     public void jspInvokeInvalidScopeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeInvalidScopeTest.jsp HTTP/1.1");
@@ -229,9 +214,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that the 'fragment' attribute of jsp:invoke is
-     * indeed required by the container. Validate by calling jsp:invoke without
-     * the attribute and look for a translation- time error.
+     * @test_Strategy: Validate that the 'fragment' attribute of jsp:invoke is indeed required by the container. Validate by
+     * calling jsp:invoke without the attribute and look for a translation- time error.
      */
     public void jspInvokeFragmentReqAttributeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeFragmentReqAttributeTest.jsp HTTP/1.1");
@@ -244,8 +228,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate a translation-time error is raised if the
-     * jsp:invoke action has a non-empty body.
+     * @test_Strategy: Validate a translation-time error is raised if the jsp:invoke action has a non-empty body.
      */
     public void jspInvokeNonEmptyBodyTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/JspInvokeNonEmptyBodyTest.jsp HTTP/1.1");
@@ -258,8 +241,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: If the fragment identified by the given name is null, will
-     * behave as though a fragment was passed in that produces no output.
+     * @test_Strategy: If the fragment identified by the given name is null, will behave as though a fragment was passed in
+     * that produces no output.
      */
     public void jspFragmentNullTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_invoke_web/jspFragmentNullTest.jsp HTTP/1.1");

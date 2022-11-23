@@ -44,8 +44,8 @@ public class Bean1EJB implements SessionBean {
     }
 
     /**
-     * Looks up Bean2, creates an instance, and makes a call to one of its methods
-     * to ensure the principal is propagated properly.
+     * Looks up Bean2, creates an instance, and makes a call to one of its methods to ensure the principal is propagated
+     * properly.
      */
     public String getPropagatedPrincipalName() {
         String result = null;

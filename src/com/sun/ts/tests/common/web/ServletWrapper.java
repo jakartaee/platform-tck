@@ -33,12 +33,10 @@ import java.util.Properties;
 /**
  * Provide a testing framework for a Servlet test.
  *
- * This class is intended to be extended by the actual Servlet test class that
- * will define one or more test methods. This is why this class is tagged
- * "abstract".
+ * This class is intended to be extended by the actual Servlet test class that will define one or more test methods.
+ * This is why this class is tagged "abstract".
  *
- * This class shield the final Servlet class from Servlet life cycle and
- * specific testing framework.
+ * This class shield the final Servlet class from Servlet life cycle and specific testing framework.
  *
  * @see com.sun.ts.tests.common.web.WebServer
  */

@@ -105,7 +105,8 @@ public class ServerSOAPHandler extends WsaBaseSOAPHandler {
             return super.getAction(context);
         } else if (testName.equals("testNonAnonymousResponsesAssertion")) {
             return super.getAction(context);
-        } else return null;
+        } else
+            return null;
     }
 
     private void VerifyAddressingHeadersForAnonymousResponsesAssertion(SOAPMessageContext context, String action) {

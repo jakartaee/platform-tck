@@ -44,25 +44,22 @@ public class ServletTestUtil {
     /**
      * Private as this class contains only public static methods.
      */
-    private ServletTestUtil() {}
+    private ServletTestUtil() {
+    }
 
     /**
-     * Compares the String values in an Enumeration against the provides String
-     * array of values. The number of elements in the enumeration must be the same
-     * as the size of the array, or false will be returned. False will also be
-     * returned if the provided Enumeration or String array is null.
+     * Compares the String values in an Enumeration against the provides String array of values. The number of elements in
+     * the enumeration must be the same as the size of the array, or false will be returned. False will also be returned if
+     * the provided Enumeration or String array is null.
      *
      * If all values are found, true will be returned.
      *
-     * <em>Note:</em> This method isn't concerned with the presence of duplicate
-     * values contained in the enumeration.
+     * <em>Note:</em> This method isn't concerned with the presence of duplicate values contained in the enumeration.
      *
      * The comparison is performed in a case sensitive manner.
      *
-     * @param e
-     *          - Enumeration to validate
-     * @param values
-     *          - the values expected to be found in the Enumeration
+     * @param e - Enumeration to validate
+     * @param values - the values expected to be found in the Enumeration
      *
      * @return true if all the expected values are found, otherwise false.
      */
@@ -71,29 +68,22 @@ public class ServletTestUtil {
     }
 
     /**
-     * Compares the String values in an Enumeration against the provides String
-     * array of values. The number of elements in the enumeration must be the same
-     * as the size of the array, or false will be returned. False will also be
-     * returned if the provided Enumeration or String array is null.
+     * Compares the String values in an Enumeration against the provides String array of values. The number of elements in
+     * the enumeration must be the same as the size of the array, or false will be returned. False will also be returned if
+     * the provided Enumeration or String array is null.
      *
      * If all values are found, true will be returned.
      *
-     * <em>Note:</em> This method isn't concerned with the presence of duplicate
-     * values contained in the enumeration.
+     * <em>Note:</em> This method isn't concerned with the presence of duplicate values contained in the enumeration.
      *
      * The comparison is performed in a case sensitive manner.
      *
-     * @param e
-     *          - Enumeration to validate
-     * @param values
-     *          - the values expected to be found in the Enumeration
-     * @param enforceSizes
-     *          - ensures that the number of elements in the Enumeration matches
-     *          the number of elements in the array of values
-     * @param allowDuplicates
-     *          - If true, the method will true if duplicate elements are found in
-     *          the Enumeration, if false, then false will be return if duplicate
-     *          elements have been found.
+     * @param e - Enumeration to validate
+     * @param values - the values expected to be found in the Enumeration
+     * @param enforceSizes - ensures that the number of elements in the Enumeration matches the number of elements in the
+     * array of values
+     * @param allowDuplicates - If true, the method will true if duplicate elements are found in the Enumeration, if false,
+     * then false will be return if duplicate elements have been found.
      *
      * @return true if all the expected values are found, otherwise false.
      */
@@ -248,11 +238,9 @@ public class ServletTestUtil {
     }
 
     /**
-     * Returns the provided String array in the following format:
-     * <tt>[n1,n2,n...]</tt>
+     * Returns the provided String array in the following format: <tt>[n1,n2,n...]</tt>
      *
-     * @param sArray
-     *          - an array of Objects
+     * @param sArray - an array of Objects
      * @return - a String based off the values in the array
      */
     public static String getAsString(Object[] sArray) {
@@ -289,11 +277,9 @@ public class ServletTestUtil {
     }
 
     /**
-     * Returns the provided Enumeration as a String in the following format:
-     * <tt>[n1,n2,n...]</tt>
+     * Returns the provided Enumeration as a String in the following format: <tt>[n1,n2,n...]</tt>
      *
-     * @param e
-     *          - an Enumeration
+     * @param e - an Enumeration
      * @return - a printable version of the contents of the Enumeration
      */
     public static String getAsString(Enumeration e) {
@@ -303,8 +289,7 @@ public class ServletTestUtil {
     /**
      * Returnes the provides Enumeration as an Array of String Arguments.
      *
-     * @param e
-     *          - an Enumeration
+     * @param e - an Enumeration
      * @return - the elements of the Enumeration as an array of Objects
      */
     public static Object[] getAsArray(Enumeration e) {
@@ -318,8 +303,7 @@ public class ServletTestUtil {
     /**
      * Returnes the provided string as an Array of Strings.
      *
-     * @param e
-     *          - a String
+     * @param e - a String
      * @return - the elements of the String as an array of Strings
      */
     public static String[] getAsArray(String value) {
@@ -334,8 +318,7 @@ public class ServletTestUtil {
     /**
      * Writes the provided message to System.out when the <tt>debug</tt> is set.
      *
-     * @param message
-     *          - the message to write to System.out
+     * @param message - the message to write to System.out
      */
     public static void debug(String message) {
         if (DEBUG) {

@@ -39,16 +39,15 @@ public class CaseInsensitiveHeaderNamesConfigurator extends Configurator {
     }
 
     /*
-     * Request sets this key with REQUEST_VALUES and case sensitivity is checked
-     * afterwards in modifyHandshake()
+     * Request sets this key with REQUEST_VALUES and case sensitivity is checked afterwards in modifyHandshake()
      */
     static final String REQUEST_KEY = "caseInsensitiveKey";
 
     /*
-     * The value of this key is set to be checked on a client and the value should
-     * reflect boolean value of being case sensitive or not
+     * The value of this key is set to be checked on a client and the value should reflect boolean value of being case
+     * sensitive or not
      */
     static final String RESPONSE_KEY = "isCaseSensitive";
 
-    static final String[] REQUEST_VALUES = {"RequestValue1", "RequestValue2"};
+    static final String[] REQUEST_VALUES = { "RequestValue1", "RequestValue2" };
 }

@@ -25,8 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Performs validation of TagLibraryDescriptor <code>&lt;uri&gt;</code>
- * elements.
+ * Performs validation of TagLibraryDescriptor <code>&lt;uri&gt;</code> elements.
  */
 public class URIValidator implements Validator {
 

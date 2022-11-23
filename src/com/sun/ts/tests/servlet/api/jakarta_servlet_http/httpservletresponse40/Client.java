@@ -69,8 +69,10 @@ public class Client extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -204,7 +206,8 @@ public class Client extends EETest {
             throw new Fault(testName + " failed: ", e);
         } finally {
             try {
-                if (socket != null) socket.close();
+                if (socket != null)
+                    socket.close();
             } catch (Exception e) {
             }
         }

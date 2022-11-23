@@ -34,23 +34,7 @@ import javax.sql.DataSource;
 
 @Stateful
 @Local(DataSourceIF.class)
-@DataSourceDefinition(
-        name = "java:app/env/appds2",
-        description = "override with <data-source> in ejb-jar.xml",
-        className = "jdbc.ClientDataSource",
-        portNumber = 8080,
-        serverName = "x",
-        databaseName = "x",
-        user = "x",
-        password = "x",
-        initialPoolSize = 1,
-        isolationLevel = Connection.TRANSACTION_SERIALIZABLE,
-        loginTimeout = 300,
-        maxIdleTime = 1000,
-        maxPoolSize = 2,
-        minPoolSize = 1,
-        transactional = true,
-        url = "jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true")
+@DataSourceDefinition(name = "java:app/env/appds2", description = "override with <data-source> in ejb-jar.xml", className = "jdbc.ClientDataSource", portNumber = 8080, serverName = "x", databaseName = "x", user = "x", password = "x", initialPoolSize = 1, isolationLevel = Connection.TRANSACTION_SERIALIZABLE, loginTimeout = 300, maxIdleTime = 1000, maxPoolSize = 2, minPoolSize = 1, transactional = true, url = "jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true")
 public class DataSourceBean extends ComponentBase {
 
     @Resource(lookup = "java:app/env/appds")

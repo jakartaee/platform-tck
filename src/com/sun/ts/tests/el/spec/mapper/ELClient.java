@@ -49,19 +49,17 @@ public class ELClient extends ServiceEETest {
         this.testProps = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
      * @testName: ELFunctionBindingTest
      *
      * @assertion_ids: EL:SPEC:31
-     * @test_Strategy: [ELFunctionsBinding] Create an ELContext that uses a
-     *                 non-null FunctionMapper. Create a ValueExpression from the
-     *                 ELContext that references a function assigned by the
-     *                 FunctionMapper. Change the function mapping in the
-     *                 FunctionMapper. Show that the ValueExpression evaluates as
-     *                 before and that the original method mapped to the function
-     *                 is being invoked.
+     * @test_Strategy: [ELFunctionsBinding] Create an ELContext that uses a non-null FunctionMapper. Create a
+     * ValueExpression from the ELContext that references a function assigned by the FunctionMapper. Change the function
+     * mapping in the FunctionMapper. Show that the ValueExpression evaluates as before and that the original method mapped
+     * to the function is being invoked.
      */
     public void ELFunctionBindingTest() throws Fault {
 
@@ -123,12 +121,9 @@ public class ELClient extends ServiceEETest {
      * @testName: ELVariableBindingTest
      *
      * @assertion_ids: EL:SPEC:34
-     * @test_Strategy: [ELVariablesBinding] Create an ELContext that uses a
-     *                 non-null VariableMapper. Create a ValueExpression from the
-     *                 ELContext that references a variable assigned by the
-     *                 VariableMapper. Remove the assignment from the
-     *                 VariableMapper. Verify that the ValueExpression evaluates
-     *                 as before.
+     * @test_Strategy: [ELVariablesBinding] Create an ELContext that uses a non-null VariableMapper. Create a
+     * ValueExpression from the ELContext that references a variable assigned by the VariableMapper. Remove the assignment
+     * from the VariableMapper. Verify that the ValueExpression evaluates as before.
      */
     public void ELVariableBindingTest() throws Fault {
 

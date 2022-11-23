@@ -22,8 +22,7 @@ package com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance;
 import com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ConcurrencyIF;
 
 /**
- * This class has no class-level @Lock, hence the default WRITE for all business
- * methods in this class.
+ * This class has no class-level @Lock, hence the default WRITE for all business methods in this class.
  */
 public abstract class DefaultLockBeanBase implements ConcurrencyIF {
     protected long unlockedSum;

@@ -163,7 +163,8 @@ public final class GetInitParamNames_Filter implements Filter {
     }
 
     // remove the filter configuration object for this filter.
-    public void destroy() {}
+    public void destroy() {
+    }
 
     // initialize the filter configuration object for this filter.
 

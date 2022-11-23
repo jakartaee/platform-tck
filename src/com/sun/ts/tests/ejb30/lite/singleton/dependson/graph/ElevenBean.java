@@ -26,7 +26,7 @@ import jakarta.ejb.Startup;
 
 @Startup
 @Singleton
-@DependsOn({"TwoBean", "NineBean", "TenBean"})
+@DependsOn({ "TwoBean", "NineBean", "TenBean" })
 public class ElevenBean extends BeanBase {
     @Override
     protected String getBeanName() {

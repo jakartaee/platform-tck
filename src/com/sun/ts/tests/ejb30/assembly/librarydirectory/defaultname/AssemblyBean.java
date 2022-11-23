@@ -29,5 +29,6 @@ import com.sun.ts.tests.ejb30.assembly.common.AssemblyRemoteIF;
 // @Stateless
 public class AssemblyBean extends AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF, AssemblyCommonIF {
 
-    public AssemblyBean() {}
+    public AssemblyBean() {
+    }
 }

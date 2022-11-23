@@ -30,10 +30,10 @@ import java.util.Map;
 
 public class ExtensionsServerEndpointConfig implements ServerEndpointConfig {
 
-    static final String[] EXT_NAMES = new String[] {"firstExtName", "secondExtName", "thirdExtName"};
+    static final String[] EXT_NAMES = new String[] { "firstExtName", "secondExtName", "thirdExtName" };
 
     static final ExtensionParameterImpl[] PARAMETER = {
-        new ExtensionParameterImpl("firstName", "firstValue"), new ExtensionParameterImpl("secondName", "secondValue")
+            new ExtensionParameterImpl("firstName", "firstValue"), new ExtensionParameterImpl("secondName", "secondValue")
     };
 
     @Override

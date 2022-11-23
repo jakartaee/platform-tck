@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,8 +56,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRootCauseTest
      *
-     * @assertion_ids: Servlet:SPEC:83; Servlet:JAVADOC:108; Servlet:JAVADOC:109;
-     * Servlet:JAVADOC:8;
+     * @assertion_ids: Servlet:SPEC:83; Servlet:JAVADOC:108; Servlet:JAVADOC:109; Servlet:JAVADOC:8;
      *
      * @test_Strategy: A Test for getRootCause method
      */
@@ -95,8 +92,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: servletExceptionConstructor3Test
      *
-     * @assertion_ids: Servlet:SPEC:83; Servlet:JAVADOC:108; Servlet:JAVADOC:109;
-     * Servlet:JAVADOC:8;
+     * @assertion_ids: Servlet:SPEC:83; Servlet:JAVADOC:108; Servlet:JAVADOC:109; Servlet:JAVADOC:8;
      *
      * @test_Strategy: A Test for ServletException(Throwable) constructor method
      */
@@ -108,11 +104,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: servletExceptionConstructor4Test
      *
-     * @assertion_ids: Servlet:SPEC:83; Servlet:JAVADOC:107; Servlet:JAVADOC:109;
-     * Servlet:JAVADOC:8;
+     * @assertion_ids: Servlet:SPEC:83; Servlet:JAVADOC:107; Servlet:JAVADOC:109; Servlet:JAVADOC:8;
      *
-     * @test_Strategy: A Test for ServletException(String,Throwable) constructor
-     * method
+     * @test_Strategy: A Test for ServletException(String,Throwable) constructor method
      */
     public void servletExceptionConstructor4Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "servletExceptionConstructor4");

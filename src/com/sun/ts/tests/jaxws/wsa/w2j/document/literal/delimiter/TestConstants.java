@@ -29,8 +29,7 @@ public class TestConstants {
 
     public static final String ADD_NUMBERS2_OUT_ACTION = "urn:addNumbersResponse";
 
-    public static final String ADD_NUMBERS_ADDNUMBERS_ACTION =
-            "urn:example.com:AddNumbersPortType:addNumbers:Fault:addFault";
+    public static final String ADD_NUMBERS_ADDNUMBERS_ACTION = "urn:example.com:AddNumbersPortType:addNumbers:Fault:addFault";
 
     public static final String ADD_NUMBERS2_ADDNUMBERS_ACTION = "urn:addNumbersFault";
 }

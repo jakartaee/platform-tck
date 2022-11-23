@@ -33,7 +33,8 @@ public class Employee4 implements java.io.Serializable {
 
     private Department4 department;
 
-    public Employee4() {}
+    public Employee4() {
+    }
 
     public Employee4(int id, String lastName) {
         this.id = id;

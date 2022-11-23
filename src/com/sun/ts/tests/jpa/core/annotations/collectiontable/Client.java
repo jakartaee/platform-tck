@@ -26,7 +26,8 @@ import java.util.Set;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -48,8 +49,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: collectionTable1
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:314; PERSISTENCE:JAVADOC:315;
-     * PERSISTENCE:SPEC:1246;
+     * @assertion_ids: PERSISTENCE:JAVADOC:314; PERSISTENCE:JAVADOC:315; PERSISTENCE:SPEC:1246;
      *
      * @test_Strategy:
      *
@@ -103,7 +103,8 @@ public class Client extends PMClientBase {
                 }
             }
 
-            if (pass1 && pass2) pass = true;
+            if (pass1 && pass2)
+                pass = true;
 
             getEntityTransaction().commit();
         } catch (Exception e) {

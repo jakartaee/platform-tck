@@ -27,7 +27,8 @@ import java.util.Properties;
  */
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -50,11 +51,10 @@ public class Client extends PMClientBase {
      * @testName: DIDTest
      * @assertion_ids: PERSISTENCE:SPEC:1182.1; PERSISTENCE:SPEC:1341;
      * @test_Strategy: Derived Identifier
-     *                 <p/>
-     *                 The parent entity uses EmbeddedId. The dependent's primary
-     *                 key is of the same type as that of the parent.
-     *                 <p/>
-     *                 Case (a): The dependent class uses IdClass
+     * <p/>
+     * The parent entity uses EmbeddedId. The dependent's primary key is of the same type as that of the parent.
+     * <p/>
+     * Case (a): The dependent class uses IdClass
      */
     public void DIDTest() throws Fault {
         TestUtil.logTrace("Begin DIDTest11");

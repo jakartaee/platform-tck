@@ -30,7 +30,8 @@ public class Client extends PMClientBase {
 
     private static Coffee cRef[] = new Coffee[5];
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -59,8 +60,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:53
      *
-     * @test_Strategy: persist throws an IllegalArgumentException if the argument
-     * is not an entity
+     * @test_Strategy: persist throws an IllegalArgumentException if the argument is not an entity
      */
 
     public void entityAPITest1() throws Fault {
@@ -88,7 +88,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("entityAPITest1 failed");
+        if (!pass)
+            throw new Fault("entityAPITest1 failed");
     }
 
     /*
@@ -96,8 +97,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:43
      *
-     * @test_Strategy: find(Class entityClass, Object PK) returns null if the
-     * entity does not exist.
+     * @test_Strategy: find(Class entityClass, Object PK) returns null if the entity does not exist.
      */
 
     public void entityAPITest2() throws Fault {
@@ -125,7 +125,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("entityAPITest2 failed");
+        if (!pass)
+            throw new Fault("entityAPITest2 failed");
     }
 
     /*
@@ -133,9 +134,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:43
      *
-     * @test_Strategy: find(Class entityClass, Object PK) throws an
-     * IllegalArgumentException if the first argument does not denote an entity
-     * type
+     * @test_Strategy: find(Class entityClass, Object PK) throws an IllegalArgumentException if the first argument does not
+     * denote an entity type
      */
 
     public void entityAPITest3() throws Fault {
@@ -160,7 +160,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("entityAPITest3 failed");
+        if (!pass)
+            throw new Fault("entityAPITest3 failed");
     }
 
     /*
@@ -168,9 +169,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:43
      *
-     * @test_Strategy: find(Class entityClass, Object PK) throws an
-     * IllegalArgumentException if the second argument is not a valid type for
-     * that entity's primary key
+     * @test_Strategy: find(Class entityClass, Object PK) throws an IllegalArgumentException if the second argument is not a
+     * valid type for that entity's primary key
      */
 
     public void entityAPITest4() throws Fault {
@@ -201,7 +201,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("entityAPITest4 failed");
+        if (!pass)
+            throw new Fault("entityAPITest4 failed");
     }
 
     /*
@@ -209,9 +210,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:486; PERSISTENCE:JAVADOC:487
      *
-     * @test_Strategy: getReference(Class entityClass, Object PK) throws an
-     * IllegalArgumentException if the first argument does not denote an entity
-     * type
+     * @test_Strategy: getReference(Class entityClass, Object PK) throws an IllegalArgumentException if the first argument
+     * does not denote an entity type
      */
 
     public void getReferenceExceptionsTest() throws Fault {
@@ -252,7 +252,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass1 || !pass2 || !pass3) throw new Fault("getReferenceExceptionsTest failed");
+        if (!pass1 || !pass2 || !pass3)
+            throw new Fault("getReferenceExceptionsTest failed");
     }
 
     /*
@@ -290,7 +291,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("getReferenceTest failed");
+        if (!pass)
+            throw new Fault("getReferenceTest failed");
     }
 
     /*
@@ -298,8 +300,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:54
      *
-     * @test_Strategy: refresh throws an IllegalArgumentException if the argument
-     * is not an entity
+     * @test_Strategy: refresh throws an IllegalArgumentException if the argument is not an entity
      */
 
     public void entityAPITest8() throws Fault {
@@ -328,7 +329,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("entityAPITest8 failed");
+        if (!pass)
+            throw new Fault("entityAPITest8 failed");
     }
 
     /*
@@ -336,8 +338,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:37
      *
-     * @test_Strategy: contains throws an IllegalArgumentException if the argument
-     * is not an entity
+     * @test_Strategy: contains throws an IllegalArgumentException if the argument is not an entity
      */
 
     public void entityAPITest10() throws Fault {
@@ -366,17 +367,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("entityAPITest10 failed");
+        if (!pass)
+            throw new Fault("entityAPITest10 failed");
     }
 
     /*
      * @testName: entityAPITest12
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:38; PERSISTENCE:JAVADOC:119;
-     * PERSISTENCE:JAVADOC:117; PERSISTENCE:JAVADOC:118; PERSISTENCE:JAVADOC:123;
-     * PERSISTENCE:JAVADOC:124; PERSISTENCE:JAVADOC:121; PERSISTENCE:SPEC:1004;
-     * PERSISTENCE:JAVADOC:373; PERSISTENCE:SPEC:1238; PERSISTENCE:SPEC:1311;
-     * PERSISTENCE:SPEC:1312; PERSISTENCE:SPEC:1929;
+     * @assertion_ids: PERSISTENCE:JAVADOC:38; PERSISTENCE:JAVADOC:119; PERSISTENCE:JAVADOC:117; PERSISTENCE:JAVADOC:118;
+     * PERSISTENCE:JAVADOC:123; PERSISTENCE:JAVADOC:124; PERSISTENCE:JAVADOC:121; PERSISTENCE:SPEC:1004;
+     * PERSISTENCE:JAVADOC:373; PERSISTENCE:SPEC:1238; PERSISTENCE:SPEC:1311; PERSISTENCE:SPEC:1312; PERSISTENCE:SPEC:1929;
      *
      * @test_Strategy: createNamedQuery creates an instance of Query in JPQL.
      */
@@ -407,18 +407,17 @@ public class Client extends PMClientBase {
         } catch (Exception e) {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
-        if (!pass) throw new Fault("entityAPITest12 failed");
+        if (!pass)
+            throw new Fault("entityAPITest12 failed");
     }
 
     /*
      * @testName: entityAPITest13
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:38; PERSISTENCE:SPEC:1007;
-     * PERSISTENCE:SPEC:1009; PERSISTENCE:SPEC:1005; PERSISTENCE:SPEC:1008;
-     * PERSISTENCE:SPEC:1930;
+     * @assertion_ids: PERSISTENCE:JAVADOC:38; PERSISTENCE:SPEC:1007; PERSISTENCE:SPEC:1009; PERSISTENCE:SPEC:1005;
+     * PERSISTENCE:SPEC:1008; PERSISTENCE:SPEC:1930;
      *
-     * @test_Strategy: createNamedQuery creates an instance of Query in SQL. Use
-     * the resultSetMapping to name the result set
+     * @test_Strategy: createNamedQuery creates an instance of Query in SQL. Use the resultSetMapping to name the result set
      */
 
     public void entityAPITest13() throws Fault {
@@ -451,7 +450,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
             pass = false;
         }
-        if (!pass) throw new Fault("entityAPITest13 failed");
+        if (!pass)
+            throw new Fault("entityAPITest13 failed");
     }
 
     /*
@@ -459,8 +459,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:38; PERSISTENCE:SPEC:372.5
      *
-     * @test_Strategy: Execute a named query that uses a Constructor expression to
-     * return a collection of Java Instances.
+     * @test_Strategy: Execute a named query that uses a Constructor expression to return a collection of Java Instances.
      */
 
     public void entityAPITest14() throws Fault {
@@ -491,17 +490,17 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
             pass = false;
         }
-        if (!pass) throw new Fault("entityAPITest14 failed");
+        if (!pass)
+            throw new Fault("entityAPITest14 failed");
     }
 
     /*
      * @testName: entityAPITest15
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:42; PERSISTENCE:SPEC:372.5;
-     * PERSISTENCE:SPEC:820
+     * @assertion_ids: PERSISTENCE:JAVADOC:42; PERSISTENCE:SPEC:372.5; PERSISTENCE:SPEC:820
      *
-     * @test_Strategy: Execute a Java Persistence QL query that uses a Constructor
-     * expression to return a collection of Java Instances.
+     * @test_Strategy: Execute a Java Persistence QL query that uses a Constructor expression to return a collection of Java
+     * Instances.
      */
 
     public void entityAPITest15() throws Fault {
@@ -538,18 +537,17 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("entityAPITest15 failed");
+        if (!pass)
+            throw new Fault("entityAPITest15 failed");
     }
 
     /*
      * @testName: entityAPITest16
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:42; PERSISTENCE:SPEC:372.5;
-     * PERSISTENCE:SPEC:819
+     * @assertion_ids: PERSISTENCE:JAVADOC:42; PERSISTENCE:SPEC:372.5; PERSISTENCE:SPEC:819
      *
-     * @test_Strategy: A constructor expression is not required to be an entity or
-     * mapped to the database. Invoked a query with a Constructor expression using
-     * a non-entity class.
+     * @test_Strategy: A constructor expression is not required to be an entity or mapped to the database. Invoked a query
+     * with a Constructor expression using a non-entity class.
      */
 
     public void entityAPITest16() throws Fault {
@@ -590,7 +588,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("entityAPITest16 failed");
+        if (!pass)
+            throw new Fault("entityAPITest16 failed");
     }
 
     /*
@@ -598,8 +597,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:55
      *
-     * @test_Strategy: remove throws an IllegalArgumentException if the instance
-     * is not an entity
+     * @test_Strategy: remove throws an IllegalArgumentException if the instance is not an entity
      */
 
     public void entityAPITest17() throws Fault {
@@ -627,17 +625,17 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("entityAPITest17 failed");
+        if (!pass)
+            throw new Fault("entityAPITest17 failed");
     }
 
     /*
      * @testName: entityAPITest18
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:38; PERSISTENCE:SPEC:1006;
-     * PERSISTENCE:JAVADOC:120; PERSISTENCE:JAVADOC:115; PERSISTENCE:SPEC:1932;
+     * @assertion_ids: PERSISTENCE:JAVADOC:38; PERSISTENCE:SPEC:1006; PERSISTENCE:JAVADOC:120; PERSISTENCE:JAVADOC:115;
+     * PERSISTENCE:SPEC:1932;
      *
-     * @test_Strategy: createNamedQuery creates an instance of Query in SQL. using
-     * resultClass for the resulting instances
+     * @test_Strategy: createNamedQuery creates an instance of Query in SQL. using resultClass for the resulting instances
      */
 
     public void entityAPITest18() throws Fault {
@@ -668,7 +666,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("entityAPITest18 failed");
+        if (!pass)
+            throw new Fault("entityAPITest18 failed");
     }
 
     /*
@@ -683,7 +682,7 @@ public class Client extends PMClientBase {
 
         List<Coffee> result = null;
         boolean pass = false;
-        Integer[] expected = new Integer[] {cRef[2].getId()};
+        Integer[] expected = new Integer[] { cRef[2].getId() };
 
         try {
             getEntityTransaction().begin();
@@ -706,7 +705,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("xmlOverridesNamedNativeQueryTest failed");
+        if (!pass)
+            throw new Fault("xmlOverridesNamedNativeQueryTest failed");
     }
 
     /*
@@ -721,7 +721,7 @@ public class Client extends PMClientBase {
 
         List<Coffee> result = null;
         boolean pass = false;
-        Integer[] expected = new Integer[] {cRef[2].getId()};
+        Integer[] expected = new Integer[] { cRef[2].getId() };
 
         try {
             getEntityTransaction().begin();
@@ -742,7 +742,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("xmlNamedNativeQueryTest failed");
+        if (!pass)
+            throw new Fault("xmlNamedNativeQueryTest failed");
     }
 
     /*
@@ -757,7 +758,7 @@ public class Client extends PMClientBase {
 
         List<Coffee> result = null;
         boolean pass = false;
-        Integer[] expected = new Integer[] {cRef[2].getId()};
+        Integer[] expected = new Integer[] { cRef[2].getId() };
 
         try {
             getEntityTransaction().begin();
@@ -780,7 +781,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("xmlOverridesNamedQueryTest failed");
+        if (!pass)
+            throw new Fault("xmlOverridesNamedQueryTest failed");
     }
 
     /*
@@ -795,7 +797,7 @@ public class Client extends PMClientBase {
 
         List<Coffee> result = null;
         boolean pass = false;
-        Integer[] expected = new Integer[] {cRef[2].getId()};
+        Integer[] expected = new Integer[] { cRef[2].getId() };
 
         try {
             getEntityTransaction().begin();
@@ -816,7 +818,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("xmlNamedQueryTest failed");
+        if (!pass)
+            throw new Fault("xmlNamedQueryTest failed");
     }
 
     /*
@@ -850,7 +853,8 @@ public class Client extends PMClientBase {
         } catch (Exception e) {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
-        if (!pass) throw new Fault("namedNativeQueryInMappedSuperClass failed");
+        if (!pass)
+            throw new Fault("namedNativeQueryInMappedSuperClass failed");
     }
 
     /*
@@ -884,7 +888,8 @@ public class Client extends PMClientBase {
         } catch (Exception e) {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
-        if (!pass) throw new Fault("namedQueryInMappedSuperClass failed");
+        if (!pass)
+            throw new Fault("namedQueryInMappedSuperClass failed");
     }
 
     /*

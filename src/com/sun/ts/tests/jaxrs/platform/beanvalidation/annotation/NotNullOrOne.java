@@ -24,11 +24,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Target({
-    ElementType.TYPE,
-    ElementType.FIELD,
-    java.lang.annotation.ElementType.CONSTRUCTOR,
-    ElementType.PARAMETER,
-    ElementType.METHOD
+        ElementType.TYPE,
+        ElementType.FIELD,
+        java.lang.annotation.ElementType.CONSTRUCTOR,
+        ElementType.PARAMETER,
+        ElementType.METHOD
 })
 @Retention(value = RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = NotNullOrOneStringBeanValidator.class)

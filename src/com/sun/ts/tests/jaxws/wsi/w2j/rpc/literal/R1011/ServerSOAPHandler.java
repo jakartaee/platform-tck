@@ -53,8 +53,7 @@ public class ServerSOAPHandler extends HTTPSOAPHandler {
     /**
      * Verifies the env:Envelope children.
      *
-     * @param request
-     *          the HTTP servlet request.
+     * @param request the HTTP servlet request.
      *
      * @return "PASSED" if no invalid claims are present; "FAILED" otherwise.
      *

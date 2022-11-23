@@ -29,7 +29,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -50,19 +51,17 @@ public class Client extends PMClientBase {
     /*
      * @testName: persistBasicTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:614;
-     * PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:675; PERSISTENCE:SPEC:1069;
-     * PERSISTENCE:SPEC:1072; PERSISTENCE:SPEC:1073; PERSISTENCE:SPEC:1074;
-     * PERSISTENCE:SPEC:1075; PERSISTENCE:SPEC:1076; PERSISTENCE:SPEC:1077;
-     * PERSISTENCE:SPEC:1078; PERSISTENCE:SPEC:1080; PERSISTENCE:SPEC:1081;
+     * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:614; PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:675;
+     * PERSISTENCE:SPEC:1069; PERSISTENCE:SPEC:1072; PERSISTENCE:SPEC:1073; PERSISTENCE:SPEC:1074; PERSISTENCE:SPEC:1075;
+     * PERSISTENCE:SPEC:1076; PERSISTENCE:SPEC:1077; PERSISTENCE:SPEC:1078; PERSISTENCE:SPEC:1080; PERSISTENCE:SPEC:1081;
      * PERSISTENCE:SPEC:1082;
      *
      *
-     * @test_Strategy: A new entity bean instance has no persistent identity and
-     * is not yet associated to a persistent context.
+     * @test_Strategy: A new entity bean instance has no persistent identity and is not yet associated to a persistent
+     * context.
      *
-     * The contains method (used to determine whether an entity instance is in the
-     * managed state in the current persistence context) returns false:
+     * The contains method (used to determine whether an entity instance is in the managed state in the current persistence
+     * context) returns false:
      *
      * If the instance is new and the persist method has not been on the entity.
      *
@@ -85,10 +84,10 @@ public class Client extends PMClientBase {
             final Long basicBigLong = basicLong;
             final double basicDouble = 1234.5;
             final Double basicBigDouble = basicDouble;
-            final char[] charArray = {'a', 'b', 'c'};
-            final Character[] bigCharacterArray = {'a', 'b', 'c'};
+            final char[] charArray = { 'a', 'b', 'c' };
+            final Character[] bigCharacterArray = { 'a', 'b', 'c' };
             final byte[] byteArray = "abc".getBytes();
-            final Byte[] bigByteArray = {(byte) 111, (byte) 101, (byte) 100};
+            final Byte[] bigByteArray = { (byte) 111, (byte) 101, (byte) 100 };
             final BigInteger bigInteger = new BigInteger("12345");
             final BigDecimal bigDecimal = new BigDecimal(bigInteger);
             final Date date = new Date();
@@ -148,21 +147,18 @@ public class Client extends PMClientBase {
     /*
      * @testName: persistBasicTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:615;
-     * PERSISTENCE:SPEC:619; PERSISTENCE:SPEC:667; PERSISTENCE:SPEC:669;
-     * PERSISTENCE:SPEC:1069; PERSISTENCE:SPEC:1073; PERSISTENCE:SPEC:1074;
-     * PERSISTENCE:SPEC:1075; PERSISTENCE:SPEC:1076; PERSISTENCE:SPEC:1077;
-     * PERSISTENCE:SPEC:1078; PERSISTENCE:SPEC:1080; PERSISTENCE:SPEC:1081;
+     * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:615; PERSISTENCE:SPEC:619; PERSISTENCE:SPEC:667;
+     * PERSISTENCE:SPEC:669; PERSISTENCE:SPEC:1069; PERSISTENCE:SPEC:1073; PERSISTENCE:SPEC:1074; PERSISTENCE:SPEC:1075;
+     * PERSISTENCE:SPEC:1076; PERSISTENCE:SPEC:1077; PERSISTENCE:SPEC:1078; PERSISTENCE:SPEC:1080; PERSISTENCE:SPEC:1081;
      * PERSISTENCE:SPEC:1082; PERSISTENCE:SPEC:1072;
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows:
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows:
      *
      * If X is a new entity, it becomes managed.
      *
-     * Invoke persist on the new entity. Find the entity instance and ensure it is
-     * managed by calling contains() verifying it returns true.
+     * Invoke persist on the new entity. Find the entity instance and ensure it is managed by calling contains() verifying
+     * it returns true.
      */
     public void persistBasicTest2() throws Fault {
 
@@ -183,10 +179,10 @@ public class Client extends PMClientBase {
             final Long basicBigLong = basicLong;
             final double basicDouble = 1234.5;
             final Double basicBigDouble = basicDouble;
-            final char[] charArray = {'a', 'b', 'c'};
-            final Character[] bigCharacterArray = {'a', 'b', 'c'};
+            final char[] charArray = { 'a', 'b', 'c' };
+            final Character[] bigCharacterArray = { 'a', 'b', 'c' };
             final byte[] byteArray = "abc".getBytes();
-            final Byte[] bigByteArray = {(byte) 111, (byte) 101, (byte) 100};
+            final Byte[] bigByteArray = { (byte) 111, (byte) 101, (byte) 100 };
             final BigInteger bigInteger = new BigInteger("12345");
             final BigDecimal bigDecimal = new BigDecimal(bigInteger);
             final Date date = new Date();
@@ -252,21 +248,16 @@ public class Client extends PMClientBase {
     /*
      * @testName: persistBasicTest3
      *
-     * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618;
-     * PERSISTENCE:SPEC:620; PERSISTENCE:SPEC:1069; PERSISTENCE:SPEC:1073;
-     * PERSISTENCE:SPEC:1074; PERSISTENCE:SPEC:1075; PERSISTENCE:SPEC:1076;
-     * PERSISTENCE:SPEC:1077; PERSISTENCE:SPEC:1078; PERSISTENCE:SPEC:1080;
-     * PERSISTENCE:SPEC:1081; PERSISTENCE:SPEC:1082; PERSISTENCE:SPEC:1072;
+     * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618; PERSISTENCE:SPEC:620; PERSISTENCE:SPEC:1069;
+     * PERSISTENCE:SPEC:1073; PERSISTENCE:SPEC:1074; PERSISTENCE:SPEC:1075; PERSISTENCE:SPEC:1076; PERSISTENCE:SPEC:1077;
+     * PERSISTENCE:SPEC:1078; PERSISTENCE:SPEC:1080; PERSISTENCE:SPEC:1081; PERSISTENCE:SPEC:1082; PERSISTENCE:SPEC:1072;
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows:
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows:
      *
-     * The entity X will be entered into the database at or before transaction
-     * commit or as a result of the flush operation.
+     * The entity X will be entered into the database at or before transaction commit or as a result of the flush operation.
      *
-     * Create a new entity instance, invoke flush(), then attempt to access the
-     * entity by find and invoking a query on it.
+     * Create a new entity instance, invoke flush(), then attempt to access the entity by find and invoking a query on it.
      *
      */
     public void persistBasicTest3() throws Fault {
@@ -289,10 +280,10 @@ public class Client extends PMClientBase {
             final Long basicBigLong = basicLong;
             final double basicDouble = 1234.5;
             final Double basicBigDouble = basicDouble;
-            final char[] charArray = {'a', 'b', 'c'};
-            final Character[] bigCharacterArray = {'a', 'b', 'c'};
+            final char[] charArray = { 'a', 'b', 'c' };
+            final Character[] bigCharacterArray = { 'a', 'b', 'c' };
             final byte[] byteArray = "abc".getBytes();
-            final Byte[] bigByteArray = {(byte) 111, (byte) 101, (byte) 100};
+            final Byte[] bigByteArray = { (byte) 111, (byte) 101, (byte) 100 };
             final BigInteger bigInteger = new BigInteger("12345");
             final BigDecimal bigDecimal = new BigDecimal(bigInteger);
             final Date date = new Date();
@@ -358,20 +349,17 @@ public class Client extends PMClientBase {
     /*
      * @testName: persistBasicTest4
      *
-     * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618;
-     * PERSISTENCE:SPEC:621; PERSISTENCE:SPEC:1069; PERSISTENCE:SPEC:1073;
-     * PERSISTENCE:SPEC:1074; PERSISTENCE:SPEC:1075; PERSISTENCE:SPEC:1076;
-     * PERSISTENCE:SPEC:1077; PERSISTENCE:SPEC:1078; PERSISTENCE:SPEC:1080;
-     * PERSISTENCE:SPEC:1081; PERSISTENCE:SPEC:1082; PERSISTENCE:SPEC:1072;
+     * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618; PERSISTENCE:SPEC:621; PERSISTENCE:SPEC:1069;
+     * PERSISTENCE:SPEC:1073; PERSISTENCE:SPEC:1074; PERSISTENCE:SPEC:1075; PERSISTENCE:SPEC:1076; PERSISTENCE:SPEC:1077;
+     * PERSISTENCE:SPEC:1078; PERSISTENCE:SPEC:1080; PERSISTENCE:SPEC:1081; PERSISTENCE:SPEC:1082; PERSISTENCE:SPEC:1072;
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows:
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows:
      *
      * If X is preexisting managed entity, it is ignored by the persist operation.
      *
-     * Invoke persist on an already managed instance. Ensure no exception is
-     * thrown and that the entity is still persisted and managed.
+     * Invoke persist on an already managed instance. Ensure no exception is thrown and that the entity is still persisted
+     * and managed.
      *
      */
     public void persistBasicTest4() throws Fault {
@@ -393,10 +381,10 @@ public class Client extends PMClientBase {
             final Long basicBigLong = basicLong;
             final double basicDouble = 1234.5;
             final Double basicBigDouble = basicDouble;
-            final char[] charArray = {'a', 'b', 'c'};
-            final Character[] bigCharacterArray = {'a', 'b', 'c'};
+            final char[] charArray = { 'a', 'b', 'c' };
+            final Character[] bigCharacterArray = { 'a', 'b', 'c' };
             final byte[] byteArray = "abc".getBytes();
-            final Byte[] bigByteArray = {(byte) 111, (byte) 101, (byte) 100};
+            final Byte[] bigByteArray = { (byte) 111, (byte) 101, (byte) 100 };
             final BigInteger bigInteger = new BigInteger("12345");
             final BigDecimal bigDecimal = new BigDecimal(bigInteger);
             final Date date = new Date();
@@ -472,20 +460,17 @@ public class Client extends PMClientBase {
     /*
      * @testName: persistBasicTest5
      *
-     * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618;
-     * PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:642; PERSISTENCE:SPEC:1069;
-     * PERSISTENCE:SPEC:1072; PERSISTENCE:SPEC:1073; PERSISTENCE:SPEC:1074;
-     * PERSISTENCE:SPEC:1075; PERSISTENCE:SPEC:1076; PERSISTENCE:SPEC:1077;
-     * PERSISTENCE:SPEC:1078; PERSISTENCE:SPEC:1080; PERSISTENCE:SPEC:1081;
+     * @assertion_ids: PERSISTENCE:SPEC:613; PERSISTENCE:SPEC:618; PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:642;
+     * PERSISTENCE:SPEC:1069; PERSISTENCE:SPEC:1072; PERSISTENCE:SPEC:1073; PERSISTENCE:SPEC:1074; PERSISTENCE:SPEC:1075;
+     * PERSISTENCE:SPEC:1076; PERSISTENCE:SPEC:1077; PERSISTENCE:SPEC:1078; PERSISTENCE:SPEC:1080; PERSISTENCE:SPEC:1081;
      * PERSISTENCE:SPEC:1082;
      *
-     * @test_Strategy: The flush method can be used for force synchronization. The
-     * semantics of the flush operation applied to an entity X is as follows:
+     * @test_Strategy: The flush method can be used for force synchronization. The semantics of the flush operation applied
+     * to an entity X is as follows:
      *
      * If X is a managed entity, it is synchronized to the database.
      *
-     * Execute flush on a managed entity and ensure the database reflects the
-     * change.
+     * Execute flush on a managed entity and ensure the database reflects the change.
      *
      */
     public void persistBasicTest5() throws Fault {
@@ -506,10 +491,10 @@ public class Client extends PMClientBase {
             final Long basicBigLong = basicLong;
             final double basicDouble = 1234.5;
             final Double basicBigDouble = basicDouble;
-            final char[] charArray = {'a', 'b', 'c'};
-            final Character[] bigCharacterArray = {'a', 'b', 'c'};
+            final char[] charArray = { 'a', 'b', 'c' };
+            final Character[] bigCharacterArray = { 'a', 'b', 'c' };
             final byte[] byteArray = "abc".getBytes();
-            final Byte[] bigByteArray = {(byte) 111, (byte) 101, (byte) 100};
+            final Byte[] bigByteArray = { (byte) 111, (byte) 101, (byte) 100 };
             final BigInteger bigInteger = new BigInteger("12345");
             final BigDecimal bigDecimal = new BigDecimal(bigInteger);
             final Date date = new Date();

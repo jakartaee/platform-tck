@@ -67,8 +67,7 @@ public class DBSupport {
     }
 
     /*
-     * New private class for dropTable(conn) and createTable(conn). See the
-     * constructor comments.
+     * New private class for dropTable(conn) and createTable(conn). See the constructor comments.
      *
      */
     private void clearTable(TSConnection conn) throws Exception {

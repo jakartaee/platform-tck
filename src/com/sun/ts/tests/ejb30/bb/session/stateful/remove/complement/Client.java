@@ -42,10 +42,7 @@ public class Client extends ClientBase {
     // @EJB(name="testBean")
     private static TestIF testBean;
 
-    @EJB(
-            name = "twoRemoteHome",
-            lookup =
-                    "java:global/stateful_remove_complement/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome")
+    @EJB(name = "twoRemoteHome", lookup = "java:global/stateful_remove_complement/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome")
     private static TwoRemoteHome twoRemoteHome;
 
     public static void main(String[] args) {

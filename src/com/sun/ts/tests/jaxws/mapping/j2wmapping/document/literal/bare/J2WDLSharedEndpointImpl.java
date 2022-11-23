@@ -22,17 +22,12 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.bare;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        name = "J2WDLSharedEndpoint",
-        serviceName = "J2WDLSharedService",
-        targetNamespace = "http://doclitservice.org/wsdl")
-@jakarta.jws.soap.SOAPBinding(
-        style = jakarta.jws.soap.SOAPBinding.Style.DOCUMENT,
-        use = jakarta.jws.soap.SOAPBinding.Use.LITERAL,
-        parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.BARE)
+@WebService(name = "J2WDLSharedEndpoint", serviceName = "J2WDLSharedService", targetNamespace = "http://doclitservice.org/wsdl")
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.DOCUMENT, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.BARE)
 public class J2WDLSharedEndpointImpl {
 
-    public void foo(jakarta.xml.ws.Holder<String> fooString) {}
+    public void foo(jakarta.xml.ws.Holder<String> fooString) {
+    }
 
     public Bar bar(String barString) {
         Bar bar = new Bar();

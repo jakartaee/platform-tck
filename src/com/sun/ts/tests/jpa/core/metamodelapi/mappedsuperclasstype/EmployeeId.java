@@ -24,7 +24,8 @@ public class EmployeeId implements java.io.Serializable {
 
     String id;
 
-    public EmployeeId() {}
+    public EmployeeId() {
+    }
 
     public EmployeeId(String id) {
         this.id = id;

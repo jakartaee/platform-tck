@@ -44,16 +44,16 @@ public class WS2DifferentPathParamsServer {
             throws IOException {
         OPS op = OPS.valueOf(content);
         switch (op) {
-            case OPEN:
-                content = p[0] + p[1];
-                break;
-            case MESSAGE:
-                content = String.valueOf(p1) + String.valueOf(p2);
-                break;
-            case IOEXCEPTION:
-                throw new IOException(ERR);
-            case RUNTIMEEXCEPTION:
-                throw new RuntimeException(ERR);
+        case OPEN:
+            content = p[0] + p[1];
+            break;
+        case MESSAGE:
+            content = String.valueOf(p1) + String.valueOf(p2);
+            break;
+        case IOEXCEPTION:
+            throw new IOException(ERR);
+        case RUNTIMEEXCEPTION:
+            throw new RuntimeException(ERR);
         }
         return content;
     }

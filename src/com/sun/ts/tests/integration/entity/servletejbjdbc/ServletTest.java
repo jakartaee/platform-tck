@@ -38,9 +38,9 @@ public class ServletTest extends HttpServlet {
 
     private static final double BALANCE = 10490.75;
 
-    private static final int ACCOUNTS[] = {1000, 1075, 40, 30564, 387};
+    private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
 
-    private static final double BALANCES[] = {50000.0, 10490.75, 200.50, 25000.0, 1000000.0};
+    private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0, 1000000.0 };
 
     private static TSNamingContext nctx = null;
 
@@ -76,8 +76,10 @@ public class ServletTest extends HttpServlet {
             for (int i = 0; i < ACCOUNTS.length; i++) {
                 TestUtil.logMsg("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
                 System.out.println("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
-                if (i == 0) beanRef = (Account) beanHome.create(ACCOUNTS[i], BALANCES[i], true, harnessProps);
-                else beanRef = (Account) beanHome.create(ACCOUNTS[i], BALANCES[i], false, harnessProps);
+                if (i == 0)
+                    beanRef = (Account) beanHome.create(ACCOUNTS[i], BALANCES[i], true, harnessProps);
+                else
+                    beanRef = (Account) beanHome.create(ACCOUNTS[i], BALANCES[i], false, harnessProps);
             }
             TestUtil.logMsg("Find Account EJB of account=" + ACCOUNT);
             System.out.println("Find Account EJB of account=" + ACCOUNT);

@@ -61,7 +61,7 @@ public class JAXRSClient extends JaxrsCommonClient {
     protected com.sun.javatest.Status run(String[] args) {
         if (args.length == 0)
             args = new String[] {
-                "-p", "install/jaxrs/bin/ts.jte", "-t", "serverJsonStringReturnTest", "-vehicle", "standalone"
+                    "-p", "install/jaxrs/bin/ts.jte", "-t", "serverJsonStringReturnTest", "-vehicle", "standalone"
             };
         return super.run(args);
     }

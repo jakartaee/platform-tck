@@ -77,24 +77,20 @@ public class Client extends EETest {
     /*
      * @testName: test1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:906; PERSISTENCE:SPEC:937;
-     * PERSISTENCE:SPEC:843; JavaEE:SPEC:10054; JavaEE:SPEC:10055;
-     * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:912;
+     * @assertion_ids: PERSISTENCE:SPEC:906; PERSISTENCE:SPEC:937; PERSISTENCE:SPEC:843; JavaEE:SPEC:10054;
+     * JavaEE:SPEC:10055; PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:912;
      *
-     * @test_Strategy: In JavaEE application client containers, only
-     * application-managed entity managers are required to be used. [JTA is not
-     * required to be supported in application client containers.]
+     * @test_Strategy: In JavaEE application client containers, only application-managed entity managers are required to be
+     * used. [JTA is not required to be supported in application client containers.]
      *
-     * In JavaEE environment, the root of a persistence unit may be an application
-     * client jar file The persistence.xml resides in the META-INF directory of
-     * the client.jar
+     * In JavaEE environment, the root of a persistence unit may be an application client jar file The persistence.xml
+     * resides in the META-INF directory of the client.jar
      *
      * RESOURCE_LOCAL Transaction Type Defined
      *
      * The EntityManagerFactory is obtained via dependency injection.
      *
-     * Deploy the client.jar to the application server with the above content.
-     * Create entities, persist them, then find.
+     * Deploy the client.jar to the application server with the above content. Create entities, persist them, then find.
      *
      */
 

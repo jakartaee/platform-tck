@@ -28,7 +28,9 @@ import jakarta.ejb.Stateless;
 @Stateless(name = "SessionBeanLocalBean")
 public class SessionBeanLocalBean extends SessionBeanLocalBeanBase implements BusinessLocalIF1, SessionBean {
 
-    public SessionBeanLocalBean() {}
+    public SessionBeanLocalBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

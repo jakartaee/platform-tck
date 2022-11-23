@@ -20,9 +20,8 @@
 package com.sun.ts.tests.jms.common;
 
 /**
- * Monitor class for asynchronous examples. Producer signals end of message
- * stream; listener calls allDone() to notify consumer that the signal has
- * arrived, while consumer calls waitTillDone() to wait for this notification.
+ * Monitor class for asynchronous examples. Producer signals end of message stream; listener calls allDone() to notify
+ * consumer that the signal has arrived, while consumer calls waitTillDone() to wait for this notification.
  */
 public class DoneLatch {
     boolean done = false;

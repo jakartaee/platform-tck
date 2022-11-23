@@ -43,9 +43,8 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The callStmtClient9 class tests methods of CallableStatement interface (to
- * check the Support for IN, OUT and INOUT parameters of Stored Procedure) using
- * Sun's J2EE Reference Implementation.
+ * The callStmtClient9 class tests methods of CallableStatement interface (to check the Support for IN, OUT and INOUT
+ * parameters of Stored Procedure) using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -88,14 +87,11 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -103,7 +99,8 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
 
                 if (drManager.equals("yes")) {
@@ -119,9 +116,8 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
                 csSch = new csSchema();
                 msg = new JDBCTestMsg();
                 stmt = conn.createStatement(/*
-                                     * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                     * ResultSet.CONCUR_READ_ONLY
-                                     */ );
+                                             * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+                                             */ );
                 dbmd = conn.getMetaData();
             } catch (SQLException ex) {
                 logErr("SQL Exception : " + ex.getMessage(), ex);
@@ -135,16 +131,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject21
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696;
-     * JDBC:JAVADOC:697; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x) method to set Float object for SQL Type REAL and
-     * call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Float object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal. *
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x) method to set Float object for SQL Type REAL and call
+     * statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Float object
+     * that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should be
+     * equal. *
      */
     public void testSetObject21() throws Fault {
         ResultSet rs = null;
@@ -210,16 +203,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject22
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696;
-     * JDBC:JAVADOC:697; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x) method to set Float object for SQL Type REAL and
-     * call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Float object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal. *
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x) method to set Float object for SQL Type REAL and call
+     * statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Float object
+     * that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should be
+     * equal. *
      */
     public void testSetObject22() throws Fault {
         ResultSet rs = null;
@@ -284,16 +274,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject23
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696;
-     * JDBC:JAVADOC:697; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x) method to set Integer object for SQL Type TINYINT
-     * and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Integer object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal. *
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x) method to set Integer object for SQL Type TINYINT and call
+     * statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Integer object
+     * that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should be
+     * equal. *
      */
     public void testSetObject23() throws Fault {
         ResultSet rs = null;
@@ -357,16 +344,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject24
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696;
-     * JDBC:JAVADOC:697; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x) method to set Integer object for SQL Type TINYINT
-     * and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Integer object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal. *
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x) method to set Integer object for SQL Type TINYINT and call
+     * statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Integer object
+     * that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should be
+     * equal. *
      *
      */
     public void testSetObject24() throws Fault {
@@ -430,16 +414,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject25
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696;
-     * JDBC:JAVADOC:697; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x) method to set Integer object for SQL Type
-     * SMALLINT and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Integer object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal. *
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x) method to set Integer object for SQL Type SMALLINT and call
+     * statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Integer object
+     * that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should be
+     * equal. *
      *
      */
     public void testSetObject25() throws Fault {
@@ -503,16 +484,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject26
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696;
-     * JDBC:JAVADOC:697; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x) method to set Integer object for SQL Type
-     * SMALLINT and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Integer object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal. *
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x) method to set Integer object for SQL Type SMALLINT and call
+     * statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Integer object
+     * that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should be
+     * equal. *
      *
      */
     public void testSetObject26() throws Fault {
@@ -577,14 +555,12 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject27
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696;
-     * JDBC:JAVADOC:697; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x) method to set Byte array object for SQL Type
-     * Binary and call statement.executeQuery method and call getObject method of
-     * ResultSet. It should return a Byte Array object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x) method to set Byte array object for SQL Type Binary and call
+     * statement.executeQuery method and call getObject method of ResultSet. It should return a Byte Array object that is
+     * been set.
      *
      */
     public void testSetObject27() throws Fault {
@@ -662,14 +638,12 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject28
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696;
-     * JDBC:JAVADOC:697; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x) method to set Byte array object for SQL Type
-     * Varbinary and call statement.executeQuery method and call getObject method
-     * of ResultSet. It should return a Varbinary object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x) method to set Byte array object for SQL Type Varbinary and call
+     * statement.executeQuery method and call getObject method of ResultSet. It should return a Varbinary object that is
+     * been set.
      *
      */
     public void testSetObject28() throws Fault {
@@ -748,14 +722,12 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject29
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696;
-     * JDBC:JAVADOC:697; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x) method to set Byte array object for SQL Type
-     * Longvarbinary and call statement.executeQuery method and call getObject
-     * method of ResultSet. It should return a Varbinary object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x) method to set Byte array object for SQL Type Longvarbinary and call
+     * statement.executeQuery method and call getObject method of ResultSet. It should return a Varbinary object that is
+     * been set.
      *
      */
     public void testSetObject29() throws Fault {
@@ -835,16 +807,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject30
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type TINYINT and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Integer object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type TINYINT and
+     * call statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Integer
+     * object that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should
+     * be equal.
      *
      *
      */
@@ -914,16 +883,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject31
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type TINYINT and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Integer object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type TINYINT and
+     * call statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Integer
+     * object that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should
+     * be equal.
      *
      */
     public void testSetObject31() throws Fault {
@@ -990,16 +956,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject32
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type SMALLINT and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Integer object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type SMALLINT and
+     * call statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Integer
+     * object that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should
+     * be equal.
      *
      */
     public void testSetObject32() throws Fault {
@@ -1067,16 +1030,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject33
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type SMALLINT and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Integer object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type SMALLINT and
+     * call statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Integer
+     * object that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should
+     * be equal.
      *
      */
     public void testSetObject33() throws Fault {
@@ -1143,16 +1103,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject34
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type INTEGER and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Integer object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type INTEGER and
+     * call statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Integer
+     * object that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should
+     * be equal.
      *
      */
     public void testSetObject34() throws Fault {
@@ -1220,16 +1177,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject35
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type INTEGER and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Integer object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type INTEGER and
+     * call statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Integer
+     * object that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should
+     * be equal.
      *
      */
     public void testSetObject35() throws Fault {
@@ -1296,16 +1250,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject36
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type BIGINT and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Long object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type BIGINT and
+     * call statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Long
+     * object that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should
+     * be equal.
      *
      */
     public void testSetObject36() throws Fault {
@@ -1373,16 +1324,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject37
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type BIGINT and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Long object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type BIGINT and
+     * call statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Long
+     * object that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should
+     * be equal.
      *
      */
     public void testSetObject37() throws Fault {
@@ -1449,16 +1397,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject38
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type REAL and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Float object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type REAL and call
+     * statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Float object
+     * that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should be
+     * equal.
      *
      */
     public void testSetObject38() throws Fault {
@@ -1529,16 +1474,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject39
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type REAL and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Float object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type REAL and call
+     * statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Float object
+     * that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should be
+     * equal.
      *
      */
     public void testSetObject39() throws Fault {
@@ -1607,16 +1549,13 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject40
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set String object for SQL
-     * Type FLOAT and call statement.executeQuery(String sql) method and call
-     * ResultSet.getObject(int column). It should return a Double object that is
-     * been set. Compare the result with the extracted value from the tssql.stmt
-     * file. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set String object for SQL Type FLOAT and call
+     * statement.executeQuery(String sql) method and call ResultSet.getObject(int column). It should return a Double object
+     * that is been set. Compare the result with the extracted value from the tssql.stmt file. Both the values should be
+     * equal.
      *
      */
     public void testSetObject40() throws Fault {

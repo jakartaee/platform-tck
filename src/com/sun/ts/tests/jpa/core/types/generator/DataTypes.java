@@ -46,7 +46,8 @@ public class DataTypes implements java.io.Serializable {
 
     private Float floatData;
 
-    public DataTypes() {}
+    public DataTypes() {
+    }
 
     public DataTypes(
             Character characterData,
@@ -65,14 +66,7 @@ public class DataTypes implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "myTableGenerator")
-    @TableGenerator(
-            name = "myTableGenerator",
-            table = "GENERATOR_TABLE",
-            pkColumnName = "PK_COL",
-            valueColumnName = "VAL_COL",
-            pkColumnValue = "DT_ID",
-            allocationSize = 1,
-            initialValue = 5)
+    @TableGenerator(name = "myTableGenerator", table = "GENERATOR_TABLE", pkColumnName = "PK_COL", valueColumnName = "VAL_COL", pkColumnValue = "DT_ID", allocationSize = 1, initialValue = 5)
     @Column(name = "ID")
     public int getId() {
         return id;

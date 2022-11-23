@@ -29,7 +29,7 @@ public class SetHeadersConfigurator extends Configurator {
     static final String KEY = "aFirstKey";
 
     static final String[] HEADERS = {
-        "header1", "header2", "header3", "header4", "header5", "header6", "header7", "header8"
+            "header1", "header2", "header3", "header4", "header5", "header6", "header7", "header8"
     };
 
     @Override

@@ -59,8 +59,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:163;
      *
-     * @test_Strategy: Create instance via AddressingFeature() constructor. Verify
-     * AddressingFeature object created successfully.
+     * @test_Strategy: Create instance via AddressingFeature() constructor. Verify AddressingFeature object created
+     * successfully.
      */
     public void AddressingFeatureConstructorTest1() throws Fault {
         TestUtil.logTrace("AddressingFeatureConstructorTest1");
@@ -95,8 +95,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:164;
      *
-     * @test_Strategy: Create instance via AddressingFeature(true) constructor.
-     * Verify AddressingFeature object created successfully.
+     * @test_Strategy: Create instance via AddressingFeature(true) constructor. Verify AddressingFeature object created
+     * successfully.
      */
     public void AddressingFeatureConstructorTest2() throws Fault {
         TestUtil.logTrace("AddressingFeatureConstructorTest2");
@@ -131,8 +131,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:164;
      *
-     * @test_Strategy: Create instance via AddressingFeature(false) constructor.
-     * Verify AddressingFeature object created successfully.
+     * @test_Strategy: Create instance via AddressingFeature(false) constructor. Verify AddressingFeature object created
+     * successfully.
      */
     public void AddressingFeatureConstructorTest3() throws Fault {
         TestUtil.logTrace("AddressingFeatureConstructorTest2");
@@ -169,8 +169,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:165;
      *
-     * @test_Strategy: Create instance via AddressingFeature(true, true)
-     * constructor. Verify AddressingFeature object created successfully.
+     * @test_Strategy: Create instance via AddressingFeature(true, true) constructor. Verify AddressingFeature object
+     * created successfully.
      */
     public void AddressingFeatureConstructorTest4() throws Fault {
         TestUtil.logTrace("AddressingFeatureConstructorTest4");
@@ -210,8 +210,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:165;
      *
-     * @test_Strategy: Create instance via AddressingFeature(true, false)
-     * constructor. Verify AddressingFeature object created successfully.
+     * @test_Strategy: Create instance via AddressingFeature(true, false) constructor. Verify AddressingFeature object
+     * created successfully.
      */
     public void AddressingFeatureConstructorTest5() throws Fault {
         TestUtil.logTrace("AddressingFeatureConstructorTest5");
@@ -251,8 +251,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:165;
      *
-     * @test_Strategy: Create instance via AddressingFeature(false, true)
-     * constructor. Verify AddressingFeature object created successfully.
+     * @test_Strategy: Create instance via AddressingFeature(false, true) constructor. Verify AddressingFeature object
+     * created successfully.
      */
     public void AddressingFeatureConstructorTest6() throws Fault {
         TestUtil.logTrace("AddressingFeatureConstructorTest6");
@@ -293,8 +293,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:165;
      *
-     * @test_Strategy: Create instance via AddressingFeature(false, false)
-     * constructor. Verify AddressingFeature object created successfully.
+     * @test_Strategy: Create instance via AddressingFeature(false, false) constructor. Verify AddressingFeature object
+     * created successfully.
      */
     public void AddressingFeatureConstructorTest7() throws Fault {
         TestUtil.logTrace("AddressingFeatureConstructorTest7");
@@ -335,9 +335,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:223;
      *
-     * @test_Strategy: Create instance via AddressingFeature(boolean, boolean,
-     * AddressingFeature.Responses) constructor. Verify AddressingFeature object
-     * created successfully.
+     * @test_Strategy: Create instance via AddressingFeature(boolean, boolean, AddressingFeature.Responses) constructor.
+     * Verify AddressingFeature object created successfully.
      */
     public void AddressingFeatureConstructorTest8() throws Fault {
         TestUtil.logTrace("AddressingFeatureConstructorTest8");
@@ -379,8 +378,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:166; JAXWS:JAVADOC:160;
      *
-     * @test_Strategy: Test getting the unique identifier for this
-     * AddressingFeature object. Verify value returned is set correctly.
+     * @test_Strategy: Test getting the unique identifier for this AddressingFeature object. Verify value returned is set
+     * correctly.
      */
     public void getIDTest() throws Fault {
         TestUtil.logTrace("getIDTest");
@@ -418,8 +417,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:166; JAXWS:JAVADOC:167;
      *
-     * @test_Strategy: Test setting isRequired of AddressingFeature object. Get
-     * value and verify value returned is set correctly.
+     * @test_Strategy: Test setting isRequired of AddressingFeature object. Get value and verify value returned is set
+     * correctly.
      */
     public void isRequiredTest() throws Fault {
         TestUtil.logTrace("isRequiredTest");
@@ -474,9 +473,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:222; JAXWS:JAVADOC:224;
      *
-     * @test_Strategy: Create instance via AddressingFeature(boolean, boolean,
-     * AddressingFeature.Responses) constructor. Verify AddressingFeature object
-     * created successfully. Verify responses.
+     * @test_Strategy: Create instance via AddressingFeature(boolean, boolean, AddressingFeature.Responses) constructor.
+     * Verify AddressingFeature object created successfully. Verify responses.
      */
     public void getResponsesTest() throws Fault {
         TestUtil.logTrace("getResponsesTest");

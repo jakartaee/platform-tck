@@ -52,8 +52,7 @@ public class Client extends ServiceEETest {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client client = new Client();
@@ -85,12 +84,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSI:SPEC:R2747
      *
-     * @test_Strategy: The supplied WSDL, containing two port types, which are
-     *                 identical except for the use of the wsdl:required attribute
-     *                 on the soap binding extension elements, has been used by
-     *                 the WSDL-to-Java tool to generate an end point. If the tool
-     *                 works correctly, the end-point has been built and deployed
-     *                 so it should simply be reachable.
+     * @test_Strategy: The supplied WSDL, containing two port types, which are identical except for the use of the
+     * wsdl:required attribute on the soap binding extension elements, has been used by the WSDL-to-Java tool to generate an
+     * end point. If the tool works correctly, the end-point has been built and deployed so it should simply be reachable.
      *
      * @throws Fault
      */

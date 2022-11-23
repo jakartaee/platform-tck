@@ -96,7 +96,8 @@ public abstract class SessionContextBeanBase
     //////////////////////////////////////////////////////////////////////
     // TwoLocalIF methods
     //////////////////////////////////////////////////////////////////////
-    public void noop() {}
+    public void noop() {
+    }
 
     public void getInvokedBusinessInterfaceRemoteIllegal() {
         Class intf = null;

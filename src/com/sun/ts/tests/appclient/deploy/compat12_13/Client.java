@@ -64,14 +64,12 @@ public class Client extends EETest {
      *
      * @test_Strategy: Package an ejb-jar file using a J2EE 1.3 DD
      *
-     *                 Package an .ear file (J2EE 1.3 DD's) including this ejb-jar
-     *                 and an application client (J2EE 1.2 DD's). This application
-     *                 client references a bean in this ejb-jar module.
+     * Package an .ear file (J2EE 1.3 DD's) including this ejb-jar and an application client (J2EE 1.2 DD's). This
+     * application client references a bean in this ejb-jar module.
      *
-     *                 Deploy the .ear file.
+     * Deploy the .ear file.
      *
-     *                 Run the client and check we can call a business method on
-     *                 the referenced bean at runtime.
+     * Run the client and check we can call a business method on the referenced bean at runtime.
      */
     public void test12DD() throws Fault {
         TestBeanHome home = null;

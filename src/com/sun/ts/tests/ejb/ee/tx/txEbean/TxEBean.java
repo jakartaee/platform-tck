@@ -26,18 +26,16 @@ import java.rmi.RemoteException;
 
 /**
  * <P>
- * TxEBean is an entity EJB. Most of the business methods of the TxEBean class
- * do not access the database. Instead, these business methods update the
- * instance variables, which are written to the database when the EJB Container
- * calls ejbStore().
+ * TxEBean is an entity EJB. Most of the business methods of the TxEBean class do not access the database. Instead,
+ * these business methods update the instance variables, which are written to the database when the EJB Container calls
+ * ejbStore().
  */
 public interface TxEBean extends EJBObject {
     /**
      * This method is called to retrieve the current brand name.
      *
      * @return current brand name.
-     * @exception RemoteException
-     *              if unable to retrieve the brand name
+     * @exception RemoteException if unable to retrieve the brand name
      */
     public String getBrandName() throws RemoteException;
 
@@ -45,8 +43,7 @@ public interface TxEBean extends EJBObject {
      * This method is called to retrieve the price.
      *
      * @return current price.
-     * @exception RemoteException
-     *              if unable to retrieve the price
+     * @exception RemoteException if unable to retrieve the price
      */
     public float getPrice() throws RemoteException;
 
@@ -54,8 +51,7 @@ public interface TxEBean extends EJBObject {
      * This method accesses the database for the brand name.
      *
      * @return brand name from the database
-     * @exception RemoteException
-     *              if unable to get the brand name from the database
+     * @exception RemoteException if unable to get the brand name from the database
      */
     public String getDbBrandName() throws RemoteException;
 
@@ -63,60 +59,47 @@ public interface TxEBean extends EJBObject {
      * This method accesses the database for the price.
      *
      * @return price from the database
-     * @exception RemoteException
-     *              if unable to get the price from the database
+     * @exception RemoteException if unable to get the price from the database
      */
     public float getDbPrice() throws RemoteException;
 
     /**
      * This method is called to update the brand name.
      *
-     * @param newBrandName
-     *          the name of the new brand.
+     * @param newBrandName the name of the new brand.
      * @return void
-     * @exception RemoteException
-     *              if unable to update the brand name
+     * @exception RemoteException if unable to update the brand name
      */
     public void updateBrandName(String newBrandName) throws RemoteException;
 
     /**
      * This method is called to update the brand name.
      *
-     * @param newBrandName
-     *          new brand name
-     * @param flag
-     *          flags the intended exception
+     * @param newBrandName new brand name
+     * @param flag flags the intended exception
      * @return boolean true if rolled back; else false
-     * @exception RemoteException
-     *              if unable to update the brand name
-     * @exception AppException
-     *              triggered by flag
+     * @exception RemoteException if unable to update the brand name
+     * @exception AppException triggered by flag
      */
     public boolean updateBrandName(String newBrandName, int flag) throws RemoteException, AppException;
 
     /**
      * This method is called to update the brand name.
      *
-     * @param newBrandName
-     *          new brand name
-     * @param flag
-     *          flags the intended exception
+     * @param newBrandName new brand name
+     * @param flag flags the intended exception
      * @return boolean true if rolled back; else false
-     * @exception RemoteException
-     *              if unable to update the brand name
-     * @exception AppException
-     *              triggered by the flag.
+     * @exception RemoteException if unable to update the brand name
+     * @exception AppException triggered by the flag.
      */
     public boolean updateBrandNameRB(String newBrandName, int flag) throws RemoteException, AppException;
 
     /**
      * This method is called to update the price.
      *
-     * @param newPriceName
-     *          new price name
+     * @param newPriceName new price name
      * @return void
-     * @exception RemoteException
-     *              if an unexpected exception occurs
+     * @exception RemoteException if an unexpected exception occurs
      */
     public void updatePrice(float newPriceName) throws RemoteException;
 
@@ -124,10 +107,8 @@ public interface TxEBean extends EJBObject {
      * This method throws an Application Exception
      *
      * @return void
-     * @exception RemoteException
-     *              if an unexpected exception occurs.
-     * @exception AppException
-     *              Throw the requested AppException
+     * @exception RemoteException if an unexpected exception occurs.
+     * @exception AppException Throw the requested AppException
      */
     public void throwAppException() throws RemoteException, AppException;
 
@@ -135,10 +116,8 @@ public interface TxEBean extends EJBObject {
      * This method throws a System Exception
      *
      * @return void
-     * @exception RemoteException
-     *              if an unexpected exception occurs.
-     * @exception SysException
-     *              Throw the requested SysException
+     * @exception RemoteException if an unexpected exception occurs.
+     * @exception SysException Throw the requested SysException
      */
     public void throwSysException() throws RemoteException;
 
@@ -146,10 +125,8 @@ public interface TxEBean extends EJBObject {
      * This method throws an EJB Exception
      *
      * @return void
-     * @exception RemoteException
-     *              if an unexpected exception occurs.
-     * @exception EJBException
-     *              Throw the requested EJBException
+     * @exception RemoteException if an unexpected exception occurs.
+     * @exception EJBException Throw the requested EJBException
      */
     public void throwEJBException() throws RemoteException;
 
@@ -157,10 +134,8 @@ public interface TxEBean extends EJBObject {
      * This method throws an Error
      *
      * @return void
-     * @exception Throws
-     *              RemoteException if an unexpected exception occurs.
-     * @exception Error
-     *              Throw the requested Error
+     * @exception Throws RemoteException if an unexpected exception occurs.
+     * @exception Error Throw the requested Error
      */
     public void throwError() throws RemoteException;
 
@@ -168,10 +143,8 @@ public interface TxEBean extends EJBObject {
      * This method throws a RemoveException
      *
      * @return void
-     * @exception Forces
-     *              a RemoveException.
-     * @exception Throws
-     *              the requested RemoveException
+     * @exception Forces a RemoveException.
+     * @exception Throws the requested RemoveException
      */
     public void throwRemoveException() throws RemoteException, RemoveException;
 }

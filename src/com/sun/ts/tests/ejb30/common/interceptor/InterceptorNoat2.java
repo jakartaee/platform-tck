@@ -23,8 +23,8 @@ package com.sun.ts.tests.ejb30.common.interceptor;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * A business method interceptor for session beans. Only one AroundInvoke method
- * may be present on the bean class or on any given interceptor class.
+ * A business method interceptor for session beans. Only one AroundInvoke method may be present on the bean class or on
+ * any given interceptor class.
  */
 public class InterceptorNoat2 {
 

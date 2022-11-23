@@ -111,8 +111,8 @@ public class TxTopicTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -136,9 +136,8 @@ public class TxTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:130; JMS:SPEC:166;
      *
-     * @test_Strategy: Create tx_session and receive one message from a topic.
-     * Call commit() and close session. Create new non_tx session and receive
-     * message. Should only receive the one message.
+     * @test_Strategy: Create tx_session and receive one message from a topic. Call commit() and close session. Create new
+     * non_tx session and receive message. Should only receive the one message.
      */
     public void commitAckMsgTopicTest() throws Fault {
         String lookup = "DURABLE_SUB_CONNECTION_FACTORY";
@@ -216,8 +215,8 @@ public class TxTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:130;
      *
-     * @test_Strategy: Create tx_session. Receive one message from a topic and
-     * call rollback. Attempt to receive message again.
+     * @test_Strategy: Create tx_session. Receive one message from a topic and call rollback. Attempt to receive message
+     * again.
      */
     public void rollbackRecoverTopicTest() throws Fault {
         String lookup = "MyTopicConnectionFactory";
@@ -281,9 +280,8 @@ public class TxTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:129; JMS:JAVADOC:371; JMS:SPEC:13; JMS:SPEC:167;
      *
-     * @test_Strategy: Send message to a topic and receive it with a AUTO_ACK
-     * session. Check that the redelivered flag is FALSE. Call rollback and
-     * receive the message again. Check that the flag is now TRUE.
+     * @test_Strategy: Send message to a topic and receive it with a AUTO_ACK session. Check that the redelivered flag is
+     * FALSE. Call rollback and receive the message again. Check that the flag is now TRUE.
      */
     public void redeliveredFlagTxTopicTest() throws Fault {
         String lookup = "MyTopicConnectionFactory";
@@ -340,11 +338,9 @@ public class TxTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:104; JMS:SPEC:166; JMS:SPEC:167;
      *
-     * @test_Strategy: Use the default topic session, subscriber and publisher.
-     * Set up an additional tx topic session and subscriber. Send and receive a
-     * transacted message. Send another transacted message, but close the session
-     * after receive() with no commit. Verify that the message is not received by
-     * receiving again with new session.
+     * @test_Strategy: Use the default topic session, subscriber and publisher. Set up an additional tx topic session and
+     * subscriber. Send and receive a transacted message. Send another transacted message, but close the session after
+     * receive() with no commit. Verify that the message is not received by receiving again with new session.
      */
     public void transactionRollbackOnSessionCloseReceiveTopicTest() throws Fault {
         String lookup = "DURABLE_SUB_CONNECTION_FACTORY";
@@ -362,8 +358,7 @@ public class TxTopicTests extends ServiceEETest {
             // Create another topic session and subscriber
             TopicSession newTopicSess = tool.getDefaultTopicConnection().createTopicSession(true, 0);
 
-            TopicSubscriber newSubscriber =
-                    newTopicSess.createDurableSubscriber(tool.getDefaultTopic(), subscriptionName);
+            TopicSubscriber newSubscriber = newTopicSess.createDurableSubscriber(tool.getDefaultTopic(), subscriptionName);
 
             logTrace("Start connection");
             tool.getDefaultTopicConnection().start();
@@ -422,11 +417,9 @@ public class TxTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:123;
      *
-     * @test_Strategy: Use the default topic session, subscriber and publisher.
-     * Create durable subscriber to replace default Set up an additional tx topic
-     * session and publisher. Send and receive a transacted message. Send another
-     * transacted message, but rollback after publish() Send third message and
-     * commit Verify that the second message is not received.
+     * @test_Strategy: Use the default topic session, subscriber and publisher. Create durable subscriber to replace default
+     * Set up an additional tx topic session and publisher. Send and receive a transacted message. Send another transacted
+     * message, but rollback after publish() Send third message and commit Verify that the second message is not received.
      */
     public void transactionRollbackOnPublishTopicTest() throws Fault {
         String lookup = "DURABLE_SUB_CONNECTION_FACTORY";
@@ -439,8 +432,7 @@ public class TxTopicTests extends ServiceEETest {
             // set up test tool for Topic
             tool = new JmsTool(JmsTool.DURABLE_TX_TOPIC, jmsUser, jmsPassword, lookup, mode);
             tool.getDefaultTopicSubscriber().close();
-            TopicSubscriber tSub =
-                    tool.getDefaultTopicSession().createDurableSubscriber(tool.getDefaultTopic(), subscriptionName);
+            TopicSubscriber tSub = tool.getDefaultTopicSession().createDurableSubscriber(tool.getDefaultTopic(), subscriptionName);
             logTrace("Start connection");
             tool.getDefaultTopicConnection().start();
 
@@ -499,10 +491,9 @@ public class TxTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:123;
      *
-     * @test_Strategy: Use the default topic session, subscriber and publisher.
-     * Set up an additional topic session, subscriber and pubisher. Send and
-     * receive a transacted message. Send another transacted message, but rollback
-     * after receive Verify that the message is rolled back to the topic
+     * @test_Strategy: Use the default topic session, subscriber and publisher. Set up an additional topic session,
+     * subscriber and pubisher. Send and receive a transacted message. Send another transacted message, but rollback after
+     * receive Verify that the message is rolled back to the topic
      */
     public void transactionRollbackOnRecTopicTest() throws Fault {
         String lookup = "MyTopicConnectionFactory";
@@ -517,8 +508,7 @@ public class TxTopicTests extends ServiceEETest {
             tool.getDefaultTopicConnection().start();
 
             // Create another topic Session, receiver and sender
-            TopicSession newTopicSess =
-                    tool.getDefaultTopicConnection().createTopicSession(true, Session.AUTO_ACKNOWLEDGE);
+            TopicSession newTopicSess = tool.getDefaultTopicConnection().createTopicSession(true, Session.AUTO_ACKNOWLEDGE);
             TopicPublisher newPublisher = newTopicSess.createPublisher(tool.getDefaultTopic());
 
             // send and receive message
@@ -572,10 +562,9 @@ public class TxTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:104; JMS:SPEC:166;
      *
-     * @test_Strategy: Use the default topic session, subscriber and publisher.
-     * Send and receive a transacted message. Send another transacted message, but
-     * close the connection after receive() with no commit. Create new connection
-     * and attempt to receive message.
+     * @test_Strategy: Use the default topic session, subscriber and publisher. Send and receive a transacted message. Send
+     * another transacted message, but close the connection after receive() with no commit. Create new connection and
+     * attempt to receive message.
      */
     public void txRollbackOnConnectionCloseReceiveTopicTest() throws Fault {
         String lookup = "DURABLE_SUB_CONNECTION_FACTORY";
@@ -590,8 +579,7 @@ public class TxTopicTests extends ServiceEETest {
             tool = new JmsTool(JmsTool.DURABLE_TX_TOPIC, jmsUser, jmsPassword, lookup, mode);
             clientID = tool.getDefaultTopicConnection().getClientID();
             tool.getDefaultTopicSubscriber().close();
-            TopicSubscriber tSub =
-                    tool.getDefaultTopicSession().createDurableSubscriber(tool.getDefaultTopic(), subscriptionName);
+            TopicSubscriber tSub = tool.getDefaultTopicSession().createDurableSubscriber(tool.getDefaultTopic(), subscriptionName);
             logTrace("Start connection");
             tool.getDefaultTopicConnection().start();
 
@@ -629,8 +617,7 @@ public class TxTopicTests extends ServiceEETest {
             tool.getDefaultTopicConnection().close();
 
             logTrace("Create new connection and attempt to receive message");
-            TopicConnection newConn =
-                    (TopicConnection) tool.getNewConnection(JmsTool.DURABLE_TOPIC, jmsUser, jmsPassword, lookup);
+            TopicConnection newConn = (TopicConnection) tool.getNewConnection(JmsTool.DURABLE_TOPIC, jmsUser, jmsPassword, lookup);
             connections.add(newConn);
 
             // must be same as first connection to use same durable subscription
@@ -646,8 +633,7 @@ public class TxTopicTests extends ServiceEETest {
             }
 
             TopicSession newTopicSess = newConn.createTopicSession(true, 0);
-            TopicSubscriber newSubscriber =
-                    newTopicSess.createDurableSubscriber(tool.getDefaultTopic(), subscriptionName);
+            TopicSubscriber newSubscriber = newTopicSess.createDurableSubscriber(tool.getDefaultTopic(), subscriptionName);
 
             newConn.start();
 
@@ -674,26 +660,21 @@ public class TxTopicTests extends ServiceEETest {
     /*
      * @testName: commitRollbackMultiMsgsTest
      *
-     * @assertion_ids: JMS:JAVADOC:231; JMS:JAVADOC:221; JMS:JAVADOC:244;
-     * JMS:JAVADOC:242; JMS:JAVADOC:229; JMS:JAVADOC:504; JMS:JAVADOC:510;
-     * JMS:JAVADOC:597; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:JAVADOC:231; JMS:JAVADOC:221; JMS:JAVADOC:244; JMS:JAVADOC:242; JMS:JAVADOC:229; JMS:JAVADOC:504;
+     * JMS:JAVADOC:510; JMS:JAVADOC:597; JMS:JAVADOC:334;
      *
      * @test_Strategy: Test the following APIs:
      *
-     * ConnectionFactory.createConnection(String, String)
-     * Connection.createSession(boolean, int) Session.createTextMessage(String)
-     * Session.createConsumer(Destination) Session.createProducer(Destination)
-     * Session.commit() Session.rollback() MessageProducer.send(Message)
-     * MessagingConsumer.receive(long timeout)
+     * ConnectionFactory.createConnection(String, String) Connection.createSession(boolean, int)
+     * Session.createTextMessage(String) Session.createConsumer(Destination) Session.createProducer(Destination)
+     * Session.commit() Session.rollback() MessageProducer.send(Message) MessagingConsumer.receive(long timeout)
      *
-     * 1. Create Session with SESSION_TRANSACTED. This is done in the setup()
-     * routine. 2. Send x messages to a Topic. 3. Call rollback() to rollback the
-     * sent messages. 4. Create a MessageConsumer to consume the messages in the
-     * Topic. Should not receive any messages since the sent messages were rolled
-     * back. Verify that no messages are received. 5. Send x messages to a Topic.
-     * 6. Call commit() to commit the sent messages. 7. Create a MessageConsumer
-     * to consume the messages in the Topic. Should receive all the messages since
-     * the sent messages were committed. Verify that all messages are received.
+     * 1. Create Session with SESSION_TRANSACTED. This is done in the setup() routine. 2. Send x messages to a Topic. 3.
+     * Call rollback() to rollback the sent messages. 4. Create a MessageConsumer to consume the messages in the Topic.
+     * Should not receive any messages since the sent messages were rolled back. Verify that no messages are received. 5.
+     * Send x messages to a Topic. 6. Call commit() to commit the sent messages. 7. Create a MessageConsumer to consume the
+     * messages in the Topic. Should receive all the messages since the sent messages were committed. Verify that all
+     * messages are received.
      */
     public void commitRollbackMultiMsgsTest() throws Fault {
         boolean pass = true;

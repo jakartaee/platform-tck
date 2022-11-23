@@ -96,8 +96,7 @@ public final class EmbeddableEJBProcess {
     }
 
     /**
-     * Gets the pkg dir (relative to ts.home/dist) from the testClassName, which
-     * is in the form of
+     * Gets the pkg dir (relative to ts.home/dist) from the testClassName, which is in the form of
      * com.sun.ts.tests.ejb30.lite.packaging.embed.provider.Client, for example.
      */
     private String getPkgDirFromTestClass() {
@@ -107,8 +106,8 @@ public final class EmbeddableEJBProcess {
     }
 
     /**
-     * Constructs a classpath option for launching the new java process. The value
-     * is in the form of: "-classpath /a/b/c.jar:/1/2/3.jar"
+     * Constructs a classpath option for launching the new java process. The value is in the form of: "-classpath
+     * /a/b/c.jar:/1/2/3.jar"
      */
     private void constructClassPathOption() {
         StringBuilder sb = new StringBuilder();

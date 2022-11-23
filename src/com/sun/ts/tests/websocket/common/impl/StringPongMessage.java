@@ -25,7 +25,8 @@ public class StringPongMessage implements PongMessage {
     protected String message;
 
     public StringPongMessage(String message) {
-        if (message.length() > 125) throw new RuntimeException("StringPongMessage is too long");
+        if (message.length() > 125)
+            throw new RuntimeException("StringPongMessage is too long");
         this.message = message;
     }
 

@@ -82,30 +82,24 @@ public class Client extends ServiceEETest {
     static HttpTestService service = null;
 
     /************************************************************************
-     * Below are defined good and bad SOAP messages which are sent to a web *
-     * service endpoint (HttpTestService) over a HttpURLConnection in order * to
-     * verify whether we get the correct HTTP status codes as required * and
-     * specified in the WSI Basic Profile Version 1.0 Specification. *
+     * Below are defined good and bad SOAP messages which are sent to a web * service endpoint (HttpTestService) over a
+     * HttpURLConnection in order * to verify whether we get the correct HTTP status codes as required * and specified in
+     * the WSI Basic Profile Version 1.0 Specification. *
      ************************************************************************/
     // expect 2xx http status code
-    String GoodSoapMessage =
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/types\"><soap:Body><ns:HelloRequestElement><string>World</string></ns:HelloRequestElement></soap:Body></soap:Envelope>";
+    String GoodSoapMessage = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/types\"><soap:Body><ns:HelloRequestElement><string>World</string></ns:HelloRequestElement></soap:Body></soap:Envelope>";
 
     // expect 2xx http status code
-    String GoodSoapMessageNoXMLDeclaration =
-            "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/types\"><soap:Body><ns:HelloRequestElement><string>World</string></ns:HelloRequestElement></soap:Body></soap:Envelope>";
+    String GoodSoapMessageNoXMLDeclaration = "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/types\"><soap:Body><ns:HelloRequestElement><string>World</string></ns:HelloRequestElement></soap:Body></soap:Envelope>";
 
     // expect 2xx http status code
-    String GoodOneWaySoapMessage =
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/types\"><soap:Body><ns:HelloOneWayElement><string>World</string></ns:HelloOneWayElement></soap:Body></soap:Envelope>";
+    String GoodOneWaySoapMessage = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/types\"><soap:Body><ns:HelloOneWayElement><string>World</string></ns:HelloOneWayElement></soap:Body></soap:Envelope>";
 
     // expect 2xx http status code
-    String GoodOneWaySoapMessageNoXMLDeclaration =
-            "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/types\"><soap:Body><ns:HelloOneWayElement><string>World</string></ns:HelloOneWayElement></soap:Body></soap:Envelope>";
+    String GoodOneWaySoapMessageNoXMLDeclaration = "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/types\"><soap:Body><ns:HelloOneWayElement><string>World</string></ns:HelloOneWayElement></soap:Body></soap:Envelope>";
 
     // expect 2xx http status code
-    String SoapMessageUsingUTF16Encoding =
-            "<?xml version=\"1.0\" encoding=\"utf-16\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/types\"><soap:Body><ns:HelloRequestElement><string>World</string></ns:HelloRequestElement></soap:Body></soap:Envelope>";
+    String SoapMessageUsingUTF16Encoding = "<?xml version=\"1.0\" encoding=\"utf-16\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/types\"><soap:Body><ns:HelloRequestElement><string>World</string></ns:HelloRequestElement></soap:Body></soap:Envelope>";
 
     private void getTestURLs() throws Exception {
         TestUtil.logMsg("Get URL's used by the test");
@@ -155,8 +149,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -193,8 +189,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSI:SPEC:R1125; WSI:SPEC:R1111; WSI:SPEC:R4004;
      *
-     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection.
-     * Verify that we get a correct HTTP status code of 2xx.
+     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection. Verify that we get a correct HTTP status code
+     * of 2xx.
      */
     public void TestGoodSoapMessage() throws Fault {
         boolean pass = true;
@@ -208,14 +204,16 @@ public class Client extends ServiceEETest {
             if (httpStatusCode < 200 || httpStatusCode > 299) {
                 TestUtil.logErr("Expected 2xx status code, instead got " + httpStatusCode);
                 pass = false;
-            } else TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
+            } else
+                TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("TestGoodSoapMessage failed", e);
         }
 
-        if (!pass) throw new Fault("TestGoodSoapMessage failed");
+        if (!pass)
+            throw new Fault("TestGoodSoapMessage failed");
     }
 
     /*
@@ -223,9 +221,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSI:SPEC:R1125; WSI:SPEC:R1111;
      *
-     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection.
-     * Soap message does not contain the XML declaration. Verify that we get a
-     * correct HTTP status code of 2xx.
+     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection. Soap message does not contain the XML
+     * declaration. Verify that we get a correct HTTP status code of 2xx.
      */
     public void TestGoodSoapMessageNoXMLDeclaration() throws Fault {
         boolean pass = true;
@@ -239,24 +236,25 @@ public class Client extends ServiceEETest {
             if (httpStatusCode < 200 || httpStatusCode > 299) {
                 TestUtil.logErr("Expected 2xx status code, instead got " + httpStatusCode);
                 pass = false;
-            } else TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
+            } else
+                TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("TestGoodSoapMessageNoXMLDeclaration failed", e);
         }
 
-        if (!pass) throw new Fault("TestGoodSoapMessageNoXMLDeclaration failed");
+        if (!pass)
+            throw new Fault("TestGoodSoapMessageNoXMLDeclaration failed");
     }
 
     /*
      * @testName: TestGoodOneWaySoapMessage
      *
-     * @assertion_ids: WSI:SPEC:R1125; WSI:SPEC:R1111; WSI:SPEC:R1112;
-     * WSI:SPEC:R4004; JAXWS:SPEC:11005; JAXWS:SPEC:10016;
+     * @assertion_ids: WSI:SPEC:R1125; WSI:SPEC:R1111; WSI:SPEC:R1112; WSI:SPEC:R4004; JAXWS:SPEC:11005; JAXWS:SPEC:10016;
      *
-     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection.
-     * Verify that we get a correct HTTP status code of 2xx.
+     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection. Verify that we get a correct HTTP status code
+     * of 2xx.
      */
     public void TestGoodOneWaySoapMessage() throws Fault {
         boolean pass = true;
@@ -270,25 +268,25 @@ public class Client extends ServiceEETest {
             if (httpStatusCode < 200 || httpStatusCode > 299) {
                 TestUtil.logErr("Expected 2xx status code, instead got " + httpStatusCode);
                 pass = false;
-            } else TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
+            } else
+                TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("TestGoodOneWaySoapMessage failed", e);
         }
 
-        if (!pass) throw new Fault("TestGoodOneWaySoapMessage failed");
+        if (!pass)
+            throw new Fault("TestGoodOneWaySoapMessage failed");
     }
 
     /*
      * @testName: TestGoodOneWaySoapMessageNoXMLDeclaration
      *
-     * @assertion_ids: WSI:SPEC:R1125; WSI:SPEC:R1111; WSI:SPEC:R1112;
-     * JAXWS:SPEC:11005; JAXWS:SPEC:10016;
+     * @assertion_ids: WSI:SPEC:R1125; WSI:SPEC:R1111; WSI:SPEC:R1112; JAXWS:SPEC:11005; JAXWS:SPEC:10016;
      *
-     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection.
-     * Soap message does not contain the XML declaration. Verify that we get a
-     * correct HTTP status code of 2xx.
+     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection. Soap message does not contain the XML
+     * declaration. Verify that we get a correct HTTP status code of 2xx.
      */
     public void TestGoodOneWaySoapMessageNoXMLDeclaration() throws Fault {
         boolean pass = true;
@@ -302,25 +300,25 @@ public class Client extends ServiceEETest {
             if (httpStatusCode < 200 || httpStatusCode > 299) {
                 TestUtil.logErr("Expected 2xx status code, instead got " + httpStatusCode);
                 pass = false;
-            } else TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
+            } else
+                TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("TestGoodOneWaySoapMessageNoXMLDeclaration failed", e);
         }
 
-        if (!pass) throw new Fault("TestGoodOneWaySoapMessageNoXMLDeclaration failed");
+        if (!pass)
+            throw new Fault("TestGoodOneWaySoapMessageNoXMLDeclaration failed");
     }
 
     /*
      * @testName: TestSoapMessageUsingUTF16Encoding
      *
-     * @assertion_ids: WSI:SPEC:R1125; WSI:SPEC:R1111; WSI:SPEC:R4003;
-     * WSI:SPEC:R4004;
+     * @assertion_ids: WSI:SPEC:R1125; WSI:SPEC:R1111; WSI:SPEC:R4003; WSI:SPEC:R4004;
      *
-     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection.
-     * Send SOAP RPC request using utf-16 encoding. Verify that we get a correct
-     * HTTP status code of 2xx.
+     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection. Send SOAP RPC request using utf-16 encoding.
+     * Verify that we get a correct HTTP status code of 2xx.
      */
     public void TestSoapMessageUsingUTF16Encoding() throws Fault {
         boolean pass = true;
@@ -351,14 +349,16 @@ public class Client extends ServiceEETest {
             if (httpStatusCode < 200 || httpStatusCode > 299) {
                 TestUtil.logErr("Expected 2xx status code, instead got " + httpStatusCode);
                 pass = false;
-            } else TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
+            } else
+                TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("TestSoapMessageUsingUTF16Encoding failed", e);
         }
 
-        if (!pass) throw new Fault("TestSoapMessageUsingUTF16Encoding failed");
+        if (!pass)
+            throw new Fault("TestSoapMessageUsingUTF16Encoding failed");
     }
 
     private HttpURLConnection openHttpConnection(String s) throws IOException {

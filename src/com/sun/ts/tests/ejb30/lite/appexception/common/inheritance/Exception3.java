@@ -21,8 +21,7 @@
 package com.sun.ts.tests.ejb30.lite.appexception.common.inheritance;
 
 /**
- * A runtime exception and ApplicationException. Its subclass will not be
- * ApplicationException.
+ * A runtime exception and ApplicationException. Its subclass will not be ApplicationException.
  */
 // declared in ejb-jar.xml to be ApplicationException (inherited=false)
 public class Exception3 extends Exception2 {

@@ -19,9 +19,8 @@ package com.sun.ts.lib.util.sec.reflect;
 import java.lang.reflect.*;
 
 /**
- * Provides reflective access to the constant pools of classes. Currently this
- * is needed to provide reflective access to annotations but may be used by
- * other internal subsystems in the future.
+ * Provides reflective access to the constant pools of classes. Currently this is needed to provide reflective access to
+ * annotations but may be used by other internal subsystems in the future.
  */
 public class ConstantPool {
     // Number of entries in this constant pool (= maximum valid constant pool
@@ -91,7 +90,7 @@ public class ConstantPool {
     //
 
     static {
-        Reflection.registerFieldsToFilter(ConstantPool.class, new String[] {"constantPoolOop"});
+        Reflection.registerFieldsToFilter(ConstantPool.class, new String[] { "constantPoolOop" });
     }
 
     // HotSpot-internal constant pool object (set by the VM, name known to the VM)

@@ -29,15 +29,14 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 import java.io.PrintWriter;
 
 /**
- * Test client for TagExtraInfo. If the test fails, a translation error will be
- * generated and a ValidationMessage array will be returned.
+ * Test client for TagExtraInfo. If the test fails, a translation error will be generated and a ValidationMessage array
+ * will be returned.
  */
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -46,8 +45,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -67,16 +65,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: tagExtraInfoTest
      *
-     * @assertion_ids:
-     * JSP:JAVADOC:264;JSP:JAVADOC:265;JSP:JAVADOC:266;JSP:JAVADOC:267
+     * @assertion_ids: JSP:JAVADOC:264;JSP:JAVADOC:265;JSP:JAVADOC:266;JSP:JAVADOC:267
      *
-     * @test_Strategy: Validate the following: - TagExtraInfo.getTagInfo() returns
-     * a non-null value as the container called TagExtraInfo.setTagInfo() prior to
-     * calling validate. - A null or an emtpy array of ValidationMessage returned
-     * by validate does not cause a translation error. - A non-empty array of
-     * ValiationMessages causes a translation error. - The default implementation
-     * of TagExtraInfo.validate() calls isValid(). If isValid() returns false, a
-     * default ValidationMessage array is returned.
+     * @test_Strategy: Validate the following: - TagExtraInfo.getTagInfo() returns a non-null value as the container called
+     * TagExtraInfo.setTagInfo() prior to calling validate. - A null or an emtpy array of ValidationMessage returned by
+     * validate does not cause a translation error. - A non-empty array of ValiationMessages causes a translation error. -
+     * The default implementation of TagExtraInfo.validate() calls isValid(). If isValid() returns false, a default
+     * ValidationMessage array is returned.
      */
     public void tagExtraInfoTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagextrainfo_web/TagExtraInfoNullReturnTest.jsp HTTP/1.1");

@@ -32,12 +32,9 @@ public class TCKELClass {
 
     /**
      *
-     * @param firstName
-     *          - first name @String
-     * @param lastName
-     *          - last Name
-     * @return true is full name matches the given firstName + " " + lastName
-     *         pattern.
+     * @param firstName - first name @String
+     * @param lastName - last Name
+     * @return true is full name matches the given firstName + " " + lastName pattern.
      */
     public static boolean isName(String name) {
         boolean result = Boolean.FALSE;

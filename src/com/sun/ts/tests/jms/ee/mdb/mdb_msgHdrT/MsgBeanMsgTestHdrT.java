@@ -92,8 +92,7 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
 
     public MsgBeanMsgTestHdrT() {
         TestUtil.logTrace("@MsgBeanMsgTestHdrT()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         props = new java.util.Properties();
@@ -269,8 +268,8 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Send a single Text message check time of send against time
-     * send returns JMSTimeStamp should be between these two
+     * Description: Send a single Text message check time of send against time send returns JMSTimeStamp should be between
+     * these two
      */
     public void msgHdrTimeStampTTest() {
         boolean pass = true;
@@ -609,7 +608,8 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
             TestUtil.logTrace("JMSDestination:  " + messageReceived.getJMSDestination());
             replyDestination = (Topic) messageReceived.getJMSDestination();
 
-            if (replyDestination != null) TestUtil.logTrace("Topic name is " + replyDestination.getTopicName());
+            if (replyDestination != null)
+                TestUtil.logTrace("Topic name is " + replyDestination.getTopicName());
 
             if (replyDestination == null) {
                 pass = false;
@@ -697,8 +697,7 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: send test results to response queue (MDB_QUEUE_REPLY) for
-     * verification
+     * Description: send test results to response queue (MDB_QUEUE_REPLY) for verification
      */
     private void sendTestResults(String testCase, boolean results) {
         TextMessage msg = null;
@@ -710,8 +709,10 @@ public class MsgBeanMsgTestHdrT implements MessageDrivenBean, MessageListener {
             msg = qSession.createTextMessage();
             msg.setStringProperty("TestCase", testCase);
             msg.setText(testCase);
-            if (results) msg.setStringProperty("Status", "Pass");
-            else msg.setStringProperty("Status", "Fail");
+            if (results)
+                msg.setStringProperty("Status", "Pass");
+            else
+                msg.setStringProperty("Status", "Fail");
 
             TestUtil.logTrace("Sending response message");
             TestUtil.logTrace("==================================Test Results from: " + testCase);

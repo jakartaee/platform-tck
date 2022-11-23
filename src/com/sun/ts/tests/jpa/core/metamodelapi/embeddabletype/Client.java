@@ -37,7 +37,8 @@ import java.util.Set;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -243,7 +244,7 @@ public class Client extends PMClientBase {
                 Set set = eType.getAttributes();
                 if (set != null) {
                     if (set.size() > 0) {
-                        for (Iterator i = set.iterator(); i.hasNext(); ) {
+                        for (Iterator i = set.iterator(); i.hasNext();) {
                             Attribute attrib = (Attribute) i.next();
                             actual.add(attrib.getName());
                         }
@@ -577,7 +578,7 @@ public class Client extends PMClientBase {
                 Set set = eType.getDeclaredAttributes();
                 if (set != null) {
                     if (set.size() > 0) {
-                        for (Iterator i = set.iterator(); i.hasNext(); ) {
+                        for (Iterator i = set.iterator(); i.hasNext();) {
                             Attribute attrib = (Attribute) i.next();
                             actual.add(attrib.getName());
                         }
@@ -1505,7 +1506,7 @@ public class Client extends PMClientBase {
                 Set set = eType.getDeclaredSingularAttributes();
                 if (set != null) {
                     if (set.size() > 0) {
-                        for (Iterator i = set.iterator(); i.hasNext(); ) {
+                        for (Iterator i = set.iterator(); i.hasNext();) {
                             Attribute attrib = (Attribute) i.next();
                             actual.add(attrib.getName());
                         }
@@ -1922,7 +1923,7 @@ public class Client extends PMClientBase {
                 Set set = eType.getPluralAttributes();
                 if (set != null) {
                     if (set.size() > 0) {
-                        for (Iterator i = set.iterator(); i.hasNext(); ) {
+                        for (Iterator i = set.iterator(); i.hasNext();) {
                             Attribute attrib = (Attribute) i.next();
                             actual.add(attrib.getName());
                         }
@@ -2340,7 +2341,7 @@ public class Client extends PMClientBase {
                 Set set = eType.getSingularAttributes();
                 if (set != null) {
                     if (set.size() > 0) {
-                        for (Iterator i = set.iterator(); i.hasNext(); ) {
+                        for (Iterator i = set.iterator(); i.hasNext();) {
                             Attribute attrib = (Attribute) i.next();
                             actual.add(attrib.getName());
                         }
@@ -2416,7 +2417,7 @@ public class Client extends PMClientBase {
                 Set set = eType.getDeclaredPluralAttributes();
                 if (set != null) {
                     if (set.size() > 0) {
-                        for (Iterator i = set.iterator(); i.hasNext(); ) {
+                        for (Iterator i = set.iterator(); i.hasNext();) {
                             Attribute attrib = (Attribute) i.next();
                             actual.add(attrib.getName());
                         }

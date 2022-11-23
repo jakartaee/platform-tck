@@ -36,11 +36,9 @@ import jakarta.jms.MessageListener;
 // This MDB implements jakarta.jms.MessageListener interface, so no need to
 // use annotation element messageListenerInterface, nor descritpor element
 // messaging-type
-@MessageDriven(
-        name = "MessageBean",
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
-        })
+@MessageDriven(name = "MessageBean", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+})
 @TransactionManagement(TransactionManagementType.BEAN)
 public class MessageBean implements MessageListener {
     @Resource(name = "mdc")

@@ -32,7 +32,8 @@ import java.util.Set;
 public class Client extends PMClientBase {
     protected final Employee empRef[] = new Employee[5];
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -65,12 +66,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: parameterTest1
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:382;
-     * PERSISTENCE:JAVADOC:383; PERSISTENCE:JAVADOC:322; PERSISTENCE:JAVADOC:404;
-     * PERSISTENCE:JAVADOC:412; PERSISTENCE:SPEC:1634;
+     * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:382; PERSISTENCE:JAVADOC:383; PERSISTENCE:JAVADOC:322;
+     * PERSISTENCE:JAVADOC:404; PERSISTENCE:JAVADOC:412; PERSISTENCE:SPEC:1634;
      *
-     * @test_Strategy: Create a query with 2 named parameters and retrieve
-     * information about the parameters.
+     * @test_Strategy: Create a query with 2 named parameters and retrieve information about the parameters.
      *
      */
     public void parameterTest1() throws Fault {
@@ -176,8 +175,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:642; PERSISTENCE:JAVADOC:681
      *
-     * @test_Strategy: Create a TypedQuery with 2 named parameters and retrieve
-     * information about the parameters.
+     * @test_Strategy: Create a TypedQuery with 2 named parameters and retrieve information about the parameters.
      *
      */
     public void parameterTestTQ1() throws Fault {
@@ -283,20 +281,17 @@ public class Client extends PMClientBase {
     /*
      * @testName: parameterTest2
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:382;
-     * PERSISTENCE:JAVADOC:383; PERSISTENCE:JAVADOC:406; PERSISTENCE:JAVADOC:412;
-     * PERSISTENCE:SPEC:1634; PERSISTENCE:SPEC:1636;
+     * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:382; PERSISTENCE:JAVADOC:383; PERSISTENCE:JAVADOC:406;
+     * PERSISTENCE:JAVADOC:412; PERSISTENCE:SPEC:1634; PERSISTENCE:SPEC:1636;
      *
-     * @test_Strategy: Create a query with 2 positional parameters and retrieve
-     * information about the parameters.
+     * @test_Strategy: Create a query with 2 positional parameters and retrieve information about the parameters.
      */
     public void parameterTest2() throws Fault {
         int pass1 = 0;
         int pass2 = 0;
         int pass3 = 0;
 
-        Query query =
-                getEntityManager().createQuery("SELECT e FROM Employee e WHERE e.firstName = ?1 or e.lastName = ?2");
+        Query query = getEntityManager().createQuery("SELECT e FROM Employee e WHERE e.firstName = ?1 or e.lastName = ?2");
 
         Set<Parameter<?>> sParameters = query.getParameters();
         if (sParameters.size() == 2) {
@@ -355,8 +350,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:648;
      *
-     * @test_Strategy: Create a TypedQuery with 2 positional parameters and
-     * retrieve information about the parameters.
+     * @test_Strategy: Create a TypedQuery with 2 positional parameters and retrieve information about the parameters.
      */
     public void parameterTQTest2() throws Fault {
         int pass1 = 0;
@@ -421,8 +415,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:383;
      *
-     * @test_Strategy: Create a query with a named parameter that is a date and
-     * and retrieve information about the parameter.
+     * @test_Strategy: Create a query with a named parameter that is a date and and retrieve information about the
+     * parameter.
      */
     public void parameterTest4() throws Fault {
         boolean pass1 = false;
@@ -466,8 +460,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:383;
      *
-     * @test_Strategy: Create a query with a named parameter that is a float and
-     * retrieve information about the parameter.
+     * @test_Strategy: Create a query with a named parameter that is a float and retrieve information about the parameter.
      *
      */
     public void parameterTest5() throws Fault {
@@ -512,8 +505,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:408;
      *
-     * @test_Strategy: Create a query with 2 named parameters and retrieve all
-     * parameters.
+     * @test_Strategy: Create a query with 2 named parameters and retrieve all parameters.
      *
      */
     public void getParametersTest() throws Fault {
@@ -576,8 +568,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:654
      *
-     * @test_Strategy: Create a typedQuery with 2 named parameters and retrieve
-     * all parameters.
+     * @test_Strategy: Create a typedQuery with 2 named parameters and retrieve all parameters.
      *
      */
     public void getParametersTQTest() throws Fault {
@@ -680,11 +671,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: parameterPositionalTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1636; PERSISTENCE:SPEC:1638;
-     * PERSISTENCE:SPEC:1640;
+     * @assertion_ids: PERSISTENCE:SPEC:1636; PERSISTENCE:SPEC:1638; PERSISTENCE:SPEC:1640;
      *
-     * @test_Strategy: Create a query with a having clause with a positional
-     * parameter and retrieve information about the parameter.
+     * @test_Strategy: Create a query with a having clause with a positional parameter and retrieve information about the
+     * parameter.
      */
     @SetupMethod(name = "setupEmployee")
     @CleanupMethod(name = "cleanupEmployee")
@@ -715,17 +705,16 @@ public class Client extends PMClientBase {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception:", e);
         }
-        if (!pass) throw new Fault("parameterPositionalTest failed");
+        if (!pass)
+            throw new Fault("parameterPositionalTest failed");
     }
 
     /*
      * @testName: parameterUpdateTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1636; PERSISTENCE:SPEC:1638;
-     * PERSISTENCE:SPEC:1639;
+     * @assertion_ids: PERSISTENCE:SPEC:1636; PERSISTENCE:SPEC:1638; PERSISTENCE:SPEC:1639;
      *
-     * @test_Strategy: Create an update query with a positional parameter and
-     * retrieve information about the parameter.
+     * @test_Strategy: Create an update query with a positional parameter and retrieve information about the parameter.
      */
     @SetupMethod(name = "setupEmployee")
     @CleanupMethod(name = "cleanupEmployee")
@@ -760,7 +749,8 @@ public class Client extends PMClientBase {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception:", e);
         }
-        if (!pass) throw new Fault("parameterUpdateTest failed");
+        if (!pass)
+            throw new Fault("parameterUpdateTest failed");
     }
 
     /*
@@ -768,8 +758,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1641;
      *
-     * @test_Strategy: Create a query with a name parameter using different cases
-     * and retrieve information about the parameter.
+     * @test_Strategy: Create a query with a name parameter using different cases and retrieve information about the
+     * parameter.
      */
     @SetupMethod(name = "setupEmployee")
     @CleanupMethod(name = "cleanupEmployee")
@@ -800,7 +790,8 @@ public class Client extends PMClientBase {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception:", e);
         }
-        if (!pass) throw new Fault("parameterCaseTest failed");
+        if (!pass)
+            throw new Fault("parameterCaseTest failed");
     }
 
     /*
@@ -808,8 +799,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1642;
      *
-     * @test_Strategy: Create a query using a name parameter twice and retrieve
-     * information about the parameter.
+     * @test_Strategy: Create a query using a name parameter twice and retrieve information about the parameter.
      */
     @SetupMethod(name = "setupEmployee")
     @CleanupMethod(name = "cleanupEmployee")
@@ -836,7 +826,8 @@ public class Client extends PMClientBase {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception:", e);
         }
-        if (!pass) throw new Fault("parameterNamedParameterTwiceTest failed");
+        if (!pass)
+            throw new Fault("parameterNamedParameterTwiceTest failed");
     }
 
     public void createEmployeeData() throws Exception {

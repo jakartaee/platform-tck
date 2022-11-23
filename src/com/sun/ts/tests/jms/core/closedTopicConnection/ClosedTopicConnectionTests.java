@@ -84,11 +84,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /**
-     * Used by tests that need a closed connection for testing. Passes any
-     * exceptions up to caller.
+     * Used by tests that need a closed connection for testing. Passes any exceptions up to caller.
      *
-     * @param int
-     *          The type of session that needs to be created and closed
+     * @param int The type of session that needs to be created and closed
      */
     private void createAndCloseConnection(int type, String user, String password) throws Exception {
         if ((type == JmsTool.TOPIC) || (type == JmsTool.TX_TOPIC)) {
@@ -106,10 +104,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Topic and/or
-     * Topic Connection, as well as a default Topic and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Topic and/or Topic Connection, as well as a default Topic and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -162,8 +159,8 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -186,11 +183,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCommitTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:229;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:229;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCommitTest() throws Fault {
@@ -222,11 +217,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionRollbackTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:SPEC:111; JMS:JAVADOC:231;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:SPEC:111; JMS:JAVADOC:231;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionRollbackTest() throws Fault {
@@ -256,11 +249,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionRecoverTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:235;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:235;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionRecoverTest() throws Fault {
@@ -308,11 +299,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionGetClientIDTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:512;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:512;
      *
-     * @test_Strategy: Close default Connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default Connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionGetClientIDTest() throws Fault {
@@ -343,11 +332,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionGetMetaDataTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:516;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:516;
      *
-     * @test_Strategy: Close default Connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default Connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionGetMetaDataTest() throws Fault {
@@ -378,11 +365,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionStartTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:522;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:522;
      *
-     * @test_Strategy: Close default Connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default Connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionStartTest() throws Fault {
@@ -412,12 +397,10 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateTopicSessionTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111;
      *
      *
-     * @test_Strategy: Close default Connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default Connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateTopicSessionTest() throws Fault {
@@ -447,8 +430,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionSessionCloseTest
      *
-     * @assertion_ids: JMS:SPEC:201; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:233;
+     * @assertion_ids: JMS:SPEC:201; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:233;
      *
      * @test_Strategy: Close default session and call method on it.
      */
@@ -468,11 +450,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateTopicTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:81;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:81;
      *
-     * @test_Strategy: Close default Connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default Connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateTopicTest() throws Fault {
@@ -503,11 +483,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateSubscriberTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:83;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:83;
      *
-     * @test_Strategy: Close default Connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default Connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateSubscriberTest() throws Fault {
@@ -538,11 +516,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateSubscriberMsgSelectorTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:85;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:85;
      *
-     * @test_Strategy: Close default Connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default Connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateSubscriberMsgSelectorTest() throws Fault {
@@ -552,8 +528,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             createAndCloseConnection(JmsTool.TOPIC, user, password);
             TestUtil.logTrace("Try to create Receiver with closed Connection.");
             try {
-                TopicSubscriber tS =
-                        tool.getDefaultTopicSession().createSubscriber(tool.getDefaultTopic(), "TEST = 'test'", false);
+                TopicSubscriber tS = tool.getDefaultTopicSession().createSubscriber(tool.getDefaultTopic(), "TEST = 'test'", false);
 
                 TestUtil.logTrace("Fail: Exception was not thrown!");
             } catch (jakarta.jms.IllegalStateException ise) {
@@ -574,11 +549,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreatePublisherTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:91;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:91;
      *
-     * @test_Strategy: Close default Connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default Connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreatePublisherTest() throws Fault {
@@ -609,11 +582,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateTempTopicTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:93;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:93;
      *
-     * @test_Strategy: Close default Connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default Connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateTempTopicTest() throws Fault {
@@ -644,11 +615,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateMessageTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:213;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:213;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateMessageTest() throws Fault {
@@ -679,11 +648,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateBytesMessageTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:209;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:209;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateBytesMessageTest() throws Fault {
@@ -714,11 +681,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateMapMessageTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:211;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:211;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateMapMessageTest() throws Fault {
@@ -749,11 +714,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateObjectMessageTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:215;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:215;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateObjectMessageTest() throws Fault {
@@ -764,7 +727,8 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             TestUtil.logTrace("Try to create ObjectMessage with closed connection.");
             try {
                 ObjectMessage m = tool.getDefaultTopicSession().createObjectMessage();
-                if (m != null) TestUtil.logTrace("m=" + m);
+                if (m != null)
+                    TestUtil.logTrace("m=" + m);
                 TestUtil.logTrace("Fail: Exception was not thrown!");
             } catch (jakarta.jms.IllegalStateException ise) {
                 TestUtil.logTrace("Caught expected exception");
@@ -784,11 +748,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateObject2MessageTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:217;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:217;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateObject2MessageTest() throws Fault {
@@ -800,7 +762,8 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
             try {
                 String s = "Simple object";
                 ObjectMessage m = tool.getDefaultTopicSession().createObjectMessage(s);
-                if (m != null) TestUtil.logTrace("m=" + m);
+                if (m != null)
+                    TestUtil.logTrace("m=" + m);
                 TestUtil.logTrace("Fail: Exception was not thrown!");
             } catch (jakarta.jms.IllegalStateException ise) {
                 TestUtil.logTrace("Caught expected exception");
@@ -820,11 +783,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateStreamMessageTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:219;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:219;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateStreamMessageTest() throws Fault {
@@ -855,11 +816,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateTextMessageTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:221;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:221;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateTextMessageTest() throws Fault {
@@ -890,11 +849,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionCreateText2MessageTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:223;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:223;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionCreateText2MessageTest() throws Fault {
@@ -925,11 +882,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionGetTransactedTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:111; JMS:JAVADOC:225;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:111; JMS:JAVADOC:225;
      *
-     * @test_Strategy: Close default connection and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default connection and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionGetTransactedTest() throws Fault {
@@ -960,8 +915,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionSubscriberCloseTest
      *
-     * @assertion_ids: JMS:SPEC:201; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:338;
+     * @assertion_ids: JMS:SPEC:201; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:338;
      *
      * @test_Strategy: Close default subscriber and call method on it.
      */
@@ -979,11 +933,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionGetMessageSelectorTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:326;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:326;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionGetMessageSelectorTest() throws Fault {
@@ -1014,11 +966,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionReceiveTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:332;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:332;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionReceiveTest() throws Fault {
@@ -1049,11 +999,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionReceiveTimeoutTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:334;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionReceiveTimeoutTest() throws Fault {
@@ -1084,11 +1032,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionReceiveNoWaitTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:336;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:336;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionReceiveNoWaitTest() throws Fault {
@@ -1119,11 +1065,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionGetNoLocalTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:79;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:79;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionGetNoLocalTest() throws Fault {
@@ -1154,11 +1098,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionSubscriberGetTopicTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:77;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:77;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionSubscriberGetTopicTest() throws Fault {
@@ -1189,8 +1131,7 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionPublisherCloseTest
      *
-     * @assertion_ids: JMS:SPEC:201; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:315;
+     * @assertion_ids: JMS:SPEC:201; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:315;
      *
      * @test_Strategy: Close default publisher and call method on it.
      */
@@ -1208,11 +1149,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionGetDeliveryModeTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:303;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:303;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionGetDeliveryModeTest() throws Fault {
@@ -1243,11 +1182,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionGetDisableMessageIDTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:295;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:295;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionGetDisableMessageIDTest() throws Fault {
@@ -1278,11 +1215,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionGetDisableMessageTimestampTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:299;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:299;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionGetDisableMessageTimestampTest() throws Fault {
@@ -1313,11 +1248,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionGetPriorityTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:307;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:307;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionGetPriorityTest() throws Fault {
@@ -1348,11 +1281,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionGetTimeToLiveTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:311;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:311;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     /**
@@ -1391,11 +1322,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionSetDeliveryModeTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:301;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:301;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
     public void closedTopicConnectionSetDeliveryModeTest() throws Fault {
         boolean passed = false;
@@ -1424,11 +1353,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionSetDisableMessageIDTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:293;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:293;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     /**
@@ -1466,11 +1393,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionSetDisableMessageTimestampTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:297;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:297;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionSetDisableMessageTimestampTest() throws Fault {
@@ -1500,11 +1425,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionSetPriorityTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:305;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:305;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionSetPriorityTest() throws Fault {
@@ -1534,11 +1457,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionSetTimeToLiveTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:309;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:309;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionSetTimeToLiveTest() throws Fault {
@@ -1568,11 +1489,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionPublisherGetTopicTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:97;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:97;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionPublisherGetTopicTest() throws Fault {
@@ -1603,11 +1522,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionPublish1Test
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:99;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:99;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionPublish1Test() throws Fault {
@@ -1637,11 +1554,9 @@ public class ClosedTopicConnectionTests extends ServiceEETest {
     /*
      * @testName: closedTopicConnectionPublish2Test
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526;
-     * JMS:JAVADOC:101;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:107; JMS:JAVADOC:526; JMS:JAVADOC:101;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicConnectionPublish2Test() throws Fault {

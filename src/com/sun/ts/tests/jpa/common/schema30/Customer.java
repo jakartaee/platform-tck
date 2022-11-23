@@ -65,7 +65,8 @@ public class Customer implements java.io.Serializable {
 
     private List<Order> orders3 = new ArrayList<Order>();
 
-    public Customer() {}
+    public Customer() {
+    }
 
     public Customer(String id, String name) {
         this.id = id;

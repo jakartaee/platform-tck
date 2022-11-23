@@ -32,9 +32,8 @@ import java.util.Properties;
 import javax.naming.NamingException;
 
 /**
- * CMP 1.1 wrapper that provide the bean life cycle methods for a CMP 1.1 bean.
- * This class is intended to be subclassed by the final entity bean class that
- * will provide the test logic (business methods).
+ * CMP 1.1 wrapper that provide the bean life cycle methods for a CMP 1.1 bean. This class is intended to be subclassed
+ * by the final entity bean class that will provide the test logic (business methods).
  */
 public class CMP11Wrapper implements EntityBean {
 

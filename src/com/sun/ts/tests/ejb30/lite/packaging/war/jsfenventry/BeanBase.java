@@ -34,33 +34,25 @@ public abstract class BeanBase extends ComponentBase {
     @Resource
     private EJBContext ejbContext;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myBooleanTrue",
-            description = "declared in web.xml")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myBooleanTrue", description = "declared in web.xml")
     private boolean myBooleanTrueFromWebXml;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myBooleanFalse")
     private boolean myBooleanFalseFromWebXml;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myBooleanTrue",
-            description = "declared in ejb-jar.xml#OneBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myBooleanTrue", description = "declared in ejb-jar.xml#OneBean")
     private boolean myBooleanTrue;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.OneBean/myBooleanFalse")
     private boolean myBooleanFalse;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myBooleanTrue",
-            description = "declared in ejb-jar.xml#TwoBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myBooleanTrue", description = "declared in ejb-jar.xml#TwoBean")
     private boolean myBooleanTrueFromTwo;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myBooleanFalse")
     private boolean myBooleanFalseFromTwo;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myBooleanTrue",
-            description = "declared in ejb-jar.xml#ThreeBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myBooleanTrue", description = "declared in ejb-jar.xml#ThreeBean")
     private boolean myBooleanTrueFromThree;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myBooleanFalse")
@@ -74,16 +66,17 @@ public abstract class BeanBase extends ComponentBase {
 
     // business methods can be in superclass, and so can method-level interceptors
     @Interceptors(Interceptor3.class)
-    public void getInjectionStatusForInterceptors(List<Boolean> sta) {}
+    public void getInjectionStatusForInterceptors(List<Boolean> sta) {
+    }
 
     @Interceptors(Interceptor3.class)
-    public void getInjectionRecordsForInterceptors(List<List<String>> rec) {}
+    public void getInjectionRecordsForInterceptors(List<List<String>> rec) {
+    }
 
     /**
-     * Checks injections into BeanBase class only. It cannot call the template
-     * method checkInjections, since the verify method in subclass will be called,
-     * which verifies injections in subclass. This PostConstruct method should be
-     * called before any PostConstruct in subclasses.
+     * Checks injections into BeanBase class only. It cannot call the template method checkInjections, since the verify
+     * method in subclass will be called, which verifies injections in subclass. This PostConstruct method should be called
+     * before any PostConstruct in subclasses.
      */
     @SuppressWarnings("unused")
     @PostConstruct

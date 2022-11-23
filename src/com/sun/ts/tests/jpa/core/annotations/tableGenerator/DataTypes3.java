@@ -33,21 +33,15 @@ public class DataTypes3 implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "myTableGenerator3")
-    @TableGenerator(
-            name = "myTableGenerator3",
-            table = "GENERATOR_TABLE",
-            pkColumnName = "PK_COL",
-            valueColumnName = "VAL_COL",
-            pkColumnValue = "DT3_ID",
-            allocationSize = 1,
-            initialValue = 1000)
+    @TableGenerator(name = "myTableGenerator3", table = "GENERATOR_TABLE", pkColumnName = "PK_COL", valueColumnName = "VAL_COL", pkColumnValue = "DT3_ID", allocationSize = 1, initialValue = 1000)
     @Column(name = "ID")
     private int id;
 
     @Column(name = "CHARARRAYDATA")
     private String stringData;
 
-    public DataTypes3() {}
+    public DataTypes3() {
+    }
 
     public DataTypes3(String stringData) {
         this.stringData = stringData;

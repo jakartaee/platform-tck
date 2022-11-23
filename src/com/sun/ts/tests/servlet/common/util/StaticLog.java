@@ -84,15 +84,13 @@ public final class StaticLog {
 
     public static ArrayList getClear() {
         /*
-         * Object[] o = al.toArray(); for (int i = 0;i<o.length;i++){
-         * System.out.println("al - o["+i+"]="+(String)o[i]); }
+         * Object[] o = al.toArray(); for (int i = 0;i<o.length;i++){ System.out.println("al - o["+i+"]="+(String)o[i]); }
          */
         // Create a new list which will be returned so that the old list can be
         // cleared
         ArrayList tmp = new ArrayList(al);
         /*
-         * Object[] o1 = tmp.toArray(); for (int i = 0;i<o1.length;i++){
-         * System.out.println("tmp - o1["+i+"]="+(String)o1[i]); }
+         * Object[] o1 = tmp.toArray(); for (int i = 0;i<o1.length;i++){ System.out.println("tmp - o1["+i+"]="+(String)o1[i]); }
          */
         // clear();
         return tmp;

@@ -32,7 +32,8 @@ public class Client extends PMClientBase {
 
     private final Date d1 = getSQLDate("2000-02-14");
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -59,14 +60,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: getResultListTest1
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:413; PERSISTENCE:JAVADOC:402;
-     * PERSISTENCE:JAVADOC:329; PERSISTENCE:JAVADOC:639; PERSISTENCE:JAVADOC:443;
-     * PERSISTENCE:JAVADOC:687; PERSISTENCE:SPEC:1507;
+     * @assertion_ids: PERSISTENCE:JAVADOC:413; PERSISTENCE:JAVADOC:402; PERSISTENCE:JAVADOC:329; PERSISTENCE:JAVADOC:639;
+     * PERSISTENCE:JAVADOC:443; PERSISTENCE:JAVADOC:687; PERSISTENCE:SPEC:1507;
      *
-     * @test_Strategy: 1. Create a Query 2. Obtain Entity Manager 3. Select
-     * Employees with id <10 with lock mode set to PESSIMISTIC_READ 4. Find
-     * Employee 1 with lock mode set to PESSIMISTIC_WRITE 5. Update Employee 1 6.
-     * Create a TypedQuery and do the same above
+     * @test_Strategy: 1. Create a Query 2. Obtain Entity Manager 3. Select Employees with id <10 with lock mode set to
+     * PESSIMISTIC_READ 4. Find Employee 1 with lock mode set to PESSIMISTIC_WRITE 5. Update Employee 1 6. Create a
+     * TypedQuery and do the same above
      *
      */
     public void getResultListTest1() throws Fault {
@@ -238,8 +237,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:555;
      *
-     * @test_Strategy: Get the LockModeType of Non Select JPQL query, a
-     * IllegalStateException should be thrown
+     * @test_Strategy: Get the LockModeType of Non Select JPQL query, a IllegalStateException should be thrown
      *
      */
     public void getLockModeNONSELECTIllegalStateExceptionTest() throws Fault {
@@ -277,8 +275,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:329
      *
-     * @test_Strategy: Get the LockModeType of an entity that has not been
-     * persisted.
+     * @test_Strategy: Get the LockModeType of an entity that has not been persisted.
      *
      *
      */
@@ -323,8 +320,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:329; PERSISTENCE:JAVADOC:483
      *
-     * @test_Strategy: Get an entity, commit the transaction then try to access
-     * the LockModeType and TransactionRequiredException should be thrown
+     * @test_Strategy: Get an entity, commit the transaction then try to access the LockModeType and
+     * TransactionRequiredException should be thrown
      *
      *
      */
@@ -383,8 +380,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:484
      *
-     * @test_Strategy: Get an entity, detached the entity and then try to access
-     * the LockModeType and TransactionRequiredException should be thrown
+     * @test_Strategy: Get an entity, detached the entity and then try to access the LockModeType and
+     * TransactionRequiredException should be thrown
      *
      *
      */
@@ -441,9 +438,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:587; PERSISTENCE:JAVADOC:620;
      *
-     * @test_Strategy: Set the LockModeType of a NativeQuery, an
-     * IllegalStateException should be thrown Set the LockModeType of Non Select
-     * JPQL Query, an IllegalStateException should be thrown
+     * @test_Strategy: Set the LockModeType of a NativeQuery, an IllegalStateException should be thrown Set the LockModeType
+     * of Non Select JPQL Query, an IllegalStateException should be thrown
      *
      */
 
@@ -492,9 +488,8 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy:
      *
-     * 1. Create an EntityManager 2. Execute a query setting the lock mode to
-     * PEsSIMISTIC_READ without starting a transaction 3. Validate a
-     * TransactionRequiredException is thrown
+     * 1. Create an EntityManager 2. Execute a query setting the lock mode to PEsSIMISTIC_READ without starting a
+     * transaction 3. Validate a TransactionRequiredException is thrown
      *
      */
 
@@ -547,14 +542,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: getSingleResultTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:171; PERSISTENCE:JAVADOC:413;
-     * PERSISTENCE:JAVADOC:325; PERSISTENCE:SPEC:1508;
+     * @assertion_ids: PERSISTENCE:JAVADOC:171; PERSISTENCE:JAVADOC:413; PERSISTENCE:JAVADOC:325; PERSISTENCE:SPEC:1508;
      *
      * @test_Strategy:
      *
-     * 1. Obtain Entity Manager 2. get the name of Department 1 with lock mode set
-     * to PESSIMISTIC_READ 3. Find same Department with lock mode set to
-     * PESSIMISTIC_WRITE 4. Update Department
+     * 1. Obtain Entity Manager 2. get the name of Department 1 with lock mode set to PESSIMISTIC_READ 3. Find same
+     * Department with lock mode set to PESSIMISTIC_WRITE 4. Update Department
      *
      */
     public void getSingleResultTest() throws Fault {

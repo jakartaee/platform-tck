@@ -45,7 +45,8 @@ public class TimerInfo implements java.io.Serializable {
 
     private Integer intVar = 0;
 
-    public TimerInfo() {}
+    public TimerInfo() {
+    }
 
     public TimerInfo(String testName) {
         this.testName = testName;
@@ -227,17 +228,28 @@ public class TimerInfo implements java.io.Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("TimerInfo");
-        if (testName != null) sb.append(" testName=").append(testName);
-        if (testNumber != null) sb.append(" testNumber=").append(testNumber);
-        if (reason != null) sb.append(" reason=").append(reason);
-        if (status != null) sb.append(" status=").append(status);
-        if (stringVar != null) sb.append(" stringVar=").append(stringVar);
-        if (stringVar2 != null) sb.append(" stringVar2=").append(stringVar2);
-        if (doubleVar != null) sb.append(" doubleVar=").append(doubleVar);
-        if (longVar != null) sb.append(" longVar=").append(longVar);
-        if (charVar != null) sb.append(" charVar=").append(charVar);
-        if (booleanVar != null) sb.append(" booleanVar=").append(booleanVar);
-        if (intVar != null) sb.append(" intVar=").append(intVar);
+        if (testName != null)
+            sb.append(" testName=").append(testName);
+        if (testNumber != null)
+            sb.append(" testNumber=").append(testNumber);
+        if (reason != null)
+            sb.append(" reason=").append(reason);
+        if (status != null)
+            sb.append(" status=").append(status);
+        if (stringVar != null)
+            sb.append(" stringVar=").append(stringVar);
+        if (stringVar2 != null)
+            sb.append(" stringVar2=").append(stringVar2);
+        if (doubleVar != null)
+            sb.append(" doubleVar=").append(doubleVar);
+        if (longVar != null)
+            sb.append(" longVar=").append(longVar);
+        if (charVar != null)
+            sb.append(" charVar=").append(charVar);
+        if (booleanVar != null)
+            sb.append(" booleanVar=").append(booleanVar);
+        if (intVar != null)
+            sb.append(" intVar=").append(intVar);
 
         return sb.toString();
     }

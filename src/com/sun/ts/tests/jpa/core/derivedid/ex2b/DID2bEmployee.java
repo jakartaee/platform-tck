@@ -39,7 +39,8 @@ public class DID2bEmployee implements Serializable {
 
     int empNo;
 
-    public DID2bEmployee() {}
+    public DID2bEmployee() {
+    }
 
     public DID2bEmployee(DID2bEmployeeId eId) {
         this(eId.getFirstName(), eId.getLastName());

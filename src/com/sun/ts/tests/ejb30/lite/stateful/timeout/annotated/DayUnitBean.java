@@ -35,4 +35,5 @@ import java.util.concurrent.TimeUnit;
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 @AccessTimeout(value = StatefulTimeoutIF.TIMEOUT_DAYS, unit = TimeUnit.DAYS)
 @Local(StatefulTimeoutIF.class)
-public class DayUnitBean extends StatefulTimeoutBeanBase {}
+public class DayUnitBean extends StatefulTimeoutBeanBase {
+}

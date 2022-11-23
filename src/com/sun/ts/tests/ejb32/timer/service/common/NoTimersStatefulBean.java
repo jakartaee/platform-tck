@@ -21,9 +21,9 @@ import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 
 /**
- * no timers associated with this stateful bean, but its inclusion should not
- * cause problems
+ * no timers associated with this stateful bean, but its inclusion should not cause problems
  */
 @Stateful
 @Local(TimerIF.class)
-public class NoTimersStatefulBean extends TimerBeanBaseWithoutTimeOutMethod {}
+public class NoTimersStatefulBean extends TimerBeanBaseWithoutTimeOutMethod {
+}

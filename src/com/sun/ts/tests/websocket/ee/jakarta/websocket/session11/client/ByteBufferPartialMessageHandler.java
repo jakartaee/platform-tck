@@ -38,6 +38,7 @@ public class ByteBufferPartialMessageHandler implements MessageHandler.Partial<B
     @Override
     public void onMessage(ByteBuffer message, boolean finite) {
         sb.append(IOUtil.byteBufferToString(message));
-        if (finite) endpoint.onMessage(HANDLER_SAYS + sb.toString());
+        if (finite)
+            endpoint.onMessage(HANDLER_SAYS + sb.toString());
     }
 }

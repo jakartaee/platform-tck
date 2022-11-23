@@ -46,8 +46,7 @@ public class MsgBeanForQueue implements MessageDrivenBean, MessageListener {
 
     public MsgBeanForQueue() {
         TestUtil.logTrace("In MsgBeanForQueue::MsgBeanForQueue()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("In MsgBeanForQueue::ejbCreate() !!");

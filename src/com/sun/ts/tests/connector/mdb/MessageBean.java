@@ -29,10 +29,9 @@ import java.security.Principal;
 import javax.naming.Context;
 
 /**
- * The MessageBean class is a message-driven bean. It implements the
- * jakarta.ejb.MessageDrivenBean and TSMessageListenerInterface. It is defined as
- * public (but not final or abstract). It defines a constructor and the methods
- * setMessageDrivenContext, ejbCreate, onMessage, and ejbRemove.
+ * The MessageBean class is a message-driven bean. It implements the jakarta.ejb.MessageDrivenBean and
+ * TSMessageListenerInterface. It is defined as public (but not final or abstract). It defines a constructor and the
+ * methods setMessageDrivenContext, ejbCreate, onMessage, and ejbRemove.
  */
 public class MessageBean implements MessageDrivenBean, TSMessageListenerInterface {
 
@@ -51,21 +50,18 @@ public class MessageBean implements MessageDrivenBean, TSMessageListenerInterfac
     }
 
     /**
-     * setMessageDrivenContext method, declared as public (but not final or
-     * static), with a return type of void, and with one argument of type
-     * jakarta.ejb.MessageDrivenContext.
+     * setMessageDrivenContext method, declared as public (but not final or static), with a return type of void, and with
+     * one argument of type jakarta.ejb.MessageDrivenContext.
      *
-     * @param mdc
-     *          the context to set
+     * @param mdc the context to set
      */
     public void setMessageDrivenContext(MessageDrivenContext mdc) {
         this.mdc = mdc;
     }
 
     /*
-     * This method is used to assist with the testing of assertions
-     * Connector:SPEC:232 and Connector:SPEC:233. This is performing message
-     * checks in conjunction with LocalTxMessageWork.
+     * This method is used to assist with the testing of assertions Connector:SPEC:232 and Connector:SPEC:233. This is
+     * performing message checks in conjunction with LocalTxMessageWork.
      *
      */
     private void checkSecurityContext(String roleName) throws AppException {
@@ -91,17 +87,16 @@ public class MessageBean implements MessageDrivenBean, TSMessageListenerInterfac
     }
 
     /**
-     * ejbCreate method, declared as public (but not final or static), with a
-     * return type of void, and with no arguments.
+     * ejbCreate method, declared as public (but not final or static), with a return type of void, and with no arguments.
      */
-    public void ejbCreate() {}
+    public void ejbCreate() {
+    }
 
     /**
-     * onMessage method, declared as public (but not final or static), with a
-     * return type of void, and with one argument of type jakarta.jms.Message.
+     * onMessage method, declared as public (but not final or static), with a return type of void, and with one argument of
+     * type jakarta.jms.Message.
      *
-     * @param inMessage
-     *          the incoming message
+     * @param inMessage the incoming message
      */
     public void onMessage(String inMessage) throws AppException {
 
@@ -145,8 +140,7 @@ public class MessageBean implements MessageDrivenBean, TSMessageListenerInterfac
     }
 
     /**
-     * ejbRemove method, declared as public (but not final or static), with a
-     * return type of void, and with no arguments.
+     * ejbRemove method, declared as public (but not final or static), with a return type of void, and with no arguments.
      */
     public void ejbRemove() {
         System.out.println("In MessageBean.remove()");

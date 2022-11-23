@@ -30,11 +30,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamSource;
 
 @HandlerChain(name = "", file = "server-handler.xml")
-@WebServiceProvider(
-        serviceName = "HandlerChainTestService",
-        portName = "HandlerChainTestPort",
-        targetNamespace = "http://handlerchaintestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JHandlerChainTestService.wsdl")
+@WebServiceProvider(serviceName = "HandlerChainTestService", portName = "HandlerChainTestPort", targetNamespace = "http://handlerchaintestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JHandlerChainTestService.wsdl")
 @BindingType(value = "http://schemas.xmlsoap.org/wsdl/soap/http")
 @ServiceMode(value = jakarta.xml.ws.Service.Mode.PAYLOAD)
 public class HandlerChainTestImpl implements Provider<Source> {

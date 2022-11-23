@@ -134,8 +134,7 @@ public class HttpRequest {
     protected HttpClient client = null;
 
     /**
-     * Creates new HttpRequest based of the passed request line. The request line
-     * provied must be in the form of:<br>
+     * Creates new HttpRequest based of the passed request line. The request line provied must be in the form of:<br>
      *
      * <pre>
      *     METHOD PATH HTTP-VERSION
@@ -159,13 +158,11 @@ public class HttpRequest {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * <code>getRequestPath</code> returns the request path for this particular
-     * request.
+     * <code>getRequestPath</code> returns the request path for this particular request.
      *
      * @return String request path
      */
@@ -174,8 +171,7 @@ public class HttpRequest {
     }
 
     /**
-     * <code>getRequestMethod</code> returns the request type, i.e., GET, POST,
-     * etc.
+     * <code>getRequestMethod</code> returns the request type, i.e., GET, POST, etc.
      *
      * @return String request type
      */
@@ -184,8 +180,7 @@ public class HttpRequest {
     }
 
     /**
-     * <code>isSecureConnection()</code> indicates if the Request is secure or
-     * not.
+     * <code>isSecureConnection()</code> indicates if the Request is secure or not.
      *
      * @return boolean whether Request is using SSL or not.
      */
@@ -196,20 +191,17 @@ public class HttpRequest {
     /**
      * <code>setSecureRequest</code> configures this request to use SSL.
      *
-     * @param secure
-     *          - whether the Request uses SSL or not.
+     * @param secure - whether the Request uses SSL or not.
      */
     public void setSecureRequest(boolean secure) {
         _isSecure = secure;
     }
 
     /**
-     * <code>setContent</code> will set the body for this request. Note, this is
-     * only valid for POST and PUT operations, however, if called and the request
-     * represents some other HTTP method, it will be no-op'd.
+     * <code>setContent</code> will set the body for this request. Note, this is only valid for POST and PUT operations,
+     * however, if called and the request represents some other HTTP method, it will be no-op'd.
      *
-     * @param content
-     *          request content
+     * @param content request content
      */
     public void setContent(String content) {
         if (_method instanceof EntityEnclosingMethod) {
@@ -229,14 +221,10 @@ public class HttpRequest {
      * It is legal for <code>realm</code> to be null.
      * </p>
      *
-     * @param username
-     *          the user
-     * @param password
-     *          the user's password
-     * @param authType
-     *          authentication type
-     * @param realm
-     *          authentication realm
+     * @param username the user
+     * @param password the user's password
+     * @param authType authentication type
+     * @param realm authentication realm
      */
     public void setAuthenticationCredentials(String username, String password, int authType, String realm) {
         if (username == null) {
@@ -257,16 +245,13 @@ public class HttpRequest {
     }
 
     /**
-     * <code>addRequestHeader</code> adds a request header to this request. If a
-     * request header of the same name already exists, the new value, will be
-     * added to the set of already existing values.
+     * <code>addRequestHeader</code> adds a request header to this request. If a request header of the same name already
+     * exists, the new value, will be added to the set of already existing values.
      *
      * <strong>NOTE:</strong> that header names are not case-sensitive.
      *
-     * @param headerName
-     *          request header name
-     * @param headerValue
-     *          request header value
+     * @param headerName request header name
+     * @param headerValue request header value
      */
     public void addRequestHeader(String headerName, String headerValue) {
         _method.addRequestHeader(headerName, headerValue);
@@ -288,15 +273,13 @@ public class HttpRequest {
     }
 
     /**
-     * <code>setRequestHeader</code> sets a request header for this request
-     * overwritting any previously existing header/values with the same name.
+     * <code>setRequestHeader</code> sets a request header for this request overwritting any previously existing
+     * header/values with the same name.
      *
      * <strong>NOTE:</strong> Header names are not case-sensitive.
      *
-     * @param headerName
-     *          request header name
-     * @param headerValue
-     *          request header value
+     * @param headerName request header name
+     * @param headerValue request header value
      */
     public void setRequestHeader(String headerName, String headerValue) {
         _method.setRequestHeader(headerName, headerValue);
@@ -305,24 +288,23 @@ public class HttpRequest {
     }
 
     /**
-     * <code>setFollowRedirects</code> indicates whether HTTP redirects are
-     * followed. By default, redirects are not followed.
+     * <code>setFollowRedirects</code> indicates whether HTTP redirects are followed. By default, redirects are not
+     * followed.
      */
     public void setFollowRedirects(boolean followRedirects) {
         _method.setFollowRedirects(followRedirects);
     }
 
     /**
-     * <code>getFollowRedirects</code> indicates whether HTTP redirects are
-     * followed.
+     * <code>getFollowRedirects</code> indicates whether HTTP redirects are followed.
      */
     public boolean getFollowRedirects() {
         return _method.getFollowRedirects();
     }
 
     /**
-     * <code>setState</code> will set the HTTP state for the current request (i.e.
-     * session tracking). This has the side affect
+     * <code>setState</code> will set the HTTP state for the current request (i.e. session tracking). This has the side
+     * affect
      */
     public void setState(HttpState state) {
         _state = state;
@@ -330,12 +312,10 @@ public class HttpRequest {
     }
 
     /**
-     * <code>execute</code> will dispatch the current request to the target
-     * server.
+     * <code>execute</code> will dispatch the current request to the target server.
      *
      * @return HttpResponse the server's response.
-     * @throws IOException
-     *           if an I/O error occurs during dispatch.
+     * @throws IOException if an I/O error occurs during dispatch.
      */
     public HttpResponse execute() throws IOException, HttpException {
         String method;
@@ -444,13 +424,11 @@ public class HttpRequest {
     }
 
     /*
-     * private methods
-     * ========================================================================
+     * private methods ========================================================================
      */
 
     private void createCookie(String cookieHeader) {
-        String cookieLine =
-                cookieHeader.substring(cookieHeader.indexOf(':') + 1).trim();
+        String cookieLine = cookieHeader.substring(cookieHeader.indexOf(':') + 1).trim();
         StringTokenizer st = new StringTokenizer(cookieLine, " ;");
         Cookie cookie = new Cookie();
         cookie.setVersion(1);
@@ -480,21 +458,21 @@ public class HttpRequest {
     }
 
     /**
-     * Adds any support request headers necessary for this request. These headers
-     * will be added based on the state of the request.
+     * Adds any support request headers necessary for this request. These headers will be added based on the state of the
+     * request.
      */
     private void addSupportHeaders() {
 
         // Authentication headers
         // NOTE: Possibly move logic to generic method
         switch (_authType) {
-            case NO_AUTHENTICATION:
-                break;
-            case BASIC_AUTHENTICATION:
-                setBasicAuthorizationHeader();
-                break;
-            case DIGEST_AUTHENTICATION:
-                throw new UnsupportedOperationException("Digest Authentication is not currently " + "supported");
+        case NO_AUTHENTICATION:
+            break;
+        case BASIC_AUTHENTICATION:
+            setBasicAuthorizationHeader();
+            break;
+        case DIGEST_AUTHENTICATION:
+            throw new UnsupportedOperationException("Digest Authentication is not currently " + "supported");
         }
 
         // A Host header will be added to each request to handle
@@ -510,12 +488,10 @@ public class HttpRequest {
     }
 
     /**
-     * Sets a basic authentication header in the request is Request is configured
-     * to use basic authentication
+     * Sets a basic authentication header in the request is Request is configured to use basic authentication
      */
     private void setBasicAuthorizationHeader() {
-        UsernamePasswordCredentials cred =
-                (UsernamePasswordCredentials) getState().getCredentials(new AuthScope(_host, _port, null));
+        UsernamePasswordCredentials cred = (UsernamePasswordCredentials) getState().getCredentials(new AuthScope(_host, _port, null));
         String authString = null;
         if (cred != null) {
             authString = "Basic " + Util.getBase64EncodedString(cred.getUserName() + ":" + cred.getPassword());
@@ -535,14 +511,12 @@ public class HttpRequest {
     }
 
     /**
-     * Sets a host header in the request. If the configured host value is an IP
-     * address, the Host header will be sent, but without any value.
+     * Sets a host header in the request. If the configured host value is an IP address, the Host header will be sent, but
+     * without any value.
      *
-     * If we adhered to the HTTP/1.1 spec, the Host header must be empty of the
-     * target server is identified via IP address. However, no user agents I've
-     * tested follow this. And if a custom client library does this, it may not
-     * work properly with the target server. For now, the Host request-header will
-     * always have a value.
+     * If we adhered to the HTTP/1.1 spec, the Host header must be empty of the target server is identified via IP address.
+     * However, no user agents I've tested follow this. And if a custom client library does this, it may not work properly
+     * with the target server. For now, the Host request-header will always have a value.
      */
     private void setHostHeader() {
         if (_port == DEFAULT_HTTP_PORT || _port == DEFAULT_SSL_PORT) {
@@ -559,8 +533,7 @@ public class HttpRequest {
         if (_useCookies) {
             Cookie[] cookies = _state.getCookies();
             if (cookies != null && cookies.length > 0) {
-                Header cHeader =
-                        CookiePolicy.getCookieSpec(CookiePolicy.RFC_2109).formatCookieHeader(_state.getCookies());
+                Header cHeader = CookiePolicy.getCookieSpec(CookiePolicy.RFC_2109).formatCookieHeader(_state.getCookies());
                 if (cHeader != null) {
                     _method.setRequestHeader(cHeader);
                 }

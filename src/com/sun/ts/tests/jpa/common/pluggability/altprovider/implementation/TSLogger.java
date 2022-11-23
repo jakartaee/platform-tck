@@ -77,19 +77,15 @@ public class TSLogger extends Logger {
     }
 
     /**
-     * Find or create a logger for a named subsystem. If a logger has already been
-     * created with the given name it is returned. Otherwise a new logger is
-     * created.
+     * Find or create a logger for a named subsystem. If a logger has already been created with the given name it is
+     * returned. Otherwise a new logger is created.
      * <p/>
-     * If a new logger is created its log level will be configured based on the
-     * LogManager configuration and it will configured to also send logging output
-     * to its parent's handlers. It will be registered in the LogManager global
+     * If a new logger is created its log level will be configured based on the LogManager configuration and it will
+     * configured to also send logging output to its parent's handlers. It will be registered in the LogManager global
      * namespace.
      *
-     * @param name
-     *          A name for the logger. This should be a dot-separated name and
-     *          should normally be based on the package name or class name of the
-     *          subsystem, such as java.net or javax.swing
+     * @param name A name for the logger. This should be a dot-separated name and should normally be based on the package
+     * name or class name of the subsystem, such as java.net or javax.swing
      * @return a suitable Logger
      */
     public static synchronized TSLogger getTSLogger(String name) {
@@ -105,7 +101,8 @@ public class TSLogger extends Logger {
         // }
 
         if (tsLogger != null) {
-            if (tsLogger.getName().equals(name)) result = tsLogger;
+            if (tsLogger.getName().equals(name))
+                result = tsLogger;
         } else {
             result = new TSLogger(name);
             manager.addLogger(result);
@@ -117,13 +114,11 @@ public class TSLogger extends Logger {
     /**
      * Log a message, with no arguments.
      * <p/>
-     * If the logger is currently enabled for the given message level then the
-     * given message is forwarded to all the registered output Handler objects at
-     * the Level.INFO level
+     * If the logger is currently enabled for the given message level then the given message is forwarded to all the
+     * registered output Handler objects at the Level.INFO level
      * <p/>
      *
-     * @param msg
-     *          The string message (or a key in the message catalog)
+     * @param msg The string message (or a key in the message catalog)
      */
     public void log(String msg) {
         // assign default context (JPA) to all messages ???
@@ -133,14 +128,12 @@ public class TSLogger extends Logger {
     /**
      * Log a message, with no arguments.
      * <p/>
-     * If the logger is currently enabled for the given message level then the
-     * given message is forwarded to all the registered output Handler objects.
+     * If the logger is currently enabled for the given message level then the given message is forwarded to all the
+     * registered output Handler objects.
      * <p/>
      *
-     * @param level
-     *          One of the message level identifiers, e.g. SEVERE
-     * @param msg
-     *          The string message (or a key in the message catalog)
+     * @param level One of the message level identifiers, e.g. SEVERE
+     * @param msg The string message (or a key in the message catalog)
      */
     public void log(Level level, String msg) {
         // assign default context (JPA) to all messages ???
@@ -151,16 +144,13 @@ public class TSLogger extends Logger {
     /**
      * Log a message, with no arguments.
      * <p/>
-     * If the logger is currently enabled for the given message level then the
-     * given message is forwarded to all the registered output Handler objects.
+     * If the logger is currently enabled for the given message level then the given message is forwarded to all the
+     * registered output Handler objects.
      * <p/>
      *
-     * @param level
-     *          One of the message level identifiers, e.g. SEVERE
-     * @param dateTime
-     *          The dateTime stamp of the message
-     * @param msg
-     *          The string message (or a key in the message catalog)
+     * @param level One of the message level identifiers, e.g. SEVERE
+     * @param dateTime The dateTime stamp of the message
+     * @param msg The string message (or a key in the message catalog)
      */
     public void log(Level level, String dateTime, String msg) {
         // assign default context (JPA) to all messages ???
@@ -171,16 +161,13 @@ public class TSLogger extends Logger {
     /**
      * Log a message, with no arguments.
      * <p/>
-     * If the logger is currently enabled for the given message level then the
-     * given message is forwarded to all the registered output Handler objects.
+     * If the logger is currently enabled for the given message level then the given message is forwarded to all the
+     * registered output Handler objects.
      * <p/>
      *
-     * @param level
-     *          One of the message level identifiers, e.g. SEVERE
-     * @param msg
-     *          The string message (or a key in the message catalog)
-     * @param contextId
-     *          the logging context Id
+     * @param level One of the message level identifiers, e.g. SEVERE
+     * @param msg The string message (or a key in the message catalog)
+     * @param contextId the logging context Id
      */
     public void log(Level level, String dateTime, String msg, String contextId) {
         if (level.intValue() < levelValue || levelValue == offValue) {
@@ -209,8 +196,7 @@ public class TSLogger extends Logger {
     /**
      * Log a TSLogRecord.
      *
-     * @param record
-     *          the TSLogRecord to be published
+     * @param record the TSLogRecord to be published
      */
     public void log(TSLogRecord record) {
         if (record.getLevel().intValue() < levelValue || levelValue == offValue) {
@@ -239,7 +225,8 @@ public class TSLogger extends Logger {
                     // Parent handler may not be able to
                     // Format the TSLogRecord, because
                     // TSLogRecord is the custom record.
-                    if (targets[i] instanceof FileHandler) targets[i].publish(record);
+                    if (targets[i] instanceof FileHandler)
+                        targets[i].publish(record);
                 }
             }
 

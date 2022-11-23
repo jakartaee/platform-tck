@@ -32,7 +32,8 @@ public class Client extends PMClientBase {
 
     String schemaGenerationDir = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -123,15 +124,13 @@ public class Client extends PMClientBase {
 
         pass1b = pass1b || findDataInFile(f1, "CREATE UNIQUE INDEX MYUNIQUECONSTRAINT ON SCHEMAGENSIMPLE (ID, NAME)");
         /*
-         * CREATE TABLE SCHEMAGENSIMPLE (ID INTEGER NOT NULL, NAME VARCHAR(255),
-         * PRIMARY KEY (ID)) ALTER TABLE SCHEMAGENSIMPLE ADD CONSTRAINT
-         * MYUNIQUECONSTRAINT UNIQUE (ID, NAME)
+         * CREATE TABLE SCHEMAGENSIMPLE (ID INTEGER NOT NULL, NAME VARCHAR(255), PRIMARY KEY (ID)) ALTER TABLE SCHEMAGENSIMPLE
+         * ADD CONSTRAINT MYUNIQUECONSTRAINT UNIQUE (ID, NAME)
          */
 
         /*
-         * Bug 27422087: Some databases do drop things such as indexes and
-         * constraints associated with a table when the table is dropped. pass2a =
-         * findDataInFile(f2, "ALTER TABLE SCHEMAGENSIMPLE DROP");
+         * Bug 27422087: Some databases do drop things such as indexes and constraints associated with a table when the table is
+         * dropped. pass2a = findDataInFile(f2, "ALTER TABLE SCHEMAGENSIMPLE DROP");
          */
 
         pass2b = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");

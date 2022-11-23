@@ -67,14 +67,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:283; JavaEE:SPEC:284
      *
-     * @test_Strategy: Package an application with an application client and an
-     *                 EJB jar file. Use JavaEE 5.0 DD for the 2 modules, and a
-     *                 JavaEE 1.2 DD for the application DD.
+     * @test_Strategy: Package an application with an application client and an EJB jar file. Use JavaEE 5.0 DD for the 2
+     * modules, and a JavaEE 1.2 DD for the application DD.
      *
-     *                 Check that: - we can deploy the application, - the
-     *                 application client can lookup a bean - the application
-     *                 client can create a bean instance - the application client
-     *                 can invoke a business method on that instance
+     * Check that: - we can deploy the application, - the application client can lookup a bean - the application client can
+     * create a bean instance - the application client can invoke a business method on that instance
      */
     public void test12Compat() throws Fault {
         TestBean bean;

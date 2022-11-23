@@ -28,7 +28,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/foo"})
+@WebFilter(urlPatterns = { "/foo" })
 public final class TestFilter implements Filter {
 
     // The filter configuration object we are associated with. If this value
@@ -49,7 +49,8 @@ public final class TestFilter implements Filter {
     }
 
     // Remove the filter configuration object for this filter.
-    public void destroy() {}
+    public void destroy() {
+    }
 
     // initialize the filter configuration object for this filter.
     public void init(FilterConfig filterConfig) {

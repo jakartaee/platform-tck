@@ -129,13 +129,15 @@ public class S1TestBeanEJB implements SessionBean {
                     "Verify that the UserTransaction commit call" + "commited the transaction to the database level");
 
             tempName1 = beanRef.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             beanRef2 = (TxECMPBean) beanHome.findByPrimaryKey(pkey);
 
             tempName2 = beanRef2.getBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b1) {

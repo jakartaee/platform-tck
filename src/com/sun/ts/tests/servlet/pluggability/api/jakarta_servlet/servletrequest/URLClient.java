@@ -28,9 +28,8 @@ public class URLClient extends RequestClient {
     private static final String CONTEXT_ROOT = "/servlet_plu_servletrequest_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends RequestClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -62,8 +60,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:174
      *
-     * @test_Strategy: Servlet sets some attributes and verifies they can be
-     * retrieved.
+     * @test_Strategy: Servlet sets some attributes and verifies they can be retrieved.
      *
      */
 
@@ -104,8 +101,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:177
      *
-     * @test_Strategy: Client does not set an encoding and Servlet tries to
-     * retrieve it.
+     * @test_Strategy: Client does not set an encoding and Servlet tries to retrieve it.
      *
      */
 
@@ -114,8 +110,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:180
      *
-     * @test_Strategy: Servlet compares this length to the actual length of the
-     * content body read in using getInputStream
+     * @test_Strategy: Servlet compares this length to the actual length of the content body read in using getInputStream
      *
      */
 
@@ -147,8 +142,8 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:186
      *
-     * @test_Strategy: Servlet gets a Reader object using
-     * ServletRequest.getReader() then tries to get the inputStream Object
+     * @test_Strategy: Servlet gets a Reader object using ServletRequest.getReader() then tries to get the inputStream
+     * Object
      *
      */
 
@@ -165,8 +160,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:207
      *
-     * @test_Strategy: Client does not specify a locale and the servlet verifies
-     * the default.
+     * @test_Strategy: Client does not specify a locale and the servlet verifies the default.
      */
 
     /*
@@ -182,8 +176,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:209
      *
-     * @test_Strategy: Client does not specify a locale and the servlet verifies
-     * the default.
+     * @test_Strategy: Client does not specify a locale and the servlet verifies the default.
      */
 
     /*
@@ -191,8 +184,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:193
      *
-     * @test_Strategy: Client sets several parameters and the servlet attempts to
-     * access them.
+     * @test_Strategy: Client sets several parameters and the servlet attempts to access them.
      */
 
     /*
@@ -200,8 +192,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:189
      *
-     * @test_Strategy: Client sets several parameters and the servlet attempts to
-     * access them.
+     * @test_Strategy: Client sets several parameters and the servlet attempts to access them.
      */
 
     /*
@@ -209,8 +200,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:190
      *
-     * @test_Strategy: Client does not set any parameters and the servlet attempts
-     * to access them.
+     * @test_Strategy: Client does not set any parameters and the servlet attempts to access them.
      */
     /*
      * @testName: getParameterTest
@@ -232,8 +222,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:191
      *
-     * @test_Strategy: Client sets a parameter which has 2 values and servlet
-     * verifies boths values.
+     * @test_Strategy: Client sets a parameter which has 2 values and servlet verifies boths values.
      */
 
     /*
@@ -263,8 +252,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:201
      *
-     * @test_Strategy: Servlet gets an InputStream Object then tries to get a
-     * Reader Object.
+     * @test_Strategy: Servlet gets an InputStream Object then tries to get a Reader Object.
      */
 
     /*
@@ -272,8 +260,7 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:200
      *
-     * @test_Strategy: Client sets some content but with an invalid encoding,
-     * servlet tries to read content.
+     * @test_Strategy: Client sets some content but with an invalid encoding, servlet tries to read content.
      */
 
     /*
@@ -333,16 +320,14 @@ public class URLClient extends RequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:210
      *
-     * @test_Strategy: Servlet verifies the isSecure method for the non-secure
-     * case.
+     * @test_Strategy: Servlet verifies the isSecure method for the non-secure case.
      */
     /*
      * @testName: removeAttributeTest
      *
      * @assertion_ids: Servlet:JAVADOC:205
      *
-     * @test_Strategy: Servlet adds then removes an attribute, then verifies it
-     * was removed.
+     * @test_Strategy: Servlet adds then removes an attribute, then verifies it was removed.
      */
     /*
      * @testName: setAttributeTest
@@ -370,11 +355,9 @@ public class URLClient extends RequestClient {
     /*
      * @testName: setCharacterEncodingTest1
      *
-     * @assertion_ids: Servlet:JAVADOC:178; Servlet:JAVADOC:177; Servlet:SPEC:28;
-     * Servlet:SPEC:213;
+     * @assertion_ids: Servlet:JAVADOC:178; Servlet:JAVADOC:177; Servlet:SPEC:28; Servlet:SPEC:213;
      *
-     * @test_Strategy: ServletRequest calls getReader()first; then sets a new
-     * encoding and tries to retrieve it. verifies that the new encoding is
-     * ignored.
+     * @test_Strategy: ServletRequest calls getReader()first; then sets a new encoding and tries to retrieve it. verifies
+     * that the new encoding is ignored.
      */
 }

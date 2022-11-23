@@ -61,23 +61,23 @@ public class SigTestDriver extends SignatureTestDriver {
     private static final String EXCLUDE_JDK_CLASS_FLAG = "-IgnoreJDKClass";
 
     private static String[] excludeJdkClasses = {
-        "java.util.Map",
-        "java.lang.Object",
-        "java.io.ByteArrayInputStream",
-        "java.io.InputStream",
-        "java.lang.Deprecated",
-        "java.io.Writer",
-        "java.io.OutputStream",
-        "java.util.List",
-        "java.util.Collection",
-        "java.lang.instrument.IllegalClassFormatException",
-        "javax.transaction.xa.XAException",
-        "java.lang.annotation.Repeatable",
-        "java.lang.InterruptedException",
-        "java.lang.CloneNotSupportedException",
-        "java.lang.Throwable",
-        "java.lang.Thread",
-        "java.lang.Enum"
+            "java.util.Map",
+            "java.lang.Object",
+            "java.io.ByteArrayInputStream",
+            "java.io.InputStream",
+            "java.lang.Deprecated",
+            "java.io.Writer",
+            "java.io.OutputStream",
+            "java.util.List",
+            "java.util.Collection",
+            "java.lang.instrument.IllegalClassFormatException",
+            "javax.transaction.xa.XAException",
+            "java.lang.annotation.Repeatable",
+            "java.lang.InterruptedException",
+            "java.lang.CloneNotSupportedException",
+            "java.lang.Throwable",
+            "java.lang.Thread",
+            "java.lang.Enum"
     };
 
     // ---------------------------------------- Methods from SignatureTestDriver
@@ -173,8 +173,8 @@ public class SigTestDriver extends SignatureTestDriver {
 
         @SuppressWarnings("unchecked")
         Method runMethod = sigTestClass.getDeclaredMethod(
-                "run", new Class[] {String[].class, PrintWriter.class, PrintWriter.class});
-        runMethod.invoke(sigTestInstance, new Object[] {testArguments, new PrintWriter(output, true), null});
+                "run", new Class[] { String[].class, PrintWriter.class, PrintWriter.class });
+        runMethod.invoke(sigTestInstance, new Object[] { testArguments, new PrintWriter(output, true), null });
 
         String rawMessages = output.toString();
 
@@ -213,8 +213,8 @@ public class SigTestDriver extends SignatureTestDriver {
 
         @SuppressWarnings("unchecked")
         Method runMethod = sigTestClass.getDeclaredMethod(
-                "run", new Class[] {String[].class, PrintWriter.class, PrintWriter.class});
-        runMethod.invoke(sigTestInstance, new Object[] {testArguments, new PrintWriter(output, true), null});
+                "run", new Class[] { String[].class, PrintWriter.class, PrintWriter.class });
+        runMethod.invoke(sigTestInstance, new Object[] { testArguments, new PrintWriter(output, true), null });
 
         String rawMessages = output.toString();
 
@@ -227,8 +227,7 @@ public class SigTestDriver extends SignatureTestDriver {
     }
 
     /*
-     * @return This returns true if javax.transaction.xa is not found in the
-     * JTA API jar
+     * @return This returns true if javax.transaction.xa is not found in the JTA API jar
      */
     protected boolean verifyJTAJarForNoXA(String classpath, String repositoryDir) throws Exception {
 
@@ -259,8 +258,8 @@ public class SigTestDriver extends SignatureTestDriver {
 
         @SuppressWarnings("unchecked")
         Method runMethod = sigTestClass.getDeclaredMethod(
-                "run", new Class[] {String[].class, PrintWriter.class, PrintWriter.class});
-        runMethod.invoke(sigTestInstance, new Object[] {testArguments, new PrintWriter(output, true), null});
+                "run", new Class[] { String[].class, PrintWriter.class, PrintWriter.class });
+        runMethod.invoke(sigTestInstance, new Object[] { testArguments, new PrintWriter(output, true), null });
         String rawMessages = output.toString();
 
         // currently, there is no way to determine if there are error msgs in

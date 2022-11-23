@@ -38,12 +38,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
-@WebService(
-        portName = "HelloPort",
-        targetNamespace = "http://dlhandlerservice.org/wsdl",
-        serviceName = "DLHandlerService",
-        wsdlLocation = "WEB-INF/wsdl/DLHandlerService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.Hello")
+@WebService(portName = "HelloPort", targetNamespace = "http://dlhandlerservice.org/wsdl", serviceName = "DLHandlerService", wsdlLocation = "WEB-INF/wsdl/DLHandlerService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.Hello")
 public class HelloImpl implements Hello {
 
     @Resource
@@ -205,8 +200,7 @@ public class HelloImpl implements Hello {
                     mc = wscontext.getMessageContext();
                     TestUtil.logTrace("MessageContext=" + mc);
                     if (mc != null) {
-                        Map<String, DataHandler> m1 =
-                                (Map<String, DataHandler>) mc.get(MessageContext.INBOUND_MESSAGE_ATTACHMENTS);
+                        Map<String, DataHandler> m1 = (Map<String, DataHandler>) mc.get(MessageContext.INBOUND_MESSAGE_ATTACHMENTS);
                         StringBuffer sb = new StringBuffer();
                         int cnt = 0;
                         try {
@@ -248,8 +242,7 @@ public class HelloImpl implements Hello {
                             results.add("Endpoint:MessageContext.HTTP_RESPONSE_CODE=null");
                         }
 
-                        Map<String, List<String>> m2 =
-                                (Map<String, List<String>>) mc.get(MessageContext.HTTP_REQUEST_HEADERS);
+                        Map<String, List<String>> m2 = (Map<String, List<String>>) mc.get(MessageContext.HTTP_REQUEST_HEADERS);
                         sb = new StringBuffer();
                         cnt = 0;
                         try {

@@ -25,8 +25,7 @@ import jakarta.ejb.LockType;
 import jakarta.ejb.Singleton;
 
 /**
- * The purpose of this class is to verify a subclass can override the @Lock
- * metadata by the superclasses.
+ * The purpose of this class is to verify a subclass can override the @Lock metadata by the superclasses.
  */
 @Singleton
 public class InverseLockSingletonBean extends ReadLockBeanBase implements ConcurrencyIF {

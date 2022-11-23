@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:12.1; JSTL:SPEC:12.1.1
      *
-     * @testStrategy: Validate the the 'value' attribute of the out action can
-     * accept both EL and static values.
+     * @testStrategy: Validate the the 'value' attribute of the out action can accept both EL and static values.
      */
     public void positiveOutValueAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveOutValueAttributeTest");
@@ -79,8 +76,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:12.3; JSTL:SPEC:12.3.1
      *
-     * @testStrategy: Validate that the 'default' attribute of the out action can
-     * accept both EL and static values.
+     * @testStrategy: Validate that the 'default' attribute of the out action can accept both EL and static values.
      */
     public void positiveOutDefaultAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveOutDefaultAttributeTest");
@@ -92,9 +88,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:12.5
      *
-     * @testStrategy: Validate the default value returned in case of an expression
-     * failure, or a null value returned, can be specified in the body of the
-     * action.
+     * @testStrategy: Validate the default value returned in case of an expression failure, or a null value returned, can be
+     * specified in the body of the action.
      *
      */
     public void positiveOutBodyBehaviorTest() throws Fault {
@@ -107,8 +102,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:12.2.1; JSTL:SPEC:12.2.10
      *
-     * @testStrategy: Validate that if escapeXml is not specified, the escaping of
-     * <, >, ', ", & will be performed by default.
+     * @testStrategy: Validate that if escapeXml is not specified, the escaping of <, >, ', ", & will be performed by
+     * default.
      */
     public void positiveOutEscXmlDefaultTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveOutEscXmlDefaultTest");
@@ -118,12 +113,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveOutEscXmlTest
      *
-     * @assertion_ids: JSTL:SPEC:12.2.2; JSTL:SPEC:12.2.3; JSTL:SPEC:12.2.5;
-     * JSTL:SPEC:12.2.6; JSTL:SPEC:12.2.7; JSTL:SPEC:12.2.8; JSTL:SPEC:12.2.9
+     * @assertion_ids: JSTL:SPEC:12.2.2; JSTL:SPEC:12.2.3; JSTL:SPEC:12.2.5; JSTL:SPEC:12.2.6; JSTL:SPEC:12.2.7;
+     * JSTL:SPEC:12.2.8; JSTL:SPEC:12.2.9
      *
-     * @testStrategy: Validate that escapeXml behaves as specified when the
-     * setting is true or false. If true, <, >, ', ", and & will be escaped, and
-     * if false, no escaping is performed.
+     * @testStrategy: Validate that escapeXml behaves as specified when the setting is true or false. If true, <, >, ', ",
+     * and & will be escaped, and if false, no escaping is performed.
      */
     public void positiveOutEscXmlTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveOutEscXmlTest");
@@ -135,8 +129,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:12.7
      *
-     * @testStrategy: Validate that an exception caused by the body content is
-     * properly propagated and not handled by the action.
+     * @testStrategy: Validate that an exception caused by the body content is properly propagated and not handled by the
+     * action.
      */
     public void negativeOutBodyContentExcTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeOutBodyContentExcTest");
@@ -148,9 +142,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:12.1.4
      *
-     * @test_Strategy: Validate that if a java.io.Reader object is provided to the
-     * value attribute of the out tag, that the contents of the reader are emitted
-     * to the current JspWriter object.
+     * @test_Strategy: Validate that if a java.io.Reader object is provided to the value attribute of the out tag, that the
+     * contents of the reader are emitted to the current JspWriter object.
      */
     public void positiveOutReaderTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jstl_core_gen_out_web/positiveOutReaderTest.jsp HTTP/1.1");

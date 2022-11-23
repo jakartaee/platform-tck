@@ -23,9 +23,10 @@ import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 
 /**
- * The purpose of this class is to verify it inherits all @AccessTimeout
- * metadata from its superclass, AnnotatedAccessTimeoutBeanBase.
+ * The purpose of this class is to verify it inherits all @AccessTimeout metadata from its superclass,
+ * AnnotatedAccessTimeoutBeanBase.
  */
 @Singleton
 @Startup
-public class InheritAccessTimeoutBean extends AnnotatedAccessTimeoutBeanBase implements AccessTimeoutIF {}
+public class InheritAccessTimeoutBean extends AnnotatedAccessTimeoutBeanBase implements AccessTimeoutIF {
+}

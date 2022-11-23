@@ -130,16 +130,20 @@ public class MyCompletionListener implements CompletionListener {
             try {
                 if (tMsg.getText().equals("Call close method")) {
                     TestUtil.logMsg("Calling JMSContext.close() MUST throw IllegalStateRuntimeException");
-                    if (context != null) context.close();
+                    if (context != null)
+                        context.close();
                 } else if (tMsg.getText().equals("Call stop method")) {
                     TestUtil.logMsg("Calling JMSContext.stop() MUST be allowed");
-                    if (context != null) context.stop();
+                    if (context != null)
+                        context.stop();
                 } else if (tMsg.getText().equals("Call commit method")) {
                     TestUtil.logMsg("Calling JMSContext.commit() MUST throw IllegalStateRuntimeException");
-                    if (context != null) context.commit();
+                    if (context != null)
+                        context.commit();
                 } else if (tMsg.getText().equals("Call rollback method")) {
                     TestUtil.logMsg("Calling JMSContext.rollback() MUST throw IllegalStateRuntimeException");
-                    if (context != null) context.rollback();
+                    if (context != null)
+                        context.rollback();
                 }
             } catch (IllegalStateRuntimeException e) {
                 TestUtil.logMsg("Caught expected IllegalStateRuntimeException");

@@ -34,7 +34,7 @@ import jakarta.resource.spi.ResourceAdapter;
  * will/must be inherited by any child/sub classes.
  *
  */
-@Activation(messageListeners = {jakarta.resource.spi.work.WorkListener.class})
+@Activation(messageListeners = { jakarta.resource.spi.work.WorkListener.class })
 public class IBAnnoActivationSpecParent implements ActivationSpec, java.io.Serializable {
 
     private String annoDestinationName;

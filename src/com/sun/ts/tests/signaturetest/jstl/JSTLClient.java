@@ -41,43 +41,39 @@ public class JSTLClient extends SigTest {
     /***** Abstract Method Implementation *****/
 
     /**
-     * Returns a list of strings where each string represents a package name. Each
-     * package name will have it's signature tested by the signature test
-     * framework.
+     * Returns a list of strings where each string represents a package name. Each package name will have it's signature
+     * tested by the signature test framework.
      *
-     * @return String[] The names of the packages whose signatures should be
-     *         verified.
+     * @return String[] The names of the packages whose signatures should be verified.
      */
     protected String[] getPackages() {
         return new String[] {
-            "jakarta.servlet.jsp.jstl.core",
-            "jakarta.servlet.jsp.jstl.fmt",
-            "jakarta.servlet.jsp.jstl.sql",
-            "jakarta.servlet.jsp.jstl.tlv"
+                "jakarta.servlet.jsp.jstl.core",
+                "jakarta.servlet.jsp.jstl.fmt",
+                "jakarta.servlet.jsp.jstl.sql",
+                "jakarta.servlet.jsp.jstl.tlv"
         };
     }
 
     /***** Boilerplate Code *****/
 
     /*
-     *   @class.setup_props: ts_home, The base path of this TCK;
-     *                       sigTestClasspath;
+     * @class.setup_props: ts_home, The base path of this TCK; sigTestClasspath;
      */
 
     /*
-     * @testName:         signatureTest
-     * @assertion:        A Provisioning platform must implement the required
-     *                    classes and APIs specified in the Provisioning
-     *                    Specification.
-     * @test_Strategy:    Using reflection, gather the implementation specific
-     *                    classes and APIs.  Compare these results with the
-     *                    expected (required) classes and APIs.
+     * @testName: signatureTest
+     *
+     * @assertion: A Provisioning platform must implement the required classes and APIs specified in the Provisioning
+     * Specification.
+     *
+     * @test_Strategy: Using reflection, gather the implementation specific classes and APIs. Compare these results with the
+     * expected (required) classes and APIs.
      *
      */
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -86,8 +82,7 @@ public class JSTLClient extends SigTest {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         return super.run(args, out, err);

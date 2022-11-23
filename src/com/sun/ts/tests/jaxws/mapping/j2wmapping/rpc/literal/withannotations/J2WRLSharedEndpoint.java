@@ -21,10 +21,7 @@
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
 @jakarta.jws.WebService(name = "MYJ2WRLSharedEndpoint", targetNamespace = "http://rpclitservice.org/wsdl")
-@jakarta.jws.soap.SOAPBinding(
-        style = jakarta.jws.soap.SOAPBinding.Style.RPC,
-        use = jakarta.jws.soap.SOAPBinding.Use.LITERAL,
-        parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface J2WRLSharedEndpoint extends InheritedInterface {
 
     public java.lang.String arrayOperationFromClient(java.lang.String[] arg0);
@@ -41,12 +38,10 @@ public interface J2WRLSharedEndpoint extends InheritedInterface {
     public String holderMethodDefault(jakarta.xml.ws.Holder<java.lang.String> varStringDefault);
 
     public String holderMethodInOut(
-            @jakarta.jws.WebParam(name = "varStringInOut", mode = jakarta.jws.WebParam.Mode.INOUT)
-                    jakarta.xml.ws.Holder<java.lang.String> varStringInOut);
+            @jakarta.jws.WebParam(name = "varStringInOut", mode = jakarta.jws.WebParam.Mode.INOUT) jakarta.xml.ws.Holder<java.lang.String> varStringInOut);
 
     public String holderMethodOut(
-            @jakarta.jws.WebParam(name = "varStringOut", mode = jakarta.jws.WebParam.Mode.OUT)
-                    jakarta.xml.ws.Holder<java.lang.String> varStringOut);
+            @jakarta.jws.WebParam(name = "varStringOut", mode = jakarta.jws.WebParam.Mode.OUT) jakarta.xml.ws.Holder<java.lang.String> varStringOut);
 
     // A method with more than 1 input parts
     public java.lang.String oneTwoThree(int one, long two, double three);
@@ -68,7 +63,6 @@ public interface J2WRLSharedEndpoint extends InheritedInterface {
 
     @jakarta.jws.WebMethod
     public void operationWithHeaderAndHeaderFaultAndFault(
-            @jakarta.jws.WebParam(name = "ConfigHeader", header = true, mode = jakarta.jws.WebParam.Mode.IN)
-                    ConfigHeader configheader)
+            @jakarta.jws.WebParam(name = "ConfigHeader", header = true, mode = jakarta.jws.WebParam.Mode.IN) ConfigHeader configheader)
             throws ConfigHeaderFault, MyFault, MyOtherFault;
 }

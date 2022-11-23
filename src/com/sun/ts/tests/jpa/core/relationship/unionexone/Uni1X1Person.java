@@ -39,7 +39,8 @@ public class Uni1X1Person implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Uni1X1Project project;
 
-    public Uni1X1Person() {}
+    public Uni1X1Person() {
+    }
 
     public Uni1X1Project getProject() {
         return project;

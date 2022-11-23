@@ -39,7 +39,8 @@ public class Uni1XMProject implements Serializable {
 
     private Float budget;
 
-    public Uni1XMProject() {}
+    public Uni1XMProject() {
+    }
 
     public Float getBudget() {
         return budget;

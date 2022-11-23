@@ -27,8 +27,8 @@ import java.net.URLConnection;
 import java.util.Properties;
 
 /**
- * Facade class to ease client access to a TS test deployed in the Web
- * container. Shield clients from underlying TS and HTPP indiosyncrasies.
+ * Facade class to ease client access to a TS test deployed in the Web container. Shield clients from underlying TS and
+ * HTPP indiosyncrasies.
  */
 public class WebServer {
 
@@ -65,8 +65,7 @@ public class WebServer {
     }
 
     /**
-     * Factory method to build a WebServer object from TS props parsing relevant
-     * properties.
+     * Factory method to build a WebServer object from TS props parsing relevant properties.
      */
     public static WebServer newInstance(Properties props) throws IllegalArgumentException {
 
@@ -109,12 +108,9 @@ public class WebServer {
     /**
      * Call test 'testName' in web component deployed as 'webFile'.
      *
-     * @param webFile
-     *          file component (see java.net.URL) of the url the web component
-     *          mapped to.
+     * @param webFile file component (see java.net.URL) of the url the web component mapped to.
      *
-     * @param testName
-     *          Name of the test to run in this web component.
+     * @param testName Name of the test to run in this web component.
      *
      * @return true if test pass. false otherwise.
      */
@@ -123,22 +119,16 @@ public class WebServer {
     }
 
     /**
-     * Call test 'testName' in web component deployed as 'webFile', passing 'args'
-     * as input parameters.
+     * Call test 'testName' in web component deployed as 'webFile', passing 'args' as input parameters.
      *
-     * @param webFile
-     *          file component (see java.net.URL) of the url the web component
-     *          mapped to.
+     * @param webFile file component (see java.net.URL) of the url the web component mapped to.
      *
-     * @param testName
-     *          Name of the test to run in this web component.
+     * @param testName Name of the test to run in this web component.
      *
-     * @param args
-     *          input parameters in a Properties object. This object need at least
-     *          to have valid TS harness logging properties;
+     * @param args input parameters in a Properties object. This object need at least to have valid TS harness logging
+     * properties;
      *
-     * @return output parameters in a Properties object. Return null if a problem
-     *         occured or test failed.
+     * @return output parameters in a Properties object. Return null if a problem occured or test failed.
      */
     public Properties call(String webFile, String testName, Properties args) throws IllegalArgumentException {
 

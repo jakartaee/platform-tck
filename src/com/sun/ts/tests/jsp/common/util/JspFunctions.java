@@ -28,13 +28,13 @@ public class JspFunctions {
     /**
      * Private construtor as all methods are static.
      */
-    private JspFunctions() {}
+    private JspFunctions() {
+    }
 
     /**
      * Returns the provided string in all lower case characters.
      *
-     * @param value
-     *          - string to lower case
+     * @param value - string to lower case
      * @return the provided value as lower case characters
      */
     public static String lowerCase(String value) {
@@ -44,8 +44,7 @@ public class JspFunctions {
     /**
      * Returns the provided string in all upper case characters
      *
-     * @param value
-     *          - string to upper case
+     * @param value - string to upper case
      * @return the provided value as upper case characters
      */
     public static String upperCase(String value) {

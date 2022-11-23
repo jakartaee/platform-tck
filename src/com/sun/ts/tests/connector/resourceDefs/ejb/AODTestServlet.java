@@ -39,16 +39,12 @@ import java.io.PrintWriter;
  *
  */
 
-@DeclareRoles({"Administrator", "Manager", "Employee"})
-@ServletSecurity(
-        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
-        httpMethodConstraints = {
-            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
-        })
-@WebServlet(
-        name = "AODTestServlet",
-        urlPatterns = {"/AODTestServlet"})
+@DeclareRoles({ "Administrator", "Manager", "Employee" })
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = { "Administrator" }), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
+})
+@WebServlet(name = "AODTestServlet", urlPatterns = { "/AODTestServlet" })
 public class AODTestServlet extends HttpServlet {
     private String servletAppContext = null;
 

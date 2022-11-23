@@ -214,8 +214,10 @@ public abstract class BeanEJB implements EntityBean {
                 TestUtil.logErr("Entitybean object B1 was not removed from collection");
                 part2 = false;
             }
-            if (part1 && part2) return true;
-            else return false;
+            if (part1 && part2)
+                return true;
+            else
+                return false;
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e, e);
             return false;
@@ -318,7 +320,8 @@ public abstract class BeanEJB implements EntityBean {
     private Collection copyCollection(Collection c) {
         Vector copy = new Vector();
         Iterator iterator = c.iterator();
-        while (iterator.hasNext()) copy.add(iterator.next());
+        while (iterator.hasNext())
+            copy.add(iterator.next());
         return copy;
     }
 
@@ -349,16 +352,16 @@ public abstract class BeanEJB implements EntityBean {
             setB1(b1);
 
             switch (flag) {
-                case NO_RELATION_SET:
-                    break;
-                case NULL_RELATION_SET:
-                    a1.setB(null);
-                    b1.setA(null);
-                    break;
-                case RELATION_SET:
-                    Collection c = a1.getB();
-                    c.add(b1);
-                    break;
+            case NO_RELATION_SET:
+                break;
+            case NULL_RELATION_SET:
+                a1.setB(null);
+                b1.setA(null);
+                break;
+            case RELATION_SET:
+                Collection c = a1.getB();
+                c.add(b1);
+                break;
             }
 
         } catch (Exception e) {

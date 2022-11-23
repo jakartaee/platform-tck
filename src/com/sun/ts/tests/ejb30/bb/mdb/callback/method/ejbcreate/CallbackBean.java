@@ -24,8 +24,8 @@ import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
 import jakarta.jms.MessageListener;
 
-@MessageDriven(
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
-        })
-public class CallbackBean extends CallbackBean0 implements MessageListener {}
+@MessageDriven(activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+})
+public class CallbackBean extends CallbackBean0 implements MessageListener {
+}

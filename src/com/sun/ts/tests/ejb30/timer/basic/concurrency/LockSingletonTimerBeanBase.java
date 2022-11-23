@@ -145,13 +145,12 @@ public class LockSingletonTimerBeanBase implements TimerIF {
     }
 
     private void lookupTimerService(Map<String, TimerService> timerServiceMap) {
-        timerServiceMap.put(KEY_TIMER_SERVICE_FROM_GLOBAL_LOOKUP, (TimerService)
-                ServiceLocator.lookupNoTry("java:comp/TimerService"));
+        timerServiceMap.put(KEY_TIMER_SERVICE_FROM_GLOBAL_LOOKUP, (TimerService) ServiceLocator.lookupNoTry("java:comp/TimerService"));
         SessionContext sessionContext = (SessionContext) ServiceLocator.lookupNoTry("java:comp/EJBContext");
         timerServiceMap.put(
                 KEY_TIMER_SERVICE_FROM_COMPONENT_LOOKUP, (TimerService) sessionContext.lookup("timerService"));
         timerServiceMap.put(KEY_TIMER_SERVICE_SESSION_CONTEXT, sessionContext.getTimerService());
-        for (Iterator<String> it = timerServiceMap.keySet().iterator(); it.hasNext(); ) {
+        for (Iterator<String> it = timerServiceMap.keySet().iterator(); it.hasNext();) {
             String key = it.next();
             Helper.getLogger().fine("About to getTimers from TimerService " + key);
             TimerService ts = timerServiceMap.get(key);

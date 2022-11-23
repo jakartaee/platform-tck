@@ -26,7 +26,8 @@ import java.util.Set;
 import javax.xml.namespace.QName;
 
 public class ClientHandler2 implements SOAPHandler<SOAPMessageContext> {
-    public void init(java.util.Map<String, Object> config) {}
+    public void init(java.util.Map<String, Object> config) {
+    }
 
     public boolean handleFault(SOAPMessageContext context) {
         HandlerTracker.reportHandleFault(this);

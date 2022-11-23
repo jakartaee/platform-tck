@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,8 +100,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:70;
      *
-     * @test_Strategy: Call SOAPException() constructor and verify creation of a
-     * new SOAPException object.
+     * @test_Strategy: Call SOAPException() constructor and verify creation of a new SOAPException object.
      *
      * Description: Create a SOAPException object
      *
@@ -114,12 +115,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SOAPExceptionConstructor1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -128,7 +132,8 @@ public class URLClient extends EETest {
             throw new Fault("SOAPExceptionConstructor1Test failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPExceptionConstructor1Test failed");
+        if (!pass)
+            throw new Fault("SOAPExceptionConstructor1Test failed");
     }
 
     /*
@@ -136,8 +141,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:71;
      *
-     * @test_Strategy: Call SOAPException(String) constructor and verify creation
-     * of a new SOAPException object.
+     * @test_Strategy: Call SOAPException(String) constructor and verify creation of a new SOAPException object.
      *
      * Description: Create a SOAPException object
      *
@@ -152,12 +156,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SOAPExceptionConstructor2Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -166,7 +173,8 @@ public class URLClient extends EETest {
             throw new Fault("SOAPExceptionConstructor2Test failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPExceptionConstructor2Test failed");
+        if (!pass)
+            throw new Fault("SOAPExceptionConstructor2Test failed");
     }
 
     /*
@@ -174,8 +182,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:72;
      *
-     * @test_Strategy: Call SOAPException(String, Throwable) constructor and
-     * verify creation of a new SOAPException object.
+     * @test_Strategy: Call SOAPException(String, Throwable) constructor and verify creation of a new SOAPException object.
      *
      * Description: Create a SOAPException object
      *
@@ -190,12 +197,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SOAPExceptionConstructor3Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -204,7 +214,8 @@ public class URLClient extends EETest {
             throw new Fault("SOAPExceptionConstructor3Test failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPExceptionConstructor3Test failed");
+        if (!pass)
+            throw new Fault("SOAPExceptionConstructor3Test failed");
     }
 
     /*
@@ -212,8 +223,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:73;
      *
-     * @test_Strategy: Call SOAPException(Throwable) constructor and verify
-     * creation of a new SOAPException object.
+     * @test_Strategy: Call SOAPException(Throwable) constructor and verify creation of a new SOAPException object.
      *
      * Description: Create a SOAPException object
      *
@@ -228,12 +238,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SOAPExceptionConstructor4Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -242,7 +255,8 @@ public class URLClient extends EETest {
             throw new Fault("SOAPExceptionConstructor4Test failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPExceptionConstructor4Test failed");
+        if (!pass)
+            throw new Fault("SOAPExceptionConstructor4Test failed");
     }
 
     /*
@@ -250,14 +264,11 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:75; SAAJ:JAVADOC:76;
      *
-     * @test_Strategy: Call the SOAPException.initCause(Throwable) method to set
-     * the cause field to the Throwable object. Then call the
-     * SOAPException.getCause() method to return the Throwable object embedded in
-     * this SOAPException.
+     * @test_Strategy: Call the SOAPException.initCause(Throwable) method to set the cause field to the Throwable object.
+     * Then call the SOAPException.getCause() method to return the Throwable object embedded in this SOAPException.
      *
-     * Description: Initialize the cause field of this SOAPException with the
-     * given Throwable object. Then retrieve the cause field of this SOAPException
-     * to get the Throwable object.
+     * Description: Initialize the cause field of this SOAPException with the given Throwable object. Then retrieve the
+     * cause field of this SOAPException to get the Throwable object.
      */
     public void InitGetCauseTest() throws Fault {
         boolean pass = true;
@@ -270,12 +281,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "InitGetCauseTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -284,6 +298,7 @@ public class URLClient extends EETest {
             throw new Fault("InitGetCauseTest failed", e);
         }
 
-        if (!pass) throw new Fault("InitGetCauseTest failed");
+        if (!pass)
+            throw new Fault("InitGetCauseTest failed");
     }
 }

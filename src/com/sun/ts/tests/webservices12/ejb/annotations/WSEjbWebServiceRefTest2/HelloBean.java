@@ -22,14 +22,9 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "Hello",
-        serviceName = "HelloService",
-        targetNamespace = "http://Hello.org",
-        wsdlLocation = "META-INF/wsdl/HelloService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbWebServiceRefTest2.Hello")
+@WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbWebServiceRefTest2.Hello")
 @Stateless(name = "WSEjbWebServiceRefTest2")
-@Remote({HelloIF.class})
+@Remote({ HelloIF.class })
 public class HelloBean implements HelloIF {
 
     @Resource

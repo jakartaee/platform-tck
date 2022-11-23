@@ -35,7 +35,8 @@ public class BasicBeanHelper {
 
     private static int expected = x + y;
 
-    private BasicBeanHelper() {}
+    private BasicBeanHelper() {
+    }
 
     private static Object lookupWithEJBContext(String name, EJBContext... ec) {
         EJBContext ejbContext = (ec.length > 0) ? ec[0] : null;

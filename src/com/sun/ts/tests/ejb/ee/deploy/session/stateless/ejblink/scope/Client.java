@@ -67,19 +67,14 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:766
      *
-     * @test_Strategy: A Stateless Session bean references two other beans. One in
-     *                 the same JAR file, the other in a distinct JAR file. Both
-     *                 referenced bean use the same ejb-name in their respective
-     *                 JAR file, and they are identified by a String environment
-     *                 entry ('myName').
+     * @test_Strategy: A Stateless Session bean references two other beans. One in the same JAR file, the other in a
+     * distinct JAR file. Both referenced bean use the same ejb-name in their respective JAR file, and they are identified
+     * by a String environment entry ('myName').
      *
-     *                 The ejb-link for the external bean is in the form
-     *                 'external.jar#BeanName'.
+     * The ejb-link for the external bean is in the form 'external.jar#BeanName'.
      *
-     *                 Check that we can deploy the application, that the
-     *                 referencing bean can lookup the two other ones. Check that
-     *                 referenced beans identities (as reported by the String env.
-     *                 entry) match the ones specified in the DD.
+     * Check that we can deploy the application, that the referencing bean can lookup the two other ones. Check that
+     * referenced beans identities (as reported by the String env. entry) match the ones specified in the DD.
      */
     public void testScope() throws Fault {
         boolean pass = false;

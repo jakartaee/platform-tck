@@ -58,11 +58,11 @@ public abstract class DescriptorClientBase extends EJBLiteClientBase {
     }
 
     private DescriptorIF[] getAllBeans() {
-        return new DescriptorIF[] {getNoInterface(), getDescriptorIF(), getDescriptor2IF()};
+        return new DescriptorIF[] { getNoInterface(), getDescriptorIF(), getDescriptor2IF() };
     }
 
     private DescriptorIF[] getLocalBeans() {
-        return new DescriptorIF[] {getNoInterface(), getDescriptorIF(), getDescriptor2IF()};
+        return new DescriptorIF[] { getNoInterface(), getDescriptorIF(), getDescriptor2IF() };
     }
 
     /*

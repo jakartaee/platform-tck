@@ -26,7 +26,8 @@ import jakarta.ejb.TransactionAttributeType;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public abstract class CBeanBase extends TxBeanBase {
 
-    public CBeanBase() {}
+    public CBeanBase() {
+    }
 
     // @TransactionAttribute(TransactionAttributeType.NEVER)
     // is annotated in super class method implementation. It

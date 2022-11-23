@@ -39,8 +39,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -71,8 +70,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1014
      *
-     * @test_Strategy: Make a request and inspect response soap:Body children to
-     *                 ensure they are namespace qualified.
+     * @test_Strategy: Make a request and inspect response soap:Body children to ensure they are namespace qualified.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -96,8 +94,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1014
      *
-     * @test_Strategy: Make a request and inspect response to see if request was
-     *                 conformant, as determined by server side handler.
+     * @test_Strategy: Make a request and inspect response to see if request was conformant, as determined by server side
+     * handler.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

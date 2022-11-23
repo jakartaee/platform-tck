@@ -45,49 +45,17 @@ import java.util.Properties;
 // -------------------------------------
 // JMS Destination Resource Definitions
 // -------------------------------------
-@JMSDestinationDefinition(
-        description = "Define Queue ServletMyTestQueue",
-        interfaceName = "jakarta.jms.Queue",
-        name = "java:global/env/ServletMyTestQueue",
-        destinationName = "ServletMyTestQueue")
-@JMSDestinationDefinition(
-        description = "Define Topic ServletMyTestTopic",
-        interfaceName = "jakarta.jms.Topic",
-        name = "java:app/env/ServletMyTestTopic",
-        destinationName = "ServletMyTestTopic")
+@JMSDestinationDefinition(description = "Define Queue ServletMyTestQueue", interfaceName = "jakarta.jms.Queue", name = "java:global/env/ServletMyTestQueue", destinationName = "ServletMyTestQueue")
+@JMSDestinationDefinition(description = "Define Topic ServletMyTestTopic", interfaceName = "jakarta.jms.Topic", name = "java:app/env/ServletMyTestTopic", destinationName = "ServletMyTestTopic")
 
 // -------------------------------------------
 // JMS ConnectionFactory Resource Definitions
 // -------------------------------------------
-@JMSConnectionFactoryDefinition(
-        description = "Define ConnectionFactory ServletMyTestConnectionFactory",
-        interfaceName = "jakarta.jms.ConnectionFactory",
-        name = "java:global/ServletMyTestConnectionFactory",
-        user = "j2ee",
-        password = "j2ee")
-@JMSConnectionFactoryDefinition(
-        description = "Define QueueConnectionFactory ServletMyTestQueueConnectionFactory",
-        interfaceName = "jakarta.jms.QueueConnectionFactory",
-        name = "java:app/ServletMyTestQueueConnectionFactory",
-        user = "j2ee",
-        password = "j2ee")
-@JMSConnectionFactoryDefinition(
-        description = "Define TopicConnectionFactory ServletMyTestTopicConnectionFactory",
-        interfaceName = "jakarta.jms.TopicConnectionFactory",
-        name = "java:module/ServletMyTestTopicConnectionFactory",
-        user = "j2ee",
-        password = "j2ee")
-@JMSConnectionFactoryDefinition(
-        description = "Define Durable TopicConnectionFactory ServletMyTestDurableTopicConnectionFactory",
-        interfaceName = "jakarta.jms.TopicConnectionFactory",
-        name = "java:comp/env/jms/ServletMyTestDurableTopicConnectionFactory",
-        user = "j2ee",
-        password = "j2ee",
-        clientId = "MyClientID",
-        properties = {"Property1=10", "Property2=20"},
-        transactional = false,
-        maxPoolSize = 30,
-        minPoolSize = 20)
+@JMSConnectionFactoryDefinition(description = "Define ConnectionFactory ServletMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/ServletMyTestConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSConnectionFactoryDefinition(description = "Define QueueConnectionFactory ServletMyTestQueueConnectionFactory", interfaceName = "jakarta.jms.QueueConnectionFactory", name = "java:app/ServletMyTestQueueConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSConnectionFactoryDefinition(description = "Define TopicConnectionFactory ServletMyTestTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:module/ServletMyTestTopicConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSConnectionFactoryDefinition(description = "Define Durable TopicConnectionFactory ServletMyTestDurableTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:comp/env/jms/ServletMyTestDurableTopicConnectionFactory", user = "j2ee", password = "j2ee", clientId = "MyClientID", properties = {
+        "Property1=10", "Property2=20" }, transactional = false, maxPoolSize = 30, minPoolSize = 20)
 @WebServlet("/ServletTest")
 public class ServletClient extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -151,9 +119,11 @@ public class ServletClient extends HttpServlet {
                 }
                 consumerQ.close();
             }
-            if (consumerT != null) consumerT.close();
+            if (consumerT != null)
+                consumerT.close();
             TestUtil.logMsg("Close JMSContext Objects");
-            if (context != null) context.close();
+            if (context != null)
+                context.close();
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
             throw new Exception("doCleanup failed!", e);
@@ -174,14 +144,20 @@ public class ServletClient extends HttpServlet {
             String test = harnessProps.getProperty("TEST");
             System.out.println("doGet: test to execute is: " + test);
             if (test.equals("sendAndRecvQueueTestFromServletClient")) {
-                if (sendAndRecvQueueTestFromServletClient()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (sendAndRecvQueueTestFromServletClient())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("sendAndRecvTopicTestFromServletClient")) {
-                if (sendAndRecvTopicTestFromServletClient()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (sendAndRecvTopicTestFromServletClient())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("checkClientIDTestFromServletClient")) {
-                if (checkClientIDTestFromServletClient()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (checkClientIDTestFromServletClient())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else {
                 p.setProperty("TESTRESULT", "fail");
             }
@@ -253,8 +229,7 @@ public class ServletClient extends HttpServlet {
             TestUtil.logMsg("Lookup java:module/ServletMyTestTopicConnectionFactory");
             tcf = (TopicConnectionFactory) namingctx.lookup("java:module/ServletMyTestTopicConnectionFactory");
             TestUtil.logMsg("Lookup java:comp/env/jms/ServletMyTestDurableTopicConnectionFactory");
-            dtcf = (TopicConnectionFactory)
-                    namingctx.lookup("java:comp/env/jms/ServletMyTestDurableTopicConnectionFactory");
+            dtcf = (TopicConnectionFactory) namingctx.lookup("java:comp/env/jms/ServletMyTestDurableTopicConnectionFactory");
             TestUtil.logMsg("Lookup java:global/env/ServletMyTestQueue");
             queue = (Queue) namingctx.lookup("java:global/env/ServletMyTestQueue");
             TestUtil.logMsg("Lookup java:app/env/ServletMyTestTopic");
@@ -365,7 +340,8 @@ public class ServletClient extends HttpServlet {
             pass = false;
         } finally {
             try {
-                if (context != null) context.close();
+                if (context != null)
+                    context.close();
                 doCleanup();
             } catch (Exception e) {
                 TestUtil.logErr("Error in cleanup " + e);

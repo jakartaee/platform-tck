@@ -74,8 +74,10 @@ public abstract class BEJB implements EntityBean {
 
     public boolean isA() {
         TestUtil.logTrace("isA");
-        if (getA().isEmpty() != true) TestUtil.logMsg("Relationship set for A ...");
-        else TestUtil.logMsg("Relationship not set for A ...");
+        if (getA().isEmpty() != true)
+            TestUtil.logMsg("Relationship set for A ...");
+        else
+            TestUtil.logMsg("Relationship not set for A ...");
         return getA().isEmpty() != true;
     }
 

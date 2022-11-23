@@ -75,21 +75,17 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: 1) Use WebServiceInterceptor to intercept all webservice
-     * method invocations.
+     * @test_Strategy: 1) Use WebServiceInterceptor to intercept all webservice method invocations.
      *
-     * 2) During such invocation, the InvocationContext supplied to the
-     * interceptors should contain the following details.
+     * 2) During such invocation, the InvocationContext supplied to the interceptors should contain the following details.
      *
-     * 1) The getTarget() of Invocation Context should return the bean instance 2)
-     * The getMethod() should return the method of bean class for which the
-     * interceptor is invoked. 3) The getParameters() method should return the
-     * parameters of the business method invocation. 4) The Map returned by the
-     * getContextData() method must be an instance of JAX-WS Message context. i.e.
-     * jakarta.xml.ws.handler.MessageContext
+     * 1) The getTarget() of Invocation Context should return the bean instance 2) The getMethod() should return the method
+     * of bean class for which the interceptor is invoked. 3) The getParameters() method should return the parameters of the
+     * business method invocation. 4) The Map returned by the getContextData() method must be an instance of JAX-WS Message
+     * context. i.e. jakarta.xml.ws.handler.MessageContext
      *
-     * 3) If any of the above values are incorrect, then the interceptor throws
-     * exception and the webservice method invocation test fails.
+     * 3) If any of the above values are incorrect, then the interceptor throws exception and the webservice method
+     * invocation test fails.
      *
      */
     public void InvocationContextTest() throws Fault {

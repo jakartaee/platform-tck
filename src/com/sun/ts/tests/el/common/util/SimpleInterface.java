@@ -27,5 +27,6 @@ public interface SimpleInterface {
         return "RW";
     }
 
-    default void setDefaultRW(String ignored) {}
+    default void setDefaultRW(String ignored) {
+    }
 }

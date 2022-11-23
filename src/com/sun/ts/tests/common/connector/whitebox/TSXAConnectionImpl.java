@@ -26,7 +26,8 @@ import javax.transaction.xa.XAResource;
 
 public class TSXAConnectionImpl implements TSXAConnection {
 
-    public TSXAConnectionImpl() {}
+    public TSXAConnectionImpl() {
+    }
 
     public XAResource getXAResource(TSManagedConnection mc) throws Exception {
         System.out.println("TSXAConnectionImpl.getXAResource");
@@ -59,7 +60,9 @@ public class TSXAConnectionImpl implements TSXAConnection {
         }
     }
 
-    public void close() throws Exception {}
+    public void close() throws Exception {
+    }
 
-    public void addConnectionEventListener(ConnectionEventListener listener) {}
+    public void addConnectionEventListener(ConnectionEventListener listener) {
+    }
 }

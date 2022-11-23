@@ -37,7 +37,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "ORDER_TABLE")
-@EntityListeners({ListenerB.class, ListenerC.class})
+@EntityListeners({ ListenerB.class, ListenerC.class })
 public class Order extends CallbackStatusImpl implements java.io.Serializable, CallbackStatusIF {
     private String id;
 
@@ -47,7 +47,8 @@ public class Order extends CallbackStatusImpl implements java.io.Serializable, C
 
     private Collection<LineItem> lineItemsCollection = new java.util.ArrayList<LineItem>();
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(String id, double totalPrice) {
         this.id = id;

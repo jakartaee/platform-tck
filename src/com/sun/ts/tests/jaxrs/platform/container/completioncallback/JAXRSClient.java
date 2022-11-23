@@ -110,8 +110,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:JAVADOC:985; JAXRS:JAVADOC:1032;
      *
-     * @test_Strategy: the argument is the exception the AsyncResponse is resumed
-     * with
+     * @test_Strategy: the argument is the exception the AsyncResponse is resumed with
      *
      * Register an asynchronous processing lifecycle callback instance
      */
@@ -142,8 +141,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:JAVADOC:985; JAXRS:JAVADOC:1030;
      *
-     * @test_Strategy: the argument is the exception the AsyncResponse is resumed
-     * with
+     * @test_Strategy: the argument is the exception the AsyncResponse is resumed with
      *
      * Register an asynchronous processing lifecycle callback class
      */
@@ -218,8 +216,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:JAVADOC:1031;
      *
-     * @test_Strategy: Throws NPE in case any of the callback classes is {@code
-     * null}. check first argument is null
+     * @test_Strategy: Throws NPE in case any of the callback classes is {@code null}. check first argument is null
      */
     public void registerClassesThrowsNpeFirstArgNullTest() throws Fault {
         invokeClear();
@@ -235,8 +232,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:JAVADOC:1031;
      *
-     * @test_Strategy: Throws NPE in case any of the callback classes is {@code
-     * null}. check second argument is null
+     * @test_Strategy: Throws NPE in case any of the callback classes is {@code null}. check second argument is null
      */
     public void registerClassesThrowsNpeSecondArgNullTest() throws Fault {
         invokeClear();
@@ -304,8 +300,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:JAVADOC:1033;
      *
-     * @test_Strategy: Throws NPE in case any of the callback instances is {@code
-     * null}. check first argument is null
+     * @test_Strategy: Throws NPE in case any of the callback instances is {@code null}. check first argument is null
      */
     public void registerInstancesThrowsNpeFirstArgNullTest() throws Fault {
         invokeClear();
@@ -321,8 +316,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:JAVADOC:1033;
      *
-     * @test_Strategy: Throws NPE in case any of the callback instances is {@code
-     * null}. check second argument is null
+     * @test_Strategy: Throws NPE in case any of the callback instances is {@code null}. check second argument is null
      */
     public void registerInstancesThrowsNpeSecondArgNullTest() throws Fault {
         invokeClear();

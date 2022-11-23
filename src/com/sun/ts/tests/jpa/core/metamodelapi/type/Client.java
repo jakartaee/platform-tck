@@ -27,7 +27,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -61,8 +62,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<Order> mTypeOrder =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.type.Order.class);
+            ManagedType<Order> mTypeOrder = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.type.Order.class);
             if (mTypeOrder != null) {
                 Type.PersistenceType type = mTypeOrder.getPersistenceType();
                 TestUtil.logTrace("Obtained Non-null ManagedType");
@@ -96,8 +96,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            EmbeddableType<Address> eTypeAddress =
-                    metaModel.embeddable(com.sun.ts.tests.jpa.core.metamodelapi.type.Address.class);
+            EmbeddableType<Address> eTypeAddress = metaModel.embeddable(com.sun.ts.tests.jpa.core.metamodelapi.type.Address.class);
             if (eTypeAddress != null) {
                 Type.PersistenceType type = eTypeAddress.getPersistenceType();
                 TestUtil.logTrace("Obtained Non-null Embeddable Type");
@@ -131,8 +130,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<Order> mTypeOrder =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.type.Order.class);
+            ManagedType<Order> mTypeOrder = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.type.Order.class);
             if (mTypeOrder != null) {
                 Class javaType = mTypeOrder.getJavaType();
                 TestUtil.logTrace("Obtained Non-null ManagedType");

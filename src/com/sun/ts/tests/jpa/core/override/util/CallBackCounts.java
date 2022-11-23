@@ -23,7 +23,8 @@ public class CallBackCounts {
 
     private static Map<String, Integer> counts = new HashMap<String, Integer>();
 
-    public CallBackCounts() {}
+    public CallBackCounts() {
+    }
 
     public static void updateCount(String callBackKeyName) {
         if (counts.containsKey(callBackKeyName)) {

@@ -69,8 +69,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
 
     public MsgBeanMsgTestQ3() {
         TestUtil.logTrace("@MsgBeanMsgTest3()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("jms.ee.mdb.mdb_msgTypesQ3  - @MsgBeanMsgTest3-ejbCreate() !!");
@@ -278,9 +277,8 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Receive a single Text message call clearBody, verify body is
-     * empty after clearBody. verify properties are not effected by clearBody.
-     * Write to the message again 3.11
+     * Description: Receive a single Text message call clearBody, verify body is empty after clearBody. verify properties
+     * are not effected by clearBody. Write to the message again 3.11
      */
     public void msgClearBodyQueueTextTest(jakarta.jms.TextMessage messageReceived) {
         String testCase = "msgClearBodyQueueTextTest";
@@ -324,9 +322,8 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Receive a single Object message call clearBody, verify body is
-     * empty after clearBody. verify properties are not effected by clearBody.
-     * Write to the message again 3.11
+     * Description: Receive a single Object message call clearBody, verify body is empty after clearBody. verify properties
+     * are not effected by clearBody. Write to the message again 3.11
      */
     public void msgClearBodyQueueObjectTest(jakarta.jms.ObjectMessage messageReceivedObjectMsg) {
         String testCase = "msgClearBodyQueueObjectTest";
@@ -370,9 +367,8 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Receive a single Map message call clearBody, verify body is
-     * empty after clearBody. verify properties are not effected by clearBody.
-     * Write to the message again 3.11
+     * Description: Receive a single Map message call clearBody, verify body is empty after clearBody. verify properties are
+     * not effected by clearBody. Write to the message again 3.11
      */
     private void msgClearBodyQueueMapTest(jakarta.jms.MapMessage messageReceivedMapMessage) {
         String testCase = "msgClearBodyQueueMapTest";
@@ -419,9 +415,8 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Receive a single Bytes message call clearBody, verify body is
-     * empty after clearBody. verify properties are not effected by clearBody.
-     * Write to the message again 3.11
+     * Description: Receive a single Bytes message call clearBody, verify body is empty after clearBody. verify properties
+     * are not effected by clearBody. Write to the message again 3.11
      */
     public void msgClearBodyQueueBytesTest(jakarta.jms.BytesMessage messageReceivedBytesMessage) {
         String testCase = "msgClearBodyQueueBytesTest";
@@ -473,9 +468,8 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Receive a single Stream message call clearBody, verify body is
-     * empty after clearBody. verify properties are not effected by clearBody.
-     * Write to the message again 3.11
+     * Description: Receive a single Stream message call clearBody, verify body is empty after clearBody. verify properties
+     * are not effected by clearBody. Write to the message again 3.11
      */
     public void msgClearBodyQueueStreamTest(jakarta.jms.StreamMessage messageReceivedStreamMessage) {
         String testCase = "msgClearBodyQueueStreamTest";
@@ -526,9 +520,8 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: create a stream message and a byte message. write to the
-     * message body, call the reset method, try to write to the body expect a
-     * MessageNotWriteableException to be thrown.
+     * Description: create a stream message and a byte message. write to the message body, call the reset method, try to
+     * write to the body expect a MessageNotWriteableException to be thrown.
      */
     private void msgResetQueueTest() {
         boolean pass = true;
@@ -632,8 +625,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Attempt to read a null string from a MapMessage. Should throw
-     * a null pointer exception
+     * Description: Attempt to read a null string from a MapMessage. Should throw a null pointer exception
      */
 
     public void readNullCharNotValidQueueMapTest(jakarta.jms.MapMessage mapReceived) {
@@ -660,8 +652,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
         }
     }
     /*
-     * Description: Attempt to read a null string from a StreamMessage. Should
-     * throw a null pointer exception
+     * Description: Attempt to read a null string from a StreamMessage. Should throw a null pointer exception
      */
 
     public void readNullCharNotValidQueueStreamTest(jakarta.jms.StreamMessage messageReceived) {
@@ -689,8 +680,7 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: send test results to response queue (MDB_QUEUE_REPLY) for
-     * verification
+     * Description: send test results to response queue (MDB_QUEUE_REPLY) for verification
      */
     private void sendTestResults(String testCase, boolean results) {
         TextMessage msg = null;
@@ -702,8 +692,10 @@ public class MsgBeanMsgTestQ3 implements MessageDrivenBean, MessageListener {
             msg = qSession.createTextMessage();
             msg.setStringProperty("TestCase", testCase);
             msg.setText(testCase);
-            if (results) msg.setStringProperty("Status", "Pass");
-            else msg.setStringProperty("Status", "Fail");
+            if (results)
+                msg.setStringProperty("Status", "Pass");
+            else
+                msg.setStringProperty("Status", "Fail");
 
             TestUtil.logTrace("Sending response message");
             TestUtil.logTrace("==================================Test Results from: " + testCase);

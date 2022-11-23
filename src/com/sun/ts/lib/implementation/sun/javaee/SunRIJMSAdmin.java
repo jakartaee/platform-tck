@@ -22,54 +22,54 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This is an implementation of the TSJMSAdminInterface. An implementation of
- * this class must be supplied by any Java EE implementation wishing to have
- * JavaTest (the harness which drives the TS tests) automatically create and
- * remove JMS queues and topics. This particular implementation uses the
- * create/remove semantics of Sun's Java EE reference implementation.
+ * This is an implementation of the TSJMSAdminInterface. An implementation of this class must be supplied by any Java EE
+ * implementation wishing to have JavaTest (the harness which drives the TS tests) automatically create and remove JMS
+ * queues and topics. This particular implementation uses the create/remove semantics of Sun's Java EE reference
+ * implementation.
  *
  * @author Kyle Grucci
  */
 public class SunRIJMSAdmin implements TSJMSAdminInterface {
     PrintWriter log = null;
 
-    public void init(PrintWriter writer) {}
+    public void init(PrintWriter writer) {
+    }
 
     /**
      * This method creates queues in a Java EE implementation.
      *
-     * @param queues
-     *          queues to remove
+     * @param queues queues to remove
      *
      */
-    public void createQueues(String[] queues) throws TSJMSAdminException {}
+    public void createQueues(String[] queues) throws TSJMSAdminException {
+    }
 
     /**
      * This method removes topics from a Java EE implementation.
      *
-     * @param topics
-     *          topics to remove
+     * @param topics topics to remove
      *
      */
-    public void createTopics(String[] topics) throws TSJMSAdminException {}
+    public void createTopics(String[] topics) throws TSJMSAdminException {
+    }
 
     /**
      * This method removes queues from a Java EE implementation.
      *
-     * @param queues
-     *          queues to remove
+     * @param queues queues to remove
      *
      */
-    public void removeQueues(String[] queues) throws TSJMSAdminException {}
+    public void removeQueues(String[] queues) throws TSJMSAdminException {
+    }
 
     /**
      * This method removes topics from a Java EE implementation.
      *
-     * @param topics
-     *          topics to remove
+     * @param topics topics to remove
      *
      */
-    public void removeTopics(String[] topics) throws TSJMSAdminException {}
+    public void removeTopics(String[] topics) throws TSJMSAdminException {
+    }
 
     /*
      * Uses adminTool to create a Queue Destination object
@@ -77,7 +77,8 @@ public class SunRIJMSAdmin implements TSJMSAdminInterface {
      * @param q JNDI name of the Queue Destination object
      *
      */
-    private void createQueue(String q) throws Exception {}
+    private void createQueue(String q) throws Exception {
+    }
 
     /*
      * Uses adminTool to create a Topic Destination object
@@ -85,25 +86,25 @@ public class SunRIJMSAdmin implements TSJMSAdminInterface {
      * @param q JNDI name of the Topic Destination object
      *
      */
-    private void createTopic(String topic) throws Exception {}
+    private void createTopic(String topic) throws Exception {
+    }
 
-    private void deleteDestination(String s) throws Exception {}
+    private void deleteDestination(String s) throws Exception {
+    }
 
     // ===========
     /**
      * This method creates queueConnectionFactories in a Java EE implementation.
      *
-     * Arguments passed as queueConnectionFactories[n],prop[n] where n = offset
-     * and the props[n] string is equal to the needed name=value pairs. If more
-     * than one property they should be space separated in the props string.
+     * Arguments passed as queueConnectionFactories[n],prop[n] where n = offset and the props[n] string is equal to the
+     * needed name=value pairs. If more than one property they should be space separated in the props string.
      *
-     * @param queueConnectionFactories
-     *          queueConnectionFactories to create
-     * @param props
-     *          properties for the connection if any
+     * @param queueConnectionFactories queueConnectionFactories to create
+     * @param props properties for the connection if any
      */
     public void createQueueConnectionFactories(String[] queueConnectionFactories, String[] props)
-            throws TSJMSAdminException {}
+            throws TSJMSAdminException {
+    }
 
     /*
      * Uses adminTool to create a QueueConnectionFactory object
@@ -113,23 +114,22 @@ public class SunRIJMSAdmin implements TSJMSAdminInterface {
      * @param props properties for the connection if any
      *
      */
-    private void createQueueConnectionFactory(String qConnectionFactory, String props) throws Exception {}
+    private void createQueueConnectionFactory(String qConnectionFactory, String props) throws Exception {
+    }
 
     // ===========
     /**
      * This method creates topicConnectionFactories in a Java EE implementation.
      *
-     * Arguments passed as topicConnectionFactories[n],prop[n] where n = offset
-     * and the props[n] string is equal to the needed name=value pairs. If more
-     * than one property they should be space separated in the props string.
+     * Arguments passed as topicConnectionFactories[n],prop[n] where n = offset and the props[n] string is equal to the
+     * needed name=value pairs. If more than one property they should be space separated in the props string.
      *
-     * @param topicConnectionFactories
-     *          topicConnectionFactories to create
-     * @param props
-     *          properties if any
+     * @param topicConnectionFactories topicConnectionFactories to create
+     * @param props properties if any
      */
     public void createTopicConnectionFactories(String[] topicConnectionFactories, String[] props)
-            throws TSJMSAdminException {}
+            throws TSJMSAdminException {
+    }
 
     /*
      * Uses adminTool to create a TopicConnectionFactory object
@@ -138,22 +138,21 @@ public class SunRIJMSAdmin implements TSJMSAdminInterface {
      *
      * @param props properties, if any
      */
-    private void createTopicConnectionFactory(String tConnectionFactory, String props) throws Exception {}
+    private void createTopicConnectionFactory(String tConnectionFactory, String props) throws Exception {
+    }
 
     // ===========
     /**
      * This method creates connectionFactories in a Java EE implementation.
      *
-     * Arguments passed as connectionFactories[n],prop[n] where n = offset and the
-     * props[n] string is equal to the needed name=value pairs. If more than one
-     * property they should be space separated in the props string.
+     * Arguments passed as connectionFactories[n],prop[n] where n = offset and the props[n] string is equal to the needed
+     * name=value pairs. If more than one property they should be space separated in the props string.
      *
-     * @param connectionFactories
-     *          connectionFactories to create
-     * @param props
-     *          properties if any
+     * @param connectionFactories connectionFactories to create
+     * @param props properties if any
      */
-    public void createConnectionFactories(String[] connectionFactories, String[] props) throws TSJMSAdminException {}
+    public void createConnectionFactories(String[] connectionFactories, String[] props) throws TSJMSAdminException {
+    }
 
     /*
      * Uses adminTool to create a ConnectionFactory object
@@ -162,24 +161,24 @@ public class SunRIJMSAdmin implements TSJMSAdminInterface {
      *
      * @param props properties, if any
      */
-    private void createConnectionFactory(String connectionFactory, String props) throws Exception {}
+    private void createConnectionFactory(String connectionFactory, String props) throws Exception {
+    }
 
     /**
      * This method removes ConnectionFactories from a Java EE implementation.
      *
-     * @param topics
-     *          JmsConnectionFactoryNames to remove
+     * @param topics JmsConnectionFactoryNames to remove
      *
      */
-    public void removeJmsConnectionFactories(String[] jmsConnectionFactoryNames) throws TSJMSAdminException {}
+    public void removeJmsConnectionFactories(String[] jmsConnectionFactoryNames) throws TSJMSAdminException {
+    }
 
     /**
-     * This method will delete a JmsConnectory factory from a Java EE
-     * implementation.
+     * This method will delete a JmsConnectory factory from a Java EE implementation.
      *
-     * @param factoryName
-     *          JmsConnectionFactoryName to remove
+     * @param factoryName JmsConnectionFactoryName to remove
      *
      */
-    private void deleteJmsConnectionFactory(String factoryName) throws Exception {}
+    private void deleteJmsConnectionFactory(String factoryName) throws Exception {
+    }
 }

@@ -27,9 +27,8 @@ import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
 /**
- * A test client for callback methods. Note that since callback methods cannot
- * throw application exception, so we can only convey test result back to client
- * through the returned value.
+ * A test client for callback methods. Note that since callback methods cannot throw application exception, so we can
+ * only convey test result back to client through the returned value.
  */
 public class Client extends MDBClientBase {
     @Resource(name = "sendQueue")
@@ -60,8 +59,7 @@ public class Client extends MDBClientBase {
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
 
     /*
@@ -69,9 +67,8 @@ public class Client extends MDBClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: ejbCreate() in MDB is treated as PostConstruct, even when
-     * it's not annotated with @PostConstruct, or when the bean class does not
-     * implement MessageDrivenBean interface. (ejb3 spec section 4.5.8, 4.3.10.2)
+     * @test_Strategy: ejbCreate() in MDB is treated as PostConstruct, even when it's not annotated with @PostConstruct, or
+     * when the bean class does not implement MessageDrivenBean interface. (ejb3 spec section 4.5.8, 4.3.10.2)
      *
      * callback methods can be in the superclass of the bean class.
      */
@@ -81,9 +78,8 @@ public class Client extends MDBClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o Resource o verify dependency injection has occurred when
-     * callback method is called
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o Resource o verify dependency
+     * injection has occurred when callback method is called
      */
 
 }

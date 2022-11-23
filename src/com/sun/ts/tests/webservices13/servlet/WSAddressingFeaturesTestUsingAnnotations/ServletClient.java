@@ -105,23 +105,35 @@ public class ServletClient extends HttpServlet {
             String test = harnessProps.getProperty("TEST");
             System.out.println("doGet: test to execute is: " + test);
             if (test.equals("VerifyAddrHeadersExistForRequiredEchoPort")) {
-                if (VerifyAddrHeadersExistForRequiredEchoPort()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyAddrHeadersExistForRequiredEchoPort())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("VerifyAddrHeadersDoNotExistForDisabledEchoPort")) {
-                if (VerifyAddrHeadersDoNotExistForDisabledEchoPort()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyAddrHeadersDoNotExistForDisabledEchoPort())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("VerifyAddrHeadersMayExistForEnabledEchoPort")) {
-                if (VerifyAddrHeadersMayExistForEnabledEchoPort()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyAddrHeadersMayExistForEnabledEchoPort())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("VerifyExceptionThrownForRequiredEcho2Port")) {
-                if (VerifyExceptionThrownForRequiredEcho2Port()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyExceptionThrownForRequiredEcho2Port())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("VerifyAddrHeadersDoNotExistForDisabledEcho2Port")) {
-                if (VerifyAddrHeadersDoNotExistForDisabledEcho2Port()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyAddrHeadersDoNotExistForDisabledEcho2Port())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else {
-                if (VerifyAddrHeadersMayExistForEnabledEcho2Port()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyAddrHeadersMayExistForEnabledEcho2Port())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             }
             p.list(out);
         } catch (Exception e) {

@@ -42,20 +42,17 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getConfiguratorTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:193; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:193; WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getConfigurator
-     * jakarta.websocket.Endpoint.onOpen;
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getConfigurator jakarta.websocket.Endpoint.onOpen;
      * jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getConfiguratorTest() throws Fault {
-        String[] endpoints =
-                new String[] {"programatic/subprotocols", "annotated/configurator", "programatic/configurator"};
+        String[] endpoints = new String[] { "programatic/subprotocols", "annotated/configurator", "programatic/configurator" };
         String[] responses = new String[] {
-            SubprotocolsServerEndpointConfig.class.getName(),
-            ServerEndpointConfigConfigurator.class.getName(),
-            ServerEndpointConfigConfigurator.class.getName()
+                SubprotocolsServerEndpointConfig.class.getName(),
+                ServerEndpointConfigConfigurator.class.getName(),
+                ServerEndpointConfigConfigurator.class.getName()
         };
         for (int i = 0; i != endpoints.length; i++) {
             setProperty(Property.REQUEST, buildRequest(endpoints[i]));
@@ -68,28 +65,25 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getEndpointClassTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:194; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:194; WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy:
-     * jakarta.websocket.server.ServerEndpointConfig.getEndpointClass
-     * jakarta.websocket.Endpoint.onOpen;
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getEndpointClass jakarta.websocket.Endpoint.onOpen;
      * jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getEndpointClassTest() throws Fault {
         String[] endpoints = new String[] {
-            "programatic/subprotocols",
-            "annotated/subprotocols",
-            "annotated/configurator",
-            "programatic/configurator",
-            "programatic/extensions"
+                "programatic/subprotocols",
+                "annotated/subprotocols",
+                "annotated/configurator",
+                "programatic/configurator",
+                "programatic/extensions"
         };
         String[] responses = new String[] {
-            WSProgramaticSubprotocolsServer.class.getName(),
-            WSAnnotatedSubprotocolsServer.class.getName(),
-            WSAnnotatedConfiguratorServer.class.getName(),
-            WSProgramaticConfiguratorServer.class.getName(),
-            WSProgramaticExtensionsServer.class.getName()
+                WSProgramaticSubprotocolsServer.class.getName(),
+                WSAnnotatedSubprotocolsServer.class.getName(),
+                WSAnnotatedConfiguratorServer.class.getName(),
+                WSProgramaticConfiguratorServer.class.getName(),
+                WSProgramaticExtensionsServer.class.getName()
         };
         for (int i = 0; i != endpoints.length; i++) {
             setProperty(Property.REQUEST, buildRequest(endpoints[i]));
@@ -102,27 +96,25 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getExtensionsTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:195; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:195; WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getExtensions
-     * jakarta.websocket.Endpoint.onOpen;
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getExtensions jakarta.websocket.Endpoint.onOpen;
      * jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getExtensionsTest() throws Fault {
         String[] endpoints = new String[] {
-            "programatic/subprotocols",
-            "annotated/subprotocols",
-            "annotated/configurator",
-            "programatic/configurator",
-            "programatic/extensions"
+                "programatic/subprotocols",
+                "annotated/subprotocols",
+                "annotated/configurator",
+                "programatic/configurator",
+                "programatic/extensions"
         };
         String[] responses = new String[] {
-            "[]",
-            "[]",
-            "[]",
-            "[]",
-            ExtensionsServerEndpointConfig.EXT_NAMES[0] + "|" + ExtensionsServerEndpointConfig.EXT_NAMES[1]
+                "[]",
+                "[]",
+                "[]",
+                "[]",
+                ExtensionsServerEndpointConfig.EXT_NAMES[0] + "|" + ExtensionsServerEndpointConfig.EXT_NAMES[1]
         };
         for (int i = 0; i != endpoints.length; i++) {
             setProperty(Property.REQUEST, buildRequest(endpoints[i]));
@@ -135,20 +127,18 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getPathTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:196; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:196; WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getPath
-     * jakarta.websocket.Endpoint.onOpen;
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getPath jakarta.websocket.Endpoint.onOpen;
      * jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getPathTest() throws Fault {
         String[] sequence = new String[] {
-            "programatic/subprotocols",
-            "annotated/subprotocols",
-            "annotated/configurator",
-            "programatic/configurator",
-            "programatic/extensions"
+                "programatic/subprotocols",
+                "annotated/subprotocols",
+                "annotated/configurator",
+                "programatic/configurator",
+                "programatic/extensions"
         };
         for (String endpoint : sequence) {
             setProperty(Property.REQUEST, buildRequest(endpoint));
@@ -161,16 +151,13 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getSubprotocolsTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:197; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:197; WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getSubprotocols
-     * Return the websocket subprotocols configured.
-     * jakarta.websocket.Endpoint.onOpen;
-     * jakarta.websocket.MessageHandler.Whole.onMessage
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getSubprotocols Return the websocket subprotocols
+     * configured. jakarta.websocket.Endpoint.onOpen; jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getSubprotocolsTest() throws Fault {
-        String[] endpoints = new String[] {"programatic/subprotocols", "annotated/subprotocols"};
+        String[] endpoints = new String[] { "programatic/subprotocols", "annotated/subprotocols" };
         for (String endpoint : endpoints) {
             setProperty(Property.REQUEST, buildRequest(endpoint));
             setProperty(Property.CONTENT, "subprotocols");
@@ -183,17 +170,13 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getEmptySubprotocolsTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:197; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:197; WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getSubprotocols
-     * Return the websocket subprotocols configured.
-     * jakarta.websocket.Endpoint.onOpen;
-     * jakarta.websocket.MessageHandler.Whole.onMessage
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getSubprotocols Return the websocket subprotocols
+     * configured. jakarta.websocket.Endpoint.onOpen; jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getEmptySubprotocolsTest() throws Fault {
-        String[] endpoints =
-                new String[] {"annotated/configurator", "programatic/configurator", "programatic/extensions"};
+        String[] endpoints = new String[] { "annotated/configurator", "programatic/configurator", "programatic/extensions" };
         for (String endpoint : endpoints) {
             setProperty(Property.REQUEST, buildRequest(endpoint));
             setProperty(Property.CONTENT, "subprotocols");
@@ -213,11 +196,11 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Run test twice. Modifications to user properties in first
-     * run should not be visible to second run as shallow copies should be used.
+     * @test_Strategy: Run test twice. Modifications to user properties in first run should not be visible to second run as
+     * shallow copies should be used.
      */
     public void getUserPropertiesTest() throws Fault {
-        String[] endpoints = new String[] {"programatic/userproperties", "programatic/userproperties"};
+        String[] endpoints = new String[] { "programatic/userproperties", "programatic/userproperties" };
         for (String endpoint : endpoints) {
             setProperty(Property.REQUEST, buildRequest(endpoint));
             setProperty(Property.CONTENT, "userproperties");

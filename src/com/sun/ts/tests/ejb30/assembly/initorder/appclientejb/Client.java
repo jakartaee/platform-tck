@@ -41,9 +41,11 @@ public class Client extends EETest {
         s.exit();
     }
 
-    public void setup(String[] args, Properties p) {}
+    public void setup(String[] args, Properties p) {
+    }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 
     private static HelloRemoteIF getHelloBean() {
         return (HelloRemoteIF) ServiceLocator.lookupNoTry(HelloRemoteIF.GLOBAL_JNDI_NAME);
@@ -63,8 +65,7 @@ public class Client extends EETest {
     /*
      * @testName: appName
      *
-     * @test_Strategy: verify <application-name> value is used instead of the
-     * default app-name.
+     * @test_Strategy: verify <application-name> value is used instead of the default app-name.
      */
     public void appName() {
         String expected = "renamed2";
@@ -74,7 +75,7 @@ public class Client extends EETest {
         Helper.assertEquals("Check appNameInjected ", expected, appNameInjected);
         Helper.getLogger().info("Got expected " + lookup + ": " + actual);
 
-        String[] moduleAndBeanNames = {"one_ejb/InitOrderBean", "two_ejb/InitOrder2Bean"};
+        String[] moduleAndBeanNames = { "one_ejb/InitOrderBean", "two_ejb/InitOrder2Bean" };
 
         for (String m : moduleAndBeanNames) {
             StringBuilder reason = new StringBuilder();

@@ -32,8 +32,8 @@ import java.io.Serializable;
 import java.util.Properties;
 
 /**
- * The UserRollbackClient class tests rollback() method of UserTransaction
- * interface using Sun's J2EE Reference Implementation.
+ * The UserRollbackClient class tests rollback() method of UserTransaction interface using Sun's J2EE Reference
+ * Implementation.
  *
  * @author P.Sandani Basha
  * @version 1.0.1, 09/17/99
@@ -79,8 +79,7 @@ public class UserRollbackClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserRollback001
      * @assertion_ids: JTA:JAVADOC:32
-     * @test_Strategy: Without starting the User Transaction call rollback() on
-     *                 User Transaction.
+     * @test_Strategy: Without starting the User Transaction call rollback() on User Transaction.
      */
     public void testUserRollback001() throws Fault {
         // TestCase id :- 4.4.1
@@ -113,8 +112,8 @@ public class UserRollbackClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserRollback002
      * @assertion_ids: JTA:JAVADOC:31
-     * @test_Strategy: Start the User Transaction.Call rollback() on User
-     *                 Transaction.Check the status of the User Transaction
+     * @test_Strategy: Start the User Transaction.Call rollback() on User Transaction.Check the status of the User
+     * Transaction
      */
     public void testUserRollback002() throws Fault {
         // TestCase id :- 4.4.2
@@ -159,8 +158,7 @@ public class UserRollbackClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserRollback003
      * @assertion_ids: JTA:JAVADOC:32
-     * @test_Strategy: Start the User Transaction.Call commit() on User
-     *                 Transaction.Call rollback() on User Transaction.
+     * @test_Strategy: Start the User Transaction.Call commit() on User Transaction.Call rollback() on User Transaction.
      */
     public void testUserRollback003() throws Fault {
         // TestCase id :- 4.4.3
@@ -207,8 +205,8 @@ public class UserRollbackClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserRollback004
      * @assertion_ids: JTA:JAVADOC:32
-     * @test_Strategy: Start the User Transaction.Call rollback() on User
-     *                 Transaction.Call rollback() again on User Transaction.
+     * @test_Strategy: Start the User Transaction.Call rollback() on User Transaction.Call rollback() again on User
+     * Transaction.
      */
     public void testUserRollback004() throws Fault {
         // TestCase id :- 4.4.4
@@ -255,8 +253,8 @@ public class UserRollbackClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserRollback005
      * @assertion_ids: JTA:JAVADOC:31
-     * @test_Strategy: Start the User Transaction.Call rollback() on User
-     *                 Transaction.Check the status of the User Transaction.
+     * @test_Strategy: Start the User Transaction.Call rollback() on User Transaction.Check the status of the User
+     * Transaction.
      */
     public void testUserRollback005() throws Fault {
         // TestCase id :- 4.4.5

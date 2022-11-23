@@ -88,8 +88,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:15
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Perform lookup of home interface via JNDI.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Perform lookup of home interface via
+     * JNDI.
      *
      */
 
@@ -99,14 +99,16 @@ public class Client extends EETest {
             // Get EJB Home ...
             logMsg("Looking up home in test1");
             beanHome = (TestBeanHome) nctx.lookup(testBean, TestBeanHome.class);
-            if (beanHome != null) pass = true;
+            if (beanHome != null)
+                pass = true;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test1: " + e);
             TestUtil.printStackTrace(e);
             throw new Fault("test1 failed : " + e);
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -114,8 +116,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:19.1
      *
-     * @test_Strategy: Create a stateful session EJBObject via the EJBHome
-     * interface. Deploy it on the J2EE server.
+     * @test_Strategy: Create a stateful session EJBObject via the EJBHome interface. Deploy it on the J2EE server.
      */
 
     public void test2() throws Fault {
@@ -128,7 +129,8 @@ public class Client extends EETest {
 
             pass = beanRef.isCreated();
 
-            if (!pass) throw new Fault("test2 failed");
+            if (!pass)
+                throw new Fault("test2 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test2: " + e);
@@ -142,9 +144,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:19.2; EJB:SPEC:23
      *
-     * @test_Strategy: Create a stateful session EJB. Deploy it on the J2EE
-     * server. Obtain handle, then remove object, Attempt to make call to the
-     * removed object.
+     * @test_Strategy: Create a stateful session EJB. Deploy it on the J2EE server. Obtain handle, then remove object,
+     * Attempt to make call to the removed object.
      *
      */
     public void test3() throws Fault {
@@ -178,7 +179,8 @@ public class Client extends EETest {
                     throw new Fault("test3 failed : " + e);
                 }
             }
-            if (!pass) throw new Fault("test3 failed");
+            if (!pass)
+                throw new Fault("test3 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test3: " + e);
@@ -192,9 +194,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:39
      *
-     * @test_Strategy: A client cannot obtain a primaryKey from the EJBObject.
-     * Create a stateful Session Bean. Deploy it on the J2EE server. Try to Obtain
-     * primaryKey. Expect a RemoteException.
+     * @test_Strategy: A client cannot obtain a primaryKey from the EJBObject. Create a stateful Session Bean. Deploy it on
+     * the J2EE server. Try to Obtain primaryKey. Expect a RemoteException.
      *
      */
 
@@ -216,7 +217,8 @@ public class Client extends EETest {
                 pass = true;
             }
 
-            if (!pass) throw new Fault("test4 failed");
+            if (!pass)
+                throw new Fault("test4 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test4: " + e);
@@ -230,11 +232,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:24; EJB:SPEC:25
      *
-     * @test_Strategy: A client cannot remove an EJBObject through EJBHome
-     * interface via a primary key for a session object. A RemoveException should
-     * occur. Create a stateful Session Bean. Deploy it on the J2EE server. Try to
-     * Obtain primary Key. Try to remove the object via the primary key. Check to
-     * ensure RemoveException occurs. Check to see if object still exists.
+     * @test_Strategy: A client cannot remove an EJBObject through EJBHome interface via a primary key for a session object.
+     * A RemoveException should occur. Create a stateful Session Bean. Deploy it on the J2EE server. Try to Obtain primary
+     * Key. Try to remove the object via the primary key. Check to ensure RemoveException occurs. Check to see if object
+     * still exists.
      *
      */
 
@@ -267,7 +268,8 @@ public class Client extends EETest {
             throw new Fault("test5 failed", e);
         }
 
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     /*
@@ -275,8 +277,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:19.3
      *
-     * @test_Strategy: Obtain EJBMetaData via the EJBHome interface Verify
-     * EJBMetaData was obtained.
+     * @test_Strategy: Obtain EJBMetaData via the EJBHome interface Verify EJBMetaData was obtained.
      *
      */
     public void test6() throws Fault {
@@ -290,13 +291,15 @@ public class Client extends EETest {
             TestUtil.logMsg("Get EJBMetaData interface");
             EJBMetaData metaData = beanHome.getEJBMetaData();
             TestUtil.logMsg("metaData=" + metaData);
-            if (metaData != null) pass = true;
+            if (metaData != null)
+                pass = true;
             else {
                 TestUtil.logErr("EJBMetaData interface is null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test6 failed");
+            if (!pass)
+                throw new Fault("test6 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test6: " + e);
@@ -310,8 +313,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:19.4
      *
-     * @test_Strategy: Obtain HomeHandle via the EJBHome interface Verify
-     * HomeHandle was obtained.
+     * @test_Strategy: Obtain HomeHandle via the EJBHome interface Verify HomeHandle was obtained.
      *
      */
     public void test6a() throws Fault {
@@ -321,13 +323,15 @@ public class Client extends EETest {
         try {
             TestUtil.logMsg("Get HomeHandle");
             HomeHandle homeHandle = beanHome.getHomeHandle();
-            if (homeHandle != null) pass = true;
+            if (homeHandle != null)
+                pass = true;
             else {
                 TestUtil.logErr("homeHandle is null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test6a failed");
+            if (!pass)
+                throw new Fault("test6a failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test6a: " + e);
@@ -341,9 +345,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:35
      *
-     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE
-     * server. Obtain the EJBHome Interface. Verify the EJBHome Interface was
-     * created.
+     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE server. Obtain the EJBHome Interface. Verify
+     * the EJBHome Interface was created.
      */
     public void test7() throws Fault {
         boolean pass = false;
@@ -361,13 +364,15 @@ public class Client extends EETest {
 
             TestUtil.logMsg("This is after the beanRef.getEJBHome() ");
 
-            if (beanHome2 != null) pass = true;
+            if (beanHome2 != null)
+                pass = true;
             else {
                 TestUtil.logErr("Home Interface is null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test7 failed");
+            if (!pass)
+                throw new Fault("test7 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test7: " + e);
@@ -381,8 +386,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:42.3
      *
-     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE
-     * server. Obtain handle via the EJBObject. Verify the handle was obtained.
+     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE server. Obtain handle via the EJBObject.
+     * Verify the handle was obtained.
      */
 
     public void test8() throws Fault {
@@ -402,13 +407,15 @@ public class Client extends EETest {
 
             TestUtil.logMsg("handle= " + handle);
 
-            if (handle != null) pass = true;
+            if (handle != null)
+                pass = true;
             else {
                 TestUtil.logErr("handle is null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test8 failed");
+            if (!pass)
+                throw new Fault("test8 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test8: " + e);
@@ -422,9 +429,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:24
      *
-     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE
-     * server. Remove the Object via the EJBObject. Verify the object no longer
-     * exists.
+     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE server. Remove the Object via the EJBObject.
+     * Verify the object no longer exists.
      */
 
     public void test9() throws Fault {
@@ -450,7 +456,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("test9 failed : " + e);
         }
-        if (!pass) throw new Fault("test9 failed");
+        if (!pass)
+            throw new Fault("test9 failed");
     }
 
     /*
@@ -458,8 +465,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:49
      *
-     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE
-     * server. Call the isIdentical(SameObject). Verify that the result is true.
+     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE server. Call the isIdentical(SameObject).
+     * Verify that the result is true.
      */
 
     public void test10() throws Fault {
@@ -481,7 +488,8 @@ public class Client extends EETest {
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test10 failed");
+            if (!pass)
+                throw new Fault("test10 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test10: " + e);
@@ -495,9 +503,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:49; EJB:SPEC:36
      *
-     * @test_Strategy: Create a stateful session EJB. Deploy it on the J2EE
-     * server. Call the isIdentical(newObject). Verify that the objects are not
-     * identical.
+     * @test_Strategy: Create a stateful session EJB. Deploy it on the J2EE server. Call the isIdentical(newObject). Verify
+     * that the objects are not identical.
      */
 
     public void test11() throws Fault {
@@ -523,7 +530,8 @@ public class Client extends EETest {
                 pass = true;
             }
 
-            if (!pass) throw new Fault("test11 failed");
+            if (!pass)
+                throw new Fault("test11 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test11: " + e);
@@ -537,9 +545,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:34; EJB:SPEC:42.1
      *
-     * @test_Strategy: Create a stateful Session EJB. Deploy it on the J2EE
-     * server. Invoke business methods through the remote interface. Verify that a
-     * exception isn't raised
+     * @test_Strategy: Create a stateful Session EJB. Deploy it on the J2EE server. Invoke business methods through the
+     * remote interface. Verify that a exception isn't raised
      */
 
     public void test12() throws Fault {
@@ -581,9 +588,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:42.4
      *
-     * @test_Strategy: Create a stateful Session EJB. Deploy it on the J2EE
-     * server. Call the objects business method with and instance of itself as the
-     * parameter.
+     * @test_Strategy: Create a stateful Session EJB. Deploy it on the J2EE server. Call the objects business method with
+     * and instance of itself as the parameter.
      *
      */
 
@@ -612,8 +618,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:19.3
      *
-     * @test_Strategy: Obtain EJBMetaData Obtain EJBHome interface Verify EJBHome
-     * interface was obtained
+     * @test_Strategy: Obtain EJBMetaData Obtain EJBHome interface Verify EJBHome interface was obtained
      */
 
     public void test14() throws Fault {
@@ -632,13 +637,15 @@ public class Client extends EETest {
             EJBHome home = metaData.getEJBHome();
             TestUtil.logMsg("This is after the metaData.getEJBHome() ");
 
-            if (home != null) pass = true;
+            if (home != null)
+                pass = true;
             else {
                 TestUtil.logMsg("Home was null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test14 failed");
+            if (!pass)
+                throw new Fault("test14 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test14: " + e);
@@ -652,9 +659,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:19.3
      *
-     * @test_Strategy: A client can obtain class object for the EJB home Interface
-     * via EJBMetaData. Obtain metaData from beanHome Obtain EJB home Interface
-     * Verify that EJB home Interface was obtained
+     * @test_Strategy: A client can obtain class object for the EJB home Interface via EJBMetaData. Obtain metaData from
+     * beanHome Obtain EJB home Interface Verify that EJB home Interface was obtained
      */
 
     public void test15() throws Fault {
@@ -674,13 +680,15 @@ public class Client extends EETest {
 
             TestUtil.logMsg("class=" + cls);
 
-            if (cls != null) pass = true;
+            if (cls != null)
+                pass = true;
             else {
                 TestUtil.logMsg("The getHomeInterfaceClass returned null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test15 failed");
+            if (!pass)
+                throw new Fault("test15 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test15: " + e);
@@ -694,8 +702,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:40
      *
-     * @test_Strategy: Obtain EJBMetaData Obtain PrimaryKeyClass via EJBMetaData.
-     * Verify that RuntimeException was obtained.
+     * @test_Strategy: Obtain EJBMetaData Obtain PrimaryKeyClass via EJBMetaData. Verify that RuntimeException was obtained.
      */
 
     public void test16() throws Fault {
@@ -734,7 +741,8 @@ public class Client extends EETest {
             TestUtil.logErr("Caught exception test16: " + e);
             TestUtil.printStackTrace(e);
         } finally {
-            if (!pass) throw new Fault("test16 failed");
+            if (!pass)
+                throw new Fault("test16 failed");
         }
     }
 
@@ -743,9 +751,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:22
      *
-     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE
-     * server. Obtain handle, serialize/deserialize handle, invoke bean object
-     * with deserialized handle.
+     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE server. Obtain handle, serialize/deserialize
+     * handle, invoke bean object with deserialized handle.
      */
 
     public void test17() throws Fault {
@@ -763,13 +770,15 @@ public class Client extends EETest {
             TestUtil.logMsg("After the metaData.getRemoteInterfaceClass() ");
 
             TestUtil.logMsg("class=" + cls);
-            if (cls != null) pass = true;
+            if (cls != null)
+                pass = true;
             else {
                 TestUtil.logMsg("getRemoteInterfaceClass Returned a null value test17");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test17 failed");
+            if (!pass)
+                throw new Fault("test17 failed");
 
         } catch (RemoteException e) {
             TestUtil.logErr("Caught exception test17: " + e);
@@ -787,8 +796,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:21; EJB:JAVADOC:71
      *
-     * @test_Strategy: Obtain EJBMetaData Call isSession on a SessionBean Verify
-     * that the result is true
+     * @test_Strategy: Obtain EJBMetaData Call isSession on a SessionBean Verify that the result is true
      */
 
     public void test18() throws Fault {
@@ -809,7 +817,8 @@ public class Client extends EETest {
             TestUtil.logMsg("isSession =" + isSession);
             pass = isSession;
 
-            if (!pass) throw new Fault("test18 failed");
+            if (!pass)
+                throw new Fault("test18 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test18: " + e);

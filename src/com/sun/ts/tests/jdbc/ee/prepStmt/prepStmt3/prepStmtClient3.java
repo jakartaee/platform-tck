@@ -47,8 +47,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 /**
- * The prepStmtClient3 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The prepStmtClient3 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.8, 11/24/00
@@ -95,14 +94,11 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -111,10 +107,10 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 /*
-                 * sqlp = new Properties(); String sqlStmt =
-                 * p.getProperty("rsQuery",""); InputStream istr = new
+                 * sqlp = new Properties(); String sqlStmt = p.getProperty("rsQuery",""); InputStream istr = new
                  * FileInputStream(sqlStmt); sqlp.load(istr);
                  */
                 sqlp = p;
@@ -145,16 +141,13 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetString01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:674; JDBC:JAVADOC:675;
-     * JDBC:JAVADOC:372; JDBC:JAVADOC:373; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:674; JDBC:JAVADOC:675; JDBC:JAVADOC:372; JDBC:JAVADOC:373; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setString(int parameterIndex, String x) method,update
-     * the column value with the maximum value of Char_Tab. Call the
-     * getString(String columnName) method to retrieve this value. Extract the
-     * maximum value from the tssql.stmt file. Compare this value with the value
-     * returned by the getString(String columnName) method. Both the values should
-     * be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setString(int
+     * parameterIndex, String x) method,update the column value with the maximum value of Char_Tab. Call the
+     * getString(String columnName) method to retrieve this value. Extract the maximum value from the tssql.stmt file.
+     * Compare this value with the value returned by the getString(String columnName) method. Both the values should be
+     * equal.
      */
 
     public void testSetString01() throws Fault {
@@ -226,15 +219,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetTime01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:680; JDBC:JAVADOC:681;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:680; JDBC:JAVADOC:681; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setTime(int parameterIndex, Time x) method,update the
-     * column value with the Non-Null Time value. Call the getTime(int columnno)
-     * method to retrieve this value. Extract the Time value from the tssql.stmt
-     * file. Compare this value with the value returned by the getTime(int
-     * columnno) method. Both the values should be equal
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setTime(int
+     * parameterIndex, Time x) method,update the column value with the Non-Null Time value. Call the getTime(int columnno)
+     * method to retrieve this value. Extract the Time value from the tssql.stmt file. Compare this value with the value
+     * returned by the getTime(int columnno) method. Both the values should be equal
      */
 
     public void testSetTime01() throws Fault {
@@ -307,16 +297,13 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetTime02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:716; JDBC:JAVADOC:717;
-     * JDBC:JAVADOC:616; JDBC:JAVADOC:617; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:716; JDBC:JAVADOC:717; JDBC:JAVADOC:616; JDBC:JAVADOC:617; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setTime(int parameterIndex, Time x, Calendar cal)
-     * method,update the column value with the Non-Null Time value using the
-     * Calendar Object. Call the getTime(int columnno) method to retrieve this
-     * value. Extract the Time value from the tssql.stmt file. Compare this value
-     * with the value returned by the getTime(int columnno) method. Both the
-     * values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setTime(int
+     * parameterIndex, Time x, Calendar cal) method,update the column value with the Non-Null Time value using the Calendar
+     * Object. Call the getTime(int columnno) method to retrieve this value. Extract the Time value from the tssql.stmt
+     * file. Compare this value with the value returned by the getTime(int columnno) method. Both the values should be
+     * equal.
      */
 
     public void testSetTime02() throws Fault {
@@ -392,16 +379,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetTimestamp01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:682; JDBC:JAVADOC:683;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:682; JDBC:JAVADOC:683; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setTimestamp(int parameterIndex, Timestamp x)
-     * method,update the column value with the Non-Null Timestamp value. Call the
-     * getTimestamp(int columnno) method to retrieve this value. Extract the
-     * Timestamp value from the tssql.stmt file. Compare this value with the value
-     * returned by the getTimestamp(int columnno) method. Both the values should
-     * be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setTimestamp(int
+     * parameterIndex, Timestamp x) method,update the column value with the Non-Null Timestamp value. Call the
+     * getTimestamp(int columnno) method to retrieve this value. Extract the Timestamp value from the tssql.stmt file.
+     * Compare this value with the value returned by the getTimestamp(int columnno) method. Both the values should be equal.
      */
 
     public void testSetTimestamp01() throws Fault {
@@ -474,16 +457,13 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetTimestamp02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:718; JDBC:JAVADOC:719;
-     * JDBC:JAVADOC:620; JDBC:JAVADOC:621; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:718; JDBC:JAVADOC:719; JDBC:JAVADOC:620; JDBC:JAVADOC:621; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setTimestamp(int parameterIndex, Time x, Calendar cal)
-     * method,update the column value with the Non-Null Timestamp value using the
-     * Calendar Object. Call the getTimestamp(int columnno) method to retrieve
-     * this value. Extract the Timestamp value from the tssql.stmt file. Compare
-     * this value with the value returned by the getTimestamp(int columnno)
-     * method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setTimestamp(int
+     * parameterIndex, Time x, Calendar cal) method,update the column value with the Non-Null Timestamp value using the
+     * Calendar Object. Call the getTimestamp(int columnno) method to retrieve this value. Extract the Timestamp value from
+     * the tssql.stmt file. Compare this value with the value returned by the getTimestamp(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetTimestamp02() throws Fault {
@@ -557,15 +537,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetString02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:674; JDBC:JAVADOC:675;
-     * JDBC:JAVADOC:372; JDBC:JAVADOC:373; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:674; JDBC:JAVADOC:675; JDBC:JAVADOC:372; JDBC:JAVADOC:373; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using setString(int parameterIndex, String x),update the column
-     * with the maximum value which is a SQL VARCHAR. Call the getString(int
-     * ColumnIndex) method to retrieve this value. Extract the maximum value as a
-     * String from the tssql.stmt file. Compare this value with the value returned
-     * by the getString method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using setString(int
+     * parameterIndex, String x),update the column with the maximum value which is a SQL VARCHAR. Call the getString(int
+     * ColumnIndex) method to retrieve this value. Extract the maximum value as a String from the tssql.stmt file. Compare
+     * this value with the value returned by the getString method. Both the values should be equal.
      */
 
     public void testSetString02() throws Fault {
@@ -636,15 +613,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetFloat01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:668; JDBC:JAVADOC:669;
-     * JDBC:JAVADOC:384; JDBC:JAVADOC:385; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:668; JDBC:JAVADOC:669; JDBC:JAVADOC:384; JDBC:JAVADOC:385; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using setFloat(int parameterIndex,float x),update the column with
-     * the minimum value of Real_Tab. Now execute a query to get the minimum value
-     * and retrieve the result of the query using the getFloat(int columnIndex)
-     * method.Compare the returned value, with the minimum value extracted from
-     * the tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using setFloat(int
+     * parameterIndex,float x),update the column with the minimum value of Real_Tab. Now execute a query to get the minimum
+     * value and retrieve the result of the query using the getFloat(int columnIndex) method.Compare the returned value,
+     * with the minimum value extracted from the tssql.stmt file. Both of them should be equal.
      */
 
     public void testSetFloat01() throws Fault {
@@ -713,15 +687,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetFloat02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:674; JDBC:JAVADOC:675;
-     * JDBC:JAVADOC:384; JDBC:JAVADOC:385; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:674; JDBC:JAVADOC:675; JDBC:JAVADOC:384; JDBC:JAVADOC:385; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using setFloat(int parameterIndex,float x),update the column with
-     * the maximum value of Real_Tab. Now execute a query to get the maximum value
-     * and retrieve the result of the query using the getFloat(int columnIndex)
-     * method.Compare the returned value, with the maximum value extracted from
-     * the tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using setFloat(int
+     * parameterIndex,float x),update the column with the maximum value of Real_Tab. Now execute a query to get the maximum
+     * value and retrieve the result of the query using the getFloat(int columnIndex) method.Compare the returned value,
+     * with the maximum value extracted from the tssql.stmt file. Both of them should be equal.
      */
 
     public void testSetFloat02() throws Fault {
@@ -792,13 +763,11 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetBytes01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:676; JDBC:JAVADOC:677;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:676; JDBC:JAVADOC:677; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. execute the precompiled SQL Statement for updating Non-Null value
-     * from Binary_Tab by calling setBytes(int parameterIndex, byte[] x) and call
-     * the getBytes(int) method to check and it should return a Byte Array
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. execute the precompiled SQL
+     * Statement for updating Non-Null value from Binary_Tab by calling setBytes(int parameterIndex, byte[] x) and call the
+     * getBytes(int) method to check and it should return a Byte Array
      */
 
     public void testSetBytes01() throws Fault {
@@ -873,13 +842,11 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetBytes02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:676; JDBC:JAVADOC:677;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:676; JDBC:JAVADOC:677; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. execute the precompiled SQL Statement for updating Non-Null value
-     * from Varbinary_Tab by calling setBytes(int parameterIndex, byte[] x) and
-     * call the getBytes(int) method to check and it should return a Byte Array
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. execute the precompiled SQL
+     * Statement for updating Non-Null value from Varbinary_Tab by calling setBytes(int parameterIndex, byte[] x) and call
+     * the getBytes(int) method to check and it should return a Byte Array
      */
 
     public void testSetBytes02() throws Fault {
@@ -956,14 +923,11 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetBytes03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:676; JDBC:JAVADOC:677;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:676; JDBC:JAVADOC:677; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. execute the precompiled SQL Statement for updating Non-Null value
-     * from Longvarbinary_Tab by calling setBytes(int parameterIndex, byte[] x)
-     * and call the getBytes(int) method to check and it should return a Byte
-     * Array
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. execute the precompiled SQL
+     * Statement for updating Non-Null value from Longvarbinary_Tab by calling setBytes(int parameterIndex, byte[] x) and
+     * call the getBytes(int) method to check and it should return a Byte Array
      */
 
     public void testSetBytes03() throws Fault {
@@ -1040,15 +1004,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val with the maximum value of Char_Tab. Call the
-     * getObject(int columnno) method to retrieve this value. Extract the maximum
-     * value from the tssql.stmt file. Compare this value with the value returned
-     * by the getObject(int columnno) method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val with the maximum value of Char_Tab. Call the
+     * getObject(int columnno) method to retrieve this value. Extract the maximum value from the tssql.stmt file. Compare
+     * this value with the value returned by the getObject(int columnno) method. Both the values should be equal.
      */
 
     public void testSetObject01() throws Fault {
@@ -1119,15 +1080,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_val with the maximum value of Varchar_Tab. Call the
-     * getObject(int columnno) method to retrieve this value. Extract the maximum
-     * value from the tssql.stmt file. Compare this value with the value returned
-     * by the getObject(int columnNo) method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_val with the maximum value of Varchar_Tab. Call the
+     * getObject(int columnno) method to retrieve this value. Extract the maximum value from the tssql.stmt file. Compare
+     * this value with the value returned by the getObject(int columnNo) method. Both the values should be equal.
      */
 
     public void testSetObject02() throws Fault {
@@ -1197,15 +1155,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_val with the maximum value of Longvarchar_Tab. Call the
-     * getObject(int columnno) method to retrieve this value. Extract the maximum
-     * value from the tssql.stmt file. Compare this value with the value returned
-     * by the getObject(int columnNo) method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_val with the maximum value of Longvarchar_Tab. Call the
+     * getObject(int columnno) method to retrieve this value. Extract the maximum value from the tssql.stmt file. Compare
+     * this value with the value returned by the getObject(int columnNo) method. Both the values should be equal.
      */
 
     public void testSetObject03() throws Fault {
@@ -1276,15 +1231,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_val with the maximum value of Numeric_Tab. Call the
-     * getObject(int columnno) method to retrieve this value. Extract the maximum
-     * value from the tssql.stmt file. Compare this value with the value returned
-     * by the getObject(int columnNo) method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_val with the maximum value of Numeric_Tab. Call the
+     * getObject(int columnno) method to retrieve this value. Extract the maximum value from the tssql.stmt file. Compare
+     * this value with the value returned by the getObject(int columnNo) method. Both the values should be equal.
      */
 
     public void testSetObject04() throws Fault {
@@ -1353,15 +1305,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject05
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_val with the minimum value of Numeric_Tab. Call the
-     * getObject(int columnno) method to retrieve this value. Extract the minimum
-     * value from the tssql.stmt file. Compare this value with the value returned
-     * by the getObject(int columnNo) method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_val with the minimum value of Numeric_Tab. Call the
+     * getObject(int columnno) method to retrieve this value. Extract the minimum value from the tssql.stmt file. Compare
+     * this value with the value returned by the getObject(int columnNo) method. Both the values should be equal.
      */
 
     public void testSetObject05() throws Fault {
@@ -1434,15 +1383,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject06
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Min_val with the maximum value of Decimal_Tab. Call the
-     * getObject(int columnno) method to retrieve this value. Extract the maximum
-     * value from the tssql.stmt file. Compare this value with the value returned
-     * by the getObject(int columnNo) method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Min_val with the maximum value of Decimal_Tab. Call the
+     * getObject(int columnno) method to retrieve this value. Extract the maximum value from the tssql.stmt file. Compare
+     * this value with the value returned by the getObject(int columnNo) method. Both the values should be equal.
      */
 
     public void testSetObject06() throws Fault {
@@ -1512,15 +1458,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject07
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_val with the minimum value of Decimal_Tab. Call the
-     * getObject(int columnno) method to retrieve this value. Extract the minimum
-     * value from the tssql.stmt file. Compare this value with the value returned
-     * by the getObject(int columnNo) method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_val with the minimum value of Decimal_Tab. Call the
+     * getObject(int columnno) method to retrieve this value. Extract the minimum value from the tssql.stmt file. Compare
+     * this value with the value returned by the getObject(int columnNo) method. Both the values should be equal.
      */
 
     public void testSetObject07() throws Fault {
@@ -1592,15 +1535,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject08
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697;
-     * JDBC:JAVADOC:374; JDBC:JAVADOC:375; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JDBC:JAVADOC:374; JDBC:JAVADOC:375; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Min_val with the maximum value of Bit_Tab. Call the
-     * getBoolean(int columnno) method to retrieve this value. Extract the maximum
-     * value from the tssql.stmt file. Compare this value with the value returned
-     * by the getBoolean(int columnNo) method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Min_val with the maximum value of Bit_Tab. Call the getBoolean(int
+     * columnno) method to retrieve this value. Extract the maximum value from the tssql.stmt file. Compare this value with
+     * the value returned by the getBoolean(int columnNo) method. Both the values should be equal.
      */
 
     public void testSetObject08() throws Fault {
@@ -1671,15 +1611,12 @@ public class prepStmtClient3 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject09
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697;
-     * JDBC:JAVADOC:374; JDBC:JAVADOC:375; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:696; JDBC:JAVADOC:697; JDBC:JAVADOC:374; JDBC:JAVADOC:375; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_val with the minimum value of Bit_Tab. Call the
-     * getBoolean(int columnno) method to retrieve this value. Extract the minimum
-     * value from the tssql.stmt file. Compare this value with the value returned
-     * by the getBoolean(int columnNo) method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_val with the minimum value of Bit_Tab. Call the
+     * getBoolean(int columnno) method to retrieve this value. Extract the minimum value from the tssql.stmt file. Compare
+     * this value with the value returned by the getBoolean(int columnNo) method. Both the values should be equal.
      */
 
     public void testSetObject09() throws Fault {

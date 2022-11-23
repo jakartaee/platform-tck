@@ -62,14 +62,11 @@ public class testConnClient extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -106,11 +103,10 @@ public class testConnClient extends ServiceEETest implements Serializable {
      *
      * @assertion: To verify this JDBC connection can create tables.
      *
-     * @test_Strategy: Using the Connection object created in the setup() method,
-     * create a table, insert rows into it, then drop it.
+     * @test_Strategy: Using the Connection object created in the setup() method, create a table, insert rows into it, then
+     * drop it.
      *
-     * This sample will ensure that your environment is suitable to run the JDBC
-     * tests.
+     * This sample will ensure that your environment is suitable to run the JDBC tests.
      *
      */
     public void testCreateTable() throws Fault {
@@ -180,7 +176,8 @@ public class testConnClient extends ServiceEETest implements Serializable {
                 String newName = fTableName + "-" + i;
                 float newPrice = i + (float) .00;
                 int newType = i % 5;
-                if (newType == 0) newType = 5;
+                if (newType == 0)
+                    newType = 5;
                 pStmt.setInt(1, newKey);
                 pStmt.setString(2, newName);
                 pStmt.setFloat(3, newPrice);

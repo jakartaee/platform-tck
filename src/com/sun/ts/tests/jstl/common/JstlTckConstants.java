@@ -29,7 +29,7 @@ public interface JstlTckConstants {
 
     public final String JSTL_DB_DRIVER = "jstl.db.driver";
 
-    public final String[] JSTL_DB_PROPS = new String[] {JSTL_DB_URL, JSTL_DB_USER, JSTL_DB_PASSWORD, JSTL_DB_DRIVER};
+    public final String[] JSTL_DB_PROPS = new String[] { JSTL_DB_URL, JSTL_DB_USER, JSTL_DB_PASSWORD, JSTL_DB_DRIVER };
 
     /**
      * JSTL TCK DataSource name reference

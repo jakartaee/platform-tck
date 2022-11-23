@@ -35,4 +35,5 @@ import java.util.concurrent.TimeUnit;
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 @AccessTimeout(value = StatefulTimeoutIF.TIMEOUT_NANOSECONDS, unit = TimeUnit.NANOSECONDS)
 @Local(StatefulTimeoutIF.class)
-public class NanosecondUnitBean extends StatefulTimeoutBeanBase {}
+public class NanosecondUnitBean extends StatefulTimeoutBeanBase {
+}

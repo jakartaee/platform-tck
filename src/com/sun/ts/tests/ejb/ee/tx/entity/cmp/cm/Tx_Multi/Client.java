@@ -104,11 +104,14 @@ public class Client extends EETest {
 
             boolean testResult = false;
 
-            if (testNum == 1) testResult = runTest1();
-            if (testNum == 3) testResult = runTest3();
+            if (testNum == 1)
+                testResult = runTest1();
+            if (testNum == 3)
+                testResult = runTest3();
 
             synchronized (lock) {
-                if (!testResult) ++errors;
+                if (!testResult)
+                    ++errors;
                 ++threadsDone;
                 lock.notifyAll();
             }
@@ -148,8 +151,7 @@ public class Client extends EETest {
             logMsg("Looking up home interface for EJB: " + tLookupER);
             ERHome = (TxECMPBeanHome) nctx.lookup(tLookupER, TxECMPBeanHome.class);
             logMsg("Creating entity EJB = " + pkeyR.toString());
-            beanRefER = (TxECMPBean)
-                    ERHome.create(tName1, pkeyR, tName1 + "-" + pkeyR.intValue(), (float) 20.00, testProps);
+            beanRefER = (TxECMPBean) ERHome.create(tName1, pkeyR, tName1 + "-" + pkeyR.intValue(), (float) 20.00, testProps);
 
             // No need to create an instance in the Mandatory case - only a key.
             // Instance will be created in the test.
@@ -172,14 +174,12 @@ public class Client extends EETest {
     /*
      * @testName: test1
      *
-     * @assertion_ids: EJB:SPEC:10122; EJB:SPEC:583.3.1; EJB:SPEC:583.3.2;
-     * EJB:SPEC:583.3.4
+     * @assertion_ids: EJB:SPEC:10122; EJB:SPEC:583.3.1; EJB:SPEC:583.3.2; EJB:SPEC:583.3.4
      *
-     * @test_Strategy: Container managed Tx commit - Required entity EJBs. Create
-     * multiple client's which access the same entity object. Perform updates to
-     * the Entity EJB's instance data. Ensure that the container properly
-     * synchronizes access to the entity object via transactions. Ensure the
-     * object instance data and database data are updated on method return.
+     * @test_Strategy: Container managed Tx commit - Required entity EJBs. Create multiple client's which access the same
+     * entity object. Perform updates to the Entity EJB's instance data. Ensure that the container properly synchronizes
+     * access to the entity object via transactions. Ensure the object instance data and database data are updated on method
+     * return.
      */
 
     public void test1() throws Fault {
@@ -249,7 +249,8 @@ public class Client extends EETest {
                     b2 = beanRefS2.doTest1(pkeyR, tName1, i + 2);
                 }
             }
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e.getMessage(), e);
@@ -264,11 +265,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10122; EJB:SPEC:587.1; EJB:SPEC:587.3
      *
-     * @test_Strategy: Container managed Tx - Mandatory entity EJBs. Create
-     * multiple client's which access the same entity object. Attempt to create an
-     * instances of an Entity EJB (TxECMPBean) bean, without a transaction
-     * context. Ensure that javax.transacton.TransactionRequiredException
-     * exception is thrown for both instances.
+     * @test_Strategy: Container managed Tx - Mandatory entity EJBs. Create multiple client's which access the same entity
+     * object. Attempt to create an instances of an Entity EJB (TxECMPBean) bean, without a transaction context. Ensure that
+     * javax.transacton.TransactionRequiredException exception is thrown for both instances.
      */
 
     public void test3() throws Fault {
@@ -340,7 +339,8 @@ public class Client extends EETest {
                     b2 = beanRefS2.doTest3(pkeyM, tName1, i + 2);
                 }
             }
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e.getMessage(), e);

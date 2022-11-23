@@ -132,7 +132,8 @@ public class fpopulate {
                 Store s = session.getStore(dstURLName);
                 s.connect();
                 dstFolder = s.getFolder(srcFolder.getName());
-            } else dstFolder = session.getFolder(new URLName(dstURL));
+            } else
+                dstFolder = session.getFolder(new URLName(dstURL));
 
             if (clear && dstFolder.exists()) {
 
@@ -172,11 +173,13 @@ public class fpopulate {
             }
 
             // Copy over any messages from src to dst
-            if (holdsMessages(src)) copyMessages(src, dst);
+            if (holdsMessages(src))
+                copyMessages(src, dst);
         } else {
             System.out.println(dst.getFullName() + " already exists");
             // Copy over any messges from src to dst
-            if (force && holdsMessages(src)) copyMessages(src, dst);
+            if (force && holdsMessages(src))
+                copyMessages(src, dst);
         }
 
         // Copy over subfolders
@@ -184,16 +187,17 @@ public class fpopulate {
             String[] sf = src.list();
             for (int i = 0; sf != null && i < sf.length; i++) {
                 // skip SCCS directories?
-                if (skipSCCS && sf[i].equals("SCCS")) continue;
+                if (skipSCCS && sf[i].equals("SCCS"))
+                    continue;
                 File f = new File(src, sf[i]);
-                if (f.isDirectory()) copy(f, dst.getFolder(sf[i]));
+                if (f.isDirectory())
+                    copy(f, dst.getFolder(sf[i]));
             }
         }
     }
 
     /**
-     * Does this directory hold messages? Return true if there's at least one
-     * message.
+     * Does this directory hold messages? Return true if there's at least one message.
      */
     private static boolean holdsMessages(File f) {
         File msg = new File(f, "1");
@@ -205,34 +209,35 @@ public class fpopulate {
     }
 
     /**
-     * Copy message files from the source directory to the destination folder.
-     * Message files must be named "1", "2", etc. The first missing number
-     * terminates the copy.
+     * Copy message files from the source directory to the destination folder. Message files must be named "1", "2", etc.
+     * The first missing number terminates the copy.
      */
     private static void copyMessages(File src, Folder dst) throws MessagingException, IOException {
         System.out.println("  Copy from " + src + " to " + dst);
         int msgnum = 1;
         Message[] msgs = new Message[1];
-        for (; ; ) {
+        for (;;) {
             File f = new File(src, String.valueOf(msgnum));
             if (!f.exists()) // break when we find a message missing
-            break;
+                break;
             FileInputStream fis = new FileInputStream(f);
             BufferedInputStream is = new BufferedInputStream(fis);
             is.mark(1024);
             /*
-             * If it's in UNIX mbox format, we skip the first line, otherwise we start
-             * reading at the beginning.
+             * If it's in UNIX mbox format, we skip the first line, otherwise we start reading at the beginning.
              */
             if (is.read() == 'F' && is.read() == 'r' && is.read() == 'o' && is.read() == 'm' && is.read() == ' ') {
                 int c;
-                do c = is.read();
+                do
+                    c = is.read();
                 while (!(c == '\n' || c == '\r' || c == -1));
                 if (c == '\r') {
                     is.mark(1);
-                    if (is.read() != '\n') is.reset();
+                    if (is.read() != '\n')
+                        is.reset();
                 }
-            } else is.reset();
+            } else
+                is.reset();
             MimeMessage msg = new MimeMessage(session, is);
             fis.close();
             msgs[0] = msg;

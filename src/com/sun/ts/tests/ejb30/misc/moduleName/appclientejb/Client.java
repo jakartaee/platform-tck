@@ -51,9 +51,11 @@ public class Client extends EETest {
         s.exit();
     }
 
-    public void setup(String[] args, Properties p) {}
+    public void setup(String[] args, Properties p) {
+    }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 
     @SuppressWarnings("unused")
     @PostConstruct
@@ -76,9 +78,9 @@ public class Client extends EETest {
 
         AppResRemoteIF lookupResult = null;
         String[] names = {
-            // "java:app/renamed_appclientejb_ejb/ModuleMBean",
-            "java:app/renamed_appclientejb_ejb/ModuleBean",
-            "java:global/ejb3_misc_moduleName_appclientejb/renamed_appclientejb_ejb/ModuleBean"
+                // "java:app/renamed_appclientejb_ejb/ModuleMBean",
+                "java:app/renamed_appclientejb_ejb/ModuleBean",
+                "java:global/ejb3_misc_moduleName_appclientejb/renamed_appclientejb_ejb/ModuleBean"
         };
         for (String name : names) {
             postConstructRecords.append("About to look up " + name);
@@ -95,8 +97,7 @@ public class Client extends EETest {
     /*
      * @testName: clientPostConstruct
      *
-     * @test_Strategy: verify data sources injected and declared in descriptors
-     * inside appclient
+     * @test_Strategy: verify data sources injected and declared in descriptors inside appclient
      */
     public void clientPostConstruct() {
         Helper.getLogger().info(postConstructRecords.toString());
@@ -105,8 +106,7 @@ public class Client extends EETest {
     /*
      * @testName: ejbPostConstruct
      *
-     * @test_Strategy: verify data sources injected and declared in descriptors
-     * inside ejb
+     * @test_Strategy: verify data sources injected and declared in descriptors inside ejb
      */
     public void ejbPostConstruct() {
         Helper.getLogger().info(moduleBean.getPostConstructRecords().toString());

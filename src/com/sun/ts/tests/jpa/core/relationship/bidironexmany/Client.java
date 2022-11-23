@@ -27,7 +27,8 @@ import java.util.Vector;
  */
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -50,11 +51,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: biDir1XMTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
-     * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
-     * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
-     * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
-     * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
+     * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135; PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561;
+     * PERSISTENCE:SPEC:562; PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571; PERSISTENCE:SPEC:573;
+     * PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028; PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
      *
      * @test_Strategy: RelationShip OneToMany Mapping
      *
@@ -134,24 +133,18 @@ public class Client extends PMClientBase {
 
             // Alternative Search mechanism
             /*
-             * BiDir1XMPerson newPerson =
-             * getEntityManager().find(BiDir1XMPerson.class, 1L);
+             * BiDir1XMPerson newPerson = getEntityManager().find(BiDir1XMPerson.class, 1L);
              *
              * if (newPerson != null) {
              *
-             * Collection<BiDir1XMProject> newProjects = newPerson.getProjects(); for
-             * (BiDir1XMProject prj : newProjects) { if
-             * (prj.getName().equals("Identity")) { BiDir1XMPerson p =
-             * prj.getBiDir1XMPerson(); if (p != null) { if
-             * (p.getName().equals("Duke")) {
-             * TestUtil.logTrace("Found Expected Person Entity"); pass1 = true; }
+             * Collection<BiDir1XMProject> newProjects = newPerson.getProjects(); for (BiDir1XMProject prj : newProjects) { if
+             * (prj.getName().equals("Identity")) { BiDir1XMPerson p = prj.getBiDir1XMPerson(); if (p != null) { if
+             * (p.getName().equals("Duke")) { TestUtil.logTrace("Found Expected Person Entity"); pass1 = true; }
              *
              * } else { TestUtil.logTrace("searched Person not Found"); }
              *
-             * } else if (prj.getName().equals("JavaEE")) { BiDir1XMPerson p2 =
-             * prj.getBiDir1XMPerson(); if (p2 != null) { if
-             * (p2.getName().equals("Duke")) {
-             * TestUtil.logTrace("Found Expected Person Entity"); pass2 = true; }
+             * } else if (prj.getName().equals("JavaEE")) { BiDir1XMPerson p2 = prj.getBiDir1XMPerson(); if (p2 != null) { if
+             * (p2.getName().equals("Duke")) { TestUtil.logTrace("Found Expected Person Entity"); pass2 = true; }
              *
              * } else { TestUtil.logTrace("searched Person not Found"); } } } } else {
              * TestUtil.logTrace("searched Person not Found"); }

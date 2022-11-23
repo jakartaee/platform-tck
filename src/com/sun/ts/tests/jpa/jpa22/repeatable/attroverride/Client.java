@@ -53,7 +53,8 @@ public class Client extends PMClientBase {
 
     private final Date d10 = getSQLDate(2003, 1, 25);
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -79,8 +80,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: test1
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:4; PERSISTENCE:JAVADOC:5;
-     * PERSISTENCE:JAVADOC:6;
+     * @assertion_ids: PERSISTENCE:JAVADOC:4; PERSISTENCE:JAVADOC:5; PERSISTENCE:JAVADOC:6;
      *
      * @test_Strategy: use core/annotations/mappedsc without @AttributeOverrides
      */
@@ -101,14 +101,14 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
      * @testName: test2
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:4; PERSISTENCE:JAVADOC:5;
-     * PERSISTENCE:JAVADOC:6;
+     * @assertion_ids: PERSISTENCE:JAVADOC:4; PERSISTENCE:JAVADOC:5; PERSISTENCE:JAVADOC:6;
      *
      * @test_Strategy: use core/annotations/mappedsc without @AttributeOverrides
      */
@@ -129,7 +129,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     public void createTestData() {

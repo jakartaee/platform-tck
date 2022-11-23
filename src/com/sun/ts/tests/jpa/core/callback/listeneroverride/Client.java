@@ -63,8 +63,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:708;
-     * PERSISTENCE:SPEC:701; PERSISTENCE:JAVADOC:34
+     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:701; PERSISTENCE:JAVADOC:34
      *
      * @test_Strategy:
      */
@@ -102,8 +101,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistMultiTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697;
-     * PERSISTENCE:SPEC:722
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697; PERSISTENCE:SPEC:722
      *
      * @test_Strategy:
      */
@@ -186,8 +184,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistMultiCascadeTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697;
-     * PERSISTENCE:SPEC:708
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697; PERSISTENCE:SPEC:708
      *
      * @test_Strategy:
      */
@@ -267,8 +264,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: preRemoveMultiTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:709;
-     * PERSISTENCE:SPEC:722
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:722
      *
      * @test_Strategy:
      */
@@ -356,8 +352,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: preRemoveMultiCascadeTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:708;
-     * PERSISTENCE:SPEC:722
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:722
      *
      * @test_Strategy:
      */
@@ -432,8 +427,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: postLoadTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:719;
-     * PERSISTENCE:SPEC:720
+     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:719; PERSISTENCE:SPEC:720
      *
      * @test_Strategy:
      */
@@ -476,8 +470,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: postLoadMultiTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:719;
-     * PERSISTENCE:SPEC:722
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:719; PERSISTENCE:SPEC:722
      *
      * @test_Strategy:
      */

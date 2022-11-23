@@ -28,7 +28,7 @@ import jakarta.interceptor.InvocationContext;
 
 @Singleton
 @ExcludeDefaultInterceptors
-@Interceptors({Interceptor4.class, Interceptor3.class})
+@Interceptors({ Interceptor4.class, Interceptor3.class })
 public class AroundTimeoutComplementBean extends AroundTimeoutBeanBase implements AroundTimeoutIF {
     private static final String simpleName = "AroundTimeoutComplementBean";
 

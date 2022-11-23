@@ -52,7 +52,8 @@ public class Person implements java.io.Serializable {
 
     private Collection<Project> projects = new java.util.ArrayList<Project>();
 
-    public Person() {}
+    public Person() {
+    }
 
     public Person(int personid, String firstName, String lastName) {
         this.personid = personid;

@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/jsp_tagfile_directives_attribute20_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -61,8 +59,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.2
      *
-     * @test_Strategy: A translation error must result if more than one attribute
-     * directive appears in the same translation unit with the same name
+     * @test_Strategy: A translation error must result if more than one attribute directive appears in the same translation
+     * unit with the same name
      */
 
     public void negativeName1Test() throws Fault {
@@ -77,8 +75,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.2
      *
-     * @test_Strategy: A translation error must result if more than one attribute
-     * directive appears in the same translation unit with the same name
+     * @test_Strategy: A translation error must result if more than one attribute directive appears in the same translation
+     * unit with the same name
      */
 
     public void negativeName1IncludeTest() throws Fault {
@@ -93,8 +91,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.1.2
      *
-     * @test_Strategy: A translation error must result if the attribute name
-     * equals to the name-given of a variable.
+     * @test_Strategy: A translation error must result if the attribute name equals to the name-given of a variable.
      */
 
     public void negativeName2Test() throws Fault {
@@ -109,8 +106,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.1.2
      *
-     * @test_Strategy: A translation error must result if the attribute name
-     * equals to the name-given of a variable.
+     * @test_Strategy: A translation error must result if the attribute name equals to the name-given of a variable.
      */
 
     public void negativeName2IncludeTest() throws Fault {
@@ -125,8 +121,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.1.2
      *
-     * @test_Strategy: A translation error must result if the attribute name
-     * equals to dynamic-attributes of a tag directive.
+     * @test_Strategy: A translation error must result if the attribute name equals to dynamic-attributes of a tag
+     * directive.
      */
 
     public void negativeName3Test() throws Fault {
@@ -141,8 +137,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.1.2
      *
-     * @test_Strategy: A translation error must result if the attribute name
-     * equals to dynamic-attributes of a tag directive.
+     * @test_Strategy: A translation error must result if the attribute name equals to dynamic-attributes of a tag
+     * directive.
      */
 
     public void negativeName3IncludeTest() throws Fault {
@@ -172,8 +168,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.6.1
      *
-     * @test_Strategy: type defaults to java.lang.String, and also verify an Float
-     * type attribute.
+     * @test_Strategy: type defaults to java.lang.String, and also verify an Float type attribute.
      */
 
     public void defaultTypeTest() throws Fault {
@@ -203,8 +198,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.4.5
      *
-     * @test_Strategy: A translation error must result if fragment is true and
-     * type is specified
+     * @test_Strategy: A translation error must result if fragment is true and type is specified
      */
 
     public void negativeFragmentTypeTest() throws Fault {
@@ -219,8 +213,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.4.2.1
      *
-     * @test_Strategy: A translation error must result if fragment is true and
-     * rtexprvalue is specified
+     * @test_Strategy: A translation error must result if fragment is true and rtexprvalue is specified
      */
 
     public void negativeFragmentRtexprvalueTest() throws Fault {
@@ -235,8 +228,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230
      *
-     * @test_Strategy: fragment defaults to false. Also verifies the default attr
-     * type is String.
+     * @test_Strategy: fragment defaults to false. Also verifies the default attr type is String.
      */
 
     public void defaultFragmentTest() throws Fault {
@@ -266,9 +258,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.8.3
      *
-     * @test_Strategy: [deferredValueMinimumJspVersion] The deferredValue
-     * attribute causes a translation error if specified in a tag file with a JSP
-     * version less than 2.1.
+     * @test_Strategy: [deferredValueMinimumJspVersion] The deferredValue attribute causes a translation error if specified
+     * in a tag file with a JSP version less than 2.1.
      */
 
     public void deferredValueMinimumJspVersionTest() throws Fault {
@@ -283,9 +274,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.9.4
      *
-     * @test_Strategy: [deferredValueTypeMinimumJspVersion] The deferredValueType
-     * attribute causes a translation error if specified in a tag file with a JSP
-     * version less than 2.1.
+     * @test_Strategy: [deferredValueTypeMinimumJspVersion] The deferredValueType attribute causes a translation error if
+     * specified in a tag file with a JSP version less than 2.1.
      */
 
     public void deferredValueTypeMinimumJspVersionTest() throws Fault {
@@ -300,9 +290,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.10.2
      *
-     * @test_Strategy: [deferredMethodMinimumJspVersion] The deferredMethod
-     * attribute causes a translation error if specified in a tag file with a JSP
-     * version less than 2.1.
+     * @test_Strategy: [deferredMethodMinimumJspVersion] The deferredMethod attribute causes a translation error if
+     * specified in a tag file with a JSP version less than 2.1.
      */
 
     public void deferredMethodMinimumJspVersionTest() throws Fault {
@@ -317,9 +306,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.11.3
      *
-     * @test_Strategy: [deferredMethodSignatureMinimumJspVersion] The
-     * deferredMethodSignature attribute causes a translation error if specified
-     * in a tag file with a JSP version less than 2.1.
+     * @test_Strategy: [deferredMethodSignatureMinimumJspVersion] The deferredMethodSignature attribute causes a translation
+     * error if specified in a tag file with a JSP version less than 2.1.
      */
 
     public void deferredMethodSignatureMinimumJspVersionTest() throws Fault {

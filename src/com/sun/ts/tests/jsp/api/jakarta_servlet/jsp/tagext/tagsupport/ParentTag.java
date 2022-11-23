@@ -29,8 +29,7 @@ import java.util.List;
 public class ParentTag extends TagSupport {
 
     /**
-     * Name of the application scoped object where the result of the method calls
-     * is stored.
+     * Name of the application scoped object where the result of the method calls is stored.
      */
     String _result = null;
 
@@ -53,8 +52,7 @@ public class ParentTag extends TagSupport {
     /**
      * Sets the name of the application scoped list.
      *
-     * @param result
-     *          - the name of the list
+     * @param result - the name of the list
      */
     public void setResult(String result) {
         _result = result;
@@ -64,8 +62,7 @@ public class ParentTag extends TagSupport {
      * Simple tag that includes the evaluation of it's body.
      *
      * @return Tag.EVAL_BODY_INCLUDE
-     * @throws jakarta.servlet.jsp.JspException
-     *           if an error occurs.
+     * @throws jakarta.servlet.jsp.JspException if an error occurs.
      */
     public int doStartTag() throws JspException {
         addMethodToList("doStartTag");
@@ -76,8 +73,7 @@ public class ParentTag extends TagSupport {
      * Adds this method name to the method list and returns Tag.EVAL_PAGE.
      *
      * @return Tag.EVAL_PAGE
-     * @throws jakarta.servlet.jsp.JspException
-     *           if an error occurs
+     * @throws jakarta.servlet.jsp.JspException if an error occurs
      */
     public int doEndTag() throws JspException {
         addMethodToList("doEndTag");
@@ -88,8 +84,7 @@ public class ParentTag extends TagSupport {
      * Adds this method name to the method list and returns Tag.SKIP_BODY.
      *
      * @return Tag.SKIP_BODY
-     * @throws jakarta.servlet.jsp.JspException
-     *           if an error occurs
+     * @throws jakarta.servlet.jsp.JspException if an error occurs
      */
     public int doAfterBody() throws JspException {
         addMethodToList("doAfterBody");
@@ -97,12 +92,10 @@ public class ParentTag extends TagSupport {
     }
 
     /**
-     * This will add an application scoped List to the page context based of the
-     * name (_result). The list contains the methods called against this tag
-     * handler by the container.
+     * This will add an application scoped List to the page context based of the name (_result). The list contains the
+     * methods called against this tag handler by the container.
      *
-     * @param methodName
-     *          - the method name to add to the list.
+     * @param methodName - the method name to add to the list.
      */
     protected void addMethodToList(String methodName) {
         if (_result == null) {

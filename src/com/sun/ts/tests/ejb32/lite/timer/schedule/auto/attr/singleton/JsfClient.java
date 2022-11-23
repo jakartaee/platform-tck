@@ -32,9 +32,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: postConstruct
      *
-     * @test_Strategy: check the number of auto timers inside bean's
-     * post-construct method. All auto timers should have been created when
-     * post-construct method is invoked.
+     * @test_Strategy: check the number of auto timers inside bean's post-construct method. All auto timers should have been
+     * created when post-construct method is invoked.
      */
     public void postConstruct() {
         passIfTimeout("postConstruct");
@@ -43,8 +42,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: autoTimerInSuperClassNoParam
      *
-     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out
-     * method takes no Timer param.
+     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out method takes no Timer param.
      */
 
     /*
@@ -56,22 +54,19 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: autoTimerWithInfo
      *
-     * @test_Strategy: verify the auto timer that was created with @Schedule in
-     * bean class with info attr
+     * @test_Strategy: verify the auto timer that was created with @Schedule in bean class with info attr
      */
 
     /*
      * @testName: autoTimerWithoutInfo
      *
-     * @test_Strategy: verify the auto timer that was created with @Schedule in
-     * bean class without info attr
+     * @test_Strategy: verify the auto timer that was created with @Schedule in bean class without info attr
      */
 
     /*
      * @testName: autoTimerInSuperClassNoParam
      *
-     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out
-     * method takes no Timer param.
+     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out method takes no Timer param.
      */
     public void autoTimerInSuperClassNoParam() {
         passIfRecurringTimeout("autoTimerInSuperClassNoParam");
@@ -89,8 +84,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: autoTimerWithInfo
      *
-     * @test_Strategy: verify the auto timer that was created with @Schedule in
-     * bean class with info attr
+     * @test_Strategy: verify the auto timer that was created with @Schedule in bean class with info attr
      */
     public void autoTimerWithInfo() {
         passIfRecurringTimeout("autoTimerWithInfo");
@@ -99,8 +93,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: autoTimerWithoutInfo
      *
-     * @test_Strategy: verify the auto timer that was created with @Schedule in
-     * bean class without info attr
+     * @test_Strategy: verify the auto timer that was created with @Schedule in bean class without info attr
      */
     public void autoTimerWithoutInfo() {
         passIfRecurringTimeout("autoTimerWithoutInfo");

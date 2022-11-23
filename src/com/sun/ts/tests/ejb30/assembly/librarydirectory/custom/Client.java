@@ -52,8 +52,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: EAR/lib/*.jar are not included in classpath, since
-     * <library-directory> is set to something else
+     * @test_Strategy: EAR/lib/*.jar are not included in classpath, since <library-directory> is set to something else
      */
     public void libDirNotUsed() throws TestFailedException {
         Util.verifyGetResource(getClass(), RESOURCE_NAME, null);
@@ -66,8 +65,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: EAR/lib/*.jar are not included in classpath, since
-     * <library-directory> is set to something else
+     * @test_Strategy: EAR/lib/*.jar are not included in classpath, since <library-directory> is set to something else
      */
     public void libDirNotUsedEJB() throws TestFailedException {
         Util.verifyResource(remoteAssemblyBean, RESOURCE_NAME, null, remoteAssemblyBean.getResource(RESOURCE_NAME));
@@ -133,8 +131,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: PostConstruct method must be invoked even when it's in a
-     * superclass not packaged in appclient-client.jar
+     * @test_Strategy: PostConstruct method must be invoked even when it's in a superclass not packaged in
+     * appclient-client.jar
      */
 
     /*
@@ -150,10 +148,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-     * deployed separately. It client view jar is packaged inside current ear and
-     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-     * helloBean
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and deployed separately. It client view jar is
+     * packaged inside current ear and referenced by both appclient and ejb jar thru MANIFEST.MF appclient -> helloBean
      */
 
     /*
@@ -161,9 +157,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-     * deployed separately. It client view jar is packaged inside current ear and
-     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-     * assemblyBean -> helloBean
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and deployed separately. It client view jar is
+     * packaged inside current ear and referenced by both appclient and ejb jar thru MANIFEST.MF appclient -> assemblyBean
+     * -> helloBean
      */
 }

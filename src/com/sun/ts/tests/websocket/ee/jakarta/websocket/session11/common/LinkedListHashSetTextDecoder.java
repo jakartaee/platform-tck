@@ -26,10 +26,12 @@ import java.util.LinkedList;
 public class LinkedListHashSetTextDecoder implements Decoder.Text<LinkedList<HashSet<String>>> {
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 
     @Override
-    public void init(EndpointConfig arg0) {}
+    public void init(EndpointConfig arg0) {
+    }
 
     @Override
     public LinkedList<HashSet<String>> decode(String arg0) throws DecodeException {

@@ -148,11 +148,9 @@ public class TestBootstrapContext {
     }
 
     /*
-     * This is used to assist in the verification of assertion Connector:SPEC:208
-     * this will check that the server supports all 3 types of inflow context of:
-     * TransactionContext, SecurityContext, and HintsContext. This is verified by
-     * invoking the servers method of:
-     * BootstrapContext.isContextSupported(TIC/SIC/HIC).
+     * This is used to assist in the verification of assertion Connector:SPEC:208 this will check that the server supports
+     * all 3 types of inflow context of: TransactionContext, SecurityContext, and HintsContext. This is verified by invoking
+     * the servers method of: BootstrapContext.isContextSupported(TIC/SIC/HIC).
      *
      */
     private void testIsContextSupported() {

@@ -110,11 +110,9 @@ public class Launcher {
         }
 
         /*
-         * Searches the installed extension directories for the specified library
-         * name. For each extension directory, we first look for the native library
-         * in the subdirectory whose name is the value of the system property
-         * <code>os.arch</code>. Failing that, we look in the extension directory
-         * itself.
+         * Searches the installed extension directories for the specified library name. For each extension directory, we first
+         * look for the native library in the subdirectory whose name is the value of the system property <code>os.arch</code>.
+         * Failing that, we look in the extension directory itself.
          */
         public String findLibrary(String name) {
             return null;
@@ -126,15 +124,14 @@ public class Launcher {
             ProtectionDomain domain = new ProtectionDomain(
                     new CodeSource(perms.getCodeBase(), (java.security.cert.Certificate[]) null), perms);
 
-            AccessControlContext acc = new AccessControlContext(new ProtectionDomain[] {domain});
+            AccessControlContext acc = new AccessControlContext(new ProtectionDomain[] { domain });
 
             return acc;
         }
     }
 
     /**
-     * The class loader used for loading from java.class.path. runs in a
-     * restricted security context.
+     * The class loader used for loading from java.class.path. runs in a restricted security context.
      */
     static class AppClassLoader extends URLClassLoader {
 
@@ -188,8 +185,7 @@ public class Launcher {
         }
 
         /**
-         * This class loader supports dynamic additions to the class path at
-         * runtime.
+         * This class loader supports dynamic additions to the class path at runtime.
          *
          * @see java.lang.instrument.Instrumentation#appendToSystemClassPathSearch
          */
@@ -201,10 +197,8 @@ public class Launcher {
         }
 
         /**
-         * create a context that can read any directories (recursively) mentioned in
-         * the class path. In the case of a jar, it has to be the directory
-         * containing the jar, not just the jar, as jar files might refer to other
-         * jar files.
+         * create a context that can read any directories (recursively) mentioned in the class path. In the case of a jar, it
+         * has to be the directory containing the jar, not just the jar, as jar files might refer to other jar files.
          */
         private static AccessControlContext getContext(File[] cp) throws java.net.MalformedURLException {
             PathPermissions perms = new PathPermissions(cp);
@@ -212,7 +206,7 @@ public class Launcher {
             ProtectionDomain domain = new ProtectionDomain(
                     new CodeSource(perms.getCodeBase(), (java.security.cert.Certificate[]) null), perms);
 
-            AccessControlContext acc = new AccessControlContext(new ProtectionDomain[] {domain});
+            AccessControlContext acc = new AccessControlContext(new ProtectionDomain[] { domain });
 
             return acc;
         }
@@ -368,7 +362,8 @@ class PathPermissions extends PermissionCollection {
     }
 
     private synchronized void init() {
-        if (perms != null) return;
+        if (perms != null)
+            return;
 
         perms = new Permissions();
 
@@ -414,19 +409,22 @@ class PathPermissions extends PermissionCollection {
     }
 
     public boolean implies(java.security.Permission permission) {
-        if (perms == null) init();
+        if (perms == null)
+            init();
         return perms.implies(permission);
     }
 
     public java.util.Enumeration elements() {
-        if (perms == null) init();
+        if (perms == null)
+            init();
         synchronized (perms) {
             return perms.elements();
         }
     }
 
     public String toString() {
-        if (perms == null) init();
+        if (perms == null)
+            init();
         return perms.toString();
     }
 }

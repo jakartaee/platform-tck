@@ -36,11 +36,14 @@ public class ConformanceClaimHandler implements SOAPHandler<SOAPMessageContext>,
         return headers;
     }
 
-    public void init(Map<String, Object> config) {}
+    public void init(Map<String, Object> config) {
+    }
 
-    public void destroy() {}
+    public void destroy() {
+    }
 
-    public void close(MessageContext message) {}
+    public void close(MessageContext message) {
+    }
 
     public boolean handleMessage(SOAPMessageContext context) {
         try {

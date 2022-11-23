@@ -97,8 +97,10 @@ public class XAResourceImpl implements XAResource {
 
     public boolean isSameRM(XAResource other) throws XAException {
         System.out.println("XAResourceImpl.isSameRM");
-        if (this == other) return true;
-        if (other == null) return false;
+        if (this == other)
+            return true;
+        if (other == null)
+            return false;
         if ((other instanceof XAResourceImpl) && (this.mc != null)) {
             XAResourceImpl obj = (XAResourceImpl) other;
             return (this.mc.equals(obj.mc));

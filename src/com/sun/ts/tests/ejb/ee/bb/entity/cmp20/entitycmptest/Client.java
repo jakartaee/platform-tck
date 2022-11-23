@@ -51,8 +51,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -77,16 +76,15 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:162.4; EJB:SPEC:162.5
      *
-     * @test_Strategy: Client test to demonstrate entitybean CMP2.0 persistence is
-     * automatically maintained by the container. Test loops performing a
-     * get/update to the cmp field data followed by a data comparison. If any
-     * comparison yields an error the test fails.
+     * @test_Strategy: Client test to demonstrate entitybean CMP2.0 persistence is automatically maintained by the
+     * container. Test loops performing a get/update to the cmp field data followed by a data comparison. If any comparison
+     * yields an error the test fails.
      *
      */
 
     public void test1() throws Fault {
         int errors = 0;
-        byte[] b = {0};
+        byte[] b = { 0 };
         try {
             pkey = new Integer(1);
             logMsg("Create entity EJB with Primary Key = " + pkey.toString());
@@ -106,7 +104,8 @@ public class Client extends EETest {
 
                 if (currentPrice != price && updatePrice != (float) (currentPrice + 1)) {
                     errors++;
-                    if (currentPrice != price) TestUtil.logErr("currentPrice mismatch, expected" + price);
+                    if (currentPrice != price)
+                        TestUtil.logErr("currentPrice mismatch, expected" + price);
                     if (updatePrice != (float) (currentPrice + 1))
                         TestUtil.logErr("updatePrice mismatch, expected" + (float) (currentPrice + 1));
                 }
@@ -134,9 +133,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:172; EJB:SPEC:173
      *
-     * @test_Strategy: Assignment of dependent value class values to a cmp-field
-     * using the set accessor method causes the value to be copied to the target
-     * cmp field.
+     * @test_Strategy: Assignment of dependent value class values to a cmp-field using the set accessor method causes the
+     * value to be copied to the target cmp field.
      *
      */
 
@@ -144,7 +142,7 @@ public class Client extends EETest {
         boolean testResult1 = false;
         boolean testResult2 = false;
         boolean testResult3 = false;
-        byte[] b = {31, 32, 33, 63, 64, 65};
+        byte[] b = { 31, 32, 33, 63, 64, 65 };
         byte bv = 5;
 
         try {
@@ -218,7 +216,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!testResult1 || !testResult2 || !testResult3) throw new Fault("test2 failed");
+        if (!testResult1 || !testResult2 || !testResult3)
+            throw new Fault("test2 failed");
     }
 
     public void cleanup() throws Fault {

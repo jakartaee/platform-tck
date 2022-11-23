@@ -53,9 +53,8 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: lookupTimerService
      *
-     * @test_Strategy: lookup TimerService in lifecycle methods and async methods;
-     * verify that TimerService and Timer methods can be invoked in these
-     * invocation contexts.
+     * @test_Strategy: lookup TimerService in lifecycle methods and async methods; verify that TimerService and Timer
+     * methods can be invoked in these invocation contexts.
      */
     public void lookupTimerService() throws InterruptedException, ExecutionException {
         Future<String> f = readSingletonTimerBean.lookupTimerService();

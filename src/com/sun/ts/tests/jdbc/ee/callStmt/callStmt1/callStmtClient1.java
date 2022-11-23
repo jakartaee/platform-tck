@@ -39,8 +39,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 /**
- * The callStmtClient1 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The callStmtClient1 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -75,14 +74,11 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -90,7 +86,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
 
                 if (drManager.equals("yes")) {
@@ -116,16 +113,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBigDecimal01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269;
-     * JDBC:JAVADOC:1270; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269; JDBC:JAVADOC:1270; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getBigDecimal(int
-     * parameterIndex) method to retrieve the maximum value of the Numeric_Tab.
-     * Extract the maximum value from the tssql.stmt file. Compare this value with
-     * the value returned by the getBigDecimal(int parameterIndex) method.Both the
-     * values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getBigDecimal(int parameterIndex) method to retrieve the maximum value of the Numeric_Tab. Extract the
+     * maximum value from the tssql.stmt file. Compare this value with the value returned by the getBigDecimal(int
+     * parameterIndex) method.Both the values should be equal.
      */
     public void testGetBigDecimal01() throws Fault {
         BigDecimal maxBigDecimalVal = null;
@@ -182,16 +176,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBigDecimal02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269;
-     * JDBC:JAVADOC:1270; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269; JDBC:JAVADOC:1270; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getBigDecimal(int
-     * parameterIndex) method to retrieve the minimum value of the Numeric_Tab.
-     * Extract the minimum value from the tssql.stmt file.Compare this value with
-     * the value returned by the getBigDecimal(int parameterIndex).Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getBigDecimal(int parameterIndex) method to retrieve the minimum value of the Numeric_Tab. Extract the
+     * minimum value from the tssql.stmt file.Compare this value with the value returned by the getBigDecimal(int
+     * parameterIndex).Both the values should be equal.
      */
     public void testGetBigDecimal02() throws Fault {
         BigDecimal oRetVal = null;
@@ -217,7 +208,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if ((oRetVal.compareTo(minBigDecimalVal) == 0)) msg.setMsg("getBigDecimal returns the Minimum value ");
+            if ((oRetVal.compareTo(minBigDecimalVal) == 0))
+                msg.setMsg("getBigDecimal returns the Minimum value ");
             else {
                 msg.printTestError("getBigDecimal() did not return the Minimum value", "test getBigdecimal failed!");
             }
@@ -244,14 +236,12 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBigDecimal03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269;
-     * JDBC:JAVADOC:1270; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269; JDBC:JAVADOC:1270; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getBigDecimal(int
-     * parameterIndex) method to retrieve the null value from Numeric_Tab. Check
-     * if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getBigDecimal(int parameterIndex) method to retrieve the null value from Numeric_Tab. Check if it returns
+     * null
      */
     public void testGetBigDecimal03() throws Fault {
         try {
@@ -272,7 +262,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg("null", "" + oRetVal);
 
-            if (oRetVal == null) msg.setMsg("getBigDecimal returns the Null value ");
+            if (oRetVal == null)
+                msg.setMsg("getBigDecimal returns the Null value ");
             else {
                 msg.printTestError("getBigDecimal() did not return the Null value", "test getBigDecimal Failed!");
             }
@@ -298,16 +289,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetDouble01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
-     * JDBC:JAVADOC:1256; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255; JDBC:JAVADOC:1256; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getDouble(int
-     * parameterIndex) method to retrieve the maximum value of the Float_Tab.
-     * Extract the maximum value from the tssql.stmt file.Compare this value with
-     * the value returned by the getDouble(int parameterIndex). Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getDouble(int parameterIndex) method to retrieve the maximum value of the Float_Tab. Extract the maximum
+     * value from the tssql.stmt file.Compare this value with the value returned by the getDouble(int parameterIndex). Both
+     * the values should be equal.
      */
     public void testGetDouble01() throws Fault {
         Double oRetVal = null;
@@ -362,16 +350,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetDouble02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
-     * JDBC:JAVADOC:1256; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255; JDBC:JAVADOC:1256; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getDouble(int
-     * parameterIndex) method to retrieve the minimum value of the Float_Tab.
-     * Extract the minimum value from the tssql.stmt file. Compare this value with
-     * the value returned by the getDouble(int parameterIndex). Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getDouble(int parameterIndex) method to retrieve the minimum value of the Float_Tab. Extract the minimum
+     * value from the tssql.stmt file. Compare this value with the value returned by the getDouble(int parameterIndex). Both
+     * the values should be equal.
      */
     public void testGetDouble02() throws Fault {
         Double oRetVal = null;
@@ -398,7 +383,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.equals(minDoubleVal)) msg.setMsg("getDouble returns the Minimum value ");
+            if (oRetVal.equals(minDoubleVal))
+                msg.setMsg("getDouble returns the Minimum value ");
             else {
                 msg.printTestError("getDouble() did not return the Minimum value", "test getDouble Failed!");
             }
@@ -425,14 +411,11 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetDouble03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
-     * JDBC:JAVADOC:1256; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255; JDBC:JAVADOC:1256; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getDouble(int
-     * parameterIndex) method to retrieve the null value from Float_Tab. Check if
-     * it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getDouble(int parameterIndex) method to retrieve the null value from Float_Tab. Check if it returns null
      */
     public void testGetDouble03() throws Fault {
         try {
@@ -453,7 +436,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg("0.0", new Double(oRetVal).toString());
 
-            if (oRetVal == 0) msg.setMsg("getDouble returns the Null value ");
+            if (oRetVal == 0)
+                msg.setMsg("getDouble returns the Null value ");
             else {
                 msg.printTestError("getDouble() did not return the Null value", "test getDouble Failed!");
             }
@@ -479,16 +463,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1247;
-     * JDBC:JAVADOC:1248; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JDBC:JAVADOC:3;
-     * JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1247; JDBC:JAVADOC:1248; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JDBC:JAVADOC:3; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getShort(int
-     * parameterIndex) method to retrieve the maximum value of the Smallint_Tab.
-     * Extract the maximum value from the tssql.stmt file.Compare this value with
-     * the value returned by the getShort(int parameterIndex). Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getShort(int parameterIndex) method to retrieve the maximum value of the Smallint_Tab. Extract the maximum
+     * value from the tssql.stmt file.Compare this value with the value returned by the getShort(int parameterIndex). Both
+     * the values should be equal.
      */
     public void testGetShort01() throws Fault {
         Short oRetVal = null;
@@ -514,7 +495,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
             maxShortVal = new Short(sRetStr);
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
-            if (oRetVal.equals(maxShortVal)) msg.setMsg("getShort returns the Maximum value ");
+            if (oRetVal.equals(maxShortVal))
+                msg.setMsg("getShort returns the Maximum value ");
             else {
                 msg.printTestError("getShort() did not return the Maximum value", "test getShort Failed!");
             }
@@ -543,16 +525,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1247;
-     * JDBC:JAVADOC:1248; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1247; JDBC:JAVADOC:1248; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getShort(int
-     * parameterIndex) method to retrieve the minimum value of the Smallint_Tab.
-     * Extract the minimum value from the tssql.stmt file.Compare this value with
-     * the value returned by the getShort(int parameterIndex). Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getShort(int parameterIndex) method to retrieve the minimum value of the Smallint_Tab. Extract the minimum
+     * value from the tssql.stmt file.Compare this value with the value returned by the getShort(int parameterIndex). Both
+     * the values should be equal.
      */
     public void testGetShort02() throws Fault {
         Short oRetVal = null;
@@ -579,7 +558,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
             minShortVal = new Short(sRetStr);
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.equals(minShortVal)) msg.setMsg("getShort returns the Minimum value ");
+            if (oRetVal.equals(minShortVal))
+                msg.setMsg("getShort returns the Minimum value ");
             else {
                 msg.printTestError("getShort() did not return the Minimum value", "test getShort Failed!");
             }
@@ -607,14 +587,12 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1247;
-     * JDBC:JAVADOC:1248; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1247; JDBC:JAVADOC:1248; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getShort(int
-     * parameterIndex) method to retrieve the null value from the Smallint_Tab.
-     * Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getShort(int parameterIndex) method to retrieve the null value from the Smallint_Tab. Check if it returns
+     * null
      */
     public void testGetShort03() throws Fault {
         try {
@@ -636,7 +614,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg("0", Short.toString(rRetVal));
 
-            if (rRetVal == 0) msg.setMsg("getShort returns the Null value ");
+            if (rRetVal == 0)
+                msg.setMsg("getShort returns the Null value ");
             else {
                 msg.printTestError("getShort() did not return the Null value", "test getShort Failed!");
             }
@@ -664,16 +643,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241;
-     * JDBC:JAVADOC:1242; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241; JDBC:JAVADOC:1242; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getString(int
-     * parameterIndex) method to retrieve a non null String value from Char_Tab.
-     * Extract the same String value from the tssql.stmt file.Compare this value
-     * with the value returned by the getString(int parameterIndex). Both the
-     * values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getString(int parameterIndex) method to retrieve a non null String value from Char_Tab. Extract the same
+     * String value from the tssql.stmt file.Compare this value with the value returned by the getString(int
+     * parameterIndex). Both the values should be equal.
      */
     public void testGetString01() throws Fault {
         try {
@@ -726,14 +702,11 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241;
-     * JDBC:JAVADOC:1242; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241; JDBC:JAVADOC:1242; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getString(int
-     * parameterIndex) method to retrieve the null value from Char_Tab. Check if
-     * it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getString(int parameterIndex) method to retrieve the null value from Char_Tab. Check if it returns null
      */
     public void testGetString02() throws Fault {
         try {
@@ -754,7 +727,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg("null", sRetVal);
 
-            if (sRetVal == null) msg.setMsg("getString returns null value" + sRetVal);
+            if (sRetVal == null)
+                msg.setMsg("getString returns null value" + sRetVal);
             else {
                 msg.printTestError("getString() did not return the null value", "test getString Failed!");
             }
@@ -780,16 +754,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1249;
-     * JDBC:JAVADOC:1250; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JDBC:JAVADOC:4;
-     * JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1249; JDBC:JAVADOC:1250; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JDBC:JAVADOC:4; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getInt(int
-     * parameterIndex) method to retrieve the maximum value from Integer_Tab.
-     * Extract the maximum value from the tssql.stmt file.Compare this value with
-     * the value returned by the getInt(int parameterIndex). Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getInt(int parameterIndex) method to retrieve the maximum value from Integer_Tab. Extract the maximum value
+     * from the tssql.stmt file.Compare this value with the value returned by the getInt(int parameterIndex). Both the
+     * values should be equal.
      */
     public void testGetInt01() throws Fault {
         Integer oRetVal = null;
@@ -816,7 +787,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
             maxIntegerVal = new Integer(sRetStr);
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
-            if (oRetVal.equals(maxIntegerVal)) msg.setMsg("getInt returns the Maximum value ");
+            if (oRetVal.equals(maxIntegerVal))
+                msg.setMsg("getInt returns the Maximum value ");
             else {
                 msg.printTestError("getInt() did not return the Maximum value", "test getInt Failed!");
             }
@@ -844,16 +816,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1249;
-     * JDBC:JAVADOC:1250; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1249; JDBC:JAVADOC:1250; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getInt(int
-     * parameterIndex) method to retrieve the minimum value from Integer_Tab.
-     * Extract the minimum value from the tssql.stmt file. Compare this value with
-     * the value returned by the getInt(int parameterIndex). Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getInt(int parameterIndex) method to retrieve the minimum value from Integer_Tab. Extract the minimum value
+     * from the tssql.stmt file. Compare this value with the value returned by the getInt(int parameterIndex). Both the
+     * values should be equal.
      */
     public void testGetInt02() throws Fault {
         Integer oRetVal = null;
@@ -880,7 +849,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
             minIntegerVal = new Integer(sRetStr);
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
-            if (oRetVal.equals(minIntegerVal)) msg.setMsg("getInt returns the Minimum value ");
+            if (oRetVal.equals(minIntegerVal))
+                msg.setMsg("getInt returns the Minimum value ");
             else {
                 msg.printTestError("getInt() did not return the Maximum value", "test getInt Failed!");
             }
@@ -906,13 +876,11 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1249;
-     * JDBC:JAVADOC:1250; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1249; JDBC:JAVADOC:1250; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getInt(int
-     * parameterIndex) method to retrieve the null value. Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getInt(int parameterIndex) method to retrieve the null value. Check if it returns null
      */
     public void testGetInt03() throws Fault {
         try {
@@ -932,7 +900,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
             int nRetVal = cstmt.getInt(3);
 
             msg.addOutputMsg("0", new Integer(nRetVal).toString());
-            if (nRetVal == 0) msg.setMsg("getInt returns the Null value ");
+            if (nRetVal == 0)
+                msg.setMsg("getInt returns the Null value ");
             else {
                 msg.printTestError("getInt() did not return the null value", "test getInt Failed!");
             }
@@ -958,16 +927,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBoolean01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1243;
-     * JDBC:JAVADOC:1244; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JDBC:JAVADOC:1;
-     * JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1243; JDBC:JAVADOC:1244; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JDBC:JAVADOC:1; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getBoolean(int
-     * parameterIndex) method to retrieve the maximum value of Bit_Tab. Extract
-     * the maximum value from the tssql.stmt file.Compare this value with the
-     * value returned by the getBoolean(int parameterIndex).Both the values should
-     * be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getBoolean(int parameterIndex) method to retrieve the maximum value of Bit_Tab. Extract the maximum value
+     * from the tssql.stmt file.Compare this value with the value returned by the getBoolean(int parameterIndex).Both the
+     * values should be equal.
      */
     public void testGetBoolean01() throws Fault {
         Boolean oRetVal = null;
@@ -994,7 +960,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
             maxBooleanVal = new Boolean(sRetStr);
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
-            if (oRetVal.equals(maxBooleanVal)) msg.setMsg("getBoolean returns the Maximum value ");
+            if (oRetVal.equals(maxBooleanVal))
+                msg.setMsg("getBoolean returns the Maximum value ");
             else {
                 msg.printTestError("getBoolean() did not return the Maximum value", "test getBoolean failed");
             }
@@ -1020,16 +987,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBoolean02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1243;
-     * JDBC:JAVADOC:1244; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JDBC:JAVADOC:1;
-     * JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1243; JDBC:JAVADOC:1244; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JDBC:JAVADOC:1; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getBoolean(int
-     * parameterIndex) method.to retrieve the minimum value of Bit_Tab. Extract
-     * the minimum value from the tssql.stmt file. Compare this value with the
-     * value returned by the getBoolean(int parameterIndex) Both the values should
-     * be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getBoolean(int parameterIndex) method.to retrieve the minimum value of Bit_Tab. Extract the minimum value
+     * from the tssql.stmt file. Compare this value with the value returned by the getBoolean(int parameterIndex) Both the
+     * values should be equal.
      */
     public void testGetBoolean02() throws Fault {
         Boolean oRetVal = null;
@@ -1056,7 +1020,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
             minBooleanVal = new Boolean(sRetStr);
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
-            if (oRetVal.equals(minBooleanVal)) msg.setMsg("getBoolean returns the Minimum value ");
+            if (oRetVal.equals(minBooleanVal))
+                msg.setMsg("getBoolean returns the Minimum value ");
             else {
                 msg.printTestError("getBoolean() did not return the Minimum value", "getBoolean Failed!");
             }
@@ -1082,16 +1047,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetLong01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1251;
-     * JDBC:JAVADOC:1252; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JDBC:JAVADOC:5;
-     * JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1251; JDBC:JAVADOC:1252; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JDBC:JAVADOC:5; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getLong(int
-     * parameterIndex) method to retrieve the maximum value of Bigint_Tab. Extract
-     * the maximum value from the tssql.stmt file.Compare this value with the
-     * value returned by the getLong(int parameterIndex). Both the values should
-     * be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getLong(int parameterIndex) method to retrieve the maximum value of Bigint_Tab. Extract the maximum value
+     * from the tssql.stmt file.Compare this value with the value returned by the getLong(int parameterIndex). Both the
+     * values should be equal.
      */
     public void testGetLong01() throws Fault {
         Long oRetVal = null;
@@ -1119,7 +1081,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
             maxLongVal = new Long(sRetStr);
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.equals(maxLongVal)) msg.setMsg("getLong returns the Maximum value ");
+            if (oRetVal.equals(maxLongVal))
+                msg.setMsg("getLong returns the Maximum value ");
             else {
                 msg.printTestError("getLong() did not return the Maximum value", "test getLong Failed!");
             }
@@ -1145,16 +1108,13 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetLong02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1251;
-     * JDBC:JAVADOC:1252; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1251; JDBC:JAVADOC:1252; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getLong(int
-     * parameterIndex) method to retrieve the minimum value from Bigint_Tab.
-     * Extract the minimum value from the tssql.stmt file.Compare this value with
-     * the value returned by the getLong(int parameterIndex) Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getLong(int parameterIndex) method to retrieve the minimum value from Bigint_Tab. Extract the minimum value
+     * from the tssql.stmt file.Compare this value with the value returned by the getLong(int parameterIndex) Both the
+     * values should be equal.
      */
     public void testGetLong02() throws Fault {
         Long oRetVal = null;
@@ -1181,7 +1141,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
             msg.setMsg("extracted MIN_VAL from Bigint_Tab");
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
-            if (oRetVal.equals(minLongVal)) msg.setMsg("getLong returns the Minimum value ");
+            if (oRetVal.equals(minLongVal))
+                msg.setMsg("getLong returns the Minimum value ");
             else {
                 msg.printTestError("getLong() did not return the Minimum value", "test getLong Failed!");
             }
@@ -1207,14 +1168,11 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetLong03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1251;
-     * JDBC:JAVADOC:1252; JDBC:JAVADOC:1145; JDBC:JAVADOC:1146; JavaEE:SPEC:183;
-     * JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1251; JDBC:JAVADOC:1252; JDBC:JAVADOC:1145;
+     * JDBC:JAVADOC:1146; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getLong(int
-     * parameterIndex) method to retrieve the null value from Bigint_Tab. Check if
-     * it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getLong(int parameterIndex) method to retrieve the null value from Bigint_Tab. Check if it returns null
      */
     public void testGetLong03() throws Fault {
         try {
@@ -1236,7 +1194,8 @@ public class callStmtClient1 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg("0", new Long(lRetVal).toString());
 
-            if (lRetVal == 0) msg.setMsg("getLong returns the Null value ");
+            if (lRetVal == 0)
+                msg.setMsg("getLong returns the Null value ");
             else {
                 msg.printTestError("getLong() did not return the null value", "test getLong Failed!");
             }

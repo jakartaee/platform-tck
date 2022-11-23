@@ -76,7 +76,8 @@ public class TokensImpl implements Provider<Source> {
                 return doDelete();
             } else if (method.equals("POST")) {
                 return doPost();
-            } else throw new HTTPException(400);
+            } else
+                throw new HTTPException(400);
         } catch (Exception e) {
             e.printStackTrace();
             throw new HTTPException(500);
@@ -152,8 +153,10 @@ public class TokensImpl implements Provider<Source> {
         String key = st.nextToken();
         Integer value = (Integer) tokens.get(key);
         String response;
-        if (value == null) response = "token=" + key + " not found";
-        else response = "" + value;
+        if (value == null)
+            response = "token=" + key + " not found";
+        else
+            response = "" + value;
         String body = "<ns:tokenGetResponse xmlns:ns=\"http://tokens.org\"><ns:return>" + response
                 + "</ns:return></ns:tokenGetResponse>";
         Source source = new StreamSource(new ByteArrayInputStream(body.getBytes()));

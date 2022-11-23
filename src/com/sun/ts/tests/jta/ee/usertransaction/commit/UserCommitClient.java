@@ -35,8 +35,8 @@ import java.io.Serializable;
 import java.util.Properties;
 
 /**
- * The UserCommitClient class tests commit() method of UserTransaction interface
- * using Sun's J2EE Reference Implementation.
+ * The UserCommitClient class tests commit() method of UserTransaction interface using Sun's J2EE Reference
+ * Implementation.
  *
  * @author P.Sandani Basha.
  * @version 1.0.1, 09/17/99
@@ -82,8 +82,7 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserCommit001
      * @assertion_ids: JTA:JAVADOC:29
-     * @test_Strategy: Without starting the User Transaction Call commit() on User
-     *                 Transaction.
+     * @test_Strategy: Without starting the User Transaction Call commit() on User Transaction.
      */
     public void testUserCommit001() throws Fault {
         // TestCase id :- 4.2.1
@@ -116,8 +115,7 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserCommit002
      * @assertion_ids: JTA:JAVADOC:24
-     * @test_Strategy: Start the User Transaction.call commit() on User
-     *                 Transaction.Check the status. .
+     * @test_Strategy: Start the User Transaction.call commit() on User Transaction.Check the status. .
      */
     public void testUserCommit002() throws Fault {
         // TestCase id :- 4.2.2
@@ -171,9 +169,8 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserCommit003
      * @assertion_ids: JTA:JAVADOC:29
-     * @test_Strategy: Start the User Transaction.Call commit() on User
-     *                 Transaction.Check status of the User Transaction. Call
-     *                 commit() again on User Transaction.
+     * @test_Strategy: Start the User Transaction.Call commit() on User Transaction.Check status of the User Transaction.
+     * Call commit() again on User Transaction.
      */
     public void testUserCommit003() throws Fault {
         // TestCase id :- 4.2.3
@@ -220,9 +217,8 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserCommit004
      * @assertion_ids: JTA:JAVADOC:29
-     * @test_Strategy: Start the User Transaction.Call rollback() on User
-     *                 Transaction.Check status of the User Transaction.Call
-     *                 commit() again on User Transaction.
+     * @test_Strategy: Start the User Transaction.Call rollback() on User Transaction.Check status of the User
+     * Transaction.Call commit() again on User Transaction.
      */
     public void testUserCommit004() throws Fault {
         // TestCase id :- 4.2.4
@@ -268,9 +264,8 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserCommit005
      * @assertion_ids: JTA:JAVADOC:25
-     * @test_Strategy: Start the User Transaction.Mark the User Transaction for
-     *                 rollback only by calling setRollbackOnly().Check the
-     *                 status.Call commit() on User Transaction.
+     * @test_Strategy: Start the User Transaction.Mark the User Transaction for rollback only by calling
+     * setRollbackOnly().Check the status.Call commit() on User Transaction.
      */
     public void testUserCommit005() throws Fault {
         // TestCase id :- 4.2.5

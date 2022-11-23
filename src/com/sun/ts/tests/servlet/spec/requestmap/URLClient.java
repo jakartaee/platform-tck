@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -59,12 +57,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:134.2; Servlet:SPEC:134.5; Servlet:SPEC:133;
      *
-     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*,
-     * TestServlet2 with URL /foo/baR/*, TestServlet3 with URL /TestServlet3,
-     * TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5.
-     * 2. Send request with path /foo/bar/index.html. 3. Verify that TestServlet1
-     * is invoked based on Servlet Spec(11.1) that it has longest path-prefix
-     * match and it is the default Servlet at the path.
+     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*, TestServlet2 with URL /foo/baR/*, TestServlet3
+     * with URL /TestServlet3, TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5. 2. Send request
+     * with path /foo/bar/index.html. 3. Verify that TestServlet1 is invoked based on Servlet Spec(11.1) that it has longest
+     * path-prefix match and it is the default Servlet at the path.
      */
 
     public void longestPathMatchTest() throws Fault {
@@ -78,12 +74,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:134.2; Servlet:SPEC:134.5; Servlet:SPEC:133;
      *
-     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*,
-     * TestServlet2 with URL /foo/baR/*, TestServlet3 with URL /TestServlet3,
-     * TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5.
-     * 2. Send request with path /foo/bar. 3. Verify that TestServlet1 is invoked
-     * based on Servlet Spec(11.1) that it has longest path-prefix match and it is
-     * the default Servlet at the path.
+     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*, TestServlet2 with URL /foo/baR/*, TestServlet3
+     * with URL /TestServlet3, TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5. 2. Send request
+     * with path /foo/bar. 3. Verify that TestServlet1 is invoked based on Servlet Spec(11.1) that it has longest
+     * path-prefix match and it is the default Servlet at the path.
      */
 
     public void longestPathMatchTest1() throws Fault {
@@ -97,12 +91,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:134.2; Servlet:SPEC:134.5; Servlet:SPEC:133;
      *
-     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*,
-     * TestServlet2 with URL /foo/baR/*, TestServlet3 with URL /TestServlet3,
-     * TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5.
-     * 2. Send request with path /foo/baR/TestServlet5. 3. Verify that
-     * TestServlet2 is invoked based on Servlet Spec(11.1) that it has longest
-     * path-prefix match and it is the default Servlet at the path.
+     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*, TestServlet2 with URL /foo/baR/*, TestServlet3
+     * with URL /TestServlet3, TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5. 2. Send request
+     * with path /foo/baR/TestServlet5. 3. Verify that TestServlet2 is invoked based on Servlet Spec(11.1) that it has
+     * longest path-prefix match and it is the default Servlet at the path.
      */
 
     public void longestPathMatchTest2() throws Fault {
@@ -116,11 +108,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:134.1;
      *
-     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*,
-     * TestServlet2 with URL /foo/baR/*, TestServlet3 with URL /TestServlet3,
-     * TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5.
-     * 2. Send request with path /TestServlet3. 3. Verify that TestServlet3 is
-     * invoked based on Servlet Spec(11.1) that it has exact match.
+     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*, TestServlet2 with URL /foo/baR/*, TestServlet3
+     * with URL /TestServlet3, TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5. 2. Send request
+     * with path /TestServlet3. 3. Verify that TestServlet3 is invoked based on Servlet Spec(11.1) that it has exact match.
      */
 
     public void exactMatchTest() throws Fault {
@@ -134,11 +124,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:134.1; Servlet:SPEC:134.5;
      *
-     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*,
-     * TestServlet2 with URL /foo/baR/*, TestServlet3 with URL /TestServlet3,
-     * TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5.
-     * 2. Send request with path /foo/bar/TestServlet5. 3. Verify that
-     * TestServlet5 is invoked based on Servlet Spec(11.1) that it has exact
+     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*, TestServlet2 with URL /foo/baR/*, TestServlet3
+     * with URL /TestServlet3, TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5. 2. Send request
+     * with path /foo/bar/TestServlet5. 3. Verify that TestServlet5 is invoked based on Servlet Spec(11.1) that it has exact
      * match.
      */
 
@@ -153,12 +141,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:134.3;
      *
-     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*,
-     * TestServlet2 with URL /foo/baR/*, TestServlet3 with URL /TestServlet3,
-     * TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5.
-     * 2. Send request with path /TestServlet3/racecar.bop 3. Verify that
-     * TestServlet4 is invoked based on Servlet Spec(11.1) that it has the
-     * extension match.
+     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*, TestServlet2 with URL /foo/baR/*, TestServlet3
+     * with URL /TestServlet3, TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5. 2. Send request
+     * with path /TestServlet3/racecar.bop 3. Verify that TestServlet4 is invoked based on Servlet Spec(11.1) that it has
+     * the extension match.
      */
 
     public void extMatchTest() throws Fault {
@@ -172,11 +158,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:134.3;
      *
-     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*,
-     * TestServlet2 with URL /foo/baR/*, TestServlet3 with URL /TestServlet3,
-     * TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5.
-     * 2. Send request with path /index.bop 3. Verify that TestServlet4 is invoked
-     * based on Servlet Spec(11.1) that it has the extension match.
+     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*, TestServlet2 with URL /foo/baR/*, TestServlet3
+     * with URL /TestServlet3, TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5. 2. Send request
+     * with path /index.bop 3. Verify that TestServlet4 is invoked based on Servlet Spec(11.1) that it has the extension
+     * match.
      */
 
     public void extMatchTest1() throws Fault {
@@ -190,11 +175,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:134.4;
      *
-     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*,
-     * TestServlet2 with URL /foo/baR/*, TestServlet3 with URL /TestServlet3,
-     * TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5.
-     * 2. Send request with path /test/foo/bar/xxx 3. Verify that no match is
-     * found and 404 should be returned.
+     * @test_Strategy: 1. Create servlets TestServlet1 with URL /foo/bar/*, TestServlet2 with URL /foo/baR/*, TestServlet3
+     * with URL /TestServlet3, TestServlet4 with URL *.bop, TestServlet5 with URL /foo/bar/TestServlet5. 2. Send request
+     * with path /test/foo/bar/xxx 3. Verify that no match is found and 404 should be returned.
      */
 
     public void notFoundTest1() throws Fault {

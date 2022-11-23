@@ -29,7 +29,8 @@ public class Address implements java.io.Serializable {
 
     protected String zip;
 
-    public Address() {}
+    public Address() {
+    }
 
     public Address(String street, String city, String state, String zip) {
         this.street = street;

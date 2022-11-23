@@ -31,7 +31,8 @@ public class OverridenListener implements java.io.Serializable {
 
     private Long id;
 
-    public OverridenListener() {}
+    public OverridenListener() {
+    }
 
     @Id
     public Long getId() {

@@ -28,9 +28,8 @@ import jakarta.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
 /**
- * Tag to verify that the JSP implementation object properly initialized any
- * attributes present with the in tag as well as setting the pageContext and
- * parent
+ * Tag to verify that the JSP implementation object properly initialized any attributes present with the in tag as well
+ * as setting the pageContext and parent
  */
 public class InitializationTag extends TagSupport {
 
@@ -62,7 +61,8 @@ public class InitializationTag extends TagSupport {
     /**
      * Default Constructor.
      */
-    public InitializationTag() {}
+    public InitializationTag() {
+    }
 
     /**
      * Returns the value of _attribute1.
@@ -76,8 +76,7 @@ public class InitializationTag extends TagSupport {
     /**
      * Sets the value for _attribute1.
      *
-     * @param attribute1
-     *          - the value for _attribute1
+     * @param attribute1 - the value for _attribute1
      */
     public void setAttribute1(String attribute1) {
         _attribute1 = attribute1;
@@ -95,8 +94,7 @@ public class InitializationTag extends TagSupport {
     /**
      * Sets the value for _attribute2.
      *
-     * @param attribute2
-     *          - the value for _attribute2
+     * @param attribute2 - the value for _attribute2
      */
     public void setAttribute2(String attribute2) {
         _attribute2 = attribute2;
@@ -114,36 +112,31 @@ public class InitializationTag extends TagSupport {
     /**
      * Sets the value for _attribute3.
      *
-     * @param attribute3
-     *          - the value for _attribute3
+     * @param attribute3 - the value for _attribute3
      */
     public void setAttribute3(String attribute3) {
         _attribute3 = attribute3;
     }
 
     /**
-     * Set the current page context. This method is invoked by the JSP page
-     * implementation object prior to doStartTag().
+     * Set the current page context. This method is invoked by the JSP page implementation object prior to doStartTag().
      * <p>
-     * This value is *not* reset by doEndTag() and must be explicitly reset by a
-     * page implementation if it changes between calls to doStartTag().
+     * This value is *not* reset by doEndTag() and must be explicitly reset by a page implementation if it changes between
+     * calls to doStartTag().
      *
-     * @param pc
-     *          The page context for this tag handler.
+     * @param pc The page context for this tag handler.
      */
     public void setPageContext(PageContext pc) {
         _context = pc;
     }
 
     /**
-     * Set the parent (closest enclosing tag handler) of this tag handler. Invoked
-     * by the JSP page implementation object prior to doStartTag().
+     * Set the parent (closest enclosing tag handler) of this tag handler. Invoked by the JSP page implementation object
+     * prior to doStartTag().
      * <p>
-     * This value is *not* reset by doEndTag() and must be explicitly reset by a
-     * page implementation.
+     * This value is *not* reset by doEndTag() and must be explicitly reset by a page implementation.
      *
-     * @param t
-     *          The parent tag, or null.
+     * @param t The parent tag, or null.
      */
     public void setParent(Tag t) {
         _parent = t;
@@ -163,8 +156,7 @@ public class InitializationTag extends TagSupport {
      * Validates that the tag initialization occurs before calling doStartTag().
      *
      * @return Tag.SKIP_BODY
-     * @throws JspException
-     *           if an error occurred while processing this tag
+     * @throws JspException if an error occurred while processing this tag
      */
     public int doStartTag() throws JspException {
         if (_context == null) {

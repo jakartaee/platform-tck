@@ -27,7 +27,8 @@ import java.util.Properties;
  */
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -49,12 +50,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: DIDTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1335; PERSISTENCE:SPEC:1336;
-     * PERSISTENCE:SPEC:1337;
+     * @assertion_ids: PERSISTENCE:SPEC:1335; PERSISTENCE:SPEC:1336; PERSISTENCE:SPEC:1337;
      *
-     * @test_Strategy: Derived Identifier The parent entity ( DID1bEmployee ) has
-     * a simple primary key Case(b): The dependent entity uses EmbeddedId to
-     * represent a composite key
+     * @test_Strategy: Derived Identifier The parent entity ( DID1bEmployee ) has a simple primary key Case(b): The
+     * dependent entity uses EmbeddedId to represent a composite key
      */
     public void DIDTest() throws Fault {
         boolean pass = false;

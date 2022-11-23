@@ -52,8 +52,7 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     } // MapMessageTestImpl()
 
     /**
-     * Initializes the object during construction. Put things that are common to
-     * all constructors here
+     * Initializes the object during construction. Put things that are common to all constructors here
      */
     private void init() {
         htable = new HashMap();
@@ -62,15 +61,12 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the boolean value with the given name.
      *
-     * @param name
-     *          the name of the boolean
+     * @param name the name of the boolean
      *
      * @return the boolean value with the given name.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public boolean getBoolean(String name) throws JMSException {
         boolean ret = false;
@@ -89,15 +85,12 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the byte value with the given name.
      *
-     * @param name
-     *          the name of the byte
+     * @param name the name of the byte
      *
      * @return the byte value with the given name.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public byte getByte(String name) throws JMSException {
         byte ret = 0;
@@ -116,15 +109,12 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the short value with the given name.
      *
-     * @param name
-     *          the name of the short
+     * @param name the name of the short
      *
      * @return the short value with the given name.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public short getShort(String name) throws JMSException {
         short ret = 0;
@@ -145,15 +135,12 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the Unicode character value with the given name.
      *
-     * @param name
-     *          the name of the Unicode character
+     * @param name the name of the Unicode character
      *
      * @return the Unicode character value with the given name.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public char getChar(String name) throws JMSException {
         char ret = 0;
@@ -172,15 +159,12 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the integer value with the given name.
      *
-     * @param name
-     *          the name of the integer
+     * @param name the name of the integer
      *
      * @return the integer value with the given name.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public int getInt(String name) throws JMSException {
         int ret = 0;
@@ -203,15 +187,12 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the long value with the given name.
      *
-     * @param name
-     *          the name of the long
+     * @param name the name of the long
      *
      * @return the long value with the given name.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public long getLong(String name) throws JMSException {
         long ret = 0;
@@ -236,15 +217,12 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the float value with the given name.
      *
-     * @param name
-     *          the name of the float
+     * @param name the name of the float
      *
      * @return the float value with the given name.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public float getFloat(String name) throws JMSException {
         float ret = 0;
@@ -263,15 +241,12 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the double value with the given name.
      *
-     * @param name
-     *          the name of the double
+     * @param name the name of the double
      *
      * @return the double value with the given name.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public double getDouble(String name) throws JMSException {
         double ret = 0;
@@ -292,16 +267,12 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the String value with the given name.
      *
-     * @param name
-     *          the name of the String
+     * @param name the name of the String
      *
-     * @return the String value with the given name. If there is no item by this
-     *         name, a null value is returned.
+     * @return the String value with the given name. If there is no item by this name, a null value is returned.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public String getString(String name) throws JMSException {
         String ret = null;
@@ -326,16 +297,12 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Return the byte array value with the given name.
      *
-     * @param name
-     *          the name of the byte array
+     * @param name the name of the byte array
      *
-     * @return the byte array value with the given name. If there is no item by
-     *         this name, a null value is returned.
+     * @return the byte array value with the given name. If there is no item by this name, a null value is returned.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public byte[] getBytes(String name) throws JMSException {
         byte[] ret = null;
@@ -353,20 +320,15 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
      * Return the Java object value with the given name.
      *
      * <P>
-     * Note that this method can be used to return in objectified format, an
-     * object that had been stored in the Map with the equivalent
-     * <CODE>setObject</CODE> method call, or it's equivalent primitive set<type>
-     * method.
+     * Note that this method can be used to return in objectified format, an object that had been stored in the Map with the
+     * equivalent <CODE>setObject</CODE> method call, or it's equivalent primitive set<type> method.
      *
-     * @param name
-     *          the name of the Java object
+     * @param name the name of the Java object
      *
-     * @return the Java object value with the given name, in objectified format
-     *         (ie. if it set as an int, then a Integer is returned). If there is
-     *         no item by this name, a null value is returned.
+     * @return the Java object value with the given name, in objectified format (ie. if it set as an int, then a Integer is
+     * returned). If there is no item by this name, a null value is returned.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public Object getObject(String name) throws JMSException {
         return htable.get(name);
@@ -377,8 +339,7 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
      *
      * @return an enumeration of all the names in this Map message.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public Enumeration getMapNames() throws JMSException {
         Vector v = new Vector(htable.keySet());
@@ -389,15 +350,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a boolean value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the boolean
-     * @param value
-     *          the boolean value to set in the Map.
+     * @param name the name of the boolean
+     * @param value the boolean value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setBoolean(String name, boolean value) throws JMSException {
         try {
@@ -413,15 +370,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a byte value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the byte
-     * @param value
-     *          the byte value to set in the Map.
+     * @param name the name of the byte
+     * @param value the byte value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setByte(String name, byte value) throws JMSException {
         try {
@@ -437,15 +390,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a short value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the short
-     * @param value
-     *          the short value to set in the Map.
+     * @param name the name of the short
+     * @param value the short value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setShort(String name, short value) throws JMSException {
         try {
@@ -461,15 +410,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a Unicode character value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the Unicode character
-     * @param value
-     *          the Unicode character value to set in the Map.
+     * @param name the name of the Unicode character
+     * @param value the Unicode character value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setChar(String name, char value) throws JMSException {
         try {
@@ -485,15 +430,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set an integer value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the integer
-     * @param value
-     *          the integer value to set in the Map.
+     * @param name the name of the integer
+     * @param value the integer value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setInt(String name, int value) throws JMSException {
         try {
@@ -509,15 +450,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a long value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the long
-     * @param value
-     *          the long value to set in the Map.
+     * @param name the name of the long
+     * @param value the long value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setLong(String name, long value) throws JMSException {
         try {
@@ -533,15 +470,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a float value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the float
-     * @param value
-     *          the float value to set in the Map.
+     * @param name the name of the float
+     * @param value the float value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setFloat(String name, float value) throws JMSException {
         try {
@@ -557,15 +490,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a double value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the double
-     * @param value
-     *          the double value to set in the Map.
+     * @param name the name of the double
+     * @param value the double value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setDouble(String name, double value) throws JMSException {
         try {
@@ -581,15 +510,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a String value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the String
-     * @param value
-     *          the String value to set in the Map.
+     * @param name the name of the String
+     * @param value the String value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setString(String name, String value) throws JMSException {
         try {
@@ -605,15 +530,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a byte array value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the byte array
-     * @param value
-     *          the byte array value to set in the Map.
+     * @param name the name of the byte array
+     * @param value the byte array value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setBytes(String name, byte[] value) throws JMSException {
         try {
@@ -629,19 +550,13 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Set a portion of the byte array value with the given name, into the Map.
      *
-     * @param name
-     *          the name of the byte array
-     * @param value
-     *          the byte array value to set in the Map.
-     * @param offset
-     *          the initial offset within the byte array.
-     * @param length
-     *          the number of bytes to use.
+     * @param name the name of the byte array
+     * @param value the byte array value to set in the Map.
+     * @param offset the initial offset within the byte array.
+     * @param length the number of bytes to use.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setBytes(String name, byte[] value, int offset, int length) throws JMSException {
         try {
@@ -661,20 +576,15 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
      * Set a Java object value with the given name, into the Map.
      *
      * <P>
-     * Note that this method only works for the objectified primitive object types
-     * (Integer, Double, Long ...), String's and byte arrays.
+     * Note that this method only works for the objectified primitive object types (Integer, Double, Long ...), String's and
+     * byte arrays.
      *
-     * @param name
-     *          the name of the Java object
-     * @param value
-     *          the Java object value to set in the Map.
+     * @param name the name of the Java object
+     * @param value the Java object value to set in the Map.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if object is invalid
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageFormatException if object is invalid
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void setObject(String name, Object value) throws JMSException {
         try {
@@ -703,13 +613,11 @@ public class MapMessageTestImpl extends MessageTestImpl implements MapMessage {
     /**
      * Check if an item exists in this MapMessage.
      *
-     * @param name
-     *          the name of the item to test
+     * @param name the name of the item to test
      *
      * @return true if the item does exist.
      *
-     * @exception JMSException
-     *              if a JMS error occurs.
+     * @exception JMSException if a JMS error occurs.
      */
     public boolean itemExists(String name) throws JMSException {
         return htable.containsKey(name);

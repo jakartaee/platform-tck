@@ -72,10 +72,9 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -117,8 +116,8 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -140,17 +139,14 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: mapMessageFullMsgTopicTest
      *
-     * @assertion_ids: JMS:SPEC:74; JMS:JAVADOC:211; JMS:JAVADOC:457;
-     * JMS:JAVADOC:459; JMS:JAVADOC:475; JMS:JAVADOC:477; JMS:JAVADOC:479;
-     * JMS:JAVADOC:461; JMS:JAVADOC:463; JMS:JAVADOC:465; JMS:JAVADOC:467;
-     * JMS:JAVADOC:469; JMS:JAVADOC:471; JMS:JAVADOC:473; JMS:JAVADOC:433;
-     * JMS:JAVADOC:435; JMS:JAVADOC:437; JMS:JAVADOC:439; JMS:JAVADOC:441;
-     * JMS:JAVADOC:443; JMS:JAVADOC:445; JMS:JAVADOC:447; JMS:JAVADOC:449;
-     * JMS:JAVADOC:451; JMS:JAVADOC:453;
+     * @assertion_ids: JMS:SPEC:74; JMS:JAVADOC:211; JMS:JAVADOC:457; JMS:JAVADOC:459; JMS:JAVADOC:475; JMS:JAVADOC:477;
+     * JMS:JAVADOC:479; JMS:JAVADOC:461; JMS:JAVADOC:463; JMS:JAVADOC:465; JMS:JAVADOC:467; JMS:JAVADOC:469;
+     * JMS:JAVADOC:471; JMS:JAVADOC:473; JMS:JAVADOC:433; JMS:JAVADOC:435; JMS:JAVADOC:437; JMS:JAVADOC:439;
+     * JMS:JAVADOC:441; JMS:JAVADOC:443; JMS:JAVADOC:445; JMS:JAVADOC:447; JMS:JAVADOC:449; JMS:JAVADOC:451;
+     * JMS:JAVADOC:453;
      *
-     * @test_Strategy: Create a MapMessage -. write to the message using each type
-     * of method and as an object. Send the message. Verify the data received was
-     * as sent.
+     * @test_Strategy: Create a MapMessage -. write to the message using each type of method and as an object. Send the
+     * message. Verify the data received was as sent.
      *
      *
      */
@@ -159,7 +155,7 @@ public class MapMsgTopicTests extends ServiceEETest {
         boolean pass = true;
         boolean booleanValue = false;
         byte byteValue = 127;
-        byte[] bytesValue = {127, -127, 1, 0};
+        byte[] bytesValue = { 127, -127, 1, 0 };
         char charValue = 'Z';
         double doubleValue = 6.02e23;
         float floatValue = 6.02e23f;
@@ -196,8 +192,7 @@ public class MapMsgTopicTests extends ServiceEETest {
             messageSentMapMessage.setString("stringValue", stringValue);
             messageSentMapMessage.setString("nullTest", null);
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             try {
                 if (messageReceivedMapMessage.getBoolean("booleanValue") == booleanValue) {
                     TestUtil.logTrace("Pass: valid boolean returned");
@@ -362,14 +357,12 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: MapMessageConversionTopicTestsBoolean
      *
-     * @assertion_ids: JMS:SPEC:75.1; JMS:SPEC:75.2; JMS:JAVADOC:457;
-     * JMS:JAVADOC:433; JMS:JAVADOC:449; JMS:JAVADOC:796; JMS:JAVADOC:797;
-     * JMS:JAVADOC:798; JMS:JAVADOC:799; JMS:JAVADOC:800; JMS:JAVADOC:801;
-     * JMS:JAVADOC:802; JMS:JAVADOC:804;
+     * @assertion_ids: JMS:SPEC:75.1; JMS:SPEC:75.2; JMS:JAVADOC:457; JMS:JAVADOC:433; JMS:JAVADOC:449; JMS:JAVADOC:796;
+     * JMS:JAVADOC:797; JMS:JAVADOC:798; JMS:JAVADOC:799; JMS:JAVADOC:800; JMS:JAVADOC:801; JMS:JAVADOC:802;
+     * JMS:JAVADOC:804;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method writeBoolean
-     * to write a boolean to the message. Verify the proper conversion support as
-     * in 3.11.3
+     * @test_Strategy: Create a MapMessage -. use MapMessage method writeBoolean to write a boolean to the message. Verify
+     * the proper conversion support as in 3.11.3
      */
 
     public void MapMessageConversionTopicTestsBoolean() throws Fault {
@@ -582,13 +575,12 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: MapMessageConversionTopicTestsByte
      *
-     * @assertion_ids: JMS:SPEC:75.3; JMS:SPEC:75.4; JMS:JAVADOC:459;
-     * JMS:JAVADOC:435; JMS:JAVADOC:437; JMS:JAVADOC:441; JMS:JAVADOC:443;
-     * JMS:JAVADOC:449; JMS:JAVADOC:795; JMS:JAVADOC:798; JMS:JAVADOC:801;
-     * JMS:JAVADOC:802; JMS:JAVADOC:804;
+     * @assertion_ids: JMS:SPEC:75.3; JMS:SPEC:75.4; JMS:JAVADOC:459; JMS:JAVADOC:435; JMS:JAVADOC:437; JMS:JAVADOC:441;
+     * JMS:JAVADOC:443; JMS:JAVADOC:449; JMS:JAVADOC:795; JMS:JAVADOC:798; JMS:JAVADOC:801; JMS:JAVADOC:802;
+     * JMS:JAVADOC:804;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method setByte to
-     * write a byte. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Create a MapMessage -. use MapMessage method setByte to write a byte. Verify the proper conversion
+     * support as in 3.11.3
      *
      */
 
@@ -803,13 +795,12 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: MapMessageConversionTopicTestsShort
      *
-     * @assertion_ids: JMS:SPEC:75.5; JMS:SPEC:75.6; JMS:JAVADOC:461;
-     * JMS:JAVADOC:437; JMS:JAVADOC:441; JMS:JAVADOC:443; JMS:JAVADOC:449;
-     * JMS:JAVADOC:795; JMS:JAVADOC:796; JMS:JAVADOC:798; JMS:JAVADOC:801;
-     * JMS:JAVADOC:802; JMS:JAVADOC:804;
+     * @assertion_ids: JMS:SPEC:75.5; JMS:SPEC:75.6; JMS:JAVADOC:461; JMS:JAVADOC:437; JMS:JAVADOC:441; JMS:JAVADOC:443;
+     * JMS:JAVADOC:449; JMS:JAVADOC:795; JMS:JAVADOC:796; JMS:JAVADOC:798; JMS:JAVADOC:801; JMS:JAVADOC:802;
+     * JMS:JAVADOC:804;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method writeShort to
-     * write a short. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Create a MapMessage -. use MapMessage method writeShort to write a short. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -1021,13 +1012,12 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: MapMessageConversionTopicTestsChar
      *
-     * @assertion_ids: JMS:SPEC:75.7; JMS:SPEC:75.8; JMS:JAVADOC:463;
-     * JMS:JAVADOC:439; JMS:JAVADOC:449; JMS:JAVADOC:795; JMS:JAVADOC:796;
-     * JMS:JAVADOC:797; JMS:JAVADOC:799; JMS:JAVADOC:800; JMS:JAVADOC:801;
-     * JMS:JAVADOC:802; JMS:JAVADOC:804;
+     * @assertion_ids: JMS:SPEC:75.7; JMS:SPEC:75.8; JMS:JAVADOC:463; JMS:JAVADOC:439; JMS:JAVADOC:449; JMS:JAVADOC:795;
+     * JMS:JAVADOC:796; JMS:JAVADOC:797; JMS:JAVADOC:799; JMS:JAVADOC:800; JMS:JAVADOC:801; JMS:JAVADOC:802;
+     * JMS:JAVADOC:804;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method writeChar to
-     * write a char. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Create a MapMessage -. use MapMessage method writeChar to write a char. Verify the proper conversion
+     * support as in 3.11.3
      *
      */
 
@@ -1241,13 +1231,12 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: MapMessageConversionTopicTestsInt
      *
-     * @assertion_ids: JMS:SPEC:75.9; JMS:SPEC:75.10; JMS:JAVADOC:465;
-     * JMS:JAVADOC:441; JMS:JAVADOC:443; JMS:JAVADOC:449; JMS:JAVADOC:795;
-     * JMS:JAVADOC:796; JMS:JAVADOC:797; JMS:JAVADOC:798; JMS:JAVADOC:801;
-     * JMS:JAVADOC:802; JMS:JAVADOC:804;
+     * @assertion_ids: JMS:SPEC:75.9; JMS:SPEC:75.10; JMS:JAVADOC:465; JMS:JAVADOC:441; JMS:JAVADOC:443; JMS:JAVADOC:449;
+     * JMS:JAVADOC:795; JMS:JAVADOC:796; JMS:JAVADOC:797; JMS:JAVADOC:798; JMS:JAVADOC:801; JMS:JAVADOC:802;
+     * JMS:JAVADOC:804;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method writeInt to
-     * write an int. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Create a MapMessage -. use MapMessage method writeInt to write an int. Verify the proper conversion
+     * support as in 3.11.3
      *
      */
 
@@ -1461,13 +1450,12 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: MapMessageConversionTopicTestsLong
      *
-     * @assertion_ids: JMS:SPEC:75.11; JMS:SPEC:75.12; JMS:JAVADOC:467;
-     * JMS:JAVADOC:443; JMS:JAVADOC:449; JMS:JAVADOC:795; JMS:JAVADOC:796;
-     * JMS:JAVADOC:797; JMS:JAVADOC:798; JMS:JAVADOC:799; JMS:JAVADOC:801;
-     * JMS:JAVADOC:802; JMS:JAVADOC:804;
+     * @assertion_ids: JMS:SPEC:75.11; JMS:SPEC:75.12; JMS:JAVADOC:467; JMS:JAVADOC:443; JMS:JAVADOC:449; JMS:JAVADOC:795;
+     * JMS:JAVADOC:796; JMS:JAVADOC:797; JMS:JAVADOC:798; JMS:JAVADOC:799; JMS:JAVADOC:801; JMS:JAVADOC:802;
+     * JMS:JAVADOC:804;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method writeLong to
-     * write a long. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Create a MapMessage -. use MapMessage method writeLong to write a long. Verify the proper conversion
+     * support as in 3.11.3
      *
      */
 
@@ -1679,13 +1667,12 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: MapMessageConversionTopicTestsFloat
      *
-     * @assertion_ids: JMS:SPEC:75.13; JMS:SPEC:75.14; JMS:JAVADOC:469;
-     * JMS:JAVADOC:445; JMS:JAVADOC:449; JMS:JAVADOC:795; JMS:JAVADOC:796;
-     * JMS:JAVADOC:797; JMS:JAVADOC:798; JMS:JAVADOC:799; JMS:JAVADOC:800;
-     * JMS:JAVADOC:802; JMS:JAVADOC:804;
+     * @assertion_ids: JMS:SPEC:75.13; JMS:SPEC:75.14; JMS:JAVADOC:469; JMS:JAVADOC:445; JMS:JAVADOC:449; JMS:JAVADOC:795;
+     * JMS:JAVADOC:796; JMS:JAVADOC:797; JMS:JAVADOC:798; JMS:JAVADOC:799; JMS:JAVADOC:800; JMS:JAVADOC:802;
+     * JMS:JAVADOC:804;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method writeFloat to
-     * write a float. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Create a MapMessage -. use MapMessage method writeFloat to write a float. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -1897,13 +1884,12 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: MapMessageConversionTopicTestsDouble
      *
-     * @assertion_ids: JMS:SPEC:75.15; JMS:SPEC:75.16; JMS:JAVADOC:471;
-     * JMS:JAVADOC:447; JMS:JAVADOC:449; JMS:JAVADOC:795; JMS:JAVADOC:796;
-     * JMS:JAVADOC:797; JMS:JAVADOC:798; JMS:JAVADOC:799; JMS:JAVADOC:800;
-     * JMS:JAVADOC:801; JMS:JAVADOC:804;
+     * @assertion_ids: JMS:SPEC:75.15; JMS:SPEC:75.16; JMS:JAVADOC:471; JMS:JAVADOC:447; JMS:JAVADOC:449; JMS:JAVADOC:795;
+     * JMS:JAVADOC:796; JMS:JAVADOC:797; JMS:JAVADOC:798; JMS:JAVADOC:799; JMS:JAVADOC:800; JMS:JAVADOC:801;
+     * JMS:JAVADOC:804;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method writeDouble to
-     * write a double. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Create a MapMessage -. use MapMessage method writeDouble to write a double. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -2115,13 +2101,12 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: MapMessageConversionTopicTestsString
      *
-     * @assertion_ids: JMS:SPEC:75.17; JMS:SPEC:75.18; JMS:JAVADOC:473;
-     * JMS:JAVADOC:433; JMS:JAVADOC:435; JMS:JAVADOC:437; JMS:JAVADOC:441;
-     * JMS:JAVADOC:443; JMS:JAVADOC:445; JMS:JAVADOC:447; JMS:JAVADOC:449;
-     * JMS:JAVADOC:798; JMS:JAVADOC:804;
+     * @assertion_ids: JMS:SPEC:75.17; JMS:SPEC:75.18; JMS:JAVADOC:473; JMS:JAVADOC:433; JMS:JAVADOC:435; JMS:JAVADOC:437;
+     * JMS:JAVADOC:441; JMS:JAVADOC:443; JMS:JAVADOC:445; JMS:JAVADOC:447; JMS:JAVADOC:449; JMS:JAVADOC:798;
+     * JMS:JAVADOC:804;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method writeString to
-     * write a string. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Create a MapMessage -. use MapMessage method writeString to write a string. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -2313,8 +2298,7 @@ public class MapMsgTopicTests extends ServiceEETest {
             TestUtil.logMsg("--");
             TestUtil.logMsg("Use getBoolean to read a string ");
             try {
-                if (messageReceived.getBoolean("myString2")
-                        == Boolean.valueOf(myString2).booleanValue()) {
+                if (messageReceived.getBoolean("myString2") == Boolean.valueOf(myString2).booleanValue()) {
                     TestUtil.logTrace("Pass: String to boolean ");
                 } else {
                     TestUtil.logMsg("Fail: wrong value returned");
@@ -2355,21 +2339,19 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: MapMessageConversionTopicTestsBytes
      *
-     * @assertion_ids: JMS:SPEC:75.19; JMS:SPEC:75.20; JMS:JAVADOC:475;
-     * JMS:JAVADOC:451; JMS:JAVADOC:795; JMS:JAVADOC:796; JMS:JAVADOC:797;
-     * JMS:JAVADOC:798; JMS:JAVADOC:799; JMS:JAVADOC:800; JMS:JAVADOC:801;
-     * JMS:JAVADOC:802; JMS:JAVADOC:803;
+     * @assertion_ids: JMS:SPEC:75.19; JMS:SPEC:75.20; JMS:JAVADOC:475; JMS:JAVADOC:451; JMS:JAVADOC:795; JMS:JAVADOC:796;
+     * JMS:JAVADOC:797; JMS:JAVADOC:798; JMS:JAVADOC:799; JMS:JAVADOC:800; JMS:JAVADOC:801; JMS:JAVADOC:802;
+     * JMS:JAVADOC:803;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method writeBytes to
-     * write a byte[] to the message. Verify the proper conversion support as in
-     * 3.11.3
+     * @test_Strategy: Create a MapMessage -. use MapMessage method writeBytes to write a byte[] to the message. Verify the
+     * proper conversion support as in 3.11.3
      */
 
     public void MapMessageConversionTopicTestsBytes() throws Fault {
         try {
             MapMessage messageSent = null;
             MapMessage messageReceived = null;
-            byte[] byteValues = {1, 2, 3};
+            byte[] byteValues = { 1, 2, 3 };
             boolean pass = true;
 
             // set up test tool for Topic
@@ -2579,9 +2561,8 @@ public class MapMsgTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:76;
      *
-     * @test_Strategy: Create a MapMessage -. use MapMessage method setString to
-     * write a text string of "mytest string". Verify NumberFormatException is
-     * thrown
+     * @test_Strategy: Create a MapMessage -. use MapMessage method setString to write a text string of "mytest string".
+     * Verify NumberFormatException is thrown
      *
      */
 
@@ -2724,14 +2705,12 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: mapMessageTNotWritable
      *
-     * @assertion_ids: JMS:SPEC:73; JMS:JAVADOC:806; JMS:JAVADOC:808;
-     * JMS:JAVADOC:810; JMS:JAVADOC:812; JMS:JAVADOC:814; JMS:JAVADOC:816;
-     * JMS:JAVADOC:818; JMS:JAVADOC:820; JMS:JAVADOC:822; JMS:JAVADOC:824;
-     * JMS:JAVADOC:826; JMS:JAVADOC:829;
+     * @assertion_ids: JMS:SPEC:73; JMS:JAVADOC:806; JMS:JAVADOC:808; JMS:JAVADOC:810; JMS:JAVADOC:812; JMS:JAVADOC:814;
+     * JMS:JAVADOC:816; JMS:JAVADOC:818; JMS:JAVADOC:820; JMS:JAVADOC:822; JMS:JAVADOC:824; JMS:JAVADOC:826;
+     * JMS:JAVADOC:829;
      *
-     * @test_Strategy: Create a MapMessage, send it to a Topic Receive it and try
-     * to write to the received Message's body, MessageNotWritableException should
-     * be thrown.
+     * @test_Strategy: Create a MapMessage, send it to a Topic Receive it and try to write to the received Message's body,
+     * MessageNotWritableException should be thrown.
      */
 
     public void mapMessageTNotWritable() throws Fault {
@@ -2747,7 +2726,7 @@ public class MapMsgTopicTests extends ServiceEETest {
             float fValue = 0.0f;
             double dValue = -0.0;
             String ssValue = "abc";
-            byte[] bbValue = {0, 88, 127};
+            byte[] bbValue = { 0, 88, 127 };
 
             // set up test tool for Topic
             tool = new JmsTool(JmsTool.TOPIC, user, password, mode);
@@ -2886,14 +2865,11 @@ public class MapMsgTopicTests extends ServiceEETest {
     /*
      * @testName: mapMessageTIllegalarg
      *
-     * @assertion_ids: JMS:JAVADOC:805; JMS:JAVADOC:807; JMS:JAVADOC:809;
-     * JMS:JAVADOC:811; JMS:JAVADOC:813; JMS:JAVADOC:815; JMS:JAVADOC:817;
-     * JMS:JAVADOC:819; JMS:JAVADOC:821; JMS:JAVADOC:823; JMS:JAVADOC:825;
-     * JMS:JAVADOC:827;
+     * @assertion_ids: JMS:JAVADOC:805; JMS:JAVADOC:807; JMS:JAVADOC:809; JMS:JAVADOC:811; JMS:JAVADOC:813; JMS:JAVADOC:815;
+     * JMS:JAVADOC:817; JMS:JAVADOC:819; JMS:JAVADOC:821; JMS:JAVADOC:823; JMS:JAVADOC:825; JMS:JAVADOC:827;
      *
-     * @test_Strategy: Create a MapMessage. Write to the message using each type
-     * of set method and as an object with null String as name. Verify that
-     * IllegalArgumentException thrown.
+     * @test_Strategy: Create a MapMessage. Write to the message using each type of set method and as an object with null
+     * String as name. Verify that IllegalArgumentException thrown.
      */
 
     public void mapMessageTIllegalarg() throws Fault {
@@ -2908,7 +2884,7 @@ public class MapMsgTopicTests extends ServiceEETest {
             float fValue = 0.0f;
             double dValue = -0.0;
             String ssValue = "abc";
-            byte[] bbValue = {0, 88, 127};
+            byte[] bbValue = { 0, 88, 127 };
 
             // set up test tool for Topic
             tool = new JmsTool(JmsTool.TOPIC, user, password, mode);

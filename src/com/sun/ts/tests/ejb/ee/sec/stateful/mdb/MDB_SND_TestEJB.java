@@ -58,7 +58,8 @@ public class MDB_SND_TestEJB implements SessionBean {
 
     private String jmsPassword;
 
-    public MDB_SND_TestEJB() {}
+    public MDB_SND_TestEJB() {
+    }
 
     public void ejbCreate(java.util.Properties props) throws CreateException {
         p = props;

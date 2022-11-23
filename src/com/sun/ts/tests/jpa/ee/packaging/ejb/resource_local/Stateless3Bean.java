@@ -40,10 +40,11 @@ import java.util.Map;
 import java.util.Properties;
 
 @Stateless(name = "Stateless3Bean")
-@Remote({Stateless3IF.class})
+@Remote({ Stateless3IF.class })
 public class Stateless3Bean implements Stateless3IF {
 
-    public Stateless3Bean() {}
+    public Stateless3Bean() {
+    }
 
     public SessionContext sessionContext;
 
@@ -58,8 +59,8 @@ public class Stateless3Bean implements Stateless3IF {
     private static final String thisEMF = "java:comp/env/persistence/ThisPersistenceUnit";
 
     /*
-     * pu is defined in ejb.xml and looked up from JNDI persistence-unit-ref-name
-     * is optional if only one PU, description is optional
+     * pu is defined in ejb.xml and looked up from JNDI persistence-unit-ref-name is optional if only one PU, description is
+     * optional
      */
 
     // ================== business methods ====================================

@@ -89,16 +89,16 @@ public class Client extends ServiceEETest {
      */
     private String printSessionMode(int sessionMode) {
         switch (sessionMode) {
-            case JMSContext.SESSION_TRANSACTED:
-                return "SESSION_TRANSACTED";
-            case JMSContext.AUTO_ACKNOWLEDGE:
-                return "AUTO_ACKNOWLEDGE";
-            case JMSContext.CLIENT_ACKNOWLEDGE:
-                return "CLIENT_ACKNOWLEDGE";
-            case JMSContext.DUPS_OK_ACKNOWLEDGE:
-                return "DUPS_OK_ACKNOWLEDGE";
-            default:
-                return "UNEXPECTED_SESSIONMODE";
+        case JMSContext.SESSION_TRANSACTED:
+            return "SESSION_TRANSACTED";
+        case JMSContext.AUTO_ACKNOWLEDGE:
+            return "AUTO_ACKNOWLEDGE";
+        case JMSContext.CLIENT_ACKNOWLEDGE:
+            return "CLIENT_ACKNOWLEDGE";
+        case JMSContext.DUPS_OK_ACKNOWLEDGE:
+            return "DUPS_OK_ACKNOWLEDGE";
+        default:
+            return "UNEXPECTED_SESSIONMODE";
         }
     }
 
@@ -148,15 +148,15 @@ public class Client extends ServiceEETest {
      *
      * @exception Fault
      */
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: qcfCreateJMSContextTest1
      *
      * @assertion_ids: JMS:JAVADOC:841;
      *
-     * @test_Strategy: Creates a JMSContext with the default user identity and an
-     * unspecified sessionMode. Tests API:
+     * @test_Strategy: Creates a JMSContext with the default user identity and an unspecified sessionMode. Tests API:
      *
      * QueueConnectionFactory.createContext() JMSContext.getSessionMode()
      */
@@ -195,11 +195,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:844;
      *
-     * @test_Strategy: Creates a JMSContext with the specified user identity and
-     * an unspecified sessionMode. Tests API:
+     * @test_Strategy: Creates a JMSContext with the specified user identity and an unspecified sessionMode. Tests API:
      *
-     * QueueConnectionFactory.createContext(String, String)
-     * JMSContext.getSessionMode()
+     * QueueConnectionFactory.createContext(String, String) JMSContext.getSessionMode()
      */
     public void qcfCreateJMSContextTest3() throws Fault {
         boolean pass = true;
@@ -236,13 +234,11 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:502;JMS:JAVADOC:504;
      *
-     * @test_Strategy: Create a connection with the default user identity. Create
-     * a connection with the specified user identity. Tests the following API's:
+     * @test_Strategy: Create a connection with the default user identity. Create a connection with the specified user
+     * identity. Tests the following API's:
      *
-     * QueueConnectionFactory.createConnection()
-     * QueueConnectionFactory.createConnection(String, String)
-     * QueueConnectionFactory.createQueueConnection()
-     * QueueConnectionFactory.createQueueConnection(String, String)
+     * QueueConnectionFactory.createConnection() QueueConnectionFactory.createConnection(String, String)
+     * QueueConnectionFactory.createQueueConnection() QueueConnectionFactory.createQueueConnection(String, String)
      */
     public void qcfCreateConnectionTest() throws Fault {
         boolean pass = true;
@@ -283,8 +279,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:841;
      *
-     * @test_Strategy: Creates a JMSContext with the default user identity and an
-     * unspecified sessionMode. Tests API:
+     * @test_Strategy: Creates a JMSContext with the default user identity and an unspecified sessionMode. Tests API:
      *
      * TopicConnectionFactory.createContext() JMSContext.getSessionMode()
      */
@@ -323,11 +318,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:844;
      *
-     * @test_Strategy: Creates a JMSContext with the specified user identity and
-     * an unspecified sessionMode. Tests API:
+     * @test_Strategy: Creates a JMSContext with the specified user identity and an unspecified sessionMode. Tests API:
      *
-     * TopicConnectionFactory.createContext(String, String)
-     * JMSContext.getSessionMode()
+     * TopicConnectionFactory.createContext(String, String) JMSContext.getSessionMode()
      */
     public void tcfCreateJMSContextTest3() throws Fault {
         boolean pass = true;
@@ -364,13 +357,11 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:502;JMS:JAVADOC:504;
      *
-     * @test_Strategy: Create a connection with the default user identity. Create
-     * a connection with the specified user identity. Tests tye following API's:
+     * @test_Strategy: Create a connection with the default user identity. Create a connection with the specified user
+     * identity. Tests tye following API's:
      *
-     * TopicConnectionFactory.createConnection()
-     * TopicConnectionFactory.createConnection(String, String)
-     * TopicConnectionFactory.createTopicConnection()
-     * TopicConnectionFactory.createTopicConnection(String, String)
+     * TopicConnectionFactory.createConnection() TopicConnectionFactory.createConnection(String, String)
+     * TopicConnectionFactory.createTopicConnection() TopicConnectionFactory.createTopicConnection(String, String)
      */
     public void tcfCreateConnectionTest() throws Fault {
         boolean pass = true;
@@ -410,11 +401,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:596;
      *
-     * @test_Strategy: Try and create a connection with invalid user credentials.
-     * Tests for JMSSecurityException.
+     * @test_Strategy: Try and create a connection with invalid user credentials. Tests for JMSSecurityException.
      *
-     * QueueConnectionFactory.createQueueConnection(String, String)
-     * TopicConnectionFactory.createTopicConnection(String, String)
+     * QueueConnectionFactory.createQueueConnection(String, String) TopicConnectionFactory.createTopicConnection(String,
+     * String)
      */
     public void createConnectionExceptionTests() throws Fault {
         boolean pass = true;
@@ -466,18 +456,14 @@ public class Client extends ServiceEETest {
     /*
      * @testName: createJMSContextExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:842; JMS:JAVADOC:843; JMS:JAVADOC:845;
-     * JMS:JAVADOC:846; JMS:JAVADOC:848; JMS:JAVADOC:849; JMS:JAVADOC:850;
-     * JMS:JAVADOC:851;
+     * @assertion_ids: JMS:JAVADOC:842; JMS:JAVADOC:843; JMS:JAVADOC:845; JMS:JAVADOC:846; JMS:JAVADOC:848; JMS:JAVADOC:849;
+     * JMS:JAVADOC:850; JMS:JAVADOC:851;
      *
-     * @test_Strategy: Try and create a JMSContext with invalid user credentials
-     * and invalid session mode. Tests for the exceptions: JMSRuntimeException and
-     * JMSSecurityRuntimeException.
+     * @test_Strategy: Try and create a JMSContext with invalid user credentials and invalid session mode. Tests for the
+     * exceptions: JMSRuntimeException and JMSSecurityRuntimeException.
      *
-     * QueueConnectionFactory.createContext(String, String)
-     * QueueConnectionFactory.createContext(int)
-     * TopicConnectionFactory.createContext(String, String)
-     * TopicConnectionFactory.createContext(int)
+     * QueueConnectionFactory.createContext(String, String) QueueConnectionFactory.createContext(int)
+     * TopicConnectionFactory.createContext(String, String) TopicConnectionFactory.createContext(int)
      */
     public void createJMSContextExceptionTests() throws Fault {
         boolean pass = true;

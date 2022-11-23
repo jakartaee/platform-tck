@@ -35,8 +35,8 @@ public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.TopicClien
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port; webServerHost; webServerPort;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port; webServerHost;
+     * webServerPort;
      */
 
     /*
@@ -44,10 +44,9 @@ public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.TopicClien
      *
      * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
      *
-     * @test_Strategy: test message destination related elements in deployment
-     * descriptors: message-destination, message-destination-ref,
-     * message-destination-link message-destination is declared in two.jar, and
-     * must be accessible from one.jar, two.jar, and appclient-client.jar
+     * @test_Strategy: test message destination related elements in deployment descriptors: message-destination,
+     * message-destination-ref, message-destination-link message-destination is declared in two.jar, and must be accessible
+     * from one.jar, two.jar, and appclient-client.jar
      */
 
     /*

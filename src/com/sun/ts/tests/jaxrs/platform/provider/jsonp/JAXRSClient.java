@@ -38,8 +38,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:107;
      *
-     * @test_Strategy: implementations MUST support entity providers for the
-     * following types: JsonArray
+     * @test_Strategy: implementations MUST support entity providers for the following types: JsonArray
      */
     public void serverJsonArrayReturnTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "toarray"));
@@ -54,8 +53,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:33; JAXRS:SPEC:33.1; JAXRS:SPEC:75;
      *
-     * @test_Strategy: implementations MUST support entity providers for the
-     * following types: JsonStructure
+     * @test_Strategy: implementations MUST support entity providers for the following types: JsonStructure
      */
     public void serverJsonStructureReturnTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "tostructure"));
@@ -70,8 +68,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:107;
      *
-     * @test_Strategy: implementations MUST support entity providers for the
-     * following types: JsonObject
+     * @test_Strategy: implementations MUST support entity providers for the following types: JsonObject
      */
     public void serverJsonObjectReturnTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "toobject"));
@@ -85,8 +82,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:107;
      *
-     * @test_Strategy: implementations MUST support entity providers for the
-     * following types: JsonArray
+     * @test_Strategy: implementations MUST support entity providers for the following types: JsonArray
      */
     public void serverJsonArrayArgumentTest() throws Fault {
         String entity = Resource.createArray().toString();
@@ -102,8 +98,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:107;
      *
-     * @test_Strategy: implementations MUST support entity providers for the
-     * following types: JsonStructure
+     * @test_Strategy: implementations MUST support entity providers for the following types: JsonStructure
      */
     public void serverJsonStructureArgumentTest() throws Fault {
         String entity = Resource.createArray().toString();
@@ -119,8 +114,7 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:107;
      *
-     * @test_Strategy: implementations MUST support entity providers for the
-     * following types: JsonObject
+     * @test_Strategy: implementations MUST support entity providers for the following types: JsonObject
      */
     public void serverJsonObjectArgumentTest() throws Fault {
         String entity = Resource.createObject(1).toString();

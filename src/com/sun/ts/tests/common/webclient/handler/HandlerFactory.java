@@ -61,8 +61,7 @@ package com.sun.ts.tests.common.webclient.handler;
 
 /**
  * <PRE>
- * The HandlerManager is responsible for returning the appropriate handler
- * instance based on the provided value.
+ * The HandlerManager is responsible for returning the appropriate handler instance based on the provided value.
  */
 public class HandlerFactory {
 
@@ -91,21 +90,19 @@ public class HandlerFactory {
      */
     private static final String WWW_AUTH = "www-authenticate";
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * Constructs a new HandlerManager instance
      */
-    private HandlerFactory() {}
+    private HandlerFactory() {
+    }
 
     /**
-     * Returns the appropriate handler instance based on provided discriminate (a
-     * header name).
+     * Returns the appropriate handler instance based on provided discriminate (a header name).
      *
-     * @param handlerName
-     *          handler instance to obtain.
+     * @param handlerName handler instance to obtain.
      */
     public static Handler getHandler(String handlerName) {
         if (CONTENT_TYPE.equals(handlerName.toLowerCase())) {

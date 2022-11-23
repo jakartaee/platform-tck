@@ -50,9 +50,11 @@ public class Client extends EETest {
     /*
      * @class.setup_props:
      */
-    public void setup(String[] args, Properties p) throws Fault {}
+    public void setup(String[] args, Properties p) throws Fault {
+    }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: testOne
@@ -170,8 +172,7 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: FourBean and ThreeBean implement the same interfaces, and
-     * inject each other.
+     * @test_Strategy: FourBean and ThreeBean implement the same interfaces, and inject each other.
      */
     public void testFour() throws Fault {
         final String expected = "FourBean";

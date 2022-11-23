@@ -32,10 +32,9 @@ import jakarta.ejb.MessageDrivenContext;
 import javax.naming.Context;
 
 /**
- * The MessageBean class is a message-driven bean. It implements the
- * jakarta.ejb.MessageDrivenBean and TSMessageListenerInterface. It is defined as
- * public (but not final or abstract). It defines a constructor and the methods
- * setMessageDrivenContext, ejbCreate, onMessage, and ejbRemove.
+ * The MessageBean class is a message-driven bean. It implements the jakarta.ejb.MessageDrivenBean and
+ * TSMessageListenerInterface. It is defined as public (but not final or abstract). It defines a constructor and the
+ * methods setMessageDrivenContext, ejbCreate, onMessage, and ejbRemove.
  */
 public class MessageBeanOne implements MessageDrivenBean, TSMessageListenerInterface {
 
@@ -51,31 +50,28 @@ public class MessageBeanOne implements MessageDrivenBean, TSMessageListenerInter
     }
 
     /**
-     * setMessageDrivenContext method, declared as public (but not final or
-     * static), with a return type of void, and with one argument of type
-     * jakarta.ejb.MessageDrivenContext.
+     * setMessageDrivenContext method, declared as public (but not final or static), with a return type of void, and with
+     * one argument of type jakarta.ejb.MessageDrivenContext.
      *
-     * @param mdc
-     *          the context to set
+     * @param mdc the context to set
      */
     public void setMessageDrivenContext(MessageDrivenContext mdc) {
         this.mdc = mdc;
     }
 
     /**
-     * ejbCreate method, declared as public (but not final or static), with a
-     * return type of void, and with no arguments.
+     * ejbCreate method, declared as public (but not final or static), with a return type of void, and with no arguments.
      */
-    public void ejbCreate() {}
+    public void ejbCreate() {
+    }
 
     /**
-     * onMessage method, declared as public (but not final or static), with a
-     * return type of void, and with one argument of type jakarta.jms.Message.
+     * onMessage method, declared as public (but not final or static), with a return type of void, and with one argument of
+     * type jakarta.jms.Message.
      *
      * Casts the incoming Message to a TextMessage and displays the text.
      *
-     * @param inMessage
-     *          the incoming message
+     * @param inMessage the incoming message
      */
     public void onMessage(String inMessage) throws AppException {
 
@@ -112,8 +108,7 @@ public class MessageBeanOne implements MessageDrivenBean, TSMessageListenerInter
     }
 
     /**
-     * ejbRemove method, declared as public (but not final or static), with a
-     * return type of void, and with no arguments.
+     * ejbRemove method, declared as public (but not final or static), with a return type of void, and with no arguments.
      */
     public void ejbRemove() {
         System.out.println("In MessageBean.remove()");

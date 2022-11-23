@@ -104,15 +104,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create an entity bean with a method. 2. Protect bean
-     * method with multiple security roles. 3. Call bean method as a principal who
-     * is not in any of the security roles that protects the method. 4. Verify
+     * @test_Strategy: 1. Create an entity bean with a method. 2. Protect bean method with multiple security roles. 3. Call
+     * bean method as a principal who is not in any of the security roles that protects the method. 4. Verify
      * java.rmi.RemoteException is generated.
      *
-     * NOTE: EJB Specification v2.0 specifies that java.rmi.RemoteException is
-     * returned not only for authorization failures but also for communicaton
-     * errors. The test may pass instead of failing if the exception is generated
-     * because of a communication failure.
+     * NOTE: EJB Specification v2.0 specifies that java.rmi.RemoteException is returned not only for authorization failures
+     * but also for communicaton errors. The test may pass instead of failing if the exception is generated because of a
+     * communication failure.
      */
 
     public void test1() throws Fault {
@@ -158,14 +156,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create an entity bean with a method. 2. Protect a method
-     * within the bean with multiple security roles. 3. Call bean method as a
-     * principal who is in one some of the security roles but not in others. 4.
-     * Verify call returns successfully.
+     * @test_Strategy: 1. Create an entity bean with a method. 2. Protect a method within the bean with multiple security
+     * roles. 3. Call bean method as a principal who is in one some of the security roles but not in others. 4. Verify call
+     * returns successfully.
      *
-     * Note: A caller principal who is in at least one of the security roles
-     * defined on a method permission element for an EJB method must be allowed to
-     * execute the method.
+     * Note: A caller principal who is in at least one of the security roles defined on a method permission element for an
+     * EJB method must be allowed to execute the method.
      */
 
     public void test2() throws Fault {
@@ -181,8 +177,10 @@ public class Client extends EETest {
                 TestUtil.logTrace("ejb1ref removed from test2");
             }
 
-            if (pass) logMsg("Caller authorization test passed");
-            else throw new Fault("Caller authorization test failed");
+            if (pass)
+                logMsg("Caller authorization test passed");
+            else
+                throw new Fault("Caller authorization test failed");
         } catch (Exception e) {
             throw new Fault("Caller authorization test failed: ", e);
         }
@@ -193,15 +191,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61.7; EJB:SPEC:81.4
      *
-     * @test_Strategy: 1. Create an entity bean. 2. Protect a method in the bean
-     * using a security role (say role1). 3. Link a security role ref -
-     * emp_secrole_ref - to role1 in the bean. 4. Invoke the method with
-     * emp_secrole_ref as parameter. 5. bean calls isCallerInRole(emp_secrole_ref)
-     * and returns return value. 6. Verify return value is true.
+     * @test_Strategy: 1. Create an entity bean. 2. Protect a method in the bean using a security role (say role1). 3. Link
+     * a security role ref - emp_secrole_ref - to role1 in the bean. 4. Invoke the method with emp_secrole_ref as parameter.
+     * 5. bean calls isCallerInRole(emp_secrole_ref) and returns return value. 6. Verify return value is true.
      *
-     * Note: A security role reference name must be the security role name used in
-     * isCallerInRole() api call as specified in EJB 2.0 specification, section
-     * 21.2.5.3. This is a positive test.
+     * Note: A security role reference name must be the security role name used in isCallerInRole() api call as specified in
+     * EJB 2.0 specification, section 21.2.5.3. This is a positive test.
      */
 
     public void test3() throws Fault {
@@ -217,7 +212,8 @@ public class Client extends EETest {
                 TestUtil.logTrace("ejb1ref removed from test3");
             }
 
-            if (pass) logMsg("Security role reference positive test passed");
+            if (pass)
+                logMsg("Security role reference positive test passed");
             else {
                 logErr("EjbSecRoleRef(" + emp_secrole_ref + ") returned false");
                 throw new Fault("Security role reference positive test failed");
@@ -231,12 +227,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61.8
      *
-     * @test_Strategy: 1. Create an entity bean. 2. Protect a method in the bean
-     * using a security role (say role1). 3. Link a security role ref -
-     * emp_secrole_ref - to role1 in the bean. 4. Invoke the method with
-     * mgr_secrole_ref as a parameter. 5. bean calls
-     * isCallerInRole(mgr_secrole_ref) and returns return value. 6. Verify return
-     * value is false.
+     * @test_Strategy: 1. Create an entity bean. 2. Protect a method in the bean using a security role (say role1). 3. Link
+     * a security role ref - emp_secrole_ref - to role1 in the bean. 4. Invoke the method with mgr_secrole_ref as a
+     * parameter. 5. bean calls isCallerInRole(mgr_secrole_ref) and returns return value. 6. Verify return value is false.
      */
 
     public void test4() throws Fault {
@@ -252,7 +245,8 @@ public class Client extends EETest {
                 TestUtil.logTrace("ejb1ref removed from test4");
             }
 
-            if (pass) logMsg("Security role reference negative test passed");
+            if (pass)
+                logMsg("Security role reference negative test passed");
             else {
                 logErr("EjbSecRoleRef(" + mgr_secrole_ref + ") returned true");
                 throw new Fault("Security role reference negative test failed");
@@ -268,11 +262,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:799; EJB:SPEC:804
      *
-     * @test_Strategy: 1. Create two entity beans (ejb1 and ejb2). 2. Link
-     * security role reference (roleref) to role1 in ejb1 and role2 in ejb2. 3.
-     * Ensure caller principal is in role1 but not in role2. 4. Invoke method in
-     * ejb1 that returns value of isCallerInRole(roleref).Verify return value is
-     * true. 5. Invoke method in ejb2 that returns value of
+     * @test_Strategy: 1. Create two entity beans (ejb1 and ejb2). 2. Link security role reference (roleref) to role1 in
+     * ejb1 and role2 in ejb2. 3. Ensure caller principal is in role1 but not in role2. 4. Invoke method in ejb1 that
+     * returns value of isCallerInRole(roleref).Verify return value is true. 5. Invoke method in ejb2 that returns value of
      * isCallerInRole(roleref). Verify return value is false.
      */
 
@@ -291,7 +283,8 @@ public class Client extends EETest {
                 TestUtil.logTrace("ejb1ref removed from test5");
             }
 
-            if (pass) logMsg("(ejb1) isCallerInRole(" + emp_secrole_ref + ") returned true as expected");
+            if (pass)
+                logMsg("(ejb1) isCallerInRole(" + emp_secrole_ref + ") returned true as expected");
             else {
                 logErr("isCallerInRole(" + emp_secrole_ref + ") returned false");
                 throw new Fault("Security role reference scope test failed");
@@ -328,11 +321,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:811
      *
-     * @test_Strategy: 1. Create an entity bean with two overloaded methods. 2.
-     * Call method1 passing emp_secrole_ref. 3. Method1 returns
-     * isCallerInRole(emp_secrole_ref) which must be true. 4. Call method2 passing
-     * two role references as parameters. 5. Method must return false ( caller not
-     * in both security role refs).
+     * @test_Strategy: 1. Create an entity bean with two overloaded methods. 2. Call method1 passing emp_secrole_ref. 3.
+     * Method1 returns isCallerInRole(emp_secrole_ref) which must be true. 4. Call method2 passing two role references as
+     * parameters. 5. Method must return false ( caller not in both security role refs).
      */
 
     public void test6() throws Fault {
@@ -376,8 +367,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create a cmp entity bean with a remote interface method
-     * permission unchecked 2. Verify that access is allowed.
+     * @test_Strategy: 1. Create a cmp entity bean with a remote interface method permission unchecked 2. Verify that access
+     * is allowed.
      */
 
     public void test7() throws Fault {
@@ -407,9 +398,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:808
      *
-     * @test_Strategy: 1. Create a cmp entity bean with a remote method on
-     * exclude-list. 2. Verify java.rmi.RemoteException is generated when the
-     * method is invoked.
+     * @test_Strategy: 1. Create a cmp entity bean with a remote method on exclude-list. 2. Verify java.rmi.RemoteException
+     * is generated when the method is invoked.
      */
 
     public void test8() throws Fault {

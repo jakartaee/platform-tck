@@ -26,8 +26,7 @@ public interface CallbackIF {
     public void removeFoo(); // for sfsb only
 
     /**
-     * In stateful session beans, it verifies whether PostConstruct or
-     * PostActivate has been called.
+     * In stateful session beans, it verifies whether PostConstruct or PostActivate has been called.
      */
     public boolean isPostConstructCalledTest();
 

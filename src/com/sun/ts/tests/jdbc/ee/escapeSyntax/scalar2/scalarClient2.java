@@ -37,8 +37,7 @@ import java.util.Properties;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The scalarClient2 class tests methods of scalar Functions interface using
- * Sun's J2EE Reference Implementation.
+ * The scalarClient2 class tests methods of scalar Functions interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -75,14 +74,11 @@ public class scalarClient2 extends ServiceEETest {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -91,7 +87,8 @@ public class scalarClient2 extends ServiceEETest {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 if (drManager.equals("yes")) {
                     logTrace("Using DriverManager");
@@ -120,9 +117,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function abs. It should return a numeric
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * abs. It should return a numeric value.
      *
      */
     public void testAbs() throws Fault {
@@ -151,9 +147,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function power. It should return a numeric
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * power. It should return a numeric value.
      *
      */
     public void testPower() throws Fault {
@@ -197,9 +192,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function round. It should return a numeric
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * round. It should return a numeric value.
      *
      */
     public void testRound() throws Fault {
@@ -245,9 +239,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function sign. It should return an
-     * integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * sign. It should return an integer.
      *
      */
     public void testSign() throws Fault {
@@ -292,9 +285,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function sqrt. It should return a numeric
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * sqrt. It should return a numeric value.
      *
      */
     public void testSqrt() throws Fault {
@@ -325,9 +317,8 @@ public class scalarClient2 extends ServiceEETest {
      * @assertion_ids: JDBC:SPEC:4;
      *
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function truncate. It should return a
-     * numeric value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * truncate. It should return a numeric value.
      *
      */
     public void testTruncate() throws Fault {
@@ -371,8 +362,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function mod. It should return an integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * mod. It should return an integer.
      *
      */
     public void testMod() throws Fault {
@@ -416,9 +407,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function floor. It should return an
-     * integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * floor. It should return an integer.
      *
      */
     public void testFloor() throws Fault {
@@ -462,9 +452,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function ceiling. It should return an
-     * integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * ceiling. It should return an integer.
      *
      */
     public void testCeiling() throws Fault {
@@ -508,9 +497,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function log10. It should return a numeric
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * log10. It should return a numeric value.
      *
      */
     public void testLog10() throws Fault {
@@ -555,9 +543,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function log. It should return a numeric
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * log. It should return a numeric value.
      *
      */
     public void testLog() throws Fault {
@@ -601,9 +588,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function exp. It should return a numeric
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * exp. It should return a numeric value.
      *
      */
     public void testExp() throws Fault {
@@ -647,9 +633,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function cos. It should return a numeric
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * cos. It should return a numeric value.
      *
      */
     public void testCos() throws Fault {
@@ -693,9 +678,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function tan. It should return a numeric
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * tan. It should return a numeric value.
      *
      */
     public void testTan() throws Fault {
@@ -739,9 +723,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function cot. It should return a numeric
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * cot. It should return a numeric value.
      *
      *
      */
@@ -786,9 +769,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function curdate. It should return a date
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * curdate. It should return a date value.
      *
      */
     public void testCurdate() throws Fault {
@@ -832,9 +814,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function dayname. It should return a
-     * character string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * dayname. It should return a character string.
      *
      */
     public void testDayname() throws Fault {
@@ -876,9 +857,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function dayofmonth. It should return an
-     * integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * dayofmonth. It should return an integer.
      *
      */
     public void testDayofmonth() throws Fault {
@@ -920,9 +900,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function dayofweek. It should return an
-     * integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * dayofweek. It should return an integer.
      *
      */
     public void testDayofweek() throws Fault {
@@ -964,9 +943,8 @@ public class scalarClient2 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function dayofyear. It should return an
-     * integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * dayofyear. It should return an integer.
      *
      */
     public void testDayofyear() throws Fault {

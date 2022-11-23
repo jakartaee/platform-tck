@@ -31,9 +31,8 @@ import org.jdom.input.SAXBuilder;
 
 /**
  *
- * This class implements the TSDeploymentInterface. It does so by copying
- * to/from the V3 autodeploy directory and delegates out to ant build files
- * under bin/xml/glassfish/deploy.xml
+ * This class implements the TSDeploymentInterface. It does so by copying to/from the V3 autodeploy directory and
+ * delegates out to ant build files under bin/xml/glassfish/deploy.xml
  *
  * @author Kyle Grucci
  *
@@ -92,8 +91,7 @@ public class AutoDeployment implements TSDeploymentInterface {
      *
      * Initializes logging output, gets the Deliverable instance
      *
-     * @param writer
-     *          PrintWriter for harness tracing
+     * @param writer PrintWriter for harness tracing
      *
      * @return void
      *
@@ -387,9 +385,8 @@ public class AutoDeployment implements TSDeploymentInterface {
                 // }
                 List resources = infoArray[ii].getAppClientRuntimeDDs();
                 for (int i = 0; i < resources.size(); i++) {
-                    com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.SunApplicationClient appResource =
-                            (com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.SunApplicationClient)
-                                    resources.get(i);
+                    com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.SunApplicationClient appResource = (com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.SunApplicationClient) resources
+                            .get(i);
                     Hashtable jndiChanges = checkJNDINames(appResource.getEjbRef());
                     if (!jndiChanges.isEmpty()) {
                         htJNDIRefs.putAll(jndiChanges);
@@ -411,8 +408,8 @@ public class AutoDeployment implements TSDeploymentInterface {
                 // }
                 resources = infoArray[ii].getWebRuntimeDDs();
                 for (int i = 0; i < resources.size(); i++) {
-                    com.sun.ts.lib.implementation.sun.javaee.runtime.web.SunWebApp webResource =
-                            (com.sun.ts.lib.implementation.sun.javaee.runtime.web.SunWebApp) resources.get(i);
+                    com.sun.ts.lib.implementation.sun.javaee.runtime.web.SunWebApp webResource = (com.sun.ts.lib.implementation.sun.javaee.runtime.web.SunWebApp) resources
+                            .get(i);
                     Hashtable jndiChanges = checkJNDINames(webResource.getEjbRef());
                     if (!jndiChanges.isEmpty()) {
                         htJNDIRefs.putAll(jndiChanges);
@@ -439,13 +436,13 @@ public class AutoDeployment implements TSDeploymentInterface {
                 // }
                 List ejbJars = infoArray[ii].getEjbRuntimeDDs();
                 for (int y = 0; y < ejbJars.size(); y++) {
-                    com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.SunEjbJar ejbJar =
-                            (com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.SunEjbJar) ejbJars.get(y);
+                    com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.SunEjbJar ejbJar = (com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.SunEjbJar) ejbJars
+                            .get(y);
                     resources = ejbJar.getEnterpriseBeans().getEjb();
 
                     for (int i = 0; i < resources.size(); i++) {
-                        com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.Ejb ejbResource =
-                                (com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.Ejb) resources.get(i);
+                        com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.Ejb ejbResource = (com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.Ejb) resources
+                                .get(i);
                         Hashtable jndiChanges = checkJNDINames(ejbResource.getEjbRef());
                         if (!jndiChanges.isEmpty()) {
                             htJNDIRefs.putAll(jndiChanges);
@@ -457,7 +454,7 @@ public class AutoDeployment implements TSDeploymentInterface {
         buf = new StringBuffer(
                 "***** Returning the following Hashtable from SunRIDeployment.getInteropJNDINames *****" + newLine);
         buf.append("***************************************************************************************" + newLine);
-        for (Enumeration e = htJNDIRefs.keys(); e.hasMoreElements(); ) {
+        for (Enumeration e = htJNDIRefs.keys(); e.hasMoreElements();) {
             String sKey = (String) e.nextElement();
             buf.append("Original value:  " + sKey + newLine);
             buf.append("Modified value:  " + (String) htJNDIRefs.get(sKey) + newLine);
@@ -488,22 +485,20 @@ public class AutoDeployment implements TSDeploymentInterface {
         Object o = ejbRefs.get(0);
         if (o instanceof com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.EjbRef) {
             for (int j = 0; j < ejbRefs.size(); j++) {
-                com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.EjbRef ref =
-                        (com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.EjbRef) ejbRefs.get(j);
+                com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.EjbRef ref = (com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.EjbRef) ejbRefs.get(j);
                 String jndiName = ref.getJndiName();
                 addJNDIName(jndiName, jndiChanges);
             }
         } else if (o instanceof com.sun.ts.lib.implementation.sun.javaee.runtime.web.EjbRef) {
             for (int j = 0; j < ejbRefs.size(); j++) {
-                com.sun.ts.lib.implementation.sun.javaee.runtime.web.EjbRef ref =
-                        (com.sun.ts.lib.implementation.sun.javaee.runtime.web.EjbRef) ejbRefs.get(j);
+                com.sun.ts.lib.implementation.sun.javaee.runtime.web.EjbRef ref = (com.sun.ts.lib.implementation.sun.javaee.runtime.web.EjbRef) ejbRefs.get(j);
                 String jndiName = ref.getJndiName();
                 addJNDIName(jndiName, jndiChanges);
             }
         } else if (o instanceof com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.EjbRef) {
             for (int j = 0; j < ejbRefs.size(); j++) {
-                com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.EjbRef ref =
-                        (com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.EjbRef) ejbRefs.get(j);
+                com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.EjbRef ref = (com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.EjbRef) ejbRefs
+                        .get(j);
                 String jndiName = ref.getJndiName();
                 addJNDIName(jndiName, jndiChanges);
             }
@@ -513,10 +508,9 @@ public class AutoDeployment implements TSDeploymentInterface {
 
     private String getAppNameFromApplicationXML(String archivePathAndName) {
         /*
-         * Read the application.xml jar entry and look for the
-         * /application/application-name element. If it exists return its textual
-         * content else return null. Allowing users the ability to specify an
-         * application name is new feature in JavaEE 6.0.
+         * Read the application.xml jar entry and look for the /application/application-name element. If it exists return its
+         * textual content else return null. Allowing users the ability to specify an application name is new feature in JavaEE
+         * 6.0.
          */
         String appName = null;
         JarFile jarFile = null;
@@ -549,11 +543,10 @@ public class AutoDeployment implements TSDeploymentInterface {
     }
 
     /**
-     * Fetch the entire contents of a text file, and return it in a String. This
-     * style of implementation does not throw Exceptions to the caller.
+     * Fetch the entire contents of a text file, and return it in a String. This style of implementation does not throw
+     * Exceptions to the caller.
      *
-     * @param aFile
-     *          is a file which already exists and can be read.
+     * @param aFile is a file which already exists and can be read.
      */
     public String getServerLogContents() {
         // ...checks on aFile are elided
@@ -587,9 +580,8 @@ public class AutoDeployment implements TSDeploymentInterface {
             try {
                 String line = null; // not declared within while loop
                 /*
-                 * readLine is a bit quirky : it returns the content of a line MINUS the
-                 * newline. it returns null only for the END of the stream. it returns
-                 * an empty String if two newlines appear in a row.
+                 * readLine is a bit quirky : it returns the content of a line MINUS the newline. it returns null only for the END of
+                 * the stream. it returns an empty String if two newlines appear in a row.
                  */
                 int iCurrentLine = 1;
                 System.err.println("line count = " + logLineCount);
@@ -629,7 +621,8 @@ public class AutoDeployment implements TSDeploymentInterface {
         char[] buffer = new char[4096];
         for (int charsRead = reader.read(buffer); charsRead >= 0; charsRead = reader.read(buffer)) {
             for (int charIndex = 0; charIndex < charsRead; charIndex++) {
-                if (buffer[charIndex] == '\n') lineCount++;
+                if (buffer[charIndex] == '\n')
+                    lineCount++;
             }
         }
         reader.close();

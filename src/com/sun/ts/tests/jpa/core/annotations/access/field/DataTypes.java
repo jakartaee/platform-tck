@@ -81,7 +81,8 @@ public class DataTypes implements java.io.Serializable {
     @Transient
     public byte trans;
 
-    public DataTypes() {}
+    public DataTypes() {
+    }
 
     public DataTypes(int id) {
         this.id = id;
@@ -117,7 +118,7 @@ public class DataTypes implements java.io.Serializable {
         this.intData2 = intData2;
         // these values can not be null because of postgres
         this.characterData = ' ';
-        byte[] bArray = {(byte) 32};
+        byte[] bArray = { (byte) 32 };
         this.byteArrayData = bArray;
     }
 
@@ -126,7 +127,7 @@ public class DataTypes implements java.io.Serializable {
         this.trans = trans;
         // these values can not be null because of postgres
         this.characterData = ' ';
-        byte[] bArray = {(byte) 32};
+        byte[] bArray = { (byte) 32 };
         this.byteArrayData = bArray;
     }
 

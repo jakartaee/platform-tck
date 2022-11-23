@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,8 +100,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:92;
      *
-     * @test_Strategy: Call SAAJResult() constructor and verify creation of a new
-     * SAAJResult object.
+     * @test_Strategy: Call SAAJResult() constructor and verify creation of a new SAAJResult object.
      *
      * Description: Create a SAAJResult object.
      *
@@ -115,12 +116,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SAAJResultConstructorTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -128,7 +132,8 @@ public class URLClient extends EETest {
             throw new Fault("SAAJResultConstructorTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("SAAJResultConstructorTest1 failed");
+        if (!pass)
+            throw new Fault("SAAJResultConstructorTest1 failed");
     }
 
     /*
@@ -136,8 +141,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:95;
      *
-     * @test_Strategy: Call SAAJResult() constructor and verify creation of a new
-     * SAAJResult object.
+     * @test_Strategy: Call SAAJResult() constructor and verify creation of a new SAAJResult object.
      *
      * Description: Create a SAAJResult object.
      *
@@ -153,12 +157,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SAAJResultConstructorTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -166,7 +173,8 @@ public class URLClient extends EETest {
             throw new Fault("SAAJResultConstructorTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("SAAJResultConstructorTest2 failed");
+        if (!pass)
+            throw new Fault("SAAJResultConstructorTest2 failed");
     }
 
     /*
@@ -174,8 +182,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:94;
      *
-     * @test_Strategy: Call SAAJResult() constructor and verify creation of a new
-     * SAAJResult object.
+     * @test_Strategy: Call SAAJResult() constructor and verify creation of a new SAAJResult object.
      *
      * Description: Create a SAAJResult object.
      *
@@ -191,12 +198,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SAAJResultConstructorTest3");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -204,7 +214,8 @@ public class URLClient extends EETest {
             throw new Fault("SAAJResultConstructorTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("SAAJResultConstructorTest3 failed");
+        if (!pass)
+            throw new Fault("SAAJResultConstructorTest3 failed");
     }
 
     /*
@@ -212,8 +223,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:93;
      *
-     * @test_Strategy: Call SAAJResult() constructor and verify creation of a new
-     * SAAJResult object.
+     * @test_Strategy: Call SAAJResult() constructor and verify creation of a new SAAJResult object.
      *
      * Description: Create a SAAJResult object.
      *
@@ -229,12 +239,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SAAJResultConstructorTest4");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -242,7 +255,8 @@ public class URLClient extends EETest {
             throw new Fault("SAAJResultConstructorTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("SAAJResultConstructorTest4 failed");
+        if (!pass)
+            throw new Fault("SAAJResultConstructorTest4 failed");
     }
 
     /*
@@ -250,8 +264,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:96;
      *
-     * @test_Strategy: Call getResultTest1() and verify a result object is
-     * returned.
+     * @test_Strategy: Call getResultTest1() and verify a result object is returned.
      *
      * Description: Get a Node object.
      *
@@ -267,12 +280,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getResultTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -280,7 +296,8 @@ public class URLClient extends EETest {
             throw new Fault("getResultTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("getResultTest1 failed");
+        if (!pass)
+            throw new Fault("getResultTest1 failed");
     }
 
     /*
@@ -288,8 +305,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:96;
      *
-     * @test_Strategy: Call getResultTest2() and verify a result object is
-     * returned.
+     * @test_Strategy: Call getResultTest2() and verify a result object is returned.
      *
      * Description: Get a Node object.
      *
@@ -305,12 +321,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getResultTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -318,6 +337,7 @@ public class URLClient extends EETest {
             throw new Fault("getResultTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("getResultTest2 failed");
+        if (!pass)
+            throw new Fault("getResultTest2 failed");
     }
 }

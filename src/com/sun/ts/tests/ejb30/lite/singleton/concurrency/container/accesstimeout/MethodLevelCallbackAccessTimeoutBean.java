@@ -30,13 +30,11 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * The purpose of this class is to verify the wait time in post-construct method
- * does not count towards AccessTimeout. This bean is not annotated
- * with @Startup.
+ * The purpose of this class is to verify the wait time in post-construct method does not count towards AccessTimeout.
+ * This bean is not annotated with @Startup.
  *
- * @AccessTimeout at method-level also applies to the PostConstruct,
- *                AroundInvoke and PreDestroy methods that are exposed as
- *                business methods.
+ * @AccessTimeout at method-level also applies to the PostConstruct, AroundInvoke and PreDestroy methods that are
+ * exposed as business methods.
  */
 @Singleton
 public class MethodLevelCallbackAccessTimeoutBean extends CallbackAccessTimeoutBeanBase {

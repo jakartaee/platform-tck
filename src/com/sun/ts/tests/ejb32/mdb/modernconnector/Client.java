@@ -34,19 +34,19 @@ public class Client extends EETest {
         s.exit();
     }
 
-    public void setup(String[] args, Properties p) throws Fault {}
+    public void setup(String[] args, Properties p) throws Fault {
+    }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: testModernConnector
      *
-     * @test_Strategy: Create a simple Connector called EventMonitorAdapter which
-     * uses @LocalBean-like view of the MessageEndpoint proxy. Then create 2
-     * modern MDBs based on this Connector and verify the messages from Connector
-     * are properly consumed by the MDBs. The modern MDBs are applied with an
-     * AroundInvoke interceptor so that we can validate the endpoint class
-     * retrieved by Connector is properly proxied.
+     * @test_Strategy: Create a simple Connector called EventMonitorAdapter which uses @LocalBean-like view of the
+     * MessageEndpoint proxy. Then create 2 modern MDBs based on this Connector and verify the messages from Connector are
+     * properly consumed by the MDBs. The modern MDBs are applied with an AroundInvoke interceptor so that we can validate
+     * the endpoint class retrieved by Connector is properly proxied.
      */
     public void testModernConnector() throws Fault {
         TLogger.logMsg("Test starting");
@@ -64,7 +64,7 @@ public class Client extends EETest {
             TLogger.logMsg("awaitInvocations() returned");
             final List<String> eventRecords = elRemote.getEventRecords();
             if (!eventRecords.contains(
-                            "One online typed high-priority event is processed by high-priority online monitor")
+                    "One online typed high-priority event is processed by high-priority online monitor")
                     || !eventRecords.contains(
                             "One online typed normal-priority event is processed by normal-priority online monitor")
                     || !eventRecords.contains(

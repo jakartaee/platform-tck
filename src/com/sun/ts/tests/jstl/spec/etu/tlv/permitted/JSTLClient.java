@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,12 +62,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positivePermittedTlvTest
      *
-     * @assertion_ids: JSTL:SPEC:109; JSTL:SPEC:104; JSTL:SPEC:104.1;
-     * JSTL:SPEC:104.2; JSTL:SPEC:104.3; JSTL:SPEC:104.4
+     * @assertion_ids: JSTL:SPEC:109; JSTL:SPEC:104; JSTL:SPEC:104.1; JSTL:SPEC:104.2; JSTL:SPEC:104.3; JSTL:SPEC:104.4
      *
-     * @testStrategy: Validate that if a URI that refers to a specific set of
-     * libraries is specified as a parameter to the PermittedTaglibsTLV, that the
-     * use of this library doesn't generate a translation error.
+     * @testStrategy: Validate that if a URI that refers to a specific set of libraries is specified as a parameter to the
+     * PermittedTaglibsTLV, that the use of this library doesn't generate a translation error.
      */
     public void positivePermittedTlvTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positivePermittedTlvTest");
@@ -83,9 +79,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:109; JSTL:SPEC:104; JSTL:SPEC:104.5
      *
-     * @testStrategy: Validate that if a URI that refers to a specific set of
-     * libraries is not specified as a parameter to the PermittedTaglibsTLV, that
-     * the use of this library generates a translation error.
+     * @testStrategy: Validate that if a URI that refers to a specific set of libraries is not specified as a parameter to
+     * the PermittedTaglibsTLV, that the use of this library generates a translation error.
      */
     public void negativePermittedTlvTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativePermittedTlvTest");

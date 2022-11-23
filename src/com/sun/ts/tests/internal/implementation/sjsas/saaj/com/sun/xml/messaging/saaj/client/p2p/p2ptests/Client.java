@@ -40,8 +40,7 @@ import java.net.URLConnection;
 import java.util.Properties;
 
 public class Client extends EETest {
-    private String srcDir =
-            "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/client/p2p/p2ptests";
+    private String srcDir = "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/client/p2p/p2ptests";
 
     private String testDir = null;
 
@@ -85,8 +84,7 @@ public class Client extends EETest {
 
     private static final String SERVLET = "/HttpSOAPConnection/ReceivingServlet";
 
-    private static final String GoodSoapMessage =
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/wsdl\"><soap:Body><ns:hello><parameters><string>World</string></parameters></ns:hello></soap:Body></soap:Envelope>";
+    private static final String GoodSoapMessage = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://httptestservice.org/wsdl\"><soap:Body><ns:hello><parameters><string>World</string></parameters></ns:hello></soap:Body></soap:Envelope>";
 
     private HttpURLConnection conn = null;
 
@@ -97,8 +95,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: ts_home; webServerHost; webServerPort; user; password;
-     * authuser; authpassword;
+     * @class.setup_props: ts_home; webServerHost; webServerPort; user; password; authuser; authpassword;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -107,8 +104,10 @@ public class Client extends EETest {
             String tsHome = p.getProperty("ts_home");
             testDir = tsHome + "/" + srcDir;
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -177,7 +176,8 @@ public class Client extends EETest {
             throw new Fault("HttpSOAPConnectionTest failed", e);
         }
 
-        if (!pass) throw new Fault("HttpSOAPConnectionTest failed");
+        if (!pass)
+            throw new Fault("HttpSOAPConnectionTest failed");
     }
 
     private SOAPMessage createSOAPMessage() throws Exception {
@@ -191,8 +191,7 @@ public class Client extends EETest {
         SOAPHeaderElement transaction = hdr.addHeaderElement(envelope.createName("MyTransaction", "t", "request-uri"));
         transaction.setMustUnderstand(true);
         transaction.addTextNode("5");
-        SOAPBodyElement gltp =
-                bdy.addBodyElement(envelope.createName("GetLastTradePrice", "ztrade", "http://wombat.ztrade.com"));
+        SOAPBodyElement gltp = bdy.addBodyElement(envelope.createName("GetLastTradePrice", "ztrade", "http://wombat.ztrade.com"));
         gltp.addChildElement(envelope.createName("symbol", "ztrade", "http://wombat.ztrade.com"))
                 .addTextNode("SUNW");
         return msg;

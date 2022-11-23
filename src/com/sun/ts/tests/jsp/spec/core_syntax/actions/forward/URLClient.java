@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -61,9 +59,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:165.1
      *
-     * @test_Strategy: Validate that jsp:forward can forward a request to a JSP
-     * page within the same context using a page relative-path. PENDING Merege
-     * existing forward tests
+     * @test_Strategy: Validate that jsp:forward can forward a request to a JSP page within the same context using a page
+     * relative-path. PENDING Merege existing forward tests
      */
 
     public void positiveForwardCtxRelativeTest() throws Fault {
@@ -76,8 +73,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:165.1
      *
-     * @test_Strategy: Validate that jsp:forward can forward a request to a static
-     * resource within the same context using a page-relative path.
+     * @test_Strategy: Validate that jsp:forward can forward a request to a static resource within the same context using a
+     * page-relative path.
      */
 
     public void positiveForwardCtxRelativeHtmlTest() throws Fault {
@@ -90,8 +87,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:165.1
      *
-     * @test_Strategy: Validate that jsp:forward can forward a request to a JSP
-     * page within the same context using a page-relative path.
+     * @test_Strategy: Validate that jsp:forward can forward a request to a JSP page within the same context using a
+     * page-relative path.
      */
 
     public void positiveForwardPageRelativeTest() throws Fault {
@@ -104,8 +101,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:165.1
      *
-     * @test_Strategy: Validate that jsp:forward can forward a request to a static
-     * resource within the same context using a page-relative path.
+     * @test_Strategy: Validate that jsp:forward can forward a request to a static resource within the same context using a
+     * page-relative path.
      */
 
     public void positiveForwardPageRelativeHtmlTest() throws Fault {
@@ -118,8 +115,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:165.8
      *
-     * @test_Strategy: Validate that jsp:forward can properly accept a
-     * request-time attribute containing a context-relative path value.
+     * @test_Strategy: Validate that jsp:forward can properly accept a request-time attribute containing a context-relative
+     * path value.
      */
 
     public void positiveRequestAttrCtxRelativeTest() throws Fault {
@@ -132,8 +129,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:165.8
      *
-     * @test_Strategy: Validate that jsp:forward can properly accept a
-     * request-time attribute containing a page-relative path value.
+     * @test_Strategy: Validate that jsp:forward can properly accept a request-time attribute containing a page-relative
+     * path value.
      */
 
     public void positiveRequestAttrPageRelativeTest() throws Fault {
@@ -146,9 +143,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:165.5
      *
-     * @test_Strategy:If the page output was unbuffered and anything has been
-     * written to it, an attempt to forward the request will result in an
-     * IllegalStateException.
+     * @test_Strategy:If the page output was unbuffered and anything has been written to it, an attempt to forward the
+     * request will result in an IllegalStateException.
      */
 
     public void unbufferedWriteForwardTest() throws Fault {

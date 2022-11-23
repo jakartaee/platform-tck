@@ -26,8 +26,7 @@ public interface Callback2IF {
     public void removeFoo(); // for sfsb only
 
     /**
-     * In stateful session beans, it verifies whether PostConstruct, PreDestroy,
-     * PostActivate, or PrePassivate is called.
+     * In stateful session beans, it verifies whether PostConstruct, PreDestroy, PostActivate, or PrePassivate is called.
      */
     public boolean isPostConstructOrPreDestroyCalledTest();
 

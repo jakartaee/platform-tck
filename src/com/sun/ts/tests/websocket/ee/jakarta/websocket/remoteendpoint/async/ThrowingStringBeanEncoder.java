@@ -24,10 +24,12 @@ import jakarta.websocket.EndpointConfig;
 public class ThrowingStringBeanEncoder implements Text<ThrowingStringBean> {
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 
     @Override
     public String encode(ThrowingStringBean object) throws EncodeException {

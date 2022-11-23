@@ -45,8 +45,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The resultSetClient17 class tests methods of resultSet interface using Sun's
- * J2EE Reference Implementation.
+ * The resultSetClient17 class tests methods of resultSet interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 99/10/12
@@ -94,14 +93,11 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -110,10 +106,11 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 /*
-                 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery","");
-                 * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+                 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+                 * sqlp.load(istr);
                  */
                 sqlp = p;
                 if (drManager.equals("yes")) {
@@ -128,9 +125,8 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
                 dbSch = new dbSchema();
                 rsSch = new rsSchema();
                 stmt = conn.createStatement(/*
-                                     * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                     * ResultSet.CONCUR_READ_ONLY
-                                     */ );
+                                             * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+                                             */ );
                 dbmd = conn.getMetaData();
                 msg = new JDBCTestMsg();
             } catch (SQLException ex) {
@@ -145,16 +141,13 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort61
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-     * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410; JDBC:JAVADOC:411; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the maximum value of table Decimal_Tab with the
-     * maximum value of table Smallint_Tab.Now execute a query to get the maximum
-     * value of Decimal_Tab table and retrieve the result of the query using the
-     * getShort(String columnName) method.Compare the returned value, with the
-     * maximum value of table Smallint_Tab extracted from the tssql.stmt file.
-     * Both of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the maximum
+     * value of table Decimal_Tab with the maximum value of table Smallint_Tab.Now execute a query to get the maximum value
+     * of Decimal_Tab table and retrieve the result of the query using the getShort(String columnName) method.Compare the
+     * returned value, with the maximum value of table Smallint_Tab extracted from the tssql.stmt file. Both of them should
+     * be equal.
      */
     public void testGetShort61() throws Fault {
         try {
@@ -182,7 +175,8 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
             short oExtVal = Short.parseShort(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getShort returns the Maximum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getShort returns the Maximum Value " + oRetVal);
             else {
                 msg.printTestError("getShort did not return the Maximum Value", "test getShort Failed!");
             }
@@ -210,12 +204,10 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort63
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-     * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410; JDBC:JAVADOC:411; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Decimal_Tab.Call the getShort(String columnName)
-     * method.Check if the value returned is zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Decimal_Tab.Call the
+     * getShort(String columnName) method.Check if the value returned is zero.
      */
     public void testGetShort63() throws Fault {
         try {
@@ -257,16 +249,13 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort64
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-     * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410; JDBC:JAVADOC:411; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the maximum value of table Numeric_Tab with the
-     * maximum value of table Smallint_Tab.Now execute a query to get the maximum
-     * value of Numeric_Tab table and retrieve the result of the query using the
-     * getShort(String columnName) method.Compare the returned value, with the
-     * maximum value of table Smallint_Tab extracted from the tssql.stmt file.
-     * Both of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the maximum
+     * value of table Numeric_Tab with the maximum value of table Smallint_Tab.Now execute a query to get the maximum value
+     * of Numeric_Tab table and retrieve the result of the query using the getShort(String columnName) method.Compare the
+     * returned value, with the maximum value of table Smallint_Tab extracted from the tssql.stmt file. Both of them should
+     * be equal.
      */
     public void testGetShort64() throws Fault {
         try {
@@ -293,7 +282,8 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
             short oExtVal = Short.parseShort(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getShort returns the Maximum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getShort returns the Maximum Value " + oRetVal);
             else {
                 msg.printTestError("getShort did not return the Maximum Value", "test getShort Failed!");
             }
@@ -321,12 +311,10 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort66
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-     * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410; JDBC:JAVADOC:411; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Numeric_Tab.Call the getShort(String columnName)
-     * method.Check if the value returned is zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Numeric_Tab.Call the
+     * getShort(String columnName) method.Check if the value returned is zero.
      */
     public void testGetShort66() throws Fault {
         try {
@@ -368,16 +356,12 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort70
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-     * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410; JDBC:JAVADOC:411; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the table Char_Tab with the maximum value of
-     * table Smallint_Tab.Now execute a query to get the maximum value of Char_Tab
-     * table and retrieve the result of the query using the getShort(String
-     * columnName) method.Compare the returned value, with the maximum value of
-     * table Smallint_Tab extracted from the tssql.stmt file. Both of them should
-     * be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the table
+     * Char_Tab with the maximum value of table Smallint_Tab.Now execute a query to get the maximum value of Char_Tab table
+     * and retrieve the result of the query using the getShort(String columnName) method.Compare the returned value, with
+     * the maximum value of table Smallint_Tab extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testGetShort70() throws Fault {
         try {
@@ -403,7 +387,8 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
             short oExtVal = Short.parseShort(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getShort returns the Maximum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getShort returns the Maximum Value " + oRetVal);
             else {
                 msg.printTestError("getShort did not return the Maximum Value", "test getShort Failed!");
             }
@@ -431,16 +416,12 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort71
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-     * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410; JDBC:JAVADOC:411; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the Char_Tab with the minimum value of table
-     * Smallint_Tab.Now execute a query to get the minimum value of Char_Tab table
-     * and retrieve the result of the query using the getShort(String columnName)
-     * method.Compare the returned value, with the minimum value of table
-     * Smallint_Tab extracted from the tssql.stmt file. Both of them should be
-     * equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the Char_Tab
+     * with the minimum value of table Smallint_Tab.Now execute a query to get the minimum value of Char_Tab table and
+     * retrieve the result of the query using the getShort(String columnName) method.Compare the returned value, with the
+     * minimum value of table Smallint_Tab extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testGetShort71() throws Fault {
         try {
@@ -466,7 +447,8 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
             short oExtVal = Short.parseShort(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getShort returns the Minimum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getShort returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getShort did not return the Minimum Value", "test getShort Failed!");
             }
@@ -494,12 +476,10 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort72
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-     * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410; JDBC:JAVADOC:411; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Char_Tab.Call the getShort(String columnName) method.
-     * Check if the value returned is zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Char_Tab.Call the
+     * getShort(String columnName) method. Check if the value returned is zero.
      */
     public void testGetShort72() throws Fault {
         try {
@@ -541,16 +521,12 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort73
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-     * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410; JDBC:JAVADOC:411; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the Varchar_Tab with the maximum value of table
-     * Smallint_Tab.Now execute a query to value from Varchar_Tab table and
-     * retrieve the result of the query using the getShort(String columnName)
-     * method.Compare the returned value, with the maximum value of table
-     * Smallint_Tab extracted from the tssql.stmt file. Both of them should be
-     * equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the Varchar_Tab
+     * with the maximum value of table Smallint_Tab.Now execute a query to value from Varchar_Tab table and retrieve the
+     * result of the query using the getShort(String columnName) method.Compare the returned value, with the maximum value
+     * of table Smallint_Tab extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testGetShort73() throws Fault {
         try {
@@ -576,7 +552,8 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
             short oExtVal = Short.parseShort(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getShort returns the Maximum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getShort returns the Maximum Value " + oRetVal);
             else {
                 msg.printTestError("getShort did not return the Maximum Value", "test getShort Failed!");
             }
@@ -604,16 +581,12 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort74
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-     * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410; JDBC:JAVADOC:411; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the table Varchar_Tab with the minimum value of
-     * table Smallint_Tab.Now execute a query to value from Varchar_Tab table and
-     * retrieve the result of the query using the getShort(String columnName)
-     * method.Compare the returned value, with the minimum value of table
-     * Smallint_Tab extracted from the tssql.stmt file. Both of them should be
-     * equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the table
+     * Varchar_Tab with the minimum value of table Smallint_Tab.Now execute a query to value from Varchar_Tab table and
+     * retrieve the result of the query using the getShort(String columnName) method.Compare the returned value, with the
+     * minimum value of table Smallint_Tab extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testGetShort74() throws Fault {
         try {
@@ -639,7 +612,8 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
             short oExtVal = Short.parseShort(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getShort returns the Minimum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getShort returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getShort did not return the Minimum Value", "test getShort Failed!");
             }
@@ -667,12 +641,10 @@ public class resultSetClient17 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetShort75
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410;
-     * JDBC:JAVADOC:411; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:410; JDBC:JAVADOC:411; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Varchar_Tab.Call the getShort(String columnName)
-     * method.Check if the value returned is zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Varchar_Tab.Call the
+     * getShort(String columnName) method.Check if the value returned is zero.
      */
     public void testGetShort75() throws Fault {
         try {

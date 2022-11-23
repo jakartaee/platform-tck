@@ -22,7 +22,7 @@ import jakarta.ejb.Stateful;
 import java.security.AccessControlException;
 
 @Stateful(name = "jacc_ejb_methodperm_MethodPermBean")
-@Remote({MethodPermInterface.class})
+@Remote({ MethodPermInterface.class })
 public class MethodPermBean implements MethodPermInterface {
 
     /*

@@ -33,12 +33,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 
-@WebService(
-        portName = "ParameterModeTestPort",
-        serviceName = "ParameterModeTestService",
-        targetNamespace = "http://ParameterModeTest.org/",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JRLParameterModeTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.parametermodetest.ParameterModeTest")
+@WebService(portName = "ParameterModeTestPort", serviceName = "ParameterModeTestService", targetNamespace = "http://ParameterModeTest.org/", wsdlLocation = "WEB-INF/wsdl/WSW2JRLParameterModeTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.parametermodetest.ParameterModeTest")
 public class ParameterModeTestImpl implements ParameterModeTest {
     private static DatatypeFactory dtfactory = null;
 
@@ -242,14 +237,18 @@ public class ParameterModeTestImpl implements ParameterModeTest {
             result.append("\ncompare of data failed for Base64Binary - received [");
             for (int i = 0; i < varBase64Binary.length; i++) {
                 result.append(varBase64Binary[i]);
-                if (i + 1 != varBase64Binary.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != varBase64Binary.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             result.append(",  expected: [");
             for (int i = 0; i < v13.length; i++) {
                 result.append(v13[i]);
-                if (i + 1 != v13.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != v13.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             pass = false;
         }
@@ -257,14 +256,18 @@ public class ParameterModeTestImpl implements ParameterModeTest {
             result.append("\ncompare of data failed for HexBinary - received [");
             for (int i = 0; i < varHexBinary.length; i++) {
                 result.append(varHexBinary[i]);
-                if (i + 1 != varHexBinary.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != varHexBinary.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             result.append(",  expected: [");
             for (int i = 0; i < v14.length; i++) {
                 result.append(v14[i]);
-                if (i + 1 != v14.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != v14.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             pass = false;
         }
@@ -408,14 +411,18 @@ public class ParameterModeTestImpl implements ParameterModeTest {
             result.append("\ncompare of data failed for Base64Binary - received [");
             for (int i = 0; i < varBase64Binary.value.length; i++) {
                 result.append(varBase64Binary.value[i]);
-                if (i + 1 != varBase64Binary.value.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != varBase64Binary.value.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             result.append(",  expected: [");
             for (int i = 0; i < v13.length; i++) {
                 result.append(v13[i]);
-                if (i + 1 != v13.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != v13.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             pass = false;
         }
@@ -423,14 +430,18 @@ public class ParameterModeTestImpl implements ParameterModeTest {
             result.append("\ncompare of data failed for HexBinary - received [");
             for (int i = 0; i < varHexBinary.value.length; i++) {
                 result.append(varHexBinary.value[i]);
-                if (i + 1 != varHexBinary.value.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != varHexBinary.value.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             result.append(",  expected: [");
             for (int i = 0; i < v14.length; i++) {
                 result.append(v14[i]);
-                if (i + 1 != v14.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != v14.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             pass = false;
         }
@@ -714,14 +725,18 @@ public class ParameterModeTestImpl implements ParameterModeTest {
             byte thedata[] = varStruct.getVarBase64Binary();
             for (int i = 0; i < thedata.length; i++) {
                 result.append(thedata[i]);
-                if (i + 1 != thedata.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != thedata.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             result.append(",  expected: [");
             for (int i = 0; i < v13.length; i++) {
                 result.append(v13[i]);
-                if (i + 1 != v13.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != v13.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             pass = false;
         }
@@ -730,14 +745,18 @@ public class ParameterModeTestImpl implements ParameterModeTest {
             byte thedata[] = varStruct.getVarHexBinary();
             for (int i = 0; i < thedata.length; i++) {
                 result.append(thedata[i]);
-                if (i + 1 != thedata.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != thedata.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             result.append(",  expected: [");
             for (int i = 0; i < v14.length; i++) {
                 result.append(v14[i]);
-                if (i + 1 != v14.length) result.append(",");
-                else result.append("]");
+                if (i + 1 != v14.length)
+                    result.append(",");
+                else
+                    result.append("]");
             }
             pass = false;
         }
@@ -866,7 +885,8 @@ public class ParameterModeTestImpl implements ParameterModeTest {
         Book[] b = varBook.value
                 .getArrayOfBook()
                 .toArray(new Book[varBook.value.getArrayOfBook().size()]);
-        if (b.length != 2) throw new WebServiceException("array size not 2");
+        if (b.length != 2)
+            throw new WebServiceException("array size not 2");
         String author = b[0].getAuthor();
         String title = b[0].getTitle();
         int isbn = b[0].getIsbn();

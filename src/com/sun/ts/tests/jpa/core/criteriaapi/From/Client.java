@@ -64,8 +64,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:997;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
      */
@@ -110,8 +109,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:999;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
      */
@@ -217,8 +215,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:987;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
      */
@@ -263,8 +260,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:988;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
      */
@@ -309,8 +305,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:989;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c JOIN c.orders o WHERE (o.id = 1)
      */
@@ -353,8 +348,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:993;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
      */
@@ -397,8 +391,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1001;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c JOIN c.orders o WHERE (o.id = 1)
      */
@@ -441,8 +434,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1003;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
      */
@@ -545,8 +537,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:990;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c JOIN c.orders2 o WHERE (o.id = 1)
      */
@@ -589,8 +580,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:994
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c INNER JOIN c.orders2 o WHERE (o.id = 1)
      */
@@ -633,8 +623,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1013;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c JOIN c.orders2 o WHERE (o.id = 1)
      */
@@ -677,8 +666,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1015;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
      */
@@ -780,8 +768,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:991;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c JOIN c.orders3 o WHERE (o.id = 1)
      */
@@ -824,8 +811,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:995;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c INNER JOIN c.orders3 o WHERE (o.id = 1)
      */
@@ -927,8 +913,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1005;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c JOIN c.orders3 o WHERE (o.id = 1)
      */
@@ -971,8 +956,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1007;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT c FROM Customer c INNER JOIN c.orders3 o WHERE (o.id = 1)
      */
@@ -1015,8 +999,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:992;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
      * SELECT d FROM Department d JOIN d.lastNameEmployees e WHERE (e.id = 1)
      *
@@ -1061,11 +1044,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:996;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * SELECT d FROM Department d INNER JOIN d.lastNameEmployees e WHERE (e.id =
-     * 1)
+     * SELECT d FROM Department d INNER JOIN d.lastNameEmployees e WHERE (e.id = 1)
      *
      */
     @SetupMethod(name = "setupDepartmentEmployeeData")
@@ -1079,8 +1060,7 @@ public class Client extends Util {
 
             CriteriaQuery<Department> cquery = cbuilder.createQuery(Department.class);
             Root<Department> department = cquery.from(Department.class);
-            MapJoin<Department, String, Employee> employee =
-                    department.join(Department_.lastNameEmployees, JoinType.INNER);
+            MapJoin<Department, String, Employee> employee = department.join(Department_.lastNameEmployees, JoinType.INNER);
             cquery.where(cbuilder.equal(employee.get("id"), "1")).select(department);
             TypedQuery<Department> tquery = getEntityManager().createQuery(cquery);
             List<Department> clist = tquery.getResultList();
@@ -1108,11 +1088,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1009;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * SELECT d.id, d.name, e.lastname FROM DEPARTMENT d JOIN d.lastNameEmployees
-     * e WHERE (e.id = 1)
+     * SELECT d.id, d.name, e.lastname FROM DEPARTMENT d JOIN d.lastNameEmployees e WHERE (e.id = 1)
      *
      */
     @SetupMethod(name = "setupDepartmentEmployeeData")
@@ -1172,11 +1150,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1011;
      *
-     * @test_Strategy: This query is defined on a one-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-many relationship. Verify the results were accurately returned.
      *
-     * SELECT d.id, d.name, e.lastname FROM DEPARTMENT d INNER JOIN
-     * d.lastNameEmployees e WHERE (e.id = 1)
+     * SELECT d.id, d.name, e.lastname FROM DEPARTMENT d INNER JOIN d.lastNameEmployees e WHERE (e.id = 1)
      */
     @SetupMethod(name = "setupDepartmentEmployeeData")
     public void joinMapStringJoinTypeTest() throws Fault {

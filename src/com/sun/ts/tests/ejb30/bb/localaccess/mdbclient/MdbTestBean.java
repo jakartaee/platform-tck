@@ -51,24 +51,15 @@ import jakarta.transaction.UserTransaction;
 import java.util.HashMap;
 import java.util.Map;
 
-@MessageDriven(
-        name = "MdbTestBean",
-        messageListenerInterface = MessageListener.class,
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
-        })
+@MessageDriven(name = "MdbTestBean", messageListenerInterface = MessageListener.class, activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+})
 @EJBs({
-    @EJB(name = "ejb/localStatelessRefName", beanName = "StatelessLocalBean", beanInterface = LocalIF.class),
-    @EJB(name = "ejb/localStateless2RefName", beanName = "StatelessLocal2Bean", beanInterface = LocalIF.class),
-    @EJB(
-            name = "ejb/defaultLocalStatelessRefName",
-            beanName = "StatelessDefaultLocalBean",
-            beanInterface = DefaultLocalIF.class),
-    @EJB(name = "ejb/localStatefulRefName", beanName = "StatefulLocalBean", beanInterface = StatefulLocalIF.class),
-    @EJB(
-            name = "ejb/defaultLocalStatefulRefName",
-            beanName = "StatefulDefaultLocalBean",
-            beanInterface = StatefulDefaultLocalIF.class)
+        @EJB(name = "ejb/localStatelessRefName", beanName = "StatelessLocalBean", beanInterface = LocalIF.class),
+        @EJB(name = "ejb/localStateless2RefName", beanName = "StatelessLocal2Bean", beanInterface = LocalIF.class),
+        @EJB(name = "ejb/defaultLocalStatelessRefName", beanName = "StatelessDefaultLocalBean", beanInterface = DefaultLocalIF.class),
+        @EJB(name = "ejb/localStatefulRefName", beanName = "StatefulLocalBean", beanInterface = StatefulLocalIF.class),
+        @EJB(name = "ejb/defaultLocalStatefulRefName", beanName = "StatefulDefaultLocalBean", beanInterface = StatefulDefaultLocalIF.class)
 })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class MdbTestBean extends TestBeanBase
@@ -160,7 +151,7 @@ public class MdbTestBean extends TestBeanBase
             return;
         }
         if (isPassByReferenceTest(testname)) {
-            passByReferenceTest(testname, new String[] {CLIENT_MSG}, getBeanRefName(testname), getBeanType(testname));
+            passByReferenceTest(testname, new String[] { CLIENT_MSG }, getBeanRefName(testname), getBeanType(testname));
         } else if (isExceptionTest(testname)) {
             exceptionTest(testname, getBeanRefName(testname), getBeanType(testname));
         } else if (isRuntimeExceptionTest(testname)) {
@@ -170,7 +161,8 @@ public class MdbTestBean extends TestBeanBase
         }
     }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     public void unrecognizedTest(String testname) {
         boolean status = false;

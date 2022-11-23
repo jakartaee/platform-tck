@@ -165,11 +165,11 @@ public class Client extends ServiceEETest {
 
     private MTOMFeatureTest4 port4_2 = null;
 
-    private WebServiceFeature[] mtomenabled = {new MTOMFeature(true)};
+    private WebServiceFeature[] mtomenabled = { new MTOMFeature(true) };
 
-    private WebServiceFeature[] mtomenabledtheshold2000 = {new MTOMFeature(true, 2000)};
+    private WebServiceFeature[] mtomenabledtheshold2000 = { new MTOMFeature(true, 2000) };
 
-    private WebServiceFeature[] mtomdisabledtheshold2000 = {new MTOMFeature(false, 2000)};
+    private WebServiceFeature[] mtomdisabledtheshold2000 = { new MTOMFeature(false, 2000) };
 
     static MTOMFeatureTestService service = null;
 
@@ -287,8 +287,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -337,8 +339,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: ClientEnabledServerEnabledMTOMInTest
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * WS4EE:SPEC:5006; JAXWS:JAVADOC:192; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; WS4EE:SPEC:5006; JAXWS:JAVADOC:192;
+     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
      *
      * @test_Strategy: Test MTOM attachments on input.
      */
@@ -382,14 +384,15 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerEnabledMTOMInTest failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledMTOMInTest failed");
     }
 
     /*
      * @testName: ClientEnabledServerEnabledMTOMInOutTest
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * WS4EE:SPEC:5006; JAXWS:JAVADOC:192; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; WS4EE:SPEC:5006; JAXWS:JAVADOC:192;
+     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
      *
      * @test_Strategy: Test MTOM attachments on input and output.
      */
@@ -460,21 +463,23 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error for doc14:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("All received documents are as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("All received documents are as expected (ok)");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerEnabledMTOMInOutTest failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledMTOMInOutTest failed");
     }
 
     /*
      * @testName: ClientEnabledServerEnabledMTOMOutTest
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * WS4EE:SPEC:5006; JAXWS:JAVADOC:192; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; WS4EE:SPEC:5006; JAXWS:JAVADOC:192;
+     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
      *
      * @test_Strategy: Test MTOM attachments on output.
      */
@@ -489,8 +494,7 @@ public class Client extends ServiceEETest {
             DataHandler doc3 = AttachmentHelper.getDataHandlerDoc(docURL3);
             Image doc4 = AttachmentHelper.getImageDoc(docURL4);
 
-            String urls =
-                    docURL1.toString() + "," + docURL2.toString() + "," + docURL3.toString() + "," + docURL4.toString();
+            String urls = docURL1.toString() + "," + docURL2.toString() + "," + docURL3.toString() + "," + docURL4.toString();
             TestUtil.logTrace("urls=" + urls);
             TestUtil.logMsg("Receive 4 documents using MTOM via webservice method mtomOut()");
             TestUtil.logMsg("Documents to receive: [" + SDOC1 + "," + SDOC2 + "," + SDOC3 + "," + SDOC4 + "]");
@@ -516,20 +520,22 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error doc4:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("All received documents are as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("All received documents are as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerEnabledMTOMOutTest failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledMTOMOutTest failed");
     }
 
     /*
      * @testName: ClientEnabledServerEnabledMTOMOut2Test
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * WS4EE:SPEC:5006; JAXWS:JAVADOC:192; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; WS4EE:SPEC:5006; JAXWS:JAVADOC:192;
+     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
      *
      * @test_Strategy: Test MTOM attachments on output.
      */
@@ -551,20 +557,22 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerEnabledMTOMOut2Test failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledMTOMOut2Test failed");
     }
 
     /*
      * @testName: ClientEnabledServerDisabledMTOMInTest
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * WS4EE:SPEC:5006; JAXWS:JAVADOC:192; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; WS4EE:SPEC:5006; JAXWS:JAVADOC:192;
+     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
      *
      * @test_Strategy: Test MTOM attachments on input.
      */
@@ -608,14 +616,15 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerDisabledMTOMInTest failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerDisabledMTOMInTest failed");
     }
 
     /*
      * @testName: ClientEnabledServerDisabledMTOMInOutTest
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * WS4EE:SPEC:5006; JAXWS:JAVADOC:192; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; WS4EE:SPEC:5006; JAXWS:JAVADOC:192;
+     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
      *
      * @test_Strategy: Test MTOM attachments on input and output.
      */
@@ -686,21 +695,23 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error doc14:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("All received documents are as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("All received documents are as expected (ok)");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerDisabledMTOMInOutTest failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerDisabledMTOMInOutTest failed");
     }
 
     /*
      * @testName: ClientEnabledServerDisabledMTOMOutTest
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * WS4EE:SPEC:5006; JAXWS:JAVADOC:192; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; WS4EE:SPEC:5006; JAXWS:JAVADOC:192;
+     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
      *
      * @test_Strategy: Test MTOM attachments on output.
      */
@@ -715,8 +726,7 @@ public class Client extends ServiceEETest {
             DataHandler doc3 = AttachmentHelper.getDataHandlerDoc(docURL3);
             Image doc4 = AttachmentHelper.getImageDoc(docURL4);
 
-            String urls =
-                    docURL1.toString() + "," + docURL2.toString() + "," + docURL3.toString() + "," + docURL4.toString();
+            String urls = docURL1.toString() + "," + docURL2.toString() + "," + docURL3.toString() + "," + docURL4.toString();
             TestUtil.logTrace("urls=" + urls);
             TestUtil.logMsg("Receive 4 documents using MTOM via webservice method mtomOut()");
             TestUtil.logMsg("Documents to receive: [" + SDOC1 + "," + SDOC2 + "," + SDOC3 + "," + SDOC4 + "]");
@@ -742,20 +752,22 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error doc4:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("All received documents are as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("All received documents are as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerDisabledMTOMOutTest failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerDisabledMTOMOutTest failed");
     }
 
     /*
      * @testName: ClientEnabledServerDisabledMTOMOut2Test
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * WS4EE:SPEC:5006; JAXWS:JAVADOC:192; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; WS4EE:SPEC:5006; JAXWS:JAVADOC:192;
+     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1;
      *
      * @test_Strategy: Test MTOM attachments on output.
      */
@@ -777,25 +789,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerDisabledMTOMOut2Test failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerDisabledMTOMOut2Test failed");
     }
 
     /*
      * @testName: ClientEnabledServerEnabledLT2000Test
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5; JAXWS:JAVADOC:192; JAXWS:JAVADOC:193;
-     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5;
+     * JAXWS:JAVADOC:192; JAXWS:JAVADOC:193; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
      *
-     * @test_Strategy: Test that XOP is enabled when sending an attachment that is
-     * less than 2000 bytes. The endpoint has mtom enabled with the threshold set
-     * to 2000
+     * @test_Strategy: Test that XOP is enabled when sending an attachment that is less than 2000 bytes. The endpoint has
+     * mtom enabled with the threshold set to 2000
      */
     public void ClientEnabledServerEnabledLT2000Test() throws Fault {
         TestUtil.logMsg("ClientEnabledServerEnabledLT2000Test");
@@ -816,25 +828,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerEnabledGT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledGT2000Test failed");
     }
 
     /*
      * @testName: ClientEnabledServerEnabledGT2000Test
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5; JAXWS:JAVADOC:192; JAXWS:JAVADOC:193;
-     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5;
+     * JAXWS:JAVADOC:192; JAXWS:JAVADOC:193; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
      *
-     * @test_Strategy: Test that XOP is enabled when sending an attachment that is
-     * greater than 2000 bytes. The endpoint has mtom enabled with the threshold
-     * set to 2000
+     * @test_Strategy: Test that XOP is enabled when sending an attachment that is greater than 2000 bytes. The endpoint has
+     * mtom enabled with the threshold set to 2000
      */
     public void ClientEnabledServerEnabledGT2000Test() throws Fault {
         TestUtil.logMsg("ClientEnabledServerEnabledGT2000Test");
@@ -855,25 +867,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerEnabledGT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerEnabledGT2000Test failed");
     }
 
     /*
      * @testName: ClientDisabledServerEnabledLT2000Test
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5; JAXWS:JAVADOC:192; JAXWS:JAVADOC:193;
-     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5;
+     * JAXWS:JAVADOC:192; JAXWS:JAVADOC:193; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
      *
-     * @test_Strategy: Test that XOP is disabled when sending an attachment that
-     * is less than 2000 bytes. The endpoint has mtom enabled with the threshold
-     * set to 2000
+     * @test_Strategy: Test that XOP is disabled when sending an attachment that is less than 2000 bytes. The endpoint has
+     * mtom enabled with the threshold set to 2000
      */
     public void ClientDisabledServerEnabledLT2000Test() throws Fault {
         TestUtil.logMsg("ClientDisabledServerEnabledLT2000Test");
@@ -894,25 +906,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientDisabledServerEnabledLT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientDisabledServerEnabledLT2000Test failed");
     }
 
     /*
      * @testName: ClientDisabledServerEnabledGT2000Test
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5; JAXWS:JAVADOC:192; JAXWS:JAVADOC:193;
-     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5;
+     * JAXWS:JAVADOC:192; JAXWS:JAVADOC:193; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
      *
-     * @test_Strategy: Test that XOP is disabled when sending an attachment that
-     * is greater than 2000 bytes. The endpoint has mtom enabled with the
-     * threshold set to 2000
+     * @test_Strategy: Test that XOP is disabled when sending an attachment that is greater than 2000 bytes. The endpoint
+     * has mtom enabled with the threshold set to 2000
      */
     public void ClientDisabledServerEnabledGT2000Test() throws Fault {
         TestUtil.logMsg("ClientDisabledServerEnabledGT2000Test");
@@ -933,25 +945,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientDisabledServerEnabledGT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientDisabledServerEnabledGT2000Test failed");
     }
 
     /*
      * @testName: ClientEnabledServerDisabledLT2000Test
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5; JAXWS:JAVADOC:192; JAXWS:JAVADOC:193;
-     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5;
+     * JAXWS:JAVADOC:192; JAXWS:JAVADOC:193; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
      *
-     * @test_Strategy: Test that XOP is enabled when sending an attachment that is
-     * less than 2000 bytes. The endpoint has mtom disabled with the threshold set
-     * to 2000
+     * @test_Strategy: Test that XOP is enabled when sending an attachment that is less than 2000 bytes. The endpoint has
+     * mtom disabled with the threshold set to 2000
      */
     public void ClientEnabledServerDisabledLT2000Test() throws Fault {
         TestUtil.logMsg("ClientEnabledServerDisabledLT2000Test");
@@ -972,25 +984,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerDisabledLT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerDisabledLT2000Test failed");
     }
 
     /*
      * @testName: ClientEnabledServerDisabledGT2000Test
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5; JAXWS:JAVADOC:192; JAXWS:JAVADOC:193;
-     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5;
+     * JAXWS:JAVADOC:192; JAXWS:JAVADOC:193; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
      *
-     * @test_Strategy: Test that XOP is enabled when sending an attachment that is
-     * greater than 2000 bytes. The endpoint has mtom disabled with the threshold
-     * set to 2000
+     * @test_Strategy: Test that XOP is enabled when sending an attachment that is greater than 2000 bytes. The endpoint has
+     * mtom disabled with the threshold set to 2000
      */
     public void ClientEnabledServerDisabledGT2000Test() throws Fault {
         TestUtil.logMsg("ClientEnabledServerDisabledGT2000Test");
@@ -1011,25 +1023,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientEnabledServerDisabledGT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientEnabledServerDisabledGT2000Test failed");
     }
 
     /*
      * @testName: ClientDisabledServerDisabledLT2000Test
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5; JAXWS:JAVADOC:192; JAXWS:JAVADOC:193;
-     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5;
+     * JAXWS:JAVADOC:192; JAXWS:JAVADOC:193; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
      *
-     * @test_Strategy: Test that XOP is enabled when sending an attachment that is
-     * less than 2000 bytes. The endpoint has mtom disabled with the threshold set
-     * to 2000
+     * @test_Strategy: Test that XOP is enabled when sending an attachment that is less than 2000 bytes. The endpoint has
+     * mtom disabled with the threshold set to 2000
      */
     public void ClientDisabledServerDisabledLT2000Test() throws Fault {
         TestUtil.logMsg("ClientDisabledServerDisabledLT2000Test");
@@ -1050,25 +1062,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientDisabledServerDisabledLT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientDisabledServerDisabledLT2000Test failed");
     }
 
     /*
      * @testName: ClientDisabledServerDisabledGT2000Test
      *
-     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3;
-     * JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5; JAXWS:JAVADOC:192; JAXWS:JAVADOC:193;
-     * JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
+     * @assertion_ids: JAXWS:SPEC:6015; JAXWS:SPEC:6015.2; JAXWS:SPEC:6015.3; JAXWS:SPEC:6015.4; JAXWS:SPEC:6015.5;
+     * JAXWS:JAVADOC:192; JAXWS:JAVADOC:193; JAXWS:SPEC:7021; JAXWS:SPEC:7021.1; JAXWS:SPEC:7021.2;
      *
-     * @test_Strategy: Test that XOP is enabled when sending an attachment that is
-     * less than 2000 bytes. The endpoint has mtom disabled with the threshold set
-     * to 2000
+     * @test_Strategy: Test that XOP is enabled when sending an attachment that is less than 2000 bytes. The endpoint has
+     * mtom disabled with the threshold set to 2000
      */
     public void ClientDisabledServerDisabledGT2000Test() throws Fault {
         TestUtil.logMsg("ClientDisabledServerDisabledGT2000Test");
@@ -1089,12 +1101,14 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error:|" + tmpRes + "|");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("ClientDisabledServerDisabledGT2000Test failed");
+        if (!pass)
+            throw new Fault("ClientDisabledServerDisabledGT2000Test failed");
     }
 }

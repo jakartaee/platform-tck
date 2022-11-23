@@ -243,7 +243,8 @@ public class SendingServlet extends HttpServlet {
             URL urlEndpoint = null;
             if (soapVersion == null || soapVersion.equals(SOAP_Util.SOAP11))
                 urlEndpoint = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET1);
-            else urlEndpoint = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET2);
+            else
+                urlEndpoint = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET2);
             TestUtil.logMsg("URLEndpoint = " + urlEndpoint);
 
             // Send the message to the endpoint using the connection.
@@ -272,8 +273,10 @@ public class SendingServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         TestUtil.logMsg("TESTRESULT=" + resultProps.getProperty("TESTRESULT"));
         resultProps.list(out);
     }
@@ -293,16 +296,22 @@ public class SendingServlet extends HttpServlet {
                 SOAPElement se = (SOAPElement) i.next();
                 Name name = se.getElementName();
                 String value = se.getValue();
-                if (value == null || name == null) continue;
-                else if (value.equals("This is Header1") && name.getLocalName().equals("Header1")) foundHeader1 = true;
-                else if (value.equals("This is Header2") && name.getLocalName().equals("Header2")) foundHeader2 = true;
-                else if (value.equals("This is Header3") && name.getLocalName().equals("Header3")) foundHeader3 = true;
-                else if (value.equals("This is Header4") && name.getLocalName().equals("Header4")) foundHeader4 = true;
+                if (value == null || name == null)
+                    continue;
+                else if (value.equals("This is Header1") && name.getLocalName().equals("Header1"))
+                    foundHeader1 = true;
+                else if (value.equals("This is Header2") && name.getLocalName().equals("Header2"))
+                    foundHeader2 = true;
+                else if (value.equals("This is Header3") && name.getLocalName().equals("Header3"))
+                    foundHeader3 = true;
+                else if (value.equals("This is Header4") && name.getLocalName().equals("Header4"))
+                    foundHeader4 = true;
             }
             if (!foundHeader1 || !foundHeader2 || !foundHeader3 || !foundHeader4) {
                 TestUtil.logErr("Did not find expected soap headers in reply message");
                 pass = false;
-            } else TestUtil.logMsg("Did find expected soap headers in reply message");
+            } else
+                TestUtil.logMsg("Did find expected soap headers in reply message");
             TestUtil.logMsg("Verify soap body");
             boolean foundBody1 = false;
             boolean foundChild1 = false;
@@ -312,25 +321,30 @@ public class SendingServlet extends HttpServlet {
             while (i.hasNext()) {
                 SOAPBodyElement sbe = (SOAPBodyElement) i.next();
                 Name name = sbe.getElementName();
-                if (name.getLocalName().equals("Body1")) foundBody1 = true;
+                if (name.getLocalName().equals("Body1"))
+                    foundBody1 = true;
                 Iterator c = sbe.getChildElements();
                 while (c.hasNext()) {
                     SOAPElement se = (SOAPElement) c.next();
                     name = se.getElementName();
                     String value = se.getValue();
-                    if (value.equals("This is Child1") && name.getLocalName().equals("Child1")) foundChild1 = true;
+                    if (value.equals("This is Child1") && name.getLocalName().equals("Child1"))
+                        foundChild1 = true;
                     else if (value.equals("This is Child2")
-                            && name.getLocalName().equals("Child2")) foundChild2 = true;
+                            && name.getLocalName().equals("Child2"))
+                        foundChild2 = true;
                 }
             }
             if (!foundBody1) {
                 TestUtil.logErr("Did not find expected soap body in reply message");
                 pass = false;
-            } else TestUtil.logMsg("Did find expected soap body in reply message");
+            } else
+                TestUtil.logMsg("Did find expected soap body in reply message");
             if (!foundChild1 || !foundChild2) {
                 TestUtil.logErr("Did not find expected soap body " + "child elements in reply message");
                 pass = false;
-            } else TestUtil.logMsg("Did find expected soap body child " + "elements in reply message");
+            } else
+                TestUtil.logMsg("Did find expected soap body child " + "elements in reply message");
             TestUtil.logMsg("Verify attachments");
             int count = msg.countAttachments();
             if (count == 5) {
@@ -346,11 +360,16 @@ public class SendingServlet extends HttpServlet {
                     AttachmentPart a = (AttachmentPart) i.next();
                     String type = a.getContentType();
                     TestUtil.logMsg("MIME type of attachment = " + type);
-                    if (type.equals("image/gif")) gifFound = true;
-                    else if (type.equals("text/xml")) xmlFound = true;
-                    else if (type.equals("text/plain")) textFound = true;
-                    else if (type.equals("text/html")) htmlFound = true;
-                    else if (type.equals("image/jpeg")) jpegFound = true;
+                    if (type.equals("image/gif"))
+                        gifFound = true;
+                    else if (type.equals("text/xml"))
+                        xmlFound = true;
+                    else if (type.equals("text/plain"))
+                        textFound = true;
+                    else if (type.equals("text/html"))
+                        htmlFound = true;
+                    else if (type.equals("image/jpeg"))
+                        jpegFound = true;
                     else {
                         TestUtil.logErr("Got unexpected MIME type: " + type);
                         pass = false;
@@ -364,7 +383,8 @@ public class SendingServlet extends HttpServlet {
                 if (!gifFound || !xmlFound || !textFound || !htmlFound || !jpegFound) {
                     TestUtil.logErr("Did not find all expected MIME types in reply message");
                     pass = false;
-                } else TestUtil.logMsg("Did find all expected MIME types in reply message");
+                } else
+                    TestUtil.logMsg("Did find all expected MIME types in reply message");
                 return pass;
             } else {
                 TestUtil.logErr("Got unexpected " + count + " attachments in reply message, expected 5");

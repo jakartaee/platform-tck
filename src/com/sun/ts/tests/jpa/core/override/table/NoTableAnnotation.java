@@ -22,7 +22,8 @@ public class NoTableAnnotation implements java.io.Serializable {
 
     private Long id;
 
-    public NoTableAnnotation() {}
+    public NoTableAnnotation() {
+    }
 
     @Id
     public Long getId() {

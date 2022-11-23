@@ -75,7 +75,8 @@ public class Ejb1TestEJB implements SessionBean {
 
     private transient Statement stmt = null;
 
-    public Ejb1TestEJB() {}
+    public Ejb1TestEJB() {
+    }
 
     public void ejbCreate(java.util.Properties props) throws CreateException {
         this.testProps = props;
@@ -495,15 +496,12 @@ public class Ejb1TestEJB implements SessionBean {
     }
 
     /*
-     * private void dropTable1() { TestUtil.logTrace("dropTable1"); // Delete the
-     * data in dbTable1 table String removeString =
-     * TestUtil.getProperty("Xa_Tab1_Delete"); try{ stmt = con1.createStatement();
-     * stmt.executeUpdate(removeString); stmt.close(); } catch (SQLException e) {
-     * throw new EJBException( e.getMessage() ); } }
+     * private void dropTable1() { TestUtil.logTrace("dropTable1"); // Delete the data in dbTable1 table String removeString
+     * = TestUtil.getProperty("Xa_Tab1_Delete"); try{ stmt = con1.createStatement(); stmt.executeUpdate(removeString);
+     * stmt.close(); } catch (SQLException e) { throw new EJBException( e.getMessage() ); } }
      *
-     * private void dropTable2() { TestUtil.logTrace("dropTable2"); // Delete the
-     * data from EIS table try{ con2.dropTable(); } catch (Exception e) { throw
-     * new EJBException( e.getMessage() ); } }
+     * private void dropTable2() { TestUtil.logTrace("dropTable2"); // Delete the data from EIS table try{ con2.dropTable();
+     * } catch (Exception e) { throw new EJBException( e.getMessage() ); } }
      */
 
 }

@@ -25,9 +25,7 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/textwilldecode",
-        decoders = {WillDecodeFirstTextDecoder.class, WillDecodeSecondTextDecoder.class})
+@ServerEndpoint(value = "/textwilldecode", decoders = { WillDecodeFirstTextDecoder.class, WillDecodeSecondTextDecoder.class })
 public class WSWillDecodeTextDecoderServer {
 
     @OnMessage

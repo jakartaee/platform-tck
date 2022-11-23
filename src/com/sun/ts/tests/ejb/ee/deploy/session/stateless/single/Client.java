@@ -70,9 +70,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:71
      *
-     * @test_Strategy: Deploy a Stateless Session Bean. Invoke
-     *                 getEJBMetaData().isSession() method at runtime on the Home
-     *                 interface. Check that returned value is 'true'.
+     * @test_Strategy: Deploy a Stateless Session Bean. Invoke getEJBMetaData().isSession() method at runtime on the Home
+     * interface. Check that returned value is 'true'.
      */
     public void testIsSession() throws Fault {
         try {
@@ -89,9 +88,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:72
      *
-     * @test_Strategy: Deploy and create a Stateless Session Bean. Invoke
-     *                 getEJBMetaData().isStatelessSession() method at runtime and
-     *                 check that returned value is 'true'.
+     * @test_Strategy: Deploy and create a Stateless Session Bean. Invoke getEJBMetaData().isStatelessSession() method at
+     * runtime and check that returned value is 'true'.
      */
     public void testIsStateless() throws Fault {
         boolean pass;
@@ -112,9 +110,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:39; EJB:JAVADOC:78
      *
-     * @test_Strategy: Deploy and create a Stateless Session Bean. Attempt to call
-     *                 getPrimaryKey() and check that we catch a
-     *                 java.rmi.RemoteException.
+     * @test_Strategy: Deploy and create a Stateless Session Bean. Attempt to call getPrimaryKey() and check that we catch a
+     * java.rmi.RemoteException.
      */
     public void testGetPrimaryKey() throws Fault {
         Object pkey = null;
@@ -138,9 +135,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:40; EJB:JAVADOC:146
      *
-     * @test_Strategy: Create two Stateless Session Bean using the same home.
-     *                 Check that they have the same identity, using the
-     *                 EJBObject.isIdentical() method.
+     * @test_Strategy: Create two Stateless Session Bean using the same home. Check that they have the same identity, using
+     * the EJBObject.isIdentical() method.
      */
     public void testIdentity() throws Fault {
         TestBean bean1 = null;
@@ -175,10 +171,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:68
      *
-     * @test_Strategy: Deploy a Stateless Session Bean. Invoke
-     *                 getEJBMetaData().getHomeInterfaceClass() on its home
-     *                 interface and check that the name of the returned Class
-     *                 correspond with the one specified in the DD.
+     * @test_Strategy: Deploy a Stateless Session Bean. Invoke getEJBMetaData().getHomeInterfaceClass() on its home
+     * interface and check that the name of the returned Class correspond with the one specified in the DD.
      */
     public void testHomeInterface() throws Fault {
         Class runtimeHome = null;
@@ -200,10 +194,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:70
      *
-     * @test_Strategy: Deploy a Stateless Session Bean. Invoke
-     *                 getEJBMetaData().getRemoteInterfaceClass() on its home
-     *                 interface and check that the name of the returned Class
-     *                 correspond with the one specified in the DD.
+     * @test_Strategy: Deploy a Stateless Session Bean. Invoke getEJBMetaData().getRemoteInterfaceClass() on its home
+     * interface and check that the name of the returned Class correspond with the one specified in the DD.
      */
     public void testRemoteInterface() throws Fault {
         Class runtimeRemote = null;

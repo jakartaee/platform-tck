@@ -97,8 +97,7 @@ public class Client extends ServiceEETest {
 
     Hello port = null;
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.hellosecureclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.hellosecureclient.HelloService.class;
 
     static HelloService service = null;
 
@@ -148,16 +147,17 @@ public class Client extends ServiceEETest {
     /*
      * @class.testArgs: -ap jaxws-url-props.dat
      *
-     * @class.setup_props: webServerHost; webServerPort; platform.mode; user;
-     * password; authuser; authpassword;
+     * @class.setup_props: webServerHost; webServerPort; platform.mode; user; password; authuser; authpassword;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -220,7 +220,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getMessageContextTest failed", e);
         }
 
-        if (!pass) throw new Fault("getMessageContextTest failed");
+        if (!pass)
+            throw new Fault("getMessageContextTest failed");
     }
 
     /*
@@ -228,9 +229,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:158; JAXWS:SPEC:5028;
      *
-     * @test_Strategy: Call
-     * getEndpointReference(org.w3c.dom.Element...referenceParameters) and ensure
-     * that EndpointReference was able to be retrieved.
+     * @test_Strategy: Call getEndpointReference(org.w3c.dom.Element...referenceParameters) and ensure that
+     * EndpointReference was able to be retrieved.
      *
      * Description
      */
@@ -254,9 +254,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:159; JAXWS:SPEC:5028;
      *
-     * @test_Strategy: Call getEndpointReference(java.lang.Class class,
-     * org.w3c.dom.Element...referenceParameters) and ensure that
-     * EndpointReference was able to be retrieved.
+     * @test_Strategy: Call getEndpointReference(java.lang.Class class, org.w3c.dom.Element...referenceParameters) and
+     * ensure that EndpointReference was able to be retrieved.
      *
      * Description
      */
@@ -270,7 +269,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getEndpointReference2Test failed", e);
         }
 
-        if (!pass) throw new Fault("getEndpointReference2Test failed");
+        if (!pass)
+            throw new Fault("getEndpointReference2Test failed");
     }
 
     /*
@@ -292,7 +292,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getUserPrincipalTest failed", e);
         }
 
-        if (!pass) throw new Fault("getUserPrincipalTest failed");
+        if (!pass)
+            throw new Fault("getUserPrincipalTest failed");
     }
 
     /*
@@ -310,7 +311,8 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("isUserInRoleTest: test access to isUserInRole information");
             TestUtil.logMsg("Invoking RPC method isUserInRoleTest() and " + "expect true for Adminstrator role ...");
             boolean yes = port.isUserInRoleTest("Administrator");
-            if (yes) TestUtil.logMsg("Administrator role - correct");
+            if (yes)
+                TestUtil.logMsg("Administrator role - correct");
             else {
                 TestUtil.logErr("Not Administrator role - incorrect");
                 pass = false;
@@ -328,6 +330,7 @@ public class Client extends ServiceEETest {
             throw new Fault("isUserInRoleTest failed", e);
         }
 
-        if (!pass) throw new Fault("isUserInRoleTest failed");
+        if (!pass)
+            throw new Fault("isUserInRoleTest failed");
     }
 }

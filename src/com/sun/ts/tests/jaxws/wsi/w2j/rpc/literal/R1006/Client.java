@@ -39,8 +39,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -71,8 +70,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1006
      *
-     * @test_Strategy: Make a request and inspect response soap:Body children to
-     *                 ensure they don't have soap:encodingStyle attribute.
+     * @test_Strategy: Make a request and inspect response soap:Body children to ensure they don't have soap:encodingStyle
+     * attribute.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -96,8 +95,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1006
      *
-     * @test_Strategy: Make a request and inspect request soap:Body children to
-     *                 ensure they don't have soap:encodingStyle attribute.
+     * @test_Strategy: Make a request and inspect request soap:Body children to ensure they don't have soap:encodingStyle
+     * attribute.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

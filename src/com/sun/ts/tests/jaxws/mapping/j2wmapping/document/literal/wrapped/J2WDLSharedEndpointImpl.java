@@ -22,11 +22,7 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "J2WDLSharedEndpointPort",
-        serviceName = "J2WDLSharedService",
-        targetNamespace = "http://doclitservice.org/wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.J2WDLSharedEndpoint")
+@WebService(portName = "J2WDLSharedEndpointPort", serviceName = "J2WDLSharedService", targetNamespace = "http://doclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped.J2WDLSharedEndpoint")
 public class J2WDLSharedEndpointImpl implements J2WDLSharedEndpoint {
     public String oneTwoThree(int one, long two, double three) {
         return "" + one + ":" + two + ":" + three;
@@ -64,7 +60,7 @@ public class J2WDLSharedEndpointImpl implements J2WDLSharedEndpoint {
     }
 
     public String[] arrayOperation() {
-        return new String[] {"one", "two", "three"};
+        return new String[] { "one", "two", "three" };
     }
 
     public J2WDLSharedBean getBean() {
@@ -75,10 +71,12 @@ public class J2WDLSharedEndpointImpl implements J2WDLSharedEndpoint {
         return "success";
     }
 
-    public void oneWayOperation() {}
+    public void oneWayOperation() {
+    }
 
     public void operationWithHeaderAndHeaderFaultAndFault(ConfigHeader configheader)
-            throws ConfigHeaderFault, MyFault {}
+            throws ConfigHeaderFault, MyFault {
+    }
 
     public String hello(String hello) {
         return hello;
@@ -88,9 +86,12 @@ public class J2WDLSharedEndpointImpl implements J2WDLSharedEndpoint {
         return bye;
     }
 
-    public void methodWithNoReturn(int a, int b) {}
+    public void methodWithNoReturn(int a, int b) {
+    }
 
-    public void methodWithNoReturn2(String s) {}
+    public void methodWithNoReturn2(String s) {
+    }
 
-    public void operationThatThrowsAFault() throws MyOtherFault {}
+    public void operationThatThrowsAFault() throws MyOtherFault {
+    }
 }

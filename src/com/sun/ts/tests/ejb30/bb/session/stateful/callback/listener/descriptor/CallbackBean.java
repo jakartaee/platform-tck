@@ -32,7 +32,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
 @Stateful(name = "CallbackBean")
-@Remote({CallbackIF.class})
+@Remote({ CallbackIF.class })
 // @Interceptors(
 // {StatefulCallbackListener.class}
 // )
@@ -52,5 +52,6 @@ public class CallbackBean extends CallbackBeanBase implements CallbackIF, java.i
 
     // ================== business methods ====================================
     @Remove
-    public void removeFoo() {}
+    public void removeFoo() {
+    }
 }

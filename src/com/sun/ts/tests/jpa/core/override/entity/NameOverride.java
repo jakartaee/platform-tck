@@ -24,7 +24,8 @@ public class NameOverride implements java.io.Serializable {
 
     private Long id;
 
-    public NameOverride() {}
+    public NameOverride() {
+    }
 
     @Id
     public Long getId() {

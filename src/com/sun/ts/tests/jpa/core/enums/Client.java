@@ -57,7 +57,8 @@ import java.util.Collection;
 import java.util.Properties;
 
 public class Client extends PMClientBase {
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -839,8 +840,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:79
      *
-     * @test_Strategy: Verify the various values of FlushModeType can verified set
-     * using valueOf
+     * @test_Strategy: Verify the various values of FlushModeType can verified set using valueOf
      *
      */
 
@@ -877,15 +877,15 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("flushModeTypeValueOfTest failed");
+        if (!pass)
+            throw new Fault("flushModeTypeValueOfTest failed");
     }
     /*
      * @testName: flushModeTypeValuesTest
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:80
      *
-     * @test_Strategy: Verify the various values of FlushModeType using Values
-     * then try valueOf for the returned values
+     * @test_Strategy: Verify the various values of FlushModeType using Values then try valueOf for the returned values
      *
      */
 
@@ -926,7 +926,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("flushModeTypeValuesTest failed");
+        if (!pass)
+            throw new Fault("flushModeTypeValuesTest failed");
     }
 
     /*
@@ -980,7 +981,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("setgetFlushModeEntityManagerTest failed");
+        if (!pass)
+            throw new Fault("setgetFlushModeEntityManagerTest failed");
     }
     /*
      * @testName: setgetFlushModeTest
@@ -1028,7 +1030,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("setgetFlushModeTest failed");
+        if (!pass)
+            throw new Fault("setgetFlushModeTest failed");
     }
     /*
      * @testName: setgetFlushModeTQTest
@@ -1075,7 +1078,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("setgetFlushModeTQTest failed");
+        if (!pass)
+            throw new Fault("setgetFlushModeTQTest failed");
     }
 
     /*
@@ -2758,8 +2762,7 @@ public class Client extends PMClientBase {
 
         try {
 
-            PersistenceUnitTransactionType putt =
-                    PersistenceUnitTransactionType.valueOf(PersistenceUnitTransactionType.JTA.name());
+            PersistenceUnitTransactionType putt = PersistenceUnitTransactionType.valueOf(PersistenceUnitTransactionType.JTA.name());
             if (!putt.equals(PersistenceUnitTransactionType.JTA)) {
                 TestUtil.logErr("expected:" + PersistenceUnitTransactionType.JTA.name() + ", actual:" + putt.name());
                 pass = false;

@@ -25,8 +25,7 @@ public class ApacheRequestAdapter extends HttpRequest {
     }
 
     /**
-     * <code>getRequestPath</code> returns the request path for this particular
-     * request.
+     * <code>getRequestPath</code> returns the request path for this particular request.
      *
      * @return String request path
      */

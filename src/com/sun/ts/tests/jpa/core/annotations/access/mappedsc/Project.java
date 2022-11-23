@@ -37,7 +37,8 @@ public class Project implements java.io.Serializable {
 
     private BigDecimal budget;
 
-    public Project() {}
+    public Project() {
+    }
 
     public Project(long projId, String name, BigDecimal budget) {
         this.projId = projId;

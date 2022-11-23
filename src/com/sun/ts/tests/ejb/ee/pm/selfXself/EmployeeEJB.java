@@ -193,8 +193,10 @@ public abstract class EmployeeEJB implements EntityBean {
             TestUtil.logErr("Exception occurred in nullTest: ", e);
         }
 
-        if (m1 == null) return true;
-        else return false;
+        if (m1 == null)
+            return true;
+        else
+            return false;
     }
 
     public boolean test3() {
@@ -228,8 +230,10 @@ public abstract class EmployeeEJB implements EntityBean {
                 return true;
             } else {
                 TestUtil.logMsg("Relationship assignment failed");
-                if (!m1.isIdentical(mTwo)) TestUtil.logErr("m1 not identical to m2");
-                if (m2 != null) TestUtil.logErr("m2 not null");
+                if (!m1.isIdentical(mTwo))
+                    TestUtil.logErr("m1 not identical to m2");
+                if (m2 != null)
+                    TestUtil.logErr("m2 not null");
                 return false;
             }
         } catch (Exception e) {

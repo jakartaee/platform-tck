@@ -31,7 +31,7 @@ import java.util.logging.Level;
 // this bean. So when the test postConstruct runs, this bean may not been
 // created yet. Use Startup to force eager creation.
 public class ScheduleBean extends ScheduleBeanBase3 {
-    @SuppressWarnings({"unused"})
+    @SuppressWarnings({ "unused" })
     @PostConstruct
     private void postConstruct() {
         Helper.getLogger().logp(Level.FINE, "ScheduleBean", "postConstruct", "Entering " + this);

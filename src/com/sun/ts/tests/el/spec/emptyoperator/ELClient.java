@@ -33,7 +33,7 @@ public class ELClient extends ServiceEETest {
 
     Properties testProps;
 
-    private final boolean[] deferred = {true, false};
+    private final boolean[] deferred = { true, false };
 
     public static void main(String[] args) {
         ELClient theTests = new ELClient();
@@ -46,21 +46,21 @@ public class ELClient extends ServiceEETest {
         this.testProps = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: elEmptyNullTest
      *
      * @assertion_ids: EL:SPEC:25.1
      *
-     * @test_Strategy: Validate that if "null" is passed with the Empty operator,
-     * the correct Boolean result is returned.
+     * @test_Strategy: Validate that if "null" is passed with the Empty operator, the correct Boolean result is returned.
      */
     public void elEmptyNullTest() throws Fault {
 
         boolean pass = false;
 
-        String[] symbols = {"$", "#"};
+        String[] symbols = { "$", "#" };
         boolean expectedResult = true;
 
         try {
@@ -77,7 +77,8 @@ public class ELClient extends ServiceEETest {
                 pass = (ExprEval.compareClass(result, Boolean.class)
                         && ExprEval.compareValue((Boolean) result, expectedResult));
 
-                if (!pass) throw new Fault("TEST FAILED: pass = false");
+                if (!pass)
+                    throw new Fault("TEST FAILED: pass = false");
             }
         } catch (Exception e) {
             throw new Fault(e);
@@ -89,8 +90,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:25.2; EL:SPEC:25.6
      *
-     * @test_Strategy: Validate that if a String is passed with the Empty
-     * operator, the correct Boolean result is returned.
+     * @test_Strategy: Validate that if a String is passed with the Empty operator, the correct Boolean result is returned.
      */
     public void elEmptyStringTest() throws Fault {
 
@@ -104,14 +104,13 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:25.3; EL:SPEC:25.6
      *
-     * @test_Strategy: Validate that if a Array is passed with the Empty operator,
-     * the correct Boolean result is returned.
+     * @test_Strategy: Validate that if a Array is passed with the Empty operator, the correct Boolean result is returned.
      */
     public void elEmptyArrayTest() throws Fault {
 
         this.testEmptyOperator(new String[0], true);
 
-        String[] testArray = {"Apple"};
+        String[] testArray = { "Apple" };
         this.testEmptyOperator(testArray, false);
     }
 
@@ -120,8 +119,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:25.4; EL:SPEC:25.6
      *
-     * @test_Strategy: Validate that if a Map is passed with the Empty operator,
-     * the correct Boolean result is returned.
+     * @test_Strategy: Validate that if a Map is passed with the Empty operator, the correct Boolean result is returned.
      */
     public void elEmptyMapTest() throws Fault {
 
@@ -141,8 +139,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:25.5; EL:SPEC:25.6
      *
-     * @test_Strategy: Validate that if a Collection is passed with the Empty
-     * operator, the correct Boolean result is returned.
+     * @test_Strategy: Validate that if a Collection is passed with the Empty operator, the correct Boolean result is
+     * returned.
      */
     public void elEmptyCollectionTest() throws Fault {
 
@@ -176,7 +174,8 @@ public class ELClient extends ServiceEETest {
                 pass = (ExprEval.compareClass(result, Boolean.class)
                         && ExprEval.compareValue((Boolean) result, expectedResult));
 
-                if (!pass) throw new Fault("TEST FAILED: pass = false");
+                if (!pass)
+                    throw new Fault("TEST FAILED: pass = false");
             }
         } catch (Exception e) {
             throw new Fault(e);

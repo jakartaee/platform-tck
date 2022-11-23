@@ -83,33 +83,33 @@ public class JsonAssert {
 
     public static boolean assertEquals(final JsonValue expected, final JsonValue actual, final String message) {
         switch (expected.getValueType()) {
-            case OBJECT:
-                return assertEquals((JsonObject) expected, (JsonObject) actual, message);
-            case ARRAY:
-                return assertEquals((JsonArray) expected, (JsonArray) actual, message);
-            case STRING:
-                return assertEquals((JsonString) expected, (JsonString) actual, message);
-            case NUMBER:
-                return assertEquals((JsonNumber) expected, (JsonNumber) actual, message);
-            case TRUE:
-            case FALSE:
-                if (expected == actual) {
-                    return true;
-                } else {
-                    TestUtil.logMsg("   " + message);
-                    TestUtil.logMsg("     Expected: " + expected.toString());
-                    TestUtil.logMsg("     Actual:   " + actual.toString());
-                    return false;
-                }
-            default:
-                if (actual.equals(expected)) {
-                    return true;
-                } else {
-                    TestUtil.logMsg("   " + message);
-                    TestUtil.logMsg("     Expected: " + expected.toString());
-                    TestUtil.logMsg("     Actual:   " + actual.toString());
-                    return false;
-                }
+        case OBJECT:
+            return assertEquals((JsonObject) expected, (JsonObject) actual, message);
+        case ARRAY:
+            return assertEquals((JsonArray) expected, (JsonArray) actual, message);
+        case STRING:
+            return assertEquals((JsonString) expected, (JsonString) actual, message);
+        case NUMBER:
+            return assertEquals((JsonNumber) expected, (JsonNumber) actual, message);
+        case TRUE:
+        case FALSE:
+            if (expected == actual) {
+                return true;
+            } else {
+                TestUtil.logMsg("   " + message);
+                TestUtil.logMsg("     Expected: " + expected.toString());
+                TestUtil.logMsg("     Actual:   " + actual.toString());
+                return false;
+            }
+        default:
+            if (actual.equals(expected)) {
+                return true;
+            } else {
+                TestUtil.logMsg("   " + message);
+                TestUtil.logMsg("     Expected: " + expected.toString());
+                TestUtil.logMsg("     Actual:   " + actual.toString());
+                return false;
+            }
         }
     }
 
@@ -120,12 +120,9 @@ public class JsonAssert {
     /**
      * Operation result expected.
      *
-     * @param expected
-     *          Expected modified JSON value.
-     * @param actual
-     *          Operation output.
-     * @return Value of {@code true} if operation passed or {@code false}
-     *         otherwise.
+     * @param expected Expected modified JSON value.
+     * @param actual Operation output.
+     * @return Value of {@code true} if operation passed or {@code false} otherwise.
      */
     public static boolean assertEquals(final Object expected, final String actual) {
         if (actual == null) {
@@ -133,33 +130,33 @@ public class JsonAssert {
         }
         try {
             switch (JsonValueType.getType(expected)) {
-                case String:
-                    String exp = '\"' + (String) expected + '\"';
-                    return exp.equals(actual);
-                case Integer:
-                    return Integer.parseInt(actual) == (Integer) expected;
-                case Long:
-                    return Long.parseLong(actual) == (Long) expected;
-                case BigInteger:
-                    return (new BigInteger(actual)).equals(expected);
-                case Double:
-                    return Double.parseDouble(actual) == (Double) expected;
-                case BigDecimal:
-                    return (new BigDecimal(actual)).equals(expected);
-                case Boolean:
-                    return Boolean.parseBoolean(actual) == (Boolean) expected;
-                case JsonValue:
-                    try (final JsonReader reader = Json.createReader(new StringReader(actual))) {
-                        final JsonValue actVal = reader.readValue();
-                        return assertEquals((JsonValue) expected, actVal);
-                    }
-                case Null:
-                    try (final JsonReader reader = Json.createReader(new StringReader(actual))) {
-                        final JsonValue actVal = reader.readValue();
-                        return assertEquals(JsonValue.NULL, actVal);
-                    }
-                default:
-                    throw new IllegalArgumentException("Value does not match known JSON value type");
+            case String:
+                String exp = '\"' + (String) expected + '\"';
+                return exp.equals(actual);
+            case Integer:
+                return Integer.parseInt(actual) == (Integer) expected;
+            case Long:
+                return Long.parseLong(actual) == (Long) expected;
+            case BigInteger:
+                return (new BigInteger(actual)).equals(expected);
+            case Double:
+                return Double.parseDouble(actual) == (Double) expected;
+            case BigDecimal:
+                return (new BigDecimal(actual)).equals(expected);
+            case Boolean:
+                return Boolean.parseBoolean(actual) == (Boolean) expected;
+            case JsonValue:
+                try (final JsonReader reader = Json.createReader(new StringReader(actual))) {
+                    final JsonValue actVal = reader.readValue();
+                    return assertEquals((JsonValue) expected, actVal);
+                }
+            case Null:
+                try (final JsonReader reader = Json.createReader(new StringReader(actual))) {
+                    final JsonValue actVal = reader.readValue();
+                    return assertEquals(JsonValue.NULL, actVal);
+                }
+            default:
+                throw new IllegalArgumentException("Value does not match known JSON value type");
             }
         } catch (NumberFormatException ex) {
             return true;
@@ -169,28 +166,27 @@ public class JsonAssert {
     /**
      * Convert provided JSON value to human readable String.
      *
-     * @param value
-     *          Value to be converted.
+     * @param value Value to be converted.
      * @return JSON value as human readable String.
      */
     public static String valueToString(final JsonValue value) {
         switch (value.getValueType()) {
-            case OBJECT:
-                return toStringJsonObject((JsonObject) value);
-            case ARRAY:
-                return toStringJsonArray((JsonArray) value);
-            case STRING:
-                return ((JsonString) value).getString();
-            case NUMBER:
-                return ((JsonNumber) value).toString();
-            case TRUE:
-                return Boolean.toString(true);
-            case FALSE:
-                return Boolean.toString(false);
-            case NULL:
-                return "null";
-            default:
-                throw new IllegalArgumentException("Unknown value type");
+        case OBJECT:
+            return toStringJsonObject((JsonObject) value);
+        case ARRAY:
+            return toStringJsonArray((JsonArray) value);
+        case STRING:
+            return ((JsonString) value).getString();
+        case NUMBER:
+            return ((JsonNumber) value).toString();
+        case TRUE:
+            return Boolean.toString(true);
+        case FALSE:
+            return Boolean.toString(false);
+        case NULL:
+            return "null";
+        default:
+            throw new IllegalArgumentException("Unknown value type");
         }
     }
 }

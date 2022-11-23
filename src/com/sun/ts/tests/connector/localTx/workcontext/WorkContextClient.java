@@ -64,8 +64,7 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: whitebox-tx, JNDI name of TS WhiteBox;
-     * whitebox-mdcomplete; whitebox-anno_no_md;
+     * @class.setup_props: whitebox-tx, JNDI name of TS WhiteBox; whitebox-mdcomplete; whitebox-anno_no_md;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -105,14 +104,12 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testIsContextSupported
      *
-     * @assertion_ids: Connector:SPEC:208; Connector:SPEC:209; Connector:SPEC:241;
-     * Connector:JAVADOC:133;
+     * @assertion_ids: Connector:SPEC:208; Connector:SPEC:209; Connector:SPEC:241; Connector:JAVADOC:133;
      *
-     * @test_Strategy: This is used to verify that the Transaction, Security, and
-     * Hints inflow contexts are standardised via the TransactionContext,
-     * SecurityContext, and HintsContext interfaces. (ie that the AppServer
-     * supports them). This test validates some key strings were added to the log
-     * file by the RA's calls to BootstrapContext.isContextSupported().
+     * @test_Strategy: This is used to verify that the Transaction, Security, and Hints inflow contexts are standardised via
+     * the TransactionContext, SecurityContext, and HintsContext interfaces. (ie that the AppServer supports them). This
+     * test validates some key strings were added to the log file by the RA's calls to
+     * BootstrapContext.isContextSupported().
      *
      */
     public void testIsContextSupported() throws Fault {
@@ -174,14 +171,11 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testSecurityContextExecSubject
      *
-     * @assertion_ids: Connector:SPEC:230; Connector:JAVADOC:360;
-     * Connector:JAVADOC:363;
+     * @assertion_ids: Connector:SPEC:230; Connector:JAVADOC:360; Connector:JAVADOC:363;
      *
-     * @test_Strategy: This verifies that the AppServer called the
-     * setupSecurityContext method of the SecurityContext implementation provided
-     * by the RA. And specifically, this is checking that the executionSubject arg
-     * passed into setupSecurityContext() must be non-null and it must not be
-     * readonly.
+     * @test_Strategy: This verifies that the AppServer called the setupSecurityContext method of the SecurityContext
+     * implementation provided by the RA. And specifically, this is checking that the executionSubject arg passed into
+     * setupSecurityContext() must be non-null and it must not be readonly.
      *
      */
     public void testSecurityContextExecSubject() throws Fault {
@@ -228,11 +222,9 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:231;
      *
-     * @test_Strategy: This verifies that the AppServer called the
-     * setupSecurityContext method of the SecurityContext implementation provided
-     * by the RA. And specifically, this is verifying that if the serviceSubject
-     * passed into setupSecurityContext() is either (a) null of (b) non-null and
-     * NOT set readonly.
+     * @test_Strategy: This verifies that the AppServer called the setupSecurityContext method of the SecurityContext
+     * implementation provided by the RA. And specifically, this is verifying that if the serviceSubject passed into
+     * setupSecurityContext() is either (a) null of (b) non-null and NOT set readonly.
      *
      */
     public void testSecurityContextServiceSubject() throws Fault {
@@ -279,9 +271,8 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:229;
      *
-     * @test_Strategy: This is verifying that the AS calls setupSecurityContext()
-     * and that the passed in CBH is not null. It also verifies that the passed in
-     * CBH supports the 3 JSR-196 CBH's of: CallerPrincipalCallback,
+     * @test_Strategy: This is verifying that the AS calls setupSecurityContext() and that the passed in CBH is not null. It
+     * also verifies that the passed in CBH supports the 3 JSR-196 CBH's of: CallerPrincipalCallback,
      * GroupPrincipalCallback, PasswordValidationCallback
      */
     public void testSecurityContextCBH() throws Fault {
@@ -332,8 +323,8 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:214;
      *
-     * @test_Strategy: This is verifying that the AS throws a proper
-     * WorkContextErrorCodes for the case of an unsupported exception.
+     * @test_Strategy: This is verifying that the AS throws a proper WorkContextErrorCodes for the case of an unsupported
+     * exception.
      *
      */
     public void testWorkContextErrorCode() throws Fault {
@@ -379,10 +370,8 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:216;
      *
-     * @test_Strategy: This is verifying that the AS throws a proper
-     * WorkContextErrorCodes for the case of a duplicate workcontext submission.
-     * In such a case, we would expect to see
-     * WorkContextErrorCode.DUPLICATE_CONTEXTS
+     * @test_Strategy: This is verifying that the AS throws a proper WorkContextErrorCodes for the case of a duplicate
+     * workcontext submission. In such a case, we would expect to see WorkContextErrorCode.DUPLICATE_CONTEXTS
      *
      */
     public void testWorkContextErrorCode2() throws Fault {
@@ -426,17 +415,13 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testNestedWorkContexts
      *
-     * @assertion_ids: Connector:SPEC:210; Connector:JAVADOC:312;
-     * Connector:JAVADOC:342; Connector:JAVADOC:341;
+     * @assertion_ids: Connector:SPEC:210; Connector:JAVADOC:312; Connector:JAVADOC:342; Connector:JAVADOC:341;
      *
-     * @test_Strategy: This is verifying that the AS allows and supports the
-     * nesting of work instances AND contexts (eg securityInflowContext, etc). To
-     * test this, we nest work instances such that one work instance ends up
-     * executing another work instance. In both of these cases, each work instance
-     * has a *different* securityInflowContext (SIC) and each different SIC must
-     * be honored and NO inheriting of context should be done by either work
-     * instance. As for the 2nd part of the test, we are to test transaction
-     * context assigned to a nested work object.
+     * @test_Strategy: This is verifying that the AS allows and supports the nesting of work instances AND contexts (eg
+     * securityInflowContext, etc). To test this, we nest work instances such that one work instance ends up executing
+     * another work instance. In both of these cases, each work instance has a *different* securityInflowContext (SIC) and
+     * each different SIC must be honored and NO inheriting of context should be done by either work instance. As for the
+     * 2nd part of the test, we are to test transaction context assigned to a nested work object.
      *
      */
     public void testNestedWorkContexts() throws Fault {
@@ -520,13 +505,10 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:305;
      *
-     * @test_Strategy: This is verifying that the AS allows and supports the
-     * nesting of work instances AND contexts (eg securityInflowContext, etc). To
-     * test this, we nest work instances such that one work instance ends up
-     * executing another work instance with NO SIC. The parent work inst should
-     * get done but the child should have no work context and should NOT inherit
-     * the work inst context from the parent. Thus the parent authenticates but
-     * the child does not.
+     * @test_Strategy: This is verifying that the AS allows and supports the nesting of work instances AND contexts (eg
+     * securityInflowContext, etc). To test this, we nest work instances such that one work instance ends up executing
+     * another work instance with NO SIC. The parent work inst should get done but the child should have no work context and
+     * should NOT inherit the work inst context from the parent. Thus the parent authenticates but the child does not.
      *
      *
      */
@@ -574,13 +556,10 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:210;
      *
-     * @test_Strategy: This is verifying that the AS allows and supports the
-     * nesting of work instances AND contexts (eg securityInflowContext, etc). To
-     * test this, we nest work instances such that one work instance with a valid
-     * SIC ends up executing another work instance with an invalid SIC. We expect
-     * the child work instance (with invalid SIC) should NOT inherit the parents
-     * SIC and thus shoudl not show a successful Password Validation Callback
-     * (PVC) check.
+     * @test_Strategy: This is verifying that the AS allows and supports the nesting of work instances AND contexts (eg
+     * securityInflowContext, etc). To test this, we nest work instances such that one work instance with a valid SIC ends
+     * up executing another work instance with an invalid SIC. We expect the child work instance (with invalid SIC) should
+     * NOT inherit the parents SIC and thus shoudl not show a successful Password Validation Callback (PVC) check.
      *
      *
      */
@@ -628,9 +607,8 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:221;
      *
-     * @test_Strategy: This is verifying that a resource adapter must not submit a
-     * Work that implements WorkContextProvider along with a valid
-     * ExecutionContext to a Connector WorkManager
+     * @test_Strategy: This is verifying that a resource adapter must not submit a Work that implements WorkContextProvider
+     * along with a valid ExecutionContext to a Connector WorkManager
      *
      */
     public void testWorkContextProvider() throws Fault {
@@ -677,19 +655,15 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:224; Connector:SPEC:225; Connector:SPEC:262;
      *
-     * @test_Strategy: This is verifying that the notifications related to Work
-     * accepted and work started events are called prior to the calling of the
-     * WorkContext setup related notifications. Additionally,
-     * contextSetupComplete() must get called/notified befor workComplete().
+     * @test_Strategy: This is verifying that the notifications related to Work accepted and work started events are called
+     * prior to the calling of the WorkContext setup related notifications. Additionally, contextSetupComplete() must get
+     * called/notified befor workComplete().
      *
-     * To test this, we get log entries that start with "notifications test:" and
-     * parse those log entries to make sure the count of "workAccepted" and
-     * "workStarted" came befor the count for the WorkContext setup related
-     * notifications (e.g. "contextSetupComplete"). If contextSetupComplete() has
-     * a count thats < workAccepted() and/or workStarted() then fail. else if
-     * contextSetupComplete() has a count thats > then pass. Then, as part of
-     * assertion 262, we want to verify that contextSetupComplete() is
-     * called/notified befor workComplete() notifications occur.
+     * To test this, we get log entries that start with "notifications test:" and parse those log entries to make sure the
+     * count of "workAccepted" and "workStarted" came befor the count for the WorkContext setup related notifications (e.g.
+     * "contextSetupComplete"). If contextSetupComplete() has a count thats < workAccepted() and/or workStarted() then fail.
+     * else if contextSetupComplete() has a count thats > then pass. Then, as part of assertion 262, we want to verify that
+     * contextSetupComplete() is called/notified befor workComplete() notifications occur.
      *
      */
     public void testWorkContextNotifications() throws Fault {
@@ -781,13 +755,11 @@ public class WorkContextClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:261;
      *
-     * @test_Strategy: This is verifying that the notifications related to Work
-     * context that have unknown hint name-value pairs submitted. If they don't
-     * ignore and throw a contextSetupFailed, thent his test fails.
+     * @test_Strategy: This is verifying that the notifications related to Work context that have unknown hint name-value
+     * pairs submitted. If they don't ignore and throw a contextSetupFailed, thent his test fails.
      *
-     * To test this, we get log entries that start with "notifications test:" and
-     * parse those log entries to make sure no contextSetupFailed notifications
-     * occurred.
+     * To test this, we get log entries that start with "notifications test:" and parse those log entries to make sure no
+     * contextSetupFailed notifications occurred.
      *
      */
     public void testHICNotifications() throws Fault {

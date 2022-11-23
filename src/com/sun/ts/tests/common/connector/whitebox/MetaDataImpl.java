@@ -79,8 +79,8 @@ public class MetaDataImpl implements ManagedConnectionMetaData {
     /*
      * @name getMaxConnections
      *
-     * @desc Returns maximum limit on number of active concurrent connections that
-     * an EIS instance can support across client processes.
+     * @desc Returns maximum limit on number of active concurrent connections that an EIS instance can support across client
+     * processes.
      *
      * @return int
      *
@@ -101,10 +101,8 @@ public class MetaDataImpl implements ManagedConnectionMetaData {
     /*
      * @name getUserName
      *
-     * @desc Return name of the user currently associated with ManagedConnection
-     * instance. The returned username corresponds to the resource principal under
-     * whose security context the connection to the EIS instance has been
-     * established.
+     * @desc Return name of the user currently associated with ManagedConnection instance. The returned username corresponds
+     * to the resource principal under whose security context the connection to the EIS instance has been established.
      *
      * @return String
      *
@@ -124,7 +122,9 @@ public class MetaDataImpl implements ManagedConnectionMetaData {
             str = pc.getUserName();
         }
 
-        if (pc != null && str != null && !str.equals("")) return str;
-        else return null;
+        if (pc != null && str != null && !str.equals(""))
+            return str;
+        else
+            return null;
     }
 }

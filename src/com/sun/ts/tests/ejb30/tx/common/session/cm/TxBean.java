@@ -28,7 +28,7 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless
-@Remote({TxIF.class})
+@Remote({ TxIF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class TxBean extends TxBeanBase implements TxIF {
     @TransactionAttribute(TransactionAttributeType.MANDATORY)

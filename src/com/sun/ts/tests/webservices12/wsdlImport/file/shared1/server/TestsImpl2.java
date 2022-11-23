@@ -18,16 +18,10 @@ package com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "Tests2Port",
-        serviceName = "Shared1FileSvc2",
-        targetNamespace = "http://Shared1FileSvc2.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/Shared1FileSvc2.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Tests2")
+@WebService(portName = "Tests2Port", serviceName = "Shared1FileSvc2", targetNamespace = "http://Shared1FileSvc2.org/wsdl", wsdlLocation = "WEB-INF/wsdl/Shared1FileSvc2.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Tests2")
 public class TestsImpl2 implements Tests2 {
     public com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring invokeTest2() {
-        com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring result =
-                new com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring();
+        com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring result = new com.sun.ts.tests.webservices12.wsdlImport.file.shared1.server.Astring();
         result.setResult("Hello");
         return result;
     }

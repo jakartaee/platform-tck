@@ -27,4 +27,5 @@ import jakarta.ejb.Singleton;
 
 @Singleton
 @Local
-public class OneInterfaceBasicBean extends BasicBeanBase implements Basic1IF {}
+public class OneInterfaceBasicBean extends BasicBeanBase implements Basic1IF {
+}

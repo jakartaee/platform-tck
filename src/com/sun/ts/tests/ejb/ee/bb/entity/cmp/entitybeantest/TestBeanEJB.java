@@ -69,7 +69,8 @@ public class TestBeanEJB implements EntityBean {
     public TestBeanEJB() {
         TestUtil.logTrace("newInstance => default constructor called");
         ejbNewInstanceFlag = true;
-        if (ejbEntityContextFlag || ejbCreateFlag || ejbPostCreateFlag) createLifeCycleFlag = false;
+        if (ejbEntityContextFlag || ejbCreateFlag || ejbPostCreateFlag)
+            createLifeCycleFlag = false;
     }
 
     public Integer ejbCreate(Properties p, int KEY_ID, String BRAND_NAME, float PRICE, Helper r)
@@ -80,7 +81,8 @@ public class TestBeanEJB implements EntityBean {
                 + "\nejbEntityContextFlag=" + ejbEntityContextFlag + "\nejbCreateFlag="
                 + ejbCreateFlag + "\nejbPostCreateFlag=" + ejbPostCreateFlag);
         ejbCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || ejbPostCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || ejbPostCreateFlag)
+            createLifeCycleFlag = false;
         try {
             TestUtil.logMsg("Initialize remote logging");
             TestUtil.init(p);
@@ -103,7 +105,8 @@ public class TestBeanEJB implements EntityBean {
     public void ejbPostCreate(Properties p, int KEY_ID, String BRAND_NAME, float PRICE, Helper r) {
         TestUtil.logTrace("ejbPostCreate");
         ejbPostCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || !ejbCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || !ejbCreateFlag)
+            createLifeCycleFlag = false;
     }
 
     public Integer ejbCreate(Properties p, int KEY_ID, Helper r) throws CreateException, DuplicateKeyException {
@@ -113,7 +116,8 @@ public class TestBeanEJB implements EntityBean {
                 + "\nejbEntityContextFlag=" + ejbEntityContextFlag + "\nejbCreateFlag="
                 + ejbCreateFlag + "\nejbPostCreateFlag=" + ejbPostCreateFlag);
         ejbCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || ejbPostCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || ejbPostCreateFlag)
+            createLifeCycleFlag = false;
         try {
             TestUtil.logMsg("initialize remote logging");
             TestUtil.init(p);
@@ -136,14 +140,16 @@ public class TestBeanEJB implements EntityBean {
     public void ejbPostCreate(Properties p, int n, Helper r) {
         TestUtil.logTrace("ejbPostCreate");
         ejbPostCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || !ejbCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag || !ejbEntityContextFlag || !ejbCreateFlag)
+            createLifeCycleFlag = false;
     }
 
     public void setEntityContext(EntityContext c) {
         TestUtil.logTrace("setEntityContext");
         ectx = c;
         ejbEntityContextFlag = true;
-        if (!ejbNewInstanceFlag || ejbCreateFlag || ejbPostCreateFlag) createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag || ejbCreateFlag || ejbPostCreateFlag)
+            createLifeCycleFlag = false;
     }
 
     public void unsetEntityContext() {
@@ -153,7 +159,8 @@ public class TestBeanEJB implements EntityBean {
     public void ejbRemove() throws RemoveException {
         TestUtil.logTrace("ejbRemove");
         try {
-            if (ref != null) ref.setRemove(true);
+            if (ref != null)
+                ref.setRemove(true);
         } catch (Exception e) {
             TestUtil.logErr("exception occurred contacting callback bean", e);
             throw new RemoveException("callback not notified");
@@ -174,7 +181,8 @@ public class TestBeanEJB implements EntityBean {
     public void ejbStore() {
         TestUtil.logTrace("ejbStore");
         try {
-            if (ref != null) ref.setStore(true);
+            if (ref != null)
+                ref.setStore(true);
         } catch (Exception e) {
             TestUtil.logErr("exception occurred contacting callback bean", e);
             throw new EJBException("callback not notified");
@@ -185,7 +193,8 @@ public class TestBeanEJB implements EntityBean {
     public void ejbLoad() {
         TestUtil.logTrace("ejbLoad");
         try {
-            if (ref != null) ref.setLoad(true);
+            if (ref != null)
+                ref.setLoad(true);
         } catch (Exception e) {
             TestUtil.logErr("exception occurred contacting callback bean", e);
             throw new EJBException("callback not notified");

@@ -29,7 +29,8 @@ public class Animal {
 
     private boolean furry;
 
-    public Animal() {}
+    public Animal() {
+    }
 
     public Animal(int age, String name, float weight, boolean furry) {
         this.age = age;
@@ -72,14 +73,19 @@ public class Animal {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Animal)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Animal))
+            return false;
 
         Animal animal = (Animal) o;
 
-        if (age != animal.age) return false;
-        if (Float.compare(animal.weight, weight) != 0) return false;
-        if (furry != animal.furry) return false;
+        if (age != animal.age)
+            return false;
+        if (Float.compare(animal.weight, weight) != 0)
+            return false;
+        if (furry != animal.furry)
+            return false;
         return name != null ? name.equals(animal.name) : animal.name == null;
     }
 

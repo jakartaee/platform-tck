@@ -24,11 +24,10 @@ import jakarta.json.JsonObject;
  * $Id$
  */
 /**
- * {@see <a href="https://tools.ietf.org/html/rfc6901">RFC 6901</a>}: JavaScript
- * Object Notation (JSON) Pointer compatibility sample object.<br>
- * Object structure is defined in
- * {@see <a href="https://tools.ietf.org/html/rfc6901#section-5">RFC 6901: 5.
- * JSON String Representation</a>}.
+ * {@see <a href="https://tools.ietf.org/html/rfc6901">RFC 6901</a>}: JavaScript Object Notation (JSON) Pointer
+ * compatibility sample object.<br>
+ * Object structure is defined in {@see <a href="https://tools.ietf.org/html/rfc6901#section-5">RFC 6901: 5. JSON String
+ * Representation</a>}.
  */
 public class PointerRFCObject {
 
@@ -159,9 +158,8 @@ public class PointerRFCObject {
     public static final int RFC_VAL11 = 9;
 
     /**
-     * Creates RFC 6901 sample JSON object.
-     * {@see <a href="https://tools.ietf.org/html/rfc6901#section-5">RFC 6901: 5.
-     * JSON String Representation</a>}
+     * Creates RFC 6901 sample JSON object. {@see <a href="https://tools.ietf.org/html/rfc6901#section-5">RFC 6901: 5. JSON
+     * String Representation</a>}
      *
      * @return RFC 6901 sample JSON object.
      */
@@ -184,5 +182,6 @@ public class PointerRFCObject {
     /**
      * Create an instance of RFC 6901 object class is not allowed.
      */
-    private PointerRFCObject() {}
+    private PointerRFCObject() {
+    }
 }

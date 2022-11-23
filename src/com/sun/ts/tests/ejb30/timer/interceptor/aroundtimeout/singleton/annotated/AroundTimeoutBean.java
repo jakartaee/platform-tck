@@ -30,7 +30,7 @@ import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
 
 @Singleton
-@Interceptors({Interceptor4.class, Interceptor3.class})
+@Interceptors({ Interceptor4.class, Interceptor3.class })
 public class AroundTimeoutBean extends AroundTimeoutBeanBase implements AroundTimeoutIF {
     private static final String simpleName = "AroundTimeoutBean";
 

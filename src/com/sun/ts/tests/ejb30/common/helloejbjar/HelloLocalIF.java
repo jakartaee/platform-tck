@@ -23,4 +23,5 @@ package com.sun.ts.tests.ejb30.common.helloejbjar;
 import jakarta.ejb.Local;
 
 @Local()
-public interface HelloLocalIF extends HelloCommonIF {}
+public interface HelloLocalIF extends HelloCommonIF {
+}

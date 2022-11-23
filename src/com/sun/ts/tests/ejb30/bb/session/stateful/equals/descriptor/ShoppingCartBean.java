@@ -39,7 +39,9 @@ public class ShoppingCartBean
         return sessionContext;
     }
 
-    public ShoppingCartBean() {}
+    public ShoppingCartBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

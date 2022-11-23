@@ -43,7 +43,8 @@ public class A_Property implements java.io.Serializable {
 
     private List<Calendar> dates = new ArrayList<Calendar>();
 
-    public A_Property() {}
+    public A_Property() {
+    }
 
     public A_Property(String id, Date basicDate, Calendar basicCalendar) {
 

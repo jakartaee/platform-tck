@@ -22,4 +22,5 @@ import jakarta.ejb.Stateless;
 
 @Stateless
 @Local(TimerIF.class)
-public class TimersStatelessBean extends NonPersistentTimerServiceBeanBase {}
+public class TimersStatelessBean extends NonPersistentTimerServiceBeanBase {
+}

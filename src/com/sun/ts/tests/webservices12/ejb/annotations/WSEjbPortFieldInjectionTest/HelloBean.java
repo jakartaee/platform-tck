@@ -19,12 +19,7 @@ package com.sun.ts.tests.webservices12.ejb.annotations.WSEjbPortFieldInjectionTe
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "Hello",
-        serviceName = "HelloService",
-        targetNamespace = "http://Hello.org",
-        wsdlLocation = "META-INF/wsdl/HelloService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbPortFieldInjectionTest.Hello")
+@WebService(portName = "Hello", serviceName = "HelloService", targetNamespace = "http://Hello.org", wsdlLocation = "META-INF/wsdl/HelloService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.annotations.WSEjbPortFieldInjectionTest.Hello")
 @Stateless(name = "WSEjbPortFieldInjectionTest")
 public class HelloBean {
 

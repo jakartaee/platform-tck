@@ -23,12 +23,7 @@ package com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.external;
 import com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.external.custom.pkg.CustomizationExternalTestException;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HelloPort",
-        serviceName = "myService",
-        targetNamespace = "http://customizationexternaltest.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLCustomizationExternalTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.external.Hello")
+@WebService(portName = "HelloPort", serviceName = "myService", targetNamespace = "http://customizationexternaltest.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLCustomizationExternalTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.external.Hello")
 public class HelloImpl implements Hello {
     public void myHello(jakarta.xml.ws.Holder<HelloElement> helloArgument) throws CustomizationExternalTestException {
         System.out.println("in CustomizationExternalTestService:HelloImpl:myHello");
@@ -37,6 +32,7 @@ public class HelloImpl implements Hello {
             hfm.setFault1("foo");
             hfm.setFault2("bar");
             throw new CustomizationExternalTestException("This is the CustomizationExternalTestException fault", hfm);
-        } else helloArgument.value.setArgument(helloArgument.value.getArgument() + ", World!");
+        } else
+            helloArgument.value.setArgument(helloArgument.value.getArgument() + ", World!");
     }
 }

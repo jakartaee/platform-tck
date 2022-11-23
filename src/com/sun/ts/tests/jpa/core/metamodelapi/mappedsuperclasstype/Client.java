@@ -35,7 +35,8 @@ import java.util.Set;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -418,7 +419,7 @@ public class Client extends PMClientBase {
                     Set<SingularAttribute> idAttribSet = idType.getIdClassAttributes();
                     if (idAttribSet != null) {
                         if (idAttribSet.size() > 0) {
-                            for (Iterator i = idAttribSet.iterator(); i.hasNext(); ) {
+                            for (Iterator i = idAttribSet.iterator(); i.hasNext();) {
                                 Attribute attrib = (Attribute) i.next();
                                 actual.add(attrib.getName());
                             }

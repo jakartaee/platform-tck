@@ -40,7 +40,8 @@ class ByteArrayDataSource implements DataSource {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             int ch;
 
-            while ((ch = is.read()) != -1) os.write(ch);
+            while ((ch = is.read()) != -1)
+                os.write(ch);
 
             data = os.toByteArray();
         } catch (IOException ioex) {
@@ -63,7 +64,8 @@ class ByteArrayDataSource implements DataSource {
     }
 
     public InputStream getInputStream() throws IOException {
-        if (data == null) throw new IOException("no data");
+        if (data == null)
+            throw new IOException("no data");
         return new ByteArrayInputStream(data);
     }
 

@@ -22,12 +22,8 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2714;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "SimpleEndpointPort",
-        serviceName = "SimpleTest",
-        targetNamespace = "http://simpletestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/W2JRLR2714TestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2714.SimpleEndpoint")
+@WebService(portName = "SimpleEndpointPort", serviceName = "SimpleTest", targetNamespace = "http://simpletestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2714TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2714.SimpleEndpoint")
 public class SimpleEndpointImpl implements SimpleEndpoint {
-    public void oneWayOperation() {}
+    public void oneWayOperation() {
+    }
 }

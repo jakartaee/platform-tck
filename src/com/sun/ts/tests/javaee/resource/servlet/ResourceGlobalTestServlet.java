@@ -26,10 +26,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@MailSessionDefinition(
-        name = "java:global/env/ResourceGlobalTestServlet_MailSession",
-        properties = {"test=ResourceGlobalTestServlet_MailSession"})
-@WebServlet(urlPatterns = {"/resourceGlobalTest"})
+@MailSessionDefinition(name = "java:global/env/ResourceGlobalTestServlet_MailSession", properties = { "test=ResourceGlobalTestServlet_MailSession" })
+@WebServlet(urlPatterns = { "/resourceGlobalTest" })
 public class ResourceGlobalTestServlet extends HttpServlet {
 
     // the value of the "test" property above

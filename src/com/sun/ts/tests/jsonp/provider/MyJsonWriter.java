@@ -63,7 +63,8 @@ public class MyJsonWriter implements JsonWriter {
         calls.append(s);
     }
 
-    public MyJsonWriter() {}
+    public MyJsonWriter() {
+    }
 
     public MyJsonWriter(OutputStream out) {
         this.out = out;

@@ -154,20 +154,16 @@ public final class Handler_Util {
 
     public static void initTestUtil(Handler handler, String host, String port, String flag) {
         /*
-         * System.out.println("initTestUtil:handler="+handler);
-         * System.out.println("initTestUtil:host="+host);
-         * System.out.println("initTestUtil:port="+port);
-         * System.out.println("initTestUtil:flag="+flag);
+         * System.out.println("initTestUtil:handler="+handler); System.out.println("initTestUtil:host="+host);
+         * System.out.println("initTestUtil:port="+port); System.out.println("initTestUtil:flag="+flag);
          */
         initTestUtil(host, port, flag);
     }
 
     public static void initTestUtil(String impl, String host, String port, String flag) {
         /*
-         * System.out.println("initTestUtil:impl="+impl);
-         * System.out.println("initTestUtil:host="+host);
-         * System.out.println("initTestUtil:port="+port);
-         * System.out.println("initTestUtil:flag="+flag);
+         * System.out.println("initTestUtil:impl="+impl); System.out.println("initTestUtil:host="+host);
+         * System.out.println("initTestUtil:port="+port); System.out.println("initTestUtil:flag="+flag);
          */
         initTestUtil(host, port, flag);
     }
@@ -1124,27 +1120,24 @@ public final class Handler_Util {
         JAXWS_Util.dumpList(calls);
 
         if (calls.indexOf(who + contextType + "Handler1.MessageContext.put(OUTBOUND"
-                        + who + contextType
-                        + "CrossHandlerPropSetByHandler1,SetByHandler1)")
-                == -1) {
+                + who + contextType
+                + "CrossHandlerPropSetByHandler1,SetByHandler1)") == -1) {
             TestUtil.logErr(who + contextType + "Handler1.MessageContext.put(OUTBOUND"
                     + who + contextType
                     + "CrossHandlerPropSetByHandler1,SetByHandler1) was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType + "Handler1.MessageContext.put(OUTBOUND"
-                        + who + contextType
-                        + "MessageScopeAppPropSetByHandler1,SetByHandler1)")
-                == -1) {
+                + who + contextType
+                + "MessageScopeAppPropSetByHandler1,SetByHandler1)") == -1) {
             TestUtil.logErr(who + contextType + "Handler1.MessageContext.put(OUTBOUND"
                     + who + contextType
                     + "MessageScopeAppPropSetByHandler1,SetByHandler1) was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType + "Handler1.MessageContext.setPropertyScope(OUTBOUND"
-                        + who + contextType
-                        + "MessageScopeAppPropSetByHandler1,APPLICATION)")
-                == -1) {
+                + who + contextType
+                + "MessageScopeAppPropSetByHandler1,APPLICATION)") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler1.MessageContext.setPropertyScope(OUTBOUND" + who
                     + contextType
@@ -1152,18 +1145,16 @@ public final class Handler_Util {
             pass = false;
         }
         if (calls.indexOf(who + contextType + "Handler1.MessageContext.put(OUTBOUND"
-                        + who + contextType
-                        + "MessageScopeHandlerPropSetByHandler1,SetByHandler1)")
-                == -1) {
+                + who + contextType
+                + "MessageScopeHandlerPropSetByHandler1,SetByHandler1)") == -1) {
             TestUtil.logErr(who + contextType + "Handler1.MessageContext.put(OUTBOUND"
                     + who + contextType
                     + "MessageScopeAppPropSetByHandler1,SetByHandler1) was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType + "Handler1.MessageContext.setPropertyScope(OUTBOUND"
-                        + who + contextType
-                        + "MessageScopeHandlerPropSetByHandler1,HANDLER)")
-                == -1) {
+                + who + contextType
+                + "MessageScopeHandlerPropSetByHandler1,HANDLER)") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler1.MessageContext.setPropertyScope(OUTBOUND" + who
                     + contextType
@@ -1172,41 +1163,36 @@ public final class Handler_Util {
         }
         if (who.equals("Client")) {
             if (calls.indexOf(who + contextType + "Handler2.MessageContext.getProperty(" + who + "To" + who
-                            + "Prop)=client")
-                    == -1) {
+                    + "Prop)=client") == -1) {
                 TestUtil.logErr(who + contextType + "Handler2.MessageContext.getProperty(" + who + "To" + who
                         + "Prop)=client was not found");
                 pass = false;
             }
             if (calls.indexOf(who + contextType + "Handler2.MessageContext.put(" + who
-                            + "To" + who + "Prop,clientOUTBOUNDClient" + contextType
-                            + "Handler2)")
-                    == -1) {
+                    + "To" + who + "Prop,clientOUTBOUNDClient" + contextType
+                    + "Handler2)") == -1) {
                 TestUtil.logErr(who + contextType + "Handler2.MessageContext.put(" + who
                         + "To" + who + "Prop,clientOUTBOUNDClient" + contextType
                         + "Handler2) was not found");
                 pass = false;
             }
             if (calls.indexOf(who + contextType + "Handler2.MessageContext.setPropertyScope(" + who + "To" + who
-                            + "Prop,APPLICATION)")
-                    == -1) {
+                    + "Prop,APPLICATION)") == -1) {
                 TestUtil.logErr(who + contextType + "Handler2.MessageContext.setPropertyScope(" + who + "To" + who
                         + "Prop,APPLICATION) was not found");
                 pass = false;
             }
         } else {
             if (calls.indexOf(who + contextType
-                            + "Handler2.MessageContext.put(Handler" + who
-                            + "HandlerProp,INBOUNDServer" + contextType + "Handler2)")
-                    == -1) {
+                    + "Handler2.MessageContext.put(Handler" + who
+                    + "HandlerProp,INBOUNDServer" + contextType + "Handler2)") == -1) {
                 TestUtil.logErr(who + contextType + "Handler2.MessageContext.put("
                         + "Handler" + who + "HandlerProp,INBOUNDServer" + contextType
                         + "Handler2) was not found");
                 pass = false;
             }
             if (calls.indexOf(who + contextType + "Handler2.MessageContext.setPropertyScope(Handler" + who
-                            + "HandlerProp,APPLICATION)")
-                    == -1) {
+                    + "HandlerProp,APPLICATION)") == -1) {
                 TestUtil.logErr(who + contextType + "Handler2.MessageContext.setPropertyScope(" + "Handler" + who
                         + "HandlerProp,APPLICATION) was not found");
                 pass = false;
@@ -1214,36 +1200,32 @@ public final class Handler_Util {
         }
 
         if (calls.indexOf(who + contextType
-                        + "Handler3.MessageContext.getProperty(OUTBOUND" + who + contextType
-                        + "CrossHandlerPropSetByHandler1)=SetByHandler1")
-                == -1) {
+                + "Handler3.MessageContext.getProperty(OUTBOUND" + who + contextType
+                + "CrossHandlerPropSetByHandler1)=SetByHandler1") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler3.MessageContext.getProperty(OUTBOUND" + who + contextType
                     + "CrossHandlerPropSetByHandler1)=SetByHandler1 was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType
-                        + "Handler3.MessageContext.getProperty(OUTBOUND" + who + contextType
-                        + "MessageScopeAppPropSetByHandler1)=SetByHandler1")
-                == -1) {
+                + "Handler3.MessageContext.getProperty(OUTBOUND" + who + contextType
+                + "MessageScopeAppPropSetByHandler1)=SetByHandler1") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler3.MessageContext.getProperty(OUTBOUND" + who + contextType
                     + "MessageScopeAppPropSetByHandler1)=SetByHandler1 was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType
-                        + "Handler3.MessageContext.getProperty(OUTBOUND" + who + contextType
-                        + "MessageScopeHandlerPropSetByHandler1)=SetByHandler1")
-                == -1) {
+                + "Handler3.MessageContext.getProperty(OUTBOUND" + who + contextType
+                + "MessageScopeHandlerPropSetByHandler1)=SetByHandler1") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler3.MessageContext.getProperty(OUTBOUND" + who + contextType
                     + "MessageScopeHandlerPropSetByHandler1)=SetByHandler1 was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType
-                        + "Handler3.MessageContext.getPropertyScope(OUTBOUND" + who
-                        + contextType + "CrossHandlerPropSetByHandler1)=HANDLER")
-                == -1) {
+                + "Handler3.MessageContext.getPropertyScope(OUTBOUND" + who
+                + contextType + "CrossHandlerPropSetByHandler1)=HANDLER") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler3.MessageContext.getPropertyScope(OUTBOUND" + who
                     + contextType
@@ -1251,9 +1233,8 @@ public final class Handler_Util {
             pass = false;
         }
         if (calls.indexOf(who + contextType + "Handler3.MessageContext.getPropertyScope(OUTBOUND"
-                        + who + contextType
-                        + "MessageScopeAppPropSetByHandler1)=APPLICATION")
-                == -1) {
+                + who + contextType
+                + "MessageScopeAppPropSetByHandler1)=APPLICATION") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler3.MessageContext.getPropertyScope(OUTBOUND" + who
                     + contextType
@@ -1261,9 +1242,8 @@ public final class Handler_Util {
             pass = false;
         }
         if (calls.indexOf(who + contextType + "Handler3.MessageContext.getPropertyScope(OUTBOUND"
-                        + who + contextType
-                        + "MessageScopeHandlerPropSetByHandler1)=HANDLER")
-                == -1) {
+                + who + contextType
+                + "MessageScopeHandlerPropSetByHandler1)=HANDLER") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler3.MessageContext.getPropertyScope(OUTBOUND" + who
                     + contextType
@@ -1272,27 +1252,24 @@ public final class Handler_Util {
         }
 
         if (calls.indexOf(who + contextType + "Handler3.MessageContext.put(INBOUND"
-                        + who + contextType
-                        + "CrossHandlerPropSetByHandler3,SetByHandler3)")
-                == -1) {
+                + who + contextType
+                + "CrossHandlerPropSetByHandler3,SetByHandler3)") == -1) {
             TestUtil.logErr(who + contextType + "Handler3.MessageContext.put(OUTBOUND"
                     + who + contextType
                     + "CrossHandlerPropSetByHandler3,SetByHandler3) was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType + "Handler3.MessageContext.put(INBOUND"
-                        + who + contextType
-                        + "MessageScopeAppPropSetByHandler3,SetByHandler3)")
-                == -1) {
+                + who + contextType
+                + "MessageScopeAppPropSetByHandler3,SetByHandler3)") == -1) {
             TestUtil.logErr(who + contextType + "Handler3.MessageContext.put(OUTBOUND"
                     + who + contextType
                     + "MessageScopeAppPropSetByHandler3,SetByHandler3) was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType
-                        + "Handler3.MessageContext.setPropertyScope(INBOUND" + who + contextType
-                        + "MessageScopeAppPropSetByHandler3,APPLICATION)")
-                == -1) {
+                + "Handler3.MessageContext.setPropertyScope(INBOUND" + who + contextType
+                + "MessageScopeAppPropSetByHandler3,APPLICATION)") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler3.MessageContext.setPropertyScope(OUTBOUND" + who
                     + contextType
@@ -1300,18 +1277,16 @@ public final class Handler_Util {
             pass = false;
         }
         if (calls.indexOf(who + contextType + "Handler3.MessageContext.put(INBOUND"
-                        + who + contextType
-                        + "MessageScopeHandlerPropSetByHandler3,SetByHandler3)")
-                == -1) {
+                + who + contextType
+                + "MessageScopeHandlerPropSetByHandler3,SetByHandler3)") == -1) {
             TestUtil.logErr(who + contextType + "Handler3.MessageContext.put(OUTBOUND"
                     + who + contextType
                     + "MessageScopeHandlerPropSetByHandler3,SetByHandler3) was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType
-                        + "Handler3.MessageContext.setPropertyScope(INBOUND" + who + contextType
-                        + "MessageScopeHandlerPropSetByHandler3,HANDLER)")
-                == -1) {
+                + "Handler3.MessageContext.setPropertyScope(INBOUND" + who + contextType
+                + "MessageScopeHandlerPropSetByHandler3,HANDLER)") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler3.MessageContext.setPropertyScope(OUTBOUND" + who
                     + contextType
@@ -1320,18 +1295,16 @@ public final class Handler_Util {
         }
         if (who.equals("Client")) {
             if (calls.indexOf(who + contextType
-                            + "Handler2.MessageContext.getProperty(" + who + "To" + who
-                            + "Prop)=clientOUTBOUNDClient" + contextType + "Handler2")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(" + who + "To" + who
+                    + "Prop)=clientOUTBOUNDClient" + contextType + "Handler2") == -1) {
                 TestUtil.logErr(who + contextType + "Handler2.MessageContext.getProperty("
                         + who + "To" + who + "Prop)=clientOUTBOUNDClient" + contextType
                         + "Handler2 was not found");
                 pass = false;
             }
             if (calls.indexOf(who + contextType + "Handler2.MessageContext.put(" + who
-                            + "To" + who + "Prop,clientOUTBOUNDClient" + contextType
-                            + "Handler2INBOUNDClient" + contextType + "Handler2)")
-                    == -1) {
+                    + "To" + who + "Prop,clientOUTBOUNDClient" + contextType
+                    + "Handler2INBOUNDClient" + contextType + "Handler2)") == -1) {
                 TestUtil.logErr(who + contextType + "Handler2.MessageContext.put(" + who
                         + "To" + who + "Prop,clientOUTBOUNDClient" + contextType
                         + "Handler2INBOUNDClient" + contextType
@@ -1339,18 +1312,16 @@ public final class Handler_Util {
                 pass = false;
             }
             if (calls.indexOf(who + contextType + "Handler2.MessageContext.setPropertyScope(" + who + "To" + who
-                            + "Prop,APPLICATION)")
-                    == -1) {
+                    + "Prop,APPLICATION)") == -1) {
                 TestUtil.logErr(who + contextType + "Handler2.MessageContext.setPropertyScope(" + who + "To" + who
                         + "Prop,APPLICATION) was not found");
                 pass = false;
             }
         } else {
             if (calls.indexOf(who + contextType
-                            + "Handler2.MessageContext.put(Handler" + who
-                            + "HandlerProp,INBOUNDServer" + contextType
-                            + "Handler2serverOUTBOUNDServer" + contextType + "Handler2)")
-                    == -1) {
+                    + "Handler2.MessageContext.put(Handler" + who
+                    + "HandlerProp,INBOUNDServer" + contextType
+                    + "Handler2serverOUTBOUNDServer" + contextType + "Handler2)") == -1) {
                 TestUtil.logErr(who + contextType + "Handler2.MessageContext.put("
                         + "Handler" + who + "HandlerProp,INBOUNDServer" + contextType
                         + "Handler2serverOUTBOUNDServer" + contextType
@@ -1358,8 +1329,7 @@ public final class Handler_Util {
                 pass = false;
             }
             if (calls.indexOf(who + contextType + "Handler2.MessageContext.setPropertyScope(Handler" + who
-                            + "HandlerProp,APPLICATION)")
-                    == -1) {
+                    + "HandlerProp,APPLICATION)") == -1) {
                 TestUtil.logErr(who + contextType + "Handler2.MessageContext.setPropertyScope(" + "Handler" + who
                         + "HandlerProp,APPLICATION) was not found");
                 pass = false;
@@ -1367,54 +1337,48 @@ public final class Handler_Util {
         }
 
         if (calls.indexOf(who + contextType
-                        + "Handler1.MessageContext.getProperty(INBOUND" + who + contextType
-                        + "CrossHandlerPropSetByHandler3)=SetByHandler3")
-                == -1) {
+                + "Handler1.MessageContext.getProperty(INBOUND" + who + contextType
+                + "CrossHandlerPropSetByHandler3)=SetByHandler3") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler1.MessageContext.getProperty(INBOUND" + who + contextType
                     + "CrossHandlerPropSetByHandler3)=SetByHandler3 was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType
-                        + "Handler1.MessageContext.getProperty(INBOUND" + who + contextType
-                        + "MessageScopeAppPropSetByHandler3)=SetByHandler3")
-                == -1) {
+                + "Handler1.MessageContext.getProperty(INBOUND" + who + contextType
+                + "MessageScopeAppPropSetByHandler3)=SetByHandler3") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler1.MessageContext.getProperty(INBOUND" + who + contextType
                     + "MessageScopeAppPropSetByHandler3)=SetByHandler3 was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType
-                        + "Handler1.MessageContext.getProperty(INBOUND" + who + contextType
-                        + "MessageScopeHandlerPropSetByHandler3)=SetByHandler3")
-                == -1) {
+                + "Handler1.MessageContext.getProperty(INBOUND" + who + contextType
+                + "MessageScopeHandlerPropSetByHandler3)=SetByHandler3") == -1) {
             TestUtil.logErr(who + contextType
                     + "Handler1.MessageContext.getProperty(INBOUND" + who + contextType
                     + "MessageScopeHandlerPropSetByHandler3)=SetByHandler3 was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType
-                        + "Handler1.MessageContext.getPropertyScope(INBOUND" + who + contextType
-                        + "CrossHandlerPropSetByHandler3)=HANDLER")
-                == -1) {
+                + "Handler1.MessageContext.getPropertyScope(INBOUND" + who + contextType
+                + "CrossHandlerPropSetByHandler3)=HANDLER") == -1) {
             TestUtil.logErr(who + contextType + "Handler1.MessageContext.getPropertyScope(INBOUND"
                     + who + contextType
                     + "CrossHandlerPropSetByHandler3)=HANDLER was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType
-                        + "Handler1.MessageContext.getPropertyScope(INBOUND" + who + contextType
-                        + "MessageScopeAppPropSetByHandler3)=APPLICATION")
-                == -1) {
+                + "Handler1.MessageContext.getPropertyScope(INBOUND" + who + contextType
+                + "MessageScopeAppPropSetByHandler3)=APPLICATION") == -1) {
             TestUtil.logErr(who + contextType + "Handler1.MessageContext.getPropertyScope(INBOUND"
                     + who + contextType
                     + "MessageScopeAppPropSetByHandler3)=APPLICATION was not found");
             pass = false;
         }
         if (calls.indexOf(who + contextType
-                        + "Handler1.MessageContext.getPropertyScope(INBOUND" + who + contextType
-                        + "MessageScopeHandlerPropSetByHandler3)=HANDLER")
-                == -1) {
+                + "Handler1.MessageContext.getPropertyScope(INBOUND" + who + contextType
+                + "MessageScopeHandlerPropSetByHandler3)=HANDLER") == -1) {
             TestUtil.logErr(who + contextType + "Handler1.MessageContext.getPropertyScope(INBOUND"
                     + who + contextType
                     + "MessageScopeHandlerPropSetByHandler3)=HANDLER was not found");
@@ -1436,15 +1400,13 @@ public final class Handler_Util {
         JAXWS_Util.dumpList(calls);
 
         if (calls.indexOf(
-                        "Inbound" + who + contextType + "Handler2." + contextType + "MessageContext.getMessage()=null")
-                != -1) {
+                "Inbound" + who + contextType + "Handler2." + contextType + "MessageContext.getMessage()=null") != -1) {
             TestUtil.logErr("Inbound" + who + contextType + "Handler2." + contextType
                     + "MessageContext.getMessage()=null was called");
             pass = false;
         }
         if (calls.indexOf(
-                        "Outbound" + who + contextType + "Handler2." + contextType + "MessageContext.getMessage()=null")
-                != -1) {
+                "Outbound" + who + contextType + "Handler2." + contextType + "MessageContext.getMessage()=null") != -1) {
             TestUtil.logErr("Outbound" + who + contextType + "Handler2." + contextType
                     + "MessageContext.getMessage()=null was called");
             pass = false;
@@ -1452,43 +1414,37 @@ public final class Handler_Util {
 
         if (contextType.equals("SOAP")) {
             if (calls.indexOf("Inbound" + who + contextType + "Handler2." + contextType
-                            + "MessageContext.setMessage() was called")
-                    == -1) {
+                    + "MessageContext.setMessage() was called") == -1) {
                 TestUtil.logErr("Inbound" + who + contextType + "Handler2." + contextType
                         + "MessageContext.setMessage() was not called");
                 pass = false;
             }
             if (calls.indexOf("Inbound" + who + contextType + "Handler2." + contextType
-                            + "MessageContext.getRoles()=null")
-                    != -1) {
+                    + "MessageContext.getRoles()=null") != -1) {
                 TestUtil.logErr("Inbound" + who + contextType + "Handler2." + contextType
                         + "MessageContext.getRoles()=null was called");
                 pass = false;
             }
             if (calls.indexOf("Inbound" + who + contextType + "Handler2." + contextType
-                            + "MessageContext.getHeaders()=||")
-                    == -1) {
+                    + "MessageContext.getHeaders()=||") == -1) {
                 TestUtil.logErr("Inbound" + who + contextType + "Handler2." + contextType
                         + "MessageContext.getHeaders()=|| was not returned");
                 pass = false;
             }
             if (calls.indexOf("Outbound" + who + contextType + "Handler2." + contextType
-                            + "MessageContext.setMessage() was called")
-                    == -1) {
+                    + "MessageContext.setMessage() was called") == -1) {
                 TestUtil.logErr("Outbound" + who + contextType + "Handler2." + contextType
                         + "MessageContext.setMessage() was not called");
                 pass = false;
             }
             if (calls.indexOf("Outbound" + who + contextType + "Handler2." + contextType
-                            + "MessageContext.getRoles()=null")
-                    != -1) {
+                    + "MessageContext.getRoles()=null") != -1) {
                 TestUtil.logErr("Outbound" + who + contextType + "Handler2." + contextType
                         + "MessageContext.getRoles()=null was called");
                 pass = false;
             }
             if (calls.indexOf("Outbound" + who + contextType + "Handler2." + contextType
-                            + "MessageContext.getHeaders()=||")
-                    == -1) {
+                    + "MessageContext.getHeaders()=||") == -1) {
                 TestUtil.logErr("Outbound" + who + contextType + "Handler2." + contextType
                         + "MessageContext.getHeaders()=|| was not returned");
                 pass = false;
@@ -1511,42 +1467,38 @@ public final class Handler_Util {
         if (who.equals("Client")) {
 
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "OutboundClient" + contextType
-                                    + "Handler2.MessageContext.getProperty(" + contextType
-                                    + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)")
-                    == -1) {
+                    calls,
+                    "OutboundClient" + contextType
+                            + "Handler2.MessageContext.getProperty(" + contextType
+                            + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)") == -1) {
                 TestUtil.logErr("OutboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[0] - expected attachment was not found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "OutboundClient" + contextType
-                                    + "Handler2.MessageContext.getProperty(" + contextType
-                                    + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1]")
-                    != -1) {
+                    calls,
+                    "OutboundClient" + contextType
+                            + "Handler2.MessageContext.getProperty(" + contextType
+                            + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1]") != -1) {
                 TestUtil.logErr("OutboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1] - an unexpected attachment was found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "OutboundClient" + contextType
-                                    + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[0]")
-                    == -1) {
+                    calls,
+                    "OutboundClient" + contextType
+                            + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[0]") == -1) {
                 TestUtil.logErr(
                         "OutboundClient" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[0] - expected attachment was not found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "OutboundClient" + contextType
-                                    + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1]")
-                    != -1) {
+                    calls,
+                    "OutboundClient" + contextType
+                            + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1]") != -1) {
                 TestUtil.logErr(
                         "OutboundClient" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1] - an unexpected attachment was found");
@@ -1554,108 +1506,96 @@ public final class Handler_Util {
                 pass = false;
             }
             if (calls.indexOf("OutboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.HTTP_RESPONSE_HEADERS)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.HTTP_RESPONSE_HEADERS)=null") == -1) {
                 TestUtil.logErr("OutboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.HTTP_RESPONSE_HEADERS)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("OutboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_HEADERS)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_HEADERS)=null") == -1) {
                 TestUtil.logErr(
                         "OutboundClient" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_HEADERS)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("OutboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_REQUEST)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.SERVLET_REQUEST)=null") == -1) {
                 TestUtil.logErr("OutboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_REQUEST)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("OutboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null") == -1) {
                 TestUtil.logErr("OutboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("OutboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_RESPONSE)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.SERVLET_RESPONSE)=null") == -1) {
                 TestUtil.logErr("OutboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_RESPONSE)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("OutboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null") == -1) {
                 TestUtil.logErr("OutboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("OutboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_CONTEXT)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.SERVLET_CONTEXT)=null") == -1) {
                 TestUtil.logErr("OutboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_CONTEXT)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("OutboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null") == -1) {
                 TestUtil.logErr("OutboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null was not found");
                 pass = false;
             }
 
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "InboundClient" + contextType + "Handler2.MessageContext.getProperty("
-                                    + contextType
-                                    + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0]")
-                    == -1) {
+                    calls,
+                    "InboundClient" + contextType + "Handler2.MessageContext.getProperty("
+                            + contextType
+                            + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0]") == -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0] - expected attachment was not found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "InboundClient" + contextType + "Handler2.MessageContext.getProperty("
-                                    + contextType
-                                    + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1]")
-                    != -1) {
+                    calls,
+                    "InboundClient" + contextType + "Handler2.MessageContext.getProperty("
+                            + contextType
+                            + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1]") != -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1] - an unexpected attachment was found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "InboundClient" + contextType
-                                    + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0]")
-                    == -1) {
+                    calls,
+                    "InboundClient" + contextType
+                            + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0]") == -1) {
                 TestUtil.logErr(
                         "InboundClient" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0] - expected attachment was not found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "InboundClient" + contextType
-                                    + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1]")
-                    != -1) {
+                    calls,
+                    "InboundClient" + contextType
+                            + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1]") != -1) {
                 TestUtil.logErr(
                         "InboundClient" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1] - an unexpected attachment was found");
@@ -1663,94 +1603,82 @@ public final class Handler_Util {
             }
 
             if (calls.indexOf("InboundClient" + contextType + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.HTTP_RESPONSE_CODE)=200")
-                    == -1) {
+                    + "MessageContext.HTTP_RESPONSE_CODE)=200") == -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.HTTP_RESPONSE_CODE)=200 was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_CODE)=200")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_CODE)=200") == -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_CODE)=200 was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.HTTP_REQUEST_HEADERS)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.HTTP_REQUEST_HEADERS)=null") == -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.HTTP_REQUEST_HEADERS)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_HEADERS)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_HEADERS)=null") == -1) {
                 TestUtil.logErr(
                         "InboundClient" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_HEADERS)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.HTTP_RESPONSE_HEADERS)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.HTTP_RESPONSE_HEADERS)=null") != -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.HTTP_RESPONSE_HEADERS)=null was found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_HEADERS)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_HEADERS)=null") != -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_HEADERS)=null was found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_REQUEST)=null")
-                    == -1) {
+                    + "MessageContext.SERVLET_REQUEST)=null") == -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_REQUEST)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null") == -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_RESPONSE)=null")
-                    == -1) {
+                    + "MessageContext.SERVLET_RESPONSE)=null") == -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_RESPONSE)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null") == -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_CONTEXT)=null")
-                    == -1) {
+                    + "MessageContext.SERVLET_CONTEXT)=null") == -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_CONTEXT)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundClient" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null") == -1) {
                 TestUtil.logErr("InboundClient" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null was not found");
                 pass = false;
@@ -1759,42 +1687,38 @@ public final class Handler_Util {
         } else {
             // server
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "InboundServer" + contextType + "Handler2.MessageContext.getProperty("
-                                    + contextType
-                                    + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0]")
-                    == -1) {
+                    calls,
+                    "InboundServer" + contextType + "Handler2.MessageContext.getProperty("
+                            + contextType
+                            + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0]") == -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0] - expected attachment was not found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "InboundServer" + contextType + "Handler2.MessageContext.getProperty("
-                                    + contextType
-                                    + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1]")
-                    != -1) {
+                    calls,
+                    "InboundServer" + contextType + "Handler2.MessageContext.getProperty("
+                            + contextType
+                            + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1]") != -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1] - an unexpected attachment was found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "InboundServer" + contextType
-                                    + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0]")
-                    == -1) {
+                    calls,
+                    "InboundServer" + contextType
+                            + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0]") == -1) {
                 TestUtil.logErr(
                         "InboundServer" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[0] - expected attachment was not found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "InboundServer" + contextType
-                                    + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1]")
-                    != -1) {
+                    calls,
+                    "InboundServer" + contextType
+                            + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1]") != -1) {
                 TestUtil.logErr(
                         "InboundServer" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.INBOUND_MESSAGE_ATTACHMENTS)=key[1] - an unexpected attachment was found");
@@ -1802,218 +1726,192 @@ public final class Handler_Util {
             }
 
             if (calls.indexOf("InboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.HTTP_REQUEST_METHOD)=POST")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.HTTP_REQUEST_METHOD)=POST") == -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.HTTP_REQUEST_METHOD)=POST was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_METHOD)=POST")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_METHOD)=POST") == -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_METHOD)=POST was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.HTTP_REQUEST_HEADERS)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.HTTP_REQUEST_HEADERS)=null") != -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.HTTP_REQUEST_HEADERS)=null was found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_HEADERS)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_HEADERS)=null") != -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_HEADERS)=null was found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.HTTP_RESPONSE_HEADERS)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.HTTP_RESPONSE_HEADERS)=null") == -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.HTTP_RESPONSE_HEADERS)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_HEADERS)=null")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_HEADERS)=null") == -1) {
                 TestUtil.logErr(
                         "InboundServer" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.HTTP_RESPONSE_HEADERS)=null was not found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_REQUEST)=null")
-                    != -1) {
+                    + "MessageContext.SERVLET_REQUEST)=null") != -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_REQUEST)=null was found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null") != -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null was found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_RESPONSE)=null")
-                    != -1) {
+                    + "MessageContext.SERVLET_RESPONSE)=null") != -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_RESPONSE)=null was found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null") != -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null was found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_CONTEXT)=null")
-                    != -1) {
+                    + "MessageContext.SERVLET_CONTEXT)=null") != -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_CONTEXT)=null was found");
                 pass = false;
             }
             if (calls.indexOf("InboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null") != -1) {
                 TestUtil.logErr("InboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null was found");
                 pass = false;
             }
 
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "OutboundServer" + contextType
-                                    + "Handler2.MessageContext.getProperty(" + contextType
-                                    + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[0]")
-                    == -1) {
+                    calls,
+                    "OutboundServer" + contextType
+                            + "Handler2.MessageContext.getProperty(" + contextType
+                            + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[0]") == -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[0] - expected attachment was not found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "OutboundServer" + contextType
-                                    + "Handler2.MessageContext.getProperty(" + contextType
-                                    + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1]")
-                    != -1) {
+                    calls,
+                    "OutboundServer" + contextType
+                            + "Handler2.MessageContext.getProperty(" + contextType
+                            + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1]") != -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1] - an unexpected attachment was found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "OutboundServer" + contextType
-                                    + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[0]")
-                    == -1) {
+                    calls,
+                    "OutboundServer" + contextType
+                            + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[0]") == -1) {
                 TestUtil.logErr(
                         "OutboundServer" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[0] - expected attachment was not found");
                 pass = false;
             }
             if (JAXWS_Util.looseIndexOf(
-                            calls,
-                            "OutboundServer" + contextType
-                                    + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1]")
-                    != -1) {
+                    calls,
+                    "OutboundServer" + contextType
+                            + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1]") != -1) {
                 TestUtil.logErr(
                         "OutboundServer" + contextType
                                 + "Handler2.MessageContext.getProperty(MessageContext.OUTBOUND_MESSAGE_ATTACHMENTS)=key[1] - an unexpected attachment was found");
                 pass = false;
             }
             if (calls.indexOf("OutboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.HTTP_REQUEST_METHOD)=POST")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.HTTP_REQUEST_METHOD)=POST") == -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.HTTP_REQUEST_METHOD)=POST was not found");
                 pass = false;
             }
             if (calls.indexOf("OutboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_METHOD)=POST")
-                    == -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_METHOD)=POST") == -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_METHOD)=POST was not found");
                 pass = false;
             }
             if (calls.indexOf("OutboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.HTTP_REQUEST_HEADERS)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.HTTP_REQUEST_HEADERS)=null") != -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.HTTP_REQUEST_HEADERS)=null was found");
                 pass = false;
             }
             if (calls.indexOf("OutboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_HEADERS)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_HEADERS)=null") != -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.HTTP_REQUEST_HEADERS)=null was found");
                 pass = false;
             }
             if (calls.indexOf("OutboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_REQUEST)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.SERVLET_REQUEST)=null") != -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_REQUEST)=null was found");
                 pass = false;
             }
             if (calls.indexOf("OutboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null") != -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_REQUEST)=null was found");
                 pass = false;
             }
             if (calls.indexOf("OutboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_RESPONSE)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.SERVLET_RESPONSE)=null") != -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_RESPONSE)=null was found");
                 pass = false;
             }
             if (calls.indexOf("OutboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null") != -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_RESPONSE)=null was found");
                 pass = false;
             }
             if (calls.indexOf("OutboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(" + contextType
-                            + "MessageContext.SERVLET_CONTEXT)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(" + contextType
+                    + "MessageContext.SERVLET_CONTEXT)=null") != -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(" + contextType
                         + "MessageContext.SERVLET_CONTEXT)=null was found");
                 pass = false;
             }
             if (calls.indexOf("OutboundServer" + contextType
-                            + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null")
-                    != -1) {
+                    + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null") != -1) {
                 TestUtil.logErr("OutboundServer" + contextType
                         + "Handler2.MessageContext.getProperty(MessageContext.SERVLET_CONTEXT)=null was found");
                 pass = false;
@@ -2690,9 +2588,8 @@ public final class Handler_Util {
                     pass = false;
                 }
                 if (calls.indexOf(who + contextType
-                                + "Handler6 received SOAPFault from Inbound Server" + contextType
-                                + "Handler6")
-                        == -1) {
+                        + "Handler6 received SOAPFault from Inbound Server" + contextType
+                        + "Handler6") == -1) {
                     TestUtil.logErr(who + contextType
                             + "Handler6 received SOAPFault from Inbound Server" + contextType
                             + "Handler6 was not found");
@@ -2716,9 +2613,8 @@ public final class Handler_Util {
                     pass = false;
                 }
                 if (calls.indexOf(who + contextType
-                                + "Handler6 received SOAPFault from Outbound Server" + contextType
-                                + "Handler6")
-                        == -1) {
+                        + "Handler6 received SOAPFault from Outbound Server" + contextType
+                        + "Handler6") == -1) {
                     TestUtil.logErr(who + contextType
                             + "Handler6 received SOAPFault from Outbound Server" + contextType
                             + "Handler6 was not found");

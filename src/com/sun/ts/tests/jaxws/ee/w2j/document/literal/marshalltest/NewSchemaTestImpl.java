@@ -31,12 +31,7 @@ import java.math.BigInteger;
 import java.util.*;
 import javax.xml.datatype.*;
 
-@WebService(
-        targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl",
-        portName = "MarshallTestPort2",
-        serviceName = "MarshallTestService",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLMarshallTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.NewSchemaTest")
+@WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort2", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JDLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.NewSchemaTest")
 public class NewSchemaTestImpl implements NewSchemaTest {
 
     public FooStringResponse fooFaultTest(FooStringRequest fooRequest) throws FooFault {
@@ -394,7 +389,8 @@ public class NewSchemaTestImpl implements NewSchemaTest {
             System.err.println("getFooM() returned " + f.getFooM() + ", expected hello,there");
             valid = false;
         }
-        if (!compareFooAnonymousTypeData(f.getFooN(), FooAnonymousType_data)) valid = false;
+        if (!compareFooAnonymousTypeData(f.getFooN(), FooAnonymousType_data))
+            valid = false;
         return valid;
     }
 
@@ -472,7 +468,8 @@ public class NewSchemaTestImpl implements NewSchemaTest {
                     valid = false;
                     TestUtil.logErr("Element results mismatch ...");
                     break;
-                } else TestUtil.logMsg("Element results match ...");
+                } else
+                    TestUtil.logMsg("Element results match ...");
             }
         } else {
             TestUtil.logErr("Array length mismatch - expected: " + req.length + ", received: " + res.length);

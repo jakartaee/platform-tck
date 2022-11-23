@@ -62,8 +62,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:105;
      *
-     * @test_Strategy: Send a binary message, returning when all of the message
-     * has been transmitted.
+     * @test_Strategy: Send a binary message, returning when all of the message has been transmitted.
      */
     public void sendBinaryOnServerTest() throws Fault {
         sendOnServer(OPS.SENDBINARY);
@@ -74,8 +73,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:107;
      *
-     * @test_Strategy: Send a binary message, returning when all of the message
-     * has been transmitted.
+     * @test_Strategy: Send a binary message, returning when all of the message has been transmitted.
      */
     public void sendBinaryOnClientTest() throws Fault {
         sendOnClient(OPS.SENDBINARY);
@@ -86,8 +84,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:107;
      *
-     * @test_Strategy: Send a binary message, returning when all of the message
-     * has been transmitted.
+     * @test_Strategy: Send a binary message, returning when all of the message has been transmitted.
      */
     public void sendBinaryPartialOnServerTest() throws Fault {
         sendOnServer(
@@ -100,8 +97,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:105;
      *
-     * @test_Strategy: Send a binary message, returning when all of the message
-     * has been transmitted.
+     * @test_Strategy: Send a binary message, returning when all of the message has been transmitted.
      */
     public void sendBinaryPartialOnClientTest() throws Fault {
         sendOnClient(
@@ -136,8 +132,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectOnServerTest() throws Fault {
         sendOnServer(OPS.SENDOBJECT);
@@ -148,8 +143,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectOnClientTest() throws Fault {
         sendOnClient(OPS.SENDOBJECT);
@@ -160,8 +154,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectBooleanOnServerTest() throws Fault {
         sendOnServer(OPS.SENDOBJECT_BOOL, false);
@@ -172,8 +165,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectBooleanOnClientTest() throws Fault {
         sendOnClient(OPS.SENDOBJECT_BOOL, String.valueOf(false));
@@ -184,8 +176,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectByteOnServerTest() throws Fault {
         sendOnServer(OPS.SENDOBJECT_BYTE, -100);
@@ -196,8 +187,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectByteOnClientTest() throws Fault {
         sendOnClient(OPS.SENDOBJECT_BYTE, "-100");
@@ -208,8 +198,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectCharOnServerTest() throws Fault {
         sendOnServer(OPS.SENDOBJECT_CHAR, String.valueOf((char) 106));
@@ -220,8 +209,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectCharOnClientTest() throws Fault {
         sendOnClient(OPS.SENDOBJECT_CHAR, String.valueOf((char) 106));
@@ -232,8 +220,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectDoubleOnServerTest() throws Fault {
         sendOnServer(OPS.SENDOBJECT_DOUBLE, -105d);
@@ -244,8 +231,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectDoubleOnClientTest() throws Fault {
         sendOnClient(OPS.SENDOBJECT_DOUBLE, "-105");
@@ -256,8 +242,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectFloatOnServerTest() throws Fault {
         sendOnServer(OPS.SENDOBJECT_FLOAT, -104f);
@@ -268,8 +253,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectFloatOnClientTest() throws Fault {
         sendOnClient(OPS.SENDOBJECT_FLOAT, "-104");
@@ -280,8 +264,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectIntOnServerTest() throws Fault {
         sendOnServer(OPS.SENDOBJECT_INT, -102);
@@ -292,8 +275,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectIntOnClientTest() throws Fault {
         sendOnClient(OPS.SENDOBJECT_INT, "-102");
@@ -304,8 +286,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectLongOnServerTest() throws Fault {
         sendOnServer(OPS.SENDOBJECT_LONG, -103L);
@@ -316,8 +297,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectLongOnClientTest() throws Fault {
         sendOnClient(OPS.SENDOBJECT_LONG, "-103");
@@ -328,8 +308,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectShortOnServerTest() throws Fault {
         sendOnServer(OPS.SENDOBJECT_SHORT, -101);
@@ -340,8 +319,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:109;
      *
-     * @test_Strategy: Sends a custom developer object, blocking until it has been
-     * transmitted.
+     * @test_Strategy: Sends a custom developer object, blocking until it has been transmitted.
      */
     public void sendObjectShortOnClientTest() throws Fault {
         sendOnClient(OPS.SENDOBJECT_SHORT, "-101");
@@ -374,8 +352,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:111;
      *
-     * @test_Strategy: Throws: EncodeException - if there was a problem encoding
-     * the message object into the form of a native websocket message
+     * @test_Strategy: Throws: EncodeException - if there was a problem encoding the message object into the form of a
+     * native websocket message
      */
     public void sendObjectThrowsEncodeExceptionOnServerTest() throws Fault {
         invoke("server", OPS.SENDOBJECTTHROWSENCODEEEXCEPTION.name(), RESPONSE[0]);
@@ -386,8 +364,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:111;
      *
-     * @test_Strategy: Throws: EncodeException - if there was a problem encoding
-     * the message object into the form of a native websocket message
+     * @test_Strategy: Throws: EncodeException - if there was a problem encoding the message object into the form of a
+     * native websocket message
      */
     public void sendObjectThrowsEncodeExceptionOnClientTest() throws Fault {
         sendOnClientThrowsException(OPS.SENDOBJECTTHROWSENCODEEEXCEPTION, "EncodeException");
@@ -398,8 +376,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:112;
      *
-     * @test_Strategy: Send a text message, blocking until all of the message has
-     * been transmitted.
+     * @test_Strategy: Send a text message, blocking until all of the message has been transmitted.
      */
     public void sendTextOnServerTest() throws Fault {
         sendOnServer(OPS.SENDTEXT);
@@ -410,8 +387,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:114;
      *
-     * @test_Strategy: Send a text message, blocking until all of the message has
-     * been transmitted.
+     * @test_Strategy: Send a text message, blocking until all of the message has been transmitted.
      */
     public void sendTextOnClientTest() throws Fault {
         sendOnClient(OPS.SENDTEXT);
@@ -422,8 +398,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:114;
      *
-     * @test_Strategy: Send a text message, blocking until all of the message has
-     * been transmitted.
+     * @test_Strategy: Send a text message, blocking until all of the message has been transmitted.
      */
     public void sendTextPartialOnServerTest() throws Fault {
         sendOnServer(OPS.SENDTEXTPART1, OPS.SENDTEXTPART1.name() + OPS.SENDTEXTPART2.name() + OPS.SENDTEXTPART3.name());
@@ -434,8 +409,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:112;
      *
-     * @test_Strategy: Send a text message, blocking until all of the message has
-     * been transmitted.
+     * @test_Strategy: Send a text message, blocking until all of the message has been transmitted.
      */
     public void sendTextPartialOnClientTest() throws Fault {
         sendOnClient(OPS.SENDTEXTPART1, OPS.SENDTEXTPART1.name() + OPS.SENDTEXTPART2.name() + OPS.SENDTEXTPART3.name());
@@ -468,9 +442,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:101;
      *
-     * @test_Strategy: Opens an output stream on which a binary message may be
-     * sent. The developer must close the output stream in order to indicate that
-     * the complete message has been placed into the output stream.
+     * @test_Strategy: Opens an output stream on which a binary message may be sent. The developer must close the output
+     * stream in order to indicate that the complete message has been placed into the output stream.
      */
     public void getSendStreamOnServerTest() throws Fault {
         sendOnServer(OPS.SENDSTREAM);
@@ -481,9 +454,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:101;
      *
-     * @test_Strategy: Opens an output stream on which a binary message may be
-     * sent. The developer must close the output stream in order to indicate that
-     * the complete message has been placed into the output stream.
+     * @test_Strategy: Opens an output stream on which a binary message may be sent. The developer must close the output
+     * stream in order to indicate that the complete message has been placed into the output stream.
      */
     public void getSendStreamOnClientTest() throws Fault {
         sendOnClient(OPS.SENDSTREAM);
@@ -494,9 +466,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:103;
      *
-     * @test_Strategy: Opens an output stream on which a binary message may be
-     * sent. The developer must close the writer in order to indicate that the
-     * complete message has been placed into the character stream.
+     * @test_Strategy: Opens an output stream on which a binary message may be sent. The developer must close the writer in
+     * order to indicate that the complete message has been placed into the character stream.
      */
     public void getSendWriterOnServerTest() throws Fault {
         sendOnServer(OPS.SENDWRITER);
@@ -507,9 +478,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:103;
      *
-     * @test_Strategy: Opens an output stream on which a binary message may be
-     * sent. The developer must close the writer in order to indicate that the
-     * complete message has been placed into the character stream.
+     * @test_Strategy: Opens an output stream on which a binary message may be sent. The developer must close the writer in
+     * order to indicate that the complete message has been placed into the character stream.
      */
     public void getSendWriterOnClientTest() throws Fault {
         sendOnClient(OPS.SENDWRITER);
@@ -520,8 +490,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:84;WebSocket:JAVADOC:91;
      *
-     * @test_Strategy: calls setBatchingAllowed(!getBatchingAllowed()) and checks
-     * no exception is thrown
+     * @test_Strategy: calls setBatchingAllowed(!getBatchingAllowed()) and checks no exception is thrown
      */
     public void batchingAllowedOnServerTest() throws Fault {
         sendOnServer(OPS.BATCHING_ALLOWED);
@@ -532,8 +501,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:84;WebSocket:JAVADOC:91;
      *
-     * @test_Strategy: calls setBatchingAllowed(!getBatchingAllowed()) and checks
-     * no exception is thrown
+     * @test_Strategy: calls setBatchingAllowed(!getBatchingAllowed()) and checks no exception is thrown
      */
     public void batchingAllowedOnClientTest() throws Fault {
         sendOnClient(OPS.BATCHING_ALLOWED);
@@ -544,9 +512,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:85;
      *
-     * @test_Strategy: Send a Ping message containing the given application data
-     * to the remote endpoint. The corresponding Pong message may be picked up
-     * using the MessageHandler.Pong handler
+     * @test_Strategy: Send a Ping message containing the given application data to the remote endpoint. The corresponding
+     * Pong message may be picked up using the MessageHandler.Pong handler
      */
     public void sendPingOnServerTest() throws Fault {
         setCountDownLatchCount(2);
@@ -564,9 +531,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:85;
      *
-     * @test_Strategy: Send a Ping message containing the given application data
-     * to the remote endpoint. The corresponding Pong message may be picked up
-     * using the MessageHandler.Pong handler
+     * @test_Strategy: Send a Ping message containing the given application data to the remote endpoint. The corresponding
+     * Pong message may be picked up using the MessageHandler.Pong handler
      */
     public void sendPingOnClientTest() throws Fault {
         setClientEndpoint(PongMessageClientEndpoint.class);
@@ -576,19 +542,16 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: sendPingDelaysTimoutOnServerTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:85; WebSocket:SPEC:WSC-2.2.5-1;
-     * WebSocket:SPEC:WSC-2.2.5-2;
+     * @assertion_ids: WebSocket:JAVADOC:85; WebSocket:SPEC:WSC-2.2.5-1; WebSocket:SPEC:WSC-2.2.5-2;
      *
-     * @test_Strategy: Allows the developer to send an unsolicited Pong message
-     * containing the given application data in order to serve as a unidirectional
-     * heartbeat for the session.
+     * @test_Strategy: Allows the developer to send an unsolicited Pong message containing the given application data in
+     * order to serve as a unidirectional heartbeat for the session.
      *
-     * if a websocket implementation receives a ping message from a peer, it must
-     * respond as soon as possible to that peer with a pong message containing the
-     * same application data.
+     * if a websocket implementation receives a ping message from a peer, it must respond as soon as possible to that peer
+     * with a pong message containing the same application data.
      *
-     * if the implementation receives a pong message addressed to this endpoint,
-     * it must call that MessageHandler or that annotated message
+     * if the implementation receives a pong message addressed to this endpoint, it must call that MessageHandler or that
+     * annotated message
      */
     public void sendPingDelaysTimoutOnServerTest() throws Fault {
         StringPingMessage ping = new StringPingMessage(OPS.POKE.name());
@@ -609,19 +572,16 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: sendPingDelaysTimoutOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:85; WebSocket:SPEC:WSC-2.2.5-1;
-     * WebSocket:SPEC:WSC-2.2.5-2;
+     * @assertion_ids: WebSocket:JAVADOC:85; WebSocket:SPEC:WSC-2.2.5-1; WebSocket:SPEC:WSC-2.2.5-2;
      *
-     * @test_Strategy: Allows the developer to send an unsolicited Pong message
-     * containing the given application data in order to serve as a unidirectional
-     * heartbeat for the session.
+     * @test_Strategy: Allows the developer to send an unsolicited Pong message containing the given application data in
+     * order to serve as a unidirectional heartbeat for the session.
      *
-     * if a websocket implementation receives a ping message from a peer, it must
-     * respond as soon as possible to that peer with a pong message containing the
-     * same application data.
+     * if a websocket implementation receives a ping message from a peer, it must respond as soon as possible to that peer
+     * with a pong message containing the same application data.
      *
-     * if the implementation receives a pong message addressed to this endpoint,
-     * it must call that MessageHandler or that annotated message
+     * if the implementation receives a pong message addressed to this endpoint, it must call that MessageHandler or that
+     * annotated message
      */
     public void sendPingDelaysTimoutOnClientTest() throws Fault {
         setClientEndpoint(PongMessageClientEndpoint.class);
@@ -641,8 +601,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:87;
      *
-     * @test_Strategy: throws IllegalArgumentException - if the applicationData
-     * exceeds the maximum allowed payload of 125 bytes
+     * @test_Strategy: throws IllegalArgumentException - if the applicationData exceeds the maximum allowed payload of 125
+     * bytes
      */
     public void sendPingThrowsOnServerTest() throws Fault {
         invoke("server", OPS.SEND_PING_THROWS, RESPONSE[0]);
@@ -653,8 +613,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:87;
      *
-     * @test_Strategy: throws IllegalArgumentException - if the applicationData
-     * exceeds the maximum allowed payload of 125 bytes
+     * @test_Strategy: throws IllegalArgumentException - if the applicationData exceeds the maximum allowed payload of 125
+     * bytes
      */
     public void sendPingThrowsOnClientTest() throws Fault {
         sendOnClientThrows(OPS.SEND_PING_THROWS);
@@ -665,9 +625,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:88;
      *
-     * @test_Strategy: Allows the developer to send an unsolicited Pong message
-     * containing the given application data in order to serve as a unidirectional
-     * heartbeat for the session.
+     * @test_Strategy: Allows the developer to send an unsolicited Pong message containing the given application data in
+     * order to serve as a unidirectional heartbeat for the session.
      */
     public void sendPongOnServerTest() throws Fault {
         sendOnServer(OPS.SEND_PONG, OPS.SEND_PONG.name(), PongMessageClientEndpoint.class);
@@ -678,9 +637,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:88;
      *
-     * @test_Strategy: Allows the developer to send an unsolicited Pong message
-     * containing the given application data in order to serve as a unidirectional
-     * heartbeat for the session.
+     * @test_Strategy: Allows the developer to send an unsolicited Pong message containing the given application data in
+     * order to serve as a unidirectional heartbeat for the session.
      */
     public void sendPongOnClientTest() throws Fault {
         sendOnClient(OPS.SEND_PONG);
@@ -691,12 +649,11 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:88; WebSocket:SPEC:WSC-2.2.5-2;
      *
-     * @test_Strategy: Allows the developer to send an unsolicited Pong message
-     * containing the given application data in order to serve as a unidirectional
-     * heartbeat for the session.
+     * @test_Strategy: Allows the developer to send an unsolicited Pong message containing the given application data in
+     * order to serve as a unidirectional heartbeat for the session.
      *
-     * if the implementation receives a pong message addressed to this endpoint,
-     * it must call that MessageHandler or that annotated message
+     * if the implementation receives a pong message addressed to this endpoint, it must call that MessageHandler or that
+     * annotated message
      */
     public void sendPongDelaysTimoutOnServerTest() throws Fault {
         StringPongMessage ping = new StringPongMessage(OPS.POKE.name());
@@ -719,12 +676,11 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:88; WebSocket:SPEC:WSC-2.2.5-2;
      *
-     * @test_Strategy: Allows the developer to send an unsolicited Pong message
-     * containing the given application data in order to serve as a unidirectional
-     * heartbeat for the session.
+     * @test_Strategy: Allows the developer to send an unsolicited Pong message containing the given application data in
+     * order to serve as a unidirectional heartbeat for the session.
      *
-     * if the implementation receives a pong message addressed to this endpoint,
-     * it must call that MessageHandler or that annotated message
+     * if the implementation receives a pong message addressed to this endpoint, it must call that MessageHandler or that
+     * annotated message
      */
     public void sendPongDelaysTimoutOnClientTest() throws Fault {
         setClientEndpoint(PongMessageClientEndpoint.class);
@@ -744,8 +700,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:90;
      *
-     * @test_Strategy: throws IllegalArgumentException - if the applicationData
-     * exceeds the maximum allowed payload of 125 bytes
+     * @test_Strategy: throws IllegalArgumentException - if the applicationData exceeds the maximum allowed payload of 125
+     * bytes
      */
     public void sendPongThrowsOnServerTest() throws Fault {
         invoke("server", OPS.SEND_PONG_THROWS, RESPONSE[0]);
@@ -756,8 +712,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:90;
      *
-     * @test_Strategy: throws IllegalArgumentException - if the applicationData
-     * exceeds the maximum allowed payload of 125 bytes
+     * @test_Strategy: throws IllegalArgumentException - if the applicationData exceeds the maximum allowed payload of 125
+     * bytes
      */
     public void sendPongThrowsOnClientTest() throws Fault {
         sendOnClientThrows(OPS.SEND_PONG_THROWS);
@@ -798,80 +754,80 @@ public class WSClient extends WebSocketCommonClient {
                 String ret = null;
                 String method = null;
                 switch (op) {
-                    case SENDBINARY:
-                        ret = WSCServerSideServer.sendBinary(basicRemote);
-                        method = "sendBinary(ByteBuffer)";
-                        break;
-                    case SENDBINARYPART1:
-                        ret = WSCServerSideServer.sendBinaryPartial(basicRemote);
-                        method = "sendBinary(ByteBuffer, boolean)";
-                        break;
-                    case SENDOBJECT:
-                        ret = WSCServerSideServer.sendObject(basicRemote);
-                        method = "sendObject(Object)";
-                        break;
-                    case SENDOBJECT_BOOL:
-                        ret = WSCServerSideServer.sendObject(basicRemote, boolean.class);
-                        method = "sendObject(boolean)";
-                        break;
-                    case SENDOBJECT_BYTE:
-                        ret = WSCServerSideServer.sendObject(basicRemote, byte.class);
-                        method = "sendObject(byte)";
-                        break;
-                    case SENDOBJECT_CHAR:
-                        ret = WSCServerSideServer.sendObject(basicRemote, char.class);
-                        method = "sendObject(char)";
-                        break;
-                    case SENDOBJECT_DOUBLE:
-                        ret = WSCServerSideServer.sendObject(basicRemote, double.class);
-                        method = "sendObject(double)";
-                        break;
-                    case SENDOBJECT_FLOAT:
-                        ret = WSCServerSideServer.sendObject(basicRemote, float.class);
-                        method = "sendObject(float)";
-                        break;
-                    case SENDOBJECT_INT:
-                        ret = WSCServerSideServer.sendObject(basicRemote, int.class);
-                        method = "sendObject(int)";
-                        break;
-                    case SENDOBJECT_LONG:
-                        ret = WSCServerSideServer.sendObject(basicRemote, long.class);
-                        method = "sendObject(long)";
-                        break;
-                    case SENDOBJECT_SHORT:
-                        ret = WSCServerSideServer.sendObject(basicRemote, short.class);
-                        method = "sendObject(short)";
-                        break;
-                    case SENDTEXT:
-                        ret = WSCServerSideServer.sendText(basicRemote);
-                        method = "sendText(String)";
-                        break;
-                    case SENDTEXTPART1:
-                        ret = WSCServerSideServer.sendTextPartial(basicRemote);
-                        method = "sendText(String, boolean)";
-                        break;
-                    case SENDSTREAM:
-                        ret = WSCServerSideServer.getSendStream(basicRemote);
-                        method = "getSendStream()";
-                        break;
-                    case SENDWRITER:
-                        ret = WSCServerSideServer.getSendWriter(basicRemote);
-                        method = "getSendWriter()";
-                        break;
-                    case BATCHING_ALLOWED:
-                        ret = WSCServerSideServer.batchingAllowed(basicRemote);
-                        method = "setBatchingAllowed(!getBatchingAllowed)";
-                        break;
-                    case SEND_PING:
-                        ret = WSCServerSideServer.sendPing(basicRemote);
-                        method = "sendPing(ByteBuffer)";
-                        break;
-                    case SEND_PONG:
-                        ret = WSCServerSideServer.sendPong(basicRemote);
-                        method = "sendPong(ByteBuffer)";
-                        break;
-                    default:
-                        fault("Method", op, "not implemented");
+                case SENDBINARY:
+                    ret = WSCServerSideServer.sendBinary(basicRemote);
+                    method = "sendBinary(ByteBuffer)";
+                    break;
+                case SENDBINARYPART1:
+                    ret = WSCServerSideServer.sendBinaryPartial(basicRemote);
+                    method = "sendBinary(ByteBuffer, boolean)";
+                    break;
+                case SENDOBJECT:
+                    ret = WSCServerSideServer.sendObject(basicRemote);
+                    method = "sendObject(Object)";
+                    break;
+                case SENDOBJECT_BOOL:
+                    ret = WSCServerSideServer.sendObject(basicRemote, boolean.class);
+                    method = "sendObject(boolean)";
+                    break;
+                case SENDOBJECT_BYTE:
+                    ret = WSCServerSideServer.sendObject(basicRemote, byte.class);
+                    method = "sendObject(byte)";
+                    break;
+                case SENDOBJECT_CHAR:
+                    ret = WSCServerSideServer.sendObject(basicRemote, char.class);
+                    method = "sendObject(char)";
+                    break;
+                case SENDOBJECT_DOUBLE:
+                    ret = WSCServerSideServer.sendObject(basicRemote, double.class);
+                    method = "sendObject(double)";
+                    break;
+                case SENDOBJECT_FLOAT:
+                    ret = WSCServerSideServer.sendObject(basicRemote, float.class);
+                    method = "sendObject(float)";
+                    break;
+                case SENDOBJECT_INT:
+                    ret = WSCServerSideServer.sendObject(basicRemote, int.class);
+                    method = "sendObject(int)";
+                    break;
+                case SENDOBJECT_LONG:
+                    ret = WSCServerSideServer.sendObject(basicRemote, long.class);
+                    method = "sendObject(long)";
+                    break;
+                case SENDOBJECT_SHORT:
+                    ret = WSCServerSideServer.sendObject(basicRemote, short.class);
+                    method = "sendObject(short)";
+                    break;
+                case SENDTEXT:
+                    ret = WSCServerSideServer.sendText(basicRemote);
+                    method = "sendText(String)";
+                    break;
+                case SENDTEXTPART1:
+                    ret = WSCServerSideServer.sendTextPartial(basicRemote);
+                    method = "sendText(String, boolean)";
+                    break;
+                case SENDSTREAM:
+                    ret = WSCServerSideServer.getSendStream(basicRemote);
+                    method = "getSendStream()";
+                    break;
+                case SENDWRITER:
+                    ret = WSCServerSideServer.getSendWriter(basicRemote);
+                    method = "getSendWriter()";
+                    break;
+                case BATCHING_ALLOWED:
+                    ret = WSCServerSideServer.batchingAllowed(basicRemote);
+                    method = "setBatchingAllowed(!getBatchingAllowed)";
+                    break;
+                case SEND_PING:
+                    ret = WSCServerSideServer.sendPing(basicRemote);
+                    method = "sendPing(ByteBuffer)";
+                    break;
+                case SEND_PONG:
+                    ret = WSCServerSideServer.sendPong(basicRemote);
+                    method = "sendPong(ByteBuffer)";
+                    break;
+                default:
+                    fault("Method", op, "not implemented");
                 }
                 assertEquals(RESPONSE[0], ret, method, "did not endup as expected");
                 logMsg(method, "works as expected");
@@ -882,8 +838,7 @@ public class WSClient extends WebSocketCommonClient {
         // Add StringBean encoder just for sendObject methods
         List<Class<? extends Encoder>> list = new LinkedList<>();
         list.add(StringBeanTextEncoder.class);
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().encoders(list).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().encoders(list).build();
         setClientEndpointConfig(config);
 
         invoke("client", "anything", search);
@@ -896,28 +851,28 @@ public class WSClient extends WebSocketCommonClient {
                 String ret = null;
                 String method = null;
                 switch (op) {
-                    case SENDBINARYTHROWS:
-                        ret = WSCServerSideServer.sendBinaryThrows(basicRemote);
-                        method = "sendBinary(ByteBuffer)";
-                        break;
-                    case SENDOBJECTTHROWS:
-                        ret = WSCServerSideServer.sendObjectThrows(basicRemote);
-                        method = "sendObject(Object)";
-                        break;
-                    case SENDTEXTTHROWS:
-                        ret = WSCServerSideServer.sendTextThrows(basicRemote);
-                        method = "sendText(String)";
-                        break;
-                    case SEND_PING_THROWS:
-                        ret = WSCServerSideServer.sendPingThrows(basicRemote);
-                        method = "sendPing(<too_long_message>)";
-                        break;
-                    case SEND_PONG_THROWS:
-                        ret = WSCServerSideServer.sendPongThrows(basicRemote);
-                        method = "sendPong(<too_long_message>)";
-                        break;
-                    default:
-                        fault("Method", op, "not implemented");
+                case SENDBINARYTHROWS:
+                    ret = WSCServerSideServer.sendBinaryThrows(basicRemote);
+                    method = "sendBinary(ByteBuffer)";
+                    break;
+                case SENDOBJECTTHROWS:
+                    ret = WSCServerSideServer.sendObjectThrows(basicRemote);
+                    method = "sendObject(Object)";
+                    break;
+                case SENDTEXTTHROWS:
+                    ret = WSCServerSideServer.sendTextThrows(basicRemote);
+                    method = "sendText(String)";
+                    break;
+                case SEND_PING_THROWS:
+                    ret = WSCServerSideServer.sendPingThrows(basicRemote);
+                    method = "sendPing(<too_long_message>)";
+                    break;
+                case SEND_PONG_THROWS:
+                    ret = WSCServerSideServer.sendPongThrows(basicRemote);
+                    method = "sendPong(<too_long_message>)";
+                    break;
+                default:
+                    fault("Method", op, "not implemented");
                 }
                 assertEquals(RESPONSE[0], ret, method, "does not throw IllegalArgumentException as expected");
                 logMsg(method, "throws IllegalArgumentException as expected");
@@ -939,12 +894,12 @@ public class WSClient extends WebSocketCommonClient {
                 String ret = null;
                 String method = null;
                 switch (op) {
-                    case SENDOBJECTTHROWSENCODEEEXCEPTION:
-                        ret = WSCServerSideServer.sendObjectThrowsEncodeException(basicRemote);
-                        method = "sendObject(Object)";
-                        break;
-                    default:
-                        fault("Method", op, "not implemented");
+                case SENDOBJECTTHROWSENCODEEEXCEPTION:
+                    ret = WSCServerSideServer.sendObjectThrowsEncodeException(basicRemote);
+                    method = "sendObject(Object)";
+                    break;
+                default:
+                    fault("Method", op, "not implemented");
                 }
                 assertEquals(RESPONSE[0], ret, method, "does not throw", exception, "as expected");
                 logMsg(method, "throws", exception, "as expected");
@@ -958,8 +913,7 @@ public class WSClient extends WebSocketCommonClient {
         // Add ThrowingEncoder encoder just for sendObject methods
         List<Class<? extends Encoder>> list = new LinkedList<>();
         list.add(ThrowingEncoder.class);
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().encoders(list).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().encoders(list).build();
         setClientEndpointConfig(config);
         setClientCallback(callback);
         invoke("client", ECHO, ECHO);

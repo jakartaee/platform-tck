@@ -38,8 +38,7 @@ public class Client extends ServiceEETest implements WSIConstants, SOAPRequests 
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -70,8 +69,7 @@ public class Client extends ServiceEETest implements WSIConstants, SOAPRequests 
      *
      * @assertion_ids: WSI:SPEC:R2714
      *
-     * @test_Strategy: Make a request and inspect response to ensure there is no
-     *                 HTTP response body
+     * @test_Strategy: Make a request and inspect response to ensure there is no HTTP response body
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

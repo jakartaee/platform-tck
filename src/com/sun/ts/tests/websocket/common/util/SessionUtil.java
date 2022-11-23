@@ -20,7 +20,8 @@ import java.util.concurrent.TimeUnit;
 
 public class SessionUtil {
 
-    private SessionUtil() {}
+    private SessionUtil() {
+    }
 
     public static void waitUntilClosed(Session session, long timeout, TimeUnit unit) {
         long timeoutMillis = unit.toMillis(timeout);

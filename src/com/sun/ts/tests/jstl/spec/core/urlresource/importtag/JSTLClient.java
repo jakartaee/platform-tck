@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23; JSTL:SPEC:23.1; JSTL:SPEC:23.1.4
      *
-     * @testStrategy: Validate that the 'url' attribute accepts both dynamic and
-     * static values.
+     * @testStrategy: Validate that the 'url' attribute accepts both dynamic and static values.
      */
     public void positiveImportUrlTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveImportUrlTest");
@@ -79,8 +76,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.1.3; JSTL:SPEC:23.1.3.1;
      *
-     * @testStrategy: Validate that resources identified by an absolute URL can be
-     * imported and displayed. This will test absolute URLs for HTTP and FTP
+     * @testStrategy: Validate that resources identified by an absolute URL can be imported and displayed. This will test
+     * absolute URLs for HTTP and FTP
      */
     public void positiveImportAbsUrlTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveImportAbsUrlTest");
@@ -92,9 +89,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.1.1; JSTL:SPEC:23.1.1.1; JSTL:SPEC:23.20.2
      *
-     * @testStrategy: Validate that resources identified by a context-relative
-     * path can be imported and displayed. Also validate that an imported resource
-     * that sets the status to some 2xx value doesn't cause the page to throw an
+     * @testStrategy: Validate that resources identified by a context-relative path can be imported and displayed. Also
+     * validate that an imported resource that sets the status to some 2xx value doesn't cause the page to throw an
      * Exception.
      */
     public void positiveImportCtxRelUrlTest() throws Fault {
@@ -107,9 +103,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.1.1; JSTL:SPEC:23.1.1.2; JSTL:SPEC:23.20.2
      *
-     * @testStrategy: Validate that resources identified by a page-relative path
-     * can be imported and displayed. Also validate that an imported resource that
-     * sets the status to some 2xx value doesn't cause the page to throw an
+     * @testStrategy: Validate that resources identified by a page-relative path can be imported and displayed. Also
+     * validate that an imported resource that sets the status to some 2xx value doesn't cause the page to throw an
      * Exception.
      */
     public void positiveImportPageRelUrlTest() throws Fault {
@@ -122,8 +117,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.3
      *
-     * @testStrategy: Validate that content of the imported resource is associated
-     * with the variable name defined by the 'var' attribute.
+     * @testStrategy: Validate that content of the imported resource is associated with the variable name defined by the
+     * 'var' attribute.
      */
     public void positiveImportVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveImportVarTest");
@@ -133,12 +128,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveImportScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:23.4; JSTL:SPEC:23.4.1; JSTL:SPEC:23.4.2;
-     * JSTL:SPEC:23.4.3; JSTL:SPEC:23.4.4
+     * @assertion_ids: JSTL:SPEC:23.4; JSTL:SPEC:23.4.1; JSTL:SPEC:23.4.2; JSTL:SPEC:23.4.3; JSTL:SPEC:23.4.4
      *
-     * @testStrategy: Validate that the variables defined by 'var' are exported to
-     * the appropriate scope based on the presence or absence of the 'scope'
-     * attribute.
+     * @testStrategy: Validate that the variables defined by 'var' are exported to the appropriate scope based on the
+     * presence or absence of the 'scope' attribute.
      */
     public void positiveImportScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveImportScopeTest");
@@ -150,9 +143,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.1.1.3.1
      *
-     * @testStrategy: Import the content of a JSP via a relative URL. Validate
-     * that Application, Session, Request, and Request Parameters are available to
-     * the target resource.
+     * @testStrategy: Import the content of a JSP via a relative URL. Validate that Application, Session, Request, and
+     * Request Parameters are available to the target resource.
      */
     public void positiveImportRelUrlEnvPropTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveImportRelUrlEnvPropTest");
@@ -166,9 +158,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.1.3.2
      *
-     * @testStrategy: Import the content of a JSP via an absolute URL. Validate
-     * that only the Application (Context) information is available to the target
-     * resource.
+     * @testStrategy: Import the content of a JSP via an absolute URL. Validate that only the Application (Context)
+     * information is available to the target resource.
      */
     public void positiveImportAbsUrlEnvPropTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveImportAbsUrlEnvPropTest");
@@ -182,8 +173,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.5
      *
-     * @testStrategy: Validate that if the charEncoding attribute is set that the
-     * encoding is indeed applied to the imported resource.
+     * @testStrategy: Validate that if the charEncoding attribute is set that the encoding is indeed applied to the imported
+     * resource.
      */
     public void positiveImportCharEncodingTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jstl_core_url_import_web/positiveImportCharEncodingTest.jsp HTTP/1.1");
@@ -197,8 +188,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.18
      *
-     * @testStrategy: Validate that if the charEncoding attribute is null or
-     * empty, the action behaves as if it was not specified.
+     * @testStrategy: Validate that if the charEncoding attribute is null or empty, the action behaves as if it was not
+     * specified.
      */
     public void positiveImportCharEncodingNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveImportCharEncodingNullEmptyTest");
@@ -210,8 +201,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:25
      *
-     * @testStrategy: Validate the import action can properly handle nested param
-     * subtags within the body content.
+     * @testStrategy: Validate the import action can properly handle nested param subtags within the body content.
      */
     public void positiveImportBodyParamTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveImportBodyParamTest");
@@ -223,10 +213,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.6; JSTL:SPEC:23.6.1; JSTL:SPEC:23.6.2
      *
-     * @testStrategy: Validate the following with varReader: - the type of the
-     * exported variable (java.io.Reader). - the visibility of the exported
-     * variable during - and after the import action completed (variable is not
-     * visible after action completes).
+     * @testStrategy: Validate the following with varReader: - the type of the exported variable (java.io.Reader). - the
+     * visibility of the exported variable during - and after the import action completed (variable is not visible after
+     * action completes).
      */
     public void positiveImportVarReaderTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveImportVarReaderTest");
@@ -238,8 +227,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.1.3.3
      *
-     * @testStrategy: Validate that if the imported absolute resource sends a
-     * redirect, the action properly follows the redirect and imports the target.
+     * @testStrategy: Validate that if the imported absolute resource sends a redirect, the action properly follows the
+     * redirect and imports the target.
      */
     public void positiveImportFollowRedirectTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveImportFollowRedirectTest");
@@ -251,8 +240,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.2.4
      *
-     * @testStrategy: Validate that if context is provided an invalid value
-     * (content root without a leading slash) an Exception is thrown.
+     * @testStrategy: Validate that if context is provided an invalid value (content root without a leading slash) an
+     * Exception is thrown.
      */
     public void negativeImportCtxInvalidValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeImportCtxInvalidValueTest");
@@ -264,9 +253,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.2.3
      *
-     * @testStrategy: Validate that if context is specified, and the url attribute
-     * is provided an incorrect value (a path with no leading slash), an Exception
-     * is thrown.
+     * @testStrategy: Validate that if context is specified, and the url attribute is provided an incorrect value (a path
+     * with no leading slash), an Exception is thrown.
      */
     public void negativeImportCtxUrlInvalidValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeImportCtxUrlInvalidValueTest");
@@ -278,8 +266,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.15
      *
-     * @testStrategy: Validate that if the value of url is null, a
-     * jakarta.servlet.jsp.JspException is thrown.
+     * @testStrategy: Validate that if the value of url is null, a jakarta.servlet.jsp.JspException is thrown.
      */
     public void negativeImportUrlNullTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeImportUrlNullTest");
@@ -291,8 +278,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.15
      *
-     * @testStrategy: Validate that if the value of url is empty ("") a
-     * jakarta.servlet.jsp.JspException is thrown.
+     * @testStrategy: Validate that if the value of url is empty ("") a jakarta.servlet.jsp.JspException is thrown.
      */
     public void negativeImportUrlEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeImportUrlEmptyTest");
@@ -304,8 +290,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.15
      *
-     * @testStrategy: Validate that if url is provided an invalid URL an instance
-     * of jakarta.servlet.jsp.JspException is thrown.
+     * @testStrategy: Validate that if url is provided an invalid URL an instance of jakarta.servlet.jsp.JspException is
+     * thrown.
      */
     public void negativeImportUrlInvalidTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeImportUrlInvalidTest");
@@ -317,10 +303,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.20.2
      *
-     * @testStrategy: Validate that if an imported absolute resource has a return
-     * code other than 2xx, a JspException is thrown with the path and status code
-     * included in the Exception message. In this case, the test will import a JSP
-     * via an absolute URL that sets the response to 410.
+     * @testStrategy: Validate that if an imported absolute resource has a return code other than 2xx, a JspException is
+     * thrown with the path and status code included in the Exception message. In this case, the test will import a JSP via
+     * an absolute URL that sets the response to 410.
      */
     public void negativeImportAbsResourceNon2xxTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeImportAbsResourceNon2xxTest");
@@ -332,10 +317,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.19.4
      *
-     * @testStrategy: Validate that if an imported local resource sets a response
-     * not in the 2xx range, a JspException is thrown with the path and status
-     * code included in the Exception message. In this case, the test will import
-     * a JSP via a relative URL that sets the response to 410.
+     * @testStrategy: Validate that if an imported local resource sets a response not in the 2xx range, a JspException is
+     * thrown with the path and status code included in the Exception message. In this case, the test will import a JSP via
+     * a relative URL that sets the response to 410.
      */
     public void negativeImportRequestDispatcherNon2xxTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeImportRequestDispatcherNon2xxTest");
@@ -347,9 +331,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.19.2
      *
-     * @testStrategy: Validate that if the included resource throws either an
-     * IOException or RuntimeException, a JspException is thrown, with the message
-     * of original exception included in the message and the original exception as
+     * @testStrategy: Validate that if the included resource throws either an IOException or RuntimeException, a
+     * JspException is thrown, with the message of original exception included in the message and the original exception as
      * the root cause.
      */
     public void negativeImportRequestDispatcherRTIOExceptionTest() throws Fault {
@@ -362,12 +345,10 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.19.3.1; JSTL:SPEC:23.19.3.2
      *
-     * @testStrategy: Validate that if the included resource throws a
-     * ServletException and a root cause is present, the message of the exception
-     * text is that of the original root cause, and the root cause of the
-     * JspException is set to be the root cause of the ServletException, otherwise
-     * if no root cause is present, the message of the ServletException is used
-     * and the ServletException is the root cause of the JspException.
+     * @testStrategy: Validate that if the included resource throws a ServletException and a root cause is present, the
+     * message of the exception text is that of the original root cause, and the root cause of the JspException is set to be
+     * the root cause of the ServletException, otherwise if no root cause is present, the message of the ServletException is
+     * used and the ServletException is the root cause of the JspException.
      */
     public void negativeImportRequestDispatcherServletExceptionTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeImportRequestDispatcherServletExceptionTest");
@@ -379,10 +360,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:23.21.1; JSTL:SPEC:23.21.2
      *
-     * @test_Strategy: Validate that the import action will use the encoding
-     * specified by the response of the imported resource. If the imported
-     * resource specifies no charset, then the default charset of ISO-8859-1 will
-     * be used.
+     * @test_Strategy: Validate that the import action will use the encoding specified by the response of the imported
+     * resource. If the imported resource specifies no charset, then the default charset of ISO-8859-1 will be used.
      */
     public void positiveImportEncodingNotSpecifiedTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveImportEncodingNotSpecifiedTest");

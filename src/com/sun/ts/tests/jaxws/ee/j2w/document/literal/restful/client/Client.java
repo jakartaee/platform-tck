@@ -65,14 +65,12 @@ public class Client extends ServiceEETest {
     private String url = null;
 
     /*
-     * GET http://host:port/WSJ2WDLRESTFUL/jaxws/tokens?token=1
-     * http://host:port/WSJ2WDLRESTFUL/jaxws/tokens/token/1
+     * GET http://host:port/WSJ2WDLRESTFUL/jaxws/tokens?token=1 http://host:port/WSJ2WDLRESTFUL/jaxws/tokens/token/1
      *
      * PUT http://host:port/WSJ2WDLRESTFUL/jaxws/tokens?token=15&value=1000
      * http://host:port/WSJ2WDLRESTFUL/jaxws/tokens/token/16/value/1001
      *
-     * DELETE http://host:port/WSJ2WDLRESTFUL/jaxws/tokens?token=15
-     * http://host:port/WSJ2WDLRESTFUL/jaxws/tokens/token/16
+     * DELETE http://host:port/WSJ2WDLRESTFUL/jaxws/tokens?token=15 http://host:port/WSJ2WDLRESTFUL/jaxws/tokens/token/16
      */
 
     private static String queryString = "?token=1";
@@ -117,8 +115,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -163,7 +163,8 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
             pass = false;
         }
-        if (!pass) throw new Fault("testGETwithQUERYSTRING failed");
+        if (!pass)
+            throw new Fault("testGETwithQUERYSTRING failed");
     }
 
     /*
@@ -186,7 +187,8 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
             pass = false;
         }
-        if (!pass) throw new Fault("testGETwithPATHINFO failed");
+        if (!pass)
+            throw new Fault("testGETwithPATHINFO failed");
     }
 
     /*
@@ -211,7 +213,8 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
             pass = false;
         }
-        if (!pass) throw new Fault("testPUTwithQUERYSTRING failed");
+        if (!pass)
+            throw new Fault("testPUTwithQUERYSTRING failed");
     }
 
     /*
@@ -237,7 +240,8 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
             pass = false;
         }
-        if (!pass) throw new Fault("testPUTwithPATHINFO failed");
+        if (!pass)
+            throw new Fault("testPUTwithPATHINFO failed");
     }
 
     /*
@@ -262,7 +266,8 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
             pass = false;
         }
-        if (!pass) throw new Fault("testDELETEwithQUERYSTRING failed");
+        if (!pass)
+            throw new Fault("testDELETEwithQUERYSTRING failed");
     }
 
     /*
@@ -285,7 +290,8 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
             pass = false;
         }
-        if (!pass) throw new Fault("testPOST failed");
+        if (!pass)
+            throw new Fault("testPOST failed");
     }
 
     private Source process() throws Exception {

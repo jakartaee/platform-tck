@@ -61,13 +61,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: postConstructTest
      *
-     * @assertion_ids: EJB:SPEC:92; EJB:SPEC:92.1; EJB:SPEC:92.2; EJB:SPEC:92.3;
-     * EJB:SPEC:92.4; EJB:SPEC:92.5; EJB:SPEC:92.6; EJB:SPEC:92.7; EJB:SPEC:92.10;
-     * EJB:SPEC:92.11; EJB:SPEC:92.12; EJB:SPEC:92.13; EJB:SPEC:92.14;
+     * @assertion_ids: EJB:SPEC:92; EJB:SPEC:92.1; EJB:SPEC:92.2; EJB:SPEC:92.3; EJB:SPEC:92.4; EJB:SPEC:92.5;
+     * EJB:SPEC:92.6; EJB:SPEC:92.7; EJB:SPEC:92.10; EJB:SPEC:92.11; EJB:SPEC:92.12; EJB:SPEC:92.13; EJB:SPEC:92.14;
      * EJB:SPEC:92.15; EJB:SPEC:90; EJB:JAVADOC:183; EJB:JAVADOC:54
      *
-     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method
-     * of a stateful session bean with bean-managed transaction demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method of a stateful session bean with
+     * bean-managed transaction demarcation are:
      */
 
     public void postConstructTest() throws Fault {
@@ -111,14 +110,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: setSessionContextTest
      *
-     * @assertion_ids: EJB:SPEC:93; EJB:SPEC:93.1; EJB:SPEC:93.2; EJB:SPEC:93.3;
-     * EJB:SPEC:93.4; EJB:SPEC:93.5; EJB:SPEC:93.6; EJB:SPEC:93.7; EJB:SPEC:93.10;
-     * EJB:SPEC:93.11; EJB:SPEC:93.12; EJB:SPEC:93.14; EJB:JAVADOC:54;
+     * @assertion_ids: EJB:SPEC:93; EJB:SPEC:93.1; EJB:SPEC:93.2; EJB:SPEC:93.3; EJB:SPEC:93.4; EJB:SPEC:93.5;
+     * EJB:SPEC:93.6; EJB:SPEC:93.7; EJB:SPEC:93.10; EJB:SPEC:93.11; EJB:SPEC:93.12; EJB:SPEC:93.14; EJB:JAVADOC:54;
      * EJB:JAVADOC:73
      *
-     * @test_Strategy: Operations allowed and not allowed in the setSessionContext
-     * method of a stateful session bean with bean-managed transaction demarcation
-     * are:
+     * @test_Strategy: Operations allowed and not allowed in the setSessionContext method of a stateful session bean with
+     * bean-managed transaction demarcation are:
      */
 
     public void setSessionContextTest() throws Fault {
@@ -162,14 +159,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: businessTest
      *
-     * @assertion_ids: EJB:SPEC:94; EJB:SPEC:94.1; EJB:SPEC:94.2; EJB:SPEC:94.3;
-     * EJB:SPEC:94.4; EJB:SPEC:94.5; EJB:SPEC:94.6; EJB:SPEC:94.7; EJB:SPEC:94.10;
-     * EJB:SPEC:94.11; EJB:SPEC:94.12; EJB:SPEC:94.13; EJB:SPEC:94.14;
-     * EJB:SPEC:94.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93;
-     * EJB:JAVADOC:97; EJB:JAVADOC:101
+     * @assertion_ids: EJB:SPEC:94; EJB:SPEC:94.1; EJB:SPEC:94.2; EJB:SPEC:94.3; EJB:SPEC:94.4; EJB:SPEC:94.5;
+     * EJB:SPEC:94.6; EJB:SPEC:94.7; EJB:SPEC:94.10; EJB:SPEC:94.11; EJB:SPEC:94.12; EJB:SPEC:94.13; EJB:SPEC:94.14;
+     * EJB:SPEC:94.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93; EJB:JAVADOC:97; EJB:JAVADOC:101
      *
-     * @test_Strategy: Operations allowed and not allowed in a business method of
-     * a stateful session bean with bean-managed transaction demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in a business method of a stateful session bean with bean-managed
+     * transaction demarcation are:
      */
     public void businessTest() throws Fault {
         Properties results = null;
@@ -212,14 +207,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: preInvokeTest
      *
-     * @assertion_ids: EJB:SPEC:94; EJB:SPEC:94.1; EJB:SPEC:94.2; EJB:SPEC:94.3;
-     * EJB:SPEC:94.4; EJB:SPEC:94.5; EJB:SPEC:94.6; EJB:SPEC:94.7; EJB:SPEC:94.10;
-     * EJB:SPEC:94.11; EJB:SPEC:94.12; EJB:SPEC:94.13; EJB:SPEC:94.14;
-     * EJB:SPEC:94.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93;
-     * EJB:JAVADOC:97; EJB:JAVADOC:101
+     * @assertion_ids: EJB:SPEC:94; EJB:SPEC:94.1; EJB:SPEC:94.2; EJB:SPEC:94.3; EJB:SPEC:94.4; EJB:SPEC:94.5;
+     * EJB:SPEC:94.6; EJB:SPEC:94.7; EJB:SPEC:94.10; EJB:SPEC:94.11; EJB:SPEC:94.12; EJB:SPEC:94.13; EJB:SPEC:94.14;
+     * EJB:SPEC:94.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93; EJB:JAVADOC:97; EJB:JAVADOC:101
      *
-     * @test_Strategy: Operations allowed and not allowed in a preInvoke method of
-     * a stateful session bean with bean-managed transaction demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in a preInvoke method of a stateful session bean with bean-managed
+     * transaction demarcation are:
      */
     public void preInvokeTest() throws Fault {
         Properties results = null;
@@ -262,14 +255,12 @@ public class Client extends ClientBase implements Constants {
     /*
      * @testName: postInvokeTest
      *
-     * @assertion_ids: EJB:SPEC:94; EJB:SPEC:94.1; EJB:SPEC:94.2; EJB:SPEC:94.3;
-     * EJB:SPEC:94.4; EJB:SPEC:94.5; EJB:SPEC:94.6; EJB:SPEC:94.7; EJB:SPEC:94.10;
-     * EJB:SPEC:94.11; EJB:SPEC:94.12; EJB:SPEC:94.13; EJB:SPEC:94.14;
-     * EJB:SPEC:94.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93;
-     * EJB:JAVADOC:97; EJB:JAVADOC:101
+     * @assertion_ids: EJB:SPEC:94; EJB:SPEC:94.1; EJB:SPEC:94.2; EJB:SPEC:94.3; EJB:SPEC:94.4; EJB:SPEC:94.5;
+     * EJB:SPEC:94.6; EJB:SPEC:94.7; EJB:SPEC:94.10; EJB:SPEC:94.11; EJB:SPEC:94.12; EJB:SPEC:94.13; EJB:SPEC:94.14;
+     * EJB:SPEC:94.15; EJB:JAVADOC:53; EJB:JAVADOC:89; EJB:JAVADOC:93; EJB:JAVADOC:97; EJB:JAVADOC:101
      *
-     * @test_Strategy: Operations allowed and not allowed in a postInvoke method
-     * of a stateful session bean with bean-managed transaction demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in a postInvoke method of a stateful session bean with
+     * bean-managed transaction demarcation are:
      */
     public void postInvokeTest() throws Fault {
         Properties results = null;
@@ -315,9 +306,8 @@ public class Client extends ClientBase implements Constants {
      *
      * @assertion_ids: EJB:SPEC:579
      *
-     * @test_Strategy: For a bean-managed stateful session bean, attempt to call
-     * ut.begin() after a TX has already been started. This is disallowed so check
-     * that a jakarta.transaction. NotSupportedException is thrown.
+     * @test_Strategy: For a bean-managed stateful session bean, attempt to call ut.begin() after a TX has already been
+     * started. This is disallowed so check that a jakarta.transaction. NotSupportedException is thrown.
      */
 
     public void utBeginTest() throws Fault {

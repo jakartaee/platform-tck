@@ -37,7 +37,8 @@ public class ShortClass_Property implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public ShortClass_Property() {}
+    public ShortClass_Property() {
+    }
 
     public ShortClass_Property(String id) {
         this.id = id;

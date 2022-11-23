@@ -28,16 +28,15 @@ import org.xml.sax.helpers.XMLFilterImpl;
 public class SimpleXmlFilter extends XMLFilterImpl {
 
     /** Creates new SimpleXmlFilter */
-    public SimpleXmlFilter() {}
+    public SimpleXmlFilter() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * When called, an new attribute, 'test', will be added to each element
-     * processed.
+     * When called, an new attribute, 'test', will be added to each element processed.
      */
     public void startElement(String namespaceURI, String localName, String qualifiedName, Attributes atts)
             throws SAXException {

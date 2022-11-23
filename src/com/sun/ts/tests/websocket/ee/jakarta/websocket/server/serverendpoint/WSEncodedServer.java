@@ -27,12 +27,10 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/encoded",
-        encoders = {
-            StringBeanTextStreamEncoder.class, StringBeanBinaryEncoder.class,
-            StringBeanTextEncoder.class, StringBeanBinaryStreamEncoder.class
-        })
+@ServerEndpoint(value = "/encoded", encoders = {
+        StringBeanTextStreamEncoder.class, StringBeanBinaryEncoder.class,
+        StringBeanTextEncoder.class, StringBeanBinaryStreamEncoder.class
+})
 public class WSEncodedServer extends WSAbstractServer {
 
     @OnMessage

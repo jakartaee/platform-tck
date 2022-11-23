@@ -25,7 +25,8 @@ import jakarta.persistence.EntityTransaction;
 public final class EntityTransactionWrapper implements EntityTransaction {
     private EntityTransaction delegate;
 
-    public EntityTransactionWrapper() {}
+    public EntityTransactionWrapper() {
+    }
 
     public EntityTransactionWrapper(EntityTransaction delegate) {
         this.delegate = delegate;

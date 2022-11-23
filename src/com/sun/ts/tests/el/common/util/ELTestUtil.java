@@ -38,18 +38,13 @@ public final class ELTestUtil {
     }
 
     /**
-     * Checks to see if a NullPointerException is thrown from a given
-     * method(methName) from a given Class(className). use this method for any
-     * none Abstract classes you wish to test.
+     * Checks to see if a NullPointerException is thrown from a given method(methName) from a given Class(className). use
+     * this method for any none Abstract classes you wish to test.
      *
-     * @param className
-     *          - The Class that has the method under test.
-     * @param methName
-     *          - The method that you want to test.
-     * @param argTypes
-     *          - The type value of the arguments for the method under test.
-     * @param params
-     *          - The parameters you are feeding into the method under test.
+     * @param className - The Class that has the method under test.
+     * @param methName - The method that you want to test.
+     * @param argTypes - The type value of the arguments for the method under test.
+     * @param params - The parameters you are feeding into the method under test.
      *
      * @throws Fault
      */
@@ -65,19 +60,13 @@ public final class ELTestUtil {
     } // End checkForNPE
 
     /**
-     * Checks to see if a NullPointerException is thrown from a given
-     * method(methName) from a given Class. use this method for any Abstract
-     * classes you wish to test. You can pass in the instantiated class that you
-     * want to test.
+     * Checks to see if a NullPointerException is thrown from a given method(methName) from a given Class. use this method
+     * for any Abstract classes you wish to test. You can pass in the instantiated class that you want to test.
      *
-     * @param Class
-     *          - The class you want to test.
-     * @param methName
-     *          - The method that you want to test.
-     * @param argTypes
-     *          - The type value of the arguments for the method under test.
-     * @param params
-     *          - The parameters you are feeding into the method under test.
+     * @param Class - The class you want to test.
+     * @param methName - The method that you want to test.
+     * @param argTypes - The type value of the arguments for the method under test.
+     * @param params - The parameters you are feeding into the method under test.
      *
      * @throws Fault
      */
@@ -92,19 +81,13 @@ public final class ELTestUtil {
     } // End checkForNPE
 
     /**
-     * Checks to see if a NullPointerException is thrown from a given
-     * method(methName) from a given Class. use this method for any Abstract
-     * classes you wish to test. You can pass in the instantiated class that you
-     * want to test.
+     * Checks to see if a NullPointerException is thrown from a given method(methName) from a given Class. use this method
+     * for any Abstract classes you wish to test. You can pass in the instantiated class that you want to test.
      *
-     * @param object
-     *          - The Object you want to test.
-     * @param methName
-     *          - The method that you want to test.
-     * @param argTypes
-     *          - The type value of the arguments for the method under test.
-     * @param params
-     *          - The parameters you are feeding into the method under test.
+     * @param object - The Object you want to test.
+     * @param methName - The method that you want to test.
+     * @param argTypes - The type value of the arguments for the method under test.
+     * @param params - The parameters you are feeding into the method under test.
      *
      * @throws Fault
      */
@@ -116,14 +99,10 @@ public final class ELTestUtil {
     /**
      * Checks to see if a ClassNotFoundException is thrown
      *
-     * @param object
-     *          - The Object you want to test.
-     * @param methName
-     *          - The method that you want to test.
-     * @param argTypes
-     *          - The type value of the arguments for the method under test.
-     * @param params
-     *          - The parameters you are feeding into the method under test.
+     * @param object - The Object you want to test.
+     * @param methName - The method that you want to test.
+     * @param argTypes - The type value of the arguments for the method under test.
+     * @param params - The parameters you are feeding into the method under test.
      *
      * @throws Fault
      */
@@ -135,14 +114,10 @@ public final class ELTestUtil {
     /**
      * Checks to see if a NoSuchMethodException is thrown
      *
-     * @param object
-     *          - The Object you want to test.
-     * @param methName
-     *          - The method that you want to test.
-     * @param argTypes
-     *          - The type value of the arguments for the method under test.
-     * @param params
-     *          - The parameters you are feeding into the method under test.
+     * @param object - The Object you want to test.
+     * @param methName - The method that you want to test.
+     * @param argTypes - The type value of the arguments for the method under test.
+     * @param params - The parameters you are feeding into the method under test.
      *
      * @throws Fault
      */
@@ -160,8 +135,7 @@ public final class ELTestUtil {
      *
      * @param methName - The method that you want to test.
      *
-     * @param argTypes - The type value of the arguments for the method under
-     * test.
+     * @param argTypes - The type value of the arguments for the method under test.
      *
      * @param params - The parameters you are feeding into the method under test.
      *

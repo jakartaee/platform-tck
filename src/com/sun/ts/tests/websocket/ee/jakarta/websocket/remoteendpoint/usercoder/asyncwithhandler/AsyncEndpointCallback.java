@@ -45,6 +45,7 @@ public class AsyncEndpointCallback extends EndpointCallback {
         } catch (Exception i) {
             throw new RuntimeException(i);
         }
-        if (!result.isOK() || result.getException() != null) throw new RuntimeException(result.getException());
+        if (!result.isOK() || result.getException() != null)
+            throw new RuntimeException(result.getException());
     }
 }

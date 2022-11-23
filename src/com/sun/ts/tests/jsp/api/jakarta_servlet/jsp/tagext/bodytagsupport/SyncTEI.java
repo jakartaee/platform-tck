@@ -35,19 +35,17 @@ public class SyncTEI extends TagExtraInfo {
     }
 
     /**
-     * Sets the begin, nested, and end scripting variables for the
-     * BodySynchronizationTag.
+     * Sets the begin, nested, and end scripting variables for the BodySynchronizationTag.
      *
-     * @param data
-     *          - the TagData from the TLD.
+     * @param data - the TagData from the TLD.
      * @return a VariableInfo array.
      */
     public VariableInfo[] getVariableInfo(TagData data) {
         JspTestUtil.debug("[SyncTEI] in getVariableInfo()");
         return new VariableInfo[] {
-            new VariableInfo("begin", "java.lang.Integer", true, VariableInfo.AT_BEGIN),
-            new VariableInfo("nested", "java.lang.Integer", true, VariableInfo.NESTED),
-            new VariableInfo("end", "java.lang.Integer", true, VariableInfo.AT_END)
+                new VariableInfo("begin", "java.lang.Integer", true, VariableInfo.AT_BEGIN),
+                new VariableInfo("nested", "java.lang.Integer", true, VariableInfo.NESTED),
+                new VariableInfo("end", "java.lang.Integer", true, VariableInfo.AT_END)
         };
     }
 }

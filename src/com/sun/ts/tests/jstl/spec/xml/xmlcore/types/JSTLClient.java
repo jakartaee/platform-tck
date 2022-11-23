@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,13 +62,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveJavaToXPathTypesTest
      *
-     * @assertion_ids: JSTL:SPEC:65; JSTL:SPEC:65.1; JSTL:SPEC:65.2;
-     * JSTL:SPEC:65.3; JSTL:SPEC:65.4; JSTL:SPEC:65.5
+     * @assertion_ids: JSTL:SPEC:65; JSTL:SPEC:65.1; JSTL:SPEC:65.2; JSTL:SPEC:65.3; JSTL:SPEC:65.4; JSTL:SPEC:65.5
      *
-     * @testStrategy: Validate that XPath variables of Java types, can be properly
-     * used in XPath expressions. The supported type mappings are: Java XPath
-     * java.lang.Boolean boolean java.lang.Number number java.lang.String string
-     * Object exported by parse, set, or forEach node-set
+     * @testStrategy: Validate that XPath variables of Java types, can be properly used in XPath expressions. The supported
+     * type mappings are: Java XPath java.lang.Boolean boolean java.lang.Number number java.lang.String string Object
+     * exported by parse, set, or forEach node-set
      */
     public void positiveJavaToXPathTypesTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveJavaToXPathTypesTest");
@@ -80,13 +76,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveXPathToJavaTypesTest
      *
-     * @assertion_ids: JSTL:SPEC:66; JSTL:SPEC:66.1; JSTL:SPEC:66.2;
-     * JSTL:SPEC:66.3; JSTL:SPEC:66.4
+     * @assertion_ids: JSTL:SPEC:66; JSTL:SPEC:66.1; JSTL:SPEC:66.2; JSTL:SPEC:66.3; JSTL:SPEC:66.4
      *
-     * @testStrategy: Validate that the result of an XPath expression yeilds the
-     * correct type based of the specified XPath to Java type mapping: XPath Java
-     * boolean java.lang.Boolean number java.lang.Number string java.lang.String
-     * node-set Implementation specified (test will check for java.lang.Object)
+     * @testStrategy: Validate that the result of an XPath expression yeilds the correct type based of the specified XPath
+     * to Java type mapping: XPath Java boolean java.lang.Boolean number java.lang.Number string java.lang.String node-set
+     * Implementation specified (test will check for java.lang.Object)
      */
     public void positiveXPathToJavaTypesTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveXPathToJavaTypesTest");

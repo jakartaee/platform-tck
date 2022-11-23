@@ -38,7 +38,8 @@ public abstract class Employee {
 
     protected Address address;
 
-    protected Employee() {}
+    protected Employee() {
+    }
 
     protected Employee(int id, String firstName, String lastName, Date hireDate) {
         this.id = id;

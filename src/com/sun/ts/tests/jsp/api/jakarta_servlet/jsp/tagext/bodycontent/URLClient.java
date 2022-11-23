@@ -34,9 +34,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -45,8 +44,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:332
      *
-     * @test_Strategy: Validates that an IOException is thrown when
-     * BodyContent.flush() is called.
+     * @test_Strategy: Validates that an IOException is thrown when BodyContent.flush() is called.
      */
     public void bodyContentFlushTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_bodycontent_web/BodyContentFlushTest.jsp HTTP/1.1");
@@ -93,9 +90,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:334;JSP:JAVADOC:338
      *
-     * @test_Strategy: Validate that a reader can be obtained containing the
-     * bodycontent of the tag. Using the content that is read in, obtain a writer
-     * and write the content to that writer.
+     * @test_Strategy: Validate that a reader can be obtained containing the bodycontent of the tag. Using the content that
+     * is read in, obtain a writer and write the content to that writer.
      */
     public void bodyContentReadWriteTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_bodycontent_web/BodyContentReadWriteTest.jsp HTTP/1.1");

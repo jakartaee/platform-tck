@@ -50,7 +50,8 @@ public class OneManagedBean {
         return NAME;
     }
 
-    public OneManagedBean() {}
+    public OneManagedBean() {
+    }
 
     @Transactional(value = TxType.REQUIRED)
     public String txTypeRequired() {
@@ -115,19 +116,17 @@ public class OneManagedBean {
         return result;
     }
 
-    @Transactional(rollbackOn = {CTSRollbackException.class})
+    @Transactional(rollbackOn = { CTSRollbackException.class })
     public void rollbackOnException() throws CTSRollbackException {
         throw new CTSRollbackException("CTSRollbackException");
     }
 
-    @Transactional(dontRollbackOn = {CTSDontRollbackException.class})
+    @Transactional(dontRollbackOn = { CTSDontRollbackException.class })
     public void dontRollbackOnException() throws CTSDontRollbackException {
         throw new CTSDontRollbackException("CTSDontRollbackException");
     }
 
-    @Transactional(
-            rollbackOn = {CTSRollbackException.class},
-            dontRollbackOn = {CTSRollbackException.class})
+    @Transactional(rollbackOn = { CTSRollbackException.class }, dontRollbackOn = { CTSRollbackException.class })
     public void rollbackAndDontRollback() throws CTSRollbackException {
         throw new CTSRollbackException("CTSRollbackException");
     }
@@ -140,8 +139,8 @@ public class OneManagedBean {
             Method m = bClass.getMethod(methodName);
             Annotation[] annotationArray = m.getAnnotations();
 
-            java.util.List<jakarta.enterprise.inject.spi.Interceptor<?>> interceptorList =
-                    beanManager.resolveInterceptors(InterceptionType.AROUND_INVOKE, annotationArray);
+            java.util.List<jakarta.enterprise.inject.spi.Interceptor<?>> interceptorList = beanManager.resolveInterceptors(InterceptionType.AROUND_INVOKE,
+                    annotationArray);
 
             for (jakarta.enterprise.inject.spi.Interceptor<?> interceptor : interceptorList) {
                 System.out.println("Interceptor Name = " + interceptor.getName());

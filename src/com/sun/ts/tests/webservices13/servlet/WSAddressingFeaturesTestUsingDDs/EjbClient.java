@@ -29,7 +29,7 @@ import java.util.*;
 import javax.naming.InitialContext;
 
 @Stateless(name = "WSAddressingFeaturesTestUsingDDsClntBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
     private Properties harnessProps = null;
@@ -78,11 +78,9 @@ public class EjbClient implements EjbClientIF {
             System.out.println("JNDI lookup java:comp/env/service/wsaddrfeaturestestusingddsdisabledecho2port");
             disabledEcho2Port = (Echo2) ctx.lookup("java:comp/env/service/wsaddrfeaturestestusingddsdisabledecho2port");
             System.out.println("JNDI lookup java:comp/env/service/wsaddrfeaturestestusingddsanonymousecho3port");
-            anonymousEcho3Port =
-                    (Echo3) ctx.lookup("java:comp/env/service/wsaddrfeaturestestusingddsanonymousecho3port");
+            anonymousEcho3Port = (Echo3) ctx.lookup("java:comp/env/service/wsaddrfeaturestestusingddsanonymousecho3port");
             System.out.println("JNDI lookup java:comp/env/service/wsaddrfeaturestestusingddsnonanonymousecho4port");
-            nonanonymousEcho4Port =
-                    (Echo4) ctx.lookup("java:comp/env/service/wsaddrfeaturestestusingddsnonanonymousecho4port");
+            nonanonymousEcho4Port = (Echo4) ctx.lookup("java:comp/env/service/wsaddrfeaturestestusingddsnonanonymousecho4port");
             System.out.println("EjbClient DEBUG: defaultEchoPort=" + defaultEchoPort);
             System.out.println("EjbClient DEBUG: enabledEchoPort=" + enabledEchoPort);
             System.out.println("EjbClient DEBUG: requiredEchoPort=" + requiredEchoPort);
@@ -137,9 +135,12 @@ public class EjbClient implements EjbClientIF {
             return VerifyAddrHeadersDoNotExistForDisabledEcho2Port();
         else if (testName.equals("VerifyAddrHeadersMayExistForEnabledEcho2Port"))
             return VerifyAddrHeadersMayExistForEnabledEcho2Port();
-        else if (testName.equals("testAnonymousResponsesAssertion")) return testAnonymousResponsesAssertion();
-        else if (testName.equals("testNonAnonymousResponsesAssertion")) return testNonAnonymousResponsesAssertion();
-        else return false;
+        else if (testName.equals("testAnonymousResponsesAssertion"))
+            return testAnonymousResponsesAssertion();
+        else if (testName.equals("testNonAnonymousResponsesAssertion"))
+            return testNonAnonymousResponsesAssertion();
+        else
+            return false;
     }
 
     private boolean VerifyAddrHeadersExistForRequiredEchoPort() {

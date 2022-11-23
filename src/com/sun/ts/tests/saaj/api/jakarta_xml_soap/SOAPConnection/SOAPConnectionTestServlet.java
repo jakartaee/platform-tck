@@ -142,8 +142,10 @@ public class SOAPConnectionTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -197,15 +199,13 @@ public class SOAPConnectionTestServlet extends HttpServlet {
 
             // Add a soap header element to the header.
             TestUtil.logMsg("Add SOAP Header element [MyTransaction]");
-            SOAPHeaderElement transaction =
-                    hdr.addHeaderElement(envelope.createName("MyTransaction", "t", "request-uri"));
+            SOAPHeaderElement transaction = hdr.addHeaderElement(envelope.createName("MyTransaction", "t", "request-uri"));
             transaction.setMustUnderstand(true);
             transaction.addTextNode("5");
 
             // Add a soap body element to the soap body
             TestUtil.logMsg("Add SOAP Body element [GetLastTradePrice]");
-            SOAPBodyElement gltp =
-                    bdy.addBodyElement(envelope.createName("GetLastTradePrice", "ztrade", "http://wombat.ztrade.com"));
+            SOAPBodyElement gltp = bdy.addBodyElement(envelope.createName("GetLastTradePrice", "ztrade", "http://wombat.ztrade.com"));
 
             gltp.addChildElement(envelope.createName("symbol", "ztrade", "http://wombat.ztrade.com"))
                     .addTextNode("SUNW");
@@ -242,8 +242,10 @@ public class SOAPConnectionTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -288,8 +290,10 @@ public class SOAPConnectionTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -334,8 +338,10 @@ public class SOAPConnectionTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -378,8 +384,10 @@ public class SOAPConnectionTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

@@ -35,7 +35,7 @@ import jakarta.interceptor.InvocationContext;
 import java.util.logging.Level;
 
 @ManagedBean
-@Interceptors({Interceptor2.class, Interceptor1.class, Interceptor3.class, Interceptor5.class, Interceptor4.class})
+@Interceptors({ Interceptor2.class, Interceptor1.class, Interceptor3.class, Interceptor5.class, Interceptor4.class })
 public class InterceptorBean extends InterceptorBeanBase implements InterceptorIF {
     private static final String simpleName = "InterceptorBean";
 

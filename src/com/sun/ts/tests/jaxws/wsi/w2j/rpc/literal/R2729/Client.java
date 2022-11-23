@@ -48,8 +48,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client client = new Client();
@@ -80,8 +79,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2729
      *
-     * @test_Strategy: A request to the echoString operation is made and the
-     *                 returned wrapper element must be "echoStringResponse".
+     * @test_Strategy: A request to the echoString operation is made and the returned wrapper element must be
+     * "echoStringResponse".
      *
      * @throws Fault
      */

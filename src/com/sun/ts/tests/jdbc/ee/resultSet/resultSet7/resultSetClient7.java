@@ -41,8 +41,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The resultSetClient7 class tests methods of resultSet interface using Sun's
- * J2EE Reference Implementation.
+ * The resultSetClient7 class tests methods of resultSet interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 9/9/99
@@ -78,14 +77,11 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -93,7 +89,8 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 props = p;
                 if (drManager.equals("yes")) {
@@ -121,12 +118,11 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject61
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
-     * JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444; JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getObject(int column index) method with the SQL null column of
-     * JDBC datatype SMALLINT. It should return null Integer object.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getObject(int column index)
+     * method with the SQL null column of JDBC datatype SMALLINT. It should return null Integer object.
      */
     public void testGetObject61() throws Fault {
         Integer retValue = null;
@@ -168,13 +164,12 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject69
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
-     * JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444; JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getObject(String column index) method with the column of JDBC
-     * datatype SMALLINT. It should return an Integer object that has been set as
-     * the maximum value of SMALLINT.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getObject(String column index)
+     * method with the column of JDBC datatype SMALLINT. It should return an Integer object that has been set as the maximum
+     * value of SMALLINT.
      */
     public void testGetObject69() throws Fault {
         String retValue = null;
@@ -225,13 +220,12 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject70
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
-     * JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444; JDBC:JAVADOC:445; JDBC:JAVADOC:366; JDBC:JAVADOC:367;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getObject(String column index) method with the SQL column of JDBC
-     * datatype SMALLINT. It should return an Integer object that has been set as
-     * the minimum value of SMALLINT.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getObject(String column index)
+     * method with the SQL column of JDBC datatype SMALLINT. It should return an Integer object that has been set as the
+     * minimum value of SMALLINT.
      */
     public void testGetObject70() throws Fault {
         String retValue = null;
@@ -282,14 +276,12 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject62
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
-     * JDBC:JAVADOC:447; JDBC:JAVADOC:366; JDBC:JAVADOC:367; JDBC:JAVADOC:442;
-     * JDBC:JAVADOC:443; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446; JDBC:JAVADOC:447; JDBC:JAVADOC:366; JDBC:JAVADOC:367;
+     * JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getObject(String columnName) method with the column of JDBC
-     * datatype SMALLINT. It should return an Integer object that has been set as
-     * the maximum value of SMALLINT.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getObject(String columnName)
+     * method with the column of JDBC datatype SMALLINT. It should return an Integer object that has been set as the maximum
+     * value of SMALLINT.
      */
     public void testGetObject62() throws Fault {
         String retValue = null;
@@ -343,13 +335,12 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject63
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
-     * JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446; JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getObject(String columnName) method with the SQL column of JDBC
-     * datatype SMALLINT. It should return an Integer object that has been set as
-     * the minimum value of SMALLINT.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getObject(String columnName)
+     * method with the SQL column of JDBC datatype SMALLINT. It should return an Integer object that has been set as the
+     * minimum value of SMALLINT.
      */
     public void testGetObject63() throws Fault {
         String retValue = null;
@@ -403,12 +394,11 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject64
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
-     * JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446; JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getObject(String columnName) method with the SQL null column of
-     * JDBC datatype SMALLINT. It should return null Integer object.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getObject(String columnName)
+     * method with the SQL null column of JDBC datatype SMALLINT. It should return null Integer object.
      */
     public void testGetObject64() throws Fault {
         Integer retValue = null;
@@ -454,12 +444,10 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject65
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
-     * JDBC:JAVADOC:445; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444; JDBC:JAVADOC:445; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getObject(int columnIndex) method with the SQL column of JDBC
-     * datatype VARCHAR. It should return an String object that has been set.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getObject(int columnIndex)
+     * method with the SQL column of JDBC datatype VARCHAR. It should return an String object that has been set.
      */
     public void testGetObject65() throws Fault {
         String retValue = null;
@@ -511,12 +499,10 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject66
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444;
-     * JDBC:JAVADOC:445; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:444; JDBC:JAVADOC:445; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getObject(int column index) method with the SQL null column of
-     * JDBC datatype VARCHAR. It should return null String object.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getObject(int column index)
+     * method with the SQL null column of JDBC datatype VARCHAR. It should return null String object.
      */
     public void testGetObject66() throws Fault {
         String retValue = null;
@@ -558,12 +544,11 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject67
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
-     * JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446; JDBC:JAVADOC:447; JDBC:JAVADOC:442; JDBC:JAVADOC:443;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getObject(String columnName) method with the SQL column of JDBC
-     * datatype VARCHAR. It should return an String object that has been set.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getObject(String columnName)
+     * method with the SQL column of JDBC datatype VARCHAR. It should return an String object that has been set.
      */
     public void testGetObject67() throws Fault {
         String retValue = null;
@@ -618,12 +603,10 @@ public class resultSetClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject68
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446;
-     * JDBC:JAVADOC:447; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:446; JDBC:JAVADOC:447; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getObject(String columnName) method with the SQL null column of
-     * JDBC datatype VARCHAR. It should return null String object.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getObject(String columnName)
+     * method with the SQL null column of JDBC datatype VARCHAR. It should return null String object.
      */
     public void testGetObject68() throws Fault {
         String retValue = null;

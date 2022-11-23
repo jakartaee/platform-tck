@@ -32,7 +32,8 @@ import java.io.Serializable;
 @Entity
 public class BiDirMX1Person implements Serializable {
 
-    public BiDirMX1Person() {}
+    public BiDirMX1Person() {
+    }
 
     private static final long serialVersionUID = 1L;
 

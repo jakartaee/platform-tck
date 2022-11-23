@@ -80,15 +80,18 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
                 pass = false;
             }
-            if (pass) getPort();
+            if (pass)
+                getPort();
         } catch (Exception e) {
             throw new Fault("setup failed:", e);
         }
@@ -111,19 +114,15 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbNoWebServiceRefInClientTestVerifyJNDILookupOfService
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. There is no @WebServiceRef annotation in client. The EJBBean
-     * Implementation class is packaged in the ear file. There is no EJBHome or
-     * EJBRemote implementation class packaged. Since no @WebServiceRef exists in
-     * the client verify that the webservice can be obtained via a JNDI lookup.
-     * Verify that the container correctly publishes the web service
-     * implementation under "java:comp/env/service-ref-name".
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. There is no @WebServiceRef
+     * annotation in client. The EJBBean Implementation class is packaged in the ear file. There is no EJBHome or EJBRemote
+     * implementation class packaged. Since no @WebServiceRef exists in the client verify that the webservice can be
+     * obtained via a JNDI lookup. Verify that the container correctly publishes the web service implementation under
+     * "java:comp/env/service-ref-name".
      */
     public void WSEjbNoWebServiceRefInClientTestVerifyJNDILookupOfService() throws Fault {
         TestUtil.logMsg("WSEjbNoWebServiceRefInClientTestVerifyJNDILookupOfService");
@@ -143,11 +142,9 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbNoWebServiceRefInClientTestInvokeHelloBye
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
      *
      * @test_Strategy: Test that invocation works. Call methods hello and bye.
      */
@@ -159,14 +156,16 @@ public class Client extends EETest {
             TestUtil.logMsg("Test invocation .....");
             TestUtil.logMsg("Invoke hello method");
             String txt = port.hello("Hello there");
-            if (txt.equals("Hello there to you too!")) TestUtil.logMsg("Invoke of hello passed");
+            if (txt.equals("Hello there to you too!"))
+                TestUtil.logMsg("Invoke of hello passed");
             else {
                 pass = false;
                 TestUtil.logErr("Invoke of hello failed");
             }
             TestUtil.logMsg("Invoke bye method");
             txt = port.bye("Bye");
-            if (txt.equals("Bye and take care!")) TestUtil.logMsg("Invoke of bye passed");
+            if (txt.equals("Bye and take care!"))
+                TestUtil.logMsg("Invoke of bye passed");
             else {
                 pass = false;
                 TestUtil.logErr("Invoke of bye failed");
@@ -174,6 +173,7 @@ public class Client extends EETest {
         } catch (Throwable t) {
             throw new Fault("WSEjbNoWebServiceRefInClientTestInvokeHelloBye failed");
         }
-        if (!pass) throw new Fault("WSEjbNoWebServiceRefInClientTestInvokeHelloBye failed");
+        if (!pass)
+            throw new Fault("WSEjbNoWebServiceRefInClientTestInvokeHelloBye failed");
     }
 }

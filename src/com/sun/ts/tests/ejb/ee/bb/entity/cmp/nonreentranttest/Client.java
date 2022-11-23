@@ -52,8 +52,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -78,11 +77,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:473
      *
-     * @test_Strategy: It is not possible for an application to make loopback
-     * calls to an entity instance that is marked as non-reentrant. The Container
-     * must throw java.rmi.RemoteException. This test uses same bean instance.
-     * Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server. Call loopback
-     * test on same bean. Self referential test.
+     * @test_Strategy: It is not possible for an application to make loopback calls to an entity instance that is marked as
+     * non-reentrant. The Container must throw java.rmi.RemoteException. This test uses same bean instance. Create a CMP 1.1
+     * Entity Bean. Deploy it on the J2EE server. Call loopback test on same bean. Self referential test.
      *
      */
 
@@ -93,7 +90,8 @@ public class Client extends EETest {
             beanRef = (TestBean) beanHome.create(props, 2, "coffee-2", 2);
             logMsg("Calling loopback test via same bean");
             boolean pass = beanRef.loopBackSameBean();
-            if (!pass) throw new Fault("test2 failed");
+            if (!pass)
+                throw new Fault("test2 failed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {
@@ -110,12 +108,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:473
      *
-     * @test_Strategy: It is not possible for an application to make loopback
-     * calls to a entity instance that is marked as non-reentrant. The Container
-     * must throw java.rmi.RemoteException. This test uses another bean instance.
-     * Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server. Call loopback
-     * test on first bean which in turn calls a second bean which then calls first
-     * bean again.
+     * @test_Strategy: It is not possible for an application to make loopback calls to a entity instance that is marked as
+     * non-reentrant. The Container must throw java.rmi.RemoteException. This test uses another bean instance. Create a CMP
+     * 1.1 Entity Bean. Deploy it on the J2EE server. Call loopback test on first bean which in turn calls a second bean
+     * which then calls first bean again.
      */
 
     public void test3() throws Fault {
@@ -125,7 +121,8 @@ public class Client extends EETest {
             beanRef = (TestBean) beanHome.create(props, 3, "coffee-3", 3);
             logMsg("Calling loopback test via different bean");
             boolean pass = beanRef.loopBackAnotherBean(props);
-            if (!pass) throw new Fault("test3 failed");
+            if (!pass)
+                throw new Fault("test3 failed");
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         } finally {

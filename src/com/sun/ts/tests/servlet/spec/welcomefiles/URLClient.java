@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -59,11 +57,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:141;
      *
-     * @test_Strategy: 1. Create two welcome files <welcome-file-list>
-     * <welcome-file>index.html</welcome-file>
-     * <welcome-file>default.jsp</welcome-file> </welcome-file-list> 2. Verify
-     * that a request URI of /foo will be returned as /foo/index.html based on
-     * Servlet Spec(9.10)
+     * @test_Strategy: 1. Create two welcome files <welcome-file-list> <welcome-file>index.html</welcome-file>
+     * <welcome-file>default.jsp</welcome-file> </welcome-file-list> 2. Verify that a request URI of /foo will be returned
+     * as /foo/index.html based on Servlet Spec(9.10)
      */
 
     public void partialfound1() throws Fault {
@@ -80,11 +76,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:141;
      *
-     * @test_Strategy: 1. Create two welcome files <welcome-file-list>
-     * <welcome-file>index.html</welcome-file>
-     * <welcome-file>default.jsp</welcome-file> </welcome-file-list> 2. Verify
-     * that a request URI of /catalog will be returned as /catalog/default.jsp
-     * based on Servlet Spec(9.10)
+     * @test_Strategy: 1. Create two welcome files <welcome-file-list> <welcome-file>index.html</welcome-file>
+     * <welcome-file>default.jsp</welcome-file> </welcome-file-list> 2. Verify that a request URI of /catalog will be
+     * returned as /catalog/default.jsp based on Servlet Spec(9.10)
      */
 
     public void partialfound2() throws Fault {

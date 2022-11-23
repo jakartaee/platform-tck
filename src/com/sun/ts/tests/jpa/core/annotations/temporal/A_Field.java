@@ -60,7 +60,8 @@ public class A_Field implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public A_Field() {}
+    public A_Field() {
+    }
 
     public A_Field(String id, Date basicDate, Calendar basicCalendar) {
 

@@ -34,7 +34,9 @@ public class AcceptBean extends AcceptBeanBase {
         return sessionContext;
     }
 
-    public AcceptBean() {}
+    public AcceptBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

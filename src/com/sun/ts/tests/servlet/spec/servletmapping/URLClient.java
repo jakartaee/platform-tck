@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String[] args, PrintWriter out, PrintWriter err) {
         setContextRoot("/servlet_js_servletmapping_web");
@@ -54,11 +52,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:133; Servlet:SPEC:134.1; Servlet:SPEC:207;
      *
-     * @test_Strategy: 1. Create servlet TestServlet1 with multiple URLs:
-     * /foo/bar/* /TestServlet1 /foo/baR/TestServlet1 /test/Test1.bop 2. Create
-     * servlet TestServlet2 with multiple URLs: /foo/baR/* /TestServlet2 3. Send
-     * request to /TestServlet1, verify TestServlet1 is invoked 4. Send request to
-     * /TestServlet2, verify TestServlet2 is invoked
+     * @test_Strategy: 1. Create servlet TestServlet1 with multiple URLs: /foo/bar/* /TestServlet1 /foo/baR/TestServlet1
+     * /test/Test1.bop 2. Create servlet TestServlet2 with multiple URLs: /foo/baR/* /TestServlet2 3. Send request to
+     * /TestServlet1, verify TestServlet1 is invoked 4. Send request to /TestServlet2, verify TestServlet2 is invoked
      */
     public void multiURLmappingTest1() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
@@ -73,15 +69,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: multiURLmappingTest2
      *
-     * @assertion_ids: Servlet:SPEC:133; Servlet:SPEC:134.1; Servlet:SPEC:134.2;
-     * Servlet:SPEC:134.4; Servlet:SPEC:207;
+     * @assertion_ids: Servlet:SPEC:133; Servlet:SPEC:134.1; Servlet:SPEC:134.2; Servlet:SPEC:134.4; Servlet:SPEC:207;
      *
-     * @test_Strategy: 1. Create servlet TestServlet1 with multiple URLs:
-     * /foo/bar/* /TestServlet1 /foo/baR/TestServlet1 /test/Test1.bop 2. Create
-     * servlet TestServlet5 with multiple URLs: /foo/bar/TestServlet5
-     * /TestServlet5 3. Send request to /foo/bar/xyz, verify TestServlet1 is
-     * invoked 4. Send request to /foo/bar/TestServlet5, verify TestServlet5 is
-     * invoked
+     * @test_Strategy: 1. Create servlet TestServlet1 with multiple URLs: /foo/bar/* /TestServlet1 /foo/baR/TestServlet1
+     * /test/Test1.bop 2. Create servlet TestServlet5 with multiple URLs: /foo/bar/TestServlet5 /TestServlet5 3. Send
+     * request to /foo/bar/xyz, verify TestServlet1 is invoked 4. Send request to /foo/bar/TestServlet5, verify TestServlet5
+     * is invoked
      */
     public void multiURLmappingTest2() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
@@ -96,14 +89,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: multiURLmappingTest3
      *
-     * @assertion_ids: Servlet:SPEC:133; Servlet:SPEC:134.1; Servlet:SPEC:134.2;
-     * Servlet:SPEC:134.4; Servlet:SPEC:207;
+     * @assertion_ids: Servlet:SPEC:133; Servlet:SPEC:134.1; Servlet:SPEC:134.2; Servlet:SPEC:134.4; Servlet:SPEC:207;
      *
-     * @test_Strategy: 1. Create servlet TestServlet1 with multiple URLs:
-     * /foo/bar/* /TestServlet1 /foo/baR/TestServlet1 /test/Test1.bop 2. Create
-     * servlet TestServlet2 with multiple URLs: /foo/baR/* /TestServlet2 3. Send
-     * request to /foo/baR/TestServlet1, verify TestServlet1 is invoked 4. Send
-     * request to /foo/baR/Ten, verify TestServlet2 is invoked
+     * @test_Strategy: 1. Create servlet TestServlet1 with multiple URLs: /foo/bar/* /TestServlet1 /foo/baR/TestServlet1
+     * /test/Test1.bop 2. Create servlet TestServlet2 with multiple URLs: /foo/baR/* /TestServlet2 3. Send request to
+     * /foo/baR/TestServlet1, verify TestServlet1 is invoked 4. Send request to /foo/baR/Ten, verify TestServlet2 is invoked
      */
     public void multiURLmappingTest3() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
@@ -118,14 +108,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: multiURLmappingTest4
      *
-     * @assertion_ids: Servlet:SPEC:133; Servlet:SPEC:134.1; Servlet:SPEC:134.2;
-     * Servlet:SPEC:134.3; Servlet:SPEC:134.4; Servlet:SPEC:207;
+     * @assertion_ids: Servlet:SPEC:133; Servlet:SPEC:134.1; Servlet:SPEC:134.2; Servlet:SPEC:134.3; Servlet:SPEC:134.4;
+     * Servlet:SPEC:207;
      *
-     * @test_Strategy: 1. Create servlet TestServlet1 with multiple URLs:
-     * /foo/bar/* /TestServlet1 /foo/baR/TestServlet1 /test/Test1.bop 2. Create
-     * servlet TestServlet4 with multiple URLs: *.bop /TestServlet4 3. Send
-     * request to /test/Test1.bop, verify TestServlet1 is invoked 4. Send request
-     * to /Test1.bop, verify TestServlet4 is invoked
+     * @test_Strategy: 1. Create servlet TestServlet1 with multiple URLs: /foo/bar/* /TestServlet1 /foo/baR/TestServlet1
+     * /test/Test1.bop 2. Create servlet TestServlet4 with multiple URLs: *.bop /TestServlet4 3. Send request to
+     * /test/Test1.bop, verify TestServlet1 is invoked 4. Send request to /Test1.bop, verify TestServlet4 is invoked
      */
     public void multiURLmappingTest4() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");

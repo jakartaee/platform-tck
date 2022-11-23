@@ -19,12 +19,10 @@ package com.sun.ts.lib.tests.security.permissions;
 import java.security.Permission;
 
 /**
- * Java SecurityManager Permission class for CTS Test purposes. This permission
- * extends the Permission class and is used to perform validations of
- * permissions.xml.
+ * Java SecurityManager Permission class for CTS Test purposes. This permission extends the Permission class and is used
+ * to perform validations of permissions.xml.
  *
- * Sample usage of this permssion: permission
- * com.sun.ts.tests.ejb30.sec.permsxml.CTSPermission1 "*";
+ * Sample usage of this permssion: permission com.sun.ts.tests.ejb30.sec.permsxml.CTSPermission1 "*";
  *
  */
 public final class CTSPermission1 extends Permission {
@@ -38,8 +36,7 @@ public final class CTSPermission1 extends Permission {
     /**
      * Create a new CTSPermission1 with no action
      *
-     * @param name
-     *          -
+     * @param name -
      */
     public CTSPermission1(String name) {
         super(name);
@@ -48,10 +45,8 @@ public final class CTSPermission1 extends Permission {
     /**
      * Creates a new CTSPermission1 with action
      *
-     * @param name
-     *          JNDI resource path name
-     * @param action
-     *          JNDI action (none defined)
+     * @param name JNDI resource path name
+     * @param action JNDI action (none defined)
      */
     public CTSPermission1(String name, String actions) {
         super(name);
@@ -59,11 +54,13 @@ public final class CTSPermission1 extends Permission {
     }
 
     public boolean equals(Object o) {
-        if (o == null || !(o instanceof CTSPermission1)) return false;
+        if (o == null || !(o instanceof CTSPermission1))
+            return false;
 
         CTSPermission1 that = (CTSPermission1) o;
 
-        if (!this.getName().equals(that.getName())) return false;
+        if (!this.getName().equals(that.getName()))
+            return false;
 
         if (this.methodName != null) {
             if (that.methodName == null || !this.methodName.equals(that.methodName)) {

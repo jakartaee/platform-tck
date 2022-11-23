@@ -52,7 +52,8 @@ public class SameJspIdTag extends SimpleTagSupport implements JspIdConsumer {
             out.println("SameJspIdTag: JspId is " + jspId);
             idArray[currentInvoc - 1] = jspId;
 
-            if (currentInvoc != NUM_INVOC) return;
+            if (currentInvoc != NUM_INVOC)
+                return;
             else {
                 for (int i = 0; i < NUM_INVOC; ++i) {
                     if (!idArray[i].equals(jspId)) {

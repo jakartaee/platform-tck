@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55; JSTL:SPEC:55.1; JSTL:SPEC:55.1.1
      *
-     * @testStrategy: Validate the value attribute can accept both String and
-     * Number instances as well as the acceptance of dynamic and static values.
+     * @testStrategy: Validate the value attribute can accept both String and Number instances as well as the acceptance of
+     * dynamic and static values.
      */
     public void positiveFNValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNValueTest");
@@ -77,12 +75,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveFNTypeTest
      *
-     * @assertion_ids: JSTL:SPEC:55.2; JSTL:SPEC:55.2.1; JSTL:SPEC:55.2.2;
-     * JSTL:SPEC:55.2.3; JSTL:SPEC:55.2.4
+     * @assertion_ids: JSTL:SPEC:55.2; JSTL:SPEC:55.2.1; JSTL:SPEC:55.2.2; JSTL:SPEC:55.2.3; JSTL:SPEC:55.2.4
      *
-     * @testStrategy: Validate that the inclusion of the type attribute properly
-     * affects the formatting of the value. Also validate that if type is not
-     * specified, that the value will be formatted as a number by default.
+     * @testStrategy: Validate that the inclusion of the type attribute properly affects the formatting of the value. Also
+     * validate that if type is not specified, that the value will be formatted as a number by default.
      */
     public void positiveFNTypeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNTypeTest");
@@ -94,8 +90,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.3; JSTL:SPEC:55.33
      *
-     * @testStrategy: Validate that a pattern is properly applied when formatting
-     * numbers. Also validate that if pattern is specified, that type is ignored.
+     * @testStrategy: Validate that a pattern is properly applied when formatting numbers. Also validate that if pattern is
+     * specified, that type is ignored.
      */
     public void positiveFNPatternTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNPatternTest");
@@ -107,9 +103,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.5; JSTL:SPEC:55.5.1
      *
-     * @testStrategy: Validate that currencySymbol is applied to the formatted
-     * value when type is currency. If type is not currency, then currencySymbol
-     * should not be applied.
+     * @testStrategy: Validate that currencySymbol is applied to the formatted value when type is currency. If type is not
+     * currency, then currencySymbol should not be applied.
      */
     public void positiveFNCurrencySymbolTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNCurrencySymbolTest");
@@ -121,9 +116,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.4; JSTL:SPEC:55.5.1
      *
-     * @testStrategy: Validate that the currency code is properly applied to the
-     * value to be formatted when type is currency. If type is not currency, then
-     * currencyCode should not be applied.
+     * @testStrategy: Validate that the currency code is properly applied to the value to be formatted when type is
+     * currency. If type is not currency, then currencyCode should not be applied.
      */
     public void positiveFNCurrencyCodeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNCurrencyCodeTest");
@@ -135,10 +129,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.6; JSTL:SPEC:56.3
      *
-     * @testStrategy: Validate the behavior of groupingUsed. When true, grouping
-     * separators should be applied to all format types (number, currency,
-     * percent). If groupingUsed is not specified, groupings will be applied to
-     * the value by default.
+     * @testStrategy: Validate the behavior of groupingUsed. When true, grouping separators should be applied to all format
+     * types (number, currency, percent). If groupingUsed is not specified, groupings will be applied to the value by
+     * default.
      */
     public void positiveFNGroupingUsedTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNGroupingUsedTest");
@@ -150,11 +143,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.7
      *
-     * @testStrategy: Validate the behavior of maxIntegerDigits when formatting
-     * different types (number, currency, percent). The presence of the attribute
-     * should appropriately reduce the number of digits in the formatted value if
-     * the number of integer digits exceeds value of the maxIntegerDigits
-     * attribute.
+     * @testStrategy: Validate the behavior of maxIntegerDigits when formatting different types (number, currency, percent).
+     * The presence of the attribute should appropriately reduce the number of digits in the formatted value if the number
+     * of integer digits exceeds value of the maxIntegerDigits attribute.
      */
     public void positiveFNMaxIntDigitsTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNMaxIntDigitsTest");
@@ -166,10 +157,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.8
      *
-     * @testStrategy: Validate the behavior of minIntegerDigits when formatting
-     * different types (number, currency, percent). The presence of the attribute
-     * should enforce the minimum number of digits in the final result of the
-     * format operation.
+     * @testStrategy: Validate the behavior of minIntegerDigits when formatting different types (number, currency, percent).
+     * The presence of the attribute should enforce the minimum number of digits in the final result of the format
+     * operation.
      */
     public void positiveFNMinIntDigitsTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNMinIntDigitsTest");
@@ -181,8 +171,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.9
      *
-     * @testStrategy: fractional digits exceeds value of the maxIntegerDigits
-     * attribute.
+     * @testStrategy: fractional digits exceeds value of the maxIntegerDigits attribute.
      */
     public void positiveFNMaxFracDigitsTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNMaxFracDigitsTest");
@@ -194,10 +183,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.10
      *
-     * @testStrategy: Validate the behavior of minFractionDigits when formatting
-     * different types (number, currency, percent). The presence of the attribute
-     * should enforce the minimum number of fractional digits in the final result
-     * of the format operation.
+     * @testStrategy: Validate the behavior of minFractionDigits when formatting different types (number, currency,
+     * percent). The presence of the attribute should enforce the minimum number of fractional digits in the final result of
+     * the format operation.
      */
     public void positiveFNMinFracDigitsTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNMinFracDigitsTest");
@@ -209,9 +197,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.10
      *
-     * @testStrategy: Validate that the formatNumber action exports the formated
-     * result and can be referenced by the variable name specified by var. Also
-     * validate that the type of the scoped variable is java.lang.String.
+     * @testStrategy: Validate that the formatNumber action exports the formated result and can be referenced by the
+     * variable name specified by var. Also validate that the type of the scoped variable is java.lang.String.
      */
     public void positiveFNVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNVarTest");
@@ -223,9 +210,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.12; JSTL:SPEC:55.12.1
      *
-     * @testStrategy: Validate that the action exports var to the specified scope
-     * as well as validating that if scope is not specified, var will be exported
-     * to the page scope by default.
+     * @testStrategy: Validate that the action exports var to the specified scope as well as validating that if scope is not
+     * specified, var will be exported to the page scope by default.
      */
     public void positiveFNScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNScopeTest");
@@ -237,8 +223,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.18
      *
-     * @testStrategy: Validate that if the value attribute is provided with a null
-     * or empty value, that no action is performed.
+     * @testStrategy: Validate that if the value attribute is provided with a null or empty value, that no action is
+     * performed.
      */
     public void positiveFNValueNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNValueNullEmptyTest");
@@ -250,8 +236,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.19
      *
-     * @testStrategy: Validate that the value to be formatted can be provided as
-     * body content to the action.
+     * @testStrategy: Validate that the value to be formatted can be provided as body content to the action.
      */
     public void positiveFNBodyValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNBodyValueTest");
@@ -263,12 +248,10 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.26.1; JSTL:SPEC:55.27.1
      *
-     * @testStrategy: Validate the following with both currencyCode and
-     * currencySymbol defined: - Using en_US as the Locale. - If runtime is 1.4 or
-     * greater currencyCode will take precedence over currencySymbol. In this case
-     * a '$' will prefix the formatted value. - If runtime earlier than 1.4,
-     * currencySymbol will take precedence over currencyCode. In this case USD
-     * should prefix the formatted value.
+     * @testStrategy: Validate the following with both currencyCode and currencySymbol defined: - Using en_US as the Locale.
+     * - If runtime is 1.4 or greater currencyCode will take precedence over currencySymbol. In this case a '$' will prefix
+     * the formatted value. - If runtime earlier than 1.4, currencySymbol will take precedence over currencyCode. In this
+     * case USD should prefix the formatted value.
      */
     public void positiveFNCodeSymbolTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFNCodeSymbolTest");
@@ -280,9 +263,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:46.2; JSTL:SPEC:92.3
      *
-     * @testStrategy: Validate that the action can properly format a date based on
-     * the default I18N localization context configuration variable
-     * jakarta.servlet.jsp.jstl.fmt.localizationContext.
+     * @testStrategy: Validate that the action can properly format a date based on the default I18N localization context
+     * configuration variable jakarta.servlet.jsp.jstl.fmt.localizationContext.
      */
     public void positiveFNLocalizationContextTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveFNLocalizationContextTest");
@@ -297,8 +279,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:50.2
      *
-     * @testStrategy: Validate that if no matching locale can be found, that the
-     * fallback locale will be used.
+     * @testStrategy: Validate that if no matching locale can be found, that the fallback locale will be used.
      */
     public void positiveFNFallbackLocaleTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveFNFallbackLocaleTest");
@@ -313,10 +294,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.21
      *
-     * @testStrategy: Validate that if the formatting action is unable to parse
-     * the String value provided, the exception is rethrown as a JspException,
-     * with the rethrown unparsable value in the exception text and the original
-     * exception set as the root cause of the JspException.
+     * @testStrategy: Validate that if the formatting action is unable to parse the String value provided, the exception is
+     * rethrown as a JspException, with the rethrown unparsable value in the exception text and the original exception set
+     * as the root cause of the JspException.
      */
     public void negativeFNUnableToParseValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeFNUnableToParseValueTest");
@@ -328,8 +308,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:55.16
      *
-     * @testStrategy: validate that if var is not specified, but scope is, that a
-     * fatal translation error occurs.
+     * @testStrategy: validate that if var is not specified, but scope is, that a fatal translation error occurs.
      */
     public void negativeFNScopeNoVarTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeFNScopeNoVarTest");

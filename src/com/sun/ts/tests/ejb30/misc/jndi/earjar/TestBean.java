@@ -37,9 +37,7 @@ public class TestBean implements TestIF {
     @Resource(lookup = "java:app/AppName")
     private String appNameInjected;
 
-    @EJB(
-            lookup =
-                    "java:global/misc_jndi_earjar/misc_jndi_earjar_ejb/BasicBean!com.sun.ts.tests.ejb30.lite.basic.stateless.BasicBean")
+    @EJB(lookup = "java:global/misc_jndi_earjar/misc_jndi_earjar_ejb/BasicBean!com.sun.ts.tests.ejb30.lite.basic.stateless.BasicBean")
     private BasicBean basicBean;
 
     public String globalJNDI(String appName, String moduleName) {

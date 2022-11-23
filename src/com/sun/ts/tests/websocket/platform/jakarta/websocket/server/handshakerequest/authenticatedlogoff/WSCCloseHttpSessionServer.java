@@ -30,7 +30,7 @@ import java.io.IOException;
 public class WSCCloseHttpSessionServer {
     private static int lastCloseCode = 0;
 
-    static final String MESSAGES[] = {"invalidate", "interval", "lastcode"};
+    static final String MESSAGES[] = { "invalidate", "interval", "lastcode" };
 
     @OnMessage
     public String onMessage(String msg) {
@@ -40,7 +40,8 @@ public class WSCCloseHttpSessionServer {
         } else if (MESSAGES[1].equals(msg)) {
             WSCCloseHttpSessionServer.setLastCloseCode(0);
             CloseHttpSessionConfigurator.getSession().setMaxInactiveInterval(1);
-        } else if (MESSAGES[2].equals(msg)) msg = String.valueOf(lastCloseCode);
+        } else if (MESSAGES[2].equals(msg))
+            msg = String.valueOf(lastCloseCode);
         return msg;
     }
 

@@ -30,5 +30,6 @@ public class DynamicAttributeSetterMethodTag extends SimpleTagSupport {
         // do nothing server should error out.
     }
 
-    public void doTag() throws JspException, IOException {}
+    public void doTag() throws JspException, IOException {
+    }
 }

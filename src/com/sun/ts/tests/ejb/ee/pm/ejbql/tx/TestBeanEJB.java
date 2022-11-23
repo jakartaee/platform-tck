@@ -166,7 +166,8 @@ public class TestBeanEJB implements SessionBean {
 
             tempName1 = beanRef2.getBrandName();
 
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             if (a1 && b1) {
@@ -254,7 +255,8 @@ public class TestBeanEJB implements SessionBean {
 
             tempName1 = beanRef2.getBrandName();
 
-            if (tempName1.equals(origName1)) b1 = true;
+            if (tempName1.equals(origName1))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             if (a1 && b1) {
@@ -345,7 +347,8 @@ public class TestBeanEJB implements SessionBean {
 
             tempName1 = beanRef2.getBrandName();
 
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             if (a1 && b1) {
@@ -431,7 +434,8 @@ public class TestBeanEJB implements SessionBean {
 
             tempName1 = beanRef2.getBrandName();
 
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             if (a1 && b1) {
@@ -528,7 +532,8 @@ public class TestBeanEJB implements SessionBean {
             tempName1 = beanRef2.getBrandName();
             ut.commit();
 
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             if (a1 && b1) {
@@ -618,7 +623,8 @@ public class TestBeanEJB implements SessionBean {
             tempName1 = beanRef2.getBrandName();
             ut.commit();
 
-            if (tempName1.equals(origName1)) b1 = true;
+            if (tempName1.equals(origName1))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             if (a1 && b1) {

@@ -60,8 +60,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:28;
      *
-     * @test_Strategy: Create instance via Holder() constructor. Verify Holder
-     * object created successfully.
+     * @test_Strategy: Create instance via Holder() constructor. Verify Holder object created successfully.
      */
     public void HolderConstructorTest1() throws Fault {
         TestUtil.logTrace("HolderConstructorTest1");
@@ -81,7 +80,8 @@ public class Client extends ServiceEETest {
             throw new Fault("HolderConstructorTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("HolderConstructorTest1 failed");
+        if (!pass)
+            throw new Fault("HolderConstructorTest1 failed");
     }
 
     /*
@@ -89,8 +89,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:29;
      *
-     * @test_Strategy: Create instance via Holder(byte) constructor. Verify Holder
-     * object created successfully.
+     * @test_Strategy: Create instance via Holder(byte) constructor. Verify Holder object created successfully.
      */
     public void HolderConstructorTest2() throws Fault {
         TestUtil.logTrace("HolderConstructorTest2");
@@ -110,7 +109,8 @@ public class Client extends ServiceEETest {
             throw new Fault("HolderConstructorTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("HolderConstructorTest2 failed");
+        if (!pass)
+            throw new Fault("HolderConstructorTest2 failed");
     }
 
     /*
@@ -118,17 +118,19 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:28; JAXWS:JAVADOC:29;
      *
-     * @test_Strategy: Test using both constructors. Verify value is set correct
-     * in each case.
+     * @test_Strategy: Test using both constructors. Verify value is set correct in each case.
      */
     public void getValueTest() throws Fault {
         TestUtil.logTrace("getValueTest");
         boolean pass = true;
 
-        if (!getValueTest1()) pass = false;
-        if (!getValueTest2()) pass = false;
+        if (!getValueTest1())
+            pass = false;
+        if (!getValueTest2())
+            pass = false;
 
-        if (!pass) throw new Fault("getValueTest failed");
+        if (!pass)
+            throw new Fault("getValueTest failed");
     }
 
     /*
@@ -141,7 +143,8 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Create instance via Holder() ...");
             Holder n = new Holder();
             if (n != null) {
-                if (n.value == null) TestUtil.logMsg("value set as expected to null");
+                if (n.value == null)
+                    TestUtil.logMsg("value set as expected to null");
                 else {
                     TestUtil.logMsg("value set unexpected to non-null");
                     pass = false;
@@ -169,7 +172,8 @@ public class Client extends ServiceEETest {
             Holder n = new Holder(myByte);
             if (n != null) {
                 Byte v = (Byte) n.value;
-                if (myByte.equals(v)) TestUtil.logMsg("value set as expected: " + myByte);
+                if (myByte.equals(v))
+                    TestUtil.logMsg("value set as expected: " + myByte);
                 else {
                     TestUtil.logErr("value: expected - " + myByte + ", received - " + v);
                     pass = false;

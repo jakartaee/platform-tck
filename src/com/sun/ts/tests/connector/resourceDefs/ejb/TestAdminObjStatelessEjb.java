@@ -26,30 +26,10 @@ import jakarta.resource.AdministeredObjectDefinitions;
  * This is the impl for a stateless ejb.
  */
 @AdministeredObjectDefinitions({
-    @AdministeredObjectDefinition(
-            name = "java:app/env/EJBAdminObjectForAppScope",
-            description = "application scoped AdminObjectDefinition",
-            interfaceName = "jakarta.jms.Queue",
-            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
-            resourceAdapter = "#whitebox-rd"),
-    @AdministeredObjectDefinition(
-            name = "java:comp/env/EJBAdminObjectForCompScope",
-            description = "component scoped AdminObjectDefinition",
-            interfaceName = "jakarta.jms.Queue",
-            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
-            resourceAdapter = "#whitebox-rd"),
-    @AdministeredObjectDefinition(
-            name = "java:module/env/EJBAdminObjectForModuleScope",
-            description = "module scoped AdminObjectDefinition",
-            interfaceName = "jakarta.jms.Queue",
-            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
-            resourceAdapter = "#whitebox-rd"),
-    @AdministeredObjectDefinition(
-            name = "java:global/env/EJBAdminObjectForGlobalScope",
-            description = "globally scoped AdminObjectDefinition",
-            interfaceName = "jakarta.jms.Queue",
-            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
-            resourceAdapter = "#whitebox-rd")
+        @AdministeredObjectDefinition(name = "java:app/env/EJBAdminObjectForAppScope", description = "application scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+        @AdministeredObjectDefinition(name = "java:comp/env/EJBAdminObjectForCompScope", description = "component scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+        @AdministeredObjectDefinition(name = "java:module/env/EJBAdminObjectForModuleScope", description = "module scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+        @AdministeredObjectDefinition(name = "java:global/env/EJBAdminObjectForGlobalScope", description = "globally scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd")
 })
 @Stateless
 public class TestAdminObjStatelessEjb implements ITestAdminObjStatelessEjb {

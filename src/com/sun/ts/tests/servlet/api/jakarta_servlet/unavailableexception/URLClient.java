@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,8 +58,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:11; Servlet:JAVADOC:4; Servlet:JAVADOC:7;
      *
-     * @test_Strategy: A test for UnavailableException.getUnavailableSeconds()
-     * method.
+     * @test_Strategy: A test for UnavailableException.getUnavailableSeconds() method.
      */
 
     public void getUnavailableSecondsTest() throws Fault {
@@ -72,8 +69,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: isPermanentTest
      *
-     * @assertion_ids: Servlet:SPEC:11; Servlet:JAVADOC:3; Servlet:JAVADOC:4;
-     * Servlet:JAVADOC:5;
+     * @assertion_ids: Servlet:SPEC:11; Servlet:JAVADOC:3; Servlet:JAVADOC:4; Servlet:JAVADOC:5;
      *
      * @test_Strategy: A test for UnavailableException.isPermanent() method.
      */
@@ -86,12 +82,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: unavailableTest
      *
-     * @assertion_ids: Servlet:SPEC:11; Servlet:SPEC:11.1; Servlet:JAVADOC:3;
-     * Servlet:JAVADOC:268;
+     * @assertion_ids: Servlet:SPEC:11; Servlet:SPEC:11.1; Servlet:JAVADOC:3; Servlet:JAVADOC:268;
      *
-     * @test_Strategy: A test for Permanent Unavailable First access the Servlet,
-     * and mark it unavailable Second try to access it again, 404 should be
-     * returned
+     * @test_Strategy: A test for Permanent Unavailable First access the Servlet, and mark it unavailable Second try to
+     * access it again, 404 should be returned
      */
 
     public void unavailableTest() throws Fault {
@@ -108,9 +102,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:11; Servlet:JAVADOC:3;
      *
-     * @test_Strategy: A test for UnavailableException(String mesg). It construts
-     * an UnavailabaleException object for the specified servlet. This constructor
-     * tests for permanent unavailability
+     * @test_Strategy: A test for UnavailableException(String mesg). It construts an UnavailabaleException object for the
+     * specified servlet. This constructor tests for permanent unavailability
      */
 
     public void unavailableException_Constructor1Test() throws Fault {
@@ -123,9 +116,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:11; Servlet:JAVADOC:4;
      *
-     * @test_Strategy: A test for UnavailableException(String mesg, int sec). It
-     * construts an UnavailabaleException object for the specified servlet. This
-     * constructor tests for temporarily unavailability
+     * @test_Strategy: A test for UnavailableException(String mesg, int sec). It construts an UnavailabaleException object
+     * for the specified servlet. This constructor tests for temporarily unavailability
      */
 
     public void unavailableException_Constructor2Test() throws Fault {

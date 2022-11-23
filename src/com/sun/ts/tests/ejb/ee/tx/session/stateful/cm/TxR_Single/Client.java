@@ -81,10 +81,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.3.1; EJB:SPEC:583.3.2; EJB:SPEC:583.3.4
      *
-     * @test_Strategy: Create an instance of a stateful session Testbean bean.
-     * Create an instance of a stateful session TxBean (Required) bean. Perform
-     * Insert/Delete operations to a single table and ensure that these operations
-     * are commited automatically after each method completes.
+     * @test_Strategy: Create an instance of a stateful session Testbean bean. Create an instance of a stateful session
+     * TxBean (Required) bean. Perform Insert/Delete operations to a single table and ensure that these operations are
+     * commited automatically after each method completes.
      *
      */
     public void test1() throws Fault {
@@ -100,8 +99,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {

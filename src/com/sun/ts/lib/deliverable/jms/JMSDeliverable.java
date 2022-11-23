@@ -24,8 +24,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * This class serves as a well known place for harness, util, and porting
- * classes to retrieve property values.
+ * This class serves as a well known place for harness, util, and porting classes to retrieve property values.
  *
  * @author Dianne Jiao
  */
@@ -57,7 +56,7 @@ public class JMSDeliverable extends AbstractDeliverable {
             htTSValidVehicles = new Hashtable();
 
             // add default values
-            htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"standalone"});
+            htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] { "standalone" });
         }
         return htTSValidVehicles;
     }

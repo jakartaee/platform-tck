@@ -35,7 +35,8 @@ public class A implements java.io.Serializable {
 
     protected Address address;
 
-    public A() {}
+    public A() {
+    }
 
     public A(String id, String name, int value) {
         this.id = id;

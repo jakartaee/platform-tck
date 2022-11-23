@@ -26,8 +26,7 @@ import jakarta.ejb.EJBException;
 public class PainterBeanEJB extends StatelessWrapper {
 
     /**
-     * Method used to identify this bean. Return the value of bean env entry
-     * called 'myName'.
+     * Method used to identify this bean. Return the value of bean env entry called 'myName'.
      */
     public String whoAreYou() throws EJBException {
         return ReferencedBeanCode.whoAreYou(nctx);

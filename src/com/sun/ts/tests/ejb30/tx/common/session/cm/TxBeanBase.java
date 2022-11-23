@@ -25,13 +25,17 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 public abstract class TxBeanBase extends TxBeanBase0 implements TxIF {
-    public void mandatoryTest() {}
+    public void mandatoryTest() {
+    }
 
-    public void neverTest() {}
+    public void neverTest() {
+    }
 
-    public void neverTest(String s) {}
+    public void neverTest(String s) {
+    }
 
-    public void mandatoryTest(String s) {}
+    public void mandatoryTest(String s) {
+    }
 
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public String supportsTest() throws TestFailedException {

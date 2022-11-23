@@ -34,10 +34,7 @@ import java.io.PrintWriter;
 import javax.naming.NamingException;
 
 @EJBs({
-    @EJB(
-            name = "typeLevelBeanNotInjected",
-            beanInterface = RemoteCalculator.class,
-            beanName = "StatelessRemoteCalculatorBean")
+        @EJB(name = "typeLevelBeanNotInjected", beanInterface = RemoteCalculator.class, beanName = "StatelessRemoteCalculatorBean")
 })
 public class TestServlet extends HttpTCKServlet {
 

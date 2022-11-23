@@ -25,10 +25,9 @@ import jakarta.ejb.RemoveException;
 
 /**
  * <P>
- * TxEBean is an entity EJB. Most of the business methods of the TxEBean class
- * do not access the database. Instead, these business methods update the
- * instance variables, which are written to the database when the EJB Container
- * calls ejbStore().
+ * TxEBean is an entity EJB. Most of the business methods of the TxEBean class do not access the database. Instead,
+ * these business methods update the instance variables, which are written to the database when the EJB Container calls
+ * ejbStore().
  */
 public interface TxEBean extends EJBLocalObject {
     /**
@@ -62,8 +61,7 @@ public interface TxEBean extends EJBLocalObject {
     /**
      * This method is called to update the brand name.
      *
-     * @param newBrandName
-     *          the name of the new brand.
+     * @param newBrandName the name of the new brand.
      * @return void
      */
     public void updateBrandName(String newBrandName);
@@ -71,34 +69,27 @@ public interface TxEBean extends EJBLocalObject {
     /**
      * This method is called to update the brand name.
      *
-     * @param newBrandName
-     *          new brand name
-     * @param flag
-     *          flags the intended exception
+     * @param newBrandName new brand name
+     * @param flag flags the intended exception
      * @return boolean true if rolled back; else false
-     * @exception AppException
-     *              triggered by flag
+     * @exception AppException triggered by flag
      */
     public boolean updateBrandName(String newBrandName, int flag) throws AppException;
 
     /**
      * This method is called to update the brand name.
      *
-     * @param newBrandName
-     *          new brand name
-     * @param flag
-     *          flags the intended exception
+     * @param newBrandName new brand name
+     * @param flag flags the intended exception
      * @return boolean true if rolled back; else false
-     * @exception AppException
-     *              triggered by the flag.
+     * @exception AppException triggered by the flag.
      */
     public boolean updateBrandNameRB(String newBrandName, int flag) throws AppException;
 
     /**
      * This method is called to update the price.
      *
-     * @param newPriceName
-     *          new price name
+     * @param newPriceName new price name
      * @return void
      */
     public void updatePrice(float newPriceName);
@@ -107,8 +98,7 @@ public interface TxEBean extends EJBLocalObject {
      * This method throws an Application Exception
      *
      * @return void
-     * @exception AppException
-     *              Throw the requested AppException
+     * @exception AppException Throw the requested AppException
      */
     public void throwAppException() throws AppException;
 
@@ -116,8 +106,7 @@ public interface TxEBean extends EJBLocalObject {
      * This method throws a System Exception
      *
      * @return void
-     * @exception SysException
-     *              Throw the requested SysException
+     * @exception SysException Throw the requested SysException
      */
     public void throwSysException();
 
@@ -125,8 +114,7 @@ public interface TxEBean extends EJBLocalObject {
      * This method throws an EJB Exception
      *
      * @return void
-     * @exception EJBException
-     *              Throw the requested EJBException
+     * @exception EJBException Throw the requested EJBException
      */
     public void throwEJBException();
 
@@ -134,8 +122,7 @@ public interface TxEBean extends EJBLocalObject {
      * This method throws an Error
      *
      * @return void
-     * @exception Error
-     *              Throw the requested Error
+     * @exception Error Throw the requested Error
      */
     public void throwError();
 
@@ -143,10 +130,8 @@ public interface TxEBean extends EJBLocalObject {
      * This method throws a RemoveException
      *
      * @return void
-     * @exception Forces
-     *              a RemoveException.
-     * @exception Throws
-     *              the requested RemoveException
+     * @exception Forces a RemoveException.
+     * @exception Throws the requested RemoveException
      */
     public void throwRemoveException() throws RemoveException;
 }

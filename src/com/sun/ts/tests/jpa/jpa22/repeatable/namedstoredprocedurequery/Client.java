@@ -47,7 +47,8 @@ public class Client extends PMClientBase {
 
     static final String POSTGRESQL = "postgresql";
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -112,8 +113,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: createStoredProcedureQueryStringTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1531; PERSISTENCE:JAVADOC:1532;
-     * PERSISTENCE:JAVADOC:1533; PERSISTENCE:JAVADOC:1535;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1531; PERSISTENCE:JAVADOC:1532; PERSISTENCE:JAVADOC:1533;
+     * PERSISTENCE:JAVADOC:1535;
      *
      * @test_Strategy:
      *
@@ -154,9 +155,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: createStoredProcedureQueryStringClassArrayTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1531; PERSISTENCE:JAVADOC:1532;
-     * PERSISTENCE:JAVADOC:1533; PERSISTENCE:JAVADOC:1535;
-     * PERSISTENCE:JAVADOC:1522;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1531; PERSISTENCE:JAVADOC:1532; PERSISTENCE:JAVADOC:1533;
+     * PERSISTENCE:JAVADOC:1535; PERSISTENCE:JAVADOC:1522;
      *
      * @test_Strategy:
      *
@@ -167,7 +167,7 @@ public class Client extends PMClientBase {
         boolean pass = false;
         getEntityTransaction().begin();
         try {
-            Class<?>[] cArray = {Employee.class};
+            Class<?>[] cArray = { Employee.class };
             StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", cArray);
             if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
                 TestUtil.logTrace("register refcursor parameter");
@@ -202,9 +202,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: createStoredProcedureQueryStringStringArrayTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1531; PERSISTENCE:JAVADOC:1532;
-     * PERSISTENCE:JAVADOC:1533; PERSISTENCE:JAVADOC:1535;
-     * PERSISTENCE:JAVADOC:1524; PERSISTENCE:SPEC:1571;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1531; PERSISTENCE:JAVADOC:1532; PERSISTENCE:JAVADOC:1533;
+     * PERSISTENCE:JAVADOC:1535; PERSISTENCE:JAVADOC:1524; PERSISTENCE:SPEC:1571;
      *
      * @test_Strategy:
      *
@@ -217,9 +216,8 @@ public class Client extends PMClientBase {
         getEntityTransaction().begin();
         clearCache();
         try {
-            String[] sArray = {"id-firstname-lastname"};
-            StoredProcedureQuery spq =
-                    getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS", sArray);
+            String[] sArray = { "id-firstname-lastname" };
+            StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS", sArray);
             spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
             if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
                 TestUtil.logTrace("register refcursor parameter");
@@ -254,10 +252,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: createNamedStoredProcedureQueryStringTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1514; PERSISTENCE:JAVADOC:1530;
-     * PERSISTENCE:JAVADOC:1532; PERSISTENCE:JAVADOC:1533;
-     * PERSISTENCE:JAVADOC:1534; PERSISTENCE:JAVADOC:1541;
-     * PERSISTENCE:JAVADOC:1543; PERSISTENCE:JAVADOC:1535;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1514; PERSISTENCE:JAVADOC:1530; PERSISTENCE:JAVADOC:1532;
+     * PERSISTENCE:JAVADOC:1533; PERSISTENCE:JAVADOC:1534; PERSISTENCE:JAVADOC:1541; PERSISTENCE:JAVADOC:1543;
+     * PERSISTENCE:JAVADOC:1535;
      *
      * @test_Strategy:
      *
@@ -397,7 +394,8 @@ public class Client extends PMClientBase {
                 rsnum++;
             } else {
                 rowsAffected = spq.getUpdateCount();
-                if (rowsAffected >= 0) TestUtil.logTrace("rowsAffected:" + rowsAffected);
+                if (rowsAffected >= 0)
+                    TestUtil.logTrace("rowsAffected:" + rowsAffected);
             }
             results = spq.hasMoreResults();
             TestUtil.logTrace("Results:" + results);

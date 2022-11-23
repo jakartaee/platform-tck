@@ -20,4 +20,5 @@ package com.sun.ts.tests.websocket.spec.annotation.inheritance;
 import jakarta.websocket.ClientEndpoint;
 
 @ClientEndpoint
-public class AnnotatedSubclassEndpointWithoutAnnotations extends AnnotatedClientEndpointSuperclassWithAnnotations {}
+public class AnnotatedSubclassEndpointWithoutAnnotations extends AnnotatedClientEndpointSuperclassWithAnnotations {
+}

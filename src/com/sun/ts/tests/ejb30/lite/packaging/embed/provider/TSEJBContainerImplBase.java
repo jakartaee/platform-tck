@@ -30,7 +30,8 @@ public class TSEJBContainerImplBase extends EJBContainer {
      * @see jakarta.ejb.embeddable.EJBContainer#close()
      */
     @Override
-    public void close() {}
+    public void close() {
+    }
 
     /*
      * (non-Javadoc)

@@ -97,15 +97,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create a bmp entity bean with a method which invokes a
-     * method of the second bean. 2. Protect the second method within the bean
-     * with multiple security roles. 3. Call the bean method as a principal who is
-     * in some of the security roles defined for the second method. 4. Verify call
-     * returns successfully.
+     * @test_Strategy: 1. Create a bmp entity bean with a method which invokes a method of the second bean. 2. Protect the
+     * second method within the bean with multiple security roles. 3. Call the bean method as a principal who is in some of
+     * the security roles defined for the second method. 4. Verify call returns successfully.
      *
-     * Note: A caller principal who is in at least one of the security roles
-     * defined on a method permission element for an EJB method must be allowed to
-     * execute the method.
+     * Note: A caller principal who is in at least one of the security roles defined on a method permission element for an
+     * EJB method must be allowed to execute the method.
      */
 
     public void test1() throws Fault {
@@ -113,7 +110,8 @@ public class Client extends EETest {
         try {
             ejbref = ejbhome.create(props, newTable, 1, "coffee-1", 1);
 
-            if (!ejbref.EjbIsAuthz(props)) throw new Fault("Caller authorization test failed");
+            if (!ejbref.EjbIsAuthz(props))
+                throw new Fault("Caller authorization test failed");
             logMsg("Caller authorization test passed");
         } catch (Exception e) {
             throw new Fault("Caller authorization test failed: ", e);
@@ -125,16 +123,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61.7; EJB:SPEC:81.4
      *
-     * @test_Strategy: 1. Create a bmp entity bean invokes a method of a second
-     * bean. 2. Protect the method in the second bean using a security
-     * role(role1). 3. Link a security role ref - emp_secrole_ref - to role1 in
-     * the bean. 4. Invoke the method with emp_secrole_ref as parameter. 5. bean
-     * calls isCallerInRole(emp_secrole_ref) and returns return value. 6. Verify
-     * return value is true.
+     * @test_Strategy: 1. Create a bmp entity bean invokes a method of a second bean. 2. Protect the method in the second
+     * bean using a security role(role1). 3. Link a security role ref - emp_secrole_ref - to role1 in the bean. 4. Invoke
+     * the method with emp_secrole_ref as parameter. 5. bean calls isCallerInRole(emp_secrole_ref) and returns return value.
+     * 6. Verify return value is true.
      *
-     * Note: A security role reference name must be the security role name used in
-     * isCallerInRole() api call as specified in EJB 2.0 specification, section
-     * 21.2.5.3. This is a positive test.
+     * Note: A security role reference name must be the security role name used in isCallerInRole() api call as specified in
+     * EJB 2.0 specification, section 21.2.5.3. This is a positive test.
      */
 
     public void test3() throws Fault {
@@ -155,16 +150,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61.8
      *
-     * @test_Strategy: 1. Create a bmp entity bean invokes a method of a second
-     * bean. 2. Protect the method in the bean using a security role (role1). 3.
-     * Link a security role ref - emp_secrole_ref - to role1 in the bean. 4.
-     * Invoke the method with mgr_secrole_ref as a parameter. 5. bean calls
-     * isCallerInRole(mgr_secrole_ref) and returns return value. 6. Verify return
-     * value is false.
+     * @test_Strategy: 1. Create a bmp entity bean invokes a method of a second bean. 2. Protect the method in the bean
+     * using a security role (role1). 3. Link a security role ref - emp_secrole_ref - to role1 in the bean. 4. Invoke the
+     * method with mgr_secrole_ref as a parameter. 5. bean calls isCallerInRole(mgr_secrole_ref) and returns return value.
+     * 6. Verify return value is false.
      *
-     * Note: A security role reference name must be the security role name used in
-     * isCallerInRole() api call as specified in EJB 2.0 specification, section
-     * 21.2.5.3. This is a negative test.
+     * Note: A security role reference name must be the security role name used in isCallerInRole() api call as specified in
+     * EJB 2.0 specification, section 21.2.5.3. This is a negative test.
      */
 
     public void test4() throws Fault {
@@ -185,18 +177,14 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:799; EJB:SPEC:804
      *
-     * @test_Strategy: 1. Create one bmp entity bean which invokes two bmp entity
-     * beans (ejb1 and ejb2). 2. Link security role reference (roleref) to role1
-     * in ejb1 and role2 in ejb2. 3. Ensure caller principal is in role1 but not
-     * in role2. 4. Invoke method in ejb1 that returns value of
-     * isCallerInRole(roleref). Verify return value is true. 5. Invoke method in
-     * ejb2 that returns value of isCallerInRole(roleref). Verify return value is
-     * false.
+     * @test_Strategy: 1. Create one bmp entity bean which invokes two bmp entity beans (ejb1 and ejb2). 2. Link security
+     * role reference (roleref) to role1 in ejb1 and role2 in ejb2. 3. Ensure caller principal is in role1 but not in role2.
+     * 4. Invoke method in ejb1 that returns value of isCallerInRole(roleref). Verify return value is true. 5. Invoke method
+     * in ejb2 that returns value of isCallerInRole(roleref). Verify return value is false.
      *
-     * Note: Security role references are scoped to a bean as specified in EJB
-     * Specification 21.2.5.3 . So two ejbs in the same application can each
-     * define an identical security role reference that is linked to different
-     * security roles in each ejb.
+     * Note: Security role references are scoped to a bean as specified in EJB Specification 21.2.5.3 . So two ejbs in the
+     * same application can each define an identical security role reference that is linked to different security roles in
+     * each ejb.
      */
 
     public void test5() throws Fault {
@@ -219,15 +207,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:811
      *
-     * @test_Strategy: 1. Create a bmp entity bean which invokes the second bean
-     * with overloaded methods: method1 and method2. 2. Call method1 passing
-     * emp_secrole_ref. 3. Method1 returns isCallerInRole(emp_secrole_ref) which
-     * must be true. 4. Call method2 passing two role references as parameters. 5.
-     * Method must return false ( caller not in both security role refs).
+     * @test_Strategy: 1. Create a bmp entity bean which invokes the second bean with overloaded methods: method1 and
+     * method2. 2. Call method1 passing emp_secrole_ref. 3. Method1 returns isCallerInRole(emp_secrole_ref) which must be
+     * true. 4. Call method2 passing two role references as parameters. 5. Method must return false ( caller not in both
+     * security role refs).
      *
-     * Note: Methods declared in a method-permission element can be overloaded as
-     * specified in EJB Specification 2.0 21.3.2. This test verifies that correct
-     * overloaded method is called depending upon the number of arguments.
+     * Note: Methods declared in a method-permission element can be overloaded as specified in EJB Specification 2.0 21.3.2.
+     * This test verifies that correct overloaded method is called depending upon the number of arguments.
      */
 
     public void test2() throws Fault {
@@ -249,15 +235,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create a bmp entity bean invokes a method of a second
-     * bean. 2. Protect bean method with multiple security roles. 3. Call bean
-     * method as a principal who is not in any of the security roles that protects
-     * the method. 4. Verify java.rmi.RemoteException is generated.
+     * @test_Strategy: 1. Create a bmp entity bean invokes a method of a second bean. 2. Protect bean method with multiple
+     * security roles. 3. Call bean method as a principal who is not in any of the security roles that protects the method.
+     * 4. Verify java.rmi.RemoteException is generated.
      *
-     * NOTE: EJB Specification v2.0 specifies that java.rmi.RemoteException is
-     * returned not only for authorization failures but also for communicaton
-     * errors. The test may pass instead of failing if the exception is generated
-     * because of a communication failure.
+     * NOTE: EJB Specification v2.0 specifies that java.rmi.RemoteException is returned not only for authorization failures
+     * but also for communicaton errors. The test may pass instead of failing if the exception is generated because of a
+     * communication failure.
      */
 
     public void test6() throws Fault {
@@ -265,7 +249,8 @@ public class Client extends EETest {
         try {
             ejbref = ejbhome.create(props, newTable, 1, "coffee-1", 1);
 
-            if (!ejbref.EjbNotAuthz(props)) throw new Fault("No caller authorization test failed");
+            if (!ejbref.EjbNotAuthz(props))
+                throw new Fault("No caller authorization test failed");
             logMsg("No authorization test passed");
         } catch (Exception e) {
             throw new Fault("No caller authorization test failed:", e);
@@ -277,15 +262,14 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create a bmp entity bean invokes a remote method of the
-     * second bean. 2. Have this method with method permission unchecked 3. Verify
-     * that access is allowed.
+     * @test_Strategy: 1. Create a bmp entity bean invokes a remote method of the second bean. 2. Have this method with
+     * method permission unchecked 3. Verify that access is allowed.
      *
-     * Note: "The unchecked element specifies that a method is not checked for
-     * authorization by the container prior to invocation of the method."
+     * Note: "The unchecked element specifies that a method is not checked for authorization by the container prior to
+     * invocation of the method."
      *
-     * This test tests that when appclient Client invokes a remote interface
-     * method, which has method permission unchecked, access will be allowed.
+     * This test tests that when appclient Client invokes a remote interface method, which has method permission unchecked,
+     * access will be allowed.
      */
 
     public void test7() throws Fault {
@@ -308,16 +292,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:808
      *
-     * @test_Strategy: 1. Create a bmp entity bean invokes a remote method of the
-     * second bean. 2. Put this method on exclude-list. 3. Verify
-     * java.rmi.RemoteException is generated. Note: "The exclude-list element
-     * defines a set of methods which the assembler marks to be uncallable. It
-     * contains one or more methods. If the method permission relation contains
-     * methods that are in the exclude list, the deployer should consider those
-     * methods to be uncallable."
+     * @test_Strategy: 1. Create a bmp entity bean invokes a remote method of the second bean. 2. Put this method on
+     * exclude-list. 3. Verify java.rmi.RemoteException is generated. Note: "The exclude-list element defines a set of
+     * methods which the assembler marks to be uncallable. It contains one or more methods. If the method permission
+     * relation contains methods that are in the exclude list, the deployer should consider those methods to be uncallable."
      *
-     * This test tests when appclient invokes an ejb's remote interface method in
-     * the exclude list, java.rmi.RemoteException will be thrown.
+     * This test tests when appclient invokes an ejb's remote interface method in the exclude list, java.rmi.RemoteException
+     * will be thrown.
      */
 
     public void test8() throws Fault {
@@ -336,7 +317,8 @@ public class Client extends EETest {
 
     public void cleanup() throws Fault {
         try {
-            if (ejbref != null) ejbref.remove();
+            if (ejbref != null)
+                ejbref.remove();
         } catch (Exception e) {
             logErr("Cleanup failed: ", e);
         }

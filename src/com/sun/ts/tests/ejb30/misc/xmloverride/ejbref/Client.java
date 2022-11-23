@@ -30,8 +30,8 @@ import jakarta.ejb.EJB;
 import java.util.Properties;
 
 /**
- * Similar tests are also at ejb30/lite/xmloverride/ejbref. This test dir tests
- * remote ejb ref from appclient, and its overriding behaviors.
+ * Similar tests are also at ejb30/lite/xmloverride/ejbref. This test dir tests remote ejb ref from appclient, and its
+ * overriding behaviors.
  */
 public class Client extends EETest {
     protected Properties props;
@@ -75,13 +75,14 @@ public class Client extends EETest {
         props = p;
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 
     /*
      * @testName: resolveByEjbLinkInXml
      *
-     * @test_Strategy: @EJB in Client class is incomplete. But the corresponding
-     * ejb-local-ref in application-client.xml resolves it with ejb-link.
+     * @test_Strategy: @EJB in Client class is incomplete. But the corresponding ejb-local-ref in application-client.xml
+     * resolves it with ejb-link.
      */
     public void resolveByEjbLinkInXml() {
         TLogger.log(assertEquals("Check correct target EJB is resolved. ", 1, overrideBean.getNumber()));
@@ -90,8 +91,7 @@ public class Client extends EETest {
     /*
      * @testName: overrideLookup
      *
-     * @test_Strategy: lookup-name in application-client.xml overrides lookup attr
-     * in @EJB
+     * @test_Strategy: lookup-name in application-client.xml overrides lookup attr in @EJB
      */
     public void overrideLookup() {
         TLogger.log(assertEquals("Check correct target EJB is resolved. ", 1, overrideLookup.add(0)));
@@ -100,8 +100,7 @@ public class Client extends EETest {
     /*
      * @testName: overrideInterfaceType
      *
-     * @test_Strategy: <local> in application-client.xml overrides beanInterface
-     * attr in @EJB
+     * @test_Strategy: <local> in application-client.xml overrides beanInterface attr in @EJB
      */
     public void overrideInterfaceType() {
         TLogger.log(
@@ -111,8 +110,7 @@ public class Client extends EETest {
     /*
      * @testName: overrideBeanName
      *
-     * @test_Strategy: <ejb-link> in application-client.xml overrides beanName
-     * attr in @EJB
+     * @test_Strategy: <ejb-link> in application-client.xml overrides beanName attr in @EJB
      */
     public void overrideBeanName() {
         TLogger.log(assertEquals("Check correct target EJB is resolved. ", 1, overrideBeanName.add(0)));

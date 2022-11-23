@@ -38,9 +38,8 @@ public class URLClient extends HttpRequestClient {
     private static final String CONTEXT_ROOT = "/servlet_jsh_httpservletrequest_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -49,8 +48,7 @@ public class URLClient extends HttpRequestClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -119,8 +117,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:575
      *
-     * @test_Strategy: Servlet compares this length to the actual length of the
-     * content body read in using getInputStream
+     * @test_Strategy: Servlet compares this length to the actual length of the content body read in using getInputStream
      *
      */
 
@@ -146,8 +143,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:579
      *
-     * @test_Strategy: Servlet gets a Reader object using
-     * ServletRequest.getReader() then tries to get the inputStream Object
+     * @test_Strategy: Servlet gets a Reader object using ServletRequest.getReader() then tries to get the inputStream
+     * Object
      *
      */
 
@@ -186,8 +183,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:583
      *
-     * @test_Strategy: Client sets several parameters and the servlet attempts to
-     * access them.
+     * @test_Strategy: Client sets several parameters and the servlet attempts to access them.
      */
 
     /*
@@ -274,8 +270,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:590
      *
-     * @test_Strategy: Servlet gets an InputStream Object then tries to get a
-     * Reader Object.
+     * @test_Strategy: Servlet gets an InputStream Object then tries to get a Reader Object.
      */
 
     /*
@@ -283,8 +278,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:589
      *
-     * @test_Strategy: Client sets some content but with an invalid encoding,
-     * servlet tries to read content.
+     * @test_Strategy: Client sets some content but with an invalid encoding, servlet tries to read content.
      */
 
     /*
@@ -348,8 +342,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:598
      *
-     * @test_Strategy: Servlet verifies the isSecure method for the non-secure
-     * case.
+     * @test_Strategy: Servlet verifies the isSecure method for the non-secure case.
      */
 
     /*
@@ -357,8 +350,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:599
      *
-     * @test_Strategy: Servlet adds then removes an attribute, then verifies it
-     * was removed.
+     * @test_Strategy: Servlet adds then removes an attribute, then verifies it was removed.
      */
 
     /*
@@ -380,12 +372,10 @@ public class URLClient extends HttpRequestClient {
     /*
      * @testName: setCharacterEncodingTest1
      *
-     * @assertion_ids: Servlet:JAVADOC:601; Servlet:JAVADOC:574; Servlet:SPEC:28;
-     * Servlet:SPEC:213;
+     * @assertion_ids: Servlet:JAVADOC:601; Servlet:JAVADOC:574; Servlet:SPEC:28; Servlet:SPEC:213;
      *
-     * @test_Strategy: HttpServletRequest calls getReader()first; then sets a new
-     * encoding and tries to retrieve it. verifies that the new encoding is
-     * ignored.
+     * @test_Strategy: HttpServletRequest calls getReader()first; then sets a new encoding and tries to retrieve it.
+     * verifies that the new encoding is ignored.
      */
 
     /*
@@ -488,8 +478,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:539
      *
-     * @test_Strategy: Servlet tries to get all the headers when none have been
-     * added
+     * @test_Strategy: Servlet tries to get all the headers when none have been added
      */
 
     /*
@@ -673,8 +662,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:568; Servlet:SPEC:211;
      *
-     * @test_Strategy: Client sends request without session ID; Verifies
-     * isRequestedSessionIdValid() returns false;
+     * @test_Strategy: Client sends request without session ID; Verifies isRequestedSessionIdValid() returns false;
      */
 
     /*
@@ -682,8 +670,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:559;
      *
-     * @test_Strategy: Client sends request with a session ID; Verifies
-     * getRequestedSessionId() returns the same;
+     * @test_Strategy: Client sends request with a session ID; Verifies getRequestedSessionId() returns the same;
      */
 
     /*
@@ -691,8 +678,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:559;
      *
-     * @test_Strategy: Client sends request to a servlet with a sesion ID; Servlet
-     * start a sesison; Verifies getRequestedSessionId() returns the same;
+     * @test_Strategy: Client sends request to a servlet with a sesion ID; Servlet start a sesison; Verifies
+     * getRequestedSessionId() returns the same;
      */
 
     /*
@@ -700,8 +687,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:SPEC:67;
      *
-     * @test_Strategy: First set a HttpSession's timeout to 60 seconds; then sleep
-     * 90 seconds in servlet; verify that the session is still valid after.
+     * @test_Strategy: First set a HttpSession's timeout to 60 seconds; then sleep 90 seconds in servlet; verify that the
+     * session is still valid after.
      */
 
     /*
@@ -709,8 +696,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:630;
      *
-     * @test_Strategy: Send an HttpServletRequest to server; Verify that
-     * getLocalPort();
+     * @test_Strategy: Send an HttpServletRequest to server; Verify that getLocalPort();
      */
 
     /*
@@ -718,8 +704,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Send an HttpServletRequest to server; Verify that
-     * getServletContext return the same as stored in ServletConfig
+     * @test_Strategy: Send an HttpServletRequest to server; Verify that getServletContext return the same as stored in
+     * ServletConfig
      */
 
     public void getServletContextTest() throws Fault {
@@ -735,14 +721,12 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Perform a GET request and a HEAD request for the same
-     * resource and confirm that a) HEAD response has no body and b) the header
-     * values are the same.
+     * @test_Strategy: Perform a GET request and a HEAD request for the same resource and confirm that a) HEAD response has
+     * no body and b) the header values are the same.
      */
     public void doHeadTest() throws Fault {
         HttpRequest requestGet = new HttpRequest("GET " + getContextRoot() + "/doHeadTest HTTP/1.1", _hostname, _port);
-        HttpRequest requestHead =
-                new HttpRequest("HEAD " + getContextRoot() + "/doHeadTest HTTP/1.1", _hostname, _port);
+        HttpRequest requestHead = new HttpRequest("HEAD " + getContextRoot() + "/doHeadTest HTTP/1.1", _hostname, _port);
 
         try {
             HttpResponse responseGet = requestGet.execute();
@@ -764,11 +748,11 @@ public class URLClient extends HttpRequestClient {
             Header[] headersGet = responseGet.getResponseHeaders();
             for (Header header : headersGet) {
                 switch (header.getName().toLowerCase(Locale.ENGLISH)) {
-                    case "date":
-                        // Ignore date header as it will change between requests
-                        break;
-                    default:
-                        headersToMatch.add(header);
+                case "date":
+                    // Ignore date header as it will change between requests
+                    break;
+                default:
+                    headersToMatch.add(header);
                 }
             }
 

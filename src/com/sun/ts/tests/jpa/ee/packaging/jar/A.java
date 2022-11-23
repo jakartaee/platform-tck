@@ -30,7 +30,8 @@ public class A implements java.io.Serializable {
     // ===========================================================
     // constructors
 
-    public A() {}
+    public A() {
+    }
 
     public A(String id, String name, int value) {
         this.id = id;

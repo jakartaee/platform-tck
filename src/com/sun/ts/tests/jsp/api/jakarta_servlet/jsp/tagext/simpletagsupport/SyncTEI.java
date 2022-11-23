@@ -44,15 +44,14 @@ public class SyncTEI extends TagExtraInfo {
     /**
      * Exports 'begin' with scope of AT_BEGIN, and 'end' with scope of AT_END.
      *
-     * @param data
-     *          - TagData instance
+     * @param data - TagData instance
      * @return an array of VariableInfos
      */
     public VariableInfo[] getVariableInfo(TagData data) {
         JspTestUtil.debug("[SyncTEI] in getVariableInfo()");
         return new VariableInfo[] {
-            new VariableInfo("begin", "java.lang.Integer", true, VariableInfo.AT_BEGIN),
-            new VariableInfo("end", "java.lang.Integer", true, VariableInfo.AT_END)
+                new VariableInfo("begin", "java.lang.Integer", true, VariableInfo.AT_BEGIN),
+                new VariableInfo("end", "java.lang.Integer", true, VariableInfo.AT_END)
         };
     }
 }

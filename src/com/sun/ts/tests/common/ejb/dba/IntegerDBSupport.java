@@ -49,9 +49,8 @@ public class IntegerDBSupport extends DBSupport implements java.io.Serializable 
     protected float cofPrice = 0; /* Coffee Price */
 
     /**
-     * Create a new DBSupport object. If called from an EJB or a Web component,
-     * you must make sure to call TestUtil.init() before creating a new DBSupport
-     * object.
+     * Create a new DBSupport object. If called from an EJB or a Web component, you must make sure to call TestUtil.init()
+     * before creating a new DBSupport object.
      */
     public IntegerDBSupport() throws Exception {
         super(intTablePrefix);

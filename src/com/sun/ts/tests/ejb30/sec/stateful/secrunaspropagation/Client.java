@@ -87,21 +87,18 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create a stateful session bean TestEJB with
-     * run-as-specified-identity set to <Manager> 2. Create another stateful
-     * session bean SecTestEJB with method EjbIsAuthz 3. Protect the method with
-     * multiple security roles including <Manager> 4. Call the bean TestEJB as a
-     * principal <username,password>. Which then invokes the method of the bean
-     * SecTestEJB. 5. Since then TestEJB uses run-as-specified-identity,
-     * <Manager>, which is one of security roles set on the method permission, so
-     * access to the method EjbIsAuthz should be allowed. 6. Verify call returns
-     * successfully.
+     * @test_Strategy: 1. Create a stateful session bean TestEJB with run-as-specified-identity set to <Manager> 2. Create
+     * another stateful session bean SecTestEJB with method EjbIsAuthz 3. Protect the method with multiple security roles
+     * including <Manager> 4. Call the bean TestEJB as a principal <username,password>. Which then invokes the method of the
+     * bean SecTestEJB. 5. Since then TestEJB uses run-as-specified-identity, <Manager>, which is one of security roles set
+     * on the method permission, so access to the method EjbIsAuthz should be allowed. 6. Verify call returns successfully.
      */
 
     public void test1() throws Fault {
         logMsg("Starting Caller authorization test");
         try {
-            if (!ejbref.EjbIsAuthz()) throw new Fault("Caller authorization test failed");
+            if (!ejbref.EjbIsAuthz())
+                throw new Fault("Caller authorization test failed");
             logMsg("Caller authorization test passed");
         } catch (Exception e) {
             throw new Fault("Caller authorization test failed: ", e);
@@ -113,21 +110,19 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:811
      *
-     * @test_Strategy: 1. Create a stateful session bean TestEJB with
-     * run-as-specified-identity set to <Manager> 2. Create another stateful
-     * session bean SecTestEJB with method EjbNotAuthz 3. Protect the method with
-     * security role <Administrator> 4. Call the bean TestEJB as a principal
-     * <username,password>. Which then invokes the method of the bean SecTestEJB.
-     * 5. Since then TestEJB uses run-as-specified-identity, <Manager>, which does
-     * not share any principals with role <Administrator>. so access to the method
-     * EjbNotAuthz shouldnot be allowed. 6. Verify java.rmi.RemoteException is
-     * generated.
+     * @test_Strategy: 1. Create a stateful session bean TestEJB with run-as-specified-identity set to <Manager> 2. Create
+     * another stateful session bean SecTestEJB with method EjbNotAuthz 3. Protect the method with security role
+     * <Administrator> 4. Call the bean TestEJB as a principal <username,password>. Which then invokes the method of the
+     * bean SecTestEJB. 5. Since then TestEJB uses run-as-specified-identity, <Manager>, which does not share any principals
+     * with role <Administrator>. so access to the method EjbNotAuthz shouldnot be allowed. 6. Verify
+     * java.rmi.RemoteException is generated.
      */
 
     public void test2() throws Fault {
         logMsg("Starting No caller authorization test");
         try {
-            if (!ejbref.EjbNotAuthz()) throw new Fault("No caller authorization test failed");
+            if (!ejbref.EjbNotAuthz())
+                throw new Fault("No caller authorization test failed");
             logMsg("No authorization test passed");
         } catch (Exception e) {
             throw new Fault("No caller authorization test failed:", e);
@@ -139,23 +134,20 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61.7; EJB:SPEC:81.4
      *
-     * @test_Strategy: 1. Create a stateful session bean TestEJB with
-     * run-as-specified-identity set to <Manager> 2. Create another stateful
-     * session bean SecTestEJB with method EjbSecRoleRef. 3. Protect the method
-     * with security role <Employee>, Link a security role ref - emp_secrole_ref
-     * to role <Employee>. 4. Call the bean TestEJB as a principal
-     * <username,password>. Which then invokes the method of the bean SecTestEJB.
-     * 5. Since then TestEJB uses run-as-specified-identity, <Manager>, who'e
-     * principals also in role <Employee> so access to the method of bean
-     * SecTestEJB should be allowed. 6. method calls
-     * isCallerInRole(emp_secrole_ref) and returns return value. 7. Verify return
-     * value is true.
+     * @test_Strategy: 1. Create a stateful session bean TestEJB with run-as-specified-identity set to <Manager> 2. Create
+     * another stateful session bean SecTestEJB with method EjbSecRoleRef. 3. Protect the method with security role
+     * <Employee>, Link a security role ref - emp_secrole_ref to role <Employee>. 4. Call the bean TestEJB as a principal
+     * <username,password>. Which then invokes the method of the bean SecTestEJB. 5. Since then TestEJB uses
+     * run-as-specified-identity, <Manager>, who'e principals also in role <Employee> so access to the method of bean
+     * SecTestEJB should be allowed. 6. method calls isCallerInRole(emp_secrole_ref) and returns return value. 7. Verify
+     * return value is true.
      */
 
     public void test3() throws Fault {
         logMsg("Starting Security role reference positive test");
         try {
-            if (!ejbref.EjbSecRoleRef(emp_secrole_ref)) throw new Fault("Security role reference positive test failed");
+            if (!ejbref.EjbSecRoleRef(emp_secrole_ref))
+                throw new Fault("Security role reference positive test failed");
             logMsg("Security role reference positive test passed");
         } catch (Exception e) {
             throw new Fault("Security role reference positive test failed: ", e);
@@ -167,17 +159,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61.8
      *
-     * @test_Strategy: 1. Create a stateful session bean TestEJB with
-     * run-as-specified-identity set to <Manager> 2. Create another stateful
-     * session bean SecTestEJB with method EjbSecRoleRef. 3. Protect the method
-     * with security role <Employee>, Link a security role ref - emp_secrole_ref
-     * to role <Employee>. 4. Call the bean TestEJB as a principal
-     * <username,password>. Which then invokes the method of the bean SecTestEJB.
-     * 5. Since then TestEJB uses run-as-specified-identity, <Manager>, so access
-     * to the method of bean SecTestEJB should be allowed. 6. method calls
-     * isCallerInRole(admin_secrole_ref) and returns return value. 7. Verify
-     * return value is false: roles <Manager> and <Administrator> don't share any
-     * principals.
+     * @test_Strategy: 1. Create a stateful session bean TestEJB with run-as-specified-identity set to <Manager> 2. Create
+     * another stateful session bean SecTestEJB with method EjbSecRoleRef. 3. Protect the method with security role
+     * <Employee>, Link a security role ref - emp_secrole_ref to role <Employee>. 4. Call the bean TestEJB as a principal
+     * <username,password>. Which then invokes the method of the bean SecTestEJB. 5. Since then TestEJB uses
+     * run-as-specified-identity, <Manager>, so access to the method of bean SecTestEJB should be allowed. 6. method calls
+     * isCallerInRole(admin_secrole_ref) and returns return value. 7. Verify return value is false: roles <Manager> and
+     * <Administrator> don't share any principals.
      */
 
     public void test4() throws Fault {
@@ -196,14 +184,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:799; EJB:SPEC:804
      *
-     * @test_Strategy: 1. Create a stateful session bean TestEJB with
-     * run-as-specified-identity set to <Manager> 2. Create two more stateful
-     * session beans SecTestEJB and SecTestRoleRefEJB 3. Link security role
-     * reference (emp_secrole_ref) to role1 in ejb1 and role2 in ejb2. 4. Ensure
-     * caller principal is in role1 but not in role2. 5. Invoke method in
-     * SecTestEJB that returns value of isCallerInRole(roleref). Verify return
-     * value is true. 6. Invoke method in SecTestRoleRefEJB that returns value of
-     * isCallerInRole(roleref). Verify return value is false.
+     * @test_Strategy: 1. Create a stateful session bean TestEJB with run-as-specified-identity set to <Manager> 2. Create
+     * two more stateful session beans SecTestEJB and SecTestRoleRefEJB 3. Link security role reference (emp_secrole_ref) to
+     * role1 in ejb1 and role2 in ejb2. 4. Ensure caller principal is in role1 but not in role2. 5. Invoke method in
+     * SecTestEJB that returns value of isCallerInRole(roleref). Verify return value is true. 6. Invoke method in
+     * SecTestRoleRefEJB that returns value of isCallerInRole(roleref). Verify return value is false.
      */
 
     public void test5() throws Fault {
@@ -224,12 +209,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create a stateful session bean TestEJB with
-     * run-as-specified-identity set to <Manager> 2. Create another stateful
-     * session beans SecTestEJB with overloaded methods. 3. Call method1 passing
-     * emp_secrole_ref. 4. Method1 returns isCallerInRole(emp_secrole_ref) which
-     * must be true. 5. Call method2 passing two role references as parameters. 6.
-     * Method must return false ( caller not in both security role refs).
+     * @test_Strategy: 1. Create a stateful session bean TestEJB with run-as-specified-identity set to <Manager> 2. Create
+     * another stateful session beans SecTestEJB with overloaded methods. 3. Call method1 passing emp_secrole_ref. 4.
+     * Method1 returns isCallerInRole(emp_secrole_ref) which must be true. 5. Call method2 passing two role references as
+     * parameters. 6. Method must return false ( caller not in both security role refs).
      */
 
     public void test6() throws Fault {
@@ -249,16 +232,15 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827
      *
-     * @test_Strategy: 1. Create a stateful session bean TestEJB with
-     * run-as-specified-identity set to <Manager> 2. Create another stateful
-     * session beans SecTestEJB. 3. SecTestEJB returns
-     * isCallerInRole(mgr_secrole_ref) which must be true.
+     * @test_Strategy: 1. Create a stateful session bean TestEJB with run-as-specified-identity set to <Manager> 2. Create
+     * another stateful session beans SecTestEJB. 3. SecTestEJB returns isCallerInRole(mgr_secrole_ref) which must be true.
      */
 
     public void test7() throws Fault {
         logMsg("Starting caller in role positive test in B2");
         try {
-            if (!ejbref.InRole(mgr_secrole_ref)) throw new Fault("caller in role positive test failed");
+            if (!ejbref.InRole(mgr_secrole_ref))
+                throw new Fault("caller in role positive test failed");
             logMsg("caller in role positive test passed");
         } catch (Exception e) {
             throw new Fault(" tesn role positive failed:", e);
@@ -270,16 +252,16 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61.8
      *
-     * @test_Strategy: 1. Create a stateful session bean TestEJB with
-     * run-as-specified-identity set to <Manager> 2. Create another stateful
-     * session beans SecTestEJB. 3. SecTestEJB returns
-     * isCallerInRole(admin_secrole_ref) which must be false.
+     * @test_Strategy: 1. Create a stateful session bean TestEJB with run-as-specified-identity set to <Manager> 2. Create
+     * another stateful session beans SecTestEJB. 3. SecTestEJB returns isCallerInRole(admin_secrole_ref) which must be
+     * false.
      */
 
     public void test8() throws Fault {
         logMsg("Starting caller in role negative test");
         try {
-            if (ejbref.InRole(admin_secrole_ref)) throw new Fault("caller in role negative test failed");
+            if (ejbref.InRole(admin_secrole_ref))
+                throw new Fault("caller in role negative test failed");
             logMsg("caller in role negative test passed");
         } catch (Exception e) {
             throw new Fault("caller in role negative test failed:", e);
@@ -291,16 +273,16 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:796
      *
-     * @test_Strategy: 1. Create a stateful session bean TestEJB with
-     * run-as-specified-identity set to <Manager> 2. Verify that TestEJB returns
-     * the correct GetCallerPrincipal() which should not be affected by the bean's
-     * using run-as-specified-identity.
+     * @test_Strategy: 1. Create a stateful session bean TestEJB with run-as-specified-identity set to <Manager> 2. Verify
+     * that TestEJB returns the correct GetCallerPrincipal() which should not be affected by the bean's using
+     * run-as-specified-identity.
      */
 
     public void test9() throws Fault {
         logMsg("Starting first bean's getCallerPrincipal test");
         try {
-            if (!ejbref.IsCallerB1(username)) throw new Fault("first bean's getCallerPrincipal test failed");
+            if (!ejbref.IsCallerB1(username))
+                throw new Fault("first bean's getCallerPrincipal test failed");
             logMsg("first bean's getCallerPrincipal test passed");
         } catch (Exception e) {
             throw new Fault("first bean's getCallerPrincipal test failed:", e);
@@ -312,9 +294,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:796
      *
-     * @test_Strategy: 1. Create a stateful session bean with runas identity
-     * invokes a remote method of the second bean. 2. Have this method with method
-     * permission unchecked 3. Verify that access is allowed.
+     * @test_Strategy: 1. Create a stateful session bean with runas identity invokes a remote method of the second bean. 2.
+     * Have this method with method permission unchecked 3. Verify that access is allowed.
      */
 
     public void test10() throws Fault {
@@ -336,10 +317,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:808
      *
-     * @test_Strategy: 1. Create a stateful session bean invokes a remote method
-     * of the second bean. 2. Set the first bean to use runas identity. 3. Put the
-     * method of the second bean on exclude-list. 4. Verify
-     * java.rmi.RemoteException is generated.
+     * @test_Strategy: 1. Create a stateful session bean invokes a remote method of the second bean. 2. Set the first bean
+     * to use runas identity. 3. Put the method of the second bean on exclude-list. 4. Verify java.rmi.RemoteException is
+     * generated.
      */
 
     public void test11() throws Fault {

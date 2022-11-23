@@ -130,8 +130,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -169,9 +171,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: testDefaultActions
      *
-     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2;
-     * WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4; WSAMD:SPEC:4004; WSAMD:SPEC:4004.1;
-     * WSAMD:SPEC:4004.2;
+     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2; WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4;
+     * WSAMD:SPEC:4004; WSAMD:SPEC:4004.1; WSAMD:SPEC:4004.2;
      *
      * @test_Strategy:
      *
@@ -185,21 +186,23 @@ public class Client extends ServiceEETest {
             if (result != 20) {
                 TestUtil.logErr("result mismatch, expected 20, received " + result);
                 pass = false;
-            } else TestUtil.logMsg("result match");
+            } else
+                TestUtil.logMsg("result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("testDefaultActions failed", e);
         }
 
-        if (!pass) throw new Fault("testDefaultActions failed");
+        if (!pass)
+            throw new Fault("testDefaultActions failed");
     }
 
     /*
      * @testName: testActionWithExplicitNames
      *
-     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2;
-     * WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4; WSAMD:SPEC:4004;
+     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2; WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4;
+     * WSAMD:SPEC:4004;
      *
      * @test_Strategy:
      *
@@ -213,21 +216,23 @@ public class Client extends ServiceEETest {
             if (result != 20) {
                 TestUtil.logErr("result mismatch, expected 20, received " + result);
                 pass = false;
-            } else TestUtil.logMsg("result match");
+            } else
+                TestUtil.logMsg("result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("testActionWithExplicitNames failed", e);
         }
 
-        if (!pass) throw new Fault("testActionWithExplicitNames failed");
+        if (!pass)
+            throw new Fault("testActionWithExplicitNames failed");
     }
 
     /*
      * @testName: testActionWithInputNameOnly
      *
-     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2;
-     * WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4; WSAMD:SPEC:4004; WSAMD:SPEC:4004.2;
+     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2; WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4;
+     * WSAMD:SPEC:4004; WSAMD:SPEC:4004.2;
      *
      * @test_Strategy:
      *
@@ -241,21 +246,23 @@ public class Client extends ServiceEETest {
             if (result != 20) {
                 TestUtil.logErr("result mismatch, expected 20, received " + result);
                 pass = false;
-            } else TestUtil.logMsg("result match");
+            } else
+                TestUtil.logMsg("result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("testActionWithInputNameOnly failed", e);
         }
 
-        if (!pass) throw new Fault("testActionWithInputNameOnly failed");
+        if (!pass)
+            throw new Fault("testActionWithInputNameOnly failed");
     }
 
     /*
      * @testName: testActionWithOutputNameOnly
      *
-     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2;
-     * WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4; WSAMD:SPEC:4004; WSAMD:SPEC:4004.1;
+     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2; WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4;
+     * WSAMD:SPEC:4004; WSAMD:SPEC:4004.1;
      *
      * @test_Strategy:
      *
@@ -269,22 +276,23 @@ public class Client extends ServiceEETest {
             if (result != 20) {
                 TestUtil.logErr("result mismatch, expected 20, received " + result);
                 pass = false;
-            } else TestUtil.logMsg("result match");
+            } else
+                TestUtil.logMsg("result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("testActionWithOutputNameOnly failed", e);
         }
 
-        if (!pass) throw new Fault("testActionWithOutputNameOnly failed");
+        if (!pass)
+            throw new Fault("testActionWithOutputNameOnly failed");
     }
 
     /*
      * @testName: testExplicitActionsBoth
      *
-     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2;
-     * WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4; WSAMD:SPEC:4003; WSAMD:SPEC:4003.1;
-     * WSAMD:SPEC:4003.2;
+     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2; WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4;
+     * WSAMD:SPEC:4003; WSAMD:SPEC:4003.1; WSAMD:SPEC:4003.2;
      *
      * @test_Strategy:
      *
@@ -298,22 +306,23 @@ public class Client extends ServiceEETest {
             if (result != 20) {
                 TestUtil.logErr("result mismatch, expected 20, received " + result);
                 pass = false;
-            } else TestUtil.logMsg("result match");
+            } else
+                TestUtil.logMsg("result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("testExplicitActionsBoth failed", e);
         }
 
-        if (!pass) throw new Fault("testExplicitActionsBoth failed");
+        if (!pass)
+            throw new Fault("testExplicitActionsBoth failed");
     }
 
     /*
      * @testName: testExplicitActionsInputOnly
      *
-     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2;
-     * WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4; WSAMD:SPEC:4000; WSAMD:SPEC:4003;
-     * WSAMD:SPEC:4003.1;
+     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2; WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4;
+     * WSAMD:SPEC:4000; WSAMD:SPEC:4003; WSAMD:SPEC:4003.1;
      *
      * @test_Strategy:
      *
@@ -327,22 +336,23 @@ public class Client extends ServiceEETest {
             if (result != 20) {
                 TestUtil.logErr("result mismatch, expected 20, received " + result);
                 pass = false;
-            } else TestUtil.logMsg("result match");
+            } else
+                TestUtil.logMsg("result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("testExplicitActionsInputOnly failed", e);
         }
 
-        if (!pass) throw new Fault("testExplicitActionsInputOnly failed");
+        if (!pass)
+            throw new Fault("testExplicitActionsInputOnly failed");
     }
 
     /*
      * @testName: testExplicitActionsOutputOnly
      *
-     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2;
-     * WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4; WSAMD:SPEC:4000; WSAMD:SPEC:4003;
-     * WSAMD:SPEC:4003.2;
+     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2; WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4;
+     * WSAMD:SPEC:4000; WSAMD:SPEC:4003; WSAMD:SPEC:4003.2;
      *
      * @test_Strategy:
      *
@@ -356,22 +366,23 @@ public class Client extends ServiceEETest {
             if (result != 20) {
                 TestUtil.logErr("result mismatch, expected 20, received " + result);
                 pass = false;
-            } else TestUtil.logMsg("result match");
+            } else
+                TestUtil.logMsg("result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("testExplicitActionsOutputOnly failed", e);
         }
 
-        if (!pass) throw new Fault("testExplicitActionsOutputOnly failed");
+        if (!pass)
+            throw new Fault("testExplicitActionsOutputOnly failed");
     }
 
     /*
      * @testName: TestEmptyActions
      *
-     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2;
-     * WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4; WSAMD:SPEC:4004; WSAMD:SPEC:4003;
-     * WSAMD:SPEC:4003.1; WSAMD:SPEC:4003.2;
+     * @assertion_ids: WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; WSAMD:SPEC:3000.2; WSAMD:SPEC:3000.3; WSAMD:SPEC:3000.4;
+     * WSAMD:SPEC:4004; WSAMD:SPEC:4003; WSAMD:SPEC:4003.1; WSAMD:SPEC:4003.2;
      *
      * @test_Strategy:
      *
@@ -385,13 +396,15 @@ public class Client extends ServiceEETest {
             if (result != 20) {
                 TestUtil.logErr("result mismatch, expected 20, received " + result);
                 pass = false;
-            } else TestUtil.logMsg("result match");
+            } else
+                TestUtil.logMsg("result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("TestEmptyActions failed", e);
         }
 
-        if (!pass) throw new Fault("TestEmptyActions failed");
+        if (!pass)
+            throw new Fault("TestEmptyActions failed");
     }
 }

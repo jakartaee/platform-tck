@@ -36,7 +36,8 @@ public class VariableEntry {
 
     private String scope = "AT_BEGIN";
 
-    public VariableEntry() {}
+    public VariableEntry() {
+    }
 
     public String getNameGiven() {
         return nameGiven;

@@ -40,52 +40,32 @@ import java.util.Date;
  */
 
 @NamedStoredProcedureQueries({
-    @NamedStoredProcedureQuery(
-            name = "getemplastnamefrominout",
-            procedureName = "GetEmpLastNameFromInOut",
-            hints = {
+        @NamedStoredProcedureQuery(name = "getemplastnamefrominout", procedureName = "GetEmpLastNameFromInOut", hints = {
                 @QueryHint(name = "fooname", value = "barvalue"),
                 @QueryHint(name = "fooname2", value = "barvalue2")
-            },
-            parameters = {@StoredProcedureParameter(type = String.class, mode = ParameterMode.INOUT)}),
-    @NamedStoredProcedureQuery(
-            name = "get-id-firstname-lastname",
-            procedureName = "GetEmpIdFNameLNameFromRS",
-            parameters = {@StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN)},
-            resultSetMappings = "id-firstname-lastname"),
-    @NamedStoredProcedureQuery(
-            name = "get-id-firstname-lastname-refcursor",
-            procedureName = "GetEmpIdFNameLNameFromRS",
-            parameters = {
+        }, parameters = { @StoredProcedureParameter(type = String.class, mode = ParameterMode.INOUT) }),
+        @NamedStoredProcedureQuery(name = "get-id-firstname-lastname", procedureName = "GetEmpIdFNameLNameFromRS", parameters = {
+                @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN) }, resultSetMappings = "id-firstname-lastname"),
+        @NamedStoredProcedureQuery(name = "get-id-firstname-lastname-refcursor", procedureName = "GetEmpIdFNameLNameFromRS", parameters = {
                 @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN),
                 @StoredProcedureParameter(type = void.class, mode = ParameterMode.REF_CURSOR)
-            },
-            resultSetMappings = "id-firstname-lastname"),
-    @NamedStoredProcedureQuery(
-            name = "tobeoverridden1",
-            procedureName = "DOESNOTEXIST",
-            parameters = {@StoredProcedureParameter(type = String.class, mode = ParameterMode.INOUT)})
+        }, resultSetMappings = "id-firstname-lastname"),
+        @NamedStoredProcedureQuery(name = "tobeoverridden1", procedureName = "DOESNOTEXIST", parameters = {
+                @StoredProcedureParameter(type = String.class, mode = ParameterMode.INOUT) })
 })
 @SqlResultSetMappings({
-    @SqlResultSetMapping(
-            name = "id-firstname-lastname",
-            classes = {
-                @ConstructorResult(
-                        targetClass = Employee.class,
-                        columns = {
-                            @ColumnResult(name = "ID", type = Integer.class),
-                            @ColumnResult(name = "FIRSTNAME"),
-                            @ColumnResult(name = "LASTNAME")
-                        })
-            }),
-    @SqlResultSetMapping(
-            name = "tobeoverridden2",
-            entities = {
-                @EntityResult(
-                        entityClass = com.sun.ts.tests.jpa.core.StoredProcedureQuery.Employee.class,
-                        fields = {@FieldResult(name = "foo", column = "FOO"), @FieldResult(name = "bar", column = "BAR")
-                        })
-            })
+        @SqlResultSetMapping(name = "id-firstname-lastname", classes = {
+                @ConstructorResult(targetClass = Employee.class, columns = {
+                        @ColumnResult(name = "ID", type = Integer.class),
+                        @ColumnResult(name = "FIRSTNAME"),
+                        @ColumnResult(name = "LASTNAME")
+                })
+        }),
+        @SqlResultSetMapping(name = "tobeoverridden2", entities = {
+                @EntityResult(entityClass = com.sun.ts.tests.jpa.core.StoredProcedureQuery.Employee.class, fields = {
+                        @FieldResult(name = "foo", column = "FOO"), @FieldResult(name = "bar", column = "BAR")
+                })
+        })
 })
 @Entity
 @Table(name = "EMPLOYEE")
@@ -166,8 +146,10 @@ public class Employee extends EmployeeMappedSC implements java.io.Serializable, 
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Employee)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Employee))
+            return false;
 
         Employee o1 = (Employee) o;
 
@@ -181,10 +163,8 @@ public class Employee extends EmployeeMappedSC implements java.io.Serializable, 
                         || this.getLastName().equals(o1.getLastName()))
                 && ((this.getHireDate() == null && o1.getHireDate() == null)
                         || (this.getHireDate().getMonth() == o1.getHireDate().getMonth()
-                                && this.getHireDate().getDay()
-                                        == o1.getHireDate().getDay()
-                                && this.getHireDate().getYear()
-                                        == o1.getHireDate().getYear()))) {
+                                && this.getHireDate().getDay() == o1.getHireDate().getDay()
+                                && this.getHireDate().getYear() == o1.getHireDate().getYear()))) {
 
             result = true;
         }

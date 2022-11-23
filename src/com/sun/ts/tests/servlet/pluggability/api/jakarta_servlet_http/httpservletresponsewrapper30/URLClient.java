@@ -28,9 +28,8 @@ public class URLClient extends HttpResponseClient {
     private static final String CONTEXT_ROOT = "/servlet_pluh_HSRespWrapper30_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends HttpResponseClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -62,12 +60,10 @@ public class URLClient extends HttpResponseClient {
     /*
      * @testName: getHeadersTest
      *
-     * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:525;
-     * Servlet:JAVADOC:783;
+     * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:525; Servlet:JAVADOC:783;
      *
-     * @test_Strategy: Create a Servlet, wrap the servlet in another one, In the
-     * servlet, set a header value; then add multiple values to it; verify that
-     * getHeaders(String) works properly
+     * @test_Strategy: Create a Servlet, wrap the servlet in another one, In the servlet, set a header value; then add
+     * multiple values to it; verify that getHeaders(String) works properly
      */
     public void getHeadersTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getHeadersTest");
@@ -77,12 +73,10 @@ public class URLClient extends HttpResponseClient {
     /*
      * @testName: getHeaderTest
      *
-     * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:523;
-     * Servlet:JAVADOC:781;
+     * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:523; Servlet:JAVADOC:781;
      *
-     * @test_Strategy: Create a Servlet, wrap the servlet in another one, In the
-     * servlet, set a header value; then add multiple values to it; verify that
-     * getHeader(String) works properly
+     * @test_Strategy: Create a Servlet, wrap the servlet in another one, In the servlet, set a header value; then add
+     * multiple values to it; verify that getHeader(String) works properly
      */
     public void getHeaderTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getHeaderTest");
@@ -92,14 +86,12 @@ public class URLClient extends HttpResponseClient {
     /*
      * @testName: getHeaderNamesTest
      *
-     * @assertion_ids: Servlet:JAVADOC:520; Servlet:JAVADOC:522;
-     * Servlet:JAVADOC:523; Servlet:JAVADOC:525; Servlet:JAVADOC:526;
-     * Servlet:JAVADOC:527; Servlet:JAVADOC:782;
+     * @assertion_ids: Servlet:JAVADOC:520; Servlet:JAVADOC:522; Servlet:JAVADOC:523; Servlet:JAVADOC:525;
+     * Servlet:JAVADOC:526; Servlet:JAVADOC:527; Servlet:JAVADOC:782;
      *
-     * @test_Strategy: Create a Servlet, wrap the servlet in another one, In the
-     * servlet, set multiuple header values using: #setHeader, #addHeader,
-     * #setDateHeader, #addDateHeader, #setIntHeader, and #addIntHeader, verify
-     * that getHeaderNames() works properly
+     * @test_Strategy: Create a Servlet, wrap the servlet in another one, In the servlet, set multiuple header values using:
+     * #setHeader, #addHeader, #setDateHeader, #addDateHeader, #setIntHeader, and #addIntHeader, verify that
+     * getHeaderNames() works properly
      */
     public void getHeaderNamesTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getHeaderNamesTest");
@@ -111,8 +103,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:784;
      *
-     * @test_Strategy: Create a Servlet, wrap the servlet in another one, In the
-     * servlet, set a status value; verify that getStatus() works properly
+     * @test_Strategy: Create a Servlet, wrap the servlet in another one, In the servlet, set a status value; verify that
+     * getStatus() works properly
      */
     public void getStatusTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getStatusTest");

@@ -129,8 +129,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -171,8 +173,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:9009.1
      *
-     * @test_Strategy: Use a handler that is specified on the SEI and see that it
-     * transforms the body
+     * @test_Strategy: Use a handler that is specified on the SEI and see that it transforms the body
      */
     public void HandlerChainOnSEITest() throws Fault {
         TestUtil.logMsg("HandlerChainOnSEITest");
@@ -209,6 +210,7 @@ public class Client extends ServiceEETest {
             throw new Fault(t.toString());
         }
 
-        if (!pass) throw new Fault("HandlerChainOnSEITest failed");
+        if (!pass)
+            throw new Fault("HandlerChainOnSEITest failed");
     }
 }

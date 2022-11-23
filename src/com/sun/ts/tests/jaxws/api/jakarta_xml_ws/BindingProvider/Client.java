@@ -74,8 +74,7 @@ public class Client extends ServiceEETest {
 
     private QName PORT_TYPE_QNAME = new QName(NAMESPACEURI, PORT_TYPE);
 
-    private String helloReq =
-            "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest>";
+    private String helloReq = "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest>";
 
     private TSURL ctsurl = new TSURL();
 
@@ -101,8 +100,7 @@ public class Client extends ServiceEETest {
 
     private Hello port = null;
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
 
     static HelloService service = null;
 
@@ -163,8 +161,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -224,8 +224,10 @@ public class Client extends ServiceEETest {
         if (binding == null) {
             TestUtil.logErr("getBinding() returned null");
             pass = false;
-        } else TestUtil.logMsg("getBinding() returned Binding object: " + binding);
-        if (!pass) throw new Fault("getBindingForDispatchObjTest failed");
+        } else
+            TestUtil.logMsg("getBinding() returned Binding object: " + binding);
+        if (!pass)
+            throw new Fault("getBindingForDispatchObjTest failed");
     }
 
     /*
@@ -233,8 +235,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:5;
      *
-     * @test_Strategy: Get the context that is used to initialize the message
-     * context for request messages.
+     * @test_Strategy: Get the context that is used to initialize the message context for request messages.
      */
     public void getRequestContextForDispatchObjTest() throws Fault {
         TestUtil.logTrace("getRequestContextForDispatchObjTest");
@@ -250,13 +251,18 @@ public class Client extends ServiceEETest {
             java.util.Iterator iterator = requestContext.keySet().iterator();
             StringBuffer names = new StringBuffer();
             while (iterator.hasNext()) {
-                if (names.length() > 0) names.append("\n" + iterator.next());
-                else names.append("" + iterator.next());
+                if (names.length() > 0)
+                    names.append("\n" + iterator.next());
+                else
+                    names.append("" + iterator.next());
             }
-            if (names.length() > 0) TestUtil.logMsg("Request property names are\n" + names.toString());
-            else TestUtil.logMsg("There are no request properties set");
+            if (names.length() > 0)
+                TestUtil.logMsg("Request property names are\n" + names.toString());
+            else
+                TestUtil.logMsg("There are no request properties set");
         }
-        if (!pass) throw new Fault("getRequestContextForDispatchObjTest failed");
+        if (!pass)
+            throw new Fault("getRequestContextForDispatchObjTest failed");
     }
 
     /*
@@ -264,8 +270,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:6;
      *
-     * @test_Strategy: Get the context that resulted from processing a response
-     * message.
+     * @test_Strategy: Get the context that resulted from processing a response message.
      */
     public void getResponseContextForDispatchObjTest() throws Fault {
         TestUtil.logTrace("getResponseContextForDispatchObjTest");
@@ -281,13 +286,18 @@ public class Client extends ServiceEETest {
             java.util.Iterator iterator = responseContext.keySet().iterator();
             StringBuffer names = new StringBuffer();
             while (iterator.hasNext()) {
-                if (names.length() > 0) names.append("\n" + iterator.next());
-                else names.append("" + iterator.next());
+                if (names.length() > 0)
+                    names.append("\n" + iterator.next());
+                else
+                    names.append("" + iterator.next());
             }
-            if (names.length() > 0) TestUtil.logMsg("Response property names are\n" + names.toString());
-            else TestUtil.logMsg("There are no response properties set");
+            if (names.length() > 0)
+                TestUtil.logMsg("Response property names are\n" + names.toString());
+            else
+                TestUtil.logMsg("There are no response properties set");
         }
-        if (!pass) throw new Fault("getResponseContextForDispatchObjTest failed");
+        if (!pass)
+            throw new Fault("getResponseContextForDispatchObjTest failed");
     }
 
     /*
@@ -306,8 +316,10 @@ public class Client extends ServiceEETest {
         if (binding == null) {
             TestUtil.logErr("getBinding() returned null");
             pass = false;
-        } else TestUtil.logMsg("getBinding() returned Binding object: " + binding);
-        if (!pass) throw new Fault("getBindingForStubObjTest failed");
+        } else
+            TestUtil.logMsg("getBinding() returned Binding object: " + binding);
+        if (!pass)
+            throw new Fault("getBindingForStubObjTest failed");
     }
 
     /*
@@ -315,8 +327,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:5;
      *
-     * @test_Strategy: Get the context that is used to initialize the message
-     * context for request messages.
+     * @test_Strategy: Get the context that is used to initialize the message context for request messages.
      */
     public void getRequestContextForStubObjTest() throws Fault {
         TestUtil.logTrace("getRequestContextForStubObjTest");
@@ -332,13 +343,18 @@ public class Client extends ServiceEETest {
             java.util.Iterator iterator = requestContext.keySet().iterator();
             StringBuffer names = new StringBuffer();
             while (iterator.hasNext()) {
-                if (names.length() > 0) names.append("\n" + iterator.next());
-                else names.append("" + iterator.next());
+                if (names.length() > 0)
+                    names.append("\n" + iterator.next());
+                else
+                    names.append("" + iterator.next());
             }
-            if (names.length() > 0) TestUtil.logMsg("Request property names are\n" + names.toString());
-            else TestUtil.logMsg("There are no request properties set");
+            if (names.length() > 0)
+                TestUtil.logMsg("Request property names are\n" + names.toString());
+            else
+                TestUtil.logMsg("There are no request properties set");
         }
-        if (!pass) throw new Fault("getRequestContextForStubObjTest failed");
+        if (!pass)
+            throw new Fault("getRequestContextForStubObjTest failed");
     }
 
     /*
@@ -346,8 +362,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:6;
      *
-     * @test_Strategy: Get the context that resulted from processing a response
-     * message.
+     * @test_Strategy: Get the context that resulted from processing a response message.
      */
     public void getResponseContextForStubObjTest() throws Fault {
         TestUtil.logTrace("getResponseContextForStubObjTest");
@@ -363,13 +378,18 @@ public class Client extends ServiceEETest {
             java.util.Iterator iterator = responseContext.keySet().iterator();
             StringBuffer names = new StringBuffer();
             while (iterator.hasNext()) {
-                if (names.length() > 0) names.append("\n" + iterator.next());
-                else names.append("" + iterator.next());
+                if (names.length() > 0)
+                    names.append("\n" + iterator.next());
+                else
+                    names.append("" + iterator.next());
             }
-            if (names.length() > 0) TestUtil.logMsg("Response property names are\n" + names.toString());
-            else TestUtil.logMsg("There are no response properties set");
+            if (names.length() > 0)
+                TestUtil.logMsg("Response property names are\n" + names.toString());
+            else
+                TestUtil.logMsg("There are no response properties set");
         }
-        if (!pass) throw new Fault("getResponseContextForStubObjTest failed");
+        if (!pass)
+            throw new Fault("getResponseContextForStubObjTest failed");
     }
 
     /*
@@ -377,8 +397,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:4005;
      *
-     * @test_Strategy: Get the context that is used to initialize the message
-     * context for request messages and set all the standard properties.
+     * @test_Strategy: Get the context that is used to initialize the message context for request messages and set all the
+     * standard properties.
      */
     public void setStandardPropertiesTest() throws Fault {
         TestUtil.logTrace("setStandardPropertiesTest");
@@ -401,13 +421,18 @@ public class Client extends ServiceEETest {
             java.util.Iterator iterator = requestContext.keySet().iterator();
             StringBuffer names = new StringBuffer();
             while (iterator.hasNext()) {
-                if (names.length() > 0) names.append("\n" + iterator.next());
-                else names.append("" + iterator.next());
+                if (names.length() > 0)
+                    names.append("\n" + iterator.next());
+                else
+                    names.append("" + iterator.next());
             }
-            if (names.length() > 0) TestUtil.logMsg("Request property names are\n" + names.toString());
-            else TestUtil.logMsg("There are no request properties set");
+            if (names.length() > 0)
+                TestUtil.logMsg("Request property names are\n" + names.toString());
+            else
+                TestUtil.logMsg("There are no request properties set");
         }
-        if (!pass) throw new Fault("setStandardPropertiesTest failed");
+        if (!pass)
+            throw new Fault("setStandardPropertiesTest failed");
     }
 
     /*
@@ -415,8 +440,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:4007;
      *
-     * @test_Strategy: Get the context that is used to initialize the message
-     * context for request messages and set all the standard properties.
+     * @test_Strategy: Get the context that is used to initialize the message context for request messages and set all the
+     * standard properties.
      */
     public void setNonStandardPropertiesTest() throws Fault {
         TestUtil.logTrace("setNonStandardPropertiesTest");
@@ -434,25 +459,29 @@ public class Client extends ServiceEETest {
             java.util.Iterator iterator = requestContext.keySet().iterator();
             StringBuffer names = new StringBuffer();
             while (iterator.hasNext()) {
-                if (names.length() > 0) names.append("\n" + iterator.next());
-                else names.append("" + iterator.next());
+                if (names.length() > 0)
+                    names.append("\n" + iterator.next());
+                else
+                    names.append("" + iterator.next());
             }
-            if (names.length() > 0) TestUtil.logMsg("Request property names are\n" + names.toString());
-            else TestUtil.logMsg("There are no request properties set");
+            if (names.length() > 0)
+                TestUtil.logMsg("Request property names are\n" + names.toString());
+            else
+                TestUtil.logMsg("There are no request properties set");
         }
-        if (!pass) throw new Fault("setNonStandardPropertiesTest failed");
+        if (!pass)
+            throw new Fault("setNonStandardPropertiesTest failed");
     }
 
     /*
      * @testName: getEndpointReferenceForDispatchObjTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:186; JAXWS:SPEC:5023; JAXWS:SPEC:4022;
-     * WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2;
-     * WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
+     * @assertion_ids: JAXWS:JAVADOC:186; JAXWS:SPEC:5023; JAXWS:SPEC:4022; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
+     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
      * WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4; JAXWS:SPEC:4033;
      *
-     * @test_Strategy: Get the EndpointReference for this binding provider.
-     * Validate the EndpointReference (EPR) WSDL MetaData.
+     * @test_Strategy: Get the EndpointReference for this binding provider. Validate the EndpointReference (EPR) WSDL
+     * MetaData.
      */
     public void getEndpointReferenceForDispatchObjTest() throws Fault {
         TestUtil.logTrace("getEndpointReferenceForDispatchObjTest");
@@ -467,19 +496,19 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("getEndpointReference() returned EndpointReference object: " + epr);
             pass = EprUtil.validateEPR(epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.FALSE);
         }
-        if (!pass) throw new Fault("getEndpointReferenceForDispatchObjTest failed");
+        if (!pass)
+            throw new Fault("getEndpointReferenceForDispatchObjTest failed");
     }
 
     /*
      * @testName: getEndpointReferenceForStubObjTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:186; JAXWS:SPEC:5023; JAXWS:SPEC:4022;
-     * JAXWS:SPEC:4023; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
-     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1;
+     * @assertion_ids: JAXWS:JAVADOC:186; JAXWS:SPEC:5023; JAXWS:SPEC:4022; JAXWS:SPEC:4023; WSAMD:SPEC:2000.2;
+     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1;
      * WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4; JAXWS:SPEC:4033;
      *
-     * @test_Strategy: Get the EndpointReference for this binding provider.
-     * Validate the EndpointReference (EPR) WSDL MetaData.
+     * @test_Strategy: Get the EndpointReference for this binding provider. Validate the EndpointReference (EPR) WSDL
+     * MetaData.
      */
     public void getEndpointReferenceForStubObjTest() throws Fault {
         TestUtil.logTrace("getEndpointReferenceForStubObjTest");
@@ -494,24 +523,25 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("getEndpointReference() returned EndpointReference object: " + epr);
             pass = EprUtil.validateEPR(epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.FALSE);
         }
-        if (epr instanceof W3CEndpointReference) TestUtil.logMsg("epr instanceof W3CEndpointReference");
+        if (epr instanceof W3CEndpointReference)
+            TestUtil.logMsg("epr instanceof W3CEndpointReference");
         else {
             TestUtil.logErr("epr not instanceof W3CEndpointReference");
             pass = false;
         }
-        if (!pass) throw new Fault("getEndpointReferenceForStubObjTest failed");
+        if (!pass)
+            throw new Fault("getEndpointReferenceForStubObjTest failed");
     }
 
     /*
      * @testName: getEndpointReference2ForDispatchObjTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:187; JAXWS:SPEC:4022; JAXWS:SPEC:4023;
-     * WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2;
-     * WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
+     * @assertion_ids: JAXWS:JAVADOC:187; JAXWS:SPEC:4022; JAXWS:SPEC:4023; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
+     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
      * WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4; JAXWS:SPEC:4033;
      *
-     * @test_Strategy: Get the EndpointReference for this binding provider.
-     * Validate the EndpointReference (EPR) WSDL MetaData.
+     * @test_Strategy: Get the EndpointReference for this binding provider. Validate the EndpointReference (EPR) WSDL
+     * MetaData.
      */
     public void getEndpointReference2ForDispatchObjTest() throws Fault {
         TestUtil.logTrace("getEndpointReference2ForDispatchObjTest");
@@ -526,24 +556,25 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("getEndpointReference() returned EndpointReference object: " + epr);
             pass = EprUtil.validateEPR(epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.FALSE);
         }
-        if (epr instanceof W3CEndpointReference) TestUtil.logMsg("epr instanceof W3CEndpointReference");
+        if (epr instanceof W3CEndpointReference)
+            TestUtil.logMsg("epr instanceof W3CEndpointReference");
         else {
             TestUtil.logErr("epr not instanceof W3CEndpointReference");
             pass = false;
         }
-        if (!pass) throw new Fault("getEndpointReference2ForDispatchObjTest failed");
+        if (!pass)
+            throw new Fault("getEndpointReference2ForDispatchObjTest failed");
     }
 
     /*
      * @testName: getEndpointReference2ForStubObjTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:187; JAXWS:SPEC:4022; JAXWS:SPEC:4023;
-     * WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2;
-     * WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
+     * @assertion_ids: JAXWS:JAVADOC:187; JAXWS:SPEC:4022; JAXWS:SPEC:4023; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
+     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
      * WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4; JAXWS:SPEC:4033;
      *
-     * @test_Strategy: Get the EndpointReference for this binding provider.
-     * Validate the EndpointReference (EPR) WSDL MetaData.
+     * @test_Strategy: Get the EndpointReference for this binding provider. Validate the EndpointReference (EPR) WSDL
+     * MetaData.
      */
     public void getEndpointReference2ForStubObjTest() throws Fault {
         TestUtil.logTrace("getEndpointReference2ForStubObjTest");
@@ -558,11 +589,13 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("getEndpointReference() returned EndpointReference object: " + epr);
             pass = EprUtil.validateEPR(epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.FALSE);
         }
-        if (epr instanceof W3CEndpointReference) TestUtil.logMsg("epr instanceof W3CEndpointReference");
+        if (epr instanceof W3CEndpointReference)
+            TestUtil.logMsg("epr instanceof W3CEndpointReference");
         else {
             TestUtil.logErr("epr not instanceof W3CEndpointReference");
             pass = false;
         }
-        if (!pass) throw new Fault("getEndpointReference2ForStubObjTest failed");
+        if (!pass)
+            throw new Fault("getEndpointReference2ForStubObjTest failed");
     }
 }

@@ -75,7 +75,8 @@ public final class SCAttributeListener implements ServletContextAttributeListene
         savedSC = event.getServletContext();
     }
 
-    public void contextDestroyed(ServletContextEvent event) {}
+    public void contextDestroyed(ServletContextEvent event) {
+    }
 
     public void attributeAdded(ServletContextAttributeEvent event) {
         StaticLog.add("AttributeAdded:" + event.getName() + "," + event.getValue());

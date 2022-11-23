@@ -82,9 +82,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:359
      *
-     * @test_Strategy: Use the operator IS NULL in a null comparison expression
-     * using a single_valued_path_expression. Execute the findCustomersByQuery14
-     * method. Verify the results were accurately returned.
+     * @test_Strategy: Use the operator IS NULL in a null comparison expression using a single_valued_path_expression.
+     * Execute the findCustomersByQuery14 method. Verify the results were accurately returned.
      */
 
     public void nullTest1() throws Fault {
@@ -121,7 +120,8 @@ public class Client extends EETest {
             throw new Fault("nullTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest1 failed");
+        if (!pass)
+            throw new Fault("nullTest1 failed");
     }
 
     /*
@@ -129,10 +129,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:359
      *
-     * @test_Strategy: Use the operator IS NOT NULL in a null comparision
-     * expression within the WHERE CLAUSE where the relationship is NULL. Use a
-     * single_valued_path_expression. Execute the findCustomersByQuery15 method.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Use the operator IS NOT NULL in a null comparision expression within the WHERE CLAUSE where the
+     * relationship is NULL. Use a single_valued_path_expression. Execute the findCustomersByQuery15 method. Verify the
+     * results were accurately returned.
      *
      */
 
@@ -155,7 +154,8 @@ public class Client extends EETest {
             throw new Fault("nullTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest2 failed");
+        if (!pass)
+            throw new Fault("nullTest2 failed");
     }
 
     /*
@@ -163,9 +163,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:424
      *
-     * @test_Strategy: Define a query using Boolean operator AND in a conditional
-     * test ( True AND True = True) where the relationship is NULL. Execute the
-     * findCustomersByQuery22 method. Verify the results were accurately returned.
+     * @test_Strategy: Define a query using Boolean operator AND in a conditional test ( True AND True = True) where the
+     * relationship is NULL. Execute the findCustomersByQuery22 method. Verify the results were accurately returned.
      */
 
     public void nullTest3() throws Fault {
@@ -189,7 +188,8 @@ public class Client extends EETest {
             throw new Fault("nullTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest3 failed");
+        if (!pass)
+            throw new Fault("nullTest3 failed");
     }
 
     /*
@@ -197,9 +197,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:425
      *
-     * @test_Strategy: Define a query using Boolean operator OR in a conditional
-     * test (True OR True = True) where the relationship is NULL. Execute the
-     * findCustomersByQuery23 method. Verify the results were accurately returned.
+     * @test_Strategy: Define a query using Boolean operator OR in a conditional test (True OR True = True) where the
+     * relationship is NULL. Execute the findCustomersByQuery23 method. Verify the results were accurately returned.
      */
 
     public void nullTest4() throws Fault {
@@ -236,7 +235,8 @@ public class Client extends EETest {
             throw new Fault("nullTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest4 failed");
+        if (!pass)
+            throw new Fault("nullTest4 failed");
     }
 
     /*
@@ -244,9 +244,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:426
      *
-     * @test_Strategy: Define a query using Boolean operator NOT in a conditional
-     * test (NOT True = False) where the relationship is NULL. Execute the
-     * findCustomersByQuery24 method. Verify the results were accurately returned.
+     * @test_Strategy: Define a query using Boolean operator NOT in a conditional test (NOT True = False) where the
+     * relationship is NULL. Execute the findCustomersByQuery24 method. Verify the results were accurately returned.
      */
 
     public void nullTest5() throws Fault {
@@ -269,7 +268,8 @@ public class Client extends EETest {
             throw new Fault("nullTest5 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest5 failed");
+        if (!pass)
+            throw new Fault("nullTest5 failed");
     }
 
     /*
@@ -277,10 +277,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:375; EJB:SPEC:358; EJB:SPEC:274
      *
-     * @test_Strategy: This test verifies that a multi-valued finder method on a
-     * cmr-field which contains contains null values in the cmp-field used as its'
-     * condition null returns the correct result set. The LIKE expression uses an
-     * input parameter for the condition.
+     * @test_Strategy: This test verifies that a multi-valued finder method on a cmr-field which contains contains null
+     * values in the cmp-field used as its' condition null returns the correct result set. The LIKE expression uses an input
+     * parameter for the condition.
      *
      */
 
@@ -307,7 +306,8 @@ public class Client extends EETest {
             throw new Fault("nullTest6 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest6 failed");
+        if (!pass)
+            throw new Fault("nullTest6 failed");
     }
 
     /*
@@ -315,8 +315,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:375; EJB:SPEC:410; EJB:SPEC:283;EJB:SPEC:403
      *
-     * @test_Strategy: This test verifies that a multi-valued select method on
-     * cmp-field includes nulls in the result set.
+     * @test_Strategy: This test verifies that a multi-valued select method on cmp-field includes nulls in the result set.
      */
 
     public void nullTest7() throws Fault {
@@ -325,8 +324,8 @@ public class Client extends EETest {
         boolean pass2 = true;
         Collection c = null;
         String[] expectedZips = new String[] {
-            "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
-            "11345"
+                "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
+                "11345"
         };
 
         try {
@@ -372,7 +371,8 @@ public class Client extends EETest {
             throw new Fault("nullTest7 failed", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("nullTest7 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("nullTest7 failed");
     }
 
     /*
@@ -380,8 +380,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:377; EJB:SPEC:409; EJB:SPEC:270
      *
-     * @test_Strategy: This test verifies a single-object finder returns a null
-     * cmr value as the result.
+     * @test_Strategy: This test verifies a single-object finder returns a null cmr value as the result.
      */
 
     public void nullTest8() throws Fault {
@@ -402,7 +401,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("nullTest8 failed", e);
         }
-        if (!pass) throw new Fault("nullTest8 failed");
+        if (!pass)
+            throw new Fault("nullTest8 failed");
     }
 
     /*
@@ -410,8 +410,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:377; EJB:SPEC:410; EJB:SPEC:280
      *
-     * @test_Strategy: This test verifies a single-object select method returns a
-     * null cmp value as the result.
+     * @test_Strategy: This test verifies a single-object select method returns a null cmp value as the result.
      */
 
     public void nullTest9() throws Fault {
@@ -432,7 +431,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("nullTest9 failed", e);
         }
-        if (!pass) throw new Fault("nullTest9 failed");
+        if (!pass)
+            throw new Fault("nullTest9 failed");
     }
 
     /*
@@ -466,7 +466,8 @@ public class Client extends EETest {
             throw new Fault("nullTest10 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest10 failed");
+        if (!pass)
+            throw new Fault("nullTest10 failed");
     }
 
     /*
@@ -474,8 +475,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:423
      *
-     * @test_Strategy: This tests a null single-valued cmr-field using IS NOT
-     * NULL.
+     * @test_Strategy: This tests a null single-valued cmr-field using IS NOT NULL.
      *
      */
 
@@ -515,7 +515,8 @@ public class Client extends EETest {
             throw new Fault("nullTest11 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest11 failed");
+        if (!pass)
+            throw new Fault("nullTest11 failed");
     }
 
     /*
@@ -523,8 +524,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:425
      *
-     * @test_Strategy: Define a query using Boolean operator AND in a conditional
-     * test ( False AND False = False) where the relationship is NULL.
+     * @test_Strategy: Define a query using Boolean operator AND in a conditional test ( False AND False = False) where the
+     * relationship is NULL.
      *
      */
 
@@ -548,7 +549,8 @@ public class Client extends EETest {
             throw new Fault("nullTest12 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest12 failed");
+        if (!pass)
+            throw new Fault("nullTest12 failed");
     }
 
     /*
@@ -556,8 +558,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:416
      *
-     * @test_Strategy: If an input parameter is NULL, comparison operations
-     * involving the input parameter will return an unknown value.
+     * @test_Strategy: If an input parameter is NULL, comparison operations involving the input parameter will return an
+     * unknown value.
      *
      */
 
@@ -582,7 +584,8 @@ public class Client extends EETest {
             throw new Fault("nullTest13 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest13 failed");
+        if (!pass)
+            throw new Fault("nullTest13 failed");
     }
 
     /*
@@ -590,10 +593,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:393
      *
-     * @test_Strategy: This test verifies the same results of two queries using
-     * the keyword DISTINCT or not using DISTINCT in the query with the aggregate
-     * keyword COUNT to verity the NULL values are eliminated before the aggregate
-     * is applied.
+     * @test_Strategy: This test verifies the same results of two queries using the keyword DISTINCT or not using DISTINCT
+     * in the query with the aggregate keyword COUNT to verity the NULL values are eliminated before the aggregate is
+     * applied.
      *
      */
 
@@ -631,7 +633,8 @@ public class Client extends EETest {
             throw new Fault("nullTest14 failed", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("nullTest14 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("nullTest14 failed");
     }
 
     /*
@@ -639,8 +642,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:361
      *
-     * @test_Strategy: Execute the findCustomersByQuery43 using IS NOT EMPTY in a
-     * ManyXMany relationship where the relationship is EMPTY.
+     * @test_Strategy: Execute the findCustomersByQuery43 using IS NOT EMPTY in a ManyXMany relationship where the
+     * relationship is EMPTY.
      */
 
     public void nullTest15() throws Fault {
@@ -677,7 +680,8 @@ public class Client extends EETest {
             throw new Fault("nullTest15 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest15 failed");
+        if (!pass)
+            throw new Fault("nullTest15 failed");
     }
 
     /*
@@ -685,15 +689,14 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:337; EJB:SPEC:342; EJB:SPEC:359
      *
-     * @test_Strategy: Use the operator IS NULL in a null comparision expression
-     * within the WHERE CLAUSE where the relationship is NULL. Use an input
-     * parameter.
+     * @test_Strategy: Use the operator IS NULL in a null comparision expression within the WHERE CLAUSE where the
+     * relationship is NULL. Use an input parameter.
      */
 
     public void nullTest16() throws Fault {
         boolean pass = false;
-        String[] expectedResult1 = new String[] {null};
-        String[] expectedResult2 = new String[] {null, null, null};
+        String[] expectedResult1 = new String[] { null };
+        String[] expectedResult2 = new String[] { null, null, null };
         Collection s = null;
         try {
             TestUtil.logMsg("Execute query with input parameter and IS NULL");
@@ -718,7 +721,8 @@ public class Client extends EETest {
             throw new Fault("nullTest16 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest16 failed");
+        if (!pass)
+            throw new Fault("nullTest16 failed");
     }
 
     /*
@@ -726,9 +730,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:359
      *
-     * @test_Strategy: Use the operator IS NOT NULL in a null comparision
-     * expression within the WHERE CLAUSE where the relationship is NULL. Use an
-     * input parameter.
+     * @test_Strategy: Use the operator IS NOT NULL in a null comparision expression within the WHERE CLAUSE where the
+     * relationship is NULL. Use an input parameter.
      */
 
     public void nullTest17() throws Fault {
@@ -816,7 +819,8 @@ public class Client extends EETest {
             throw new Fault("nullTest17 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest17 failed");
+        if (!pass)
+            throw new Fault("nullTest17 failed");
     }
 
     /*
@@ -824,16 +828,16 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:376
      *
-     * @test_Strategy: The Bean Provider can use IS NOT NULL construct to
-     * eliminate the null from the result set of the query.
+     * @test_Strategy: The Bean Provider can use IS NOT NULL construct to eliminate the null from the result set of the
+     * query.
      */
 
     public void nullTest18() throws Fault {
         boolean pass = false;
         Collection c = null;
         String[] expectedZips = new String[] {
-            "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
-            "11345"
+                "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
+                "11345"
         };
         try {
             TestUtil.logMsg("Find work zip codes that are not null via ejbSelectCustomersByNotNullWorkZipCodes");
@@ -847,7 +851,8 @@ public class Client extends EETest {
             throw new Fault("nullTest18 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest18 failed");
+        if (!pass)
+            throw new Fault("nullTest18 failed");
     }
 
     /*
@@ -855,8 +860,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:426
      *
-     * @test_Strategy: Define a query using Boolean operator NOT in a conditional
-     * test (NOT False = True) where the cmp-field is NULL.
+     * @test_Strategy: Define a query using Boolean operator NOT in a conditional test (NOT False = True) where the
+     * cmp-field is NULL.
      *
      */
 
@@ -907,7 +912,8 @@ public class Client extends EETest {
             throw new Fault("nullTest19 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest19 failed");
+        if (!pass)
+            throw new Fault("nullTest19 failed");
     }
 
     /*
@@ -915,8 +921,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:424
      *
-     * @test_Strategy: Define a query using Boolean operator AND in a conditional
-     * test (False AND True = False) where the condition is NULL.
+     * @test_Strategy: Define a query using Boolean operator AND in a conditional test (False AND True = False) where the
+     * condition is NULL.
      */
 
     public void nullTest20() throws Fault {
@@ -939,7 +945,8 @@ public class Client extends EETest {
             throw new Fault("nullTest20 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest20 failed");
+        if (!pass)
+            throw new Fault("nullTest20 failed");
     }
 
     /*
@@ -947,8 +954,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:425
      *
-     * @test_Strategy: Define a query using Boolean operator OR in a conditional
-     * test (False OR True = True) where the condition is NULL.
+     * @test_Strategy: Define a query using Boolean operator OR in a conditional test (False OR True = True) where the
+     * condition is NULL.
      */
 
     public void nullTest21() throws Fault {
@@ -985,7 +992,8 @@ public class Client extends EETest {
             throw new Fault("nullTest21 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest21 failed");
+        if (!pass)
+            throw new Fault("nullTest21 failed");
     }
 
     /*
@@ -993,8 +1001,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:425
      *
-     * @test_Strategy: Define a query using Boolean operator OR in a conditional
-     * test (False OR False = False) where the both conditions are NULL.
+     * @test_Strategy: Define a query using Boolean operator OR in a conditional test (False OR False = False) where the
+     * both conditions are NULL.
      */
 
     public void nullTest22() throws Fault {
@@ -1017,7 +1025,8 @@ public class Client extends EETest {
             throw new Fault("nullTest22 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest22 failed");
+        if (!pass)
+            throw new Fault("nullTest22 failed");
     }
 
     /*
@@ -1025,8 +1034,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:375; EJB:SPEC:409
      *
-     * @test_Strategy: This test verifies that a multi-valued finder method on a
-     * cmr-field which contains a null value is included in the result set.
+     * @test_Strategy: This test verifies that a multi-valued finder method on a cmr-field which contains a null value is
+     * included in the result set.
      */
 
     public void nullTest23() throws Fault {
@@ -1081,7 +1090,8 @@ public class Client extends EETest {
             throw new Fault("nullTest23 failed", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("nullTest23 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("nullTest23 failed");
     }
 
     /*
@@ -1089,8 +1099,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:377; EJB:SPEC:411
      *
-     * @test_Strategy: This test verifies a single-object select returns a null
-     * value as the result.
+     * @test_Strategy: This test verifies a single-object select returns a null value as the result.
      *
      */
 
@@ -1113,7 +1122,8 @@ public class Client extends EETest {
             throw new Fault("nullTest24 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest24 failed");
+        if (!pass)
+            throw new Fault("nullTest24 failed");
     }
 
     /*
@@ -1121,9 +1131,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:329; EJB:SPEC:415; EJB:SPEC:425
      *
-     * @test_Strategy: Define a query using Boolean operator OR in a conditional
-     * test (TRUE OR UNKNOWN = TRUE) where the first condition will return true
-     * and the second condition will return NULL. Verify the query returns TRUE.
+     * @test_Strategy: Define a query using Boolean operator OR in a conditional test (TRUE OR UNKNOWN = TRUE) where the
+     * first condition will return true and the second condition will return NULL. Verify the query returns TRUE.
      *
      */
 
@@ -1137,7 +1146,8 @@ public class Client extends EETest {
             a = aliasHome.findAliasesByQuery11();
             expectedPKs = new String[Schema.NUMOFALIASES];
 
-            for (int i = 0; i < Schema.NUMOFALIASES; i++) expectedPKs[i] = Integer.toString(i + 1);
+            for (int i = 0; i < Schema.NUMOFALIASES; i++)
+                expectedPKs[i] = Integer.toString(i + 1);
 
             if (!Util.checkEJBs(a, Schema.ALIASREF, expectedPKs)) {
                 TestUtil.logErr("UnSuccessfully returned expected results");
@@ -1151,7 +1161,8 @@ public class Client extends EETest {
             throw new Fault("nullTest25 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest25 failed");
+        if (!pass)
+            throw new Fault("nullTest25 failed");
     }
 
     /*
@@ -1159,10 +1170,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:329; EJB:SPEC:424
      *
-     * @test_Strategy: Define a query using Boolean operator AND in a conditional
-     * test (TRUE AND UNKNOWN = UNKNOWN) where the first condition will return
-     * true and the second condition will return NULL. Verify the query returns no
-     * results.
+     * @test_Strategy: Define a query using Boolean operator AND in a conditional test (TRUE AND UNKNOWN = UNKNOWN) where
+     * the first condition will return true and the second condition will return NULL. Verify the query returns no results.
      *
      */
 
@@ -1184,7 +1193,8 @@ public class Client extends EETest {
             throw new Fault("nullTest26 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest26 failed");
+        if (!pass)
+            throw new Fault("nullTest26 failed");
     }
 
     /*
@@ -1192,9 +1202,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:329
      *
-     * @test_Strategy: This test verifies that a multi-valued select method which
-     * includes a null non-terminal cmr-field in the path expression in not
-     * included in the result set.
+     * @test_Strategy: This test verifies that a multi-valued select method which includes a null non-terminal cmr-field in
+     * the path expression in not included in the result set.
      */
 
     public void nullTest27() throws Fault {
@@ -1203,21 +1212,21 @@ public class Client extends EETest {
         boolean pass2 = true;
         Collection o = null;
         Double[] expectedBalances = new Double[] {
-            new Double(500D),
-            new Double(750D),
-            new Double(1000D),
-            new Double(1400D),
-            new Double(1500D),
-            new Double(2000D),
-            new Double(2500D),
-            new Double(4400D),
-            new Double(5000D),
-            new Double(5500D),
-            new Double(7000D),
-            new Double(8000D),
-            new Double(13000D),
-            new Double(15000D),
-            new Double(23000D)
+                new Double(500D),
+                new Double(750D),
+                new Double(1000D),
+                new Double(1400D),
+                new Double(1500D),
+                new Double(2000D),
+                new Double(2500D),
+                new Double(4400D),
+                new Double(5000D),
+                new Double(5500D),
+                new Double(7000D),
+                new Double(8000D),
+                new Double(13000D),
+                new Double(15000D),
+                new Double(23000D)
         };
 
         try {
@@ -1263,7 +1272,8 @@ public class Client extends EETest {
             throw new Fault("nullTest27 failed", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("nullTest27 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("nullTest27 failed");
     }
 
     /*
@@ -1271,9 +1281,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:329
      *
-     * @test_Strategy: This test verifies that a multi-valued finder method which
-     * includes a null non-terminal cmr-field in the path expression in not
-     * included in the result set.
+     * @test_Strategy: This test verifies that a multi-valued finder method which includes a null non-terminal cmr-field in
+     * the path expression in not included in the result set.
      */
 
     public void nullTest28() throws Fault {
@@ -1299,7 +1308,8 @@ public class Client extends EETest {
             throw new Fault("nullTest28 failed", e);
         }
 
-        if (!pass) throw new Fault("nullTest28 failed");
+        if (!pass)
+            throw new Fault("nullTest28 failed");
     }
 
     public void cleanup() throws Fault {

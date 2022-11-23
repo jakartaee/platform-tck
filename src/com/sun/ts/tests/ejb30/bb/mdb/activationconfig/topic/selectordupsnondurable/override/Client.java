@@ -31,37 +31,30 @@ public class Client extends com.sun.ts.tests.ejb30.bb.mdb.activationconfig.commo
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
 
     /*
      * @testName: test1
      *
-     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4;
-     * EJB:JAVADOC:5
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4; EJB:JAVADOC:5
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      */
 
     /*
      * @testName: negativeTest1
      *
-     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4;
-     * EJB:JAVADOC:5
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4; EJB:JAVADOC:5
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      */
 
     /*
      * @testName: negativeTest2
      *
-     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4;
-     * EJB:JAVADOC:5
+     * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524; EJB:JAVADOC:4; EJB:JAVADOC:5
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      */
 }

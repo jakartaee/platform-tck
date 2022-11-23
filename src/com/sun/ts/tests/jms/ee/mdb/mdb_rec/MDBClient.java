@@ -27,8 +27,8 @@ import jakarta.ejb.EJB;
 import java.util.Properties;
 
 /**
- * The MDBClient class invokes a test bean to send each type of
- * jms message to a message driven bean for a queue and a topic
+ * The MDBClient class invokes a test bean to send each type of jms message to a message driven bean for a queue and a
+ * topic
  */
 public class MDBClient extends EETest {
 
@@ -45,8 +45,7 @@ public class MDBClient extends EETest {
 
     /* Test setup: */
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.port;
-     * harness.log.traceflag;
+     * @class.setup_props: jms_timeout; user; password; harness.log.port; harness.log.traceflag;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -76,14 +75,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: asynRecTextMsgQueueTest
      *
-     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274;
-     * JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198;
+     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274; JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198;
      *
-     * @test_Strategy: Test with a Text message Create a stateful Session EJB
-     * Bean. Deploy it on the J2EE server. Have the EJB component send a text
-     * message to a Queue Destination. handled by a message-driven bean Verify
-     * that the mdb received the message
+     * @test_Strategy: Test with a Text message Create a stateful Session EJB Bean. Deploy it on the J2EE server. Have the
+     * EJB component send a text message to a Queue Destination. handled by a message-driven bean Verify that the mdb
+     * received the message
      *
      *
      */
@@ -109,13 +106,11 @@ public class MDBClient extends EETest {
     /*
      * @testName: asynRecMapMsgQueueTest
      *
-     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274;
-     * JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198; JMS:JAVADOC:211; JMS:JAVADOC:473;
+     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274; JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198; JMS:JAVADOC:211; JMS:JAVADOC:473;
      *
-     * @test_Strategy: Test with a Map message Create a stateful Session EJB Bean.
-     * Deploy it on the J2EE server. Have the EJB component send a text message to
-     * a Queue Destination. handled by a message-driven bean Verify that the mdb
+     * @test_Strategy: Test with a Map message Create a stateful Session EJB Bean. Deploy it on the J2EE server. Have the
+     * EJB component send a text message to a Queue Destination. handled by a message-driven bean Verify that the mdb
      * received the message
      *
      *
@@ -144,14 +139,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: asynRecObjectMsgQueueTest
      *
-     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274;
-     * JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198; JMS:JAVADOC:215; JMS:JAVADOC:289;
+     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274; JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198; JMS:JAVADOC:215; JMS:JAVADOC:289;
      *
-     * @test_Strategy: Test with a Object message Create a stateful Session EJB
-     * Bean. Deploy it on the J2EE server. Have the EJB component send a text
-     * message to a Queue Destination. handled by a message-driven bean Verify
-     * that the mdb received the message
+     * @test_Strategy: Test with a Object message Create a stateful Session EJB Bean. Deploy it on the J2EE server. Have the
+     * EJB component send a text message to a Queue Destination. handled by a message-driven bean Verify that the mdb
+     * received the message
      *
      *
      */
@@ -179,15 +172,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: asynRecTextMsgTopicTest
      *
-     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274;
-     * JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91;
-     * JMS:JAVADOC:99;
+     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274; JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91; JMS:JAVADOC:99;
      *
-     * @test_Strategy: Testing with a Text message Create a stateful Session EJB
-     * Bean. Deploy it on the J2EE server. Have the EJB component send a Text
-     * message to a Topic Destination. handled by a message-driven bean Verify
-     * that the mdb received the message
+     * @test_Strategy: Testing with a Text message Create a stateful Session EJB Bean. Deploy it on the J2EE server. Have
+     * the EJB component send a Text message to a Topic Destination. handled by a message-driven bean Verify that the mdb
+     * received the message
      *
      *
      */
@@ -210,14 +200,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: asynRecBytesMsgQueueTest
      *
-     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274;
-     * JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198; JMS:JAVADOC:209; JMS:JAVADOC:562;
+     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274; JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198; JMS:JAVADOC:209; JMS:JAVADOC:562;
      *
-     * @test_Strategy: Test with a Bytes message Create a stateful Session EJB
-     * Bean. Deploy it on the J2EE server. Have the EJB component send a text
-     * message to a Queue Destination. handled by a message-driven bean Verify
-     * that the mdb received the message
+     * @test_Strategy: Test with a Bytes message Create a stateful Session EJB Bean. Deploy it on the J2EE server. Have the
+     * EJB component send a text message to a Queue Destination. handled by a message-driven bean Verify that the mdb
+     * received the message
      *
      *
      */
@@ -245,14 +233,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: asynRecStreamMsgQueueTest
      *
-     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274;
-     * JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198; JMS:JAVADOC:219; JMS:JAVADOC:166;
+     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274; JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198; JMS:JAVADOC:219; JMS:JAVADOC:166;
      *
-     * @test_Strategy: Test with a Stream message Create a stateful Session EJB
-     * Bean. Deploy it on the J2EE server. Have the EJB component send a text
-     * message to a Queue Destination. handled by a message-driven bean Verify
-     * that the mdb received the message
+     * @test_Strategy: Test with a Stream message Create a stateful Session EJB Bean. Deploy it on the J2EE server. Have the
+     * EJB component send a text message to a Queue Destination. handled by a message-driven bean Verify that the mdb
+     * received the message
      *
      *
      */
@@ -279,15 +265,13 @@ public class MDBClient extends EETest {
     /*
      * @testName: asynRecMapMsgTopicTest
      *
-     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274;
-     * JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91;
-     * JMS:JAVADOC:99; JMS:JAVADOC:211; JMS:JAVADOC:473;
+     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274; JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91; JMS:JAVADOC:99; JMS:JAVADOC:211;
+     * JMS:JAVADOC:473;
      *
-     * @test_Strategy: Testing with a Map message Create a stateful Session EJB
-     * Bean. Deploy it on the J2EE server. Have the EJB component send a Map
-     * message to a Topic Destination. handled by a message-driven bean Verify
-     * that the mdb received the message
+     * @test_Strategy: Testing with a Map message Create a stateful Session EJB Bean. Deploy it on the J2EE server. Have the
+     * EJB component send a Map message to a Topic Destination. handled by a message-driven bean Verify that the mdb
+     * received the message
      *
      *
      */
@@ -310,15 +294,13 @@ public class MDBClient extends EETest {
     /*
      * @testName: asynRecObjectMsgTopicTest
      *
-     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274;
-     * JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91;
-     * JMS:JAVADOC:99; JMS:JAVADOC:215; JMS:JAVADOC:289;
+     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274; JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91; JMS:JAVADOC:99; JMS:JAVADOC:215;
+     * JMS:JAVADOC:289;
      *
-     * @test_Strategy: Testing with a Object message Create a stateful Session EJB
-     * Bean. Deploy it on the J2EE server. Have the EJB component send a Object
-     * message to a Topic Destination. handled by a message-driven bean Verify
-     * that the mdb received the message
+     * @test_Strategy: Testing with a Object message Create a stateful Session EJB Bean. Deploy it on the J2EE server. Have
+     * the EJB component send a Object message to a Topic Destination. handled by a message-driven bean Verify that the mdb
+     * received the message
      *
      *
      */
@@ -341,15 +323,13 @@ public class MDBClient extends EETest {
     /*
      * @testName: asynRecBytesMsgTopicTest
      *
-     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274;
-     * JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91;
-     * JMS:JAVADOC:99; JMS:JAVADOC:209; JMS:JAVADOC:562;
+     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274; JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91; JMS:JAVADOC:99; JMS:JAVADOC:209;
+     * JMS:JAVADOC:562;
      *
-     * @test_Strategy: Testing with a Bytes message Create a stateful Session EJB
-     * Bean. Deploy it on the J2EE server. Have the EJB component send a Bytes
-     * message to a Topic Destination. handled by a message-driven bean Verify
-     * that the mdb received the message
+     * @test_Strategy: Testing with a Bytes message Create a stateful Session EJB Bean. Deploy it on the J2EE server. Have
+     * the EJB component send a Bytes message to a Topic Destination. handled by a message-driven bean Verify that the mdb
+     * received the message
      *
      *
      */
@@ -372,15 +352,13 @@ public class MDBClient extends EETest {
     /*
      * @testName: asynRecStreamMsgTopicTest
      *
-     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274;
-     * JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91;
-     * JMS:JAVADOC:99; JMS:JAVADOC:219; JMS:JAVADOC:166;
+     * @assertion_ids: EJB:SPEC:506; JMS:JAVADOC:270; JMS:JAVADOC:274; JMS:JAVADOC:221; JMS:JAVADOC:188; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91; JMS:JAVADOC:99; JMS:JAVADOC:219;
+     * JMS:JAVADOC:166;
      *
-     * @test_Strategy: Testing with a Stream message Create a stateful Session EJB
-     * Bean. Deploy it on the J2EE server. Have the EJB component send a Stream
-     * message to a Topic Destination. handled by a message-driven bean Verify
-     * that the mdb received the message
+     * @test_Strategy: Testing with a Stream message Create a stateful Session EJB Bean. Deploy it on the J2EE server. Have
+     * the EJB component send a Stream message to a Topic Destination. handled by a message-driven bean Verify that the mdb
+     * received the message
      *
      *
      */

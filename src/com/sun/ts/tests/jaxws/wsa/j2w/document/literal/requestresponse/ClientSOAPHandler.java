@@ -67,9 +67,9 @@ public class ClientSOAPHandler extends WsaBaseSOAPHandler {
     protected void processOutboundMessage(SOAPMessageContext context, String oper, String testName) {
         if (testName != null && testName.equals("actionMismatch")) {
             TestUtil.logMsg("ClientSOAPHandler.processOutboundMessage: operation=" + oper + ", testName=" + testName);
-            Map<String, List<String>> headers =
-                    (Map<String, List<String>>) context.get(MessageContext.HTTP_REQUEST_HEADERS);
-            if (headers == null) headers = new Hashtable<String, List<String>>();
+            Map<String, List<String>> headers = (Map<String, List<String>>) context.get(MessageContext.HTTP_REQUEST_HEADERS);
+            if (headers == null)
+                headers = new Hashtable<String, List<String>>();
             List<String> values = new Vector<String>();
             values.add("ActionNotSupported");
             headers.put("Soapaction", values);
@@ -81,9 +81,12 @@ public class ClientSOAPHandler extends WsaBaseSOAPHandler {
     protected String getAction(SOAPMessageContext context) throws SOAPException {
         testName = (String) context.get("test.name");
         TestUtil.logMsg("ClientSOAPHandler.getAction(): testName=" + testName);
-        if (testName == null) return super.getAction(context);
-        else if (!testName.equals("missingActionHeader")) return super.getAction(context);
-        else return null;
+        if (testName == null)
+            return super.getAction(context);
+        else if (!testName.equals("missingActionHeader"))
+            return super.getAction(context);
+        else
+            return null;
     }
 
     protected String whichHandler() {

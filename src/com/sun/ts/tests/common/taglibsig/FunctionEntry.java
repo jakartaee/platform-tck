@@ -37,7 +37,8 @@ public class FunctionEntry {
 
     private String functionSignature = NO_FUNCTION_SIGNATURE;
 
-    public FunctionEntry() {}
+    public FunctionEntry() {
+    }
 
     public String getName() {
         return name;

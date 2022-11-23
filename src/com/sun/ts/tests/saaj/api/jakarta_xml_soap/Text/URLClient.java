@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,8 +100,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:278;
      *
-     * @test_Strategy: Call Text.isComment() when the Text object is not a
-     * comment.
+     * @test_Strategy: Call Text.isComment() when the Text object is not a comment.
      *
      * Description: Retrieves whether this Text object represents a comment
      *
@@ -113,12 +114,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "Text1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -127,7 +131,8 @@ public class URLClient extends EETest {
             throw new Fault("Text1Test failed", e);
         }
 
-        if (!pass) throw new Fault("Text1Test failed");
+        if (!pass)
+            throw new Fault("Text1Test failed");
     }
 
     /*
@@ -149,12 +154,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "Text2Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -163,6 +171,7 @@ public class URLClient extends EETest {
             throw new Fault("Text2Test failed", e);
         }
 
-        if (!pass) throw new Fault("Text2Test failed");
+        if (!pass)
+            throw new Fault("Text2Test failed");
     }
 }

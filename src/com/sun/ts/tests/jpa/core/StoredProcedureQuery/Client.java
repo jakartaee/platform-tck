@@ -57,7 +57,8 @@ public class Client extends PMClientBase {
 
     static final String POSTGRESQL = "postgresql";
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -141,7 +142,8 @@ public class Client extends PMClientBase {
                 rsnum++;
             } else {
                 rowsAffected = spq.getUpdateCount();
-                if (rowsAffected >= 0) TestUtil.logTrace("rowsAffected:" + rowsAffected);
+                if (rowsAffected >= 0)
+                    TestUtil.logTrace("rowsAffected:" + rowsAffected);
             }
             results = spq.hasMoreResults();
             TestUtil.logTrace("Results:" + results);
@@ -232,10 +234,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: executeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1557; PERSISTENCE:SPEC:1515;
-     * PERSISTENCE:SPEC:1566; PERSISTENCE:SPEC:1568; PERSISTENCE:SPEC:1565;
-     * PERSISTENCE:SPEC:1572; PERSISTENCE:SPEC:1576; PERSISTENCE:SPEC:1577;
-     * PERSISTENCE:SPEC:1578; PERSISTENCE:SPEC:1580;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1557; PERSISTENCE:SPEC:1515; PERSISTENCE:SPEC:1566; PERSISTENCE:SPEC:1568;
+     * PERSISTENCE:SPEC:1565; PERSISTENCE:SPEC:1572; PERSISTENCE:SPEC:1576; PERSISTENCE:SPEC:1577; PERSISTENCE:SPEC:1578;
+     * PERSISTENCE:SPEC:1580;
      *
      * @test_Strategy:
      *
@@ -250,8 +251,7 @@ public class Client extends PMClientBase {
             try {
                 TestUtil.logMsg("Testing using name,class");
                 clearCache();
-                StoredProcedureQuery spq =
-                        getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", Employee.class);
+                StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", Employee.class);
                 if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
                     TestUtil.logTrace("register refcursor parameter");
                     spq.registerStoredProcedureParameter(1, void.class, ParameterMode.REF_CURSOR);
@@ -346,8 +346,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: getOutputParameterValueIntTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1547; PERSISTENCE:SPEC:1569;
-     * PERSISTENCE:SPEC:1570; PERSISTENCE:SPEC:1583;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1547; PERSISTENCE:SPEC:1569; PERSISTENCE:SPEC:1570; PERSISTENCE:SPEC:1583;
      *
      * @test_Strategy:
      *
@@ -517,8 +516,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: getFirstResultTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1585; PERSISTENCE:JAVADOC:3482;
-     * PERSISTENCE:SPEC:1515;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1585; PERSISTENCE:JAVADOC:3482; PERSISTENCE:SPEC:1515;
      *
      * @test_Strategy:
      *
@@ -635,8 +633,7 @@ public class Client extends PMClientBase {
             getEntityTransaction().begin();
             clearCache();
 
-            StoredProcedureQuery spq =
-                    getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS", "id-firstname-lastname");
+            StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS", "id-firstname-lastname");
             spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
             if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
                 TestUtil.logTrace("register refcursor parameter");
@@ -714,8 +711,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:3484
      *
-     * @test_Strategy: Get single result from returned resultset that contains
-     * multiple values
+     * @test_Strategy: Get single result from returned resultset that contains multiple values
      *
      */
     public void getSingleResultNonUniqueResultExceptionTest() throws Fault {
@@ -813,8 +809,7 @@ public class Client extends PMClientBase {
         }
         try {
             TestUtil.logMsg("Testing Query object returned from setFlushMode");
-            StoredProcedureQuery spq2 =
-                    getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", Employee.class);
+            StoredProcedureQuery spq2 = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", Employee.class);
 
             TestUtil.logTrace("Setting mode to FlushModeType.AUTO");
             Query q = spq2.setFlushMode(FlushModeType.AUTO);
@@ -830,7 +825,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("setgetFlushModeTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("setgetFlushModeTest failed");
     }
 
     /*
@@ -863,7 +859,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("setLockModeIllegalStateExceptionTest failed");
+        if (!pass)
+            throw new Fault("setLockModeIllegalStateExceptionTest failed");
     }
     /*
      * @testName: getLockModeIllegalStateExceptionTest
@@ -895,7 +892,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("getLockModeIllegalStateExceptionTest failed");
+        if (!pass)
+            throw new Fault("getLockModeIllegalStateExceptionTest failed");
     }
 
     /*
@@ -945,45 +943,39 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("setGetParameterIntTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("setGetParameterIntTest failed");
     }
 
     // disabling this test since Store Procedures with named parameters
     // isn't supported by all DB's at this time
     /*
-     * testName: setGetParameterStringTest assertion_ids:
-     * PERSISTENCE:JAVADOC:1549; PERSISTENCE:JAVADOC:1558;
+     * testName: setGetParameterStringTest assertion_ids: PERSISTENCE:JAVADOC:1549; PERSISTENCE:JAVADOC:1558;
      * PERSISTENCE:JAVADOC:1568; PERSISTENCE:JAVADOC:1591; test_Strategy:
      */
 
     /*
-     * public void setGetParameterStringTest() throws Fault { boolean pass1 =
-     * false; boolean pass2 = false; boolean pass3 = false; try {
-     * getEntityTransaction().begin();
+     * public void setGetParameterStringTest() throws Fault { boolean pass1 = false; boolean pass2 = false; boolean pass3 =
+     * false; try { getEntityTransaction().begin();
      *
      * TestUtil.logMsg("Testing StoredProcedureQuery"); StoredProcedureQuery spq =
      * getEntityManager().createStoredProcedureQuery("GetEmpFirstNameFromOut");
-     * spq.registerStoredProcedureParameter("IN_PARAM", Integer.class,
-     * ParameterMode.IN); spq.registerStoredProcedureParameter("OUT_PARAM",
-     * String.class, ParameterMode.OUT); spq.setParameter("IN_PARAM", 1);
+     * spq.registerStoredProcedureParameter("IN_PARAM", Integer.class, ParameterMode.IN);
+     * spq.registerStoredProcedureParameter("OUT_PARAM", String.class, ParameterMode.OUT); spq.setParameter("IN_PARAM", 1);
      *
-     * Parameter p = spq.getParameter("OUT_PARAM"); Integer pos = p.getPosition();
-     * if (pos == null){ TestUtil.logTrace("Received expected null"); pass1 =
-     * true; } else { TestUtil.logErr("Expected position: null, actual:" + pos); }
+     * Parameter p = spq.getParameter("OUT_PARAM"); Integer pos = p.getPosition(); if (pos == null){
+     * TestUtil.logTrace("Received expected null"); pass1 = true; } else {
+     * TestUtil.logErr("Expected position: null, actual:" + pos); }
      *
-     * spq.execute(); Object oActual = spq.getOutputParameterValue("OUT_PARAM");
-     * if (oActual instanceof String) { String actual = (String) oActual; if
-     * (actual.equals(emp0.getFirstName())) {
-     * TestUtil.logTrace("Received expected result:" + actual); pass2 = true; }
-     * else { TestUtil.logErr("Expected result: " + emp0.getFirstName() +
-     * ", actual:" + actual); } } else {
-     * TestUtil.logErr("Did not get instance of String, instead:" +
-     * oActual.getClass()); } getEntityTransaction().commit();
+     * spq.execute(); Object oActual = spq.getOutputParameterValue("OUT_PARAM"); if (oActual instanceof String) { String
+     * actual = (String) oActual; if (actual.equals(emp0.getFirstName())) { TestUtil.logTrace("Received expected result:" +
+     * actual); pass2 = true; } else { TestUtil.logErr("Expected result: " + emp0.getFirstName() + ", actual:" + actual); }
+     * } else { TestUtil.logErr("Did not get instance of String, instead:" + oActual.getClass()); }
+     * getEntityTransaction().commit();
      *
      * } catch (Exception e) { TestUtil.logErr("Caught exception: ", e); }
      *
-     * if (!pass1 || !pass2 ) throw new Fault("setGetParameterStringTest failed");
-     * }
+     * if (!pass1 || !pass2 ) throw new Fault("setGetParameterStringTest failed"); }
      */
 
     /*
@@ -1043,7 +1035,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("getParameterStringExceptionTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("getParameterStringExceptionTest failed");
     }
 
     /*
@@ -1097,7 +1090,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("getParameterIntIllegalArgumentExceptionTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("getParameterIntIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -1184,7 +1178,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass2 || !pass4) throw new Fault("setParameterParameterObjectTest failed");
+        if (!pass2 || !pass4)
+            throw new Fault("setParameterParameterObjectTest failed");
     }
 
     /*
@@ -1192,8 +1187,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1563;
      *
-     * @test_Strategy: call setParameter(Parameter, Object) using parameter from
-     * different query.
+     * @test_Strategy: call setParameter(Parameter, Object) using parameter from different query.
      */
 
     public void setParameterParameterObjectIllegalArgumentExceptionTest() throws Fault {
@@ -1229,7 +1223,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception", e);
         }
 
-        if (!pass1) throw new Fault("setParameterParameterObjectIllegalArgumentExceptionTest failed");
+        if (!pass1)
+            throw new Fault("setParameterParameterObjectIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -1359,7 +1354,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass3) throw new Fault("getParametersTest failed");
+        if (!pass1 || !pass3)
+            throw new Fault("getParametersTest failed");
     }
 
     /*
@@ -1378,8 +1374,7 @@ public class Client extends PMClientBase {
             try {
                 TestUtil.logMsg("Testing StoredProcedureQuery object");
 
-                StoredProcedureQuery spq =
-                        getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
+                StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
                 spq.registerStoredProcedureParameter(1, Calendar.class, ParameterMode.IN);
                 spq.registerStoredProcedureParameter(2, Integer.class, ParameterMode.OUT);
                 spq.setParameter(1, calDate, TemporalType.DATE);
@@ -1406,8 +1401,7 @@ public class Client extends PMClientBase {
             }
             try {
                 TestUtil.logMsg("Testing Query object");
-                StoredProcedureQuery spq1 =
-                        getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
+                StoredProcedureQuery spq1 = getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
                 spq1.registerStoredProcedureParameter(1, Calendar.class, ParameterMode.IN);
                 spq1.registerStoredProcedureParameter(2, Integer.class, ParameterMode.OUT);
                 Query q = spq1;
@@ -1440,7 +1434,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass2 || !pass4) throw new Fault("setParameterIntCalendarTemporalTypeTest failed");
+        if (!pass2 || !pass4)
+            throw new Fault("setParameterIntCalendarTemporalTypeTest failed");
     }
 
     /*
@@ -1490,7 +1485,8 @@ public class Client extends PMClientBase {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception", e);
         }
-        if (!pass1 || !pass2) throw new Fault("setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -1509,8 +1505,7 @@ public class Client extends PMClientBase {
             try {
                 TestUtil.logMsg("Testing StoredProcedureQuery");
 
-                StoredProcedureQuery spq =
-                        getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
+                StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
                 spq.registerStoredProcedureParameter(1, Date.class, ParameterMode.IN);
                 spq.registerStoredProcedureParameter(2, Integer.class, ParameterMode.OUT);
                 spq.setParameter(1, utilDate, TemporalType.DATE);
@@ -1538,8 +1533,7 @@ public class Client extends PMClientBase {
             }
             try {
                 TestUtil.logMsg("Testing Query object");
-                StoredProcedureQuery spq1 =
-                        getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
+                StoredProcedureQuery spq1 = getEntityManager().createStoredProcedureQuery("GetEmpIdUsingHireDateFromOut");
                 spq1.registerStoredProcedureParameter(1, Date.class, ParameterMode.IN);
                 spq1.registerStoredProcedureParameter(2, Integer.class, ParameterMode.OUT);
                 Query q = spq1;
@@ -1573,7 +1567,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass2 || !pass4) throw new Fault("setParameterIntDateTemporalTypeTest failed");
+        if (!pass2 || !pass4)
+            throw new Fault("setParameterIntDateTemporalTypeTest failed");
     }
 
     /*
@@ -1624,7 +1619,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("setParameterIntDateTemporalTypeIllegalArgumentExceptionTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("setParameterIntDateTemporalTypeIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -1721,12 +1717,12 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass2 || !pass3 || !pass5) throw new Fault("setParameterParameterCalendarTemporalTypeTest failed");
+        if (!pass2 || !pass3 || !pass5)
+            throw new Fault("setParameterParameterCalendarTemporalTypeTest failed");
     }
 
     /*
-     * @testName:
-     * setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest
+     * @testName: setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1565;
      *
@@ -1881,12 +1877,12 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass2 || !pass3 || !pass5) throw new Fault("setParameterParameterDateTemporalTypeTest failed");
+        if (!pass2 || !pass3 || !pass5)
+            throw new Fault("setParameterParameterDateTemporalTypeTest failed");
     }
 
     /*
-     * @testName:
-     * setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest
+     * @testName: setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1567;
      *
@@ -1947,8 +1943,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: executeUpdateOfAnUpdateTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1580; PERSISTENCE:JAVADOC:1551;
-     * PERSISTENCE:SPEC:1516; PERSISTENCE:SPEC:1580;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1580; PERSISTENCE:JAVADOC:1551; PERSISTENCE:SPEC:1516; PERSISTENCE:SPEC:1580;
      *
      * @test_Strategy:
      */
@@ -1972,14 +1967,14 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("executeUpdateOfAnUpdateTest failed");
+        if (!pass)
+            throw new Fault("executeUpdateOfAnUpdateTest failed");
     }
 
     /*
      * @testName: executeUpdateOfADeleteTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1580; PERSISTENCE:JAVADOC:1551;
-     * PERSISTENCE:SPEC:1516;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1580; PERSISTENCE:JAVADOC:1551; PERSISTENCE:SPEC:1516;
      *
      * @test_Strategy:
      */
@@ -2002,7 +1997,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("executeUpdateOfADeleteTest failed");
+        if (!pass)
+            throw new Fault("executeUpdateOfADeleteTest failed");
     }
 
     /*
@@ -2031,7 +2027,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("executeUpdateTransactionRequiredExceptionTest failed");
+        if (!pass)
+            throw new Fault("executeUpdateTransactionRequiredExceptionTest failed");
     }
 
     /*
@@ -2084,7 +2081,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass1 || !pass3) throw new Fault("getParameterValueParameterTest failed");
+        if (!pass1 || !pass3)
+            throw new Fault("getParameterValueParameterTest failed");
     }
 
     /*
@@ -2092,8 +2090,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1606;
      *
-     * @test_Strategy: execute getParameterValue using parameter from different
-     * query
+     * @test_Strategy: execute getParameterValue using parameter from different query
      */
     public void getParameterValueParameterIllegalArgumentExceptionTest() throws Fault {
         boolean pass = false;
@@ -2125,7 +2122,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("getParameterValueParameterIllegalArgumentExceptionTest failed");
+        if (!pass)
+            throw new Fault("getParameterValueParameterIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -2170,7 +2168,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("getParameterValueParameterIllegalStateExceptionTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("getParameterValueParameterIllegalStateExceptionTest failed");
     }
 
     /*
@@ -2273,7 +2272,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2 || !pass3 || !pass4) throw new Fault("getParameterValueIntTest failed");
+        if (!pass1 || !pass2 || !pass3 || !pass4)
+            throw new Fault("getParameterValueIntTest failed");
     }
 
     /*
@@ -2309,7 +2309,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("getParameterValueIntIllegalArgumentExceptionTest failed");
+        if (!pass)
+            throw new Fault("getParameterValueIntIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -2343,7 +2344,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("getParameterValueIntIllegalStateExceptionTest failed");
+        if (!pass)
+            throw new Fault("getParameterValueIntIllegalStateExceptionTest failed");
     }
 
     /*
@@ -2351,8 +2353,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1560;
      *
-     * @test_Strategy: Vendor-specific hints that are not recognized by a provider
-     * must be silently ignored.
+     * @test_Strategy: Vendor-specific hints that are not recognized by a provider must be silently ignored.
      */
     public void setHintStringObjectTest() throws Fault {
         boolean pass = false;
@@ -2371,14 +2372,14 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("setHintStringObjectTest failed");
+        if (!pass)
+            throw new Fault("setHintStringObjectTest failed");
     }
 
     /*
      * @testName: xmlOverridesNamedStoredProcedureQueryTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:2239; PERSISTENCE:SPEC:2241;
-     * PERSISTENCE:SPEC:2242;
+     * @assertion_ids: PERSISTENCE:SPEC:2239; PERSISTENCE:SPEC:2241; PERSISTENCE:SPEC:2242;
      *
      * @test_Strategy: verify xml overrides NamedStoredProcedureQuery annotation
      */
@@ -2425,14 +2426,14 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("xmlOverridesNamedStoredProcedureQueryTest failed");
+        if (!pass1 || !pass2)
+            throw new Fault("xmlOverridesNamedStoredProcedureQueryTest failed");
     }
 
     /*
      * @testName: xmlOverridesSqlResultSetMappingAnnotationTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:2243; PERSISTENCE:SPEC:2245;
-     * PERSISTENCE:SPEC:2246;
+     * @assertion_ids: PERSISTENCE:SPEC:2243; PERSISTENCE:SPEC:2245; PERSISTENCE:SPEC:2246;
      *
      * @test_Strategy: verify xml overrides SqlResultSetMapping annotation
      *
@@ -2444,8 +2445,7 @@ public class Client extends PMClientBase {
             try {
                 TestUtil.logMsg("Testing using name,result mapping");
                 clearCache();
-                StoredProcedureQuery spq =
-                        getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS", "tobeoverridden2");
+                StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS", "tobeoverridden2");
                 spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
                 if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
                     TestUtil.logTrace("register refcursor parameter");

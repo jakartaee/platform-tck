@@ -51,26 +51,26 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
 
     // These are the method tests
     private static final String tests[] = {
-        "ejbCreate",
-        "ejbPostCreate",
-        "setEntityContext",
-        "businessMethod",
-        "ejbLoad",
-        "ejbStore",
-        "ejbHomeDoTest",
-        "unsetEntityContext"
+            "ejbCreate",
+            "ejbPostCreate",
+            "setEntityContext",
+            "businessMethod",
+            "ejbLoad",
+            "ejbStore",
+            "ejbHomeDoTest",
+            "unsetEntityContext"
     };
 
     // This is the results of the operation tests
     private static final Properties methodList[] = {
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties()
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties()
     };
 
     private boolean ejbLoadCalled = false;
@@ -107,7 +107,8 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
             TestUtil.printStackTrace(e);
             throw new CreateException("Exception occurred: " + e);
         }
-        if (flag == 1) doOperationTests("ejbCreate");
+        if (flag == 1)
+            doOperationTests("ejbCreate");
         try {
             ref.setData(table);
         } catch (Exception e) {
@@ -120,7 +121,8 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
     public void ejbPostCreate(Properties p, Helper ref, int id, String brandName, float price, int flag)
             throws CreateException {
         TestUtil.logTrace("ejbPostCreate");
-        if (flag == 2) doOperationTests("ejbPostCreate");
+        if (flag == 2)
+            doOperationTests("ejbPostCreate");
         try {
             ref.setData(table);
         } catch (Exception e) {
@@ -168,7 +170,8 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
 
     public void ejbLoad() {
         TestUtil.logTrace("ejbLoad");
-        if (ejbLoadCalled) return;
+        if (ejbLoadCalled)
+            return;
         doOperationTests("ejbLoad");
         ejbLoadCalled = true;
         ejbStoreCalled = false;
@@ -176,7 +179,8 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
 
     public void ejbStore() {
         TestUtil.logTrace("ejbStore");
-        if (ejbStoreCalled) return;
+        if (ejbStoreCalled)
+            return;
         doOperationTests("ejbStore");
         ejbStoreCalled = true;
         ejbLoadCalled = false;
@@ -245,7 +249,9 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
 
     private int testIndex(String s) {
         TestUtil.logTrace("testIndex");
-        for (int i = 0; i < tests.length; i++) if (s.equals(tests[i])) return i;
+        for (int i = 0; i < tests.length; i++)
+            if (s.equals(tests[i]))
+                return i;
         return -1;
     }
 
@@ -565,7 +571,8 @@ public abstract class TestBeanEJB implements EntityBean, TimedObject {
                 if (name.indexOf(s) < 0) {
                     TestUtil.logErr("principal - expected: " + s + ", received: " + name);
                     return false;
-                } else return true;
+                } else
+                    return true;
             } else {
                 TestUtil.logErr("getCallerPrincipal() returned null reference");
                 return false;

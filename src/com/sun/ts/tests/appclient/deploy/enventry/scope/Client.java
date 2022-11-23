@@ -64,16 +64,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:102
      *
-     * @test_Strategy: We package in the same .ear file 2 application clients
-     *                 (_client and _another_client). Both use the same
-     *                 env-entry-name to declare two distinct String environment
-     *                 entry values.
+     * @test_Strategy: We package in the same .ear file 2 application clients (_client and _another_client). Both use the
+     * same env-entry-name to declare two distinct String environment entry values.
      *
-     *                 We check that: - We can deploy the application. - One of
-     *                 the application clients (_client) can be run and can lookup
-     *                 its String environment entry. - The runtime value of this
-     *                 entry correspond to the one declared in the Deployment
-     *                 Descriptor.
+     * We check that: - We can deploy the application. - One of the application clients (_client) can be run and can lookup
+     * its String environment entry. - The runtime value of this entry correspond to the one declared in the Deployment
+     * Descriptor.
      */
     public void testScope() throws Fault {
         boolean pass;

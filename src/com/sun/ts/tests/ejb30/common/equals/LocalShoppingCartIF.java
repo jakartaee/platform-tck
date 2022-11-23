@@ -20,4 +20,5 @@
 
 package com.sun.ts.tests.ejb30.common.equals;
 
-public interface LocalShoppingCartIF extends ShoppingCartIF {}
+public interface LocalShoppingCartIF extends ShoppingCartIF {
+}

@@ -25,7 +25,8 @@ import jakarta.transaction.UserTransaction;
 import java.util.logging.Level;
 
 public class CoffeeUtil {
-    private CoffeeUtil() {}
+    private CoffeeUtil() {
+    }
 
     public static void deleteCoffeeInNewUserTransaction(int id, EntityManager em, UserTransaction ut) {
         try {

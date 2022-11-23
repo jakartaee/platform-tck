@@ -27,7 +27,8 @@ import java.io.InputStream;
 public class StringBeanBinaryStreamDecoder implements BinaryStream<StringBean> {
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
     public StringBean decode(InputStream arg0) throws DecodeException, IOException {
@@ -36,5 +37,6 @@ public class StringBeanBinaryStreamDecoder implements BinaryStream<StringBean> {
     }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

@@ -29,8 +29,8 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "shopping-cart-bean")
-@Remote({ShoppingCartIF.class})
-@Local({LocalShoppingCartIF.class})
+@Remote({ ShoppingCartIF.class })
+@Local({ LocalShoppingCartIF.class })
 public class ShoppingCartBean
 // implements CartIF, ShoppingCartIF, LocalCartIF, LocalShoppingCartIF
 {
@@ -41,7 +41,9 @@ public class ShoppingCartBean
         return sessionContext;
     }
 
-    public ShoppingCartBean() {}
+    public ShoppingCartBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

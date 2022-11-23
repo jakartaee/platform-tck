@@ -33,7 +33,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
 @Stateful(name = "RemoveNotRetainBean")
-@Remote({RemoveNotRetainIF.class})
+@Remote({ RemoveNotRetainIF.class })
 // @Local({RemoveLocalIF.class, RemoveLocal2IF.class})
 // @RemoteHome(TwoRemoteHome.class)
 // @LocalHome(TwoLocalHome.class)
@@ -41,9 +41,11 @@ public class RemoveNotRetainBean implements RemoveNotRetainIF {
     @Resource(name = "sessionContext")
     private SessionContext sessionContext;
 
-    public RemoveNotRetainBean() {}
+    public RemoveNotRetainBean() {
+    }
 
-    public void ejbCreate() throws CreateException {}
+    public void ejbCreate() throws CreateException {
+    }
 
     @Init
     public void create() {
@@ -76,7 +78,8 @@ public class RemoveNotRetainBean implements RemoveNotRetainIF {
                 + " with a bean using descriptor to specify overloaded remove-method.");
     }
 
-    public void hi() {}
+    public void hi() {
+    }
 
     @Remove(retainIfException = true)
     public void alwaysRemoveAfterSystemException() {

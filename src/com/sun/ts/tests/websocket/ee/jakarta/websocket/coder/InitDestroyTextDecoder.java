@@ -37,8 +37,7 @@ public class InitDestroyTextDecoder extends StringBeanTextDecoder {
     public StringBean decode(String s) throws DecodeException {
         Logger.onCode(getClass());
         return super.decode(s);
-    }
-    ;
+    };
 
     @Override
     public boolean willDecode(String s) {

@@ -41,7 +41,8 @@ public class Uni1XMPerson implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<Uni1XMProject> projects;
 
-    public Uni1XMPerson() {}
+    public Uni1XMPerson() {
+    }
 
     public Uni1XMPerson(long l, String string) {
         this.id = l;

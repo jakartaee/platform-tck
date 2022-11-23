@@ -45,10 +45,10 @@ public class WSCErrorClientEndpoint extends AnnotatedClientEndpoint<String> {
         super.onMessage(msg);
         OPS op = OPS.valueOf(msg);
         switch (op) {
-            case THROW:
-                throw new RuntimeException(EXCEPTION);
-            default:
-                break;
+        case THROW:
+            throw new RuntimeException(EXCEPTION);
+        default:
+            break;
         }
     }
 
@@ -71,6 +71,7 @@ public class WSCErrorClientEndpoint extends AnnotatedClientEndpoint<String> {
         if (EXCEPTION.equals(msg)) {
             onErrorCalled = true;
             getCountDownLatch().countDown();
-        } else super.onError(session, t);
+        } else
+            super.onError(session, t);
     }
 }

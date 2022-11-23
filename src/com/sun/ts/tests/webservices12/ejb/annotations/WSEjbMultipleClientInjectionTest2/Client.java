@@ -88,15 +88,18 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
                 pass = false;
             }
-            if (pass) getPort();
+            if (pass)
+                getPort();
         } catch (Exception e) {
             throw new Fault("setup failed:", e);
         }
@@ -115,15 +118,12 @@ public class Client extends EETest {
     /*
      * @testName: MultipleClientInjectionMultipleClntEarsTest
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
      *
-     * @test_Strategy: Test that injection works for multiple clients packaged in
-     * separate client ear files. An appclient and servletclient is packaged in
-     * separate client ear files. Injection should happen in both clients.
+     * @test_Strategy: Test that injection works for multiple clients packaged in separate client ear files. An appclient
+     * and servletclient is packaged in separate client ear files. Injection should happen in both clients.
      */
     public void MultipleClientInjectionMultipleClntEarsTest() throws Fault {
         boolean pass = true;
@@ -135,7 +135,8 @@ public class Client extends EETest {
             if (service == null) {
                 TestUtil.logErr("appclient injection failed");
                 pass = false;
-            } else TestUtil.logMsg("appclient injection passed");
+            } else
+                TestUtil.logMsg("appclient injection passed");
             TestUtil.logMsg("Test servletclient injection .....");
             url = ctsurl.getURL("http", hostname, portnum, SERVLET);
             props.setProperty("TEST", "test2");
@@ -145,24 +146,23 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 TestUtil.logErr("servletclient injection failed");
                 pass = false;
-            } else TestUtil.logMsg("servletclient injection passed");
+            } else
+                TestUtil.logMsg("servletclient injection passed");
         } catch (Throwable t) {
             throw new Fault("MultipleClientInjectionMultipleClntEarsTest failed");
         }
-        if (!pass) throw new Fault("MultipleClientInjectionMultipleClntEarsTest failed");
+        if (!pass)
+            throw new Fault("MultipleClientInjectionMultipleClntEarsTest failed");
     }
 
     /*
      * @testName: MultipleClientInjectionMultipleClntEarsInvokeHelloBye
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
      *
-     * @test_Strategy: Test that invocation works for multiple injection. Call
-     * methods hello and bye.
+     * @test_Strategy: Test that invocation works for multiple injection. Call methods hello and bye.
      */
     public void MultipleClientInjectionMultipleClntEarsInvokeHelloBye() throws Fault {
         boolean pass = true;
@@ -173,14 +173,16 @@ public class Client extends EETest {
             TestUtil.logMsg("Test appclient invocation .....");
             TestUtil.logMsg("Invoke hello method");
             String txt = port.hello("Hello there");
-            if (txt.equals("Hello there to you too!")) TestUtil.logMsg("Invoke of hello passed");
+            if (txt.equals("Hello there to you too!"))
+                TestUtil.logMsg("Invoke of hello passed");
             else {
                 pass = false;
                 TestUtil.logErr("Invoke of hello failed");
             }
             TestUtil.logMsg("Invoke bye method");
             txt = port.bye("Bye");
-            if (txt.equals("Bye and take care!")) TestUtil.logMsg("Invoke of bye passed");
+            if (txt.equals("Bye and take care!"))
+                TestUtil.logMsg("Invoke of bye passed");
             else {
                 pass = false;
                 TestUtil.logErr("Invoke of bye failed");
@@ -191,10 +193,12 @@ public class Client extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             Properties p = TestUtil.getResponseProperties(urlConn);
             String passStr = p.getProperty("TESTRESULT");
-            if (passStr.equals("fail")) pass = false;
+            if (passStr.equals("fail"))
+                pass = false;
         } catch (Throwable t) {
             throw new Fault("MultipleClientInjectionMultipleClntEarsInvokeHelloBye failed");
         }
-        if (!pass) throw new Fault("MultipleClientInjectionMultipleClntEarsInvokeHelloBye failed");
+        if (!pass)
+            throw new Fault("MultipleClientInjectionMultipleClntEarsInvokeHelloBye failed");
     }
 }

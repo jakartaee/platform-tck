@@ -28,10 +28,12 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "UserTransactionNegativeBean")
-@Remote({UserTransactionNegativeIF.class})
+@Remote({ UserTransactionNegativeIF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class UserTransactionNegativeBean extends UserTransactionNegativeBeanBase implements UserTransactionNegativeIF {
-    public UserTransactionNegativeBean() {}
+    public UserTransactionNegativeBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

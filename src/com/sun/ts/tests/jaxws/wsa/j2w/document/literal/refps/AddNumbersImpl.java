@@ -30,11 +30,7 @@ import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.SOAPBinding;
 
-@WebService(
-        name = "AddNumbersPortType",
-        portName = "AddNumbersPort",
-        serviceName = "AddNumbersService",
-        targetNamespace = "http://example.com")
+@WebService(name = "AddNumbersPortType", portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com")
 @HandlerChain(name = "", file = "server-handler.xml")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @Addressing(enabled = true, required = true)

@@ -150,8 +150,10 @@ public class Client extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -212,7 +214,8 @@ public class Client extends EETest {
         if (!stringTest()) {
             pass = false;
             TestUtil.logErr("Failed in appclient");
-        } else TestUtil.logMsg("Passed in appclient");
+        } else
+            TestUtil.logMsg("Passed in appclient");
         try {
             TestUtil.logMsg("-----------------------------------");
             TestUtil.logMsg("Test servletclient invocation .....");
@@ -228,7 +231,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("Failed in servletclient");
-            } else TestUtil.logMsg("Passed in servletclient");
+            } else
+                TestUtil.logMsg("Passed in servletclient");
         } catch (Exception e) {
             // e.printStackTrace();
             TestUtil.logErr("Failed on servletclient invocation");
@@ -251,7 +255,8 @@ public class Client extends EETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("testwsreflookup failed");
+        if (!pass)
+            throw new Fault("testwsreflookup failed");
     }
 
     public boolean stringTest() throws Fault {
@@ -261,7 +266,8 @@ public class Client extends EETest {
 
         try {
             String response = port2.echoString(request);
-            if (!JAXWS_Data.compareValues(request, response, "String")) pass = false;
+            if (!JAXWS_Data.compareValues(request, response, "String"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);

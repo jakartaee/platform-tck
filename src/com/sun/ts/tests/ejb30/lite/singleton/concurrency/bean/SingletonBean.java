@@ -28,12 +28,12 @@ import jakarta.interceptor.Interceptors;
 import java.util.LinkedList;
 
 /**
- * This class is similar to ../container/SingletonBean except that this one uses
- * java language primitives like volatile and synchronized.
+ * This class is similar to ../container/SingletonBean except that this one uses java language primitives like volatile
+ * and synchronized.
  */
 @ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 @Singleton
-@Interceptors({Interceptor0.class, Interceptor3.class})
+@Interceptors({ Interceptor0.class, Interceptor3.class })
 public class SingletonBean implements ConcurrencyIF {
     private static final String msg = "Should not reach here. The interceptors should have returned "
             + "the result. Maybe the interceptors are not ignored?";

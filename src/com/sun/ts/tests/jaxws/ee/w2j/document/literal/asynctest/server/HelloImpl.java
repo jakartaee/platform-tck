@@ -24,12 +24,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HelloPort",
-        serviceName = "HelloService",
-        targetNamespace = "http://helloservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLAsyncTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.asynctest.server.Hello")
+@WebService(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLAsyncTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.asynctest.server.Hello")
 public class HelloImpl implements Hello {
 
     public HelloResponse hello(HelloRequest request) {

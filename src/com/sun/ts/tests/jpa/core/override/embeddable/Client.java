@@ -49,7 +49,8 @@ public class Client extends PMClientBase {
 
     private static final String PUBLISHER1_STATE = "California";
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -70,15 +71,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: testOverrideTransient
      *
-     * @assertion_ids: PERSISTENCE:SPEC:513; PERSISTENCE:SPEC:523;
-     * PERSISTENCE:SPEC:548; PERSISTENCE:SPEC:549; PERSISTENCE:SPEC:553;
-     * PERSISTENCE:SPEC:556; PERSISTENCE:SPEC:557; PERSISTENCE:SPEC:560;
-     * PERSISTENCE:SPEC:1026; PERSISTENCE:SPEC:1061; PERSISTENCE:SPEC:1063;
-     * PERSISTENCE:SPEC:1064; PERSISTENCE:SPEC:1067; PERSISTENCE:SPEC:1069;
+     * @assertion_ids: PERSISTENCE:SPEC:513; PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:548; PERSISTENCE:SPEC:549;
+     * PERSISTENCE:SPEC:553; PERSISTENCE:SPEC:556; PERSISTENCE:SPEC:557; PERSISTENCE:SPEC:560; PERSISTENCE:SPEC:1026;
+     * PERSISTENCE:SPEC:1061; PERSISTENCE:SPEC:1063; PERSISTENCE:SPEC:1064; PERSISTENCE:SPEC:1067; PERSISTENCE:SPEC:1069;
      * PERSISTENCE:SPEC:1127;PERSISTENCE:SPEC:1130;
      *
-     * @test_Strategy: A field in an entity which is declared as Basic is
-     * overriden in orm.xml as Transient.
+     * @test_Strategy: A field in an entity which is declared as Basic is overriden in orm.xml as Transient.
      */
     public void testOverrideTransient() throws Fault {
 
@@ -117,16 +115,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: testOverrideEmbeddable
      *
-     * @assertion_ids: PERSISTENCE:SPEC:513; PERSISTENCE:SPEC:523;
-     * PERSISTENCE:SPEC:548; PERSISTENCE:SPEC:549; PERSISTENCE:SPEC:553;
-     * PERSISTENCE:SPEC:556; PERSISTENCE:SPEC:557; PERSISTENCE:SPEC:560;
-     * PERSISTENCE:SPEC:1026; PERSISTENCE:SPEC:1061; PERSISTENCE:SPEC:1063;
-     * PERSISTENCE:SPEC:1064; PERSISTENCE:SPEC:1067; PERSISTENCE:SPEC:1069;
+     * @assertion_ids: PERSISTENCE:SPEC:513; PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:548; PERSISTENCE:SPEC:549;
+     * PERSISTENCE:SPEC:553; PERSISTENCE:SPEC:556; PERSISTENCE:SPEC:557; PERSISTENCE:SPEC:560; PERSISTENCE:SPEC:1026;
+     * PERSISTENCE:SPEC:1061; PERSISTENCE:SPEC:1063; PERSISTENCE:SPEC:1064; PERSISTENCE:SPEC:1067; PERSISTENCE:SPEC:1069;
      * PERSISTENCE:SPEC:1127; PERSISTENCE:SPEC:1130;
      *
-     * @test_Strategy: Applicant class is declared as "Embeddable" in orm.xml
-     * without using annotation and an entity named Complaint uses Applicant. The
-     * following test test applies that by reading from the orm.xml.
+     * @test_Strategy: Applicant class is declared as "Embeddable" in orm.xml without using annotation and an entity named
+     * Complaint uses Applicant. The following test test applies that by reading from the orm.xml.
      */
 
     public void testOverrideEmbeddable() throws Fault {
@@ -163,16 +158,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: testOverrideEmbedded
      *
-     * @assertion_ids: PERSISTENCE:SPEC:513; PERSISTENCE:SPEC:523;
-     * PERSISTENCE:SPEC:548; PERSISTENCE:SPEC:549; PERSISTENCE:SPEC:553;
-     * PERSISTENCE:SPEC:556; PERSISTENCE:SPEC:557; PERSISTENCE:SPEC:560;
-     * PERSISTENCE:SPEC:1026; PERSISTENCE:SPEC:1061; PERSISTENCE:SPEC:1063;
-     * PERSISTENCE:SPEC:1064; PERSISTENCE:SPEC:1067; PERSISTENCE:SPEC:1069;
+     * @assertion_ids: PERSISTENCE:SPEC:513; PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:548; PERSISTENCE:SPEC:549;
+     * PERSISTENCE:SPEC:553; PERSISTENCE:SPEC:556; PERSISTENCE:SPEC:557; PERSISTENCE:SPEC:560; PERSISTENCE:SPEC:1026;
+     * PERSISTENCE:SPEC:1061; PERSISTENCE:SPEC:1063; PERSISTENCE:SPEC:1064; PERSISTENCE:SPEC:1067; PERSISTENCE:SPEC:1069;
      * PERSISTENCE:SPEC:1127; PERSISTENCE:SPEC:1130;
      *
-     * @test_Strategy: Film is an Embeddable class. MovieTicket is an entity has
-     * Film embedded in it by defining it as "embedded" in orm.xml instead of
-     * using annotation. The following test checks for the above.
+     * @test_Strategy: Film is an Embeddable class. MovieTicket is an entity has Film embedded in it by defining it as
+     * "embedded" in orm.xml instead of using annotation. The following test checks for the above.
      *
      */
 
@@ -208,18 +200,14 @@ public class Client extends PMClientBase {
     /*
      * @testName: testMetadataCompleteness
      *
-     * @assertion_ids: PERSISTENCE:SPEC:513; PERSISTENCE:SPEC:523;
-     * PERSISTENCE:SPEC:548; PERSISTENCE:SPEC:549; PERSISTENCE:SPEC:553;
-     * PERSISTENCE:SPEC:556; PERSISTENCE:SPEC:557; PERSISTENCE:SPEC:560;
-     * PERSISTENCE:SPEC:1026; PERSISTENCE:SPEC:1061; PERSISTENCE:SPEC:1063;
-     * PERSISTENCE:SPEC:1064; PERSISTENCE:SPEC:1067; PERSISTENCE:SPEC:1069;
+     * @assertion_ids: PERSISTENCE:SPEC:513; PERSISTENCE:SPEC:523; PERSISTENCE:SPEC:548; PERSISTENCE:SPEC:549;
+     * PERSISTENCE:SPEC:553; PERSISTENCE:SPEC:556; PERSISTENCE:SPEC:557; PERSISTENCE:SPEC:560; PERSISTENCE:SPEC:1026;
+     * PERSISTENCE:SPEC:1061; PERSISTENCE:SPEC:1063; PERSISTENCE:SPEC:1064; PERSISTENCE:SPEC:1067; PERSISTENCE:SPEC:1069;
      * PERSISTENCE:SPEC:1127; PERSISTENCE:SPEC:1130;
      *
-     * @test_Strategy: Book is an entity and has an embedded field publisher1
-     * which is an object of an embeddable class Publisher1. Publisher1 has two
-     * fields name that is declared Transient and state that is declared of length
-     * 2. The orm.xml has metadata-complete=true. The following test checks for
-     * the metadata completeness.
+     * @test_Strategy: Book is an entity and has an embedded field publisher1 which is an object of an embeddable class
+     * Publisher1. Publisher1 has two fields name that is declared Transient and state that is declared of length 2. The
+     * orm.xml has metadata-complete=true. The following test checks for the metadata completeness.
      *
      */
     public void testMetadataCompleteness() throws Fault {
@@ -236,8 +224,7 @@ public class Client extends PMClientBase {
         try {
             Book retrieveBook = getEntityManager().find(Book.class, BOOK_ID);
             /*
-             * setting Publisher in order to refresh the entity after it has been
-             * overriden
+             * setting Publisher in order to refresh the entity after it has been overriden
              */
             retrieveBook.setPublisher1(new Publisher1());
             getEntityManager().refresh(retrieveBook);

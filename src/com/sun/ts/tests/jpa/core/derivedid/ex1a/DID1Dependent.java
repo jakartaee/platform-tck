@@ -39,7 +39,8 @@ public class DID1Dependent implements Serializable {
     @ManyToOne
     DID1Employee emp;
 
-    public DID1Dependent() {}
+    public DID1Dependent() {
+    }
 
     public DID1Dependent(String name, DID1Employee emp) {
         this.name = name;

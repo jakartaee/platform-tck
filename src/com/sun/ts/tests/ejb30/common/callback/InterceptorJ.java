@@ -21,9 +21,8 @@
 package com.sun.ts.tests.ejb30.common.callback;
 
 /**
- * An interceptor that does not contain any lifecycle methods. Its superclass
- * contains lifecycle methods, and also overrides/disables lifecycle methods in
- * ITS superclasses.
+ * An interceptor that does not contain any lifecycle methods. Its superclass contains lifecycle methods, and also
+ * overrides/disables lifecycle methods in ITS superclasses.
  */
 public class InterceptorJ extends InterceptorI {
     public InterceptorJ() {

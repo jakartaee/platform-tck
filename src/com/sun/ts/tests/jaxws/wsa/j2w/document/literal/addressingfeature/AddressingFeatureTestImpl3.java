@@ -31,11 +31,7 @@ import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.SOAPBinding;
 
-@WebService(
-        name = "AddressingFeatureTest3",
-        portName = "AddressingFeatureTest3Port",
-        targetNamespace = "http://addressingfeatureservice.org/wsdl",
-        serviceName = "AddressingFeatureTest3Service")
+@WebService(name = "AddressingFeatureTest3", portName = "AddressingFeatureTest3Port", targetNamespace = "http://addressingfeatureservice.org/wsdl", serviceName = "AddressingFeatureTest3Service")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @Addressing
 @HandlerChain(name = "", file = "server-handler.xml")

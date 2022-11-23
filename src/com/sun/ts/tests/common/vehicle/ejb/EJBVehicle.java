@@ -71,8 +71,10 @@ public class EJBVehicle implements SessionBean {
             // call EETest impl's run method
             sTestStatus = new RemoteStatus(testObj.run(arguments, properties));
 
-            if (sTestStatus.getType() == Status.PASSED) TestUtil.logMsg("Test running in ejb vehicle passed");
-            else TestUtil.logMsg("Test running in ejb vehicle failed");
+            if (sTestStatus.getType() == Status.PASSED)
+                TestUtil.logMsg("Test running in ejb vehicle passed");
+            else
+                TestUtil.logMsg("Test running in ejb vehicle failed");
         } catch (Throwable e) {
             e.printStackTrace();
             TestUtil.logErr("Test running in ejb vehicle failed", e);
@@ -81,11 +83,15 @@ public class EJBVehicle implements SessionBean {
         return sTestStatus;
     }
 
-    public void setSessionContext(SessionContext sc) {}
+    public void setSessionContext(SessionContext sc) {
+    }
 
-    public void ejbRemove() {}
+    public void ejbRemove() {
+    }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 }

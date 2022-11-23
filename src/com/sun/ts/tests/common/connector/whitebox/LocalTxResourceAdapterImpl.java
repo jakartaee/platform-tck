@@ -127,7 +127,8 @@ public class LocalTxResourceAdapterImpl implements ResourceAdapter, Serializable
                     myStart(bsc);
                 }
 
-                public void release() {}
+                public void release() {
+                }
             });
         } catch (jakarta.resource.spi.work.WorkException we) {
             throw new ResourceAdapterInternalException();
@@ -255,7 +256,7 @@ public class LocalTxResourceAdapterImpl implements ResourceAdapter, Serializable
         Method onMessageMethod = null;
         try {
             Class msgListenerClass = TSMessageListenerInterface.class;
-            Class[] paramTypes = {java.lang.String.class};
+            Class[] paramTypes = { java.lang.String.class };
             onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
 
         } catch (NoSuchMethodException ex) {
@@ -327,18 +328,22 @@ public class LocalTxResourceAdapterImpl implements ResourceAdapter, Serializable
             return false;
         }
 
-        if (!Util.isEqual(this.sicUser, that.getSicUser())) return false;
+        if (!Util.isEqual(this.sicUser, that.getSicUser()))
+            return false;
 
-        if (!Util.isEqual(this.sicPwd, that.getSicPwd())) return false;
+        if (!Util.isEqual(this.sicPwd, that.getSicPwd()))
+            return false;
 
-        if (!Util.isEqual(this.eisUser, that.getEisUser())) return false;
+        if (!Util.isEqual(this.eisUser, that.getEisUser()))
+            return false;
 
-        if (!Util.isEqual(this.eisPwd, that.getEisPwd())) return false;
+        if (!Util.isEqual(this.eisPwd, that.getEisPwd()))
+            return false;
 
-        if (!Util.isEqual(this.RAName, that.getRAName())) return false;
+        if (!Util.isEqual(this.RAName, that.getRAName()))
+            return false;
 
-        if (this.getUseSecurityMapping().booleanValue()
-                != that.getUseSecurityMapping().booleanValue()) {
+        if (this.getUseSecurityMapping().booleanValue() != that.getUseSecurityMapping().booleanValue()) {
             return false;
         }
 

@@ -94,10 +94,9 @@ public class QueueTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue
-     * Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue Connection, as well as a default Queue and Topic. Tests that require multiple Destinations create
+     * the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -144,8 +143,8 @@ public class QueueTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -166,11 +165,9 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:12; JMS:JAVADOC:13;
      *
-     * @test_Strategy: Create a session in a separate thread that calls receive()
-     * and replies to the message. Have the thread call receive() again with no
-     * message sent. Close the thread's session and the receive() call should
-     * return, finishing the thread's run() method. Verify that the thread is no
-     * longer running.
+     * @test_Strategy: Create a session in a separate thread that calls receive() and replies to the message. Have the
+     * thread call receive() again with no message sent. Close the thread's session and the receive() call should return,
+     * finishing the thread's run() method. Verify that the thread is no longer running.
      */
     public void receiveNullClosedSessionQueueTest() throws Fault {
         int waitTime = 15; // seconds
@@ -209,7 +206,8 @@ public class QueueTests extends ServiceEETest {
             qReq.request(tempMsg);
 
             logMsg("Wait " + waitTime + " seconds for receive() to start again " + "before closing session...");
-            for (int i = 0; i < 100000; i++) {}
+            for (int i = 0; i < 100000; i++) {
+            }
             logMsg("Close the SessionThread's QueueSession");
             sT.getQueueSession().close();
 
@@ -236,8 +234,8 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:173; JMS:SPEC:198; JMS:SPEC:94; JMS:SPEC:91;
      *
-     * @test_Strategy: create a connection, send and receive a msg, then set the
-     * ClientID verify that IllegalStateException is thrown.
+     * @test_Strategy: create a connection, send and receive a msg, then set the ClientID verify that IllegalStateException
+     * is thrown.
      *
      */
     public void setClientIDLateQueueTest() throws Fault {
@@ -304,11 +302,10 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:132; JMS:SPEC:136;
      *
-     * @test_Strategy: Set up a receiver with a messagelistener. Send two messages
-     * to the destination. The message listener will receive the messages and
-     * automatically call recover() after the send one. It will verify that the
-     * second message only is received a second time. After waiting for the
-     * message listener to finish, the test checks the state of the listener.
+     * @test_Strategy: Set up a receiver with a messagelistener. Send two messages to the destination. The message listener
+     * will receive the messages and automatically call recover() after the send one. It will verify that the second message
+     * only is received a second time. After waiting for the message listener to finish, the test checks the state of the
+     * listener.
      */
     public void autoAckMsgListenerQueueTest() throws Fault {
         try {
@@ -351,12 +348,10 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:120; JMS:SPEC:121; JMS:SPEC:136;
      *
-     * @test_Strategy: Create queue sessions with two receivers and message
-     * listeners for two queues. Send multiple messages to the queues and then
-     * start the connection to begin receiving messages. The message listeners
-     * perform a Thread.sleep() in the onMessage() method, checking for concurrent
-     * use of the other listener. The test is over when the harness determines
-     * that the last message has been received.
+     * @test_Strategy: Create queue sessions with two receivers and message listeners for two queues. Send multiple messages
+     * to the queues and then start the connection to begin receiving messages. The message listeners perform a
+     * Thread.sleep() in the onMessage() method, checking for concurrent use of the other listener. The test is over when
+     * the harness determines that the last message has been received.
      */
     public void serialMsgListenerQueueTest() throws Fault {
         try {
@@ -430,16 +425,13 @@ public class QueueTests extends ServiceEETest {
     /*
      * @testName: setGetChangeClientIDQueueTest
      *
-     * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:90; JMS:SPEC:93; JMS:JAVADOC:514;
-     * JMS:JAVADOC:512; JMS:JAVADOC:650; JMS:JAVADOC:651;
+     * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:90; JMS:SPEC:93; JMS:JAVADOC:514; JMS:JAVADOC:512; JMS:JAVADOC:650;
+     * JMS:JAVADOC:651;
      *
-     * @test_Strategy: Test setClientID()/getClientID(). Make sure that the
-     * clientID set is the clientID returned. Then try and reset the clientID.
-     * Verify that the IllegalStateException is thrown. 1. use a
-     * QueueConnectionFactory that has no ClientID set, then call setClientID
-     * twice. Then try and set the clientID on a second connection to the clientID
-     * value of the first connection. Verify the InvalidClientIDException is
-     * thrown.
+     * @test_Strategy: Test setClientID()/getClientID(). Make sure that the clientID set is the clientID returned. Then try
+     * and reset the clientID. Verify that the IllegalStateException is thrown. 1. use a QueueConnectionFactory that has no
+     * ClientID set, then call setClientID twice. Then try and set the clientID on a second connection to the clientID value
+     * of the first connection. Verify the InvalidClientIDException is thrown.
      */
     public void setGetChangeClientIDQueueTest() throws Fault {
         boolean pass = true;
@@ -516,7 +508,8 @@ public class QueueTests extends ServiceEETest {
             TestUtil.logMsg("Create ExceptionListener");
             ExceptionListener foo = new ExceptionListener() {
 
-                public void onException(JMSException e) {}
+                public void onException(JMSException e) {
+                }
             };
 
             TestUtil.logMsg("Call setExceptionListener on Connection object");
@@ -592,14 +585,12 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:123; JMS:SPEC:129; JMS:SPEC:91;
      *
-     * @test_Strategy: Send x messages to x Queues from x senders. In a different
-     * session using client_acknowledge, create x QueueReceivers. Send the
-     * messages in order 1,2,3...x. Receive them in order x...3,2,1, calling
-     * session.recover() after receiving 1 message. All x messages should be
-     * received. ("x" is specified by the numMessages parameter in ts.jte file.)
+     * @test_Strategy: Send x messages to x Queues from x senders. In a different session using client_acknowledge, create x
+     * QueueReceivers. Send the messages in order 1,2,3...x. Receive them in order x...3,2,1, calling session.recover()
+     * after receiving 1 message. All x messages should be received. ("x" is specified by the numMessages parameter in
+     * ts.jte file.)
      *
-     * Note: default QueueReceiver can stay open, since testing is done with newly
-     * created Destinations
+     * Note: default QueueReceiver can stay open, since testing is done with newly created Destinations
      */
     public void reverseReceiveClientAckTest() throws Fault {
         boolean pass = true;
@@ -629,8 +620,7 @@ public class QueueTests extends ServiceEETest {
 
             // create session for receiving
             TestUtil.logMsg("Creating CLIENT_ACKNOWLEDGE session for receiving");
-            QueueSession receiveSession =
-                    tool.getDefaultQueueConnection().createQueueSession(false, Session.CLIENT_ACKNOWLEDGE);
+            QueueSession receiveSession = tool.getDefaultQueueConnection().createQueueSession(false, Session.CLIENT_ACKNOWLEDGE);
 
             // create receivers for receive session
             TestUtil.logMsg("Creating " + numMessages + " receivers in receive session");
@@ -703,9 +693,8 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:131; JMS:JAVADOC:122; JMS:SPEC:91;
      *
-     * @test_Strategy: Send three messages to Queue. Receive all three and call
-     * acknowledge on msg 2. Send and receive message 4. Recover and attempt to
-     * receive msg 4.
+     * @test_Strategy: Send three messages to Queue. Receive all three and call acknowledge on msg 2. Send and receive
+     * message 4. Recover and attempt to receive msg 4.
      */
     public void clientAckQueueTest() throws Fault {
         boolean pass = true;
@@ -797,7 +786,8 @@ public class QueueTests extends ServiceEETest {
                 rec4.acknowledge();
             }
 
-            if (!pass) throw new Fault("clientAckQueueTest Failed!!");
+            if (!pass)
+                throw new Fault("clientAckQueueTest Failed!!");
 
         } catch (Exception e) {
             TestUtil.logErr("Error: ", e);
@@ -818,10 +808,9 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:145; JMS:JAVADOC:122; JMS:SPEC:91;
      *
-     * @test_Strategy: Send messages to a queue that has a single QueueReceiver in
-     * a CLIENT_ACKNOWLEDGE session. Receive all the messages and close the
-     * session without acknowledging the messages. Create a new receiver and
-     * verify that all the messages may still be received from the queue.
+     * @test_Strategy: Send messages to a queue that has a single QueueReceiver in a CLIENT_ACKNOWLEDGE session. Receive all
+     * the messages and close the session without acknowledging the messages. Create a new receiver and verify that all the
+     * messages may still be received from the queue.
      */
     public void nonAckMsgsRedeliveredQueueTest() throws Fault {
         boolean pass = true;
@@ -836,8 +825,7 @@ public class QueueTests extends ServiceEETest {
             tool.getDefaultQueueSession().close();
 
             // create client_ack session for queue
-            QueueSession qSession =
-                    tool.getDefaultQueueConnection().createQueueSession(false, Session.CLIENT_ACKNOWLEDGE);
+            QueueSession qSession = tool.getDefaultQueueConnection().createQueueSession(false, Session.CLIENT_ACKNOWLEDGE);
             QueueReceiver qReceiver = qSession.createReceiver(tool.getDefaultQueue());
             QueueSender qSender = qSession.createSender(tool.getDefaultQueue());
 
@@ -881,7 +869,8 @@ public class QueueTests extends ServiceEETest {
                 }
             }
 
-            if (!pass) throw new Fault("nonAckMsgsRedeliveredQueueTest failed!!!");
+            if (!pass)
+                throw new Fault("nonAckMsgsRedeliveredQueueTest failed!!!");
         } catch (Exception e) {
             TestUtil.logErr("nonAckMsgsRedeliveredQueueTest failed: ", e);
             throw new Fault("nonAckMsgsRedeliveredQueueTest failed", e);
@@ -899,14 +888,11 @@ public class QueueTests extends ServiceEETest {
     /*
      * @testName: queueRequestorSimpleSendAndRecvTest
      *
-     * @assertion_ids: JMS:JAVADOC:12; JMS:JAVADOC:13; JMS:JAVADOC:15;
-     * JMS:SPEC:273;
+     * @assertion_ids: JMS:JAVADOC:12; JMS:JAVADOC:13; JMS:JAVADOC:15; JMS:SPEC:273;
      *
-     * @test_Strategy: Send and receive simple JMS message using QueueRequestor
-     * helper class. Tests the following API's:
+     * @test_Strategy: Send and receive simple JMS message using QueueRequestor helper class. Tests the following API's:
      *
-     * QueueRequestor(QueueSession, Queue) QueueRequestor.request(Message)
-     * QueueRequestor.close()
+     * QueueRequestor(QueueSession, Queue) QueueRequestor.request(Message) QueueRequestor.close()
      */
     public void queueRequestorSimpleSendAndRecvTest() throws Fault {
         boolean pass = true;
@@ -962,8 +948,8 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:832; JMS:JAVADOC:833; JMS:JAVADOC:16;
      *
-     * @test_Strategy: Test negative exception cases for QueueRequestor API's.
-     * Tests the following exceptions: InvalidDestinationException, JMSException.
+     * @test_Strategy: Test negative exception cases for QueueRequestor API's. Tests the following exceptions:
+     * InvalidDestinationException, JMSException.
      */
     public void queueRequestorExceptionTests() throws Fault {
         boolean pass = true;
@@ -1023,7 +1009,8 @@ public class QueueTests extends ServiceEETest {
             TestUtil.logMsg("Try a request/response message exchange on a closed QueueRequestor");
             try {
                 messageReceived = (TextMessage) qreq.request(messageSent);
-                if (messageReceived != null) TestUtil.logMsg("messageReceived=" + messageReceived.getText());
+                if (messageReceived != null)
+                    TestUtil.logMsg("messageReceived=" + messageReceived.getText());
                 TestUtil.logErr("Didn't throw JMSException");
                 pass = false;
                 qreq.close();

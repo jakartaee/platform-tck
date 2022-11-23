@@ -29,15 +29,15 @@ public class TagDataTEI extends BaseTCKExtraInfo {
     /**
      * Default constructor.
      */
-    public TagDataTEI() {}
+    public TagDataTEI() {
+    }
 
     // ------------------------------------------- Test Definitions ----------
 
     /**
      * Validate TagData.getId();
      *
-     * @return null if the test passes, or a String containing the reason for
-     *         failure.
+     * @return null if the test passes, or a String containing the reason for failure.
      */
     public String getId() {
         TagData data = this.getTagData();
@@ -53,8 +53,7 @@ public class TagDataTEI extends BaseTCKExtraInfo {
     /**
      * Validate TagData.getAttribute().
      *
-     * @return null if the test passes, or a String containing the reason for
-     *         failure.
+     * @return null if the test passes, or a String containing the reason for failure.
      */
     public String getAttribute() {
         debug("in getAttribute()");
@@ -88,8 +87,7 @@ public class TagDataTEI extends BaseTCKExtraInfo {
             }
 
             if (data.getAttribute("dynAttribute4") != null) {
-                message =
-                        "Test FAILED.  Expected null to be returned for an attribute " + "not specified in the action.";
+                message = "Test FAILED.  Expected null to be returned for an attribute " + "not specified in the action.";
             }
 
         } else {
@@ -101,8 +99,7 @@ public class TagDataTEI extends BaseTCKExtraInfo {
     /**
      * Validate TagData.setAttribute().
      *
-     * @return null if the test passes, or a String containing the reason for
-     *         failure.
+     * @return null if the test passes, or a String containing the reason for failure.
      */
     public String setAttribute() {
         debug("in setAttribute()");
@@ -126,8 +123,7 @@ public class TagDataTEI extends BaseTCKExtraInfo {
     /**
      * Validate TagData.getAttributeString().
      *
-     * @return null if the test passes, or a String containing the reason for
-     *         failure.
+     * @return null if the test passes, or a String containing the reason for failure.
      */
     public String getAttributeString() {
         debug("in getAttributeString()");
@@ -165,14 +161,13 @@ public class TagDataTEI extends BaseTCKExtraInfo {
     /**
      * Validate TagData.getAttributes().
      *
-     * @return null if the test passes, or a String containing the reason for
-     *         failure.
+     * @return null if the test passes, or a String containing the reason for failure.
      */
     public String getAttributes() {
         debug("in getAttributes()");
         TagData data = this.getTagData();
         String message = null;
-        String[] expValues = {"test", "dynAttribute"};
+        String[] expValues = { "test", "dynAttribute" };
         if (data != null) {
             if (!JspTestUtil.checkEnumeration(data.getAttributes(), expValues)) {
                 message = "Test FAILED.  The Enumeration returned by TagData.getAttributes()"
@@ -188,14 +183,13 @@ public class TagDataTEI extends BaseTCKExtraInfo {
     /**
      * Validate TagData(Object[][])
      *
-     * @return null if the test passes, or a String containing the reason for
-     *         failure.
+     * @return null if the test passes, or a String containing the reason for failure.
      */
     public String constructorTest() {
         debug("in constructorTest()");
         String message = null;
         Object[][] att = null;
-        Object[][] att2 = {{"connection", "conn0"}, {"id", "query0"}};
+        Object[][] att2 = { { "connection", "conn0" }, { "id", "query0" } };
         TagData data = null;
         TagData data2 = null;
         try {

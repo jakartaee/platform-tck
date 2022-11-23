@@ -41,7 +41,8 @@ public class Project implements java.io.Serializable {
 
     private Employee projectLead;
 
-    public Project() {}
+    public Project() {
+    }
 
     public Project(long projId, String name, BigDecimal budget) {
         this(projId, name, budget, (Employee) null);

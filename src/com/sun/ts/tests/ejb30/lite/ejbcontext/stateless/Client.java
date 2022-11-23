@@ -38,67 +38,59 @@ public class Client extends ClientBase {
     /*
      * @testName: lookupIllegalArgumentException
      *
-     * @test_Strategy: Call EJBContext.lookup with null and another non-existent
-     * name, expecting IllegalArgumentException. Valid use of EJBContext.lookup
-     * method are tested in various other directories and are not present here.
+     * @test_Strategy: Call EJBContext.lookup with null and another non-existent name, expecting IllegalArgumentException.
+     * Valid use of EJBContext.lookup method are tested in various other directories and are not present here.
      */
     /*
      * @testName: getMessageContextIllegalStateException
      *
-     * @test_Strategy: Call EJBContext.getMessageContext() where it's not
-     * supported, expecting IllegalStateException.
+     * @test_Strategy: Call EJBContext.getMessageContext() where it's not supported, expecting IllegalStateException.
      */
     /*
      * @testName: getInvokedBusinessInterface
      *
-     * @test_Strategy: Call EJBContext.getInvokedBusinessInterface() on
-     * no-interface, interface1 and interface2, and verify the returned interface.
+     * @test_Strategy: Call EJBContext.getInvokedBusinessInterface() on no-interface, interface1 and interface2, and verify
+     * the returned interface.
      */
     /*
      * @testName: getBusinessObjectIllegalStateException
      *
-     * @test_Strategy: Call EJBContext.getBusinessObject() with invalid interfaces
-     * on no-interface, interface1 and interface2, expecting
-     * IllegalStateException.
+     * @test_Strategy: Call EJBContext.getBusinessObject() with invalid interfaces on no-interface, interface1 and
+     * interface2, expecting IllegalStateException.
      */
     /*
      * @testName: getBusinessObject
      *
-     * @test_Strategy: Call EJBContext.getBusinessObject() on no-interface,
-     * interface1 and interface2, and invoke add() on the obtained business
-     * object.
+     * @test_Strategy: Call EJBContext.getBusinessObject() on no-interface, interface1 and interface2, and invoke add() on
+     * the obtained business object.
      */
     /*
      * @testName: ejbContextInjections
      *
-     * @test_Strategy: verify setter-, field- and descriptor-injections of
-     * EJBContext and SessionContext are performed correctly by the time
-     * postConstruct is called. The 2 injections are in both bean base and base
-     * classes, and the order of postConstruct calls are also verified.
+     * @test_Strategy: verify setter-, field- and descriptor-injections of EJBContext and SessionContext are performed
+     * correctly by the time postConstruct is called. The 2 injections are in both bean base and base classes, and the order
+     * of postConstruct calls are also verified.
      */
     /*
      * @testName: ejbContextInjectionsInInterceptor
      *
-     * @test_Strategy: verify setter-, field- and descriptor-injections of
-     * EJBContext and SessionContext are performed correctly by the time
-     * postConstruct is called in interceptor1 (the default interceptor).
+     * @test_Strategy: verify setter-, field- and descriptor-injections of EJBContext and SessionContext are performed
+     * correctly by the time postConstruct is called in interceptor1 (the default interceptor).
      */
     /*
      * @testName: lookupEJBContext
      *
-     * @test_Strategy: look up various injected and declared EJBContextIF in
-     * PostConstruct, AroundInvoke and business methods.
+     * @test_Strategy: look up various injected and declared EJBContextIF in PostConstruct, AroundInvoke and business
+     * methods.
      */
     /*
      * @testName: lookupEJBContextInInterceptor
      *
-     * @test_Strategy: look up various injected and declared EJBContextIF in
-     * PostConstruct and AroundInvoke of interceptor1
+     * @test_Strategy: look up various injected and declared EJBContextIF in PostConstruct and AroundInvoke of interceptor1
      */
     /*
      * @testName: lookupPortableJNDINames
      *
-     * @test_Strategy: call EJBContext.lookup(string) to look up resources in
-     * various portable jndi namespaces.
+     * @test_Strategy: call EJBContext.lookup(string) to look up resources in various portable jndi namespaces.
      */
 }

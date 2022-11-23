@@ -95,14 +95,11 @@ public class transinflowClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:316; Connector:SPEC:206;
      *
-     * @test_Strategy: This is testing that the ManagedConnectionFactorys
-     * implementation of the TransactionSupport interfaces getTransactionSupport()
-     * method is called. Furthermore, this tests that the LocalTransaction value,
-     * which is hardcoded and returned from the getTransactionSupport() call, will
-     * override the LocalTransaction setting in the ra.xml file. We will test that
-     * NoTransaction support works and can assume our explicit returning of
-     * NoTransaction in the getTransactionSupport() method took precedence over
-     * anything else in ra.xml, if local transactions are supported.
+     * @test_Strategy: This is testing that the ManagedConnectionFactorys implementation of the TransactionSupport
+     * interfaces getTransactionSupport() method is called. Furthermore, this tests that the LocalTransaction value, which
+     * is hardcoded and returned from the getTransactionSupport() call, will override the LocalTransaction setting in the
+     * ra.xml file. We will test that NoTransaction support works and can assume our explicit returning of NoTransaction in
+     * the getTransactionSupport() method took precedence over anything else in ra.xml, if local transactions are supported.
      */
     public void testGetTransactionSupport() throws Fault {
         Vector log = null;
@@ -165,14 +162,12 @@ public class transinflowClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetResourceAdapterMethod
      *
-     * @assertion_ids: Connector:SPEC:226; Connector:SPEC:5; Connector:SPEC:6;
-     * Connector:SPEC:227;
+     * @assertion_ids: Connector:SPEC:226; Connector:SPEC:5; Connector:SPEC:6; Connector:SPEC:227;
      *
-     * @test_Strategy: This is testing that a successful association was
-     * established when the setResourceAdapter method was called on the
-     * administered object and returned without throwing an exception. (Doing this
-     * verifieds assertions 5, 6, 226.) Additionally, this checks to make sure the
-     * setResourceAdapterMethod was not called twice which verifies assertion 227.
+     * @test_Strategy: This is testing that a successful association was established when the setResourceAdapter method was
+     * called on the administered object and returned without throwing an exception. (Doing this verifieds assertions 5, 6,
+     * 226.) Additionally, this checks to make sure the setResourceAdapterMethod was not called twice which verifies
+     * assertion 227.
      *
      */
     public void testSetResourceAdapterMethod() throws Fault {
@@ -244,11 +239,11 @@ public class transinflowClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testXATerminator
      *
-     * @assertion_ids: Connector:SPEC:120; Connector:JAVADOC:132;
-     * Connector:JAVADOC:304; Connector:JAVADOC:340; Connector:JAVADOC:398;
+     * @assertion_ids: Connector:SPEC:120; Connector:JAVADOC:132; Connector:JAVADOC:304; Connector:JAVADOC:340;
+     * Connector:JAVADOC:398;
      *
-     * @test_Strategy: submit a work obect associated with a unique Xid. Call the
-     * XATermintor object and do a commit on that particular Xid.
+     * @test_Strategy: submit a work obect associated with a unique Xid. Call the XATermintor object and do a commit on that
+     * particular Xid.
      *
      */
     public void testXATerminator() throws Fault {
@@ -325,8 +320,7 @@ public class transinflowClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:291; Connector:JAVADOC:130;
      *
-     * @test_Strategy: verify bootstrap context exposes appservers
-     * TransactionSynchronizationRegistry
+     * @test_Strategy: verify bootstrap context exposes appservers TransactionSynchronizationRegistry
      *
      */
     public void testTransactionSynchronizationRegistry() throws Fault {
@@ -372,9 +366,8 @@ public class transinflowClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:125; Connector:JAVADOC:399;
      *
-     * @test_Strategy: submit a work obect associated with a unique Xid. In the
-     * run method of that work object submit another work object with the same Xid
-     * which was used earlier. Check to see if the
+     * @test_Strategy: submit a work obect associated with a unique Xid. In the run method of that work object submit
+     * another work object with the same Xid which was used earlier. Check to see if the
      * WorkException.TX_CONCURRENT_WORK_DISALLOWED is thrown.
      *
      */

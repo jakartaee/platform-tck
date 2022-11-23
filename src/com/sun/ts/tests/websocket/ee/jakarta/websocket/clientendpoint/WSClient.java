@@ -58,8 +58,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:4;
      *
-     * @test_Strategy: ClientEndpoint.subprotocols when there is NOT a subprotocol
-     * match, the server responds as well
+     * @test_Strategy: ClientEndpoint.subprotocols when there is NOT a subprotocol match, the server responds as well
      */
     public void subprotocolsNotMatchTest() throws Fault {
         WSCUnmatchedSubprotocolClientEndpoint endpoint = new WSCUnmatchedSubprotocolClientEndpoint();
@@ -70,13 +69,11 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: configuratorTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:1; WebSocket:JAVADOC:5;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:16; WebSocket:JAVADOC:17;
+     * @assertion_ids: WebSocket:JAVADOC:1; WebSocket:JAVADOC:5; WebSocket:JAVADOC:15; WebSocket:JAVADOC:16;
+     * WebSocket:JAVADOC:17;
      *
-     * @test_Strategy: ClientEndpoint.configurator
-     * ClientEndpointConfig.getConfigurator
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ClientEndpointConfig.Configurator.beforeRequest
+     * @test_Strategy: ClientEndpoint.configurator ClientEndpointConfig.getConfigurator
+     * ClientEndpointConfig.Configurator.afterResponse ClientEndpointConfig.Configurator.beforeRequest
      * ClientEndpointConfig.Configurator.ClientEndpointConfig.Configurator
      */
     public void configuratorTest() throws Fault {
@@ -91,24 +88,21 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: onErrorWorksTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:1; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-2.2.4-1;
+     * @assertion_ids: WebSocket:JAVADOC:1; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
+     * WebSocket:SPEC:WSC-2.2.4-1;
      *
      * @test_Strategy: check @OnError works on Client Endpoint
      *
-     * The method level @OnOpen and @OnClose annotations allow the developers to
-     * decorate methods on their
+     * The method level @OnOpen and @OnClose annotations allow the developers to decorate methods on their
      *
-     * @ServerEndpoint annotated Java class to specify that they must be called by
-     * the implementation when the resulting endpoint receives a new connection
-     * from a peer or when a connection from a peer is closed, respectively.
+     * @ServerEndpoint annotated Java class to specify that they must be called by the implementation when the resulting
+     * endpoint receives a new connection from a peer or when a connection from a peer is closed, respectively.
      *
-     * @OnMessage annotation allows the developer to indicate which methods the
-     * implementation must call when a message is received.
+     * @OnMessage annotation allows the developer to indicate which methods the implementation must call when a message is
+     * received.
      *
-     * @OnError annotation to mark one of its methods must be called by the
-     * implementation with information about the error whenever such an error
-     * occurs
+     * @OnError annotation to mark one of its methods must be called by the implementation with information about the error
+     * whenever such an error occurs
      */
     public void onErrorWorksTest() throws Fault {
         WSCErrorClientEndpoint endpoint = new WSCErrorClientEndpoint();
@@ -127,20 +121,17 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: onCloseWorksTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:1; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:1; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      *
      * @test_Strategy: check @OnClose works on Client Endpoint
      *
-     * The method level @OnOpen and @OnClose annotations allow the developers to
-     * decorate methods on their
+     * The method level @OnOpen and @OnClose annotations allow the developers to decorate methods on their
      *
-     * @ServerEndpoint annotated Java class to specify that they must be called by
-     * the implementation when the resulting endpoint receives a new connection
-     * from a peer or when a connection from a peer is closed, respectively.
+     * @ServerEndpoint annotated Java class to specify that they must be called by the implementation when the resulting
+     * endpoint receives a new connection from a peer or when a connection from a peer is closed, respectively.
      *
-     * @OnMessage annotation allows the developer to indicate which methods the
-     * implementation must call when a message is received.
+     * @OnMessage annotation allows the developer to indicate which methods the implementation must call when a message is
+     * received.
      */
     public void onCloseWorksTest() throws Fault {
         WSCCloseClientEndpoint endpoint = new WSCCloseClientEndpoint();

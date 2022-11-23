@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:29; JSTL:SPEC:29.1; JSTL:SPEC:29.1.1
      *
-     * @testStrategy: Validate that ResourceBundles can be properly located by the
-     * specifed basename attribute and that the appropriate messages are printed.
+     * @testStrategy: Validate that ResourceBundles can be properly located by the specifed basename attribute and that the
+     * appropriate messages are printed.
      */
     public void positiveBundleBasenameTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveBundleBasenameTest");
@@ -82,8 +80,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:29.2; JSTL:SPEC:29.2.1
      *
-     * @testStragegy: Validate that messages can be properly looked up and
-     * displayed when a prefix is specified.
+     * @testStragegy: Validate that messages can be properly looked up and displayed when a prefix is specified.
      */
     public void positiveBundlePrefixTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveBundlePrefixTest");
@@ -98,9 +95,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:29.9
      *
-     * @testStrategy: Validate that if basename is null or empty that any messages
-     * that are displayed are in the form of "???<key>???" where <key> is the name
-     * of the key that failed the lookup
+     * @testStrategy: Validate that if basename is null or empty that any messages that are displayed are in the form of
+     * "???<key>???" where <key> is the name of the key that failed the lookup
      */
     public void positiveBundleBasenameNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveBundleBasenameNullEmptyTest");
@@ -115,9 +111,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:29; JSTL:SPEC:29.7
      *
-     * @testStrategy: Validate that if a LocalizationContext was established via a
-     * bundle action, that any messages within the body of the bundle action are
-     * properly localized and any message actions outside the body are not.
+     * @testStrategy: Validate that if a LocalizationContext was established via a bundle action, that any messages within
+     * the body of the bundle action are properly localized and any message actions outside the body are not.
      */
     public void positiveBundleLocalizationScopeTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveBundleLocalizationScopeTest");
@@ -132,13 +127,10 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:29; JSTL:SPEC:29.7
      *
-     * @testStrategy: Validate that if the jakarta.servlet.jsp.jstl.fmt.locale
-     * configuration variable is available, that the bundle action, given a
-     * basename, can properly load a resource bundle and that any nested message
-     * actions can properly localize a message based on the parent bundle action.
-     * To try to throw a wrench in things, the client will send a preferred locale
-     * across the wire that, if used, will not resolve to any ResourceBundle (no
-     * fallback defined).
+     * @testStrategy: Validate that if the jakarta.servlet.jsp.jstl.fmt.locale configuration variable is available, that the
+     * bundle action, given a basename, can properly load a resource bundle and that any nested message actions can properly
+     * localize a message based on the parent bundle action. To try to throw a wrench in things, the client will send a
+     * preferred locale across the wire that, if used, will not resolve to any ResourceBundle (no fallback defined).
      */
     public void positiveBundleLocaleConfigurationTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveBundleLocaleConfigurationTest");
@@ -153,14 +145,11 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:29; JSTL:SPEC:29.1.3
      *
-     * @testStrategy: Validate that if the bundle action is unable to determine a
-     * locale based of the locale configuration variable or the client's preferred
-     * locales, it will use the fallbackLocale configuration variable. To try to
-     * throw a wrench in things, the client will send a preferred locale across
-     * the wire that, if used, will not resolve to any ResourceBundle (no fallback
-     * defined). Additionally verify that the fallbackLocale variable can be
-     * configured using a String representation of a locale as well as an Instance
-     * of Locale.
+     * @testStrategy: Validate that if the bundle action is unable to determine a locale based of the locale configuration
+     * variable or the client's preferred locales, it will use the fallbackLocale configuration variable. To try to throw a
+     * wrench in things, the client will send a preferred locale across the wire that, if used, will not resolve to any
+     * ResourceBundle (no fallback defined). Additionally verify that the fallbackLocale variable can be configured using a
+     * String representation of a locale as well as an Instance of Locale.
      */
     public void positiveBundleFallbackLocaleTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveBundleFallbackLocaleTest");

@@ -234,7 +234,8 @@ public class TimerImpl {
                     TestUtil.logTrace("Timer info is " + timer.getInfo());
                     timer.cancel();
                 }
-            } else TestUtil.logTrace("No timers to cancel");
+            } else
+                TestUtil.logTrace("No timers to cancel");
         } catch (Exception e) {
             handleException("cancelAllTimers", e);
         }
@@ -250,28 +251,28 @@ public class TimerImpl {
         Timer timer;
 
         switch (timerType) {
-            case TIMER_SINGLEEVENT:
-                TestUtil.logTrace("calling createSingleEventTimer");
-                timer = createSingleEventTimer(getTimeout(), info, ts);
-                break;
+        case TIMER_SINGLEEVENT:
+            TestUtil.logTrace("calling createSingleEventTimer");
+            timer = createSingleEventTimer(getTimeout(), info, ts);
+            break;
 
-            case TIMER_INTERVAL:
-                TestUtil.logTrace("calling createIntervalTimer");
-                timer = createIntervalTimer(getTimeout(), info, ts);
-                break;
+        case TIMER_INTERVAL:
+            TestUtil.logTrace("calling createIntervalTimer");
+            timer = createIntervalTimer(getTimeout(), info, ts);
+            break;
 
-            case TIMER_DATE:
-                TestUtil.logTrace("calling createDateTimer");
-                timer = createDateTimer(getExpirationDate(), info, ts);
-                break;
+        case TIMER_DATE:
+            TestUtil.logTrace("calling createDateTimer");
+            timer = createDateTimer(getExpirationDate(), info, ts);
+            break;
 
-            case TIMER_DATE_INTERVAL:
-                TestUtil.logTrace("calling createDateIntervalTimer");
-                timer = createDateIntervalTimer(getExpirationDate(), getTimeout(), info, ts);
-                break;
+        case TIMER_DATE_INTERVAL:
+            TestUtil.logTrace("calling createDateIntervalTimer");
+            timer = createDateIntervalTimer(getExpirationDate(), getTimeout(), info, ts);
+            break;
 
-            default:
-                throw new TimerImplException("invalid timer type specified");
+        default:
+            throw new TimerImplException("invalid timer type specified");
         }
         return timer;
     }
@@ -281,28 +282,28 @@ public class TimerImpl {
         TimerHandle handle;
 
         switch (timerType) {
-            case TIMER_SINGLEEVENT:
-                TestUtil.logTrace("calling createSingleEventTimerHandle");
-                handle = createSingleEventTimerHandle(getTimeout(), info, ts);
-                break;
+        case TIMER_SINGLEEVENT:
+            TestUtil.logTrace("calling createSingleEventTimerHandle");
+            handle = createSingleEventTimerHandle(getTimeout(), info, ts);
+            break;
 
-            case TIMER_INTERVAL:
-                TestUtil.logTrace("calling createIntervalTimerHandle");
-                handle = createIntervalTimerHandle(getTimeout(), info, ts);
-                break;
+        case TIMER_INTERVAL:
+            TestUtil.logTrace("calling createIntervalTimerHandle");
+            handle = createIntervalTimerHandle(getTimeout(), info, ts);
+            break;
 
-            case TIMER_DATE:
-                TestUtil.logTrace("calling createDateTimerHandle");
-                handle = createDateTimerHandle(getExpirationDate(), info, ts);
-                break;
+        case TIMER_DATE:
+            TestUtil.logTrace("calling createDateTimerHandle");
+            handle = createDateTimerHandle(getExpirationDate(), info, ts);
+            break;
 
-            case TIMER_DATE_INTERVAL:
-                TestUtil.logTrace("calling createDateIntervalTimerHandle");
-                handle = createDateIntervalTimerHandle(getExpirationDate(), getTimeout(), info, ts);
-                break;
+        case TIMER_DATE_INTERVAL:
+            TestUtil.logTrace("calling createDateIntervalTimerHandle");
+            handle = createDateIntervalTimerHandle(getExpirationDate(), getTimeout(), info, ts);
+            break;
 
-            default:
-                throw new TimerImplException("invalid timer type specified");
+        default:
+            throw new TimerImplException("invalid timer type specified");
         }
         return handle;
     }
@@ -534,8 +535,10 @@ public class TimerImpl {
         if (!skip[4]) {
             try {
                 EJBObject obj;
-                if (beanType == SESSION) obj = ((SessionContext) ejbctx).getEJBObject();
-                else if (beanType == ENTITY) obj = ((EntityContext) ejbctx).getEJBObject();
+                if (beanType == SESSION)
+                    obj = ((SessionContext) ejbctx).getEJBObject();
+                else if (beanType == ENTITY)
+                    obj = ((EntityContext) ejbctx).getEJBObject();
                 TestUtil.logTrace("Operations test: getEJBObject() - allowed");
             } catch (IllegalStateException e) {
                 props.setProperty("getEJBObject", "false");
@@ -700,8 +703,10 @@ public class TimerImpl {
         if (!skip[15]) {
             try {
                 EJBLocalObject obj;
-                if (beanType == SESSION) obj = ((SessionContext) ejbctx).getEJBLocalObject();
-                else if (beanType == ENTITY) obj = ((EntityContext) ejbctx).getEJBLocalObject();
+                if (beanType == SESSION)
+                    obj = ((SessionContext) ejbctx).getEJBLocalObject();
+                else if (beanType == ENTITY)
+                    obj = ((EntityContext) ejbctx).getEJBLocalObject();
                 TestUtil.logTrace("Operations test: getEJBLocalLocalObject() - allowed");
             } catch (IllegalStateException e) {
                 props.setProperty("getEJBLocalObject", "false");
@@ -1043,7 +1048,8 @@ public class TimerImpl {
                 if (rmessage instanceof TextMessage) {
                     rmsg = ((TextMessage) rmessage).getText();
                     TestUtil.logTrace("Message received is " + rmsg);
-                } else TestUtil.logTrace("Non-text message received");
+                } else
+                    TestUtil.logTrace("Non-text message received");
                 numMsgsFlushed++;
                 TestUtil.logTrace("numMsgsFlushed is " + numMsgsFlushed);
             } while (!smsg.equals(rmsg));
@@ -1081,7 +1087,8 @@ public class TimerImpl {
         } catch (Exception e) {
             handleException("getTimeout", e);
         }
-        if (timeout <= 0) throw new TimerImplException("Invalid timeout value: " + timeout);
+        if (timeout <= 0)
+            throw new TimerImplException("Invalid timeout value: " + timeout);
         return timeout;
     }
 

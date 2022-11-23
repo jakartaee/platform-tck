@@ -23,10 +23,7 @@ package com.sun.ts.tests.jaxws.sharedwebservices.faultservice;
 import java.rmi.ServerException;
 
 @jakarta.jws.WebService(targetNamespace = "http://faulttestservice.org/wsdl")
-@jakarta.jws.soap.SOAPBinding(
-        style = jakarta.jws.soap.SOAPBinding.Style.RPC,
-        use = jakarta.jws.soap.SOAPBinding.Use.LITERAL,
-        parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface SoapFaultTest {
     public String alwaysThrowsException() throws DummyException;
 

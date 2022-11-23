@@ -81,12 +81,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:587.1; EJB:SPEC:587.3
      *
-     * @test_Strategy: Create an instance of a stateful session bean with
-     * bean-managed transaction type (client). Create an instance of a stateful
-     * session bean with container-managed transaction type (server). From the
-     * client, call a method in the server that uses the Mandatory transaction
-     * attribute without a global transaction context. Ensure that this operation
-     * throws the jakarta.transaction.TransactionRequiredException exception.
+     * @test_Strategy: Create an instance of a stateful session bean with bean-managed transaction type (client). Create an
+     * instance of a stateful session bean with container-managed transaction type (server). From the client, call a method
+     * in the server that uses the Mandatory transaction attribute without a global transaction context. Ensure that this
+     * operation throws the jakarta.transaction.TransactionRequiredException exception.
      *
      */
     public void test1() throws Fault {
@@ -102,8 +100,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -120,18 +120,14 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:568.3.1
      *
-     * @test_Strategy: Create an instance of a stateful session bean with
-     * bean-managed transaction type (client). Create an instance of a stateful
-     * session bean with container-managed transaction type (server). From the
-     * client, call a method in the server that uses the Supports transaction
-     * attribute in a Style 3 declaration (see 17.4.1) and the Mandatory
-     * transaction attribute in a Style 2 declaration. The call occurs without a
-     * global transaction context. Ensure that this operation executes
-     * successfully and that the jakarta.transaction.TransactionRequiredException
-     * exception is not thrown. Call a method with the same name but a different
-     * parameter list that has no Style 3 declaration (hence the Style 2
-     * declaration applies). Ensure that this operation throws the
-     * jakarta.transaction.TransactionRequiredException exception.
+     * @test_Strategy: Create an instance of a stateful session bean with bean-managed transaction type (client). Create an
+     * instance of a stateful session bean with container-managed transaction type (server). From the client, call a method
+     * in the server that uses the Supports transaction attribute in a Style 3 declaration (see 17.4.1) and the Mandatory
+     * transaction attribute in a Style 2 declaration. The call occurs without a global transaction context. Ensure that
+     * this operation executes successfully and that the jakarta.transaction.TransactionRequiredException exception is not
+     * thrown. Call a method with the same name but a different parameter list that has no Style 3 declaration (hence the
+     * Style 2 declaration applies). Ensure that this operation throws the jakarta.transaction.TransactionRequiredException
+     * exception.
      *
      */
     public void test2() throws Fault {
@@ -147,8 +143,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test2");
             testResult = beanRef.test2();
 
-            if (!testResult) throw new Fault("test2 failed");
-            else logMsg("test2 passed");
+            if (!testResult)
+                throw new Fault("test2 failed");
+            else
+                logMsg("test2 passed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {

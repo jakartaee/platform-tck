@@ -82,7 +82,8 @@ public class ProxyBeanEJB extends StatefulWrapper {
     public void cleanup() {
 
         try {
-            if (beanRef == null) beanRef = (TestBeanLocal) beanHome.create();
+            if (beanRef == null)
+                beanRef = (TestBeanLocal) beanHome.create();
             beanRef.cancelAllTimers();
         } catch (Exception e) {
             TimerImpl.handleException("Exception in cancelAllTimers", e);
@@ -135,7 +136,8 @@ public class ProxyBeanEJB extends StatefulWrapper {
         try {
             TestUtil.logTrace("Execute TestBeanLocal:initializeTimer");
             handle = beanRef.initializeTimerHandle(TimerImpl.TIMER_SINGLEEVENT, TimerImpl.ACCESS);
-            if (handle == null) return false;
+            if (handle == null)
+                return false;
 
             TestUtil.logTrace("Cancelling timer and rolling back cancellation...");
             beanRef.cancelAndRollback(handle);

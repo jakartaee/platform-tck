@@ -29,7 +29,8 @@ public class ALLOWHandler implements Handler {
 
     private static final String DELIM = "##";
 
-    private ALLOWHandler() {}
+    private ALLOWHandler() {
+    }
 
     public static Handler getInstance() {
         return HANDLER;

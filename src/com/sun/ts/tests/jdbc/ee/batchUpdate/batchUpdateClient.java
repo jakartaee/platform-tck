@@ -43,8 +43,8 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The batchUpdateClient class tests methods of Statement, PreparedStatement and
- * CallableStatement interfaces using Sun's J2EE Reference Implementation.
+ * The batchUpdateClient class tests methods of Statement, PreparedStatement and CallableStatement interfaces using
+ * Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -90,14 +90,11 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -106,12 +103,13 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 fTableName = p.getProperty("ftable", "");
 
                 /*
-                 * sqlp = new Properties(); String sqlStmt= p.getProperty("rsQuery","");
-                 * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+                 * sqlp = new Properties(); String sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+                 * sqlp.load(istr);
                  */
                 sqlp = p;
 
@@ -205,18 +203,16 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testAddBatch01
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:700; JDBC:JAVADOC:701;
-     * JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:700; JDBC:JAVADOC:701; JDBC:SPEC:23;
      *
      *
-     * @test_Strategy: Get a PreparedStatement object and call the addBatch()
-     * method with 3 SQL statements and call the executeBatch() method and it
-     * should return array of Integer values of length 3
+     * @test_Strategy: Get a PreparedStatement object and call the addBatch() method with 3 SQL statements and call the
+     * executeBatch() method and it should return array of Integer values of length 3
      *
      */
     public void testAddBatch01() throws Fault {
         int i = 0;
-        int retValue[] = {0, 0, 0};
+        int retValue[] = { 0, 0, 0 };
         try {
             String sPrepStmt = sqlp.getProperty("CoffeeTab_Update", "");
             msg.setMsg("Prepared Statement String :" + sPrepStmt);
@@ -285,17 +281,16 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testAddBatch02
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:183; JDBC:JAVADOC:184;
-     * JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:183; JDBC:JAVADOC:184; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
+     * JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a Statement object and call the addBatch() method with
-     * 3 SQL statements and call the executeBatch() method and it should return an
-     * array of Integer of length 3.
+     * @test_Strategy: Get a Statement object and call the addBatch() method with 3 SQL statements and call the
+     * executeBatch() method and it should return an array of Integer of length 3.
      *
      */
     public void testAddBatch02() throws Fault {
         int i = 0;
-        int retValue[] = {0, 0, 0};
+        int retValue[] = { 0, 0, 0 };
         int updCountLength = 0;
 
         try {
@@ -360,16 +355,15 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testAddBatch03
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:700; JDBC:JAVADOC:701;
-     * JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:700; JDBC:JAVADOC:701; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
+     * JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a CallableStatement object and call the addBatch()
-     * method with 3 SQL statements and call the executeBatch() method and it
-     * should return an array of Integer of length 3.
+     * @test_Strategy: Get a CallableStatement object and call the addBatch() method with 3 SQL statements and call the
+     * executeBatch() method and it should return an array of Integer of length 3.
      */
     public void testAddBatch03() throws Fault {
         int i = 0;
-        int retValue[] = {0, 0, 0};
+        int retValue[] = { 0, 0, 0 };
         int updCountLength = 0;
         try {
             msg.setMsg("get the CallableStatement object");
@@ -433,14 +427,12 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testClearBatch01
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:185; JDBC:JAVADOC:186;
-     * JDBC:JAVADOC:700; JDBC:JAVADOC:701; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:185; JDBC:JAVADOC:186; JDBC:JAVADOC:700; JDBC:JAVADOC:701;
+     * JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a PreparedStatement object and call the addBatch()
-     * method and call the clearBatch() method and then call executeBatch() to
-     * check the call of clearBatch()method The executeBatch() method should
-     * return a zero value.
+     * @test_Strategy: Get a PreparedStatement object and call the addBatch() method and call the clearBatch() method and
+     * then call executeBatch() to check the call of clearBatch()method The executeBatch() method should return a zero
+     * value.
      */
     public void testClearBatch01() throws Fault {
         try {
@@ -484,13 +476,11 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testClearBatch02
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:185; JDBC:JAVADOC:186;
-     * JDBC:JAVADOC:183; JDBC:JAVADOC:184; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:185; JDBC:JAVADOC:186; JDBC:JAVADOC:183; JDBC:JAVADOC:184;
+     * JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a Statement object and call the addBatch() method and
-     * call the clearBatch() method and then call executeBatch() to check the call
-     * of clearBatch()method.The executeBatch() method should return a zero value.
+     * @test_Strategy: Get a Statement object and call the addBatch() method and call the clearBatch() method and then call
+     * executeBatch() to check the call of clearBatch()method.The executeBatch() method should return a zero value.
      *
      */
     public void testClearBatch02() throws Fault {
@@ -532,14 +522,12 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testClearBatch03
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:185; JDBC:JAVADOC:186;
-     * JDBC:JAVADOC:700; JDBC:JAVADOC:701; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:185; JDBC:JAVADOC:186; JDBC:JAVADOC:700; JDBC:JAVADOC:701;
+     * JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a CallableStatement object and call the addBatch()
-     * method and call the clearBatch() method and then call executeBatch() to
-     * check the call of clearBatch()method. The executeBatch() method should
-     * return a zero value.
+     * @test_Strategy: Get a CallableStatement object and call the addBatch() method and call the clearBatch() method and
+     * then call executeBatch() to check the call of clearBatch()method. The executeBatch() method should return a zero
+     * value.
      *
      */
     public void testClearBatch03() throws Fault {
@@ -584,17 +572,16 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteBatch01
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:JAVADOC:700; JDBC:JAVADOC:701; JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:JAVADOC:700; JDBC:JAVADOC:701;
+     * JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a PreparedStatement object and call the addBatch()
-     * method with a 3 valid SQL statements and call the executeBatch() method It
-     * should return an array of Integer values of length 3.
+     * @test_Strategy: Get a PreparedStatement object and call the addBatch() method with a 3 valid SQL statements and call
+     * the executeBatch() method It should return an array of Integer values of length 3.
      *
      */
     public void testExecuteBatch01() throws Fault {
         int i = 0;
-        int retValue[] = {0, 0, 0};
+        int retValue[] = { 0, 0, 0 };
         int updCountLength = 0;
         try {
             String sPrepStmt = sqlp.getProperty("CoffeeTab_Update", "");
@@ -666,9 +653,8 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
      *
-     * @test_Strategy: Get a PreparedStatement object and call the executeBatch()
-     * method without calling addBatch() method.It should return an array of zero
-     * length.
+     * @test_Strategy: Get a PreparedStatement object and call the executeBatch() method without calling addBatch()
+     * method.It should return an array of zero length.
      */
     public void testExecuteBatch02() throws Fault {
         try {
@@ -706,12 +692,11 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteBatch03
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:JAVADOC:700; JDBC:JAVADOC:701; JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:JAVADOC:700; JDBC:JAVADOC:701;
+     * JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a PreparedStatement object and call the addBatch()
-     * method and call the executeBatch() method with a select Statement It should
-     * throw BatchUpdateException
+     * @test_Strategy: Get a PreparedStatement object and call the addBatch() method and call the executeBatch() method with
+     * a select Statement It should throw BatchUpdateException
      *
      */
     public void testExecuteBatch03() throws Fault {
@@ -757,16 +742,15 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteBatch04
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:JAVADOC:183; JDBC:JAVADOC:184; JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:JAVADOC:183; JDBC:JAVADOC:184;
+     * JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a Statement object and call the addBatch() method with
-     * 3 valid SQL statements and call the executeBatch() method It should return
-     * an array of Integer values of length 3
+     * @test_Strategy: Get a Statement object and call the addBatch() method with 3 valid SQL statements and call the
+     * executeBatch() method It should return an array of Integer values of length 3
      */
     public void testExecuteBatch04() throws Fault {
         int i = 0;
-        int retValue[] = {0, 0, 0};
+        int retValue[] = { 0, 0, 0 };
         int updCountLength = 0;
         try {
             String sUpdCoffee = sqlp.getProperty("Upd_Coffee_Tab");
@@ -829,12 +813,10 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteBatch05
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:JAVADOC:183; JDBC:JAVADOC:184;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:JAVADOC:183; JDBC:JAVADOC:184;
      *
-     * @test_Strategy: Get a Statement object and call the executeBatch() method
-     * without adding statements into a batch. It should return an array of
-     * Integer value of zero length
+     * @test_Strategy: Get a Statement object and call the executeBatch() method without adding statements into a batch. It
+     * should return an array of Integer value of zero length
      */
     public void testExecuteBatch05() throws Fault {
         int updCountLength = 0;
@@ -868,12 +850,11 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteBatch06
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:JAVADOC:183; JDBC:JAVADOC:184; JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:JAVADOC:183; JDBC:JAVADOC:184;
+     * JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a Statement object and call the addBatch() method and
-     * call the executeBatch() method with a violation in SQL constraints.It
-     * should throw an BatchUpdateException
+     * @test_Strategy: Get a Statement object and call the addBatch() method and call the executeBatch() method with a
+     * violation in SQL constraints.It should throw an BatchUpdateException
      */
     public void testExecuteBatch06() throws Fault {
         boolean bexpflag = false;
@@ -921,12 +902,11 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteBatch07
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:JAVADOC:183; JDBC:JAVADOC:184; JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:JAVADOC:183; JDBC:JAVADOC:184;
+     * JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a Statement object and call the addBatch() method and
-     * call the executeBatch() method with a select Statement It should throw an
-     * BatchUpdateException
+     * @test_Strategy: Get a Statement object and call the addBatch() method and call the executeBatch() method with a
+     * select Statement It should throw an BatchUpdateException
      */
     public void testExecuteBatch07() throws Fault {
         boolean bexpflag = false;
@@ -971,16 +951,15 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteBatch08
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:JAVADOC:700; JDBC:JAVADOC:701; JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:JAVADOC:700; JDBC:JAVADOC:701;
+     * JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a CallableStatement object and call the addBatch()
-     * method with 3 valid SQL statements and call the executeBatch() method It
-     * should return an array of Integer Values of length 3.
+     * @test_Strategy: Get a CallableStatement object and call the addBatch() method with 3 valid SQL statements and call
+     * the executeBatch() method It should return an array of Integer Values of length 3.
      */
     public void testExecuteBatch08() throws Fault {
         int i = 0;
-        int retValue[] = {0, 0, 0};
+        int retValue[] = { 0, 0, 0 };
         int updCountLength = 0;
         try {
             msg.setMsg("get the CallableStatement object");
@@ -1049,9 +1028,8 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
      *
-     * @test_Strategy: Get a CallableStatement object and call the executeBatch()
-     * method without adding the statements into Batch. It should return an array
-     * of Integer Value of zero length
+     * @test_Strategy: Get a CallableStatement object and call the executeBatch() method without adding the statements into
+     * Batch. It should return an array of Integer Value of zero length
      */
     public void testExecuteBatch09() throws Fault {
         int updCountLength = 0;
@@ -1087,13 +1065,12 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteBatch12
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:JAVADOC:700; JDBC:JAVADOC:701; JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:JAVADOC:700; JDBC:JAVADOC:701;
+     * JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a CallableStatement object with different SQL
-     * statements in the stored Procedure and call the addBatch() method with 3
-     * statements and call the executeBatch() method It should return an array of
-     * Integer Values of length 3.
+     * @test_Strategy: Get a CallableStatement object with different SQL statements in the stored Procedure and call the
+     * addBatch() method with 3 statements and call the executeBatch() method It should return an array of Integer Values of
+     * length 3.
      */
     public void testExecuteBatch12() throws Fault {
 
@@ -1139,19 +1116,17 @@ public class batchUpdateClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testContinueBatch01
      *
-     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188;
-     * JDBC:JAVADOC:700; JDBC:JAVADOC:701; JDBC:SPEC:23;
+     * @assertion_ids: JavaEE:SPEC:190; JDBC:JAVADOC:187; JDBC:JAVADOC:188; JDBC:JAVADOC:700; JDBC:JAVADOC:701;
+     * JDBC:SPEC:23;
      *
-     * @test_Strategy: Get a PreparedStatement object and call the addBatch()
-     * method with 3 SQL statements.Among these 3 SQL statements first is
-     * valid,second is invalid and third is again valid. Then call the
-     * executeBatch() method and it should return array of Integer values of
-     * length 3, if it supports continued updates. Then check whether the third
+     * @test_Strategy: Get a PreparedStatement object and call the addBatch() method with 3 SQL statements.Among these 3 SQL
+     * statements first is valid,second is invalid and third is again valid. Then call the executeBatch() method and it
+     * should return array of Integer values of length 3, if it supports continued updates. Then check whether the third
      * command in the batch after the invalid command executed properly.
      */
     public void testContinueBatch01() throws Fault {
-        int batchUpdates[] = {0, 0, 0};
-        int updateCount[] = {0, 0, 0};
+        int batchUpdates[] = { 0, 0, 0 };
+        int updateCount[] = { 0, 0, 0 };
         int buCountlen = 0;
         int updateCountlen = 0;
 

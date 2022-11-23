@@ -36,7 +36,8 @@ public class Client extends PMClientBase {
 
     Properties jpaprops = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -65,8 +66,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1496;
      *
-     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL
-     * persist an entity and verify it is in the cache
+     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL persist an entity and verify it is in the
+     * cache
      */
     public void containsTest() throws Fault {
         Cache cache;
@@ -117,9 +118,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1501;
      *
-     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL
-     * and a Persistence Context property of CacheStoreMode.BYPASS, persist an
-     * entity and verify it is not in the cache
+     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL and a Persistence Context property of
+     * CacheStoreMode.BYPASS, persist an entity and verify it is not in the cache
      */
     public void cacheStoreModeBYPASSTest() throws Fault {
         Cache cache;
@@ -192,9 +192,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1501; PERSISTENCE:SPEC:1866;
      *
-     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL
-     * and a Persistence Context property of CacheStoreMode.USE, persist an entity
-     * and verify it is in the cache
+     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL and a Persistence Context property of
+     * CacheStoreMode.USE, persist an entity and verify it is in the cache
      */
     public void cacheStoreModeUSETest() throws Fault {
         Cache cache;
@@ -268,9 +267,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1501;
      *
-     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL
-     * and a Persistence Context property of CacheStoreMode.REFRESH, persist an
-     * entity and verify it is in the cache
+     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL and a Persistence Context property of
+     * CacheStoreMode.REFRESH, persist an entity and verify it is in the cache
      */
     public void cacheStoreModeREFRESHTest() throws Fault {
         Cache cache;
@@ -344,9 +342,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1501;
      *
-     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL
-     * and a Persistence Context property of CacheRetrieveMode.BYPASS and
-     * CacheStoreMode.BYPASS, persist an entity and verify it is not in the cache
+     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL and a Persistence Context property of
+     * CacheRetrieveMode.BYPASS and CacheStoreMode.BYPASS, persist an entity and verify it is not in the cache
      */
     public void cacheRetrieveModeBYPASSTest() throws Fault {
         Cache cache;
@@ -407,9 +404,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1501;
      *
-     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL
-     * and a Persistence Context property of CacheRetrieveMode.USE and
-     * CacheStoreMode.BYPASS, persist an entity and verify it is in the cache
+     * @test_Strategy: Using the xml shared-cache-mode element with a value of ALL and a Persistence Context property of
+     * CacheRetrieveMode.USE and CacheStoreMode.BYPASS, persist an entity and verify it is in the cache
      */
     public void cacheRetrieveModeUSETest() throws Fault {
         Cache cache;
@@ -465,41 +461,30 @@ public class Client extends PMClientBase {
     }
 
     /*
-     * testName: findOverridesWithBYPASSTest assertion_ids: test_Strategy: Using
-     * the xml shared-cache-mode element with a value of ALL and a Persistence
-     * Context property of CacheRetrieveMode.USE but find overrides it with
-     * BYPASS, verify order is not in the cache
+     * testName: findOverridesWithBYPASSTest assertion_ids: test_Strategy: Using the xml shared-cache-mode element with a
+     * value of ALL and a Persistence Context property of CacheRetrieveMode.USE but find overrides it with BYPASS, verify
+     * order is not in the cache
      *
-     * public void findOverridesWithBYPASSTest() throws Fault { Cache cache;
-     * boolean pass1, pass2; pass1 = pass2 = false; if (cachingSupported) { try {
+     * public void findOverridesWithBYPASSTest() throws Fault { Cache cache; boolean pass1, pass2; pass1 = pass2 = false; if
+     * (cachingSupported) { try {
      *
      * TestUtil.logTrace("Persist an order"); createDataVIAJDBC(this.props);
      *
-     * TestUtil.logTrace("Verify order is not in Cache before executing find");
-     * cache = getEntityManagerFactory().getCache(); if (cache != null) { boolean
-     * b = cache.contains(Order.class, 1); if (!b) {
-     * TestUtil.logTrace("Cache returned: " + b +
-     * ", therefore cache does not contain order "); pass1 = true; } else {
-     * TestUtil.logErr("Cache returned: " + b +
-     * ", therefore cache does contain order "); } } else {
+     * TestUtil.logTrace("Verify order is not in Cache before executing find"); cache =
+     * getEntityManagerFactory().getCache(); if (cache != null) { boolean b = cache.contains(Order.class, 1); if (!b) {
+     * TestUtil.logTrace("Cache returned: " + b + ", therefore cache does not contain order "); pass1 = true; } else {
+     * TestUtil.logErr("Cache returned: " + b + ", therefore cache does contain order "); } } else {
      * TestUtil.logErr("Cache returned was null"); }
-     * getEntityManager().setProperty("jakarta.persistence.cache.retrieveMode",
-     * CacheRetrieveMode.USE);
-     * getEntityManager().setProperty("jakarta.persistence.cache.storeMode",
-     * CacheStoreMode.BYPASS); Map map = new Properties();
-     * map.put("jakarta.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-     * Order order = getEntityManager().find(Order.class, 1, map); cache =
-     * getEntityManagerFactory().getCache();
+     * getEntityManager().setProperty("jakarta.persistence.cache.retrieveMode", CacheRetrieveMode.USE);
+     * getEntityManager().setProperty("jakarta.persistence.cache.storeMode", CacheStoreMode.BYPASS); Map map = new
+     * Properties(); map.put("jakarta.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS); Order order =
+     * getEntityManager().find(Order.class, 1, map); cache = getEntityManagerFactory().getCache();
      *
-     * if (cache != null) { boolean b = cache.contains(Order.class, 1); if (!b) {
-     * TestUtil.logTrace("Cache returned: " + b +
-     * ", therefore cache does not contain order " + order); pass2 = true; } else
-     * { TestUtil.logErr("Cache returned: " + b +
-     * ", therefore cache does contain order " + order); } } else {
-     * TestUtil.logErr("Cache returned was null"); } } catch (Exception e) {
-     * TestUtil.logErr("Unexpected exception occurred", e); } } else {
-     * TestUtil.logMsg("Cache not supported, bypassing test"); pass1 = pass2 =
-     * true; } if (!pass1 || !pass2) { throw new
+     * if (cache != null) { boolean b = cache.contains(Order.class, 1); if (!b) { TestUtil.logTrace("Cache returned: " + b +
+     * ", therefore cache does not contain order " + order); pass2 = true; } else { TestUtil.logErr("Cache returned: " + b +
+     * ", therefore cache does contain order " + order); } } else { TestUtil.logErr("Cache returned was null"); } } catch
+     * (Exception e) { TestUtil.logErr("Unexpected exception occurred", e); } } else {
+     * TestUtil.logMsg("Cache not supported, bypassing test"); pass1 = pass2 = true; } if (!pass1 || !pass2) { throw new
      * Fault("findOverridesWithBYPASSTest failed"); }
      *
      * }

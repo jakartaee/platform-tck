@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -57,9 +55,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:681.3;
      *
-     * @test_Strategy: Create a ServletContextInitializer, in which, Add a
-     * ServletContextListener instance using ServletContext.addListener; in the
-     * ServletContextListener call ServletContext.createServlet(Class) Verify that
+     * @test_Strategy: Create a ServletContextInitializer, in which, Add a ServletContextListener instance using
+     * ServletContext.addListener; in the ServletContextListener call ServletContext.createServlet(Class) Verify that
      * UnsupportedOperationException is thrown.
      */
     public void createServletTest() throws Fault {

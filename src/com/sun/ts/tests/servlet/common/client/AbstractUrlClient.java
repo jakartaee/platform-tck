@@ -48,9 +48,11 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
         // the concrete subclass of this class.
         String cname = this.getClass().getName();
         String prefix = "com.sun.ts.tests.";
-        if (cname.startsWith(prefix)) cname = cname.substring(prefix.length());
+        if (cname.startsWith(prefix))
+            cname = cname.substring(prefix.length());
         String suffix = ".URLClient";
-        if (cname.endsWith(suffix)) cname = cname.substring(0, cname.length() - suffix.length());
+        if (cname.endsWith(suffix))
+            cname = cname.substring(0, cname.length() - suffix.length());
         cname = cname.replace('.', '_');
         cname = "/" + cname + "_web";
         setContextRoot(cname);
@@ -72,13 +74,11 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     }
 
     /**
-     * Sets the request, testname, and a search string for test passed. A search
-     * is also added for test failure. If found, the test will fail.
+     * Sets the request, testname, and a search string for test passed. A search is also added for test failure. If found,
+     * the test will fail.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setApiTestProperties(String testValue, WebTestCase testCase) {
         if (testValue == null) {
@@ -115,10 +115,8 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     /**
      * Consists of a test name, a request, and a goldenfile.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setStandardProperties(String testValue, WebTestCase testCase) {
 
@@ -162,11 +160,9 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     }
 
     /**
-     * Sets the name of the servlet to use when building a request for a single
-     * servlet API test.
+     * Sets the name of the servlet to use when building a request for a single servlet API test.
      *
-     * @param servlet
-     *          - the name of the servlet
+     * @param servlet - the name of the servlet
      */
     protected void setServletName(String servlet) {
         _servlet = servlet;

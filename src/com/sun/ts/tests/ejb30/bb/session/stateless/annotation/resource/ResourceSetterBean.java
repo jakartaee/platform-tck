@@ -43,7 +43,7 @@ import java.net.URL;
 import javax.sql.DataSource;
 
 @Stateless(name = "ResourceSetterBean")
-@Remote({ResourceIF.class})
+@Remote({ ResourceIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
     private Dog dog;
@@ -82,9 +82,11 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
     private TimerService timerService;
 
-    public ResourceSetterBean() {}
+    public ResourceSetterBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
 
@@ -134,11 +136,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
         return dataSource2;
     }
 
-    @Resource(
-            name = "myDataSource2",
-            type = DataSource.class,
-            shareable = true,
-            authenticationType = AuthenticationType.CONTAINER)
+    @Resource(name = "myDataSource2", type = DataSource.class, shareable = true, authenticationType = AuthenticationType.CONTAINER)
     private void setDataSource2(DataSource dataSource2) {
         this.dataSource2 = dataSource2;
     }
@@ -318,9 +316,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
         return "myTransactionSynchronizationRegistry";
     }
 
-    @Resource(
-            name = "myTransactionSynchronizationRegistry",
-            description = "TransactionSynchronizationRegistry injected")
+    @Resource(name = "myTransactionSynchronizationRegistry", description = "TransactionSynchronizationRegistry injected")
     private void setTransactionSynchronizationRegistry(TransactionSynchronizationRegistry t) {
         this.transactionSynchronizationRegistry = t;
     }

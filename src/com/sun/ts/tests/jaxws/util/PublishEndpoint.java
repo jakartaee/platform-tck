@@ -297,7 +297,8 @@ public class PublishEndpoint {
     private static class JarFilter implements FilenameFilter {
         private static JarFilter instance = new JarFilter();
 
-        private JarFilter() {}
+        private JarFilter() {
+        }
 
         public static JarFilter getInstance() {
             return instance;

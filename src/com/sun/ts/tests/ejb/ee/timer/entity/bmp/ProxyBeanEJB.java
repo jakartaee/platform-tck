@@ -131,7 +131,8 @@ public class ProxyBeanEJB extends StatefulWrapper {
         try {
             TestUtil.logTrace("Execute TestBeanLocal:initializeTimer");
             handle = beanRef.initializeTimerHandle(TimerImpl.TIMER_SINGLEEVENT, TimerImpl.ACCESS);
-            if (handle == null) return false;
+            if (handle == null)
+                return false;
 
             TestUtil.logTrace("Cancelling timer and rolling back cancellation...");
             beanRef.cancelAndRollback(handle);
@@ -152,7 +153,8 @@ public class ProxyBeanEJB extends StatefulWrapper {
 
         try {
             TestUtil.logTrace("Creating a set of " + NUM_TIMERS + " timers.");
-            for (int i = 0; i < NUM_TIMERS; ++i) handles[i] = beanRef.initializeTimerHandle(timerType, TimerImpl.NOMSG);
+            for (int i = 0; i < NUM_TIMERS; ++i)
+                handles[i] = beanRef.initializeTimerHandle(timerType, TimerImpl.NOMSG);
 
             TestUtil.logTrace("Making sure we've got the right timers");
             for (int i = 0; i < NUM_TIMERS; ++i) {

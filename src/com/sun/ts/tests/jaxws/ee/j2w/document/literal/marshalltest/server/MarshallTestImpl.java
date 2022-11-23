@@ -28,11 +28,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
 
-@WebService(
-        portName = "MarshallTestPort",
-        serviceName = "MarshallTestService",
-        targetNamespace = "http://marshalltestservice.org/wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server.MarshallTest")
+@WebService(portName = "MarshallTestPort", serviceName = "MarshallTestService", targetNamespace = "http://marshalltestservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.j2w.document.literal.marshalltest.server.MarshallTest")
 public class MarshallTestImpl implements MarshallTest {
 
     // ====================================================================

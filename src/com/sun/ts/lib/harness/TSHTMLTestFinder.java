@@ -22,9 +22,8 @@ import java.io.*;
 import java.util.*;
 
 /**
- * A adapter between html test description and cts tag test description. It is
- * designed specific for jaxp/api/xml_schema tests. If applied to other test
- * directories, at least change the executeClass and testDir value.
+ * A adapter between html test description and cts tag test description. It is designed specific for jaxp/api/xml_schema
+ * tests. If applied to other test directories, at least change the executeClass and testDir value.
  *
  * @created November 1, 2002
  */

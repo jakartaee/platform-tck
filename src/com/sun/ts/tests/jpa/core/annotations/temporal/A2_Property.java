@@ -36,7 +36,8 @@ public class A2_Property implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public A2_Property() {}
+    public A2_Property() {
+    }
 
     public A2_Property(Calendar id) {
         this.id = id;

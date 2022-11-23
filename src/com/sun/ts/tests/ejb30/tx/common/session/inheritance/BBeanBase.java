@@ -25,7 +25,8 @@ import jakarta.ejb.TransactionAttributeType;
 
 public abstract class BBeanBase extends TxBeanBase {
 
-    public BBeanBase() {}
+    public BBeanBase() {
+    }
 
     // @TransactionAttribute(TransactionAttributeType.NEVER)
     // is annotated in super class method implementation. It

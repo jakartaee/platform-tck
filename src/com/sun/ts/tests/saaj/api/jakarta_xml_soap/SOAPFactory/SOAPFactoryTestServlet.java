@@ -197,8 +197,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -225,8 +227,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -253,8 +257,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -281,8 +287,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -344,8 +352,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -399,8 +409,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -460,8 +472,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -522,11 +536,15 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("createElementTest4() test PASSED");
-        else TestUtil.logErr("createElementTest4() test FAILED");
+        if (pass)
+            TestUtil.logMsg("createElementTest4() test PASSED");
+        else
+            TestUtil.logErr("createElementTest4() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -578,11 +596,15 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("createElementTest5() test PASSED");
-        else TestUtil.logErr("createElementTest5() test FAILED");
+        if (pass)
+            TestUtil.logMsg("createElementTest5() test PASSED");
+        else
+            TestUtil.logErr("createElementTest5() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -614,7 +636,8 @@ public class SOAPFactoryTestServlet extends HttpServlet {
                 if (!se1.isEqualNode(se2) && !se1.isSameNode(se2)) {
                     TestUtil.logErr("The SOAPElement's are not equal and not the same (unexpected)");
                     pass = false;
-                } else TestUtil.logMsg("The SOAPElement's are equal and the same (expected)");
+                } else
+                    TestUtil.logMsg("The SOAPElement's are equal and the same (expected)");
                 TestUtil.logMsg("Check that SOAPElement names are equal");
                 TestUtil.logMsg("SOAPElement1 name=" + se1.getNodeName());
                 TestUtil.logMsg("SOAPElement1 prefix=" + se1.getPrefix());
@@ -638,8 +661,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -672,8 +697,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -725,8 +752,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -784,8 +813,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -817,8 +848,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -856,7 +889,8 @@ public class SOAPFactoryTestServlet extends HttpServlet {
                             pass = false;
                         } else {
                             String reason = "";
-                            while (i.hasNext()) reason += (String) i.next();
+                            while (i.hasNext())
+                                reason += (String) i.next();
                             TestUtil.logMsg("Actual ReasonText=" + reason);
                             if (reason == null || !reason.contains("This is the fault reason.")) {
                                 TestUtil.logErr("Actual ReasonText is not equal expected ReasonText");
@@ -884,8 +918,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -927,8 +963,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

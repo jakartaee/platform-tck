@@ -30,9 +30,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/jsp_tagfile_directives_general_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -41,8 +40,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,8 +61,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:223
      *
-     * @test_Strategy: If a page directive is used in a tag file, a translation
-     * error must result.
+     * @test_Strategy: If a page directive is used in a tag file, a translation error must result.
      */
 
     public void negativePageDirectiveTest() throws Fault {
@@ -79,8 +76,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:226
      *
-     * @test_Strategy: If a tag directive is used in a jsp page, a translation
-     * error must result.
+     * @test_Strategy: If a tag directive is used in a jsp page, a translation error must result.
      */
 
     public void negativeTagDirectiveTest() throws Fault {
@@ -95,8 +91,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:227
      *
-     * @test_Strategy: If a attribute directive is used in a jsp page, a
-     * translation error must result.
+     * @test_Strategy: If a attribute directive is used in a jsp page, a translation error must result.
      */
 
     public void negativeAttributeDirectiveTest() throws Fault {
@@ -111,8 +106,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:228
      *
-     * @test_Strategy: If a variable directive is used in a jsp page, a
-     * translation error must result.
+     * @test_Strategy: If a variable directive is used in a jsp page, a translation error must result.
      */
 
     public void negativeVariableDirectiveTest() throws Fault {
@@ -187,9 +181,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:320
      *
-     * @test_Strategy: [ErrorOnELNotFoundTagDirective] Verify that when the
-     * ErrorOnELNotFound tag directive attribute is set to false, a reference
-     * to an unresolved identifier results in the empty string being used.
+     * @test_Strategy: [ErrorOnELNotFoundTagDirective] Verify that when the ErrorOnELNotFound tag directive attribute is set
+     * to false, a reference to an unresolved identifier results in the empty string being used.
      */
     public void errorOnELNotFoundFalseTest() throws Fault {
         String testName = "ErrorOnELNotFoundFalse";
@@ -202,9 +195,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:320
      *
-     * @test_Strategy: [ErrorOnELNotFoundTagDirective] Verify that when the
-     * ErrorOnELNotFound tag directive attribute is set to false, a reference
-     * to an unresolved identifier results in the empty string being used.
+     * @test_Strategy: [ErrorOnELNotFoundTagDirective] Verify that when the ErrorOnELNotFound tag directive attribute is set
+     * to false, a reference to an unresolved identifier results in the empty string being used.
      */
     public void errorOnELNotFoundTrueTest() throws Fault {
         String testName = "ErrorOnELNotFoundTrue";

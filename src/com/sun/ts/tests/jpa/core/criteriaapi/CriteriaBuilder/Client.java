@@ -84,8 +84,7 @@ public class Client extends Util {
     /*
      * @testName: createQuery
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:756; PERSISTENCE:SPEC:1701;
-     * PERSISTENCE:SPEC:1703; PERSISTENCE:SPEC:1704;
+     * @assertion_ids: PERSISTENCE:JAVADOC:756; PERSISTENCE:SPEC:1701; PERSISTENCE:SPEC:1703; PERSISTENCE:SPEC:1704;
      *
      * @test_Strategy:
      *
@@ -114,8 +113,7 @@ public class Client extends Util {
     /*
      * @testName: createQuery2
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:757; PERSISTENCE:SPEC:1703;
-     * PERSISTENCE:SPEC:1704;
+     * @assertion_ids: PERSISTENCE:JAVADOC:757; PERSISTENCE:SPEC:1703; PERSISTENCE:SPEC:1704;
      *
      * @test_Strategy:
      *
@@ -144,8 +142,7 @@ public class Client extends Util {
     /*
      * @testName: createTuple
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:758; PERSISTENCE:SPEC:1703;
-     * PERSISTENCE:SPEC:1704;
+     * @assertion_ids: PERSISTENCE:JAVADOC:758; PERSISTENCE:SPEC:1703; PERSISTENCE:SPEC:1704;
      *
      * @test_Strategy:
      *
@@ -174,14 +171,13 @@ public class Client extends Util {
     /*
      * @testName: construct
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:752; PERSISTENCE:JAVADOC:1470;
-     * PERSISTENCE:JAVADOC:1026; PERSISTENCE:SPEC:1705; PERSISTENCE:SPEC:1752;
-     * PERSISTENCE:SPEC:1754; PERSISTENCE:SPEC:1669;
+     * @assertion_ids: PERSISTENCE:JAVADOC:752; PERSISTENCE:JAVADOC:1470; PERSISTENCE:JAVADOC:1026; PERSISTENCE:SPEC:1705;
+     * PERSISTENCE:SPEC:1752; PERSISTENCE:SPEC:1754; PERSISTENCE:SPEC:1669;
      *
      * @test_Strategy: convert the following jpql to CriteriaQuery
      *
-     * SELECT NEW com.sun.ts.tests.jpa.core.query.language.schema30.Customer
-     * (c.id, c.name) FROM Customer c where c.home.city = 'Roslindale'
+     * SELECT NEW com.sun.ts.tests.jpa.core.query.language.schema30.Customer (c.id, c.name) FROM Customer c where
+     * c.home.city = 'Roslindale'
      *
      *
      */
@@ -208,9 +204,9 @@ public class Client extends Util {
             EntityType<Address> Address_ = mm.entity(com.sun.ts.tests.jpa.common.schema30.Address.class);
 
             cquery.select(cbuilder.construct(
-                            com.sun.ts.tests.jpa.common.schema30.Customer.class,
-                            customer.get(Customer_.getSingularAttribute("id", String.class)),
-                            customer.get(Customer_.getSingularAttribute("name", String.class))))
+                    com.sun.ts.tests.jpa.common.schema30.Customer.class,
+                    customer.get(Customer_.getSingularAttribute("id", String.class)),
+                    customer.get(Customer_.getSingularAttribute("name", String.class))))
                     .where(cbuilder.equal(
                             customer.get(Customer_.getSingularAttribute("home", Address.class))
                                     .get(Address_.getSingularAttribute("city", String.class)),
@@ -241,8 +237,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:433
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -323,8 +318,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:435; PERSISTENCE:SPEC:1727;
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c where (id = 3 or id = 4)
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c where (id = 3 or id =
+     * 4)
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -395,8 +390,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:432; PERSISTENCE:SPEC:1706
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -473,12 +467,10 @@ public class Client extends Util {
     /*
      * @testName: tupleGetIntIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:603; PERSISTENCE:JAVADOC:1164;
-     * PERSISTENCE:SPEC:1303;
+     * @assertion_ids: PERSISTENCE:JAVADOC:603; PERSISTENCE:JAVADOC:1164; PERSISTENCE:SPEC:1303;
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c Call Tuple.get() using a tuple element that does not
-     * exist
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c Call Tuple.get()
+     * using a tuple element that does not exist
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -498,9 +490,9 @@ public class Client extends Util {
             TestUtil.logTrace("Use Tuple Query");
 
             cquery.multiselect(new Selection[] {
-                customer.get(Customer_.getSingularAttribute("id", String.class)).alias("ID"),
-                customer.get(Customer_.getSingularAttribute("name", String.class))
-                        .alias("NAME")
+                    customer.get(Customer_.getSingularAttribute("id", String.class)).alias("ID"),
+                    customer.get(Customer_.getSingularAttribute("name", String.class))
+                            .alias("NAME")
             });
 
             TypedQuery<Tuple> tq = getEntityManager().createQuery(cquery);
@@ -542,9 +534,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:602; PERSISTENCE:SPEC:1303;
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c Call Tuple.get() using a tuple element that does not
-     * exist
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c Call Tuple.get()
+     * using a tuple element that does not exist
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -612,12 +603,11 @@ public class Client extends Util {
     /*
      * @testName: tupleGetElementsGetTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:429; PERSISTENCE:JAVADOC:434;
-     * PERSISTENCE:JAVADOC:1168; PERSISTENCE:JAVADOC:1169; PERSISTENCE:SPEC:1321;
-     * PERSISTENCE:SPEC:1763;
+     * @assertion_ids: PERSISTENCE:JAVADOC:429; PERSISTENCE:JAVADOC:434; PERSISTENCE:JAVADOC:1168; PERSISTENCE:JAVADOC:1169;
+     * PERSISTENCE:SPEC:1321; PERSISTENCE:SPEC:1763;
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c where c.name is not nulls
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c where c.name is not
+     * nulls
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -715,9 +705,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:599; PERSISTENCE:SPEC:1303;
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery SELECT ID, NAME
-     * FROM CUSTOMER_TABLE WHERE (ID = 1) SELECT ID, QUANTITY FROM PRODUCT_TABLE
-     * WHERE (ID = 1)
+     * @test_Strategy: convert the following JPQL to CriteriaQuery SELECT ID, NAME FROM CUSTOMER_TABLE WHERE (ID = 1) SELECT
+     * ID, QUANTITY FROM PRODUCT_TABLE WHERE (ID = 1)
      */
     @SetupMethod(name = "setupCustAliasProductData")
     public void tupleGetTupleElementIllegalArgumentExceptionTest() throws Fault {
@@ -818,8 +807,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:431
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -902,9 +890,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:601; PERSISTENCE:SPEC:1303;
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c Call Tuple.get() using a tuple element that does not
-     * exist
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c Call Tuple.get()
+     * using a tuple element that does not exist
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -970,9 +957,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:600; PERSISTENCE:SPEC:1303;
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c Call Tuple.get() using a tuple type that does not
-     * match
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c Call Tuple.get()
+     * using a tuple type that does not match
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -1050,8 +1036,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:430
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -1134,11 +1119,9 @@ public class Client extends Util {
     /*
      * @testName: tupleElementGetAliasTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:436; PERSISTENCE:JAVADOC:1102;
-     * PERSISTENCE:JAVADOC:1103
+     * @assertion_ids: PERSISTENCE:JAVADOC:436; PERSISTENCE:JAVADOC:1102; PERSISTENCE:JAVADOC:1103
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -1201,8 +1184,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:437
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1241,11 +1223,9 @@ public class Client extends Util {
     /*
      * @testName: tupleSelectionArrayTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:872; PERSISTENCE:SPEC:1752;
-     * PERSISTENCE:SPEC:1754;
+     * @assertion_ids: PERSISTENCE:JAVADOC:872; PERSISTENCE:SPEC:1752; PERSISTENCE:SPEC:1754;
      *
-     * @test_Strategy: Call tuple(Selection[]) and verify result Select c.id,
-     * c.name from Customer c
+     * @test_Strategy: Call tuple(Selection[]) and verify result Select c.id, c.name from Customer c
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1267,7 +1247,7 @@ public class Client extends Util {
 
                 cquery.where(qbuilder.equal(cust.get(Customer_.getSingularAttribute("id", String.class)), "4"));
 
-                Selection[] s = {cust.get("id"), cust.get("name")};
+                Selection[] s = { cust.get("id"), cust.get("name") };
                 cquery.select(qbuilder.tuple(s));
 
                 Query q = getEntityManager().createQuery(cquery);
@@ -1328,7 +1308,7 @@ public class Client extends Util {
                 TestUtil.logTrace("Obtained Non-null Criteria Query");
                 Root<Customer> cust = cquery.from(Customer.class);
 
-                Selection[] s = {cust.get("id"), cust.get("name")};
+                Selection[] s = { cust.get("id"), cust.get("name") };
 
                 TestUtil.logMsg("Testing tuple");
                 try {
@@ -1368,11 +1348,9 @@ public class Client extends Util {
     /*
      * @testName: array
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:739; PERSISTENCE:SPEC:1752;
-     * PERSISTENCE:SPEC:1754;
+     * @assertion_ids: PERSISTENCE:JAVADOC:739; PERSISTENCE:SPEC:1752; PERSISTENCE:SPEC:1754;
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery and return the
-     * result as an object array
+     * @test_Strategy: convert the following JPQL to CriteriaQuery and return the result as an object array
      *
      * Select c.id, c.name from Customer c
      *
@@ -1457,8 +1435,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:740
      *
-     * @test_Strategy: Create a CriteriaBuilder array and pass that to the
-     * CriteriaBuilder.array() method
+     * @test_Strategy: Create a CriteriaBuilder array and pass that to the CriteriaBuilder.array() method
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1473,7 +1450,7 @@ public class Client extends Util {
             TestUtil.logTrace("Obtained Non-null Criteria Query");
             Root<Customer> customer = cquery.from(Customer.class);
 
-            Selection[] s = {customer.get("id"), customer.get("name")};
+            Selection[] s = { customer.get("id"), customer.get("name") };
 
             TestUtil.logMsg("Testing tuple");
             try {
@@ -1511,8 +1488,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:753
      *
-     * @test_Strategy: Create a CriteriaBuilder array and pass that to the
-     * CriteriaBuilder.construct(...) method
+     * @test_Strategy: Create a CriteriaBuilder array and pass that to the CriteriaBuilder.construct(...) method
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1527,7 +1503,7 @@ public class Client extends Util {
             TestUtil.logTrace("Obtained Non-null Criteria Query");
             Root<Customer> customer = cquery.from(Customer.class);
 
-            Selection[] s = {customer.get("id"), customer.get("name")};
+            Selection[] s = { customer.get("id"), customer.get("name") };
 
             TestUtil.logMsg("Testing tuple");
             try {
@@ -1563,8 +1539,7 @@ public class Client extends Util {
     /*
      * @testName: primaryKeyJoinColumnTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1120;
-     * PERSISTENCE:SPEC:1121;PERSISTENCE:SPEC:1121.1; PERSISTENCE:SPEC:2109;
+     * @assertion_ids: PERSISTENCE:SPEC:1120; PERSISTENCE:SPEC:1121;PERSISTENCE:SPEC:1121.1; PERSISTENCE:SPEC:2109;
      *
      * @test_Strategy: Select p from Product p where p.whouse = "WH5"
      */
@@ -1606,11 +1581,9 @@ public class Client extends Util {
     /*
      * @testName: asc
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:741; PERSISTENCE:SPEC:1690;
-     * PERSISTENCE:SPEC:1774;
+     * @assertion_ids: PERSISTENCE:JAVADOC:741; PERSISTENCE:SPEC:1690; PERSISTENCE:SPEC:1774;
      *
-     * @test_Strategy: Select hardwareProduct from HardwareProduct ORDER BY
-     * hardware.Product.modeNumber
+     * @test_Strategy: Select hardwareProduct from HardwareProduct ORDER BY hardware.Product.modeNumber
      */
     @SetupMethod(name = "setupProductData")
     public void asc() throws Fault {
@@ -1703,11 +1676,9 @@ public class Client extends Util {
     /*
      * @testName: avg
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:742; PERSISTENCE:SPEC:1510;
-     * PERSISTENCE:SPEC:1740;
+     * @assertion_ids: PERSISTENCE:JAVADOC:742; PERSISTENCE:SPEC:1510; PERSISTENCE:SPEC:1740;
      *
-     * @test_Strategy: Convert the following JPQL to CriteriaQuery SELECT
-     * AVG(o.totalPrice) FROM Order o
+     * @test_Strategy: Convert the following JPQL to CriteriaQuery SELECT AVG(o.totalPrice) FROM Order o
      */
     @SetupMethod(name = "setupOrderData")
     public void avg() throws Fault {
@@ -1750,11 +1721,9 @@ public class Client extends Util {
     /*
      * @testName: sumExpTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:853; PERSISTENCE:SPEC:1740;
-     * PERSISTENCE:SPEC:1746; PERSISTENCE:SPEC:1746.1;
+     * @assertion_ids: PERSISTENCE:JAVADOC:853; PERSISTENCE:SPEC:1740; PERSISTENCE:SPEC:1746; PERSISTENCE:SPEC:1746.1;
      *
-     * @test_Strategy: Convert the following JPQL to CriteriaQuery SELECT
-     * Sum(p.price) FROM Product p
+     * @test_Strategy: Convert the following JPQL to CriteriaQuery SELECT Sum(p.price) FROM Product p
      */
     @SetupMethod(name = "setupProductData")
     public void sumExpTest() throws Fault {
@@ -1807,8 +1776,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:855
      *
-     * @test_Strategy: Convert the following JPQL to CriteriaQuery SELECT
-     * sum(p.price,100) FROM Product p WHERE p.id = 1
+     * @test_Strategy: Convert the following JPQL to CriteriaQuery SELECT sum(p.price,100) FROM Product p WHERE p.id = 1
      */
     @SetupMethod(name = "setupProductData")
     public void sumExpNumTest() throws Fault {
@@ -1855,8 +1823,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:856
      *
-     * @test_Strategy: Convert the following JPQL to CriteriaQuery SELECT
-     * sum(100,p.price) FROM Product p WHERE p.id = 1
+     * @test_Strategy: Convert the following JPQL to CriteriaQuery SELECT sum(100,p.price) FROM Product p WHERE p.id = 1
      */
     @SetupMethod(name = "setupProductData")
     public void sumNumExpTest() throws Fault {
@@ -1903,8 +1870,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:854
      *
-     * @test_Strategy: Convert the following JPQL to CriteriaQuery SELECT
-     * sum(p.quantity,p.quantity) FROM Product p WHERE p.id = 1
+     * @test_Strategy: Convert the following JPQL to CriteriaQuery SELECT sum(p.quantity,p.quantity) FROM Product p WHERE
+     * p.id = 1
      */
     @SetupMethod(name = "setupProductData")
     public void sumExpExpTest() throws Fault {
@@ -1949,11 +1916,9 @@ public class Client extends Util {
     /*
      * @testName: max
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:815; PERSISTENCE:SPEC:1740;
-     * PERSISTENCE:SPEC:1674;
+     * @assertion_ids: PERSISTENCE:JAVADOC:815; PERSISTENCE:SPEC:1740; PERSISTENCE:SPEC:1674;
      *
-     * @test_Strategy: Convert following JPQL to CriteriaQuery SELECT DISTINCT
-     * MAX(l.quantity) FROM LineItem l
+     * @test_Strategy: Convert following JPQL to CriteriaQuery SELECT DISTINCT MAX(l.quantity) FROM LineItem l
      */
     @SetupMethod(name = "setupOrderData")
     public void max() throws Fault {
@@ -2041,11 +2006,9 @@ public class Client extends Util {
     /*
      * @testName: min
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:816; PERSISTENCE:SPEC:1740;
-     * PERSISTENCE:SPEC:1674;
+     * @assertion_ids: PERSISTENCE:JAVADOC:816; PERSISTENCE:SPEC:1740; PERSISTENCE:SPEC:1674;
      *
-     * @test_Strategy: convert the forllowing JPQL into CriteriaQuery SELECT
-     * DISTINCT MIN(l.quantity) FROM LineItem l
+     * @test_Strategy: convert the forllowing JPQL into CriteriaQuery SELECT DISTINCT MIN(l.quantity) FROM LineItem l
      */
     @SetupMethod(name = "setupOrderData")
     public void min() throws Fault {
@@ -2238,8 +2201,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:754; PERSISTENCE:SPEC:1740;
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select COUNT
-     * (o.id) From Order o
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select COUNT (o.id) From Order o
      */
     @SetupMethod(name = "setupOrderData")
     public void count() throws Fault {
@@ -2331,13 +2293,11 @@ public class Client extends Util {
     /*
      * @testName: exists
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:769; PERSISTENCE:JAVADOC:1190;
-     * PERSISTENCE:SPEC:1767;
+     * @assertion_ids: PERSISTENCE:JAVADOC:769; PERSISTENCE:JAVADOC:1190; PERSISTENCE:SPEC:1767;
      *
      * @test_Strategy: convert the following JPQL into CriteriaQuery
      *
-     * SELECT product FROM PRODUCT product WHERE EXISTS (Select hardProd From
-     * PRODUCT hardprod where hardprod.id = '19').
+     * SELECT product FROM PRODUCT product WHERE EXISTS (Select hardProd From PRODUCT hardprod where hardprod.id = '19').
      *
      *
      */
@@ -2411,8 +2371,7 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * SELECT product FROM PRODUCT product WHERE EXISTS (Select hardProd From
-     * PRODUCT hardprod where hardprod.id = '19').
+     * SELECT product FROM PRODUCT product WHERE EXISTS (Select hardProd From PRODUCT hardprod where hardprod.id = '19').
      *
      *
      */
@@ -2482,14 +2441,12 @@ public class Client extends Util {
     /*
      * @testName: all
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:735; PERSISTENCE:SPEC:1766;
-     * PERSISTENCE:SPEC:1766.1;
+     * @assertion_ids: PERSISTENCE:JAVADOC:735; PERSISTENCE:SPEC:1766; PERSISTENCE:SPEC:1766.1;
      *
      * @test_Strategy: convert the following JPQL into CriteriaQuery
      *
-     * Select hardProd.modelNumber From HardwareProduct hardProd where
-     * hardProd.modelNumber > ALL ( Select subHardProd.modelNumber From
-     * HardwareProduct subHardProd where subHardProd.modelNumber < 10050 )
+     * Select hardProd.modelNumber From HardwareProduct hardProd where hardProd.modelNumber > ALL ( Select
+     * subHardProd.modelNumber From HardwareProduct subHardProd where subHardProd.modelNumber < 10050 )
      *
      *
      */
@@ -2559,13 +2516,10 @@ public class Client extends Util {
     /*
      * @testName: some
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:847; PERSISTENCE:JAVADOC:1136;
-     * PERSISTENCE:SPEC:1766; PERSISTENCE:SPEC:1766.3;
+     * @assertion_ids: PERSISTENCE:JAVADOC:847; PERSISTENCE:JAVADOC:1136; PERSISTENCE:SPEC:1766; PERSISTENCE:SPEC:1766.3;
      *
-     * @test_Strategy: convert the following JPQL into CriteriaQuery SELECT
-     * DISTINCT c FROM Customer c, IN(c.orders) co WHERE co.totalPrice <=
-     * SOME(Select o.totalPrice FROM Order o, IN(o.lineItems) l WHERE l.quantity =
-     * 3 )
+     * @test_Strategy: convert the following JPQL into CriteriaQuery SELECT DISTINCT c FROM Customer c, IN(c.orders) co
+     * WHERE co.totalPrice <= SOME(Select o.totalPrice FROM Order o, IN(o.lineItems) l WHERE l.quantity = 3 )
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -2645,13 +2599,10 @@ public class Client extends Util {
     /*
      * @testName: any
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:738; PERSISTENCE:SPEC:1766;
-     * PERSISTENCE:SPEC:1766.2;
+     * @assertion_ids: PERSISTENCE:JAVADOC:738; PERSISTENCE:SPEC:1766; PERSISTENCE:SPEC:1766.2;
      *
-     * @test_Strategy: convert the following JPQL into CriteriaQuery SELECT
-     * DISTINCT object(c) FROM Customer c, IN(c.orders) co WHERE co.totalPrice <
-     * ANY (Select o.totalPrice FROM Order o, IN(o.lineItems) l WHERE l.quantity =
-     * 3 )
+     * @test_Strategy: convert the following JPQL into CriteriaQuery SELECT DISTINCT object(c) FROM Customer c, IN(c.orders)
+     * co WHERE co.totalPrice < ANY (Select o.totalPrice FROM Order o, IN(o.lineItems) l WHERE l.quantity = 3 )
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -2737,9 +2688,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:737; PERSISTENCE:SPEC:1729;
      *
-     * @test_Strategy: SELECT c from Customer c WHERE c.home.street = '125 Moxy
-     * Lane' AND c.home.city = 'Swansea' AND c.home.state = 'MA and c.home.zip =
-     * '11345'
+     * @test_Strategy: SELECT c from Customer c WHERE c.home.street = '125 Moxy Lane' AND c.home.city = 'Swansea' AND
+     * c.home.state = 'MA and c.home.zip = '11345'
      */
     @SetupMethod(name = "setupCustomerData")
     public void andPredicates() throws Fault {
@@ -2806,9 +2756,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:834; PERSISTENCE:SPEC:1729;
      *
-     * @test_Strategy: SELECT Distinct c from Customer c WHERE c.home.street = '47
-     * Skyline Drive' OR c.home.city = 'Chelmsford' OR c.home.state = 'VT' OR
-     * c.home.zip = '02155'
+     * @test_Strategy: SELECT Distinct c from Customer c WHERE c.home.street = '47 Skyline Drive' OR c.home.city =
+     * 'Chelmsford' OR c.home.state = 'VT' OR c.home.zip = '02155'
      */
     @SetupMethod(name = "setupCustomerData")
     public void orPredicates() throws Fault {
@@ -2885,8 +2834,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:821; PERSISTENCE:SPEC:1729;
      *
-     * @test_Strategy: Select Distinct o FROM Order o WHERE NOT o.totalPrice <
-     * 4500
+     * @test_Strategy: Select Distinct o FROM Order o WHERE NOT o.totalPrice < 4500
      *
      *
      */
@@ -2949,8 +2897,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:751
      *
-     * @test_Strategy: Use Conjunction Select Distinct o FROM Order o where
-     * o.customer.name = 'Robert E. Bissett'
+     * @test_Strategy: Use Conjunction Select Distinct o FROM Order o where o.customer.name = 'Robert E. Bissett'
      *
      * Note: cbuilder.conjunction() always returns true
      */
@@ -3015,8 +2962,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:766
      *
-     * @test_Strategy: Use Disjunction Select Distinct o FROM Order o where
-     * o.customer.name = 'Robert E. Bissett'
+     * @test_Strategy: Use Disjunction Select Distinct o FROM Order o where o.customer.name = 'Robert E. Bissett'
      *
      * Note: cbuilder.disjunction() always returns false
      */
@@ -3081,8 +3027,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:790
      *
-     * @test_Strategy: Use Conjunction Select Distinct o FROM Order o where
-     * o.customer.name = 'Robert E. Bissett'
+     * @test_Strategy: Use Conjunction Select Distinct o FROM Order o where o.customer.name = 'Robert E. Bissett'
      *
      * Note: cbuilder.conjunction() always returns true
      */
@@ -3146,8 +3091,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:782
      *
-     * @test_Strategy: Use Disjunction Select o FROM Order o where o.customer.name
-     * = 'Robert E. Bissett'
+     * @test_Strategy: Use Disjunction Select o FROM Order o where o.customer.name = 'Robert E. Bissett'
      *
      * Note: cbuilder.disjunction() always returns false
      */
@@ -3207,8 +3151,7 @@ public class Client extends Util {
     /*
      * @testName: isNull
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:789; PERSISTENCE:JAVADOC:957;
-     * PERSISTENCE:SPEC:1683; PERSISTENCE:SPEC:1728.2;
+     * @assertion_ids: PERSISTENCE:JAVADOC:789; PERSISTENCE:JAVADOC:957; PERSISTENCE:SPEC:1683; PERSISTENCE:SPEC:1728.2;
      *
      * @test_Strategy: Select c FROM Customer c where c.name is null
      *
@@ -3263,8 +3206,7 @@ public class Client extends Util {
     /*
      * @testName: isNotNull
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:788; PERSISTENCE:JAVADOC:956;
-     * PERSISTENCE:SPEC:1728.3;
+     * @assertion_ids: PERSISTENCE:JAVADOC:788; PERSISTENCE:JAVADOC:956; PERSISTENCE:SPEC:1728.3;
      *
      * @test_Strategy: Select c FROM Customer c where c.work.zip IS NOT NULL
      *
@@ -3329,8 +3271,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:768
      *
-     * @test_Strategy: Use equal and not Select o FROM Order o where
-     * o.customer.name <> 'Robert E. Bissett'
+     * @test_Strategy: Use equal and not Select o FROM Order o where o.customer.name <> 'Robert E. Bissett'
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3392,8 +3333,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:767; PERSISTENCE:SPEC:1748;
      *
-     * @test_Strategy: Use equal and not Select o FROM Order o where
-     * o.customer.name <> 'Robert E. Bissett'
+     * @test_Strategy: Use equal and not Select o FROM Order o where o.customer.name <> 'Robert E. Bissett'
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3455,8 +3395,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:823
      *
-     * @test_Strategy: Use notEqual Select o FROM Order o where o.customer.name <>
-     * 'Robert E. Bissett'
+     * @test_Strategy: Use notEqual Select o FROM Order o where o.customer.name <> 'Robert E. Bissett'
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3518,8 +3457,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:822
      *
-     * @test_Strategy: Use notEqual Select o FROM Order o where o.customer.name <>
-     * 'Robert E. Bissett'
+     * @test_Strategy: Use notEqual Select o FROM Order o where o.customer.name <> 'Robert E. Bissett'
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3583,8 +3521,7 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * Select sumAsDouble(p.quantity*0.5) From Product p WHERE p.quantity > 50 and
-     * p.quantity < 100
+     * Select sumAsDouble(p.quantity*0.5) From Product p WHERE p.quantity > 50 and p.quantity < 100
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -3640,8 +3577,7 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * Select sumAsLong(p.quantity) From Product p WHERE p.quantity > 50 and
-     * p.quantity < 100
+     * Select sumAsLong(p.quantity) From Product p WHERE p.quantity > 50 and p.quantity < 100
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -4258,8 +4194,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:743; PERSISTENCE:JAVADOC:835
      *
-     * @test_Strategy: SELECT p From Product p where p.shelfLife.soldDate BETWEEN
-     * :date1 AND :date6
+     * @test_Strategy: SELECT p From Product p where p.shelfLife.soldDate BETWEEN :date1 AND :date6
      */
     @SetupMethod(name = "setupProductData")
     public void between() throws Fault {
@@ -5004,8 +4939,7 @@ public class Client extends Util {
     /*
      * @testName: prodExpNumTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:838; PERSISTENCE:SPEC:1746;
-     * PERSISTENCE:SPEC:1746.2;
+     * @assertion_ids: PERSISTENCE:JAVADOC:838; PERSISTENCE:SPEC:1746; PERSISTENCE:SPEC:1746.2;
      *
      * @test_Strategy: SELECT p.quantity *10F From Product p where p.quantity = 5
      */
@@ -5111,8 +5045,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:837
      *
-     * @test_Strategy: SELECT p.quantity * p.quantity From Product p where
-     * p.quantity = 5
+     * @test_Strategy: SELECT p.quantity * p.quantity From Product p where p.quantity = 5
      */
     @SetupMethod(name = "setupProductData")
     public void prodExpExpTest() throws Fault {
@@ -5162,8 +5095,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:764
      *
-     * @test_Strategy: SELECT DIFF(p.quantity, 2) From Product p where
-     * p.quantity=5
+     * @test_Strategy: SELECT DIFF(p.quantity, 2) From Product p where p.quantity=5
      */
     @SetupMethod(name = "setupProductData")
     public void diffExpNumberTest() throws Fault {
@@ -5211,8 +5143,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:765
      *
-     * @test_Strategy: SELECT DIFF(8, p.quantity) From Product p where
-     * p.quantity=5
+     * @test_Strategy: SELECT DIFF(8, p.quantity) From Product p where p.quantity=5
      */
     @SetupMethod(name = "setupProductData")
     public void diffNumberExpTest() throws Fault {
@@ -5260,8 +5191,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:763
      *
-     * @test_Strategy: SELECT DIFF(p.quantity, p.quantity) From Product p where
-     * p.quantity=5
+     * @test_Strategy: SELECT DIFF(p.quantity, p.quantity) From Product p where p.quantity=5
      */
     @SetupMethod(name = "setupProductData")
     public void diffExpExpTest() throws Fault {
@@ -5311,8 +5241,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:841
      *
-     * @test_Strategy: SELECT QUOT(p.quantity, 2) From Product p where p.quantity
-     * = 5
+     * @test_Strategy: SELECT QUOT(p.quantity, 2) From Product p where p.quantity = 5
      */
     @SetupMethod(name = "setupProductData")
     public void quotExpNumTest() throws Fault {
@@ -5359,8 +5288,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:842
      *
-     * @test_Strategy: SELECT QUOT(10, p.quantity) From Product p where p.quantity
-     * = 5
+     * @test_Strategy: SELECT QUOT(10, p.quantity) From Product p where p.quantity = 5
      */
     @SetupMethod(name = "setupProductData")
     public void quotNumExpTest() throws Fault {
@@ -5407,8 +5335,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:840
      *
-     * @test_Strategy: SELECT QUOT(2, p.quantity) From Product p where p.quantity
-     * = 5
+     * @test_Strategy: SELECT QUOT(2, p.quantity) From Product p where p.quantity = 5
      */
     @SetupMethod(name = "setupProductData")
     public void quotExpExpTest() throws Fault {
@@ -5457,8 +5384,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:818
      *
-     * @test_Strategy: Select Object(p) From Product p where MOD(550, 100) =
-     * p.quantity
+     * @test_Strategy: Select Object(p) From Product p where MOD(550, 100) = p.quantity
      */
     @SetupMethod(name = "setupProductData")
     public void modExpIntTest() throws Fault {
@@ -5514,8 +5440,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:817
      *
-     * @test_Strategy: Select Object(p) From Product p where MOD(550, 100) =
-     * p.quantity
+     * @test_Strategy: Select Object(p) From Product p where MOD(550, 100) = p.quantity
      */
     @SetupMethod(name = "setupProductData")
     public void modExpExpTest() throws Fault {
@@ -5571,8 +5496,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:819
      *
-     * @test_Strategy: Select Object(p) From Product p where MOD(550, 100) =
-     * p.quantity
+     * @test_Strategy: Select Object(p) From Product p where MOD(550, 100) = p.quantity
      */
     @SetupMethod(name = "setupProductData")
     public void modIntExpTest() throws Fault {
@@ -5677,8 +5601,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:864
      *
-     * @test_Strategy: SELECT toLong(p.quantity * 5L) From Product p where
-     * p.quantity = 5
+     * @test_Strategy: SELECT toLong(p.quantity * 5L) From Product p where p.quantity = 5
      */
     @SetupMethod(name = "setupProductData")
     public void toLong() throws Fault {
@@ -5727,8 +5650,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:863
      *
-     * @test_Strategy: SELECT toInteger(p.quantity) From Product p where
-     * p.partNumber = 373767373
+     * @test_Strategy: SELECT toInteger(p.quantity) From Product p where p.partNumber = 373767373
      */
     @SetupMethod(name = "setupProductData")
     public void toInteger() throws Fault {
@@ -5826,8 +5748,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:861
      *
-     * @test_Strategy: SELECT toDouble(SQRT(p.quantity)) From Product p where
-     * p.quantity = 5
+     * @test_Strategy: SELECT toDouble(SQRT(p.quantity)) From Product p where p.quantity = 5
      */
     @SetupMethod(name = "setupProductData")
     public void toDouble() throws Fault {
@@ -5875,8 +5796,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:859
      *
-     * @test_Strategy: SELECT ToBigDecimal(p.quantity * BIGDECIMAL) From Product p
-     * where p.quantity = 5
+     * @test_Strategy: SELECT ToBigDecimal(p.quantity * BIGDECIMAL) From Product p where p.quantity = 5
      */
     @SetupMethod(name = "setupProductData")
     public void toBigDecimal() throws Fault {
@@ -5925,8 +5845,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:860
      *
-     * @test_Strategy: SELECT toBigInteger(p.quantity * BigInteger("10000000000"))
-     * From Product p where p.quantity = 5
+     * @test_Strategy: SELECT toBigInteger(p.quantity * BigInteger("10000000000")) From Product p where p.quantity = 5
      */
     @SetupMethod(name = "setupProductData")
     public void toBigInteger() throws Fault {
@@ -6098,11 +6017,10 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:836; PERSISTENCE:SPEC:1750;
      *
-     * @test_Strategy: SELECT c from Customer c WHERE c.home.street = :street OR
-     * c.home.city = :city OR c.home.state = :state OR c.home.zip = :zip
+     * @test_Strategy: SELECT c from Customer c WHERE c.home.street = :street OR c.home.city = :city OR c.home.state =
+     * :state OR c.home.zip = :zip
      *
-     * where :street = '47 Skyline Drive' :city ='Chelmsford' :state ='VT' :zip =
-     * '02155'
+     * where :street = '47 Skyline Drive' :city ='Chelmsford' :state ='VT' :zip = '02155'
      *
      *
      */
@@ -6190,8 +6108,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1306; PERSISTENCE:SPEC:1307
      *
-     * @test_Strategy: SELECT c from Customer c WHERE c.home.state = :state OR
-     * c.home.state = :STATE
+     * @test_Strategy: SELECT c from Customer c WHERE c.home.state = :state OR c.home.state = :STATE
      *
      * where :state ='RI' :STATE ='VT'
      *
@@ -6342,8 +6259,7 @@ public class Client extends Util {
     /*
      * @testName: criteriaBuilderIn1Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:780; PERSISTENCE:JAVADOC:898;
-     * PERSISTENCE:JAVADOC:899; PERSISTENCE:SPEC:1728.4;
+     * @assertion_ids: PERSISTENCE:JAVADOC:780; PERSISTENCE:JAVADOC:898; PERSISTENCE:JAVADOC:899; PERSISTENCE:SPEC:1728.4;
      *
      * @test_Strategy: SELECT c.id from Customer c WHERE c.home.state IN (?1, ?2)
      *
@@ -6419,12 +6335,10 @@ public class Client extends Util {
     /*
      * @testName: criteriaBuilderIn2Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:900; PERSISTENCE:JAVADOC:901;
-     * PERSISTENCE:JAVADOC:902; PERSISTENCE:SPEC:1698; PERSISTENCE:SPEC:1786;
-     * PERSISTENCE:SPEC:1786.3;
+     * @assertion_ids: PERSISTENCE:JAVADOC:900; PERSISTENCE:JAVADOC:901; PERSISTENCE:JAVADOC:902; PERSISTENCE:SPEC:1698;
+     * PERSISTENCE:SPEC:1786; PERSISTENCE:SPEC:1786.3;
      *
-     * @test_Strategy: Testing not, getOperator and isNegated SELECT s.id from
-     * Spouse s WHERE s.id NOT IN (2,3)
+     * @test_Strategy: Testing not, getOperator and isNegated SELECT s.id from Spouse s WHERE s.id NOT IN (2,3)
      *
      *
      */
@@ -6448,7 +6362,7 @@ public class Client extends Util {
             Root<Spouse> spouse = cquery.from(Spouse.class);
 
             CriteriaBuilder.In in = cbuilder.in(spouse.get("id"));
-            for (String id : new String[] {"2", "3"}) {
+            for (String id : new String[] { "2", "3" }) {
                 in.value(id);
             }
             Predicate pred = in.not();
@@ -6591,7 +6505,7 @@ public class Client extends Util {
 
             ParameterExpression<String> param = cbuilder.parameter(String.class);
 
-            cquery.where(exp.in(new Object[] {"2", "3"}));
+            cquery.where(exp.in(new Object[] { "2", "3" }));
             TypedQuery<Spouse> query = getEntityManager().createQuery(cquery);
 
             List<Spouse> result = query.getResultList();
@@ -6647,7 +6561,7 @@ public class Client extends Util {
 
             ParameterExpression<String> param = cbuilder.parameter(String.class);
 
-            cquery.where(exp.in(new Expression[] {cbuilder.literal("2"), cbuilder.literal("3")}));
+            cquery.where(exp.in(new Expression[] { cbuilder.literal("2"), cbuilder.literal("3") }));
             TypedQuery<Spouse> query = getEntityManager().createQuery(cquery);
 
             List<Spouse> result = query.getResultList();
@@ -6963,8 +6877,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:785
      *
-     * @test_Strategy: Select Distinct c fRoM Customer c where c.aliases IS NOT
-     * EMPTY
+     * @test_Strategy: Select Distinct c fRoM Customer c where c.aliases IS NOT EMPTY
      */
     @SetupMethod(name = "setupAliasData")
     public void isNotEmpty() throws Fault {
@@ -7164,8 +7077,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:786
      *
-     * @test_Strategy: Select Distinct a FROM Alias a WHERE a.customerNoop NOT
-     * MEMBER OF a.customersNoop
+     * @test_Strategy: Select Distinct a FROM Alias a WHERE a.customerNoop NOT MEMBER OF a.customersNoop
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -7222,8 +7134,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:801
      *
-     * @test_Strategy: SELECT Distinct c from Customer c WHERE c.home.zip LIKE
-     * "%77"
+     * @test_Strategy: SELECT Distinct c from Customer c WHERE c.home.zip LIKE "%77"
      *
      *
      *
@@ -7286,8 +7197,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:800
      *
-     * @test_Strategy: SELECT Distinct c from Customer c WHERE c.home.zip LIKE
-     * "%77"
+     * @test_Strategy: SELECT Distinct c from Customer c WHERE c.home.zip LIKE "%77"
      *
      *
      *
@@ -7756,8 +7666,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:749; PERSISTENCE:JAVADOC:806
      *
-     * @test_Strategy: SELECT c from Customer c WHERE c.work.street="1 Network"
-     * CONCAT " Drive"
+     * @test_Strategy: SELECT c from Customer c WHERE c.work.street="1 Network" CONCAT " Drive"
      *
      *
      *
@@ -7821,8 +7730,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:750
      *
-     * @test_Strategy: SELECT c from Customer c WHERE c.work.street="1 Network"
-     * CONCAT " Drive"
+     * @test_Strategy: SELECT c from Customer c WHERE c.work.street="1 Network" CONCAT " Drive"
      *
      *
      *
@@ -7886,8 +7794,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:748
      *
-     * @test_Strategy: SELECT c from Customer c WHERE c.work.street="1 Network"
-     * CONCAT " Drive"
+     * @test_Strategy: SELECT c from Customer c WHERE c.work.street="1 Network" CONCAT " Drive"
      *
      *
      *
@@ -8067,8 +7974,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:852
      *
-     * @test_Strategy: Select a From Alias a WHERE a.alias = SUBSTRING("iris", 1,
-     * 4)
+     * @test_Strategy: Select a From Alias a WHERE a.alias = SUBSTRING("iris", 1, 4)
      *
      */
     @SetupMethod(name = "setupAliasOnlyData")
@@ -8126,8 +8032,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:851
      *
-     * @test_Strategy: Select a From Alias a WHERE a.alias = SUBSTRING("iris", 1,
-     * 4)
+     * @test_Strategy: Select a From Alias a WHERE a.alias = SUBSTRING("iris", 1, 4)
      *
      */
     @SetupMethod(name = "setupAliasOnlyData")
@@ -8227,8 +8132,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:867
      *
-     * @test_Strategy: Select trim(both from c.name) from Customer c where c.name=
-     * ' David R. Vincent'
+     * @test_Strategy: Select trim(both from c.name) from Customer c where c.name= ' David R. Vincent'
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -8278,8 +8182,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:866
      *
-     * @test_Strategy: Select trim(both from t.name) from Trim t where
-     * trim(t.name)='David R. Vincent'
+     * @test_Strategy: Select trim(both from t.name) from Trim t where trim(t.name)='David R. Vincent'
      *
      *
      */
@@ -8293,14 +8196,10 @@ public class Client extends Util {
 
         getEntityTransaction().begin();
         /*
-         * Trim tTrim = getEntityManager().find(Trim.class, "19");
-         * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-         * (tTrim.getName().equals(expected)) {
-         * TestUtil.logTrace("Received expected find result: " + tTrim.getName());
-         * pass1 = true; } else {
-         * TestUtil.logErr("Name returned by find does not match expected");
-         * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName()
-         * + "|"); }
+         * Trim tTrim = getEntityManager().find(Trim.class, "19"); TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+         * (tTrim.getName().equals(expected)) { TestUtil.logTrace("Received expected find result: " + tTrim.getName()); pass1 =
+         * true; } else { TestUtil.logErr("Name returned by find does not match expected"); TestUtil.logErr("Expected:|" +
+         * expected + "|, actual:|" + tTrim.getName() + "|"); }
          *
          */
         CriteriaQuery<String> cquery = cb.createQuery(String.class);
@@ -8340,50 +8239,40 @@ public class Client extends Util {
     /*
      * testName: trimLeadingExpTest assertion_ids: PERSISTENCE:JAVADOC:867
      *
-     * test_Strategy: Select trim(leading from t.name) from Trim t where t.name= '
-     * David R. Vincent '
+     * test_Strategy: Select trim(leading from t.name) from Trim t where t.name= ' David R. Vincent '
      *
      *
      */
     /*
-     * @SetupMethod(name = "setupTrimData") // TODO - once TRIM issues are
-     * resolved, re-enable this test public void trimLeadingExpTest() throws Fault
-     * { boolean pass = false; final String expected = " David R. Vincent "; final
-     * String expected2 = "David R. Vincent             ";
+     * @SetupMethod(name = "setupTrimData") // TODO - once TRIM issues are resolved, re-enable this test public void
+     * trimLeadingExpTest() throws Fault { boolean pass = false; final String expected = " David R. Vincent "; final String
+     * expected2 = "David R. Vincent             ";
      *
      * CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
      *
      *
      * getEntityTransaction().begin();
      *
-     * Trim tTrim = getEntityManager().find(Trim.class, "19");
-     * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-     * (!tTrim.getName().equals(expected)) {
-     * TestUtil.logErr("Name returned by find does not match expected");
-     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
-     * "|"); }
+     * Trim tTrim = getEntityManager().find(Trim.class, "19"); TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+     * (!tTrim.getName().equals(expected)) { TestUtil.logErr("Name returned by find does not match expected");
+     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() + "|"); }
      *
      *
-     * CriteriaQuery<String> cquery = cb.createQuery(String.class); if (cquery !=
-     * null) { Root<Trim> trim = cquery.from(Trim.class);
+     * CriteriaQuery<String> cquery = cb.createQuery(String.class); if (cquery != null) { Root<Trim> trim =
+     * cquery.from(Trim.class);
      *
      *
      * //Get Metamodel from Root EntityType<Trim> trim_ = trim.getModel();
      *
-     * cquery.where(cb.equal( trim.get(trim_.getSingularAttribute("name",
-     * String.class)), cb.literal(expected)));
-     * cquery.select(cb.trim(Trimspec.LEADING,
-     * trim.get(trim_.getSingularAttribute("name", String.class))));
+     * cquery.where(cb.equal( trim.get(trim_.getSingularAttribute("name", String.class)), cb.literal(expected)));
+     * cquery.select(cb.trim(Trimspec.LEADING, trim.get(trim_.getSingularAttribute("name", String.class))));
      *
      * TypedQuery<String> tq = getEntityManager().createQuery(cquery);
      *
      * String result = tq.getSingleResult();
      *
-     * if (result.equals(expected2)) {
-     * TestUtil.logTrace("Received expected result:|" + result + "|"); pass =
-     * true; } else {
-     * TestUtil.logErr("Mismatch in received results - expected = |" + expected2 +
-     * "|, received = |" + result + "|"); }
+     * if (result.equals(expected2)) { TestUtil.logTrace("Received expected result:|" + result + "|"); pass = true; } else {
+     * TestUtil.logErr("Mismatch in received results - expected = |" + expected2 + "|, received = |" + result + "|"); }
      *
      * } else { TestUtil.logErr("Failed to get Non-null Criteria Query"); }
      *
@@ -8399,8 +8288,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:867
      *
-     * @test_Strategy: Select trim(trailing from t.name) from Trim t where
-     * trim(t.name)= 'David R. Vincent'
+     * @test_Strategy: Select trim(trailing from t.name) from Trim t where trim(t.name)= 'David R. Vincent'
      *
      */
     @SetupMethod(name = "setupTrimData")
@@ -8414,14 +8302,10 @@ public class Client extends Util {
         getEntityTransaction().begin();
 
         /*
-         * Trim tTrim = getEntityManager().find(Trim.class, "19");
-         * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-         * (tTrim.getName().equals(expected)) {
-         * TestUtil.logTrace("Received expected find result: " + tTrim.getName());
-         * pass1 = true; } else {
-         * TestUtil.logErr("Name returned by find does not match expected");
-         * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName()
-         * + "|"); }
+         * Trim tTrim = getEntityManager().find(Trim.class, "19"); TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+         * (tTrim.getName().equals(expected)) { TestUtil.logTrace("Received expected find result: " + tTrim.getName()); pass1 =
+         * true; } else { TestUtil.logErr("Name returned by find does not match expected"); TestUtil.logErr("Expected:|" +
+         * expected + "|, actual:|" + tTrim.getName() + "|"); }
          */
 
         CriteriaQuery<String> cquery = cb.createQuery(String.class);
@@ -8463,8 +8347,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:812
      *
-     * @test_Strategy: Select lower(c.name) From Customer c a WHERE c.name = 'Lisa
-     * M. Presley'
+     * @test_Strategy: Select lower(c.name) From Customer c a WHERE c.name = 'Lisa M. Presley'
      */
     @SetupMethod(name = "setupCustomerData")
     public void lower() throws Fault {
@@ -8959,11 +8842,9 @@ public class Client extends Util {
     /*
      * @testName: treatPathClassTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1683; PERSISTENCE:SPEC:1734;
-     * PERSISTENCE:SPEC:1734; PERSISTENCE:SPEC:1734.2;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1683; PERSISTENCE:SPEC:1734; PERSISTENCE:SPEC:1734; PERSISTENCE:SPEC:1734.2;
      *
-     * @test_Strategy: SELECT p.id From Product p WHERE TREAT(p as
-     * SoftwareProduct).name LIKE "Java%"
+     * @test_Strategy: SELECT p.id From Product p WHERE TREAT(p as SoftwareProduct).name LIKE "Java%"
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -9019,11 +8900,9 @@ public class Client extends Util {
     /*
      * @testName: joinOnExpressionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1716; PERSISTENCE:SPEC:1717;
-     * PERSISTENCE:SPEC:1613;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1716; PERSISTENCE:SPEC:1717; PERSISTENCE:SPEC:1613;
      *
-     * @test_Strategy: select o FROM Order o INNER JOIN o.lineItems l ON
-     * l.quantity > 5
+     * @test_Strategy: select o FROM Order o INNER JOIN o.lineItems l ON l.quantity > 5
      */
     @SetupMethod(name = "setupOrderData")
     public void joinOnExpressionTest() throws Fault {
@@ -9062,7 +8941,8 @@ public class Client extends Util {
             throw new Fault("queryTest61 failed", e);
         }
 
-        if (!pass) throw new Fault("joinOnExpressionTest failed");
+        if (!pass)
+            throw new Fault("joinOnExpressionTest failed");
     }
 
     /*
@@ -9070,8 +8950,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1717; PERSISTENCE:JAVADOC:1715;
      *
-     * @test_Strategy: select o FROM Order o LEFT JOIN o.lineItems l ON
-     * (l.quantity > 5 AND l.quantity < 9)
+     * @test_Strategy: select o FROM Order o LEFT JOIN o.lineItems l ON (l.quantity > 5 AND l.quantity < 9)
      */
     @SetupMethod(name = "setupOrderData")
     public void joinOnPredicateArrayTest() throws Fault {
@@ -9101,7 +8980,7 @@ public class Client extends Util {
                     TestUtil.logErr("actual:" + exp.toString());
                 }
             }
-            Predicate[] predArray = {cbuilder.equal(lineItem.get("id"), "1")};
+            Predicate[] predArray = { cbuilder.equal(lineItem.get("id"), "1") };
 
             lineItem.on(predArray);
 
@@ -9137,7 +9016,8 @@ public class Client extends Util {
             throw new Fault("queryTest61 failed", e);
         }
 
-        if (!pass1 || !pass2 || !pass3) throw new Fault("joinOnPredicateArrayTest failed");
+        if (!pass1 || !pass2 || !pass3)
+            throw new Fault("joinOnPredicateArrayTest failed");
     }
 
     /*
@@ -9145,9 +9025,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:830
      *
-     * @test_Strategy: SELECT c.ID, NULLIF(LCASE(c.home.city), LCASE(c.work.city))
-     * FROM CUSTOMER c WHERE (((c.home.city IS NOT NULL) AND (c.work.city IS NOT
-     * NULL)) ORDER BY c.ID ASC
+     * @test_Strategy: SELECT c.ID, NULLIF(LCASE(c.home.city), LCASE(c.work.city)) FROM CUSTOMER c WHERE (((c.home.city IS
+     * NOT NULL) AND (c.work.city IS NOT NULL)) ORDER BY c.ID ASC
      *
      *
      *
@@ -9238,8 +9117,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:831
      *
-     * @test_Strategy: SELECT c.ID, NULLIF(LCASE(c.home.city), "burlington") FROM
-     * CUSTOMER c WHERE ((c.home.city IS NOT NULL) ORDER BY c.ID ASC
+     * @test_Strategy: SELECT c.ID, NULLIF(LCASE(c.home.city), "burlington") FROM CUSTOMER c WHERE ((c.home.city IS NOT
+     * NULL) ORDER BY c.ID ASC
      *
      *
      */
@@ -9478,12 +9357,10 @@ public class Client extends Util {
     /*
      * @testName: selectMultiSelectTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1707; PERSISTENCE:SPEC:1708;
-     * PERSISTENCE:SPEC:1709;
+     * @assertion_ids: PERSISTENCE:SPEC:1707; PERSISTENCE:SPEC:1708; PERSISTENCE:SPEC:1709;
      *
-     * @test_Strategy: Execute a query and verify a single result can be returned
-     * when using cbuilder.createQuery() Execute a query and verify a multiple
-     * results can be returned when using cbuilder.createQuery()
+     * @test_Strategy: Execute a query and verify a single result can be returned when using cbuilder.createQuery() Execute
+     * a query and verify a multiple results can be returned when using cbuilder.createQuery()
      *
      * Select c.id, c.name from Customer c
      *
@@ -9612,8 +9489,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1711
      *
-     * @test_Strategy: Test that using mulitple roots results in a cartesian
-     * product
+     * @test_Strategy: Test that using mulitple roots results in a cartesian product
      *
      * Select s1, s2 from Spouse s1, Spouse s2
      *

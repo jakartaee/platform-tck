@@ -34,8 +34,7 @@ public class Client extends EJBLiteClientBase {
     private static final int NUM_OF_WRITES = 1;
 
     /**
-     * used to make sure the whole method invocation including the busyWait does
-     * not exceed the configured timeout
+     * used to make sure the whole method invocation including the busyWait does not exceed the configured timeout
      */
     private static final long LESS_THAN_TIMEOUT_DURATION_MILLIS = 500;
 
@@ -81,9 +80,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: longReadsClassLevel
      *
-     * @test_Strategy: multiple invocations of longRead share the lock, hence no
-     * timeout should occur. Each invocation does not cause time out. All these
-     * concurrent longReads should not cause time out, either.
+     * @test_Strategy: multiple invocations of longRead share the lock, hence no timeout should occur. Each invocation does
+     * not cause time out. All these concurrent longReads should not cause time out, either.
      */
     public void longReadsClassLevel() {
         longReads(classLevelAccessTimeoutBean);
@@ -110,9 +108,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: longReadsLongRead2sClassLevel
      *
-     * @test_Strategy: multiple invocations of longRead AND longRead2 share the
-     * lock, hence no timeout should occur. Each invocation does not cause time
-     * out. All these concurrent longReads should not cause time out, either.
+     * @test_Strategy: multiple invocations of longRead AND longRead2 share the lock, hence no timeout should occur. Each
+     * invocation does not cause time out. All these concurrent longReads should not cause time out, either.
      */
     public void longReadsLongRead2sClassLevel() {
         longReadsLongRead2s(classLevelAccessTimeoutBean);
@@ -139,10 +136,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: longWritesClassLevel
      *
-     * @test_Strategy: multiple invocations of longWrite compete for the lock,
-     * hence timeout should occur. Each longWrite operation, when run
-     * individually, does not cause time out. When run concurrently, should cause
-     * some time out.
+     * @test_Strategy: multiple invocations of longWrite compete for the lock, hence timeout should occur. Each longWrite
+     * operation, when run individually, does not cause time out. When run concurrently, should cause some time out.
      */
     public void longWritesClassLevel() {
         longWrites(classLevelAccessTimeoutBean);
@@ -191,47 +186,39 @@ public class Client extends EJBLiteClientBase {
     /*
      * @ testName: longWritesLongReadClassLevel
      *
-     * @test_Strategy: multiple invocations of longWrite compete for the lock,
-     * hence timeout should occur. A subsequent longRead waits for the lock and
-     * then times out.
+     * @test_Strategy: multiple invocations of longWrite compete for the lock, hence timeout should occur. A subsequent
+     * longRead waits for the lock and then times out.
      *
-     * Excluded:
-     * https://bug.oraclecorp.com/pls/bug/webbug_edit.edit_info_top?rptno=12804747
+     * Excluded: https://bug.oraclecorp.com/pls/bug/webbug_edit.edit_info_top?rptno=12804747
      * &rptno_count=1&pos=1&report_title=&query_id=-1
      *
-     * public void longWritesLongReadClassLevel() {
-     * longWritesLongRead(classLevelAccessTimeoutBean); }
+     * public void longWritesLongReadClassLevel() { longWritesLongRead(classLevelAccessTimeoutBean); }
      */
     /*
      * @ testName: longWritesLongReadInherit
      *
      * @test_Strategy:
      *
-     * Excluded:
-     * https://bug.oraclecorp.com/pls/bug/webbug_edit.edit_info_top?rptno=12804747
+     * Excluded: https://bug.oraclecorp.com/pls/bug/webbug_edit.edit_info_top?rptno=12804747
      * &rptno_count=1&pos=1&report_title=&query_id=-1
      *
-     * public void longWritesLongReadInherit() {
-     * longWritesLongRead(inheritAccessTimeoutBean); }
+     * public void longWritesLongReadInherit() { longWritesLongRead(inheritAccessTimeoutBean); }
      */
     /*
      * @ testName: longWritesLongReadMethodLevel
      *
      * @test_Strategy:
      *
-     * Excluded:
-     * https://bug.oraclecorp.com/pls/bug/webbug_edit.edit_info_top?rptno=12804747
+     * Excluded: https://bug.oraclecorp.com/pls/bug/webbug_edit.edit_info_top?rptno=12804747
      * &rptno_count=1&pos=1&report_title=&query_id=-1
      *
-     * public void longWritesLongReadMethodLevel() {
-     * longWritesLongRead(methodLevelAccessTimeoutBean); }
+     * public void longWritesLongReadMethodLevel() { longWritesLongRead(methodLevelAccessTimeoutBean); }
      */
 
     /*
      * @testName: timeoutInterceptor
      *
-     * @test_Strategy: verify that the time taken by interceptors is also included
-     * in the timeout decision.
+     * @test_Strategy: verify that the time taken by interceptors is also included in the timeout decision.
      */
     public void timeoutInterceptor() {
         try {
@@ -282,12 +269,10 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: classLevelCallbackAccessTimeout
      *
-     * @test_Strategy: verify the wait time in post-construct method does not
-     * count towards AccessTimeout; wait time in around-invoke method is not
-     * counted towards AccessTimeout; post-construct and around-invoke methods can
-     * be exposed as business methods; around-invoke method is also invoked when
-     * itself is invoked as a business method; preDestroy method can be exposed as
-     * a business method and the class-level AccessTimeout also applies.
+     * @test_Strategy: verify the wait time in post-construct method does not count towards AccessTimeout; wait time in
+     * around-invoke method is not counted towards AccessTimeout; post-construct and around-invoke methods can be exposed as
+     * business methods; around-invoke method is also invoked when itself is invoked as a business method; preDestroy method
+     * can be exposed as a business method and the class-level AccessTimeout also applies.
      */
     public void classLevelCallbackAccessTimeout() throws Exception {
         callbackAccessTimeout(classLevelCallbackAccessTimeoutBean);
@@ -393,8 +378,7 @@ public class Client extends EJBLiteClientBase {
 
     private void verifyConcurrentAccessTimeoutException(
             Vector<Throwable> errors, boolean... expectingConcurrentAccessExceptions) {
-        boolean expectingConcurrentAccessException =
-                expectingConcurrentAccessExceptions.length == 0 ? false : expectingConcurrentAccessExceptions[0];
+        boolean expectingConcurrentAccessException = expectingConcurrentAccessExceptions.length == 0 ? false : expectingConcurrentAccessExceptions[0];
         for (Throwable th : errors) {
             if (expectingConcurrentAccessException) {
                 if (th instanceof ConcurrentAccessException) {

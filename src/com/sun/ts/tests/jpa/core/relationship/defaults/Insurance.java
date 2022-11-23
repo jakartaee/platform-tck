@@ -35,7 +35,8 @@ public class Insurance implements java.io.Serializable {
 
     private String carrier;
 
-    public Insurance() {}
+    public Insurance() {
+    }
 
     public Insurance(int insid, String carrier) {
         this.insid = insid;

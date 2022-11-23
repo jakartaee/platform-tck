@@ -29,11 +29,7 @@ import java.io.*;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-@WebServiceProvider(
-        portName = "HelloPort",
-        serviceName = "HelloService",
-        targetNamespace = "http://endpoint/jaxws",
-        wsdlLocation = "WEB-INF/wsdl/HelloService.wsdl")
+@WebServiceProvider(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://endpoint/jaxws", wsdlLocation = "WEB-INF/wsdl/HelloService.wsdl")
 public class HelloImpl implements Provider<Source> {
 
     private static final JAXBContext jaxbContext = createJAXBContext();

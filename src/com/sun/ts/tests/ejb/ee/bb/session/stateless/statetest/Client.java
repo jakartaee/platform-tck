@@ -65,7 +65,8 @@ public class Client extends EETest {
 
         private int value = 0;
 
-        public CounterThread() {}
+        public CounterThread() {
+        }
 
         public CounterThread(int n) {
             threadNum = n;
@@ -88,7 +89,8 @@ public class Client extends EETest {
             boolean pass = runTest();
 
             synchronized (lock) {
-                if (!pass) ++errors;
+                if (!pass)
+                    ++errors;
                 ++threadsDone;
                 lock.notifyAll();
             }
@@ -181,8 +183,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:53
      *
-     * @test_Strategy: A STATELESS session bean contains no conversational state.
-     * Demonstrate using single client.
+     * @test_Strategy: A STATELESS session bean contains no conversational state. Demonstrate using single client.
      *
      */
 
@@ -240,8 +241,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:53
      *
-     * @test_Strategy: A STATELESS session bean contains no conversational state.
-     * Demonstrate using multiple clients.
+     * @test_Strategy: A STATELESS session bean contains no conversational state. Demonstrate using multiple clients.
      *
      */
 

@@ -23,8 +23,8 @@ package com.sun.ts.tests.ejb30.common.busiface;
 import jakarta.ejb.Remote;
 
 /**
- * A business interface annotated with @Remote. Beans that implementing this
- * business interface do not need to use @Remote annotation.
+ * A business interface annotated with @Remote. Beans that implementing this business interface do not need to
+ * use @Remote annotation.
  */
 @Remote
 public interface AnnotatedBusinessInterface1 {

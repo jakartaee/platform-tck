@@ -38,7 +38,8 @@ public class Course implements java.io.Serializable {
 
     List<Student> students;
 
-    public Course() {}
+    public Course() {
+    }
 
     public Course(int id, String name) {
         this.courseId = id;
@@ -62,20 +63,7 @@ public class Course implements java.io.Serializable {
         this.courseName = courseName;
     }
 
-    @JoinTable(
-            name = "SCHEMAGEN_COURSE_STUDENT",
-            joinColumns = @JoinColumn(name = "COURSE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "STUDENT_ID"),
-            foreignKey =
-                    @ForeignKey(
-                            name = "COURSEIDCONSTRAINT",
-                            value = ConstraintMode.CONSTRAINT,
-                            foreignKeyDefinition = "FOREIGN KEY (COURSE_ID) REFERENCES SCHEMAGENCOURSE (COURSEID)"),
-            inverseForeignKey =
-                    @ForeignKey(
-                            name = "STUDENTIDCONSTRAINT",
-                            value = ConstraintMode.CONSTRAINT,
-                            foreignKeyDefinition = "FOREIGN KEY (STUDENT_ID) REFERENCES SCHEMAGENSTUDENT (STUDENTID)"))
+    @JoinTable(name = "SCHEMAGEN_COURSE_STUDENT", joinColumns = @JoinColumn(name = "COURSE_ID"), inverseJoinColumns = @JoinColumn(name = "STUDENT_ID"), foreignKey = @ForeignKey(name = "COURSEIDCONSTRAINT", value = ConstraintMode.CONSTRAINT, foreignKeyDefinition = "FOREIGN KEY (COURSE_ID) REFERENCES SCHEMAGENCOURSE (COURSEID)"), inverseForeignKey = @ForeignKey(name = "STUDENTIDCONSTRAINT", value = ConstraintMode.CONSTRAINT, foreignKeyDefinition = "FOREIGN KEY (STUDENT_ID) REFERENCES SCHEMAGENSTUDENT (STUDENTID)"))
     @ManyToMany(cascade = CascadeType.ALL)
     public List<Student> getStudents() {
         return students;

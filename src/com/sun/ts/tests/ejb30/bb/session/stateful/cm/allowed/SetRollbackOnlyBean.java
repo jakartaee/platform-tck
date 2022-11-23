@@ -30,7 +30,7 @@ import jakarta.ejb.Stateful;
 import java.util.Properties;
 
 @Stateful(name = "SetRollbackOnlyBean")
-@Remote({SetRollbackOnlyIF.class})
+@Remote({ SetRollbackOnlyIF.class })
 public class SetRollbackOnlyBean
         implements SetRollbackOnlyIF, java.io.Serializable, MySessionSynchronization, Constants {
 
@@ -84,7 +84,8 @@ public class SetRollbackOnlyBean
 
     // ===================== business methods ===========================
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 
     public String getResultFor(String testMethod) {
         return results.getProperty(testMethod);
@@ -98,9 +99,12 @@ public class SetRollbackOnlyBean
         runSetRollbackOnly(businessSetRollbackOnlyTest);
     }
 
-    public void beforeCompletionSetRollbackOnlyTest() {}
+    public void beforeCompletionSetRollbackOnlyTest() {
+    }
 
-    public void afterCompletionSetRollbackOnlyTest() {}
+    public void afterCompletionSetRollbackOnlyTest() {
+    }
 
-    public void afterBeginSetRollbackOnlyTest() {}
+    public void afterBeginSetRollbackOnlyTest() {
+    }
 }

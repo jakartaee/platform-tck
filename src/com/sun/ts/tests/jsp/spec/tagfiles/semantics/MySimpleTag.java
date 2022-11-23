@@ -48,5 +48,6 @@ public class MySimpleTag extends SimpleTagSupport implements TryCatchFinally {
         }
     }
 
-    public void doFinally() {}
+    public void doFinally() {
+    }
 }

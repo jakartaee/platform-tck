@@ -32,10 +32,12 @@ public abstract class BeanBase {
     public abstract BeanBase passAsReturn();
 
     // declared or annotated as remove-method in stateful subclass
-    public void remove() {}
+    public void remove() {
+    }
 
     // just a regular method
-    public void remove(boolean notRemoveMethod) {}
+    public void remove(boolean notRemoveMethod) {
+    }
 
     protected String nonBusinessMethod() {
         // throw new IllegalStateException("Not a business method.");

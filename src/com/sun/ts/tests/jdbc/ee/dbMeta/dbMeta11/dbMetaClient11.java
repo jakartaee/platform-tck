@@ -41,8 +41,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The dbMetaClient11 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The dbMetaClient11 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -76,8 +75,7 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     }
 
     /*
-     * A private method to compare the Column Names & No of Columns Specific to
-     * the test
+     * A private method to compare the Column Names & No of Columns Specific to the test
      */
     private boolean columnCompare(String[] sColumnNames, ResultSet rs) throws SQLException {
 
@@ -118,21 +116,19 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             iColumnNamesLength--;
         }
         msg.setMsg("statusColumnCount " + statusColumnCount + " and statusColumnMatch " + statusColumnMatch);
-        if ((statusColumnCount == true) && (statusColumnMatch == true)) test_status = true;
+        if ((statusColumnCount == true) && (statusColumnMatch == true))
+            test_status = true;
 
         return test_status;
     }
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -144,11 +140,16 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
                 dbUser = p.getProperty("user1", "");
                 sPtable = p.getProperty("ptable", "TSTABLE1");
                 sFtable = p.getProperty("ftable", "TSTABLE2");
-                if (dbName.length() == 0) throw new Fault("Invalid db1  Database Name");
-                if (dbUser.length() == 0) throw new Fault("Invalid Login Id");
-                if (sPtable.length() == 0) throw new Fault("Invalid Primary table");
-                if (sFtable.length() == 0) throw new Fault("Invalid Foreign table");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (dbName.length() == 0)
+                    throw new Fault("Invalid db1  Database Name");
+                if (dbUser.length() == 0)
+                    throw new Fault("Invalid Login Id");
+                if (sPtable.length() == 0)
+                    throw new Fault("Invalid Primary table");
+                if (sFtable.length() == 0)
+                    throw new Fault("Invalid Foreign table");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 int nLocdbname = dbName.indexOf('=');
                 sSchemaName = dbUser;
@@ -178,13 +179,11 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsTransactionIsolationLevel2
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsTransactionIsolationLevel(int isolevel)
-     * method on that object with the isolation level TRANSACTION_READ_COMMITTED.
-     * It should return a boolean value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsTransactionIsolationLevel(int isolevel) method on that object with the isolation level
+     * TRANSACTION_READ_COMMITTED. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsTransactionIsolationLevel2() throws Fault {
@@ -192,8 +191,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsTransactionIsolationLevel(TRANSACTION_READ_COMMITTED)");
             // invoke supportsTransactionIsolationLevel method
             boolean retValue = dbmd.supportsTransactionIsolationLevel(Connection.TRANSACTION_READ_COMMITTED);
-            if (retValue) msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_READ_COMMITTED) is supported");
-            else msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_READ_COMMITTED) is not supported");
+            if (retValue)
+                msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_READ_COMMITTED) is supported");
+            else
+                msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_READ_COMMITTED) is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -207,14 +208,11 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsTransactionIsolationLevel3
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsTransactionIsolationLevel(int isolevel)
-     * method on that object with the isolation level
-     * TRANSACTION_READ_UNCOMMITTED. It should return a boolean value; either true
-     * or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsTransactionIsolationLevel(int isolevel) method on that object with the isolation level
+     * TRANSACTION_READ_UNCOMMITTED. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsTransactionIsolationLevel3() throws Fault {
@@ -222,8 +220,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsTransactionIsolationLevel(TRANSACTION_READ_UNCOMMITTED)");
             // invoke supportsTransactionIsolationLevel method
             boolean retValue = dbmd.supportsTransactionIsolationLevel(Connection.TRANSACTION_READ_UNCOMMITTED);
-            if (retValue) msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_READ_UNCOMMITTED) is supported");
-            else msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_READ_UNCOMMITTED ) is not supported");
+            if (retValue)
+                msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_READ_UNCOMMITTED) is supported");
+            else
+                msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_READ_UNCOMMITTED ) is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -237,13 +237,11 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsTransactionIsolationLevel4
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsTransactionIsolationLevel(int isolevel)
-     * method on that object with isolation level TRANSACTION_REPEATABLE_READ. It
-     * should return a boolean value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsTransactionIsolationLevel(int isolevel) method on that object with isolation level
+     * TRANSACTION_REPEATABLE_READ. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsTransactionIsolationLevel4() throws Fault {
@@ -251,8 +249,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsTransactionIsolationLevel(TRANSACTION_REPEATABLE_READ)");
             // invoke supportsTransactionIsolationLevel method
             boolean retValue = dbmd.supportsTransactionIsolationLevel(Connection.TRANSACTION_REPEATABLE_READ);
-            if (retValue) msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_REPEATABLE_READ) is supported");
-            else msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_REPEATABLE_READ) is not supported");
+            if (retValue)
+                msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_REPEATABLE_READ) is supported");
+            else
+                msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_REPEATABLE_READ) is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -266,13 +266,11 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsTransactionIsolationLevel5
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1032; JDBC:JAVADOC:1033; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsTransactionIsolationLevel(int isolevel)
-     * method on that object with isolation level TRANSACTION_SERIALIZABLE. It
-     * should return a boolean value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsTransactionIsolationLevel(int isolevel) method on that object with isolation level TRANSACTION_SERIALIZABLE.
+     * It should return a boolean value; either true or false.
      *
      */
     public void testSupportsTransactionIsolationLevel5() throws Fault {
@@ -280,8 +278,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsTransactionIsolationLevel(TRANSACTION_SERIALIZABLE)");
             // invoke supportsTransactionIsolationLevel method
             boolean retValue = dbmd.supportsTransactionIsolationLevel(Connection.TRANSACTION_SERIALIZABLE);
-            if (retValue) msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_SERIALIZABLE) is supported");
-            else msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_SERIALIZABLE) is not supported");
+            if (retValue)
+                msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_SERIALIZABLE) is supported");
+            else
+                msg.setMsg("supportsTransactionIsolationLevel(TRANSACTION_SERIALIZABLE) is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -295,25 +295,22 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetColumnPrivileges
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1056; JDBC:JAVADOC:1057;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1056; JDBC:JAVADOC:1057; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getColumnPrivileges() method on that object. It
-     * should return a ResultSet object. Validate the column names and column
-     * ordering.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getColumnPrivileges()
+     * method on that object. It should return a ResultSet object. Validate the column names and column ordering.
      */
     public void testGetColumnPrivileges() throws Fault {
         try {
             String sColumnNames[] = {
-                "TABLE_CAT",
-                "TABLE_SCHEM",
-                "TABLE_NAME",
-                "COLUMN_NAME",
-                "GRANTOR",
-                "GRANTEE",
-                "PRIVILEGE",
-                "IS_GRANTABLE"
+                    "TABLE_CAT",
+                    "TABLE_SCHEM",
+                    "TABLE_NAME",
+                    "COLUMN_NAME",
+                    "GRANTOR",
+                    "GRANTEE",
+                    "PRIVILEGE",
+                    "IS_GRANTABLE"
             };
             boolean test_status = true;
 
@@ -329,8 +326,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
                         "Columns return are not same either in order or name", "Call to getColumnPrivileges Failed!");
             }
 
-            if (oRet_ResultSet.next()) msg.setMsg("getColumnPrivileges returned some column names");
-            else msg.setMsg("getColumnPrivileges did not return any column names");
+            if (oRet_ResultSet.next())
+                msg.setMsg("getColumnPrivileges returned some column names");
+            else
+                msg.setMsg("getColumnPrivileges did not return any column names");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -344,17 +343,15 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTablePrivileges
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1058; JDBC:JAVADOC:1059;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1058; JDBC:JAVADOC:1059; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getTablePrivileges() method on that object. It should
-     * return a ResultSet object. Validate the column names and column ordering.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getTablePrivileges()
+     * method on that object. It should return a ResultSet object. Validate the column names and column ordering.
      */
     public void testGetTablePrivileges() throws Fault {
         try {
             String sColumnNames[] = {
-                "TABLE_CAT", "TABLE_SCHEM", "TABLE_NAME", "GRANTOR", "GRANTEE", "PRIVILEGE", "IS_GRANTABLE"
+                    "TABLE_CAT", "TABLE_SCHEM", "TABLE_NAME", "GRANTOR", "GRANTEE", "PRIVILEGE", "IS_GRANTABLE"
             };
             boolean test_status = true;
 
@@ -375,9 +372,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             }
 
             // Store all the privileges returned
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(6) + ",";
-            if (sRetStr == "") msg.setMsg("getTablePrivileges did not return any privileges");
-            else msg.setMsg("The privileges returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(6) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getTablePrivileges did not return any privileges");
+            else
+                msg.setMsg("The privileges returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -391,12 +391,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBestRowIdentifier1
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getBestRowIdentifier() method on that object. It
-     * should return a ResultSet object.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getBestRowIdentifier()
+     * method on that object. It should return a ResultSet object.
      *
      */
     public void testGetBestRowIdentifier1() throws Fault {
@@ -409,10 +407,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             String sRetStr = new String();
             sRetStr = "";
             msg.setMsg("Store all the Columns returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(2) + ",";
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(2) + ",";
             if (sRetStr == "")
                 msg.setMsg("getBestRowIdentifier with scope bestRowTemporary did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -426,12 +426,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBestRowIdentifier2
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getBestRowIdentifier() method on that object. It
-     * should return a ResultSet object.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getBestRowIdentifier()
+     * method on that object. It should return a ResultSet object.
      *
      */
     public void testGetBestRowIdentifier2() throws Fault {
@@ -444,10 +442,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             String sRetStr = new String();
             sRetStr = "";
             msg.setMsg("Store all the Columns returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(2) + ",";
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(2) + ",";
             if (sRetStr == "")
                 msg.setMsg("getBestRowIdentifier with scope bestRowTransaction did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -461,12 +461,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBestRowIdentifier3
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getBestRowIdentifier() method on that object. It
-     * should return a ResultSet object.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getBestRowIdentifier()
+     * method on that object. It should return a ResultSet object.
      *
      */
     public void testGetBestRowIdentifier3() throws Fault {
@@ -478,9 +476,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             String sRetStr = new String();
             sRetStr = "";
             // Store all the Columns returned
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(2) + ",";
-            if (sRetStr == "") msg.setMsg("getBestRowIdentifier with scope bestRowSession did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(2) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getBestRowIdentifier with scope bestRowSession did not return any columns");
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -494,12 +495,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBestRowIdentifier4
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getBestRowIdentifier() method on that object. It
-     * should return a ResultSet object.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getBestRowIdentifier()
+     * method on that object. It should return a ResultSet object.
      *
      */
     public void testGetBestRowIdentifier4() throws Fault {
@@ -512,10 +511,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             String sRetStr = new String();
             sRetStr = "";
             // Store all the Columns returned
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(2) + ",";
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(2) + ",";
             if (sRetStr == "")
                 msg.setMsg("getBestRowIdentifier with scope bestRowTemporary did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -529,12 +530,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBestRowIdentifier5
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getBestRowIdentifier() method on that object. It
-     * should return a ResultSet object.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getBestRowIdentifier()
+     * method on that object. It should return a ResultSet object.
      *
      */
     public void testGetBestRowIdentifier5() throws Fault {
@@ -547,10 +546,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             String sRetStr = new String();
             sRetStr = "";
             // Store all the Columns returned
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(2) + ",";
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(2) + ",";
             if (sRetStr == "")
                 msg.setMsg("getBestRowIdentifier with scope bestRowTransaction did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -564,12 +565,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBestRowIdentifier6
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getBestRowIdentifier() method on that object. It
-     * should return a ResultSet object
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getBestRowIdentifier()
+     * method on that object. It should return a ResultSet object
      *
      */
     public void testGetBestRowIdentifier6() throws Fault {
@@ -582,9 +581,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             String sRetStr = new String();
             sRetStr = "";
             // Store all the Columns returned
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(2) + ",";
-            if (sRetStr == "") msg.setMsg("getBestRowIdentifier with scope bestRowSession did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(2) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getBestRowIdentifier with scope bestRowSession did not return any columns");
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -598,25 +600,22 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBestRowIdentifier7
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1060; JDBC:JAVADOC:1061; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getBestRowIdentifier() method on that object. It
-     * should return a ResultSet object. Validate the column names and column
-     * ordering.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getBestRowIdentifier()
+     * method on that object. It should return a ResultSet object. Validate the column names and column ordering.
      */
     public void testGetBestRowIdentifier7() throws Fault {
         try {
             String sColumnNames[] = {
-                "SCOPE",
-                "COLUMN_NAME",
-                "DATA_TYPE",
-                "TYPE_NAME",
-                "COLUMN_SIZE",
-                "BUFFER_LENGTH",
-                "DECIMAL_DIGITS",
-                "PSEUDO_COLUMN"
+                    "SCOPE",
+                    "COLUMN_NAME",
+                    "DATA_TYPE",
+                    "TYPE_NAME",
+                    "COLUMN_SIZE",
+                    "BUFFER_LENGTH",
+                    "DECIMAL_DIGITS",
+                    "PSEUDO_COLUMN"
             };
             boolean test_status = true;
 
@@ -647,25 +646,23 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetVersionColumns
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1062; JDBC:JAVADOC:1063;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1062; JDBC:JAVADOC:1063; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getVersionColumns() method on that object. It should
-     * return a ResultSet object.Compare the column names Validate the column
-     * names and column ordering.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getVersionColumns()
+     * method on that object. It should return a ResultSet object.Compare the column names Validate the column names and
+     * column ordering.
      */
     public void testGetVersionColumns() throws Fault {
         try {
             String sColumnNames[] = {
-                "SCOPE",
-                "COLUMN_NAME",
-                "DATA_TYPE",
-                "TYPE_NAME",
-                "COLUMN_SIZE",
-                "BUFFER_LENGTH",
-                "DECIMAL_DIGITS",
-                "PSEUDO_COLUMN"
+                    "SCOPE",
+                    "COLUMN_NAME",
+                    "DATA_TYPE",
+                    "TYPE_NAME",
+                    "COLUMN_SIZE",
+                    "BUFFER_LENGTH",
+                    "DECIMAL_DIGITS",
+                    "PSEUDO_COLUMN"
             };
             boolean test_status = true;
 
@@ -683,9 +680,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             }
 
             msg.setMsg("Store all the columns returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(2) + ",";
-            if (sRetStr == "") msg.setMsg("getVersionColumns did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(2) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getVersionColumns did not return any columns");
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -699,16 +699,14 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetPrimaryKeys
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1064; JDBC:JAVADOC:1065;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1064; JDBC:JAVADOC:1065; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getPrimaryKeys() method on that object. It should
-     * return a ResultSet object. Validate the column names and column ordering.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getPrimaryKeys()
+     * method on that object. It should return a ResultSet object. Validate the column names and column ordering.
      */
     public void testGetPrimaryKeys() throws Fault {
         try {
-            String sColumnNames[] = {"TABLE_CAT", "TABLE_SCHEM", "TABLE_NAME", "COLUMN_NAME", "KEY_SEQ", "PK_NAME"};
+            String sColumnNames[] = { "TABLE_CAT", "TABLE_SCHEM", "TABLE_NAME", "COLUMN_NAME", "KEY_SEQ", "PK_NAME" };
             boolean test_status = true;
 
             msg.setMsg("Calling DatabaseMetaData.getPrimaryKeys");
@@ -724,9 +722,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
                         "Columns return are not same either in order or name", "Call to getPrimaryKeys Failed!");
             }
             msg.setMsg("Store all the columns returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(4) + ",";
-            if (sRetStr == "") msg.setMsg("getPrimaryKeys did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(4) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getPrimaryKeys did not return any columns");
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -740,30 +741,28 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetImportedKeys
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1066; JDBC:JAVADOC:1067;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1066; JDBC:JAVADOC:1067; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getImportedKeys() method on that object. It should
-     * return a ResultSet object. Validate the column names and column ordering.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getImportedKeys()
+     * method on that object. It should return a ResultSet object. Validate the column names and column ordering.
      */
     public void testGetImportedKeys() throws Fault {
         try {
             String sColumnNames[] = {
-                "PKTABLE_CAT",
-                "PKTABLE_SCHEM",
-                "PKTABLE_NAME",
-                "PKCOLUMN_NAME",
-                "FKTABLE_CAT",
-                "FKTABLE_SCHEM",
-                "FKTABLE_NAME",
-                "FKCOLUMN_NAME",
-                "KEY_SEQ",
-                "UPDATE_RULE",
-                "DELETE_RULE",
-                "FK_NAME",
-                "PK_NAME",
-                "DEFERRABILITY"
+                    "PKTABLE_CAT",
+                    "PKTABLE_SCHEM",
+                    "PKTABLE_NAME",
+                    "PKCOLUMN_NAME",
+                    "FKTABLE_CAT",
+                    "FKTABLE_SCHEM",
+                    "FKTABLE_NAME",
+                    "FKCOLUMN_NAME",
+                    "KEY_SEQ",
+                    "UPDATE_RULE",
+                    "DELETE_RULE",
+                    "FK_NAME",
+                    "PK_NAME",
+                    "DEFERRABILITY"
             };
             boolean test_status = true;
 
@@ -781,9 +780,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             }
 
             msg.setMsg("Store all the columns returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(4) + ",";
-            if (sRetStr == "") msg.setMsg("getImportedKeys did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(4) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getImportedKeys did not return any columns");
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -797,30 +799,28 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetExportedKeys
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1068; JDBC:JAVADOC:1069;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1068; JDBC:JAVADOC:1069; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getExportedKeys() method on that object. It should
-     * return a ResultSet object. Validate the column names and column ordering.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getExportedKeys()
+     * method on that object. It should return a ResultSet object. Validate the column names and column ordering.
      */
     public void testGetExportedKeys() throws Fault {
         try {
             String sColumnNames[] = {
-                "PKTABLE_CAT",
-                "PKTABLE_SCHEM",
-                "PKTABLE_NAME",
-                "PKCOLUMN_NAME",
-                "FKTABLE_CAT",
-                "FKTABLE_SCHEM",
-                "FKTABLE_NAME",
-                "FKCOLUMN_NAME",
-                "KEY_SEQ",
-                "UPDATE_RULE",
-                "DELETE_RULE",
-                "FK_NAME",
-                "PK_NAME",
-                "DEFERRABILITY"
+                    "PKTABLE_CAT",
+                    "PKTABLE_SCHEM",
+                    "PKTABLE_NAME",
+                    "PKCOLUMN_NAME",
+                    "FKTABLE_CAT",
+                    "FKTABLE_SCHEM",
+                    "FKTABLE_NAME",
+                    "FKCOLUMN_NAME",
+                    "KEY_SEQ",
+                    "UPDATE_RULE",
+                    "DELETE_RULE",
+                    "FK_NAME",
+                    "PK_NAME",
+                    "DEFERRABILITY"
             };
             boolean test_status = true;
 
@@ -838,9 +838,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             }
 
             msg.setMsg("Store all the columns returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(8) + ",";
-            if (sRetStr == "") msg.setMsg("getExportedKeys did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(8) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getExportedKeys did not return any columns");
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -854,37 +857,34 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetCrossReference
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1070; JDBC:JAVADOC:1071;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1070; JDBC:JAVADOC:1071; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getCrossReference() method on that object. It should
-     * return a ResultSet object. Validate the column names and column ordering.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getCrossReference()
+     * method on that object. It should return a ResultSet object. Validate the column names and column ordering.
      */
     public void testGetCrossReference() throws Fault {
         try {
             String sColumnNames[] = {
-                "PKTABLE_CAT",
-                "PKTABLE_SCHEM",
-                "PKTABLE_NAME",
-                "PKCOLUMN_NAME",
-                "FKTABLE_CAT",
-                "FKTABLE_SCHEM",
-                "FKTABLE_NAME",
-                "FKCOLUMN_NAME",
-                "KEY_SEQ",
-                "UPDATE_RULE",
-                "DELETE_RULE",
-                "FK_NAME",
-                "PK_NAME",
-                "DEFERRABILITY"
+                    "PKTABLE_CAT",
+                    "PKTABLE_SCHEM",
+                    "PKTABLE_NAME",
+                    "PKCOLUMN_NAME",
+                    "FKTABLE_CAT",
+                    "FKTABLE_SCHEM",
+                    "FKTABLE_NAME",
+                    "FKCOLUMN_NAME",
+                    "KEY_SEQ",
+                    "UPDATE_RULE",
+                    "DELETE_RULE",
+                    "FK_NAME",
+                    "PK_NAME",
+                    "DEFERRABILITY"
             };
             boolean test_status = true;
 
             msg.setMsg("Calling DatabaseMetaData.getCrossReference");
             // invoke getCrossReference method
-            ResultSet oRet_ResultSet =
-                    dbmd.getCrossReference(sCatalogName, sSchemaName, sPtable, sCatalogName, sSchemaName, sFtable);
+            ResultSet oRet_ResultSet = dbmd.getCrossReference(sCatalogName, sSchemaName, sPtable, sCatalogName, sSchemaName, sFtable);
             String sRetStr = new String();
             sRetStr = "";
 
@@ -896,9 +896,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             }
 
             msg.setMsg("Store all the columns returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(8) + ",";
-            if (sRetStr == "") msg.setMsg("getCrossReference did not return any columns");
-            else msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(8) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getCrossReference did not return any columns");
+            else
+                msg.setMsg("The columns returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -912,12 +915,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetIndexInfo1
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getIndexInfo() method on that object. It should
-     * return a ResultSet object.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getIndexInfo() method
+     * on that object. It should return a ResultSet object.
      *
      */
     public void testGetIndexInfo1() throws Fault {
@@ -928,9 +929,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             String sRetStr = new String();
             sRetStr = "";
             msg.setMsg("Store all the index name returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(6) + ",";
-            if (sRetStr == "") msg.setMsg("getIndexInfo did not return any index names");
-            else msg.setMsg("The index names returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(6) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getIndexInfo did not return any index names");
+            else
+                msg.setMsg("The index names returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -944,12 +948,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetIndexInfo2
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getIndexInfo() method on that object. It should
-     * return a ResultSet object.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getIndexInfo() method
+     * on that object. It should return a ResultSet object.
      *
      */
     public void testGetIndexInfo2() throws Fault {
@@ -961,9 +963,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             sRetStr = "";
 
             msg.setMsg("Store all the index name returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(6) + ",";
-            if (sRetStr == "") msg.setMsg("getIndexInfo did not return any index names");
-            else msg.setMsg("The index names returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(6) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getIndexInfo did not return any index names");
+            else
+                msg.setMsg("The index names returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -977,12 +982,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetIndexInfo3
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getIndexInfo() method on that object. It should
-     * return a ResultSet object.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getIndexInfo() method
+     * on that object. It should return a ResultSet object.
      *
      */
     public void testGetIndexInfo3() throws Fault {
@@ -993,9 +996,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             String sRetStr = new String();
             sRetStr = "";
             msg.setMsg("Store all the index name returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(6) + ",";
-            if (sRetStr == "") msg.setMsg("getIndexInfo did not return any index names");
-            else msg.setMsg("The index names returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(6) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getIndexInfo did not return any index names");
+            else
+                msg.setMsg("The index names returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -1009,12 +1015,10 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetIndexInfo4
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getIndexInfo() method on that object. It should
-     * return a ResultSet object.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getIndexInfo() method
+     * on that object. It should return a ResultSet object.
      *
      */
     public void testGetIndexInfo4() throws Fault {
@@ -1025,9 +1029,12 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
             String sRetStr = new String();
             sRetStr = "";
             msg.setMsg("Store all the index name returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(6) + ",";
-            if (sRetStr == "") msg.setMsg("getIndexInfo did not return any index names");
-            else msg.setMsg("The index names returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(6) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getIndexInfo did not return any index names");
+            else
+                msg.setMsg("The index names returned Are : " + sRetStr.substring(0, sRetStr.length() - 1));
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -1041,29 +1048,27 @@ public class dbMetaClient11 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetIndexInfo5
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1074; JDBC:JAVADOC:1075; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getIndexInfo() method on that object. It should
-     * return a ResultSet object. Validate the column names and column ordering.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getIndexInfo() method
+     * on that object. It should return a ResultSet object. Validate the column names and column ordering.
      */
     public void testGetIndexInfo5() throws Fault {
         try {
             String sColumnNames[] = {
-                "TABLE_CAT",
-                "TABLE_SCHEM",
-                "TABLE_NAME",
-                "NON_UNIQUE",
-                "INDEX_QUALIFIER",
-                "INDEX_NAME",
-                "TYPE",
-                "ORDINAL_POSITION",
-                "COLUMN_NAME",
-                "ASC_OR_DESC",
-                "CARDINALITY",
-                "PAGES",
-                "FILTER_CONDITION"
+                    "TABLE_CAT",
+                    "TABLE_SCHEM",
+                    "TABLE_NAME",
+                    "NON_UNIQUE",
+                    "INDEX_QUALIFIER",
+                    "INDEX_NAME",
+                    "TYPE",
+                    "ORDINAL_POSITION",
+                    "COLUMN_NAME",
+                    "ASC_OR_DESC",
+                    "CARDINALITY",
+                    "PAGES",
+                    "FILTER_CONDITION"
             };
             boolean test_status = true;
 

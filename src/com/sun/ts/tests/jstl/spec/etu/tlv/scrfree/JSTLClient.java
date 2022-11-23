@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,9 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:104; JSTL:SPEC:104.1
      *
-     * @testStrategy: Validate that if the validator specifies JSP declarations
-     * aren't allowed, that scriptlets, expressions and RT expressions still work
-     * as expected.
+     * @testStrategy: Validate that if the validator specifies JSP declarations aren't allowed, that scriptlets, expressions
+     * and RT expressions still work as expected.
      */
     public void positiveScriptFreeTlvNoDeclTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveScriptFreeTlvNoDeclTest");
@@ -82,9 +79,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:104; JSTL:SPEC:104.2
      *
-     * @testStrategy: Validate that if the validator specifies JSP scriptlets
-     * aren't allowed, that declarations, expressions and RT expressions still
-     * work as expected.
+     * @testStrategy: Validate that if the validator specifies JSP scriptlets aren't allowed, that declarations, expressions
+     * and RT expressions still work as expected.
      */
     public void positiveScriptFreeTlvNoScrTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveScriptFreeTlvNoScrTest");
@@ -98,9 +94,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:104; JSTL:SPEC:104.3
      *
-     * @testStrategy: Validate that if the validator specifies JSP expressions
-     * aren't allowed, that scriptlets, declarations and RT expressions still work
-     * as expected.
+     * @testStrategy: Validate that if the validator specifies JSP expressions aren't allowed, that scriptlets, declarations
+     * and RT expressions still work as expected.
      */
     public void positiveScriptFreeTlvNoExprTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveScriptFreeTlvNoExprTest");
@@ -114,9 +109,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:104; JSTL:SPEC:104.4
      *
-     * @testStrategy: Validate that if the validator specifies JSP RT expressions
-     * aren't allowed, that declarations, scriptlets, and expressions still work
-     * as expected.
+     * @testStrategy: Validate that if the validator specifies JSP RT expressions aren't allowed, that declarations,
+     * scriptlets, and expressions still work as expected.
      */
     public void positiveScriptFreeTlvNoRTExprTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveScriptFreeTlvNoRTExprTest");
@@ -130,9 +124,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:104; JSTL:SPEC:104.1
      *
-     * @testStrategy: Validate that if declarations aren't allowed per the
-     * configured validator, that a translation error occurs if a declaration
-     * exists.
+     * @testStrategy: Validate that if declarations aren't allowed per the configured validator, that a translation error
+     * occurs if a declaration exists.
      */
     public void negativeScriptFreeTlvNoDeclTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeScriptFreeTlvNoDeclTest");
@@ -146,9 +139,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:104; JSTL:SPEC:104.2
      *
-     * @testStrategy: Validate that if scriptlets aren't allowed per the
-     * configured validator, that a translation error occurs if a scriptlet
-     * exists.
+     * @testStrategy: Validate that if scriptlets aren't allowed per the configured validator, that a translation error
+     * occurs if a scriptlet exists.
      */
     public void negativeScriptFreeTlvNoScrTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeScriptFreeTlvNoScrTest");
@@ -162,9 +154,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:104; JSTL:SPEC:104.3
      *
-     * @testStrategy: Validate that if expressions aren't allowed per the
-     * configured validator, that a translation error occurs if an expression
-     * exists.
+     * @testStrategy: Validate that if expressions aren't allowed per the configured validator, that a translation error
+     * occurs if an expression exists.
      */
     public void negativeScriptFreeTlvNoExprTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeScriptFreeTlvNoExprTest");
@@ -178,9 +169,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:104; JSTL:SPEC:104.4
      *
-     * @testStrategy: Validate that if RT expressions aren't allowed per the
-     * configured validator, that a translation error occurs if an RT expression
-     * exists.
+     * @testStrategy: Validate that if RT expressions aren't allowed per the configured validator, that a translation error
+     * occurs if an RT expression exists.
      */
     public void negativeScriptFreeTlvNoRTExprTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeScriptFreeTlvNoRTExprTest");

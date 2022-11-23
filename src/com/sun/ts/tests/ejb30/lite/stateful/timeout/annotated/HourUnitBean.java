@@ -35,4 +35,5 @@ import java.util.concurrent.TimeUnit;
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 @AccessTimeout(value = StatefulTimeoutIF.TIMEOUT_HOURS, unit = TimeUnit.HOURS)
 @Local(StatefulTimeoutIF.class)
-public class HourUnitBean extends StatefulTimeoutBeanBase {}
+public class HourUnitBean extends StatefulTimeoutBeanBase {
+}

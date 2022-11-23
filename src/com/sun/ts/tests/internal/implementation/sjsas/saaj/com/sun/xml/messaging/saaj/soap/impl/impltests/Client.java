@@ -35,8 +35,7 @@ import java.util.Properties;
 public class Client extends EETest {
     private Properties props = null;
 
-    private String srcDir =
-            "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/soap/impl/impltests";
+    private String srcDir = "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/soap/impl/impltests";
 
     private String testDir = null;
 
@@ -104,7 +103,8 @@ public class Client extends EETest {
             throw new Fault("CDATAImplTest failed", e);
         }
 
-        if (!pass) throw new Fault("CDATAImplTest failed");
+        if (!pass)
+            throw new Fault("CDATAImplTest failed");
     }
 
     /*
@@ -127,6 +127,7 @@ public class Client extends EETest {
             throw new Fault("TreeExceptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("TreeExceptionTest failed");
+        if (!pass)
+            throw new Fault("TreeExceptionTest failed");
     }
 }

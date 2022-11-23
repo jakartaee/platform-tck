@@ -43,7 +43,8 @@ public class Int_Field implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public Int_Field() {}
+    public Int_Field() {
+    }
 
     public Int_Field(String id) {
         this.id = id;

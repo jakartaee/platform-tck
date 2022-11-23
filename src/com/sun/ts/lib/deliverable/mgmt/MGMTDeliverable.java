@@ -24,8 +24,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class serves as a well known place for harness, util, and porting
- * classes to retrieve property values.
+ * This class serves as a well known place for harness, util, and porting classes to retrieve property values.
  *
  * @author Anand Dhingra
  */
@@ -48,7 +47,7 @@ public class MGMTDeliverable extends AbstractDeliverable {
             // TS hash table
             htTSValidVehicles = new Hashtable();
             // add mgmt values
-            htTSValidVehicles.put("tests_j2eetools_mgmt.service_eetest.vehicles", new String[] {"ejb"});
+            htTSValidVehicles.put("tests_j2eetools_mgmt.service_eetest.vehicles", new String[] { "ejb" });
         }
         return htTSValidVehicles;
     }

@@ -35,7 +35,7 @@ import jakarta.ejb.Stateless;
 import javax.naming.NamingException;
 
 @Stateless(name = "EjbLink1Bean")
-@Remote({EjbLinkIF.class})
+@Remote({ EjbLinkIF.class })
 @Local(EjbLinkLocalIF.class)
 public class EjbLink1Bean extends EjbLinkBeanBase implements EjbLinkIF, EjbLinkLocalIF, Constants {
 
@@ -46,9 +46,11 @@ public class EjbLink1Bean extends EjbLinkBeanBase implements EjbLinkIF, EjbLinkL
     @EJB(name = "ejb/EjbLink2Bean", beanName = "no-such-bean-name", description = "should be overridden by ejb-jar.xml")
     private EjbLinkIF bean2;
 
-    public EjbLink1Bean() {}
+    public EjbLink1Bean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
     public void callOne() throws TestFailedException {

@@ -42,11 +42,12 @@ import java.util.Iterator;
 import java.util.logging.Level;
 
 public final class TimerUtil {
-    private TimerUtil() {}
+    private TimerUtil() {
+    }
 
     public static void cancelAllTimers(TimerService timerService, boolean failOnError) {
         Collection<Timer> timers = timerService.getTimers();
-        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
             Timer timer = it.next();
             try {
                 timer.cancel();
@@ -61,7 +62,7 @@ public final class TimerUtil {
 
     public static void cancelTimer(TimerService timerService, String name) {
         Collection<Timer> timers = timerService.getTimers();
-        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
             Timer timer = it.next();
             TimerInfo info = (TimerInfo) timer.getInfo();
             if (info.getTestName().equals(name)) {
@@ -76,7 +77,7 @@ public final class TimerUtil {
 
     public static int countTimers(final Collection<Timer> timers, final String testName) {
         int result = 0;
-        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
             Timer t = it.next();
             TimerInfo info = (TimerInfo) t.getInfo();
             if (info != null) {
@@ -90,7 +91,7 @@ public final class TimerUtil {
 
     public static int countTimers(Collection<Timer> timers, TimerInfo info) {
         int result = 0;
-        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
             Timer timer = it.next();
             TimerInfo fo = (TimerInfo) timer.getInfo();
             if (info == null) {
@@ -110,7 +111,7 @@ public final class TimerUtil {
 
     public static int countTimers(Collection<Timer> timers, ScheduleExpression exp) {
         int result = 0;
-        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
             Timer timer = it.next();
             if (timer.isCalendarTimer()) {
                 ScheduleExpression ex = timer.getSchedule();
@@ -139,7 +140,7 @@ public final class TimerUtil {
     public static Timer findTimer(final Collection<Timer> timers, final TimerInfo info) {
         Timer result = null;
         if (info == null) {
-            for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+            for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
                 Timer t = it.next();
                 if (t.getInfo() == null) {
                     result = t;
@@ -158,7 +159,7 @@ public final class TimerUtil {
 
     public static Timer findTimer(final Collection<Timer> timers, final ScheduleExpression exp) {
         Timer result = null;
-        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
             Timer t = it.next();
             if (t.isCalendarTimer()) {
                 if (exp.equals(t.getSchedule())) {
@@ -176,7 +177,7 @@ public final class TimerUtil {
 
     public static Timer findTimer(final Collection<Timer> timers, final String testName) {
         Timer result = null;
-        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
             Timer t = it.next();
             Serializable ser = t.getInfo();
             if (ser != null) {
@@ -207,7 +208,7 @@ public final class TimerUtil {
             throw new IllegalStateException("Expecting 1 timer, but actual " + timers.size());
         }
         Timer timer = null;
-        for (Iterator<Timer> it = timers.iterator(); it.hasNext(); ) {
+        for (Iterator<Timer> it = timers.iterator(); it.hasNext();) {
             timer = it.next();
         }
         return timer;
@@ -321,14 +322,11 @@ public final class TimerUtil {
     }
 
     /**
-     * Gets the current date-related values according to the rules of
-     * jakarta.ejb.ScheduleExpression. In java.util.Calendar, DAY_OF_WEEK is 1-7
-     * (Sunday-Saturday); MONTH is 0-11 (Jan-Dec)
+     * Gets the current date-related values according to the rules of jakarta.ejb.ScheduleExpression. In java.util.Calendar,
+     * DAY_OF_WEEK is 1-7 (Sunday-Saturday); MONTH is 0-11 (Jan-Dec)
      *
-     * @param field
-     *          a java.util.Calendar field for year, month, hour, etc
-     * @param an
-     *          optional Calendar that may have been manipulated
+     * @param field a java.util.Calendar field for year, month, hour, etc
+     * @param an optional Calendar that may have been manipulated
      * @return a value that can be used for jakarta.ejb.ScheduleExpression
      */
     public static int getForSchedule(int field, Calendar... calendars) {
@@ -433,7 +431,7 @@ public final class TimerUtil {
     public static int getNextLeapYear(int... baseYears) {
         GregorianCalendar cal = new GregorianCalendar();
         int baseYear = (baseYears.length == 0) ? cal.get(Calendar.YEAR) : baseYears[0];
-        for (int i = baseYear + 1; ; i++) {
+        for (int i = baseYear + 1;; i++) {
             if (cal.isLeapYear(i)) {
                 return i;
             }

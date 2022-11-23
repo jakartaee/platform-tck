@@ -23,9 +23,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -34,8 +33,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -68,8 +66,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:843;
      *
-     * @test_Strategy: test the constructor AsyncEvent(AsyncContext,
-     * ServletRequest, ServletResponse)
+     * @test_Strategy: test the constructor AsyncEvent(AsyncContext, ServletRequest, ServletResponse)
      */
     public void constructorTest2() throws Fault {
         TEST_PROPS.setProperty(APITEST, "constructorTest2");
@@ -93,8 +90,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:845;
      *
-     * @test_Strategy: test the constructor AsyncEvent(AsyncContext,
-     * ServletRequest, ServletResponse, Throwable)
+     * @test_Strategy: test the constructor AsyncEvent(AsyncContext, ServletRequest, ServletResponse, Throwable)
      */
     public void constructorTest4() throws Fault {
         TEST_PROPS.setProperty(APITEST, "constructorTest4");
@@ -106,9 +102,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:847;
      *
-     * @test_Strategy: test the constructor AsyncEvent(AsyncContext,
-     * ServletRequest, ServletResponse) verify AsyncEvent.getSuplliedRequest()
-     * works
+     * @test_Strategy: test the constructor AsyncEvent(AsyncContext, ServletRequest, ServletResponse) verify
+     * AsyncEvent.getSuplliedRequest() works
      */
     public void getSuppliedRequestTest1() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getSuppliedRequestTest1");
@@ -120,8 +115,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:847;
      *
-     * @test_Strategy: test the constructor AsyncEvent(AsyncContext,
-     * ServletRequest, ServletResponse, Throwable) verify
+     * @test_Strategy: test the constructor AsyncEvent(AsyncContext, ServletRequest, ServletResponse, Throwable) verify
      * AsyncEvent.getSuplliedRequest() works
      */
     public void getSuppliedRequestTest2() throws Fault {
@@ -134,9 +128,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:848;
      *
-     * @test_Strategy: test the constructor AsyncEvent(AsyncContext,
-     * ServletRequest, ServletResponse) verify AsyncEvent.getSuplliedResponse()
-     * works
+     * @test_Strategy: test the constructor AsyncEvent(AsyncContext, ServletRequest, ServletResponse) verify
+     * AsyncEvent.getSuplliedResponse() works
      */
     public void getSuppliedResponseTest1() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getSuppliedResponseTest1");
@@ -148,8 +141,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:848;
      *
-     * @test_Strategy: test the constructor AsyncEvent(AsyncContext,
-     * ServletRequest, ServletResponse, Throwable) verify
+     * @test_Strategy: test the constructor AsyncEvent(AsyncContext, ServletRequest, ServletResponse, Throwable) verify
      * AsyncEvent.getSuplliedResponse() works
      */
     public void getSuppliedResponseTest2() throws Fault {
@@ -162,8 +154,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:849;
      *
-     * @test_Strategy: test the constructor AsyncEvent(AsyncContext,
-     * ServletRequest, ServletResponse, Throwable) verify
+     * @test_Strategy: test the constructor AsyncEvent(AsyncContext, ServletRequest, ServletResponse, Throwable) verify
      * AsyncEvent.getThrowable() works
      */
     public void getThrowableTest() throws Fault {

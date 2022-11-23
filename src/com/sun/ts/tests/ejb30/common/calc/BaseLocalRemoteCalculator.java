@@ -21,10 +21,8 @@
 package com.sun.ts.tests.ejb30.common.calc;
 
 /**
- * A base class for both local and remote calculators. It is intended to be
- * extended by session beans that provide both local and remote views. But from
- * the client view, it can only perform either local operations or remote
- * operations.
+ * A base class for both local and remote calculators. It is intended to be extended by session beans that provide both
+ * local and remote views. But from the client view, it can only perform either local operations or remote operations.
  *
  * @author Cheng Fang
  */
@@ -35,8 +33,7 @@ public class BaseLocalRemoteCalculator extends BaseLocalCalculator implements Re
     /*
      * (non-Javadoc)
      *
-     * @see com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#remoteAdd(int,
-     * int)
+     * @see com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#remoteAdd(int, int)
      */
     public int remoteAdd(int a, int b) {
         return remoteCalc.remoteAdd(a, b);
@@ -45,9 +42,7 @@ public class BaseLocalRemoteCalculator extends BaseLocalCalculator implements Re
     /*
      * (non-Javadoc)
      *
-     * @see
-     * com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#remoteSubtract(int,
-     * int)
+     * @see com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#remoteSubtract(int, int)
      */
     public int remoteSubtract(int a, int b) {
         return remoteCalc.remoteSubtract(a, b);

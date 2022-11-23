@@ -34,9 +34,8 @@ import jakarta.persistence.PreRemove;
 import jakarta.persistence.PreUpdate;
 
 /**
- * This class defines some entity callback methods for an entity class. This
- * class itself is not an entity. These callback methods are intended to be
- * inherited by subclass entities.
+ * This class defines some entity callback methods for an entity class. This class itself is not an entity. These
+ * callback methods are intended to be inherited by subclass entities.
  */
 @MappedSuperclass
 public abstract class PricedPartProductCallback extends CallbackStatusImpl implements CallbackStatusIF {

@@ -26,5 +26,6 @@ import jakarta.ejb.Local;
 import jakarta.ejb.Singleton;
 
 @Singleton
-@Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
-public class SingletonEqualsBean extends StatelessEqualsBean {}
+@Local({ BusinessLocalIF1.class, BusinessLocalIF2.class })
+public class SingletonEqualsBean extends StatelessEqualsBean {
+}

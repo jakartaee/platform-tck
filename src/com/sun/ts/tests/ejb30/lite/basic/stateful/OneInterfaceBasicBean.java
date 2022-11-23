@@ -28,4 +28,5 @@ import java.util.concurrent.TimeUnit;
 
 @Stateful
 @AccessTimeout(unit = TimeUnit.SECONDS, value = 0)
-public class OneInterfaceBasicBean extends BasicBeanBase implements Basic1IF {}
+public class OneInterfaceBasicBean extends BasicBeanBase implements Basic1IF {
+}

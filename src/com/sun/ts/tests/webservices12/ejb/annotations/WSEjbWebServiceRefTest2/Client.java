@@ -78,15 +78,18 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
                 pass = false;
             }
-            if (pass) getPort();
+            if (pass)
+                getPort();
         } catch (Exception e) {
             throw new Fault("setup failed:", e);
         }
@@ -109,24 +112,22 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbWebServiceRefTest2CallHello
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef and @WebService annotations. The EJBBean
-     * Implementation class is packaged in the ear file. The Remote interface is
-     * also packaged in the ear file. The @WebServiceRef uses the name attribute
-     * field to access the service ref.
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. Tests @WebServiceRef
+     * and @WebService annotations. The EJBBean Implementation class is packaged in the ear file. The Remote interface is
+     * also packaged in the ear file. The @WebServiceRef uses the name attribute field to access the service ref.
      */
     public void WSEjbWebServiceRefTest2CallHello() throws Fault {
         TestUtil.logMsg("WSEjbWebServiceRefTest2CallHello");
         try {
             String txt = port.hello("Hi there");
-            if (txt.equals("Hi there to you too!")) TestUtil.logMsg("WSEjbWebServiceRefTest2CallHello passed");
-            else throw new RuntimeException("Msg returned from hello() incorrect");
+            if (txt.equals("Hi there to you too!"))
+                TestUtil.logMsg("WSEjbWebServiceRefTest2CallHello passed");
+            else
+                throw new RuntimeException("Msg returned from hello() incorrect");
         } catch (Throwable t) {
             TestUtil.printStackTrace(t);
             throw new Fault("WSEjbWebServiceRefTest2CallHello failed");
@@ -137,24 +138,22 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbWebServiceRefTest2CallBye
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef and @WebService annotations. The EJBBean
-     * Implementation class is packaged in the ear file. The Remote interface is
-     * also packaged in the ear file. The @WebServiceRef uses the name attribute
-     * field to access the service ref.
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. Tests @WebServiceRef
+     * and @WebService annotations. The EJBBean Implementation class is packaged in the ear file. The Remote interface is
+     * also packaged in the ear file. The @WebServiceRef uses the name attribute field to access the service ref.
      */
     public void WSEjbWebServiceRefTest2CallBye() throws Fault {
         TestUtil.logMsg("WSEjbWebServiceRefTest2CallBye");
         try {
             String txt = port.bye("Bye-bye");
-            if (txt.equals("Bye-bye and take care")) TestUtil.logMsg("WSEjbWebServiceRefTest2CallBye passed");
-            else throw new RuntimeException("Msg returned from bye() incorrect");
+            if (txt.equals("Bye-bye and take care"))
+                TestUtil.logMsg("WSEjbWebServiceRefTest2CallBye passed");
+            else
+                throw new RuntimeException("Msg returned from bye() incorrect");
         } catch (Throwable t) {
             TestUtil.printStackTrace(t);
             throw new Fault("WSEjbWebServiceRefTest2CallBye failed");
@@ -165,20 +164,15 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbWebServiceRefTest2VerifyTargetEndpointAddress
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef and @WebService annotations. The EJBBean
-     * Implementation class is packaged in the ear file. The Remote interface is
-     * also packaged in the ear file. The @WebServiceRef uses the name attribute
-     * field to access the service ref. The runtime deployment descriptor
-     * specifies the endpoint address uri of "WSEjbWebServiceRefTest2/ejb". So
-     * verify that "WSEjbWebServiceRefTest2/ejb" is part of the target endpoint
-     * address.
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. Tests @WebServiceRef
+     * and @WebService annotations. The EJBBean Implementation class is packaged in the ear file. The Remote interface is
+     * also packaged in the ear file. The @WebServiceRef uses the name attribute field to access the service ref. The
+     * runtime deployment descriptor specifies the endpoint address uri of "WSEjbWebServiceRefTest2/ejb". So verify that
+     * "WSEjbWebServiceRefTest2/ejb" is part of the target endpoint address.
      */
     public void WSEjbWebServiceRefTest2VerifyTargetEndpointAddress() throws Fault {
         TestUtil.logMsg("WSEjbWebServiceRefTest2VerifyTargetEndpointAddress");
@@ -187,7 +181,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Verify that the target endpoint address ends with [WSEjbWebServiceRefTest2/ejb]");
             if (endpointaddr.endsWith("WSEjbWebServiceRefTest2/ejb"))
                 TestUtil.logMsg("WSEjbWebServiceRefTest2VerifyTargetEndpointAddress passed");
-            else throw new RuntimeException("Target Endpoint Address is incorrect: " + endpointaddr);
+            else
+                throw new RuntimeException("Target Endpoint Address is incorrect: " + endpointaddr);
         } catch (Throwable t) {
             TestUtil.printStackTrace(t);
             throw new Fault("WSEjbWebServiceRefTest2VerifyTargetEndpointAddress failed");
@@ -198,19 +193,14 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbWebServiceRefTest2VerifyJNDILookupOfService
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef and @WebService annotations. The EJBBean
-     * Implementation class is packaged in the ear file. The Remote interface is
-     * also packaged in the ear file. The @WebServiceRef uses the name attribute
-     * field to access the service ref. Verify that the container correctly
-     * publishes the web service implementation under
-     * "java:comp/env/service-ref-name".
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. Tests @WebServiceRef
+     * and @WebService annotations. The EJBBean Implementation class is packaged in the ear file. The Remote interface is
+     * also packaged in the ear file. The @WebServiceRef uses the name attribute field to access the service ref. Verify
+     * that the container correctly publishes the web service implementation under "java:comp/env/service-ref-name".
      *
      */
     public void WSEjbWebServiceRefTest2VerifyJNDILookupOfService() throws Fault {

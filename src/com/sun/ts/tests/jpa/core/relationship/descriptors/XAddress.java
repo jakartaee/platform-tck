@@ -37,7 +37,8 @@ public class XAddress implements java.io.Serializable {
 
     private String xZip;
 
-    public XAddress() {}
+    public XAddress() {
+    }
 
     public XAddress(String xId, String xStreet, String xCity, String xState, String xZip) {
         this.xId = xId;

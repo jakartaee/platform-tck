@@ -53,7 +53,7 @@ public class JaspicDeliverable extends AbstractDeliverable {
     public Map getValidVehicles() {
         super.getValidVehicles();
 
-        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"servlet", "jsp"});
+        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] { "servlet", "jsp" });
 
         return htTSValidVehicles;
     }

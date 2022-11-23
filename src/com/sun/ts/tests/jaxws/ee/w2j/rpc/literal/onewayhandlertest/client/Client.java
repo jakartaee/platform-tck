@@ -102,8 +102,7 @@ public class Client extends ServiceEETest {
 
     private QName PORT_QNAME1 = new QName(NAMESPACEURI, PORT_NAME1);
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.RLOWHandlerTestService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.RLOWHandlerTestService.class;
 
     private static final String THEBINDINGPROTOCOL = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING;
 
@@ -232,8 +231,7 @@ public class Client extends ServiceEETest {
     /*
      * @class.testArgs: -ap jaxws-url-props.dat
      *
-     * @class.setup_props: webServerHost; webServerPort; platform.mode;
-     * client.delay;
+     * @class.setup_props: webServerHost; webServerPort; platform.mode; client.delay;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -242,8 +240,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -305,11 +305,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: ClientOneWayHandlerTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9012;
-     * JAXWS:SPEC:9014; JAXWS:SPEC:9015.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9012; JAXWS:SPEC:9014; JAXWS:SPEC:9015.1;
+     * JAXWS:SPEC:9017; JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the client-side
-     * logical message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the client-side logical message handler callbacks are called.
      */
     public void ClientOneWayHandlerTest() throws Fault {
         TestUtil.logTrace("ClientOneWayHandlerTest");
@@ -325,13 +324,10 @@ public class Client extends ServiceEETest {
                                     + "ClientSOAPHandler1, ClientLogicalHandler1");
                     TestUtil.logMsg("----------------------------------------------");
                     TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler1 and add to HandlerChain");
-                    handler =
-                            new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler1();
+                    handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler1();
                     handlerList.add(handler);
                     TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler1 and add to HandlerChain");
-                    handler =
-                            new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                    .ClientLogicalHandler1();
+                    handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler1();
                     handlerList.add(handler);
                     if (info.getBindingID().equals(THEBINDINGPROTOCOL)) {
                         TestUtil.logMsg("----------------------------------------------");
@@ -340,14 +336,10 @@ public class Client extends ServiceEETest {
                                         + "ClientSOAPHandler2, ClientLogicalHandler2");
                         TestUtil.logMsg("----------------------------------------------");
                         TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler2 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientSOAPHandler2();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler2();
                         handlerList.add(handler);
                         TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler2 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientLogicalHandler2();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler2();
                         handlerList.add(handler);
                     }
                     if (info.getPortName().equals(PORT_QNAME1)) {
@@ -355,14 +347,10 @@ public class Client extends ServiceEETest {
                         TestUtil.logMsg("Create port based handlers for port: " + PORT_QNAME1);
                         TestUtil.logMsg("----------------------------------------------");
                         TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler3 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientSOAPHandler3();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler3();
                         handlerList.add(handler);
                         TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler3 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientLogicalHandler3();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler3();
                         handlerList.add(handler);
                     }
                     TestUtil.logMsg("HandlerChainList=" + handlerList);
@@ -413,17 +401,17 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientOneWayHandlerTest failed");
+        if (!pass)
+            throw new Fault("ClientOneWayHandlerTest failed");
     }
 
     /*
      * @testName: ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.3.2; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.3.2; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest() throws Fault {
         TestUtil.logTrace("ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest");
@@ -439,13 +427,10 @@ public class Client extends ServiceEETest {
                                     + "ClientSOAPHandler1, ClientLogicalHandler1");
                     TestUtil.logMsg("----------------------------------------------");
                     TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler1 and add to HandlerChain");
-                    handler =
-                            new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler1();
+                    handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler1();
                     handlerList.add(handler);
                     TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler1 and add to HandlerChain");
-                    handler =
-                            new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                    .ClientLogicalHandler1();
+                    handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler1();
                     handlerList.add(handler);
                     if (info.getBindingID().equals(THEBINDINGPROTOCOL)) {
                         TestUtil.logMsg("----------------------------------------------");
@@ -454,14 +439,10 @@ public class Client extends ServiceEETest {
                                         + "ClientSOAPHandler2, ClientLogicalHandler2");
                         TestUtil.logMsg("----------------------------------------------");
                         TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler2 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientSOAPHandler2();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler2();
                         handlerList.add(handler);
                         TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler2 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientLogicalHandler2();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler2();
                         handlerList.add(handler);
                     }
                     if (info.getPortName().equals(PORT_QNAME1)) {
@@ -469,14 +450,10 @@ public class Client extends ServiceEETest {
                         TestUtil.logMsg("Create port based handlers for port: " + PORT_QNAME1);
                         TestUtil.logMsg("----------------------------------------------");
                         TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler3 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientSOAPHandler3();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler3();
                         handlerList.add(handler);
                         TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler3 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientLogicalHandler3();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler3();
                         handlerList.add(handler);
                     }
                     TestUtil.logMsg("HandlerChainList=" + handlerList);
@@ -528,17 +505,17 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest failed");
     }
 
     /*
      * @testName: ClientSOAPOutboundHandleMessageThrowsSOAPFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.3.2; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.3.2; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ClientSOAPOutboundHandleMessageThrowsSOAPFaultTest() throws Fault {
         TestUtil.logTrace("ClientSOAPOutboundHandleMessageThrowsSOAPFaultTest");
@@ -554,13 +531,10 @@ public class Client extends ServiceEETest {
                                     + "ClientLogicalHandler1, ClientSOAPHandler1");
                     TestUtil.logMsg("----------------------------------------------");
                     TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler1 and add to HandlerChain");
-                    handler =
-                            new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                    .ClientLogicalHandler1();
+                    handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler1();
                     handlerList.add(handler);
                     TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler1 and add to HandlerChain");
-                    handler =
-                            new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler1();
+                    handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler1();
                     handlerList.add(handler);
                     if (info.getBindingID().equals(THEBINDINGPROTOCOL)) {
                         TestUtil.logMsg("----------------------------------------------");
@@ -569,14 +543,10 @@ public class Client extends ServiceEETest {
                                         + "ClientLogicalHandler2, ClientSOAPHandler2");
                         TestUtil.logMsg("----------------------------------------------");
                         TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler2 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientLogicalHandler2();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler2();
                         handlerList.add(handler);
                         TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler2 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientSOAPHandler2();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler2();
                         handlerList.add(handler);
                     }
                     if (info.getPortName().equals(PORT_QNAME1)) {
@@ -584,14 +554,10 @@ public class Client extends ServiceEETest {
                         TestUtil.logMsg("Create port based handlers for port: " + PORT_QNAME1);
                         TestUtil.logMsg("----------------------------------------------");
                         TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler3 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientLogicalHandler3();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler3();
                         handlerList.add(handler);
                         TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler3 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientSOAPHandler3();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler3();
                         handlerList.add(handler);
                     }
                     TestUtil.logMsg("HandlerChainList=" + handlerList);
@@ -642,17 +608,17 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientSOAPOutboundHandleMessageThrowsSOAPFaultTest failed");
+        if (!pass)
+            throw new Fault("ClientSOAPOutboundHandleMessageThrowsSOAPFaultTest failed");
     }
 
     /*
      * @testName: ClientLogicalOutboundHandleMessageReturnsFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.2.2; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.2.2; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ClientLogicalOutboundHandleMessageReturnsFalseTest() throws Fault {
         TestUtil.logTrace("ClientLogicalOutboundHandleMessageReturnsFalseTest");
@@ -668,13 +634,10 @@ public class Client extends ServiceEETest {
                                     + "ClientSOAPHandler1, ClientLogicalHandler1");
                     TestUtil.logMsg("----------------------------------------------");
                     TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler1 and add to HandlerChain");
-                    handler =
-                            new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler1();
+                    handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler1();
                     handlerList.add(handler);
                     TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler1 and add to HandlerChain");
-                    handler =
-                            new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                    .ClientLogicalHandler1();
+                    handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler1();
                     handlerList.add(handler);
                     if (info.getBindingID().equals(THEBINDINGPROTOCOL)) {
                         TestUtil.logMsg("----------------------------------------------");
@@ -683,14 +646,10 @@ public class Client extends ServiceEETest {
                                         + "ClientSOAPHandler2, ClientLogicalHandler2");
                         TestUtil.logMsg("----------------------------------------------");
                         TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler2 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientSOAPHandler2();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler2();
                         handlerList.add(handler);
                         TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler2 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientLogicalHandler2();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler2();
                         handlerList.add(handler);
                     }
                     if (info.getPortName().equals(PORT_QNAME1)) {
@@ -698,14 +657,10 @@ public class Client extends ServiceEETest {
                         TestUtil.logMsg("Create port based handlers for port: " + PORT_QNAME1);
                         TestUtil.logMsg("----------------------------------------------");
                         TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler3 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientSOAPHandler3();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler3();
                         handlerList.add(handler);
                         TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler3 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientLogicalHandler3();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler3();
                         handlerList.add(handler);
                     }
                     TestUtil.logMsg("HandlerChainList=" + handlerList);
@@ -757,17 +712,17 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalOutboundHandleMessageReturnsFalseTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalOutboundHandleMessageReturnsFalseTest failed");
     }
 
     /*
      * @testName: ClientSOAPOutboundHandleMessageReturnsFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.2.2; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.2.2; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ClientSOAPOutboundHandleMessageReturnsFalseTest() throws Fault {
         TestUtil.logTrace("ClientSOAPOutboundHandleMessageReturnsFalseTest");
@@ -783,13 +738,10 @@ public class Client extends ServiceEETest {
                                     + "ClientLogicalHandler1, ClientSOAPHandler1");
                     TestUtil.logMsg("----------------------------------------------");
                     TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler1 and add to HandlerChain");
-                    handler =
-                            new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                    .ClientLogicalHandler1();
+                    handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler1();
                     handlerList.add(handler);
                     TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler1 and add to HandlerChain");
-                    handler =
-                            new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler1();
+                    handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler1();
                     handlerList.add(handler);
                     if (info.getBindingID().equals(THEBINDINGPROTOCOL)) {
                         TestUtil.logMsg("----------------------------------------------");
@@ -798,14 +750,10 @@ public class Client extends ServiceEETest {
                                         + "ClientLogicalHandler2, ClientSOAPHandler2");
                         TestUtil.logMsg("----------------------------------------------");
                         TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler2 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientLogicalHandler2();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler2();
                         handlerList.add(handler);
                         TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler2 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientSOAPHandler2();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler2();
                         handlerList.add(handler);
                     }
                     if (info.getPortName().equals(PORT_QNAME1)) {
@@ -813,14 +761,10 @@ public class Client extends ServiceEETest {
                         TestUtil.logMsg("Create port based handlers for port: " + PORT_QNAME1);
                         TestUtil.logMsg("----------------------------------------------");
                         TestUtil.logMsg("Construct HandleInfo for ClientLogicalHandler3 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientLogicalHandler3();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientLogicalHandler3();
                         handlerList.add(handler);
                         TestUtil.logMsg("Construct HandleInfo for ClientSOAPHandler3 and add to HandlerChain");
-                        handler =
-                                new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client
-                                        .ClientSOAPHandler3();
+                        handler = new com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.client.ClientSOAPHandler3();
                         handlerList.add(handler);
                     }
                     TestUtil.logMsg("HandlerChainList=" + handlerList);
@@ -872,17 +816,17 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientSOAPOutboundHandleMessageReturnsFalseTest failed");
+        if (!pass)
+            throw new Fault("ClientSOAPOutboundHandleMessageReturnsFalseTest failed");
     }
 
     /*
      * @testName: ServerLogicalHandlerTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.1; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ServerLogicalHandlerTest() throws Fault {
         TestUtil.logTrace("ServerLogicalHandlerTest");
@@ -953,17 +897,17 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerLogicalHandlerTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalHandlerTest failed");
     }
 
     /*
      * @testName: ServerLogicalInboundHandleMessageThrowsSOAPFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.3.2; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.3.2; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ServerLogicalInboundHandleMessageThrowsSOAPFaultTest() throws Fault {
         TestUtil.logTrace("ServerLogicalInboundHandleMessageThrowsSOAPFaultTest");
@@ -1035,17 +979,17 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerLogicalInboundHandleMessageThrowsSOAPFaultTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalInboundHandleMessageThrowsSOAPFaultTest failed");
     }
 
     /*
      * @testName: ServerSOAPInboundHandleMessageThrowsSOAPFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.3.2; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.3.2; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ServerSOAPInboundHandleMessageThrowsSOAPFaultTest() throws Fault {
         TestUtil.logTrace("ServerSOAPInboundHandleMessageThrowsSOAPFaultTest");
@@ -1116,17 +1060,17 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerSOAPInboundHandleMessageThrowsSOAPFaultTest failed");
+        if (!pass)
+            throw new Fault("ServerSOAPInboundHandleMessageThrowsSOAPFaultTest failed");
     }
 
     /*
      * @testName: ServerLogicalInboundHandleMessageReturnsFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.2.2; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.2.2; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ServerLogicalInboundHandleMessageReturnsFalseTest() throws Fault {
         TestUtil.logTrace("ServerLogicalInboundHandleMessageReturnsFalseTest");
@@ -1198,17 +1142,17 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerLogicalInboundHandleMessageReturnsFalseTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalInboundHandleMessageReturnsFalseTest failed");
     }
 
     /*
      * @testName: ServerSOAPInboundHandleMessageReturnsFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.2.2; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.2.2; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ServerSOAPInboundHandleMessageReturnsFalseTest() throws Fault {
         TestUtil.logTrace("ServerSOAPInboundHandleMessageReturnsFalseTest");
@@ -1280,7 +1224,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerSOAPInboundHandleMessageReturnsFalseTest failed");
+        if (!pass)
+            throw new Fault("ServerSOAPInboundHandleMessageReturnsFalseTest failed");
     }
 
     private void purgeServerSideTrackerData() {

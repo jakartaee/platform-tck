@@ -35,7 +35,8 @@ import java.util.Properties;
 
 public class Client extends Util {
 
-    public Client() {}
+    public Client() {
+    }
 
     public void setup(String[] args, Properties p) throws Fault {
         TestUtil.logTrace("setup");
@@ -52,9 +53,8 @@ public class Client extends Util {
     /*
      * @testName: fromClassGetRootSetStringObjectTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1696; PERSISTENCE:JAVADOC:1698;
-     * PERSISTENCE:JAVADOC:1703; PERSISTENCE:JAVADOC:631; PERSISTENCE:SPEC:1777;
-     * PERSISTENCE:SPEC:1778; PERSISTENCE:SPEC:1779; PERSISTENCE:SPEC:1793;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1696; PERSISTENCE:JAVADOC:1698; PERSISTENCE:JAVADOC:1703;
+     * PERSISTENCE:JAVADOC:631; PERSISTENCE:SPEC:1777; PERSISTENCE:SPEC:1778; PERSISTENCE:SPEC:1779; PERSISTENCE:SPEC:1793;
      *
      * @test_Strategy: UPDATE Product SET QUANTITY = 0
      *
@@ -308,7 +308,7 @@ public class Client extends Util {
             EntityType<Product> product_ = root.getModel();
             cd.set(product_.getSingularAttribute("quantity", Integer.class), 0);
 
-            Predicate[] predArray = {cbuilder.equal(root.get("id"), "2")};
+            Predicate[] predArray = { cbuilder.equal(root.get("id"), "2") };
 
             cd.where(predArray);
 
@@ -620,8 +620,7 @@ public class Client extends Util {
             TestUtil.logTrace("Obtained Non-null root");
 
             EntityType<Product> product_ = root.getModel();
-            Expression<Integer> exp =
-                    cbuilder.prod(root.get(product_.getSingularAttribute("quantity", Integer.class)), 0);
+            Expression<Integer> exp = cbuilder.prod(root.get(product_.getSingularAttribute("quantity", Integer.class)), 0);
 
             cd.set(root.<Integer>get("quantity"), exp);
             int actual = getEntityManager().createQuery(cd).executeUpdate();
@@ -673,8 +672,8 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * UPDATE Product p SET p.quantity = prod(p.quantity,0) WHERE EXISTS (Select
-     * hardProd From PRODUCT hardprod where hardprod.id = '1').
+     * UPDATE Product p SET p.quantity = prod(p.quantity,0) WHERE EXISTS (Select hardProd From PRODUCT hardprod where
+     * hardprod.id = '1').
      *
      */
     public void subquery() throws Fault {
@@ -689,8 +688,7 @@ public class Client extends Util {
             Root<Product> product = cu.from(Product.class);
             EntityType<Product> product_ = product.getModel();
 
-            Expression<Integer> exp =
-                    cbuilder.prod(product.get(product_.getSingularAttribute("quantity", Integer.class)), 0);
+            Expression<Integer> exp = cbuilder.prod(product.get(product_.getSingularAttribute("quantity", Integer.class)), 0);
 
             cu.set(product.<Integer>get("quantity"), exp);
 
@@ -738,9 +736,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1788; PERSISTENCE:SPEC:1796;
      *
-     * @test_Strategy: UPDATE SoftwareProduct p SET p.quantity = 0 WHERE
-     * p.quantity < 35) UPDATE SoftwareProduct p SET p.quantity = 0 WHERE
-     * p.quantity > 100)
+     * @test_Strategy: UPDATE SoftwareProduct p SET p.quantity = 0 WHERE p.quantity < 35) UPDATE SoftwareProduct p SET
+     * p.quantity = 0 WHERE p.quantity > 100)
      *
      */
     public void modifiedQueryTest() throws Fault {

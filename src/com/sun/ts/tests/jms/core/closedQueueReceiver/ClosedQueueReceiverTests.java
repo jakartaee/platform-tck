@@ -74,11 +74,9 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /**
-     * Used by tests that need a closed receiver for testing. Passes any
-     * exceptions up to caller.
+     * Used by tests that need a closed receiver for testing. Passes any exceptions up to caller.
      *
-     * @param int
-     *          The type of session that needs to be created and closed
+     * @param int The type of session that needs to be created and closed
      */
     private void createAndCloseReceiver() throws Exception {
         tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
@@ -94,10 +92,9 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -153,8 +150,8 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -198,8 +195,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:326;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueReceiverGetMessageSelectorTest() throws Fault {
@@ -232,8 +228,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:332;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueReceiverReceiveTest() throws Fault {
@@ -266,8 +261,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueReceiverReceiveTimeoutTest() throws Fault {
@@ -300,8 +294,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:336;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueReceiverReceiveNoWaitTest() throws Fault {
@@ -334,8 +327,7 @@ public class ClosedQueueReceiverTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:268;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueReceiverGetQueueTest() throws Fault {

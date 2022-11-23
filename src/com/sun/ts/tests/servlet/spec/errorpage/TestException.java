@@ -31,8 +31,7 @@ public class TestException extends Exception {
     /**
      * Construct an exception with the associated message.
      *
-     * @param message
-     *          The associated message
+     * @param message The associated message
      */
     public TestException(String message) {
         super(message);

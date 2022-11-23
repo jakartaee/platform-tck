@@ -40,7 +40,8 @@ public class Phone implements java.io.Serializable {
 
     private Address address;
 
-    public Phone() {}
+    public Phone() {
+    }
 
     public Phone(String v1, String v2, String v3) {
         id = v1;

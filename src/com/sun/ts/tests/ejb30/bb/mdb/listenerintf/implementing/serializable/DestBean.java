@@ -35,12 +35,9 @@ import jakarta.jms.MessageListener;
 // but it should not be considered
 // when determining the messaging type.
 //
-@MessageDriven(
-        name = "DestBean",
-        description = "a simple MDB",
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
-        })
+@MessageDriven(name = "DestBean", description = "a simple MDB", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+})
 public class DestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase
         implements java.io.Serializable, MessageDrivenBean, MessageListener {
     private MessageDrivenContext messageDrivenContext;
@@ -63,5 +60,6 @@ public class DestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBean
         this.messageDrivenContext = messageDrivenContext;
     }
 
-    public void ejbRemove() throws jakarta.ejb.EJBException {}
+    public void ejbRemove() throws jakarta.ejb.EJBException {
+    }
 }

@@ -24,12 +24,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HelloGuestPort",
-        serviceName = "BasicAuthServiceTestService",
-        targetNamespace = "http://BasicAuthServiceTestService.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/BasicAuthServiceTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloGuest")
+@WebService(portName = "HelloGuestPort", serviceName = "BasicAuthServiceTestService", targetNamespace = "http://BasicAuthServiceTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/BasicAuthServiceTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloGuest")
 public class HelloGuestImpl implements HelloGuest {
 
     public String helloGuest(String s) {

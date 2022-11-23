@@ -25,7 +25,7 @@ import jakarta.ejb.DependsOn;
 import jakarta.ejb.Singleton;
 
 @Singleton
-@DependsOn({"ZSingletonBean", "YSingletonBean"})
+@DependsOn({ "ZSingletonBean", "YSingletonBean" })
 public class XSingletonBean extends BeanBase {
     @Override
     protected String getBeanName() {

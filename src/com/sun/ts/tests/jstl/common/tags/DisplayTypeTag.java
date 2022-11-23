@@ -37,25 +37,21 @@ public class DisplayTypeTag extends TagSupport {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Sets the name of the scoped variable that type information should be
-     * displayed.
+     * Sets the name of the scoped variable that type information should be displayed.
      *
-     * @param varName
-     *          scoped variable name
+     * @param varName scoped variable name
      */
     public void setVarName(String varName) {
         _varName = varName;
     }
 
     /**
-     * When called, this will get the attribute from the pageContext, get the name
-     * of the implementing class of the object, and write the result to the
-     * current JspWriter.
+     * When called, this will get the attribute from the pageContext, get the name of the implementing class of the object,
+     * and write the result to the current JspWriter.
      *
      * @return EVAL_PAGE
      */

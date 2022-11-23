@@ -29,12 +29,7 @@ import jakarta.xml.ws.*;
 import jakarta.xml.ws.handler.*;
 import jakarta.xml.ws.wsaddressing.W3CEndpointReference;
 
-@WebService(
-        portName = "HelloPort",
-        serviceName = "HelloService",
-        targetNamespace = "http://helloservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSHelloSecureService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice.Hello")
+@WebService(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSHelloSecureService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.hellosecureservice.Hello")
 public class HelloImpl implements Hello {
 
     @Resource
@@ -45,7 +40,8 @@ public class HelloImpl implements Hello {
     }
 
     public boolean getMessageContextTest() {
-        if (wsContext == null) return false;
+        if (wsContext == null)
+            return false;
         else {
             MessageContext v = wsContext.getMessageContext();
             System.out.println("MessageContext=" + v);
@@ -54,7 +50,8 @@ public class HelloImpl implements Hello {
     }
 
     public boolean getUserPrincipalTest() {
-        if (wsContext == null) return false;
+        if (wsContext == null)
+            return false;
         else {
             java.security.Principal v = wsContext.getUserPrincipal();
             System.out.println("UserPrincipal=" + v);
@@ -63,8 +60,10 @@ public class HelloImpl implements Hello {
     }
 
     public boolean isUserInRoleTest(String s) {
-        if (wsContext == null) return false;
-        else return wsContext.isUserInRole(s);
+        if (wsContext == null)
+            return false;
+        else
+            return wsContext.isUserInRole(s);
     }
 
     public boolean getEndpointReferenceTest() {
@@ -95,8 +94,8 @@ public class HelloImpl implements Hello {
     }
 
     /*
-     * <T extends EndpointReference> T getEndpointReference(java.lang.Class<T>
-     * clazz, org.w3c.dom.Element... referenceParameters)
+     * <T extends EndpointReference> T getEndpointReference(java.lang.Class<T> clazz, org.w3c.dom.Element...
+     * referenceParameters)
      */
     public boolean getEndpointReference2Test() {
         boolean pass = true;

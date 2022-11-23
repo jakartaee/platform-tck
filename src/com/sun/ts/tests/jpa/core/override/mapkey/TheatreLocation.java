@@ -36,7 +36,8 @@ public class TheatreLocation implements Serializable {
     @ManyToMany()
     private Set<TheatreCompany> companies = new HashSet();
 
-    public TheatreLocation() {}
+    public TheatreLocation() {
+    }
 
     public Long getId() {
         return id;

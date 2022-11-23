@@ -60,10 +60,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: test1
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:162; WebSocket:JAVADOC:67;
-     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128;
-     * WebSocket:JAVADOC:112; WebSocket:JAVADOC:151; WebSocket:JAVADOC:152;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:162;
+     * WebSocket:JAVADOC:67; WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
+     * WebSocket:JAVADOC:151; WebSocket:JAVADOC:152;
      *
      * @test_Strategy:
      */

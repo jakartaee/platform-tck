@@ -49,16 +49,15 @@ public class ELClient extends ServiceEETest {
         this.testProps = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
      * @testName: methodReferenceTest
      *
      * @assertion_ids: EL:JAVADOC:87; EL:JAVADOC:88; EL:JAVADOC:89
-     * @test_Strategy: Validate the behavior of MethodReference class methods:
-     *                 MethodReference.getBase() MethodReference.getMethodInfo()
-     *                 MethodReference.getAnnotations()
-     *                 MethodReference.getEvaluatedParameters
+     * @test_Strategy: Validate the behavior of MethodReference class methods: MethodReference.getBase()
+     * MethodReference.getMethodInfo() MethodReference.getAnnotations() MethodReference.getEvaluatedParameters
      */
     public void methodReferenceTest() throws Fault {
 
@@ -75,16 +74,15 @@ public class ELClient extends ServiceEETest {
             context.getVariableMapper().setVariable("bean", ve);
 
             // case 1: non-null return value
-            MethodExpression mexp1 =
-                    expFactory.createMethodExpression(context, "#{bean.targetF('aaa',1234)}", String.class, null);
+            MethodExpression mexp1 = expFactory.createMethodExpression(context, "#{bean.targetF('aaa',1234)}", String.class, null);
             MethodInfo minfo1 = mexp1.getMethodInfo(context);
             MethodReference mref1 = mexp1.getMethodReference(context);
             pass1 = ExpressionTest.testMethodReference(
                     mref1,
                     bean,
                     minfo1,
-                    new Class<?>[] {Deprecated.class},
-                    new Object[] {"aaa", Long.valueOf(1234)},
+                    new Class<?>[] { Deprecated.class },
+                    new Object[] { "aaa", Long.valueOf(1234) },
                     buf);
 
             // case 2: NPE
@@ -97,8 +95,7 @@ public class ELClient extends ServiceEETest {
             }
 
             // case 3: PNFE
-            MethodExpression mexp3 =
-                    expFactory.createMethodExpression(context, "#{noSuchBean.method()}", String.class, null);
+            MethodExpression mexp3 = expFactory.createMethodExpression(context, "#{noSuchBean.method()}", String.class, null);
             try {
                 mexp3.getMethodReference(context);
                 pass3 = false;
@@ -108,8 +105,7 @@ public class ELClient extends ServiceEETest {
             }
 
             // case 4: MNFE
-            MethodExpression mexp4 =
-                    expFactory.createMethodExpression(context, "#{bean.noSuchMethod()}", String.class, null);
+            MethodExpression mexp4 = expFactory.createMethodExpression(context, "#{bean.noSuchMethod()}", String.class, null);
             try {
                 mexp4.getMethodReference(context);
                 pass4 = false;
@@ -125,6 +121,7 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!(pass1 && pass2 && pass3 && pass4)) throw new Fault(ELTestUtil.FAIL + NL + buf.toString());
+        if (!(pass1 && pass2 && pass3 && pass4))
+            throw new Fault(ELTestUtil.FAIL + NL + buf.toString());
     }
 }

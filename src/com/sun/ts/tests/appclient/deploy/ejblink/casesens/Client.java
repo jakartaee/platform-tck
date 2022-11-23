@@ -51,8 +51,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -73,16 +72,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:279
      *
-     * @test_Strategy: Have two Stateless Session beans whose ejb-name's differ
-     *                 only by case and whose identity is defined by a String
-     *                 environment entry ('myName').
+     * @test_Strategy: Have two Stateless Session beans whose ejb-name's differ only by case and whose identity is defined
+     * by a String environment entry ('myName').
      *
-     *                 The application client references these two beans using
-     *                 ejb-link elements. Check that the client can lookup the two
-     *                 beans and check each bean identity based on their value for
-     *                 the 'myName' environment entry. Check that this identity
-     *                 match the references specified in the DD (validates that
-     *                 the EJB references were resolved correctly).
+     * The application client references these two beans using ejb-link elements. Check that the client can lookup the two
+     * beans and check each bean identity based on their value for the 'myName' environment entry. Check that this identity
+     * match the references specified in the DD (validates that the EJB references were resolved correctly).
      */
     public void testCaseSensitivity() throws Fault {
         CaseBeanHome home1 = null;

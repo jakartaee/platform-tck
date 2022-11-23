@@ -45,9 +45,8 @@ public class TestServlet2 extends HttpServlet {
         }
 
         /*
-         * JSR-369 change log 2. Modify javadoc for ServletContext getAttribute()
-         * and getInitParameter(), specify that NullPointerException must be thrown
-         * if the argument 'name' is null.
+         * JSR-369 change log 2. Modify javadoc for ServletContext getAttribute() and getInitParameter(), specify that
+         * NullPointerException must be thrown if the argument 'name' is null.
          */
         try {
             getServletContext().getAttribute(null);
@@ -64,9 +63,8 @@ public class TestServlet2 extends HttpServlet {
         }
 
         /*
-         * JSR-369 change log 3. Modify javadoc for ServletContext setAttribute()
-         * and setInitParameter(), specify that NullPointerException must be thrown
-         * if the argument 'name' is null.
+         * JSR-369 change log 3. Modify javadoc for ServletContext setAttribute() and setInitParameter(), specify that
+         * NullPointerException must be thrown if the argument 'name' is null.
          */
         try {
             getServletContext().setAttribute(null, new Object());
@@ -87,15 +85,15 @@ public class TestServlet2 extends HttpServlet {
         }
 
         /*
-         * JSR-369 change log 12. Modify javadoc for
-         * ServletContext.getEffectiveSessionTrackingModes() without specifying the
+         * JSR-369 change log 12. Modify javadoc for ServletContext.getEffectiveSessionTrackingModes() without specifying the
          * default value.
          */
         try {
             Set<SessionTrackingMode> set = getServletContext().getEffectiveSessionTrackingModes();
             StringBuilder strB = new StringBuilder("getEffectiveSessionTrackingModes_test_passed");
             if (set != null && set.size() > 0) {
-                for (SessionTrackingMode stm : set) strB.append("_" + stm.toString());
+                for (SessionTrackingMode stm : set)
+                    strB.append("_" + stm.toString());
             }
 
             if (set == null || set.size() == 0)

@@ -22,11 +22,9 @@ import java.util.jar.*;
 import java.util.zip.*;
 
 /**
- * This class is used to maintain mappings from packages, classes and resources
- * to their enclosing JAR files. Mappings are kept at the package level except
- * for class or resource files that are located at the root directory.
- * URLClassLoader uses the mapping information to determine where to fetch an
- * extension class or resource from.
+ * This class is used to maintain mappings from packages, classes and resources to their enclosing JAR files. Mappings
+ * are kept at the package level except for class or resource files that are located at the root directory.
+ * URLClassLoader uses the mapping information to determine where to fetch an extension class or resource from.
  *
  * @author Zhenghua Li
  * @since 1.3
@@ -34,14 +32,12 @@ import java.util.zip.*;
 public class JarIndex {
 
     /**
-     * The hash map that maintains mappings from package/classe/resource to jar
-     * file list(s)
+     * The hash map that maintains mappings from package/classe/resource to jar file list(s)
      */
     private HashMap indexMap;
 
     /**
-     * The hash map that maintains mappings from jar file to
-     * package/class/resource lists
+     * The hash map that maintains mappings from jar file to package/class/resource lists
      */
     private HashMap jarMap;
 
@@ -66,8 +62,7 @@ public class JarIndex {
     /**
      * Constructs a new index from the specified input stream.
      *
-     * @param is
-     *          the input stream containing the index data
+     * @param is the input stream containing the index data
      */
     public JarIndex(InputStream is) throws IOException {
         this();
@@ -77,8 +72,7 @@ public class JarIndex {
     /**
      * Constructs a new index for the specified list of jar files.
      *
-     * @param files
-     *          the list of jar files to construct the index from.
+     * @param files the list of jar files to construct the index from.
      */
     public JarIndex(String[] files) throws IOException {
         this();
@@ -89,16 +83,13 @@ public class JarIndex {
     /**
      * Returns the jar index, or <code>null</code> if none.
      *
-     * @param jar
-     *          the JAR file to get the index from.
-     * @exception IOException
-     *              if an I/O error has occurred.
+     * @param jar the JAR file to get the index from.
+     * @exception IOException if an I/O error has occurred.
      */
     public static JarIndex getJarIndex(JarFile jar, MetaIndex metaIndex) throws IOException {
         JarIndex index = null;
         /*
-         * If metaIndex is not null, check the meta index to see if
-         * META-INF/INDEX.LIST is contained in jar file or not.
+         * If metaIndex is not null, check the meta index to see if META-INF/INDEX.LIST is contained in jar file or not.
          */
         if (metaIndex != null && !metaIndex.mayContain(INDEX_NAME)) {
             return null;
@@ -119,8 +110,7 @@ public class JarIndex {
     }
 
     /*
-     * Add the key, value pair to the hashmap, the value will be put in a linked
-     * list which is created if necessary.
+     * Add the key, value pair to the hashmap, the value will be put in a linked list which is created if necessary.
      */
     private void addToList(String key, String value, HashMap t) {
         LinkedList list = (LinkedList) t.get(key);
@@ -136,8 +126,7 @@ public class JarIndex {
     /**
      * Returns the list of jar files that are mapped to the file.
      *
-     * @param fileName
-     *          the key of the mapping
+     * @param fileName the key of the mapping
      */
     public LinkedList get(String fileName) {
         LinkedList jarFiles = null;
@@ -152,16 +141,13 @@ public class JarIndex {
     }
 
     /**
-     * Add the mapping from the specified file to the specified jar file. If there
-     * were no mapping for the package of the specified file before, a new linked
-     * list will be created, the jar file is added to the list and a new mapping
-     * from the package to the jar file list is added to the hashmap. Otherwise,
-     * the jar file will be added to the end of the existing list.
+     * Add the mapping from the specified file to the specified jar file. If there were no mapping for the package of the
+     * specified file before, a new linked list will be created, the jar file is added to the list and a new mapping from
+     * the package to the jar file list is added to the hashmap. Otherwise, the jar file will be added to the end of the
+     * existing list.
      *
-     * @param fileName
-     *          the file name
-     * @param jarName
-     *          the jar file that the file is mapped to
+     * @param fileName the file name
+     * @param jarName the jar file that the file is mapped to
      *
      */
     public void add(String fileName, String jarName) {
@@ -212,10 +198,8 @@ public class JarIndex {
     /**
      * Writes the index to the specified OutputStream
      *
-     * @param out
-     *          the output stream
-     * @exception IOException
-     *              if an I/O error has occurred
+     * @param out the output stream
+     * @exception IOException if an I/O error has occurred
      */
     public void write(OutputStream out) throws IOException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out, "UTF8"));
@@ -242,10 +226,8 @@ public class JarIndex {
     /**
      * Reads the index from the specified InputStream.
      *
-     * @param is
-     *          the input stream
-     * @exception IOException
-     *              if an I/O error has occurred
+     * @param is the input stream
+     * @exception IOException if an I/O error has occurred
      */
     public void read(InputStream is) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF8"));
@@ -260,7 +242,8 @@ public class JarIndex {
             ;
 
         for (; line != null; line = br.readLine()) {
-            if (line.length() == 0) continue;
+            if (line.length() == 0)
+                continue;
 
             if (line.endsWith(".jar")) {
                 currentJar = line;
@@ -276,13 +259,10 @@ public class JarIndex {
     }
 
     /**
-     * Merges the current index into another index, taking into account the
-     * relative path of the current index.
+     * Merges the current index into another index, taking into account the relative path of the current index.
      *
-     * @param toIndex
-     *          The destination index which the current index will merge into.
-     * @param path
-     *          The relative path of the this index to the destination index.
+     * @param toIndex The destination index which the current index will merge into.
+     * @param path The relative path of the this index to the destination index.
      *
      */
     public void merge(JarIndex toIndex, String path) {

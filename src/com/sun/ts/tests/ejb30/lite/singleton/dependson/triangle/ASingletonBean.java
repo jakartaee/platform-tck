@@ -29,7 +29,7 @@ import jakarta.ejb.Startup;
 
 @Startup
 @Singleton
-@DependsOn({"CSingletonBean", "BSingletonBean"})
+@DependsOn({ "CSingletonBean", "BSingletonBean" })
 @ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class ASingletonBean extends BeanBase {
     @Override

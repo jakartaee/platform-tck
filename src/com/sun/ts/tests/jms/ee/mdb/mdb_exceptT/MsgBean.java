@@ -38,45 +38,45 @@ public class MsgBean extends ParentMsgBeanNoTx {
             if (msg.getIntProperty("TestCaseNum") > 0) {
 
                 switch (msg.getIntProperty("TestCaseNum")) {
-                    case 1: // MDB Durable Topic w/BMT demarcation
-                        runGetRollbackOnlyBMT(msg, qSession, testName);
-                        break;
+                case 1: // MDB Durable Topic w/BMT demarcation
+                    runGetRollbackOnlyBMT(msg, qSession, testName);
+                    break;
 
-                    case 2: // MDB Durable Topic w/BMT demarcation
-                        runSetRollbackOnlyBMT(msg, qSession, testName);
-                        break;
+                case 2: // MDB Durable Topic w/BMT demarcation
+                    runSetRollbackOnlyBMT(msg, qSession, testName);
+                    break;
 
-                    case 3: // MDB Durable Topic w/CMT - TX_NOT_SUPPORTED
-                        runSetRollbackOnlyCMT(msg, qSession, testName);
-                        break;
+                case 3: // MDB Durable Topic w/CMT - TX_NOT_SUPPORTED
+                    runSetRollbackOnlyCMT(msg, qSession, testName);
+                    break;
 
-                    case 4: // MDB Durable Topic w/CMT - TX_NOT_SUPPORTED
-                        runGetRollbackOnlyCMT(msg, qSession, testName);
-                        break;
+                case 4: // MDB Durable Topic w/CMT - TX_NOT_SUPPORTED
+                    runGetRollbackOnlyCMT(msg, qSession, testName);
+                    break;
 
-                    case 5: // MDB Durable Topic w/CMT - TX_NOT_SUPPORTED
-                    case 6: // MDB Durable Topic w/CMT
-                        runGetUserTransaction(msg, qSession, testName);
-                        break;
+                case 5: // MDB Durable Topic w/CMT - TX_NOT_SUPPORTED
+                case 6: // MDB Durable Topic w/CMT
+                    runGetUserTransaction(msg, qSession, testName);
+                    break;
 
-                    case 7: // MDB Durable Topic w/CMT
-                    case 8: // MDB Durable Topic w/CMT - TX_NOT_SUPPORTED
-                        runGetCallerPrincipal(msg, qSession, testName);
-                        break;
+                case 7: // MDB Durable Topic w/CMT
+                case 8: // MDB Durable Topic w/CMT - TX_NOT_SUPPORTED
+                    runGetCallerPrincipal(msg, qSession, testName);
+                    break;
 
-                    case 11: // MDB Durable Topic w/CMT
-                    case 12: // MDB Durable Topic w/CMT - TX_NOT_SUPPORTED
-                        runGetEJBHome(msg, qSession, testName);
-                        break;
+                case 11: // MDB Durable Topic w/CMT
+                case 12: // MDB Durable Topic w/CMT - TX_NOT_SUPPORTED
+                    runGetEJBHome(msg, qSession, testName);
+                    break;
 
-                    case 13: // MDB Durable Topic w/BMT demarcation
-                        runBeginAgain(msg, qSession, testName);
-                        break;
+                case 13: // MDB Durable Topic w/BMT demarcation
+                    runBeginAgain(msg, qSession, testName);
+                    break;
 
-                    default:
-                        TestUtil.logTrace("Error in mdb - ");
-                        TestUtil.logTrace("No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
-                        break;
+                default:
+                    TestUtil.logTrace("Error in mdb - ");
+                    TestUtil.logTrace("No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
+                    break;
                 }
             }
         } catch (Exception e) {

@@ -92,7 +92,8 @@ public final class JAXWS_Util {
     public static void setSOAPLogging(java.lang.Object stub, java.io.OutputStream s) throws Exception {
         boolean enableSoapLogging = Boolean.parseBoolean(TestUtil.getProperty("EnableSoapLogging"));
         boolean debug = false;
-        if (!enableSoapLogging) return;
+        if (!enableSoapLogging)
+            return;
         System.out.println("DEBUG: setSOAPLogging - NOT USED");
     }
 
@@ -109,18 +110,21 @@ public final class JAXWS_Util {
         TestUtil.logMsg("QNAME=" + sname);
         TestUtil.logMsg("Creating Service via jakarta.xml.ws.Service.create(QName)");
         service = jakarta.xml.ws.Service.create(sname);
-        if (service == null) TestUtil.logErr("FATAL: jakarta.xml.ws.Service.create(QName) returned a null");
+        if (service == null)
+            TestUtil.logErr("FATAL: jakarta.xml.ws.Service.create(QName) returned a null");
         return service;
     }
 
     public static jakarta.xml.ws.Service getService(URL wsdlurl, QName sname) throws Exception {
         TestUtil.logMsg("JAXWS_Util:getService(URL, QName)");
         jakarta.xml.ws.Service service = null;
-        if (wsdlurl != null) TestUtil.logMsg("URL=" + wsdlurl.toString());
+        if (wsdlurl != null)
+            TestUtil.logMsg("URL=" + wsdlurl.toString());
         TestUtil.logMsg("QName=" + sname);
         TestUtil.logMsg("Creating Service via jakarta.xml.ws.Service.create(URL, QName)");
         service = jakarta.xml.ws.Service.create(wsdlurl, sname);
-        if (service == null) TestUtil.logErr("FATAL: jakarta.xml.ws.Service.create(URL, QName) returned a null");
+        if (service == null)
+            TestUtil.logErr("FATAL: jakarta.xml.ws.Service.create(URL, QName) returned a null");
         return service;
     }
 
@@ -129,21 +133,24 @@ public final class JAXWS_Util {
         jakarta.xml.ws.Service service = null;
         TestUtil.logMsg("siClass=" + siClass.getName());
         service = (jakarta.xml.ws.Service) siClass.newInstance();
-        if (service == null) TestUtil.logErr("FATAL: JAXWS_Util.getService(Class) returned service=null");
+        if (service == null)
+            TestUtil.logErr("FATAL: JAXWS_Util.getService(Class) returned service=null");
         return service;
     }
 
     public static jakarta.xml.ws.Service getService(URL wsdlurl, QName siName, Class siClass) throws Exception {
         TestUtil.logMsg("JAXWS_Util:getService(URL, QName, Class)");
         jakarta.xml.ws.Service service = null;
-        if (wsdlurl != null) TestUtil.logMsg("URL=" + wsdlurl.toString());
+        if (wsdlurl != null)
+            TestUtil.logMsg("URL=" + wsdlurl.toString());
         TestUtil.logMsg("siName=" + siName);
         Modules.ensureReadable(JAXWS_Util.class, siClass);
         Modules.ensureReadable(JAXWS_Util.class, siClass.getSuperclass());
         TestUtil.logMsg("siClass=" + siClass.getName());
         Constructor ctr = siClass.getConstructor(URL.class, QName.class);
         service = (jakarta.xml.ws.Service) ctr.newInstance(wsdlurl, siName);
-        if (service == null) TestUtil.logErr("FATAL: JAXWS_Util.getService(URL, QName, Class) returned service=null");
+        if (service == null)
+            TestUtil.logErr("FATAL: JAXWS_Util.getService(URL, QName, Class) returned service=null");
         return service;
     }
 
@@ -159,7 +166,8 @@ public final class JAXWS_Util {
             URL wsdlurl, QName siName, Class siClass, QName portName, Class seiClass, WebServiceFeature[] wsf)
             throws Exception {
         TestUtil.logMsg("JAXWS_Util.getPort(URL, QName, Class, QName, Class, WebServiceFeature[])");
-        if (wsdlurl != null) TestUtil.logMsg("URL=" + wsdlurl.toString());
+        if (wsdlurl != null)
+            TestUtil.logMsg("URL=" + wsdlurl.toString());
         TestUtil.logMsg("siName=" + siName);
         TestUtil.logMsg("siClass=" + siClass.getName());
         TestUtil.logMsg("portName=" + portName);
@@ -174,14 +182,18 @@ public final class JAXWS_Util {
         jakarta.xml.ws.Service svc = (jakarta.xml.ws.Service) ctr.newInstance(wsdlurl, siName);
         TestUtil.logMsg("Get stub/proxy for seiClass -> " + seiClass.getName() + ", port ->" + portName);
         Object stub = null;
-        if (wsf != null) stub = svc.getPort(portName, seiClass, wsf);
-        else stub = svc.getPort(portName, seiClass);
+        if (wsf != null)
+            stub = svc.getPort(portName, seiClass, wsf);
+        else
+            stub = svc.getPort(portName, seiClass);
         if (stub == null) {
             if (wsf != null)
                 TestUtil.logErr(
                         "FATAL: JAXWS_Util.getPort(URL, QName, Class, QName, Class, WebServiceFeature[]) returned stub/proxy=null");
-            else TestUtil.logErr("FATAL: JAXWS_Util.getPort(URL, QName, Class, QName, Class) returned stub/proxy=null");
-        } else TestUtil.logMsg("Obtained stub/proxy=" + stub);
+            else
+                TestUtil.logErr("FATAL: JAXWS_Util.getPort(URL, QName, Class, QName, Class) returned stub/proxy=null");
+        } else
+            TestUtil.logMsg("Obtained stub/proxy=" + stub);
         return stub;
     }
 
@@ -197,8 +209,10 @@ public final class JAXWS_Util {
         TestUtil.logMsg("JAXWS_Util.getPort(jakarta.xml.ws.Service, QName, Class, WebServiceFeature[])");
         TestUtil.logMsg("Get stub/proxy for port qname=" + port);
         Object stub = null;
-        if (wsf != null) stub = svc.getPort(port, seiClass, wsf);
-        else stub = svc.getPort(port, seiClass);
+        if (wsf != null)
+            stub = svc.getPort(port, seiClass, wsf);
+        else
+            stub = svc.getPort(port, seiClass);
         if (stub == null) {
             if (wsf != null)
                 TestUtil.logErr(
@@ -206,7 +220,8 @@ public final class JAXWS_Util {
             else
                 TestUtil.logErr(
                         "FATAL: JAXWS_Util.getPort(jakarta.xml.ws.Service, QName, Class) returned stub/proxy=null");
-        } else TestUtil.logMsg("Obtained stub/proxy=" + stub);
+        } else
+            TestUtil.logMsg("Obtained stub/proxy=" + stub);
         return stub;
     }
 
@@ -252,7 +267,7 @@ public final class JAXWS_Util {
     }
 
     public static void dumpPorts(jakarta.xml.ws.Service service) {
-        for (Iterator iterator = service.getPorts(); iterator.hasNext(); ) {
+        for (Iterator iterator = service.getPorts(); iterator.hasNext();) {
             QName name = (QName) iterator.next();
             TestUtil.logMsg("port:" + name.toString());
         }
@@ -533,10 +548,12 @@ public final class JAXWS_Util {
     public static MessageFactory getMessageFactory(String soapVer) throws Exception {
         System.out.println("JAXWS_Util:getMessageFactory");
         if (soapVer.equals(SOAP11)) {
-            if (mfactorySOAP11 == null) mfactorySOAP11 = MessageFactory.newInstance();
+            if (mfactorySOAP11 == null)
+                mfactorySOAP11 = MessageFactory.newInstance();
             return mfactorySOAP11;
         } else {
-            if (mfactorySOAP12 == null) mfactorySOAP12 = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
+            if (mfactorySOAP12 == null)
+                mfactorySOAP12 = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
             return mfactorySOAP12;
         }
     }
@@ -544,10 +561,12 @@ public final class JAXWS_Util {
     public static SOAPFactory getSOAPFactory(String soapVer) throws Exception {
         System.out.println("JAXWS_Util:getSOAPFactory");
         if (soapVer.equals(SOAP11)) {
-            if (sfactorySOAP11 == null) sfactorySOAP11 = SOAPFactory.newInstance();
+            if (sfactorySOAP11 == null)
+                sfactorySOAP11 = SOAPFactory.newInstance();
             return sfactorySOAP11;
         } else {
-            if (sfactorySOAP12 == null) sfactorySOAP12 = SOAPFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
+            if (sfactorySOAP12 == null)
+                sfactorySOAP12 = SOAPFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
             return sfactorySOAP12;
         }
     }
@@ -576,10 +595,14 @@ public final class JAXWS_Util {
 
     public static Source makeSource(String msg, String type) {
         Reader reader = new StringReader(msg);
-        if (type.equals("StreamSource")) return new StreamSource(reader);
-        else if (type.equals("DOMSource")) return new DOMSource(createDOMNode(reader));
-        else if (type.equals("SAXSource")) return new SAXSource(new InputSource(reader));
-        else return null;
+        if (type.equals("StreamSource"))
+            return new StreamSource(reader);
+        else if (type.equals("DOMSource"))
+            return new DOMSource(createDOMNode(reader));
+        else if (type.equals("SAXSource"))
+            return new SAXSource(new InputSource(reader));
+        else
+            return null;
     }
 
     public static Node createDOMNode(Reader reader) {
@@ -946,10 +969,8 @@ public final class JAXWS_Util {
 
     public static void dumpHTTPHeaders(SOAPMessageContext context, boolean output) {
 
-        Map<String, List<String>> mreq =
-                (Map<String, List<String>>) context.get(SOAPMessageContext.HTTP_REQUEST_HEADERS);
-        Map<String, List<String>> mresp =
-                (Map<String, List<String>>) context.get(SOAPMessageContext.HTTP_RESPONSE_HEADERS);
+        Map<String, List<String>> mreq = (Map<String, List<String>>) context.get(SOAPMessageContext.HTTP_REQUEST_HEADERS);
+        Map<String, List<String>> mresp = (Map<String, List<String>>) context.get(SOAPMessageContext.HTTP_RESPONSE_HEADERS);
         StringBuffer sbreq = new StringBuffer();
         int cnt = 0;
         Iterator iterator = null;
@@ -962,12 +983,14 @@ public final class JAXWS_Util {
                         List<String> list = (List<String>) mreq.get(key);
                         Iterator i = list.iterator();
                         String values = "";
-                        while (i.hasNext()) values = (String) i.next() + " ";
+                        while (i.hasNext())
+                            values = (String) i.next() + " ";
                         sbreq.append("" + key + "=" + values);
                         cnt++;
                     }
                 }
-            } else sbreq.append("http_request_headers are null");
+            } else
+                sbreq.append("http_request_headers are null");
         } catch (Exception e) {
         }
         StringBuffer sbresp = new StringBuffer();
@@ -982,12 +1005,14 @@ public final class JAXWS_Util {
                         List<String> list = (List<String>) mresp.get(key);
                         Iterator i = list.iterator();
                         String values = "";
-                        while (i.hasNext()) values = (String) i.next() + " ";
+                        while (i.hasNext())
+                            values = (String) i.next() + " ";
                         sbresp.append("" + key + "=" + values);
                         cnt++;
                     }
                 }
-            } else sbresp.append("http_response_headers are null");
+            } else
+                sbresp.append("http_response_headers are null");
         } catch (Exception e) {
         }
 
@@ -1010,8 +1035,10 @@ public final class JAXWS_Util {
         HashMap out = new HashMap();
         if (in != null) {
             for (Map.Entry<String, List<String>> e : in.entrySet()) {
-                if (e.getKey() != null) out.put(e.getKey().toLowerCase(), e.getValue());
-                else out.put(e.getKey(), e.getValue());
+                if (e.getKey() != null)
+                    out.put(e.getKey().toLowerCase(), e.getValue());
+                else
+                    out.put(e.getKey(), e.getValue());
             }
         }
         return out;

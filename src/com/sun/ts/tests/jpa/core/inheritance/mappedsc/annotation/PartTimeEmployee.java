@@ -35,16 +35,17 @@ import java.sql.Date;
 
 @Entity
 @AttributeOverrides({
-    @AttributeOverride(name = "id", column = @Column(name = "ID")),
-    @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
-    @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")),
-    @AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE"))
+        @AttributeOverride(name = "id", column = @Column(name = "ID")),
+        @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
+        @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")),
+        @AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE"))
 })
 public class PartTimeEmployee extends Employee {
 
     private float wage;
 
-    public PartTimeEmployee() {}
+    public PartTimeEmployee() {
+    }
 
     public PartTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
         super(id, firstName, lastName, hireDate);

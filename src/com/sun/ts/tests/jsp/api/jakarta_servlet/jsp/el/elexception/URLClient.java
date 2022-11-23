@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -74,8 +72,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:160
      *
-     * @test_Strategy: Validate contructor taking single string argument as the
-     * message of the Exception.
+     * @test_Strategy: Validate contructor taking single string argument as the message of the Exception.
      */
     public void elExceptionMessageCtorTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "elExceptionMessageCtorTest");
@@ -87,8 +84,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:161
      *
-     * @test_Strategy: Validate constructor taking a Throwable signifying the root
-     * cause of the this ELException.
+     * @test_Strategy: Validate constructor taking a Throwable signifying the root cause of the this ELException.
      */
     public void elExceptionCauseCtorTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "elExceptionCauseCtorTest");
@@ -100,8 +96,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:162
      *
-     * @test_Strategy: Validate constructor taking both a message and a Throwable
-     * signifying the root cause of the ELException.
+     * @test_Strategy: Validate constructor taking both a message and a Throwable signifying the root cause of the
+     * ELException.
      */
     public void elExceptionCauseMessageCtorTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "elExceptionCauseMessageCtorTest");

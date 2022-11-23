@@ -38,16 +38,15 @@ public class MemberSubmissionAddressingFeature extends WebServiceFeature {
     private boolean enabled;
 
     /**
-     * Create an MemberSubmissionAddressingFeature The instance created will be
-     * enabled.
+     * Create an MemberSubmissionAddressingFeature The instance created will be enabled.
      */
-    public MemberSubmissionAddressingFeature() {}
+    public MemberSubmissionAddressingFeature() {
+    }
 
     /**
      * Create an MemberSubmissionAddressingFeature
      *
-     * @param enabled
-     *          specifies whether this feature should be enabled or not.
+     * @param enabled specifies whether this feature should be enabled or not.
      */
     public MemberSubmissionAddressingFeature(boolean enabled) {
         this.enabled = enabled;
@@ -56,12 +55,9 @@ public class MemberSubmissionAddressingFeature extends WebServiceFeature {
     /**
      * Create an <code>MemberSubmissionAddressingFeature</code>
      *
-     * @param enabled
-     *          specifies whether this feature should be enabled or not.
-     * @param required
-     *          specifies the value that will be used for the
-     *          <code>required</code> attribute on the
-     *          <code>wsaw:UsingAddressing</code> element.
+     * @param enabled specifies whether this feature should be enabled or not.
+     * @param required specifies the value that will be used for the <code>required</code> attribute on the
+     * <code>wsaw:UsingAddressing</code> element.
      */
     public MemberSubmissionAddressingFeature(boolean enabled, boolean required) {
         this.enabled = enabled;

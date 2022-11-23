@@ -194,8 +194,10 @@ public class NodeTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -223,8 +225,10 @@ public class NodeTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -252,7 +256,8 @@ public class NodeTestServlet extends HttpServlet {
                 if (!sh.equals(hdr)) {
                     TestUtil.logErr("SOAPHeader element does not match");
                     pass = false;
-                } else TestUtil.logMsg("SOAPHeader element does match");
+                } else
+                    TestUtil.logMsg("SOAPHeader element does match");
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -260,8 +265,10 @@ public class NodeTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -296,8 +303,10 @@ public class NodeTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -331,7 +340,8 @@ public class NodeTestServlet extends HttpServlet {
                 if (!sh.equals(hdr)) {
                     TestUtil.logErr("SOAPHeader element does not match");
                     pass = false;
-                } else TestUtil.logMsg("SOAPHeader element does match");
+                } else
+                    TestUtil.logMsg("SOAPHeader element does match");
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -339,8 +349,10 @@ public class NodeTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -376,8 +388,10 @@ public class NodeTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -413,8 +427,10 @@ public class NodeTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -438,7 +454,8 @@ public class NodeTestServlet extends HttpServlet {
                 TestUtil.logErr("value is not null - unexpected");
                 TestUtil.logErr("value=" + value);
                 pass = false;
-            } else TestUtil.logMsg("value is null - expected");
+            } else
+                TestUtil.logMsg("value is null - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -446,8 +463,10 @@ public class NodeTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -472,15 +491,18 @@ public class NodeTestServlet extends HttpServlet {
             } else if (!value.equals("foo-bar")) {
                 TestUtil.logErr("value incorrect - expected: " + "foo-bar" + ", received: " + value);
                 pass = false;
-            } else TestUtil.logMsg("value returned is correct: " + value);
+            } else
+                TestUtil.logMsg("value returned is correct: " + value);
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -505,7 +527,8 @@ public class NodeTestServlet extends HttpServlet {
             } else if (!value.equals("foo-bar")) {
                 TestUtil.logErr("value incorrect - expected: " + "foo-bar" + ", received: " + value);
                 pass = false;
-            } else TestUtil.logMsg("value returned is correct: " + value);
+            } else
+                TestUtil.logMsg("value returned is correct: " + value);
             TestUtil.logMsg("Resetting value of SOAPHeaderElement to \"foo-bar2\"");
             she.setValue("foo-bar2");
             TestUtil.logMsg("Getting value of SOAPHeaderElement should return \"foo-bar2\"");
@@ -516,15 +539,18 @@ public class NodeTestServlet extends HttpServlet {
             } else if (!value.equals("foo-bar2")) {
                 TestUtil.logErr("value incorrect - expected: " + "foo-bar2" + ", received: " + value);
                 pass = false;
-            } else TestUtil.logMsg("value returned is correct: " + value);
+            } else
+                TestUtil.logMsg("value returned is correct: " + value);
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -551,7 +577,8 @@ public class NodeTestServlet extends HttpServlet {
             } else if (!value.equals("foo-bar")) {
                 TestUtil.logErr("value incorrect - expected: " + "foo-bar" + ", received: " + value);
                 pass = false;
-            } else TestUtil.logMsg("value returned is correct: " + value);
+            } else
+                TestUtil.logMsg("value returned is correct: " + value);
             TestUtil.logMsg("Resetting value of child element to \"foo-bar2\"");
             se.setValue("foo-bar2");
             TestUtil.logMsg("Getting value of child element should return \"foo-bar2\"");
@@ -562,15 +589,18 @@ public class NodeTestServlet extends HttpServlet {
             } else if (!value.equals("foo-bar2")) {
                 TestUtil.logErr("value incorrect - expected: " + "foo-bar2" + ", received: " + value);
                 pass = false;
-            } else TestUtil.logMsg("value returned is correct: " + value);
+            } else
+                TestUtil.logMsg("value returned is correct: " + value);
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -617,8 +647,10 @@ public class NodeTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

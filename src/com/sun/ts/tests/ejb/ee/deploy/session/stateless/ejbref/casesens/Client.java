@@ -66,16 +66,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:872
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) with two EJB
-     *                 references whose name differ only by case and are assigned
-     *                 to two distinct beans (Same type of bean, but the two beans
-     *                 are packaged with different values for a String environment
-     *                 entry called 'myName').
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) with two EJB references whose name differ only by case and
+     * are assigned to two distinct beans (Same type of bean, but the two beans are packaged with different values for a
+     * String environment entry called 'myName').
      *
-     *                 Check that TestBean can lookup the two beans. Check that
-     *                 their runtime value for the 'myName' env. entry are
-     *                 distinct and match the ones specified in the DD (to check
-     *                 that the EJB reference were resolved correctly).
+     * Check that TestBean can lookup the two beans. Check that their runtime value for the 'myName' env. entry are distinct
+     * and match the ones specified in the DD (to check that the EJB reference were resolved correctly).
      */
     public void testCaseSensitivity() throws Fault {
 

@@ -28,9 +28,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -62,8 +60,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:44; JSP:SPEC:42
      *
-     * @test_Strategy: Leaving the defaults for autoFlush and buffer, validate
-     * that the buffer is automatically flushed once the buffer is full.
+     * @test_Strategy: Leaving the defaults for autoFlush and buffer, validate that the buffer is automatically flushed once
+     * the buffer is full.
      */
 
     public void positiveBuffAutoflushTest() throws Fault {
@@ -80,8 +78,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:45
      *
-     * @test_Strategy: set autoFlash to false when buffer=none, resulting in a
-     * translation error.
+     * @test_Strategy: set autoFlash to false when buffer=none, resulting in a translation error.
      */
 
     public void negativeBuffAutoflushTest() throws Fault {
@@ -96,9 +93,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:41
      *
-     * @test_Strategy: Validate that the page can configure a buffer and set the
-     * autoFlush attribute to false. Write data to the output stream and manually
-     * flush the content
+     * @test_Strategy: Validate that the page can configure a buffer and set the autoFlush attribute to false. Write data to
+     * the output stream and manually flush the content
      */
 
     public void positiveBuffCreateTest() throws Fault {
@@ -115,8 +111,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two buffer attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a page directive with two buffer attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateBufferFatalTranslationErrorTest() throws Fault {
@@ -132,8 +128,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare two page directives with buffer attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with buffer attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateBufferFatalTranslationError2Test() throws Fault {
@@ -149,8 +145,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two autoFlush attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a page directive with two autoFlush attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateAutoFlushFatalTranslationErrorTest() throws Fault {
@@ -165,8 +161,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare two page directives with autoflush attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with autoflush attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateAutoFlushFatalTranslationError2Test() throws Fault {
@@ -182,8 +178,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two isThreadSafe attributes
-     * of different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a page directive with two isThreadSafe attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateIsThreadSafeFatalTranslationErrorTest() throws Fault {
@@ -198,8 +194,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare two page directives with isThreadSafe attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with isThreadSafe attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateIsThreadSafeFatalTranslationError2Test() throws Fault {
@@ -215,8 +211,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two isErrorPage attributes of
-     * different values Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a page directive with two isErrorPage attributes of different values Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateIsErrorPageFatalTranslationErrorTest() throws Fault {
@@ -231,8 +227,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare two page directives with isErrorPage attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with isErrorPage attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateIsErrorPageFatalTranslationError2Test() throws Fault {
@@ -248,8 +244,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two isELIgnored attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a page directive with two isELIgnored attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateIsELIgnoredFatalTranslationErrorTest() throws Fault {
@@ -264,8 +260,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare two page directives with isELIgnored attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with isELIgnored attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateIsELIgnoredFatalTranslationError2Test() throws Fault {
@@ -281,8 +277,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:44
      *
-     * @test_Strategy: Declare a page directive with autoFlush set to false.
-     * Overflow the buffer and verify the Exception is caught.
+     * @test_Strategy: Declare a page directive with autoFlush set to false. Overflow the buffer and verify the Exception is
+     * caught.
      */
 
     public void negativeBufferOverflowExceptionTest() throws Fault {
@@ -296,9 +292,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:52
      *
-     * @test_Strategy: Using the page directive, set the contentType attribute to
-     * "text/plain;charset=ISO-8859-1". Verify on the client side that the
-     * Content-Type header was properly set in the response.
+     * @test_Strategy: Using the page directive, set the contentType attribute to "text/plain;charset=ISO-8859-1". Verify on
+     * the client side that the Content-Type header was properly set in the response.
      */
     public void positiveContentTypeTest() throws Fault {
         String testName = "positiveContenttype";
@@ -313,9 +308,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with contentType attributes
-     * specified of different values. Validate that a fatal translation error
-     * occurs.
+     * @test_Strategy: Declare a page directive with contentType attributes specified of different values. Validate that a
+     * fatal translation error occurs.
      *
      */
 
@@ -332,8 +326,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare two page directives with contentType attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with contentType attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateContentFatalTranslationError2Test() throws Fault {
@@ -349,9 +343,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:49
      *
-     * @test_Strategy: Verify that the 'isErrorPage' attribute is false by
-     * generating an exception in the called page and then have the error page
-     * attempt to access the implicit exception object.
+     * @test_Strategy: Verify that the 'isErrorPage' attribute is false by generating an exception in the called page and
+     * then have the error page attempt to access the implicit exception object.
      */
 
     public void positiveDefaultIsErrorPageTest() throws Fault {
@@ -367,10 +360,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:48
      *
-     * @test_Strategy: In the initial JSP page, generate a java.lang.Arithmetic
-     * Exception by dividing an int value by 0. Validate the following: The
-     * errorPage attributes value must be used instead of the error-page defined
-     * in web.xml
+     * @test_Strategy: In the initial JSP page, generate a java.lang.Arithmetic Exception by dividing an int value by 0.
+     * Validate the following: The errorPage attributes value must be used instead of the error-page defined in web.xml
      */
 
     public void positiveErrorPageTest() throws Fault {
@@ -384,13 +375,11 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Generate an exception from the requested page with the
-     * errorPage attribute set. The Error page has isErrorPage set to false and
-     * will attempt to access the exception object.
+     * @test_Strategy: Generate an exception from the requested page with the errorPage attribute set. The Error page has
+     * isErrorPage set to false and will attempt to access the exception object.
      *
-     * A fatal translation error shall result if a JSP error page has the
-     * isErrorPage attribute set to false and an attempt is made to access the
-     * implicit exception object. JavaServer Pages Specification v1.2, Sec 2.10.1
+     * A fatal translation error shall result if a JSP error page has the isErrorPage attribute set to false and an attempt
+     * is made to access the implicit exception object. JavaServer Pages Specification v1.2, Sec 2.10.1
      */
     public void negativeFatalTranslationErrorTest() throws Fault {
         String testName = "negativeFatalTranslationError";
@@ -405,12 +394,11 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Declare a page directive with two errorPage attributes.
-     * Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a page directive with two errorPage attributes. Validate that a fatal translation error
+     * occurs.
      *
-     * Duplicate errorPage attributes/values within a given translation unit shall
-     * result in a fatal translation error. JavaServer Pages Specification v1.2,
-     * Sec 2.10.1
+     * Duplicate errorPage attributes/values within a given translation unit shall result in a fatal translation error.
+     * JavaServer Pages Specification v1.2, Sec 2.10.1
      */
 
     public void negativeDuplicateErrorPageFatalTranslationErrorTest() throws Fault {
@@ -426,8 +414,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare two page directives with errorPage attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with errorPage attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateErrorPageFatalTranslationError2Test() throws Fault {
@@ -443,9 +431,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:33
      *
-     * @test_Strategy: Provide the extends attribute with a fully qualified class.
-     * The resulting JSP implementation class will use instanceof to validate that
-     * this page instance is an instance of the class that it extends.
+     * @test_Strategy: Provide the extends attribute with a fully qualified class. The resulting JSP implementation class
+     * will use instanceof to validate that this page instance is an instance of the class that it extends.
      */
 
     public void positiveExtendsTest() throws Fault {
@@ -458,12 +445,11 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @assertion: Duplicate extends attributes with distinct values within a
-     * given translation unit shall result in a fatal translation error.
-     * JavaServer Pages Specification v1.2, Sec. 2.10.1
+     * @assertion: Duplicate extends attributes with distinct values within a given translation unit shall result in a fatal
+     * translation error. JavaServer Pages Specification v1.2, Sec. 2.10.1
      *
-     * @test_Strategy: Declare a page directive with two extends attributes with
-     * distinct values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a page directive with two extends attributes with distinct values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateExtendsFatalTranslationErrorTest() throws Fault {
@@ -479,11 +465,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @assertion: Duplicate extends attributes with distinct values within a
-     * given translation unit
+     * @assertion: Duplicate extends attributes with distinct values within a given translation unit
      *
-     * @test_Strategy: Declare two page directives with extends attributes with
-     * distinct values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with extends attributes with distinct values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateExtendsFatalTranslationError2Test() throws Fault {
@@ -499,8 +484,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:34
      *
-     * @test_Strategy: Use the import attribute to import 'java.util.Properties'.
-     * Validated that a Properties object can be created and used.
+     * @test_Strategy: Use the import attribute to import 'java.util.Properties'. Validated that a Properties object can be
+     * created and used.
      */
 
     public void positiveImportTest() throws Fault {
@@ -513,9 +498,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:35
      *
-     * @test_Strategy: Validate that classes from the java.lang package are
-     * implicitly imported by creating and using a java.lang.Integer object.
-     * PENDING Merge with exising import tests.
+     * @test_Strategy: Validate that classes from the java.lang package are implicitly imported by creating and using a
+     * java.lang.Integer object. PENDING Merge with exising import tests.
      */
 
     public void implicitImportLangTest() throws Fault {
@@ -528,8 +512,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:35
      *
-     * @test_Strategy: Validate that classes from the jakarta.servlet.jsp package
-     * are implicitly imported by calling JspFactory.getDefaultFactory() method.
+     * @test_Strategy: Validate that classes from the jakarta.servlet.jsp package are implicitly imported by calling
+     * JspFactory.getDefaultFactory() method.
      */
 
     public void implicitImportJspTest() throws Fault {
@@ -542,8 +526,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:35
      *
-     * @test_Strategy: Validate that classes from the jakarta.servlet package are
-     * implicitly imported by creating and using an instance of RequestDispatcher.
+     * @test_Strategy: Validate that classes from the jakarta.servlet package are implicitly imported by creating and using
+     * an instance of RequestDispatcher.
      */
 
     public void implicitImportServletTest() throws Fault {
@@ -556,8 +540,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:35
      *
-     * @test_Strategy: Validate that classes from the jakarta.servlet.http package
-     * are implicitly imported by creating and using an instance of Cookie.
+     * @test_Strategy: Validate that classes from the jakarta.servlet.http package are implicitly imported by creating and
+     * using an instance of Cookie.
      */
 
     public void implicitImportHttpTest() throws Fault {
@@ -603,8 +587,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:47
      *
-     * @test_Strategy: Set the info attribute of the page directive. Call
-     * getServletInfo().
+     * @test_Strategy: Set the info attribute of the page directive. Call getServletInfo().
      */
 
     public void positiveInfoTest() throws Fault {
@@ -617,8 +600,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two info attributes of
-     * different values and Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a page directive with two info attributes of different values and Validate that a fatal
+     * translation error occurs.
      *
      */
 
@@ -635,8 +618,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare two page directives with info attributes of
-     * different values and Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with info attributes of different values and Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateInfoFatalTranslationError2Test() throws Fault {
@@ -652,8 +635,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:32
      *
-     * @test_Strategy: Validate that the language attribute can be set to "java"
-     * without an error.
+     * @test_Strategy: Validate that the language attribute can be set to "java" without an error.
      */
 
     public void positiveLangTest() throws Fault {
@@ -666,8 +648,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two language attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a page directive with two language attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateLanguageFatalTranslationErrorTest() throws Fault {
@@ -683,8 +665,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare two page directives with language attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with language attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateLanguageFatalTranslationError2Test() throws Fault {
@@ -700,8 +682,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:36
      *
-     * @test_Strategy: Set the session attribute to 'true' and validate that the
-     * implicit session variable can be accessed and used.
+     * @test_Strategy: Set the session attribute to 'true' and validate that the implicit session variable can be accessed
+     * and used.
      */
 
     public void positiveSessionTest() throws Fault {
@@ -718,8 +700,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:38
      *
-     * @test_Strategy: Do not set the session attribute in the page. Validate that
-     * the implicit session variable can be accessed and used.
+     * @test_Strategy: Do not set the session attribute in the page. Validate that the implicit session variable can be
+     * accessed and used.
      */
 
     public void positiveSessionDefaultTest() throws Fault {
@@ -736,9 +718,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:37
      *
-     * @test_Strategy: Validate that setting the session attribute to false will
-     * result in a fatal translation error if the implicit session variable is
-     * referenced.
+     * @test_Strategy: Validate that setting the session attribute to false will result in a fatal translation error if the
+     * implicit session variable is referenced.
      */
 
     public void negativeSessionFatalTranslationErrorTest() throws Fault {
@@ -754,8 +735,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two session attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a page directive with two session attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateSessionFatalTranslationErrorTest() throws Fault {
@@ -771,8 +752,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare two page directives with session attributes of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare two page directives with session attributes of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateSessionFatalTranslationError2Test() throws Fault {
@@ -788,8 +769,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical buffer
-     * attributes.
+     * @test_Strategy: Declare a page directive with two identical buffer attributes.
      */
 
     public void positiveDuplicateBufferTest() throws Fault {
@@ -804,8 +784,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical autoFlush
-     * attributes.
+     * @test_Strategy: Declare a page directive with two identical autoFlush attributes.
      */
 
     public void positiveDuplicateAutoFlushTest() throws Fault {
@@ -820,8 +799,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical isThreadSafe
-     * attributes.
+     * @test_Strategy: Declare a page directive with two identical isThreadSafe attributes.
      */
 
     public void positiveDuplicateIsThreadSafeTest() throws Fault {
@@ -836,8 +814,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical isErrorPage
-     * attributes.
+     * @test_Strategy: Declare a page directive with two identical isErrorPage attributes.
      */
 
     public void positiveDuplicateIsErrorPageTest() throws Fault {
@@ -852,8 +829,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical isELIgnored
-     * attributes.
+     * @test_Strategy: Declare a page directive with two identical isELIgnored attributes.
      */
 
     public void positiveDuplicateIsELIgnoredTest() throws Fault {
@@ -868,8 +844,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical contentType
-     * attributes specified.
+     * @test_Strategy: Declare a page directive with two identical contentType attributes specified.
      *
      */
 
@@ -886,8 +861,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical errorPage
-     * attributes.
+     * @test_Strategy: Declare a page directive with two identical errorPage attributes.
      */
 
     public void positiveDuplicateErrorPageTest() throws Fault {
@@ -903,8 +877,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical extends
-     * attributes.
+     * @test_Strategy: Declare a page directive with two identical extends attributes.
      */
 
     public void positiveDuplicateExtendsTest() throws Fault {
@@ -920,8 +893,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical info
-     * attributes.
+     * @test_Strategy: Declare a page directive with two identical info attributes.
      *
      */
 
@@ -938,8 +910,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical language
-     * attributes.
+     * @test_Strategy: Declare a page directive with two identical language attributes.
      */
 
     public void positiveDuplicateLanguageTest() throws Fault {
@@ -955,8 +926,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:21
      *
-     * @test_Strategy: Declare a page directive with two identical session
-     * attributes.
+     * @test_Strategy: Declare a page directive with two identical session attributes.
      */
 
     public void positiveDuplicateSessionTest() throws Fault {
@@ -972,8 +942,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:40
      *
-     * @test_Strategy: The suffix kb is mandatory or a translation error must
-     * occur.
+     * @test_Strategy: The suffix kb is mandatory or a translation error must occur.
      */
 
     public void negativeBufferSuffixTest() throws Fault {
@@ -991,11 +960,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:50
      *
-     * @test_Strategy: Throwable object is transferred by the throwing page
-     * implementation to the error page implementation by saving the object
-     * reference on the common ServletRequest object using the setAttribute
-     * method, with a name of jakarta.servlet.jsp.jspException (for
-     * backwards-compatibility) and also jakarta.servlet.error.exception (for
+     * @test_Strategy: Throwable object is transferred by the throwing page implementation to the error page implementation
+     * by saving the object reference on the common ServletRequest object using the setAttribute method, with a name of
+     * jakarta.servlet.jsp.jspException (for backwards-compatibility) and also jakarta.servlet.error.exception (for
      * compatibility with the servlet specification).
      */
 
@@ -1014,8 +981,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:267
      *
-     * @test_Strategy: Verify that a jsp page does not import java.util.* by
-     * default.
+     * @test_Strategy: Verify that a jsp page does not import java.util.* by default.
      */
     public void negativeImportUtilTest() throws Fault {
         String testName = "negativeImportUtil";
@@ -1029,8 +995,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:267
      *
-     * @test_Strategy: Verify that a jsp page does not import java.io.* by
-     * default.
+     * @test_Strategy: Verify that a jsp page does not import java.io.* by default.
      */
     public void negativeImportIoTest() throws Fault {
         String testName = "negativeImportIo";
@@ -1044,9 +1009,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:268
      *
-     * @test_Strategy: [IsELIgnored] Verify that EL expressions are ignored by the
-     * container in template text when the IsELIgnored page directive attribute is
-     * set to true.
+     * @test_Strategy: [IsELIgnored] Verify that EL expressions are ignored by the container in template text when the
+     * IsELIgnored page directive attribute is set to true.
      */
     public void isELIgnoredTrueTemplateTextTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "IsELIgnoredTrueTemplateTextTest");
@@ -1058,9 +1022,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:268
      *
-     * @test_Strategy: [IsELIgnored] Verify that EL expressions are recognized by
-     * the container in template text when the IsELIgnored page directive
-     * attribute is set to false and the '$' character is used.
+     * @test_Strategy: [IsELIgnored] Verify that EL expressions are recognized by the container in template text when the
+     * IsELIgnored page directive attribute is set to false and the '$' character is used.
      */
     public void isELIgnoredFalseTemplateTextDollarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "IsELIgnoredFalseTemplateTextDollarTest");
@@ -1072,11 +1035,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:268
      *
-     * @test_Strategy: [IsELIgnored] Verify that EL expressions are recognized by
-     * the container in template text when the IsELIgnored page directive
-     * attribute is set to false and the '#' character is used. Since the use of
-     * the '#' character is illegal in template text, a translation error is
-     * expected.
+     * @test_Strategy: [IsELIgnored] Verify that EL expressions are recognized by the container in template text when the
+     * IsELIgnored page directive attribute is set to false and the '#' character is used. Since the use of the '#'
+     * character is illegal in template text, a translation error is expected.
      */
     public void isELIgnoredFalseTemplateTextPoundTest() throws Fault {
         String testName = "IsELIgnoredFalseTemplateTextPoundTest";
@@ -1090,9 +1051,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:268
      *
-     * @test_Strategy: [IsELIgnored] Verify that EL expressions are recognized by
-     * the container in actions when the IsELIgnored page directive attribute is
-     * set to false.
+     * @test_Strategy: [IsELIgnored] Verify that EL expressions are recognized by the container in actions when the
+     * IsELIgnored page directive attribute is set to false.
      */
     public void isELIgnoredFalseActionTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "IsELIgnoredFalseActionTest");
@@ -1104,9 +1064,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:268
      *
-     * @test_Strategy: [IsELIgnored] Verify that EL expressions are ignored by the
-     * container in actions when the IsELIgnored page directive attribute is set
-     * to true.
+     * @test_Strategy: [IsELIgnored] Verify that EL expressions are ignored by the container in actions when the IsELIgnored
+     * page directive attribute is set to true.
      */
     public void isELIgnoredTrueActionTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "IsELIgnoredTrueActionTest");
@@ -1118,10 +1077,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:269
      *
-     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralPageDirective] Verify that
-     * when the DeferredSyntaxAllowedAsLiteral page directive attribute is set to
-     * false, a translation error occurs when the '{#' character sequence is used
-     * in template text.
+     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralPageDirective] Verify that when the DeferredSyntaxAllowedAsLiteral
+     * page directive attribute is set to false, a translation error occurs when the '{#' character sequence is used in
+     * template text.
      */
     public void deferredSyntaxAllowedAsLiteralFalseTemplateTextTest() throws Fault {
         String testName = "DeferredSyntaxAllowedAsLiteralFalseTemplateTextTest";
@@ -1135,9 +1093,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:269
      *
-     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralPageDirective] Verify that
-     * when the DeferredSyntaxAllowedAsLiteral page directive attribute is set to
-     * true, the '{#' character sequence is allowed in template text.
+     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralPageDirective] Verify that when the DeferredSyntaxAllowedAsLiteral
+     * page directive attribute is set to true, the '{#' character sequence is allowed in template text.
      */
     public void deferredSyntaxAllowedAsLiteralTrueTemplateTextTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "DeferredSyntaxAllowedAsLiteralTrueTemplateTextTest");
@@ -1149,10 +1106,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:269
      *
-     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralPageDirective] Verify that
-     * when the DeferredSyntaxAllowedAsLiteral page directive attribute is set to
-     * false, a translation error occurs when the '{#' character sequence is used
-     * in an action.
+     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralPageDirective] Verify that when the DeferredSyntaxAllowedAsLiteral
+     * page directive attribute is set to false, a translation error occurs when the '{#' character sequence is used in an
+     * action.
      */
     public void deferredSyntaxAllowedAsLiteralFalseActionTest() throws Fault {
         String testName = "DeferredSyntaxAllowedAsLiteralFalseActionTest";
@@ -1166,9 +1122,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:269
      *
-     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralPageDirective] Verify that
-     * when the DeferredSyntaxAllowedAsLiteral page directive attribute is set to
-     * true, the '{#' character sequence is allowed in an action.
+     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralPageDirective] Verify that when the DeferredSyntaxAllowedAsLiteral
+     * page directive attribute is set to true, the '{#' character sequence is allowed in an action.
      */
     public void deferredSyntaxAllowedAsLiteralTrueActionTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "DeferredSyntaxAllowedAsLiteralTrueActionTest");
@@ -1180,9 +1135,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:319
      *
-     * @test_Strategy: [ErrorOnELNotFoundPageDirective] Verify that when the
-     * ErrorOnELNotFound page directive attribute is set to false, a reference
-     * to an unresolved identifier results in the empty string being used.
+     * @test_Strategy: [ErrorOnELNotFoundPageDirective] Verify that when the ErrorOnELNotFound page directive attribute is
+     * set to false, a reference to an unresolved identifier results in the empty string being used.
      */
     public void errorOnELNotFoundFalseTest() throws Fault {
         String testName = "ErrorOnELNotFoundFalseTest";
@@ -1195,9 +1149,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:319
      *
-     * @test_Strategy: [ErrorOnELNotFoundPageDirective] Verify that when the
-     * ErrorOnELNotFound page directive attribute is set to false, a reference
-     * to an unresolved identifier results in the empty string being used.
+     * @test_Strategy: [ErrorOnELNotFoundPageDirective] Verify that when the ErrorOnELNotFound page directive attribute is
+     * set to false, a reference to an unresolved identifier results in the empty string being used.
      */
     public void errorOnELNotFoundTrueTest() throws Fault {
         String testName = "ErrorOnELNotFoundTrueTest";

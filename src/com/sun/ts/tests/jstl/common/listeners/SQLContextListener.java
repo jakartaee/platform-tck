@@ -39,17 +39,15 @@ public final class SQLContextListener implements ServletContextListener, JstlTck
     private boolean _debug = true;
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * contextInitialized<br>
-     * Obtain the required context initialization parameters and then create an
-     * attribute for each one.
+     * Obtain the required context initialization parameters and then create an attribute for each one.
      * <p>
-     * Use the context parameters to create in instance of an object which looks
-     * like a DataSource. This will be used by all of the JSTL sql tags.
+     * Use the context parameters to create in instance of an object which looks like a DataSource. This will be used by all
+     * of the JSTL sql tags.
      * <p>
      *
      * @param event
@@ -99,10 +97,10 @@ public final class SQLContextListener implements ServletContextListener, JstlTck
      * trace<br>
      * Dump output messages to the server log
      *
-     * @param buf
-     *          The message to print.
+     * @param buf The message to print.
      */
     private void trace(String buf) {
-        if (_debug) _context.log("[SQLContextListener] " + buf);
+        if (_debug)
+            _context.log("[SQLContextListener] " + buf);
     }
 }

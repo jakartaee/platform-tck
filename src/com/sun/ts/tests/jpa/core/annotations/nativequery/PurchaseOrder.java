@@ -23,7 +23,8 @@ public class PurchaseOrder implements java.io.Serializable {
 
     private int total;
 
-    public PurchaseOrder() {}
+    public PurchaseOrder() {
+    }
 
     public PurchaseOrder(int total) {
         this.total = total;

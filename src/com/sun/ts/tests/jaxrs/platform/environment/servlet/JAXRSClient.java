@@ -33,9 +33,8 @@ public class JAXRSClient extends JAXRSCommonClient {
     }
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         new JAXRSClient().run(args);
@@ -47,12 +46,10 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:41; JAXRS:SPEC:42;
      *
-     * @test_Strategy: The @Context annotation can be used to indicate a
-     * dependency on a Servlet-defined resource.
+     * @test_Strategy: The @Context annotation can be used to indicate a dependency on a Servlet-defined resource.
      *
-     * A Servlet-based implementation MUST support injection of the following
-     * Servlet-defined types: ServletConfig, ServletContext, HttpServletRequest
-     * and HttpServletResponse.
+     * A Servlet-based implementation MUST support injection of the following Servlet-defined types: ServletConfig,
+     * ServletContext, HttpServletRequest and HttpServletResponse.
      */
     public void checkServletExtensionTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "context"));
@@ -65,8 +62,7 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:43;
      *
-     * @test_Strategy: An injected HttpServletRequest allows a resource method to
-     * stream the contents of a request entity.
+     * @test_Strategy: An injected HttpServletRequest allows a resource method to stream the contents of a request entity.
      */
     public void streamReaderRequestEntityTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "streamreader"));
@@ -81,10 +77,9 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:44;
      *
-     * @test_Strategy: An injected HttpServletResponse allows a resource method to
-     * commit the HTTP response prior to returning. An implementation MUST check
-     * the committed status and only process the return value if the response is
-     * not yet committed.
+     * @test_Strategy: An injected HttpServletResponse allows a resource method to commit the HTTP response prior to
+     * returning. An implementation MUST check the committed status and only process the return value if the response is not
+     * yet committed.
      */
     public void prematureHttpServletResponseTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "premature"));
@@ -96,13 +91,11 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:45; JAXRS:SPEC:46;
      *
-     * @test_Strategy: Servlet filters may trigger consumption of a request body
-     * by accessing request parameters.
+     * @test_Strategy: Servlet filters may trigger consumption of a request body by accessing request parameters.
      *
-     * In a servlet container the @FormParam annotation and the standard entity
-     * provider for application/x-www-form--urlencoded MUST obtain their values
-     * from the servlet request parameters if the request body has already been
-     * consumed.
+     * In a servlet container the @FormParam annotation and the standard entity provider for
+     * application/x-www-form--urlencoded MUST obtain their values from the servlet request parameters if the request body
+     * has already been consumed.
      */
     public void servletFilterRequestConsumptionTest() throws Fault {
         String content = "ENTITY";

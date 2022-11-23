@@ -32,7 +32,8 @@ public class Client extends PMClientBase {
 
     String schemaGenerationDir = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -124,20 +125,15 @@ public class Client extends PMClientBase {
         pass1a = findDataInFile(f1, expected);
 
         /*
-         * Bug 27422087 Index can be created using ALTER TABLE [table_name] ADD
-         * INDEX [index_name] pass1b = findDataInFile(f1,
-         * "CREATE INDEX SCHEMAGENSIMPLE_SVALUE_ASC ON SCHEMAGENSIMPLE (SVALUE)");
-         * pass1c = findDataInFile(f1,
-         * "CREATE INDEX SCHEMAGENSIMPLE_SVALUE2_DESC ON SCHEMAGENSIMPLE (SVALUE2 DESC)"
-         * ); pass1d = findDataInFile(f1,
-         * "CREATE UNIQUE INDEX SCHEMAGENSIMPLE_SVALUE3 ON SCHEMAGENSIMPLE (SVALUE3)"
-         * );
+         * Bug 27422087 Index can be created using ALTER TABLE [table_name] ADD INDEX [index_name] pass1b = findDataInFile(f1,
+         * "CREATE INDEX SCHEMAGENSIMPLE_SVALUE_ASC ON SCHEMAGENSIMPLE (SVALUE)"); pass1c = findDataInFile(f1,
+         * "CREATE INDEX SCHEMAGENSIMPLE_SVALUE2_DESC ON SCHEMAGENSIMPLE (SVALUE2 DESC)" ); pass1d = findDataInFile(f1,
+         * "CREATE UNIQUE INDEX SCHEMAGENSIMPLE_SVALUE3 ON SCHEMAGENSIMPLE (SVALUE3)" );
          *
-         * CREATE TABLE SCHEMAGENSIMPLE (ID INTEGER NOT NULL, SVALUE VARCHAR(255),
-         * SVALUE2 VARCHAR(255), SVALUE3 VARCHAR(255), PRIMARY KEY (ID)) CREATE
-         * INDEX SCHEMAGENSIMPLE_SVALUE_ASC ON SCHEMAGENSIMPLE (SVALUE) CREATE INDEX
-         * SCHEMAGENSIMPLE_SVALUE2_DESC ON SCHEMAGENSIMPLE (SVALUE2 DESC) CREATE
-         * UNIQUE INDEX SCHEMAGENSIMPLE_SVALUE3 ON SCHEMAGENSIMPLE (SVALUE3)
+         * CREATE TABLE SCHEMAGENSIMPLE (ID INTEGER NOT NULL, SVALUE VARCHAR(255), SVALUE2 VARCHAR(255), SVALUE3 VARCHAR(255),
+         * PRIMARY KEY (ID)) CREATE INDEX SCHEMAGENSIMPLE_SVALUE_ASC ON SCHEMAGENSIMPLE (SVALUE) CREATE INDEX
+         * SCHEMAGENSIMPLE_SVALUE2_DESC ON SCHEMAGENSIMPLE (SVALUE2 DESC) CREATE UNIQUE INDEX SCHEMAGENSIMPLE_SVALUE3 ON
+         * SCHEMAGENSIMPLE (SVALUE3)
          */
         expected.clear();
         expected.add("ALTER TABLE SCHEMAGENSIMPLE");
@@ -175,13 +171,11 @@ public class Client extends PMClientBase {
 
         pass2a = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");
         /*
-         * Index can be dropped using ALTER TABLE AS WELL Bug 27422087: Some
-         * databases do drop things such as indexes and constraints associated with
-         * a table when the table is dropped.
+         * Index can be dropped using ALTER TABLE AS WELL Bug 27422087: Some databases do drop things such as indexes and
+         * constraints associated with a table when the table is dropped.
          *
-         * pass2b = findDataInFile(f2, "DROP INDEX SCHEMAGENSIMPLE_SVALUE_ASC");
-         * pass2c = findDataInFile(f2, "DROP INDEX SCHEMAGENSIMPLE_SVALUE2_DESC");
-         * pass2d = findDataInFile(f2, "DROP INDEX SCHEMAGENSIMPLE_SVALUE3");
+         * pass2b = findDataInFile(f2, "DROP INDEX SCHEMAGENSIMPLE_SVALUE_ASC"); pass2c = findDataInFile(f2,
+         * "DROP INDEX SCHEMAGENSIMPLE_SVALUE2_DESC"); pass2d = findDataInFile(f2, "DROP INDEX SCHEMAGENSIMPLE_SVALUE3");
          */
 
         TestUtil.logTrace("Execute the create script");
@@ -257,8 +251,8 @@ public class Client extends PMClientBase {
                 || !pass1d
                 || !pass2a
                 || // !pass2b ||
-                // !pass2c ||
-                // !pass2d ||
+                   // !pass2c ||
+                   // !pass2d ||
                 !pass3
                 || !pass4) {
             throw new Fault("indexTest failed");

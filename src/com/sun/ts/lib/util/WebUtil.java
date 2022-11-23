@@ -54,13 +54,10 @@ public class WebUtil {
         public boolean authenticationRequested = false;
 
         /**
-         * Parses a header line for an old-style cookie (not Set-Cookie2), and
-         * stores the cookie in the cookies table. Only the key and value are
-         * stored. Expected syntax: "Set-Cookie: NAME=VALUE[;...]" The key is stored
-         * in upper-case.
+         * Parses a header line for an old-style cookie (not Set-Cookie2), and stores the cookie in the cookies table. Only the
+         * key and value are stored. Expected syntax: "Set-Cookie: NAME=VALUE[;...]" The key is stored in upper-case.
          *
-         * @param cookieLine
-         *          The string with the cookie in it.
+         * @param cookieLine The string with the cookie in it.
          */
         public void parseCookie(String cookieLine) {
             // Strip Set-Cookie: from line:
@@ -80,9 +77,8 @@ public class WebUtil {
         }
 
         /**
-         * Returns true if the status token for this response represents an error,
-         * or false if the status token indicates the page was retrieved okay. Note
-         * that a redirection is not an error.
+         * Returns true if the status token for this response represents an error, or false if the status token indicates the
+         * page was retrieved okay. Note that a redirection is not an error.
          */
         public boolean isError() {
             // According to RFC2616, all status tokens staring with 4xx or 5xx
@@ -92,14 +88,12 @@ public class WebUtil {
     }
 
     /**
-     * Converts a standard URL to a request. For example, the string
-     * "http://goodtimes:8000/testing" would be converted to "/testing".
+     * Converts a standard URL to a request. For example, the string "http://goodtimes:8000/testing" would be converted to
+     * "/testing".
      *
-     * @param urlString
-     *          The URL to convert
+     * @param urlString The URL to convert
      * @return The resulting GET request
-     * @exception MalformedURLException
-     *              Thrown if the urlString does not contain a valid URL.
+     * @exception MalformedURLException Thrown if the urlString does not contain a valid URL.
      */
     public static String getRequestFromURL(String urlString) throws MalformedURLException {
         URL url = new URL(urlString);
@@ -107,26 +101,17 @@ public class WebUtil {
     }
 
     /**
-     * Sends a request to the web server. A WebUtil.Response object is returned
-     * with the response information.
+     * Sends a request to the web server. A WebUtil.Response object is returned with the response information.
      *
-     * @param method
-     *          Can be either "GET" or "POST"
-     * @param addr
-     *          Address of web server
-     * @param port
-     *          Port of web server
-     * @param req
-     *          The file to request (e.g. /jsp_dep_secContextRoot/jspSec.jsp)
-     * @param postData
-     *          If this is a POST request, the data to be posted, encoded in a
-     *          Properties class. null if no post data to be sent.
-     * @param cookieList
-     *          A list of cookies to send when requesting the page. null if no
-     *          cookie list is to be sent.
+     * @param method Can be either "GET" or "POST"
+     * @param addr Address of web server
+     * @param port Port of web server
+     * @param req The file to request (e.g. /jsp_dep_secContextRoot/jspSec.jsp)
+     * @param postData If this is a POST request, the data to be posted, encoded in a Properties class. null if no post data
+     * to be sent.
+     * @param cookieList A list of cookies to send when requesting the page. null if no cookie list is to be sent.
      * @return WebUtil.Response object containing response information
-     * @exception IOException
-     *              Thrown if request could not be made
+     * @exception IOException Thrown if request could not be made
      */
     public static Response sendRequest(
             String method, InetAddress addr, int port, String req, Properties postData, Hashtable cookieList)
@@ -135,32 +120,20 @@ public class WebUtil {
     }
 
     /**
-     * Sends an authenticated request to the web server. A WebUtil.Response object
-     * is returned with the response information.
+     * Sends an authenticated request to the web server. A WebUtil.Response object is returned with the response
+     * information.
      *
-     * @param method
-     *          Can be either "GET" or "POST"
-     * @param addr
-     *          Address of web server
-     * @param port
-     *          Port of web server
-     * @param req
-     *          The file to request (e.g. /jsp_dep_secContextRoot/jspSec.jsp)
-     * @param postData
-     *          If this is a POST request, the data to be posted, encoded in a
-     *          Properties class. null if no post data to be sent.
-     * @param cookieList
-     *          A list of cookies to send when requesting the page. null if no
-     *          cookie list is to be sent.
-     * @param username
-     *          The username for authentication, null if no authentication
-     *          required.
-     * @param password
-     *          The password for authentication, null if no authentication
-     *          required.
+     * @param method Can be either "GET" or "POST"
+     * @param addr Address of web server
+     * @param port Port of web server
+     * @param req The file to request (e.g. /jsp_dep_secContextRoot/jspSec.jsp)
+     * @param postData If this is a POST request, the data to be posted, encoded in a Properties class. null if no post data
+     * to be sent.
+     * @param cookieList A list of cookies to send when requesting the page. null if no cookie list is to be sent.
+     * @param username The username for authentication, null if no authentication required.
+     * @param password The password for authentication, null if no authentication required.
      * @return WebUtil.Response object containing response information
-     * @exception IOException
-     *              Thrown if request could not be made
+     * @exception IOException Thrown if request could not be made
      */
     public static Response sendAuthenticatedRequest(
             String method,
@@ -263,7 +236,8 @@ public class WebUtil {
                 TestUtil.logTrace("HEADER: " + line);
 
                 // Blank line means we are done with the header:
-                if (line.trim().equals("")) break;
+                if (line.trim().equals(""))
+                    break;
 
                 // Analyze special tags location and set cookie
                 if (line.toLowerCase().startsWith("location:")) {
@@ -298,9 +272,8 @@ public class WebUtil {
     }
 
     /**
-     * Outputs a single line of text to the given output stream. Appends a \r\n
-     * automatically. By adding a System.out.println here, you can easily echo
-     * what is being sent to the web server.
+     * Outputs a single line of text to the given output stream. Appends a \r\n automatically. By adding a
+     * System.out.println here, you can easily echo what is being sent to the web server.
      */
     private static void send(PrintWriter out, String s) {
         out.print(s + "\r\n");
@@ -308,11 +281,9 @@ public class WebUtil {
     }
 
     /**
-     * Encodes the given string in base64 format (useful for BASIC
-     * authentication). Base64 encoding is defined by RFC2047.
+     * Encodes the given string in base64 format (useful for BASIC authentication). Base64 encoding is defined by RFC2047.
      *
-     * @param s
-     *          The string to encode
+     * @param s The string to encode
      * @return The encoded string
      */
     public static String encodeBase64(String s) {

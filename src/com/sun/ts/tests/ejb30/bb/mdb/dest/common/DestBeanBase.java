@@ -30,11 +30,9 @@ import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
 /**
- * This class must not implement jakarta.jms.MessageListener interface. A subclass
- * may choose one of the following to specify messaging type: implements
- * jakarta.jms.MessageListener; uses
- * annotation @MessageDriven(messageListenerInterface=MessageListener.class);
- * uses descritpor element messaging-type
+ * This class must not implement jakarta.jms.MessageListener interface. A subclass may choose one of the following to
+ * specify messaging type: implements jakarta.jms.MessageListener; uses
+ * annotation @MessageDriven(messageListenerInterface=MessageListener.class); uses descritpor element messaging-type
  *
  */
 public abstract class DestBeanBase {

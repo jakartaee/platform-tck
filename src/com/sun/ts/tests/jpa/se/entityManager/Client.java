@@ -45,7 +45,8 @@ public class Client extends PMClientBase {
 
     Order[] orders = new Order[5];
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -102,8 +103,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.persist() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.persist() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void persistAfterClose() throws Fault {
         boolean pass = false;
@@ -138,8 +139,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.merge() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.merge() method after calling EntityManager.close()and expect IllegalStateException
      */
     public void mergeAfterClose() throws Fault {
         boolean pass = false;
@@ -173,8 +173,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.remove() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.remove() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void removeAfterClose() throws Fault {
         boolean pass = false;
@@ -209,8 +209,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.find() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.find() method after calling EntityManager.close()and expect IllegalStateException
      */
     public void findAfterClose() throws Fault {
         boolean pass = false;
@@ -244,8 +243,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.getReference() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.getReference() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void getReferenceAfterClose() throws Fault {
         boolean pass = false;
@@ -279,8 +278,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.flush() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.flush() method after calling EntityManager.close()and expect IllegalStateException
      */
     public void flushAfterClose() throws Fault {
         boolean pass = false;
@@ -314,8 +312,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.setFlushMode() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.setFlushMode() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void setFlushModeAfterClose() throws Fault {
         boolean pass = false;
@@ -349,8 +347,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.getFlushMode() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.getFlushMode() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void getFlushModeAfterClose() throws Fault {
         boolean pass = false;
@@ -384,8 +382,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.lock() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.lock() method after calling EntityManager.close()and expect IllegalStateException
      */
     public void lockAfterClose() throws Fault {
         boolean pass = false;
@@ -420,8 +417,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.refresh() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.refresh() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void refreshAfterClose() throws Fault {
         boolean pass = false;
@@ -456,8 +453,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.clear() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.clear() method after calling EntityManager.close()and expect IllegalStateException
      */
 
     public void clearAfterClose() throws Fault {
@@ -493,8 +489,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.contains() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.contains() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void containsAfterClose() throws Fault {
         boolean pass = false;
@@ -529,8 +525,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.createQuery() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createQuery() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void createQueryAfterClose() throws Fault {
         boolean pass = false;
@@ -564,8 +560,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.createNamedQuery() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createNamedQuery() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void createNamedQueryAfterClose() throws Fault {
         boolean pass = false;
@@ -599,8 +595,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.createNativeQuery() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createNativeQuery() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void createNativeQueryAfterClose() throws Fault {
         boolean pass = false;
@@ -634,8 +630,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.joinTransaction() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.joinTransaction() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void joinTransactionAfterClose() throws Fault {
         boolean pass = false;
@@ -669,8 +665,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.getDelegate() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.getDelegate() method after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void getDelegateAfterClose() throws Fault {
         boolean pass = false;
@@ -704,8 +700,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:881; PERSISTENCE:SPEC:882
      *
-     * @test_Strategy: Call EntityManager.close() method after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.close() method after calling EntityManager.close()and expect IllegalStateException
      */
     public void closeAfterClose() throws Fault {
         boolean pass = false;
@@ -788,8 +783,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:481
      *
-     * @test_Strategy: access EntityManager.getCriteriaBuilder when manager is
-     * closed and verify exception is thrown
+     * @test_Strategy: access EntityManager.getCriteriaBuilder when manager is closed and verify exception is thrown
      *
      */
     public void getCriteriaBuilderIllegalStateExceptionTest() throws Fault {
@@ -815,8 +809,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createNamedQuery(String, Class) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createNamedQuery(String, Class) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose1Test() throws Fault {
         boolean pass = false;
@@ -850,8 +844,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createNamedStoredProcedureQuery(String)
-     * after calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createNamedStoredProcedureQuery(String) after calling EntityManager.close()and
+     * expect IllegalStateException
      */
     public void entityManagerMethodsAfterClose2Test() throws Fault {
         boolean pass = false;
@@ -884,8 +878,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createNativeQuery(String,Class) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createNativeQuery(String,Class) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose3Test() throws Fault {
         boolean pass = false;
@@ -918,8 +912,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createNativeQuery(String, String) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createNativeQuery(String, String) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose4Test() throws Fault {
         boolean pass = false;
@@ -953,8 +947,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createQuery(CriteriaDelete) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createQuery(CriteriaDelete) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose5Test() throws Fault {
         boolean pass = false;
@@ -989,8 +983,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createQuery(CriteriaQuery) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createQuery(CriteriaQuery) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose6Test() throws Fault {
         boolean pass = false;
@@ -1025,8 +1019,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createQuery(CriteriaUpdate) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createQuery(CriteriaUpdate) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose7Test() throws Fault {
         boolean pass = false;
@@ -1061,8 +1055,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createQuery(String, Class) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createQuery(String, Class) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose8Test() throws Fault {
         boolean pass = false;
@@ -1095,8 +1089,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose9Test() throws Fault {
         boolean pass = false;
@@ -1129,8 +1123,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String,
-     * Class) after calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String, Class) after calling EntityManager.close()and
+     * expect IllegalStateException
      */
     public void entityManagerMethodsAfterClose10Test() throws Fault {
         boolean pass = false;
@@ -1163,8 +1157,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String,
-     * String) after calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String, String) after calling EntityManager.close()and
+     * expect IllegalStateException
      */
     public void entityManagerMethodsAfterClose11Test() throws Fault {
         boolean pass = false;
@@ -1197,8 +1191,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.detach(Object) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.detach(Object) after calling EntityManager.close()and expect IllegalStateException
      */
     public void entityManagerMethodsAfterClose12Test() throws Fault {
         boolean pass = false;
@@ -1233,8 +1226,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.find(Class, Object, LockModeType) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.find(Class, Object, LockModeType) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose13Test() throws Fault {
         boolean pass = false;
@@ -1267,8 +1260,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.find(Class, Object, LockModeType, Map)
-     * after calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.find(Class, Object, LockModeType, Map) after calling EntityManager.close()and
+     * expect IllegalStateException
      */
     public void entityManagerMethodsAfterClose14Test() throws Fault {
         boolean pass = false;
@@ -1301,8 +1294,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.find(Class, Object, Map) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.find(Class, Object, Map) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose15Test() throws Fault {
         boolean pass = false;
@@ -1335,8 +1328,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.getCriteriaBuilder() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.getCriteriaBuilder() after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose16Test() throws Fault {
         boolean pass = false;
@@ -1369,8 +1362,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.getEntityManagerFactory() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.getEntityManagerFactory() after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose17Test() throws Fault {
         boolean pass = false;
@@ -1403,8 +1396,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.getLockMode(Object) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.getLockMode(Object) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose18Test() throws Fault {
         boolean pass = false;
@@ -1439,8 +1432,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.getMetamodel() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.getMetamodel() after calling EntityManager.close()and expect IllegalStateException
      */
     public void entityManagerMethodsAfterClose19Test() throws Fault {
         boolean pass = false;
@@ -1473,8 +1465,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.isJoinedToTransaction() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.isJoinedToTransaction() after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose20Test() throws Fault {
         boolean pass = false;
@@ -1507,8 +1499,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.lock(Object, LockModeType, Map) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.lock(Object, LockModeType, Map) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose21Test() throws Fault {
         boolean pass = false;
@@ -1543,8 +1535,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.refresh(java.lang.Object, LockModeType)
-     * after calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.refresh(java.lang.Object, LockModeType) after calling EntityManager.close()and
+     * expect IllegalStateException
      */
     public void entityManagerMethodsAfterClose22Test() throws Fault {
         boolean pass = false;
@@ -1579,8 +1571,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.refresh(Object, LockModeType, Map) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.refresh(Object, LockModeType, Map) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose23Test() throws Fault {
         boolean pass = false;
@@ -1615,8 +1607,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.refresh(Object, Map<String,Object) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.refresh(Object, Map<String,Object) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose24Test() throws Fault {
         boolean pass = false;
@@ -1651,8 +1643,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36;
      *
-     * @test_Strategy: Call EntityManager.setProperty(String, Object) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call EntityManager.setProperty(String, Object) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void entityManagerMethodsAfterClose25Test() throws Fault {
         boolean pass = false;
@@ -1684,12 +1676,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose1Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.executeUpdate() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.executeUpdate() after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose1Test() throws Fault {
         boolean pass = false;
@@ -1722,12 +1712,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose2Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getFirstResult() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getFirstResult() after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose2Test() throws Fault {
         boolean pass = false;
@@ -1759,12 +1747,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose3Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getFlushMode() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getFlushMode() after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose3Test() throws Fault {
         boolean pass = false;
@@ -1796,12 +1782,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose4Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getHints() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getHints() after calling EntityManager.close()and expect IllegalStateException
      */
 
     public void queryMethodsAfterClose4Test() throws Fault {
@@ -1836,12 +1820,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose5Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getLockMode() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getLockMode() after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose5Test() throws Fault {
         boolean pass = false;
@@ -1879,12 +1861,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose6Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getMaxResults() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getMaxResults() after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose6Test() throws Fault {
         boolean pass = false;
@@ -1916,12 +1896,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose7Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getParameter(int) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getParameter(int) after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose7Test() throws Fault {
         boolean pass = false;
@@ -1959,12 +1937,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose8Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getParameter(int position, Class) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getParameter(int position, Class) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose8Test() throws Fault {
         boolean pass = false;
@@ -2002,12 +1979,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose9Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getParameter(String) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getParameter(String) after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose9Test() throws Fault {
         boolean pass = false;
@@ -2045,12 +2020,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose10Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getParameter(String, Class) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getParameter(String, Class) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose10Test() throws Fault {
         boolean pass = false;
@@ -2088,12 +2062,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose11Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getParameters() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getParameters() after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose11Test() throws Fault {
         boolean pass = false;
@@ -2131,12 +2103,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose12Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getParameterValue(int) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getParameterValue(int) after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose12Test() throws Fault {
         boolean pass = false;
@@ -2174,12 +2144,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose13Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getParameterValue(Parameter) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getParameterValue(Parameter) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose13Test() throws Fault {
         boolean pass = false;
@@ -2218,12 +2187,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose14Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getParameterValue(String) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getParameterValue(String) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose14Test() throws Fault {
         boolean pass = false;
@@ -2261,12 +2229,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose15Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getResultList() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getResultList() after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose15Test() throws Fault {
         boolean pass = false;
@@ -2298,12 +2264,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose16Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.getSingleResult() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.getSingleResult() after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose16Test() throws Fault {
         boolean pass = false;
@@ -2335,12 +2299,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose17Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.isBound(Parameter) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.isBound(Parameter) after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose17Test() throws Fault {
         boolean pass = false;
@@ -2374,12 +2336,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose18Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setFirstResult(int) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setFirstResult(int) after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose18Test() throws Fault {
         boolean pass = false;
@@ -2411,12 +2371,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose19Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setFlushMode(FlushModeType) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setFlushMode(FlushModeType) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose19Test() throws Fault {
         boolean pass = false;
@@ -2448,12 +2407,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose20Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setHint(String, Object) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setHint(String, Object) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose20Test() throws Fault {
         boolean pass = false;
@@ -2485,12 +2443,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose21Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setLockMode(LockModeType) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setLockMode(LockModeType) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose21Test() throws Fault {
         boolean pass = false;
@@ -2522,12 +2479,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose22Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setMaxResults(int) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setMaxResults(int) after calling EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose22Test() throws Fault {
         boolean pass = false;
@@ -2559,12 +2514,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose23Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setParameter(int, Calendar, TemporalType) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setParameter(int, Calendar, TemporalType) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose23Test() throws Fault {
         boolean pass = false;
@@ -2596,12 +2550,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose24Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setParameter(int, Date, TemporalType) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setParameter(int, Date, TemporalType) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose24Test() throws Fault {
         boolean pass = false;
@@ -2633,12 +2586,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose25Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setParameter(int, Object) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setParameter(int, Object) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose25Test() throws Fault {
         boolean pass = false;
@@ -2670,13 +2622,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose26Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setParameter(Parameter<Calendar>, Calendar,
-     * TemporalType) after calling EntityManager.close()and expect
-     * IllegalStateException
+     * @test_Strategy: Call Query.setParameter(Parameter<Calendar>, Calendar, TemporalType) after calling
+     * EntityManager.close()and expect IllegalStateException
      */
     public void queryMethodsAfterClose26Test() throws Fault {
         boolean pass = false;
@@ -2710,13 +2660,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose27Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setParameter(Parameter<Date>, Date,
-     * TemporalType) after calling EntityManager.close()and expect
-     * IllegalStateException
+     * @test_Strategy: Call Query.setParameter(Parameter<Date>, Date, TemporalType) after calling EntityManager.close()and
+     * expect IllegalStateException
      */
     public void queryMethodsAfterClose27Test() throws Fault {
         boolean pass = false;
@@ -2750,12 +2698,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose28Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setParameter(Parameter<T>, T) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setParameter(Parameter<T>, T) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose28Test() throws Fault {
         boolean pass = false;
@@ -2789,12 +2736,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose29Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setParameter(String, Calendar, TemporalType)
-     * after calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setParameter(String, Calendar, TemporalType) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose29Test() throws Fault {
         boolean pass = false;
@@ -2826,12 +2772,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose30Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setParameter(String, Date, TemporalType) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setParameter(String, Date, TemporalType) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose30Test() throws Fault {
         boolean pass = false;
@@ -2863,12 +2808,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: queryMethodsAfterClose31Test
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
-     * PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1; PERSISTENCE:SPEC:1302.2;
-     * PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608; PERSISTENCE:SPEC:1302; PERSISTENCE:SPEC:1302.1;
+     * PERSISTENCE:SPEC:1302.2; PERSISTENCE:SPEC:1302.3; PERSISTENCE:SPEC:1302.5;
      *
-     * @test_Strategy: Call Query.setParameter(String, Object) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call Query.setParameter(String, Object) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void queryMethodsAfterClose31Test() throws Fault {
         boolean pass = false;
@@ -2903,8 +2847,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.getResultList() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.getResultList() after calling EntityManager.close()and expect IllegalStateException
      */
     public void typedQueryMethodsAfterClose1Test() throws Fault {
         boolean pass = false;
@@ -2945,8 +2888,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.getResultList() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.getResultList() after calling EntityManager.close()and expect IllegalStateException
      */
     public void typedQueryMethodsAfterClose2Test() throws Fault {
         boolean pass = false;
@@ -2988,8 +2930,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setFirstResult(int) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.setFirstResult(int) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void typedQueryMethodsAfterClose3Test() throws Fault {
         boolean pass = false;
@@ -3031,8 +2973,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setFlushMode(FlushModeType) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.setFlushMode(FlushModeType) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void typedQueryMethodsAfterClose4Test() throws Fault {
         boolean pass = false;
@@ -3074,8 +3016,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setHint(String, Object) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.setHint(String, Object) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void typedQueryMethodsAfterClose5Test() throws Fault {
         boolean pass = false;
@@ -3117,8 +3059,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setLockMode(LockModeType) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.setLockMode(LockModeType) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void typedQueryMethodsAfterClose6Test() throws Fault {
         boolean pass = false;
@@ -3160,8 +3102,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setMaxResults(int) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.setMaxResults(int) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void typedQueryMethodsAfterClose7Test() throws Fault {
         boolean pass = false;
@@ -3203,15 +3145,14 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setParameter(int, Calendar, TemporalType)
-     * after calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.setParameter(int, Calendar, TemporalType) after calling EntityManager.close()and
+     * expect IllegalStateException
      */
     public void typedQueryMethodsAfterClose8Test() throws Fault {
         boolean pass = false;
 
         getEntityTransaction().begin();
-        TypedQuery<A> tquery =
-                getEntityManager().createQuery("SELECT a FROM A a WHERE (a.basicCalendar = ?1)", A.class);
+        TypedQuery<A> tquery = getEntityManager().createQuery("SELECT a FROM A a WHERE (a.basicCalendar = ?1)", A.class);
         getEntityManager().close();
         try {
             tquery.setParameter(1, getCalDate(), TemporalType.DATE);
@@ -3243,8 +3184,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setParameter(int, Date, TemporalType) after
-     * calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.setParameter(int, Date, TemporalType) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void typedQueryMethodsAfterClose9Test() throws Fault {
         boolean pass = false;
@@ -3282,8 +3223,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setParameter(int, Object) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.setParameter(int, Object) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void typedQueryMethodsAfterClose10Test() throws Fault {
         boolean pass = false;
@@ -3321,9 +3262,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setParameter(Parameter<Calendar>, Calendar,
-     * TemporalType) after calling EntityManager.close()and expect
-     * IllegalStateException
+     * @test_Strategy: Call TypedQuery.setParameter(Parameter<Calendar>, Calendar, TemporalType) after calling
+     * EntityManager.close()and expect IllegalStateException
      */
     public void typedQueryMethodsAfterClose11Test() throws Fault {
         boolean pass = false;
@@ -3367,9 +3307,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setParameter(Parameter<Date>, Date,
-     * TemporalType) after calling EntityManager.close()and expect
-     * IllegalStateException
+     * @test_Strategy: Call TypedQuery.setParameter(Parameter<Date>, Date, TemporalType) after calling
+     * EntityManager.close()and expect IllegalStateException
      */
     public void typedQueryMethodsAfterClose12Test() throws Fault {
         boolean pass = false;
@@ -3413,8 +3352,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setParameter(Parameter<T>, T) after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.setParameter(Parameter<T>, T) after calling EntityManager.close()and expect
+     * IllegalStateException
      */
     public void typedQueryMethodsAfterClose13Test() throws Fault {
         boolean pass = false;
@@ -3458,9 +3397,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setParameter(String, Calendar,
-     * TemporalType) after calling EntityManager.close()and expect
-     * IllegalStateException
+     * @test_Strategy: Call TypedQuery.setParameter(String, Calendar, TemporalType) after calling EntityManager.close()and
+     * expect IllegalStateException
      */
     public void typedQueryMethodsAfterClose14Test() throws Fault {
         boolean pass = false;
@@ -3504,8 +3442,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.setParameter(String, Date, TemporalType)
-     * after calling EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.setParameter(String, Date, TemporalType) after calling EntityManager.close()and
+     * expect IllegalStateException
      */
     public void typedQueryMethodsAfterClose15Test() throws Fault {
         boolean pass = false;
@@ -3549,8 +3487,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:36; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call TypedQuery.method_name() after calling
-     * EntityManager.close()and expect IllegalStateException
+     * @test_Strategy: Call TypedQuery.method_name() after calling EntityManager.close()and expect IllegalStateException
      */
     public void typedQueryMethodsAfterClose16Test() throws Fault {
         boolean pass = false;
@@ -3594,8 +3531,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.getCriteriaBuilder() that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.getCriteriaBuilder() that causes RuntimeException and verify Transaction is set
+     * for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback18Test() throws Fault {
         boolean pass = false;
@@ -3634,8 +3571,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.getDelegate() that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.getDelegate() that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback19Test() throws Fault {
         boolean pass = false;
@@ -3675,8 +3612,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.getEntityManagerFactory() that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.getEntityManagerFactory() that causes RuntimeException and verify Transaction is
+     * set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback20Test() throws Fault {
         boolean pass = false;
@@ -3716,8 +3653,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.getMetamodel() that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.getMetamodel() that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback22Test() throws Fault {
         boolean pass = false;

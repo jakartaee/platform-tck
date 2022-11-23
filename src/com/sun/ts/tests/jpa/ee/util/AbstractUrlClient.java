@@ -44,13 +44,11 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     }
 
     /**
-     * Sets the request, testname, and a search string for test passed. A search
-     * is also added for test failure. If found, the test will fail.
+     * Sets the request, testname, and a search string for test passed. A search is also added for test failure. If found,
+     * the test will fail.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setApiTestProperties(String testValue, WebTestCase testCase) {
         if (testValue == null) {
@@ -87,10 +85,8 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     /**
      * Consists of a test name, a request, and a goldenfile.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setStandardProperties(String testValue, WebTestCase testCase) {
 
@@ -134,11 +130,9 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     }
 
     /**
-     * Sets the name of the servlet to use when building a request for a single
-     * servlet API test.
+     * Sets the name of the servlet to use when building a request for a single servlet API test.
      *
-     * @param servlet
-     *          - the name of the servlet
+     * @param servlet - the name of the servlet
      */
     protected void setServletName(String servlet) {
         _servlet = servlet;

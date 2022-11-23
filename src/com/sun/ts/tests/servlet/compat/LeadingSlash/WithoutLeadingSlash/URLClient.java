@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,12 +56,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: WithoutLeadingSlashTest
      *
-     * @assertion: A 2.2 web application deployment descriptor who's url mapping
-     * does not begin with a "/" can be deployed in a 2.3 environment, specified
-     * in the Java Servlet Pages Specification v2.3, Sec 11
+     * @assertion: A 2.2 web application deployment descriptor who's url mapping does not begin with a "/" can be deployed
+     * in a 2.3 environment, specified in the Java Servlet Pages Specification v2.3, Sec 11
      *
-     * @test_Strategy: The DD url-pattern has a "/" at the beginning of the
-     * string. The web app should deploy and be able to be called by a client
+     * @test_Strategy: The DD url-pattern has a "/" at the beginning of the string. The web app should deploy and be able to
+     * be called by a client
      *
      */
 

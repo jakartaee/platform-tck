@@ -32,11 +32,7 @@ import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.SOAPBinding;
 
 @HandlerChain(name = "", file = "server-handler.xml")
-@WebService(
-        name = "AddNumbers",
-        portName = "AddNumbersPort",
-        targetNamespace = "http://foobar.org/",
-        serviceName = "AddNumbersService")
+@WebService(name = "AddNumbers", portName = "AddNumbersPort", targetNamespace = "http://foobar.org/", serviceName = "AddNumbersService")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @Addressing(enabled = true, required = true)
 public class AddNumbersImpl {
@@ -77,67 +73,56 @@ public class AddNumbersImpl {
         return doStuff(number1, number2);
     }
 
-    @Action(
-            input = "finput1",
-            output = "foutput1",
-            fault = {@FaultAction(className = AddNumbersException.class, value = "http://fault1")})
+    @Action(input = "finput1", output = "foutput1", fault = { @FaultAction(className = AddNumbersException.class, value = "http://fault1") })
     public int addNumbersFault1(int number1, int number2) throws AddNumbersException {
         return doStuff(number1, number2);
     }
 
-    @Action(
-            input = "finput2",
-            output = "foutput2",
-            fault = {
-                @FaultAction(className = AddNumbersException.class, value = "http://fault2/addnumbers"),
-                @FaultAction(className = TooBigNumbersException.class, value = "http://fault2/toobignumbers")
-            })
+    @Action(input = "finput2", output = "foutput2", fault = {
+            @FaultAction(className = AddNumbersException.class, value = "http://fault2/addnumbers"),
+            @FaultAction(className = TooBigNumbersException.class, value = "http://fault2/toobignumbers")
+    })
     public int addNumbersFault2(int number1, int number2) throws AddNumbersException, TooBigNumbersException {
         throwTooBigException(number1, number2);
 
         return doStuff(number1, number2);
     }
 
-    @Action(
-            input = "finput3",
-            output = "foutput3",
-            fault = {@FaultAction(className = AddNumbersException.class, value = "http://fault3/addnumbers")})
+    @Action(input = "finput3", output = "foutput3", fault = { @FaultAction(className = AddNumbersException.class, value = "http://fault3/addnumbers") })
     public int addNumbersFault3(int number1, int number2) throws AddNumbersException, TooBigNumbersException {
         throwTooBigException(number1, number2);
 
         return doStuff(number1, number2);
     }
 
-    @Action(fault = {@FaultAction(className = AddNumbersException.class, value = "http://fault4/addnumbers")})
+    @Action(fault = { @FaultAction(className = AddNumbersException.class, value = "http://fault4/addnumbers") })
     public int addNumbersFault4(int number1, int number2) throws AddNumbersException, TooBigNumbersException {
         throwTooBigException(number1, number2);
 
         return doStuff(number1, number2);
     }
 
-    @Action(fault = {@FaultAction(className = TooBigNumbersException.class, value = "http://fault5/toobignumbers")})
+    @Action(fault = { @FaultAction(className = TooBigNumbersException.class, value = "http://fault5/toobignumbers") })
     public int addNumbersFault5(int number1, int number2) throws AddNumbersException, TooBigNumbersException {
         throwTooBigException(number1, number2);
 
         return doStuff(number1, number2);
     }
 
-    @Action(
-            fault = {
-                @FaultAction(className = AddNumbersException.class, value = "http://fault6/addnumbers"),
-                @FaultAction(className = TooBigNumbersException.class, value = "http://fault6/toobignumbers")
-            })
+    @Action(fault = {
+            @FaultAction(className = AddNumbersException.class, value = "http://fault6/addnumbers"),
+            @FaultAction(className = TooBigNumbersException.class, value = "http://fault6/toobignumbers")
+    })
     public int addNumbersFault6(int number1, int number2) throws AddNumbersException, TooBigNumbersException {
         throwTooBigException(number1, number2);
 
         return doStuff(number1, number2);
     }
 
-    @Action(
-            fault = {
-                @FaultAction(className = AddNumbersException.class, value = ""),
-                @FaultAction(className = TooBigNumbersException.class, value = "")
-            })
+    @Action(fault = {
+            @FaultAction(className = AddNumbersException.class, value = ""),
+            @FaultAction(className = TooBigNumbersException.class, value = "")
+    })
     public int addNumbersFault7(int number1, int number2) throws AddNumbersException, TooBigNumbersException {
         throwTooBigException(number1, number2);
 

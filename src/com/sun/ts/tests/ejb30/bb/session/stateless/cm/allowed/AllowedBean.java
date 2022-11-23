@@ -40,9 +40,9 @@ import jakarta.interceptor.InvocationContext;
 import java.util.Properties;
 
 @Stateless(name = "AllowedBean")
-@Remote({AllowedIF.class})
-@Local({AllowedLocalIF.class})
-@Interceptors({com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class})
+@Remote({ AllowedIF.class })
+@Local({ AllowedLocalIF.class })
+@Interceptors({ com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class })
 public class AllowedBean extends AllowedBeanBase implements AllowedIF, AllowedLocalIF {
 
     @Resource(name = "ejbContext")

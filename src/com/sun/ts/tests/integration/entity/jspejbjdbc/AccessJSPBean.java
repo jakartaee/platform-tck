@@ -30,9 +30,9 @@ public class AccessJSPBean {
 
     private static final double BALANCE = 10490.75;
 
-    private static final int ACCOUNTS[] = {1000, 1075, 40, 30564, 387};
+    private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
 
-    private static final double BALANCES[] = {50000.0, 10490.75, 200.50, 25000.0, 1000000.0};
+    private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0, 1000000.0 };
 
     private static final String ejbRef = "java:comp/env/ejb/AccountBean";
 
@@ -59,8 +59,10 @@ public class AccessJSPBean {
             TestUtil.logMsg("Create 5 Account EJB's");
             for (int i = 0; i < ACCOUNTS.length; i++) {
                 TestUtil.logMsg("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
-                if (i == 0) beanRef = (Account) beanHome.create(ACCOUNTS[i], BALANCES[i], true, p);
-                else beanRef = (Account) beanHome.create(ACCOUNTS[i], BALANCES[i], false, p);
+                if (i == 0)
+                    beanRef = (Account) beanHome.create(ACCOUNTS[i], BALANCES[i], true, p);
+                else
+                    beanRef = (Account) beanHome.create(ACCOUNTS[i], BALANCES[i], false, p);
             }
         } catch (Exception e) {
             TestUtil.logErr("AccessJSPBean: Exception occurred - " + e, e);

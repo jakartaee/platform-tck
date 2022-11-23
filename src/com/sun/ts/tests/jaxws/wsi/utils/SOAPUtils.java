@@ -41,7 +41,7 @@ public class SOAPUtils implements jakarta.xml.soap.SOAPConstants {
 
     public static final String MUST_UNDERSTAND = "MustUnderstand";
 
-    public static final String[] FAULT_CHILDREN = {FAULT_ACTOR, FAULT_CODE, FAULT_DETAIL, FAULT_STRING};
+    public static final String[] FAULT_CHILDREN = { FAULT_ACTOR, FAULT_CODE, FAULT_DETAIL, FAULT_STRING };
 
     public static boolean isValidSoapFaultChildName(SOAPElement element) {
         for (int i = 0; i < FAULT_CHILDREN.length; i++) {

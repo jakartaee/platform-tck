@@ -125,9 +125,8 @@ public class Client extends EJBLiteClientBase {
      * -additionalModule
      * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/ejbembed_vehicle_ejb.jar"
      *
-     * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-     * modules. Also jakarta.ejb.embeddable.modules property is set to include the
-     * file location of the additional ejb modules.
+     * @test_Strategy: use a custom ContextClassLoader to find additional ejb modules. Also jakarta.ejb.embeddable.modules
+     * property is set to include the file location of the additional ejb modules.
      *
      */
     public void additionalModuleJar() throws Exception {
@@ -138,14 +137,12 @@ public class Client extends EJBLiteClientBase {
      * @testName: additionalModuleDir
      *
      *
-     * @testArgs: -additionalModule
-     * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/23/"
+     * @testArgs: -additionalModule "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/23/"
      * -additionalModule
      * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/ejbembed_vehicle_ejb.jar"
      *
-     * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-     * modules. Also jakarta.ejb.embeddable.modules property is set to include the
-     * file location of the additional ejb modules.
+     * @test_Strategy: use a custom ContextClassLoader to find additional ejb modules. Also jakarta.ejb.embeddable.modules
+     * property is set to include the file location of the additional ejb modules.
      */
     public void additionalModuleDir() throws Exception {
         additionalModule(getModuleName(), "23", "23");
@@ -156,14 +153,12 @@ public class Client extends EJBLiteClientBase {
      *
      * @testArgs: -additionalModule
      * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/ejbembed_three_ejb.jar"
-     * -additionalModule
-     * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/2/"
+     * -additionalModule "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/2/"
      * -additionalModule
      * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/ejbembed_vehicle_ejb.jar"
      *
-     * @test_Strategy: use a custom ContextClassLoader to find additional ejb
-     * modules. Also jakarta.ejb.embeddable.modules property is set to include the
-     * file location of the additional ejb modules.
+     * @test_Strategy: use a custom ContextClassLoader to find additional ejb modules. Also jakarta.ejb.embeddable.modules
+     * property is set to include the file location of the additional ejb modules.
      *
      *
      */
@@ -182,12 +177,9 @@ public class Client extends EJBLiteClientBase {
             appendReason(f.getAbsolutePath());
         }
 
-        LocalIF oneBean =
-                (LocalIF) lookup(GlobalJNDITest.getGlobalJNDIName(APP_NAME, moduleName1, "OneBean"), null, null);
-        LocalIF twoBean =
-                (LocalIF) lookup(GlobalJNDITest.getGlobalJNDIName(APP_NAME, moduleName2, "TwoBean"), null, null);
-        LocalIF threeBean =
-                (LocalIF) lookup(GlobalJNDITest.getGlobalJNDIName(APP_NAME, moduleName3, "ThreeBean"), null, null);
+        LocalIF oneBean = (LocalIF) lookup(GlobalJNDITest.getGlobalJNDIName(APP_NAME, moduleName1, "OneBean"), null, null);
+        LocalIF twoBean = (LocalIF) lookup(GlobalJNDITest.getGlobalJNDIName(APP_NAME, moduleName2, "TwoBean"), null, null);
+        LocalIF threeBean = (LocalIF) lookup(GlobalJNDITest.getGlobalJNDIName(APP_NAME, moduleName3, "ThreeBean"), null, null);
 
         final List<String> expected2 = Arrays.asList("Setup called");
         assertEquals(null, expected2, oneBean.setupOneBean(databaseURL, databaseUser, databasePassword, driverName));
@@ -206,20 +198,16 @@ public class Client extends EJBLiteClientBase {
      * @testName: autoCloseTest
      *
      *
-     * @testArgs: -additionalModule
-     * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/23/"
+     * @testArgs: -additionalModule "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/23/"
      * -additionalModule
      * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/ejbembed_vehicle_ejb.jar"
      *
-     * @test_Strategy: Extract From EJB 3.2 Spec : "During the implicit or
-     * explicit processing of the close() method, the embeddable container calls
-     * the PreDestroy methods of any singleton session bean instances in the
-     * application"
+     * @test_Strategy: Extract From EJB 3.2 Spec : "During the implicit or explicit processing of the close() method, the
+     * embeddable container calls the PreDestroy methods of any singleton session bean instances in the application"
      *
-     * 1) The test uses a Singleton (OneBean.java) 2) OneBean's PreDestroy method
-     * uses a database utility and writes a message into database 3) Test client
-     * reads that message from database and verifies autoclose feature of embedded
-     * ejb container
+     * 1) The test uses a Singleton (OneBean.java) 2) OneBean's PreDestroy method uses a database utility and writes a
+     * message into database 3) Test client reads that message from database and verifies autoclose feature of embedded ejb
+     * container
      */
     public void autoCloseTest() throws Exception {
 
@@ -233,8 +221,7 @@ public class Client extends EJBLiteClientBase {
             appendReason(f.getAbsolutePath());
         }
 
-        LocalIF oneBean =
-                (LocalIF) lookup(GlobalJNDITest.getGlobalJNDIName(APP_NAME, getModuleName(), "OneBean"), null, null);
+        LocalIF oneBean = (LocalIF) lookup(GlobalJNDITest.getGlobalJNDIName(APP_NAME, getModuleName(), "OneBean"), null, null);
 
         // This is to invoke setupOneBean() to initialize oneBean with database
         // values
@@ -267,20 +254,16 @@ public class Client extends EJBLiteClientBase {
      * testName: autoCloseTestWithArrayList
      *
      *
-     * @testArgs: -additionalModule
-     * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/23/"
+     * @testArgs: -additionalModule "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/23/"
      * -additionalModule
      * "${ts.home}/dist/com/sun/ts/tests/ejb30/lite/packaging/embed/classloader/annotated/ejbembed_vehicle_ejb.jar"
      *
-     * @test_Strategy: Extract From EJB 3.2 Spec : "During the implicit or
-     * explicit processing of the close() method, the embeddable container calls
-     * the PreDestroy methods of any singleton session bean instances in the
-     * application"
+     * @test_Strategy: Extract From EJB 3.2 Spec : "During the implicit or explicit processing of the close() method, the
+     * embeddable container calls the PreDestroy methods of any singleton session bean instances in the application"
      *
-     * 1) The test client passes CopyOnWriteArrayList to a Singleton
-     * (OneBean.java) 2) OneBean's PreDestroy method uses writes a message into
-     * the ArrayList 3) The test client reads the message from ArrayList to verify
-     * autoclose feature of embedded ejb container
+     * 1) The test client passes CopyOnWriteArrayList to a Singleton (OneBean.java) 2) OneBean's PreDestroy method uses
+     * writes a message into the ArrayList 3) The test client reads the message from ArrayList to verify autoclose feature
+     * of embedded ejb container
      */
     public void autoCloseTestWithArrayList() throws Exception {
 
@@ -294,8 +277,7 @@ public class Client extends EJBLiteClientBase {
             appendReason(f.getAbsolutePath());
         }
 
-        LocalIF oneBean =
-                (LocalIF) lookup(GlobalJNDITest.getGlobalJNDIName(APP_NAME, getModuleName(), "OneBean"), null, null);
+        LocalIF oneBean = (LocalIF) lookup(GlobalJNDITest.getGlobalJNDIName(APP_NAME, getModuleName(), "OneBean"), null, null);
 
         final List<String> expected2 = Arrays.asList("Setup called");
         assertEquals(null, expected2, oneBean.setupOneBean(databaseURL, databaseUser, databasePassword, driverName));

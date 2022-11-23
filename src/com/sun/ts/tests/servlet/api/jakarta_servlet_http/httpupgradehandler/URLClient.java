@@ -36,9 +36,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CRLF = "\r\n";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -47,8 +46,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -59,21 +57,18 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; ts_home;
-     * servlet_async_wait;
+     * @class.setup_props: webServerHost; webServerPort; ts_home; servlet_async_wait;
      */
     /* Run test */
     /*
      * @testName: upgradeTest
      *
-     * @assertion_ids: Servlet:JAVADOC:905; Servlet:JAVADOC:909;
-     * Servlet:JAVADOC:911; Servlet:JAVADOC:923; Servlet:JAVADOC:925;
-     * Servlet:JAVADOC:930; Servlet:JAVADOC:937;
+     * @assertion_ids: Servlet:JAVADOC:905; Servlet:JAVADOC:909; Servlet:JAVADOC:911; Servlet:JAVADOC:923;
+     * Servlet:JAVADOC:925; Servlet:JAVADOC:930; Servlet:JAVADOC:937;
      *
-     * @test_Strategy: Create a Servlet TestServlet; From Client, sends upgrade
-     * request with two batch of messages to the Servlet; Servlet upgrade the
-     * request accordingly; Create a ReadListener; Verify all message received;
-     * Verify UpgradeHandler accordingly Verify ReadListener works accordingly
+     * @test_Strategy: Create a Servlet TestServlet; From Client, sends upgrade request with two batch of messages to the
+     * Servlet; Servlet upgrade the request accordingly; Create a ReadListener; Verify all message received; Verify
+     * UpgradeHandler accordingly Verify ReadListener works accordingly
      */
     public void upgradeTest() throws Fault {
         Boolean passed1 = false;

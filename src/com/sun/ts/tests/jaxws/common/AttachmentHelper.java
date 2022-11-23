@@ -83,7 +83,8 @@ public class AttachmentHelper {
 
     private static String getStringFromStreamSource(StreamSource src, int length) throws Exception {
         byte buf[] = null;
-        if (src == null) return null;
+        if (src == null)
+            return null;
         InputStream is = src.getInputStream();
         if (is != null) {
             buf = new byte[length];
@@ -93,7 +94,8 @@ public class AttachmentHelper {
         } else {
             char buf1[] = new char[length];
             Reader r = src.getReader();
-            if (r == null) return null;
+            if (r == null)
+                return null;
             r.reset();
             int count = readTheData(r, buf1, length);
             System.out.println("From Reader: " + new String(buf1, 0, count));
@@ -102,7 +104,8 @@ public class AttachmentHelper {
     }
 
     public static boolean compareImages(Image image1, Image image2) throws IOException {
-        if (image1 == null || image2 == null) return false;
+        if (image1 == null || image2 == null)
+            return false;
 
         boolean matched = false;
         BufferedImage bi = convertToBufferedImage(image1);
@@ -118,19 +121,23 @@ public class AttachmentHelper {
                 matched = false;
             }
         }
-        if (matched) return true;
+        if (matched)
+            return true;
         return false;
     }
 
     public static boolean compareImages(Image image1, Image image2, Rectangle rect, String attach) {
         boolean matched = compareImages(image1, image2, rect);
-        if (matched) TestUtil.logMsg(attach + " image content is equal in attachment");
-        else TestUtil.logErr(attach + " image content is not equal in attachment");
+        if (matched)
+            TestUtil.logMsg(attach + " image content is equal in attachment");
+        else
+            TestUtil.logErr(attach + " image content is not equal in attachment");
         return matched;
     }
 
     public static boolean compareImages(Image image1, Image image2, Rectangle rect) {
-        if (image1 == null || image2 == null) return false;
+        if (image1 == null || image2 == null)
+            return false;
 
         boolean matched = false;
 
@@ -145,7 +152,8 @@ public class AttachmentHelper {
                 matched = false;
             }
         }
-        if (matched) return true;
+        if (matched)
+            return true;
         return false;
     }
 
@@ -203,7 +211,8 @@ public class AttachmentHelper {
         }
 
         protected boolean equals(Pixel p) {
-            if (p.a == a && p.r == r && p.g == g && p.b == b) return true;
+            if (p.a == a && p.r == r && p.g == g && p.b == b)
+                return true;
             return false;
         }
     }
@@ -220,8 +229,7 @@ public class AttachmentHelper {
             } catch (InterruptedException e) {
                 throw new IOException(e.getMessage());
             }
-            BufferedImage bufImage =
-                    new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+            BufferedImage bufImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
 
             Graphics g = bufImage.createGraphics();
             g.drawImage(image, 0, 0, null);
@@ -339,8 +347,10 @@ public class AttachmentHelper {
             TestUtil.logMsg("Verification failed");
             result = "FAILURE: " + whichAttachment + " actual String document was null";
         }
-        if (result == null) TestUtil.logMsg("Verification passed");
-        if (result != null) result += "\n";
+        if (result == null)
+            TestUtil.logMsg("Verification passed");
+        if (result != null)
+            result += "\n";
         return result;
     }
 
@@ -414,14 +424,16 @@ public class AttachmentHelper {
                 }
             }
         } else {
-            if (result.length() == 0) result.append("Either the Actual or Expected results returned was null");
+            if (result.length() == 0)
+                result.append("Either the Actual or Expected results returned was null");
         }
         if (result.length() > 0) {
             TestUtil.logMsg("Verification failed");
             TestUtil.logMsg(result.toString());
             result.append("\n");
             return result.toString();
-        } else TestUtil.logMsg("Verification passed");
+        } else
+            TestUtil.logMsg("Verification passed");
         return null;
     }
 
@@ -442,7 +454,8 @@ public class AttachmentHelper {
             TestUtil.logMsg("Data counts are different so check for and remove any trailing CR's");
             TestUtil.logMsg("Data count1=" + count1 + ", Data count2=" + count2);
             for (int i = count1; i < count2; i++) {
-                if ((char) data2[i] != '\r') break;
+                if ((char) data2[i] != '\r')
+                    break;
             }
             TestUtil.logMsg("Removed " + (count2 - count1) + " trailing CR's from data2");
             count2 = count1;
@@ -451,8 +464,10 @@ public class AttachmentHelper {
             TestUtil.logErr(whichAttachment + " data count is not equal in request and response");
             TestUtil.logErr("Request data count = " + count1);
             TestUtil.logErr("Response data count = " + count2);
-            if (count2 > count1) max = count1;
-            else max = count2;
+            if (count2 > count1)
+                max = count1;
+            else
+                max = count2;
             ps.printf("data1[%d]=0x%x  data2[%d]=0x%x", max - 1, data1[max - 1], max - 1, data2[max - 1]);
             TestUtil.logErr(baos.toString());
             baos.reset();
@@ -500,7 +515,8 @@ public class AttachmentHelper {
             TestUtil.logMsg("Verification failed");
             TestUtil.logMsg(result);
             result += "\n";
-        } else TestUtil.logMsg("Verification passed");
+        } else
+            TestUtil.logMsg("Verification passed");
         return result;
     }
 
@@ -569,8 +585,10 @@ public class AttachmentHelper {
         try {
             while (tmpcount != -1) {
                 tmpcount = is.read(data, count, length - count);
-                if (tmpcount != -1) count += tmpcount;
-                if (tmpcount == 0) break;
+                if (tmpcount != -1)
+                    count += tmpcount;
+                if (tmpcount == 0)
+                    break;
             }
         } finally {
             is.close();
@@ -584,8 +602,10 @@ public class AttachmentHelper {
         try {
             while (tmpcount != -1) {
                 tmpcount = r.read(data, count, length - count);
-                if (tmpcount != -1) count += tmpcount;
-                if (tmpcount == 0) break;
+                if (tmpcount != -1)
+                    count += tmpcount;
+                if (tmpcount == 0)
+                    break;
             }
         } finally {
             r.close();

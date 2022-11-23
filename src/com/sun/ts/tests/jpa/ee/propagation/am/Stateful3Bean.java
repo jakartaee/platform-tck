@@ -36,7 +36,7 @@ import java.math.BigInteger;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
-@Remote({Stateful3IF.class})
+@Remote({ Stateful3IF.class })
 public class Stateful3Bean implements Stateful3IF {
 
     @PersistenceUnit(unitName = "CTS-APPMANAGED-UNIT")

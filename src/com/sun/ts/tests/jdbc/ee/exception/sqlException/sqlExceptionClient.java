@@ -41,8 +41,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The sqlExceptionClient class tests methods of SQLException class using Sun's
- * J2EE Reference Implementation.
+ * The sqlExceptionClient class tests methods of SQLException class using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -94,14 +93,11 @@ public class sqlExceptionClient extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -109,13 +105,14 @@ public class sqlExceptionClient extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sUrl = p.getProperty("db1", "");
                 sUsr = p.getProperty("user1", "");
                 sPass = p.getProperty("password1", "");
                 /*
-                 * sqlp = new Properties(); String sqlStmt= p.getProperty("rsQuery","");
-                 * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+                 * sqlp = new Properties(); String sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+                 * sqlp.load(istr);
                  */
                 sqlp = p;
                 if (drManager.equals("yes")) {
@@ -160,9 +157,8 @@ public class sqlExceptionClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:68;
      *
-     * @test_Strategy: This method constructs a SQLException Object with no
-     * arguments and for that object the reason,SQLState and ErrorCode are checked
-     * for default values.
+     * @test_Strategy: This method constructs a SQLException Object with no arguments and for that object the
+     * reason,SQLState and ErrorCode are checked for default values.
      *
      */
     public void testSQLException01() throws Fault {
@@ -193,10 +189,9 @@ public class sqlExceptionClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:67;
      *
-     * @test_Strategy: This method constructs a SQLException Object with one
-     * argument and for that object the SQLState, ErrorCode are checked for
-     * default values.The reason is checked for whatever is been assigned while
-     * creating the new instance.
+     * @test_Strategy: This method constructs a SQLException Object with one argument and for that object the SQLState,
+     * ErrorCode are checked for default values.The reason is checked for whatever is been assigned while creating the new
+     * instance.
      */
 
     public void testSQLException02() throws Fault {
@@ -236,10 +231,9 @@ public class sqlExceptionClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:66;
      *
-     * @test_Strategy: This method constructs a SQLException Object with two
-     * arguments and for that object ErrorCode is checked for default values.The
-     * reason and SQLState are checked for whatever is been assigned while
-     * creating the new instance.
+     * @test_Strategy: This method constructs a SQLException Object with two arguments and for that object ErrorCode is
+     * checked for default values.The reason and SQLState are checked for whatever is been assigned while creating the new
+     * instance.
      */
     public void testSQLException03() throws Fault {
         try {
@@ -280,9 +274,8 @@ public class sqlExceptionClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:65;
      *
-     * @test_Strategy: This method constructs a SQLException Object with three
-     * arguments .The reason,SQLState and Errorcode is checked for whatever is
-     * been assigned while creating the new instance.
+     * @test_Strategy: This method constructs a SQLException Object with three arguments .The reason,SQLState and Errorcode
+     * is checked for whatever is been assigned while creating the new instance.
      */
     public void testSQLException04() throws Fault {
         try {
@@ -319,9 +312,8 @@ public class sqlExceptionClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:70;
      *
-     * @testStartegy: The SQLException object is generated by executing an
-     * incomplete SQL Statement and the getErrorCode() method of that object is
-     * checked whether it returns an integer.
+     * @testStartegy: The SQLException object is generated by executing an incomplete SQL Statement and the getErrorCode()
+     * method of that object is checked whether it returns an integer.
      */
     public void testGetErrorCode() throws Fault {
         try {
@@ -354,9 +346,8 @@ public class sqlExceptionClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:69;
      *
-     * @testStartegy: The SQLException object is generated by executing an
-     * incomplete SQL Statement and the getSQLState() method of that object is
-     * checked whether it is an instance of java.lang.String.
+     * @testStartegy: The SQLException object is generated by executing an incomplete SQL Statement and the getSQLState()
+     * method of that object is checked whether it is an instance of java.lang.String.
      */
 
     public void testGetSQLState() throws Fault {
@@ -388,10 +379,9 @@ public class sqlExceptionClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:71;
      *
-     * @test_Strategy: SQLException object is generated by executing an incomplete
-     * SQL Statement and using setNextException method a SQLException object is
-     * chained. This is checked using the getNextException method which should
-     * return a instanceof SQLException object.
+     * @test_Strategy: SQLException object is generated by executing an incomplete SQL Statement and using setNextException
+     * method a SQLException object is chained. This is checked using the getNextException method which should return a
+     * instanceof SQLException object.
      */
     public void testGetNextException() throws Fault {
         try {
@@ -425,10 +415,9 @@ public class sqlExceptionClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:72;
      *
-     * @test_Strategy: SQLException object is obtained by executing a incomplete
-     * SQLStatement and setNextException() method on the object will set a chain
-     * of SQLException on that object which can be checked by using
-     * getNextException() method.
+     * @test_Strategy: SQLException object is obtained by executing a incomplete SQLStatement and setNextException() method
+     * on the object will set a chain of SQLException on that object which can be checked by using getNextException()
+     * method.
      *
      */
     public void testSetNextException() throws Fault {

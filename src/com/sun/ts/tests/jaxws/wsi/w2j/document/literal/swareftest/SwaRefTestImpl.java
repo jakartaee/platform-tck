@@ -28,12 +28,7 @@ import java.net.*;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
 
-@WebService(
-        portName = "SwaRefTestPort",
-        serviceName = "WSIDLSwaRefTestService",
-        targetNamespace = "http://SwaRefTestService.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaRefTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTest")
+@WebService(portName = "SwaRefTestPort", serviceName = "WSIDLSwaRefTestService", targetNamespace = "http://SwaRefTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaRefTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTest")
 public class SwaRefTestImpl implements SwaRefTest {
     public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTypeResponse echoSingleSwaRefAttachment(
             com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swareftest.SwaRefTypeRequest request) {

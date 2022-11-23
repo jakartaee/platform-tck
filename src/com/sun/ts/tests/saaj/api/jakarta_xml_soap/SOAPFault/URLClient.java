@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,8 +100,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:200; SAAJ:JAVADOC:201; SAAJ:JAVADOC:204
      *
-     * @test_Strategy: Call SOAPFault.setFaultString/getFaultString with a string.
-     * Must succeed.
+     * @test_Strategy: Call SOAPFault.setFaultString/getFaultString with a string. Must succeed.
      *
      */
     public void SetGetFaultString1Test() throws Fault {
@@ -111,12 +112,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SetGetFaultString1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -125,7 +129,8 @@ public class URLClient extends EETest {
             throw new Fault("SetGetFaultString1Test failed", e);
         }
 
-        if (!pass) throw new Fault("SetGetFaultString1Test failed");
+        if (!pass)
+            throw new Fault("SetGetFaultString1Test failed");
     }
 
     /*
@@ -133,8 +138,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:188; SAAJ:JAVADOC:196;
      *
-     * @test_Strategy: Call SOAPFault.setFaultCode/getFaultCode with a string.
-     * Must succeed.
+     * @test_Strategy: Call SOAPFault.setFaultCode/getFaultCode with a string. Must succeed.
      *
      */
     public void SetGetFaultCode1Test() throws Fault {
@@ -146,12 +150,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SetGetFaultCode1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -160,7 +167,8 @@ public class URLClient extends EETest {
             throw new Fault("SetGetFaultCode1Test failed", e);
         }
 
-        if (!pass) throw new Fault("SetGetFaultCode1Test failed");
+        if (!pass)
+            throw new Fault("SetGetFaultCode1Test failed");
     }
 
     /*
@@ -168,8 +176,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:197; SAAJ:JAVADOC:199;
      *
-     * @test_Strategy: Call SOAPFault.setFaultActor/getFaultActor with a URI. Must
-     * succeed.
+     * @test_Strategy: Call SOAPFault.setFaultActor/getFaultActor with a URI. Must succeed.
      *
      */
     public void SetGetFaultActor1Test() throws Fault {
@@ -181,12 +188,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SetGetFaultActor1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -195,7 +205,8 @@ public class URLClient extends EETest {
             throw new Fault("setFaultActor1Test failed", e);
         }
 
-        if (!pass) throw new Fault("SetGetFaultActor1Test failed");
+        if (!pass)
+            throw new Fault("SetGetFaultActor1Test failed");
     }
 
     /*
@@ -215,12 +226,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "AddGetDetail1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -228,7 +242,8 @@ public class URLClient extends EETest {
             e.printStackTrace();
             throw new Fault("AddGetDetail1Test failed", e);
         }
-        if (!pass) throw new Fault("AddGetDetail1Test failed");
+        if (!pass)
+            throw new Fault("AddGetDetail1Test failed");
     }
 
     /*
@@ -238,8 +253,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPFault.addFaultReasonText() on a SOAP1.1 message.
      *
-     * Description: Calling SOAPFault.addFaultReasonText() on a SOAP1.1 message
-     * must throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.addFaultReasonText() on a SOAP1.1 message must throw UnsupportedOperationException.
      *
      */
     public void addFaultReasonText1Test() throws Fault {
@@ -254,14 +268,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("addFaultReasonText1Test failed", e);
         }
 
-        if (!pass) throw new Fault("addFaultReasonText1Test failed");
+        if (!pass)
+            throw new Fault("addFaultReasonText1Test failed");
     }
 
     /*
@@ -271,8 +287,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPFault.addFaultReasonText() on a SOAP1.2 message.
      *
-     * Description: Calling SOAPFault.addFaultReasonText() on a SOAP1.2 message
-     * must succeed.
+     * Description: Calling SOAPFault.addFaultReasonText() on a SOAP1.2 message must succeed.
      *
      */
     public void addFaultReasonText2Test() throws Fault {
@@ -287,14 +302,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("addFaultReasonText2Test failed", e);
         }
 
-        if (!pass) throw new Fault("addFaultReasonText2Test failed");
+        if (!pass)
+            throw new Fault("addFaultReasonText2Test failed");
     }
 
     /*
@@ -302,8 +319,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:216; SAAJ:JAVADOC:217;
      *
-     * @test_Strategy: Call SOAPFault.addFaultReasonText() using 2 different
-     * locales. See that both are returned on a SOAP1.2 message.
+     * @test_Strategy: Call SOAPFault.addFaultReasonText() using 2 different locales. See that both are returned on a
+     * SOAP1.2 message.
      */
     public void addFaultReasonText3Test() throws Fault {
         boolean pass = true;
@@ -317,14 +334,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("addFaultReasonText3Test failed", e);
         }
 
-        if (!pass) throw new Fault("addFaultReasonText3Test failed");
+        if (!pass)
+            throw new Fault("addFaultReasonText3Test failed");
     }
 
     /*
@@ -332,8 +351,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:216; SAAJ:JAVADOC:217;
      *
-     * @test_Strategy: Call SOAPFault.addFaultReasonText() using the same locale.
-     * See that the first is overwritten by the second on a SOAP1.2 message.
+     * @test_Strategy: Call SOAPFault.addFaultReasonText() using the same locale. See that the first is overwritten by the
+     * second on a SOAP1.2 message.
      */
     public void addFaultReasonText4Test() throws Fault {
         boolean pass = true;
@@ -347,14 +366,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("addFaultReasonText4Test failed", e);
         }
 
-        if (!pass) throw new Fault("addFaultReasonText4Test failed");
+        if (!pass)
+            throw new Fault("addFaultReasonText4Test failed");
     }
 
     /*
@@ -362,11 +383,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:210; SAAJ:JAVADOC:211;
      *
-     * @test_Strategy: Call SOAPFault.getFaultReasonLocales() on a SOAP1.1
-     * message.
+     * @test_Strategy: Call SOAPFault.getFaultReasonLocales() on a SOAP1.1 message.
      *
-     * Description: Calling SOAPFault.getFaultReasonLocales() on a SOAP1.1 message
-     * must throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.getFaultReasonLocales() on a SOAP1.1 message must throw UnsupportedOperationException.
      *
      */
     public void getFaultReasonLocales1Test() throws Fault {
@@ -381,14 +400,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultReasonLocales1Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultReasonLocales1Test failed");
+        if (!pass)
+            throw new Fault("getFaultReasonLocales1Test failed");
     }
 
     /*
@@ -396,11 +417,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:210; SAAJ:JAVADOC:211;
      *
-     * @test_Strategy: Call SOAPFault.getFaultReasonLocales() on a SOAP1.2 message
-     * that added 1 FaultReasonText.
+     * @test_Strategy: Call SOAPFault.getFaultReasonLocales() on a SOAP1.2 message that added 1 FaultReasonText.
      *
-     * Description: Calling SOAPFault.getFaultReasonLocales() on a SOAP1.2 message
-     * must succeed.
+     * Description: Calling SOAPFault.getFaultReasonLocales() on a SOAP1.2 message must succeed.
      *
      */
     public void getFaultReasonLocales2Test() throws Fault {
@@ -415,14 +434,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultReasonLocales2Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultReasonLocales2Test failed");
+        if (!pass)
+            throw new Fault("getFaultReasonLocales2Test failed");
     }
 
     /*
@@ -432,8 +453,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPFault.getFaultReasonText() on a SOAP1.1 message.
      *
-     * Description: Calling SOAPFault.getFaultReasonText() on a SOAP1.1 message
-     * must throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.getFaultReasonText() on a SOAP1.1 message must throw UnsupportedOperationException.
      *
      */
     public void getFaultReasonText1Test() throws Fault {
@@ -448,14 +468,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultReasonText1Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultReasonText1Test failed");
+        if (!pass)
+            throw new Fault("getFaultReasonText1Test failed");
     }
 
     /*
@@ -463,12 +485,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:214; SAAJ:JAVADOC:215;
      *
-     * @test_Strategy: Call SOAPFault.getFaultReasonText() on a SOAP1.2 message
-     * that added 3 FaultReasonTexts. Two using Locale.ENGLISH and on with
-     * Locale.UK. Only the text associated with Locale.UK should be returned.
+     * @test_Strategy: Call SOAPFault.getFaultReasonText() on a SOAP1.2 message that added 3 FaultReasonTexts. Two using
+     * Locale.ENGLISH and on with Locale.UK. Only the text associated with Locale.UK should be returned.
      *
-     * Description: Calling SOAPFault.getFaultReasonText() on a SOAP1.2 message
-     * must succeed.
+     * Description: Calling SOAPFault.getFaultReasonText() on a SOAP1.2 message must succeed.
      *
      */
     public void getFaultReasonText2Test() throws Fault {
@@ -483,14 +503,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultReasonText2Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultReasonText2Test failed");
+        if (!pass)
+            throw new Fault("getFaultReasonText2Test failed");
     }
 
     /*
@@ -498,9 +520,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:214; SAAJ:JAVADOC:215;
      *
-     * @test_Strategy: Call SOAPFault.getFaultReasonText() after calling
-     * SOAPFault.addFaultReasonText() twice, the first time to set a reason text
-     * and the second to replace the old text with a new text value
+     * @test_Strategy: Call SOAPFault.getFaultReasonText() after calling SOAPFault.addFaultReasonText() twice, the first
+     * time to set a reason text and the second to replace the old text with a new text value
      *
      */
     public void getFaultReasonText3Test() throws Fault {
@@ -515,14 +536,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultReasonText3Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultReasonText3Test failed");
+        if (!pass)
+            throw new Fault("getFaultReasonText3Test failed");
     }
 
     /*
@@ -532,8 +555,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPFault.getFaultReasonTexts() on a SOAP1.1 message.
      *
-     * Description: Calling SOAPFault.getFaultReasonTexts() on a SOAP1.1 message
-     * must throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.getFaultReasonTexts() on a SOAP1.1 message must throw UnsupportedOperationException.
      *
      */
     public void getFaultReasonTexts1Test() throws Fault {
@@ -548,14 +570,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultReasonTexts1Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultReasonTexts1Test failed");
+        if (!pass)
+            throw new Fault("getFaultReasonTexts1Test failed");
     }
 
     /*
@@ -563,11 +587,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:212; SAAJ:JAVADOC:213;
      *
-     * @test_Strategy: Call SOAPFault.getFaultReasonTexts() on a SOAP1.2 message
-     * that added 1 FaultReasonText.
+     * @test_Strategy: Call SOAPFault.getFaultReasonTexts() on a SOAP1.2 message that added 1 FaultReasonText.
      *
-     * Description: Calling SOAPFault.getFaultReasonTexts() on a SOAP1.2 message
-     * must succeed.
+     * Description: Calling SOAPFault.getFaultReasonTexts() on a SOAP1.2 message must succeed.
      *
      */
     public void getFaultReasonTexts2Test() throws Fault {
@@ -582,14 +604,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultReasonTexts2Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultReasonTexts2Test failed");
+        if (!pass)
+            throw new Fault("getFaultReasonTexts2Test failed");
     }
 
     /*
@@ -597,11 +621,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:212; SAAJ:JAVADOC:213;
      *
-     * @test_Strategy: Call SOAPFault.getFaultReasonTexts() on a SOAP1.2 message
-     * that added 2 FaultReasonTexts that each have different Locales.
+     * @test_Strategy: Call SOAPFault.getFaultReasonTexts() on a SOAP1.2 message that added 2 FaultReasonTexts that each
+     * have different Locales.
      *
-     * Description: Calling SOAPFault.getFaultReasonTexts() on a SOAP1.2 message
-     * must succeed.
+     * Description: Calling SOAPFault.getFaultReasonTexts() on a SOAP1.2 message must succeed.
      *
      */
     public void getFaultReasonTexts3Test() throws Fault {
@@ -616,14 +639,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultReasonTexts3Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultReasonTexts3Test failed");
+        if (!pass)
+            throw new Fault("getFaultReasonTexts3Test failed");
     }
 
     /*
@@ -631,11 +656,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:219; SAAJ:JAVADOC:220;
      *
-     * @test_Strategy: Call SOAPFault.setFaultNode() on a SOAP1.1 message must
-     * fail.
+     * @test_Strategy: Call SOAPFault.setFaultNode() on a SOAP1.1 message must fail.
      *
-     * Description: Calling SOAPFault.setFaultNode() on a SOAP1.1 message must
-     * throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.setFaultNode() on a SOAP1.1 message must throw UnsupportedOperationException.
      *
      */
     public void setFaultNode1Test() throws Fault {
@@ -650,14 +673,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("setFaultNode1Test failed", e);
         }
 
-        if (!pass) throw new Fault("setFaultNode1Test failed");
+        if (!pass)
+            throw new Fault("setFaultNode1Test failed");
     }
 
     /*
@@ -665,8 +690,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:218; SAAJ:JAVADOC:219;
      *
-     * @test_Strategy: Call SOAPFault.setFaultNode() and getFaultNode() on a
-     * SOAP1.2 message must succeed.
+     * @test_Strategy: Call SOAPFault.setFaultNode() and getFaultNode() on a SOAP1.2 message must succeed.
      */
     public void SetGetFaultNode1Test() throws Fault {
         boolean pass = true;
@@ -680,14 +704,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("SetGetFaultNode1Test failed", e);
         }
 
-        if (!pass) throw new Fault("SetGetFaultNode1Test failed");
+        if (!pass)
+            throw new Fault("SetGetFaultNode1Test failed");
     }
 
     /*
@@ -709,14 +735,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("SetGetFaultNode2Test failed", e);
         }
 
-        if (!pass) throw new Fault("SetGetFaultNode2Test failed");
+        if (!pass)
+            throw new Fault("SetGetFaultNode2Test failed");
     }
 
     /*
@@ -724,11 +752,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:218;
      *
-     * @test_Strategy: Call SOAPFault.getFaultNode() on a SOAP1.1 message must
-     * fail.
+     * @test_Strategy: Call SOAPFault.getFaultNode() on a SOAP1.1 message must fail.
      *
-     * Description: Calling SOAPFault.getFaultNode() on a SOAP1.1 message must
-     * throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.getFaultNode() on a SOAP1.1 message must throw UnsupportedOperationException.
      *
      */
     public void getFaultNode1Test() throws Fault {
@@ -743,14 +769,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultNode1Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultNode1Test failed");
+        if (!pass)
+            throw new Fault("getFaultNode1Test failed");
     }
 
     /*
@@ -758,8 +786,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:218;
      *
-     * @test_Strategy: Call SOAPFault.getFaultNode() on a SOAP1.2 message that
-     * doesn't have a node set.
+     * @test_Strategy: Call SOAPFault.getFaultNode() on a SOAP1.2 message that doesn't have a node set.
      *
      */
     public void getFaultNode2Test() throws Fault {
@@ -774,14 +801,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultNode2Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultNode2Test failed");
+        if (!pass)
+            throw new Fault("getFaultNode2Test failed");
     }
 
     /*
@@ -789,11 +818,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:222; SAAJ:JAVADOC:223;
      *
-     * @test_Strategy: Call SOAPFault.setFaultRole() on a SOAP1.1 message must
-     * fail.
+     * @test_Strategy: Call SOAPFault.setFaultRole() on a SOAP1.1 message must fail.
      *
-     * Description: Calling SOAPFault.setFaultRole() on a SOAP1.1 message must
-     * throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.setFaultRole() on a SOAP1.1 message must throw UnsupportedOperationException.
      *
      */
     public void setFaultRole1Test() throws Fault {
@@ -808,14 +835,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("setFaultRole1Test failed", e);
         }
 
-        if (!pass) throw new Fault("setFaultRole1Test failed");
+        if (!pass)
+            throw new Fault("setFaultRole1Test failed");
     }
 
     /*
@@ -823,8 +852,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:221; SAAJ:JAVADOC:222;
      *
-     * @test_Strategy: Call SOAPFault.setFaultRole/getFaultRole on a SOAP1.2
-     * message must succeed.
+     * @test_Strategy: Call SOAPFault.setFaultRole/getFaultRole on a SOAP1.2 message must succeed.
      *
      */
     public void SetGetFaultRole1Test() throws Fault {
@@ -839,14 +867,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("SetGetFaultRole1Test failed", e);
         }
 
-        if (!pass) throw new Fault("SetGetFaultRole1Test failed");
+        if (!pass)
+            throw new Fault("SetGetFaultRole1Test failed");
     }
 
     /*
@@ -854,11 +884,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:221;
      *
-     * @test_Strategy: Call SOAPFault.getFaultRole() on a SOAP1.1 message must
-     * fail.
+     * @test_Strategy: Call SOAPFault.getFaultRole() on a SOAP1.1 message must fail.
      *
-     * Description: Calling SOAPFault.getFaultRole() on a SOAP1.1 message must
-     * throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.getFaultRole() on a SOAP1.1 message must throw UnsupportedOperationException.
      *
      */
     public void getFaultRole1Test() throws Fault {
@@ -873,14 +901,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultRole1Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultRole1Test failed");
+        if (!pass)
+            throw new Fault("getFaultRole1Test failed");
     }
 
     /*
@@ -888,8 +918,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:221;
      *
-     * @test_Strategy: Call SOAPFault.getFaultRole() on a SOAP1.2 message that
-     * does not have a role set.
+     * @test_Strategy: Call SOAPFault.getFaultRole() on a SOAP1.2 message that does not have a role set.
      *
      */
     public void getFaultRole2Test() throws Fault {
@@ -904,14 +933,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultRole2Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultRole2Test failed");
+        if (!pass)
+            throw new Fault("getFaultRole2Test failed");
     }
 
     /*
@@ -919,8 +950,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:202; SAAJ:JAVADOC:205
      *
-     * @test_Strategy: Call SOAPFault.setFaultString() and getFaultString() with a
-     * string and locale
+     * @test_Strategy: Call SOAPFault.setFaultString() and getFaultString() with a string and locale
      *
      */
     public void SetGetFaultStringLocale1Test() throws Fault {
@@ -931,13 +961,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "SetGetFaultStringLocale1Test");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -945,7 +978,8 @@ public class URLClient extends EETest {
             throw new Fault("SetGetFaultStringLocale1Test failed", e);
         }
 
-        if (!pass) throw new Fault("SetGetFaultStringLocale1Test failed");
+        if (!pass)
+            throw new Fault("SetGetFaultStringLocale1Test failed");
     }
 
     /*
@@ -953,8 +987,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:202;
      *
-     * @test_Strategy: Call SOAPFault.setFaultString and addFaultReasonText and
-     * verify they behave the same
+     * @test_Strategy: Call SOAPFault.setFaultString and addFaultReasonText and verify they behave the same
      *
      */
     public void setFaultStringLocale1Test() throws Fault {
@@ -978,7 +1011,8 @@ public class URLClient extends EETest {
             throw new Fault("setFaultStringLocale1Test failed", e);
         }
 
-        if (!pass) throw new Fault("setFaultStringLocale1Test failed");
+        if (!pass)
+            throw new Fault("setFaultStringLocale1Test failed");
     }
 
     /*
@@ -986,8 +1020,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:205;
      *
-     * @test_Strategy: Call SOAPFault.getFaultStringLocale where a fault string
-     * was set but not the locale
+     * @test_Strategy: Call SOAPFault.getFaultStringLocale where a fault string was set but not the locale
      *
      */
     public void getFaultStringLocale1Test() throws Fault {
@@ -1008,7 +1041,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1016,7 +1050,8 @@ public class URLClient extends EETest {
             throw new Fault("getFaultStringLocale1Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultStringLocale1Test failed");
+        if (!pass)
+            throw new Fault("getFaultStringLocale1Test failed");
     }
 
     /*
@@ -1024,8 +1059,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:184; SAAJ:JAVADOC:190;
      *
-     * @test_Strategy: Call SOAPFault.setFaultCodeAsName() and
-     * getFaultCodeAsName() to return Name.
+     * @test_Strategy: Call SOAPFault.setFaultCodeAsName() and getFaultCodeAsName() to return Name.
      *
      */
     public void SetGetFaultCodeAsName1Test() throws Fault {
@@ -1036,13 +1070,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "SetGetFaultCodeAsName1Test");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1050,7 +1087,8 @@ public class URLClient extends EETest {
             throw new Fault("SetGetFaultCodeAsName1Test failed", e);
         }
 
-        if (!pass) throw new Fault("SetGetFaultCodeAsName1Test failed");
+        if (!pass)
+            throw new Fault("SetGetFaultCodeAsName1Test failed");
     }
 
     /*
@@ -1058,8 +1096,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:184; SAAJ:JAVADOC:190;
      *
-     * @test_Strategy: Call SOAPFault.setFaultCodeAsQName() and
-     * getFaultCodeAsQName() to return QName.
+     * @test_Strategy: Call SOAPFault.setFaultCodeAsQName() and getFaultCodeAsQName() to return QName.
      *
      */
     public void SetGetFaultCodeAsQName1Test() throws Fault {
@@ -1070,13 +1107,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "SetGetFaultCodeAsQName1Test");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1084,7 +1124,8 @@ public class URLClient extends EETest {
             throw new Fault("SetGetFaultCodeAsQName1Test failed", e);
         }
 
-        if (!pass) throw new Fault("SetGetFaultCodeAsQName1Test failed");
+        if (!pass)
+            throw new Fault("SetGetFaultCodeAsQName1Test failed");
     }
 
     /*
@@ -1094,8 +1135,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPFault.appendFaultSubcode() on a SOAP1.1 message.
      *
-     * Description: Calling SOAPFault.appendFaultSubcode() on a SOAP1.1 message
-     * must throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.appendFaultSubcode() on a SOAP1.1 message must throw UnsupportedOperationException.
      *
      */
     public void appendFaultSubcode1Test() throws Fault {
@@ -1110,14 +1150,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("appendFaultSubcode1Test failed", e);
         }
 
-        if (!pass) throw new Fault("appendFaultSubcode1Test failed");
+        if (!pass)
+            throw new Fault("appendFaultSubcode1Test failed");
     }
 
     /*
@@ -1125,8 +1167,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:194;
      *
-     * @test_Strategy: Call SOAPFault.appendFaultSubcode() twice on a SOAP1.2
-     * message must succeed.
+     * @test_Strategy: Call SOAPFault.appendFaultSubcode() twice on a SOAP1.2 message must succeed.
      *
      */
     public void appendFaultSubcode2Test() throws Fault {
@@ -1141,14 +1182,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("appendFaultSubcode2Test failed", e);
         }
 
-        if (!pass) throw new Fault("appendFaultSubcode2Test failed");
+        if (!pass)
+            throw new Fault("appendFaultSubcode2Test failed");
     }
 
     /*
@@ -1158,8 +1201,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPFault.getFaultSubcodes() on a SOAP1.1 message.
      *
-     * Description: Calling SOAPFault.getFaultSubcodes() on a SOAP1.1 message must
-     * throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.getFaultSubcodes() on a SOAP1.1 message must throw UnsupportedOperationException.
      *
      */
     public void getFaultSubcodes1Test() throws Fault {
@@ -1174,14 +1216,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultSubcodes1Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultSubcodes1Test failed");
+        if (!pass)
+            throw new Fault("getFaultSubcodes1Test failed");
     }
 
     /*
@@ -1189,8 +1233,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:192;
      *
-     * @test_Strategy: Call SOAPFault.getFaultSubcodes() on a SOAP1.2 message that
-     * contains 2 Subcodes.
+     * @test_Strategy: Call SOAPFault.getFaultSubcodes() on a SOAP1.2 message that contains 2 Subcodes.
      *
      */
     public void getFaultSubcodes2Test() throws Fault {
@@ -1205,14 +1248,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getFaultSubcodes2Test failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultSubcodes2Test failed");
+        if (!pass)
+            throw new Fault("getFaultSubcodes2Test failed");
     }
 
     /*
@@ -1233,13 +1278,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "hasDetail1Test");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1247,7 +1295,8 @@ public class URLClient extends EETest {
             throw new Fault("hasDetail1Test failed", e);
         }
 
-        if (!pass) throw new Fault("hasDetail1Test failed");
+        if (!pass)
+            throw new Fault("hasDetail1Test failed");
     }
 
     /*
@@ -1268,13 +1317,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "hasDetail2Test");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1282,7 +1334,8 @@ public class URLClient extends EETest {
             throw new Fault("hasDetail2Test failed", e);
         }
 
-        if (!pass) throw new Fault("hasDetail2Test failed");
+        if (!pass)
+            throw new Fault("hasDetail2Test failed");
     }
 
     /*
@@ -1290,11 +1343,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:193;
      *
-     * @test_Strategy: Call SOAPFault.removeAllFaultSubcodes() on a SOAP1.1
-     * message.
+     * @test_Strategy: Call SOAPFault.removeAllFaultSubcodes() on a SOAP1.1 message.
      *
-     * Description: Calling SOAPFault.removeAllFaultSubcodes() on a SOAP1.1
-     * message must throw UnsupportedOperationException.
+     * Description: Calling SOAPFault.removeAllFaultSubcodes() on a SOAP1.1 message must throw
+     * UnsupportedOperationException.
      *
      */
     public void removeAllFaultSubcodes1Test() throws Fault {
@@ -1309,14 +1361,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("removeAllFaultSubcodes1Test failed", e);
         }
 
-        if (!pass) throw new Fault("removeAllFaultSubcodes1Test failed");
+        if (!pass)
+            throw new Fault("removeAllFaultSubcodes1Test failed");
     }
 
     /*
@@ -1324,9 +1378,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:193;
      *
-     * @test_Strategy: Call SOAPFault.removeAllFaultSubcodes() on a SOAP1.2
-     * message that contains 2 Subcodes. Then call getFaultSubcodes() is ensure an
-     * empty interator is returned
+     * @test_Strategy: Call SOAPFault.removeAllFaultSubcodes() on a SOAP1.2 message that contains 2 Subcodes. Then call
+     * getFaultSubcodes() is ensure an empty interator is returned
      *
      */
     public void removeAllFaultSubcodes2Test() throws Fault {
@@ -1341,14 +1394,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("removeAllFaultSubcodes2Test failed", e);
         }
 
-        if (!pass) throw new Fault("removeAllFaultSubcodes2Test failed");
+        if (!pass)
+            throw new Fault("removeAllFaultSubcodes2Test failed");
     }
 
     /*
@@ -1356,8 +1411,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:185;
      *
-     * @test_Strategy: Call SOAPFault.setFaultCode with a non qualified Name
-     * object. Must throw SOAPException for SOAP1.2 protocol.
+     * @test_Strategy: Call SOAPFault.setFaultCode with a non qualified Name object. Must throw SOAPException for SOAP1.2
+     * protocol.
      *
      */
     public void SetFaultCodeNameSOAPExceptionTest() throws Fault {
@@ -1369,12 +1424,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SetFaultCodeNameSOAPExceptionTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -1383,7 +1441,8 @@ public class URLClient extends EETest {
             throw new Fault("SetFaultCodeNameSOAPExceptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("SetFaultCodeNameSOAPExceptionTest failed");
+        if (!pass)
+            throw new Fault("SetFaultCodeNameSOAPExceptionTest failed");
     }
 
     /*
@@ -1391,8 +1450,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:187;
      *
-     * @test_Strategy: Call SOAPFault.setFaultCode with a non qualified QName
-     * object. Must throw SOAPException for SOAP1.2 protocol.
+     * @test_Strategy: Call SOAPFault.setFaultCode with a non qualified QName object. Must throw SOAPException for SOAP1.2
+     * protocol.
      *
      */
     public void SetFaultCodeQNameSOAPExceptionTest() throws Fault {
@@ -1404,12 +1463,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SetFaultCodeQNameSOAPExceptionTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -1418,7 +1480,8 @@ public class URLClient extends EETest {
             throw new Fault("SetFaultCodeQNameSOAPExceptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("SetFaultCodeQNameSOAPExceptionTest failed");
+        if (!pass)
+            throw new Fault("SetFaultCodeQNameSOAPExceptionTest failed");
     }
 
     /*
@@ -1426,8 +1489,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:189;
      *
-     * @test_Strategy: Call SOAPFault.setFaultCode with a non qualified String
-     * object. Must throw SOAPException for SOAP1.2 protocol.
+     * @test_Strategy: Call SOAPFault.setFaultCode with a non qualified String object. Must throw SOAPException for SOAP1.2
+     * protocol.
      *
      */
     public void SetFaultCodeStringSOAPExceptionTest() throws Fault {
@@ -1439,12 +1502,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "SetFaultCodeStringSOAPExceptionTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -1453,7 +1519,8 @@ public class URLClient extends EETest {
             throw new Fault("SetFaultCodeStringSOAPExceptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("SetFaultCodeStringSOAPExceptionTest failed");
+        if (!pass)
+            throw new Fault("SetFaultCodeStringSOAPExceptionTest failed");
     }
 
     /*
@@ -1461,8 +1528,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:195;
      *
-     * @test_Strategy: Call SOAPFault.appendFaultSubcode with a non qualified
-     * QName object. Must throw SOAPException.
+     * @test_Strategy: Call SOAPFault.appendFaultSubcode with a non qualified QName object. Must throw SOAPException.
      *
      */
     public void AppendFaultSubcodeSOAPExceptionTest() throws Fault {
@@ -1477,14 +1543,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("AppendFaultSubcodeSOAPExceptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("AppendFaultSubcodeSOAPExceptionTest failed");
+        if (!pass)
+            throw new Fault("AppendFaultSubcodeSOAPExceptionTest failed");
     }
 
     /*
@@ -1492,8 +1560,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:209;
      *
-     * @test_Strategy: Call SOAPFault.addDetail() twice. Must throw a
-     * SOAPException.
+     * @test_Strategy: Call SOAPFault.addDetail() twice. Must throw a SOAPException.
      *
      */
     public void AddDetailSOAPExceptionTest() throws Fault {
@@ -1505,12 +1572,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "AddDetailSOAPExceptionTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -1518,6 +1588,7 @@ public class URLClient extends EETest {
             e.printStackTrace();
             throw new Fault("AddDetailSOAPExceptionTest failed", e);
         }
-        if (!pass) throw new Fault("AddDetailSOAPExceptionTest failed");
+        if (!pass)
+            throw new Fault("AddDetailSOAPExceptionTest failed");
     }
 }

@@ -54,8 +54,7 @@ public class Resource {
     @Path("app")
     @GET
     public String app(@Context Application application) {
-        ApplicationHolderSingleton holder = (ApplicationHolderSingleton)
-                application.getSingletons().iterator().next();
+        ApplicationHolderSingleton holder = (ApplicationHolderSingleton) application.getSingletons().iterator().next();
         return String.valueOf(holder.getValue());
     }
 
@@ -80,8 +79,7 @@ public class Resource {
     @Path("priorapp")
     @GET
     public String jaxrsInjectPriorPostConstructOnApplication() {
-        ApplicationHolderSingleton holder = (ApplicationHolderSingleton)
-                injectedApplication.getSingletons().iterator().next();
+        ApplicationHolderSingleton holder = (ApplicationHolderSingleton) injectedApplication.getSingletons().iterator().next();
         return String.valueOf(holder.isUriInfoInjectedBeforePostConstruct());
     }
 

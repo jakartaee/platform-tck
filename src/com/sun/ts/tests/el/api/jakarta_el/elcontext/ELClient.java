@@ -57,10 +57,8 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elContextPutGetContextTest
-     * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:39; EL:JAVADOC:328;
-     *                 EL:JAVADOC:326; EL:JAVADOC:321
-     * @test_Strategy: Assert that we get back the expected value from
-     *                 getContext() that we put in with putContext().
+     * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:39; EL:JAVADOC:328; EL:JAVADOC:326; EL:JAVADOC:321
+     * @test_Strategy: Assert that we get back the expected value from getContext() that we put in with putContext().
      *
      * @since: 3.0
      */
@@ -81,8 +79,7 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elContextGetSetLocaleTest
-     * @assertion_ids: EL:JAVADOC:36; EL:JAVADOC:40; EL:JAVADOC:328;
-     *                 EL:JAVADOC:329
+     * @assertion_ids: EL:JAVADOC:36; EL:JAVADOC:40; EL:JAVADOC:328; EL:JAVADOC:329
      * @test_Strategy: Assert that we get back the Locale we set.
      *
      * @since: 3.0
@@ -105,10 +102,8 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elContextIsSetPropertyResolvedTest
-     * @assertion_ids: EL:JAVADOC:38; EL:JAVADOC:41; EL:JAVADOC:328;
-     *                 EL:JAVADOC:329; EL:JAVADOC:322
-     * @test_Strategy: Assert that when we call setPropertyResolved that
-     *                 isPropertyResolved returns true.
+     * @assertion_ids: EL:JAVADOC:38; EL:JAVADOC:41; EL:JAVADOC:328; EL:JAVADOC:329; EL:JAVADOC:322
+     * @test_Strategy: Assert that when we call setPropertyResolved that isPropertyResolved returns true.
      *
      * @since: 3.0
      */
@@ -134,10 +129,8 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elContextPutContextNPETest
-     * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:198; EL:JAVADOC:328;
-     *                 EL:JAVADOC:329; EL:JAVADOC:327
-     * @test_Strategy: Validate that a NullPointerException is thrown if Class is
-     *                 null or Object is null.
+     * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:198; EL:JAVADOC:328; EL:JAVADOC:329; EL:JAVADOC:327
+     * @test_Strategy: Validate that a NullPointerException is thrown if Class is null or Object is null.
      *
      * @since: 3.0
      */
@@ -147,19 +140,17 @@ public class ELClient extends ServiceEETest {
 
         TestUtil.logMsg("Testing: ELContext.putContext(String.class, null)");
         ELTestUtil.checkForNPE(
-                elc, "putContext", new Class<?>[] {Class.class, Object.class}, new Object[] {String.class, null});
+                elc, "putContext", new Class<?>[] { Class.class, Object.class }, new Object[] { String.class, null });
 
         TestUtil.logMsg("Testing: ELContext.putContext(null, testStrg)");
         ELTestUtil.checkForNPE(
-                elc, "putContext", new Class<?>[] {Class.class, Object.class}, new Object[] {String.class, null});
+                elc, "putContext", new Class<?>[] { Class.class, Object.class }, new Object[] { String.class, null });
     } // end elContextPutContextNPETest
 
     /**
      * @testName: elContextGetContextNPETest
-     * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:194; EL:JAVADOC:328;
-     *                 EL:JAVADOC:329; EL:JAVADOC:321
-     * @test_Strategy: Validate that a NullPointerException is thrown if key is
-     *                 null.
+     * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:194; EL:JAVADOC:328; EL:JAVADOC:329; EL:JAVADOC:321
+     * @test_Strategy: Validate that a NullPointerException is thrown if key is null.
      *
      * @since: 3.0
      */
@@ -168,15 +159,13 @@ public class ELClient extends ServiceEETest {
         ELContext elc = elm.getELContext();
 
         TestUtil.logMsg("Testing: ELContext.getContext(null)");
-        ELTestUtil.checkForNPE(elc, "getContext", new Class<?>[] {Class.class}, new Object[] {null});
+        ELTestUtil.checkForNPE(elc, "getContext", new Class<?>[] { Class.class }, new Object[] { null });
     } // end elContextGetContextNPETest
 
     /**
      * @testName: elContextAddGetListenersTest
-     * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:191; EL:JAVADOC:197;
-     *                 EL:JAVADOC:328; EL:JAVADOC:329
-     * @test_Strategy: Validate that a NullPointerException is thrown if key is
-     *                 null.
+     * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:191; EL:JAVADOC:197; EL:JAVADOC:328; EL:JAVADOC:329
+     * @test_Strategy: Validate that a NullPointerException is thrown if key is null.
      *
      * @since: 3.0
      */

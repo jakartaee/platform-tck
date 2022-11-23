@@ -32,19 +32,20 @@ import jakarta.ejb.Stateless;
 @Local
 
 /*
- * This bean has the same name as EjbLink3Bean. This bean is packaged into
- * one_ejb.jar. All references to EjbLink3Bean are to the bean whose class name
- * is EjbLink3Bean, not to this one. It is added to one_ejb.jar to verify beans
- * in different ejb jars within the same ear can share names.
+ * This bean has the same name as EjbLink3Bean. This bean is packaged into one_ejb.jar. All references to EjbLink3Bean
+ * are to the bean whose class name is EjbLink3Bean, not to this one. It is added to one_ejb.jar to verify beans in
+ * different ejb jars within the same ear can share names.
  */
 public class UnusedEjbLink3Bean extends EjbLinkBeanBase implements EjbLinkIF {
 
     @Resource
     private SessionContext sessionContext;
 
-    public UnusedEjbLink3Bean() {}
+    public UnusedEjbLink3Bean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
 

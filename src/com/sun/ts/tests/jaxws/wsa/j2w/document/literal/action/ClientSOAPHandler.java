@@ -60,7 +60,8 @@ public class ClientSOAPHandler extends WsaBaseSOAPHandler {
         TestUtil.logMsg("ClientSOAPHandler.checkFaultActions: [input=" + requestName + ", detailName=" + detailName
                 + ", action=" + action + "]");
         TestUtil.logMsg("Verify fault action: [" + action + "]");
-        if (requestName.equals("addNumbers4")) return;
+        if (requestName.equals("addNumbers4"))
+            return;
         if (requestName.equals("addNumbersFault1") && detailName.equals("AddNumbersException")) {
             if (!action.equals(TestConstants.ADD_NUMBERS_FAULT1_ADDNUMBERS_ACTION)) {
                 ThrowActionNotSupportedException(TestConstants.ADD_NUMBERS_FAULT1_ADDNUMBERS_ACTION, action);
@@ -120,9 +121,11 @@ public class ClientSOAPHandler extends WsaBaseSOAPHandler {
     @Override
     protected String getOperationName(SOAPBody soapBody) throws SOAPException {
         String opName = super.getOperationName(soapBody);
-        if (!opName.startsWith("addNumbersFault")) return opName;
+        if (!opName.startsWith("addNumbersFault"))
+            return opName;
 
-        if (opName.equals("addNumbersFault1")) return opName;
+        if (opName.equals("addNumbersFault1"))
+            return opName;
 
         if (opName.equals("addNumbersFault2")) {
             soapBody.getFirstChild().getFirstChild().getNodeValue();

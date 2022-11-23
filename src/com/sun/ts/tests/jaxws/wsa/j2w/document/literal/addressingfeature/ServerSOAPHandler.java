@@ -164,7 +164,8 @@ public class ServerSOAPHandler extends WsaBaseSOAPHandler {
             return super.getActionDoesNotExist(context);
         }
         /* Fault case just return null */
-        else return null;
+        else
+            return null;
     }
 
     protected String whichHandler() {

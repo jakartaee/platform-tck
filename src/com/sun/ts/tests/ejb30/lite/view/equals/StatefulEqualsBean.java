@@ -28,5 +28,6 @@ import jakarta.ejb.Stateful;
 
 @Stateful
 @LocalBean
-@Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
-public class StatefulEqualsBean extends StatelessEqualsBean {}
+@Local({ BusinessLocalIF1.class, BusinessLocalIF2.class })
+public class StatefulEqualsBean extends StatelessEqualsBean {
+}

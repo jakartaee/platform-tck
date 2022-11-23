@@ -56,8 +56,7 @@ public class W2JRLR2011Client extends SOAPClient {
     public String echoImportIndirectlyStringTest(String str) throws Exception {
         ImportIndirectlyStringRequest srq = new ImportIndirectlyStringRequest();
         srq.setStringValue(str);
-        ImportIndirectlyStringResponse srp =
-                ((W2JRLR2011Test) stubContext.getStub()).echoImportIndirectlyStringTest(srq);
+        ImportIndirectlyStringResponse srp = ((W2JRLR2011Test) stubContext.getStub()).echoImportIndirectlyStringTest(srq);
         return srp.getStringValue();
     }
 }

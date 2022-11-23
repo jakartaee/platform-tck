@@ -62,7 +62,7 @@ public final class AssertionMapper {
         ds.setBasedir(assertionDir);
         ds.addDefaultExcludes();
         ds.setCaseSensitive(false);
-        ds.setIncludes(new String[] {"**/*Assertions.xml"});
+        ds.setIncludes(new String[] { "**/*Assertions.xml" });
         ds.scan();
         assertionFiles = ds.getIncludedFiles();
         System.out.println(assertionFiles.length + " assertion files under " + assertionDir);
@@ -71,14 +71,15 @@ public final class AssertionMapper {
         }
     }
 
-    private AssertionMapper() {}
+    private AssertionMapper() {
+    }
 
     /**
      * main program to test AssertionComparator, the nested class.
      */
     public static void main(String[] args) {
         String[] s = {
-            "JMS:SPEC:130.3", "EJB:JAVADOC:27", "JMS:SPEC:130.19", "JSP:SPEC:130", "JMS:SPEC:130.9.5", "JMS:SPEC:130.9"
+                "JMS:SPEC:130.3", "EJB:JAVADOC:27", "JMS:SPEC:130.19", "JSP:SPEC:130", "JMS:SPEC:130.9.5", "JMS:SPEC:130.9"
         };
         Arrays.sort(s, AssertionComparator.getInstance());
         System.out.println("After sorting");
@@ -96,11 +97,9 @@ public final class AssertionMapper {
      *
      * @param assertionIds separated by ;
      *
-     * @param file test source file that contains the assertion ids. For debug
-     * purpose.
+     * @param file test source file that contains the assertion ids. For debug purpose.
      *
-     * @return a single string containing all assertion descriptions separated by
-     * new line.
+     * @return a single string containing all assertion descriptions separated by new line.
      *
      */
     public static String getAssertionDescriptions(String assertionIds, File file) {
@@ -129,19 +128,13 @@ public final class AssertionMapper {
     } // getAssertionDescription
 
     /**
-     * @param token
-     *          a token in assertion_ids. It has not beenn validated or split.
-     * @param filePath
-     *          the full path to the test source code that contained the assertion
-     *          ids. For example,
-     *          /files/ts/src/com/sun/ts/tests/jsp/syntax/Client.java.
-     * @param addedAssertion
-     *          set to keep track of assertions that have been added to the
-     *          result.
-     * @return a complete description of this assertion id. If it's not a valid
-     *         assertion, null or empty string is returned. A complete description
-     *         includes description of all of its ancestors, its own description,
-     *         and that of all of its descendents.
+     * @param token a token in assertion_ids. It has not beenn validated or split.
+     * @param filePath the full path to the test source code that contained the assertion ids. For example,
+     * /files/ts/src/com/sun/ts/tests/jsp/syntax/Client.java.
+     * @param addedAssertion set to keep track of assertions that have been added to the result.
+     * @return a complete description of this assertion id. If it's not a valid assertion, null or empty string is returned.
+     * A complete description includes description of all of its ancestors, its own description, and that of all of its
+     * descendents.
      */
     private static String getDescription0(String token, String filePath, Set addedAssertions) {
         String aDescription = null; // assertion description for token(id)
@@ -211,7 +204,7 @@ public final class AssertionMapper {
 
         List keyList = new ArrayList();
         String tokenDot = token + '.';
-        for (Iterator i = assertionMap.keySet().iterator(); i.hasNext(); ) {
+        for (Iterator i = assertionMap.keySet().iterator(); i.hasNext();) {
             String key = (String) i.next();
             if (key.startsWith(tokenDot) && !addedAssertions.contains(key)) {
                 keyList.add(key);
@@ -231,7 +224,8 @@ public final class AssertionMapper {
     public static class AssertionComparator implements Comparator {
         private static AssertionComparator instance = new AssertionComparator();
 
-        private AssertionComparator() {}
+        private AssertionComparator() {
+        }
 
         public static AssertionComparator getInstance() {
             return instance;
@@ -297,8 +291,7 @@ public final class AssertionMapper {
         }
 
         /**
-         * @param int1
-         *          bigger of the two. equal to bigger than number of tokens.
+         * @param int1 bigger of the two. equal to bigger than number of tokens.
          */
         private void fillIntArray(StringTokenizer st, int[] int1) {
             for (int i = 0; i < int1.length && st.hasMoreTokens(); i++) {
@@ -344,7 +337,8 @@ public final class AssertionMapper {
 
         private String parentDir;
 
-        public HelpHandler() {}
+        public HelpHandler() {
+        }
 
         public void load(String xmlFileName, String technologyName) {
             String fn = null;
@@ -391,10 +385,8 @@ public final class AssertionMapper {
         }
 
         /*
-         * Implementation of the entity resolver interface. This allows CTS
-         * developers to use entity declarations in their assertion docs provided
-         * the assertion doc (the referencing doc) and the referenced docs are in
-         * the same directory.
+         * Implementation of the entity resolver interface. This allows CTS developers to use entity declarations in their
+         * assertion docs provided the assertion doc (the referencing doc) and the referenced docs are in the same directory.
          */
         public InputSource resolveEntity(String publicId, String systemId) {
             System.err.println("publicId \"" + publicId + "\"");

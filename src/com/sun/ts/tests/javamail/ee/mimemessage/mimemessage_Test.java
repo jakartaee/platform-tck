@@ -59,18 +59,18 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
     private String user;
 
     private String[] addrlist = {
-        "ksnijjar@eng",
-        "ksnijjar@eng.sun.com",
-        "French@physicists",
-        "cannot@waste",
-        "us/@mhs-mci.ebay",
-        "it@is",
-        "tower@ihug.co.nz",
-        "root@mxrelay.lanminds.com",
-        "javaworld",
-        "xx.zzz12@fea.net",
-        "javamail-api-eng@icdev",
-        "ksnijjar@java-test.Eng.Sun.COM"
+            "ksnijjar@eng",
+            "ksnijjar@eng.sun.com",
+            "French@physicists",
+            "cannot@waste",
+            "us/@mhs-mci.ebay",
+            "it@is",
+            "tower@ihug.co.nz",
+            "root@mxrelay.lanminds.com",
+            "javaworld",
+            "xx.zzz12@fea.net",
+            "javamail-api-eng@icdev",
+            "ksnijjar@java-test.Eng.Sun.COM"
     };
 
     // Harness requirements
@@ -84,9 +84,8 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
-     * javamail.password ; javamail.mailbox; javamail.root.path; smtp.port;
-     * imap.port;
+     * @class.setup_props: javamail.protocol; javamail.server; javamail.username; javamail.password ; javamail.mailbox;
+     * javamail.root.path; smtp.port; imap.port;
      */
     public void setup(String[] args, Properties props) throws Fault {
         try {
@@ -134,8 +133,7 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:235;
      *
-     * @test_Strategy: Call setContent with required arguments for multipart then
-     * call getContent() to verify.
+     * @test_Strategy: Call setContent with required arguments for multipart then call getContent() to verify.
      */
     // derived from javamail suite setContent_Test class
     public void testSetContent1() throws Fault {
@@ -186,8 +184,7 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:235; JavaEE:SPEC:238;
      *
-     * @test_Strategy: Call setContent with required arguments for text/plain then
-     * call getContentType() to verify.
+     * @test_Strategy: Call setContent with required arguments for text/plain then call getContentType() to verify.
      */
     // derived from javamail suite sendMessage_Test class
     public void testSetContent2() throws Fault {
@@ -216,7 +213,8 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
             Object content = msg.getContentType();
             TestUtil.logTrace("content is " + content.toString());
             if ((content != null) && (content instanceof String)) {
-                if (((String) content).equals("text/plain")) TestUtil.logTrace("UNIT TEST 1:  passed\n");
+                if (((String) content).equals("text/plain"))
+                    TestUtil.logTrace("UNIT TEST 1:  passed\n");
                 else {
                     TestUtil.logTrace("UNIT TEST 1:  FAILED\n");
                     throw new Fault("testSetContent2() failed\n");
@@ -237,19 +235,15 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
      *
      * @test_Strategy:
      *
-     * This class tests the <strong>getSession()</strong> API. It does this by
-     * invoking the test api and then checking that the returned object is the
-     * same object used to create the message.<p>
+     * This class tests the <strong>getSession()</strong> API. It does this by invoking the test api and then checking that
+     * the returned object is the same object used to create the message.<p>
      *
-     * Get the session of this message. <p> api2test: public String getSession()
-     * <p>
+     * Get the session of this message. <p> api2test: public String getSession() <p>
      *
-     * how2test: Call this API on given message object, verify that it returns the
-     * Session object used to create this message. If this operation is
-     * successfull then this testcase passes, otherwise it fails. <p>
+     * how2test: Call this API on given message object, verify that it returns the Session object used to create this
+     * message. If this operation is successfull then this testcase passes, otherwise it fails. <p>
      *
-     * Returns the Session object used when the message was created. Returns null
-     * if no Session is available. <p>
+     * Returns the Session object used when the message was created. Returns null if no Session is available. <p>
      */
     // derived from javamail suite getSession_Test class
 
@@ -305,17 +299,14 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:235; JavaEE:SPEC:238;
      *
-     * @test_Strategy: This test tests the <strong>createMessage()</strong> API.
-     * It does by passing various valid input values and then checking the type of
-     * the returned object. <p>
+     * @test_Strategy: This test tests the <strong>createMessage()</strong> API. It does by passing various valid input
+     * values and then checking the type of the returned object. <p>
      *
-     * Create a subclassed MimeMessage object and in reply(boolean) return
-     * instance of this new subclassed object. <p> api2test: protected void
-     * createMimeMessage() <p>
+     * Create a subclassed MimeMessage object and in reply(boolean) return instance of this new subclassed object. <p>
+     * api2test: protected void createMimeMessage() <p>
      *
-     * how2test: Call API with various arguments, then call getRecipients() api,
-     * verify that user specified recipient address types have been added. If so
-     * then this testcase passes, otherwise it fails. <p>
+     * how2test: Call API with various arguments, then call getRecipients() api, verify that user specified recipient
+     * address types have been added. If so then this testcase passes, otherwise it fails. <p>
      */
     // derived from javamail suite createMimeMessage_Test
     public void createMimeMessage_Test() throws Fault {
@@ -359,12 +350,11 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
      *
      * This test tests the <strong>reply()</strong> APIs. <p>
      *
-     * Create a reply MimeMessage object and check that it has the appropriate
-     * headers. <p> api2test: public Message reply() <p>
+     * Create a reply MimeMessage object and check that it has the appropriate headers. <p> api2test: public Message reply()
+     * <p>
      *
-     * how2test: Call API with various arguments, then verify that the reply
-     * message has the required recipients and subject. If so then this testcase
-     * passes, otherwise it fails. <p>
+     * how2test: Call API with various arguments, then verify that the reply message has the required recipients and
+     * subject. If so then this testcase passes, otherwise it fails. <p>
      *
      * derived from javamail suite reply_Test
      */
@@ -458,16 +448,13 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
      *
      * @test_Strategy:
      *
-     * This test tests the <strong>setFrom(String)</strong> API. It does this by
-     * passing various valid input values and then checking the type of the
-     * returned object. <p>
+     * This test tests the <strong>setFrom(String)</strong> API. It does this by passing various valid input values and then
+     * checking the type of the returned object. <p>
      *
-     * Set the "From" attribute in this Message. <p> api2test: public void
-     * setFrom(String) <p>
+     * Set the "From" attribute in this Message. <p> api2test: public void setFrom(String) <p>
      *
-     * how2test: Call this API with various addresses, then call call getFrom()
-     * api, if the setFrom values and getFrom values are the same, then this
-     * testcase passes, otherwise it fails. <p>
+     * how2test: Call this API with various addresses, then call call getFrom() api, if the setFrom values and getFrom
+     * values are the same, then this testcase passes, otherwise it fails. <p>
      *
      * derived from javamail suite setContent_Test
      */
@@ -524,7 +511,7 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
             if (afrom != null
                     && afrom.length == 2
                     && ((afrom[0].toString().equals(addr1)
-                                    && afrom[1].toString().equals(addr2))
+                            && afrom[1].toString().equals(addr2))
                             || (afrom[0].toString().equals(addr2)
                                     && afrom[1].toString().equals(addr1)))) {
                 TestUtil.logMsg("setFrom(" + addr1 + "," + addr2 + ")");
@@ -546,8 +533,10 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
     }
 
     public void checkStatus() {
-        if (errors == 0) status = Status.passed("OKAY");
-        else status = Status.failed("");
+        if (errors == 0)
+            status = Status.passed("OKAY");
+        else
+            status = Status.failed("");
     }
 
     /* cleanup */

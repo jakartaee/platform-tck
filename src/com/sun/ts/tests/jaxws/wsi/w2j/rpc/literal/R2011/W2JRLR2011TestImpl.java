@@ -22,12 +22,7 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2011;
 import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "W2JRLR2011TestPort",
-        serviceName = "W2JRLR2011TestService",
-        targetNamespace = "http://w2jrlr2011testservice.org/W2JRLR2011TestService.wsdl",
-        wsdlLocation = "WEB-INF/wsdl/W2JRLR2011TestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2011.W2JRLR2011Test")
+@WebService(portName = "W2JRLR2011TestPort", serviceName = "W2JRLR2011TestService", targetNamespace = "http://w2jrlr2011testservice.org/W2JRLR2011TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2011TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2011.W2JRLR2011Test")
 public class W2JRLR2011TestImpl implements W2JRLR2011Test {
     public com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2011.ImportDirectlyStringResponse echoImportDirectlyStringTest(
             com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2011.ImportDirectlyStringRequest params) {
@@ -37,9 +32,8 @@ public class W2JRLR2011TestImpl implements W2JRLR2011Test {
         return r;
     }
 
-    public com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2011.ImportIndirectlyStringResponse
-            echoImportIndirectlyStringTest(
-                    com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2011.ImportIndirectlyStringRequest params) {
+    public com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2011.ImportIndirectlyStringResponse echoImportIndirectlyStringTest(
+            com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2011.ImportIndirectlyStringRequest params) {
         TestUtil.logMsg("value=" + params.getStringValue());
         ImportIndirectlyStringResponse r = new ImportIndirectlyStringResponse();
         r.setStringValue(params.getStringValue());

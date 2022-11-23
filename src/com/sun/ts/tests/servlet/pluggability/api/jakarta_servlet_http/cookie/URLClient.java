@@ -40,9 +40,8 @@ import org.apache.commons.httpclient.cookie.CookieSpec;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -51,8 +50,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -94,9 +92,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:453
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet tests method Cookie.clone and verify it works;
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet tests method Cookie.clone and verify it works;
      */
     public void cloneTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "cloneTest");
@@ -108,9 +105,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:434
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet tests constructor method and verify it works;
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet tests constructor method and verify it works;
      */
     public void constructorTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "constructorTest");
@@ -122,10 +118,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:628
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet tests constructor method throws IllegalArgumentException when
-     * invalid names are used(unsupported characters in name);
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet tests constructor method throws IllegalArgumentException when invalid
+     * names are used(unsupported characters in name);
      */
     public void constructorIllegalArgumentExceptionTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -140,9 +135,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:436
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet tests method getComment;
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet tests method getComment;
      */
     public void getCommentTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getCommentTest");
@@ -154,9 +148,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:437
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet tests method getComment when there is no comment;
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet tests method getComment when there is no comment;
      */
     public void getCommentNullTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getCommentNullTest");
@@ -168,10 +161,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:439
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Client sends a version 0 and 1 cookie to the servlet. Servlet verifies
-     * values of the cookies;
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Client sends a version 0 and 1 cookie to the servlet. Servlet verifies values of
+     * the cookies;
      */
     public void getDomainTest() throws Fault {
         // version 1
@@ -187,9 +179,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:443
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet tests method getMaxAge;
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet tests method getMaxAge;
      */
     public void getMaxAgeTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getMaxAgeTest");
@@ -201,9 +192,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:448
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Client sends a version 0 and 1 cookie to a servlet; Servlet tests method
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Client sends a version 0 and 1 cookie to a servlet; Servlet tests method
      * Cookie.getName
      */
     public void getNameTest() throws Fault {
@@ -226,10 +216,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:445
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Client sends a version 1 cookie to a servlet; Servlet tests method getPath
-     * using the received Cookie
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Client sends a version 1 cookie to a servlet; Servlet tests method getPath using
+     * the received Cookie
      */
     public void getPathTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -244,9 +233,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:447
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet tests method Cookie.getSecure;
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet tests method Cookie.getSecure;
      */
     public void getSecureTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getSecureTest");
@@ -258,10 +246,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:450
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Client sends a version 0 and 1 cookie to a servlet; Servlet tests method
-     * getValue and verify the right cookie received
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Client sends a version 0 and 1 cookie to a servlet; Servlet tests method getValue
+     * and verify the right cookie received
      */
     public void getValueTest() throws Fault {
         // version 0 Cookie
@@ -282,9 +269,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:451
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Client sends a version 0 and 1 cookie to a servlet; Servlet tests method
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Client sends a version 0 and 1 cookie to a servlet; Servlet tests method
      * Cookie.getVersion and verify the right cookie received
      */
     public void getVersionTest() throws Fault {
@@ -306,9 +292,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:438
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet tests method Cookie.setDomain
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet tests method Cookie.setDomain
      */
     public void setDomainTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setDomainTest");
@@ -320,10 +305,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:440
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet create Cookie and sets values using Cookie.setMaxAge(2) Cookie is
-     * sent back to client and client verifies them
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet create Cookie and sets values using Cookie.setMaxAge(2) Cookie is sent
+     * back to client and client verifies them
      */
     public void setMaxAgePositiveTest() throws Fault {
         // version 0 cookie
@@ -375,8 +359,7 @@ public class URLClient extends AbstractUrlClient {
         String resultStringDate = sdf.format(expiryDate);
         try {
             Date resultDate = sdf.parse(resultStringDate);
-            Date expectedDate =
-                    sdf.parse(dateHeader.substring(dateHeader.indexOf(": ") + 2).trim());
+            Date expectedDate = sdf.parse(dateHeader.substring(dateHeader.indexOf(": ") + 2).trim());
             if (resultDate.before(expectedDate)) {
                 throw new Fault(
                         "The expiry date was incorrect, expected =" + expectedDate + ", result = " + resultDate);
@@ -395,10 +378,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:442
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet create Cookie and sets values using Cookie.setMaxAge(0) Cookie is
-     * sent back to client and client verifies them
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet create Cookie and sets values using Cookie.setMaxAge(0) Cookie is sent
+     * back to client and client verifies them
      */
     public void setMaxAgeZeroTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setMaxAgeZeroTest");
@@ -411,10 +393,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:441
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet create Cookie and sets values using Cookie.setMaxAge(-1) Cookie is
-     * sent back to client and client verifies them
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet create Cookie and sets values using Cookie.setMaxAge(-1) Cookie is sent
+     * back to client and client verifies them
      */
     public void setMaxAgeNegativeTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setMaxAgeNegativeTest");
@@ -427,9 +408,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:446
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet create Version 0 and Version 1 Cookie and sets values using
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet create Version 0 and Version 1 Cookie and sets values using
      * Cookie.setSecure Cookie is sent back to client and client verifies them
      */
     public void setSecureTest() throws Fault {
@@ -444,9 +424,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:449
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet create Version 0 and Version 1 Cookie and sets values using
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet create Version 0 and Version 1 Cookie and sets values using
      * Cookie.setValue Cookie is sent back to client and client verifies them
      */
     public void setValueTest() throws Fault {
@@ -461,9 +440,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:452
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet create Version 0 and Version 1 Cookie and sets values using
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet create Version 0 and Version 1 Cookie and sets values using
      * Cookie.setVersion Cookie is sent back to client and client verifies them
      */
     public void setVersionTest() throws Fault {
@@ -478,9 +456,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Create a web application with no web.xml and one fragment;
-     * Define everything in web-fragment.xml; Package everything in the fragment;
-     * Servlet tests method Cookie.setAttribute
+     * @test_Strategy: Create a web application with no web.xml and one fragment; Define everything in web-fragment.xml;
+     * Package everything in the fragment; Servlet tests method Cookie.setAttribute
      */
     public void setAttributeTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setAttributeTest");

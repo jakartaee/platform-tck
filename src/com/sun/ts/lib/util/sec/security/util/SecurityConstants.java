@@ -24,12 +24,12 @@ import java.security.SecurityPermission;
 import javax.security.auth.AuthPermission;
 
 /**
- * Permission constants and string constants used to create permissions used
- * throughout the JDK.
+ * Permission constants and string constants used to create permissions used throughout the JDK.
  */
 public final class SecurityConstants {
     // Cannot create one of these
-    private SecurityConstants() {}
+    private SecurityConstants() {
+    }
 
     // Commonly used string constants for permission actions used by
     // SecurityManager. Declare here for shortcut when checking permissions
@@ -121,8 +121,7 @@ public final class SecurityConstants {
     public static final RuntimePermission CREATE_CLASSLOADER_PERMISSION = new RuntimePermission("createClassLoader");
 
     // java.lang.SecurityManager
-    public static final RuntimePermission CHECK_MEMBER_ACCESS_PERMISSION =
-            new RuntimePermission("accessDeclaredMembers");
+    public static final RuntimePermission CHECK_MEMBER_ACCESS_PERMISSION = new RuntimePermission("accessDeclaredMembers");
 
     // java.lang.SecurityManager, sun.applet.AppletSecurity
     public static final RuntimePermission MODIFY_THREAD_PERMISSION = new RuntimePermission("modifyThread");
@@ -152,8 +151,7 @@ public final class SecurityConstants {
     public static final SecurityPermission GET_POLICY_PERMISSION = new SecurityPermission("getPolicy");
 
     // java.lang.SecurityManager
-    public static final SocketPermission LOCAL_LISTEN_PERMISSION =
-            new SocketPermission("localhost:1024-", SOCKET_LISTEN_ACTION);
+    public static final SocketPermission LOCAL_LISTEN_PERMISSION = new SocketPermission("localhost:1024-", SOCKET_LISTEN_ACTION);
 
     // javax.security.auth.Subject
     public static final AuthPermission DO_AS_PERMISSION = new AuthPermission("doAs");

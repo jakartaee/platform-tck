@@ -29,9 +29,8 @@ import jakarta.ejb.SessionContext;
 import java.util.Properties;
 
 /**
- * Stateful wrapper that provide the bean life cycle methods for a Stateful
- * Session bean. This class is intended to be subclassed by the final entity
- * bean class that will provide the test logic (business methods).
+ * Stateful wrapper that provide the bean life cycle methods for a Stateful Session bean. This class is intended to be
+ * subclassed by the final entity bean class that will provide the test logic (business methods).
  */
 public class StatefulWrapper implements SessionBean {
 

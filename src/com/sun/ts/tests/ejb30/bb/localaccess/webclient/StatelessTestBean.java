@@ -38,5 +38,6 @@ public class StatelessTestBean extends TestBeanBase implements TestBeanIF {
         return sessionContext;
     }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

@@ -51,9 +51,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-2.1.1-1;
      *
-     * @test_Strategy: the websocket implementation must use one instance per
-     * application per VM of the Endpoint class to represent the logical endpoint
-     * per connected peer.
+     * @test_Strategy: the websocket implementation must use one instance per application per VM of the Endpoint class to
+     * represent the logical endpoint per connected peer.
      */
     public void serverLifeCycleTest() throws Fault {
         CountDownLatch innerLatch = new CountDownLatch(1);

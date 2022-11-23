@@ -30,9 +30,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -41,8 +40,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,9 +61,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that a translation time error is raised when
-     * jsp:root is used in JSP or Tag files in standard syntax but not in JSP
-     * Documents, or Tag files in XML syntax.
+     * @test_Strategy: Validate that a translation time error is raised when jsp:root is used in JSP or Tag files in
+     * standard syntax but not in JSP Documents, or Tag files in XML syntax.
      */
     public void jspRootUsageContextTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_root_web/JspRootUsageContextTest1.jsp HTTP/1.1");
@@ -89,8 +86,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the container accepts both "1.2" and "2.0" as
-     * allowable values for the version attribute of the jsp:root element.
+     * @test_Strategy: Validate the container accepts both "1.2" and "2.0" as allowable values for the version attribute of
+     * the jsp:root element.
      */
     public void jspRootVersionAttrAllowableValuesTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -110,9 +107,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the container generates a translation-time error
-     * when the version attribute of jsp:root is provided a value other than "1.2"
-     * or "2.0"
+     * @test_Strategy: Validate the container generates a translation-time error when the version attribute of jsp:root is
+     * provided a value other than "1.2" or "2.0"
      */
     public void jspRootVersionAttrInvalidValueTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_root_web/JspRootVersionAttrInvalidValueTest1.jspx HTTP/1.1");
@@ -128,9 +124,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that the version attribute of jsp:root is indeed
-     * required by looking for a translation error from the container when the
-     * attribute is not present.
+     * @test_Strategy: Validate that the version attribute of jsp:root is indeed required by looking for a translation error
+     * from the container when the attribute is not present.
      */
     public void jspRootVersionReqAttrTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_root_web/JspRootVersionReqAttrTest1.jspx HTTP/1.1");
@@ -146,8 +141,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that jsp:body can be used to specify the body of
-     * the jsp:root action.
+     * @test_Strategy: Validate that jsp:body can be used to specify the body of the jsp:root action.
      */
     public void jspRootJspBodyTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_root_web/JspRootJspBodyTest1.jspx HTTP/1.1");

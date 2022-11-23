@@ -19,17 +19,11 @@ package com.sun.ts.tests.webservices12.wsdlImport.http.shared3.server;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "Tests1Port",
-        serviceName = "Shared3HttpSvc1",
-        targetNamespace = "http://Shared3HttpSvc1.org/wsdl",
-        wsdlLocation = "META-INF/wsdl/Shared3HttpSvc1.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.shared3.server.Tests1")
+@WebService(portName = "Tests1Port", serviceName = "Shared3HttpSvc1", targetNamespace = "http://Shared3HttpSvc1.org/wsdl", wsdlLocation = "META-INF/wsdl/Shared3HttpSvc1.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.shared3.server.Tests1")
 @Stateless(name = "StatelessTestBean1")
 public class TestsBean1 {
     public com.sun.ts.tests.webservices12.wsdlImport.http.shared3.server.Astring invokeTest1() {
-        com.sun.ts.tests.webservices12.wsdlImport.http.shared3.server.Astring result =
-                new com.sun.ts.tests.webservices12.wsdlImport.http.shared3.server.Astring();
+        com.sun.ts.tests.webservices12.wsdlImport.http.shared3.server.Astring result = new com.sun.ts.tests.webservices12.wsdlImport.http.shared3.server.Astring();
         result.setResult("Hello");
         return result;
     }

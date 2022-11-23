@@ -167,13 +167,11 @@ public abstract class ResourceBeanBase implements ResourceIF {
         }
         topic1 = null;
 
-        TopicConnectionFactory topic2 =
-                (TopicConnectionFactory) getEJBContext().lookup(getTopicConnectionFactoryName());
+        TopicConnectionFactory topic2 = (TopicConnectionFactory) getEJBContext().lookup(getTopicConnectionFactoryName());
         verify(topic2, "EJBContext.lookup" + getTopicConnectionFactoryName());
 
         try {
-            TopicConnectionFactory topic3 =
-                    (TopicConnectionFactory) ServiceLocator.lookup(PREFIX + getTopicConnectionFactoryName());
+            TopicConnectionFactory topic3 = (TopicConnectionFactory) ServiceLocator.lookup(PREFIX + getTopicConnectionFactoryName());
             verify(topic3, "Naming Context lookup");
         } catch (NamingException e) {
             throw new TestFailedException(e);
@@ -192,13 +190,11 @@ public abstract class ResourceBeanBase implements ResourceIF {
         }
         queue1 = null;
 
-        QueueConnectionFactory queue2 =
-                (QueueConnectionFactory) getEJBContext().lookup(getQueueConnectionFactoryName());
+        QueueConnectionFactory queue2 = (QueueConnectionFactory) getEJBContext().lookup(getQueueConnectionFactoryName());
         verify(queue2, "EJBContext.lookup" + getQueueConnectionFactoryName());
 
         try {
-            QueueConnectionFactory queue3 =
-                    (QueueConnectionFactory) ServiceLocator.lookup(PREFIX + getQueueConnectionFactoryName());
+            QueueConnectionFactory queue3 = (QueueConnectionFactory) ServiceLocator.lookup(PREFIX + getQueueConnectionFactoryName());
             verify(queue3, "Naming Context lookup");
         } catch (NamingException e) {
             throw new TestFailedException(e);
@@ -385,8 +381,7 @@ public abstract class ResourceBeanBase implements ResourceIF {
         verify(t, "getTransactionSynchronizationRegistry()");
         Object key = t.getTransactionKey();
         try {
-            t = (TransactionSynchronizationRegistry)
-                    ServiceLocator.lookup(TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME);
+            t = (TransactionSynchronizationRegistry) ServiceLocator.lookup(TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME);
             verify(t, "Naming context lookup " + TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME);
             key = t.getTransactionKey();
         } catch (NamingException e) {
@@ -396,8 +391,8 @@ public abstract class ResourceBeanBase implements ResourceIF {
 
     public void testTransactionSynchronizationRegistryLookup() throws TestFailedException {
         try {
-            TransactionSynchronizationRegistry t = (TransactionSynchronizationRegistry)
-                    ServiceLocator.lookup(PREFIX + getTransactionSynchronizationRegistryName());
+            TransactionSynchronizationRegistry t = (TransactionSynchronizationRegistry) ServiceLocator
+                    .lookup(PREFIX + getTransactionSynchronizationRegistryName());
         } catch (NamingException e) {
             throw new TestFailedException(e);
         }

@@ -155,13 +155,11 @@ public class TSNestedSecurityContext extends SecurityContext {
     }
 
     /*
-     * This is used to help verify assertion Connector:SPEC:229, which states a
-     * couple requirements with the following being focused on within this method:
-     * "The following conditions are applicable to the application server provider
-     * while calling the setupSecurityContext method: the CallbackHandler
-     * implementation passed as the argument handler to setupSecurityContext must
-     * support the following JSR-196 Callbacks: CallerPrincipalCallback,
-     * GroupPrincipalCallback, and PasswordValidationCallback"
+     * This is used to help verify assertion Connector:SPEC:229, which states a couple requirements with the following being
+     * focused on within this method: "The following conditions are applicable to the application server provider while
+     * calling the setupSecurityContext method: the CallbackHandler implementation passed as the argument handler to
+     * setupSecurityContext must support the following JSR-196 Callbacks: CallerPrincipalCallback, GroupPrincipalCallback,
+     * and PasswordValidationCallback"
      *
      */
     public void doCallbackVerification(
@@ -172,7 +170,7 @@ public class TSNestedSecurityContext extends SecurityContext {
                 + expectPVCSuccess);
 
         GroupPrincipalCallback gpc = null;
-        String[] gpcGroups = {"phakegrp1", "phakegrp2"};
+        String[] gpcGroups = { "phakegrp1", "phakegrp2" };
         if (useGPC) {
             // we are passing invalid grps to the GPC but it should not
             // matter if the CPC is specified after the GPC.
@@ -293,8 +291,8 @@ public class TSNestedSecurityContext extends SecurityContext {
     }
 
     /*
-     * this method is used to perform a simple validation that the callbackHandler
-     * is spec compliant per assertion Connector:SPEC:229
+     * this method is used to perform a simple validation that the callbackHandler is spec compliant per assertion
+     * Connector:SPEC:229
      */
     private void validateCallbackHandler(CallbackHandler callbackHandler) {
 
@@ -309,8 +307,8 @@ public class TSNestedSecurityContext extends SecurityContext {
     }
 
     /*
-     * this method is used to perform a simple validation that the execSubject is
-     * spec compliant per assertion Connector:SPEC:230
+     * this method is used to perform a simple validation that the execSubject is spec compliant per assertion
+     * Connector:SPEC:230
      */
     private void validateExecSubject(Subject execSubject) {
 
@@ -324,8 +322,8 @@ public class TSNestedSecurityContext extends SecurityContext {
     }
 
     /*
-     * this method is used to perform a simple validation that the serviceSubject
-     * is spec compliant per assertion Connector:SPEC:231
+     * this method is used to perform a simple validation that the serviceSubject is spec compliant per assertion
+     * Connector:SPEC:231
      */
     private void validateServiceSubject(Subject serviceSubject) {
 

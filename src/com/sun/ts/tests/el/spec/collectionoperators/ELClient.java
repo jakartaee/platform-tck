@@ -57,11 +57,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elCollectionMapFilterTest
      *
-     * @assertion_ids: EL:SPEC:53; EL:SPEC:53.1; EL:SPEC:53.2; EL:SPEC:53.3;
-     *                 EL:SPEC:59; EL:SPEC:59.1; EL:SPEC:58.1; EL:SPEC:58.2
+     * @assertion_ids: EL:SPEC:53; EL:SPEC:53.1; EL:SPEC:53.2; EL:SPEC:53.3; EL:SPEC:59; EL:SPEC:59.1; EL:SPEC:58.1;
+     * EL:SPEC:58.2
      *
-     * @test_Strategy: Test to make sure the 'map'& "filter' operator works
-     *                 properly.
+     * @test_Strategy: Test to make sure the 'map'& "filter' operator works properly.
      *
      * @since: 3.0
      *
@@ -69,9 +68,9 @@ public class ELClient extends ServiceEETest {
     public void elCollectionMapFilterTest() throws Fault {
         buildELContext();
 
-        String[] expr1 = {"[Toy Story, 10.0]", "[History of Golf, 11.0]"};
+        String[] expr1 = { "[Toy Story, 10.0]", "[History of Golf, 11.0]" };
 
-        String[] expr2 = {"20", "30", "40"};
+        String[] expr2 = { "20", "30", "40" };
 
         testIterable(
                 "map-filter-one",
@@ -140,7 +139,7 @@ public class ELClient extends ServiceEETest {
         buildELContext();
 
         this.testIterable(
-                "distinct", " ['a', 'b', 'b', 'c'].stream().distinct().toList()", new String[] {"a", "b", "c"});
+                "distinct", " ['a', 'b', 'b', 'c'].stream().distinct().toList()", new String[] { "a", "b", "c" });
     } // End elCollectionDistinctTest()
 
     /**
@@ -156,7 +155,7 @@ public class ELClient extends ServiceEETest {
     public void elCollectionForEachTest() throws Fault {
         buildELContext();
 
-        String expr1[] = {"Eagle", "Coming Home", "Greatest Hits", "History of Golf", "Toy Story", "iSee"};
+        String expr1[] = { "Eagle", "Coming Home", "Greatest Hits", "History of Golf", "Toy Story", "iSee" };
 
         testIterable("forEach", "lst = []; products.stream().forEach(p->lst.add(p.name)); lst", expr1);
     } // End elCollectionForEachTest()
@@ -164,8 +163,7 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elCollectionFindFirstTest
      *
-     * @assertion_ids: EL:SPEC:78; EL:SPEC:78.1; EL:SPEC:62; EL:SPEC:62.1;
-     *                 EL:SPEC:62.2
+     * @assertion_ids: EL:SPEC:78; EL:SPEC:78.1; EL:SPEC:62; EL:SPEC:62.1; EL:SPEC:62.2
      *
      * @test_Strategy: Test to make sure the 'findFirst' operator works properly.
      *
@@ -175,7 +173,7 @@ public class ELClient extends ServiceEETest {
     public void elCollectionFindFirstTest() throws Fault {
         buildELContext();
 
-        String[] expr1 = {"Product: 200, Eagle, book, 12.5, 100"};
+        String[] expr1 = { "Product: 200, Eagle, book, 12.5, 100" };
 
         testIterable("findFirst", "products.stream().sorted(p->p.unitPrice).findFirst().get()", expr1);
     } // End elCollectionFindFirstTest()
@@ -193,10 +191,10 @@ public class ELClient extends ServiceEETest {
     public void elCollectionLimitTest() throws Fault {
         buildELContext();
 
-        String[] expr1 = {"[Product: 202, Greatest Hits, cd, 6.5, 200]"};
+        String[] expr1 = { "[Product: 202, Greatest Hits, cd, 6.5, 200]" };
 
         String[] expr2 = {
-            "Product: 202, Greatest Hits, cd, 6.5, 200", "Product: 201, Coming Home, dvd, 8.0, 50",
+                "Product: 202, Greatest Hits, cd, 6.5, 200", "Product: 201, Coming Home, dvd, 8.0, 50",
         };
 
         testIterable("limit", "products.stream().sorted((p,q)->p.unitPrice-q.unitPrice)." + "limit(1).toList()", expr1);
@@ -213,7 +211,7 @@ public class ELClient extends ServiceEETest {
      *
      * @since: 3.0
      *
-     *         Bug 20438221 : Commented the test for now
+     * Bug 20438221 : Commented the test for now
      */
     public void elCollectionAnyMatchTest() throws Fault {
         buildELContext();
@@ -232,7 +230,7 @@ public class ELClient extends ServiceEETest {
      *
      * @since: 3.0
      *
-     *         Bug 20438221 : Commented the test for now
+     * Bug 20438221 : Commented the test for now
      */
     public void elCollectionNoneMatchTest() throws Fault {
         buildELContext();
@@ -251,7 +249,7 @@ public class ELClient extends ServiceEETest {
      *
      * @since: 3.0
      *
-     *         Bug 20438221 : Commented the test for now.
+     * Bug 20438221 : Commented the test for now.
      */
     public void elCollectionAllMatchTest() throws Fault {
         buildELContext();
@@ -274,9 +272,9 @@ public class ELClient extends ServiceEETest {
     public void elCollectionSumTest() throws Fault {
         buildELContext();
 
-        testIterable("sum", "['10', '12', '13'].stream().sum()", new String[] {"35"});
+        testIterable("sum", "['10', '12', '13'].stream().sum()", new String[] { "35" });
 
-        testIterable("sum_Empty", "[].stream().sum()", new String[] {"0"});
+        testIterable("sum_Empty", "[].stream().sum()", new String[] { "0" });
     } // End elCollectionSumTest()
 
     /**
@@ -292,7 +290,7 @@ public class ELClient extends ServiceEETest {
     public void elCollectionCountTest() throws Fault {
         buildELContext();
 
-        testIterable("count", "[1,2,3,4,5].stream().count()", new String[] {"5"});
+        testIterable("count", "[1,2,3,4,5].stream().count()", new String[] { "5" });
     } // End elCollectionCountTest()
 
     /**
@@ -326,12 +324,12 @@ public class ELClient extends ServiceEETest {
         buildELContext();
 
         String[] expr1 = {
-            "Product: 200, Eagle, book, 12.5, 100",
-            "Product: 205, iSee, book, 12.5, 150",
-            "Product: 203, History of Golf, book, 11.0, 30",
-            "Product: 202, Greatest Hits, cd, 6.5, 200",
-            "Product: 204, Toy Story, dvd, 10.0, 1000",
-            "Product: 201, Coming Home, dvd, 8.0, 50"
+                "Product: 200, Eagle, book, 12.5, 100",
+                "Product: 205, iSee, book, 12.5, 150",
+                "Product: 203, History of Golf, book, 11.0, 30",
+                "Product: 202, Greatest Hits, cd, 6.5, 200",
+                "Product: 204, Toy Story, dvd, 10.0, 1000",
+                "Product: 201, Coming Home, dvd, 8.0, 50"
         };
 
         this.testArray("toArray", "products.stream().sorted(p->p.unitPrice).toArray()", expr1);
@@ -340,8 +338,7 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elCollectionReduceTest
      *
-     * @assertion_ids: EL:SPEC:70; EL:SPEC:70.1; EL:SPEC:70.2; EL:SPEC:56.2;
-     *                 EL:SPEC:56.3
+     * @assertion_ids: EL:SPEC:70; EL:SPEC:70.1; EL:SPEC:70.2; EL:SPEC:56.2; EL:SPEC:56.3
      *
      * @test_Strategy: Test to make sure the 'reduce' operator works properly.
      *
@@ -374,7 +371,7 @@ public class ELClient extends ServiceEETest {
     public void elCollectionSubStreamTest() throws Fault {
         buildELContext();
 
-        String[] expr1 = {"2", "3", "4"};
+        String[] expr1 = { "2", "3", "4" };
 
         testIterable("substream-one", "[0,1,2,3,4].stream().substream(2).toList()", expr1);
         testIterable("substream-two", "[0,1,2,3,4,5,6].stream().substream(2,5).toList()", expr1);
@@ -393,7 +390,7 @@ public class ELClient extends ServiceEETest {
     public void elCollectionPeekTest() throws Fault {
         buildELContext();
 
-        String expr1[] = {"1", "2", "3", "4"};
+        String expr1[] = { "1", "2", "3", "4" };
 
         testIterable("peek-one", "lst = []; [1,2,3,4].stream().peek(i->lst.add(i)).toList()", expr1);
         testIterable("peek-two", "lst.stream().toList()", expr1);
@@ -413,11 +410,11 @@ public class ELClient extends ServiceEETest {
         buildELContext();
 
         String[] expr1 = {
-            "Order: 10, 100, 2/18/2010, 20.8",
-            "Order: 11, 100, 5/3/2011, 34.5",
-            "Order: 12, 100, 8/2/2011, 210.75",
-            "Order: 13, 101, 1/15/2011, 50.23",
-            "Order: 14, 101, 1/3/2012, 126.77"
+                "Order: 10, 100, 2/18/2010, 20.8",
+                "Order: 11, 100, 5/3/2011, 34.5",
+                "Order: 12, 100, 8/2/2011, 210.75",
+                "Order: 13, 101, 1/15/2011, 50.23",
+                "Order: 14, 101, 1/3/2012, 126.77"
         };
 
         testIterable(
@@ -429,8 +426,8 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elCollectionSetLiteralTest
      * @assertion_ids: EL:SPEC:51; EL:SPEC:51.1; EL:SPEC:51.2; EL:SPEC:51.3;
-     * @test+Strategy: Verify that a value in a literal List constructed from
-     *                 variables can be retrieved using the associated index.
+     * @test+Strategy: Verify that a value in a literal List constructed from variables can be retrieved using the
+     * associated index.
      */
     public void elCollectionSetLiteralTest() throws Fault {
         boolean pass = false;
@@ -463,8 +460,8 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elCollectionListLiteralTest
      * @assertion_ids: EL:SPEC:52; EL:SPEC:52.1; EL:SPEC:52.2; EL:SPEC:52.3;
-     * @test+Strategy: Verify that a value in a literal List constructed from
-     *                 variables can be retrieved using the associated index.
+     * @test+Strategy: Verify that a value in a literal List constructed from variables can be retrieved using the
+     * associated index.
      */
     public void elCollectionListLiteralTest() throws Fault {
         boolean pass = false;
@@ -497,8 +494,8 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elCollectionMapLiteralTest
      * @assertion_ids: EL:SPEC:53; EL:SPEC:53.1; EL:SPEC:53.2; EL:SPEC:53.3;
-     * @test+Strategy: Verify that a value in a literal Map constructed from
-     *                 variables can be retrieved using the associated key.
+     * @test+Strategy: Verify that a value in a literal Map constructed from variables can be retrieved using the associated
+     * key.
      */
     public void elCollectionMapLiteralTest() throws Fault {
         boolean pass = false;
@@ -548,13 +545,10 @@ public class ELClient extends ServiceEETest {
     /**
      * Test a Collection query that returns an Iterable.
      *
-     * @param name
-     *          The Name of the test
-     * @param query
-     *          The EL query string
-     * @param expected
-     *          The expected result of the Iterable. The array element should
-     *          equal the Iterable element, when enumerated.
+     * @param name The Name of the test
+     * @param query The EL query string
+     * @param expected The expected result of the Iterable. The array element should equal the Iterable element, when
+     * enumerated.
      */
     private void testIterable(String name, String query, String[] expected) throws Fault {
         String result;
@@ -611,31 +605,24 @@ public class ELClient extends ServiceEETest {
 
     /**
      *
-     * @param name
-     *          The Name of the test.
+     * @param name The Name of the test.
      *
-     * @param query
-     *          The EL query string
-     * @param expected
-     *          The expected boolean value for the given query.
+     * @param query The EL query string
+     * @param expected The expected boolean value for the given query.
      *
      * @throws Fault
      */
     private void testIterable(String name, String query, Boolean expected) throws Fault {
 
-        this.testIterable(name, query, new String[] {expected.toString()});
+        this.testIterable(name, query, new String[] { expected.toString() });
     }
 
     /**
      * Test a Collection query that returns a Array
      *
-     * @param name
-     *          The Name of the test
-     * @param query
-     *          The EL query string
-     * @param expected
-     *          The expected result of the Array. The element of the expected
-     *          array should equals the resulted array.
+     * @param name The Name of the test
+     * @param query The EL query string
+     * @param expected The expected result of the Array. The element of the expected array should equals the resulted array.
      */
     private void testArray(String name, String query, String[] expected) throws Fault {
         logLine("=== Test " + name + "===");

@@ -24,12 +24,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "W2JDLR2712TestTwoPort",
-        serviceName = "W2JDLR2712TestService",
-        targetNamespace = "http://w2jdlr2712testservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/W2JDLR2712TestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2712.W2JDLR2712TestTwo")
+@WebService(portName = "W2JDLR2712TestTwoPort", serviceName = "W2JDLR2712TestService", targetNamespace = "http://w2jdlr2712testservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/W2JDLR2712TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2712.W2JDLR2712TestTwo")
 public class W2JDLR2712TestTwoImpl implements W2JDLR2712TestTwo {
 
     public HelloResponse hello(HelloRequest req) {

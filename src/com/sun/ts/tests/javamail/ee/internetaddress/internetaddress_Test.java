@@ -43,38 +43,37 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
     private transient Session session;
 
     private String[] addrlist = {
-        "ksnijjar@eng",
-        "ksnijjar@eng.sun.com",
-        "French@physicists",
-        "cannot@waste",
-        "us/@mhs-mci.ebay",
-        "it@is",
-        "tower@ihug.co.nz",
-        "root@mxrelay.lanminds.com",
-        "javaworld",
-        "xx.zzz12@fea.net",
-        "javamail-api-eng@icdev",
-        "ksnijjar@java-test.Eng.Sun.COM"
+            "ksnijjar@eng",
+            "ksnijjar@eng.sun.com",
+            "French@physicists",
+            "cannot@waste",
+            "us/@mhs-mci.ebay",
+            "it@is",
+            "tower@ihug.co.nz",
+            "root@mxrelay.lanminds.com",
+            "javaworld",
+            "xx.zzz12@fea.net",
+            "javamail-api-eng@icdev",
+            "ksnijjar@java-test.Eng.Sun.COM"
     };
 
     private transient TestCase[] testCases = {
-        new TestCase(';', "a=b c", "b c"),
-        new TestCase(';', "a=b c; d=e f", "b c"),
-        new TestCase(';', "a=\"b c\"; d=e f", "b c")
+            new TestCase(';', "a=b c", "b c"),
+            new TestCase(';', "a=b c; d=e f", "b c"),
+            new TestCase(';', "a=\"b c\"; d=e f", "b c")
     };
 
     private transient TestCase[] testCasesEsc = {
-        new TestCase(';', "a=b \\c", "b \\c"),
-        new TestCase(';', "a=b c; d=e f", "b c"),
-        new TestCase(';', "a=\"b \\c\"; d=e f", "b \\c")
+            new TestCase(';', "a=b \\c", "b \\c"),
+            new TestCase(';', "a=b c; d=e f", "b c"),
+            new TestCase(';', "a=\"b \\c\"; d=e f", "b \\c")
     };
 
     static boolean return_comments = false; // return comments as tokens
 
     static boolean mime = false; // use MIME specials
 
-    public String value =
-            "ggere, /tmp/mail.out, +mailbox, ~user/mailbox, ~/mailbox, /PN=x400.address/PRMD=ibmmail/ADMD=ibmx400/C=us/@mhs-mci.ebay, C'est bien moche <paris@france>, Mad Genius <george@boole>, two@weeks (It Will Take), /tmp/mail.out, laborious (But Bug Free), cannot@waste (My, Intellectual, Cycles), users:get,what,they,deserve;, it (takes, no (time, at) all), if@you (could, see (almost, as, (badly, you) would) agree), famous <French@physicists>, it@is (brilliant (genius, and) superb), confused (about, being, french)";
+    public String value = "ggere, /tmp/mail.out, +mailbox, ~user/mailbox, ~/mailbox, /PN=x400.address/PRMD=ibmmail/ADMD=ibmx400/C=us/@mhs-mci.ebay, C'est bien moche <paris@france>, Mad Genius <george@boole>, two@weeks (It Will Take), /tmp/mail.out, laborious (But Bug Free), cannot@waste (My, Intellectual, Cycles), users:get,what,they,deserve;, it (takes, no (time, at) all), if@you (could, see (almost, as, (badly, you) would) agree), famous <French@physicists>, it@is (brilliant (genius, and) superb), confused (about, being, french)";
 
     // Harness requirements
 
@@ -87,14 +86,15 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
 
     /* Test setup: */
     /*
-     * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
-     * javamail.password ;mailuser1; smtp.port; imap.port;
+     * @class.setup_props: javamail.protocol; javamail.server; javamail.username; javamail.password ;mailuser1; smtp.port;
+     * imap.port;
      */
     public void setup(String[] args, Properties props) throws Fault {
         try {
             // mail recipient
             mailTo = props.getProperty("mailuser1");
-            if (mailTo.length() == 0) throw new Fault("Invalid mailuser1 - the mail to property");
+            if (mailTo.length() == 0)
+                throw new Fault("Invalid mailuser1 - the mail to property");
 
             String protocol = TestUtil.getProperty("javamail.protocol");
             String host = TestUtil.getProperty("javamail.server");
@@ -138,7 +138,7 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
             TestUtil.logTrace(addr.toString());
 
             if (addr.toString() != null) // API TEST
-            TestUtil.logTrace("UNIT TEST 1:  passed\n");
+                TestUtil.logTrace("UNIT TEST 1:  passed\n");
             else {
                 TestUtil.logTrace("UNIT TEST 1:  failed\n");
                 throw new Fault("toString returned null");
@@ -150,7 +150,7 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
             throw new Fault("Call to testUtilMethods1() Failed!", e);
         }
     } // end of testUtilMethods1()
-    //
+      //
 
     /*
      * @testName: testUtilMethods2
@@ -170,7 +170,7 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
             TestUtil.logTrace("UNIT TEST 1:  equals()\n");
 
             if (addr.toString().equals(addr.toString())) // API TEST
-            TestUtil.logTrace("UNIT TEST 1:  passed\n");
+                TestUtil.logTrace("UNIT TEST 1:  passed\n");
             else {
                 TestUtil.logTrace("UNIT TEST 1:  FAILED\n");
                 throw new Fault("equals util method failed");
@@ -182,7 +182,7 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
             throw new Fault("Call to testUtilMethods2() Failed!", e);
         }
     } // end of testUtilMethods2()
-    //
+      //
 
     /*
      * @testName: testgetAddress
@@ -214,7 +214,8 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
                     } else {
                         throw new Fault("UNIT TEST " + (i + 1) + ": FAILED\n");
                     }
-                } else continue;
+                } else
+                    continue;
             }
             // END UNIT TEST:
 
@@ -282,7 +283,8 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
             TestUtil.logMsg("UNIT TEST 1:  ContentType()");
             ContentType ct1 = new ContentType(); // API TEST
 
-            if (ct1.toString() != null) TestUtil.logMsg("UNIT TEST 1: passed");
+            if (ct1.toString() != null)
+                TestUtil.logMsg("UNIT TEST 1: passed");
             else {
                 TestUtil.logMsg("UNIT TEST 1: FAILED");
                 errors++;
@@ -293,7 +295,8 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
             TestUtil.logMsg("UNIT TEST 2:  ContentType(" + pattern + ")");
             ContentType ct2 = new ContentType(pattern); // API TEST
 
-            if (ct2.toString() != null) TestUtil.logMsg("UNIT TEST 2: passed");
+            if (ct2.toString() != null)
+                TestUtil.logMsg("UNIT TEST 2: passed");
             else {
                 TestUtil.logMsg("UNIT TEST 2: FAILED");
                 errors++;
@@ -307,7 +310,8 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
             ContentType ct3 = new ContentType(primaryType, subType, null); // API
             // TEST
 
-            if (ct3.toString().equals(primaryType + "/" + subType)) TestUtil.logMsg("UNIT TEST 3: passed");
+            if (ct3.toString().equals(primaryType + "/" + subType))
+                TestUtil.logMsg("UNIT TEST 3: passed");
             else {
                 TestUtil.logMsg("UNIT TEST 3: FAILED");
                 errors++;
@@ -321,7 +325,8 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
             ContentType ct4 = new ContentType(primaryType, subType, pl); // API
             // TEST
 
-            if (ct4.toString() != null) TestUtil.logMsg("UNIT TEST 4: passed");
+            if (ct4.toString() != null)
+                TestUtil.logMsg("UNIT TEST 4: passed");
             else {
                 TestUtil.logMsg("UNIT TEST 4: FAILED");
                 errors++;
@@ -345,12 +350,10 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
      *
      * @assertion_ids: JavaEE:SPEC:235;
      *
-     * @test_Strategy: This tests tests the <strong>next()</strong> APIs. It does
-     * by passing various valid input values and then checking the type of the
-     * returned object. <p>
+     * @test_Strategy: This tests tests the <strong>next()</strong> APIs. It does by passing various valid input values and
+     * then checking the type of the returned object. <p>
      *
-     * Return the next token from the parse stream.<p> api2test: public
-     * HeaderTokenizer.Token next() <p>
+     * Return the next token from the parse stream.<p> api2test: public HeaderTokenizer.Token next() <p>
      *
      *
      * derived from javamail suite next_Test
@@ -362,8 +365,7 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
         try {
 
             // Create HeaderTokenizer object
-            HeaderTokenizer ht =
-                    new HeaderTokenizer(value, mime ? HeaderTokenizer.MIME : HeaderTokenizer.RFC822, !return_comments);
+            HeaderTokenizer ht = new HeaderTokenizer(value, mime ? HeaderTokenizer.MIME : HeaderTokenizer.RFC822, !return_comments);
 
             HeaderTokenizer.Token tok;
 
@@ -379,7 +381,8 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
                     break;
                 }
             }
-            if (errors == 0) TestUtil.logMsg("UNIT TEST 1: passed.\n");
+            if (errors == 0)
+                TestUtil.logMsg("UNIT TEST 1: passed.\n");
             // END UNIT TEST 1:
 
             // BEGIN UNIT TEST 2:
@@ -414,7 +417,8 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
                     }
                 }
             }
-            if (errors == start) TestUtil.logMsg("UNIT TEST 2: passed.\n");
+            if (errors == start)
+                TestUtil.logMsg("UNIT TEST 2: passed.\n");
             // END UNIT TEST 2:
 
             // BEGIN UNIT TEST 3:
@@ -449,7 +453,8 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
                     }
                 }
             }
-            if (errors == start) TestUtil.logMsg("UNIT TEST 3: passed.\n");
+            if (errors == start)
+                TestUtil.logMsg("UNIT TEST 3: passed.\n");
             // END UNIT TEST 3:
 
         } catch (Exception e) {
@@ -470,14 +475,12 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
      *
      * @assertion_ids: JavaEE:SPEC:235;
      *
-     * @test_Strategy: * This class tests the
-     * <strong>ParameterList.combineSegments()strong> API. <p>
+     * @test_Strategy: * This class tests the <strong>ParameterList.combineSegments()strong> API. <p>
      *
      *
-     * how2test: Create a ParameterList with a parameter split into several
-     * segments and then call combineSegments() and verify that the parameter is
-     * returned as a single correct value. If is so then this testcase passes,
-     * otherwise it fails. <p>
+     * how2test: Create a ParameterList with a parameter split into several segments and then call combineSegments() and
+     * verify that the parameter is returned as a single correct value. If is so then this testcase passes, otherwise it
+     * fails. <p>
      *
      * derived from javamail suite combineSegments_Test
      */
@@ -520,8 +523,10 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
     }
 
     public void checkStatus() {
-        if (errors == 0) status = Status.passed("OKAY");
-        else status = Status.failed("");
+        if (errors == 0)
+            status = Status.passed("OKAY");
+        else
+            status = Status.failed("");
     }
 
     /* cleanup */
@@ -534,19 +539,29 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
     }
 
     private static String type(int t) {
-        if (t == HeaderTokenizer.Token.ATOM) return "ATOM";
-        else if (t == HeaderTokenizer.Token.QUOTEDSTRING) return "QUOTEDSTRING";
-        else if (t == HeaderTokenizer.Token.COMMENT) return "COMMENT";
-        else if (t == HeaderTokenizer.Token.EOF) return "EOF";
-        else if (t < 0) return "UNKNOWN";
-        else return "SPECIAL";
+        if (t == HeaderTokenizer.Token.ATOM)
+            return "ATOM";
+        else if (t == HeaderTokenizer.Token.QUOTEDSTRING)
+            return "QUOTEDSTRING";
+        else if (t == HeaderTokenizer.Token.COMMENT)
+            return "COMMENT";
+        else if (t == HeaderTokenizer.Token.EOF)
+            return "EOF";
+        else if (t < 0)
+            return "UNKNOWN";
+        else
+            return "SPECIAL";
     }
 
     private static int type(String s) {
-        if (s.equals("ATOM")) return HeaderTokenizer.Token.ATOM;
-        else if (s.equals("QUOTEDSTRING")) return HeaderTokenizer.Token.QUOTEDSTRING;
-        else if (s.equals("COMMENT")) return HeaderTokenizer.Token.COMMENT;
-        else if (s.equals("EOF")) return HeaderTokenizer.Token.EOF;
+        if (s.equals("ATOM"))
+            return HeaderTokenizer.Token.ATOM;
+        else if (s.equals("QUOTEDSTRING"))
+            return HeaderTokenizer.Token.QUOTEDSTRING;
+        else if (s.equals("COMMENT"))
+            return HeaderTokenizer.Token.COMMENT;
+        else if (s.equals("EOF"))
+            return HeaderTokenizer.Token.EOF;
         else
             // if (s.equals("SPECIAL"))
             return 0;
@@ -564,6 +579,5 @@ public class internetaddress_Test extends ServiceEETest implements Serializable 
         public String test;
 
         public String expected;
-    }
-    ;
+    };
 }

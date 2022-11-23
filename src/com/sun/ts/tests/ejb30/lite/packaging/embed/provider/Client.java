@@ -42,9 +42,8 @@ public final class Client extends EJBLiteClientBase {
     /*
      * @testName: customProvider
      *
-     * @test_Strategy: load a custom provider TSEJBContainerImpl, which is
-     * packaged in the jar along with test classes. This jar file also contains a
-     * META-INF/services entry for this custom provider
+     * @test_Strategy: load a custom provider TSEJBContainerImpl, which is packaged in the jar along with test classes. This
+     * jar file also contains a META-INF/services entry for this custom provider
      */
     public void customProvider() {
         TSEJBContainerImpl container = (TSEJBContainerImpl) getContainer();

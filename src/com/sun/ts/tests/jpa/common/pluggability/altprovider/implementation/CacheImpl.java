@@ -32,13 +32,16 @@ public class CacheImpl implements Cache {
     }
 
     @Override
-    public void evict(java.lang.Class cls) {}
+    public void evict(java.lang.Class cls) {
+    }
 
     @Override
-    public void evict(java.lang.Class cls, java.lang.Object primaryKey) {}
+    public void evict(java.lang.Class cls, java.lang.Object primaryKey) {
+    }
 
     @Override
-    public void evictAll() {}
+    public void evictAll() {
+    }
 
     @Override
     public Class unwrap(java.lang.Class cls) {

@@ -42,9 +42,8 @@ public abstract class TestBeanBase implements TestBeanIF {
     public abstract EJBContext getEJBContext();
 
     /**
-     * Returns the same String to caller. Since java.lang.String is immutable, the
-     * same String instance, instead of a copy, may be returned to the caller. So
-     * this method is currently not used in test.
+     * Returns the same String to caller. Since java.lang.String is immutable, the same String instance, instead of a copy,
+     * may be returned to the caller. So this method is currently not used in test.
      */
     public String passByValueTest2(String obj) {
         return obj;
@@ -180,8 +179,7 @@ public abstract class TestBeanBase implements TestBeanIF {
     }
 
     /**
-     * Resets the value of the first element in the String array. This change
-     * should not affect the value in Client.
+     * Resets the value of the first element in the String array. This change should not affect the value in Client.
      */
     public void passByValueTest(String[] args) throws TestFailedException {
         args[0] = SERVER_MSG;

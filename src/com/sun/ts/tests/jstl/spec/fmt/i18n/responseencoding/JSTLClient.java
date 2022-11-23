@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,9 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:27
      *
-     * @testStrategy: Validate that actions that establish an I18N localization
-     * context properly call ServletResponse.setLocale(). Actions that do this
-     * are: <fmt:setLocale> <fmt:message> <fmt:bundle> <fmt:setBundle>
+     * @testStrategy: Validate that actions that establish an I18N localization context properly call
+     * ServletResponse.setLocale(). Actions that do this are: <fmt:setLocale> <fmt:message> <fmt:bundle> <fmt:setBundle>
      */
     public void positiveResponseEncodingTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveResponseEncodingTest");
@@ -96,10 +93,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:27.1
      *
-     * @testStrategy: Validate that the actions that initialize an I18N
-     * localization context properly sets
-     * jakarta.servlet.jsp.jstl.fmt.request.charset session attribute. Actions that
-     * do this are: <fmt:setLocale> <fmt:message> <fmt:bundle> <fmt:setBundle>
+     * @testStrategy: Validate that the actions that initialize an I18N localization context properly sets
+     * jakarta.servlet.jsp.jstl.fmt.request.charset session attribute. Actions that do this are: <fmt:setLocale>
+     * <fmt:message> <fmt:bundle> <fmt:setBundle>
      */
     public void positiveResponseSetCharEncodingAttrTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveResponseSetCharEncodingAttrTest");

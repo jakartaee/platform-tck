@@ -58,8 +58,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -88,9 +87,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:310.2; EJB:SPEC:131; EJB:SPEC:132; EJB:SPEC:133
      *
-     * @test_Strategy: Create several Entity EJB's via the EJBHome interface where
-     * the primary key maps to multiple fields. Deploy them on the J2EE server.
-     * Find the instances using findByPrimaryKey.
+     * @test_Strategy: Create several Entity EJB's via the EJBHome interface where the primary key maps to multiple fields.
+     * Deploy them on the J2EE server. Find the instances using findByPrimaryKey.
      *
      */
 
@@ -117,7 +115,8 @@ public class Client extends EETest {
 
             testRef2 = (TestBean) beanHome.findByPrimaryKey(new ComplexPK(1, "Villacreme"));
 
-            if (testRef1.isIdentical(beanRef[0]) && testRef2.isIdentical(beanRef[1])) pass = true;
+            if (testRef1.isIdentical(beanRef[0]) && testRef2.isIdentical(beanRef[1]))
+                pass = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test1: " + e);
@@ -125,7 +124,8 @@ public class Client extends EETest {
             throw new Fault("test1 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
 
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
@@ -133,7 +133,8 @@ public class Client extends EETest {
             ;
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -141,10 +142,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:384; EJB:SPEC:406.2; EJB:SPEC:392; EJB:SPEC:390
      *
-     * @test_Strategy: Create several Entity EJB's via the EJBHome interface where
-     * the primary key maps to multiple fields. Deploy them on the J2EE server.
-     * Execute an EJB QL query using aggregate function COUNT where the bean
-     * instance has a complex primary key.
+     * @test_Strategy: Create several Entity EJB's via the EJBHome interface where the primary key maps to multiple fields.
+     * Deploy them on the J2EE server. Execute an EJB QL query using aggregate function COUNT where the bean instance has a
+     * complex primary key.
      *
      */
 
@@ -193,14 +193,16 @@ public class Client extends EETest {
         } finally {
             try {
                 TestUtil.logTrace("Removing Bean Instances");
-                for (int i = 0; i < 3; i++) beanRef[i].remove();
+                for (int i = 0; i < 3; i++)
+                    beanRef[i].remove();
 
             } catch (Exception e) {
                 TestUtil.logErr("Exception caught removing bean instance data" + e, e);
             }
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -208,9 +210,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:297
      *
-     * @test_Strategy: Create several Entity EJB's via the EJBHome interface.
-     * Deploy them on the J2EE server. Perform a find of a range of Entity EJB's
-     * and verify that the correct Entity EJB's were found.
+     * @test_Strategy: Create several Entity EJB's via the EJBHome interface. Deploy them on the J2EE server. Perform a find
+     * of a range of Entity EJB's and verify that the correct Entity EJB's were found.
      *
      */
 
@@ -238,7 +239,8 @@ public class Client extends EETest {
 
             Iterator i = c.iterator();
             int j = 0;
-            while (i.hasNext()) testRef[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
+            while (i.hasNext())
+                testRef[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
             if (c.size() != 2) {
                 TestUtil.logErr("findByName returned " + c.size() + " references, expected 2 references");
                 pass = false;
@@ -271,13 +273,15 @@ public class Client extends EETest {
             throw new Fault("test3 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
         }
 
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -285,9 +289,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:296
      *
-     * @test_Strategy: Create several Entity EJB's via the EJBHome interface.
-     * Deploy them on the J2EE server. Perform a find of a range of Entity EJB's
-     * and verify that the correct Entity EJB's were found.
+     * @test_Strategy: Create several Entity EJB's via the EJBHome interface. Deploy them on the J2EE server. Perform a find
+     * of a range of Entity EJB's and verify that the correct Entity EJB's were found.
      *
      */
 
@@ -315,7 +318,8 @@ public class Client extends EETest {
 
             Iterator i = c.iterator();
             int j = 0;
-            while (i.hasNext()) testRef[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
+            while (i.hasNext())
+                testRef[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
             if (c.size() != 3) {
                 TestUtil.logErr("findById returned " + c.size() + " references, expected 3 references");
                 pass = false;
@@ -349,14 +353,16 @@ public class Client extends EETest {
             throw new Fault("test4 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
@@ -364,9 +370,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:296
      *
-     * @test_Strategy: Create several Entity EJB's via the EJBHome interface.
-     * Deploy them on the J2EE server. Perform a find of one of the Entity EJB's
-     * and verify that the correct Entity EJB was found.
+     * @test_Strategy: Create several Entity EJB's via the EJBHome interface. Deploy them on the J2EE server. Perform a find
+     * of one of the Entity EJB's and verify that the correct Entity EJB was found.
      *
      */
 
@@ -414,14 +419,16 @@ public class Client extends EETest {
             throw new Fault("test5 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     /*
@@ -429,10 +436,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:289; EJB:JAVADOC:119
      *
-     * @test_Strategy: The container throws the FinderException from the
-     * implementation of a finder or select method to indicate an
-     * application-level error in the finder or select method. Create several
-     * Entity EJB's via the EJBHome interface. Deploy them on the J2EE server.
+     * @test_Strategy: The container throws the FinderException from the implementation of a finder or select method to
+     * indicate an application-level error in the finder or select method. Create several Entity EJB's via the EJBHome
+     * interface. Deploy them on the J2EE server.
      *
      */
 
@@ -467,14 +473,16 @@ public class Client extends EETest {
             throw new Fault("test6 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test6 failed");
+        if (!pass)
+            throw new Fault("test6 failed");
     }
 
     /*
@@ -482,9 +490,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:297
      *
-     * @test_Strategy: Create several Entity EJB's via the EJBHome interface.
-     * Deploy them on the J2EE server. Perform a find of a range of Entity EJB's
-     * and verify that the correct Entity EJB's were found.
+     * @test_Strategy: Create several Entity EJB's via the EJBHome interface. Deploy them on the J2EE server. Perform a find
+     * of a range of Entity EJB's and verify that the correct Entity EJB's were found.
      *
      */
 
@@ -512,7 +519,8 @@ public class Client extends EETest {
 
             Iterator i = c.iterator();
             int j = 0;
-            while (i.hasNext()) testRef[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
+            while (i.hasNext())
+                testRef[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
             if (c.size() != 4) {
                 TestUtil.logErr("findByProduct returned " + c.size() + " references, expected 4 references");
                 pass = false;
@@ -549,13 +557,15 @@ public class Client extends EETest {
             throw new Fault("test7 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
         }
 
-        if (!pass) throw new Fault("test7 failed");
+        if (!pass)
+            throw new Fault("test7 failed");
     }
 
     /*
@@ -563,10 +573,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:297
      *
-     * @test_Strategy: Create several Entity EJB's via the EJBHome interface.
-     * Deploy them on the J2EE server. Perform a find of a range of Entity EJB's
-     * and verify that the correct Entity EJB's were found. Verify EJB QL query
-     * returns correct result set with compound PK.
+     * @test_Strategy: Create several Entity EJB's via the EJBHome interface. Deploy them on the J2EE server. Perform a find
+     * of a range of Entity EJB's and verify that the correct Entity EJB's were found. Verify EJB QL query returns correct
+     * result set with compound PK.
      *
      */
 
@@ -594,7 +603,8 @@ public class Client extends EETest {
 
             Iterator i = c.iterator();
             int j = 0;
-            while (i.hasNext()) testRef[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
+            while (i.hasNext())
+                testRef[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
             if (c.size() != 4) {
                 TestUtil.logErr("findByType returned " + c.size() + " references, expected 4 references");
                 pass = false;
@@ -633,13 +643,15 @@ public class Client extends EETest {
             throw new Fault("test8 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
         }
 
-        if (!pass) throw new Fault("test8 failed");
+        if (!pass)
+            throw new Fault("test8 failed");
     }
 
     public void cleanup() throws Fault {

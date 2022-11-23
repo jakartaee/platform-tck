@@ -78,10 +78,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:14
      *
-     * @test_Strategy: The test demonstrates bean to bean calls in same
-     * application EAR. Satisfy intra-ear calls of application components. Create
-     * 2 stateful Session Beans. Deploy them on the J2EE server. Client call
-     * bean1, bean1 call bean2.
+     * @test_Strategy: The test demonstrates bean to bean calls in same application EAR. Satisfy intra-ear calls of
+     * application components. Create 2 stateful Session Beans. Deploy them on the J2EE server. Client call bean1, bean1
+     * call bean2.
      *
      */
 
@@ -91,7 +90,8 @@ public class Client extends EETest {
             logMsg("Create EJB instance");
             beanRef = (TestBean1) beanHome.create(props);
             boolean pass = beanRef.callOtherBeanTest();
-            if (!pass) throw new Fault("test1 failed");
+            if (!pass)
+                throw new Fault("test1 failed");
             beanRef.remove();
         } catch (Exception e) {
             throw new Fault("test1 failed", e);

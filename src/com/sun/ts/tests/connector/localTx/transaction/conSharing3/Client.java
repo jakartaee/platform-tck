@@ -81,12 +81,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: Connector:SPEC:53;
      *
-     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Client bean
-     * invokes a method on BeanA with TX_REQUIRED context. BeanA make a connection
-     * to database. BeanA calls BeanB to make another connection to the database.
-     * BeanA and BeanB are Bean managed stateful session beans. Both BeanA and
-     * BeanB access a single EIS resource manager. BeanB closes the connection
-     * then BeanA closes the connection.
+     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Client bean invokes a method on BeanA with
+     * TX_REQUIRED context. BeanA make a connection to database. BeanA calls BeanB to make another connection to the
+     * database. BeanA and BeanB are Bean managed stateful session beans. Both BeanA and BeanB access a single EIS resource
+     * manager. BeanB closes the connection then BeanA closes the connection.
      *
      */
     public void test1() throws Fault {
@@ -101,8 +99,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {

@@ -37,7 +37,8 @@ public class Client extends PMClientBase {
 
     private final java.sql.Date dateValue = getSQLDate(2006, 04, 15);
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -73,12 +74,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: propertyTypeTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:514; PERSISTENCE:SPEC:515;
-     * PERSISTENCE:SPEC:516; PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527;
-     * PERSISTENCE:SPEC:534; PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:514; PERSISTENCE:SPEC:515; PERSISTENCE:SPEC:516; PERSISTENCE:SPEC:524;
+     * PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:534; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: wrappers of the primitive types: Character
+     * @test_Strategy: The persistent property of an entity may be of the following type: wrappers of the primitive types:
+     * Character
      */
 
     public void propertyTypeTest1() throws Fault {
@@ -120,17 +120,18 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest1 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest1 failed");
     }
 
     /*
      * @testName: propertyTypeTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527;
-     * PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:534; PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:534;
+     * PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: wrappers of the primitive types: Short
+     * @test_Strategy: The persistent property of an entity may be of the following type: wrappers of the primitive types:
+     * Short
      */
 
     public void propertyTypeTest2() throws Fault {
@@ -171,17 +172,17 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest2 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest2 failed");
     }
 
     /*
      * @testName: propertyTypeTest3
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: wrappers of the primitive types: Integer
+     * @test_Strategy: The persistent property of an entity may be of the following type: wrappers of the primitive types:
+     * Integer
      */
 
     public void propertyTypeTest3() throws Fault {
@@ -221,17 +222,17 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest3 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest3 failed");
     }
 
     /*
      * @testName: propertyTypeTest4
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: wrappers of the primitive types: Long
+     * @test_Strategy: The persistent property of an entity may be of the following type: wrappers of the primitive types:
+     * Long
      */
 
     public void propertyTypeTest4() throws Fault {
@@ -272,17 +273,17 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest4 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest4 failed");
     }
 
     /*
      * @testName: propertyTypeTest5
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: wrappers of the primitive types: Double
+     * @test_Strategy: The persistent property of an entity may be of the following type: wrappers of the primitive types:
+     * Double
      */
 
     public void propertyTypeTest5() throws Fault {
@@ -323,17 +324,17 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest5 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest5 failed");
     }
 
     /*
      * @testName: propertyTypeTest6
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: wrappers of the primitive types: Float
+     * @test_Strategy: The persistent property of an entity may be of the following type: wrappers of the primitive types:
+     * Float
      */
 
     public void propertyTypeTest6() throws Fault {
@@ -374,18 +375,17 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest6 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest6 failed");
     }
 
     /*
      * @testName: propertyTypeTest7
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:529;
-     * PERSISTENCE:SPEC:1090.1; PERSISTENCE:SPEC:1090.2; PERSISTENCE:JAVADOC:72;
-     * PERSISTENCE:JAVADOC:73; PERSISTENCE:SPEC:1976; PERSISTENCE:SPEC:2017
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:1090.1; PERSISTENCE:SPEC:1090.2;
+     * PERSISTENCE:JAVADOC:72; PERSISTENCE:JAVADOC:73; PERSISTENCE:SPEC:1976; PERSISTENCE:SPEC:2017
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: enums
+     * @test_Strategy: The persistent property of an entity may be of the following type: enums
      *
      * Using the Enumerated annotation, with EnumType.ORDINAL.
      */
@@ -431,21 +431,19 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest7 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest7 failed");
     }
 
     /*
      * @testName: propertyTypeTest8
      *
-     * @assertion_ids: PERSISTENCE:SPEC:536; PERSISTENCE:SPEC:540;
-     * PERSISTENCE:SPEC:550; PERSISTENCE:SPEC:1090.0; PERSISTENCE:SPEC:1079;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:536; PERSISTENCE:SPEC:540; PERSISTENCE:SPEC:550; PERSISTENCE:SPEC:1090.0;
+     * PERSISTENCE:SPEC:1079; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The primary key should be one of the following types:
-     * java.util.Date
+     * @test_Strategy: The primary key should be one of the following types: java.util.Date
      *
-     * The application must not change the value of the primary key. The behavior
-     * is undefined if this occurs.
+     * The application must not change the value of the primary key. The behavior is undefined if this occurs.
      *
      * Temporal.TemporalType.DATE
      */
@@ -485,24 +483,23 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest8 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest8 failed");
     }
 
     /*
      * @testName: propertyTypeTest9
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: Byte[]
+     * @test_Strategy: The persistent property of an entity may be of the following type: Byte[]
      *
      */
 
     public void propertyTypeTest9() throws Fault {
 
         boolean pass = false;
-        final Byte[] b = {31, 32, 33, 63, 64, 65};
+        final Byte[] b = { 31, 32, 33, 63, 64, 65 };
         final Byte bv = 5;
         Byte[] a = null;
 
@@ -553,17 +550,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest9 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest9 failed");
     }
 
     /*
      * @testName: propertyTypeTest10
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: Character[]
+     * @test_Strategy: The persistent property of an entity may be of the following type: Character[]
      *
      */
 
@@ -573,7 +569,7 @@ public class Client extends PMClientBase {
 
         try {
             getEntityTransaction().begin();
-            Character[] charData = new Character[] {'C', 'T', 'S'};
+            Character[] charData = new Character[] { 'C', 'T', 'S' };
             TestUtil.logTrace("FIND D1 IN propertyTypeTest10");
             d1 = getEntityManager().find(DataTypes.class, 1);
 
@@ -611,17 +607,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest10 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest10 failed");
     }
 
     /*
      * @testName: propertyTypeTest11
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: java.sql.Time
+     * @test_Strategy: The persistent property of an entity may be of the following type: java.sql.Time
      */
 
     public void propertyTypeTest11() throws Fault {
@@ -667,17 +662,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest11 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest11 failed");
     }
 
     /*
      * @testName: propertyTypeTest12
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: java.sql.Timestamp
+     * @test_Strategy: The persistent property of an entity may be of the following type: java.sql.Timestamp
      */
 
     public void propertyTypeTest12() throws Fault {
@@ -723,7 +717,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("propertyTypeTest12 failed");
+        if (!pass)
+            throw new Fault("propertyTypeTest12 failed");
     }
 
     /*
@@ -874,7 +869,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) throw new Fault("scalarExpressionsTest failed");
+        if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5)
+            throw new Fault("scalarExpressionsTest failed");
     }
 
     /*
@@ -947,8 +943,8 @@ public class Client extends PMClientBase {
         try {
             getEntityTransaction().begin();
 
-            Character[] cArray = {'a'};
-            Byte[] bArray = {(byte) 100};
+            Character[] cArray = { 'a' };
+            Byte[] bArray = { (byte) 100 };
             d1 = new DataTypes(1, 'a', true, (short) 100, 500, 300L, 50D, 1.0F, cArray, bArray);
             d1.setEnumData(Grade.C);
 

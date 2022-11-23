@@ -81,8 +81,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
-     * authpassword;
+     * @class.setup_props: webServerHost; webServerPort; user; password; authuser; authpassword;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -108,29 +107,23 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:SPEC:190; JavaEE:SPEC:31; JavaEE:SPEC:30
      *
-     * @test_Strategy: 1. Configure a servlet(ServletOne) with the following
-     * configurations a) BASIC authentication b) accessible only by rolename
-     * "Administrator" c) use deployment descriptor in ServletOne to configure it
-     * to runAs rolename "Manager" (use principal name javajoe for this)
+     * @test_Strategy: 1. Configure a servlet(ServletOne) with the following configurations a) BASIC authentication b)
+     * accessible only by rolename "Administrator" c) use deployment descriptor in ServletOne to configure it to runAs
+     * rolename "Manager" (use principal name javajoe for this)
      *
-     * 2. Configure SecTestEJB.getCallerPrincipalName() to be be accessible only
-     * by role name "Manager" using annotation.
+     * 2. Configure SecTestEJB.getCallerPrincipalName() to be be accessible only by role name "Manager" using annotation.
      *
-     * 3. Send a http request and invoke ServletOne with j2ee as username and
-     * password. ( Note: j2ee is mapped to rolename "Administrator" )
+     * 3. Send a http request and invoke ServletOne with j2ee as username and password. ( Note: j2ee is mapped to rolename
+     * "Administrator" )
      *
-     * 4. From ServletOne look up SecTestEJB a stateless session bean and invoke a
-     * method getCallerPrincipalName() on it
+     * 4. From ServletOne look up SecTestEJB a stateless session bean and invoke a method getCallerPrincipalName() on it
      *
-     * 5. From within ServletOne obtain the CallerPrincipal using
-     * request.getUserPrincipal().getName()
+     * 5. From within ServletOne obtain the CallerPrincipal using request.getUserPrincipal().getName()
      *
-     * 6. From within SecTestEJB obtain the CallerPrincipal using
-     * sessionContext.getCallerPrincipal().getName()
+     * 6. From within SecTestEJB obtain the CallerPrincipal using sessionContext.getCallerPrincipal().getName()
      *
-     * 7. From the client make sure ServletOne is accessed as user "j2ee" and
-     * SecTestEJB accessed as user "javajoe" ( Note:User "javajoe" is mapped to
-     * rolename "Manager")
+     * 7. From the client make sure ServletOne is accessed as user "j2ee" and SecTestEJB accessed as user "javajoe" (
+     * Note:User "javajoe" is mapped to rolename "Manager")
      */
 
     public void web_to_ejb_dd_runAs() throws Fault {
@@ -189,29 +182,23 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:SPEC:199.7; JavaEE:SPEC:31; JavaEE:SPEC:30
      *
-     * @test_Strategy: 1. Configure a servlet(ServletTwo) with the following
-     * configurations a) BASIC authentication b) accessible only by rolename
-     * "Administrator" c) use annotation in ServletTwo to configure it to runAs
-     * rolename "Manager" (use principal name javajoe for this)
+     * @test_Strategy: 1. Configure a servlet(ServletTwo) with the following configurations a) BASIC authentication b)
+     * accessible only by rolename "Administrator" c) use annotation in ServletTwo to configure it to runAs rolename
+     * "Manager" (use principal name javajoe for this)
      *
-     * 2. Configure SecTestEJB.getCallerPrincipalName() to be be accessible only
-     * by role name "Manager" using annotation.
+     * 2. Configure SecTestEJB.getCallerPrincipalName() to be be accessible only by role name "Manager" using annotation.
      *
-     * 3. Send a http request and invoke ServletTwo with j2ee as username and
-     * password. ( Note: j2ee is mapped to rolename "Administrator" )
+     * 3. Send a http request and invoke ServletTwo with j2ee as username and password. ( Note: j2ee is mapped to rolename
+     * "Administrator" )
      *
-     * 4. From ServletTwo look up SecTestEJB a stateless session bean and invoke a
-     * method getCallerPrincipalName() on it
+     * 4. From ServletTwo look up SecTestEJB a stateless session bean and invoke a method getCallerPrincipalName() on it
      *
-     * 5. From within ServletTwo obtain the CallerPrincipal using
-     * request.getUserPrincipal().getName()
+     * 5. From within ServletTwo obtain the CallerPrincipal using request.getUserPrincipal().getName()
      *
-     * 6. From within SecTestEJB obtain the CallerPrincipal using
-     * sessionContext.getCallerPrincipal().getName()
+     * 6. From within SecTestEJB obtain the CallerPrincipal using sessionContext.getCallerPrincipal().getName()
      *
-     * 7. From the client make sure ServletTwo is accessed as user "j2ee" and
-     * SecTestEJB accessed as user "javajoe" ( Note:User "javajoe" is mapped to
-     * rolename "Manager")
+     * 7. From the client make sure ServletTwo is accessed as user "j2ee" and SecTestEJB accessed as user "javajoe" (
+     * Note:User "javajoe" is mapped to rolename "Manager")
      */
 
     public void web_to_ejb_annotation_runAs() throws Fault {

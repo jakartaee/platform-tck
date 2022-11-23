@@ -25,7 +25,8 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public class Comparator {
 
-    private Comparator() {}
+    private Comparator() {
+    }
 
     public static void compare(Object one, Object two, boolean expected, boolean logIfOk) throws TestFailedException {
         if (one.equals(two) == expected) {

@@ -22,4 +22,5 @@ import jakarta.ejb.TransactionManagementType;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class WriteSingletonTimerBean extends LockSingletonTimerBeanBase implements TimerIF {}
+public class WriteSingletonTimerBean extends LockSingletonTimerBeanBase implements TimerIF {
+}

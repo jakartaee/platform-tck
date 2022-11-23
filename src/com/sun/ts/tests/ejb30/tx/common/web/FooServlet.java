@@ -31,7 +31,8 @@ public class FooServlet extends HttpServlet {
     @Resource
     private UserTransaction ut;
 
-    public FooServlet() {}
+    public FooServlet() {
+    }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, java.io.IOException {

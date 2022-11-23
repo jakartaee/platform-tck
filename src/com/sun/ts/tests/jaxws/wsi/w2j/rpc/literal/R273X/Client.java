@@ -58,8 +58,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client client = new Client();
@@ -91,9 +90,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2735; WSI:SPEC:R2737;
      *
-     * @test_Strategy: A request is made from the generated client. The endpoint
-     *                 is replaced by a Servlet Filter, that verifies the request.
-     *                 The returned object is interrogated for success of failure.
+     * @test_Strategy: A request is made from the generated client. The endpoint is replaced by a Servlet Filter, that
+     * verifies the request. The returned object is interrogated for success of failure.
      *
      * @throws Fault
      */
@@ -120,9 +118,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2735; WSI:SPEC:R2737;
      *
-     * @test_Strategy: A valid request is made to the endpoint and the returned
-     *                 response is investigated for the presence of namespaces for
-     *                 children of part accessor.
+     * @test_Strategy: A valid request is made to the endpoint and the returned response is investigated for the presence of
+     * namespaces for children of part accessor.
      *
      * @throws Fault
      */
@@ -142,11 +139,10 @@ public class Client extends ServiceEETest implements SOAPRequests {
     }
 
     /**
-     * Verifies that the children of part accessor for rpc-literal SOAP messages
-     * parameter and return values are namespace qualified.
+     * Verifies that the children of part accessor for rpc-literal SOAP messages parameter and return values are namespace
+     * qualified.
      *
-     * @param request
-     *          the SOAPMessage response.
+     * @param request the SOAPMessage response.
      *
      * @return "OK" if valid; "NOT OK" otherwise.
      *
@@ -175,7 +171,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
                     uri = child.getElementName().getURI();
                     System.out.println("  child localname: " + localName);
                     System.out.println("  child uri: " + uri);
-                    if (localName.equals(PART_ACCESSOR_NAME) && (uri == null || uri.equals(""))) flg1 = true;
+                    if (localName.equals(PART_ACCESSOR_NAME) && (uri == null || uri.equals("")))
+                        flg1 = true;
                     // All children of part accessors MUST be namespace qualified
                     if (!children.hasNext()) {
                         System.out.println("Getting children of part accessor ...");
@@ -190,19 +187,22 @@ public class Client extends ServiceEETest implements SOAPRequests {
                             System.out.println("    child localname: " + localName);
                             System.out.println("    child uri: " + uri);
                             switch (i) {
-                                case 1:
-                                    if (localName.equals(PART1_NAME) && uri.equals(PART1_URI)) flg2 = true;
-                                    break;
-                                case 2:
-                                    if (localName.equals(PART2_NAME) && uri.equals(PART2_URI)) flg3 = true;
-                                    break;
+                            case 1:
+                                if (localName.equals(PART1_NAME) && uri.equals(PART1_URI))
+                                    flg2 = true;
+                                break;
+                            case 2:
+                                if (localName.equals(PART2_NAME) && uri.equals(PART2_URI))
+                                    flg3 = true;
+                                break;
                             }
                         }
                     }
                 }
             }
         }
-        if (flg1 && flg2 && flg3) result = "OK";
+        if (flg1 && flg2 && flg3)
+            result = "OK";
         System.out.println("result=" + result);
         JAXWS_Util.printSOAPMessage(sm, System.out);
         return result;

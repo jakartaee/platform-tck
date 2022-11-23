@@ -29,24 +29,21 @@ import jakarta.persistence.StoredProcedureParameter;
  */
 
 @NamedStoredProcedureQueries({
-    @NamedStoredProcedureQuery(
-            name = "getempfirstnamefromout",
-            procedureName = "GetEmpFirstNameFromOut",
-            hints = {
+        @NamedStoredProcedureQuery(name = "getempfirstnamefromout", procedureName = "GetEmpFirstNameFromOut", hints = {
                 @QueryHint(name = "fooname", value = "barvalue"),
                 @QueryHint(name = "fooname2", value = "barvalue2")
-            },
-            parameters = {
+        }, parameters = {
                 @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN),
                 @StoredProcedureParameter(type = String.class, mode = ParameterMode.OUT)
-            })
+        })
 })
 @MappedSuperclass()
 public abstract class EmployeeMappedSC implements java.io.Serializable {
 
     private String firstName;
 
-    public EmployeeMappedSC() {}
+    public EmployeeMappedSC() {
+    }
 
     public EmployeeMappedSC(String firstName) {
         this.firstName = firstName;

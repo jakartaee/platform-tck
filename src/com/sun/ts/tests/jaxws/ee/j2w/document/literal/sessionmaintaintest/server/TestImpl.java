@@ -32,7 +32,8 @@ public class TestImpl {
     @Resource
     private WebServiceContext wsc;
 
-    public TestImpl() {}
+    public TestImpl() {
+    }
 
     @WebMethod
     public String getSessionId() {

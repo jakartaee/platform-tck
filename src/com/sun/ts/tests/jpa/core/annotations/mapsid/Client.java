@@ -26,7 +26,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -52,19 +53,16 @@ public class Client extends PMClientBase {
     /*
      * @testName: persistMX1Test1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1090; PERSISTENCE:SPEC:1091;
-     * PERSISTENCE:SPEC:1070; PERSISTENCE:SPEC:1071; PERSISTENCE:SPEC:618;
-     * PERSISTENCE:SPEC:622; PERSISTENCE:JAVADOC:372;
+     * @assertion_ids: PERSISTENCE:SPEC:1090; PERSISTENCE:SPEC:1091; PERSISTENCE:SPEC:1070; PERSISTENCE:SPEC:1071;
+     * PERSISTENCE:SPEC:618; PERSISTENCE:SPEC:622; PERSISTENCE:JAVADOC:372;
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows: The perist
-     * operation is cascaded to entities referenced by X, if the relationship from
-     * X to these other entities is annotated with cascade=PERSIST annotation
-     * member.
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows: The perist operation is cascaded to
+     * entities referenced by X, if the relationship from X to these other entities is annotated with cascade=PERSIST
+     * annotation member.
      *
-     * Invoke persist on a ManyToOne relationship from X annotated with
-     * cascade=PERSIST and ensure the persist operation is cascaded.
+     * Invoke persist on a ManyToOne relationship from X annotated with cascade=PERSIST and ensure the persist operation is
+     * cascaded.
      *
      */
     public void persistMX1Test1() throws Fault {
@@ -100,7 +98,7 @@ public class Client extends PMClientBase {
             }
 
             final List depList = em.createQuery(
-                            "Select d from DID1bDependent d where d.id.name='Obama' and d.emp.name='Duke'")
+                    "Select d from DID1bDependent d where d.id.name='Obama' and d.emp.name='Duke'")
                     .getResultList();
 
             newDependent = null;

@@ -40,10 +40,10 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "lTestEJB")
-@Remote({lTest.class})
+@Remote({ lTest.class })
 @EJBs({
-    @EJB(name = "SecTestEJB", beanName = "SecTestEJB", beanInterface = SecTestLocal.class),
-    @EJB(name = "SecTestRoleRefEJB", beanName = "SecTestRoleRefEJB", beanInterface = SecTestRoleRefLocal.class)
+        @EJB(name = "SecTestEJB", beanName = "SecTestEJB", beanInterface = SecTestLocal.class),
+        @EJB(name = "SecTestRoleRefEJB", beanName = "SecTestRoleRefEJB", beanInterface = SecTestRoleRefLocal.class)
 })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @RunAs("Manager")
@@ -66,7 +66,7 @@ public class lTestEJB implements lTest {
 
     private String password = "";
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void initLogging(java.util.Properties p) {
         try {
@@ -93,8 +93,10 @@ public class lTestEJB implements lTest {
         String name = sctx.getCallerPrincipal().getName();
         TestUtil.logMsg("IsCallerB1: " + name);
 
-        if (name.indexOf(caller) < 0) return false;
-        else return true;
+        if (name.indexOf(caller) < 0)
+            return false;
+        else
+            return true;
     }
 
     @TransactionAttribute(TransactionAttributeType.NEVER)
@@ -121,7 +123,7 @@ public class lTestEJB implements lTest {
         }
     }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean EjbNotAuthz(java.util.Properties p) {
         try {
@@ -140,9 +142,10 @@ public class lTestEJB implements lTest {
         }
     }
 
-    private void cleanup(SecTestLocal ejbref) {}
+    private void cleanup(SecTestLocal ejbref) {
+    }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean EjbIsAuthz(java.util.Properties p) {
         TestUtil.logMsg("Starting Caller authorization test");
@@ -150,7 +153,8 @@ public class lTestEJB implements lTest {
             ejb1.initLogging(p);
             boolean result = ejb1.EjbIsAuthz();
 
-            if (!result) return false;
+            if (!result)
+                return false;
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -159,7 +163,7 @@ public class lTestEJB implements lTest {
         return true;
     }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean EjbSecRoleRef(String role, java.util.Properties p) {
         TestUtil.logMsg("Starting Security role reference positive test");
@@ -167,7 +171,8 @@ public class lTestEJB implements lTest {
             ejb1.initLogging(p);
             boolean result = ejb1.EjbSecRoleRef(role);
 
-            if (!result) return false;
+            if (!result)
+                return false;
             return true;
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -175,7 +180,7 @@ public class lTestEJB implements lTest {
         }
     }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean EjbSecRoleRef1(String role, java.util.Properties p) {
         TestUtil.logMsg("Starting Security role reference negative test");
@@ -183,7 +188,8 @@ public class lTestEJB implements lTest {
             ejb1.initLogging(p);
             boolean result = ejb1.EjbSecRoleRef(role);
 
-            if (result) return false;
+            if (result)
+                return false;
             return true;
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -191,7 +197,7 @@ public class lTestEJB implements lTest {
         }
     }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean EjbSecRoleRefScope(String role, java.util.Properties p) {
         try {
@@ -201,12 +207,14 @@ public class lTestEJB implements lTest {
             // succeed.
             boolean result = ejb1.EjbSecRoleRef(role);
 
-            if (!result) return false;
+            if (!result)
+                return false;
 
             ejb2.initLogging(p);
             result = ejb2.EjbSecRoleRefScope(role);
 
-            if (result) return false;
+            if (result)
+                return false;
             return true;
 
         } catch (Exception e) {
@@ -215,7 +223,7 @@ public class lTestEJB implements lTest {
         }
     }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean EjbOverloadedSecRoleRefs(String role1, String role2, java.util.Properties p) {
         TestUtil.logMsg("Starting Overloaded security role references test");
@@ -242,7 +250,7 @@ public class lTestEJB implements lTest {
         }
     }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean checktest1(java.util.Properties p) {
         try {
@@ -255,7 +263,7 @@ public class lTestEJB implements lTest {
         }
     }
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean excludetest1(java.util.Properties p) {
         try {

@@ -25,8 +25,7 @@ import com.sun.ts.tests.common.dao.DAOException;
 import jakarta.ejb.CreateException;
 
 /**
- * DAO Object for table using a variant of the "coffee" DB schema with a Float
- * primary key.
+ * DAO Object for table using a variant of the "coffee" DB schema with a Float primary key.
  *
  * id (Float, primary key) | name (String) | price (float)
  *
@@ -46,8 +45,7 @@ public interface FloatPKCoffeeDAO extends DAO {
     public void deleteAll() throws DAOException;
 
     /**
-     * Convenience method for test setup. Start its own session and delete all
-     * pre-existing entities
+     * Convenience method for test setup. Start its own session and delete all pre-existing entities
      */
     public void cleanup() throws DAOException;
 }

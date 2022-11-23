@@ -62,7 +62,8 @@ public class TxBean extends RWTxBeanBase {
     }
 
     @AfterCompletion
-    public void afterCompletion(boolean arg0) {}
+    public void afterCompletion(boolean arg0) {
+    }
 
     @SuppressWarnings("unused")
     @PostConstruct

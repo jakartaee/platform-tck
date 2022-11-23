@@ -25,7 +25,8 @@ public class Semester implements java.io.Serializable {
     @Id
     int id;
 
-    public Semester() {}
+    public Semester() {
+    }
 
     public Semester(int id) {
         this.id = id;

@@ -22,12 +22,7 @@ import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.Holder;
 
-@WebService(
-        portName = "HelloPort",
-        serviceName = "HandlerTestService",
-        targetNamespace = "http://handlertestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/HandlerTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.servlet.HandlerTest.server.Hello")
+@WebService(portName = "HelloPort", serviceName = "HandlerTestService", targetNamespace = "http://handlertestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/HandlerTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.servlet.HandlerTest.server.Hello")
 public class HelloImpl implements Hello {
 
     public String hello(String s) {

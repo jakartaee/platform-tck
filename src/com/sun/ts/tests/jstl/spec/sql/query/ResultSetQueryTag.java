@@ -35,12 +35,10 @@ import javax.sql.DataSource;
 
 /**
  * <p>
- * Tag handler similar to &lt;Query&gt; in JSTL but uses
- * jakarta.servlet.jsp.jstl.sql.ResultSupport. To simplify testing, the scope of
- * the scoped variable is set to page scope. It does not accept sql:param as
- * sub-elements. It does not participate in a transaction. dataSource attribute
- * must be set explicitly. The presence of maxRows attribute determine which
- * ResultSupport method will be invoked.
+ * Tag handler similar to &lt;Query&gt; in JSTL but uses jakarta.servlet.jsp.jstl.sql.ResultSupport. To simplify
+ * testing, the scope of the scoped variable is set to page scope. It does not accept sql:param as sub-elements. It does
+ * not participate in a transaction. dataSource attribute must be set explicitly. The presence of maxRows attribute
+ * determine which ResultSupport method will be invoked.
  *
  */
 public class ResultSetQueryTag extends BodyTagSupport implements TryCatchFinally {
@@ -50,8 +48,8 @@ public class ResultSetQueryTag extends BodyTagSupport implements TryCatchFinally
     private int scope;
 
     /*
-     * The following properties take expression values, so the setter methods are
-     * implemented by the expression type specific subclasses.
+     * The following properties take expression values, so the setter methods are implemented by the expression type
+     * specific subclasses.
      */
     protected Object rawDataSource;
 
@@ -109,8 +107,7 @@ public class ResultSetQueryTag extends BodyTagSupport implements TryCatchFinally
     }
 
     /**
-     * Query result can be limited by specifying the maximum number of rows
-     * returned.
+     * Query result can be limited by specifying the maximum number of rows returned.
      */
     public void setMaxRows(int maxRows) {
         this.maxRows = maxRows;
@@ -118,9 +115,8 @@ public class ResultSetQueryTag extends BodyTagSupport implements TryCatchFinally
     }
 
     /**
-     * Setter method for the SQL statement to use for the query. The statement may
-     * contain parameter markers (question marks, ?). If so, the parameter values
-     * must be set using nested value elements.
+     * Setter method for the SQL statement to use for the query. The statement may contain parameter markers (question
+     * marks, ?). If so, the parameter values must be set using nested value elements.
      */
     public void setSql(String sql) {
         this.sql = sql;
@@ -130,8 +126,7 @@ public class ResultSetQueryTag extends BodyTagSupport implements TryCatchFinally
     // Tag logic
 
     /**
-     * Prepares for execution by setting the initial state, such as getting the
-     * <code>Connection</code>
+     * Prepares for execution by setting the initial state, such as getting the <code>Connection</code>
      */
     @Override
     public int doStartTag() throws JspException {
@@ -146,22 +141,19 @@ public class ResultSetQueryTag extends BodyTagSupport implements TryCatchFinally
 
     /**
      * <p>
-     * Execute the SQL statement, set either through the <code>sql</code>
-     * attribute or as the body, and save the result as a variable named by the
-     * <code>var</code> attribute in the scope specified by the <code>scope</code>
-     * attribute, as an object that implements the Result interface.
+     * Execute the SQL statement, set either through the <code>sql</code> attribute or as the body, and save the result as a
+     * variable named by the <code>var</code> attribute in the scope specified by the <code>scope</code> attribute, as an
+     * object that implements the Result interface.
      *
      * <p>
-     * The connection used to execute the statement comes either from the
-     * <code>DataSource</code> specified by the <code>dataSource</code> attribute,
-     * provided by a parent action element, or is retrieved from a JSP scope
-     * attribute named <code>jakarta.servlet.jstl.sql.dataSource</code>.
+     * The connection used to execute the statement comes either from the <code>DataSource</code> specified by the
+     * <code>dataSource</code> attribute, provided by a parent action element, or is retrieved from a JSP scope attribute
+     * named <code>jakarta.servlet.jstl.sql.dataSource</code>.
      */
     @Override
     public int doEndTag() throws JspException {
         /*
-         * Use the SQL statement specified by the sql attribute, if any, otherwise
-         * use the body as the statement.
+         * Use the SQL statement specified by the sql attribute, if any, otherwise use the body as the statement.
          */
         String sqlStatement = null;
         if (sql != null) {
@@ -181,10 +173,9 @@ public class ResultSetQueryTag extends BodyTagSupport implements TryCatchFinally
 
         Result result = null;
         /*
-         * Note! We must not use the setMaxRows() method on the the statement to
-         * limit the number of rows, since the Result factory must be able to figure
-         * out the correct value for isLimitedByMaxRows(); there's no way to check
-         * if it was from the ResultSet.
+         * Note! We must not use the setMaxRows() method on the the statement to limit the number of rows, since the Result
+         * factory must be able to figure out the correct value for isLimitedByMaxRows(); there's no way to check if it was from
+         * the ResultSet.
          */
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -248,8 +239,7 @@ public class ResultSetQueryTag extends BodyTagSupport implements TryCatchFinally
     }
 
     /**
-     * Close the <code>Connection</code>, unless this action is used as part of a
-     * transaction.
+     * Close the <code>Connection</code>, unless this action is used as part of a transaction.
      */
     public void doFinally() {
         if (conn != null) {

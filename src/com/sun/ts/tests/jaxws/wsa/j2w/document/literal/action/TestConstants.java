@@ -47,8 +47,7 @@ public class TestConstants {
 
     public static final String ADD_NUMBERS_OUT_NOACTION = "http://foobar.org/AddNumbers/addNumbersNoActionResponse";
 
-    public static final String ADD_NUMBERS_OUT_EMPTYACTION =
-            "http://foobar.org/AddNumbers/addNumbersEmptyActionResponse";
+    public static final String ADD_NUMBERS_OUT_EMPTYACTION = "http://foobar.org/AddNumbers/addNumbersEmptyActionResponse";
 
     public static final String ADD_NUMBERS_OUT_ACTION = "http://example.com/output";
 
@@ -64,16 +63,13 @@ public class TestConstants {
 
     public static final String ADD_NUMBERS_FAULT3_ADDNUMBERS_ACTION = "http://fault3/addnumbers";
 
-    public static final String ADD_NUMBERS_FAULT3_TOOBIGNUMBERS_ACTION =
-            "http://foobar.org/AddNumbers/addNumbersFault3/Fault/TooBigNumbersException";
+    public static final String ADD_NUMBERS_FAULT3_TOOBIGNUMBERS_ACTION = "http://foobar.org/AddNumbers/addNumbersFault3/Fault/TooBigNumbersException";
 
     public static final String ADD_NUMBERS_FAULT4_ADDNUMBERS_ACTION = "http://fault4/addnumbers";
 
-    public static final String ADD_NUMBERS_FAULT4_TOOBIGNUMBERS_ACTION =
-            "http://foobar.org/AddNumbers/addNumbersFault4/Fault/TooBigNumbersException";
+    public static final String ADD_NUMBERS_FAULT4_TOOBIGNUMBERS_ACTION = "http://foobar.org/AddNumbers/addNumbersFault4/Fault/TooBigNumbersException";
 
-    public static final String ADD_NUMBERS_FAULT5_ADDNUMBERS_ACTION =
-            "http://foobar.org/AddNumbers/addNumbersFault5/Fault/AddNumbersException";
+    public static final String ADD_NUMBERS_FAULT5_ADDNUMBERS_ACTION = "http://foobar.org/AddNumbers/addNumbersFault5/Fault/AddNumbersException";
 
     public static final String ADD_NUMBERS_FAULT5_TOOBIGNUMBERS_ACTION = "http://fault5/toobignumbers";
 
@@ -81,9 +77,7 @@ public class TestConstants {
 
     public static final String ADD_NUMBERS_FAULT6_TOOBIGNUMBERS_ACTION = "http://fault6/toobignumbers";
 
-    public static final String ADD_NUMBERS_FAULT7_ADDNUMBERS_ACTION =
-            "http://foobar.org/AddNumbers/addNumbersFault7/Fault/AddNumbersException";
+    public static final String ADD_NUMBERS_FAULT7_ADDNUMBERS_ACTION = "http://foobar.org/AddNumbers/addNumbersFault7/Fault/AddNumbersException";
 
-    public static final String ADD_NUMBERS_FAULT7_TOOBIGNUMBERS_ACTION =
-            "http://foobar.org/AddNumbers/addNumbersFault7/Fault/TooBigNumbersException";
+    public static final String ADD_NUMBERS_FAULT7_TOOBIGNUMBERS_ACTION = "http://foobar.org/AddNumbers/addNumbersFault7/Fault/TooBigNumbersException";
 }

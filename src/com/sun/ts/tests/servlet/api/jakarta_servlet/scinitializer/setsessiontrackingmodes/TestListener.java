@@ -31,11 +31,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class TestListener implements ServletContextListener {
 
     /**
-     * Receives notification that the web application initialization process is
-     * starting.
+     * Receives notification that the web application initialization process is starting.
      *
-     * @param sce
-     *          The ServletContextEvent
+     * @param sce The ServletContextEvent
      */
     public void contextInitialized(ServletContextEvent sce) {
         boolean passed = true;
@@ -97,8 +95,7 @@ public class TestListener implements ServletContextListener {
     /**
      * Receives notification that the servlet context is about to be shut down.
      *
-     * @param sce
-     *          The servlet context event
+     * @param sce The servlet context event
      */
     public void contextDestroyed(ServletContextEvent sce) {
         // Do nothing

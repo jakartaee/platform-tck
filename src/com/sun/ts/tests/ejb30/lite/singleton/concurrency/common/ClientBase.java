@@ -32,18 +32,14 @@ public class ClientBase extends EJBLiteClientBase {
     protected final long CORRECT_SUM = NUM_OF_THREADS * NUM_OF_ADDITIONS * NUM_TO_ADD;
 
     /**
-     * Interceptor0 is the default interceptor for all bean. Interceptor3 is
-     * declared as method-level interceptors for SingletonBean's business methods
-     * with "FromInterceptor" in its name. See ejb-jar.xml. The around-invoke
-     * method of both Interceptor0 and Interceptor3 are in their superclass. These
-     * business methods pass a param interceptorName to indicate which interceptor
-     * needs to take action. If this interceptorName match the current
-     * interceptor's getSimpleName(), do the operation, return result and ignore
-     * the rest of the interceptor chain. Otherwise, proceed to the next in chain.
-     * For interceptor0, the next is Interceptor3. For Interceptor3, the next is
-     * business method.
+     * Interceptor0 is the default interceptor for all bean. Interceptor3 is declared as method-level interceptors for
+     * SingletonBean's business methods with "FromInterceptor" in its name. See ejb-jar.xml. The around-invoke method of
+     * both Interceptor0 and Interceptor3 are in their superclass. These business methods pass a param interceptorName to
+     * indicate which interceptor needs to take action. If this interceptorName match the current interceptor's
+     * getSimpleName(), do the operation, return result and ignore the rest of the interceptor chain. Otherwise, proceed to
+     * the next in chain. For interceptor0, the next is Interceptor3. For Interceptor3, the next is business method.
      */
-    protected static final String[] INTERCEPTORS = {"Interceptor0", "Interceptor3"};
+    protected static final String[] INTERCEPTORS = { "Interceptor0", "Interceptor3" };
 
     protected ConcurrencyIF singleton; // injected in subclass
 

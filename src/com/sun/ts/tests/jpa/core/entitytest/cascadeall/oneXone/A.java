@@ -66,10 +66,7 @@ public class A implements java.io.Serializable {
     // ===========================================================
     // relationship fields
 
-    @OneToOne(
-            targetEntity = com.sun.ts.tests.jpa.core.entitytest.cascadeall.oneXone.B.class,
-            mappedBy = "a1",
-            orphanRemoval = true)
+    @OneToOne(targetEntity = com.sun.ts.tests.jpa.core.entitytest.cascadeall.oneXone.B.class, mappedBy = "a1", orphanRemoval = true)
     protected B b1;
 
     // =======================================================================
@@ -81,8 +78,10 @@ public class A implements java.io.Serializable {
 
     public boolean isB1() {
         TestUtil.logTrace("isB1");
-        if (getB1() != null) TestUtil.logTrace("Relationship to B is not null...");
-        else TestUtil.logTrace("Relationship for B is null ...");
+        if (getB1() != null)
+            TestUtil.logTrace("Relationship to B is not null...");
+        else
+            TestUtil.logTrace("Relationship for B is null ...");
         return getB1() != null;
     }
 
@@ -91,7 +90,8 @@ public class A implements java.io.Serializable {
         if (isB1()) {
             B b1 = getB1();
             return b1;
-        } else return null;
+        } else
+            return null;
     }
 
     public String getAId() {

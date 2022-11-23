@@ -22,12 +22,10 @@ import java.io.PushbackInputStream;
 /**
  * This class implements a BASE64 Character decoder as specified in RFC1521.
  *
- * This RFC is part of the MIME specification which is published by the Internet
- * Engineering Task Force (IETF). Unlike some other encoding schemes there is
- * nothing in this encoding that tells the decoder where a buffer starts or
- * stops, so to use it you will need to isolate your encoded data into a single
- * chunk and then feed them this decoder. The simplest way to do that is to read
- * all of the encoded data into a string and then use:
+ * This RFC is part of the MIME specification which is published by the Internet Engineering Task Force (IETF). Unlike
+ * some other encoding schemes there is nothing in this encoding that tells the decoder where a buffer starts or stops,
+ * so to use it you will need to isolate your encoded data into a single chunk and then feed them this decoder. The
+ * simplest way to do that is to read all of the encoded data into a string and then use:
  *
  * <pre>
  * byte mydata[];
@@ -36,11 +34,9 @@ import java.io.PushbackInputStream;
  * mydata = base64.decodeBuffer(bufferString);
  * </pre>
  *
- * This will decode the String in <i>bufferString</i> and give you an array of
- * bytes in the array <i>myData</i>.
+ * This will decode the String in <i>bufferString</i> and give you an array of bytes in the array <i>myData</i>.
  *
- * On errors, this class throws a CEFormatException with the following detail
- * strings:
+ * On errors, this class throws a CEFormatException with the following detail strings:
  *
  * <pre>
  * "BASE64Decoder: Not enough bytes for an atom."
@@ -66,15 +62,15 @@ public class BASE64Decoder extends CharacterDecoder {
      * This character array provides the character to value map based on RFC1521.
      */
     private static final char pem_array[] = {
-        // 0 1 2 3 4 5 6 7
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', // 0
-        'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', // 1
-        'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', // 2
-        'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', // 3
-        'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', // 4
-        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', // 5
-        'w', 'x', 'y', 'z', '0', '1', '2', '3', // 6
-        '4', '5', '6', '7', '8', '9', '+', '/' // 7
+            // 0 1 2 3 4 5 6 7
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', // 0
+            'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', // 1
+            'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', // 2
+            'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', // 3
+            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', // 4
+            'o', 'p', 'q', 'r', 's', 't', 'u', 'v', // 5
+            'w', 'x', 'y', 'z', '0', '1', '2', '3', // 6
+            '4', '5', '6', '7', '8', '9', '+', '/' // 7
     };
 
     private static final byte pem_convert_array[] = new byte[256];
@@ -121,31 +117,31 @@ public class BASE64Decoder extends CharacterDecoder {
             rem = 2;
         }
         switch (rem) {
-            case 4:
-                d = pem_convert_array[decode_buffer[3] & 0xff];
-                // NOBREAK
-            case 3:
-                c = pem_convert_array[decode_buffer[2] & 0xff];
-                // NOBREAK
-            case 2:
-                b = pem_convert_array[decode_buffer[1] & 0xff];
-                a = pem_convert_array[decode_buffer[0] & 0xff];
-                break;
+        case 4:
+            d = pem_convert_array[decode_buffer[3] & 0xff];
+            // NOBREAK
+        case 3:
+            c = pem_convert_array[decode_buffer[2] & 0xff];
+            // NOBREAK
+        case 2:
+            b = pem_convert_array[decode_buffer[1] & 0xff];
+            a = pem_convert_array[decode_buffer[0] & 0xff];
+            break;
         }
 
         switch (rem) {
-            case 2:
-                outStream.write((byte) (((a << 2) & 0xfc) | ((b >>> 4) & 3)));
-                break;
-            case 3:
-                outStream.write((byte) (((a << 2) & 0xfc) | ((b >>> 4) & 3)));
-                outStream.write((byte) (((b << 4) & 0xf0) | ((c >>> 2) & 0xf)));
-                break;
-            case 4:
-                outStream.write((byte) (((a << 2) & 0xfc) | ((b >>> 4) & 3)));
-                outStream.write((byte) (((b << 4) & 0xf0) | ((c >>> 2) & 0xf)));
-                outStream.write((byte) (((c << 6) & 0xc0) | (d & 0x3f)));
-                break;
+        case 2:
+            outStream.write((byte) (((a << 2) & 0xfc) | ((b >>> 4) & 3)));
+            break;
+        case 3:
+            outStream.write((byte) (((a << 2) & 0xfc) | ((b >>> 4) & 3)));
+            outStream.write((byte) (((b << 4) & 0xf0) | ((c >>> 2) & 0xf)));
+            break;
+        case 4:
+            outStream.write((byte) (((a << 2) & 0xfc) | ((b >>> 4) & 3)));
+            outStream.write((byte) (((b << 4) & 0xf0) | ((c >>> 2) & 0xf)));
+            outStream.write((byte) (((c << 6) & 0xc0) | (d & 0x3f)));
+            break;
         }
         return;
     }

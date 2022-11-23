@@ -64,7 +64,8 @@ public class Client extends EETest {
 
         private Counter counter;
 
-        public CounterThread() {}
+        public CounterThread() {
+        }
 
         public CounterThread(int n) {
             threadNum = n;
@@ -87,7 +88,8 @@ public class Client extends EETest {
             boolean pass = runTest();
 
             synchronized (lock) {
-                if (!pass) ++errors;
+                if (!pass)
+                    ++errors;
                 ++threadsDone;
                 lock.notifyAll();
             }
@@ -180,9 +182,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:53
      *
-     * @test_Strategy: A STATEFUL session bean contains conversational state which
-     * must be retained across methods and transactions. Demonstrate using single
-     * client.
+     * @test_Strategy: A STATEFUL session bean contains conversational state which must be retained across methods and
+     * transactions. Demonstrate using single client.
      *
      */
 
@@ -240,9 +241,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:53
      *
-     * @test_Strategy: A STATEFUL session bean contains conversational state which
-     * must be retained across methods and transactions. Demonstrate using
-     * multiple clients.
+     * @test_Strategy: A STATEFUL session bean contains conversational state which must be retained across methods and
+     * transactions. Demonstrate using multiple clients.
      *
      */
 
@@ -300,9 +300,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:56
      *
-     * @test_Strategy: Create a Stateful Session bean Create a transaction within
-     * the bean Set a conversational value within the bean Force the transaction
-     * to rollback Varify the the conversation value doesn't change
+     * @test_Strategy: Create a Stateful Session bean Create a transaction within the bean Set a conversational value within
+     * the bean Force the transaction to rollback Varify the the conversation value doesn't change
      *
      */
     public void test3() throws Fault {
@@ -333,7 +332,8 @@ public class Client extends EETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     public void cleanup() throws Fault {

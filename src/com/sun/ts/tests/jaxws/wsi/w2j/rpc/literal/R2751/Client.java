@@ -36,8 +36,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -68,9 +67,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2751
      *
-     * @test_Strategy: Send a SOAP request that has the headers in a different
-     *                 order than they are defined in the wsdl. The endpoint
-     *                 checks for their correctness.
+     * @test_Strategy: Send a SOAP request that has the headers in a different order than they are defined in the wsdl. The
+     * endpoint checks for their correctness.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

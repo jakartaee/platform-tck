@@ -63,7 +63,8 @@ public final class VehicleRunnerFactory {
 
     private static VehicleRunnable webRunner;
 
-    private VehicleRunnerFactory() {}
+    private VehicleRunnerFactory() {
+    }
 
     private static VehicleRunnable getEJBRunner() {
         if (ejbRunner == null) {
@@ -272,8 +273,7 @@ public final class VehicleRunnerFactory {
     private static VehicleRunnable getConnectorServletRunner() {
         if (connectorServletRunner == null) {
             try {
-                Class c =
-                        Class.forName("com.sun.ts.tests.common.vehicle.connectorservlet.ConnectorServletVehicleRunner");
+                Class c = Class.forName("com.sun.ts.tests.common.vehicle.connectorservlet.ConnectorServletVehicleRunner");
                 connectorServletRunner = (VehicleRunnable) c.newInstance();
             } catch (Exception ex) {
                 ex.printStackTrace();

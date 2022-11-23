@@ -29,12 +29,7 @@ import jakarta.xml.ws.WebServiceException;
 import jakarta.xml.ws.handler.*;
 import jakarta.xml.ws.handler.soap.*;
 
-@WebService(
-        portName = "GetTrackerDataPort",
-        targetNamespace = "http://rlowhandlertestservice.org/wsdl",
-        serviceName = "RLOWHandlerTestService",
-        wsdlLocation = "WEB-INF/wsdl/WSRLOWHandlerTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.GetTrackerData")
+@WebService(portName = "GetTrackerDataPort", targetNamespace = "http://rlowhandlertestservice.org/wsdl", serviceName = "RLOWHandlerTestService", wsdlLocation = "WEB-INF/wsdl/WSRLOWHandlerTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.GetTrackerData")
 public class GetTrackerDataImpl implements GetTrackerData {
     public GetTrackerDataResult getTrackerData(GetTrackerDataAction action) {
 
@@ -64,12 +59,12 @@ public class GetTrackerDataImpl implements GetTrackerData {
             messages = HandlerTracker.getArrayThrowables();
         } else if (theAction.equals("purge")) {
             HandlerTracker.purge();
-            String m[] = {"purge complete"};
+            String m[] = { "purge complete" };
             messages = m;
         } else {
             String[] m = {
-                "Did not get one of the excepted GetTrackerData action messages, the action message received was:"
-                        + theAction
+                    "Did not get one of the excepted GetTrackerData action messages, the action message received was:"
+                            + theAction
             };
             messages = m;
         }

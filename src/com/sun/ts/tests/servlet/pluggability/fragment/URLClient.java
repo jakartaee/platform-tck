@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String[] args, PrintWriter out, PrintWriter err) {
         setContextRoot("/servlet_spec_fragment_web");
@@ -51,14 +49,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: initParamTest
      *
-     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:258.1; Servlet:SPEC:258.5.1;
-     * Servlet:SPEC:258.6.1; Servlet:SPEC:258.7.1;
+     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:258.1; Servlet:SPEC:258.5.1; Servlet:SPEC:258.6.1;
+     * Servlet:SPEC:258.7.1;
      *
-     * @test_Strategy: 1. Define servlet TestServlet1 in web.xml as well as
-     * web-fragment.xml; 2. Send request to /TestServlet1, verify TestServlet1 is
-     * invoked 3. Also verify that <init-param> defined in both web.xml and
-     * web-fragment.xml are considered, and the one defined in web.xml take
-     * precedence.
+     * @test_Strategy: 1. Define servlet TestServlet1 in web.xml as well as web-fragment.xml; 2. Send request to
+     * /TestServlet1, verify TestServlet1 is invoked 3. Also verify that <init-param> defined in both web.xml and
+     * web-fragment.xml are considered, and the one defined in web.xml take precedence.
      */
     public void initParamTest() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1|msg1=first|msg2=second");
@@ -72,9 +68,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:258.1; Servlet:SPEC:258.5.1;
      *
-     * @test_Strategy: 1. Define servlet TestServlet3 web-fragment.xml; 2. Send
-     * request to /TestServlet3, verify TestServlet3 is invoked 3. Also verify
-     * that filter is invoked too.
+     * @test_Strategy: 1. Define servlet TestServlet3 web-fragment.xml; 2. Send request to /TestServlet3, verify
+     * TestServlet3 is invoked 3. Also verify that filter is invoked too.
      */
     public void addServletTest() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "TestFilter3|fragment|three|TestServlet3|msg1=third|msg2=third");
@@ -86,13 +81,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: addServletURLTest
      *
-     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:258.1; Servlet:SPEC:258.5.1;
-     * Servlet:SPEC:258.6.1; Servlet:SPEC:258.7.6;
+     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:258.1; Servlet:SPEC:258.5.1; Servlet:SPEC:258.6.1;
+     * Servlet:SPEC:258.7.6;
      *
-     * @test_Strategy: 1. Define servlet TestServlet2 web-fragment.xml and
-     * web.xml; 2. Send request to URL /TestServlet2 defined in web.xml, verify
-     * TestServlet2 is invoked 3. Send request to URL /TestServlet22 defined in
-     * web-fragment.xml, verify 404 is returned.
+     * @test_Strategy: 1. Define servlet TestServlet2 web-fragment.xml and web.xml; 2. Send request to URL /TestServlet2
+     * defined in web.xml, verify TestServlet2 is invoked 3. Send request to URL /TestServlet22 defined in web-fragment.xml,
+     * verify 404 is returned.
      */
     public void addServletURLTest() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet2");
@@ -108,11 +102,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: welcomefileTest
      *
-     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:258.1; Servlet:SPEC:258.5.1;
-     * Servlet:SPEC:258.6.1; Servlet:SPEC:258.7.5;
+     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:258.1; Servlet:SPEC:258.5.1; Servlet:SPEC:258.6.1;
+     * Servlet:SPEC:258.7.5;
      *
-     * @test_Strategy: 1. Define servlet TestServlet4 web-fragment.xml in
-     * <welcome-file>; 2. Send request to URL /, verify TestServlet4 is invoked
+     * @test_Strategy: 1. Define servlet TestServlet4 web-fragment.xml in <welcome-file>; 2. Send request to URL /, verify
+     * TestServlet4 is invoked
      */
     public void welcomefileTest() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4");
@@ -124,13 +118,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: filterOrderingTest
      *
-     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:241; Servlet:SPEC:242;
-     * Servlet:SPEC:244; Servlet:SPEC:245; Servlet:SPEC:246; Servlet:SPEC:258.1;
-     * Servlet:SPEC:258.5.1; Servlet:SPEC:258.6.1;
+     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:241; Servlet:SPEC:242; Servlet:SPEC:244; Servlet:SPEC:245;
+     * Servlet:SPEC:246; Servlet:SPEC:258.1; Servlet:SPEC:258.5.1; Servlet:SPEC:258.6.1;
      *
-     * @test_Strategy: 1. Define four Filters that mapping to TestServlet5 in
-     * web.xml and two web-fragment.xml; 2. Send request to TestServlet5 3. Verify
-     * that web.xml is always processed first; 4. Verify that <ordering> works
+     * @test_Strategy: 1. Define four Filters that mapping to TestServlet5 in web.xml and two web-fragment.xml; 2. Send
+     * request to TestServlet5 3. Verify that web.xml is always processed first; 4. Verify that <ordering> works
      * accordingly.
      */
     public void filterOrderingTest() throws Fault {

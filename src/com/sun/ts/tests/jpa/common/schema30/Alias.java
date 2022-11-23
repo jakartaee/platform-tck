@@ -46,7 +46,8 @@ public class Alias implements java.io.Serializable {
 
     private Collection<Customer> customers = new java.util.ArrayList<Customer>();
 
-    public Alias() {}
+    public Alias() {
+    }
 
     public Alias(String id, String alias) {
         this.id = id;
@@ -89,10 +90,7 @@ public class Alias implements java.io.Serializable {
     }
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "FKS_ANOOP_CNOOP",
-            joinColumns = @JoinColumn(name = "FK2_FOR_ALIAS_TABLE", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "FK8_FOR_CUSTOMER_TABLE", referencedColumnName = "ID"))
+    @JoinTable(name = "FKS_ANOOP_CNOOP", joinColumns = @JoinColumn(name = "FK2_FOR_ALIAS_TABLE", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "FK8_FOR_CUSTOMER_TABLE", referencedColumnName = "ID"))
     public Collection<Customer> getCustomersNoop() {
         return customersNoop;
     }
@@ -102,10 +100,7 @@ public class Alias implements java.io.Serializable {
     }
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "FKS_ALIAS_CUSTOMER",
-            joinColumns = @JoinColumn(name = "FK_FOR_ALIAS_TABLE", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "FK_FOR_CUSTOMER_TABLE", referencedColumnName = "ID"))
+    @JoinTable(name = "FKS_ALIAS_CUSTOMER", joinColumns = @JoinColumn(name = "FK_FOR_ALIAS_TABLE", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "FK_FOR_CUSTOMER_TABLE", referencedColumnName = "ID"))
     public Collection<Customer> getCustomers() {
         return customers;
     }

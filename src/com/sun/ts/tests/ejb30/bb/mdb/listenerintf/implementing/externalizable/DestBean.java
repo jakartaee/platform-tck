@@ -35,11 +35,9 @@ import jakarta.jms.MessageListener;
 // but it should not be considered
 // when determining the messaging type.
 //
-@MessageDriven(
-        name = "DestBean",
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
-        })
+@MessageDriven(name = "DestBean", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+})
 public class DestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase
         implements java.io.Externalizable, MessageDrivenBean, MessageListener {
     private MessageDrivenContext messageDrivenContext;
@@ -55,9 +53,11 @@ public class DestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBean
     //////////////////////////////////////////////////////////////////////
     // methods in Externalizable
     //////////////////////////////////////////////////////////////////////
-    public void readExternal(java.io.ObjectInput in) throws java.io.IOException, ClassNotFoundException {}
+    public void readExternal(java.io.ObjectInput in) throws java.io.IOException, ClassNotFoundException {
+    }
 
-    public void writeExternal(java.io.ObjectOutput out) throws java.io.IOException {}
+    public void writeExternal(java.io.ObjectOutput out) throws java.io.IOException {
+    }
 
     //////////////////////////////////////////////////////////////////////
     // methods from MessageDrivenBean
@@ -67,5 +67,6 @@ public class DestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBean
         this.messageDrivenContext = messageDrivenContext;
     }
 
-    public void ejbRemove() throws jakarta.ejb.EJBException {}
+    public void ejbRemove() throws jakarta.ejb.EJBException {
+    }
 }

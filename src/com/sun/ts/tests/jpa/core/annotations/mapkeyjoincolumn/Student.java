@@ -33,7 +33,8 @@ public class Student implements java.io.Serializable {
 
     String studentName;
 
-    public Student() {}
+    public Student() {
+    }
 
     public Student(int id) {
         this.id = id;
@@ -45,15 +46,11 @@ public class Student implements java.io.Serializable {
     }
 
     /*
-     * students and semesters are many-many enrollment contains past and present
-     * student enrollments
+     * students and semesters are many-many enrollment contains past and present student enrollments
      */
     @ManyToMany
     @MapKeyJoinColumn(name = "ENROLLMENT_KEY", insertable = true, nullable = false, unique = true, updatable = false)
-    @JoinTable(
-            name = "ENROLLMENTS",
-            joinColumns = @JoinColumn(name = "STUDENT"),
-            inverseJoinColumns = @JoinColumn(name = "SEMESTER"))
+    @JoinTable(name = "ENROLLMENTS", joinColumns = @JoinColumn(name = "STUDENT"), inverseJoinColumns = @JoinColumn(name = "SEMESTER"))
     Map<Course, Semester> enrollment;
 
     public Set<Course> getCourses() {

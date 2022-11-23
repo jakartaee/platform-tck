@@ -38,7 +38,8 @@ public class Client extends PMClientBase {
 
     private final Date d5 = getSQLDate(2004, 4, 10);
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -64,17 +65,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: associationOverride
      *
-     * @assertion_ids: PERSISTENCE:SPEC:593; PERSISTENCE:SPEC:596;
-     * PERSISTENCE:SPEC:597; PERSISTENCE:SPEC:598; PERSISTENCE:SPEC:599;
-     * PERSISTENCE:SPEC:1130; PERSISTENCE:SPEC:1131; PERSISTENCE:SPEC:1132;
-     * PERSISTENCE:SPEC:1133; PERSISTENCE:SPEC:1061; PERSISTENCE:SPEC:1062;
-     * PERSISTENCE:JAVADOC:4; PERSISTENCE:JAVADOC:5; PERSISTENCE:JAVADOC:6;
-     * PERSISTENCE:JAVADOC:2; PERSISTENCE:JAVADOC:1; PERSISTENCE:SPEC:1964;
-     * PERSISTENCE:SPEC:1965; PERSISTENCE:SPEC:1969;
+     * @assertion_ids: PERSISTENCE:SPEC:593; PERSISTENCE:SPEC:596; PERSISTENCE:SPEC:597; PERSISTENCE:SPEC:598;
+     * PERSISTENCE:SPEC:599; PERSISTENCE:SPEC:1130; PERSISTENCE:SPEC:1131; PERSISTENCE:SPEC:1132; PERSISTENCE:SPEC:1133;
+     * PERSISTENCE:SPEC:1061; PERSISTENCE:SPEC:1062; PERSISTENCE:JAVADOC:4; PERSISTENCE:JAVADOC:5; PERSISTENCE:JAVADOC:6;
+     * PERSISTENCE:JAVADOC:2; PERSISTENCE:JAVADOC:1; PERSISTENCE:SPEC:1964; PERSISTENCE:SPEC:1965; PERSISTENCE:SPEC:1969;
      *
-     * @test_Strategy: An entity may have a mapped superclass which provides
-     * persistent entity state and mapping information. Use AssociationOverride
-     * annotation
+     * @test_Strategy: An entity may have a mapped superclass which provides persistent entity state and mapping
+     * information. Use AssociationOverride annotation
      */
     public void associationOverride() throws Fault {
 

@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,8 +56,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:672.11; Servlet:JAVADOC:673.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a
-     * ServletRequestAttributeListener is added; Verify in servlet that
+     * @test_Strategy: Create a Servlet, in which, a ServletRequestAttributeListener is added; Verify in servlet that
      * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddSRAListenerClassTest() throws Fault {
@@ -73,8 +70,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:671.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a
-     * ServletRequestAttributeListener is added; Verify in servlet that
+     * @test_Strategy: Create a Servlet, in which, a ServletRequestAttributeListener is added; Verify in servlet that
      * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddSRAListenerStringTest() throws Fault {
@@ -88,8 +84,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:672.11; Servlet:JAVADOC:673.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a ServletRequestListener is
-     * added; Verify in servlet that java.lang.IllegalStateException is thrown.
+     * @test_Strategy: Create a Servlet, in which, a ServletRequestListener is added; Verify in servlet that
+     * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddSRListenerClassTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "negativeaddSRListenerClassTest");
@@ -102,8 +98,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:671.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a ServletRequestListener is
-     * added; Verify in servlet that java.lang.IllegalStateException is thrown.
+     * @test_Strategy: Create a Servlet, in which, a ServletRequestListener is added; Verify in servlet that
+     * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddSRListenerStringTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "negativeaddSRListenerStringTest");
@@ -116,8 +112,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:672.11; Servlet:JAVADOC:673.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a
-     * ServletContextAttributeListener is added; Verify in servlet that
+     * @test_Strategy: Create a Servlet, in which, a ServletContextAttributeListener is added; Verify in servlet that
      * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddSCAListenerClassTest() throws Fault {
@@ -131,8 +126,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:671.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a
-     * ServletContextAttributeListener is added; Verify in servlet that
+     * @test_Strategy: Create a Servlet, in which, a ServletContextAttributeListener is added; Verify in servlet that
      * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddSCAListenerStringTest() throws Fault {
@@ -146,8 +140,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:672.11; Servlet:JAVADOC:673.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a ServletContextListener is
-     * added; Verify in servlet that java.lang.IllegalStateException is thrown.
+     * @test_Strategy: Create a Servlet, in which, a ServletContextListener is added; Verify in servlet that
+     * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddSCListenerClassTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "negativeaddSCListenerClassTest");
@@ -160,8 +154,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:671.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a ServletContextListener is
-     * added; Verify in servlet that java.lang.IllegalStateException is thrown.
+     * @test_Strategy: Create a Servlet, in which, a ServletContextListener is added; Verify in servlet that
+     * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddSCListenerStringTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "negativeaddSCListenerStringTest");

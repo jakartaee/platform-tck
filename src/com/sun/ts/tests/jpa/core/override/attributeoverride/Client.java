@@ -32,7 +32,8 @@ public class Client extends PMClientBase {
 
     private static final int COST = 20;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -53,13 +54,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: testNoAttributeOverrideAnnotation
      *
-     * @assertion_ids: PERSISTENCE:SPEC:594; PERSISTENCE:SPEC:596;
-     * PERSISTENCE:SPEC:597; PERSISTENCE:SPEC:598; PERSISTENCE:SPEC:599;
-     * PERSISTENCE:SPEC:600; PERSISTENCE:SPEC:601;
+     * @assertion_ids: PERSISTENCE:SPEC:594; PERSISTENCE:SPEC:596; PERSISTENCE:SPEC:597; PERSISTENCE:SPEC:598;
+     * PERSISTENCE:SPEC:599; PERSISTENCE:SPEC:600; PERSISTENCE:SPEC:601;
      *
-     * @test_Strategy: LawBook is an entity which extends a class Book. A column
-     * "name" is overriden in Orm.xml as "BOOK_NAME". The following test tests for
-     * the same.
+     * @test_Strategy: LawBook is an entity which extends a class Book. A column "name" is overriden in Orm.xml as
+     * "BOOK_NAME". The following test tests for the same.
      */
     public void testNoAttributeOverrideAnnotation() throws Fault {
 

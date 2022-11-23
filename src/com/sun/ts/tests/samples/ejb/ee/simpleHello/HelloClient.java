@@ -28,9 +28,9 @@ import com.sun.ts.lib.util.TSNamingContextInterface;
 import java.util.Properties;
 
 /**
- * The HelloClient class tests creating a simple hello bean using
- * Sun's EJB Reference Implementation.
- * @author  Tester
+ * The HelloClient class tests creating a simple hello bean using Sun's EJB Reference Implementation.
+ *
+ * @author Tester
  * @version %I%, $LastChangedDate$
  */
 public class HelloClient extends EETest {
@@ -84,12 +84,10 @@ public class HelloClient extends EETest {
     /*
      * @testName: helloTest1
      *
-     * @assertion: Call the sayhello() "business" method and return the "hello"
-     * string.
+     * @assertion: Call the sayhello() "business" method and return the "hello" string.
      *
-     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE
-     * server. From the EJB client. call the sayHello() business method. It should
-     * return the "hello world" string.
+     * @test_Strategy: Create a stateful Session EJBean. Deploy it on the J2EE server. From the EJB client. call the
+     * sayHello() business method. It should return the "hello world" string.
      *
      */
     @CleanupMethod(name = "helloTestCleanup")

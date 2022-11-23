@@ -29,12 +29,7 @@ import jakarta.xml.ws.WebServiceException;
 import jakarta.xml.ws.handler.MessageContext;
 import java.lang.reflect.*;
 
-@WebService(
-        portName = "HttpTestPort",
-        serviceName = "HttpTestService",
-        targetNamespace = "http://httptestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JRLHttpServletMsgCtxPropsTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTest")
+@WebService(portName = "HttpTestPort", serviceName = "HttpTestService", targetNamespace = "http://httptestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLHttpServletMsgCtxPropsTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTest")
 public class HttpTestImpl implements HttpTest {
 
     @Resource

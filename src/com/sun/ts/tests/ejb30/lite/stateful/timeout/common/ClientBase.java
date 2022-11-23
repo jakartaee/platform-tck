@@ -30,14 +30,8 @@ import jakarta.ejb.EJBs;
 import jakarta.ejb.NoSuchEJBException;
 
 @EJBs({
-    @EJB(
-            name = ClientBase.defaultUnitBeanLocalName,
-            beanName = "DefaultUnitBean",
-            beanInterface = StatefulTimeoutIF.class),
-    @EJB(
-            name = ClientBase.secondUnitBeanLocalName,
-            beanName = "SecondUnitBean",
-            beanInterface = StatefulTimeoutIF.class)
+        @EJB(name = ClientBase.defaultUnitBeanLocalName, beanName = "DefaultUnitBean", beanInterface = StatefulTimeoutIF.class),
+        @EJB(name = ClientBase.secondUnitBeanLocalName, beanName = "SecondUnitBean", beanInterface = StatefulTimeoutIF.class)
 })
 public abstract class ClientBase extends EJBLiteClientBase {
 
@@ -162,10 +156,9 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: defaultUnitLocal
      *
-     * @test_Strategy: the default time unit is minute for @StatefulTimeout or
-     * stateful-timeout. Verify that the target bean instance is removed after the
-     * timeout value has passed. Verify that the target bean instance is still
-     * active within the timeout limit.
+     * @test_Strategy: the default time unit is minute for @StatefulTimeout or stateful-timeout. Verify that the target bean
+     * instance is removed after the timeout value has passed. Verify that the target bean instance is still active within
+     * the timeout limit.
      */
     public void defaultUnitLocal() {
         defaultUnit(getDefaultUnitBeanLocal());
@@ -174,8 +167,7 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: defaultUnitRemote
      *
-     * @test_Strategy: Same as above. This test invokes remote business method and
-     * is not available in ejb lite test suite.
+     * @test_Strategy: Same as above. This test invokes remote business method and is not available in ejb lite test suite.
      */
     public void defaultUnitRemote() {
         defaultUnit(getDefaultUnitBeanRemote());
@@ -193,10 +185,9 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: secondUnitLocal
      *
-     * @test_Strategy: The StatefulTimeout in the target bean (SecondUnitBean) is
-     * specified with time unit second. Verify that the target bean instance is
-     * removed after the timeout value has passed. Verify that the target bean
-     * instance is still active within the timeout limit.
+     * @test_Strategy: The StatefulTimeout in the target bean (SecondUnitBean) is specified with time unit second. Verify
+     * that the target bean instance is removed after the timeout value has passed. Verify that the target bean instance is
+     * still active within the timeout limit.
      */
     public void secondUnitLocal() {
         secondUnit(getSecondUnitBeanLocal());
@@ -205,8 +196,7 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: secondUnitRemote
      *
-     * @test_Strategy: Same as above. This test invokes remote business method and
-     * is not available in ejb lite test suite.
+     * @test_Strategy: Same as above. This test invokes remote business method and is not available in ejb lite test suite.
      */
     public void secondUnitRemote() {
         secondUnit(getSecondUnitBeanRemote());
@@ -287,8 +277,7 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: zeroTimeout
      *
-     * @test_Strategy: the target bean is eligible for removal immediately after
-     * being idle.
+     * @test_Strategy: the target bean is eligible for removal immediately after being idle.
      */
     public void zeroTimeout() {
         boolean passed = false;

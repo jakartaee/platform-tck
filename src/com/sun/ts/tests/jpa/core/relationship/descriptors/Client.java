@@ -44,7 +44,8 @@ public class Client extends PMClientBase {
 
     private static final XTeam tRef[] = new XTeam[10];
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -68,20 +69,16 @@ public class Client extends PMClientBase {
     /*
      * @testName: descriptorMappingTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:919;
-     * PERSISTENCE:SPEC:949; PERSISTENCE:SPEC:950
+     * @assertion_ids: PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:919; PERSISTENCE:SPEC:949; PERSISTENCE:SPEC:950
      *
-     * @test_Strategy: RelationShip Mapping Using Descriptors BiDirectional
-     * OneToOne Relationship
+     * @test_Strategy: RelationShip Mapping Using Descriptors BiDirectional OneToOne Relationship
      *
      * OnePerson to OneProjectLead
      *
-     * Entity Person mapped to table named PERSON references a single instance of
-     * Project. Entity Project mapped to table named PROJECT a single instance of
-     * Person. Entity Person is the owner of the relationship.
+     * Entity Person mapped to table named PERSON references a single instance of Project. Entity Project mapped to table
+     * named PROJECT a single instance of Person. Entity Person is the owner of the relationship.
      *
-     * Table PERSON contains a foreign key to PROJECT. The foreign key is named
-     * PROJECT_PROJID.
+     * Table PERSON contains a foreign key to PROJECT. The foreign key is named PROJECT_PROJID.
      *
      */
 
@@ -122,7 +119,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("descriptorMappingTest1 failed");
+        if (!pass)
+            throw new Fault("descriptorMappingTest1 failed");
     }
 
     /*
@@ -130,17 +128,14 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:919;
      *
-     * @test_Strategy: RelationShip Mapping Using Descriptors BiDirectional
-     * ManyToOne Relationship
+     * @test_Strategy: RelationShip Mapping Using Descriptors BiDirectional ManyToOne Relationship
      *
      * ManyTeams to OneCompany
      *
-     * Entity Team is mapped to a table named TEAM references a single instance of
-     * Company. Entity Company mapped to table named COMPANY references a
-     * collection of Entity Team. Entity Team is the owner of the relationship.
+     * Entity Team is mapped to a table named TEAM references a single instance of Company. Entity Company mapped to table
+     * named COMPANY references a collection of Entity Team. Entity Team is the owner of the relationship.
      *
-     * Table TEAM contains a foreign key to COMPANY. The foreign key is named
-     * COMPANY_COMPANYID.
+     * Table TEAM contains a foreign key to COMPANY. The foreign key is named COMPANY_COMPANYID.
      *
      */
 
@@ -153,8 +148,8 @@ public class Client extends PMClientBase {
         Vector<XTeam> v2;
         int foundTeam1 = 0;
         int foundTeam2 = 0;
-        final String[] expectedTeam1 = new String[] {"Engineering", "Marketing", "Sales"};
-        final String[] expectedTeam2 = new String[] {"Accounting", "Training"};
+        final String[] expectedTeam1 = new String[] { "Engineering", "Marketing", "Sales" };
+        final String[] expectedTeam2 = new String[] { "Accounting", "Training" };
 
         try {
             createTeams();
@@ -254,7 +249,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass2) throw new Fault("descriptorMappingTest2 failed");
+        if (!pass2)
+            throw new Fault("descriptorMappingTest2 failed");
     }
 
     /*
@@ -262,18 +258,14 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:919;
      *
-     * @test_Strategy: RelationShip Mapping Using Descriptors BiDirectional
-     * OneToMany Relationship
+     * @test_Strategy: RelationShip Mapping Using Descriptors BiDirectional OneToMany Relationship
      *
      * OneCompany To ManyTeams
      *
-     * Entity Company mapped to table named COMPANY references a collection of
-     * Entity Team. Entity Team is mapped to a table named TEAM references a
-     * single instance of Entity Company. Entity Team is the owner of the
-     * relationship.
+     * Entity Company mapped to table named COMPANY references a collection of Entity Team. Entity Team is mapped to a table
+     * named TEAM references a single instance of Entity Company. Entity Team is the owner of the relationship.
      *
-     * Table TEAM contains a foreign key to COMPANY. The foreign key is named
-     * COMPANY_COMPANYID.
+     * Table TEAM contains a foreign key to COMPANY. The foreign key is named COMPANY_COMPANYID.
      *
      */
 
@@ -349,7 +341,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("descriptorMappingTest3 failed");
+        if (!pass)
+            throw new Fault("descriptorMappingTest3 failed");
     }
 
     /*
@@ -357,18 +350,14 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:919;
      *
-     * @test_Strategy: RelationShip Mapping Using Descriptors UniDirectional
-     * OneToOne Relationship
+     * @test_Strategy: RelationShip Mapping Using Descriptors UniDirectional OneToOne Relationship
      *
      * OneCompany To OneAddress
      *
-     * Entity Company mapped to table named COMPANY references a single instance
-     * of Entity Address. Entity Address is mapped to a table named ADDRESS which
-     * does not reference Entity Company. Entity Company is the owner of the
-     * relationship.
+     * Entity Company mapped to table named COMPANY references a single instance of Entity Address. Entity Address is mapped
+     * to a table named ADDRESS which does not reference Entity Company. Entity Company is the owner of the relationship.
      *
-     * Table COMPANY contains a foreign key to ADDRESS. The foreign key is named
-     * ADDRESS_ID.
+     * Table COMPANY contains a foreign key to ADDRESS. The foreign key is named ADDRESS_ID.
      *
      */
 
@@ -419,7 +408,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("descriptorMappingTest4 failed");
+        if (!pass)
+            throw new Fault("descriptorMappingTest4 failed");
     }
 
     /*
@@ -427,17 +417,14 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:919;
      *
-     * @test_Strategy: RelationShip Mapping Using Descriptors UniDirectional
-     * ManyToOne Relationship
+     * @test_Strategy: RelationShip Mapping Using Descriptors UniDirectional ManyToOne Relationship
      *
      * ManyPersons To OneTeam
      *
-     * Entity Person mapped to table named PERSON references a single instance of
-     * Entity Team. Entity Team is mapped to a table named TEAM and does not
-     * reference Entity Person. Entity Person is the owner of the relationship.
+     * Entity Person mapped to table named PERSON references a single instance of Entity Team. Entity Team is mapped to a
+     * table named TEAM and does not reference Entity Person. Entity Person is the owner of the relationship.
      *
-     * Table PERSON contains a foreign key to TEAM. The foreign key is named
-     * TEAM_TEAMID.
+     * Table PERSON contains a foreign key to TEAM. The foreign key is named TEAM_TEAMID.
      *
      */
 
@@ -501,7 +488,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("descriptorMappingTest5 failed");
+        if (!pass)
+            throw new Fault("descriptorMappingTest5 failed");
     }
 
     /*
@@ -509,20 +497,16 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:919;
      *
-     * @test_Strategy: RelationShip Mapping Using Descriptors BiDirectional
-     * ManyToMany Relationship
+     * @test_Strategy: RelationShip Mapping Using Descriptors BiDirectional ManyToMany Relationship
      *
      * ManyProjects To ManyPersons
      *
-     * Entity Project mapped to table named PROJECT references a collection of
-     * Entity Project. Entity Person is mapped to a table named PERSON and
-     * references a collection of Entity Project. Entity Project is the owner of
-     * the relationship.
+     * Entity Project mapped to table named PROJECT references a collection of Entity Project. Entity Person is mapped to a
+     * table named PERSON and references a collection of Entity Project. Entity Project is the owner of the relationship.
      *
-     * There is a join table named PROJECT_PERSON (owner named first. One foreign
-     * key column refers to table PROJECT. The name of the foreign key column is
-     * PROJECTS_PROJID. The other foreign key column is refers to the PERSON
-     * table. The name of this foreign key is PERSONS_PERSONID.
+     * There is a join table named PROJECT_PERSON (owner named first. One foreign key column refers to table PROJECT. The
+     * name of the foreign key column is PROJECTS_PROJID. The other foreign key column is refers to the PERSON table. The
+     * name of this foreign key is PERSONS_PERSONID.
      *
      */
 
@@ -532,8 +516,8 @@ public class Client extends PMClientBase {
         boolean pass2 = false;
         int foundProject1 = 0;
         int foundProject2 = 0;
-        final Long[] expectedResults1 = new Long[] {123456789L, 345678901L, 567890123L};
-        final Long[] expectedResults2 = new Long[] {234567890L, 345678901L, 456789012L};
+        final Long[] expectedResults1 = new Long[] { 123456789L, 345678901L, 567890123L };
+        final Long[] expectedResults2 = new Long[] { 234567890L, 345678901L, 456789012L };
 
         try {
             createPeople();
@@ -653,7 +637,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("descriptorMappingTest6 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("descriptorMappingTest6 failed");
     }
 
     /*
@@ -661,20 +646,17 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:919;
      *
-     * @test_Strategy: RelationShip Mapping Using Descriptors UniDirectional
-     * OneToMany Relationship
+     * @test_Strategy: RelationShip Mapping Using Descriptors UniDirectional OneToMany Relationship
      *
      * OnePerson To ManyReviews
      *
-     * Entity Person mapped to table named PERSON references a collection of
-     * Entity AnnualReview. Entity AnnualReview is mapped to a table named
-     * ANNUALREVIEW which does not reference Entity Person. Entity Person is the
-     * owner of the relationship.
+     * Entity Person mapped to table named PERSON references a collection of Entity AnnualReview. Entity AnnualReview is
+     * mapped to a table named ANNUALREVIEW which does not reference Entity Person. Entity Person is the owner of the
+     * relationship.
      *
-     * There is a join table named PERSON_ANNUALREVIEW (owner named first. One
-     * foreign key column refers to table PERSON. The name of the foreign key
-     * column is PERSON_PERSONID. The other foreign key column is refers to the
-     * ANNUALREVIEW table. The name of this foreign key is ANNUALREVIEWS_AID.
+     * There is a join table named PERSON_ANNUALREVIEW (owner named first. One foreign key column refers to table PERSON.
+     * The name of the foreign key column is PERSON_PERSONID. The other foreign key column is refers to the ANNUALREVIEW
+     * table. The name of this foreign key is ANNUALREVIEWS_AID.
      *
      */
 
@@ -692,11 +674,11 @@ public class Client extends PMClientBase {
         int foundCol3 = 0;
         int foundCol4 = 0;
         int foundCol5 = 0;
-        Integer[] expectedCol1 = new Integer[] {1, 2, 3, 4};
-        Integer[] expectedCol2 = new Integer[] {5, 6};
-        Integer[] expectedCol3 = new Integer[] {3, 8};
-        Integer[] expectedCol4 = new Integer[] {4, 7};
-        Integer[] expectedCol5 = new Integer[] {1, 2, 3, 4};
+        Integer[] expectedCol1 = new Integer[] { 1, 2, 3, 4 };
+        Integer[] expectedCol2 = new Integer[] { 5, 6 };
+        Integer[] expectedCol3 = new Integer[] { 3, 8 };
+        Integer[] expectedCol4 = new Integer[] { 4, 7 };
+        Integer[] expectedCol5 = new Integer[] { 1, 2, 3, 4 };
 
         try {
             createReviews();
@@ -856,7 +838,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("descriptorMappingTest7 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("descriptorMappingTest7 failed");
     }
 
     /*
@@ -864,20 +847,16 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:919;
      *
-     * @test_Strategy: RelationShip Mapping Using Descriptors UniDirectional
-     * ManyToMany Relationship
+     * @test_Strategy: RelationShip Mapping Using Descriptors UniDirectional ManyToMany Relationship
      *
      * ManyPersons To ManyInsurances
      *
-     * Entity Person mapped to table named PERSON references a collection of
-     * Entity Insurance. Entity Insurance is mapped to a table named INSURANCE and
-     * which does not reference Entity Person. Entity Person is the owner of the
-     * relationship.
+     * Entity Person mapped to table named PERSON references a collection of Entity Insurance. Entity Insurance is mapped to
+     * a table named INSURANCE and which does not reference Entity Person. Entity Person is the owner of the relationship.
      *
-     * There is a join table named PERSON_INSURANCE (owner named first. One
-     * foreign key column refers to table PERSON. The name of the foreign key
-     * column is PERSON_PERSONID. The other foreign key column is refers to the
-     * INSURANCE table. The name of this foreign key is INSURANCES_INSID.
+     * There is a join table named PERSON_INSURANCE (owner named first. One foreign key column refers to table PERSON. The
+     * name of the foreign key column is PERSON_PERSONID. The other foreign key column is refers to the INSURANCE table. The
+     * name of this foreign key is INSURANCES_INSID.
      *
      */
 
@@ -887,9 +866,9 @@ public class Client extends PMClientBase {
         int foundInsurance1 = 0;
         int foundInsurance2 = 0;
         int foundInsurance3 = 0;
-        Integer[] expectedResults1 = new Integer[] {1, 3};
-        Integer[] expectedResults2 = new Integer[] {2, 3};
-        Integer[] expectedResults3 = new Integer[] {1, 2, 3};
+        Integer[] expectedResults1 = new Integer[] { 1, 3 };
+        Integer[] expectedResults2 = new Integer[] { 2, 3 };
+        Integer[] expectedResults3 = new Integer[] { 1, 2, 3 };
 
         try {
             createPeople();
@@ -996,7 +975,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("descriptorMappingTest8 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("descriptorMappingTest8 failed");
     }
 
     /*

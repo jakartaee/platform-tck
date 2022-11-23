@@ -34,27 +34,20 @@ import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
 /**
- * If a Message Listener Interface(MLI) is bundled into a standalone .rar file,
- * then that MLI should be accessible to MDB's that wishes to implement it but
- * not bundle it in the ejb jar file. (Bug id 6559421)
+ * If a Message Listener Interface(MLI) is bundled into a standalone .rar file, then that MLI should be accessible to
+ * MDB's that wishes to implement it but not bundle it in the ejb jar file. (Bug id 6559421)
  *
- * This MDB is a EJB3.0 based Message Driven Bean, which uses custom
- * MessageListener TSMessageListenerInterface.
+ * This MDB is a EJB3.0 based Message Driven Bean, which uses custom MessageListener TSMessageListenerInterface.
  *
- * The purpose of this MDB is to verify, that the custom Message Listener
- * interface is not required to be packaged along with ejb jar files, since the
- * custom Message Listener interface(TSMessageListenerInterface) is already
- * availale in the resource adapter, it should be available for the MDB.
+ * The purpose of this MDB is to verify, that the custom Message Listener interface is not required to be packaged along
+ * with ejb jar files, since the custom Message Listener interface(TSMessageListenerInterface) is already availale in
+ * the resource adapter, it should be available for the MDB.
  *
- * Note: This MDB makes use of the whitebox-tx resource adapter from connector
- * test area.
+ * Note: This MDB makes use of the whitebox-tx resource adapter from connector test area.
  */
-@MessageDriven(
-        name = "MDBean",
-        messageListenerInterface = TSMessageListenerInterface.class,
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "java.lang.String")
-        })
+@MessageDriven(name = "MDBean", messageListenerInterface = TSMessageListenerInterface.class, activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "java.lang.String")
+})
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class MDBean extends CallbackBeanBase implements TSMessageListenerInterface {
     @Resource(name = "mdc")

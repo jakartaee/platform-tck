@@ -38,13 +38,11 @@ import org.apache.commons.io.input.TeeInputStream;
 public class Client extends EETest {
     private Properties props = null;
 
-    private String srcDir =
-            "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/util/utiltests";
+    private String srcDir = "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/util/utiltests";
 
     private String testDir = null;
 
-    private String pkgName =
-            "com.sun.ts.tests.internal.implementation.sjsas.saaj.com.sun.xml.messaging.saaj.util.utiltests";
+    private String pkgName = "com.sun.ts.tests.internal.implementation.sjsas.saaj.com.sun.xml.messaging.saaj.util.utiltests";
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -96,7 +94,8 @@ public class Client extends EETest {
             throw new Fault("Base64Test failed", e);
         }
 
-        if (!pass) throw new Fault("Base64Test failed");
+        if (!pass)
+            throw new Fault("Base64Test failed");
     }
 
     /*
@@ -149,7 +148,8 @@ public class Client extends EETest {
             throw new Fault("ByteInputStreamTest failed", e);
         }
 
-        if (!pass) throw new Fault("ByteInputStreamTest failed");
+        if (!pass)
+            throw new Fault("ByteInputStreamTest failed");
     }
 
     /*
@@ -186,7 +186,8 @@ public class Client extends EETest {
             throw new Fault("ByteOutputStreamTest failed", e);
         }
 
-        if (!pass) throw new Fault("ByteOutputStreamTest failed");
+        if (!pass)
+            throw new Fault("ByteOutputStreamTest failed");
     }
 
     /*
@@ -217,7 +218,8 @@ public class Client extends EETest {
             throw new Fault("CharReaderTest failed", e);
         }
 
-        if (!pass) throw new Fault("CharReaderTest failed");
+        if (!pass)
+            throw new Fault("CharReaderTest failed");
     }
 
     /*
@@ -246,7 +248,8 @@ public class Client extends EETest {
             throw new Fault("CharWriterTest failed", e);
         }
 
-        if (!pass) throw new Fault("CharWriterTest failed");
+        if (!pass)
+            throw new Fault("CharWriterTest failed");
     }
 
     /*
@@ -271,7 +274,8 @@ public class Client extends EETest {
             throw new Fault("ParseUtilTest failed", e);
         }
 
-        if (!pass) throw new Fault("ParseUtilTest failed");
+        if (!pass)
+            throw new Fault("ParseUtilTest failed");
     }
 
     /*
@@ -299,7 +303,8 @@ public class Client extends EETest {
             throw new Fault("MimeHeadersUtilTest failed", e);
         }
 
-        if (!pass) throw new Fault("MimeHeadersUtilTest failed");
+        if (!pass)
+            throw new Fault("MimeHeadersUtilTest failed");
     }
 
     /*
@@ -356,7 +361,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Call TeeInputStream.markSupported() method");
             boolean mark = tis.markSupported();
             TestUtil.logMsg("Call TeeInputStream.mark(int) method");
-            if (mark) tis.mark(512);
+            if (mark)
+                tis.mark(512);
             TestUtil.logMsg("Call TeeInputStream.close() method");
             try {
                 tis.close();
@@ -368,7 +374,8 @@ public class Client extends EETest {
             throw new Fault("TeeInputStreamTest failed", e);
         }
 
-        if (!pass) throw new Fault("TeeInputStreamTest failed");
+        if (!pass)
+            throw new Fault("TeeInputStreamTest failed");
     }
 
     /*
@@ -382,10 +389,10 @@ public class Client extends EETest {
         TestUtil.logTrace("XMLDeclarationParserTest");
         boolean pass = true;
         String[] docs = {
-            "",
-            "<?xml version='1.0' encoding= 'UTF-8'?>",
-            "<?xml version='1.0' encoding= 'UTF-16'?>",
-            "<?xml version='1.0' encoding ='US-ASCII' ?>",
+                "",
+                "<?xml version='1.0' encoding= 'UTF-8'?>",
+                "<?xml version='1.0' encoding= 'UTF-16'?>",
+                "<?xml version='1.0' encoding ='US-ASCII' ?>",
         };
         ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);
         for (int i = 0; i < docs.length; i++) {
@@ -409,6 +416,7 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("XMLDeclarationParserTest failed");
+        if (!pass)
+            throw new Fault("XMLDeclarationParserTest failed");
     }
 }

@@ -24,8 +24,7 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * A callback listerner for stateless session beans. Two callback annotations
- * are applied on the same method.
+ * A callback listerner for stateless session beans. Two callback annotations are applied on the same method.
  */
 public class StatelessCallbackListener2 {
 

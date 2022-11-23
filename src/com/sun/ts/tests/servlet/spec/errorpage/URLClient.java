@@ -28,9 +28,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -59,12 +57,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: servletToDifferentErrorPagesTest
      *
-     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:106; Servlet:SPEC:104.3.1;
-     * Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3; Servlet:SPEC:104.3.4;
-     * Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
+     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:106; Servlet:SPEC:104.3.1; Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3;
+     * Servlet:SPEC:104.3.4; Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
      *
-     * @test_Strategy: Servlet throws two exceptions which is caught by two error
-     * pages; one is a servlet; thother HTML page
+     * @test_Strategy: Servlet throws two exceptions which is caught by two error pages; one is a servlet; thother HTML page
      */
 
     public void servletToDifferentErrorPagesTest() throws Fault {
@@ -88,11 +84,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: statusCodeErrorPageTest
      *
-     * @assertion_ids: Servlet:SPEC:109; Servlet:SPEC:105; Servlet:SPEC:104.3.1;
-     * Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
+     * @assertion_ids: Servlet:SPEC:109; Servlet:SPEC:105; Servlet:SPEC:104.3.1; Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
      *
-     * @test_Strategy: Servlet uses SendError and the Error Page should be invoked
-     * with the appropriate info regarding the error
+     * @test_Strategy: Servlet uses SendError and the Error Page should be invoked with the appropriate info regarding the
+     * error
      */
     public void statusCodeErrorPageTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "statusCodeErrorPageTest");
@@ -107,15 +102,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: heirarchyErrorMatchTest
      *
-     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:106; Servlet:SPEC:104.3.1;
-     * Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3; Servlet:SPEC:104.3.4;
-     * Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
+     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:106; Servlet:SPEC:104.3.1; Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3;
+     * Servlet:SPEC:104.3.4; Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
      *
-     * @test_Strategy: Servlet throws IllegalThreadStateException; No error pages
-     * are defined to deal with IllegalThreadStateException; The closest Exception
-     * defined to be dealt by error page is java.lang.IllegalStateException;
-     * Verify this Error Page is invoked with the appropriate info regarding the
-     * error
+     * @test_Strategy: Servlet throws IllegalThreadStateException; No error pages are defined to deal with
+     * IllegalThreadStateException; The closest Exception defined to be dealt by error page is
+     * java.lang.IllegalStateException; Verify this Error Page is invoked with the appropriate info regarding the error
      */
 
     public void heirarchyErrorMatchTest() throws Fault {
@@ -131,14 +123,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: wrappedExceptionTest
      *
-     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:107; Servlet:SPEC:104.3.1;
-     * Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3; Servlet:SPEC:104.3.4;
-     * Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
+     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:107; Servlet:SPEC:104.3.1; Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3;
+     * Servlet:SPEC:104.3.4; Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
      *
-     * @test_Strategy: Servlet throws ServletException which wraps a
-     * TestException; No error pages are defined to deal with ServletException;
-     * But there is an error page defined for TestException; Verify this Error
-     * Page is invoked with the appropriate info regarding the error
+     * @test_Strategy: Servlet throws ServletException which wraps a TestException; No error pages are defined to deal with
+     * ServletException; But there is an error page defined for TestException; Verify this Error Page is invoked with the
+     * appropriate info regarding the error
      */
 
     public void wrappedExceptionTest() throws Fault {

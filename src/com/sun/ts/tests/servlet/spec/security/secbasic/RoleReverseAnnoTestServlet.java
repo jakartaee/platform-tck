@@ -38,15 +38,12 @@ import java.io.PrintWriter;
  *
  */
 
-@DeclareRoles({"Administrator", "Manager", "VP", "Employee"})
-@ServletSecurity(
-        httpMethodConstraints = {
-            @HttpMethodConstraint(value = "GET", rolesAllowed = "Employee"),
-            @HttpMethodConstraint(value = "POST", rolesAllowed = "Employee")
-        })
-@WebServlet(
-        name = "RoleReverseAnnoTestLogicalName",
-        urlPatterns = {"/RoleReverseAnnoTest"})
+@DeclareRoles({ "Administrator", "Manager", "VP", "Employee" })
+@ServletSecurity(httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Employee"),
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "Employee")
+})
+@WebServlet(name = "RoleReverseAnnoTestLogicalName", urlPatterns = { "/RoleReverseAnnoTest" })
 public class RoleReverseAnnoTestServlet extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

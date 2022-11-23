@@ -25,12 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "AddNumbersPort",
-        serviceName = "AddNumbersService",
-        targetNamespace = "http://example.com/",
-        wsdlLocation = "WEB-INF/wsdl/WSAW2JDLActionTest.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.action.AddNumbersPortType")
+@WebService(portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com/", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLActionTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.action.AddNumbersPortType")
 public class AddNumbersImpl implements AddNumbersPortType {
     public int addNumbers(int number1, int number2) throws AddNumbersFault_Exception, TooBigNumbersFault_Exception {
         if (number1 < 0 || number2 < 0) {

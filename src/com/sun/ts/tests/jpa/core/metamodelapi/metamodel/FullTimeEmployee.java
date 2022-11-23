@@ -34,17 +34,18 @@ import java.sql.Date;
 @Entity
 @Table(name = "EMPLOYEE")
 @AttributeOverrides({
-    @AttributeOverride(name = "id", column = @Column(name = "ID")),
-    @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
-    @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")),
-    @AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE"))
+        @AttributeOverride(name = "id", column = @Column(name = "ID")),
+        @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
+        @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")),
+        @AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE"))
 })
 @Access(AccessType.PROPERTY)
 public class FullTimeEmployee extends Employee implements Serializable {
 
     private float salary;
 
-    public FullTimeEmployee() {}
+    public FullTimeEmployee() {
+    }
 
     public FullTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
         super(id, firstName, lastName, hireDate);

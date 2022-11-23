@@ -41,9 +41,8 @@ public abstract class TxBeanBase0 {
                     + " should have caused IllegalStateException";
             throw new TestFailedException(result);
         } catch (IllegalStateException expected) {
-            result +=
-                    "Got expected IllegalStateException when call EJBContext.getRollbackOnly inside a method with tx attr "
-                            + attr + ".";
+            result += "Got expected IllegalStateException when call EJBContext.getRollbackOnly inside a method with tx attr "
+                    + attr + ".";
         }
         try {
             getSessionContext().setRollbackOnly();
@@ -51,9 +50,8 @@ public abstract class TxBeanBase0 {
                     + " should have caused IllegalStateException";
             throw new TestFailedException(result);
         } catch (IllegalStateException expected) {
-            result +=
-                    "Got expected IllegalStateException when call EJBContext.setRollbackOnly inside a method with tx attr "
-                            + attr + ".";
+            result += "Got expected IllegalStateException when call EJBContext.setRollbackOnly inside a method with tx attr "
+                    + attr + ".";
         }
         return result;
     }

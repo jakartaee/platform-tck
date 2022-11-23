@@ -81,10 +81,12 @@ public class DBSupport2 implements java.io.Serializable {
         TestUtil.logTrace("DBSupport2");
 
         this.ectx = ectx;
-        if (debug) TestUtil.logMsg("Initializing DBSupport2 for an Entity Bean");
+        if (debug)
+            TestUtil.logMsg("Initializing DBSupport2 for an Entity Bean");
 
         try {
-            if (debug) TestUtil.logMsg("Get naming context");
+            if (debug)
+                TestUtil.logMsg("Get naming context");
             this.nctx = new TSNamingContext();
         } catch (NamingException e) {
             TestUtil.printStackTrace(e);
@@ -92,12 +94,15 @@ public class DBSupport2 implements java.io.Serializable {
         }
 
         // Lookup DataSource DB1 from JNDI
-        if (debug) TestUtil.logMsg("Lookup DataSource DB1 from JNDI : " + DATASOURCE2);
+        if (debug)
+            TestUtil.logMsg("Lookup DataSource DB1 from JNDI : " + DATASOURCE2);
         try {
             this.dsname1 = DATASOURCE2;
             this.ds1 = (DataSource) nctx.lookup(this.dsname1);
-            if (debug) TestUtil.logMsg("dsname1=" + this.dsname1);
-            if (debug) TestUtil.logMsg("ds1=" + this.ds1);
+            if (debug)
+                TestUtil.logMsg("dsname1=" + this.dsname1);
+            if (debug)
+                TestUtil.logMsg("ds1=" + this.ds1);
         } catch (NamingException e) {
             TestUtil.printStackTrace(e);
             throw new EJBException("Unable to lookup " + DATASOURCE2);
@@ -169,7 +174,8 @@ public class DBSupport2 implements java.io.Serializable {
             throw new SQLException("SQL Exception in tablePopulate");
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -191,15 +197,19 @@ public class DBSupport2 implements java.io.Serializable {
             pStmt = dbConnection.prepareStatement(sqlStr);
             pStmt.setInt(1, pkey);
             result = pStmt.executeQuery();
-            if (!result.next()) return false;
-            else return true;
+            if (!result.next())
+                return false;
+            else
+                return true;
         } catch (SQLException e) {
             TestUtil.printStackTrace(e);
             throw new SQLException("SQL Exception in keyExists");
         } finally {
             try {
-                if (result != null) result.close();
-                if (pStmt != null) pStmt.close();
+                if (result != null)
+                    result.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -232,8 +242,10 @@ public class DBSupport2 implements java.io.Serializable {
             throw new SQLException("SQL Exception in nameToKey");
         } finally {
             try {
-                if (result != null) result.close();
-                if (pStmt != null) pStmt.close();
+                if (result != null)
+                    result.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -266,8 +278,10 @@ public class DBSupport2 implements java.io.Serializable {
             throw new SQLException("SQL Exception in priceToKey");
         } finally {
             try {
-                if (result != null) result.close();
-                if (pStmt != null) pStmt.close();
+                if (result != null)
+                    result.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -301,8 +315,10 @@ public class DBSupport2 implements java.io.Serializable {
             throw new SQLException("SQL Exception in priceRangeToCollection");
         } finally {
             try {
-                if (result != null) result.close();
-                if (pStmt != null) pStmt.close();
+                if (result != null)
+                    result.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -336,8 +352,10 @@ public class DBSupport2 implements java.io.Serializable {
             throw new SQLException("SQL Exception in primaryKeyRangeToCollection");
         } finally {
             try {
-                if (result != null) result.close();
-                if (pStmt != null) pStmt.close();
+                if (result != null)
+                    result.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -371,7 +389,8 @@ public class DBSupport2 implements java.io.Serializable {
             throw new SQLException("SQL Exception in createNewRow:" + e);
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -402,8 +421,10 @@ public class DBSupport2 implements java.io.Serializable {
             throw new SQLException("SQL Exception in loadPrice");
         } finally {
             try {
-                if (result != null) result.close();
-                if (pStmt != null) pStmt.close();
+                if (result != null)
+                    result.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -434,7 +455,8 @@ public class DBSupport2 implements java.io.Serializable {
             throw new SQLException("SQL Exception in storePrice");
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -462,7 +484,8 @@ public class DBSupport2 implements java.io.Serializable {
             throw new SQLException("SQL Exception in removeRow");
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -486,7 +509,8 @@ public class DBSupport2 implements java.io.Serializable {
         // ContainerManaged Sign-on instead of Application Managed sign-on
         // if(dbConnection == null)
         // dbConnection = ds1.getConnection(user, password);
-        if (dbConnection == null) dbConnection = ds1.getConnection();
+        if (dbConnection == null)
+            dbConnection = ds1.getConnection();
     } // end getDBConnection
 
     public void closeDBConnection() throws SQLException {

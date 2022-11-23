@@ -150,16 +150,20 @@ public class MyMessageListener implements MessageListener {
             try {
                 if (tMsg.getText().equals("Call connection close method")) {
                     TestUtil.logMsg("Calling Connection.close() MUST throw IllegalStateException");
-                    if (connection != null) connection.close();
+                    if (connection != null)
+                        connection.close();
                 } else if (tMsg.getText().equals("Call connection stop method")) {
                     TestUtil.logMsg("Calling Connection.stop() MUST throw IllegalStateException");
-                    if (connection != null) connection.stop();
+                    if (connection != null)
+                        connection.stop();
                 } else if (tMsg.getText().equals("Call session close method")) {
                     TestUtil.logMsg("Calling Session.close() MUST throw IllegalStateException");
-                    if (session != null) session.close();
+                    if (session != null)
+                        session.close();
                 } else if (tMsg.getText().equals("Call MessageConsumer close method")) {
                     TestUtil.logMsg("Calling MessageConsumer.close() MUST be allowed");
-                    if (msgconsumer != null) msgconsumer.close();
+                    if (msgconsumer != null)
+                        msgconsumer.close();
                 }
             } catch (jakarta.jms.IllegalStateException e) {
                 TestUtil.logMsg("onMessage(): Caught expected IllegalStateException");
@@ -174,7 +178,8 @@ public class MyMessageListener implements MessageListener {
             try {
                 if (tMsg.getText().equals("Call JMSConsumer close method")) {
                     TestUtil.logMsg("Calling JMSConsumer.close() MUST be allowed");
-                    if (jmsconsumer != null) jmsconsumer.close();
+                    if (jmsconsumer != null)
+                        jmsconsumer.close();
                 }
             } catch (jakarta.jms.IllegalStateRuntimeException e) {
                 TestUtil.logMsg("onMessage(): Caught expected IllegalStateRuntimeException");

@@ -19,24 +19,21 @@ package com.sun.ts.lib.deliverable;
 import java.util.Properties;
 
 /**
- * This class serves as a well known place for harness, util, and porting
- * classes to retrieve property values.
+ * This class serves as a well known place for harness, util, and porting classes to retrieve property values.
  *
  * @author Kyle Grucci
  */
 public interface PropertyManagerInterface {
 
     /**
-     * This method swaps all of the following interop values in
-     * TSPropertyManager...
+     * This method swaps all of the following interop values in TSPropertyManager...
      *
      */
     public void swapInteropPropertyValues(String sDirection);
 
     /**
-     * gets a new properties containing all entries in the property manager. Any
-     * operation on the returned properties will have no effect on property
-     * manager
+     * gets a new properties containing all entries in the property manager. Any operation on the returned properties will
+     * have no effect on property manager
      */
     public Properties getJteProperties();
 
@@ -52,8 +49,7 @@ public interface PropertyManagerInterface {
     /**
      * This method is called to get a property value
      *
-     * @param sKey
-     *          - Property to retrieve
+     * @param sKey - Property to retrieve
      * @return String - property value
      */
     public String getProperty(String sKey) throws PropertyNotSetException;
@@ -67,8 +63,7 @@ public interface PropertyManagerInterface {
     public void setProperty(String sKey, String sVal);
 
     /**
-     * This method is called by the test harness to retrieve all properties needed
-     * by a particular test.
+     * This method is called by the test harness to retrieve all properties needed by a particular test.
      *
      * @param sPropKeys - Properties to retrieve
      * @return Properties - property/value pairs

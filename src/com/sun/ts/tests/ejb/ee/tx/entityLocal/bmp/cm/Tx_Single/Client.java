@@ -81,11 +81,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.3.1; EJB:SPEC:583.3.2; EJB:SPEC:583.3.4
      *
-     * @test_Strategy: Container managed Tx commit - Required Entity EJBs. Create
-     * a few instances of an Entity EJB (TxEBean) bean. Perform updates to the
-     * Entity EJB's instance data. Ensure that the instance data is updated on
-     * method return. Ensure that the database fields are updated on method
-     * return.
+     * @test_Strategy: Container managed Tx commit - Required Entity EJBs. Create a few instances of an Entity EJB (TxEBean)
+     * bean. Perform updates to the Entity EJB's instance data. Ensure that the instance data is updated on method return.
+     * Ensure that the database fields are updated on method return.
      *
      */
     public void test1() throws Fault {
@@ -98,8 +96,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -116,11 +116,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.3.1; EJB:SPEC:583.3.2; EJB:SPEC:583.3.4
      *
-     * @test_Strategy: Container managed Tx commit - Required Entity EJBs.
-     * FindByPrimaryKey an instance of an Entity EJB (TxEBean) bean. Perform
-     * updates to the Entity EJB's instance data. Ensure that the instance data is
-     * updated on method return. Ensure that the database fields are updated on
-     * method return.
+     * @test_Strategy: Container managed Tx commit - Required Entity EJBs. FindByPrimaryKey an instance of an Entity EJB
+     * (TxEBean) bean. Perform updates to the Entity EJB's instance data. Ensure that the instance data is updated on method
+     * return. Ensure that the database fields are updated on method return.
      *
      */
     public void test2() throws Fault {
@@ -133,8 +131,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test2");
             testResult = beanRef.test2();
 
-            if (!testResult) throw new Fault("test2 failed");
-            else logMsg("test2 passed");
+            if (!testResult)
+                throw new Fault("test2 failed");
+            else
+                logMsg("test2 passed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {
@@ -151,10 +151,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:587.1; EJB:SPEC:587.3
      *
-     * @test_Strategy: Container managed Tx - Mandatory Entity EJBs. Attempt to
-     * create an instance of an Entity EJB (TxEBean) bean, without a transaction
-     * context. Ensure that javax.transacton.TransactionRequiredException
-     * exception is thrown.
+     * @test_Strategy: Container managed Tx - Mandatory Entity EJBs. Attempt to create an instance of an Entity EJB
+     * (TxEBean) bean, without a transaction context. Ensure that javax.transacton.TransactionRequiredException exception is
+     * thrown.
      *
      */
     public void test4() throws Fault {
@@ -167,8 +166,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test4");
             testResult = beanRef.test4();
 
-            if (!testResult) throw new Fault("test4 failed");
-            else logMsg("test4 passed");
+            if (!testResult)
+                throw new Fault("test4 failed");
+            else
+                logMsg("test4 passed");
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         } finally {

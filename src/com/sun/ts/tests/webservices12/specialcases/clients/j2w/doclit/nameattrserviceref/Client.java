@@ -110,8 +110,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -143,21 +145,21 @@ public class Client extends ServiceEETest {
     /*
      * @testName: SpecialCasesJ2wNameAttrServiceRefTest
      *
-     * @assertion_ids: WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
-     * WS4EE:SPEC:5002;
+     * @assertion_ids: WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Client imports wsdl from a deployed webservice endpoint,
-     * builds the client-side artifacts, then uses the WebServiceRef annotation
-     * with name attribute to access and communicate with the deployed webservice
-     * endpoint.
+     * @test_Strategy: Client imports wsdl from a deployed webservice endpoint, builds the client-side artifacts, then uses
+     * the WebServiceRef annotation with name attribute to access and communicate with the deployed webservice endpoint.
      */
     public void SpecialCasesJ2wNameAttrServiceRefTest() throws Fault {
         TestUtil.logMsg("SpecialCasesJ2wNameAttrServiceRefTest");
         boolean pass = true;
 
-        if (!stringTest()) pass = false;
-        if (!stringArrayTest()) pass = false;
-        if (!pass) throw new Fault("SpecialCasesJ2wNameAttrServiceRefTest failed");
+        if (!stringTest())
+            pass = false;
+        if (!stringArrayTest())
+            pass = false;
+        if (!pass)
+            throw new Fault("SpecialCasesJ2wNameAttrServiceRefTest failed");
     }
 
     public boolean stringTest() throws Fault {
@@ -167,7 +169,8 @@ public class Client extends ServiceEETest {
 
         try {
             String response = port.echoString(request);
-            if (!JAXWS_Data.compareValues(request, response, "String")) pass = false;
+            if (!JAXWS_Data.compareValues(request, response, "String"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -183,7 +186,8 @@ public class Client extends ServiceEETest {
 
         try {
             List<String> response = port.echoStringArray(request);
-            if (!JAXWS_Data.compareArrayValues(request, response, "String")) pass = false;
+            if (!JAXWS_Data.compareArrayValues(request, response, "String"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);

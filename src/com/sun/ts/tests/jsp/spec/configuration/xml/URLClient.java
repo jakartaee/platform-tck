@@ -30,9 +30,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -41,8 +40,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,9 +61,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that if is-xml is not specified for a property
-     * group, that the files matched by the url-pattern will not be considered JSP
-     * documents.
+     * @test_Strategy: Validate that if is-xml is not specified for a property group, that the files matched by the
+     * url-pattern will not be considered JSP documents.
      *
      */
     public void jspConfigurationIsXmlUnspecTest() throws Fault {
@@ -79,9 +76,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:150.2
      *
-     * @test_Strategy: Validate that if is-xml is set to false for a property
-     * group, that the files matched by the url-pattern will not be considered JSP
-     * documents.
+     * @test_Strategy: Validate that if is-xml is set to false for a property group, that the files matched by the
+     * url-pattern will not be considered JSP documents.
      */
     public void jspConfigurationIsXmlFalseTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_config_xml_web/xmlfalse/NonXmlTest.jsp HTTP/1.1");
@@ -94,9 +90,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:150.1
      *
-     * @test_Strategy: Validate that if is-xml is set to true for a property
-     * group, that the files matched by the url-pattern will be considered JSP
-     * documents.
+     * @test_Strategy: Validate that if is-xml is set to true for a property group, that the files matched by the
+     * url-pattern will be considered JSP documents.
      */
     public void jspConfigurationIsXmlTrueTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_config_xml_web/xmltrue/XmlJspTest.xsp HTTP/1.1");

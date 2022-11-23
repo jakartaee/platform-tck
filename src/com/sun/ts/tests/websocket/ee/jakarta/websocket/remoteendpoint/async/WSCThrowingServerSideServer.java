@@ -32,33 +32,31 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-@ServerEndpoint(
-        value = "/throwing",
-        encoders = {
-            ThrowingBinaryCoder.class,
-            ThrowingTextCoder.class,
-            StringBeanTextEncoder.class,
-            ThrowingStringBeanEncoder.class
-        })
+@ServerEndpoint(value = "/throwing", encoders = {
+        ThrowingBinaryCoder.class,
+        ThrowingTextCoder.class,
+        StringBeanTextEncoder.class,
+        ThrowingStringBeanEncoder.class
+})
 public class WSCThrowingServerSideServer {
-    static final String[] RESPONSE = {"OK", "FAIL"};
+    static final String[] RESPONSE = { "OK", "FAIL" };
 
     @OnMessage
     public StringBean onMessage(String msg, Session session) {
         Async asyncRemote = session.getAsyncRemote();
         OPS op = OPS.valueOf(msg.toUpperCase());
         switch (op) {
-            case SENDBINARYEXECUTIONEXCEPTION:
-                msg = sendBinaryHasExecutionException(asyncRemote);
-                break;
-            case SENDOBJECTEXECUTIONEXCEPTION:
-                msg = sendObjectHasExecutionException(asyncRemote);
-                break;
-            case SENDOBJECTHANDLEREXECUTIONEXCEPTION:
-                msg = sendObjectWithSendHandlerHasExecutionException(asyncRemote);
-                break;
-            default:
-                throw new IllegalArgumentException("Method " + msg + " not implemented");
+        case SENDBINARYEXECUTIONEXCEPTION:
+            msg = sendBinaryHasExecutionException(asyncRemote);
+            break;
+        case SENDOBJECTEXECUTIONEXCEPTION:
+            msg = sendObjectHasExecutionException(asyncRemote);
+            break;
+        case SENDOBJECTHANDLEREXECUTIONEXCEPTION:
+            msg = sendObjectWithSendHandlerHasExecutionException(asyncRemote);
+            break;
+        default:
+            throw new IllegalArgumentException("Method " + msg + " not implemented");
         }
         return new StringBean(msg);
     }

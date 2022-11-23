@@ -35,7 +35,8 @@ public class Client extends PMClientBase {
 
     Department[] deptRef = new Department[2];
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -82,8 +83,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: addAttributeNodesStringArrayTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:3360; PERSISTENCE:JAVADOC:3362;
-     * PERSISTENCE:JAVADOC:3398; PERSISTENCE:JAVADOC:3402;
+     * @assertion_ids: PERSISTENCE:JAVADOC:3360; PERSISTENCE:JAVADOC:3362; PERSISTENCE:JAVADOC:3398;
+     * PERSISTENCE:JAVADOC:3402;
      *
      * @test_Strategy: Create attribute Nodes and retrieve them
      */
@@ -200,8 +201,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:3403
      *
-     * @test_Strategy: Use createEntityGraph to create the named entity graphs in
-     * the Employee entity
+     * @test_Strategy: Use createEntityGraph to create the named entity graphs in the Employee entity
      */
     public void createEntityGraphStringTest() throws Fault {
         boolean pass1 = false;
@@ -240,8 +240,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:3404
      *
-     * @test_Strategy: Use getEntityGraph to get the named entity graphs in the
-     * Employee entity
+     * @test_Strategy: Use getEntityGraph to get the named entity graphs in the Employee entity
      */
     public void getEntityGraphStringTest() throws Fault {
         boolean pass = false;
@@ -264,8 +263,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:3399
      *
-     * @test_Strategy: Use getName to get the name of the named entity graph in
-     * the Employee entity
+     * @test_Strategy: Use getName to get the name of the named entity graph in the Employee entity
      */
     public void entityGraphGetNameTest() throws Fault {
         boolean pass = false;
@@ -293,8 +291,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:2458;
      *
-     * @test_Strategy: Use getName to get the name of the named entity graph in
-     * the Employee2 entity that has no name
+     * @test_Strategy: Use getName to get the name of the named entity graph in the Employee2 entity that has no name
      */
     public void entityGraphGetNameNoNameExistsTest() throws Fault {
         boolean pass = false;
@@ -368,8 +365,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:3406; PERSISTENCE:JAVADOC:3420;
      *
-     * @test_Strategy: Use getEntityGraph to get the named entity graphs in the
-     * Employee entity
+     * @test_Strategy: Use getEntityGraph to get the named entity graphs in the Employee entity
      */
     public void getEntityGraphsClassTest() throws Fault {
         boolean pass = false;
@@ -538,11 +534,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: annotationsTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:3414; PERSISTENCE:JAVADOC:3415;
-     * PERSISTENCE:JAVADOC:3417;
+     * @assertion_ids: PERSISTENCE:JAVADOC:3414; PERSISTENCE:JAVADOC:3415; PERSISTENCE:JAVADOC:3417;
      *
-     * @test_Strategy: test that various data contained in the annotations is
-     * returnable
+     * @test_Strategy: test that various data contained in the annotations is returnable
      */
     public void annotationsTest() throws Fault {
         boolean pass = false;

@@ -42,8 +42,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The connectionClient1 class tests methods of Connection interface using Sun's
- * J2EE Reference Implementation.
+ * The connectionClient1 class tests methods of Connection interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -87,14 +86,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -104,7 +100,8 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
             try {
                 drManager = p.getProperty("DriverManager", "");
                 sVehicle = p.getProperty("vehicle");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 props = p;
 
                 if (drManager.equals("yes")) {
@@ -135,11 +132,10 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testClose
      *
-     * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1157; JDBC:JAVADOC:1158;
-     * JDBC:JAVADOC:1159; JDBC:JAVADOC:1160;
+     * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1157; JDBC:JAVADOC:1158; JDBC:JAVADOC:1159; JDBC:JAVADOC:1160;
      *
-     * @test_Strategy: Get a Connection object and call close() method and call
-     * isClosed() method and it should return a true value
+     * @test_Strategy: Get a Connection object and call close() method and call isClosed() method and it should return a
+     * true value
      *
      */
     public void testClose() throws Fault {
@@ -179,8 +175,8 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1141; JDBC:JAVADOC:1142;
      *
-     * @test_Strategy: Get a Connection object and call createStatement() method
-     * and call instanceof to check It should return a Statement object
+     * @test_Strategy: Get a Connection object and call createStatement() method and call instanceof to check It should
+     * return a Statement object
      */
     public void testCreateStatement01() throws Fault {
         Statement statemt = null;
@@ -210,11 +206,9 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1169; JDBC:JAVADOC:1170;
      *
-     * @test_Strategy: Get a Connection object and call getCatalog() method It
-     * should return a String value The getCatalogs() method in Databasemeta data
-     * object will return a Resultset object that contains the catalog name in the
-     * column TABLE_CAT .The String returned by Connection.getCatalog() method
-     * will be checked against these column values.
+     * @test_Strategy: Get a Connection object and call getCatalog() method It should return a String value The
+     * getCatalogs() method in Databasemeta data object will return a Resultset object that contains the catalog name in the
+     * column TABLE_CAT .The String returned by Connection.getCatalog() method will be checked against these column values.
      */
     public void testGetCatalog() throws Fault {
         String catalogName = null;
@@ -264,8 +258,8 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1161; JDBC:JAVADOC:1162;
      *
-     * @test_Strategy: Get a Connection object and call getMetaData() method and
-     * call instanceof method to check It should return a DatabaseMetaData object
+     * @test_Strategy: Get a Connection object and call getMetaData() method and call instanceof method to check It should
+     * return a DatabaseMetaData object
      *
      */
     public void testGetMetaData() throws Fault {
@@ -293,14 +287,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTransactionIsolation
      *
-     * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1173; JDBC:JAVADOC:1174;
-     * JDBC:SPEC:16; JDBC:SPEC:15
+     * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1173; JDBC:JAVADOC:1174; JDBC:SPEC:16; JDBC:SPEC:15
      *
-     * @test_Strategy: Get a Connection object and call getTransactionIsolation()
-     * method It should return a Integer value and must be equal to the value of
-     * TRANSACTION_NONE or TRANSACTION_READ_COMMITTED or
-     * TRANSACTION_READ_UNCOMMITTED or TRANSACTION_REPEATABLE_READ or
-     * TRANSACTION_SERIALIZABLE which is default set by the driver
+     * @test_Strategy: Get a Connection object and call getTransactionIsolation() method It should return a Integer value
+     * and must be equal to the value of TRANSACTION_NONE or TRANSACTION_READ_COMMITTED or TRANSACTION_READ_UNCOMMITTED or
+     * TRANSACTION_REPEATABLE_READ or TRANSACTION_SERIALIZABLE which is default set by the driver
      *
      *
      */
@@ -340,8 +331,8 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1159; JDBC:JAVADOC:1160;
      *
-     * @test_Strategy: Get a Connection object and call isClosed() method It
-     * should return a boolean value and the value should be equal to false
+     * @test_Strategy: Get a Connection object and call isClosed() method It should return a boolean value and the value
+     * should be equal to false
      *
      */
     public void testIsClosed01() throws Fault {
@@ -377,12 +368,10 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testIsClosed02
      *
-     * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1157; JDBC:JAVADOC:1158;
-     * JDBC:JAVADOC:1159; JDBC:JAVADOC:1160;
+     * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1157; JDBC:JAVADOC:1158; JDBC:JAVADOC:1159; JDBC:JAVADOC:1160;
      *
-     * @test_Strategy: Get a Connection object and call close() method and call
-     * isClosed() method It should return a boolean value and the value should be
-     * equal to true
+     * @test_Strategy: Get a Connection object and call close() method and call isClosed() method It should return a boolean
+     * value and the value should be equal to true
      *
      */
     public void testIsClosed02() throws Fault {
@@ -420,12 +409,10 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testIsReadOnly
      *
-     * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1165; JDBC:JAVADOC:1166;
-     * JDBC:JAVADOC:1163; JDBC:JAVADOC:1164;
+     * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1165; JDBC:JAVADOC:1166; JDBC:JAVADOC:1163; JDBC:JAVADOC:1164;
      *
-     * @test_Strategy: Get a Connection object and call setReadOnly(boolean b)
-     * method and call isReadOnly() method It should return a boolean value that
-     * is been set
+     * @test_Strategy: Get a Connection object and call setReadOnly(boolean b) method and call isReadOnly() method It should
+     * return a boolean value that is been set
      *
      */
 
@@ -470,11 +457,9 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:179; JDBC:JAVADOC:1147; JDBC:JAVADOC:1148;
      *
-     * @test_Strategy: Get a Connection object and call nativeSQL(String sql)
-     * method It should return a String value which represents native SQL grammar
-     * implementation of the SQL statement if the driver supports else it returns
-     * the actual SQL statement as a String.This is checked by using instanceof
-     * method
+     * @test_Strategy: Get a Connection object and call nativeSQL(String sql) method It should return a String value which
+     * represents native SQL grammar implementation of the SQL statement if the driver supports else it returns the actual
+     * SQL statement as a String.This is checked by using instanceof method
      */
     public void testNativeSQL() throws Fault {
         String sSqlStmt = null;

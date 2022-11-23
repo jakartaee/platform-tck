@@ -85,8 +85,7 @@ public class IBAnnoWorkManager {
     }
 
     /*
-     * This will be used to help verify assertion Connector:SPEC:55 from the
-     * annotation point of view.
+     * This will be used to help verify assertion Connector:SPEC:55 from the annotation point of view.
      */
     public void doTCWork() {
         try {

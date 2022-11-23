@@ -65,12 +65,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: parameterTest1
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:382;
-     * PERSISTENCE:JAVADOC:383; PERSISTENCE:JAVADOC:1093;
+     * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:382; PERSISTENCE:JAVADOC:383; PERSISTENCE:JAVADOC:1093;
      * PERSISTENCE:JAVADOC:1092;
      *
-     * @test_Strategy: Create a query with 2 named parameters and retrieve
-     * information about the parameters.
+     * @test_Strategy: Create a query with 2 named parameters and retrieve information about the parameters.
      */
     public void parameterTest1() throws Fault {
         TestUtil.logTrace("Starting parameterTest1");
@@ -194,11 +192,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: parameterTest2
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:382;
-     * PERSISTENCE:JAVADOC:383;
+     * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:382; PERSISTENCE:JAVADOC:383;
      *
-     * @test_Strategy: Create a query with a named parameter that is a float and
-     * retrieve information about the parameter.
+     * @test_Strategy: Create a query with a named parameter that is a float and retrieve information about the parameter.
      */
     public void parameterTest2() throws Fault {
         TestUtil.logTrace("Starting parameterTest2");
@@ -266,11 +262,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: parameterTest3
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:382;
-     * PERSISTENCE:JAVADOC:383;
+     * @assertion_ids: PERSISTENCE:JAVADOC:381; PERSISTENCE:JAVADOC:382; PERSISTENCE:JAVADOC:383;
      *
-     * @test_Strategy: Create a query with a named parameter that is a date and
-     * and retrieve information about the parameter.
+     * @test_Strategy: Create a query with a named parameter that is a date and and retrieve information about the
+     * parameter.
      */
     public void parameterTest3() throws Fault {
         TestUtil.logTrace("Starting parameterTest3");
@@ -340,8 +335,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:382; PERSISTENCE:JAVADOC:383;
      *
-     * @test_Strategy: Create a query with a parameter where the name is not
-     * specified and retrieve information about the parameter.
+     * @test_Strategy: Create a query with a parameter where the name is not specified and retrieve information about the
+     * parameter.
      */
     public void parameterTest4() throws Fault {
         TestUtil.logTrace("Starting parameterTest4");
@@ -430,7 +425,7 @@ public class Client extends PMClientBase {
                 List<Predicate> criteria = new ArrayList<Predicate>();
                 ParameterExpression<Integer> pe = qbuilder.parameter(Integer.class, "num");
 
-                Object[] o = {Integer.valueOf(1), Integer.valueOf(2)};
+                Object[] o = { Integer.valueOf(1), Integer.valueOf(2) };
 
                 criteria.add(pe.in(o));
 
@@ -496,7 +491,7 @@ public class Client extends PMClientBase {
                 List<Predicate> criteria = new ArrayList<Predicate>();
                 ParameterExpression<String> pe = qbuilder.parameter(String.class, "sid");
 
-                Expression[] exp = new Expression[] {qbuilder.literal("1"), qbuilder.literal("2")};
+                Expression[] exp = new Expression[] { qbuilder.literal("1"), qbuilder.literal("2") };
 
                 criteria.add(pe.in(exp));
 

@@ -30,9 +30,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -41,8 +40,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,8 +61,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:248
      *
-     * @test_Strategy: Validate that the body of an action is properly delivered
-     * to a custom action when provided through jsp:body.
+     * @test_Strategy: Validate that the body of an action is properly delivered to a custom action when provided through
+     * jsp:body.
      */
     public void jspBodyTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_body_web/JspBodyTest.jsp HTTP/1.1");
@@ -77,11 +75,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:248.2;JSP:SPEC:248.3
      *
-     * @test_Strategy: Validate that translation-time errors will occur when
-     * jsp:body is used in an incorrected context. - Not nested within a standard
-     * or custom action - attempting to provide a body to an action not accepting
-     * a body - jsp:body nested within a jsp:body - jsp:body nested within
-     * jsp:attribute
+     * @test_Strategy: Validate that translation-time errors will occur when jsp:body is used in an incorrected context. -
+     * Not nested within a standard or custom action - attempting to provide a body to an action not accepting a body -
+     * jsp:body nested within a jsp:body - jsp:body nested within jsp:attribute
      */
     public void jspBodyUsageContextTest() throws Fault {
         for (int i = 0; i < 5; i++) {
@@ -97,11 +93,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:248.1
      *
-     * @test_Strategy: Verify that following empty body semantics involving
-     * jsp:body: - If an action has one or more jsp:attribute elements and no
-     * jsp:body element, then the action is considered empty. - Empty bodies can
-     * be provided via jsp:body in the forms of &lt;jsp:body/&gt; and
-     * &lt;jsp:body&gt;&lt;/jsp:body&gt;
+     * @test_Strategy: Verify that following empty body semantics involving jsp:body: - If an action has one or more
+     * jsp:attribute elements and no jsp:body element, then the action is considered empty. - Empty bodies can be provided
+     * via jsp:body in the forms of &lt;jsp:body/&gt; and &lt;jsp:body&gt;&lt;/jsp:body&gt;
      */
     public void jspBodyEmptyBodyTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_body_web/JspBodyEmptyBodyTest.jsp HTTP/1.1");

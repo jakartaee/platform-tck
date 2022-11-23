@@ -67,5 +67,6 @@ public class InterceptorI extends InterceptorF {
 
     @Override
     @PreDestroy // re-annotated it as another type of lifecycle
-    protected void myCreate(InvocationContext inv) throws RuntimeException {}
+    protected void myCreate(InvocationContext inv) throws RuntimeException {
+    }
 }

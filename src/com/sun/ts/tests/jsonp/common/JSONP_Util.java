@@ -188,7 +188,8 @@ public final class JSONP_Util {
             InputStream iStream = JSONP_Util.class.getResourceAsStream("/" + resource);
             if (iStream == null)
                 TestUtil.logErr("getReaderFromResource: no resource found in classpath or archive named " + resource);
-            else reader = new InputStreamReader(iStream);
+            else
+                reader = new InputStreamReader(iStream);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,8 +203,10 @@ public final class JSONP_Util {
         InputStreamReader reader = null;
         try {
             InputStream iStream = new ByteArrayInputStream(contents.getBytes(UTF_8));
-            if (iStream == null) TestUtil.logErr("getReaderFromString: no input stream");
-            else reader = new InputStreamReader(iStream);
+            if (iStream == null)
+                TestUtil.logErr("getReaderFromString: no input stream");
+            else
+                reader = new InputStreamReader(iStream);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -233,7 +236,8 @@ public final class JSONP_Util {
         InputStream iStream = null;
         try {
             iStream = new ByteArrayInputStream(contents.getBytes(UTF_8));
-            if (iStream == null) TestUtil.logErr("getInputStreamFromString: no input stream");
+            if (iStream == null)
+                TestUtil.logErr("getInputStreamFromString: no input stream");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -247,7 +251,8 @@ public final class JSONP_Util {
         InputStream iStream = null;
         try {
             iStream = new ByteArrayInputStream(baos.toByteArray());
-            if (iStream == null) TestUtil.logErr("getInputStreamFromOutputStream: no input stream");
+            if (iStream == null)
+                TestUtil.logErr("getInputStreamFromOutputStream: no input stream");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -257,8 +262,7 @@ public final class JSONP_Util {
     /*********************************************************************************
      * String removeWhitespace(String text)
      *
-     * NOTE: This does not remove whitespace of Json text if a quoted string which
-     * can include whitespace.
+     * NOTE: This does not remove whitespace of Json text if a quoted string which can include whitespace.
      *********************************************************************************/
     public static String removeWhitespace(String text) {
         StringReader reader = new StringReader(text);
@@ -270,13 +274,16 @@ public final class JSONP_Util {
             while ((c = reader.read()) != -1) {
                 // Skip white space if not quoted string
                 if (!quotedString) {
-                    if (Character.isWhitespace(c)) continue;
+                    if (Character.isWhitespace(c))
+                        continue;
                 }
                 writer.write(c);
                 if (c == '"') {
-                    if (!backslash) quotedString = !quotedString;
+                    if (!backslash)
+                        quotedString = !quotedString;
                     backslash = false;
-                } else if (c == '\\') backslash = true;
+                } else if (c == '\\')
+                    backslash = true;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -289,9 +296,8 @@ public final class JSONP_Util {
      *
      * The following method signatures are available:
      *
-     * o JsonNumber createJsonNumber(double) o JsonNumber createJsonNumber(long) o
-     * JsonNumber createJsonNumber(int) o JsonNumber createJsonNumber(BigDecimal)
-     * o JsonNumber createJsonNumber(BigInteger)
+     * o JsonNumber createJsonNumber(double) o JsonNumber createJsonNumber(long) o JsonNumber createJsonNumber(int) o
+     * JsonNumber createJsonNumber(BigDecimal) o JsonNumber createJsonNumber(BigInteger)
      *********************************************************************************/
     public static JsonNumber createJsonNumber(double val) {
         JsonArray array = Json.createArrayBuilder().add(val).build();
@@ -373,14 +379,16 @@ public final class JSONP_Util {
             dumpJsonArray((JsonArray) value);
         } else if (value instanceof JsonObject) {
             dumpJsonObject((JsonObject) value);
-        } else dumpJsonConstant(value);
+        } else
+            dumpJsonConstant(value);
     }
 
     /*********************************************************************************
      * String toStringJsonString(JsonString value)
      *********************************************************************************/
     public static String toStringJsonString(JsonString value) {
-        if (value == null) return ("JsonString is null");
+        if (value == null)
+            return ("JsonString is null");
         return ("\"" + value.getString() + "\"");
     }
 
@@ -388,14 +396,16 @@ public final class JSONP_Util {
      * String toStringJsonArray(JsonArray value)
      *********************************************************************************/
     public static String toStringJsonArray(JsonArray value) {
-        if (value == null) return ("JsonArray is null");
+        if (value == null)
+            return ("JsonArray is null");
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         Iterator<JsonValue> iter = value.iterator();
         String comma = "";
         while (iter.hasNext()) {
             sb.append(comma + toStringJsonValue(iter.next()));
-            if (comma.equals("")) comma = ",";
+            if (comma.equals(""))
+                comma = ",";
         }
         sb.append("]");
         return (sb.toString());
@@ -405,13 +415,15 @@ public final class JSONP_Util {
      * String toStringJsonObject(JsonObject value)
      *********************************************************************************/
     public static String toStringJsonObject(JsonObject value) {
-        if (value == null) return ("JsonObject is null");
+        if (value == null)
+            return ("JsonObject is null");
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         String comma = "";
         for (Map.Entry<String, JsonValue> entry : value.entrySet()) {
             sb.append(comma + "\"" + entry.getKey() + "\":" + toStringJsonValue(entry.getValue()));
-            if (comma.equals("")) comma = ",";
+            if (comma.equals(""))
+                comma = ",";
         }
         sb.append("}");
         return (sb.toString());
@@ -421,20 +433,28 @@ public final class JSONP_Util {
      * String toStringJsonConstant(JsonValue value)
      *********************************************************************************/
     public static String toStringJsonConstant(JsonValue value) {
-        if (value == null) return ("JsonValue is null");
-        if (value == JsonValue.FALSE) return "false";
-        else if (value == JsonValue.TRUE) return "true";
-        else if (value == JsonValue.NULL) return "null";
-        else return "UNKNOWN";
+        if (value == null)
+            return ("JsonValue is null");
+        if (value == JsonValue.FALSE)
+            return "false";
+        else if (value == JsonValue.TRUE)
+            return "true";
+        else if (value == JsonValue.NULL)
+            return "null";
+        else
+            return "UNKNOWN";
     }
 
     /*********************************************************************************
      * String toStringJsonNumber(JsonNumber value)
      *********************************************************************************/
     public static String toStringJsonNumber(JsonNumber value) {
-        if (value == null) return ("JsonNumber is null");
-        if (value.isIntegral() == INTEGRAL) return ("" + value.longValue());
-        else return ("" + value.bigDecimalValue());
+        if (value == null)
+            return ("JsonNumber is null");
+        if (value.isIntegral() == INTEGRAL)
+            return ("" + value.longValue());
+        else
+            return ("" + value.bigDecimalValue());
     }
 
     /*********************************************************************************
@@ -449,7 +469,8 @@ public final class JSONP_Util {
             return toStringJsonArray((JsonArray) value);
         } else if (value instanceof JsonObject) {
             return toStringJsonObject((JsonObject) value);
-        } else return toStringJsonConstant(value);
+        } else
+            return toStringJsonConstant(value);
     }
 
     /*********************************************************************************
@@ -457,7 +478,8 @@ public final class JSONP_Util {
      *********************************************************************************/
     public static void dumpSet(Set<String> set, String msg) {
         TestUtil.logMsg("*** Beg: Dumping List contents ***");
-        if (msg != null) TestUtil.logMsg("*** Message: " + msg);
+        if (msg != null)
+            TestUtil.logMsg("*** Message: " + msg);
         Iterator iterator = set.iterator();
         TestUtil.logMsg("Set: (");
         while (iterator.hasNext()) {
@@ -483,7 +505,8 @@ public final class JSONP_Util {
         sb.append("Set: (");
         while (iter.hasNext()) {
             sb.append(iter.next());
-            if (iter.hasNext()) sb.append(",");
+            if (iter.hasNext())
+                sb.append(",");
         }
         sb.append(")");
         return sb.toString();
@@ -511,7 +534,8 @@ public final class JSONP_Util {
      *********************************************************************************/
     public static void dumpMap(Map<String, JsonValue> map, String msg) {
         TestUtil.logMsg("*** Beg: Dumping Map contents ***");
-        if (msg != null) TestUtil.logMsg("*** Message: " + msg);
+        if (msg != null)
+            TestUtil.logMsg("*** Message: " + msg);
         TestUtil.logMsg("Map: {");
         for (Map.Entry<String, JsonValue> entry : map.entrySet()) {
             TestUtil.logMsg("\"" + entry.getKey() + "\":" + toStringJsonValue(entry.getValue()));
@@ -536,15 +560,15 @@ public final class JSONP_Util {
         String comma = "";
         for (Map.Entry<String, JsonValue> entry : map.entrySet()) {
             sb.append(comma + "\"" + entry.getKey() + "\":" + toStringJsonValue(entry.getValue()));
-            if (comma.equals("")) comma = ",";
+            if (comma.equals(""))
+                comma = ",";
         }
         sb.append("}");
         return sb.toString();
     }
 
     /*********************************************************************************
-     * boolean assertEqualsMap(Map<String,JsonValue>expMap,
-     * Map<String,JsonValue>actMap)
+     * boolean assertEqualsMap(Map<String,JsonValue>expMap, Map<String,JsonValue>actMap)
      *********************************************************************************/
     public static boolean assertEqualsMap(Map<String, JsonValue> expMap, Map<String, JsonValue> actMap) {
         if (actMap.equals(expMap)) {
@@ -598,7 +622,8 @@ public final class JSONP_Util {
      *********************************************************************************/
     public static void dumpList(List<JsonValue> list, String msg) {
         TestUtil.logMsg("*** Beg: Dumping List contents ***");
-        if (msg != null) TestUtil.logMsg("*** Message: " + msg);
+        if (msg != null)
+            TestUtil.logMsg("*** Message: " + msg);
         Iterator<JsonValue> iter = list.iterator();
         TestUtil.logMsg("List: [");
         while (iter.hasNext()) {
@@ -625,7 +650,8 @@ public final class JSONP_Util {
         String comma = "";
         while (iter.hasNext()) {
             sb.append(comma + toStringJsonValue(iter.next()));
-            if (comma.equals("")) comma = ",";
+            if (comma.equals(""))
+                comma = ",";
         }
         sb.append("]");
         return sb.toString();
@@ -681,7 +707,8 @@ public final class JSONP_Util {
      *********************************************************************************/
     public static void dumpIterator(Iterator<JsonValue> iterator, String msg) {
         TestUtil.logMsg("*** Beg: Dumping Iterator contents ***");
-        if (msg != null) TestUtil.logMsg("*** Message: " + msg);
+        if (msg != null)
+            TestUtil.logMsg("*** Message: " + msg);
         TestUtil.logMsg("Iter: [");
         while (iterator.hasNext()) {
             TestUtil.logMsg("" + toStringJsonValue(iterator.next()));
@@ -705,15 +732,15 @@ public final class JSONP_Util {
         sb.append("Iterator: [");
         while (iter.hasNext()) {
             sb.append(toStringJsonValue(iter.next()));
-            if (iter.hasNext()) sb.append(",");
+            if (iter.hasNext())
+                sb.append(",");
         }
         sb.append("]");
         return sb.toString();
     }
 
     /*********************************************************************************
-     * boolean assertEqualsIterator(Iterator<JsonValue>expIt,
-     * Iterator<JsonValue>actIt)
+     * boolean assertEqualsIterator(Iterator<JsonValue>expIt, Iterator<JsonValue>actIt)
      *********************************************************************************/
     public static boolean assertEqualsIterator(Iterator<JsonValue> expIt, Iterator<JsonValue> actIt) {
         boolean pass = true;
@@ -739,8 +766,10 @@ public final class JSONP_Util {
             TestUtil.logErr("Iterator actIt contains more elements than Iterator expIt");
             return false;
         }
-        if (pass) TestUtil.logMsg("Iterators are equal (Success)");
-        else TestUtil.logMsg("Iterators are not equal (Failure)");
+        if (pass)
+            TestUtil.logMsg("Iterators are equal (Success)");
+        else
+            TestUtil.logMsg("Iterators are not equal (Failure)");
         return pass;
     }
 
@@ -933,8 +962,7 @@ public final class JSONP_Util {
     }
 
     /*********************************************************************************
-     * boolean assertEqualsJsonValueType(JsonValue.ValueType
-     * expected,JsonValue.ValueType actual)
+     * boolean assertEqualsJsonValueType(JsonValue.ValueType expected,JsonValue.ValueType actual)
      *********************************************************************************/
     public static boolean assertEqualsJsonValueType(JsonValue.ValueType expected, JsonValue.ValueType actual) {
         if (actual == expected) {
@@ -989,8 +1017,10 @@ public final class JSONP_Util {
      * String toStringJsonNumberType(boolean numberType)
      *********************************************************************************/
     public static String toStringJsonNumberType(boolean numberType) {
-        if (numberType == INTEGRAL) return "INTEGRAL";
-        else return "NON_INTEGRAL";
+        if (numberType == INTEGRAL)
+            return "INTEGRAL";
+        else
+            return "NON_INTEGRAL";
     }
 
     /*********************************************************************************
@@ -1000,7 +1030,8 @@ public final class JSONP_Util {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < expected.length; i++) {
             sb.append("" + toStringJsonNumberType(expected[i]));
-            if (i + 1 < expected.length) sb.append("|");
+            if (i + 1 < expected.length)
+                sb.append("|");
         }
         return sb.toString();
     }
@@ -1196,16 +1227,20 @@ public final class JSONP_Util {
      * String getNumberTypeString(boolean numberType)
      *********************************************************************************/
     public static String getNumberTypeString(boolean numberType) {
-        if (numberType == INTEGRAL) return "INTEGRAL";
-        else return "NON_INTEGRAL";
+        if (numberType == INTEGRAL)
+            return "INTEGRAL";
+        else
+            return "NON_INTEGRAL";
     }
 
     /*********************************************************************************
      * boolean getNumberType(String numberType)
      *********************************************************************************/
     public static boolean getNumberType(String numberType) {
-        if (numberType.equals("INTEGRAL")) return INTEGRAL;
-        else return NON_INTEGRAL;
+        if (numberType.equals("INTEGRAL"))
+            return INTEGRAL;
+        else
+            return NON_INTEGRAL;
     }
 
     /*********************************************************************************
@@ -1213,22 +1248,22 @@ public final class JSONP_Util {
      *********************************************************************************/
     public static String getValueTypeString(JsonValue.ValueType valueType) {
         switch (valueType) {
-            case ARRAY:
-                return "ARRAY";
-            case FALSE:
-                return "FALSE";
-            case NULL:
-                return "NULL";
-            case NUMBER:
-                return "NUMBER";
-            case OBJECT:
-                return "OBJECT";
-            case STRING:
-                return "STRING";
-            case TRUE:
-                return "TRUE";
-            default:
-                return null;
+        case ARRAY:
+            return "ARRAY";
+        case FALSE:
+            return "FALSE";
+        case NULL:
+            return "NULL";
+        case NUMBER:
+            return "NUMBER";
+        case OBJECT:
+            return "OBJECT";
+        case STRING:
+            return "STRING";
+        case TRUE:
+            return "TRUE";
+        default:
+            return null;
         }
     }
 
@@ -1236,14 +1271,22 @@ public final class JSONP_Util {
      * JsonValue.ValueType getValueType(String valueType)
      *********************************************************************************/
     public static JsonValue.ValueType getValueType(String valueType) {
-        if (valueType.equals("ARRAY")) return JsonValue.ValueType.ARRAY;
-        if (valueType.equals("FALSE")) return JsonValue.ValueType.FALSE;
-        if (valueType.equals("NULL")) return JsonValue.ValueType.NULL;
-        if (valueType.equals("NUMBER")) return JsonValue.ValueType.NUMBER;
-        if (valueType.equals("OBJECT")) return JsonValue.ValueType.OBJECT;
-        if (valueType.equals("STRING")) return JsonValue.ValueType.STRING;
-        if (valueType.equals("TRUE")) return JsonValue.ValueType.TRUE;
-        else return null;
+        if (valueType.equals("ARRAY"))
+            return JsonValue.ValueType.ARRAY;
+        if (valueType.equals("FALSE"))
+            return JsonValue.ValueType.FALSE;
+        if (valueType.equals("NULL"))
+            return JsonValue.ValueType.NULL;
+        if (valueType.equals("NUMBER"))
+            return JsonValue.ValueType.NUMBER;
+        if (valueType.equals("OBJECT"))
+            return JsonValue.ValueType.OBJECT;
+        if (valueType.equals("STRING"))
+            return JsonValue.ValueType.STRING;
+        if (valueType.equals("TRUE"))
+            return JsonValue.ValueType.TRUE;
+        else
+            return null;
     }
 
     /*********************************************************************************
@@ -1258,28 +1301,28 @@ public final class JSONP_Util {
      *********************************************************************************/
     public static String getEventTypeString(JsonParser.Event eventType) {
         switch (eventType) {
-            case START_ARRAY:
-                return "START_ARRAY";
-            case START_OBJECT:
-                return "START_OBJECT";
-            case KEY_NAME:
-                return "KEY_NAME";
-            case VALUE_STRING:
-                return "VALUE_STRING";
-            case VALUE_NUMBER:
-                return "VALUE_NUMBER";
-            case VALUE_TRUE:
-                return "VALUE_TRUE";
-            case VALUE_FALSE:
-                return "VALUE_FALSE";
-            case VALUE_NULL:
-                return "VALUE_NULL";
-            case END_OBJECT:
-                return "END_OBJECT";
-            case END_ARRAY:
-                return "END_ARRAY";
-            default:
-                return null;
+        case START_ARRAY:
+            return "START_ARRAY";
+        case START_OBJECT:
+            return "START_OBJECT";
+        case KEY_NAME:
+            return "KEY_NAME";
+        case VALUE_STRING:
+            return "VALUE_STRING";
+        case VALUE_NUMBER:
+            return "VALUE_NUMBER";
+        case VALUE_TRUE:
+            return "VALUE_TRUE";
+        case VALUE_FALSE:
+            return "VALUE_FALSE";
+        case VALUE_NULL:
+            return "VALUE_NULL";
+        case END_OBJECT:
+            return "END_OBJECT";
+        case END_ARRAY:
+            return "END_ARRAY";
+        default:
+            return null;
         }
     }
 
@@ -1287,35 +1330,52 @@ public final class JSONP_Util {
      * JsonParser.Event getEventType(String eventType)
      *********************************************************************************/
     public static JsonParser.Event getEventType(String eventType) {
-        if (eventType.equals("START_ARRAY")) return JsonParser.Event.START_ARRAY;
-        if (eventType.equals("START_OBJECT")) return JsonParser.Event.START_OBJECT;
-        if (eventType.equals("KEY_NAME")) return JsonParser.Event.KEY_NAME;
-        if (eventType.equals("VALUE_STRING")) return JsonParser.Event.VALUE_STRING;
-        if (eventType.equals("VALUE_NUMBER")) return JsonParser.Event.VALUE_NUMBER;
-        if (eventType.equals("VALUE_TRUE")) return JsonParser.Event.VALUE_TRUE;
-        if (eventType.equals("VALUE_FALSE")) return JsonParser.Event.VALUE_FALSE;
-        if (eventType.equals("VALUE_NULL")) return JsonParser.Event.VALUE_NULL;
-        if (eventType.equals("END_OBJECT")) return JsonParser.Event.END_OBJECT;
-        if (eventType.equals("END_ARRAY")) return JsonParser.Event.END_ARRAY;
-        else return null;
+        if (eventType.equals("START_ARRAY"))
+            return JsonParser.Event.START_ARRAY;
+        if (eventType.equals("START_OBJECT"))
+            return JsonParser.Event.START_OBJECT;
+        if (eventType.equals("KEY_NAME"))
+            return JsonParser.Event.KEY_NAME;
+        if (eventType.equals("VALUE_STRING"))
+            return JsonParser.Event.VALUE_STRING;
+        if (eventType.equals("VALUE_NUMBER"))
+            return JsonParser.Event.VALUE_NUMBER;
+        if (eventType.equals("VALUE_TRUE"))
+            return JsonParser.Event.VALUE_TRUE;
+        if (eventType.equals("VALUE_FALSE"))
+            return JsonParser.Event.VALUE_FALSE;
+        if (eventType.equals("VALUE_NULL"))
+            return JsonParser.Event.VALUE_NULL;
+        if (eventType.equals("END_OBJECT"))
+            return JsonParser.Event.END_OBJECT;
+        if (eventType.equals("END_ARRAY"))
+            return JsonParser.Event.END_ARRAY;
+        else
+            return null;
     }
 
     /*********************************************************************************
      * String getConfigName(String configValue)
      *********************************************************************************/
     public static String getConfigName(String configValue) {
-        if (configValue.equals(JsonGenerator.PRETTY_PRINTING)) return "JsonGenerator.PRETTY_PRINTING";
-        else if (configValue.equals(JSONP_Util.FOO_CONFIG)) return "JSONP_Util.FOO_CONFIG";
-        else return null;
+        if (configValue.equals(JsonGenerator.PRETTY_PRINTING))
+            return "JsonGenerator.PRETTY_PRINTING";
+        else if (configValue.equals(JSONP_Util.FOO_CONFIG))
+            return "JSONP_Util.FOO_CONFIG";
+        else
+            return null;
     }
 
     /*********************************************************************************
      * String getConfigValue(String configProp)
      *********************************************************************************/
     public static String getConfigValue(String configProp) {
-        if (configProp.equals("JsonGenerator.PRETTY_PRINING")) return JsonGenerator.PRETTY_PRINTING;
-        else if (configProp.equals("JSONP_Util.FOO_CONFIG")) return JSONP_Util.FOO_CONFIG;
-        else return null;
+        if (configProp.equals("JsonGenerator.PRETTY_PRINING"))
+            return JsonGenerator.PRETTY_PRINTING;
+        else if (configProp.equals("JSONP_Util.FOO_CONFIG"))
+            return JSONP_Util.FOO_CONFIG;
+        else
+            return null;
     }
 
     /*********************************************************************************
@@ -1323,7 +1383,8 @@ public final class JSONP_Util {
      *********************************************************************************/
     public static void dumpConfigMap(Map<String, ?> map, String msg) {
         TestUtil.logMsg("*** Beg: Dumping Config Map contents ***");
-        if (msg != null) TestUtil.logMsg("*** Message: " + msg);
+        if (msg != null)
+            TestUtil.logMsg("*** Message: " + msg);
         for (Map.Entry<String, ?> entry : map.entrySet()) {
             TestUtil.logMsg("\"" + entry.getKey() + "\":" + entry.getValue());
         }
@@ -1435,7 +1496,8 @@ public final class JSONP_Util {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (reader != null) reader.close();
+            if (reader != null)
+                reader.close();
         }
         return object;
     }
@@ -1452,7 +1514,8 @@ public final class JSONP_Util {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (reader != null) reader.close();
+            if (reader != null)
+                reader.close();
         }
         return array;
     }
@@ -1487,7 +1550,8 @@ public final class JSONP_Util {
      * void testKeyStringValue(JsonParser parser, String name, String value)
      *********************************************************************************/
     public static void testKeyStringValue(JsonParser parser, String name, String value) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
 
         if (e != JsonParser.Event.KEY_NAME) {
@@ -1505,7 +1569,8 @@ public final class JSONP_Util {
             TestUtil.logMsg("Got expected keyname: " + keyname);
         }
 
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         e = parser.next();
         if (e != JsonParser.Event.VALUE_STRING) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_STRING) + ", got event: "
@@ -1525,7 +1590,8 @@ public final class JSONP_Util {
      * void testKeyIntegerValue(JsonParser parser, String name, int value)
      *********************************************************************************/
     public static void testKeyIntegerValue(JsonParser parser, String name, int value) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
 
         if (e != JsonParser.Event.KEY_NAME) {
@@ -1543,7 +1609,8 @@ public final class JSONP_Util {
             TestUtil.logMsg("Got expected keyname: " + keyname);
         }
 
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         e = parser.next();
         if (e != JsonParser.Event.VALUE_NUMBER) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_NUMBER) + ", got event: "
@@ -1565,7 +1632,8 @@ public final class JSONP_Util {
      * void testKeyDoubleValue(JsonParser parser, String name, double value)
      *********************************************************************************/
     public static void testKeyDoubleValue(JsonParser parser, String name, double value) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
 
         if (e != JsonParser.Event.KEY_NAME) {
@@ -1583,7 +1651,8 @@ public final class JSONP_Util {
             TestUtil.logMsg("Got expected keyname: " + keyname);
         }
 
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         e = parser.next();
         if (e != JsonParser.Event.VALUE_NUMBER) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_NUMBER) + ", got event: "
@@ -1605,7 +1674,8 @@ public final class JSONP_Util {
      * void testKeyLongValue(JsonParser parser, String name, long value)
      *********************************************************************************/
     public static void testKeyLongValue(JsonParser parser, String name, long value) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
 
         if (e != JsonParser.Event.KEY_NAME) {
@@ -1623,7 +1693,8 @@ public final class JSONP_Util {
             TestUtil.logMsg("Got expected keyname: " + keyname);
         }
 
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         e = parser.next();
         if (e != JsonParser.Event.VALUE_NUMBER) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_NUMBER) + ", got event: "
@@ -1642,11 +1713,11 @@ public final class JSONP_Util {
     }
 
     /*********************************************************************************
-     * void testKeyBigDecimalValue(JsonParser parser, String name, BigDecimal
-     * value)
+     * void testKeyBigDecimalValue(JsonParser parser, String name, BigDecimal value)
      *********************************************************************************/
     public static void testKeyBigDecimalValue(JsonParser parser, String name, BigDecimal value) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
 
         if (e != JsonParser.Event.KEY_NAME) {
@@ -1664,7 +1735,8 @@ public final class JSONP_Util {
             TestUtil.logMsg("Got expected keyname: " + keyname);
         }
 
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         e = parser.next();
         if (e != JsonParser.Event.VALUE_NUMBER) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_NUMBER) + ", got event: "
@@ -1686,7 +1758,8 @@ public final class JSONP_Util {
      * void testKeyTrueValue(JsonParser parser, String name)
      *********************************************************************************/
     public static void testKeyTrueValue(JsonParser parser, String name) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
 
         if (e != JsonParser.Event.KEY_NAME) {
@@ -1704,7 +1777,8 @@ public final class JSONP_Util {
             TestUtil.logMsg("Got expected keyname: " + keyname);
         }
 
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         e = parser.next();
         if (e != JsonParser.Event.VALUE_TRUE) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_TRUE) + ", got event: "
@@ -1719,7 +1793,8 @@ public final class JSONP_Util {
      * void testKeyFalseValue(JsonParser parser, String name)
      *********************************************************************************/
     public static void testKeyFalseValue(JsonParser parser, String name) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
 
         if (e != JsonParser.Event.KEY_NAME) {
@@ -1737,7 +1812,8 @@ public final class JSONP_Util {
             TestUtil.logMsg("Got expected keyname: " + keyname);
         }
 
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         e = parser.next();
         if (e != JsonParser.Event.VALUE_FALSE) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_FALSE) + ", got event: "
@@ -1752,7 +1828,8 @@ public final class JSONP_Util {
      * void testKeyNullValue(JsonParser parser, String name)
      *********************************************************************************/
     public static void testKeyNullValue(JsonParser parser, String name) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
 
         if (e != JsonParser.Event.KEY_NAME) {
@@ -1770,7 +1847,8 @@ public final class JSONP_Util {
             TestUtil.logMsg("Got expected keyname: " + keyname);
         }
 
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         e = parser.next();
         if (e != JsonParser.Event.VALUE_NULL) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_NULL) + ", got event: "
@@ -1785,7 +1863,8 @@ public final class JSONP_Util {
      * void testKeyStartObjectValue(JsonParser parser, String name)
      *********************************************************************************/
     public static void testKeyStartObjectValue(JsonParser parser, String name) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
 
         if (e != JsonParser.Event.KEY_NAME) {
@@ -1803,7 +1882,8 @@ public final class JSONP_Util {
             TestUtil.logMsg("Got expected keyname: " + keyname);
         }
 
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         e = parser.next();
         if (e != JsonParser.Event.START_OBJECT) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.START_OBJECT) + ", got event: "
@@ -1818,7 +1898,8 @@ public final class JSONP_Util {
      * void testKeyStartArrayValue(JsonParser parser, String name)
      *********************************************************************************/
     public static void testKeyStartArrayValue(JsonParser parser, String name) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
 
         if (e != JsonParser.Event.KEY_NAME) {
@@ -1836,7 +1917,8 @@ public final class JSONP_Util {
             TestUtil.logMsg("Got expected keyname: " + keyname);
         }
 
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         e = parser.next();
         if (e != JsonParser.Event.START_ARRAY) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.START_ARRAY) + ", got event: "
@@ -1855,25 +1937,28 @@ public final class JSONP_Util {
             TestUtil.logErr("no next parser event found - unexpected");
             parseErrs++;
             return false;
-        } else return true;
+        } else
+            return true;
     }
 
     /*********************************************************************************
      * JsonParser.Event getNextParserEvent(JsonParser parser)
      *********************************************************************************/
     public static JsonParser.Event getNextParserEvent(JsonParser parser) {
-        if (parser.hasNext()) return parser.next();
-        else return null;
+        if (parser.hasNext())
+            return parser.next();
+        else
+            return null;
     }
 
     /*********************************************************************************
-     * JsonParser.Event getNextSpecificParserEvent(JsonParser parser,
-     * JsonParser.Event thisEvent)
+     * JsonParser.Event getNextSpecificParserEvent(JsonParser parser, JsonParser.Event thisEvent)
      *********************************************************************************/
     public static JsonParser.Event getNextSpecificParserEvent(JsonParser parser, JsonParser.Event thisEvent) {
         while (parser.hasNext()) {
             JsonParser.Event event = parser.next();
-            if (event == thisEvent) return event;
+            if (event == thisEvent)
+                return event;
         }
         return null;
     }
@@ -1882,7 +1967,8 @@ public final class JSONP_Util {
      * void testEventType(JsonParser parser, JsonParser.Event expEvent)
      *********************************************************************************/
     public static void testEventType(JsonParser parser, JsonParser.Event expEvent) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
         if (e != expEvent) {
             TestUtil.logErr(
@@ -1897,7 +1983,8 @@ public final class JSONP_Util {
      * void testStringValue(JsonParser parser, String value)
      *********************************************************************************/
     public static void testStringValue(JsonParser parser, String value) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
         if (e != JsonParser.Event.VALUE_STRING) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_STRING) + ", got event: "
@@ -1919,7 +2006,8 @@ public final class JSONP_Util {
      * void testIntegerValue(JsonParser parser, int value)
      *********************************************************************************/
     public static void testIntegerValue(JsonParser parser, int value) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
         if (e != JsonParser.Event.VALUE_NUMBER) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_NUMBER) + ", got event: "
@@ -1941,7 +2029,8 @@ public final class JSONP_Util {
      * void testDoubleValue(JsonParser parser, double value)
      *********************************************************************************/
     public static void testDoubleValue(JsonParser parser, double value) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
         if (e != JsonParser.Event.VALUE_NUMBER) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_NUMBER) + ", got event: "
@@ -1963,7 +2052,8 @@ public final class JSONP_Util {
      * void testLongValue(JsonParser parser, long value)
      *********************************************************************************/
     public static void testLongValue(JsonParser parser, long value) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
         if (e != JsonParser.Event.VALUE_NUMBER) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_NUMBER) + ", got event: "
@@ -1985,7 +2075,8 @@ public final class JSONP_Util {
      * void testBigDecimalValue(JsonParser parser, BigDecimal value)
      *********************************************************************************/
     public static void testBigDecimalValue(JsonParser parser, BigDecimal value) {
-        if (!checkNextParserEvent(parser)) return;
+        if (!checkNextParserEvent(parser))
+            return;
         JsonParser.Event e = parser.next();
         if (e != JsonParser.Event.VALUE_NUMBER) {
             TestUtil.logErr("Expected event: " + getEventTypeString(JsonParser.Event.VALUE_NUMBER) + ", got event: "
@@ -2043,8 +2134,8 @@ public final class JSONP_Util {
      *
      * Convert unicode to string value of form U+NNNN where NNNN are 4 hex digits
      *
-     * Use a binary or with hex value '0x10000' when converting unicode char to
-     * hex string and remove 1st char to get the 4 hex digits we need.
+     * Use a binary or with hex value '0x10000' when converting unicode char to hex string and remove 1st char to get the 4
+     * hex digits we need.
      *********************************************************************************/
     public static String convertUnicodeCharToString(char c) {
         return "\\u" + Integer.toHexString((int) c | 0x10000).substring(1);
@@ -2059,8 +2150,10 @@ public final class JSONP_Util {
      *********************************************************************************/
     public static boolean isUnicodeControlChar(char c) {
 
-        if ((c >= '\u0000' && c <= '\u001F') || (c == '\u007F') || (c >= '\u0080' && c <= '\u009F')) return true;
-        else return false;
+        if ((c >= '\u0000' && c <= '\u001F') || (c == '\u007F') || (c >= '\u0080' && c <= '\u009F'))
+            return true;
+        else
+            return false;
     }
 
     /*********************************************************************************
@@ -2282,9 +2375,9 @@ public final class JSONP_Util {
         URLClassLoader urlClassLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
         try {
             Class urlClassLoaderClass = URLClassLoader.class;
-            Method method = urlClassLoaderClass.getDeclaredMethod("addURL", new Class[] {URL.class});
+            Method method = urlClassLoaderClass.getDeclaredMethod("addURL", new Class[] { URL.class });
             method.setAccessible(true);
-            method.invoke(urlClassLoader, new Object[] {url});
+            method.invoke(urlClassLoader, new Object[] { url });
         } catch (Throwable t) {
             t.printStackTrace();
             throw new IOException("Error, could not add URL to system classloader");
@@ -2296,8 +2389,7 @@ public final class JSONP_Util {
      *********************************************************************************/
     public static JsonArray buildJsonArrayFooBar() {
         try {
-            JsonArray jsonArray =
-                    Json.createArrayBuilder().add("foo").add("bar").build();
+            JsonArray jsonArray = Json.createArrayBuilder().add("foo").add("bar").build();
             return jsonArray;
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e);
@@ -2363,16 +2455,14 @@ public final class JSONP_Util {
     }
 
     /*********************************************************************************
-     * EXPECTED_SAMPLEJSONOBJECT_TEXT Constant defining expected Json text output
-     * of above sample JsonObject
+     * EXPECTED_SAMPLEJSONOBJECT_TEXT Constant defining expected Json text output of above sample JsonObject
      *********************************************************************************/
-    public static final String EXPECTED_SAMPLEJSONOBJECT_TEXT =
-            "{\"firstName\":\"John\",\"lastName\":\"Smith\",\"age\":25,\"elderly\":false,\"patriot\":true,"
-                    + "\"address\":{\"streetAddress\":\"21 2nd Street\",\"city\":\"New York\",\"state\":\"NY\","
-                    + "\"postalCode\":\"10021\"},\"phoneNumber\":[{\"type\":\"home\",\"number\":\"212 555-1234\"},"
-                    + "{\"type\":\"cell\",\"number\":\"646 555-4567\"}],\"objectOfFooBar\":{\"objectFooBar\":"
-                    + "{\"foo\":\"bar\"},\"arrayFooBar\":[\"foo\",\"bar\"]},\"arrayOfFooBar\":[{\"foo\":\"bar\"},"
-                    + "[\"foo\",\"bar\"]]}";
+    public static final String EXPECTED_SAMPLEJSONOBJECT_TEXT = "{\"firstName\":\"John\",\"lastName\":\"Smith\",\"age\":25,\"elderly\":false,\"patriot\":true,"
+            + "\"address\":{\"streetAddress\":\"21 2nd Street\",\"city\":\"New York\",\"state\":\"NY\","
+            + "\"postalCode\":\"10021\"},\"phoneNumber\":[{\"type\":\"home\",\"number\":\"212 555-1234\"},"
+            + "{\"type\":\"cell\",\"number\":\"646 555-4567\"}],\"objectOfFooBar\":{\"objectFooBar\":"
+            + "{\"foo\":\"bar\"},\"arrayFooBar\":[\"foo\",\"bar\"]},\"arrayOfFooBar\":[{\"foo\":\"bar\"},"
+            + "[\"foo\",\"bar\"]]}";
 
     /*********************************************************************************
      * JsonObject createSampleJsonObject2()
@@ -2442,13 +2532,11 @@ public final class JSONP_Util {
     }
 
     /*********************************************************************************
-     * EXPECTED_SAMPLEJSONARRAY_TEXT Constant defining expected Json text output
-     * of above sample JsonArray
+     * EXPECTED_SAMPLEJSONARRAY_TEXT Constant defining expected Json text output of above sample JsonArray
      *********************************************************************************/
-    public static final String EXPECTED_SAMPLEJSONARRAY_TEXT =
-            "[{\"name1\":\"value1\",\"name2\":\"value2\"},true,false,null,100,200,\"string\",123456789,123456789,"
-                    + "{\"name3\":\"value3\",\"name4\":\"value4\"},true,false,null,[2,4],{\"objectFooBar\":"
-                    + "{\"foo\":\"bar\"},\"arrayFooBar\":[\"foo\",\"bar\"]},[{\"foo\":\"bar\"},[\"foo\",\"bar\"]]]";
+    public static final String EXPECTED_SAMPLEJSONARRAY_TEXT = "[{\"name1\":\"value1\",\"name2\":\"value2\"},true,false,null,100,200,\"string\",123456789,123456789,"
+            + "{\"name3\":\"value3\",\"name4\":\"value4\"},true,false,null,[2,4],{\"objectFooBar\":"
+            + "{\"foo\":\"bar\"},\"arrayFooBar\":[\"foo\",\"bar\"]},[{\"foo\":\"bar\"},[\"foo\",\"bar\"]]]";
 
     /*********************************************************************************
      * JsonArray createSampleJsonArray2()

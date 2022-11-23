@@ -73,7 +73,8 @@ public class AllowedDynamicAttributeValueTypesTag extends TagSupport {
             pageContext.getOut().println("dollarExpr is " + dollarExpr);
             pageContext.getOut().println("valueExpr is " + ((valExprSet) ? valueExpr : "null"));
             pageContext.getOut().println("methodExpr is " + methodExpr);
-            if (valExprSet) pageContext.getOut().println("Test PASSED.");
+            if (valExprSet)
+                pageContext.getOut().println("Test PASSED.");
         } catch (IOException ioe) {
             throw new JspException("Unexpected Exception", ioe);
         }

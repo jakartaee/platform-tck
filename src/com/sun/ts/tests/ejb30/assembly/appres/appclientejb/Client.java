@@ -80,9 +80,11 @@ public class Client extends EETest {
         s.exit();
     }
 
-    public void setup(String[] args, Properties p) {}
+    public void setup(String[] args, Properties p) {
+    }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 
     @SuppressWarnings("unused")
     @PostConstruct
@@ -124,8 +126,7 @@ public class Client extends EETest {
     /*
      * @testName: clientPostConstruct
      *
-     * @test_Strategy: declare resources in application.xml and inject them into
-     * appclient.
+     * @test_Strategy: declare resources in application.xml and inject them into appclient.
      */
     public void clientPostConstruct() {
         Helper.getLogger().info(postConstructRecords.toString());
@@ -134,8 +135,7 @@ public class Client extends EETest {
     /*
      * @testName: ejbPostConstruct
      *
-     * @test_Strategy: declare resources in application.xml and inject them into
-     * AppResBean.
+     * @test_Strategy: declare resources in application.xml and inject them into AppResBean.
      */
     public void ejbPostConstruct() {
         Helper.getLogger().info(getAppResBeanRemote().getPostConstructRecords().toString());

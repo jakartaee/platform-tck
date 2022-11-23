@@ -44,7 +44,8 @@ public class WSClient extends ServiceEETest {
      * @class.setup_props: webServerHost; webServerPort; ts_home;
      */
     @SuppressWarnings("unused")
-    public void setup(String[] args, Properties p) throws Fault {}
+    public void setup(String[] args, Properties p) throws Fault {
+    }
 
     /* Run test */
     /*
@@ -65,8 +66,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: setMaxSessionIdleTimeoutTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:167;
-     * WebSocket:JAVADOC:172;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:167; WebSocket:JAVADOC:172;
      *
      * @test_Strategy: Test method setMaxSessionIdleTimeout
      */
@@ -98,8 +98,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: setMaxTextMessageBufferSizeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:168;
-     * WebSocket:JAVADOC:173;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:168; WebSocket:JAVADOC:173;
      *
      * @test_Strategy:
      */
@@ -134,8 +133,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: setMaxBinaryMessageBufferSizeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:166;
-     * WebSocket:JAVADOC:171;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:166; WebSocket:JAVADOC:171;
      *
      * @test_Strategy:
      */
@@ -172,8 +170,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: setAsyncSendTimeoutTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:165;
-     * WebSocket:JAVADOC:170;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:165; WebSocket:JAVADOC:170;
      *
      * @test_Strategy:
      */
@@ -218,5 +215,6 @@ public class WSClient extends ServiceEETest {
         }
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 }

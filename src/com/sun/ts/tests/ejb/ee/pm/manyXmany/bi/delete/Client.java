@@ -47,8 +47,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -77,11 +76,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:177; EJB:SPEC:181
      *
-     * @test_Strategy: A manyXmany bi-directional relationship between entitybean
-     * objects. Create a manyXmany bi-directional relationship between entitybean
-     * objects. Perform delete of entitybean object. Deploy it on the J2EE server.
-     * Ensure that the Persistence Manager throws jakarta.ejb.EJBException when
-     * trying to invoke an accessor method on a deleted entitybean object.
+     * @test_Strategy: A manyXmany bi-directional relationship between entitybean objects. Create a manyXmany bi-directional
+     * relationship between entitybean objects. Perform delete of entitybean object. Deploy it on the J2EE server. Ensure
+     * that the Persistence Manager throws jakarta.ejb.EJBException when trying to invoke an accessor method on a deleted
+     * entitybean object.
      *
      */
 
@@ -116,7 +114,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("delete_MxN_bi_test1 failed");
+        if (!pass)
+            throw new Fault("delete_MxN_bi_test1 failed");
     }
 
     /*
@@ -124,11 +123,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:175; EJB:SPEC:176.2
      *
-     * @test_Strategy: A manyXmany bi-directional relationship between entitybean
-     * objects. Create a manyXmany bi-directional relationship between entitybean
-     * objects. Perform delete of entitybean object. Deploy it on the J2EE server.
-     * Ensure that the accessor methods for the relationships returns the correct
-     * collection.
+     * @test_Strategy: A manyXmany bi-directional relationship between entitybean objects. Create a manyXmany bi-directional
+     * relationship between entitybean objects. Perform delete of entitybean object. Deploy it on the J2EE server. Ensure
+     * that the accessor methods for the relationships returns the correct collection.
      *
      */
 
@@ -163,7 +160,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("delete_MxN_bi_test2 failed");
+        if (!pass)
+            throw new Fault("delete_MxN_bi_test2 failed");
     }
 
     /*
@@ -171,12 +169,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:179
      *
-     * @test_Strategy: A manyXmany bi-directional relationship between entitybean
-     * objects. Create a manyXmany bi-directional relationship between entitybean
-     * objects. Perform delete of entitybean object. Deploy it on the J2EE server.
-     * Ensure that the Persistence Manager throws
-     * java.lang.IllegalArgumentException when trying to assign a deleted object
-     * as the value of a cmr-field.
+     * @test_Strategy: A manyXmany bi-directional relationship between entitybean objects. Create a manyXmany bi-directional
+     * relationship between entitybean objects. Perform delete of entitybean object. Deploy it on the J2EE server. Ensure
+     * that the Persistence Manager throws java.lang.IllegalArgumentException when trying to assign a deleted object as the
+     * value of a cmr-field.
      *
      */
 
@@ -211,6 +207,7 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("delete_MxN_bi_test3 failed");
+        if (!pass)
+            throw new Fault("delete_MxN_bi_test3 failed");
     }
 }

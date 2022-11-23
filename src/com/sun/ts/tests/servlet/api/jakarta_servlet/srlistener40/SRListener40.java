@@ -58,4 +58,5 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.srlistener40;
 
 import jakarta.servlet.ServletRequestListener;
 
-public final class SRListener40 implements ServletRequestListener {}
+public final class SRListener40 implements ServletRequestListener {
+}

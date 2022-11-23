@@ -33,10 +33,7 @@ import jakarta.jws.soap.SOAPBinding;
 import jakarta.xml.ws.Holder;
 
 @WebService(wsdlLocation = "WEB-INF/wsdl/WebParamWebServiceService.wsdl")
-@SOAPBinding(
-        style = SOAPBinding.Style.DOCUMENT,
-        use = SOAPBinding.Use.LITERAL,
-        parameterStyle = SOAPBinding.ParameterStyle.BARE)
+@SOAPBinding(style = SOAPBinding.Style.DOCUMENT, use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.BARE)
 public class webParamWebService {
 
     @WebMethod(operationName = "helloString", action = "urn:HelloString")
@@ -52,10 +49,8 @@ public class webParamWebService {
 
     @WebMethod(operationName = "helloString3", action = "urn:HelloString3")
     public void hello3(
-            @WebParam(name = "name3", partName = "string3", targetNamespace = "helloString3/name", header = true)
-                    String name,
-            @WebParam(name = "Name", targetNamespace = "helloString3/Name", mode = WebParam.Mode.INOUT)
-                    Holder<Name> name2) {
+            @WebParam(name = "name3", partName = "string3", targetNamespace = "helloString3/name", header = true) String name,
+            @WebParam(name = "Name", targetNamespace = "helloString3/Name", mode = WebParam.Mode.INOUT) Holder<Name> name2) {
 
         System.out.println(" Invoking hello3 ");
 
@@ -112,10 +107,7 @@ public class webParamWebService {
     }
 
     @WebMethod(operationName = "helloString8", action = "urn:HelloString8")
-    @SOAPBinding(
-            style = SOAPBinding.Style.DOCUMENT,
-            use = SOAPBinding.Use.LITERAL,
-            parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
+    @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
     public String hello8(@WebParam(name = "string8") String name, Address address) {
         return "hello8 : " + address.getCity() + " to Web Service";
     }

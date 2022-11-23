@@ -130,8 +130,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -171,8 +173,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.1; WSAMD:SPEC:4004.2;
      *
-     * @test_Strategy: Test default action pattern for WSDL input/output with URN
-     * targetNamespace
+     * @test_Strategy: Test default action pattern for WSDL input/output with URN targetNamespace
      *
      */
     public void testURNDefaultInputOutputActions() throws Fault {
@@ -184,14 +185,16 @@ public class Client extends ServiceEETest {
             if (result != 20) {
                 TestUtil.logErr("result mismatch, expected 20, received " + result);
                 pass = false;
-            } else TestUtil.logMsg("result match");
+            } else
+                TestUtil.logMsg("result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("testURNDefaultInputOutputActions failed", e);
         }
 
-        if (!pass) throw new Fault("testURNDefaultInputOutputActions failed");
+        if (!pass)
+            throw new Fault("testURNDefaultInputOutputActions failed");
     }
 
     /*
@@ -199,8 +202,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3;
      *
-     * @test_Strategy: Test default action pattern for WSDL fault with URN
-     * targetNamespace
+     * @test_Strategy: Test default action pattern for WSDL fault with URN targetNamespace
      *
      */
     public void testURNDefaultFaultAction() throws Fault {
@@ -219,17 +221,17 @@ public class Client extends ServiceEETest {
             throw new Fault("testURNDefaultFaultAction failed", e);
         }
 
-        if (!pass) throw new Fault("testURNDefaultAddFaultAction failed");
+        if (!pass)
+            throw new Fault("testURNDefaultAddFaultAction failed");
     }
 
     /*
      * @testName: testURNExplicitInputOutputActions
      *
-     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4003; WSAMD:SPEC:4003.1;
-     * WSAMD:SPEC:4003.1; JAXWS:SPEC:2077; JAXWS:SPEC:2078; JAXWS:SPEC:2079;
+     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4003; WSAMD:SPEC:4003.1; WSAMD:SPEC:4003.1; JAXWS:SPEC:2077;
+     * JAXWS:SPEC:2078; JAXWS:SPEC:2079;
      *
-     * @test_Strategy: Test explicit association for WSDL input/output with URN
-     * targetNamespace
+     * @test_Strategy: Test explicit association for WSDL input/output with URN targetNamespace
      *
      */
     public void testURNExplicitInputOutputActions() throws Fault {
@@ -241,24 +243,25 @@ public class Client extends ServiceEETest {
             if (result != 20) {
                 TestUtil.logErr("result mismatch, expected 20, received " + result);
                 pass = false;
-            } else TestUtil.logMsg("result match");
+            } else
+                TestUtil.logMsg("result match");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("testURNExplicitInputOutputActions failed", e);
         }
 
-        if (!pass) throw new Fault("testURNExplicitInputOutputActions failed");
+        if (!pass)
+            throw new Fault("testURNExplicitInputOutputActions failed");
     }
 
     /*
      * @testName: testURNExplicitFaultAction
      *
-     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
-     * JAXWS:SPEC:2080; JAXWS:SPEC:2081; JAXWS:SPEC:2082; JAXWS:SPEC:2083;
+     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3; JAXWS:SPEC:2080; JAXWS:SPEC:2081;
+     * JAXWS:SPEC:2082; JAXWS:SPEC:2083;
      *
-     * @test_Strategy: Test explicit association for WSDL fault with URN
-     * targetNamespace
+     * @test_Strategy: Test explicit association for WSDL fault with URN targetNamespace
      *
      */
     public void testURNExplicitFaultAction() throws Fault {
@@ -277,6 +280,7 @@ public class Client extends ServiceEETest {
             throw new Fault("testURNExplicitFaultAction failed", e);
         }
 
-        if (!pass) throw new Fault("testURNExplicitFaultAction failed");
+        if (!pass)
+            throw new Fault("testURNExplicitFaultAction failed");
     }
 }

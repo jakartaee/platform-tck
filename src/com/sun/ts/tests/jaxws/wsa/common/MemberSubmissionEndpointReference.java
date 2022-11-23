@@ -45,26 +45,26 @@ public class MemberSubmissionEndpointReference extends EndpointReference
 
     private Unmarshaller unmarshaller = null;
 
-    public MemberSubmissionEndpointReference() {}
+    public MemberSubmissionEndpointReference() {
+    }
 
     /**
      * construct an EPR from infoset representation
      *
-     * @param source
-     *          A source object containing valid XmlInfoset instance consistent
-     *          with the Member Submission WS-Addressing
-     * @throws jakarta.xml.ws.WebServiceException
-     *           if the source does not contain a valid W3C WS-Addressing
-     *           EndpointReference.
-     * @throws WebServiceException
-     *           if the <code>null</code> <code>source</code> value is given
+     * @param source A source object containing valid XmlInfoset instance consistent with the Member Submission
+     * WS-Addressing
+     * @throws jakarta.xml.ws.WebServiceException if the source does not contain a valid W3C WS-Addressing
+     * EndpointReference.
+     * @throws WebServiceException if the <code>null</code> <code>source</code> value is given
      */
     public MemberSubmissionEndpointReference(Source source) {
 
-        if (source == null) throw new WebServiceException("Source parameter can not be null on constructor");
+        if (source == null)
+            throw new WebServiceException("Source parameter can not be null on constructor");
 
         try {
-            if (unmarshaller == null) unmarshaller = MemberSubmissionEndpointReference.msjc.createUnmarshaller();
+            if (unmarshaller == null)
+                unmarshaller = MemberSubmissionEndpointReference.msjc.createUnmarshaller();
             MemberSubmissionEndpointReference epr = (MemberSubmissionEndpointReference) unmarshaller.unmarshal(source);
 
             this.addr = epr.addr;
@@ -83,7 +83,8 @@ public class MemberSubmissionEndpointReference extends EndpointReference
 
     public void writeTo(Result result) {
         try {
-            if (marshaller == null) marshaller = MemberSubmissionEndpointReference.msjc.createMarshaller();
+            if (marshaller == null)
+                marshaller = MemberSubmissionEndpointReference.msjc.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
             marshaller.marshal(this, result);
         } catch (JAXBException e) {
@@ -121,7 +122,8 @@ public class MemberSubmissionEndpointReference extends EndpointReference
     public Elements elements;
 
     public static class Address {
-        public Address() {}
+        public Address() {
+        }
 
         @XmlValue
         public String uri;
@@ -131,14 +133,16 @@ public class MemberSubmissionEndpointReference extends EndpointReference
     }
 
     public static class Elements {
-        public Elements() {}
+        public Elements() {
+        }
 
         @XmlAnyElement
         public List<Element> elements;
     }
 
     public static class AttributedQName {
-        public AttributedQName() {}
+        public AttributedQName() {
+        }
 
         @XmlValue
         public QName name;
@@ -148,7 +152,8 @@ public class MemberSubmissionEndpointReference extends EndpointReference
     }
 
     public static class ServiceNameType extends AttributedQName {
-        public ServiceNameType() {}
+        public ServiceNameType() {
+        }
 
         @XmlAttribute(name = "PortName")
         public String portName;

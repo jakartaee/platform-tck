@@ -29,7 +29,7 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import java.io.Reader;
 
-@ClientEndpoint(decoders = {AlternativeReaderDecoder.class})
+@ClientEndpoint(decoders = { AlternativeReaderDecoder.class })
 public class AnnotatedTextClient extends AnnotatedClientEndpoint<String> {
 
     public AnnotatedTextClient() {

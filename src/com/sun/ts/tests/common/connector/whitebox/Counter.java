@@ -44,18 +44,16 @@ public class Counter {
 
     private static Action action = Action.DO_NOTHING;
 
-    public Counter() {}
+    public Counter() {
+    }
 
     /*
-     * We are forcing the users to explicitly indicate if they want to increment,
-     * decrement, or do nothing. The reasoning is to ensure that the user knows
-     * exactly what they are doing when using this class/method.
+     * We are forcing the users to explicitly indicate if they want to increment, decrement, or do nothing. The reasoning is
+     * to ensure that the user knows exactly what they are doing when using this class/method.
      *
-     * Since the primary use of this class/method is to record the current count
-     * (usually during a work context notification call) we expect the users to
-     * call this as: getCount(Counter.INCREMENT) so that the count is incremented
-     * each time its called/used. The other Action types are only there for
-     * completeness but no current use of them is expected.
+     * Since the primary use of this class/method is to record the current count (usually during a work context notification
+     * call) we expect the users to call this as: getCount(Counter.INCREMENT) so that the count is incremented each time its
+     * called/used. The other Action types are only there for completeness but no current use of them is expected.
      *
      */
     public int getCount(Action val) {

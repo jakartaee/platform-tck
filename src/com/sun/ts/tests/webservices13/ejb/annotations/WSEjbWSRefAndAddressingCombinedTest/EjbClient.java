@@ -28,37 +28,25 @@ import jakarta.xml.ws.soap.*;
 import java.util.*;
 
 @Stateless(name = "WSEjbWSRefAndAddressingCombinedTestClntBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
     private static final boolean debug = false;
 
     @Addressing
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestdefaultechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestdefaultechoport", type = Echo.class, value = EchoService.class)
     Echo defaultEchoPort = null;
 
     @Addressing(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestenabledechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestenabledechoport", type = Echo.class, value = EchoService.class)
     Echo enabledEchoPort = null;
 
     @Addressing(enabled = true, required = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestrequiredechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestrequiredechoport", type = Echo.class, value = EchoService.class)
     Echo requiredEchoPort = null;
 
     @Addressing(enabled = false)
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestdisabledechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestdisabledechoport", type = Echo.class, value = EchoService.class)
     Echo disabledEchoPort = null;
 
     @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestservice")
@@ -98,7 +86,8 @@ public class EjbClient implements EjbClientIF {
             return VerifyAddrHeadersExistForRequiredEchoPort();
         else if (testName.equals("VerifyAddrHeadersDoNotExistForDisabledEchoPort"))
             return VerifyAddrHeadersDoNotExistForDisabledEchoPort();
-        else return VerifyAddrHeadersMayExistForEnabledEchoPort();
+        else
+            return VerifyAddrHeadersMayExistForEnabledEchoPort();
     }
 
     private String getTargetEndpointAddress(Object stub) throws Exception {

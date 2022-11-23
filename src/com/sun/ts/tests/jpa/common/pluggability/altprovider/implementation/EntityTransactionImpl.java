@@ -47,8 +47,10 @@ public class EntityTransactionImpl implements jakarta.persistence.EntityTransact
     }
 
     @Override
-    public void rollback() {}
+    public void rollback() {
+    }
 
     @Override
-    public void setRollbackOnly() {}
+    public void setRollbackOnly() {
+    }
 }

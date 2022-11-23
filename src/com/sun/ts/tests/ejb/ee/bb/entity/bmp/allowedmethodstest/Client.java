@@ -168,8 +168,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * ejb_timeout; ejb_wait; user; password;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; ejb_timeout; ejb_wait; user; password;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -206,23 +205,17 @@ public class Client extends EETest {
     /*
      * @testName: bmpAllowedMethodsTest1
      *
-     * @assertion_ids: EJB:SPEC:453.1; EJB:SPEC:453.2; EJB:SPEC:453.3;
-     * EJB:SPEC:453.4; EJB:SPEC:453.5; EJB:SPEC:453.7; EJB:SPEC:453.8;
-     * EJB:SPEC:453.9; EJB:SPEC:453.12; EJB:SPEC:453.13; EJB:SPEC:453.14;
-     * EJB:JAVADOC:215; EJB:JAVADOC:220; EJB:JAVADOC:224; EJB:JAVADOC:227;
-     * EJB:JAVADOC:231; EJB:JAVADOC:191; EJB:JAVADOC:195
+     * @assertion_ids: EJB:SPEC:453.1; EJB:SPEC:453.2; EJB:SPEC:453.3; EJB:SPEC:453.4; EJB:SPEC:453.5; EJB:SPEC:453.7;
+     * EJB:SPEC:453.8; EJB:SPEC:453.9; EJB:SPEC:453.12; EJB:SPEC:453.13; EJB:SPEC:453.14; EJB:JAVADOC:215; EJB:JAVADOC:220;
+     * EJB:JAVADOC:224; EJB:JAVADOC:227; EJB:JAVADOC:231; EJB:JAVADOC:191; EJB:JAVADOC:195
      *
-     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method
-     * of an entity bean are: o getEJBHome - allowed o getCallerPrincipal -
-     * allowed o isCallerInRole - allowed o getEJBObject - not allowed o
-     * JNDI_Access - allowed o getPrimaryKey - not allowed o getEJBLocalHome -
-     * allowed o getEJBLocalObject - not allowed o getTimerService - allowed o
-     * TimerService_Methods_Test1 - not allowed o TimerService_Methods_Test2 - not
-     * allowed o TimerService_Methods_Test3 - not allowed o
-     * TimerService_Methods_Test4 - not allowed o TimerService_Methods_Test5 - not
-     * allowed o TimerService_Methods_Test6 - not allowed o
-     * TimerService_Methods_Test7 - not allowed o getRollbackOnly - allowed o
-     * setRollbackOnly - allowed - NOT TESTED
+     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method of an entity bean are: o getEJBHome -
+     * allowed o getCallerPrincipal - allowed o isCallerInRole - allowed o getEJBObject - not allowed o JNDI_Access -
+     * allowed o getPrimaryKey - not allowed o getEJBLocalHome - allowed o getEJBLocalObject - not allowed o getTimerService
+     * - allowed o TimerService_Methods_Test1 - not allowed o TimerService_Methods_Test2 - not allowed o
+     * TimerService_Methods_Test3 - not allowed o TimerService_Methods_Test4 - not allowed o TimerService_Methods_Test5 -
+     * not allowed o TimerService_Methods_Test6 - not allowed o TimerService_Methods_Test7 - not allowed o getRollbackOnly -
+     * allowed o setRollbackOnly - allowed - NOT TESTED
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -233,8 +226,8 @@ public class Client extends EETest {
         logTrace("Operation Tests for ejbCreate");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "true", "false", "true", "false", "true", "false", "true", "false", "false", "false",
-            "false", "false", "false", "false", "true"
+                "true", "true", "true", "false", "true", "false", "true", "false", "true", "false", "false", "false",
+                "false", "false", "false", "false", "true"
         };
         try {
             // create Helper EJB instance
@@ -264,27 +257,23 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("bmpAllowedMethodsTest1 failed");
+        if (!pass)
+            throw new Fault("bmpAllowedMethodsTest1 failed");
     }
 
     /*
      * @testName: bmpAllowedMethodsTest2
      *
-     * @assertion_ids: EJB:SPEC:454.1; EJB:SPEC:454.2; EJB:SPEC:454.3;
-     * EJB:SPEC:454.4; EJB:SPEC:454.5; EJB:SPEC:454.7; EJB:SPEC:454.8;
-     * EJB:SPEC:454.9; EJB:SPEC:454.12; EJB:SPEC:454.13; EJB:SPEC:454.14
+     * @assertion_ids: EJB:SPEC:454.1; EJB:SPEC:454.2; EJB:SPEC:454.3; EJB:SPEC:454.4; EJB:SPEC:454.5; EJB:SPEC:454.7;
+     * EJB:SPEC:454.8; EJB:SPEC:454.9; EJB:SPEC:454.12; EJB:SPEC:454.13; EJB:SPEC:454.14
      *
-     * @test_Strategy: Operations allowed and not allowed in the ejbPostCreate
-     * method of an entity bean are: o getEJBHome - allowed o getCallerPrincipal -
-     * allowed o isCallerInRole - allowed o getEJBObject - allowed o JNDI_Access -
-     * allowed o getPrimaryKey - allowed o getEJBLocalHome - allowed o
-     * getEJBLocalObject - allowed o getTimerService - allowed o
-     * TimerService_Methods_Test1 - allowed o TimerService_Methods_Test2 - allowed
-     * o TimerService_Methods_Test3 - allowed o TimerService_Methods_Test4 -
-     * allowed o TimerService_Methods_Test5 - allowed o TimerService_Methods_Test6
-     * - allowed o TimerService_Methods_Test7 - allowed o getRollbackOnly -
-     * allowed o getRollbackOnly - allowed o setRollbackOnly - allowed - NOT
-     * TESTED
+     * @test_Strategy: Operations allowed and not allowed in the ejbPostCreate method of an entity bean are: o getEJBHome -
+     * allowed o getCallerPrincipal - allowed o isCallerInRole - allowed o getEJBObject - allowed o JNDI_Access - allowed o
+     * getPrimaryKey - allowed o getEJBLocalHome - allowed o getEJBLocalObject - allowed o getTimerService - allowed o
+     * TimerService_Methods_Test1 - allowed o TimerService_Methods_Test2 - allowed o TimerService_Methods_Test3 - allowed o
+     * TimerService_Methods_Test4 - allowed o TimerService_Methods_Test5 - allowed o TimerService_Methods_Test6 - allowed o
+     * TimerService_Methods_Test7 - allowed o getRollbackOnly - allowed o getRollbackOnly - allowed o setRollbackOnly -
+     * allowed - NOT TESTED
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -294,8 +283,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for ejbPostCreate");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true",
-            "true", "true", "true", "true"
+                "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true",
+                "true", "true", "true", "true"
         };
         try {
             // create Helper EJB instance
@@ -325,28 +314,23 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("bmpAllowedMethodsTest2 failed");
+        if (!pass)
+            throw new Fault("bmpAllowedMethodsTest2 failed");
     }
 
     /*
      * @testName: bmpAllowedMethodsTest3
      *
-     * @assertion_ids: EJB:SPEC:463.1; EJB:SPEC:463.2; EJB:JAVADOC:115;
-     * EJB:SPEC:463.3; EJB:SPEC:463.4; EJB:SPEC:463.5; EJB:SPEC:463.7;
-     * EJB:SPEC:463.8; EJB:SPEC:463.9; EJB:SPEC:463.12; EJB:SPEC:463.13;
-     * EJB:SPEC:463.14
+     * @assertion_ids: EJB:SPEC:463.1; EJB:SPEC:463.2; EJB:JAVADOC:115; EJB:SPEC:463.3; EJB:SPEC:463.4; EJB:SPEC:463.5;
+     * EJB:SPEC:463.7; EJB:SPEC:463.8; EJB:SPEC:463.9; EJB:SPEC:463.12; EJB:SPEC:463.13; EJB:SPEC:463.14
      *
-     * @test_Strategy: Operations allowed and not allowed in the setEntityContext
-     * method of an entity bean are: o getEJBHome - allowed o getCallerPrincipal -
-     * not allowed o isCallerInRole - not allowed o getEJBObject - not allowed o
-     * JNDI_Access - allowed o getPrimaryKey - not allowed o getEJBLocalHome -
-     * allowed o getEJBLocalObject - not allowed o getTimerService - not allowed o
-     * TimerService_Methods_Test1 - not allowed o TimerService_Methods_Test2 - not
-     * allowed o TimerService_Methods_Test3 - not allowed o
-     * TimerService_Methods_Test4 - not allowed o TimerService_Methods_Test5 - not
-     * allowed o TimerService_Methods_Test6 - not allowed o
-     * TimerService_Methods_Test7 - not allowed o getRollbackOnly - not allowed o
-     * setRollbackOnly - not allowed - NOT TESTED
+     * @test_Strategy: Operations allowed and not allowed in the setEntityContext method of an entity bean are: o getEJBHome
+     * - allowed o getCallerPrincipal - not allowed o isCallerInRole - not allowed o getEJBObject - not allowed o
+     * JNDI_Access - allowed o getPrimaryKey - not allowed o getEJBLocalHome - allowed o getEJBLocalObject - not allowed o
+     * getTimerService - not allowed o TimerService_Methods_Test1 - not allowed o TimerService_Methods_Test2 - not allowed o
+     * TimerService_Methods_Test3 - not allowed o TimerService_Methods_Test4 - not allowed o TimerService_Methods_Test5 -
+     * not allowed o TimerService_Methods_Test6 - not allowed o TimerService_Methods_Test7 - not allowed o getRollbackOnly -
+     * not allowed o setRollbackOnly - not allowed - NOT TESTED
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -356,8 +340,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for setEntityContext");
         boolean pass = true;
         String expected[] = {
-            "true", "false", "false", "false", "true", "false", "true", "false", "false", "false", "false", "false",
-            "false", "false", "false", "false", "false"
+                "true", "false", "false", "false", "true", "false", "true", "false", "false", "false", "false", "false",
+                "false", "false", "false", "false", "false"
         };
         try {
             // create EJB instance
@@ -383,26 +367,23 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("bmpAllowedMethodsTest3 failed");
+        if (!pass)
+            throw new Fault("bmpAllowedMethodsTest3 failed");
     }
 
     /*
      * @testName: bmpAllowedMethodsTest4
      *
-     * @assertion_ids: EJB:SPEC:461.1; EJB:SPEC:461.2; EJB:SPEC:461.3;
-     * EJB:SPEC:461.4; EJB:SPEC:461.5; EJB:SPEC:461.7; EJB:SPEC:461.8;
-     * EJB:SPEC:461.9; EJB:SPEC:461.12; EJB:SPEC:461.13; EJB:SPEC:461.14
+     * @assertion_ids: EJB:SPEC:461.1; EJB:SPEC:461.2; EJB:SPEC:461.3; EJB:SPEC:461.4; EJB:SPEC:461.5; EJB:SPEC:461.7;
+     * EJB:SPEC:461.8; EJB:SPEC:461.9; EJB:SPEC:461.12; EJB:SPEC:461.13; EJB:SPEC:461.14
      *
-     * @test_Strategy: Operations allowed and not allowed in a business method
-     * from the component interface of an entity bean are: o getEJBHome - allowed
-     * o getCallerPrincipal - allowed o isCallerInRole - allowed o getEJBObject -
-     * allowed o JNDI_Access - allowed o getPrimaryKey - allowed o getEJBLocalHome
-     * - allowed o getEJBLocalObject - allowed o getTimerService - allowed o
-     * TimerService_Methods_Test1 - allowed o TimerService_Methods_Test2 - allowed
-     * o TimerService_Methods_Test3 - allowed o TimerService_Methods_Test4 -
-     * allowed o TimerService_Methods_Test5 - allowed o TimerService_Methods_Test6
-     * - allowed o TimerService_Methods_Test7 - allowed o getRollbackOnly -
-     * allowed o setRollbackOnly - allowed - NOT TESTED
+     * @test_Strategy: Operations allowed and not allowed in a business method from the component interface of an entity
+     * bean are: o getEJBHome - allowed o getCallerPrincipal - allowed o isCallerInRole - allowed o getEJBObject - allowed o
+     * JNDI_Access - allowed o getPrimaryKey - allowed o getEJBLocalHome - allowed o getEJBLocalObject - allowed o
+     * getTimerService - allowed o TimerService_Methods_Test1 - allowed o TimerService_Methods_Test2 - allowed o
+     * TimerService_Methods_Test3 - allowed o TimerService_Methods_Test4 - allowed o TimerService_Methods_Test5 - allowed o
+     * TimerService_Methods_Test6 - allowed o TimerService_Methods_Test7 - allowed o getRollbackOnly - allowed o
+     * setRollbackOnly - allowed - NOT TESTED
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -412,8 +393,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for businessMethod");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true",
-            "true", "true", "true", "true"
+                "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true",
+                "true", "true", "true", "true"
         };
         try {
             // create Helper EJB instance
@@ -445,26 +426,22 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("bmpAllowedMethodsTest4 failed");
+        if (!pass)
+            throw new Fault("bmpAllowedMethodsTest4 failed");
     }
 
     /*
      * @testName: bmpAllowedMethodsTest7
      *
-     * @assertion_ids: EJB:SPEC:456.1; EJB:SPEC:456.2; EJB:SPEC:456.3;
-     * EJB:SPEC:456.4; EJB:SPEC:456.5; EJB:SPEC:456.7; EJB:SPEC:456.8;
-     * EJB:SPEC:456.9; EJB:SPEC:456.12; EJB:SPEC:456.13; EJB:SPEC:456.14
+     * @assertion_ids: EJB:SPEC:456.1; EJB:SPEC:456.2; EJB:SPEC:456.3; EJB:SPEC:456.4; EJB:SPEC:456.5; EJB:SPEC:456.7;
+     * EJB:SPEC:456.8; EJB:SPEC:456.9; EJB:SPEC:456.12; EJB:SPEC:456.13; EJB:SPEC:456.14
      *
-     * @test_Strategy: Operations allowed and not allowed in an ejbHome method of
-     * an entity bean are: o getEJBHome - allowed o getCallerPrincipal - allowed o
-     * isCallerInRole - allowed o getEJBObject - not allowed o JNDI_Access -
-     * allowed o getPrimaryKey - not allowed o getEJBLocalHome - allowed o
-     * getEJBLocalObject - not allowed o getTimerService - allowed o
-     * TimerService_Methods_Test1 - not allowed o TimerService_Methods_Test2 - not
-     * allowed o TimerService_Methods_Test3 - not allowed o
-     * TimerService_Methods_Test4 - not allowed o TimerService_Methods_Test5 - not
-     * allowed o TimerService_Methods_Test6 - not allowed o
-     * TimerService_Methods_Test7 - not allowed o getRollbackOnly - allowed o
+     * @test_Strategy: Operations allowed and not allowed in an ejbHome method of an entity bean are: o getEJBHome - allowed
+     * o getCallerPrincipal - allowed o isCallerInRole - allowed o getEJBObject - not allowed o JNDI_Access - allowed o
+     * getPrimaryKey - not allowed o getEJBLocalHome - allowed o getEJBLocalObject - not allowed o getTimerService - allowed
+     * o TimerService_Methods_Test1 - not allowed o TimerService_Methods_Test2 - not allowed o TimerService_Methods_Test3 -
+     * not allowed o TimerService_Methods_Test4 - not allowed o TimerService_Methods_Test5 - not allowed o
+     * TimerService_Methods_Test6 - not allowed o TimerService_Methods_Test7 - not allowed o getRollbackOnly - allowed o
      * setRollbackOnly - allowed - NOT TESTED
      *
      * Deploy it on the J2EE server. Verify correct operations.
@@ -475,8 +452,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for ejbHome");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "true", "false", "true", "false", "true", "false", "true", "false", "false", "false",
-            "false", "false", "false", "false", "true"
+                "true", "true", "true", "false", "true", "false", "true", "false", "true", "false", "false", "false",
+                "false", "false", "false", "false", "true"
         };
         try {
             logMsg("Create Helper EJB instance");
@@ -507,28 +484,24 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("bmpAllowedMethodsTest7 failed");
+        if (!pass)
+            throw new Fault("bmpAllowedMethodsTest7 failed");
     }
 
     /*
      *
      * @testName: bmpAllowedMethodsTest8
      *
-     * @assertion_ids: EJB:SPEC:10464.1; EJB:SPEC:10464.2; EJB:SPEC:10464.3;
-     * EJB:SPEC:10464.4; EJB:SPEC:10464.5; EJB:SPEC:10464.7; EJB:SPEC:10464.8;
-     * EJB:SPEC:10464.9; EJB:SPEC:10464.12; EJB:SPEC:10464.13; EJB:SPEC:10464.14
+     * @assertion_ids: EJB:SPEC:10464.1; EJB:SPEC:10464.2; EJB:SPEC:10464.3; EJB:SPEC:10464.4; EJB:SPEC:10464.5;
+     * EJB:SPEC:10464.7; EJB:SPEC:10464.8; EJB:SPEC:10464.9; EJB:SPEC:10464.12; EJB:SPEC:10464.13; EJB:SPEC:10464.14
      *
-     * @test_Strategy: Operations allowed and not allowed in an ejbFind method of
-     * an entity bean are: o getEJBHome - allowed o getCallerPrincipal - allowed o
-     * isCallerInRole - allowed o getEJBObject - not allowed o JNDI_Access -
-     * allowed o getPrimaryKey - not allowed o getEJBLocalHome - allowed o
-     * getEJBLocalObject - not allowed o getTimerService - not allowed o
-     * TimerService_Methods_Test1 - not allowed o TimerService_Methods_Test2 - not
-     * allowed o TimerService_Methods_Test3 - not allowed o
-     * TimerService_Methods_Test4 - not allowed o TimerService_Methods_Test5 - not
-     * allowed o TimerService_Methods_Test6 - not allowed o
-     * TimerService_Methods_Test7 - not allowed o getRollbackOnly - allowed o
-     * setRollbackOnly - allowed - NOT TESTED
+     * @test_Strategy: Operations allowed and not allowed in an ejbFind method of an entity bean are: o getEJBHome - allowed
+     * o getCallerPrincipal - allowed o isCallerInRole - allowed o getEJBObject - not allowed o JNDI_Access - allowed o
+     * getPrimaryKey - not allowed o getEJBLocalHome - allowed o getEJBLocalObject - not allowed o getTimerService - not
+     * allowed o TimerService_Methods_Test1 - not allowed o TimerService_Methods_Test2 - not allowed o
+     * TimerService_Methods_Test3 - not allowed o TimerService_Methods_Test4 - not allowed o TimerService_Methods_Test5 -
+     * not allowed o TimerService_Methods_Test6 - not allowed o TimerService_Methods_Test7 - not allowed o getRollbackOnly -
+     * allowed o setRollbackOnly - allowed - NOT TESTED
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -539,8 +512,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for ejbFindTheBean");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "true", "false", "true", "false", "true", "false", "false", "false", "false", "false",
-            "false", "false", "false", "false", "true"
+                "true", "true", "true", "false", "true", "false", "true", "false", "false", "false", "false", "false",
+                "false", "false", "false", "false", "true"
         };
         try {
             logMsg("Create Helper EJB instance");
@@ -571,7 +544,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("bmpAllowedMethodsTest8 failed");
+        if (!pass)
+            throw new Fault("bmpAllowedMethodsTest8 failed");
     }
 
     public void cleanup() throws Fault {

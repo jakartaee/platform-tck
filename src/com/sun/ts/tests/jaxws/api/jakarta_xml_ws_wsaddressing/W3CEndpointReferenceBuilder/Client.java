@@ -77,23 +77,17 @@ public class Client extends ServiceEETest {
 
     private static final String MyExtensionAttrValue = "Hello";
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
 
-    private static String xmlRefParam1 =
-            "<myns1:MyParam1 wsa:IsReferenceParameter='true' xmlns:myns1=\"http://helloservice.org/myparam1\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">Hello</myns1:MyParam1>";
+    private static String xmlRefParam1 = "<myns1:MyParam1 wsa:IsReferenceParameter='true' xmlns:myns1=\"http://helloservice.org/myparam1\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">Hello</myns1:MyParam1>";
 
-    private static String xmlRefParam2 =
-            "<myns2:MyParam2 wsa:IsReferenceParameter='true' xmlns:myns2=\"http://helloservice.org/myparam2\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">There</myns2:MyParam2>";
+    private static String xmlRefParam2 = "<myns2:MyParam2 wsa:IsReferenceParameter='true' xmlns:myns2=\"http://helloservice.org/myparam2\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">There</myns2:MyParam2>";
 
-    private static String xmlMyExtensionElement =
-            "<myext:MyExtensionElement xmlns:myext=\"http://extension.org/ext\">MyExtensionElementValue</myext:MyExtensionElement>";
+    private static String xmlMyExtensionElement = "<myext:MyExtensionElement xmlns:myext=\"http://extension.org/ext\">MyExtensionElementValue</myext:MyExtensionElement>";
 
-    private static String xmlInterfaceName =
-            "<wsam:InterfaceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:wsns=\"http://helloservice.org/wsdl\">wsns:Hello</wsam:InterfaceName>";
+    private static String xmlInterfaceName = "<wsam:InterfaceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:wsns=\"http://helloservice.org/wsdl\">wsns:Hello</wsam:InterfaceName>";
 
-    private static String xmlServiceName =
-            "<wsam:ServiceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wsns=\"http://helloservice.org/wsdl\" EndpointName=\"HelloPort\">wsns:HelloService</wsam:ServiceName>";
+    private static String xmlServiceName = "<wsam:ServiceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wsns=\"http://helloservice.org/wsdl\" EndpointName=\"HelloPort\">wsns:HelloService</wsam:ServiceName>";
 
     private TSURL ctsurl = new TSURL();
 
@@ -163,8 +157,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -206,9 +202,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:204;
      *
-     * @test_Strategy: Create instance via W3CEndpointReferenceBuilder()
-     * constructor. Verify W3CEndpointReferenceBuilder object created
-     * successfully.
+     * @test_Strategy: Create instance via W3CEndpointReferenceBuilder() constructor. Verify W3CEndpointReferenceBuilder
+     * object created successfully.
      */
     public void W3CEndpointReferenceBuilderConstructorTest() throws Fault {
         TestUtil.logTrace("W3CEndpointReferenceBuilderConstructorTest");
@@ -228,7 +223,8 @@ public class Client extends ServiceEETest {
             throw new Fault("W3CEndpointReferenceBuilderConstructorTest failed", e);
         }
 
-        if (!pass) throw new Fault("W3CEndpointReferenceBuilderConstructorTest failed");
+        if (!pass)
+            throw new Fault("W3CEndpointReferenceBuilderConstructorTest failed");
     }
 
     /*
@@ -250,7 +246,8 @@ public class Client extends ServiceEETest {
             throw new Fault("addressNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("addressNULLTest failed");
+        if (!pass)
+            throw new Fault("addressNULLTest failed");
     }
 
     /*
@@ -272,7 +269,8 @@ public class Client extends ServiceEETest {
             throw new Fault("addressNonNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("addressNonNULLTest failed");
+        if (!pass)
+            throw new Fault("addressNonNULLTest failed");
     }
 
     /*
@@ -294,7 +292,8 @@ public class Client extends ServiceEETest {
             throw new Fault("serviceNameNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("serviceNameNULLTest failed");
+        if (!pass)
+            throw new Fault("serviceNameNULLTest failed");
     }
 
     /*
@@ -316,7 +315,8 @@ public class Client extends ServiceEETest {
             throw new Fault("serviceNameNonNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("serviceNameNonNULLTest failed");
+        if (!pass)
+            throw new Fault("serviceNameNonNULLTest failed");
     }
 
     /*
@@ -338,7 +338,8 @@ public class Client extends ServiceEETest {
             throw new Fault("interfaceNameNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("interfaceNameNULLTest failed");
+        if (!pass)
+            throw new Fault("interfaceNameNULLTest failed");
     }
 
     /*
@@ -360,7 +361,8 @@ public class Client extends ServiceEETest {
             throw new Fault("interfaceNameNonNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("interfaceNameNonNULLTest failed");
+        if (!pass)
+            throw new Fault("interfaceNameNonNULLTest failed");
     }
 
     /*
@@ -383,7 +385,8 @@ public class Client extends ServiceEETest {
             throw new Fault("endpointNameNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("endpointNameNULLTest failed");
+        if (!pass)
+            throw new Fault("endpointNameNULLTest failed");
     }
 
     /*
@@ -406,7 +409,8 @@ public class Client extends ServiceEETest {
             throw new Fault("endpointNameNonNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("endpointNameNonNULLTest failed");
+        if (!pass)
+            throw new Fault("endpointNameNonNULLTest failed");
     }
 
     /*
@@ -432,7 +436,8 @@ public class Client extends ServiceEETest {
             throw new Fault("endpointNameIllegalStateExceptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("endpointNameIllegalStateExceptionTest failed");
+        if (!pass)
+            throw new Fault("endpointNameIllegalStateExceptionTest failed");
     }
 
     /*
@@ -454,7 +459,8 @@ public class Client extends ServiceEETest {
             throw new Fault("wsdlDocumentLocationNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("wsdlDocumentLocationNULLTest failed");
+        if (!pass)
+            throw new Fault("wsdlDocumentLocationNULLTest failed");
     }
 
     /*
@@ -476,7 +482,8 @@ public class Client extends ServiceEETest {
             throw new Fault("wsdlDocumentLocationNonNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("wsdlDocumentLocationNonNULLTest failed");
+        if (!pass)
+            throw new Fault("wsdlDocumentLocationNonNULLTest failed");
     }
 
     /*
@@ -502,7 +509,8 @@ public class Client extends ServiceEETest {
             throw new Fault("metadataNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("metadataNULLTest failed");
+        if (!pass)
+            throw new Fault("metadataNULLTest failed");
     }
 
     /*
@@ -527,7 +535,8 @@ public class Client extends ServiceEETest {
             throw new Fault("metadataNonNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("metadataNonNULLTest failed");
+        if (!pass)
+            throw new Fault("metadataNonNULLTest failed");
     }
 
     /*
@@ -553,7 +562,8 @@ public class Client extends ServiceEETest {
             throw new Fault("attributeNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("attributeNULLTest failed");
+        if (!pass)
+            throw new Fault("attributeNULLTest failed");
     }
 
     /*
@@ -575,7 +585,8 @@ public class Client extends ServiceEETest {
             throw new Fault("attributeNonNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("attributeNonNULLTest failed");
+        if (!pass)
+            throw new Fault("attributeNonNULLTest failed");
     }
 
     /*
@@ -601,7 +612,8 @@ public class Client extends ServiceEETest {
             throw new Fault("elementNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("elementNULLTest failed");
+        if (!pass)
+            throw new Fault("elementNULLTest failed");
     }
 
     /*
@@ -625,7 +637,8 @@ public class Client extends ServiceEETest {
             throw new Fault("elementNonNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("elementNonNULLTest failed");
+        if (!pass)
+            throw new Fault("elementNonNULLTest failed");
     }
 
     /*
@@ -633,8 +646,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:202;
      *
-     * @test_Strategy: Call referenceParameter() api. Test for
-     * IllegalArgumentException.
+     * @test_Strategy: Call referenceParameter() api. Test for IllegalArgumentException.
      *
      */
     public void referenceParameterNULLTest() throws Fault {
@@ -652,7 +664,8 @@ public class Client extends ServiceEETest {
             throw new Fault("referenceParameterNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("referenceParameterNULLTest failed");
+        if (!pass)
+            throw new Fault("referenceParameterNULLTest failed");
     }
 
     /*
@@ -679,7 +692,8 @@ public class Client extends ServiceEETest {
             throw new Fault("referenceParameterNonNULLTest failed", e);
         }
 
-        if (!pass) throw new Fault("referenceParameterNonNULLTest failed");
+        if (!pass)
+            throw new Fault("referenceParameterNonNULLTest failed");
     }
 
     /*
@@ -687,8 +701,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:206;
      *
-     * @test_Strategy: Call build() api. Use calls to address() and metadata() to
-     * build the EndpointReference.
+     * @test_Strategy: Call build() api. Use calls to address() and metadata() to build the EndpointReference.
      *
      */
     public void buildTest1() throws Fault {
@@ -706,14 +719,16 @@ public class Client extends ServiceEETest {
             DOMResult dr = new DOMResult();
             epr.writeTo(dr);
             XMLUtils.xmlDumpDOMNodes(dr.getNode(), false);
-            if (!EprUtil.validateEPR(epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.TRUE)) pass = false;
+            if (!EprUtil.validateEPR(epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.TRUE))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("buildTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("buildTest1 failed");
+        if (!pass)
+            throw new Fault("buildTest1 failed");
     }
 
     /*
@@ -721,8 +736,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:206;
      *
-     * @test_Strategy: Call build() api. Use calls to address(), metadata(),
-     * element() and attribute() and to build the EndpointReference.
+     * @test_Strategy: Call build() api. Use calls to address(), metadata(), element() and attribute() and to build the
+     * EndpointReference.
      *
      */
     public void buildTest2() throws Fault {
@@ -744,14 +759,16 @@ public class Client extends ServiceEETest {
             DOMResult dr = new DOMResult();
             epr.writeTo(dr);
             XMLUtils.xmlDumpDOMNodes(dr.getNode(), false);
-            if (!EprUtil.validateEPR(epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.TRUE)) pass = false;
+            if (!EprUtil.validateEPR(epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.TRUE))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("buildTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("buildTest2 failed");
+        if (!pass)
+            throw new Fault("buildTest2 failed");
     }
 
     /*
@@ -759,8 +776,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:206;
      *
-     * @test_Strategy: Call build() api. Call all the api's to build an
-     * EndpointReference from scratch.
+     * @test_Strategy: Call build() api. Call all the api's to build an EndpointReference from scratch.
      *
      */
     public void buildTest3() throws Fault {
@@ -787,15 +803,18 @@ public class Client extends ServiceEETest {
             if (!EprUtil.validateEPR(
                     epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.TRUE, wsdlurl.toString()))
                 pass = false;
-            if (!EprUtil.validateReferenceParameter(dr.getNode(), "MyParam1", "Hello")) pass = false;
-            if (!EprUtil.validateReferenceParameter(dr.getNode(), "MyParam2", "There")) pass = false;
+            if (!EprUtil.validateReferenceParameter(dr.getNode(), "MyParam1", "Hello"))
+                pass = false;
+            if (!EprUtil.validateReferenceParameter(dr.getNode(), "MyParam2", "There"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("buildTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("buildTest3 failed");
+        if (!pass)
+            throw new Fault("buildTest3 failed");
     }
 
     /*
@@ -803,8 +822,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:206;
      *
-     * @test_Strategy: Call build() api. Call all the api's to build an
-     * EndpointReference from scratch.
+     * @test_Strategy: Call build() api. Call all the api's to build an EndpointReference from scratch.
      *
      */
     public void buildTest4() throws Fault {
@@ -829,15 +847,18 @@ public class Client extends ServiceEETest {
             if (!EprUtil.validateEPR(
                     epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.TRUE, wsdlurl.toString()))
                 pass = false;
-            if (!EprUtil.validateReferenceParameter(dr.getNode(), "MyParam1", "Hello")) pass = false;
-            if (!EprUtil.validateReferenceParameter(dr.getNode(), "MyParam2", "There")) pass = false;
+            if (!EprUtil.validateReferenceParameter(dr.getNode(), "MyParam1", "Hello"))
+                pass = false;
+            if (!EprUtil.validateReferenceParameter(dr.getNode(), "MyParam2", "There"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("buildTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("buildTest4 failed");
+        if (!pass)
+            throw new Fault("buildTest4 failed");
     }
 
     /*
@@ -863,7 +884,8 @@ public class Client extends ServiceEETest {
             throw new Fault("buildIllegalStateExceptionTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("buildIllegalStateExceptionTest1 failed");
+        if (!pass)
+            throw new Fault("buildIllegalStateExceptionTest1 failed");
     }
 
     /*
@@ -890,7 +912,8 @@ public class Client extends ServiceEETest {
             throw new Fault("buildIllegalStateExceptionTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("buildIllegalStateExceptionTest2 failed");
+        if (!pass)
+            throw new Fault("buildIllegalStateExceptionTest2 failed");
     }
 
     /*
@@ -917,6 +940,7 @@ public class Client extends ServiceEETest {
             throw new Fault("buildIllegalStateExceptionTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("buildIllegalStateExceptionTest3 failed");
+        if (!pass)
+            throw new Fault("buildIllegalStateExceptionTest3 failed");
     }
 }

@@ -95,12 +95,16 @@ public class Client extends EETest {
 
             boolean pass = true;
 
-            if (testNum == 1) pass = runTest1();
-            else if (testNum == 2) pass = runTest2();
-            else if (testNum == 3) pass = runTest3();
+            if (testNum == 1)
+                pass = runTest1();
+            else if (testNum == 2)
+                pass = runTest2();
+            else if (testNum == 3)
+                pass = runTest3();
 
             synchronized (lock) {
-                if (!pass) ++errors;
+                if (!pass)
+                    ++errors;
                 ++threadsDone;
                 lock.notifyAll();
             }
@@ -174,8 +178,10 @@ public class Client extends EETest {
             Integer pkey = null;
             logMsg("Entering runTest3 Method .....");
             try {
-                if (threadNum == 1 || threadNum == 2) pkey = new Integer(1);
-                else if (threadNum == 3 || threadNum == 4) pkey = new Integer(2);
+                if (threadNum == 1 || threadNum == 2)
+                    pkey = new Integer(1);
+                else if (threadNum == 3 || threadNum == 4)
+                    pkey = new Integer(2);
                 logMsg("Find entity EJB with Primary Key = " + pkey.toString());
                 TestBean beanRef = (TestBean) beanHome.findByPrimaryKey(pkey);
                 logMsg("Initialize remote logging");
@@ -210,8 +216,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -236,9 +241,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10122
      *
-     * @test_Strategy: Multiple clients can access the same entity EJB object
-     * using single or multiple instances. The number of instances depends upon
-     * the Container Implementation. Synchronize calling of entity EJB methods.
+     * @test_Strategy: Multiple clients can access the same entity EJB object using single or multiple instances. The number
+     * of instances depends upon the Container Implementation. Synchronize calling of entity EJB methods.
      *
      */
 
@@ -311,9 +315,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10122
      *
-     * @test_Strategy: Multiple clients can access the same entity EJB object
-     * using single or multiple instances. The number of instances depends upon
-     * the Container Implementation. Unsynchronize calling of entity EJB methods.
+     * @test_Strategy: Multiple clients can access the same entity EJB object using single or multiple instances. The number
+     * of instances depends upon the Container Implementation. Unsynchronize calling of entity EJB methods.
      *
      */
 
@@ -386,12 +389,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10122
      *
-     * @test_Strategy: Multiple clients accessing multiple entity EJB objects
-     * using single or multiple instances. Create some entity EJB objects into the
-     * database and then spawn some clients to access these entity EJB objects as
-     * follows. Clients 1-2 will access the first entity object, clients 3-4 will
-     * access the second entity object, ... The number of instances depends upon
-     * the Container Implementation. Unsynchronize calling of entity EJB methods.
+     * @test_Strategy: Multiple clients accessing multiple entity EJB objects using single or multiple instances. Create
+     * some entity EJB objects into the database and then spawn some clients to access these entity EJB objects as follows.
+     * Clients 1-2 will access the first entity object, clients 3-4 will access the second entity object, ... The number of
+     * instances depends upon the Container Implementation. Unsynchronize calling of entity EJB methods.
      *
      */
 
@@ -408,8 +409,10 @@ public class Client extends EETest {
             logMsg("Create " + NUMEJBS + " entity EJB's");
             for (int i = 0, j = 1; i < NUMEJBS; i++, j++) {
                 logMsg("Creating entity EJB #" + j + " with Primary Key = " + j);
-                if (i == 0) beanRef[i] = (TestBean) beanHome.create(props, j, "coffee-" + j, j);
-                else beanRef[i] = (TestBean) beanHome.create(props, j, "coffee-" + j, j);
+                if (i == 0)
+                    beanRef[i] = (TestBean) beanHome.create(props, j, "coffee-" + j, j);
+                else
+                    beanRef[i] = (TestBean) beanHome.create(props, j, "coffee-" + j, j);
             }
             logMsg("Creating " + NTHREADS2 + " client threads ...");
             for (int i = 0, j = 1; i < NTHREADS2; i++, j++) {
@@ -462,7 +465,8 @@ public class Client extends EETest {
             throw new Fault("test3 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }

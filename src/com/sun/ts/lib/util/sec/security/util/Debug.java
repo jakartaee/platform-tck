@@ -41,7 +41,8 @@ public class Debug {
         if (args == null) {
             args = args2;
         } else {
-            if (args2 != null) args = args + "," + args2;
+            if (args2 != null)
+                args = args + "," + args2;
         }
 
         if (args != null) {
@@ -89,16 +90,14 @@ public class Debug {
     }
 
     /**
-     * Get a Debug object corresponding to whether or not the given option is set.
-     * Set the prefix to be the same as option.
+     * Get a Debug object corresponding to whether or not the given option is set. Set the prefix to be the same as option.
      */
     public static Debug getInstance(String option) {
         return getInstance(option, option);
     }
 
     /**
-     * Get a Debug object corresponding to whether or not the given option is set.
-     * Set the prefix to be prefix.
+     * Get a Debug object corresponding to whether or not the given option is set. Set the prefix to be prefix.
      */
     public static Debug getInstance(String option, String prefix) {
         if (isOn(option)) {
@@ -114,16 +113,18 @@ public class Debug {
      * True if the system property "security.debug" contains the string "option".
      */
     public static boolean isOn(String option) {
-        if (args == null) return false;
+        if (args == null)
+            return false;
         else {
-            if (args.indexOf("all") != -1) return true;
-            else return (args.indexOf(option) != -1);
+            if (args.indexOf("all") != -1)
+                return true;
+            else
+                return (args.indexOf(option) != -1);
         }
     }
 
     /**
-     * print a message to stderr that is prefixed with the prefix created from the
-     * call to getInstance.
+     * print a message to stderr that is prefixed with the prefix created from the call to getInstance.
      */
     public void println(String message) {
         System.err.println(prefix + ": " + message);
@@ -144,10 +145,9 @@ public class Debug {
     }
 
     /**
-     * return a hexadecimal printed representation of the specified BigInteger
-     * object. the value is formatted to fit on lines of at least 75 characters,
-     * with embedded newlines. Words are separated for readability, with eight
-     * words (32 bytes) per line.
+     * return a hexadecimal printed representation of the specified BigInteger object. the value is formatted to fit on
+     * lines of at least 75 characters, with embedded newlines. Words are separated for readability, with eight words (32
+     * bytes) per line.
      */
     public static String toHexString(BigInteger b) {
         String hexValue = b.toString(16);

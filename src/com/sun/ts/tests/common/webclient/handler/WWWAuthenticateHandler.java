@@ -79,11 +79,11 @@ public class WWWAuthenticateHandler implements Handler {
     /**
      * Creates new ContentTypeHandler
      */
-    private WWWAuthenticateHandler() {}
+    private WWWAuthenticateHandler() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
@@ -96,10 +96,8 @@ public class WWWAuthenticateHandler implements Handler {
     /**
      * Invokes handler logic.
      *
-     * @param configuredHeader
-     *          the user configured header
-     * @param responseHeader
-     *          the response header from the server
+     * @param configuredHeader the user configured header
+     * @param responseHeader the response header from the server
      * @return True if the passed match, otherwise false
      */
     public boolean invoke(Header configuredHeader, Header responseHeader) {

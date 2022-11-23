@@ -39,8 +39,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -71,8 +70,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2725
      *
-     * @test_Strategy: Make a request and inspect response to ensure faultcode
-     *                 "VersionMismatch" was sent.
+     * @test_Strategy: Make a request and inspect response to ensure faultcode "VersionMismatch" was sent.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -96,8 +94,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2725
      *
-     * @test_Strategy: Make a request and inspect response to ensure faultcode
-     *                 "VersionMismatch" was sent.
+     * @test_Strategy: Make a request and inspect response to ensure faultcode "VersionMismatch" was sent.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -121,8 +118,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2725
      *
-     * @test_Strategy: Make a request and inspect response to ensure faultcode
-     *                 "VersionMismatch" was sent.
+     * @test_Strategy: Make a request and inspect response to ensure faultcode "VersionMismatch" was sent.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -146,8 +142,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2725
      *
-     * @test_Strategy: Make a request and inspect response to ensure faultcode
-     *                 "MustUnderstand" was sent.
+     * @test_Strategy: Make a request and inspect response to ensure faultcode "MustUnderstand" was sent.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -171,8 +166,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2725
      *
-     * @test_Strategy: Make a request and inspect response to ensure faultcode
-     *                 "MustUnderstand" was sent.
+     * @test_Strategy: Make a request and inspect response to ensure faultcode "MustUnderstand" was sent.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -196,8 +190,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2725
      *
-     * @test_Strategy: Make a request and inspect response to ensure faultcode
-     *                 "Client" was sent.
+     * @test_Strategy: Make a request and inspect response to ensure faultcode "Client" was sent.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

@@ -29,26 +29,15 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
 
-@NamedEntityGraph(
-        name = "first_last_graph",
-        attributeNodes = {@NamedAttributeNode("firstName"), @NamedAttributeNode(value = "lastName")})
-@NamedEntityGraph(
-        name = "last_salary_graph",
-        includeAllAttributes = false,
-        attributeNodes = {@NamedAttributeNode(value = "lastName"), @NamedAttributeNode(value = "salary")})
-@NamedEntityGraph(
-        name = "lastname_department_subgraphs",
-        includeAllAttributes = true,
-        attributeNodes = {
-            @NamedAttributeNode(value = "lastName"),
-            @NamedAttributeNode(value = "department", subgraph = "department_sub_graph")
-        },
-        subgraphs = {
-            @NamedSubgraph(
-                    name = "department_sub_graph",
-                    type = Department.class,
-                    attributeNodes = {@NamedAttributeNode("name")})
-        })
+@NamedEntityGraph(name = "first_last_graph", attributeNodes = { @NamedAttributeNode("firstName"), @NamedAttributeNode(value = "lastName") })
+@NamedEntityGraph(name = "last_salary_graph", includeAllAttributes = false, attributeNodes = { @NamedAttributeNode(value = "lastName"),
+        @NamedAttributeNode(value = "salary") })
+@NamedEntityGraph(name = "lastname_department_subgraphs", includeAllAttributes = true, attributeNodes = {
+        @NamedAttributeNode(value = "lastName"),
+        @NamedAttributeNode(value = "department", subgraph = "department_sub_graph")
+}, subgraphs = {
+        @NamedSubgraph(name = "department_sub_graph", type = Department.class, attributeNodes = { @NamedAttributeNode("name") })
+})
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee3 implements java.io.Serializable, Comparable<Employee3> {
@@ -68,7 +57,8 @@ public class Employee3 implements java.io.Serializable, Comparable<Employee3> {
 
     private Department department;
 
-    public Employee3() {}
+    public Employee3() {
+    }
 
     public Employee3(int id, String firstName, String lastName) {
         this.id = id;
@@ -155,8 +145,10 @@ public class Employee3 implements java.io.Serializable, Comparable<Employee3> {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Employee3)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Employee3))
+            return false;
 
         Employee3 o1 = (Employee3) o;
 

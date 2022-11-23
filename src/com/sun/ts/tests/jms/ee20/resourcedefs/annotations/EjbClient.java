@@ -42,51 +42,19 @@ import java.util.Properties;
 // -------------------------------------
 // JMS Destination Resource Definitions
 // -------------------------------------
-@JMSDestinationDefinition(
-        description = "Define Queue EJBMyTestQueue",
-        interfaceName = "jakarta.jms.Queue",
-        name = "java:global/env/EJBMyTestQueue",
-        destinationName = "EJBMyTestQueue")
-@JMSDestinationDefinition(
-        description = "Define Topic EJBMyTestTopic",
-        interfaceName = "jakarta.jms.Topic",
-        name = "java:app/env/EJBMyTestTopic",
-        destinationName = "EJBMyTestTopic")
+@JMSDestinationDefinition(description = "Define Queue EJBMyTestQueue", interfaceName = "jakarta.jms.Queue", name = "java:global/env/EJBMyTestQueue", destinationName = "EJBMyTestQueue")
+@JMSDestinationDefinition(description = "Define Topic EJBMyTestTopic", interfaceName = "jakarta.jms.Topic", name = "java:app/env/EJBMyTestTopic", destinationName = "EJBMyTestTopic")
 
 // -------------------------------------------
 // JMS ConnectionFactory Resource Definitions
 // -------------------------------------------
-@JMSConnectionFactoryDefinition(
-        description = "Define ConnectionFactory EJBMyTestConnectionFactory",
-        interfaceName = "jakarta.jms.ConnectionFactory",
-        name = "java:global/EJBMyTestConnectionFactory",
-        user = "j2ee",
-        password = "j2ee")
-@JMSConnectionFactoryDefinition(
-        description = "Define QueueConnectionFactory EJBMyTestQueueConnectionFactory",
-        interfaceName = "jakarta.jms.QueueConnectionFactory",
-        name = "java:app/EJBMyTestQueueConnectionFactory",
-        user = "j2ee",
-        password = "j2ee")
-@JMSConnectionFactoryDefinition(
-        description = "Define TopicConnectionFactory EJBMyTestTopicConnectionFactory",
-        interfaceName = "jakarta.jms.TopicConnectionFactory",
-        name = "java:module/EJBMyTestTopicConnectionFactory",
-        user = "j2ee",
-        password = "j2ee")
-@JMSConnectionFactoryDefinition(
-        description = "Define Durable TopicConnectionFactory EJBMyTestDurableTopicConnectionFactory",
-        interfaceName = "jakarta.jms.TopicConnectionFactory",
-        name = "java:comp/env/jms/EJBMyTestDurableTopicConnectionFactory",
-        user = "j2ee",
-        password = "j2ee",
-        clientId = "MyClientID",
-        properties = {"Property1=10", "Property2=20"},
-        transactional = false,
-        maxPoolSize = 30,
-        minPoolSize = 20)
+@JMSConnectionFactoryDefinition(description = "Define ConnectionFactory EJBMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/EJBMyTestConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSConnectionFactoryDefinition(description = "Define QueueConnectionFactory EJBMyTestQueueConnectionFactory", interfaceName = "jakarta.jms.QueueConnectionFactory", name = "java:app/EJBMyTestQueueConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSConnectionFactoryDefinition(description = "Define TopicConnectionFactory EJBMyTestTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:module/EJBMyTestTopicConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSConnectionFactoryDefinition(description = "Define Durable TopicConnectionFactory EJBMyTestDurableTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:comp/env/jms/EJBMyTestDurableTopicConnectionFactory", user = "j2ee", password = "j2ee", clientId = "MyClientID", properties = {
+        "Property1=10", "Property2=20" }, transactional = false, maxPoolSize = 30, minPoolSize = 20)
 @Stateful(name = "JMSResourceDefsEjbClientBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class EjbClient implements EjbClientIF {
     private static final long serialVersionUID = 1L;
@@ -150,9 +118,11 @@ public class EjbClient implements EjbClientIF {
                 }
                 consumerQ.close();
             }
-            if (consumerT != null) consumerT.close();
+            if (consumerT != null)
+                consumerT.close();
             TestUtil.logMsg("Close JMSContext Objects");
-            if (context != null) context.close();
+            if (context != null)
+                context.close();
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
             throw new Exception("doCleanup failed!", e);
@@ -194,9 +164,12 @@ public class EjbClient implements EjbClientIF {
     public boolean echo(String testName) {
         boolean pass = false;
 
-        if (testName.equals("sendAndRecvQueueTestFromEjbClient")) pass = sendAndRecvQueueTestFromEjbClient();
-        else if (testName.equals("sendAndRecvTopicTestFromEjbClient")) pass = sendAndRecvTopicTestFromEjbClient();
-        else if (testName.equals("checkClientIDTestFromEjbClient")) pass = checkClientIDTestFromEjbClient();
+        if (testName.equals("sendAndRecvQueueTestFromEjbClient"))
+            pass = sendAndRecvQueueTestFromEjbClient();
+        else if (testName.equals("sendAndRecvTopicTestFromEjbClient"))
+            pass = sendAndRecvTopicTestFromEjbClient();
+        else if (testName.equals("checkClientIDTestFromEjbClient"))
+            pass = checkClientIDTestFromEjbClient();
         try {
             doCleanup();
         } catch (Exception e) {
@@ -222,8 +195,7 @@ public class EjbClient implements EjbClientIF {
             TestUtil.logMsg("Lookup java:module/EJBMyTestTopicConnectionFactory");
             tcf = (TopicConnectionFactory) namingctx.lookup("java:module/EJBMyTestTopicConnectionFactory");
             TestUtil.logMsg("Lookup java:comp/env/jms/EJBMyTestDurableTopicConnectionFactory");
-            dtcf = (TopicConnectionFactory)
-                    namingctx.lookup("java:comp/env/jms/EJBMyTestDurableTopicConnectionFactory");
+            dtcf = (TopicConnectionFactory) namingctx.lookup("java:comp/env/jms/EJBMyTestDurableTopicConnectionFactory");
             TestUtil.logMsg("Lookup java:global/env/EJBMyTestQueue");
             queue = (Queue) namingctx.lookup("java:global/env/EJBMyTestQueue");
             TestUtil.logMsg("Lookup java:app/env/EJBMyTestTopic");
@@ -335,7 +307,8 @@ public class EjbClient implements EjbClientIF {
             pass = false;
         } finally {
             try {
-                if (context != null) context.close();
+                if (context != null)
+                    context.close();
             } catch (Exception e) {
             }
         }

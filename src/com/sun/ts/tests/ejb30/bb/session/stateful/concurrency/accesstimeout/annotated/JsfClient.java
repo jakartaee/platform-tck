@@ -30,22 +30,10 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 @EJBs({
-    @EJB(
-            name = AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanRemote,
-            beanName = "BeanClassMethodLevelOverrideAccessTimeoutBean",
-            beanInterface = AccessTimeoutRemoteIF.class),
-    @EJB(
-            name = AccessTimeoutIF.beanClassMethodLevelAccessTimeoutBeanRemote,
-            beanName = "BeanClassMethodLevelAccessTimeoutBean",
-            beanInterface = AccessTimeoutRemoteIF.class),
-    @EJB(
-            name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanRemote,
-            beanName = "BeanClassLevelAccessTimeoutBean",
-            beanInterface = AccessTimeoutRemoteIF.class),
-    @EJB(
-            name = AccessTimeoutIF.annotatedSuperClassAccessTimeoutBeanRemote,
-            beanName = "AnnotatedSuperClassAccessTimeoutBean",
-            beanInterface = AccessTimeoutRemoteIF.class)
+        @EJB(name = AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanRemote, beanName = "BeanClassMethodLevelOverrideAccessTimeoutBean", beanInterface = AccessTimeoutRemoteIF.class),
+        @EJB(name = AccessTimeoutIF.beanClassMethodLevelAccessTimeoutBeanRemote, beanName = "BeanClassMethodLevelAccessTimeoutBean", beanInterface = AccessTimeoutRemoteIF.class),
+        @EJB(name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanRemote, beanName = "BeanClassLevelAccessTimeoutBean", beanInterface = AccessTimeoutRemoteIF.class),
+        @EJB(name = AccessTimeoutIF.annotatedSuperClassAccessTimeoutBeanRemote, beanName = "AnnotatedSuperClassAccessTimeoutBean", beanInterface = AccessTimeoutRemoteIF.class)
 })
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
@@ -161,8 +149,7 @@ public class JsfClient extends JsfClientBase {
      */
     @Override
     public void beanClassMethodLevelOverride() throws InterruptedException {
-        List<Exception> exceptionList =
-                concurrentPing(getBeanClassMethodLevelOverrideAccessTimeoutBeanRemote(), getTestName());
+        List<Exception> exceptionList = concurrentPing(getBeanClassMethodLevelOverrideAccessTimeoutBeanRemote(), getTestName());
         checkConcurrentAccessTimeoutResult(exceptionList, CONCURRENT_INVOCATION_TIMES, 0);
     }
 }

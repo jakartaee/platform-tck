@@ -29,8 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A no-interface singleton for storing the order in which lifcecycle
- * interceptor methods are called.
+ * A no-interface singleton for storing the order in which lifcecycle interceptor methods are called.
  */
 @Startup
 @Singleton
@@ -38,11 +37,9 @@ import java.util.Map;
 // to avoid infinite loop (InterceptorBaseBase -> HistorySingletonBean)
 public class HistorySingletonBean {
     /**
-     * This singleton stores PostConstruct records for multiple EJBs, and each may
-     * have multiple instances. Use a map to ensure each bean instance has its own
-     * slot. The map key is bean instance (this, if called inside a bean class or
-     * its superclass; or InvocationContext.getTarget if called from an
-     * interceptor class.
+     * This singleton stores PostConstruct records for multiple EJBs, and each may have multiple instances. Use a map to
+     * ensure each bean instance has its own slot. The map key is bean instance (this, if called inside a bean class or its
+     * superclass; or InvocationContext.getTarget if called from an interceptor class.
      */
     private Map<Object, List<String>> postConstructRecordsMap = new HashMap<Object, List<String>>();
 

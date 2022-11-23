@@ -25,15 +25,15 @@ import java.util.Arrays;
 public class Resources1_en_US extends java.util.ListResourceBundle {
 
     private static final Object[][] resources = {
-        {"mkey", "en message"},
+            { "mkey", "en message" },
     };
 
     /** Creates new Resources1_en_US */
-    public Resources1_en_US() {}
+    public Resources1_en_US() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
     public java.lang.Object[][] getContents() {
         return Arrays.copyOf(resources, resources.length);

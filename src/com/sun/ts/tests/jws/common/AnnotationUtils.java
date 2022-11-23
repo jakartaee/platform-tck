@@ -159,7 +159,8 @@ public class AnnotationUtils {
         if (method == null) {
             TestUtil.logErr("Method name not found for -> " + methodName);
             return false;
-        } else TestUtil.logMsg("Method name found for -> " + methodName);
+        } else
+            TestUtil.logMsg("Method name found for -> " + methodName);
         if (method.isAnnotationPresent(jakarta.jws.soap.SOAPBinding.class)) {
             SOAPBinding sb = (jakarta.jws.soap.SOAPBinding) method.getAnnotation(jakarta.jws.soap.SOAPBinding.class);
             if (sb != null) {
@@ -542,8 +543,7 @@ public class AnnotationUtils {
             return false;
         }
         if (method.isAnnotationPresent(jakarta.xml.ws.RequestWrapper.class)) {
-            jakarta.xml.ws.RequestWrapper rw =
-                    (jakarta.xml.ws.RequestWrapper) method.getAnnotation(jakarta.xml.ws.RequestWrapper.class);
+            jakarta.xml.ws.RequestWrapper rw = (jakarta.xml.ws.RequestWrapper) method.getAnnotation(jakarta.xml.ws.RequestWrapper.class);
             if (rw != null) {
                 TestUtil.logTrace("Annotation:");
                 TestUtil.logTrace(rw.toString());
@@ -603,8 +603,7 @@ public class AnnotationUtils {
             return false;
         }
         if (method.isAnnotationPresent(jakarta.xml.ws.ResponseWrapper.class)) {
-            jakarta.xml.ws.ResponseWrapper rw =
-                    (jakarta.xml.ws.ResponseWrapper) method.getAnnotation(jakarta.xml.ws.ResponseWrapper.class);
+            jakarta.xml.ws.ResponseWrapper rw = (jakarta.xml.ws.ResponseWrapper) method.getAnnotation(jakarta.xml.ws.ResponseWrapper.class);
             if (rw != null) {
                 TestUtil.logTrace("Annotation:");
                 TestUtil.logTrace(rw.toString());
@@ -659,8 +658,7 @@ public class AnnotationUtils {
             Class c, String name, String targetNamespace, String wsdlLocation) {
         boolean result = true;
         if (c.isAnnotationPresent(jakarta.xml.ws.WebServiceClient.class)) {
-            WebServiceClient wsc =
-                    (jakarta.xml.ws.WebServiceClient) c.getAnnotation(jakarta.xml.ws.WebServiceClient.class);
+            WebServiceClient wsc = (jakarta.xml.ws.WebServiceClient) c.getAnnotation(jakarta.xml.ws.WebServiceClient.class);
             if (wsc != null) {
                 TestUtil.logTrace("Annotation:");
                 TestUtil.logTrace(wsc.toString());

@@ -43,8 +43,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The resultSetClient18 class tests methods of resultSet interface using Sun's
- * J2EE Reference Implementation.
+ * The resultSetClient18 class tests methods of resultSet interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 99/10/12
@@ -93,14 +92,11 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -110,11 +106,12 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 /*
-                 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery","");
-                 * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+                 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+                 * sqlp.load(istr);
                  */
 
                 sqlp = p;
@@ -131,9 +128,8 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
                 dbSch = new dbSchema();
                 rsSch = new rsSchema();
                 stmt = conn.createStatement(/*
-                                     * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                     * ResultSet.CONCUR_READ_ONLY
-                                     */ );
+                                             * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+                                             */ );
                 dbmd = conn.getMetaData();
                 msg = new JDBCTestMsg();
             } catch (SQLException ex) {
@@ -148,14 +144,11 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that gets the
-     * maximum value of table Smallint_Tab.Call the getInt(int columnIndex)
-     * method. Compare the returned result with the value extracted from
-     * tssql.stmt file.Both of them should be equal and the returned result must
-     * be equal to the Maximum Value of JDBC Smallint datatype.
+     * @test_Strategy: Get a ResultSet object by executing the query that gets the maximum value of table Smallint_Tab.Call
+     * the getInt(int columnIndex) method. Compare the returned result with the value extracted from tssql.stmt file.Both of
+     * them should be equal and the returned result must be equal to the Maximum Value of JDBC Smallint datatype.
      */
     public void testGetInt04() throws Fault {
         try {
@@ -175,7 +168,8 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
             int oExtVal = Integer.parseInt(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getInt returns the Maximum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getInt returns the Maximum Value " + oRetVal);
             else {
                 msg.printTestError("getInt did not return the Maximum Value", "test getInt Failed");
             }
@@ -201,14 +195,11 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt05
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that gets the
-     * minimum value of table Smallint_Tab.Call the getInt(int columnIndex)
-     * method. Compare the returned result with the value extracted from
-     * tssql.stmt file.Both of them should be equal and the returned result must
-     * be equal to the Minimum Value of JDBC Smallint datatype.
+     * @test_Strategy: Get a ResultSet object by executing the query that gets the minimum value of table Smallint_Tab.Call
+     * the getInt(int columnIndex) method. Compare the returned result with the value extracted from tssql.stmt file.Both of
+     * them should be equal and the returned result must be equal to the Minimum Value of JDBC Smallint datatype.
      */
     public void testGetInt05() throws Fault {
         try {
@@ -228,7 +219,8 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
             int oExtVal = Integer.parseInt(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getInt returns the Minimum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getInt returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getInt did not return the Minimum Value", "test getInt Failed");
             }
@@ -254,12 +246,10 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt06
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Smallint_Tab.Call the getInt(int columnIndex)
-     * method.Check if the value returned is zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Smallint_Tab.Call
+     * the getInt(int columnIndex) method.Check if the value returned is zero.
      */
     public void testGetInt06() throws Fault {
         try {
@@ -301,14 +291,11 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt07
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that gets the
-     * maximum value of table Integer_Tab.Call the getInt(int columnIndex) method.
-     * Compare the returned result with the value extracted from tssql.stmt
-     * file.Both of them should be equal and the returned result must be equal to
-     * the Maximum Value of JDBC Integer datatype.
+     * @test_Strategy: Get a ResultSet object by executing the query that gets the maximum value of table Integer_Tab.Call
+     * the getInt(int columnIndex) method. Compare the returned result with the value extracted from tssql.stmt file.Both of
+     * them should be equal and the returned result must be equal to the Maximum Value of JDBC Integer datatype.
      */
     public void testGetInt07() throws Fault {
         try {
@@ -328,7 +315,8 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
             int oExtVal = Integer.parseInt(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getInt returns the Maximum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getInt returns the Maximum Value " + oRetVal);
             else {
                 msg.printTestError("getInt did not return the Maximum Value", "test getInt Failed");
             }
@@ -354,14 +342,11 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt08
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that gets the
-     * minimum value of table Integer_Tab.Call the getInt(int columnIndex) method.
-     * Compare the returned result with the value extracted from tssql.stmt
-     * file.Both of them should be equal and the returned result must be equal to
-     * the Minimum Value of JDBC Integer datatype.
+     * @test_Strategy: Get a ResultSet object by executing the query that gets the minimum value of table Integer_Tab.Call
+     * the getInt(int columnIndex) method. Compare the returned result with the value extracted from tssql.stmt file.Both of
+     * them should be equal and the returned result must be equal to the Minimum Value of JDBC Integer datatype.
      */
     public void testGetInt08() throws Fault {
         try {
@@ -381,7 +366,8 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
             int oExtVal = Integer.parseInt(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getInt returns the Minimum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getInt returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getInt did not return the Minimum Value", "test getInt Failed");
             }
@@ -407,12 +393,10 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt09
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Integer_Tab.Call the getInt(int columnIndex)
-     * method.Check if the value returned is zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Integer_Tab.Call the
+     * getInt(int columnIndex) method.Check if the value returned is zero.
      */
     public void testGetInt09() throws Fault {
         try {
@@ -455,14 +439,11 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt10
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the maximum value of table Real_Tab with an
-     * integer value. Retrieve the value updated in the table by executing a query
-     * in the Real_Tab. Compare the value inserted and the value retrieved. Both
-     * of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the maximum
+     * value of table Real_Tab with an integer value. Retrieve the value updated in the table by executing a query in the
+     * Real_Tab. Compare the value inserted and the value retrieved. Both of them should be equal.
      */
     public void testGetInt10() throws Fault {
         try {
@@ -488,7 +469,8 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg("" + intVal, "" + oRetVal);
 
-            if ((float) oRetVal == (float) intVal) msg.setMsg("getInt returns the desired Value " + oRetVal);
+            if ((float) oRetVal == (float) intVal)
+                msg.setMsg("getInt returns the desired Value " + oRetVal);
             else {
                 msg.printTestError("getInt did not return the desired Value", "test getInt Failed");
             }
@@ -516,12 +498,10 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt12
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Real_Tab.Call the getInt(int columnIndex)
-     * method.Check if the value returned is zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Real_Tab.Call the
+     * getInt(int columnIndex) method.Check if the value returned is zero.
      */
     public void testGetInt12() throws Fault {
         try {
@@ -563,16 +543,12 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt16
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the maximum value of table Float_Tab with the
-     * maximum value of table Integer_Tab.Now execute a query to get the maximum
-     * value of Float_Tab table and retrieve the result of the query using the
-     * getInt(int columnIndex) method.Compare the returned value, with the maximum
-     * value of table Integer_Tab extracted from the tssql.stmt file. Both of them
-     * should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the maximum
+     * value of table Float_Tab with the maximum value of table Integer_Tab.Now execute a query to get the maximum value of
+     * Float_Tab table and retrieve the result of the query using the getInt(int columnIndex) method.Compare the returned
+     * value, with the maximum value of table Integer_Tab extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testGetInt16() throws Fault {
         try {
@@ -599,7 +575,8 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
             int oExtVal = Integer.parseInt(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getInt returns the Maximum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getInt returns the Maximum Value " + oRetVal);
             else {
                 msg.printTestError("getInt did not return the Maximum Value", "test getInt Failed");
             }
@@ -627,16 +604,12 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt17
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the minimum value of table Float_Tab with the
-     * minimum value of table Integer_Tab.Now execute a query to get the minimum
-     * value of Float_Tab table and retrieve the result of the query using the
-     * getInt(int columnIndex) method.Compare the returned value, with the minimum
-     * value of table Integer_Tab extracted from the tssql.stmt file. Both of them
-     * should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the minimum
+     * value of table Float_Tab with the minimum value of table Integer_Tab.Now execute a query to get the minimum value of
+     * Float_Tab table and retrieve the result of the query using the getInt(int columnIndex) method.Compare the returned
+     * value, with the minimum value of table Integer_Tab extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testGetInt17() throws Fault {
         try {
@@ -663,7 +636,8 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
             int oExtVal = Integer.parseInt(sExtVal);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getInt returns the Minimum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getInt returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getInt did not return the Minimum Value", "test getInt Failed");
             }
@@ -691,12 +665,10 @@ public class resultSetClient18 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetInt18
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380;
-     * JDBC:JAVADOC:381; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:380; JDBC:JAVADOC:381; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Float_Tab.Call the getInt(int columnIndex)
-     * method.Check if the value returned is zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Float_Tab.Call the
+     * getInt(int columnIndex) method.Check if the value returned is zero.
      */
     public void testGetInt18() throws Fault {
         try {

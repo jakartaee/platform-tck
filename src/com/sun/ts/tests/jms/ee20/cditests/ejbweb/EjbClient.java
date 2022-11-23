@@ -41,7 +41,7 @@ import jakarta.transaction.UserTransaction;
 import java.util.Properties;
 
 @Stateful(name = "CDITestsEjbWebClntBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
     private static final boolean debug = false;
@@ -94,16 +94,16 @@ public class EjbClient implements EjbClientIF {
      */
     private String printSessionMode(int sessionMode) {
         switch (sessionMode) {
-            case JMSContext.SESSION_TRANSACTED:
-                return "SESSION_TRANSACTED";
-            case JMSContext.AUTO_ACKNOWLEDGE:
-                return "AUTO_ACKNOWLEDGE";
-            case JMSContext.CLIENT_ACKNOWLEDGE:
-                return "CLIENT_ACKNOWLEDGE";
-            case JMSContext.DUPS_OK_ACKNOWLEDGE:
-                return "DUPS_OK_ACKNOWLEDGE";
-            default:
-                return "UNEXPECTED_SESSIONMODE";
+        case JMSContext.SESSION_TRANSACTED:
+            return "SESSION_TRANSACTED";
+        case JMSContext.AUTO_ACKNOWLEDGE:
+            return "AUTO_ACKNOWLEDGE";
+        case JMSContext.CLIENT_ACKNOWLEDGE:
+            return "CLIENT_ACKNOWLEDGE";
+        case JMSContext.DUPS_OK_ACKNOWLEDGE:
+            return "DUPS_OK_ACKNOWLEDGE";
+        default:
+            return "UNEXPECTED_SESSIONMODE";
         }
     }
 
@@ -148,8 +148,10 @@ public class EjbClient implements EjbClientIF {
     public boolean echo(String testName) {
         boolean pass = false;
 
-        if (testName.equals("sendRecvQueueTestUsingCDIFromEjb")) pass = sendRecvQueueTestUsingCDIFromEjb();
-        else if (testName.equals("sendRecvTopicTestUsingCDIFromEjb")) pass = sendRecvTopicTestUsingCDIFromEjb();
+        if (testName.equals("sendRecvQueueTestUsingCDIFromEjb"))
+            pass = sendRecvQueueTestUsingCDIFromEjb();
+        else if (testName.equals("sendRecvTopicTestUsingCDIFromEjb"))
+            pass = sendRecvTopicTestUsingCDIFromEjb();
         else if (testName.equals("sendRecvUsingCDIDefaultFactoryFromEjb"))
             pass = sendRecvUsingCDIDefaultFactoryFromEjb();
         else if (testName.equals("verifySessionModeOnCDIJMSContextFromEjb"))

@@ -34,9 +34,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -45,8 +44,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -69,10 +67,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:301;JSP:JAVADOC:356
      *
-     * @test_Strategy: This validates that the default behavior of
-     * SimpleTagSupport.doTag() does nothing. If this is indeed the case, no
-     * output will be displayed by the tag nested within the SimpleTagSupport
-     * instance.
+     * @test_Strategy: This validates that the default behavior of SimpleTagSupport.doTag() does nothing. If this is indeed
+     * the case, no output will be displayed by the tag nested within the SimpleTagSupport instance.
      */
     public void simpleTagSupportDoTagDefaultTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_simtagsupport_web/SimpleTagSupportDoTagDefault.jsp HTTP/1.1");
@@ -85,11 +81,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:304;JSP:JAVADOC:359
      *
-     * @test_Strategy: Validate the containers behavior with regards to: - Simple
-     * Tag Handler generated from a tag file throws a SkipPageException if an
-     * invoked Classic Tag Handler returns SKIP_PAGE. - Simple Tag Handler
-     * generated from a tag file throws a SkipPageException if an invoked Simple
-     * Tag Handler throws a SkipPageException.
+     * @test_Strategy: Validate the containers behavior with regards to: - Simple Tag Handler generated from a tag file
+     * throws a SkipPageException if an invoked Classic Tag Handler returns SKIP_PAGE. - Simple Tag Handler generated from a
+     * tag file throws a SkipPageException if an invoked Simple Tag Handler throws a SkipPageException.
      */
     public void simpleTagSupportSkipPageExceptionTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_simtagsupport_web/SimpleTagSupportSkipPageClassicTest.jsp HTTP/1.1");
@@ -105,8 +99,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:307;JSP:JAVADOC:308;JSP:JAVADOC:362
      *
-     * @test_Strategy: Validate that getJspContext() returnes a non-null value as
-     * the container called setJspContext() prior to invoking doGet().
+     * @test_Strategy: Validate that getJspContext() returnes a non-null value as the container called setJspContext() prior
+     * to invoking doGet().
      */
     public void simpleTagSupportGetSetJspContextTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_simtagsupport_web/SimpleTagSupportJspContextTest.jsp HTTP/1.1");
@@ -119,8 +113,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:309;JSP:JAVADOC:310;JSP:JAVADOC:363
      *
-     * @test_Strategy: Validate that getJspBody() returnes a non-null value as the
-     * container called setJspBody() prior to invoking doGet().
+     * @test_Strategy: Validate that getJspBody() returnes a non-null value as the container called setJspBody() prior to
+     * invoking doGet().
      */
     public void simpleTagSupportGetSetJspBodyTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_simtagsupport_web/SimpleTagSupportJspBodyTest.jsp HTTP/1.1");
@@ -131,11 +125,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: simpleTagSupportGetSetParentTest
      *
-     * @assertion_ids: JSP:JAVADOC:305;JSP:JAVADOC:306;JSP:JAVADOC:360;
-     * JSP:JAVADOC:361
+     * @assertion_ids: JSP:JAVADOC:305;JSP:JAVADOC:306;JSP:JAVADOC:360; JSP:JAVADOC:361
      *
-     * @test_Strategy: Validate that getParent() returnes a non-null value as the
-     * container called setParent() prior to invoking doGet().
+     * @test_Strategy: Validate that getParent() returnes a non-null value as the container called setParent() prior to
+     * invoking doGet().
      */
     public void simpleTagSupportGetSetParentTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_simtagsupport_web/SimpleTagSupportParentTest.jsp HTTP/1.1");
@@ -148,9 +141,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:311
      *
-     * @test_Strategy: Validate that findAncestorWithClass() where the validation
-     * is preformed nested within a SimpleTag handler as well as a Classic Tag
-     * handler.
+     * @test_Strategy: Validate that findAncestorWithClass() where the validation is preformed nested within a SimpleTag
+     * handler as well as a Classic Tag handler.
      */
     public void simpleTagSupportFindAncestorTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_simtagsupport_web/SimpleTagSupportFindAncestorTest.jsp HTTP/1.1");
@@ -163,10 +155,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:400
      *
-     * @testStrategy: Validate variable synchronization for AT_END and and
-     * AT_BEGIN variables occurs after doTag() has been called. This should occur
-     * for SimpleTags declared as Tags in the TLD using either TEI or through
-     * variable elements, or for Tag files.
+     * @testStrategy: Validate variable synchronization for AT_END and and AT_BEGIN variables occurs after doTag() has been
+     * called. This should occur for SimpleTags declared as Tags in the TLD using either TEI or through variable elements,
+     * or for Tag files.
      */
     public void simpleTagSupportVariableSynchronizationTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -180,8 +171,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:300
      *
-     * @test_Strategy: compare instances of a simple tag handler class across
-     * different invocations.
+     * @test_Strategy: compare instances of a simple tag handler class across different invocations.
      */
 
     public void tagHandlerCacheTest() throws Fault {
@@ -196,8 +186,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:300
      *
-     * @test_Strategy: If the action element is empty in the page, setJpsBody
-     * method is not called at all.
+     * @test_Strategy: If the action element is empty in the page, setJpsBody method is not called at all.
      */
 
     public void emptySetJspBodyTest() throws Fault {
@@ -212,8 +201,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:300
      *
-     * @test_Strategy: The container invokes setParent() method only if this tag
-     * invocation is nested within another tag invocation.
+     * @test_Strategy: The container invokes setParent() method only if this tag invocation is nested within another tag
+     * invocation.
      */
 
     public void noParentTest() throws Fault {
@@ -228,8 +217,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:300
      *
-     * @test_Strategy: jspFragment.getJspContext() returns the JspContext that is
-     * bound to this JspFragment.
+     * @test_Strategy: jspFragment.getJspContext() returns the JspContext that is bound to this JspFragment.
      */
 
     public void jspFragmentGetJspContextTest() throws Fault {

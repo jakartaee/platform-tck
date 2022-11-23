@@ -24,7 +24,8 @@ public class ConstraintDeclarationValidator
         implements ConstraintValidator<ConstraintDeclarationAnnotation, StringBean> {
 
     @Override
-    public void initialize(ConstraintDeclarationAnnotation ann) {}
+    public void initialize(ConstraintDeclarationAnnotation ann) {
+    }
 
     @Override
     public boolean isValid(StringBean bean, ConstraintValidatorContext ctx) {

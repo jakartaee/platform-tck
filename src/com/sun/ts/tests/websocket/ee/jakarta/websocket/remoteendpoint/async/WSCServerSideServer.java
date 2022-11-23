@@ -32,11 +32,9 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.concurrent.Future;
 
-@ServerEndpoint(
-        value = "/server",
-        encoders = {StringBeanTextEncoder.class})
+@ServerEndpoint(value = "/server", encoders = { StringBeanTextEncoder.class })
 public class WSCServerSideServer {
-    static final String[] RESPONSE = {"OK", "FAIL"};
+    static final String[] RESPONSE = { "OK", "FAIL" };
 
     static final long SECONDS = 10;
 
@@ -50,107 +48,107 @@ public class WSCServerSideServer {
         Async asyncRemote = session.getAsyncRemote();
         OPS op = OPS.valueOf(msg.toUpperCase());
         switch (op) {
-            case POKE:
-                // returns msg;
-                break;
-            case TIMEOUT:
-                msg = timeout(asyncRemote);
-                break;
-            case SENDBINARY:
-                msg = sendBinary(asyncRemote);
-                break;
-            case SENDBINARYTHROWS:
-                msg = sendBinaryThrows(asyncRemote);
-                break;
-            case SENDBINARYHANDLER:
-                msg = sendBinaryWithHandler(asyncRemote);
-                break;
-            case SENDBINARYHANDLERTHROWSONDATA:
-                msg = sendBinaryWithHandlerThrowsOnData(asyncRemote);
-                break;
-            case SENDBINARYHANDLERTHROWSONHANDLER:
-                msg = sendBinaryWithHandlerThrowsOnHandler(asyncRemote);
-                break;
-            case SENDOBJECT:
-                msg = sendObject(asyncRemote);
-                break;
-            case SENDOBJECT_BOOL:
-                msg = sendObject(asyncRemote, boolean.class);
-                break;
-            case SENDOBJECT_BYTE:
-                msg = sendObject(asyncRemote, byte.class);
-                break;
-            case SENDOBJECT_CHAR:
-                msg = sendObject(asyncRemote, char.class);
-                break;
-            case SENDOBJECT_DOUBLE:
-                msg = sendObject(asyncRemote, double.class);
-                break;
-            case SENDOBJECT_FLOAT:
-                msg = sendObject(asyncRemote, float.class);
-                break;
-            case SENDOBJECT_INT:
-                msg = sendObject(asyncRemote, int.class);
-                break;
-            case SENDOBJECT_LONG:
-                msg = sendObject(asyncRemote, long.class);
-                break;
-            case SENDOBJECT_SHORT:
-                msg = sendObject(asyncRemote, short.class);
-                break;
-            case SENDOBJECTTHROWS:
-                msg = sendObjectThrows(asyncRemote);
-                break;
-            case SENDOBJECTHANDLER:
-                msg = sendObjectWithHandler(asyncRemote);
-                break;
-            case SENDOBJECTHANDLERTHROWSONDATA:
-                msg = sendObjectWithHandlerThrowsOnData(asyncRemote);
-                break;
-            case SENDOBJECTHANDLERTHROWSONHANDLER:
-                msg = sendObjectWithHandlerThrowsOnHandler(asyncRemote);
-                break;
-            case SENDTEXT:
-                msg = sendText(asyncRemote);
-                break;
-            case SENDTEXTTHROWS:
-                msg = sendTextThrows(asyncRemote);
-                break;
-            case SENDTEXTHANDLER:
-                msg = sendTextWithHandler(asyncRemote);
-                break;
-            case SENDTEXTHANDLERTHROWSONDATA:
-                msg = sendTextWithHandlerThrowsOnData(asyncRemote);
-                break;
-            case SENDTEXTHANDLERTHROWSONHANDLER:
-                msg = sendTextWithHandlerThrowsOnHandler(asyncRemote);
-                break;
-            case BATCHING_ALLOWED:
-                msg = batchingAllowed(asyncRemote);
-                break;
-            case SEND_PING:
-                msg = sendPing(asyncRemote);
-                break;
-            case SEND_PING_THROWS:
-                msg = sendPingThrows(asyncRemote);
-                break;
-            case SEND_PONG:
-                msg = sendPong(asyncRemote);
-                break;
-            case SEND_PONG_THROWS:
-                msg = sendBinaryThrows(asyncRemote);
-                break;
-            case IDLE:
-                session.setMaxIdleTimeout(1500L);
-                break;
-            case PING_4_TIMES:
-                msg = sendPing4times(asyncRemote);
-                break;
-            case PONG_4_TIMES:
-                msg = sendPong4times(asyncRemote);
-                break;
-            default:
-                throw new IllegalArgumentException("Method " + msg + " not implemented");
+        case POKE:
+            // returns msg;
+            break;
+        case TIMEOUT:
+            msg = timeout(asyncRemote);
+            break;
+        case SENDBINARY:
+            msg = sendBinary(asyncRemote);
+            break;
+        case SENDBINARYTHROWS:
+            msg = sendBinaryThrows(asyncRemote);
+            break;
+        case SENDBINARYHANDLER:
+            msg = sendBinaryWithHandler(asyncRemote);
+            break;
+        case SENDBINARYHANDLERTHROWSONDATA:
+            msg = sendBinaryWithHandlerThrowsOnData(asyncRemote);
+            break;
+        case SENDBINARYHANDLERTHROWSONHANDLER:
+            msg = sendBinaryWithHandlerThrowsOnHandler(asyncRemote);
+            break;
+        case SENDOBJECT:
+            msg = sendObject(asyncRemote);
+            break;
+        case SENDOBJECT_BOOL:
+            msg = sendObject(asyncRemote, boolean.class);
+            break;
+        case SENDOBJECT_BYTE:
+            msg = sendObject(asyncRemote, byte.class);
+            break;
+        case SENDOBJECT_CHAR:
+            msg = sendObject(asyncRemote, char.class);
+            break;
+        case SENDOBJECT_DOUBLE:
+            msg = sendObject(asyncRemote, double.class);
+            break;
+        case SENDOBJECT_FLOAT:
+            msg = sendObject(asyncRemote, float.class);
+            break;
+        case SENDOBJECT_INT:
+            msg = sendObject(asyncRemote, int.class);
+            break;
+        case SENDOBJECT_LONG:
+            msg = sendObject(asyncRemote, long.class);
+            break;
+        case SENDOBJECT_SHORT:
+            msg = sendObject(asyncRemote, short.class);
+            break;
+        case SENDOBJECTTHROWS:
+            msg = sendObjectThrows(asyncRemote);
+            break;
+        case SENDOBJECTHANDLER:
+            msg = sendObjectWithHandler(asyncRemote);
+            break;
+        case SENDOBJECTHANDLERTHROWSONDATA:
+            msg = sendObjectWithHandlerThrowsOnData(asyncRemote);
+            break;
+        case SENDOBJECTHANDLERTHROWSONHANDLER:
+            msg = sendObjectWithHandlerThrowsOnHandler(asyncRemote);
+            break;
+        case SENDTEXT:
+            msg = sendText(asyncRemote);
+            break;
+        case SENDTEXTTHROWS:
+            msg = sendTextThrows(asyncRemote);
+            break;
+        case SENDTEXTHANDLER:
+            msg = sendTextWithHandler(asyncRemote);
+            break;
+        case SENDTEXTHANDLERTHROWSONDATA:
+            msg = sendTextWithHandlerThrowsOnData(asyncRemote);
+            break;
+        case SENDTEXTHANDLERTHROWSONHANDLER:
+            msg = sendTextWithHandlerThrowsOnHandler(asyncRemote);
+            break;
+        case BATCHING_ALLOWED:
+            msg = batchingAllowed(asyncRemote);
+            break;
+        case SEND_PING:
+            msg = sendPing(asyncRemote);
+            break;
+        case SEND_PING_THROWS:
+            msg = sendPingThrows(asyncRemote);
+            break;
+        case SEND_PONG:
+            msg = sendPong(asyncRemote);
+            break;
+        case SEND_PONG_THROWS:
+            msg = sendBinaryThrows(asyncRemote);
+            break;
+        case IDLE:
+            session.setMaxIdleTimeout(1500L);
+            break;
+        case PING_4_TIMES:
+            msg = sendPing4times(asyncRemote);
+            break;
+        case PONG_4_TIMES:
+            msg = sendPong4times(asyncRemote);
+            break;
+        default:
+            throw new IllegalArgumentException("Method " + msg + " not implemented");
         }
         return msg;
     }
@@ -164,9 +162,8 @@ public class WSCServerSideServer {
     }
 
     /**
-     * The setSendTimeout() method is not possible to be tested in terms of
-     * functionality, as there is unfortunately no way guarantee that the timeout
-     * would be reached regardless the websocket implementation
+     * The setSendTimeout() method is not possible to be tested in terms of functionality, as there is unfortunately no way
+     * guarantee that the timeout would be reached regardless the websocket implementation
      */
     protected static String timeout(Async asyncRemote) {
         boolean set = true;
@@ -180,16 +177,14 @@ public class WSCServerSideServer {
     }
 
     /**
-     * Again, since the asynchronous thread sends message in virtually no time,
-     * one does not have any force to hold that send operation in its thread, to
-     * check the send operation is really unblocking and asynchronous
+     * Again, since the asynchronous thread sends message in virtually no time, one does not have any force to hold that
+     * send operation in its thread, to check the send operation is really unblocking and asynchronous
      *
      * @param asyncRemote
      * @return
      */
     protected static String sendBinary(Async asyncRemote) {
-        Future<Void> future =
-                asyncRemote.sendBinary(ByteBuffer.wrap(OPS.SENDBINARY.name().getBytes()));
+        Future<Void> future = asyncRemote.sendBinary(ByteBuffer.wrap(OPS.SENDBINARY.name().getBytes()));
         try {
             Void v = future.get();
             return v == null ? RESPONSE[0] : RESPONSE[1];
@@ -406,7 +401,8 @@ public class WSCServerSideServer {
 
     protected static String generateMessage(int length) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i != length; i++) sb.append(i % 10);
+        for (int i = 0; i != length; i++)
+            sb.append(i % 10);
         return sb.toString();
     }
 

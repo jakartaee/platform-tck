@@ -69,7 +69,8 @@ public abstract class EJB3ShareBaseBean implements EJB3ShareIF {
 
             initClient(testClient);
             sTestStatus = new RemoteStatus(testClient.run(args, props));
-            if (sTestStatus.getType() == Status.PASSED) TestUtil.logMsg(testName + " in vehicle passed");
+            if (sTestStatus.getType() == Status.PASSED)
+                TestUtil.logMsg(testName + " in vehicle passed");
         } catch (Throwable e) {
             String fail = testName + " in vehicle failed";
             // e.printStackTrace();

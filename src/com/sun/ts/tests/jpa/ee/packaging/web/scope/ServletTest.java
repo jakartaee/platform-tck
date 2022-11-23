@@ -36,9 +36,9 @@ public class ServletTest extends HttpTCKServlet {
 
     private static final int ACCOUNT = 1075;
 
-    private static final int ACCOUNTS[] = {1000, 1075, 40, 30564, 387};
+    private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
 
-    private static final double BALANCES[] = {50000.0, 10490.75, 200.50, 25000.0, 1000000.0};
+    private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0, 1000000.0 };
 
     private static final String emRef = "java:comp/env/persistence/MyEM";
 

@@ -43,9 +43,8 @@ import java.util.Properties;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The callStmtClient12 class tests methods of CallableStatement interface (to
- * check the Support for IN, OUT and INOUT parameters of Stored Procedure) using
- * Sun's J2EE Reference Implementation.
+ * The callStmtClient12 class tests methods of CallableStatement interface (to check the Support for IN, OUT and INOUT
+ * parameters of Stored Procedure) using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -89,14 +88,11 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -104,7 +100,8 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
 
                 if (drManager.equals("yes")) {
@@ -132,16 +129,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject81
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Varchar_Tab with the maximum value
-     * of the Decimal_Tab. Execute a query to retrieve the Null_Val from
-     * Varchar_Tab. Compare the returned value with the maximum value extracted
-     * from tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Varchar_Tab with the maximum value of the Decimal_Tab. Execute a query to retrieve the
+     * Null_Val from Varchar_Tab. Compare the returned value with the maximum value extracted from tssql.stmt file. Both of
+     * them should be equal.
      */
     public void testSetObject81() throws Fault {
         BigDecimal maxBigDecimalVal = null;
@@ -208,16 +202,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject82
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Varchar_Tab with the minimum value
-     * of the Decimal_Tab. Execute a query to retrieve the Null_Val from
-     * Varchar_Tab. Compare the returned value with the minimum value extracted
-     * from tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Varchar_Tab with the minimum value of the Decimal_Tab. Execute a query to retrieve the
+     * Null_Val from Varchar_Tab. Compare the returned value with the minimum value extracted from tssql.stmt file. Both of
+     * them should be equal.
      */
     public void testSetObject82() throws Fault {
         BigDecimal maxBigDecimalVal = null;
@@ -286,16 +277,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject83
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Longvarchar_Tab with the maximum
-     * value of the Decimal_Tab. Execute a query to retrieve the Null_Val from
-     * Longvarchar_Tab. Compare the returned value with the maximum value
-     * extracted from tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Longvarchar_Tab with the maximum value of the Decimal_Tab. Execute a query to retrieve the
+     * Null_Val from Longvarchar_Tab. Compare the returned value with the maximum value extracted from tssql.stmt file. Both
+     * of them should be equal.
      */
     public void testSetObject83() throws Fault {
         String maxStringVal = null;
@@ -361,16 +349,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject84
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Longvarchar_Tab with the minimum
-     * value of the Decimal_Tab. Execute a query to retrieve the Null_Val from
-     * Longvarchar_Tab. Compare the returned value with the minimum value
-     * extracted from tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Longvarchar_Tab with the minimum value of the Decimal_Tab. Execute a query to retrieve the
+     * Null_Val from Longvarchar_Tab. Compare the returned value with the minimum value extracted from tssql.stmt file. Both
+     * of them should be equal.
      */
     public void testSetObject84() throws Fault {
         String maxStringVal = null;
@@ -439,16 +424,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject85
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Min_Val of the Tinyint_Tab with the maximum value
-     * of the Bit_Tab. Execute a query to retrieve the Min_Val from Tinyint_Tab.
-     * Compare the returned value with the maximum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Min_Val of the Tinyint_Tab with the maximum value of the Bit_Tab. Execute a query to retrieve the Min_Val from
+     * Tinyint_Tab. Compare the returned value with the maximum value extracted from tssql.stmt file. Both of them should be
+     * equal.
      */
     public void testSetObject85() throws Fault {
         Boolean oMaxTinyintVal = null;
@@ -522,16 +504,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject86
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Tinyint_Tab with the minimum value
-     * of the Bit_Tab. Execute a query to retrieve the Null_Val from Tinyint_Tab.
-     * Compare the returned value with the minimum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Tinyint_Tab with the minimum value of the Bit_Tab. Execute a query to retrieve the Null_Val
+     * from Tinyint_Tab. Compare the returned value with the minimum value extracted from tssql.stmt file. Both of them
+     * should be equal.
      */
     public void testSetObject86() throws Fault {
         Boolean oMinTinyintVal = null;
@@ -601,16 +580,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject87
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Min_Val of the Smallint_Tab with the maximum value
-     * of the Bit_Tab. Execute a query to retrieve the Min_Val from Smallint_Tab.
-     * Compare the returned value with the maximum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Min_Val of the Smallint_Tab with the maximum value of the Bit_Tab. Execute a query to retrieve the Min_Val
+     * from Smallint_Tab. Compare the returned value with the maximum value extracted from tssql.stmt file. Both of them
+     * should be equal.
      */
     public void testSetObject87() throws Fault {
         Boolean oMaxSmallintVal = null;
@@ -680,16 +656,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject88
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Smallint_Tab with the minimum
-     * value of the Bit_Tab. Execute a query to retrieve the Null_Val from
-     * Smallint_Tab. Compare the returned value with the minimum value extracted
-     * from tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Smallint_Tab with the minimum value of the Bit_Tab. Execute a query to retrieve the Null_Val
+     * from Smallint_Tab. Compare the returned value with the minimum value extracted from tssql.stmt file. Both of them
+     * should be equal.
      */
     public void testSetObject88() throws Fault {
         Boolean oMinSmallintVal = null;
@@ -759,16 +732,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject89
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Min_Val of the Integer_Tab with the maximum value
-     * of the Bit_Tab. Execute a query to retrieve the Min_Val from Integer_Tab.
-     * Compare the returned value with the maximum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Min_Val of the Integer_Tab with the maximum value of the Bit_Tab. Execute a query to retrieve the Min_Val from
+     * Integer_Tab. Compare the returned value with the maximum value extracted from tssql.stmt file. Both of them should be
+     * equal.
      */
     public void testSetObject89() throws Fault {
         Boolean oMaxIntegerVal = null;
@@ -839,16 +809,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject90
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Integer_Tab with the minimum value
-     * of the Bit_Tab. Execute a query to retrieve the Null_Val from Integer_Tab.
-     * Compare the returned value with the minimum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Integer_Tab with the minimum value of the Bit_Tab. Execute a query to retrieve the Null_Val
+     * from Integer_Tab. Compare the returned value with the minimum value extracted from tssql.stmt file. Both of them
+     * should be equal.
      */
     public void testSetObject90() throws Fault {
         Boolean oMinIntegerVal = null;
@@ -918,16 +885,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject91
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Min_Val of the Bigint_Tab with the maximum value
-     * of the Bit_Tab. Execute a query to retrieve the Min_Val from Bigint_Tab.
-     * Compare the returned value with the maximum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Min_Val of the Bigint_Tab with the maximum value of the Bit_Tab. Execute a query to retrieve the Min_Val from
+     * Bigint_Tab. Compare the returned value with the maximum value extracted from tssql.stmt file. Both of them should be
+     * equal.
      */
     public void testSetObject91() throws Fault {
         Boolean oMaxBigintVal = null;
@@ -996,16 +960,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject92
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Bigint_Tab with the minimum value
-     * of the Bit_Tab. Execute a query to retrieve the Null_Val from Bigint_Tab.
-     * Compare the returned value with the minimum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Bigint_Tab with the minimum value of the Bit_Tab. Execute a query to retrieve the Null_Val
+     * from Bigint_Tab. Compare the returned value with the minimum value extracted from tssql.stmt file. Both of them
+     * should be equal.
      */
     public void testSetObject92() throws Fault {
         Boolean oMinBigintVal = null;
@@ -1074,16 +1035,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject93
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Min_Val of the Real_Tab with the maximum value of
-     * the Bit_Tab. Execute a query to retrieve the Min_Val from Real_Tab. Compare
-     * the returned value with the maximum value extracted from tssql.stmt file.
-     * Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Min_Val of the Real_Tab with the maximum value of the Bit_Tab. Execute a query to retrieve the Min_Val from
+     * Real_Tab. Compare the returned value with the maximum value extracted from tssql.stmt file. Both of them should be
+     * equal.
      */
     public void testSetObject93() throws Fault {
         Boolean oMaxRealVal = null;
@@ -1152,16 +1110,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject94
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Real_Tab with the minimum value of
-     * the Bit_Tab. Execute a query to retrieve the Null_Val from Real_Tab.
-     * Compare the returned value with the minimum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Real_Tab with the minimum value of the Bit_Tab. Execute a query to retrieve the Null_Val from
+     * Real_Tab. Compare the returned value with the minimum value extracted from tssql.stmt file. Both of them should be
+     * equal.
      */
     public void testSetObject94() throws Fault {
         Boolean oMinRealVal = null;
@@ -1230,16 +1185,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject95
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Min_Val of the Float_Tab with the maximum value of
-     * the Bit_Tab. Execute a query to retrieve the Min_Val from Float_Tab.
-     * Compare the returned value with the maximum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Min_Val of the Float_Tab with the maximum value of the Bit_Tab. Execute a query to retrieve the Min_Val from
+     * Float_Tab. Compare the returned value with the maximum value extracted from tssql.stmt file. Both of them should be
+     * equal.
      */
     public void testSetObject95() throws Fault {
         Boolean oMaxFloatVal = null;
@@ -1307,16 +1259,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject96
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Float_Tab with the minimum value
-     * of the Bit_Tab. Execute a query to retrieve the Null_Val from Float_Tab.
-     * Compare the returned value with the minimum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Float_Tab with the minimum value of the Bit_Tab. Execute a query to retrieve the Null_Val from
+     * Float_Tab. Compare the returned value with the minimum value extracted from tssql.stmt file. Both of them should be
+     * equal.
      */
     public void testSetObject96() throws Fault {
         Boolean oMinFloatVal = null;
@@ -1383,16 +1332,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject97
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Min_Val of the Double_Tab with the maximum value
-     * of the Bit_Tab. Execute a query to retrieve the Min_Val from Double_Tab.
-     * Compare the returned value with the maximum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Min_Val of the Double_Tab with the maximum value of the Bit_Tab. Execute a query to retrieve the Min_Val from
+     * Double_Tab. Compare the returned value with the maximum value extracted from tssql.stmt file. Both of them should be
+     * equal.
      */
     public void testSetObject97() throws Fault {
         Boolean oMaxDoubleVal = null;
@@ -1461,16 +1407,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject98
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Double_Tab with the minimum value
-     * of the Bit_Tab. Execute a query to retrieve the Null_Val from Double_Tab.
-     * Compare the returned value with the minimum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Double_Tab with the minimum value of the Bit_Tab. Execute a query to retrieve the Null_Val
+     * from Double_Tab. Compare the returned value with the minimum value extracted from tssql.stmt file. Both of them
+     * should be equal.
      */
     public void testSetObject98() throws Fault {
         Boolean oMinDoubleVal = null;
@@ -1539,16 +1482,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject99
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:692;
-     * JDBC:JAVADOC:693; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:692; JDBC:JAVADOC:693; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Decimal_Tab with the maximum value
-     * of the Bit_Tab. Execute a query to retrieve the Null_Val from Decimal_Tab.
-     * Compare the returned value with the maximum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Decimal_Tab with the maximum value of the Bit_Tab. Execute a query to retrieve the Null_Val
+     * from Decimal_Tab. Compare the returned value with the maximum value extracted from tssql.stmt file. Both of them
+     * should be equal.
      */
     public void testSetObject99() throws Fault {
         Boolean oMaxDecimalVal = null;
@@ -1616,16 +1556,13 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject100
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:692;
-     * JDBC:JAVADOC:693; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:692; JDBC:JAVADOC:693; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of the Decimal_Tab with the minimum value
-     * of the Bit_Tab. Execute a query to retrieve the Null_Val from Decimal_Tab.
-     * Compare the returned value with the minimum value extracted from tssql.stmt
-     * file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of the Decimal_Tab with the minimum value of the Bit_Tab. Execute a query to retrieve the Null_Val
+     * from Decimal_Tab. Compare the returned value with the minimum value extracted from tssql.stmt file. Both of them
+     * should be equal.
      */
     public void testSetObject100() throws Fault {
         Boolean oMinDecimalVal = null;

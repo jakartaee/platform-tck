@@ -38,9 +38,11 @@ import jakarta.ejb.SessionContext;
 public class RemoveBean implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLocalIF {
     private SessionContext sessionContext;
 
-    public RemoveBean() {}
+    public RemoveBean() {
+    }
 
-    public void ejbCreate() throws CreateException {}
+    public void ejbCreate() throws CreateException {
+    }
 
     @Init
     public void create() {
@@ -49,14 +51,16 @@ public class RemoveBean implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLo
     }
 
     // @Remove
-    public void remove() {}
+    public void remove() {
+    }
 
     public void remove(String s) {
         // this is a remove-method declared in ejb-jar.xml
     }
 
     // @Remove
-    public void remove2() {}
+    public void remove2() {
+    }
 
     // @Remove(retainIfException=true)
     public void retain() throws TestFailedException {
@@ -68,7 +72,8 @@ public class RemoveBean implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLo
         throw new UncheckedAppException("Not to remove this bean");
     }
 
-    public void hi() {}
+    public void hi() {
+    }
 
     //////////////////////////////////////////////////////////////////////
 
@@ -76,11 +81,13 @@ public class RemoveBean implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLo
         return "from2RemoteClient";
     }
 
-    public void remoteSameTxContext() {}
+    public void remoteSameTxContext() {
+    }
 
     public String from2LocalClient() {
         return "from2LocalClient";
     }
 
-    public void localSameTxContext() {}
+    public void localSameTxContext() {
+    }
 }

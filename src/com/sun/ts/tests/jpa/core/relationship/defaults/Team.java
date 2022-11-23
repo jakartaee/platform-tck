@@ -39,7 +39,8 @@ public class Team implements java.io.Serializable {
 
     private Company company;
 
-    public Team() {}
+    public Team() {
+    }
 
     public Team(int teamid, String name) {
         this.teamid = teamid;

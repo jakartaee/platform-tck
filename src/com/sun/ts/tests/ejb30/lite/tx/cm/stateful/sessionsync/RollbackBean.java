@@ -33,9 +33,8 @@ import jakarta.ejb.TransactionAttributeType;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 /**
- * The purpose of this bean is to verify various ways to roll back the
- * transaction inside afterBegin and beforeCompletionAnnotated methods.
- * SessionSynchronization methods are annotated.
+ * The purpose of this bean is to verify various ways to roll back the transaction inside afterBegin and
+ * beforeCompletionAnnotated methods. SessionSynchronization methods are annotated.
  */
 @Stateful
 @TransactionAttribute(TransactionAttributeType.REQUIRED)

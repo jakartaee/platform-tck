@@ -199,8 +199,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -248,8 +250,10 @@ public class Client extends ServiceEETest {
     }
 
     private boolean printTestStatus(boolean pass, String test) {
-        if (pass) TestUtil.logMsg("" + test + " ... PASSED");
-        else TestUtil.logErr("" + test + " ... FAILED");
+        if (pass)
+            TestUtil.logMsg("" + test + " ... PASSED");
+        else
+            TestUtil.logErr("" + test + " ... FAILED");
 
         return pass;
     }
@@ -1031,14 +1035,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: InTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InTest() throws Fault {
         TestUtil.logTrace("InTest");
@@ -1059,20 +1062,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InTest failed");
+        if (!pass)
+            throw new Fault("InTest failed");
     }
 
     /*
      * @testName: OutTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void OutTest() throws Fault {
         TestUtil.logTrace("OutTest");
@@ -1094,20 +1097,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("OutTest failed");
+        if (!pass)
+            throw new Fault("OutTest failed");
     }
 
     /*
      * @testName: InOutTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InOutTest() throws Fault {
         TestUtil.logTrace("InOutTest");
@@ -1129,22 +1132,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutTest failed");
+        if (!pass)
+            throw new Fault("InOutTest failed");
     }
 
     /*
      * @testName: InOut2Test
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
-     * This specific test does not use the parameterOrder attribute for the
-     * operate tag
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal. This specific test does not use the parameterOrder attribute for the operate tag
      */
     public void InOut2Test() throws Fault {
         TestUtil.logTrace("InOut2Test");
@@ -1166,22 +1167,21 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutTest failed");
+        if (!pass)
+            throw new Fault("InOutTest failed");
     }
 
     /*
      * @testName: InOut3Test
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
-     * This specific test does not use the parameterOrder attribute for the
-     * operate tag and it has different part names
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal. This specific test does not use the parameterOrder attribute for the operate tag and
+     * it has different part names
      */
     public void InOut3Test() throws Fault {
         TestUtil.logTrace("InOut3Test");
@@ -1202,22 +1202,21 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOut3Test failed");
+        if (!pass)
+            throw new Fault("InOut3Test failed");
     }
 
     /*
      * @testName: InOut4Test
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
-     * This specific test uses the parameterOrder attribute for the operate tag
-     * and has different part names
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal. This specific test uses the parameterOrder attribute for the operate tag and has
+     * different part names
      */
     public void InOut4Test() throws Fault {
         TestUtil.logTrace("InOut4Test");
@@ -1238,21 +1237,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOut4Test failed");
+        if (!pass)
+            throw new Fault("InOut4Test failed");
     }
 
     /*
      * @testName: MixTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
-     * WSI:SPEC:R2302;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002; WSI:SPEC:R2302;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void MixTest() throws Fault {
         TestUtil.logTrace("MixTest");
@@ -1287,21 +1285,21 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("MixTest failed");
+        if (!pass)
+            throw new Fault("MixTest failed");
     }
 
     /*
      * @testName: InSimpleTypesTest
      *
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InSimpleTypesTest() throws Fault {
         TestUtil.logTrace("InSimpleTypesTest");
@@ -1321,20 +1319,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InSimpleTypesTest failed");
+        if (!pass)
+            throw new Fault("InSimpleTypesTest failed");
     }
 
     /*
      * @testName: OutSimpleTypesTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void OutSimpleTypesTest() throws Fault {
         TestUtil.logTrace("OutSimpleTypesTest");
@@ -1369,20 +1367,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("OutSimpleTypesTest failed");
+        if (!pass)
+            throw new Fault("OutSimpleTypesTest failed");
     }
 
     /*
      * @testName: InOutSimpleTypesTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InOutSimpleTypesTest() throws Fault {
         TestUtil.logTrace("InOutSimpleTypesTest");
@@ -1416,20 +1414,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutSimpleTypesTest failed");
+        if (!pass)
+            throw new Fault("InOutSimpleTypesTest failed");
     }
 
     /*
      * @testName: InEnumerationTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InEnumerationTest() throws Fault {
         TestUtil.logTrace("InEnumerationTest");
@@ -1449,20 +1447,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InEnumerationTest failed");
+        if (!pass)
+            throw new Fault("InEnumerationTest failed");
     }
 
     /*
      * @testName: OutEnumerationTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void OutEnumerationTest() throws Fault {
         TestUtil.logTrace("OutEnumerationTest");
@@ -1491,20 +1489,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("OutEnumerationTest failed");
+        if (!pass)
+            throw new Fault("OutEnumerationTest failed");
     }
 
     /*
      * @testName: InOutEnumerationTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InOutEnumerationTest() throws Fault {
         TestUtil.logTrace("InOutEnumerationTest");
@@ -1533,20 +1531,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutEnumerationTest failed");
+        if (!pass)
+            throw new Fault("InOutEnumerationTest failed");
     }
 
     /*
      * @testName: InStructTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InStructTest() throws Fault {
         TestUtil.logTrace("InStructTest");
@@ -1566,20 +1564,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InStructTest failed");
+        if (!pass)
+            throw new Fault("InStructTest failed");
     }
 
     /*
      * @testName: InOutSimpleTypesArrayTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InOutSimpleTypesArrayTest() throws Fault {
         TestUtil.logTrace("InOutSimpleTypesArrayTest");
@@ -1611,20 +1609,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutSimpleTypesArrayTest failed");
+        if (!pass)
+            throw new Fault("InOutSimpleTypesArrayTest failed");
     }
 
     /*
      * @testName: InOutUserDefinedTypeTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InOutUserDefinedTypeTest() throws Fault {
         TestUtil.logTrace("InOutUserDefinedTypeTest");
@@ -1657,20 +1655,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutUserDefinedTypeTest failed");
+        if (!pass)
+            throw new Fault("InOutUserDefinedTypeTest failed");
     }
 
     /*
      * @testName: InOutUserDefinedTypeArrayTest
      *
-     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:2030; WS4EE:SPEC:35; WS4EE:SPEC:36; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InOutUserDefinedTypeArrayTest() throws Fault {
         TestUtil.logTrace("InOutUserDefinedTypeArrayTest");
@@ -1724,6 +1722,7 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutUserDefinedTypeArrayTest failed");
+        if (!pass)
+            throw new Fault("InOutUserDefinedTypeArrayTest failed");
     }
 }

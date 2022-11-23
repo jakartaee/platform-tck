@@ -31,7 +31,8 @@ public class Department implements java.io.Serializable {
 
     private String name;
 
-    public Department() {}
+    public Department() {
+    }
 
     public Department(int id, String name) {
         this.id = id;

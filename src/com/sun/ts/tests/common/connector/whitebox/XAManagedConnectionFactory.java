@@ -59,7 +59,8 @@ public class XAManagedConnectionFactory
      *
      * @desc Default conctructor
      */
-    public XAManagedConnectionFactory() {}
+    public XAManagedConnectionFactory() {
+    }
 
     public String getUser() {
         System.out.println("XAManagedConnectionFactory.getUser() returning:  " + user);
@@ -292,13 +293,17 @@ public class XAManagedConnectionFactory
             return false;
         }
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.user, that.getUser())) return false;
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
 
-        if (!Util.isEqual(this.userName, that.getUserName())) return false;
+        if (!Util.isEqual(this.userName, that.getUserName()))
+            return false;
 
-        if (!Util.isEqual(this.TSRValue, that.getTSRValue())) return false;
+        if (!Util.isEqual(this.TSRValue, that.getTSRValue()))
+            return false;
 
         return true;
     }

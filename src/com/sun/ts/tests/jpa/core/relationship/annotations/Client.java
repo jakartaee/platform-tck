@@ -45,7 +45,8 @@ public class Client extends PMClientBase {
 
     private static final Team tRef[] = new Team[10];
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -68,23 +69,18 @@ public class Client extends PMClientBase {
     /*
      * @testName: annotationMappingTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
-     * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
-     * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
-     * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
-     * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
+     * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135; PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561;
+     * PERSISTENCE:SPEC:562; PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571; PERSISTENCE:SPEC:573;
+     * PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028; PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
      *
-     * @test_Strategy: RelationShip Mapping Annotations BiDirectional OneToOne
-     * Relationship
+     * @test_Strategy: RelationShip Mapping Annotations BiDirectional OneToOne Relationship
      *
      * OnePerson to OneProjectLead
      *
-     * Entity Person mapped to table named PERSON references a single instance of
-     * Project. Entity Project mapped to table named PROJECT a single instance of
-     * Person. Entity Person is the owner of the relationship.
+     * Entity Person mapped to table named PERSON references a single instance of Project. Entity Project mapped to table
+     * named PROJECT a single instance of Person. Entity Person is the owner of the relationship.
      *
-     * Table PERSON contains a foreign key to PROJECT. The foreign key is named
-     * PROJECT_PROJID.
+     * Table PERSON contains a foreign key to PROJECT. The foreign key is named PROJECT_PROJID.
      *
      */
 
@@ -125,31 +121,26 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("annotationMappingTest1 failed");
+        if (!pass)
+            throw new Fault("annotationMappingTest1 failed");
     }
 
     /*
      * @testName: annotationMappingPersistTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
-     * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
-     * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
-     * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
-     * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
+     * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135; PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561;
+     * PERSISTENCE:SPEC:562; PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571; PERSISTENCE:SPEC:573;
+     * PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028; PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
      *
-     * @test_Strategy: RelationShip Mapping Annotations BiDirectional OneToOne
-     * Relationship
+     * @test_Strategy: RelationShip Mapping Annotations BiDirectional OneToOne Relationship
      *
      * OnePerson to OneProjectLead
      *
-     * Entity Person mapped to table named PERSON references a single instance of
-     * Project. Entity Project mapped to table named PROJECT a single instance of
-     * Person. Entity Person is the owner of the relationship.
+     * Entity Person mapped to table named PERSON references a single instance of Project. Entity Project mapped to table
+     * named PROJECT a single instance of Person. Entity Person is the owner of the relationship.
      *
-     * Table PERSON contains a foreign key to PROJECT. The foreign key is named
-     * PROJECT_PROJID. set both sides of the association inside the same
-     * transaction, and persist the owing side, which should be cascaded to the
-     * inverse side.
+     * Table PERSON contains a foreign key to PROJECT. The foreign key is named PROJECT_PROJID. set both sides of the
+     * association inside the same transaction, and persist the owing side, which should be cascaded to the inverse side.
      */
 
     public void annotationMappingPersistTest1() throws Fault {
@@ -185,28 +176,24 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("annotationMappingPersistTest1 failed");
+        if (!pass)
+            throw new Fault("annotationMappingPersistTest1 failed");
     }
 
     /*
      * @testName: annotationMappingTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1090; PERSISTENCE:SPEC:1091;
-     * PERSISTENCE:JAVADOC:9; PERSISTENCE:JAVADOC:110; PERSISTENCE:SPEC:561;
-     * PERSISTENCE:SPEC:564; PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570;
-     * PERSISTENCE:SPEC:572
+     * @assertion_ids: PERSISTENCE:SPEC:1090; PERSISTENCE:SPEC:1091; PERSISTENCE:JAVADOC:9; PERSISTENCE:JAVADOC:110;
+     * PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:564; PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:572
      *
-     * @test_Strategy: RelationShip Mapping Annotations BiDirectional ManyToOne
-     * Relationship
+     * @test_Strategy: RelationShip Mapping Annotations BiDirectional ManyToOne Relationship
      *
      * ManyTeams to OneCompany
      *
-     * Entity Team is mapped to a table named TEAM references a single instance of
-     * Company. Entity Company mapped to table named COMPANY references a
-     * collection of Entity Team. Entity Team is the owner of the relationship.
+     * Entity Team is mapped to a table named TEAM references a single instance of Company. Entity Company mapped to table
+     * named COMPANY references a collection of Entity Team. Entity Team is the owner of the relationship.
      *
-     * Table TEAM contains a foreign key to COMPANY. The foreign key is named
-     * COMPANY_COMPANYID.
+     * Table TEAM contains a foreign key to COMPANY. The foreign key is named COMPANY_COMPANYID.
      *
      */
 
@@ -219,8 +206,8 @@ public class Client extends PMClientBase {
         Vector<Team> v2;
         int foundTeam1 = 0;
         int foundTeam2 = 0;
-        final String[] expectedTeam1 = new String[] {"Engineering", "Marketing", "Sales"};
-        final String[] expectedTeam2 = new String[] {"Accounting", "Training"};
+        final String[] expectedTeam1 = new String[] { "Engineering", "Marketing", "Sales" };
+        final String[] expectedTeam2 = new String[] { "Accounting", "Training" };
 
         try {
             createTeams();
@@ -320,28 +307,24 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass2) throw new Fault("annotationMappingTest2 failed");
+        if (!pass2)
+            throw new Fault("annotationMappingTest2 failed");
     }
 
     /*
      * @testName: annotationMappingTest3
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1095; PERSISTENCE:JAVADOC:131;
-     * PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:563; PERSISTENCE:SPEC:567;
-     * PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571
+     * @assertion_ids: PERSISTENCE:SPEC:1095; PERSISTENCE:JAVADOC:131; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:563;
+     * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571
      *
-     * @test_Strategy: RelationShip Mapping Annotations BiDirectional OneToMany
-     * Relationship
+     * @test_Strategy: RelationShip Mapping Annotations BiDirectional OneToMany Relationship
      *
      * OneCompany To ManyTeams
      *
-     * Entity Company mapped to table named COMPANY references a collection of
-     * Entity Team. Entity Team is mapped to a table named TEAM references a
-     * single instance of Entity Company. Entity Team is the owner of the
-     * relationship.
+     * Entity Company mapped to table named COMPANY references a collection of Entity Team. Entity Team is mapped to a table
+     * named TEAM references a single instance of Entity Company. Entity Team is the owner of the relationship.
      *
-     * Table TEAM contains a foreign key to COMPANY. The foreign key is named
-     * COMPANY_COMPANYID.
+     * Table TEAM contains a foreign key to COMPANY. The foreign key is named COMPANY_COMPANYID.
      *
      */
 
@@ -417,27 +400,23 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("annotationMappingTest3 failed");
+        if (!pass)
+            throw new Fault("annotationMappingTest3 failed");
     }
 
     /*
      * @testName: annotationMappingTest4
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:SPEC:561;
-     * PERSISTENCE:SPEC:562; PERSISTENCE:SPEC:568
+     * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562; PERSISTENCE:SPEC:568
      *
-     * @test_Strategy: RelationShip Mapping Annotations UniDirectional OneToOne
-     * Relationship
+     * @test_Strategy: RelationShip Mapping Annotations UniDirectional OneToOne Relationship
      *
      * OneCompany To OneAddress
      *
-     * Entity Company mapped to table named COMPANY references a single instance
-     * of Entity Address. Entity Address is mapped to a table named ADDRESS which
-     * does not reference Entity Company. Entity Company is the owner of the
-     * relationship.
+     * Entity Company mapped to table named COMPANY references a single instance of Entity Address. Entity Address is mapped
+     * to a table named ADDRESS which does not reference Entity Company. Entity Company is the owner of the relationship.
      *
-     * Table COMPANY contains a foreign key to ADDRESS. The foreign key is named
-     * ADDRESS_ID.
+     * Table COMPANY contains a foreign key to ADDRESS. The foreign key is named ADDRESS_ID.
      *
      */
 
@@ -488,26 +467,23 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("annotationMappingTest4 failed");
+        if (!pass)
+            throw new Fault("annotationMappingTest4 failed");
     }
 
     /*
      * @testName: annotationMappingTest5
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1091; PERSISTENCE:SPEC:561;
-     * PERSISTENCE:SPEC:564; PERSISTENCE:SPEC:568
+     * @assertion_ids: PERSISTENCE:SPEC:1091; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:564; PERSISTENCE:SPEC:568
      *
-     * @test_Strategy: RelationShip Mapping Annotations UniDirectional ManyToOne
-     * Relationship
+     * @test_Strategy: RelationShip Mapping Annotations UniDirectional ManyToOne Relationship
      *
      * ManyPersons To OneTeam
      *
-     * Entity Person mapped to table named PERSON references a single instance of
-     * Entity Team. Entity Team is mapped to a table named TEAM and does not
-     * reference Entity Person. Entity Person is the owner of the relationship.
+     * Entity Person mapped to table named PERSON references a single instance of Entity Team. Entity Team is mapped to a
+     * table named TEAM and does not reference Entity Person. Entity Person is the owner of the relationship.
      *
-     * Table PERSON contains a foreign key to TEAM. The foreign key is named
-     * TEAM_TEAMID.
+     * Table PERSON contains a foreign key to TEAM. The foreign key is named TEAM_TEAMID.
      *
      */
 
@@ -571,32 +547,27 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("annotationMappingTest5 failed");
+        if (!pass)
+            throw new Fault("annotationMappingTest5 failed");
     }
 
     /*
      * @testName: annotationMappingTest6
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1097; PERSISTENCE:SPEC:1098;
-     * PERSISTENCE:JAVADOC:109; PERSISTENCE:JAVADOC:106; PERSISTENCE:JAVADOC:99;
-     * PERSISTENCE:JAVADOC:100; PERSISTENCE:JAVADOC:101; PERSISTENCE:SPEC:561;
-     * PERSISTENCE:SPEC:565; PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:574;
-     * PERSISTENCE:SPEC:1099
+     * @assertion_ids: PERSISTENCE:SPEC:1097; PERSISTENCE:SPEC:1098; PERSISTENCE:JAVADOC:109; PERSISTENCE:JAVADOC:106;
+     * PERSISTENCE:JAVADOC:99; PERSISTENCE:JAVADOC:100; PERSISTENCE:JAVADOC:101; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:565;
+     * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:574; PERSISTENCE:SPEC:1099
      *
-     * @test_Strategy: RelationShip Mapping Annotations BiDirectional ManyToMany
-     * Relationship
+     * @test_Strategy: RelationShip Mapping Annotations BiDirectional ManyToMany Relationship
      *
      * ManyProjects To ManyPersons
      *
-     * Entity Project mapped to table named PROJECT references a collection of
-     * Entity Project. Entity Person is mapped to a table named PERSON and
-     * references a collection of Entity Project. Entity Project is the owner of
-     * the relationship.
+     * Entity Project mapped to table named PROJECT references a collection of Entity Project. Entity Person is mapped to a
+     * table named PERSON and references a collection of Entity Project. Entity Project is the owner of the relationship.
      *
-     * There is a join table named PROJECT_PERSON (owner named first. One foreign
-     * key column refers to table PROJECT. The name of the foreign key column is
-     * PROJECTS_PROJID. The other foreign key column is refers to the PERSON
-     * table. The name of this foreign key is PERSONS_PERSONID.
+     * There is a join table named PROJECT_PERSON (owner named first. One foreign key column refers to table PROJECT. The
+     * name of the foreign key column is PROJECTS_PROJID. The other foreign key column is refers to the PERSON table. The
+     * name of this foreign key is PERSONS_PERSONID.
      *
      */
 
@@ -608,8 +579,8 @@ public class Client extends PMClientBase {
         Vector<Team> v2;
         int foundProject1 = 0;
         int foundProject2 = 0;
-        final Long[] expectedResults1 = new Long[] {123456789L, 345678901L, 567890123L};
-        final Long[] expectedResults2 = new Long[] {234567890L, 345678901L, 456789012L};
+        final Long[] expectedResults1 = new Long[] { 123456789L, 345678901L, 567890123L };
+        final Long[] expectedResults2 = new Long[] { 234567890L, 345678901L, 456789012L };
 
         try {
             createPeople();
@@ -729,30 +700,27 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("annotationMappingTest6 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("annotationMappingTest6 failed");
     }
 
     /*
      * @testName: annotationMappingTest7
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1095; PERSISTENCE:SPEC:1097;
-     * PERSISTENCE:JAVADOC:99; PERSISTENCE:JAVADOC:100; PERSISTENCE:JAVADOC:101;
-     * PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:563; PERSISTENCE:SPEC:568
+     * @assertion_ids: PERSISTENCE:SPEC:1095; PERSISTENCE:SPEC:1097; PERSISTENCE:JAVADOC:99; PERSISTENCE:JAVADOC:100;
+     * PERSISTENCE:JAVADOC:101; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:563; PERSISTENCE:SPEC:568
      *
-     * @test_Strategy: RelationShip Mapping Annotations UniDirectional OneToMany
-     * Relationship
+     * @test_Strategy: RelationShip Mapping Annotations UniDirectional OneToMany Relationship
      *
      * OnePerson To ManyReviews
      *
-     * Entity Person mapped to table named PERSON references a collection of
-     * Entity AnnualReview. Entity AnnualReview is mapped to a table named
-     * ANNUALREVIEW which does not reference Entity Person. Entity Person is the
-     * owner of the relationship.
+     * Entity Person mapped to table named PERSON references a collection of Entity AnnualReview. Entity AnnualReview is
+     * mapped to a table named ANNUALREVIEW which does not reference Entity Person. Entity Person is the owner of the
+     * relationship.
      *
-     * There is a join table named PERSON_ANNUALREVIEW (owner named first. One
-     * foreign key column refers to table PERSON. The name of the foreign key
-     * column is PERSON_PERSONID. The other foreign key column is refers to the
-     * ANNUALREVIEW table. The name of this foreign key is ANNUALREVIEWS_AID.
+     * There is a join table named PERSON_ANNUALREVIEW (owner named first. One foreign key column refers to table PERSON.
+     * The name of the foreign key column is PERSON_PERSONID. The other foreign key column is refers to the ANNUALREVIEW
+     * table. The name of this foreign key is ANNUALREVIEWS_AID.
      *
      */
 
@@ -770,11 +738,11 @@ public class Client extends PMClientBase {
         int foundCol3 = 0;
         int foundCol4 = 0;
         int foundCol5 = 0;
-        final Integer[] expectedCol1 = new Integer[] {1, 2, 3, 4};
-        final Integer[] expectedCol2 = new Integer[] {5, 6};
-        final Integer[] expectedCol3 = new Integer[] {3, 8};
-        final Integer[] expectedCol4 = new Integer[] {4, 7};
-        final Integer[] expectedCol5 = new Integer[] {1, 2, 3, 4};
+        final Integer[] expectedCol1 = new Integer[] { 1, 2, 3, 4 };
+        final Integer[] expectedCol2 = new Integer[] { 5, 6 };
+        final Integer[] expectedCol3 = new Integer[] { 3, 8 };
+        final Integer[] expectedCol4 = new Integer[] { 4, 7 };
+        final Integer[] expectedCol5 = new Integer[] { 1, 2, 3, 4 };
 
         try {
             createReviews();
@@ -938,31 +906,26 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("annotationMappingTest7 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("annotationMappingTest7 failed");
     }
 
     /*
      * @testName: annotationMappingTest8
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1097; PERSISTENCE:SPEC:1098;
-     * PERSISTENCE:JAVADOC:109; PERSISTENCE:JAVADOC:99; PERSISTENCE:JAVADOC:100;
-     * PERSISTENCE:JAVADOC:101; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:565;
-     * PERSISTENCE:SPEC:568
+     * @assertion_ids: PERSISTENCE:SPEC:1097; PERSISTENCE:SPEC:1098; PERSISTENCE:JAVADOC:109; PERSISTENCE:JAVADOC:99;
+     * PERSISTENCE:JAVADOC:100; PERSISTENCE:JAVADOC:101; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:565; PERSISTENCE:SPEC:568
      *
-     * @test_Strategy: RelationShip Mapping Annotations UniDirectional ManyToMany
-     * Relationship
+     * @test_Strategy: RelationShip Mapping Annotations UniDirectional ManyToMany Relationship
      *
      * ManyPersons To ManyInsurances
      *
-     * Entity Person mapped to table named PERSON references a collection of
-     * Entity Insurance. Entity Insurance is mapped to a table named INSURANCE and
-     * which does not reference Entity Person. Entity Person is the owner of the
-     * relationship.
+     * Entity Person mapped to table named PERSON references a collection of Entity Insurance. Entity Insurance is mapped to
+     * a table named INSURANCE and which does not reference Entity Person. Entity Person is the owner of the relationship.
      *
-     * There is a join table named PERSON_INSURANCE (owner named first. One
-     * foreign key column refers to table PERSON. The name of the foreign key
-     * column is PERSON_PERSONID. The other foreign key column is refers to the
-     * INSURANCE table. The name of this foreign key is INSURANCES_INSID.
+     * There is a join table named PERSON_INSURANCE (owner named first. One foreign key column refers to table PERSON. The
+     * name of the foreign key column is PERSON_PERSONID. The other foreign key column is refers to the INSURANCE table. The
+     * name of this foreign key is INSURANCES_INSID.
      *
      */
 
@@ -972,9 +935,9 @@ public class Client extends PMClientBase {
         int foundInsurance1 = 0;
         int foundInsurance2 = 0;
         int foundInsurance3 = 0;
-        final Integer[] expectedResults1 = new Integer[] {1, 3};
-        final Integer[] expectedResults2 = new Integer[] {2, 3};
-        final Integer[] expectedResults3 = new Integer[] {1, 2, 3};
+        final Integer[] expectedResults1 = new Integer[] { 1, 3 };
+        final Integer[] expectedResults2 = new Integer[] { 2, 3 };
+        final Integer[] expectedResults3 = new Integer[] { 1, 2, 3 };
 
         try {
             createPeople();
@@ -1082,7 +1045,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("annotationMappingTest8 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("annotationMappingTest8 failed");
     }
 
     /*

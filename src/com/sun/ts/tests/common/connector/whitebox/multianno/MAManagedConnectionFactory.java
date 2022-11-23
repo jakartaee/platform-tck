@@ -57,7 +57,8 @@ public class MAManagedConnectionFactory
      *
      * @desc Default conctructor
      */
-    public MAManagedConnectionFactory() {}
+    public MAManagedConnectionFactory() {
+    }
 
     public String getUser() {
         return user;
@@ -232,7 +233,8 @@ public class MAManagedConnectionFactory
      *
      * @exception ResourceException
      */
-    public void setLogWriter(PrintWriter out) throws ResourceException {}
+    public void setLogWriter(PrintWriter out) throws ResourceException {
+    }
 
     /*
      * @name getLogWriter
@@ -283,11 +285,14 @@ public class MAManagedConnectionFactory
             return false;
         }
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.user, that.getUser())) return false;
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
 
-        if (!Util.isEqual(this.userName, that.getUserName())) return false;
+        if (!Util.isEqual(this.userName, that.getUserName()))
+            return false;
 
         return true;
     }

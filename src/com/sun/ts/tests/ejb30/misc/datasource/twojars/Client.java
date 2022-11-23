@@ -32,16 +32,7 @@ import jakarta.ejb.EJB;
 import java.util.Properties;
 
 @DataSourceDefinitions({
-    @DataSourceDefinition(
-            name = "java:global/datasource/twojars/appclient/globalds",
-            description = "override it with <data-source> in application-client.xml",
-            className = "@className@",
-            portNumber = 8080,
-            serverName = "@serverName@",
-            databaseName = "@databaseName@",
-            user = "@user@",
-            password = "@password@",
-            transactional = true)
+        @DataSourceDefinition(name = "java:global/datasource/twojars/appclient/globalds", description = "override it with <data-source> in application-client.xml", className = "@className@", portNumber = 8080, serverName = "@serverName@", databaseName = "@databaseName@", user = "@user@", password = "@password@", transactional = true)
 })
 public class Client extends EETest {
     private static StringBuilder postConstructRecords = new StringBuilder();
@@ -58,9 +49,11 @@ public class Client extends EETest {
         s.exit();
     }
 
-    public void setup(String[] args, Properties p) {}
+    public void setup(String[] args, Properties p) {
+    }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 
     private static void nonPostConstruct() {
         ServiceLocator.lookupShouldFail("java:app/datasource/twojars/2/appds", postConstructRecords);
@@ -77,8 +70,7 @@ public class Client extends EETest {
     /*
      * @testName: clientPostConstruct
      *
-     * @test_Strategy: verify data sources injected and declared in descriptors
-     * inside appclient
+     * @test_Strategy: verify data sources injected and declared in descriptors inside appclient
      */
     public void clientPostConstruct() {
         nonPostConstruct();
@@ -88,8 +80,7 @@ public class Client extends EETest {
     /*
      * @testName: ejbPostConstruct
      *
-     * @test_Strategy: verify data sources injected and declared in descriptors
-     * inside ejb
+     * @test_Strategy: verify data sources injected and declared in descriptors inside ejb
      */
     public void ejbPostConstruct() {
         Helper.getLogger().info(dataSourceBean.getPostConstructRecords().toString());
@@ -98,8 +89,7 @@ public class Client extends EETest {
     /*
      * @testName: ejb2PostConstruct
      *
-     * @test_Strategy: verify data sources injected and declared in descriptors
-     * inside standalone ejb module
+     * @test_Strategy: verify data sources injected and declared in descriptors inside standalone ejb module
      */
     public void ejb2PostConstruct() {
         Helper.getLogger().info(dataSource2Bean.getPostConstructRecords().toString());

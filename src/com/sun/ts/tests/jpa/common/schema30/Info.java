@@ -43,7 +43,8 @@ public class Info implements java.io.Serializable {
 
     private Spouse spouse;
 
-    public Info() {}
+    public Info() {
+    }
 
     public Info(String v1, String v2, String v3, String v4, String v5) {
         id = v1;

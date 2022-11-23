@@ -29,7 +29,8 @@ public class DID2bDependentId implements java.io.Serializable {
 
     DID2bEmployeeId empPK;
 
-    public DID2bDependentId() {}
+    public DID2bDependentId() {
+    }
 
     public DID2bDependentId(String name, DID2bEmployeeId emp) {
         this.name = name;

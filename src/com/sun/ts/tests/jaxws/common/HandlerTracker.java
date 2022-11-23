@@ -77,7 +77,8 @@ public final class HandlerTracker {
 
     public static void reportInit(Handler handler, String methodName) {
         TestUtil.logTrace("HandlerTracker: " + getIdNameOnly(handler) + "." + methodName + "()");
-        if (!handlers.contains(handler)) handlers.add(handler);
+        if (!handlers.contains(handler))
+            handlers.add(handler);
         messages1.add(getIdNameOnly(handler) + "." + methodName + "()");
     }
 
@@ -212,8 +213,10 @@ public final class HandlerTracker {
     public static String getMessages1() {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < messages1.size(); i++) {
-            if (i + 1 == messages1.size()) result.append((String) messages1.elementAt(i));
-            else result.append((String) messages1.elementAt(i) + "\n");
+            if (i + 1 == messages1.size())
+                result.append((String) messages1.elementAt(i));
+            else
+                result.append((String) messages1.elementAt(i) + "\n");
         }
         return result.toString();
     }
@@ -236,8 +239,10 @@ public final class HandlerTracker {
     public static String getMessages2() {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < messages2.size(); i++) {
-            if (i + 1 == messages2.size()) result.append((String) messages2.elementAt(i));
-            else result.append((String) messages2.elementAt(i) + "\n");
+            if (i + 1 == messages2.size())
+                result.append((String) messages2.elementAt(i));
+            else
+                result.append((String) messages2.elementAt(i) + "\n");
         }
         return result.toString();
     }
@@ -260,8 +265,10 @@ public final class HandlerTracker {
     public static String getMessages3() {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < messages3.size(); i++) {
-            if (i + 1 == messages3.size()) result.append((String) messages3.elementAt(i));
-            else result.append((String) messages3.elementAt(i) + "\n");
+            if (i + 1 == messages3.size())
+                result.append((String) messages3.elementAt(i));
+            else
+                result.append((String) messages3.elementAt(i) + "\n");
         }
         return result.toString();
     }
@@ -284,8 +291,10 @@ public final class HandlerTracker {
     public static String getMessages4() {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < messages4.size(); i++) {
-            if (i + 1 == messages4.size()) result.append((String) messages4.elementAt(i));
-            else result.append((String) messages4.elementAt(i) + "\n");
+            if (i + 1 == messages4.size())
+                result.append((String) messages4.elementAt(i));
+            else
+                result.append((String) messages4.elementAt(i) + "\n");
         }
         return result.toString();
     }

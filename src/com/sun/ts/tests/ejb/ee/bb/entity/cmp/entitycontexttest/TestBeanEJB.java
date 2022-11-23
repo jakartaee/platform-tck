@@ -37,12 +37,12 @@ import javax.naming.NamingException;
 public class TestBeanEJB implements EntityBean {
     // Expected property names
     private static final String dataPropKey[] = {
-        "user", "password", "server", "jdbcPoolName",
+            "user", "password", "server", "jdbcPoolName",
     };
 
     // Expected property values
     private static final String dataPropVal[] = {
-        "cts1", "cts1", "JDBCTEST", "sessionContextPool",
+            "cts1", "cts1", "JDBCTEST", "sessionContextPool",
     };
 
     private EntityContext ectx = null;
@@ -174,10 +174,13 @@ public class TestBeanEJB implements EntityBean {
                 } else if (!propVal.equals(dataPropVal[i])) {
                     TestUtil.logErr("property value " + propVal + " not equal to " + dataPropVal[i]);
                     failures++;
-                } else TestUtil.logMsg("property values are equal");
+                } else
+                    TestUtil.logMsg("property values are equal");
             }
-            if (failures > 0) return false;
-            else return true;
+            if (failures > 0)
+                return false;
+            else
+                return true;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -195,7 +198,8 @@ public class TestBeanEJB implements EntityBean {
                 if (name.indexOf(s) < 0) {
                     TestUtil.logErr("principal - expected: " + s + ", received: " + name);
                     return false;
-                } else return true;
+                } else
+                    return true;
             } else {
                 TestUtil.logErr("getCallerPrincipal() returned null reference");
                 return false;
@@ -212,8 +216,10 @@ public class TestBeanEJB implements EntityBean {
         String role = s;
         try {
             boolean inRole = ectx.isCallerInRole(role);
-            if (inRole) TestUtil.logMsg("isCallerInRole(" + role + ") is true");
-            else TestUtil.logMsg("isCallerInRole(" + role + ") is false");
+            if (inRole)
+                TestUtil.logMsg("isCallerInRole(" + role + ") is true");
+            else
+                TestUtil.logMsg("isCallerInRole(" + role + ") is false");
             return inRole;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

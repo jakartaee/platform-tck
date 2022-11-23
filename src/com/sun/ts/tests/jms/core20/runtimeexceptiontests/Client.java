@@ -52,7 +52,8 @@ public class Client extends ServiceEETest {
      * @exception Fault
      */
 
-    public void setup(String[] args, Properties p) throws Fault {}
+    public void setup(String[] args, Properties p) throws Fault {
+    }
 
     /* cleanup */
 
@@ -62,7 +63,8 @@ public class Client extends ServiceEETest {
      * @exception Fault
      */
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /* Tests */
 
@@ -71,8 +73,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1117;
      *
-     * @test_Strategy: Construct TransactionRolledBackRuntimeException(String,
-     * String)
+     * @test_Strategy: Construct TransactionRolledBackRuntimeException(String, String)
      */
     public void transactionRolledBackRuntimeExceptionTest1() throws Fault {
         boolean pass = true;
@@ -82,8 +83,7 @@ public class Client extends ServiceEETest {
             String reason = "Rollback operation not allowed.";
 
             TestUtil.logMsg("Test TransactionRolledBackRuntimeException(String, String)");
-            jakarta.jms.TransactionRolledBackRuntimeException exceptionToTest =
-                    new jakarta.jms.TransactionRolledBackRuntimeException(reason, errorCode);
+            jakarta.jms.TransactionRolledBackRuntimeException exceptionToTest = new jakarta.jms.TransactionRolledBackRuntimeException(reason, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -101,7 +101,8 @@ public class Client extends ServiceEETest {
             throw new Fault("transactionRolledBackRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("transactionRolledBackRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("transactionRolledBackRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -117,8 +118,7 @@ public class Client extends ServiceEETest {
             String reason = "Rollback operation not allowed.";
 
             TestUtil.logMsg("Test TransactionRolledBackRuntimeException(String)");
-            jakarta.jms.TransactionRolledBackRuntimeException exceptionToTest =
-                    new jakarta.jms.TransactionRolledBackRuntimeException(reason);
+            jakarta.jms.TransactionRolledBackRuntimeException exceptionToTest = new jakarta.jms.TransactionRolledBackRuntimeException(reason);
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.TransactionRolledBackRuntimeException e) {
@@ -131,7 +131,8 @@ public class Client extends ServiceEETest {
             throw new Fault("transactionRolledBackRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("transactionRolledBackRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("transactionRolledBackRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -139,8 +140,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1119;
      *
-     * @test_Strategy: Construct TransactionRolledBackRuntimeException(String,
-     * String, Throwable)
+     * @test_Strategy: Construct TransactionRolledBackRuntimeException(String, String, Throwable)
      */
     public void transactionRolledBackRuntimeExceptionTest3() throws Fault {
         boolean pass = true;
@@ -148,12 +148,11 @@ public class Client extends ServiceEETest {
         try {
             String errorCode = "Serious";
             String reason = "Rollback operation not allowed.";
-            jakarta.jms.TransactionRolledBackException exception =
-                    new jakarta.jms.TransactionRolledBackException(reason);
+            jakarta.jms.TransactionRolledBackException exception = new jakarta.jms.TransactionRolledBackException(reason);
 
             TestUtil.logMsg("Test TransactionRolledBackRuntimeException(String, String, Throwable)");
-            jakarta.jms.TransactionRolledBackRuntimeException exceptionToTest =
-                    new jakarta.jms.TransactionRolledBackRuntimeException(reason, errorCode, exception);
+            jakarta.jms.TransactionRolledBackRuntimeException exceptionToTest = new jakarta.jms.TransactionRolledBackRuntimeException(reason, errorCode,
+                    exception);
 
             try {
                 throw exceptionToTest;
@@ -175,7 +174,8 @@ public class Client extends ServiceEETest {
             throw new Fault("transactionRolledBackRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("transactionRolledBackRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("transactionRolledBackRuntimeExceptionTest3 Failed");
     }
 
     /*
@@ -183,8 +183,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1402;
      *
-     * @test_Strategy: Construct TransactionInProgressRuntimeException(String,
-     * String)
+     * @test_Strategy: Construct TransactionInProgressRuntimeException(String, String)
      */
     public void transactionInProgressRuntimeExceptionTest1() throws Fault {
         boolean pass = true;
@@ -194,8 +193,7 @@ public class Client extends ServiceEETest {
             String reason = "Transaction already in progress.";
 
             TestUtil.logMsg("Test TransactionInProgressRuntimeException(String, String)");
-            jakarta.jms.TransactionInProgressRuntimeException exceptionToTest =
-                    new jakarta.jms.TransactionInProgressRuntimeException(reason, errorCode);
+            jakarta.jms.TransactionInProgressRuntimeException exceptionToTest = new jakarta.jms.TransactionInProgressRuntimeException(reason, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -213,7 +211,8 @@ public class Client extends ServiceEETest {
             throw new Fault("transactionInProgressRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("transactionInProgressRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("transactionInProgressRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -229,8 +228,7 @@ public class Client extends ServiceEETest {
             String reason = "Transaction already in progress.";
 
             TestUtil.logMsg("Test TransactionInProgressRuntimeException(String)");
-            jakarta.jms.TransactionInProgressRuntimeException exceptionToTest =
-                    new jakarta.jms.TransactionInProgressRuntimeException(reason);
+            jakarta.jms.TransactionInProgressRuntimeException exceptionToTest = new jakarta.jms.TransactionInProgressRuntimeException(reason);
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.TransactionInProgressRuntimeException e) {
@@ -243,7 +241,8 @@ public class Client extends ServiceEETest {
             throw new Fault("transactionInProgressRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("transactionInProgressRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("transactionInProgressRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -251,8 +250,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1439;
      *
-     * @test_Strategy: Construct TransactionInProgressRuntimeException(String,
-     * String, Throwable)
+     * @test_Strategy: Construct TransactionInProgressRuntimeException(String, String, Throwable)
      */
     public void transactionInProgressRuntimeExceptionTest3() throws Fault {
         boolean pass = true;
@@ -260,12 +258,11 @@ public class Client extends ServiceEETest {
         try {
             String errorCode = "Serious";
             String reason = "Transaction already in progress.";
-            jakarta.jms.TransactionInProgressRuntimeException exception =
-                    new jakarta.jms.TransactionInProgressRuntimeException(reason);
+            jakarta.jms.TransactionInProgressRuntimeException exception = new jakarta.jms.TransactionInProgressRuntimeException(reason);
 
             TestUtil.logMsg("Test TransactionInProgressRuntimeException(String, String, Throwable)");
-            jakarta.jms.TransactionInProgressRuntimeException exceptionToTest =
-                    new jakarta.jms.TransactionInProgressRuntimeException(reason, errorCode, exception);
+            jakarta.jms.TransactionInProgressRuntimeException exceptionToTest = new jakarta.jms.TransactionInProgressRuntimeException(reason, errorCode,
+                    exception);
 
             try {
                 throw exceptionToTest;
@@ -287,7 +284,8 @@ public class Client extends ServiceEETest {
             throw new Fault("transactionInProgressRuntimeExceptionTest3 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("transactionInProgressRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("transactionInProgressRuntimeExceptionTest3 Failed");
     }
 
     /*
@@ -295,8 +293,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1440;
      *
-     * @test_Strategy: Construct ResourceAllocationRuntimeException(String,
-     * String)
+     * @test_Strategy: Construct ResourceAllocationRuntimeException(String, String)
      */
     public void resourceAllocationRuntimeExceptionTest1() throws Fault {
         boolean pass = true;
@@ -306,8 +303,7 @@ public class Client extends ServiceEETest {
             String reason = "Resource allocation failure due to no more resources available.";
 
             TestUtil.logMsg("Test ResourceAllocationRuntimeException(String, String)");
-            jakarta.jms.ResourceAllocationRuntimeException exceptionToTest =
-                    new jakarta.jms.ResourceAllocationRuntimeException(reason, errorCode);
+            jakarta.jms.ResourceAllocationRuntimeException exceptionToTest = new jakarta.jms.ResourceAllocationRuntimeException(reason, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -325,7 +321,8 @@ public class Client extends ServiceEETest {
             throw new Fault("resourceAllocationRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("resourceAllocationRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("resourceAllocationRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -341,8 +338,7 @@ public class Client extends ServiceEETest {
             String reason = "Resource allocation failure due to no more resources available.";
 
             TestUtil.logMsg("Test ResourceAllocationRuntimeException(String)");
-            jakarta.jms.ResourceAllocationRuntimeException exceptionToTest =
-                    new jakarta.jms.ResourceAllocationRuntimeException(reason);
+            jakarta.jms.ResourceAllocationRuntimeException exceptionToTest = new jakarta.jms.ResourceAllocationRuntimeException(reason);
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.ResourceAllocationRuntimeException e) {
@@ -355,7 +351,8 @@ public class Client extends ServiceEETest {
             throw new Fault("resourceAllocationRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("resourceAllocationRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("resourceAllocationRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -363,8 +360,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1442;
      *
-     * @test_Strategy: Construct ResourceAllocationRuntimeException(String,
-     * String, Throwable)
+     * @test_Strategy: Construct ResourceAllocationRuntimeException(String, String, Throwable)
      */
     public void resourceAllocationRuntimeExceptionTest3() throws Fault {
         boolean pass = true;
@@ -372,12 +368,10 @@ public class Client extends ServiceEETest {
         try {
             String errorCode = "Serious";
             String reason = "Resource allocation failure due to no more resources available.";
-            jakarta.jms.TransactionRolledBackException exception =
-                    new jakarta.jms.TransactionRolledBackException(reason);
+            jakarta.jms.TransactionRolledBackException exception = new jakarta.jms.TransactionRolledBackException(reason);
 
             TestUtil.logMsg("Test ResourceAllocationRuntimeException(String, String, Throwable)");
-            jakarta.jms.ResourceAllocationRuntimeException exceptionToTest =
-                    new jakarta.jms.ResourceAllocationRuntimeException(reason, errorCode, exception);
+            jakarta.jms.ResourceAllocationRuntimeException exceptionToTest = new jakarta.jms.ResourceAllocationRuntimeException(reason, errorCode, exception);
 
             try {
                 throw exceptionToTest;
@@ -399,7 +393,8 @@ public class Client extends ServiceEETest {
             throw new Fault("resourceAllocationRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("resourceAllocationRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("resourceAllocationRuntimeExceptionTest3 Failed");
     }
 
     /*
@@ -407,8 +402,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1422;
      *
-     * @test_Strategy: Construct MessageNotWriteableRuntimeException(String,
-     * String)
+     * @test_Strategy: Construct MessageNotWriteableRuntimeException(String, String)
      */
     public void messageNotWriteableRuntimeExceptionTest1() throws Fault {
         boolean pass = true;
@@ -418,8 +412,7 @@ public class Client extends ServiceEETest {
             String reason = "Writing operation not allowed.";
 
             TestUtil.logMsg("Test MessageNotWriteableRuntimeException(String, String)");
-            jakarta.jms.MessageNotWriteableRuntimeException exceptionToTest =
-                    new jakarta.jms.MessageNotWriteableRuntimeException(reason, errorCode);
+            jakarta.jms.MessageNotWriteableRuntimeException exceptionToTest = new jakarta.jms.MessageNotWriteableRuntimeException(reason, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -437,7 +430,8 @@ public class Client extends ServiceEETest {
             throw new Fault("messageNotWriteableRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("messageNotWriteableRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("messageNotWriteableRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -453,8 +447,7 @@ public class Client extends ServiceEETest {
             String reason = "Writing operation not allowed.";
 
             TestUtil.logMsg("Test MessageNotWriteableRuntimeException(String)");
-            jakarta.jms.MessageNotWriteableRuntimeException exceptionToTest =
-                    new jakarta.jms.MessageNotWriteableRuntimeException(reason);
+            jakarta.jms.MessageNotWriteableRuntimeException exceptionToTest = new jakarta.jms.MessageNotWriteableRuntimeException(reason);
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.MessageNotWriteableRuntimeException e) {
@@ -467,7 +460,8 @@ public class Client extends ServiceEETest {
             throw new Fault("messageNotWriteableRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("messageNotWriteableRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("messageNotWriteableRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -475,8 +469,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1424;
      *
-     * @test_Strategy: Construct MessageNotWriteableRuntimeException(String,
-     * String, Throwable)
+     * @test_Strategy: Construct MessageNotWriteableRuntimeException(String, String, Throwable)
      */
     public void messageNotWriteableRuntimeExceptionTest3() throws Fault {
         boolean pass = true;
@@ -487,8 +480,7 @@ public class Client extends ServiceEETest {
             jakarta.jms.MessageNotWriteableException exception = new jakarta.jms.MessageNotWriteableException(reason);
 
             TestUtil.logMsg("Test MessageNotWriteableRuntimeException(String, String, Throwable)");
-            jakarta.jms.MessageNotWriteableRuntimeException exceptionToTest =
-                    new jakarta.jms.MessageNotWriteableRuntimeException(reason, errorCode, exception);
+            jakarta.jms.MessageNotWriteableRuntimeException exceptionToTest = new jakarta.jms.MessageNotWriteableRuntimeException(reason, errorCode, exception);
 
             try {
                 throw exceptionToTest;
@@ -510,7 +502,8 @@ public class Client extends ServiceEETest {
             throw new Fault("messageNotWriteableRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("messageNotWriteableRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("messageNotWriteableRuntimeExceptionTest3 Failed");
     }
 
     /*
@@ -528,8 +521,7 @@ public class Client extends ServiceEETest {
             String reason = "Cannot convert from int to char";
 
             TestUtil.logMsg("Test MessageFormatRuntimeException(String, String)");
-            jakarta.jms.MessageFormatRuntimeException exceptionToTest =
-                    new jakarta.jms.MessageFormatRuntimeException(reason, errorCode);
+            jakarta.jms.MessageFormatRuntimeException exceptionToTest = new jakarta.jms.MessageFormatRuntimeException(reason, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -548,7 +540,8 @@ public class Client extends ServiceEETest {
             throw new Fault("messageFormatRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("messageFormatRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("messageFormatRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -564,8 +557,7 @@ public class Client extends ServiceEETest {
             String reason = "Cannot convert from int to char";
 
             TestUtil.logMsg("Test MessageFormatRuntimeException(String)");
-            jakarta.jms.MessageFormatRuntimeException exceptionToTest =
-                    new jakarta.jms.MessageFormatRuntimeException(reason);
+            jakarta.jms.MessageFormatRuntimeException exceptionToTest = new jakarta.jms.MessageFormatRuntimeException(reason);
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.MessageFormatRuntimeException e) {
@@ -578,7 +570,8 @@ public class Client extends ServiceEETest {
             throw new Fault("messageFormatRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("messageFormatRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("messageFormatRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -586,8 +579,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:885;
      *
-     * @test_Strategy: Construct MessageFormatRuntimeException(String, String,
-     * Throwable)
+     * @test_Strategy: Construct MessageFormatRuntimeException(String, String, Throwable)
      */
     public void messageFormatRuntimeExceptionTest3() throws Fault {
         boolean pass = true;
@@ -597,8 +589,7 @@ public class Client extends ServiceEETest {
             jakarta.jms.MessageFormatException exception = new jakarta.jms.MessageFormatException(reason);
 
             TestUtil.logMsg("Test MessageFormatRuntimeException(String, String, Throwable)");
-            jakarta.jms.MessageFormatRuntimeException exceptionToTest =
-                    new jakarta.jms.MessageFormatRuntimeException(reason, errorCode, exception);
+            jakarta.jms.MessageFormatRuntimeException exceptionToTest = new jakarta.jms.MessageFormatRuntimeException(reason, errorCode, exception);
 
             try {
                 throw exceptionToTest;
@@ -620,7 +611,8 @@ public class Client extends ServiceEETest {
             throw new Fault("messageFormatRuntimeExceptionTest3 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("messageFormatRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("messageFormatRuntimeExceptionTest3 Failed");
     }
 
     /*
@@ -638,8 +630,7 @@ public class Client extends ServiceEETest {
             String reason = "Cannot find the user.";
 
             TestUtil.logMsg("Test JMSSecurityRuntimeException(String, String)");
-            jakarta.jms.JMSSecurityRuntimeException exceptionToTest =
-                    new jakarta.jms.JMSSecurityRuntimeException(reason, errorCode);
+            jakarta.jms.JMSSecurityRuntimeException exceptionToTest = new jakarta.jms.JMSSecurityRuntimeException(reason, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -658,7 +649,8 @@ public class Client extends ServiceEETest {
             throw new Fault("jmsSecurityRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("jmsSecurityRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("jmsSecurityRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -673,8 +665,7 @@ public class Client extends ServiceEETest {
         try {
             String reason = "Cannot find the user.";
             TestUtil.logMsg("Test JMSSecurityRuntimeException(String)");
-            jakarta.jms.JMSSecurityRuntimeException exceptionToTest =
-                    new jakarta.jms.JMSSecurityRuntimeException(reason);
+            jakarta.jms.JMSSecurityRuntimeException exceptionToTest = new jakarta.jms.JMSSecurityRuntimeException(reason);
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.JMSSecurityRuntimeException e) {
@@ -687,7 +678,8 @@ public class Client extends ServiceEETest {
             throw new Fault("jmsSecurityRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("jmsSecurityRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("jmsSecurityRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -695,8 +687,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:873;
      *
-     * @test_Strategy: Construct JMSSecurityRuntimeException(String, String,
-     * Throwable)
+     * @test_Strategy: Construct JMSSecurityRuntimeException(String, String, Throwable)
      */
     public void jmsSecurityRuntimeExceptionTest3() throws Fault {
         boolean pass = true;
@@ -707,8 +698,7 @@ public class Client extends ServiceEETest {
             jakarta.jms.JMSSecurityException exception = new jakarta.jms.JMSSecurityException(reason);
 
             TestUtil.logMsg("Test JMSSecurityRuntimeException(String, String, Throwable)");
-            jakarta.jms.JMSSecurityRuntimeException exceptionToTest =
-                    new jakarta.jms.JMSSecurityRuntimeException(reason, errorCode, exception);
+            jakarta.jms.JMSSecurityRuntimeException exceptionToTest = new jakarta.jms.JMSSecurityRuntimeException(reason, errorCode, exception);
 
             try {
                 throw exceptionToTest;
@@ -730,7 +720,8 @@ public class Client extends ServiceEETest {
             throw new Fault("jmsSecurityRuntimeExceptionTest3 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("jmsSecurityRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("jmsSecurityRuntimeExceptionTest3 Failed");
     }
 
     /*
@@ -767,7 +758,8 @@ public class Client extends ServiceEETest {
             throw new Fault("jmsRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("jmsRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("jmsRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -799,7 +791,8 @@ public class Client extends ServiceEETest {
             throw new Fault("jmsRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("jmsRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("jmsRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -818,8 +811,7 @@ public class Client extends ServiceEETest {
             jakarta.jms.JMSException exception = new jakarta.jms.JMSException(reason);
 
             TestUtil.logMsg("Test JMSRuntimeException(String, String, Throwable)");
-            jakarta.jms.JMSRuntimeException exceptionToTest =
-                    new jakarta.jms.JMSRuntimeException(reason, errorCode, exception);
+            jakarta.jms.JMSRuntimeException exceptionToTest = new jakarta.jms.JMSRuntimeException(reason, errorCode, exception);
 
             try {
                 throw exceptionToTest;
@@ -841,7 +833,8 @@ public class Client extends ServiceEETest {
             throw new Fault("jmsRuntimeExceptionTest3 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("jmsRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("jmsRuntimeExceptionTest3 Failed");
     }
 
     /*
@@ -859,8 +852,7 @@ public class Client extends ServiceEETest {
             String reason = "unknown variable";
 
             TestUtil.logMsg("Test InvalidSelectorRuntimeException(String, String)");
-            jakarta.jms.InvalidSelectorRuntimeException exceptionToTest =
-                    new jakarta.jms.InvalidSelectorRuntimeException(reason, errorCode);
+            jakarta.jms.InvalidSelectorRuntimeException exceptionToTest = new jakarta.jms.InvalidSelectorRuntimeException(reason, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -879,7 +871,8 @@ public class Client extends ServiceEETest {
             throw new Fault("invalidSelectorRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("invalidSelectorRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("invalidSelectorRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -895,8 +888,7 @@ public class Client extends ServiceEETest {
             String reason = "unknown variable";
 
             TestUtil.logMsg("Test InvalidSelectorRuntimeException(String)");
-            jakarta.jms.InvalidSelectorRuntimeException exceptionToTest =
-                    new jakarta.jms.InvalidSelectorRuntimeException(reason);
+            jakarta.jms.InvalidSelectorRuntimeException exceptionToTest = new jakarta.jms.InvalidSelectorRuntimeException(reason);
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.InvalidSelectorRuntimeException e) {
@@ -909,7 +901,8 @@ public class Client extends ServiceEETest {
             throw new Fault("invalidSelectorRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("invalidSelectorRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("invalidSelectorRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -917,8 +910,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:864;
      *
-     * @test_Strategy: Construct InvalidSelectorRuntimeException(String, String,
-     * Throwable)
+     * @test_Strategy: Construct InvalidSelectorRuntimeException(String, String, Throwable)
      */
     public void invalidSelectorRuntimeExceptionTest3() throws Fault {
         boolean pass = true;
@@ -929,8 +921,7 @@ public class Client extends ServiceEETest {
             jakarta.jms.InvalidSelectorException exception = new jakarta.jms.InvalidSelectorException(reason);
 
             TestUtil.logMsg("Test InvalidSelectorRuntimeException(String, String, Throwable)");
-            jakarta.jms.InvalidSelectorRuntimeException exceptionToTest =
-                    new jakarta.jms.InvalidSelectorRuntimeException(reason, errorCode, exception);
+            jakarta.jms.InvalidSelectorRuntimeException exceptionToTest = new jakarta.jms.InvalidSelectorRuntimeException(reason, errorCode, exception);
 
             try {
                 throw exceptionToTest;
@@ -952,7 +943,8 @@ public class Client extends ServiceEETest {
             throw new Fault("invalidSelectorRuntimeExceptionTest3 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("invalidSelectorRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("invalidSelectorRuntimeExceptionTest3 Failed");
     }
 
     /*
@@ -960,8 +952,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:859;
      *
-     * @test_Strategy: Construct InvalidDestinationRuntimeException(String,
-     * String)
+     * @test_Strategy: Construct InvalidDestinationRuntimeException(String, String)
      */
     public void invalidDestinationRuntimeExceptionTest1() throws Fault {
         boolean pass = true;
@@ -971,8 +962,7 @@ public class Client extends ServiceEETest {
             String reason = "Destination is Null";
 
             TestUtil.logMsg("Test InvalidDestinationRuntimeException(String, String)");
-            jakarta.jms.InvalidDestinationRuntimeException exceptionToTest =
-                    new jakarta.jms.InvalidDestinationRuntimeException(reason, errorCode);
+            jakarta.jms.InvalidDestinationRuntimeException exceptionToTest = new jakarta.jms.InvalidDestinationRuntimeException(reason, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -991,7 +981,8 @@ public class Client extends ServiceEETest {
             throw new Fault("invalidDestinationRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("invalidDestinationRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("invalidDestinationRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -1007,8 +998,7 @@ public class Client extends ServiceEETest {
             String reason = "Destination is Null";
 
             TestUtil.logMsg("Test InvalidDestinationRuntimeException(String)");
-            jakarta.jms.InvalidDestinationRuntimeException exceptionToTest =
-                    new jakarta.jms.InvalidDestinationRuntimeException(reason);
+            jakarta.jms.InvalidDestinationRuntimeException exceptionToTest = new jakarta.jms.InvalidDestinationRuntimeException(reason);
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.InvalidDestinationRuntimeException e) {
@@ -1021,7 +1011,8 @@ public class Client extends ServiceEETest {
             throw new Fault("invalidDestinationRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("invalidDestinationRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("invalidDestinationRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -1029,8 +1020,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:861;
      *
-     * @test_Strategy: Construct InvalidDestinationRuntimeException(String,
-     * String, Throwable)
+     * @test_Strategy: Construct InvalidDestinationRuntimeException(String, String, Throwable)
      */
     public void invalidDestinationRuntimeExceptionTest3() throws Fault {
         boolean pass = true;
@@ -1040,8 +1030,7 @@ public class Client extends ServiceEETest {
             jakarta.jms.InvalidDestinationException exception = new jakarta.jms.InvalidDestinationException(reason);
 
             TestUtil.logMsg("Test InvalidDestinationRuntimeException(String, String, Throwable)");
-            jakarta.jms.InvalidDestinationRuntimeException exceptionToTest =
-                    new jakarta.jms.InvalidDestinationRuntimeException(reason, errorCode, exception);
+            jakarta.jms.InvalidDestinationRuntimeException exceptionToTest = new jakarta.jms.InvalidDestinationRuntimeException(reason, errorCode, exception);
 
             try {
                 throw exceptionToTest;
@@ -1063,7 +1052,8 @@ public class Client extends ServiceEETest {
             throw new Fault("invalidDestinationRuntimeExceptionTest3 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("invalidDestinationRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("invalidDestinationRuntimeExceptionTest3 Failed");
     }
 
     /*
@@ -1081,8 +1071,7 @@ public class Client extends ServiceEETest {
             String reason = "Duplicate Client ID";
 
             TestUtil.logMsg("Test InvalidClientIDRuntimeException(String, String)");
-            jakarta.jms.InvalidClientIDRuntimeException exceptionToTest =
-                    new jakarta.jms.InvalidClientIDRuntimeException(reason, errorCode);
+            jakarta.jms.InvalidClientIDRuntimeException exceptionToTest = new jakarta.jms.InvalidClientIDRuntimeException(reason, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -1101,7 +1090,8 @@ public class Client extends ServiceEETest {
             throw new Fault("invalidClientIDRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("invalidClientIDRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("invalidClientIDRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -1117,8 +1107,7 @@ public class Client extends ServiceEETest {
             String reason = "Duplicate Client ID";
 
             TestUtil.logMsg("Test InvalidClientIDRuntimeException(String)");
-            jakarta.jms.InvalidClientIDRuntimeException exceptionToTest =
-                    new jakarta.jms.InvalidClientIDRuntimeException(reason);
+            jakarta.jms.InvalidClientIDRuntimeException exceptionToTest = new jakarta.jms.InvalidClientIDRuntimeException(reason);
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.InvalidClientIDRuntimeException e) {
@@ -1131,7 +1120,8 @@ public class Client extends ServiceEETest {
             throw new Fault("invalidClientIDRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("invalidClientIDRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("invalidClientIDRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -1139,8 +1129,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:858;
      *
-     * @test_Strategy: Construct InvalidClientIDRuntimeException(String, String,
-     * Throwable)
+     * @test_Strategy: Construct InvalidClientIDRuntimeException(String, String, Throwable)
      */
     public void invalidClientIDRuntimeExceptionTest3() throws Fault {
         boolean pass = true;
@@ -1150,8 +1139,7 @@ public class Client extends ServiceEETest {
             jakarta.jms.InvalidClientIDException exception = new jakarta.jms.InvalidClientIDException(reason);
 
             TestUtil.logMsg("Test InvalidClientIDRuntimeException(String, String, Throwable)");
-            jakarta.jms.InvalidClientIDRuntimeException exceptionToTest =
-                    new jakarta.jms.InvalidClientIDRuntimeException(reason, errorCode, exception);
+            jakarta.jms.InvalidClientIDRuntimeException exceptionToTest = new jakarta.jms.InvalidClientIDRuntimeException(reason, errorCode, exception);
 
             try {
                 throw exceptionToTest;
@@ -1173,7 +1161,8 @@ public class Client extends ServiceEETest {
             throw new Fault("invalidClientIDRuntimeExceptionTest3 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("invalidClientIDRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("invalidClientIDRuntimeExceptionTest3 Failed");
     }
 
     /*
@@ -1191,8 +1180,7 @@ public class Client extends ServiceEETest {
             String reason = "The operation is illegal.";
 
             TestUtil.logMsg("Test IllegalStateRuntimeException(String, String)");
-            jakarta.jms.IllegalStateRuntimeException exceptionToTest =
-                    new jakarta.jms.IllegalStateRuntimeException(reason, errorCode);
+            jakarta.jms.IllegalStateRuntimeException exceptionToTest = new jakarta.jms.IllegalStateRuntimeException(reason, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -1211,7 +1199,8 @@ public class Client extends ServiceEETest {
             throw new Fault("IllegalStateRuntimeExceptionTest1 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("IllegalStateRuntimeExceptionTest1 Failed");
+        if (!pass)
+            throw new Fault("IllegalStateRuntimeExceptionTest1 Failed");
     }
 
     /*
@@ -1228,8 +1217,7 @@ public class Client extends ServiceEETest {
             String reason = "The operation is illegal.";
 
             TestUtil.logMsg("Test IllegalStateRuntimeException(String)");
-            jakarta.jms.IllegalStateRuntimeException exceptionToTest =
-                    new jakarta.jms.IllegalStateRuntimeException(reason);
+            jakarta.jms.IllegalStateRuntimeException exceptionToTest = new jakarta.jms.IllegalStateRuntimeException(reason);
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.IllegalStateRuntimeException e) {
@@ -1243,7 +1231,8 @@ public class Client extends ServiceEETest {
             throw new Fault("illegalStateRuntimeExceptionTest2 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("IllegalStateRuntimeExceptionTest2 Failed");
+        if (!pass)
+            throw new Fault("IllegalStateRuntimeExceptionTest2 Failed");
     }
 
     /*
@@ -1251,8 +1240,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:855;
      *
-     * @test_Strategy: Construct IllegalStateRuntimeException(String, String,
-     * Throwable)
+     * @test_Strategy: Construct IllegalStateRuntimeException(String, String, Throwable)
      */
     public void illegalStateRuntimeExceptionTest3() throws Fault {
         boolean pass = true;
@@ -1263,8 +1251,7 @@ public class Client extends ServiceEETest {
             jakarta.jms.IllegalStateException exception = new jakarta.jms.IllegalStateException(reason);
 
             TestUtil.logMsg("Test IllegalStateRuntimeException(String, String, Throwable)");
-            jakarta.jms.IllegalStateRuntimeException exceptionToTest =
-                    new jakarta.jms.IllegalStateRuntimeException(reason, errorCode, exception);
+            jakarta.jms.IllegalStateRuntimeException exceptionToTest = new jakarta.jms.IllegalStateRuntimeException(reason, errorCode, exception);
 
             try {
                 throw exceptionToTest;
@@ -1286,6 +1273,7 @@ public class Client extends ServiceEETest {
             throw new Fault("illegalStateRuntimeExceptionTest3 Failed: ", e);
         }
 
-        if (!pass) throw new Fault("illegalStateRuntimeExceptionTest3 Failed");
+        if (!pass)
+            throw new Fault("illegalStateRuntimeExceptionTest3 Failed");
     }
 }

@@ -41,8 +41,7 @@ public class Client extends ServiceEETest {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client client = new Client();
@@ -73,12 +72,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSI:SPEC:R2707
      *
-     * @test_Strategy: The supplied WSDL, containg a soap:body, soapbind fault,
-     *                 soapbind:header or soapbind:headerfault element without the
-     *                 use="literal" attribute has been used by the WSDL-to-Java
-     *                 tool to generate an end point. If the tool works correctly,
-     *                 the end-point has been built and deployed so it should
-     *                 simply be reachable.
+     * @test_Strategy: The supplied WSDL, containg a soap:body, soapbind fault, soapbind:header or soapbind:headerfault
+     * element without the use="literal" attribute has been used by the WSDL-to-Java tool to generate an end point. If the
+     * tool works correctly, the end-point has been built and deployed so it should simply be reachable.
      *
      * @throws Fault
      */

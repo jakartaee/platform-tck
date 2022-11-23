@@ -23,4 +23,5 @@ import com.sun.ts.tests.ejb30.common.appexception.AppExceptionBeanBase;
 import jakarta.ejb.Stateless;
 
 @Stateless
-public class NoInterfaceAppExceptionBean extends AppExceptionBeanBase {}
+public class NoInterfaceAppExceptionBean extends AppExceptionBeanBase {
+}

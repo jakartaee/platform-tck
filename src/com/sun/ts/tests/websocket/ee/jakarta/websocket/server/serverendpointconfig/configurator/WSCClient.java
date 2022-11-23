@@ -50,8 +50,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:205;
      *
-     * @test_Strategy: Check the value of the Origin header (See Origin Header)
-     * the client passed during the opening handshake.
+     * @test_Strategy: Check the value of the Origin header (See Origin Header) the client passed during the opening
+     * handshake.
      */
     public void checkOriginTest() throws Fault {
         invoke("origin", "reset", "");
@@ -75,8 +75,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:205; WebSocket:SPEC:WSC-3.1.4-1;
      *
-     * @test_Strategy: Check the value of the Origin header (See Origin Header)
-     * the client passed during the opening handshake.
+     * @test_Strategy: Check the value of the Origin header (See Origin Header) the client passed during the opening
+     * handshake.
      */
     public void checkOriginReturnsFalseTest() throws Fault {
         // set false
@@ -101,26 +101,21 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getEndpointInstanceTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:206; WebSocket:SPEC:WSC-3.1.7-1;
-     * WebSocket:SPEC:WSC-3.1.7-2;
+     * @assertion_ids: WebSocket:JAVADOC:206; WebSocket:SPEC:WSC-3.1.7-1; WebSocket:SPEC:WSC-3.1.7-2;
      *
-     * @test_Strategy: This method is called by the container each time a new
-     * client connects to the logical endpoint this configurator configures.
-     * Developers may override this method to control instantiation of endpoint
-     * instances in order to customize the initialization of the endpoint
-     * instance, or manage them in some other way. The platform default
-     * implementation of this method returns a new endpoint instance per call,
-     * thereby ensuring that there is one endpoint instance per client.
+     * @test_Strategy: This method is called by the container each time a new client connects to the logical endpoint this
+     * configurator configures. Developers may override this method to control instantiation of endpoint instances in order
+     * to customize the initialization of the endpoint instance, or manage them in some other way. The platform default
+     * implementation of this method returns a new endpoint instance per call, thereby ensuring that there is one endpoint
+     * instance per client.
      *
-     * The implementation must call this method each time a new client connects to
-     * the logical endpoint.
+     * The implementation must call this method each time a new client connects to the logical endpoint.
      *
-     * The platform default implementation of this method is to return a new
-     * instance of the endpoint class each time it is called
+     * The platform default implementation of this method is to return a new instance of the endpoint class each time it is
+     * called
      */
     public void getEndpointInstanceTest() throws Fault {
-        String search =
-                WSCGetEndpointInstanceServer.class.getName() + GetEndpointInstanceConfigurator.ADDITIONAL_INFORMATION;
+        String search = WSCGetEndpointInstanceServer.class.getName() + GetEndpointInstanceConfigurator.ADDITIONAL_INFORMATION;
         // first request sets instance to null
         invoke("endpointinstance", "anything", search);
         // make sure second request does not have instance null
@@ -130,15 +125,13 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getNegotiatedExtensionsRequestedTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:208; WebSocket:JAVADOC:195;
-     * WebSocket:JAVADOC:13; WebSocket:JAVADOC:211; WebSocket:JAVADOC:73;
-     * WebSocket:JAVADOC:74; WebSocket:JAVADOC:75; WebSocket:JAVADOC:76;
+     * @assertion_ids: WebSocket:JAVADOC:208; WebSocket:JAVADOC:195; WebSocket:JAVADOC:13; WebSocket:JAVADOC:211;
+     * WebSocket:JAVADOC:73; WebSocket:JAVADOC:74; WebSocket:JAVADOC:75; WebSocket:JAVADOC:76;
      *
-     * @test_Strategy: what we send is what we receive
-     * ServerEndpointConfig.Configurator.getNegotiatedExtensions
+     * @test_Strategy: what we send is what we receive ServerEndpointConfig.Configurator.getNegotiatedExtensions
      * ServerEndpointConfig.getExtensions ClientEndpointConfig.Builder.extensions
-     * ServerEndpointConfig.Configurator.Configurator()
-     * Extension.{getName,getParameters} Extension.Parameter.{getName,getValue}
+     * ServerEndpointConfig.Configurator.Configurator() Extension.{getName,getParameters}
+     * Extension.Parameter.{getName,getValue}
      */
     @SuppressWarnings("unchecked")
     public void getNegotiatedExtensionsRequestedTest() throws Fault {
@@ -153,14 +146,12 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getNegotiatedExtensionsInstalledTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:208; WebSocket:JAVADOC:195;
-     * WebSocket:JAVADOC:13; WebSocket:JAVADOC:211; WebSocket:JAVADOC:73;
-     * WebSocket:JAVADOC:74; WebSocket:JAVADOC:75; WebSocket:JAVADOC:76;
+     * @assertion_ids: WebSocket:JAVADOC:208; WebSocket:JAVADOC:195; WebSocket:JAVADOC:13; WebSocket:JAVADOC:211;
+     * WebSocket:JAVADOC:73; WebSocket:JAVADOC:74; WebSocket:JAVADOC:75; WebSocket:JAVADOC:76;
      *
      * @test_Strategy: check installed is what ServerEndpoint gets us
-     * ServerEndpointConfig.Configurator.getNegotiatedExtensions
-     * ServerEndpointConfig.getExtensions ClientEndpointConfig.Builder.extensions
-     * ServerEndpointConfig.Configurator.Configurator()
+     * ServerEndpointConfig.Configurator.getNegotiatedExtensions ServerEndpointConfig.getExtensions
+     * ClientEndpointConfig.Builder.extensions ServerEndpointConfig.Configurator.Configurator()
      * Extension.{getName,getParameters} Extension.Parameter.{getName,getValue}
      */
     @SuppressWarnings("unchecked")
@@ -184,21 +175,17 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getNegotiatedExtensionsResultedTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:208; WebSocket:JAVADOC:195;
-     * WebSocket:JAVADOC:13; WebSocket:JAVADOC:211; WebSocket:JAVADOC:73;
-     * WebSocket:JAVADOC:74; WebSocket:JAVADOC:75; WebSocket:JAVADOC:76;
-     * WebSocket:SPEC:WSC-3.1.3-1; WebSocket:SPEC:WSC-3.2.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:208; WebSocket:JAVADOC:195; WebSocket:JAVADOC:13; WebSocket:JAVADOC:211;
+     * WebSocket:JAVADOC:73; WebSocket:JAVADOC:74; WebSocket:JAVADOC:75; WebSocket:JAVADOC:76; WebSocket:SPEC:WSC-3.1.3-1;
+     * WebSocket:SPEC:WSC-3.2.2-1;
      *
-     * @test_Strategy: check the resulted extensions
-     * ServerEndpointConfig.Configurator.getNegotiatedExtensions
+     * @test_Strategy: check the resulted extensions ServerEndpointConfig.Configurator.getNegotiatedExtensions
      * ServerEndpointConfig.getExtensions ClientEndpointConfig.Builder.extensions
-     * ServerEndpointConfig.Configurator.Configurator()
-     * Extension.{getName,getParameters} Extension.Parameter.{getName,getValue}
+     * ServerEndpointConfig.Configurator.Configurator() Extension.{getName,getParameters}
+     * Extension.Parameter.{getName,getValue}
      *
-     * The default client configuration must use the developer provided list of
-     * extensions to send, in order of preference, the extensions, including
-     * parameters, that it would like to use in the opening handshake it
-     * formulates.
+     * The default client configuration must use the developer provided list of extensions to send, in order of preference,
+     * the extensions, including parameters, that it would like to use in the opening handshake it formulates.
      */
     @SuppressWarnings("unchecked")
     public void getNegotiatedExtensionsResultedTest() throws Fault {
@@ -213,24 +200,18 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getNegotiatedExtensionsOrderedByRequestTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:208; WebSocket:JAVADOC:195;
-     * WebSocket:JAVADOC:13; WebSocket:JAVADOC:211; WebSocket:JAVADOC:73;
-     * WebSocket:JAVADOC:74; WebSocket:JAVADOC:75; WebSocket:JAVADOC:76;
-     * WebSocket:SPEC:WSC-3.1.3-1; WebSocket:SPEC:WSC-3.2.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:208; WebSocket:JAVADOC:195; WebSocket:JAVADOC:13; WebSocket:JAVADOC:211;
+     * WebSocket:JAVADOC:73; WebSocket:JAVADOC:74; WebSocket:JAVADOC:75; WebSocket:JAVADOC:76; WebSocket:SPEC:WSC-3.1.3-1;
+     * WebSocket:SPEC:WSC-3.2.2-1;
      *
-     * @test_Strategy: check the resulted extensions
-     * ServerEndpointConfig.Configurator.getNegotiatedExtensions The default
-     * platform implementation of this method returns a list containing all of the
-     * requested extensions passed to this method that it supports, using the
-     * order in the requested extensions ServerEndpointConfig.getExtensions
-     * ClientEndpointConfig.Builder.extensions
-     * ServerEndpointConfig.Configurator.Configurator()
+     * @test_Strategy: check the resulted extensions ServerEndpointConfig.Configurator.getNegotiatedExtensions The default
+     * platform implementation of this method returns a list containing all of the requested extensions passed to this
+     * method that it supports, using the order in the requested extensions ServerEndpointConfig.getExtensions
+     * ClientEndpointConfig.Builder.extensions ServerEndpointConfig.Configurator.Configurator()
      * Extension.{getName,getParameters} Extension.Parameter.{getName,getValue}
      *
-     * The default client configuration must use the developer provided list of
-     * extensions to send, in order of preference, the extensions, including
-     * parameters, that it would like to use in the opening handshake it
-     * formulates.
+     * The default client configuration must use the developer provided list of extensions to send, in order of preference,
+     * the extensions, including parameters, that it would like to use in the opening handshake it formulates.
      */
     @SuppressWarnings("unchecked")
     public void getNegotiatedExtensionsOrderedByRequestTest() throws Fault {
@@ -245,13 +226,10 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getNegotiatedSubprotocolRequestedTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:209; WebSocket:JAVADOC:197;
-     * WebSocket:JAVADOC:14; WebSocket:JAVADOC:211;
+     * @assertion_ids: WebSocket:JAVADOC:209; WebSocket:JAVADOC:197; WebSocket:JAVADOC:14; WebSocket:JAVADOC:211;
      *
-     * @test_Strategy: ServerEndpointConfig.Configurator.getNegotiatedSubprotocol
-     * ServerEndpointConfig.getSubprotocols
-     * ClientEndpointConfig.Builder.preferredSubprotocols
-     * ServerEndpointConfig.Configurator.Configurator()
+     * @test_Strategy: ServerEndpointConfig.Configurator.getNegotiatedSubprotocol ServerEndpointConfig.getSubprotocols
+     * ClientEndpointConfig.Builder.preferredSubprotocols ServerEndpointConfig.Configurator.Configurator()
      */
     public void getNegotiatedSubprotocolRequestedTest() throws Fault {
         List<String> subprotocols = WSCSubprotocolServer.getRequestedSubprotocols();
@@ -265,13 +243,10 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getNegotiatedSubprotocolSupportedTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:209; WebSocket:JAVADOC:197;
-     * WebSocket:JAVADOC:14; WebSocket:JAVADOC:211;
+     * @assertion_ids: WebSocket:JAVADOC:209; WebSocket:JAVADOC:197; WebSocket:JAVADOC:14; WebSocket:JAVADOC:211;
      *
-     * @test_Strategy: ServerEndpointConfig.Configurator.getNegotiatedSubprotocol
-     * ServerEndpointConfig.getSubprotocols
-     * ClientEndpointConfig.Builder.preferredSubprotocols
-     * ServerEndpointConfig.Configurator.Configurator()
+     * @test_Strategy: ServerEndpointConfig.Configurator.getNegotiatedSubprotocol ServerEndpointConfig.getSubprotocols
+     * ClientEndpointConfig.Builder.preferredSubprotocols ServerEndpointConfig.Configurator.Configurator()
      */
     public void getNegotiatedSubprotocolSupportedTest() throws Fault {
         List<String> subprotocols = WSCSubprotocolServer.getRequestedSubprotocols();
@@ -288,21 +263,17 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getNegotiatedSubprotocolResultedTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:209; WebSocket:JAVADOC:197;
-     * WebSocket:JAVADOC:14; WebSocket:JAVADOC:211; WebSocket:SPEC:WSC-3.1.2-1;
-     * WebSocket:SPEC:WSC-3.2.1-1;
+     * @assertion_ids: WebSocket:JAVADOC:209; WebSocket:JAVADOC:197; WebSocket:JAVADOC:14; WebSocket:JAVADOC:211;
+     * WebSocket:SPEC:WSC-3.1.2-1; WebSocket:SPEC:WSC-3.2.1-1;
      *
-     * @test_Strategy: ServerEndpointConfig.Configurator.getNegotiatedSubprotocol
-     * ServerEndpointConfig.getSubprotocols
-     * ClientEndpointConfig.Builder.preferredSubprotocols
-     * ServerEndpointConfig.Configurator.Configurator()
+     * @test_Strategy: ServerEndpointConfig.Configurator.getNegotiatedSubprotocol ServerEndpointConfig.getSubprotocols
+     * ClientEndpointConfig.Builder.preferredSubprotocols ServerEndpointConfig.Configurator.Configurator()
      *
-     * The default platform implementation of this method returns the FIRST
-     * subprotocol in the list sent by the CLIENT that the server supports,
+     * The default platform implementation of this method returns the FIRST subprotocol in the list sent by the CLIENT that
+     * the server supports,
      *
-     * The default client configuration uses the developer provided list of
-     * subprotocols, to send in order of preference, the names of the subprotocols
-     * it would like to use in the opening handshake it formulates
+     * The default client configuration uses the developer provided list of subprotocols, to send in order of preference,
+     * the names of the subprotocols it would like to use in the opening handshake it formulates
      */
     public void getNegotiatedSubprotocolResultedTest() throws Fault {
         List<String> subprotocols = WSCSubprotocolServer.getRequestedSubprotocols();
@@ -316,20 +287,16 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getNegotiatedSubprotocolResultedIsEmptyTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:209; WebSocket:JAVADOC:197;
-     * WebSocket:JAVADOC:14; WebSocket:JAVADOC:211; WebSocket:SPEC:WSC-3.1.2-1;
-     * WebSocket:SPEC:WSC-3.2.1-1;
+     * @assertion_ids: WebSocket:JAVADOC:209; WebSocket:JAVADOC:197; WebSocket:JAVADOC:14; WebSocket:JAVADOC:211;
+     * WebSocket:SPEC:WSC-3.1.2-1; WebSocket:SPEC:WSC-3.2.1-1;
      *
-     * @test_Strategy: ServerEndpointConfig.Configurator.getNegotiatedSubprotocol
-     * ServerEndpointConfig.getSubprotocols
-     * ClientEndpointConfig.Builder.preferredSubprotocols
-     * ServerEndpointConfig.Configurator.Configurator()
+     * @test_Strategy: ServerEndpointConfig.Configurator.getNegotiatedSubprotocol ServerEndpointConfig.getSubprotocols
+     * ClientEndpointConfig.Builder.preferredSubprotocols ServerEndpointConfig.Configurator.Configurator()
      *
      * Returns: the empty string if there isn't one.
      *
-     * The default client configuration uses the developer provided list of
-     * subprotocols, to send in order of preference, the names of the subprotocols
-     * it would like to use in the opening handshake it formulates
+     * The default client configuration uses the developer provided list of subprotocols, to send in order of preference,
+     * the names of the subprotocols it would like to use in the opening handshake it formulates
      */
     public void getNegotiatedSubprotocolResultedIsEmptyTest() throws Fault {
         ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
@@ -346,11 +313,10 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @test_Strategy: ServerEndpointConfig.Configurator.modifyHandhsake
      *
-     * The container has already determined the validity of the origin using the
-     * checkOrigin method.
+     * The container has already determined the validity of the origin using the checkOrigin method.
      *
-     * The default server configuration makes no modification of the opening
-     * handshake process other than that described above
+     * The default server configuration makes no modification of the opening handshake process other than that described
+     * above
      */
     public void modifyHandshakeAfterCheckOriginTest() throws Fault {
         invoke("modifyhandshake", "origin", "true");
@@ -393,8 +359,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Obtain the container default configurator from two separate
-     * endpoints and check that the same object is ontained.
+     * @test_Strategy: Obtain the container default configurator from two separate endpoints and check that the same object
+     * is ontained.
      */
 
     public void getContainerDefaultConfiguratorTest() throws Fault {

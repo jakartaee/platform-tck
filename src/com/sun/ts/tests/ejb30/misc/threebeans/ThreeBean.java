@@ -50,10 +50,14 @@ public class ThreeBean extends CommonBeanBase {
 
     @Override
     protected void verifyInjectedEJB() {
-        if (twoRemote == null) throw new IllegalStateException("twoRemote was not injected.");
-        if (twoLocal == null) throw new IllegalStateException("twoLocal was not injected.");
-        if (oneRemote == null) throw new IllegalStateException("oneRemote was not injected.");
-        if (oneLocal == null) throw new IllegalStateException("oneLocal was not injected.");
+        if (twoRemote == null)
+            throw new IllegalStateException("twoRemote was not injected.");
+        if (twoLocal == null)
+            throw new IllegalStateException("twoLocal was not injected.");
+        if (oneRemote == null)
+            throw new IllegalStateException("oneRemote was not injected.");
+        if (oneLocal == null)
+            throw new IllegalStateException("oneLocal was not injected.");
         // if(fourRemote== null)
         // throw new IllegalStateException("fourRemote was not injected.");
         // if(fourLocal == null)

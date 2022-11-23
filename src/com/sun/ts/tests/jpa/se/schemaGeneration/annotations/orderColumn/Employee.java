@@ -33,7 +33,8 @@ public class Employee implements java.io.Serializable {
 
     private Department department;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(int id) {
         this.empId = id;
@@ -60,13 +61,7 @@ public class Employee implements java.io.Serializable {
     // getters and setters for the association fields
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(
-            name = "FK_DEPT",
-            foreignKey =
-                    @ForeignKey(
-                            name = "MYCONSTRANT",
-                            value = ConstraintMode.CONSTRAINT,
-                            foreignKeyDefinition = "FOREIGN KEY (FK_DEPT) REFERENCES SCHEMAGENDEPT (DEPTID)"))
+    @JoinColumn(name = "FK_DEPT", foreignKey = @ForeignKey(name = "MYCONSTRANT", value = ConstraintMode.CONSTRAINT, foreignKeyDefinition = "FOREIGN KEY (FK_DEPT) REFERENCES SCHEMAGENDEPT (DEPTID)"))
     public Department getDepartment() {
         return department;
     }

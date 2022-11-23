@@ -50,7 +50,8 @@ public class Client extends PMClientBase {
 
     private boolean supports_sequence = false;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -175,18 +176,14 @@ public class Client extends PMClientBase {
     /*
      * @testName: generatorTypeTest1
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052; PERSISTENCE:SPEC:1057;
-     * PERSISTENCE:JAVADOC:206; PERSISTENCE:JAVADOC:209; PERSISTENCE:JAVADOC:210;
-     * PERSISTENCE:JAVADOC:211; PERSISTENCE:JAVADOC:213; PERSISTENCE:JAVADOC:215;
-     * PERSISTENCE:JAVADOC:81; PERSISTENCE:SPEC:1136; PERSISTENCE:JAVADOC:208;
-     * PERSISTENCE:SPEC:2158; PERSISTENCE:SPEC:2189; PERSISTENCE:SPEC:2023;
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052;
+     * PERSISTENCE:SPEC:1057; PERSISTENCE:JAVADOC:206; PERSISTENCE:JAVADOC:209; PERSISTENCE:JAVADOC:210;
+     * PERSISTENCE:JAVADOC:211; PERSISTENCE:JAVADOC:213; PERSISTENCE:JAVADOC:215; PERSISTENCE:JAVADOC:81;
+     * PERSISTENCE:SPEC:1136; PERSISTENCE:JAVADOC:208; PERSISTENCE:SPEC:2158; PERSISTENCE:SPEC:2189; PERSISTENCE:SPEC:2023;
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.TABLE, indicates the persistence provider must assign
-     * primary keys for the entity using an underlying database strategy table to
-     * ensure uniqueness.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.TABLE, indicates the persistence provider must assign primary keys for the entity
+     * using an underlying database strategy table to ensure uniqueness.
      *
      * Using GenerationType.TABLE, access a persisted entity and modify its' data.
      */
@@ -227,20 +224,19 @@ public class Client extends PMClientBase {
             TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
             pass = true;
         }
-        if (!pass) throw new Fault("generatorTypeTest1 failed");
+        if (!pass)
+            throw new Fault("generatorTypeTest1 failed");
     }
 
     /*
      * @testName: generatorTypeTest2
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052; PERSISTENCE:SPEC:1057
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052;
+     * PERSISTENCE:SPEC:1057
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.TABLE, indicates the persistence provider must assign
-     * primary keys for the entity using an underlying database strategy table to
-     * ensure uniqueness.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.TABLE, indicates the persistence provider must assign primary keys for the entity
+     * using an underlying database strategy table to ensure uniqueness.
      *
      * Using GenerationType.TABLE, access a persisted entity and modify its' data.
      */
@@ -281,20 +277,19 @@ public class Client extends PMClientBase {
             TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
             pass = true;
         }
-        if (!pass) throw new Fault("generatorTypeTest2 failed");
+        if (!pass)
+            throw new Fault("generatorTypeTest2 failed");
     }
 
     /*
      * @testName: generatorTypeTest3
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052; PERSISTENCE:SPEC:1057
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052;
+     * PERSISTENCE:SPEC:1057
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.TABLE, indicates the persistence provider must assign
-     * primary keys for the entity using an underlying database strategy table to
-     * ensure uniqueness.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.TABLE, indicates the persistence provider must assign primary keys for the entity
+     * using an underlying database strategy table to ensure uniqueness.
      *
      * Using GenerationType.TABLE, access a persisted entity and modify its' data.
      */
@@ -334,20 +329,19 @@ public class Client extends PMClientBase {
             TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
             pass = true;
         }
-        if (!pass) throw new Fault("generatorTypeTest3 failed");
+        if (!pass)
+            throw new Fault("generatorTypeTest3 failed");
     }
 
     /*
      * @testName: generatorTypeTest4
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052; PERSISTENCE:SPEC:1057
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052;
+     * PERSISTENCE:SPEC:1057
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.TABLE, indicates the persistence provider must assign
-     * primary keys for the entity using an underlying database strategy table to
-     * ensure uniqueness.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.TABLE, indicates the persistence provider must assign primary keys for the entity
+     * using an underlying database strategy table to ensure uniqueness.
      *
      * Using GenerationType.TABLE, access a persisted entity and modify its' data.
      */
@@ -389,20 +383,19 @@ public class Client extends PMClientBase {
             TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
             pass = true;
         }
-        if (!pass) throw new Fault("generatorTypeTest4 failed");
+        if (!pass)
+            throw new Fault("generatorTypeTest4 failed");
     }
 
     /*
      * @testName: generatorTypeTest5
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052; PERSISTENCE:SPEC:1057
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052;
+     * PERSISTENCE:SPEC:1057
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.TABLE, indicates the persistence provider must assign
-     * primary keys for the entity using an underlying database strategy table to
-     * ensure uniqueness.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.TABLE, indicates the persistence provider must assign primary keys for the entity
+     * using an underlying database strategy table to ensure uniqueness.
      *
      * Using GenerationType.TABLE, access a persisted entity and modify its' data.
      */
@@ -443,20 +436,19 @@ public class Client extends PMClientBase {
             TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
             pass = true;
         }
-        if (!pass) throw new Fault("generatorTypeTest5 failed");
+        if (!pass)
+            throw new Fault("generatorTypeTest5 failed");
     }
 
     /*
      * @testName: generatorTypeTest6
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052; PERSISTENCE:SPEC:1057
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1052;
+     * PERSISTENCE:SPEC:1057
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.TABLE, indicates the persistence provider must assign
-     * primary keys for the entity using an underlying database strategy table to
-     * ensure uniqueness.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.TABLE, indicates the persistence provider must assign primary keys for the entity
+     * using an underlying database strategy table to ensure uniqueness.
      *
      * Using GenerationType.TABLE, access a persisted entity and modify its' data.
      */
@@ -497,23 +489,21 @@ public class Client extends PMClientBase {
             TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
             pass = true;
         }
-        if (!pass) throw new Fault("generatorTypeTest6 failed");
+        if (!pass)
+            throw new Fault("generatorTypeTest6 failed");
     }
 
     /*
      * @testName: generatorTypeSequenceTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:194; PERSISTENCE:JAVADOC:195;
-     * PERSISTENCE:JAVADOC:196; PERSISTENCE:SPEC:2107.2; PERSISTENCE:SPEC:2106;
+     * @assertion_ids: PERSISTENCE:JAVADOC:194; PERSISTENCE:JAVADOC:195; PERSISTENCE:JAVADOC:196; PERSISTENCE:SPEC:2107.2;
+     * PERSISTENCE:SPEC:2106;
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.SEQUENCE, indicates the persistence provider must assign
-     * primary keys for the entity using an underlying database sequence generator
-     * to ensure uniqueness.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.SEQUENCE, indicates the persistence provider must assign primary keys for the entity
+     * using an underlying database sequence generator to ensure uniqueness.
      *
-     * Using GenerationType.SEQUENCE, access a persisted entity and modify its'
-     * data.
+     * Using GenerationType.SEQUENCE, access a persisted entity and modify its' data.
      */
     @SetupMethod(name = "setupDataTypes2")
     public void generatorTypeSequenceTest() throws Fault {
@@ -560,7 +550,8 @@ public class Client extends PMClientBase {
         } else {
             TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
         }
-        if (!pass) throw new Fault("generatorTypeSequenceTest failed");
+        if (!pass)
+            throw new Fault("generatorTypeSequenceTest failed");
     }
 
     /*
@@ -620,7 +611,8 @@ public class Client extends PMClientBase {
         } else {
             TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
         }
-        if (!pass) throw new Fault("sequenceGeneratorOnEntityTest failed");
+        if (!pass)
+            throw new Fault("sequenceGeneratorOnEntityTest failed");
     }
 
     /*
@@ -628,8 +620,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:2107; PERSISTENCE:SPEC:2107.3;
      *
-     * @test_Strategy: A sequence generator may be specified on the primary key
-     * property
+     * @test_Strategy: A sequence generator may be specified on the primary key property
      */
     @SetupMethod(name = "setupDataTypes4")
     public void sequenceGeneratorOnPropertyTest() throws Fault {
@@ -681,7 +672,8 @@ public class Client extends PMClientBase {
         } else {
             TestUtil.logMsg("WARNING: Test not run because db.supports.sequence set to false in ts.jte");
         }
-        if (!pass) throw new Fault("sequenceGeneratorOnEntityTest failed");
+        if (!pass)
+            throw new Fault("sequenceGeneratorOnEntityTest failed");
     }
 
     // Methods used for Tests

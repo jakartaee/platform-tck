@@ -59,8 +59,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:105;
      *
-     * @test_Strategy: Create instance via HTTPException(int statusCode)
-     * constructor. Verify HTTPException object created successfully.
+     * @test_Strategy: Create instance via HTTPException(int statusCode) constructor. Verify HTTPException object created
+     * successfully.
      */
     public void HTTPExceptionConstructorTest() throws Fault {
         TestUtil.logTrace("HTTPExceptionConstructorTest");
@@ -80,7 +80,8 @@ public class Client extends ServiceEETest {
             throw new Fault("HTTPExceptionConstructorTest failed", e);
         }
 
-        if (!pass) throw new Fault("HTTPExceptionConstructorTest failed");
+        if (!pass)
+            throw new Fault("HTTPExceptionConstructorTest failed");
     }
 
     /*
@@ -88,8 +89,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:104;
      *
-     * @test_Strategy: Create instance via HTTPException(int statusCode)
-     * constructor. Verify HTTPException.getStatusCode() returns expected code.
+     * @test_Strategy: Create instance via HTTPException(int statusCode) constructor. Verify HTTPException.getStatusCode()
+     * returns expected code.
      */
     public void getStatusCodeTest() throws Fault {
         TestUtil.logTrace("getStatusCodeTest");
@@ -118,6 +119,7 @@ public class Client extends ServiceEETest {
             throw new Fault("getStatusCodeTest failed", e);
         }
 
-        if (!pass) throw new Fault("getStatusCodeTest failed");
+        if (!pass)
+            throw new Fault("getStatusCodeTest failed");
     }
 }

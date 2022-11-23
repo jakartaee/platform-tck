@@ -20,9 +20,8 @@ import java.security.*;
 import java.util.*;
 
 /**
- * SunSecurity signer. Like SystemIdentity, it has a trust bit, which can be set
- * by SunSecurity classes, and a set of accessors for other classes in
- * sun.security.*.
+ * SunSecurity signer. Like SystemIdentity, it has a trust bit, which can be set by SunSecurity classes, and a set of
+ * accessors for other classes in sun.security.*.
  *
  * @author Benjamin Renaud
  */
@@ -44,11 +43,9 @@ public class SystemSigner extends Signer {
     /**
      * Construct a signer with a name and a scope.
      *
-     * @param name
-     *          the signer's name.
+     * @param name the signer's name.
      *
-     * @param scope
-     *          the scope for this signer.
+     * @param scope the scope for this signer.
      */
     public SystemSigner(String name, IdentityScope scope) throws KeyManagementException {
 

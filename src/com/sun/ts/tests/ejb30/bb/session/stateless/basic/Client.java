@@ -79,8 +79,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:186; EJB:JAVADOC:147
      *
-     * @test_Strategy: PostConstruct method must be invoked even when there is no
-     * resource injection.
+     * @test_Strategy: PostConstruct method must be invoked even when there is no resource injection.
      */
     public void postConstructInvokedEvenNoResourceInjection() throws Fault {
         if (postConstructCallsCount > 0) {
@@ -97,8 +96,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:186; EJB:JAVADOC:147
      *
-     * @test_Strategy: o using @Stateless annotation o use @Resource annotation o
-     * use @Remote annotation
+     * @test_Strategy: o using @Stateless annotation o use @Resource annotation o use @Remote annotation
      */
     public void testRemoteAdd() throws Fault {
         RemoteCalculator bean = null;
@@ -125,8 +123,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:186; EJB:JAVADOC:147
      *
-     * @test_Strategy: RemoteCalculatorBean2 contains no injection, but its
-     * post-construct method must be called.
+     * @test_Strategy: RemoteCalculatorBean2 contains no injection, but its post-construct method must be called.
      *
      */
     public void postConstructCalledEvenNoResourceInjectionInBean() throws Fault {
@@ -157,8 +154,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:186; EJB:JAVADOC:147
      *
-     * @test_Strategy: RemoteCalculatorBean3 contains no annotation, but its
-     * post-construct defined in its superclass must be called.
+     * @test_Strategy: RemoteCalculatorBean3 contains no annotation, but its post-construct defined in its superclass must
+     * be called.
      *
      */
     public void postConstructInSuperCalledEvenNoAnnotationInBean() throws Fault {
@@ -189,8 +186,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:186; EJB:JAVADOC:147
      *
-     * @test_Strategy: RemoteCalculatorBean4 contains no annotation, but a field
-     * in superclass must be injected.
+     * @test_Strategy: RemoteCalculatorBean4 contains no annotation, but a field in superclass must be injected.
      *
      */
     public void injectedIntoSuperCalledEvenNoAnnotationInBean() throws Fault {
@@ -221,9 +217,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:186; EJB:JAVADOC:147
      *
-     * @test_Strategy: RemoteCalculatorBean5 contains no component-defining
-     * annotations, but has @Resource and @PostConstruct annotations. Both must be
-     * processed. If @Resource or @PostConstruct not processed, the client will
+     * @test_Strategy: RemoteCalculatorBean5 contains no component-defining annotations, but has @Resource
+     * and @PostConstruct annotations. Both must be processed. If @Resource or @PostConstruct not processed, the client will
      * receive EJBException.
      */
     public void noComponentDefiningAnnotations() throws Fault {
@@ -244,8 +239,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:186; EJB:JAVADOC:147
      *
-     * @test_Strategy: o business method may throw arbitary application
-     * exceptions, which are propogated back to clients.
+     * @test_Strategy: o business method may throw arbitary application exceptions, which are propogated back to clients.
      */
     public void testRemoteThrowIt() throws Fault {
         RemoteCalculator bean = null;
@@ -263,5 +257,6 @@ public class Client extends EETest {
         }
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 }

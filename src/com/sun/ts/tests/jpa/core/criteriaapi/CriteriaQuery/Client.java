@@ -90,8 +90,8 @@ public class Client extends Util {
     /*
      * @testName: fromClass
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:935; PERSISTENCE:SPEC:1509;
-     * PERSISTENCE:SPEC:1513; PERSISTENCE:SPEC:1792; PERSISTENCE:SPEC:1700;
+     * @assertion_ids: PERSISTENCE:JAVADOC:935; PERSISTENCE:SPEC:1509; PERSISTENCE:SPEC:1513; PERSISTENCE:SPEC:1792;
+     * PERSISTENCE:SPEC:1700;
      *
      * @test_Strategy: Select o FROM Order o WHERE NOT o.totalPrice < 4500
      *
@@ -147,8 +147,7 @@ public class Client extends Util {
     /*
      * @testName: fromEntityType
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1096; PERSISTENCE:JAVADOC:1104;
-     * PERSISTENCE:JAVADOC:936;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1096; PERSISTENCE:JAVADOC:1104; PERSISTENCE:JAVADOC:936;
      *
      * @test_Strategy: Select o FROM Order o WHERE NOT o.totalPrice < 4500
      *
@@ -215,8 +214,7 @@ public class Client extends Util {
     /*
      * @testName: select
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:930; PERSISTENCE:SPEC:1751;
-     * PERSISTENCE:SPEC:1752; PERSISTENCE:SPEC:1753;
+     * @assertion_ids: PERSISTENCE:JAVADOC:930; PERSISTENCE:SPEC:1751; PERSISTENCE:SPEC:1752; PERSISTENCE:SPEC:1753;
      *
      * @test_Strategy: Select o FROM Order o WHERE NOT o.totalPrice < 4500
      *
@@ -312,8 +310,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:924; PERSISTENCE:SPEC:1751;
      *
-     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id,
-     * c.name from Customer c
+     * @test_Strategy: convert the following JPQL to CriteriaQuery Select c.id, c.name from Customer c
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -419,8 +416,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:925; PERSISTENCE:JAVADOC:927
      *
-     * @test_Strategy: Create a multiselect using selection items with the same
-     * alias and verify exception is thrown
+     * @test_Strategy: Create a multiselect using selection items with the same alias and verify exception is thrown
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -459,7 +455,7 @@ public class Client extends Util {
 
             TestUtil.logTrace("Creating multiselect using selection array of items with the same alias");
             Selection[] selection = {
-                customer.get("id").alias("SAMEALIAS"), customer.get("name").alias("SAMEALIAS")
+                    customer.get("id").alias("SAMEALIAS"), customer.get("name").alias("SAMEALIAS")
             };
 
             try {
@@ -501,11 +497,10 @@ public class Client extends Util {
     /*
      * @testName: where
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:932; PERSISTENCE:SPEC:1725;
-     * PERSISTENCE:SPEC:1726; PERSISTENCE:SPEC:1735; PERSISTENCE:SPEC:1735.2;
+     * @assertion_ids: PERSISTENCE:JAVADOC:932; PERSISTENCE:SPEC:1725; PERSISTENCE:SPEC:1726; PERSISTENCE:SPEC:1735;
+     * PERSISTENCE:SPEC:1735.2;
      *
-     * @test_Strategy: Use Conjunction Select c FROM Customer c where
-     * customer.name = 'Robert E. Bissett'
+     * @test_Strategy: Use Conjunction Select c FROM Customer c where customer.name = 'Robert E. Bissett'
      *
      *
      */
@@ -641,11 +636,10 @@ public class Client extends Util {
     /*
      * @testName: wherePredicateArrayTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:933; PERSISTENCE:SPEC:1726;
-     * PERSISTENCE:SPEC:1728; PERSISTENCE:SPEC:1728.1; PERSISTENCE:SPEC:1795;
+     * @assertion_ids: PERSISTENCE:JAVADOC:933; PERSISTENCE:SPEC:1726; PERSISTENCE:SPEC:1728; PERSISTENCE:SPEC:1728.1;
+     * PERSISTENCE:SPEC:1795;
      *
-     * @test_Strategy: Pass a predicate array to the where clause and verify
-     * results
+     * @test_Strategy: Pass a predicate array to the where clause and verify results
      */
     @SetupMethod(name = "setupOrderData")
     public void wherePredicateArrayTest() throws Fault {
@@ -672,8 +666,8 @@ public class Client extends Util {
             cquery.where(cbuilder.like(customer.get(Customer_.home).get(Address_.zip), "%77"));
 
             Predicate[] predArray = {
-                cbuilder.like(customer.get(Customer_.name), "Karen%"),
-                cbuilder.like(customer.get(Customer_.name), "%Tegan")
+                    cbuilder.like(customer.get(Customer_.name), "Karen%"),
+                    cbuilder.like(customer.get(Customer_.name), "%Tegan")
             };
             cquery.where(predArray);
             List<Customer> result = tquery.getResultList();
@@ -974,8 +968,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:321; PERSISTENCE:SPEC:1770;
      *
-     * @test_Strategy: select c.country.code, count(c.country.code) FROM Customer
-     * c GROUP BY c.country.code ORDER BY c.country.code"
+     * @test_Strategy: select c.country.code, count(c.country.code) FROM Customer c GROUP BY c.country.code ORDER BY
+     * c.country.code"
      */
     @SetupMethod(name = "setupCustomerData")
     public void groupBy() throws Fault {
@@ -1056,13 +1050,10 @@ public class Client extends Util {
     /*
      * @testName: groupByExpArrayTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:920; PERSISTENCE:JAVADOC:943;
-     * PERSISTENCE:SPEC:1772; PERSISTENCE:SPEC:1775;
+     * @assertion_ids: PERSISTENCE:JAVADOC:920; PERSISTENCE:JAVADOC:943; PERSISTENCE:SPEC:1772; PERSISTENCE:SPEC:1775;
      *
-     * @test_Strategy: Create a groupBy clause with one expression, then create a
-     * second one and verify the second overrides the first. select
-     * c.country.code, c.id FROM Customer c GROUP BY c.country.code, c.id ORDER BY
-     * c.country.code, c.id"
+     * @test_Strategy: Create a groupBy clause with one expression, then create a second one and verify the second overrides
+     * the first. select c.country.code, c.id FROM Customer c GROUP BY c.country.code, c.id ORDER BY c.country.code, c.id"
      */
     @SetupMethod(name = "setupCustomerData")
     public void groupByExpArrayTest() throws Fault {
@@ -1103,19 +1094,19 @@ public class Client extends Util {
             EntityType<Customer> Customer_ = customer.getModel();
             EmbeddableType<Country> Country_ = mm.embeddable(Country.class);
             Selection[] selection = {
-                customer.get(Customer_.getSingularAttribute("country", Country.class))
-                        .get(Country_.getSingularAttribute("code", String.class)),
-                customer.get(Customer_.getSingularAttribute("id", String.class))
+                    customer.get(Customer_.getSingularAttribute("country", Country.class))
+                            .get(Country_.getSingularAttribute("code", String.class)),
+                    customer.get(Customer_.getSingularAttribute("id", String.class))
             };
 
             Expression[] expressionArray1 = {
-                customer.get(Customer_.getSingularAttribute("country", Country.class))
-                        .get(Country_.getSingularAttribute("code", String.class))
+                    customer.get(Customer_.getSingularAttribute("country", Country.class))
+                            .get(Country_.getSingularAttribute("code", String.class))
             };
             Expression[] expressionArray2 = {
-                customer.get(Customer_.getSingularAttribute("country", Country.class))
-                        .get(Country_.getSingularAttribute("code", String.class)),
-                customer.get(Customer_.getSingularAttribute("id", String.class))
+                    customer.get(Customer_.getSingularAttribute("country", Country.class))
+                            .get(Country_.getSingularAttribute("code", String.class)),
+                    customer.get(Customer_.getSingularAttribute("id", String.class))
             };
             cquery.multiselect(selection);
             cquery.groupBy(expressionArray1);
@@ -1174,14 +1165,12 @@ public class Client extends Util {
     /*
      * @testName: groupByListTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:921; PERSISTENCE:JAVADOC:929;
-     * PERSISTENCE:JAVADOC:944
+     * @assertion_ids: PERSISTENCE:JAVADOC:921; PERSISTENCE:JAVADOC:929; PERSISTENCE:JAVADOC:944
      *
-     * @test_Strategy: Create a groupBy clause using a List with one expression,
-     * then create a second one and verify the second overrides the first. Create
-     * a orderBy clause using a List with one expression, then create a second one
-     * and verify the second overrides the first. select c.country.code, c.id FROM
-     * Customer c GROUP BY c.country.code, c.id ORDER BY c.country.code, c.id"
+     * @test_Strategy: Create a groupBy clause using a List with one expression, then create a second one and verify the
+     * second overrides the first. Create a orderBy clause using a List with one expression, then create a second one and
+     * verify the second overrides the first. select c.country.code, c.id FROM Customer c GROUP BY c.country.code, c.id
+     * ORDER BY c.country.code, c.id"
      */
     @SetupMethod(name = "setupCustomerData")
     public void groupByListTest() throws Fault {
@@ -1223,9 +1212,9 @@ public class Client extends Util {
             EntityType<Customer> Customer_ = customer.getModel();
             EmbeddableType<Country> Country_ = mm.embeddable(Country.class);
             Selection[] selection = {
-                customer.get(Customer_.getSingularAttribute("country", Country.class))
-                        .get(Country_.getSingularAttribute("code", String.class)),
-                customer.get(Customer_.getSingularAttribute("id", String.class))
+                    customer.get(Customer_.getSingularAttribute("country", Country.class))
+                            .get(Country_.getSingularAttribute("code", String.class)),
+                    customer.get(Customer_.getSingularAttribute("id", String.class))
             };
 
             List groupByList1 = new ArrayList();
@@ -1303,12 +1292,10 @@ public class Client extends Util {
     /*
      * @testName: having
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:922; PERSISTENCE:JAVADOC:945;
-     * PERSISTENCE:SPEC:1735; PERSISTENCE:SPEC:1735.1; PERSISTENCE:SPEC:1735.3;
-     * PERSISTENCE:SPEC:1771;
+     * @assertion_ids: PERSISTENCE:JAVADOC:922; PERSISTENCE:JAVADOC:945; PERSISTENCE:SPEC:1735; PERSISTENCE:SPEC:1735.1;
+     * PERSISTENCE:SPEC:1735.3; PERSISTENCE:SPEC:1771;
      *
-     * @test_Strategy: SELECT COUNT(c) FROM Customer c GROUP BY c.country.code
-     * HAVING c.country.code in ('GR', 'CHA')
+     * @test_Strategy: SELECT COUNT(c) FROM Customer c GROUP BY c.country.code HAVING c.country.code in ('GR', 'CHA')
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1368,11 +1355,10 @@ public class Client extends Util {
     /*
      * @testName: distinct
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:917; PERSISTENCE:JAVADOC:934;
-     * PERSISTENCE:SPEC:1760; PERSISTENCE:SPEC:1761;
+     * @assertion_ids: PERSISTENCE:JAVADOC:917; PERSISTENCE:JAVADOC:934; PERSISTENCE:SPEC:1760; PERSISTENCE:SPEC:1761;
      *
-     * @test_Strategy: SELECT DISTINCT CODE FROM CUSTOMER_TABLE SELECT CODE FROM
-     * CUSTOMER_TABLE SELECT CODE FROM CUSTOMER_TABLE *
+     * @test_Strategy: SELECT DISTINCT CODE FROM CUSTOMER_TABLE SELECT CODE FROM CUSTOMER_TABLE SELECT CODE FROM
+     * CUSTOMER_TABLE *
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1590,11 +1576,10 @@ public class Client extends Util {
     /*
      * @testName: orderBy
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:928; PERSISTENCE:JAVADOC:1083;
-     * PERSISTENCE:JAVADOC:1099; PERSISTENCE:JAVADOC:1082; PERSISTENCE:SPEC:1736;
+     * @assertion_ids: PERSISTENCE:JAVADOC:928; PERSISTENCE:JAVADOC:1083; PERSISTENCE:JAVADOC:1099;
+     * PERSISTENCE:JAVADOC:1082; PERSISTENCE:SPEC:1736;
      *
-     * @test_Strategy: Select c.work.zip from Customer c where c.work.zip IS NOT
-     * NULL ORDER BY c.work.zip ASC
+     * @test_Strategy: Select c.work.zip from Customer c where c.work.zip IS NOT NULL ORDER BY c.work.zip ASC
      */
     @SetupMethod(name = "setupCustomerData")
     public void orderBy() throws Fault {
@@ -1605,8 +1590,8 @@ public class Client extends Util {
         CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 
         final String[] expectedZips = new String[] {
-            "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
-            "00252", "00252", "00252", "00252", "11345"
+                "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
+                "00252", "00252", "00252", "00252", "11345"
         };
         try {
             getEntityTransaction().begin();
@@ -1686,8 +1671,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1083; PERSISTENCE:JAVADOC:1084
      *
-     * @test_Strategy: Select c.work.zip from Customer c where c.work.zip IS NOT
-     * NULL ORDER BY c.work.zip ASC
+     * @test_Strategy: Select c.work.zip from Customer c where c.work.zip IS NOT NULL ORDER BY c.work.zip ASC
      */
     @SetupMethod(name = "setupCustomerData")
     public void orderReverseTest() throws Fault {
@@ -1697,8 +1681,8 @@ public class Client extends Util {
         CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 
         final String[] expectedZips = new String[] {
-            "11345", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
-            "00252", "00252", "00252", "00252", "00252"
+                "11345", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
+                "00252", "00252", "00252", "00252", "00252"
         };
         try {
             getEntityTransaction().begin();
@@ -1753,8 +1737,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:918
      *
-     * @test_Strategy: Select c.work.zip from Customer c where c.work.zip IS NOT
-     * NULL ORDER BY c.work.zip ASC
+     * @test_Strategy: Select c.work.zip from Customer c where c.work.zip IS NOT NULL ORDER BY c.work.zip ASC
      */
     @SetupMethod(name = "setupCustomerData")
     public void getOrderList() throws Fault {
@@ -1847,9 +1830,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:551
      *
-     * @test_Strategy: Use the
-     * CriteriaBuilder.createQuery(CriteriaQuery).executeUpdate() for a
-     * CriteriaAPI and verify a IllegalStateException is thrown
+     * @test_Strategy: Use the CriteriaBuilder.createQuery(CriteriaQuery).executeUpdate() for a CriteriaAPI and verify a
+     * IllegalStateException is thrown
      *
      */
     public void executeUpdateIllegalStateException1Test() throws Fault {
@@ -1881,7 +1863,8 @@ public class Client extends Util {
             }
         }
 
-        if (!pass) throw new Fault("executeUpdateIllegalStateException1Test failed");
+        if (!pass)
+            throw new Fault("executeUpdateIllegalStateException1Test failed");
     }
 
     /*
@@ -1943,9 +1926,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1787; PERSISTENCE:SPEC:1790;
      *
-     * @test_Strategy: Modify a query after it has been executed and verify
-     * results. Select c FROM Customer c where customer.name = 'Robert E. Bissett'
-     * Select c FROM Customer c where customer.name = 'Irene M. Caruso'
+     * @test_Strategy: Modify a query after it has been executed and verify results. Select c FROM Customer c where
+     * customer.name = 'Robert E. Bissett' Select c FROM Customer c where customer.name = 'Irene M. Caruso'
      *
      *
      */
@@ -2028,8 +2010,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1664;
      *
-     * @test_Strategy: Verify duplicates are returned when distinct is not
-     * specified SELECT o.CUSTOMER.ID FROM ORDER_TABLE o
+     * @test_Strategy: Verify duplicates are returned when distinct is not specified SELECT o.CUSTOMER.ID FROM ORDER_TABLE o
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -2094,14 +2075,14 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass) throw new Fault("distinctNotSpecifiedTest failed");
+        if (!pass)
+            throw new Fault("distinctNotSpecifiedTest failed");
     }
 
     /*
      * @testName: DoubleOperandResultTypeTests
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1677; PERSISTENCE:SPEC:1677.1;
-     * PERSISTENCE:SPEC:1685;
+     * @assertion_ids: PERSISTENCE:SPEC:1677; PERSISTENCE:SPEC:1677.1; PERSISTENCE:SPEC:1685;
      *
      * @test_Strategy: Test various operands result in various types
      *
@@ -2583,7 +2564,8 @@ public class Client extends Util {
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: ", e);
         }
-        if (!pass1 || !pass2 || !pass3 || !pass4) throw new Fault("BigDecimalOperandResultTypeTests failed");
+        if (!pass1 || !pass2 || !pass3 || !pass4)
+            throw new Fault("BigDecimalOperandResultTypeTests failed");
     }
 
     /*
@@ -2667,7 +2649,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2 || !pass3) throw new Fault("BigIntegerOperandResultTypeTests failed");
+        if (!pass1 || !pass2 || !pass3)
+            throw new Fault("BigIntegerOperandResultTypeTests failed");
     }
 
     /*
@@ -2820,8 +2803,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1677; PERSISTENCE:SPEC:1677.6;
      *
-     * @test_Strategy: Test various operands of integral type and verify the
-     * result of the operation is of type Integer
+     * @test_Strategy: Test various operands of integral type and verify the result of the operation is of type Integer
      *
      */
     @SetupMethod(name = "setupAData")
@@ -2965,8 +2947,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1718;
      *
-     * @test_Strategy: SELECT d FROM Department d LEFT JOIN FETCH
-     * d.lastNameEmployees WHERE d.id = 1
+     * @test_Strategy: SELECT d FROM Department d LEFT JOIN FETCH d.lastNameEmployees WHERE d.id = 1
      */
     @SetupMethod(name = "setupDepartmentEmployeeData")
     public void resultContainsFetchReference() throws Fault {
@@ -3064,10 +3045,10 @@ public class Client extends Util {
             final Long basicBigLong = basicLong;
             final double basicDouble = 1234.5;
             final Double basicBigDouble = basicDouble;
-            final char[] charArray = {'a', 'b', 'c'};
-            final Character[] bigCharacterArray = {'a', 'b', 'c'};
+            final char[] charArray = { 'a', 'b', 'c' };
+            final Character[] bigCharacterArray = { 'a', 'b', 'c' };
             final byte[] byteArray = "abc".getBytes();
-            final Byte[] bigByteArray = {(byte) 111, (byte) 101, (byte) 100};
+            final Byte[] bigByteArray = { (byte) 111, (byte) 101, (byte) 100 };
             final BigInteger bigInteger = new BigInteger("12345");
             final BigDecimal bigDecimal = new BigDecimal(bigInteger);
             final Date date = new Date();

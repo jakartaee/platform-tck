@@ -35,25 +35,22 @@ import javax.naming.NamingException;
 public class AroundInvokeTestImpl implements com.sun.ts.tests.ejb30.common.interceptor.Constants, java.io.Serializable {
     // instance fields
     /**
-     * used only when this class is called from a interceptor method inside a bean
-     * class. In this case, this class is just a helper class, not an interceptor
-     * class. Since interceptor classes are stateless, so this field should not be
-     * used when this class is used as a super class of an interceptor class.
-     * ejbContext is stored in order to test InvocationContext.getEJBContext();
+     * used only when this class is called from a interceptor method inside a bean class. In this case, this class is just a
+     * helper class, not an interceptor class. Since interceptor classes are stateless, so this field should not be used
+     * when this class is used as a super class of an interceptor class. ejbContext is stored in order to test
+     * InvocationContext.getEJBContext();
      */
     // InvocationContext.getEJBContext() method was removed on 1/31/2006
     // protected EJBContext ejbContext;
 
     /**
-     * The lookup name for EJBContext. An instance of SessionContext or
-     * MessageDrivenContext is injected into all AroundInvoke beans. This injected
-     * resouce should have the name set to "ejbContext."
+     * The lookup name for EJBContext. An instance of SessionContext or MessageDrivenContext is injected into all
+     * AroundInvoke beans. This injected resouce should have the name set to "ejbContext."
      */
     public static final String EJBCONTEXT_NAME = "java:comp/env/ejbContext";
 
     /**
-     * same as ejbContext. Used to test InvocationContext.getMethod(), and
-     * InvocationContext.getBean();
+     * same as ejbContext. Used to test InvocationContext.getMethod(), and InvocationContext.getBean();
      */
     protected Object bean;
 
@@ -69,10 +66,8 @@ public class AroundInvokeTestImpl implements com.sun.ts.tests.ejb30.common.inter
     }
 
     /**
-     * Gets the current test name. For session beans, the test method is the same
-     * as business method by convention. So InvocationContext.getMethod().
-     * getName() returns the test name. For mdb, test name is embedded inside
-     * message.
+     * Gets the current test name. For session beans, the test method is the same as business method by convention. So
+     * InvocationContext.getMethod(). getName() returns the test name. For mdb, test name is embedded inside message.
      */
     protected static String getTestName(InvocationContext ctx) {
         Method meth = ctx.getMethod();
@@ -174,9 +169,8 @@ public class AroundInvokeTestImpl implements com.sun.ts.tests.ejb30.common.inter
     }
 
     /**
-     * A convenience method to be used by other interceptor classes or bean. It is
-     * used by interceptor #2, which is in a interceptor class, and by interceptor
-     * #3, which is inside the bean class.
+     * A convenience method to be used by other interceptor classes or bean. It is used by interceptor #2, which is in a
+     * interceptor class, and by interceptor #3, which is inside the bean class.
      */
     public static Object intercept2(InvocationContext ctx, int orderInChain) throws CalculatorException {
         Object result = null;
@@ -213,12 +207,10 @@ public class AroundInvokeTestImpl implements com.sun.ts.tests.ejb30.common.inter
     }
 
     /**
-     * Checks order of current interceptor in chain. interceptors extends or
-     * delegates to this class should be the first interceptor in chain.
-     * Otherwise, override this method.
+     * Checks order of current interceptor in chain. interceptors extends or delegates to this class should be the first
+     * interceptor in chain. Otherwise, override this method.
      *
-     * @param num
-     *          the oder of current interceptor. num must be 1 or greater.
+     * @param num the oder of current interceptor. num must be 1 or greater.
      */
     public static void checkOrder(InvocationContext ctx, int num) throws CalculatorException {
         Map<String, Object> map = ctx.getContextData();
@@ -366,7 +358,7 @@ public class AroundInvokeTestImpl implements com.sun.ts.tests.ejb30.common.inter
     }
 
     protected void setParametersTest(InvocationContext ctx) throws CalculatorException {
-        Object[] params = new Object[] {NEW_PARAM_VALUE};
+        Object[] params = new Object[] { NEW_PARAM_VALUE };
         ctx.setParameters(params);
     }
 

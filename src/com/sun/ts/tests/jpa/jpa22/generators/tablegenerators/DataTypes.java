@@ -28,14 +28,7 @@ import jakarta.persistence.TableGenerators;
 @Entity
 @Table(name = "DATATYPES")
 @TableGenerators({
-    @TableGenerator(
-            name = "myTableGenerator",
-            table = "GENERATOR_TABLE",
-            pkColumnName = "PK_COL",
-            valueColumnName = "VAL_COL",
-            pkColumnValue = "DT1_ID",
-            allocationSize = 1,
-            initialValue = 1)
+        @TableGenerator(name = "myTableGenerator", table = "GENERATOR_TABLE", pkColumnName = "PK_COL", valueColumnName = "VAL_COL", pkColumnValue = "DT1_ID", allocationSize = 1, initialValue = 1)
 })
 public class DataTypes implements java.io.Serializable {
     private static final long serialVersionUID = 22L;
@@ -44,7 +37,8 @@ public class DataTypes implements java.io.Serializable {
 
     private String stringData;
 
-    public DataTypes() {}
+    public DataTypes() {
+    }
 
     public DataTypes(String stringData) {
         this.stringData = stringData;

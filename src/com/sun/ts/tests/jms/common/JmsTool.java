@@ -188,14 +188,11 @@ public class JmsTool {
     private String mode = "jakartaEE";
 
     /**********************************************************************************
-     * Public constructor. Takes a connection type and mode argument. Create
-     * connection factory, connection type, and single producer/consumer for
-     * either QUEUE or TOPIC client.
+     * Public constructor. Takes a connection type and mode argument. Create connection factory, connection type, and single
+     * producer/consumer for either QUEUE or TOPIC client.
      *
-     * @param int
-     *          type (QUEUE type or TOPIC type)
-     * @param String
-     *          m (JakartaEE mode or Standalone mode)
+     * @param int type (QUEUE type or TOPIC type)
+     * @param String m (JakartaEE mode or Standalone mode)
      **********************************************************************************/
     public JmsTool(int type, String m) throws Exception {
 
@@ -203,20 +200,14 @@ public class JmsTool {
     }
 
     /**********************************************************************************
-     * Public constructor. Takes connection type, username, password, jndi lookup
-     * name, and mode argument. Create connection factory, connection type, and
-     * single producer/consumer for TOPIC client.
+     * Public constructor. Takes connection type, username, password, jndi lookup name, and mode argument. Create connection
+     * factory, connection type, and single producer/consumer for TOPIC client.
      *
-     * @param int
-     *          type (TOPIC type)
-     * @param String
-     *          user (username)
-     * @param String
-     *          pw (password)
-     * @param String
-     *          lookup (connection factory to lookup)
-     * @param String
-     *          m (JakartaEE mode or Standalone mode)
+     * @param int type (TOPIC type)
+     * @param String user (username)
+     * @param String pw (password)
+     * @param String lookup (connection factory to lookup)
+     * @param String m (JakartaEE mode or Standalone mode)
      **********************************************************************************/
     public JmsTool(int type, String user, String pw, String lookup, String m) throws Exception {
         username = user;
@@ -256,19 +247,14 @@ public class JmsTool {
     }
 
     /**********************************************************************************
-     * Public constructor. Takes connection type, username, password, and mode
-     * argument. Create connection factory, connection type, and single
-     * producer/consumer for either QUEUE or TOPIC client. If just a FACTORY type
-     * is passed then just create the connection factory type.
+     * Public constructor. Takes connection type, username, password, and mode argument. Create connection factory,
+     * connection type, and single producer/consumer for either QUEUE or TOPIC client. If just a FACTORY type is passed then
+     * just create the connection factory type.
      *
-     * @param int
-     *          type (QUEUE type or TOPIC type or FACTORY type)
-     * @param String
-     *          user (username)
-     * @param String
-     *          pw (password)
-     * @param String
-     *          m (JakartaEE mode or Standalone mode)
+     * @param int type (QUEUE type or TOPIC type or FACTORY type)
+     * @param String user (username)
+     * @param String pw (password)
+     * @param String m (JakartaEE mode or Standalone mode)
      **********************************************************************************/
     public JmsTool(int type, String user, String pw, String m) throws Exception {
         username = user;
@@ -323,7 +309,8 @@ public class JmsTool {
                 || (type == COMMON_FACTORY)
                 || (type == FACTORY_Q)
                 || (type == FACTORY_DT)
-                || (type == FACTORY_T)) getConnectionFactoriesOnly(type);
+                || (type == FACTORY_T))
+            getConnectionFactoriesOnly(type);
         else {
             String eMsg = "Type must be JmsTool.QUEUE, JmsTool.TOPIC, JmsTool.TX_QUEUE, JmsTool.TX_TOPIC, "
                     + "JmsTool.DURABLE_TOPIC, JmsTool.DURABLE_TX_TOPIC, JmsTool.FACTORIES_ONLY, "
@@ -413,8 +400,7 @@ public class JmsTool {
                     jndiLookupName = DURABLETOPICCONNECTIONFACTORY;
                 } else {
                     TestUtil.logTrace("Getting Durable TopicConnectionFactory " + TCKDURABLETOPICCONNECTIONFACTORY);
-                    tcf = (TopicConnectionFactory)
-                            jmsObjects.getTopicConnectionFactory(TCKDURABLETOPICCONNECTIONFACTORY);
+                    tcf = (TopicConnectionFactory) jmsObjects.getTopicConnectionFactory(TCKDURABLETOPICCONNECTIONFACTORY);
                     jndiLookupName = TCKDURABLETOPICCONNECTIONFACTORY;
                 }
 
@@ -574,8 +560,7 @@ public class JmsTool {
                     eMsg = "Failed to lookup TopicConnectionFactory using name " + DURABLETOPICCONNECTIONFACTORY;
                 } else {
                     TestUtil.logTrace("Getting Durable TopicConnectionFactory " + TCKDURABLETOPICCONNECTIONFACTORY);
-                    tcf = (TopicConnectionFactory)
-                            jmsObjects.getTopicConnectionFactory(TCKDURABLETOPICCONNECTIONFACTORY);
+                    tcf = (TopicConnectionFactory) jmsObjects.getTopicConnectionFactory(TCKDURABLETOPICCONNECTIONFACTORY);
                     eMsg = "Failed to lookup TopicConnectionFactory using name " + TCKDURABLETOPICCONNECTIONFACTORY;
                 }
             } else {
@@ -862,38 +847,38 @@ public class JmsTool {
     }
 
     /**********************************************************************************
-     * Creates a new Topic for tests that require more than the Topic. The topic
-     * should be setup by the administrator
+     * Creates a new Topic for tests that require more than the Topic. The topic should be setup by the administrator
      *
-     * @param String
-     *          the topic name
+     * @param String the topic name
      **********************************************************************************/
     public Topic createNewTopic(String topicName) throws Exception {
         Topic testT = null;
-        if (mode.equals("jakartaEE")) testT = (Topic) jndiContext.lookup("java:comp/env/jms/" + topicName);
-        else testT = (Topic) jmsObjects.getTopic(topicName);
+        if (mode.equals("jakartaEE"))
+            testT = (Topic) jndiContext.lookup("java:comp/env/jms/" + topicName);
+        else
+            testT = (Topic) jmsObjects.getTopic(topicName);
 
         return testT;
     }
 
     /**********************************************************************************
-     * Creates a new Queue for tests that require more than the Queue. The queue
-     * should already be setup by the administrator
+     * Creates a new Queue for tests that require more than the Queue. The queue should already be setup by the
+     * administrator
      *
-     * @param String
-     *          the queue name
+     * @param String the queue name
      **********************************************************************************/
     public Queue createNewQueue(String queueName) throws Exception {
         Queue testQ = null;
-        if (mode.equals("jakartaEE")) testQ = (Queue) jndiContext.lookup("java:comp/env/jms/" + queueName);
-        else testQ = (Queue) jmsObjects.getQueue(queueName);
+        if (mode.equals("jakartaEE"))
+            testQ = (Queue) jndiContext.lookup("java:comp/env/jms/" + queueName);
+        else
+            testQ = (Queue) jmsObjects.getQueue(queueName);
         return testQ;
     }
 
     /**********************************************************************************
-     * Close all resources created by JmsTool except connection resource which
-     * gets closed in the closeAllConnections() or closeDefaultConnections()
-     * methods.
+     * Close all resources created by JmsTool except connection resource which gets closed in the closeAllConnections() or
+     * closeDefaultConnections() methods.
      *
      * @exception Exception
      *
@@ -901,17 +886,20 @@ public class JmsTool {
     public void closeAllResources() throws Exception {
         // Close QUEUE resource objects
         try {
-            if (qSession != null) qSession.close();
+            if (qSession != null)
+                qSession.close();
         } catch (JMSException e) {
         }
 
         try {
-            if (qSender != null) qSender.close();
+            if (qSender != null)
+                qSender.close();
         } catch (JMSException e) {
         }
 
         try {
-            if (qReceiver != null) qReceiver.close();
+            if (qReceiver != null)
+                qReceiver.close();
         } catch (JMSException e) {
         }
 
@@ -921,17 +909,20 @@ public class JmsTool {
 
         // Close TOPIC resource objects
         try {
-            if (tSession != null) tSession.close();
+            if (tSession != null)
+                tSession.close();
         } catch (JMSException e) {
         }
 
         try {
-            if (tPublisher != null) tPublisher.close();
+            if (tPublisher != null)
+                tPublisher.close();
         } catch (JMSException e) {
         }
 
         try {
-            if (tSubscriber != null) tSubscriber.close();
+            if (tSubscriber != null)
+                tSubscriber.close();
         } catch (JMSException e) {
         }
 
@@ -941,15 +932,18 @@ public class JmsTool {
 
         // Close COMMON resource objects
         try {
-            if (sess != null) sess.close();
+            if (sess != null)
+                sess.close();
         } catch (JMSException e) {
         }
         try {
-            if (sender != null) sender.close();
+            if (sender != null)
+                sender.close();
         } catch (JMSException e) {
         }
         try {
-            if (receiver != null) receiver.close();
+            if (receiver != null)
+                receiver.close();
         } catch (JMSException e) {
         }
 
@@ -963,8 +957,7 @@ public class JmsTool {
      *
      * @exception Exception
      *
-     * @see It is allowable to do a second call to close connection per the JMS
-     *      Specification
+     * @see It is allowable to do a second call to close connection per the JMS Specification
      **********************************************************************************/
     public void closeAllConnections(ArrayList connections) throws Exception {
         try {
@@ -985,8 +978,7 @@ public class JmsTool {
     /**********************************************************************************
      * Close default connections
      *
-     * @see It is allowable to do a second call to close connection per the JMS
-     *      Specification
+     * @see It is allowable to do a second call to close connection per the JMS Specification
      **********************************************************************************/
     public void closeDefaultConnections() throws Exception {
         try {
@@ -1007,9 +999,8 @@ public class JmsTool {
         } catch (JMSException e) {
 
             /*
-             * Connection may already be closed by test method. If it is another type
-             * of excption, pass it up to the calling method. Should only catch
-             * JMSException if there is a regression in the RI.
+             * Connection may already be closed by test method. If it is another type of excption, pass it up to the calling method.
+             * Should only catch JMSException if there is a regression in the RI.
              */
             TestUtil.logErr("Problem closing connections", e);
         }
@@ -1044,8 +1035,10 @@ public class JmsTool {
 
     public Destination getQueueDestination(String lookup) throws Exception {
         Destination dest = null;
-        if (mode.equals("jakartaEE")) dest = (Destination) jndiContext.lookup("java:comp/env/jms/" + lookup);
-        else dest = (Destination) jmsObjects.getQueue(lookup);
+        if (mode.equals("jakartaEE"))
+            dest = (Destination) jndiContext.lookup("java:comp/env/jms/" + lookup);
+        else
+            dest = (Destination) jmsObjects.getQueue(lookup);
         return dest;
     }
 
@@ -1078,19 +1071,18 @@ public class JmsTool {
 
     public Destination getTopicDestination(String lookup) throws Exception {
         Destination dest = null;
-        if (mode.equals("jakartaEE")) dest = (Destination) jndiContext.lookup("java:comp/env/jms/" + lookup);
-        else dest = (Destination) jmsObjects.getTopic(lookup);
+        if (mode.equals("jakartaEE"))
+            dest = (Destination) jndiContext.lookup("java:comp/env/jms/" + lookup);
+        else
+            dest = (Destination) jmsObjects.getTopic(lookup);
         return dest;
     }
 
     /**********************************************************************************
-     * Use this method at cleanup time to remove any connections and messages that
-     * have remained on the queue.
+     * Use this method at cleanup time to remove any connections and messages that have remained on the queue.
      *
-     * @param ArrayList
-     *          connections list of open connections
-     * @param ArrayList
-     *          queues list of queues to flush
+     * @param ArrayList connections list of open connections
+     * @param ArrayList queues list of queues to flush
      **********************************************************************************/
     public void doClientQueueTestCleanup(ArrayList connections, ArrayList queues) {
         try {
@@ -1110,8 +1102,7 @@ public class JmsTool {
     }
 
     /**********************************************************************************
-     * Use this method at cleanup time to remove any messages that have remained
-     * on the queue.
+     * Use this method at cleanup time to remove any messages that have remained on the queue.
      **********************************************************************************/
     public void flushDestination() throws Exception {
         Connection cC = null;
@@ -1158,7 +1149,8 @@ public class JmsTool {
                     // Should be last message (try receiveNoWait() one more time to make
                     // sure it is)
                     rmsg = receiver.receiveNoWait();
-                    if (rmsg != null) numMsgsFlushed++;
+                    if (rmsg != null)
+                        numMsgsFlushed++;
                 } else {
                     numMsgsFlushed++;
                 }
@@ -1183,11 +1175,9 @@ public class JmsTool {
     }
 
     /**********************************************************************************
-     * Use this method at cleanup time to remove any messages that have remained
-     * on the queue.
+     * Use this method at cleanup time to remove any messages that have remained on the queue.
      *
-     * @param Queue
-     *          qToFlush[] QUEUE
+     * @param Queue qToFlush[] QUEUE
      **********************************************************************************/
     public void flushQueue(ArrayList qToFlush) throws Exception {
         QueueConnection qc = null;
@@ -1306,13 +1296,11 @@ public class JmsTool {
     }
 
     /**********************************************************************************
-     * Returns a the default Connection. The returned Connection object must be
-     * explicitly cast into a QueueConnection or TopicConnection.
+     * Returns a the default Connection. The returned Connection object must be explicitly cast into a QueueConnection or
+     * TopicConnection.
      *
-     * @param int
-     *          type (QUEUE type or TOPIC type)
-     * @return Connection from the default Queue or Topic or Common
-     *         ConnectionFactory
+     * @param int type (QUEUE type or TOPIC type)
+     * @return Connection from the default Queue or Topic or Common ConnectionFactory
      **********************************************************************************/
     private Connection createNewConnection(int type, String username, String password) throws Exception {
         QueueConnection qC = null;
@@ -1357,12 +1345,10 @@ public class JmsTool {
     }
 
     /**********************************************************************************
-     * Returns a new Queue Connection for tests that require more than the default
-     * connection. The returned Connection object must be explicitly cast into a
-     * QueueConnection.
+     * Returns a new Queue Connection for tests that require more than the default connection. The returned Connection
+     * object must be explicitly cast into a QueueConnection.
      *
-     * @param int
-     *          type (QUEUE type)
+     * @param int type (QUEUE type)
      * @return Connection from the default ConnectionFactory
      **********************************************************************************/
     public Connection getNewConnection(int type, String username, String password) throws Exception {
@@ -1391,12 +1377,10 @@ public class JmsTool {
     }
 
     /**********************************************************************************
-     * Returns a new Topic Connection for tests that require more than the default
-     * connection. The returned Connection object must be explicitly cast into a
-     * TopicConnection.
+     * Returns a new Topic Connection for tests that require more than the default connection. The returned Connection
+     * object must be explicitly cast into a TopicConnection.
      *
-     * @param int
-     *          type (TOPIC type)
+     * @param int type (TOPIC type)
      * @return Connection from the default ConnectionFactory
      **********************************************************************************/
     public Connection getNewConnection(int type, String username, String password, String lookup) throws Exception {
@@ -1406,7 +1390,8 @@ public class JmsTool {
         if ((type == TOPIC) || (type == TX_TOPIC)) {
             if (mode.equals("jakartaEE"))
                 tcf2 = (TopicConnectionFactory) jndiContext.lookup("java:comp/env/jms/" + lookup);
-            else tcf2 = (TopicConnectionFactory) jmsObjects.getTopicConnectionFactory(lookup);
+            else
+                tcf2 = (TopicConnectionFactory) jmsObjects.getTopicConnectionFactory(lookup);
             if (username.equals(JMSDEFAULT) || password.equals(JMSDEFAULT)) {
                 tC = tcf2.createTopicConnection();
                 return tC;
@@ -1425,7 +1410,8 @@ public class JmsTool {
         } else if ((type == COMMON_T) || (type == COMMON_TTX)) {
             if (mode.equals("jakartaEE"))
                 cf2 = (TopicConnectionFactory) jndiContext.lookup("java:comp/env/jms/" + lookup);
-            else cf2 = (TopicConnectionFactory) jmsObjects.getTopicConnectionFactory(lookup);
+            else
+                cf2 = (TopicConnectionFactory) jmsObjects.getTopicConnectionFactory(lookup);
             if (username.equals(JMSDEFAULT) || password.equals(JMSDEFAULT)) {
                 cC = cf2.createConnection();
                 return cC;
@@ -1439,12 +1425,10 @@ public class JmsTool {
     }
 
     /**********************************************************************************
-     * Returns a new Connection for tests that require more than the default
-     * connection. The returned Connection object must be explicitly cast into a
-     * QueueConnection or TopicConnection.
+     * Returns a new Connection for tests that require more than the default connection. The returned Connection object must
+     * be explicitly cast into a QueueConnection or TopicConnection.
      *
-     * @param int
-     *          type (QUEUE type or TOPIC type)
+     * @param int type (QUEUE type or TOPIC type)
      * @return Connection from the default Queue or Topic ConnectionFactory
      **********************************************************************************/
     public Connection getNewConnection(int type) throws Exception {
@@ -1461,8 +1445,7 @@ public class JmsTool {
     /**********************************************************************************
      * flushDestinationJMSContext Flush destination Queue using JMSContext
      *
-     * Use this method at cleanup time to remove any messages that have remained
-     * on the queue.
+     * Use this method at cleanup time to remove any messages that have remained on the queue.
      **********************************************************************************/
     public void flushDestinationJMSContext() throws Exception {
         JMSConsumer consumer = null;
@@ -1514,12 +1497,9 @@ public class JmsTool {
     /**********************************************************************************
      * createNewJMSContext Return a new JMSContext.
      *
-     * @param int
-     *          type (QUEUE type or TOPIC type)
-     * @param String
-     *          (username)
-     * @param String
-     *          (password)
+     * @param int type (QUEUE type or TOPIC type)
+     * @param String (username)
+     * @param String (password)
      * @return JMSContext
      **********************************************************************************/
     private JMSContext createNewJMSContext(int type, String username, String password) throws Exception {

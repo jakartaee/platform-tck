@@ -35,13 +35,11 @@ public class Customer1 implements Serializable {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "CUST_RETAIL",
-            joinColumns = @JoinColumn(name = "CUSTOMERID"),
-            inverseJoinColumns = @JoinColumn(name = "RETAILID"))
+    @JoinTable(name = "CUST_RETAIL", joinColumns = @JoinColumn(name = "CUSTOMERID"), inverseJoinColumns = @JoinColumn(name = "RETAILID"))
     private Set<RetailOrder1> orders = new HashSet();
 
-    public Customer1() {}
+    public Customer1() {
+    }
 
     public Long getId() {
         return id;

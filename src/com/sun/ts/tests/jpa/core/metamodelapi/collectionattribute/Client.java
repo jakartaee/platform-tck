@@ -27,7 +27,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -77,9 +78,8 @@ public class Client extends PMClientBase {
                 }
 
                 /*
-                 * Type t = colAttrib.getElementType(); if (t != null) {
-                 * TestUtil.logTrace("element Type  = " + t.getJavaType()); pass = true;
-                 * }
+                 * Type t = colAttrib.getElementType(); if (t != null) { TestUtil.logTrace("element Type  = " + t.getJavaType()); pass =
+                 * true; }
                  */
             }
         }
@@ -115,8 +115,7 @@ public class Client extends PMClientBase {
 
                 TestUtil.logTrace("collection Element Type = "
                         + colAttrib.getElementType().getJavaType().getName());
-                String elementTypeName =
-                        colAttrib.getElementType().getJavaType().getName();
+                String elementTypeName = colAttrib.getElementType().getJavaType().getName();
                 if (elementTypeName.equals(
                         "com.sun.ts.tests.jpa.core.metamodelapi.collectionattribute.Uni1XMProject")) {
                     TestUtil.logTrace("Received Expected Element type = " + elementTypeName);

@@ -38,9 +38,11 @@ public class RemoveNotRetainBean implements RemoveNotRetainIF {
     @Resource(name = "sessionContext")
     private SessionContext sessionContext;
 
-    public RemoveNotRetainBean() {}
+    public RemoveNotRetainBean() {
+    }
 
-    public void ejbCreate() throws CreateException {}
+    public void ejbCreate() throws CreateException {
+    }
 
     @Init
     public void create() {
@@ -58,7 +60,8 @@ public class RemoveNotRetainBean implements RemoveNotRetainIF {
         throw new AtUncheckedAppException("This bean should be removed despite this exception");
     }
 
-    public void hi() {}
+    public void hi() {
+    }
 
     // @Remove(retainIfException=true)
     public void alwaysRemoveAfterSystemException() {

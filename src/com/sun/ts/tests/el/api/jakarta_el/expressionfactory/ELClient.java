@@ -57,8 +57,7 @@ public class ELClient extends ServiceEETest {
      * @testName: newInstanceTest
      *
      * @assertion_ids: EL:JAVADOC:119; EL:JAVADOC:120
-     * @test_Strategy: Verify that an ExpressionFactory can be instantiated with
-     *                 the newInstance() API.
+     * @test_Strategy: Verify that an ExpressionFactory can be instantiated with the newInstance() API.
      */
     public void newInstanceTest() throws Fault {
 
@@ -79,9 +78,8 @@ public class ELClient extends ServiceEETest {
      * @testName: createValueExpressionTest
      *
      * @assertion_ids: EL:JAVADOC:63
-     * @test_Strategy: Verify that the ExpressionFactory can handle the types of
-     *                 input specified in the javadoc when invoking the
-     *                 createValueExpression(ELContext, String, Class) method.
+     * @test_Strategy: Verify that the ExpressionFactory can handle the types of input specified in the javadoc when
+     * invoking the createValueExpression(ELContext, String, Class) method.
      */
     public void createValueExpressionTest() throws Fault {
 
@@ -89,22 +87,22 @@ public class ELClient extends ServiceEETest {
 
         String[] exprStr = {
 
-            // $ delimiter
-            "${employee.lastname}",
+                // $ delimiter
+                "${employee.lastname}",
 
-            // # delimiter
-            "#{employee.lastname}",
+                // # delimiter
+                "#{employee.lastname}",
 
-            // literal text
-            "John Doe",
+                // literal text
+                "John Doe",
 
-            // multiple expressions using the same delimiter
-            "${employee.firstname}${employee.lastname}",
-            "#{employee.firstname}#{employee.lastname}",
+                // multiple expressions using the same delimiter
+                "${employee.firstname}${employee.lastname}",
+                "#{employee.firstname}#{employee.lastname}",
 
-            // mixed literal text and expressions using the same delimiter
-            "Name: ${employee.firstname}${employee.lastname}",
-            "Name: #{employee.firstname}#{employee.lastname}"
+                // mixed literal text and expressions using the same delimiter
+                "Name: ${employee.firstname}${employee.lastname}",
+                "Name: #{employee.firstname}#{employee.lastname}"
         };
 
         ValueExpression vexp = null;
@@ -139,15 +137,15 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL);
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL);
     }
 
     /**
      * @testName: createValueExpression2Test
      *
      * @assertion_ids: EL:JAVADOC:64
-     * @test_Strategy: Verify the functionality of the
-     *                 createValueExpression(Object, Class) method.
+     * @test_Strategy: Verify the functionality of the createValueExpression(Object, Class) method.
      */
     public void createValueExpression2Test() throws Fault {
 
@@ -156,14 +154,14 @@ public class ELClient extends ServiceEETest {
         // test cases mix coercable and non-coercable object/type
         // instances
         ObjectAndType[] testCases = {
-            new ObjectAndType("some string", String.class),
-            new ObjectAndType(null, String.class),
-            new ObjectAndType(Integer.valueOf(1), String.class),
-            new ObjectAndType(Double.valueOf(1.5d), Integer.class),
-            new ObjectAndType("10000", Long.class),
-            new ObjectAndType(Integer.valueOf(1), Boolean.class),
-            new ObjectAndType(Boolean.TRUE, Character.class),
-            new ObjectAndType(Integer.valueOf(1), Class.class)
+                new ObjectAndType("some string", String.class),
+                new ObjectAndType(null, String.class),
+                new ObjectAndType(Integer.valueOf(1), String.class),
+                new ObjectAndType(Double.valueOf(1.5d), Integer.class),
+                new ObjectAndType("10000", Long.class),
+                new ObjectAndType(Integer.valueOf(1), Boolean.class),
+                new ObjectAndType(Boolean.TRUE, Character.class),
+                new ObjectAndType(Integer.valueOf(1), Class.class)
         };
 
         ExpressionFactory expFactory = ExpressionFactory.newInstance();
@@ -178,17 +176,16 @@ public class ELClient extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL);
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL);
     }
 
     /**
      * @testName: createValueExpressionELExceptionTest
      *
      * @assertion_ids: EL:JAVADOC:63
-     * @test_Strategy: Verify that
-     *                 ExpressionFactory.createValueExpression(ELContext, String,
-     *                 Class) throws an ELException for mixed delimiter
-     *                 expressions and expressions with syntactical errors.
+     * @test_Strategy: Verify that ExpressionFactory.createValueExpression(ELContext, String, Class) throws an ELException
+     * for mixed delimiter expressions and expressions with syntactical errors.
      */
     public void createValueExpressionELExceptionTest() throws Fault {
 
@@ -196,25 +193,25 @@ public class ELClient extends ServiceEETest {
 
         String[] exprStr = {
 
-            // $ delimiter with missing bracket
-            "${employee.lastname",
+                // $ delimiter with missing bracket
+                "${employee.lastname",
 
-            // # delimiter with incomplete [] operation
-            "#{employee[lastname}",
+                // # delimiter with incomplete [] operation
+                "#{employee[lastname}",
 
-            // invalid operation
-            "${ 5 ! 3 }",
+                // invalid operation
+                "${ 5 ! 3 }",
 
-            // binary operation with missing operand
-            "${ 5 + }",
+                // binary operation with missing operand
+                "${ 5 + }",
 
-            // multiple expressions with mixed delimiters
-            "${employee.firstname}#{employee.lastname}",
-            "#{employee.firstname}${employee.lastname}",
+                // multiple expressions with mixed delimiters
+                "${employee.firstname}#{employee.lastname}",
+                "#{employee.firstname}${employee.lastname}",
 
-            // mixed literal text and expressions with mixed delimiters
-            "Name: ${employee.firstname}#{employee.lastname}",
-            "Name: #{employee.firstname}${employee.lastname}"
+                // mixed literal text and expressions with mixed delimiters
+                "Name: ${employee.firstname}#{employee.lastname}",
+                "Name: #{employee.firstname}${employee.lastname}"
         };
 
         try {
@@ -240,18 +237,17 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL);
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL);
     }
 
     /**
      * @testName: createMethodExpressionTest
      *
      * @assertion_ids: EL:JAVADOC:62
-     * @test_Strategy: Verify that the ExpressionFactory can handle the types of
-     *                 input specified in the javadoc when invoking the
-     *                 createMethodExpression(ELContext, String, Class) method,
-     *                 with the restriction that only expressions that share the
-     *                 same syntax as an lvalue are allowed (EL Spec 1.2.1.2).
+     * @test_Strategy: Verify that the ExpressionFactory can handle the types of input specified in the javadoc when
+     * invoking the createMethodExpression(ELContext, String, Class) method, with the restriction that only expressions that
+     * share the same syntax as an lvalue are allowed (EL Spec 1.2.1.2).
      */
     public void createMethodExpressionTest() throws Fault {
 
@@ -259,14 +255,14 @@ public class ELClient extends ServiceEETest {
 
         String[] exprStr = {
 
-            // $ delimiter
-            "${add}", "${vect.add}", "${vect[add]}",
+                // $ delimiter
+                "${add}", "${vect.add}", "${vect[add]}",
 
-            // # delimiter
-            "#{add}", "#{vect.add}", "#{vect[add]}",
+                // # delimiter
+                "#{add}", "#{vect.add}", "#{vect[add]}",
 
-            // literal text
-            "add"
+                // literal text
+                "add"
         };
 
         MethodExpression mexp = null;
@@ -302,7 +298,8 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL);
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL);
     }
 
     /**
@@ -310,9 +307,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:63; EL:JAVADOC:253
      *
-     * @test_Strategy: Verify that ExpressionFactory.createMethodExpression()
-     *                 throws an ELException for expressions with syntactical
-     *                 errors, and for expressions that are not lvalues.
+     * @test_Strategy: Verify that ExpressionFactory.createMethodExpression() throws an ELException for expressions with
+     * syntactical errors, and for expressions that are not lvalues.
      */
     public void createMethodExpressionELExceptionTest() throws Fault {
 
@@ -320,27 +316,27 @@ public class ELClient extends ServiceEETest {
 
         String[] exprStr = {
 
-            // $ delimiter with missing bracket
-            "${vect.add",
+                // $ delimiter with missing bracket
+                "${vect.add",
 
-            // # delimiter with incomplete [] operation
-            "#{vect[add}",
+                // # delimiter with incomplete [] operation
+                "#{vect[add}",
 
-            // Expressions that are not lvalues
-            // constant value
-            "${ 5 }",
+                // Expressions that are not lvalues
+                // constant value
+                "${ 5 }",
 
-            // unary operation
-            "${ -A }",
+                // unary operation
+                "${ -A }",
 
-            // binary operation
-            "${ A + B }",
+                // binary operation
+                "${ A + B }",
 
-            // multiple expressions
-            "${vect.remove}${vect.add}",
-            "#{vect.remove}#{vect.add}",
-            "${vect.remove}#{vect.add}",
-            "#{vect.remove}${vect.add}"
+                // multiple expressions
+                "${vect.remove}${vect.add}",
+                "#{vect.remove}#{vect.add}",
+                "${vect.remove}#{vect.add}",
+                "#{vect.remove}${vect.add}"
         };
 
         Class<?>[] paramTypes = {};
@@ -369,19 +365,17 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL);
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL);
     }
 
     /**
      * @testName: createExpressionNPETest
      *
-     * @assertion_ids: EL:JAVADOC:62; EL:JAVADOC:63; EL:JAVADOC:64;
-     *                 EL:JAVADOC:253; EL:JAVADOC:254; EL:JAVADOC:256
+     * @assertion_ids: EL:JAVADOC:62; EL:JAVADOC:63; EL:JAVADOC:64; EL:JAVADOC:253; EL:JAVADOC:254; EL:JAVADOC:256
      *
-     * @test_Strategy: Verify that ExpressionFactory.createValueExpression() and
-     *                 ExpressionFactory.createMethodExpression() throw a
-     *                 NullPointerException under the conditions stated in the
-     *                 javadoc.
+     * @test_Strategy: Verify that ExpressionFactory.createValueExpression() and ExpressionFactory.createMethodExpression()
+     * throw a NullPointerException under the conditions stated in the javadoc.
      */
     public void createExpressionNPETest() throws Fault {
         ExpressionFactory expFactory = ExpressionFactory.newInstance();
@@ -391,45 +385,45 @@ public class ELClient extends ServiceEETest {
         ELTestUtil.checkForNPE(
                 expFactory,
                 "createValueExpression",
-                new Class<?>[] {ELContext.class, String.class, Class.class},
-                new Object[] {context, "function", null});
+                new Class<?>[] { ELContext.class, String.class, Class.class },
+                new Object[] { context, "function", null });
 
         TestUtil.logMsg("Testing: ELContext.createValueExpression(instance, " + "null)");
         ELTestUtil.checkForNPE(
-                expFactory, "createValueExpression", new Class<?>[] {Object.class, Class.class}, new Object[] {
-                    "function", null
+                expFactory, "createValueExpression", new Class<?>[] { Object.class, Class.class }, new Object[] {
+                        "function", null
                 });
 
         TestUtil.logMsg("Testing: ELContext.createMethodExpression(context, " + "instance, returnTypes, null)");
         ELTestUtil.checkForNPE(
                 expFactory,
                 "createMethodExpression",
-                new Class<?>[] {ELContext.class, String.class, Class.class, Class[].class},
-                new Object[] {context, "${foo}", Object.class, null});
+                new Class<?>[] { ELContext.class, String.class, Class.class, Class[].class },
+                new Object[] { context, "${foo}", Object.class, null });
     }
 
     /**
      * @testName: coerceToTypeTest
      *
      * @assertion_ids: EL:JAVADOC:61
-     * @test_Strategy: Verify that the coerceToType() method coerces an object to
-     *                 a specific type according to the EL type conversion rules.
+     * @test_Strategy: Verify that the coerceToType() method coerces an object to a specific type according to the EL type
+     * conversion rules.
      */
     public void coerceToTypeTest() throws Fault {
 
         boolean pass = true;
 
         ObjectAndType[] testCases = {
-            new ObjectAndType("some string", String.class),
-            new ObjectAndType(null, String.class),
-            new ObjectAndType(Integer.valueOf(1), String.class),
-            new ObjectAndType(Double.valueOf(1.5d), String.class),
-            new ObjectAndType(Boolean.FALSE, String.class),
-            new ObjectAndType(Double.valueOf(1.5d), Integer.class),
-            new ObjectAndType(Integer.valueOf(1), Float.class),
-            new ObjectAndType("10000", Long.class),
-            new ObjectAndType("no value", Boolean.class),
-            new ObjectAndType(null, null)
+                new ObjectAndType("some string", String.class),
+                new ObjectAndType(null, String.class),
+                new ObjectAndType(Integer.valueOf(1), String.class),
+                new ObjectAndType(Double.valueOf(1.5d), String.class),
+                new ObjectAndType(Boolean.FALSE, String.class),
+                new ObjectAndType(Double.valueOf(1.5d), Integer.class),
+                new ObjectAndType(Integer.valueOf(1), Float.class),
+                new ObjectAndType("10000", Long.class),
+                new ObjectAndType("no value", Boolean.class),
+                new ObjectAndType(null, null)
         };
 
         ExpressionFactory expFactory = ExpressionFactory.newInstance();
@@ -454,7 +448,8 @@ public class ELClient extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL);
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL);
     }
 
     /**
@@ -462,20 +457,19 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:61; EL:JAVADOC:251
      *
-     * @test_Strategy: Verify that the coerceToType() method throws an ELException
-     *                 for invalid type conversions.
+     * @test_Strategy: Verify that the coerceToType() method throws an ELException for invalid type conversions.
      */
     public void coerceToTypeELExceptionTest() throws Fault {
 
         boolean pass = true;
 
         ObjectAndType[] testCases = {
-            new ObjectAndType(Integer.valueOf(1), Boolean.class),
-            new ObjectAndType(Boolean.FALSE, Long.class),
-            new ObjectAndType(Boolean.TRUE, Character.class),
-            new ObjectAndType(true, Float.class),
-            new ObjectAndType("non-numeric string", Long.class),
-            new ObjectAndType(Integer.valueOf(1), Class.class)
+                new ObjectAndType(Integer.valueOf(1), Boolean.class),
+                new ObjectAndType(Boolean.FALSE, Long.class),
+                new ObjectAndType(Boolean.TRUE, Character.class),
+                new ObjectAndType(true, Float.class),
+                new ObjectAndType("non-numeric string", Long.class),
+                new ObjectAndType(Integer.valueOf(1), Class.class)
         };
 
         ExpressionFactory expFactory = ExpressionFactory.newInstance();
@@ -496,7 +490,8 @@ public class ELClient extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL);
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL);
     }
 
     private static class ObjectAndType {

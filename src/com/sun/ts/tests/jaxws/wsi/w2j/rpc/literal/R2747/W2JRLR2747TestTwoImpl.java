@@ -22,12 +22,7 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2747;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "W2JRLR2747TestTwoPort",
-        serviceName = "W2JRLR2747TestService",
-        targetNamespace = "http://w2jrlr2747testservice.org/W2JRLR2747TestService.wsdl",
-        wsdlLocation = "WEB-INF/wsdl/W2JRLR2747TestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2747.W2JRLR2747TestTwo")
+@WebService(portName = "W2JRLR2747TestTwoPort", serviceName = "W2JRLR2747TestService", targetNamespace = "http://w2jrlr2747testservice.org/W2JRLR2747TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2747TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2747.W2JRLR2747TestTwo")
 public class W2JRLR2747TestTwoImpl implements W2JRLR2747TestTwo {
     public NonNullString echoString(NonNullString str) {
         return str;

@@ -28,7 +28,8 @@ public class TCKHttpUpgradeHandler implements HttpUpgradeHandler {
 
     private String delimiter = "/";
 
-    public TCKHttpUpgradeHandler() {}
+    public TCKHttpUpgradeHandler() {
+    }
 
     public void init(WebConnection wc) {
         try {

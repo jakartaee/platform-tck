@@ -89,8 +89,7 @@ public final class GetInitParam_Filter implements Filter {
         } else {
 
             String param = "GetInitParam_Filter_attribute1";
-            String expected =
-                    "com.sun.ts.tests.servlet.api.jakarta_servlet.filterconfig.GetInitParam_Filter.SERVLET_MAPPED1";
+            String expected = "com.sun.ts.tests.servlet.api.jakarta_servlet.filterconfig.GetInitParam_Filter.SERVLET_MAPPED1";
             String result = filterConfig.getInitParameter(param);
 
             if (expected.equals(result)) {
@@ -106,7 +105,8 @@ public final class GetInitParam_Filter implements Filter {
     }
 
     // remove the filter configuration object for this filter.
-    public void destroy() {}
+    public void destroy() {
+    }
 
     // initialize the filter configuration object for this filter.
 

@@ -33,8 +33,8 @@ public class GetHttpSessionConfigurator extends Configurator {
     }
 
     /*
-     * The value of this key is set to be checked on a client and the value should
-     * reflect boolean value of having httpSession or not
+     * The value of this key is set to be checked on a client and the value should reflect boolean value of having
+     * httpSession or not
      */
     static final String RESPONSE_KEY = "hasHttpSession";
 }

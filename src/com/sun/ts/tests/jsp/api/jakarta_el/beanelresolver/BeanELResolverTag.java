@@ -42,7 +42,8 @@ public class BeanELResolverTag extends SimpleTagSupport {
         try {
             boolean pass = ResolverTest.testELResolver(context, beanResolver, bean, property, "good", buf, false);
             out.println(buf.toString());
-            if (pass == true) out.println("Test PASSED");
+            if (pass == true)
+                out.println("Test PASSED");
         } catch (Throwable t) {
             out.println("contents of buffer:\n" + buf.toString());
             JspTestUtil.handleThrowable(t, out, "BeanELResolverTag");

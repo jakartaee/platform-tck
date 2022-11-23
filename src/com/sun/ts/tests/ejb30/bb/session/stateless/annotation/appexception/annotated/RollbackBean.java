@@ -28,6 +28,7 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "RollbackBean")
-@Remote({RollbackIF.class})
+@Remote({ RollbackIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
-public class RollbackBean extends RollbackBeanBase {}
+public class RollbackBean extends RollbackBeanBase {
+}

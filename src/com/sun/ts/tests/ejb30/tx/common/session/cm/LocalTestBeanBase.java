@@ -36,9 +36,8 @@ import jakarta.transaction.UserTransaction;
 import java.util.logging.Level;
 
 /**
- * A test bean superclass for ejb lite where only local ejb refs are used. It
- * does not implement TestIF to avoid having to implementing all test methods
- * that are only applicable in remote case.
+ * A test bean superclass for ejb lite where only local ejb refs are used. It does not implement TestIF to avoid having
+ * to implementing all test methods that are only applicable in remote case.
  */
 public abstract class LocalTestBeanBase {
     @EJB(name = "localTxBean")

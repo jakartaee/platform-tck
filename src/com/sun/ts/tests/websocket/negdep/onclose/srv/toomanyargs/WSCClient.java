@@ -45,19 +45,15 @@ public class WSCClient extends NegativeDeploymentClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.5-4;
      *
-     * @test_Strategy: In both cases, a deployment error raised during the
-     * deployment process must halt the deployment of the application, any well
-     * formed endpoints deployed prior to the error being raised must be removed
-     * from service and no more websocket endpoints from that application may be
-     * deployed by the container, even if they are valid.
+     * @test_Strategy: In both cases, a deployment error raised during the deployment process must halt the deployment of
+     * the application, any well formed endpoints deployed prior to the error being raised must be removed from service and
+     * no more websocket endpoints from that application may be deployed by the container, even if they are valid.
      *
-     * Any Java class using this annotation on a method that does not follow these
-     * rules, or that uses this annotation on more than one method may not be
-     * deployed by the implementation and the error reported to the deployer.
-     * [WSC-4.5-4]
+     * Any Java class using this annotation on a method that does not follow these rules, or that uses this annotation on
+     * more than one method may not be deployed by the implementation and the error reported to the deployer. [WSC-4.5-4]
      *
-     * To verify the test fails when the deployment was successful, remove
-     * Exception type argument of @OnClose in OnCloseServerEndpoint
+     * To verify the test fails when the deployment was successful, remove Exception type argument of @OnClose in
+     * OnCloseServerEndpoint
      */
     public void tooManyArgumentsOnCloseRemovesAllEndpointsTest() throws Fault {
         setProperty(Property.CONTENT, "anything");
@@ -70,7 +66,8 @@ public class WSCClient extends NegativeDeploymentClient {
             // DeploymentException
         }
         String response = getResponseAsString();
-        if ("anything".equals(response)) throwValidEndpointMustBeRemoved();
+        if ("anything".equals(response))
+            throwValidEndpointMustBeRemoved();
     }
 
     /*
@@ -78,19 +75,15 @@ public class WSCClient extends NegativeDeploymentClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.5-4;
      *
-     * @test_Strategy: In both cases, a deployment error raised during the
-     * deployment process must halt the deployment of the application, any well
-     * formed endpoints deployed prior to the error being raised must be removed
-     * from service and no more websocket endpoints from that application may be
-     * deployed by the container, even if they are valid.
+     * @test_Strategy: In both cases, a deployment error raised during the deployment process must halt the deployment of
+     * the application, any well formed endpoints deployed prior to the error being raised must be removed from service and
+     * no more websocket endpoints from that application may be deployed by the container, even if they are valid.
      *
-     * Any Java class using this annotation on a method that does not follow these
-     * rules, or that uses this annotation on more than one method may not be
-     * deployed by the implementation and the error reported to the deployer.
-     * [WSC-4.5-4]
+     * Any Java class using this annotation on a method that does not follow these rules, or that uses this annotation on
+     * more than one method may not be deployed by the implementation and the error reported to the deployer. [WSC-4.5-4]
      *
-     * To verify the test fails when the deployment was successful, remove
-     * Exception type argument of @OnClose in OnCloseServerEndpoint
+     * To verify the test fails when the deployment was successful, remove Exception type argument of @OnClose in
+     * OnCloseServerEndpoint
      */
     public void tooManyArgumentsOnCloseTest() throws Fault {
         setProperty(Property.CONTENT, "anything");
@@ -103,6 +96,7 @@ public class WSCClient extends NegativeDeploymentClient {
             // DeploymentException
         }
         String response = getResponseAsString();
-        if (response.contains("anything")) throwValidEndpointMustBeRemoved();
+        if (response.contains("anything"))
+            throwValidEndpointMustBeRemoved();
     }
 }

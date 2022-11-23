@@ -110,16 +110,16 @@ public class ServletClient extends HttpServlet {
      */
     private String printSessionMode(int sessionMode) {
         switch (sessionMode) {
-            case JMSContext.SESSION_TRANSACTED:
-                return "SESSION_TRANSACTED";
-            case JMSContext.AUTO_ACKNOWLEDGE:
-                return "AUTO_ACKNOWLEDGE";
-            case JMSContext.CLIENT_ACKNOWLEDGE:
-                return "CLIENT_ACKNOWLEDGE";
-            case JMSContext.DUPS_OK_ACKNOWLEDGE:
-                return "DUPS_OK_ACKNOWLEDGE";
-            default:
-                return "UNEXPECTED_SESSIONMODE";
+        case JMSContext.SESSION_TRANSACTED:
+            return "SESSION_TRANSACTED";
+        case JMSContext.AUTO_ACKNOWLEDGE:
+            return "AUTO_ACKNOWLEDGE";
+        case JMSContext.CLIENT_ACKNOWLEDGE:
+            return "CLIENT_ACKNOWLEDGE";
+        case JMSContext.DUPS_OK_ACKNOWLEDGE:
+            return "DUPS_OK_ACKNOWLEDGE";
+        default:
+            return "UNEXPECTED_SESSIONMODE";
         }
     }
 
@@ -161,26 +161,40 @@ public class ServletClient extends HttpServlet {
             String test = harnessProps.getProperty("TEST");
             System.out.println("doGet: test to execute is: " + test);
             if (test.equals("sendRecvQueueTestUsingCDIFromServlet")) {
-                if (sendRecvQueueTestUsingCDIFromServlet()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (sendRecvQueueTestUsingCDIFromServlet())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("sendRecvTopicTestUsingCDIFromServlet")) {
-                if (sendRecvTopicTestUsingCDIFromServlet()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (sendRecvTopicTestUsingCDIFromServlet())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("sendRecvUsingCDIDefaultFactoryFromServlet")) {
-                if (sendRecvUsingCDIDefaultFactoryFromServlet()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (sendRecvUsingCDIDefaultFactoryFromServlet())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("verifySessionModeOnCDIJMSContextFromServlet")) {
-                if (verifySessionModeOnCDIJMSContextFromServlet()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (verifySessionModeOnCDIJMSContextFromServlet())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("testRestrictionsOnCDIJMSContextFromServlet")) {
-                if (testRestrictionsOnCDIJMSContextFromServlet()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (testRestrictionsOnCDIJMSContextFromServlet())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("sendRecvQueueTestUsingCDIFromManagedBean")) {
-                if (sendRecvQueueTestUsingCDIFromManagedBean()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (sendRecvQueueTestUsingCDIFromManagedBean())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("sendRecvTopicTestUsingCDIFromManagedBean")) {
-                if (sendRecvTopicTestUsingCDIFromManagedBean()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (sendRecvTopicTestUsingCDIFromManagedBean())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else {
                 p.setProperty("TESTRESULT", "fail");
             }

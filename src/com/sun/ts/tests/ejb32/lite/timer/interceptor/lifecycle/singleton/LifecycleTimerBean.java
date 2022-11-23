@@ -24,7 +24,7 @@ import jakarta.interceptor.Interceptors;
 
 @Singleton
 // Interceptor1 is also configured as the default interceptor
-@Interceptors({Interceptor1.class, Interceptor2.class})
+@Interceptors({ Interceptor1.class, Interceptor2.class })
 public class LifecycleTimerBean extends LifecycleTimerBeanBase {
     @SuppressWarnings("unused")
     @PreDestroy

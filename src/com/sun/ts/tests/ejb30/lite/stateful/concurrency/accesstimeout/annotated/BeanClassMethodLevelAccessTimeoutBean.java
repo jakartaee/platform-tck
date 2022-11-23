@@ -27,8 +27,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
- * All @AccessTimeout metadata are specified in bean class itself at method
- * level.
+ * All @AccessTimeout metadata are specified in bean class itself at method level.
  */
 @Stateful
 public class BeanClassMethodLevelAccessTimeoutBean extends PlainAccessTimeoutBeanBase implements AccessTimeoutIF {

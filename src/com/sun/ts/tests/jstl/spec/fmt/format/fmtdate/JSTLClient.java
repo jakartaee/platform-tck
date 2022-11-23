@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,11 +62,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveFDValueTest
      *
-     * @assertion_ids: JSTL:SPEC:57; JSTL:SPEC:57.1; JSTL:SPEC:57.1.1;
-     * JSTL:SPEC:57.22
+     * @assertion_ids: JSTL:SPEC:57; JSTL:SPEC:57.1; JSTL:SPEC:57.1.1; JSTL:SPEC:57.22
      *
-     * @testStrategy: Validate that formatDate action can properly format dates
-     * provided as String literals or as java.util.Date objects.
+     * @testStrategy: Validate that formatDate action can properly format dates provided as String literals or as
+     * java.util.Date objects.
      */
     public void positiveFDValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDValueTest");
@@ -78,12 +75,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveFDTypeTest
      *
-     * @assertion_ids: JSTL:SPEC:57.2; JSTL:SPEC:57.2.1; JSTL:SPEC:57.2.2;
-     * JSTL:SPEC:57.2.3; JSTL:SPEC:57.19
+     * @assertion_ids: JSTL:SPEC:57.2; JSTL:SPEC:57.2.1; JSTL:SPEC:57.2.2; JSTL:SPEC:57.2.3; JSTL:SPEC:57.19
      *
-     * @testStrategy: Validate the following: - If type is not specified, only the
-     * date will be formatted. - The value is properly formatted when explicity
-     * using time, date, or both.
+     * @testStrategy: Validate the following: - If type is not specified, only the date will be formatted. - The value is
+     * properly formatted when explicity using time, date, or both.
      */
     public void positiveFDTypeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDTypeTest");
@@ -95,10 +90,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:57.3; JSTL:SPEC:57.3.1; JSTL:SPEC:57.20
      *
-     * @testStrategy: Validate the following: - If dateStyle is present it will
-     * only be applied when type is not specified, or is set to date or both. - If
-     * dateStyle is not present, the default value for dateStyle, default, will be
-     * applied when type is not specified, or is set to date or both.
+     * @testStrategy: Validate the following: - If dateStyle is present it will only be applied when type is not specified,
+     * or is set to date or both. - If dateStyle is not present, the default value for dateStyle, default, will be applied
+     * when type is not specified, or is set to date or both.
      */
     public void positiveFDDateStyleTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDDateStyleTest");
@@ -110,10 +104,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:57.4; JSTL:SPEC:57.4.1; JSTL:SPEC:57.21
      *
-     * @testStrategy: Validate the following: - If timeStyle is present is will
-     * only be applied when type is set to time or both. - If timeStyle is not
-     * present, the default value for timeStyle, default, will be applied when
-     * type is set to time or both.
+     * @testStrategy: Validate the following: - If timeStyle is present is will only be applied when type is set to time or
+     * both. - If timeStyle is not present, the default value for timeStyle, default, will be applied when type is set to
+     * time or both.
      */
     public void positiveFDTimeStyleTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDTimeStyleTest");
@@ -125,8 +118,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:57.5; JSTL:SPEC:57.18
      *
-     * @testStragegy: Validate that if pattern is present, it is properly applied
-     * to the date value provided.
+     * @testStragegy: Validate that if pattern is present, it is properly applied to the date value provided.
      */
     public void positiveFDPatternTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDPatternTest");
@@ -138,9 +130,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:57.6; JSTL:SPEC:57.6.1
      *
-     * @testStrategy: Validate that the timeZone attribute is able to accept
-     * String literals representing a time zone, as well as java.util.TimeZone
-     * objects.
+     * @testStrategy: Validate that the timeZone attribute is able to accept String literals representing a time zone, as
+     * well as java.util.TimeZone objects.
      */
     public void positiveFDTimeZoneTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDTimeZoneTest");
@@ -152,9 +143,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:57.6; JSTL:SPEC:57.6.1
      *
-     * @testStrategy: Validate that the if var is specified, the formatted value
-     * is not written to the current JspWriter, but is instead availabe via the
-     * PageContext and is of type String (validation performed via custom action).
+     * @testStrategy: Validate that the if var is specified, the formatted value is not written to the current JspWriter,
+     * but is instead availabe via the PageContext and is of type String (validation performed via custom action).
      */
     public void positiveFDVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDVarTest");
@@ -164,12 +154,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveFDScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:57.7; JSTL:SPEC:57.8; JSTL:SPEC:57.8.1;
-     * JSTL:SPEC:57.8.2; JSTL:SPEC:57.8.3; JSTL:SPEC:57.8.4; JSTL:SPEC:57.8.5
+     * @assertion_ids: JSTL:SPEC:57.7; JSTL:SPEC:57.8; JSTL:SPEC:57.8.1; JSTL:SPEC:57.8.2; JSTL:SPEC:57.8.3;
+     * JSTL:SPEC:57.8.4; JSTL:SPEC:57.8.5
      *
-     * @testStrategy: Validate that var is properly exported to the scopes as
-     * specified by the scope attribute. Also verify that if scope is not present,
-     * that var is exported to the page scope by default.
+     * @testStrategy: Validate that var is properly exported to the scopes as specified by the scope attribute. Also verify
+     * that if scope is not present, that var is exported to the page scope by default.
      */
     public void positiveFDScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDScopeTest");
@@ -181,9 +170,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:57.10
      *
-     * @testStrategy: Validate that if value is null and var, or scope and var is
-     * specified, the scoped variable referenced by var is removed. If var, or
-     * scope and var is not specified, no action occurs.
+     * @testStrategy: Validate that if value is null and var, or scope and var is specified, the scoped variable referenced
+     * by var is removed. If var, or scope and var is not specified, no action occurs.
      */
     public void positiveFDValueNullTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDValueNullTest");
@@ -195,9 +183,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:57.11
      *
-     * @testStrategy: Validate that if timeZone is null or empty, the value will
-     * be formatted as if it was present. In this case, the time will be formatted
-     * using the page's time zone of EST.
+     * @testStrategy: Validate that if timeZone is null or empty, the value will be formatted as if it was present. In this
+     * case, the time will be formatted using the page's time zone of EST.
      */
     public void positiveFDTimeZoneNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDTimeZoneNullEmptyTest");
@@ -209,12 +196,10 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:57.6; JSTL:SPEC:57.6.1; JSTL:SPEC:57.6.2
      *
-     * @testStrategy: Validate that following order for determining the time zone
-     * to be used when formatting date/times. In order of precedence: - If
-     * present, use the value of the timeZone attribute. - If wrapped in a
-     * <fmt:setTimeZone> action, use the timeZone of that action. - If no timeZone
-     * attribute present, and not wrapped by the fmt:setTimeZone action, use the
-     * value of the scoped attribute jakarta.servlet.jsp.jstl.fmt.timeZone
+     * @testStrategy: Validate that following order for determining the time zone to be used when formatting date/times. In
+     * order of precedence: - If present, use the value of the timeZone attribute. - If wrapped in a <fmt:setTimeZone>
+     * action, use the timeZone of that action. - If no timeZone attribute present, and not wrapped by the fmt:setTimeZone
+     * action, use the value of the scoped attribute jakarta.servlet.jsp.jstl.fmt.timeZone
      */
     public void positiveFDTimeZonePrecedenceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveFDTimeZonePrecedenceTest");
@@ -226,9 +211,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:46.1; JSTL:SPEC:92; JSTL:SPEC:92.5
      *
-     * @testStrategy: Validate that the action can properly format a date based on
-     * the default I18N localization context configuration variable
-     * jakarta.servlet.jsp.jstl.fmt.localizationContext.
+     * @testStrategy: Validate that the action can properly format a date based on the default I18N localization context
+     * configuration variable jakarta.servlet.jsp.jstl.fmt.localizationContext.
      */
     public void positiveFDLocalizationContextTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveFDLocalizationContextTest");
@@ -243,8 +227,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:50.2
      *
-     * @testStrategy: Validate that if no matching locale can be found, that the
-     * fallback locale will be used.
+     * @testStrategy: Validate that if no matching locale can be found, that the fallback locale will be used.
      */
     public void positiveFDFallbackLocaleTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveFDFallbackLocaleTest");
@@ -259,8 +242,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:57.9
      *
-     * @testStrategy: validate that if var is not specified, but scope is, that a
-     * fatal translation error occurs.
+     * @testStrategy: validate that if var is not specified, but scope is, that a fatal translation error occurs.
      */
     public void negativeFDScopeNoVarTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeFDScopeNoVarTest");

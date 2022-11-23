@@ -51,8 +51,7 @@ public class Client extends EETest {
     }
 
     /**
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -73,15 +72,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:279
      *
-     * @test_Strategy: Deploy an application client referencing two beans whose
-     *                 name differ only by case. Each referenced bean is packaged
-     *                 with a different values for a String environment entry
-     *                 called 'myName'.
+     * @test_Strategy: Deploy an application client referencing two beans whose name differ only by case. Each referenced
+     * bean is packaged with a different values for a String environment entry called 'myName'.
      *
-     *                 Check that the application client can lookup the two beans.
-     *                 Check that their runtime value for the 'myName' env. entry
-     *                 are distinct and match the ones specified in the DD
-     *                 (validates that the EJB reference are resolved correctly).
+     * Check that the application client can lookup the two beans. Check that their runtime value for the 'myName' env.
+     * entry are distinct and match the ones specified in the DD (validates that the EJB reference are resolved correctly).
      */
     public void testCaseSensitivity() throws Fault {
         ReferencedBeanHome home1 = null;

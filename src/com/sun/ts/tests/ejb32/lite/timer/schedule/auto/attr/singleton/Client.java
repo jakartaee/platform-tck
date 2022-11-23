@@ -28,9 +28,8 @@ public class Client extends com.sun.ts.tests.ejb32.lite.timer.schedule.auto.attr
     /*
      * @testName: postConstruct
      *
-     * @test_Strategy: check the number of auto timers inside bean's
-     * post-construct method. All auto timers should have been created when
-     * post-construct method is invoked.
+     * @test_Strategy: check the number of auto timers inside bean's post-construct method. All auto timers should have been
+     * created when post-construct method is invoked.
      */
     public void postConstruct() {
         passIfTimeout("postConstruct");
@@ -39,8 +38,7 @@ public class Client extends com.sun.ts.tests.ejb32.lite.timer.schedule.auto.attr
     /*
      * @testName: autoTimerInSuperClassNoParam
      *
-     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out
-     * method takes no Timer param.
+     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out method takes no Timer param.
      */
 
     /*
@@ -52,14 +50,12 @@ public class Client extends com.sun.ts.tests.ejb32.lite.timer.schedule.auto.attr
     /*
      * @testName: autoTimerWithInfo
      *
-     * @test_Strategy: verify the auto timer that was created with @Schedule in
-     * bean class with info attr
+     * @test_Strategy: verify the auto timer that was created with @Schedule in bean class with info attr
      */
 
     /*
      * @testName: autoTimerWithoutInfo
      *
-     * @test_Strategy: verify the auto timer that was created with @Schedule in
-     * bean class without info attr
+     * @test_Strategy: verify the auto timer that was created with @Schedule in bean class without info attr
      */
 }

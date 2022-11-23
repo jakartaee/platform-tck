@@ -23,9 +23,8 @@ package com.sun.ts.tests.common.connector.util;
 import java.util.Vector;
 
 /**
- * Implementation class of Log interface, to be used as a verification mechanism
- * for connector tests. This class is implemented as a Singleton. The TS
- * whitebox resource adapter writes the log, and the TS test reads the log. The
+ * Implementation class of Log interface, to be used as a verification mechanism for connector tests. This class is
+ * implemented as a Singleton. The TS whitebox resource adapter writes the log, and the TS test reads the log. The
  * whitebox will return an instance of this log to the calling test.
  */
 public class ConnectorStatus implements Log {
@@ -41,7 +40,8 @@ public class ConnectorStatus implements Log {
     /**
      * Singleton constructor
      */
-    private ConnectorStatus() {}
+    private ConnectorStatus() {
+    }
 
     /**
      * Singleton accessor
@@ -60,7 +60,8 @@ public class ConnectorStatus implements Log {
      */
     public void logAPI(String raAPI, String inParams, String outParams) {
         String logString = new String(raAPI + ":" + inParams + ":" + outParams);
-        if (logFlag) log.addElement(logString);
+        if (logFlag)
+            log.addElement(logString);
     }
 
     /**

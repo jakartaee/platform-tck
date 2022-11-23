@@ -68,9 +68,8 @@ public class AroundInvokeTestMDBImpl extends AroundInvokeTestImpl implements jav
     }
 
     /**
-     * A convenience method to be used by other interceptor classes or bean. It is
-     * used by interceptor #2, which is in a interceptor class, and by interceptor
-     * #3, which is inside the bean class.
+     * A convenience method to be used by other interceptor classes or bean. It is used by interceptor #2, which is in a
+     * interceptor class, and by interceptor #3, which is inside the bean class.
      */
     public static Object intercept2(InvocationContext ctx, int orderInChain) throws CalculatorException {
         Object result = null;
@@ -114,21 +113,18 @@ public class AroundInvokeTestMDBImpl extends AroundInvokeTestImpl implements jav
             }
         } else {
             status = false;
-            reason =
-                    "The following InvocationContext are expected to be the same instance, will not go to the next interceptor:"
-                            + ctx + ", " + obj;
+            reason = "The following InvocationContext are expected to be the same instance, will not go to the next interceptor:"
+                    + ctx + ", " + obj;
             TLogger.log(reason);
             StatusReporter.report(testname, status, reason, getQueueConnectionFactory(ctx), getQueue(ctx));
         }
     }
 
     /**
-     * Checks order of current interceptor in chain. interceptors extends or
-     * delegates to this class should be the first interceptor in chain.
-     * Otherwise, override this method.
+     * Checks order of current interceptor in chain. interceptors extends or delegates to this class should be the first
+     * interceptor in chain. Otherwise, override this method.
      *
-     * @param num
-     *          the oder of current interceptor. num must be 1 or greater.
+     * @param num the oder of current interceptor. num must be 1 or greater.
      */
     public static void checkOrder(InvocationContext ctx, int num) {
         String testname = orderTest;

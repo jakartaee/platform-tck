@@ -30,8 +30,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * A class that reflectively dispatches to the method corresponding to the test
- * method, and sends the reply message.
+ * A class that reflectively dispatches to the method corresponding to the test method, and sends the reply message.
  */
 public abstract class MethodDispatcher {
     public static final String TIMEOUT_PREFIX = "timeOut_";

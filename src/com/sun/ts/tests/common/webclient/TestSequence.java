@@ -27,12 +27,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This class represents a logic sequence for executing a series of test cases
- * in a specific order. In this case, the execution order will be the same order
- * that the test cases were added to the sequence.
+ * This class represents a logic sequence for executing a series of test cases in a specific order. In this case, the
+ * execution order will be the same order that the test cases were added to the sequence.
  *
- * The <code>TestSequence</code> has the added benefit of managing state between
- * the test invocations.
+ * The <code>TestSequence</code> has the added benefit of managing state between the test invocations.
  */
 public class TestSequence implements TestCase {
 
@@ -51,15 +49,13 @@ public class TestSequence implements TestCase {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * Executes the test sequence.
      *
-     * @throws TestFailureException
-     *           if any test in the sequence fails.
+     * @throws TestFailureException if any test in the sequence fails.
      */
     public void execute() throws TestFailureException {
 
@@ -81,12 +77,10 @@ public class TestSequence implements TestCase {
     }
 
     /**
-     * <code>enableStateManagement</code>, when enabled, will cause the test
-     * sequence to manage state between test case invocations. By default, a test
-     * sequence will not manage state.
+     * <code>enableStateManagement</code>, when enabled, will cause the test sequence to manage state between test case
+     * invocations. By default, a test sequence will not manage state.
      *
-     * @param value
-     *          a value of true enables session management.
+     * @param value a value of true enables session management.
      */
     public void enableStateManagement(boolean value) {
         _managed = value;
@@ -104,10 +98,8 @@ public class TestSequence implements TestCase {
     /**
      * Adds a test case to the sequence denoted by a unique identifier.
      *
-     * @param identifier
-     *          for this test case
-     * @param cs
-     *          the test case
+     * @param identifier for this test case
+     * @param cs the test case
      */
     public void addTestCase(String identifier, TestCase cs) {
         _testMap.put(identifier, cs);
@@ -125,8 +117,7 @@ public class TestSequence implements TestCase {
     }
 
     /**
-     * Sets the name of this TestSequence. If not set, the default value is
-     * "DEFAULT".
+     * Sets the name of this TestSequence. If not set, the default value is "DEFAULT".
      *
      * @param name
      */
@@ -144,17 +135,16 @@ public class TestSequence implements TestCase {
     }
 
     /**
-     * Sets the initial state for the test sequence to use when invoking test
-     * cases.
+     * Sets the initial state for the test sequence to use when invoking test cases.
      *
-     * @param state
-     *          the initial state
+     * @param state the initial state
      */
-    public void setState(Object state) {}
+    public void setState(Object state) {
+    }
 
     /**
-     * Returns the state of the sequence. Note: This value can differ depending on
-     * when it has been called in relation to when execute has been called.
+     * Returns the state of the sequence. Note: This value can differ depending on when it has been called in relation to
+     * when execute has been called.
      *
      * @return state of the sequence
      */

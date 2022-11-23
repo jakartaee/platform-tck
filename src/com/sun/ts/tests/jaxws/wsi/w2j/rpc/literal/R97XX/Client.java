@@ -56,8 +56,7 @@ public class Client extends ServiceEETest implements SOAPConstants, SOAPRequests
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client client = new Client();
@@ -94,13 +93,11 @@ public class Client extends ServiceEETest implements SOAPConstants, SOAPRequests
     /**
      * @testName: testResponseEncoding
      *
-     * @assertion_ids: WSI:SPEC:R9700; WSI:SPEC:R9701; WSI:SPEC:R9702;
-     *                 WSI:SPEC:R9703; WSI:SPEC:R1018; WSI:SPEC:R1140;
-     *                 WSI:SPEC:R1132;
+     * @assertion_ids: WSI:SPEC:R9700; WSI:SPEC:R9701; WSI:SPEC:R9702; WSI:SPEC:R9703; WSI:SPEC:R1018; WSI:SPEC:R1140;
+     * WSI:SPEC:R1132;
      *
-     * @test_Strategy: A valid request is made to the endpoint and the returned
-     *                 response is investigated in order to determine the
-     *                 encoding.
+     * @test_Strategy: A valid request is made to the endpoint and the returned response is investigated in order to
+     * determine the encoding.
      *
      * @throws Fault
      */
@@ -161,9 +158,8 @@ public class Client extends ServiceEETest implements SOAPConstants, SOAPRequests
      *
      * @assertion_ids: WSI:SPEC:R97XX
      *
-     * @test_Strategy: A request is made from the generated client. A handler
-     *                 verifies the encoding. An exception is thrown if ther eis a
-     *                 failure
+     * @test_Strategy: A request is made from the generated client. A handler verifies the encoding. An exception is thrown
+     * if ther eis a failure
      *
      * @throws Fault
      */

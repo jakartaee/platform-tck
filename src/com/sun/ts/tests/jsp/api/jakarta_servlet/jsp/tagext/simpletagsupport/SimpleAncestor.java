@@ -43,10 +43,8 @@ public class SimpleAncestor extends SimpleTagSupport {
     /**
      * Validates the behavior of getAncestorWithClass().
      *
-     * @throws JspException
-     *           - not thrown by this test
-     * @throws IOException
-     *           - not thrown by this test
+     * @throws JspException - not thrown by this test
+     * @throws IOException - not thrown by this test
      */
     public void doTag() throws JspException, IOException {
         JspTestUtil.debug("[SimpleAncestor] in doTag()");

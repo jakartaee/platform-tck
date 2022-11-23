@@ -30,7 +30,8 @@ public class TheatreLocation1 implements Serializable {
 
     private TheatreCompany1 company;
 
-    public TheatreLocation1() {}
+    public TheatreLocation1() {
+    }
 
     public Long getId() {
         return id;

@@ -27,4 +27,5 @@ import jakarta.ejb.TransactionManagementType;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)
-public class TestBean extends LocalTestBeanBase {}
+public class TestBean extends LocalTestBeanBase {
+}

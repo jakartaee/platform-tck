@@ -38,9 +38,8 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
     }
 
     /**
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     mailuser1; webServerHost; webServerPort; mailFrom;
-     *                     mailHost; jms_timeout; user; password;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; mailuser1; webServerHost; webServerPort;
+     * mailFrom; mailHost; jms_timeout; user; password;
      */
     public void setup(String[] args, Properties props) throws Fault {
 
@@ -59,12 +58,10 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:10766
      *
-     * @test_Strategy: Create a Message-driven Bean declaring a resource reference
-     *                 for a jakarta.mail.Session.
+     * @test_Strategy: Create a Message-driven Bean declaring a resource reference for a jakarta.mail.Session.
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup the mail session. - We can use this factory to send
-     *                 a mail.
+     * Check that: - We can deploy the application. - We can lookup the mail session. - We can use this factory to send a
+     * mail.
      */
     public void testSession() throws Fault {
 
@@ -92,12 +89,10 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:10766
      *
-     * @test_Strategy: Create a Message-driven Bean declaring a resource reference
-     *                 for a java.net.URL.
+     * @test_Strategy: Create a Message-driven Bean declaring a resource reference for a java.net.URL.
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup the URL. - We can use this URL factory to open a
-     *                 connection to a HTML page bundled in the application.
+     * Check that: - We can deploy the application. - We can lookup the URL. - We can use this URL factory to open a
+     * connection to a HTML page bundled in the application.
      */
     public void testURL() throws Fault {
 
@@ -124,11 +119,9 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:10766
      *
-     * @test_Strategy: Create a Message-driven Bean declaring a resource reference
-     *                 for a jakarta.jms.QueueConnectionFactory.
+     * @test_Strategy: Create a Message-driven Bean declaring a resource reference for a jakarta.jms.QueueConnectionFactory.
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup the JMS Queue Connection Factory.
+     * Check that: - We can deploy the application. - We can lookup the JMS Queue Connection Factory.
      */
     public void testQueue() throws Fault {
 
@@ -155,11 +148,9 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:10766
      *
-     * @test_Strategy: Create a Message-driven Bean declaring a resource reference
-     *                 for a jakarta.jms.TopicConnectionFactory.
+     * @test_Strategy: Create a Message-driven Bean declaring a resource reference for a jakarta.jms.TopicConnectionFactory.
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup the JMS Topic Connection Factory.
+     * Check that: - We can deploy the application. - We can lookup the JMS Topic Connection Factory.
      */
     public void testTopic() throws Fault {
 
@@ -186,12 +177,10 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:10766
      *
-     * @test_Strategy: Create a Message-Driven Bean declaring a resource reference
-     *                 for all the standard resource manager connection factory
-     *                 types.
+     * @test_Strategy: Create a Message-Driven Bean declaring a resource reference for all the standard resource manager
+     * connection factory types.
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup all the declared resource factories.
+     * Check that: - We can deploy the application. - We can lookup all the declared resource factories.
      */
     public void testAll() throws Fault {
 

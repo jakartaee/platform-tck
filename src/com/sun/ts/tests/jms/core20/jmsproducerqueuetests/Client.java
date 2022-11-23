@@ -203,7 +203,7 @@ public class Client extends ServiceEETest {
      * @return boolean true if id correctly starts with ID:
      */
     private boolean chkMessageID(String id) {
-        String status[] = {"Pass", "Fail"};
+        String status[] = { "Pass", "Fail" };
         boolean retcode = true;
 
         // message id must start with ID: - unless it is null
@@ -307,8 +307,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1234;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * JMSProducer.send(Destination, Message) JMSConsumer.receive(long)
      *
@@ -353,8 +352,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1239;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * JMSProducer.send(Destination, String) JMSConsumer.receiveBody(String, long)
      *
@@ -394,11 +392,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1251;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
-     * JMSProducer.send(Destination, Serializable)
-     * JMSConsumer.receiveBody(Serializable, long)
+     * JMSProducer.send(Destination, Serializable) JMSConsumer.receiveBody(Serializable, long)
      *
      */
     public void sendAndRecvTest3() throws Fault {
@@ -443,11 +439,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1243;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
-     * JMSProducer.send(Destination, Map<String, Object>)
-     * JMSConsumer.receiveBody(Map, long))
+     * JMSProducer.send(Destination, Map<String, Object>) JMSConsumer.receiveBody(Map, long))
      */
     public void sendAndRecvTest4() throws Fault {
         boolean pass = true;
@@ -495,11 +489,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1247;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
-     * JMSProducer.send(Destination, byte[]) JMSConsumer.receiveBody(byte[],
-     * long))
+     * JMSProducer.send(Destination, byte[]) JMSConsumer.receiveBody(byte[], long))
      *
      */
     public void sendAndRecvTest5() throws Fault {
@@ -537,22 +529,17 @@ public class Client extends ServiceEETest {
     /*
      * @testName: sendAndRecvMsgsOfEachMsgTypeTest
      *
-     * @assertion_ids: JMS:JAVADOC:925; JMS:JAVADOC:927; JMS:JAVADOC:929;
-     * JMS:JAVADOC:934; JMS:JAVADOC:937; JMS:JAVADOC:940; JMS:JAVADOC:964;
-     * JMS:JAVADOC:966; JMS:JAVADOC:942; JMS:JAVADOC:847; JMS:JAVADOC:1104;
-     * JMS:JAVADOC:1234; JMS:JAVADOC:875; JMS:JAVADOC:936; JMS:JAVADOC:1177;
+     * @assertion_ids: JMS:JAVADOC:925; JMS:JAVADOC:927; JMS:JAVADOC:929; JMS:JAVADOC:934; JMS:JAVADOC:937; JMS:JAVADOC:940;
+     * JMS:JAVADOC:964; JMS:JAVADOC:966; JMS:JAVADOC:942; JMS:JAVADOC:847; JMS:JAVADOC:1104; JMS:JAVADOC:1234;
+     * JMS:JAVADOC:875; JMS:JAVADOC:936; JMS:JAVADOC:1177;
      *
-     * @test_Strategy: Send and receive messages of each message type: Message,
-     * BytesMessage, MapMessage, ObjectMessage, StreamMessage, TextMessage. Gets
-     * the delivery time of each send of the message. Tests the following API's
+     * @test_Strategy: Send and receive messages of each message type: Message, BytesMessage, MapMessage, ObjectMessage,
+     * StreamMessage, TextMessage. Gets the delivery time of each send of the message. Tests the following API's
      *
-     * ConnectionFactory.createContext(String, String, int)
-     * JMSContext.createConsumer(Destination) JMSContext.createProducer()
-     * JMSContext.createMessage() JMSContext.createBytesMessage()
-     * JMSContext.createMapMessage() JMSContext.createObjectMessage()
-     * JMSContext.createObjectMessage(Serializable object)
-     * JMSContext.createStreamMessage() JMSContext.createTextMessage()
-     * JMSContext.createTextMessage(String) JMSContext.createConsumer(Destination)
+     * ConnectionFactory.createContext(String, String, int) JMSContext.createConsumer(Destination)
+     * JMSContext.createProducer() JMSContext.createMessage() JMSContext.createBytesMessage() JMSContext.createMapMessage()
+     * JMSContext.createObjectMessage() JMSContext.createObjectMessage(Serializable object) JMSContext.createStreamMessage()
+     * JMSContext.createTextMessage() JMSContext.createTextMessage(String) JMSContext.createConsumer(Destination)
      * JMSProducer.send(Destination, Message) JMSConsumer.receive(long timeout)
      *
      */
@@ -888,8 +875,7 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy: Test the following APIs:
      *
-     * JMSProducer.setDisableMessageID(boolean).
-     * JMSProducer.getDisableMessageID().
+     * JMSProducer.setDisableMessageID(boolean). JMSProducer.getDisableMessageID().
      */
     public void setGetDisableMessageIDTest() throws Fault {
         boolean pass = true;
@@ -939,8 +925,7 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy: Test the following APIs:
      *
-     * JMSProducer.setDisableMessageTimestamp(boolean).
-     * JMSProducer.getDisableMessageTimestamp().
+     * JMSProducer.setDisableMessageTimestamp(boolean). JMSProducer.getDisableMessageTimestamp().
      */
     public void setGetDisableMessageTimestampTest() throws Fault {
         boolean pass = true;
@@ -1013,7 +998,7 @@ public class Client extends ServiceEETest {
         }
 
         // Test non-default
-        int expPriority[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int expPriority[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         // Cycle through all priorties
         for (int i = 0; i < expPriority.length; i++) {
@@ -1084,9 +1069,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:261; JMS:SPEC:256; JMS:JAVADOC:1257;
      *
-     * @test_Strategy: Send message and verify that message is not delivered until
-     * the DeliveryDelay of 20 seconds is reached. Test DeliveryMode.PERSISTENT
-     * and DeliveryMode.NON_PERSISTENT.
+     * @test_Strategy: Send message and verify that message is not delivered until the DeliveryDelay of 20 seconds is
+     * reached. Test DeliveryMode.PERSISTENT and DeliveryMode.NON_PERSISTENT.
      */
     public void deliveryDelayTest() throws Fault {
         boolean pass = true;
@@ -1169,11 +1153,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: msgHdrMessageIDTest
      *
-     * @assertion_ids: JMS:SPEC:4; JMS:JAVADOC:343; JMS:JAVADOC:1261;
-     * JMS:JAVADOC:1194;
+     * @assertion_ids: JMS:SPEC:4; JMS:JAVADOC:343; JMS:JAVADOC:1261; JMS:JAVADOC:1194;
      *
-     * @test_Strategy: Send to a Queue and receive Text, Map, Bytes, Stream, and
-     * Object message. Call getJMSMessageID and verify that it starts with ID:
+     * @test_Strategy: Send to a Queue and receive Text, Map, Bytes, Stream, and Object message. Call getJMSMessageID and
+     * verify that it starts with ID:
      */
     public void msgHdrMessageIDTest() throws Fault {
         boolean pass = true;
@@ -1316,12 +1299,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: msgHdrTimeStampTest
      *
-     * @assertion_ids: JMS:SPEC:7; JMS:JAVADOC:347; JMS:JAVADOC:1263;
-     * JMS:JAVADOC:1196;
+     * @assertion_ids: JMS:SPEC:7; JMS:JAVADOC:347; JMS:JAVADOC:1263; JMS:JAVADOC:1196;
      *
-     * @test_Strategy: Send to a Queue a single Text, map, bytes, stream, and
-     * object message. Call getJMSTimestamp() and check time of send against time
-     * send returns. JMSTimeStamp should be between these two
+     * @test_Strategy: Send to a Queue a single Text, map, bytes, stream, and object message. Call getJMSTimestamp() and
+     * check time of send against time send returns. JMSTimeStamp should be between these two
      */
     public void msgHdrTimeStampTest() throws Fault {
         boolean pass = true;
@@ -1462,12 +1443,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: msgHdrJMSPriorityTest
      *
-     * @assertion_ids: JMS:SPEC:16; JMS:SPEC:18; JMS:SPEC:140; JMS:JAVADOC:1220;
-     * JMS:JAVADOC:1273; JMS:JAVADOC:383;
+     * @assertion_ids: JMS:SPEC:16; JMS:SPEC:18; JMS:SPEC:140; JMS:JAVADOC:1220; JMS:JAVADOC:1273; JMS:JAVADOC:383;
      *
-     * @test_Strategy: Send a message to a Queue with JMSPriority set to 2 test
-     * with Text, map, object, byte, and stream messages Call getJMSPriorty() and
-     * check that it matches the priority that was set on the JMSContext.
+     * @test_Strategy: Send a message to a Queue with JMSPriority set to 2 test with Text, map, object, byte, and stream
+     * messages Call getJMSPriorty() and check that it matches the priority that was set on the JMSContext.
      */
     public void msgHdrJMSPriorityTest() throws Fault {
         boolean pass = true;
@@ -1609,14 +1588,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: msgHdrJMSExpirationTest
      *
-     * @assertion_ids: JMS:SPEC:15.1; JMS:SPEC:15.2; JMS:SPEC:15.3; JMS:SPEC:140;
-     * JMS:JAVADOC:1303; JMS:JAVADOC:379;
+     * @assertion_ids: JMS:SPEC:15.1; JMS:SPEC:15.2; JMS:SPEC:15.3; JMS:SPEC:140; JMS:JAVADOC:1303; JMS:JAVADOC:379;
      *
-     * @test_Strategy: 1. Send a message to a Queue with time to live set to 0.
-     * Verify on receive that JMSExpiration gets set to 0. Test with Text, Map,
-     * Object, Bytes, and Stream messages. 2. Send a message to a Queue with time
-     * to live set to non-0; Verify on receive that JMSExpiration gets set
-     * correctly.
+     * @test_Strategy: 1. Send a message to a Queue with time to live set to 0. Verify on receive that JMSExpiration gets
+     * set to 0. Test with Text, Map, Object, Bytes, and Stream messages. 2. Send a message to a Queue with time to live set
+     * to non-0; Verify on receive that JMSExpiration gets set correctly.
      */
     public void msgHdrJMSExpirationTest() throws Fault {
         boolean pass = true;
@@ -1897,15 +1873,12 @@ public class Client extends ServiceEETest {
     /*
      * @testName: msgHdrJMSDeliveryModeTest
      *
-     * @assertion_ids: JMS:SPEC:3; JMS:SPEC:140; JMS:SPEC:246.2; JMS:JAVADOC:1192;
-     * JMS:JAVADOC:1259; JMS:JAVADOC:367;
+     * @assertion_ids: JMS:SPEC:3; JMS:SPEC:140; JMS:SPEC:246.2; JMS:JAVADOC:1192; JMS:JAVADOC:1259; JMS:JAVADOC:367;
      *
-     * @test_Strategy: 1. Create and send a message to the default Queue. Receive
-     * the msg and verify that JMSDeliveryMode is set the default delivery mode of
-     * persistent. 2. Create and test another message with a nonpersistent
-     * delivery mode. Test with Text, map, object, byte, and stream messages 3.
-     * Set JMSDeliveryMode to Message after receive. Verify that JMSDeliveryMode
-     * is set correctly.
+     * @test_Strategy: 1. Create and send a message to the default Queue. Receive the msg and verify that JMSDeliveryMode is
+     * set the default delivery mode of persistent. 2. Create and test another message with a nonpersistent delivery mode.
+     * Test with Text, map, object, byte, and stream messages 3. Set JMSDeliveryMode to Message after receive. Verify that
+     * JMSDeliveryMode is set correctly.
      */
     public void msgHdrJMSDeliveryModeTest() throws Fault {
         boolean pass = true;
@@ -2120,12 +2093,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: msgHdrJMSDeliveryTimeTest
      *
-     * @assertion_ids: JMS:SPEC:246.11; JMS:SPEC:261; JMS:SPEC:256;
-     * JMS:JAVADOC:1257; JMS:JAVADOC:875;
+     * @assertion_ids: JMS:SPEC:246.11; JMS:SPEC:261; JMS:SPEC:256; JMS:JAVADOC:1257; JMS:JAVADOC:875;
      *
-     * @test_Strategy: Send message and verify that JMSDeliveryTime is correct
-     * with the DeliveryDelay set to 20 seconds. Test with DeliveryMode.PERSISTENT
-     * and DeliveryMode.NON_PERSISTENT.
+     * @test_Strategy: Send message and verify that JMSDeliveryTime is correct with the DeliveryDelay set to 20 seconds.
+     * Test with DeliveryMode.PERSISTENT and DeliveryMode.NON_PERSISTENT.
      *
      * Retrieve and verify the JMSDeliveryTime
      */
@@ -2246,27 +2217,21 @@ public class Client extends ServiceEETest {
     /*
      * @testName: setGetAllPropertyTypesTest
      *
-     * @assertion_ids: JMS:JAVADOC:1180; JMS:JAVADOC:1184; JMS:JAVADOC:1187;
-     * JMS:JAVADOC:1198; JMS:JAVADOC:1201; JMS:JAVADOC:1204; JMS:JAVADOC:1215;
-     * JMS:JAVADOC:1218; JMS:JAVADOC:1222; JMS:JAVADOC:1224; JMS:JAVADOC:1227;
-     * JMS:JAVADOC:1232; JMS:JAVADOC:1275; JMS:JAVADOC:1278; JMS:JAVADOC:1281;
-     * JMS:JAVADOC:1284; JMS:JAVADOC:1287; JMS:JAVADOC:1290; JMS:JAVADOC:1293;
-     * JMS:JAVADOC:1296; JMS:JAVADOC:1299;
+     * @assertion_ids: JMS:JAVADOC:1180; JMS:JAVADOC:1184; JMS:JAVADOC:1187; JMS:JAVADOC:1198; JMS:JAVADOC:1201;
+     * JMS:JAVADOC:1204; JMS:JAVADOC:1215; JMS:JAVADOC:1218; JMS:JAVADOC:1222; JMS:JAVADOC:1224; JMS:JAVADOC:1227;
+     * JMS:JAVADOC:1232; JMS:JAVADOC:1275; JMS:JAVADOC:1278; JMS:JAVADOC:1281; JMS:JAVADOC:1284; JMS:JAVADOC:1287;
+     * JMS:JAVADOC:1290; JMS:JAVADOC:1293; JMS:JAVADOC:1296; JMS:JAVADOC:1299;
      *
      * @test_Strategy: Test the following APIs:
      *
-     * JMSProducer.setProperty(String, boolean) JMSProducer.setProperty(String,
-     * byte) JMSProducer.setProperty(String, double)
-     * JMSProducer.setProperty(String, float) JMSProducer.setProperty(String, int)
-     * JMSProducer.setProperty(String, long) JMSProducer.setProperty(String,
-     * Object) JMSProducer.setProperty(String, short)
-     * JMSProducer.setProperty(String, String)
-     * JMSProducer.getBooleanProperty(String) JMSProducer.getByteProperty(String)
-     * JMSProducer.getDoubleProperty(String) JMSProducer.getFloatProperty(String)
-     * JMSProducer.getIntProperty(String) JMSProducer.getLongProperty(String)
-     * JMSProducer.getObjectProperty(String) JMSProducer.getShortProperty(String)
-     * JMSProducer.getStringProperty(String) JMSProducer.clearProperties(String)
-     * JMSProducer.getPropertyNames() JMSProducer.propertyExists()
+     * JMSProducer.setProperty(String, boolean) JMSProducer.setProperty(String, byte) JMSProducer.setProperty(String,
+     * double) JMSProducer.setProperty(String, float) JMSProducer.setProperty(String, int) JMSProducer.setProperty(String,
+     * long) JMSProducer.setProperty(String, Object) JMSProducer.setProperty(String, short) JMSProducer.setProperty(String,
+     * String) JMSProducer.getBooleanProperty(String) JMSProducer.getByteProperty(String)
+     * JMSProducer.getDoubleProperty(String) JMSProducer.getFloatProperty(String) JMSProducer.getIntProperty(String)
+     * JMSProducer.getLongProperty(String) JMSProducer.getObjectProperty(String) JMSProducer.getShortProperty(String)
+     * JMSProducer.getStringProperty(String) JMSProducer.clearProperties(String) JMSProducer.getPropertyNames()
+     * JMSProducer.propertyExists()
      */
     public void setGetAllPropertyTypesTest() throws Fault {
         boolean pass = true;
@@ -2456,18 +2421,14 @@ public class Client extends ServiceEETest {
     /*
      * @testName: setGetAllHeaderTypesTest
      *
-     * @assertion_ids: JMS:JAVADOC:1265; JMS:JAVADOC:1267; JMS:JAVADOC:1269;
-     * JMS:JAVADOC:1271; JMS:JAVADOC:1207; JMS:JAVADOC:1209; JMS:JAVADOC:1211;
-     * JMS:JAVADOC:1213;
+     * @assertion_ids: JMS:JAVADOC:1265; JMS:JAVADOC:1267; JMS:JAVADOC:1269; JMS:JAVADOC:1271; JMS:JAVADOC:1207;
+     * JMS:JAVADOC:1209; JMS:JAVADOC:1211; JMS:JAVADOC:1213;
      *
      * @test_Strategy: Test the following APIs:
      *
-     * JMSProducer.setJMSCorrelationID(String);
-     * JMSProducer.setJMSCorrelationIDAsBytes(byte[]);
-     * JMSProducer.setJMSReplyTo(Destination); JMSProducer.setJMSType(String);
-     * JMSProducer.getJMSCorrelationID();
-     * JMSProducer.getJMSCorrelationIDAsBytes(); JMSProducer.getJMSReplyTo();
-     * JMSProducer.getJMSType();
+     * JMSProducer.setJMSCorrelationID(String); JMSProducer.setJMSCorrelationIDAsBytes(byte[]);
+     * JMSProducer.setJMSReplyTo(Destination); JMSProducer.setJMSType(String); JMSProducer.getJMSCorrelationID();
+     * JMSProducer.getJMSCorrelationIDAsBytes(); JMSProducer.getJMSReplyTo(); JMSProducer.getJMSType();
      */
     public void setGetAllHeaderTypesTest() throws Fault {
         boolean pass = true;
@@ -2553,37 +2514,29 @@ public class Client extends ServiceEETest {
     /*
      * @testName: msgPropertiesTest
      *
-     * @assertion_ids: JMS:SPEC:20.1; JMS:SPEC:20.2; JMS:SPEC:20.3; JMS:SPEC:20.4;
-     * JMS:SPEC:20.5; JMS:SPEC:20.6; JMS:SPEC:20.7; JMS:SPEC:20.8; JMS:SPEC:21;
-     * JMS:SPEC:23; JMS:SPEC:25; JMS:SPEC:26; JMS:SPEC:10; JMS:SPEC:27;
-     * JMS:SPEC:28; JMS:SPEC:29; JMS:SPEC:31; JMS:SPEC:32; JMS:SPEC:34;
-     * JMS:SPEC:19; JMS:SPEC:70; JMS:SPEC:71; JMS:SPEC:24; JMS:JAVADOC:1180;
-     * JMS:JAVADOC:1184; JMS:JAVADOC:1187; JMS:JAVADOC:1198; JMS:JAVADOC:1201;
-     * JMS:JAVADOC:1204; JMS:JAVADOC:1215; JMS:JAVADOC:1218; JMS:JAVADOC:1222;
-     * JMS:JAVADOC:1224; JMS:JAVADOC:1227; JMS:JAVADOC:1232; JMS:JAVADOC:1275;
-     * JMS:JAVADOC:1278; JMS:JAVADOC:1281; JMS:JAVADOC:1284; JMS:JAVADOC:1287;
-     * JMS:JAVADOC:1290; JMS:JAVADOC:1293; JMS:JAVADOC:1296; JMS:JAVADOC:1299;
+     * @assertion_ids: JMS:SPEC:20.1; JMS:SPEC:20.2; JMS:SPEC:20.3; JMS:SPEC:20.4; JMS:SPEC:20.5; JMS:SPEC:20.6;
+     * JMS:SPEC:20.7; JMS:SPEC:20.8; JMS:SPEC:21; JMS:SPEC:23; JMS:SPEC:25; JMS:SPEC:26; JMS:SPEC:10; JMS:SPEC:27;
+     * JMS:SPEC:28; JMS:SPEC:29; JMS:SPEC:31; JMS:SPEC:32; JMS:SPEC:34; JMS:SPEC:19; JMS:SPEC:70; JMS:SPEC:71; JMS:SPEC:24;
+     * JMS:JAVADOC:1180; JMS:JAVADOC:1184; JMS:JAVADOC:1187; JMS:JAVADOC:1198; JMS:JAVADOC:1201; JMS:JAVADOC:1204;
+     * JMS:JAVADOC:1215; JMS:JAVADOC:1218; JMS:JAVADOC:1222; JMS:JAVADOC:1224; JMS:JAVADOC:1227; JMS:JAVADOC:1232;
+     * JMS:JAVADOC:1275; JMS:JAVADOC:1278; JMS:JAVADOC:1281; JMS:JAVADOC:1284; JMS:JAVADOC:1287; JMS:JAVADOC:1290;
+     * JMS:JAVADOC:1293; JMS:JAVADOC:1296; JMS:JAVADOC:1299;
      *
-     * @test_Strategy: Set and read properties for boolean, byte, short, int,
-     * long, float, double, and String. Verify expected results Set and read
-     * properties for Boolean, Byte, Short, Int, Long, Float, Double, and String.
-     * Verify expected results.
+     * @test_Strategy: Set and read properties for boolean, byte, short, int, long, float, double, and String. Verify
+     * expected results Set and read properties for Boolean, Byte, Short, Int, Long, Float, Double, and String. Verify
+     * expected results.
      *
-     * Call property get methods (other than getStringProperty and
-     * getObjectProperty) for non-existent properties and verify that a null
-     * pointer exception is returned. Call getStringProperty and getObjectProperty
-     * for non-existent properties and verify that a null is returned.
+     * Call property get methods (other than getStringProperty and getObjectProperty) for non-existent properties and verify
+     * that a null pointer exception is returned. Call getStringProperty and getObjectProperty for non-existent properties
+     * and verify that a null is returned.
      *
-     * Set object properties and verify the correct value is returned with the
-     * getObjectProperty method.
+     * Set object properties and verify the correct value is returned with the getObjectProperty method.
      *
-     * Call the clearProperties method on the JMSProducer and verify that the
-     * message properties for that JMSProducer were deleted. Test that
-     * getObjectProperty returns a null and the getShortProperty throws a null
-     * pointer exception.
+     * Call the clearProperties method on the JMSProducer and verify that the message properties for that JMSProducer were
+     * deleted. Test that getObjectProperty returns a null and the getShortProperty throws a null pointer exception.
      *
-     * Call getJMSXPropertyNames() and verify that the names of the required JMSX
-     * properties for JMSXGroupID and JMSXGroupSeq are returned.
+     * Call getJMSXPropertyNames() and verify that the names of the required JMSX properties for JMSXGroupID and
+     * JMSXGroupSeq are returned.
      */
     public void msgPropertiesTest() throws Fault {
         boolean pass = true;
@@ -2651,8 +2604,10 @@ public class Client extends ServiceEETest {
             do {
                 String tmp = (String) propertyNames.nextElement();
                 logMsg("Property Name is: " + tmp);
-                if (tmp.indexOf("JMS") != 0) i++;
-                else if (tmp.equals("JMSXDeliveryCount")) i++;
+                if (tmp.indexOf("JMS") != 0)
+                    i++;
+                else if (tmp.equals("JMSXDeliveryCount"))
+                    i++;
             } while (propertyNames.hasMoreElements());
 
             if (i == numPropertyNames) {
@@ -3129,20 +3084,17 @@ public class Client extends ServiceEETest {
     /*
      * @testName: msgPropertiesConversionTests
      *
-     * @assertion_ids: JMS:SPEC:22.1; JMS:SPEC:22.2; JMS:SPEC:22.3; JMS:SPEC:22.4;
-     * JMS:SPEC:22.5; JMS:SPEC:22.6; JMS:SPEC:22.7; JMS:SPEC:22.8; JMS:SPEC:22.9;
-     * JMS:SPEC:22.10; JMS:SPEC:22.11; JMS:SPEC:22.12; JMS:SPEC:22.13;
-     * JMS:SPEC:22.14; JMS:SPEC:22.15; JMS:SPEC:22.16; JMS:JAVADOC:1180;
-     * JMS:JAVADOC:1184; JMS:JAVADOC:1187; JMS:JAVADOC:1198; JMS:JAVADOC:1201;
-     * JMS:JAVADOC:1204; JMS:JAVADOC:1215; JMS:JAVADOC:1218; JMS:JAVADOC:1222;
-     * JMS:JAVADOC:1224; JMS:JAVADOC:1227; JMS:JAVADOC:1232; JMS:JAVADOC:1275;
-     * JMS:JAVADOC:1278; JMS:JAVADOC:1281; JMS:JAVADOC:1284; JMS:JAVADOC:1287;
-     * JMS:JAVADOC:1290; JMS:JAVADOC:1293; JMS:JAVADOC:1296; JMS:JAVADOC:1299;
-     * JMS:JAVADOC:1186; JMS:JAVADOC:1189; JMS:JAVADOC:1200; JMS:JAVADOC:1203;
-     * JMS:JAVADOC:1206; JMS:JAVADOC:1217; JMS:JAVADOC:1226; JMS:JAVADOC:1229;
+     * @assertion_ids: JMS:SPEC:22.1; JMS:SPEC:22.2; JMS:SPEC:22.3; JMS:SPEC:22.4; JMS:SPEC:22.5; JMS:SPEC:22.6;
+     * JMS:SPEC:22.7; JMS:SPEC:22.8; JMS:SPEC:22.9; JMS:SPEC:22.10; JMS:SPEC:22.11; JMS:SPEC:22.12; JMS:SPEC:22.13;
+     * JMS:SPEC:22.14; JMS:SPEC:22.15; JMS:SPEC:22.16; JMS:JAVADOC:1180; JMS:JAVADOC:1184; JMS:JAVADOC:1187;
+     * JMS:JAVADOC:1198; JMS:JAVADOC:1201; JMS:JAVADOC:1204; JMS:JAVADOC:1215; JMS:JAVADOC:1218; JMS:JAVADOC:1222;
+     * JMS:JAVADOC:1224; JMS:JAVADOC:1227; JMS:JAVADOC:1232; JMS:JAVADOC:1275; JMS:JAVADOC:1278; JMS:JAVADOC:1281;
+     * JMS:JAVADOC:1284; JMS:JAVADOC:1287; JMS:JAVADOC:1290; JMS:JAVADOC:1293; JMS:JAVADOC:1296; JMS:JAVADOC:1299;
+     * JMS:JAVADOC:1186; JMS:JAVADOC:1189; JMS:JAVADOC:1200; JMS:JAVADOC:1203; JMS:JAVADOC:1206; JMS:JAVADOC:1217;
+     * JMS:JAVADOC:1226; JMS:JAVADOC:1229;
      *
-     * @test_Strategy: Create a JMSProducer, set properties for all of the
-     * primitive types verify the conversion by getting the properties.
+     * @test_Strategy: Create a JMSProducer, set properties for all of the primitive types verify the conversion by getting
+     * the properties.
      */
     public void msgPropertiesConversionTests() throws Fault {
         boolean pass = true;
@@ -3879,15 +3831,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: msgPropertyExistTest
      *
-     * @assertion_ids: JMS:JAVADOC:1180; JMS:JAVADOC:1184; JMS:JAVADOC:1187;
-     * JMS:JAVADOC:1198; JMS:JAVADOC:1201; JMS:JAVADOC:1204; JMS:JAVADOC:1215;
-     * JMS:JAVADOC:1218; JMS:JAVADOC:1222; JMS:JAVADOC:1224; JMS:JAVADOC:1227;
-     * JMS:JAVADOC:1232; JMS:JAVADOC:1275; JMS:JAVADOC:1278; JMS:JAVADOC:1281;
-     * JMS:JAVADOC:1284; JMS:JAVADOC:1287; JMS:JAVADOC:1290; JMS:JAVADOC:1293;
-     * JMS:JAVADOC:1296; JMS:JAVADOC:1299;
+     * @assertion_ids: JMS:JAVADOC:1180; JMS:JAVADOC:1184; JMS:JAVADOC:1187; JMS:JAVADOC:1198; JMS:JAVADOC:1201;
+     * JMS:JAVADOC:1204; JMS:JAVADOC:1215; JMS:JAVADOC:1218; JMS:JAVADOC:1222; JMS:JAVADOC:1224; JMS:JAVADOC:1227;
+     * JMS:JAVADOC:1232; JMS:JAVADOC:1275; JMS:JAVADOC:1278; JMS:JAVADOC:1281; JMS:JAVADOC:1284; JMS:JAVADOC:1287;
+     * JMS:JAVADOC:1290; JMS:JAVADOC:1293; JMS:JAVADOC:1296; JMS:JAVADOC:1299;
      *
-     * @test_Strategy: Set and read properties for boolean, byte, short, int,
-     * long, float, double, and String. Verify expected results.
+     * @test_Strategy: Set and read properties for boolean, byte, short, int, long, float, double, and String. Verify
+     * expected results.
      */
     public void msgPropertyExistTest() throws Fault {
         boolean pass = true;
@@ -3989,19 +3939,15 @@ public class Client extends ServiceEETest {
     /*
      * @testName: msgJMSXPropertiesTest
      *
-     * @assertion_ids: JMS:SPEC:34; JMS:SPEC:34.3; JMS:SPEC:34.4; JMS:SPEC:34.5;
-     * JMS:SPEC:257;
+     * @assertion_ids: JMS:SPEC:34; JMS:SPEC:34.3; JMS:SPEC:34.4; JMS:SPEC:34.5; JMS:SPEC:257;
      *
-     * @test_Strategy: Set and read JMSX properties JMSXGroupID and JMSXGroupSeq.
-     * Verify the value of the JMSX properties JMSXGroupID and JMSXGroupSeq are
-     * the same as set by client. Verify that the JMS provider sets the mandatory
+     * @test_Strategy: Set and read JMSX properties JMSXGroupID and JMSXGroupSeq. Verify the value of the JMSX properties
+     * JMSXGroupID and JMSXGroupSeq are the same as set by client. Verify that the JMS provider sets the mandatory
      * JMSXDeliveryCount.
      *
-     * 1) Create JMSContext and JMSConsumer for Queue. 2) Create TextMessage and
-     * set JMSXGroupID and JMSXGroupSeq message properties. 3) Send the
-     * TextMessage to the Queue. 4) Receive the TextMessage from the Queue. 5)
-     * Verify the TextMessage. Verify that the message properites JMSXGroupID,
-     * JMSXGroupSeq, and JMSXDeliveryCount are correct.
+     * 1) Create JMSContext and JMSConsumer for Queue. 2) Create TextMessage and set JMSXGroupID and JMSXGroupSeq message
+     * properties. 3) Send the TextMessage to the Queue. 4) Receive the TextMessage from the Queue. 5) Verify the
+     * TextMessage. Verify that the message properites JMSXGroupID, JMSXGroupSeq, and JMSXDeliveryCount are correct.
      */
     public void msgJMSXPropertiesTest() throws Fault {
         boolean pass = true;
@@ -4095,9 +4041,12 @@ public class Client extends ServiceEETest {
                     do {
                         String propName = (String) cmd.nextElement();
                         TestUtil.logTrace("Found JMSX property [" + propName + "]");
-                        if (propName.equals("JMSXGroupID")) iCount++;
-                        else if (propName.equals("JMSXGroupSeq")) iCount++;
-                        else if (propName.equals("JMSXDeliveryCount")) iCount++;
+                        if (propName.equals("JMSXGroupID"))
+                            iCount++;
+                        else if (propName.equals("JMSXGroupSeq"))
+                            iCount++;
+                        else if (propName.equals("JMSXDeliveryCount"))
+                            iCount++;
                     } while (cmd.hasMoreElements());
 
                     if (iCount > 2) {
@@ -4124,22 +4073,17 @@ public class Client extends ServiceEETest {
     /*
      * @testName: setPropertyExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:1280; JMS:JAVADOC:1283; JMS:JAVADOC:1286;
-     * JMS:JAVADOC:1289; JMS:JAVADOC:1292; JMS:JAVADOC:1295; JMS:JAVADOC:1298;
-     * JMS:JAVADOC:1301; JMS:JAVADOC:1277; JMS:JAVADOC:1302;
+     * @assertion_ids: JMS:JAVADOC:1280; JMS:JAVADOC:1283; JMS:JAVADOC:1286; JMS:JAVADOC:1289; JMS:JAVADOC:1292;
+     * JMS:JAVADOC:1295; JMS:JAVADOC:1298; JMS:JAVADOC:1301; JMS:JAVADOC:1277; JMS:JAVADOC:1302;
      *
-     * @test_Strategy: Tests IllegalArgumentException and
-     * MessageFormatRuntimeException conditions from the following API's:
+     * @test_Strategy: Tests IllegalArgumentException and MessageFormatRuntimeException conditions from the following API's:
      *
-     * JMSProducer.setProperty(String, boolean) throws IllegalArgumentException
-     * JMSProducer.setProperty(String, byte)throws IllegalArgumentException
-     * JMSProducer.setProperty(String, double)throws IllegalArgumentException
-     * JMSProducer.setProperty(String, float)throws IllegalArgumentException
-     * JMSProducer.setProperty(String, int)throws IllegalArgumentException
-     * JMSProducer.setProperty(String, long)throws IllegalArgumentException
-     * JMSProducer.setProperty(String, Object)throws IllegalArgumentException
-     * JMSProducer.setProperty(String, short)throws IllegalArgumentException
-     * JMSProducer.setProperty(String, String)throws IllegalArgumentException
+     * JMSProducer.setProperty(String, boolean) throws IllegalArgumentException JMSProducer.setProperty(String, byte)throws
+     * IllegalArgumentException JMSProducer.setProperty(String, double)throws IllegalArgumentException
+     * JMSProducer.setProperty(String, float)throws IllegalArgumentException JMSProducer.setProperty(String, int)throws
+     * IllegalArgumentException JMSProducer.setProperty(String, long)throws IllegalArgumentException
+     * JMSProducer.setProperty(String, Object)throws IllegalArgumentException JMSProducer.setProperty(String, short)throws
+     * IllegalArgumentException JMSProducer.setProperty(String, String)throws IllegalArgumentException
      * JMSProducer.setProperty(String, Object)throws MessageFormatRuntimeException
      */
     public void setPropertyExceptionTests() throws Fault {
@@ -4385,13 +4329,11 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1241; JMS:JAVADOC:1245; JMS:JAVADOC:1238;
      *
-     * @test_Strategy: Tests MessageFormatRuntimeException and
-     * MessageNotWriteableRuntimeException conditions from the following API's:
+     * @test_Strategy: Tests MessageFormatRuntimeException and MessageNotWriteableRuntimeException conditions from the
+     * following API's:
      *
-     * JMSProducer.send(Destination, Message) throws
-     * MessageNotWriteableRuntimeException JMSProducer.send(Destination, Message)
-     * throws MessageFormatRuntimeException JMSProducer.send(Destination, Map)
-     * throws MessageFormatRuntimeException
+     * JMSProducer.send(Destination, Message) throws MessageNotWriteableRuntimeException JMSProducer.send(Destination,
+     * Message) throws MessageFormatRuntimeException JMSProducer.send(Destination, Map) throws MessageFormatRuntimeException
      *
      */
     public void sendExceptionTests() throws Fault {
@@ -4494,18 +4436,15 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1357;
      *
-     * @test_Strategy: Send and receive messages of the following types:
-     * BytesMessage, MapMessage, ObjectMessage, TextMessage. Call
-     * Message.getBody() to return the message as the specified Object type.
+     * @test_Strategy: Send and receive messages of the following types: BytesMessage, MapMessage, ObjectMessage,
+     * TextMessage. Call Message.getBody() to return the message as the specified Object type.
      *
      * Object message = Message.getBody(Class)
      *
      * Test the following:
      *
-     * String message = Message.getBody(String.class) byte[] message =
-     * Message.getBody(byte[].class); StringBuffer message =
-     * Message.getBody(StringBuffer.class); Map message =
-     * Message.getBody(Map.class);
+     * String message = Message.getBody(String.class) byte[] message = Message.getBody(byte[].class); StringBuffer message =
+     * Message.getBody(StringBuffer.class); Map message = Message.getBody(Map.class);
      *
      */
     public void getBodyTests() throws Fault {
@@ -4662,7 +4601,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getBodyTests", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -4677,8 +4617,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1359;
      *
-     * @test_Strategy: Test exception case for Message.getBody(Class). Test
-     * MessageFormatException.
+     * @test_Strategy: Test exception case for Message.getBody(Class). Test MessageFormatException.
      *
      * Object = Message.getBody(Class)
      *
@@ -4804,7 +4743,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getBodyExceptionTests", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -4958,7 +4898,8 @@ public class Client extends ServiceEETest {
             throw new Fault("isBodyAssignableToTest", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }

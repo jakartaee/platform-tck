@@ -28,41 +28,35 @@ public class TestFailureException extends java.lang.Exception {
     private static final long serialVersionUID = -4651996590051941456L;
 
     /**
-     * Creates a new instance of <code>TestFailureException</code> without a
-     * detailed message.
+     * Creates a new instance of <code>TestFailureException</code> without a detailed message.
      */
-    public TestFailureException() {}
+    public TestFailureException() {
+    }
 
     /**
-     * Creates a new instance of <code>TestFailureException</code> containing the
-     * root cause of the test failure.
+     * Creates a new instance of <code>TestFailureException</code> containing the root cause of the test failure.
      *
-     * @param t
-     *          - root cause
+     * @param t - root cause
      */
     public TestFailureException(Throwable t) {
         super(t);
     }
 
     /**
-     * Creates a new instance of <code>TestFailureException</code> with the
-     * specified detail message.
+     * Creates a new instance of <code>TestFailureException</code> with the specified detail message.
      *
-     * @param msg
-     *          - the detail message.
+     * @param msg - the detail message.
      */
     public TestFailureException(String msg) {
         super(msg);
     }
 
     /**
-     * Creates a new instance of <code>TestFailureException</code> with the
-     * specified detail message, and the root cause of the test failure
+     * Creates a new instance of <code>TestFailureException</code> with the specified detail message, and the root cause of
+     * the test failure
      *
-     * @param msg
-     *          - the detail message
-     * @param t
-     *          - root cause
+     * @param msg - the detail message
+     * @param t - root cause
      */
     public TestFailureException(String msg, Throwable t) {
         super(msg, t);

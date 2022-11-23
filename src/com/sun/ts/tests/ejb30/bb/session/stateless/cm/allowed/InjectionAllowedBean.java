@@ -30,8 +30,8 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "InjectionAllowedBean")
-@Remote({SessionContextAllowedIF.class})
-@Local({SessionContextAllowedLocalIF.class})
+@Remote({ SessionContextAllowedIF.class })
+@Local({ SessionContextAllowedLocalIF.class })
 // @Interceptors({com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class})
 public class InjectionAllowedBean extends InjectiontAllowedBeanBase
         implements SessionContextAllowedIF, SessionContextAllowedLocalIF {

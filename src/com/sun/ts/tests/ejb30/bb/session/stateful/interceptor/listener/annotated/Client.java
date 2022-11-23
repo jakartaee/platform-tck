@@ -60,13 +60,12 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Test interceptor's lifecycle. Its lifecycle is the same as
-     * its associated bean.
+     * @test_Strategy: Test interceptor's lifecycle. Its lifecycle is the same as its associated bean.
      */
     public void interceptorInstance() throws CalculatorException {
-        int[] initials = new int[] {0, 0};
+        int[] initials = new int[] { 0, 0 };
         final int calls = 100;
-        int[] expected = new int[] {1, calls};
+        int[] expected = new int[] { 1, calls };
         int[] actual = null;
         for (int i = 0; i < calls; i++) {
             actual = bean2.count(initials);
@@ -80,14 +79,13 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Test interceptor's lifecycle. Its lifecycle is the same as
-     * its associated bean.
+     * @test_Strategy: Test interceptor's lifecycle. Its lifecycle is the same as its associated bean.
      */
     public void interceptorInstance2() throws CalculatorException {
         final String shortLookupName = "ejb/InterceptorInstanceBean";
-        int[] initials = new int[] {0, 0};
+        int[] initials = new int[] { 0, 0 };
         final int calls = 100;
-        int[] expected = new int[] {1, 1};
+        int[] expected = new int[] { 1, 1 };
         int[] actual = null;
         InterceptorInstanceIF[] beans = new InterceptorInstanceIF[calls];
         for (int i = 0; i < calls; i++) {
@@ -106,8 +104,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:258; EJB:JAVADOC:254
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -115,8 +113,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:254
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -124,9 +122,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:254
      *
-     * @test_Strategy: o no parameters in business method.
-     * InvocationContext.getParameters() should return null or Object[]{}; This is
-     * verified in interceptor method.
+     * @test_Strategy: o no parameters in business method. InvocationContext.getParameters() should return null or
+     * Object[]{}; This is verified in interceptor method.
      */
 
     /*
@@ -134,8 +131,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:254
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only before
-     * proceed();
+     * @test_Strategy: o interceptor marks a tx to be rollback only before proceed();
      */
 
     /*
@@ -143,8 +139,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:254
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only before
-     * proceed();
+     * @test_Strategy: o interceptor marks a tx to be rollback only before proceed();
      */
 
     /*
@@ -152,9 +147,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:254
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only before
-     * proceed(), by runtime exception o bean instance is no longer usable after
-     * this test
+     * @test_Strategy: o interceptor marks a tx to be rollback only before proceed(), by runtime exception o bean instance
+     * is no longer usable after this test
      */
 
     /*
@@ -162,9 +156,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:254
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only after
-     * proceed(), by runtime exception o bean instance is no longer usable after
-     * this test
+     * @test_Strategy: o interceptor marks a tx to be rollback only after proceed(), by runtime exception o bean instance is
+     * no longer usable after this test
      */
 
     /*
@@ -172,8 +165,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:254
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -181,18 +174,17 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:255; EJB:JAVADOC:254
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
      * @testName: getMethodTest
      *
-     * @assertion_ids: EJB:JAVADOC:256; EJB:JAVADOC:259; EJB:JAVADOC:260;
-     * EJB:JAVADOC:254
+     * @assertion_ids: EJB:JAVADOC:256; EJB:JAVADOC:259; EJB:JAVADOC:260; EJB:JAVADOC:254
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -200,8 +192,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:254
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -209,8 +201,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:254
      *
-     * @test_Strategy: o the checked exception throwb by the business method can
-     * be supressed by the interceptor.
+     * @test_Strategy: o the checked exception throwb by the business method can be supressed by the interceptor.
      */
 
     ///////////////////////////////////////////////////////////////////////////
@@ -232,8 +223,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:254
      *
-     * @test_Strategy: o the same instance of InvocationContext is passed to all
-     * interceptors
+     * @test_Strategy: o the same instance of InvocationContext is passed to all interceptors
      */
     ///////////////////////////////////////////////////////////////////////////
 

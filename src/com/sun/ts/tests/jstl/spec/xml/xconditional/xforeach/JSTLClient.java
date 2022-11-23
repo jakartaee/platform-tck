@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,9 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: STL:SPEC:72; JSTL:SPEC:72.1; JSTL:SPEC:72.10
      *
-     * @testStrategy: Validate that the forEach action can properly iterate
-     * through a node-set returned by the evaluated of the XPath expression
-     * provided.
+     * @testStrategy: Validate that the forEach action can properly iterate through a node-set returned by the evaluated of
+     * the XPath expression provided.
      */
     public void positiveForEachSelectTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForEachSelectTest");
@@ -80,10 +77,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: STL:SPEC:72; JSTL:SPEC:72.1; STL:SPEC:72.2
      *
-     * @testStrategy: Validate the following: - The variable specified by var is
-     * treated as nested. - The type of var is a node-set therfore validate that
-     * it is an instance of java.lang.Object. - Validate that var is available
-     * within the body of the forEach action.
+     * @testStrategy: Validate the following: - The variable specified by var is treated as nested. - The type of var is a
+     * node-set therfore validate that it is an instance of java.lang.Object. - Validate that var is available within the
+     * body of the forEach action.
      */
     public void positiveForEachVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForEachVarTest");
@@ -95,8 +91,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:72; JSTL:SPEC:72.2.2
      *
-     * @testStrategy: Validate that a fatal translation error occurs if the select
-     * attribute is not present.
+     * @testStrategy: Validate that a fatal translation error occurs if the select attribute is not present.
      */
     public void negativeForEachSelectReqAttrTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeForEachSelectReqAttrTest");
@@ -110,9 +105,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:72; JSTL:SPEC:72.3
      *
-     * @testStrategy: Validate that an instance of jakarta.servlet.jsp.JspException
-     * is thrown if the XPath expression provided to the select attribute fails to
-     * evaluated.
+     * @testStrategy: Validate that an instance of jakarta.servlet.jsp.JspException is thrown if the XPath expression
+     * provided to the select attribute fails to evaluated.
      */
     public void negativeForEachSelectFailureTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeForEachSelectFailureTest");
@@ -122,11 +116,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveForEachBeginTest
      *
-     * @assertion_ids: JSTL:SPEC:72; JSTL:SPEC:72.7; JSTL:SPEC:72.7.1;
-     * JSTL:SPEC:72.7.1.1; JSTL:SPEC:72.7.3; JSTL:SPEC:72.7.4
+     * @assertion_ids: JSTL:SPEC:72; JSTL:SPEC:72.7; JSTL:SPEC:72.7.1; JSTL:SPEC:72.7.1.1; JSTL:SPEC:72.7.3;
+     * JSTL:SPEC:72.7.4
      *
-     * @test_Strategy: Validate the behavior of x:forEach when the begin attribute
-     * is specified.
+     * @test_Strategy: Validate the behavior of x:forEach when the begin attribute is specified.
      */
     public void positiveForEachBeginTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForEachBeginTest");
@@ -136,11 +129,9 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveForEachEndTest
      *
-     * @assertion_ids: JSTL:SPEC:72; JSTL:SPEC:72.8; JSTL:SPEC:72.8.1;
-     * JSTL:SPEC:72.8.2; JSTL:SPEC:72.8.3
+     * @assertion_ids: JSTL:SPEC:72; JSTL:SPEC:72.8; JSTL:SPEC:72.8.1; JSTL:SPEC:72.8.2; JSTL:SPEC:72.8.3
      *
-     * @test_Strategy: Validate the behavior of x:forEach when the end attribute
-     * is specified.
+     * @test_Strategy: Validate the behavior of x:forEach when the end attribute is specified.
      */
     public void positiveForEachEndTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForEachEndTest");
@@ -152,8 +143,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:72; JSTL:SPEC:72.7; JSTL:SPEC:72.7.2
      *
-     * @test_Strategy: Validate the behavior of the x:forEach action when the step
-     * attribute is not specified.
+     * @test_Strategy: Validate the behavior of the x:forEach action when the step attribute is not specified.
      */
     public void positiveForEachStepTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForEachStepTest");
@@ -165,8 +155,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:72; JSTL:SPEC:72.6
      *
-     * @test_Strategy: Validate the action properly exports a VarStatus object on
-     * each iteration when the varStatus attribute is specified.
+     * @test_Strategy: Validate the action properly exports a VarStatus object on each iteration when the varStatus
+     * attribute is specified.
      */
     public void positiveForEachVarStatusTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveForEachVarStatusTest");
@@ -178,8 +168,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:72; JSTL:SPEC:72.13
      *
-     * @test_Strategy: Validate that no iteration occurs of the end attribute
-     * value is less than the value of the begin attribute.
+     * @test_Strategy: Validate that no iteration occurs of the end attribute value is less than the value of the begin
+     * attribute.
      */
     public void positiveForEachEndLTBeginTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jstl_xml_xforeach_web/positiveForEachEndLTBeginTest.jsp HTTP/1.1");

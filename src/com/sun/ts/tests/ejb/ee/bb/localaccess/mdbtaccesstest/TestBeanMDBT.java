@@ -110,22 +110,22 @@ public class TestBeanMDBT extends ParentMsgBean {
             if (msg.getIntProperty("TestCaseNum") > 0) {
 
                 switch (msg.getIntProperty("TestCaseNum")) {
-                    case 1:
-                        result = test1();
-                        break;
-                    case 2:
-                        result = test2();
-                        break;
-                    case 3:
-                        result = test3();
-                        break;
-                    case 4:
-                        result = test4();
-                        break;
-                    default:
-                        TestUtil.logTrace("Error in mdb - ");
-                        TestUtil.logTrace("No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
-                        break;
+                case 1:
+                    result = test1();
+                    break;
+                case 2:
+                    result = test2();
+                    break;
+                case 3:
+                    result = test3();
+                    break;
+                case 4:
+                    result = test4();
+                    break;
+                default:
+                    TestUtil.logTrace("Error in mdb - ");
+                    TestUtil.logTrace("No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
+                    break;
                 }
             }
             TestUtil.logTrace("from TestBeanMDBT - sending response");
@@ -154,8 +154,10 @@ public class TestBeanMDBT extends ParentMsgBean {
             msg = qSession.createTextMessage();
             msg.setStringProperty("TestCase", testcase);
             msg.setText(testcase);
-            if (result) msg.setStringProperty("Status", "Pass");
-            else msg.setStringProperty("Status", "Fail");
+            if (result)
+                msg.setStringProperty("Status", "Pass");
+            else
+                msg.setStringProperty("Status", "Fail");
             qSender.send(msg);
         } catch (JMSException je) {
             TestUtil.printStackTrace(je);

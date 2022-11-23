@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -56,18 +54,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: constructortest1
      *
-     * @assertion_ids: Servlet:JAVADOC:693; Servlet:JAVADOC:733;
-     * Servlet:JAVADOC:734; Servlet:JAVADOC:735; Servlet:JAVADOC:736;
-     * Servlet:JAVADOC:737; Servlet:JAVADOC:738; Servlet:JAVADOC:739;
-     * Servlet:JAVADOC:740; Servlet:JAVADOC:741; Servlet:JAVADOC:742;
-     * Servlet:JAVADOC:743; Servlet:JAVADOC:744; Servlet:JAVADOC:745;
+     * @assertion_ids: Servlet:JAVADOC:693; Servlet:JAVADOC:733; Servlet:JAVADOC:734; Servlet:JAVADOC:735;
+     * Servlet:JAVADOC:736; Servlet:JAVADOC:737; Servlet:JAVADOC:738; Servlet:JAVADOC:739; Servlet:JAVADOC:740;
+     * Servlet:JAVADOC:741; Servlet:JAVADOC:742; Servlet:JAVADOC:743; Servlet:JAVADOC:744; Servlet:JAVADOC:745;
      * Servlet:JAVADOC:746;
      *
-     * @test_Strategy: Create a Servlet TestServlet, with a
-     * ServletContextListener; In the Servlet, turn HttpSession on; In
-     * ServletContextListener, create a SessionCookieConfig instance, Verify in
-     * Client that the SessionCookieConfig instance is created, and all
-     * SessionCookieConfig APIs work accordingly.
+     * @test_Strategy: Create a Servlet TestServlet, with a ServletContextListener; In the Servlet, turn HttpSession on; In
+     * ServletContextListener, create a SessionCookieConfig instance, Verify in Client that the SessionCookieConfig instance
+     * is created, and all SessionCookieConfig APIs work accordingly.
      */
     public void constructortest1() throws Fault {
         TEST_PROPS.setProperty(
@@ -85,9 +79,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:744;
      *
-     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
-     * HttpSession on; Verify in servlet SessionCookieConfig.setName cannot be
-     * called once is set.
+     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn HttpSession on; Verify in servlet
+     * SessionCookieConfig.setName cannot be called once is set.
      */
     public void setNameTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setNameTest");
@@ -99,9 +92,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:740;
      *
-     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
-     * HttpSession on; Verify in servlet SessionCookieConfig.setComment cannot be
-     * called once is set.
+     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn HttpSession on; Verify in servlet
+     * SessionCookieConfig.setComment cannot be called once is set.
      */
     public void setCommentTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setCommentTest");
@@ -113,9 +105,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:745;
      *
-     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
-     * HttpSession on; Verify in servlet SessionCookieConfig.setPath cannot be
-     * called once is set.
+     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn HttpSession on; Verify in servlet
+     * SessionCookieConfig.setPath cannot be called once is set.
      */
     public void setPathTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setPathTest");
@@ -127,9 +118,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:741;
      *
-     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
-     * HttpSession on; Verify in servlet SessionCookieConfig.setDomain cannot be
-     * called once is set.
+     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn HttpSession on; Verify in servlet
+     * SessionCookieConfig.setDomain cannot be called once is set.
      */
     public void setDomainTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setDomainTest");
@@ -141,9 +131,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:743;
      *
-     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
-     * HttpSession on; Verify in servlet SessionCookieConfig.setMaxAge cannot be
-     * called once is set.
+     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn HttpSession on; Verify in servlet
+     * SessionCookieConfig.setMaxAge cannot be called once is set.
      */
     public void setMaxAgeTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setMaxAgeTest");
@@ -155,9 +144,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:742;
      *
-     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
-     * HttpSession on; Verify in servlet SessionCookieConfig.setHttpOnly cannot be
-     * called once is set.
+     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn HttpSession on; Verify in servlet
+     * SessionCookieConfig.setHttpOnly cannot be called once is set.
      */
     public void setHttpOnlyTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setHttpOnlyTest");
@@ -169,9 +157,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:746;
      *
-     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
-     * HttpSession on; Verify in servlet SessionCookieConfig.setSecure cannot be
-     * called once is set.
+     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn HttpSession on; Verify in servlet
+     * SessionCookieConfig.setSecure cannot be called once is set.
      */
     public void setSecureTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setSecureTest");
@@ -183,9 +170,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn
-     * HttpSession on; Verify in servlet SessionCookieConfig.setAttribute cannot be
-     * called once is set.
+     * @test_Strategy: Create a Servlet TestServlet, In the Servlet, turn HttpSession on; Verify in servlet
+     * SessionCookieConfig.setAttribute cannot be called once is set.
      */
     public void setAttributeTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setAttributeTest");

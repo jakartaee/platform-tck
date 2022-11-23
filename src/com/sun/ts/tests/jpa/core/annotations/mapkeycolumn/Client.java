@@ -33,7 +33,8 @@ import java.util.Set;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     private static Employee empRef[] = new Employee[10];
 
@@ -66,15 +67,14 @@ public class Client extends PMClientBase {
     /*
      * @testName: annotationMapKeyColumnTest1
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100;
-     * PERSISTENCE:SPEC:1101; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:1202;
-     * PERSISTENCE:JAVADOC:90; PERSISTENCE:JAVADOC:92; PERSISTENCE:JAVADOC:96
+     * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101; PERSISTENCE:SPEC:518;
+     * PERSISTENCE:SPEC:1202; PERSISTENCE:JAVADOC:90; PERSISTENCE:JAVADOC:92; PERSISTENCE:JAVADOC:96
      *
-     * @test_Strategy: The MapKeyColumn annotation is used to specify the mapping
-     * for the key column of a map whose map key is a basic type.
+     * @test_Strategy: The MapKeyColumn annotation is used to specify the mapping for the key column of a map whose map key
+     * is a basic type.
      *
-     * The name element designates the name of the persistence property or field
-     * of the associated entity that is used as the map key.
+     * The name element designates the name of the persistence property or field of the associated entity that is used as
+     * the map key.
      *
      * Execute a query returning Employees objects.
      *
@@ -123,15 +123,14 @@ public class Client extends PMClientBase {
     /*
      * @testName: annotationMapKeyColumnTest2
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100;
-     * PERSISTENCE:SPEC:1101; PERSISTENCE:JAVADOC:90; PERSISTENCE:JAVADOC:92;
-     * PERSISTENCE:JAVADOC:96
+     * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101; PERSISTENCE:JAVADOC:90;
+     * PERSISTENCE:JAVADOC:92; PERSISTENCE:JAVADOC:96
      *
-     * @test_Strategy: The MapKeyColumn annotation is used to specify the mapping
-     * for the key column of a map whose map key is a basic type.
+     * @test_Strategy: The MapKeyColumn annotation is used to specify the mapping for the key column of a map whose map key
+     * is a basic type.
      *
-     * The name element designates the name of the persistence property or field
-     * of the associated entity that is used as the map key.
+     * The name element designates the name of the persistence property or field of the associated entity that is used as
+     * the map key.
      *
      * Execute a query returning Employee IDs.
      */
@@ -142,7 +141,7 @@ public class Client extends PMClientBase {
 
         try {
             getEntityTransaction().begin();
-            final Integer[] expectedEmps = new Integer[] {4, 2};
+            final Integer[] expectedEmps = new Integer[] { 4, 2 };
 
             TestUtil.logTrace("find Employees belonging to Department: Marketing");
             e = getEntityManager()
@@ -188,14 +187,14 @@ public class Client extends PMClientBase {
     /*
      * @testName: annotationMapKeyColumnTest3
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:352; PERSISTENCE:JAVADOC:353;
-     * PERSISTENCE:JAVADOC:354; PERSISTENCE:JAVADOC:355; PERSISTENCE:JAVADOC:359;
+     * @assertion_ids: PERSISTENCE:JAVADOC:352; PERSISTENCE:JAVADOC:353; PERSISTENCE:JAVADOC:354; PERSISTENCE:JAVADOC:355;
+     * PERSISTENCE:JAVADOC:359;
      *
-     * @test_Strategy: The MapKeyColumn annotation is used to specify the mapping
-     * for the key column of a map whose map key is a basic type.
+     * @test_Strategy: The MapKeyColumn annotation is used to specify the mapping for the key column of a map whose map key
+     * is a basic type.
      *
-     * The name element designates the name of the persistence property or field
-     * of the associated entity that is used as the map key.
+     * The name element designates the name of the persistence property or field of the associated entity that is used as
+     * the map key.
      *
      * Execute a query returning Employees objects.
      */
@@ -261,9 +260,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:352
      *
-     * @test_Strategy: The MapKeyColumn annotation with an attribute of
-     * insertable=false is used to specify the mapping for the fk column to a
-     * second entity Execute a query returning Employees objects.
+     * @test_Strategy: The MapKeyColumn annotation with an attribute of insertable=false is used to specify the mapping for
+     * the fk column to a second entity Execute a query returning Employees objects.
      */
     public void mapKeyColumnInsertableFalseTest() throws Fault {
         boolean pass = false;
@@ -305,9 +303,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:360
      *
-     * @test_Strategy: The MapKeyColumn annotation with an attribute of
-     * updatable=false is used to specify the mapping for the fk column to a
-     * second entity Execute a query returning Employees objects.
+     * @test_Strategy: The MapKeyColumn annotation with an attribute of updatable=false is used to specify the mapping for
+     * the fk column to a second entity Execute a query returning Employees objects.
      */
     public void mapKeyColumnUpdatableFalseTest() throws Fault {
         boolean pass = false;

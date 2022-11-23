@@ -31,7 +31,8 @@ public class Address implements java.io.Serializable {
     @Embedded
     protected ZipCode zipcode;
 
-    public Address() {}
+    public Address() {
+    }
 
     public Address(String street, String city, String state) {
         this.street = street;

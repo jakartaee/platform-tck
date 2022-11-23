@@ -73,10 +73,9 @@ public class ObjectMsgQueueTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -119,8 +118,8 @@ public class ObjectMsgQueueTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -146,9 +145,8 @@ public class ObjectMsgQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:85; JMS:JAVADOC:291;
      *
-     * @test_Strategy: Create an object message. Write a StringBuffer to the
-     * message. modify the StringBuffer and send the msg, verify that it does not
-     * effect the msg
+     * @test_Strategy: Create an object message. Write a StringBuffer to the message. modify the StringBuffer and send the
+     * msg, verify that it does not effect the msg
      */
 
     public void messageObjectCopyQTest() throws Fault {
@@ -168,8 +166,7 @@ public class ObjectMsgQueueTests extends ServiceEETest {
             sBuff.append("a test ");
             messageSentObject.setStringProperty("COM_SUN_JMS_TESTNAME", "messageObjectCopyQTest");
             tool.getDefaultQueueSender().send(messageSentObject);
-            messageReceivedObject =
-                    (ObjectMessage) tool.getDefaultQueueReceiver().receive(timeout);
+            messageReceivedObject = (ObjectMessage) tool.getDefaultQueueReceiver().receive(timeout);
             logMsg("Ensure that changing the object did not change the message");
             StringBuffer s = (StringBuffer) messageReceivedObject.getObject();
 
@@ -194,8 +191,8 @@ public class ObjectMsgQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:717;
      *
-     * @test_Strategy: Create an object message. Try to setObject upon receiving
-     * the message. Verify that MessageNotWriteableException is thrown.
+     * @test_Strategy: Create an object message. Try to setObject upon receiving the message. Verify that
+     * MessageNotWriteableException is thrown.
      */
 
     public void notWritableTest() throws Fault {
@@ -215,8 +212,7 @@ public class ObjectMsgQueueTests extends ServiceEETest {
             messageSentObject.setStringProperty("COM_SUN_JMS_TESTNAME", testName);
             tool.getDefaultQueueSender().send(messageSentObject);
 
-            messageReceivedObject =
-                    (ObjectMessage) tool.getDefaultQueueReceiver().receive(timeout);
+            messageReceivedObject = (ObjectMessage) tool.getDefaultQueueReceiver().receive(timeout);
 
             try {
                 messageReceivedObject.setObject(sBuff);
@@ -226,7 +222,8 @@ public class ObjectMsgQueueTests extends ServiceEETest {
                 TestUtil.logTrace("Got expected MessageNotWriteableException");
             }
 
-            if (!pass) throw new Fault(testName);
+            if (!pass)
+                throw new Fault(testName);
         } catch (Exception e) {
             TestUtil.logErr(testName + " failed: ", e);
             throw new Fault(testName);

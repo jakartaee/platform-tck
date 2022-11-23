@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,10 +58,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:309;Servlet:JAVADOC:307;Servlet:JAVADOC:308
      *
-     * @test_Strategy: Client calls a servlet that adds an attribute. The listener
-     * should detect the add and writes the values returned by the getName,
-     * getSession(), and getValue() methods to a static log. Servlet then reads
-     * the log and verifies the result
+     * @test_Strategy: Client calls a servlet that adds an attribute. The listener should detect the add and writes the
+     * values returned by the getName, getSession(), and getValue() methods to a static log. Servlet then reads the log and
+     * verifies the result
      */
 
     public void addedTest() throws Fault {
@@ -76,10 +73,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:310;Servlet:JAVADOC:307;Servlet:JAVADOC:308
      *
-     * @test_Strategy: Client calls a servlet that adds/removes an attribute. The
-     * listener should detect the changes and writes the values returned by the
-     * getName, getSession(), and getValue() methods to a static log. Servlet then
-     * reads the log and verifies the result
+     * @test_Strategy: Client calls a servlet that adds/removes an attribute. The listener should detect the changes and
+     * writes the values returned by the getName, getSession(), and getValue() methods to a static log. Servlet then reads
+     * the log and verifies the result
      */
 
     public void removedTest() throws Fault {
@@ -92,10 +88,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:311;Servlet:JAVADOC:307;Servlet:JAVADOC:308
      *
-     * @test_Strategy: Client calls a servlet that adds/replaces an attribute. The
-     * listener should detect the changes and writes the values returned by the
-     * getName, getSession(), and getValue() methods to a static log. Servlet then
-     * reads the log and verifies the result
+     * @test_Strategy: Client calls a servlet that adds/replaces an attribute. The listener should detect the changes and
+     * writes the values returned by the getName, getSession(), and getValue() methods to a static log. Servlet then reads
+     * the log and verifies the result
      */
 
     public void replacedTest() throws Fault {

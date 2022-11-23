@@ -27,9 +27,7 @@ import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/textdecodersessionpathparam/{param}",
-        decoders = {StringBeanTextDecoder.class})
+@ServerEndpoint(value = "/textdecodersessionpathparam/{param}", decoders = { StringBeanTextDecoder.class })
 public class WSTextDecoderAndSessionAndPathParamServer {
 
     @SuppressWarnings("unused")

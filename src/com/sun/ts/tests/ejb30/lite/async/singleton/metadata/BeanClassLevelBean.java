@@ -26,14 +26,13 @@ import jakarta.ejb.Local;
 import jakarta.ejb.Singleton;
 
 /**
- * The purpose of this bean is to verify the superclasses of a bean class can
- * have type-level @Asynchronous, which applies to all business methods
- * implemented there. Bean class hierarchy:
+ * The purpose of this bean is to verify the superclasses of a bean class can have type-level @Asynchronous, which
+ * applies to all business methods implemented there. Bean class hierarchy:
  *
- * InterfaceTypeLevelBeanBase BeanClassLevel0BeanBase
- * BeanClassLevel1BeanBase @Asynchronous BeanClassLevel2BeanBase @Asynchronous
- * BeanClassLevel3BeanBase BeanClassLevelBean
+ * InterfaceTypeLevelBeanBase BeanClassLevel0BeanBase BeanClassLevel1BeanBase @Asynchronous
+ * BeanClassLevel2BeanBase @Asynchronous BeanClassLevel3BeanBase BeanClassLevelBean
  */
 @Singleton
 @Local(PlainInterfaceTypeLevelIF.class)
-public class BeanClassLevelBean extends BeanClassLevel3BeanBase {}
+public class BeanClassLevelBean extends BeanClassLevel3BeanBase {
+}

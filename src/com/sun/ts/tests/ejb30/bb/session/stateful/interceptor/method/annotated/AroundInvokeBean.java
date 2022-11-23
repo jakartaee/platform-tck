@@ -40,7 +40,7 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 
 @Stateful(name = "AroundInvokeBean")
-@Remote({AroundInvokeIF.class})
+@Remote({ AroundInvokeIF.class })
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)
 
@@ -68,12 +68,10 @@ public class AroundInvokeBean extends AroundInvokeBase
 
     // ============= interceptor method ==================================
     /**
-     * There is some duplication between this method in
-     * stateful/interceptor/listener and stateful/interceptor/method. It's too
-     * much work to abstract them out, because: (1) this method need to access
-     * bean's internal state. If we delegate to a helper class, then we need to
-     * pass this bean to it, and we need a common type for this bean. (2) we do
-     * not want to populate common/interceptor with stateful-related stuff.
+     * There is some duplication between this method in stateful/interceptor/listener and stateful/interceptor/method. It's
+     * too much work to abstract them out, because: (1) this method need to access bean's internal state. If we delegate to
+     * a helper class, then we need to pass this bean to it, and we need a common type for this bean. (2) we do not want to
+     * populate common/interceptor with stateful-related stuff.
      *
      */
     @AroundInvoke
@@ -88,8 +86,7 @@ public class AroundInvokeBean extends AroundInvokeBase
         TLogger.log("Creating AroundInvokeTestMDBImpl with: ejbContext="
                 + ejbContext + ";" + " bean=" + this + ", callerPrincipal="
                 + ejbContext.getCallerPrincipal());
-        AroundInvokeTestImpl helper =
-                new AroundInvokeTestImpl(this, getEJBContext().getCallerPrincipal());
+        AroundInvokeTestImpl helper = new AroundInvokeTestImpl(this, getEJBContext().getCallerPrincipal());
 
         if (afterBeginTest.equals(methName)) {
             // afterBegin() should already have been called. Ideally, this
@@ -171,7 +168,8 @@ public class AroundInvokeBean extends AroundInvokeBase
     }
 
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 
     // ============= override business methods from super ================
 }

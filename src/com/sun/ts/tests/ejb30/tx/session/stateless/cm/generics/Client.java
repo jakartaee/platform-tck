@@ -30,9 +30,8 @@ public class Client extends AbstractUrlClient {
     public static final String SERVLET_NAME = "TestServlet";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -41,8 +40,7 @@ public class Client extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setServletName(SERVLET_NAME);
@@ -77,8 +75,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: genericLocalBusinessInterfaceTxMandatory
      *
-     * @test_Strategy: httpclient -> servlet -> Local DateGreetingBean.
-     * DateGreetingBean has a local business interface
+     * @test_Strategy: httpclient -> servlet -> Local DateGreetingBean. DateGreetingBean has a local business interface
      * GenericGreetingIF<java.util.Date>
      */
     public void genericLocalBusinessInterfaceTxMandatory() throws Fault {
@@ -89,9 +86,8 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: parameterizedParamLocalTxMandatory
      *
-     * @test_Strategy: httpclient -> servlet -> Local GreetingBean. verify method
-     * like parameterizedParam(List<String> ls) can be invoked with specified
-     * transaction attribute (Mandatory).
+     * @test_Strategy: httpclient -> servlet -> Local GreetingBean. verify method like parameterizedParam(List<String> ls)
+     * can be invoked with specified transaction attribute (Mandatory).
      */
     public void parameterizedParamLocalTxMandatory() throws Fault {
         TEST_PROPS.setProperty(APITEST, "parameterizedParamLocalTxMandatory");
@@ -101,9 +97,8 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: parameterizedReturnLocalTxMandatory
      *
-     * @test_Strategy: httpclient -> servlet -> Local GreetingBean. verify method
-     * like List<String> parameterizedReturn(int i) can be invoked with specified
-     * transaction attribute (Mandatory).
+     * @test_Strategy: httpclient -> servlet -> Local GreetingBean. verify method like List<String> parameterizedReturn(int
+     * i) can be invoked with specified transaction attribute (Mandatory).
      */
     public void parameterizedReturnLocalTxMandatory() throws Fault {
         TEST_PROPS.setProperty(APITEST, "parameterizedReturnLocalTxMandatory");
@@ -113,9 +108,8 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: parameterizedParamRemoteTxMandatory
      *
-     * @test_Strategy: httpclient -> servlet -> Remote GreetingBean. verify method
-     * like parameterizedParam(List<String> ls) can be invoked with specified
-     * transaction attribute (Mandatory).
+     * @test_Strategy: httpclient -> servlet -> Remote GreetingBean. verify method like parameterizedParam(List<String> ls)
+     * can be invoked with specified transaction attribute (Mandatory).
      */
     public void parameterizedParamRemoteTxMandatory() throws Fault {
         TEST_PROPS.setProperty(APITEST, "parameterizedParamRemoteTxMandatory");
@@ -125,9 +119,8 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: parameterizedReturnRemoteTxMandatory
      *
-     * @test_Strategy: httpclient -> servlet -> Remote GreetingBean. verify method
-     * like List<String> parameterizedReturn(int i) can be invoked with specified
-     * transaction attribute (Mandatory).
+     * @test_Strategy: httpclient -> servlet -> Remote GreetingBean. verify method like List<String> parameterizedReturn(int
+     * i) can be invoked with specified transaction attribute (Mandatory).
      */
     public void parameterizedReturnRemoteTxMandatory() throws Fault {
         TEST_PROPS.setProperty(APITEST, "parameterizedReturnRemoteTxMandatory");
@@ -137,8 +130,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: rolesAllowedLocalDateGreeting
      *
-     * @test_Strategy: Verify @RolesAllowed in methods with generic params and
-     * return types are processed properly.
+     * @test_Strategy: Verify @RolesAllowed in methods with generic params and return types are processed properly.
      */
     public void rolesAllowedLocalDateGreeting() throws Fault {
         TEST_PROPS.setProperty(APITEST, "rolesAllowedLocalDateGreeting");
@@ -148,8 +140,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: rolesAllowedRemoteIntGreet
      *
-     * @test_Strategy: Verify @RolesAllowed in methods with generic params and
-     * return types are processed properly.
+     * @test_Strategy: Verify @RolesAllowed in methods with generic params and return types are processed properly.
      */
     public void rolesAllowedRemoteIntGreet() throws Fault {
         TEST_PROPS.setProperty(APITEST, "rolesAllowedRemoteIntGreet");
@@ -159,8 +150,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: rolesAllowedLocalIntGreet
      *
-     * @test_Strategy: Verify @RolesAllowed in methods with generic params and
-     * return types are processed properly.
+     * @test_Strategy: Verify @RolesAllowed in methods with generic params and return types are processed properly.
      */
     public void rolesAllowedLocalIntGreet() throws Fault {
         TEST_PROPS.setProperty(APITEST, "rolesAllowedLocalIntGreet");
@@ -170,8 +160,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: rolesAllowedNoArgLocalDateGreeting
      *
-     * @test_Strategy: Verify @RolesAllowed in methods with generic return types
-     * are processed properly.
+     * @test_Strategy: Verify @RolesAllowed in methods with generic return types are processed properly.
      */
     public void rolesAllowedNoArgLocalDateGreeting() throws Fault {
         TEST_PROPS.setProperty(APITEST, "rolesAllowedNoArgLocalDateGreeting");
@@ -181,8 +170,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: rolesAllowedNoArgRemoteIntGreet
      *
-     * @test_Strategy: Verify @RolesAllowed in methods with generic return types
-     * are processed properly.
+     * @test_Strategy: Verify @RolesAllowed in methods with generic return types are processed properly.
      */
     public void rolesAllowedNoArgRemoteIntGreet() throws Fault {
         TEST_PROPS.setProperty(APITEST, "rolesAllowedNoArgRemoteIntGreet");
@@ -192,8 +180,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: rolesAllowedNoArgLocalIntGreet
      *
-     * @test_Strategy: Verify @RolesAllowed in methods with generic return types
-     * are processed properly.
+     * @test_Strategy: Verify @RolesAllowed in methods with generic return types are processed properly.
      */
     public void rolesAllowedNoArgLocalIntGreet() throws Fault {
         TEST_PROPS.setProperty(APITEST, "rolesAllowedNoArgLocalIntGreet");

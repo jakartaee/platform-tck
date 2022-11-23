@@ -154,8 +154,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * user; password;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; user; password;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -193,21 +192,18 @@ public class Client extends EETest {
     /*
      * @testName: sfbmAllowedMethodsTest1
      *
-     * @assertion_ids: EJB:SPEC:92; EJB:SPEC:92.1; EJB:SPEC:92.2; EJB:SPEC:92.3;
-     * EJB:SPEC:92.4; EJB:SPEC:92.5; EJB:SPEC:92.6; EJB:SPEC:92.7; EJB:SPEC:92.10;
-     * EJB:SPEC:92.11; EJB:SPEC:92.12; EJB:SPEC:92.13; EJB:SPEC:92.14;
+     * @assertion_ids: EJB:SPEC:92; EJB:SPEC:92.1; EJB:SPEC:92.2; EJB:SPEC:92.3; EJB:SPEC:92.4; EJB:SPEC:92.5;
+     * EJB:SPEC:92.6; EJB:SPEC:92.7; EJB:SPEC:92.10; EJB:SPEC:92.11; EJB:SPEC:92.12; EJB:SPEC:92.13; EJB:SPEC:92.14;
      * EJB:SPEC:92.15; EJB:SPEC:90; EJB:JAVADOC:183; EJB:JAVADOC:211
      *
-     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method
-     * of a stateful session bean with bean-managed transaction demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method of a stateful session bean with
+     * bean-managed transaction demarcation are:
      *
-     * o getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly -
-     * not allowed o isCallerInRole - allowed o setRollbackOnly - not allowed o
-     * getEJBObject - allowed o JNDI_Access - allowed o UserTransaction_Access-
-     * allowed o UserTransaction_Methods_Test1 - allowed o
-     * UserTransaction_Methods_Test2 - allowed o UserTransaction_Methods_Test3 -
-     * allowed o UserTransaction_Methods_Test4 - allowed o getEJBLocalHome -
-     * allowed o getEJBLocalObject - allowed o Timer Methods - not allowed
+     * o getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly - not allowed o isCallerInRole - allowed o
+     * setRollbackOnly - not allowed o getEJBObject - allowed o JNDI_Access - allowed o UserTransaction_Access- allowed o
+     * UserTransaction_Methods_Test1 - allowed o UserTransaction_Methods_Test2 - allowed o UserTransaction_Methods_Test3 -
+     * allowed o UserTransaction_Methods_Test4 - allowed o getEJBLocalHome - allowed o getEJBLocalObject - allowed o Timer
+     * Methods - not allowed
      *
      * Deploy it on the J2EE server. Verify correct operations.
      */
@@ -216,8 +212,8 @@ public class Client extends EETest {
         logTrace("Operation Tests for ejbCreate");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "false", "true", "false", "true", "true", "true", "true", "true", "true", "true", "true",
-            "true", "false"
+                "true", "true", "false", "true", "false", "true", "true", "true", "true", "true", "true", "true", "true",
+                "true", "false"
         };
         try {
             // create EJB instance
@@ -247,29 +243,25 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("sfbmAllowedMethodsTest1 failed");
+        if (!pass)
+            throw new Fault("sfbmAllowedMethodsTest1 failed");
     }
 
     /*
      * @testName: sfbmAllowedMethodsTest2
      *
-     * @assertion_ids: EJB:SPEC:93; EJB:SPEC:93.1; EJB:SPEC:93.2; EJB:SPEC:93.3;
-     * EJB:SPEC:93.4; EJB:SPEC:93.5; EJB:SPEC:93.6; EJB:SPEC:93.7; EJB:SPEC:93.10;
-     * EJB:SPEC:93.11; EJB:SPEC:93.12; EJB:SPEC:93.14; EJB:JAVADOC:211;
+     * @assertion_ids: EJB:SPEC:93; EJB:SPEC:93.1; EJB:SPEC:93.2; EJB:SPEC:93.3; EJB:SPEC:93.4; EJB:SPEC:93.5;
+     * EJB:SPEC:93.6; EJB:SPEC:93.7; EJB:SPEC:93.10; EJB:SPEC:93.11; EJB:SPEC:93.12; EJB:SPEC:93.14; EJB:JAVADOC:211;
      * EJB:JAVADOC:161
      *
-     * @test_Strategy: Operations allowed and not allowed in the setSessionContext
-     * method of a stateful session bean with bean-managed transaction demarcation
-     * are:
+     * @test_Strategy: Operations allowed and not allowed in the setSessionContext method of a stateful session bean with
+     * bean-managed transaction demarcation are:
      *
-     * o getEJBHome - allowed o getCallerPrincipal - not allowed o getRollbackOnly
-     * - not allowed o isCallerInRole - not allowed o setRollbackOnly - not
-     * allowed o getEJBObject - not allowed o JNDI_Access - allowed o
-     * UserTransaction_Access- not allowed o UserTransaction_Methods_Test1 - not
-     * allowed o UserTransaction_Methods_Test2 - not allowed o
-     * UserTransaction_Methods_Test3 - not allowed o UserTransaction_Methods_Test4
-     * - not allowed o getEJBLocalHome - allowed o getEJBLocalObject - not allowed
-     * o Timer Methods - not allowed (not tested)
+     * o getEJBHome - allowed o getCallerPrincipal - not allowed o getRollbackOnly - not allowed o isCallerInRole - not
+     * allowed o setRollbackOnly - not allowed o getEJBObject - not allowed o JNDI_Access - allowed o
+     * UserTransaction_Access- not allowed o UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2 -
+     * not allowed o UserTransaction_Methods_Test3 - not allowed o UserTransaction_Methods_Test4 - not allowed o
+     * getEJBLocalHome - allowed o getEJBLocalObject - not allowed o Timer Methods - not allowed (not tested)
      *
      * Deploy it on the J2EE server. Verify correct operations.
      */
@@ -278,8 +270,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for setSessionContext");
         boolean pass = true;
         String expected[] = {
-            "true", "false", "false", "false", "false", "false", "true", "false", "false", "false", "false", "false",
-            "true", "false", "false"
+                "true", "false", "false", "false", "false", "false", "true", "false", "false", "false", "false", "false",
+                "true", "false", "false"
         };
         try {
             // create EJB instance
@@ -305,28 +297,25 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("sfbmAllowedMethodsTest2 failed");
+        if (!pass)
+            throw new Fault("sfbmAllowedMethodsTest2 failed");
     }
 
     /*
      * @testName: sfbmAllowedMethodsTest3
      *
-     * @assertion_ids: EJB:SPEC:94; EJB:SPEC:94.1; EJB:SPEC:94.2; EJB:SPEC:94.3;
-     * EJB:SPEC:94.4; EJB:SPEC:94.5; EJB:SPEC:94.6; EJB:SPEC:94.7; EJB:SPEC:94.10;
-     * EJB:SPEC:94.11; EJB:SPEC:94.12; EJB:SPEC:94.13; EJB:SPEC:94.14;
-     * EJB:SPEC:94.15; EJB:JAVADOC:210; EJB:JAVADOC:206; EJB:JAVADOC:202;
-     * EJB:JAVADOC:198; EJB:JAVADOC:194
+     * @assertion_ids: EJB:SPEC:94; EJB:SPEC:94.1; EJB:SPEC:94.2; EJB:SPEC:94.3; EJB:SPEC:94.4; EJB:SPEC:94.5;
+     * EJB:SPEC:94.6; EJB:SPEC:94.7; EJB:SPEC:94.10; EJB:SPEC:94.11; EJB:SPEC:94.12; EJB:SPEC:94.13; EJB:SPEC:94.14;
+     * EJB:SPEC:94.15; EJB:JAVADOC:210; EJB:JAVADOC:206; EJB:JAVADOC:202; EJB:JAVADOC:198; EJB:JAVADOC:194
      *
-     * @test_Strategy: Operations allowed and not allowed in a business method of
-     * a stateful session bean with bean-managed transaction demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in a business method of a stateful session bean with bean-managed
+     * transaction demarcation are:
      *
-     * o getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly -
-     * not allowed o isCallerInRole - allowed o setRollbackOnly - not allowed o
-     * getEJBObject - allowed o JNDI_Access - allowed o Resource_Access - allowed
-     * o UserTransaction_Access- allowed o UserTransaction_Methods_Test1 - allowed
-     * o UserTransaction_Methods_Test2 - allowed o UserTransaction_Methods_Test3 -
-     * allowed o UserTransaction_Methods_Test4 - allowed o getEJBLocalHome -
-     * allowed o getEJBLocalObject - allowed o Timer Methods - allowed
+     * o getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly - not allowed o isCallerInRole - allowed o
+     * setRollbackOnly - not allowed o getEJBObject - allowed o JNDI_Access - allowed o Resource_Access - allowed o
+     * UserTransaction_Access- allowed o UserTransaction_Methods_Test1 - allowed o UserTransaction_Methods_Test2 - allowed o
+     * UserTransaction_Methods_Test3 - allowed o UserTransaction_Methods_Test4 - allowed o getEJBLocalHome - allowed o
+     * getEJBLocalObject - allowed o Timer Methods - allowed
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -336,8 +325,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for businessMethod");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "false", "true", "false", "true", "true", "true", "true", "true", "true", "true", "true",
-            "true", "true"
+                "true", "true", "false", "true", "false", "true", "true", "true", "true", "true", "true", "true", "true",
+                "true", "true"
         };
         try {
             // create EJB instance
@@ -365,7 +354,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("sfbmAllowedMethodsTest3 failed");
+        if (!pass)
+            throw new Fault("sfbmAllowedMethodsTest3 failed");
     }
 
     /*
@@ -373,9 +363,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:579
      *
-     * @test_Strategy: For a bean-managed stateful session bean, attempt to call
-     * ut.begin() after a TX has already been started. This is disallowed so check
-     * that a jakarta.transaction. NotSupportedException is thrown.
+     * @test_Strategy: For a bean-managed stateful session bean, attempt to call ut.begin() after a TX has already been
+     * started. This is disallowed so check that a jakarta.transaction. NotSupportedException is thrown.
      *
      */
 
@@ -399,7 +388,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("sfbmAllowedMethodsTest4 failed");
+        if (!pass)
+            throw new Fault("sfbmAllowedMethodsTest4 failed");
     }
 
     public void cleanup() throws Fault {

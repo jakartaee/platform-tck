@@ -35,7 +35,8 @@ public class Client extends PMClientBase {
     final Date d6 = getUtilDate("2000-10-14");
     final Date d7 = getUtilDate("2001-11-27");
 
-    public Client() {}
+    public Client() {
+    }
 
     private static Employee empRef[] = new Employee[5];
     private static Employee2 empRef2[] = new Employee2[5];
@@ -71,10 +72,12 @@ public class Client extends PMClientBase {
             throw new Fault("Setup failed:", e);
         }
     }
+
     /*
      * @testName: mapKeyTemporalTest
-     * @assertion_ids: PERSISTENCE:SPEC:2064; PERSISTENCE:SPEC:2065;
-     *                   PERSISTENCE:SPEC:2065.2;
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2064; PERSISTENCE:SPEC:2065; PERSISTENCE:SPEC:2065.2;
+     *
      * @test_Strategy:
      *
      */
@@ -157,8 +160,9 @@ public class Client extends PMClientBase {
 
     /*
      * @testName: mapKeyEnumeratedWithMayKeyClassAnnotationTest
-     * @assertion_ids: PERSISTENCE:SPEC:2066; PERSISTENCE:SPEC:2064;
-     *                  PERSISTENCE:SPEC:2065; PERSISTENCE:SPEC:2065.2;
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2066; PERSISTENCE:SPEC:2064; PERSISTENCE:SPEC:2065; PERSISTENCE:SPEC:2065.2;
+     *
      * @test_Strategy:
      *
      */
@@ -236,10 +240,12 @@ public class Client extends PMClientBase {
             throw new Fault("mapKeyEnumeratedWithMayKeyClassAnnotationTest failed");
         }
     }
+
     /*
      * @testName: elementCollectionTest
-     * @assertion_ids: PERSISTENCE:SPEC:2064; PERSISTENCE:SPEC:2065;
-     *                   PERSISTENCE:SPEC:2065.1;
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2064; PERSISTENCE:SPEC:2065; PERSISTENCE:SPEC:2065.1;
+     *
      * @test_Strategy:
      */
     public void elementCollectionTest() throws Fault {
@@ -318,8 +324,9 @@ public class Client extends PMClientBase {
             throw new Fault("elementCollectionTest failed");
         }
     }
+
     /*
-     *  Business Methods to set up data for Test Cases
+     * Business Methods to set up data for Test Cases
      */
     private void createTestData() throws Exception {
         TestUtil.logTrace("createTestData");

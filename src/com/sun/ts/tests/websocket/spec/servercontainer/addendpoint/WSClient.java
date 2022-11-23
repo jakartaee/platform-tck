@@ -47,8 +47,7 @@ public class WSClient extends WebSocketCommonClient {
 
     private static final String SENT_STRING_MESSAGE = "Hello World in String";
 
-    private static ByteBuffer SENT_BYTE_MESSAGE =
-            ByteBuffer.allocate("Hello World in ByteBuffer".getBytes().length + 1);
+    private static ByteBuffer SENT_BYTE_MESSAGE = ByteBuffer.allocate("Hello World in ByteBuffer".getBytes().length + 1);
 
     private static StringBuffer receivedMessageString = new StringBuffer();
 
@@ -69,11 +68,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: addMessageHandlerBasicStringTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:121; WebSocket:JAVADOC:122; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:121;
+     * WebSocket:JAVADOC:122; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      *
      * @test_Strategy:
      */
@@ -113,11 +110,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: addMessageHandlerBasicByteBufferTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:105;
-     * WebSocket:JAVADOC:121; WebSocket:JAVADOC:122; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-2.1.3-1; WebSocket:SPEC:WSC-2.1.3-2;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:105; WebSocket:JAVADOC:121;
+     * WebSocket:JAVADOC:122; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.1.3-1; WebSocket:SPEC:WSC-2.1.3-2;
      * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      *
      * @test_Strategy:
@@ -169,13 +164,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: addMessageHandlersTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:105;
-     * WebSocket:JAVADOC:112; WebSocket:JAVADOC:121; WebSocket:JAVADOC:122;
-     * WebSocket:JAVADOC:134; WebSocket:JAVADOC:147; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-2.1.3-1; WebSocket:SPEC:WSC-2.1.3-2;
-     * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:105; WebSocket:JAVADOC:112;
+     * WebSocket:JAVADOC:121; WebSocket:JAVADOC:122; WebSocket:JAVADOC:134; WebSocket:JAVADOC:147; WebSocket:JAVADOC:184;
+     * WebSocket:SPEC:WSC-2.1.3-1; WebSocket:SPEC:WSC-2.1.3-2; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      * WebSocket:SPEC:WSC-4.4-1; WebSocket:SPEC:WSC-4.4-2;
      *
      * @test_Strategy:
@@ -242,13 +234,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: addMessageHandlersTest1
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:103;
-     * WebSocket:JAVADOC:105; WebSocket:JAVADOC:112; WebSocket:JAVADOC:121;
-     * WebSocket:JAVADOC:122; WebSocket:JAVADOC:134; WebSocket:JAVADOC:147;
-     * WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.1.3-1;
-     * WebSocket:SPEC:WSC-2.1.3-2; WebSocket:SPEC:WSC-2.2.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:103; WebSocket:JAVADOC:105;
+     * WebSocket:JAVADOC:112; WebSocket:JAVADOC:121; WebSocket:JAVADOC:122; WebSocket:JAVADOC:134; WebSocket:JAVADOC:147;
+     * WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.1.3-1; WebSocket:SPEC:WSC-2.1.3-2; WebSocket:SPEC:WSC-2.2.2-1;
      * WebSocket:SPEC:WSC-2.2.3-1;
      *
      * @test_Strategy:
@@ -349,11 +338,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: closeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:123; WebSocket:JAVADOC:145; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-4.5-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:123;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
      */
@@ -399,11 +386,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close1Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:123; WebSocket:JAVADOC:145; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:123;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      * WebSocket:SPEC:WSC-2.1.5-1; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
@@ -449,13 +434,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close2Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:125; WebSocket:JAVADOC:145; WebSocket:JAVADOC:19;
-     * WebSocket:JAVADOC:20; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-2.1.5-1;
-     * WebSocket:SPEC:WSC-4.5-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:125;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:19; WebSocket:JAVADOC:20; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
+     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-2.1.5-1; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
      */
@@ -502,11 +484,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close3Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:123; WebSocket:JAVADOC:145; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-4.5-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:123;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
      */
@@ -552,11 +532,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close4Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:123; WebSocket:JAVADOC:145; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:123;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      * WebSocket:SPEC:WSC-2.1.5-1; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
@@ -607,13 +585,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close5Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:125; WebSocket:JAVADOC:145; WebSocket:JAVADOC:19;
-     * WebSocket:JAVADOC:20; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-2.1.5-1;
-     * WebSocket:SPEC:WSC-4.5-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:125;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:19; WebSocket:JAVADOC:20; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
+     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-2.1.5-1; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
      */
@@ -664,11 +639,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close6Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:123; WebSocket:JAVADOC:145; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-4.5-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:123;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
      */
@@ -714,11 +687,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close7Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:123; WebSocket:JAVADOC:145; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:123;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      * WebSocket:SPEC:WSC-2.1.5-1; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
@@ -769,13 +740,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close8Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:125; WebSocket:JAVADOC:145; WebSocket:JAVADOC:19;
-     * WebSocket:JAVADOC:20; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-2.1.5-1;
-     * WebSocket:SPEC:WSC-4.5-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:125;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:19; WebSocket:JAVADOC:20; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
+     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-2.1.5-1; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
      */
@@ -826,11 +794,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close9Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:123; WebSocket:JAVADOC:145; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-4.5-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:123;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
      */
@@ -876,11 +842,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close10Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:123; WebSocket:JAVADOC:145; WebSocket:JAVADOC:184;
-     * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:123;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      * WebSocket:SPEC:WSC-2.1.5-1; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
@@ -930,13 +894,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close11Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:125; WebSocket:JAVADOC:145; WebSocket:JAVADOC:19;
-     * WebSocket:JAVADOC:20; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-2.1.5-1;
-     * WebSocket:SPEC:WSC-4.5-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:125;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:19; WebSocket:JAVADOC:20; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
+     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-2.1.5-1; WebSocket:SPEC:WSC-4.5-1;
      *
      * @test_Strategy:
      */
@@ -987,13 +948,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: close12Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:125; WebSocket:JAVADOC:145; WebSocket:JAVADOC:19;
-     * WebSocket:JAVADOC:20; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.1.5-1;
-     * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
-     * WebSocket:SPEC:WSC-4.5-2;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:125;
+     * WebSocket:JAVADOC:145; WebSocket:JAVADOC:19; WebSocket:JAVADOC:20; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.1.5-1;
+     * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-4.5-2;
      *
      * @test_Strategy:
      */
@@ -1039,9 +997,8 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getContainerTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:129;
-     * WebSocket:JAVADOC:184;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:129; WebSocket:JAVADOC:184;
      *
      * @test_Strategy:
      */
@@ -1082,10 +1039,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getIdTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:130; WebSocket:JAVADOC:184;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:130;
+     * WebSocket:JAVADOC:184;
      *
      * @test_Strategy:
      */
@@ -1117,11 +1073,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getId1Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:130; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:130;
+     * WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      *
      * @test_Strategy:
      */
@@ -1171,10 +1125,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: setMaxBinaryMessageBufferSizeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:131; WebSocket:JAVADOC:148; WebSocket:JAVADOC:184;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:131;
+     * WebSocket:JAVADOC:148; WebSocket:JAVADOC:184;
      *
      * @test_Strategy:
      */
@@ -1222,10 +1175,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: setMaxTextMessageBufferSizeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:133; WebSocket:JAVADOC:150; WebSocket:JAVADOC:184;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:133;
+     * WebSocket:JAVADOC:150; WebSocket:JAVADOC:184;
      *
      * @test_Strategy:
      */
@@ -1266,10 +1218,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: setTimeoutTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:132; WebSocket:JAVADOC:149; WebSocket:JAVADOC:184;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:132;
+     * WebSocket:JAVADOC:149; WebSocket:JAVADOC:184;
      *
      * @test_Strategy:
      */
@@ -1308,11 +1259,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: setTimeout1Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:132; WebSocket:JAVADOC:149; WebSocket:JAVADOC:140;
-     * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:132;
+     * WebSocket:JAVADOC:149; WebSocket:JAVADOC:140; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      * WebSocket:SPEC:WSC-4.4-1; WebSocket:SPEC:WSC-4.4-2; WebSocket:JAVADOC:184;
      *
      * @test_Strategy:
@@ -1376,13 +1325,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: setTimeout2Test
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:132; WebSocket:JAVADOC:149; WebSocket:JAVADOC:140;
-     * WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-4.4-1;
-     * WebSocket:SPEC:WSC-4.4-2;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:132;
+     * WebSocket:JAVADOC:149; WebSocket:JAVADOC:140; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
+     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-4.4-1; WebSocket:SPEC:WSC-4.4-2;
      *
      * @test_Strategy:
      */
@@ -1446,11 +1392,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getQueryStringTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:140; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-4.4-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:140;
+     * WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-4.4-1;
      * WebSocket:SPEC:WSC-4.4-2;
      *
      * @test_Strategy:
@@ -1496,11 +1440,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getPathParametersTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:JAVADOC:138;
-     * WebSocket:SPEC:WSC-4.4-1; WebSocket:SPEC:WSC-4.4-2;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:184;
+     * WebSocket:SPEC:WSC-2.2.2-1; WebSocket:JAVADOC:138; WebSocket:SPEC:WSC-4.4-1; WebSocket:SPEC:WSC-4.4-2;
      *
      * @test_Strategy:
      */
@@ -1550,11 +1492,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getRequestURITest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:142; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-4.4-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:142;
+     * WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1; WebSocket:SPEC:WSC-4.4-1;
      * WebSocket:SPEC:WSC-4.4-2;
      *
      * @test_Strategy:
@@ -1608,11 +1548,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getOpenSessionsTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8;
-     * WebSocket:JAVADOC:10; WebSocket:JAVADOC:159; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112;
-     * WebSocket:JAVADOC:137; WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1;
-     * WebSocket:SPEC:WSC-2.2.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:28; WebSocket:JAVADOC:8; WebSocket:JAVADOC:10; WebSocket:JAVADOC:159;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79; WebSocket:JAVADOC:128; WebSocket:JAVADOC:112; WebSocket:JAVADOC:137;
+     * WebSocket:JAVADOC:184; WebSocket:SPEC:WSC-2.2.2-1; WebSocket:SPEC:WSC-2.2.3-1;
      *
      * @test_Strategy:
      */
@@ -1758,7 +1696,8 @@ public class WSClient extends WebSocketCommonClient {
     public static final class TCKBasicEndpoint1 extends Endpoint {
 
         @Override
-        public void onOpen(Session session, EndpointConfig config) {}
+        public void onOpen(Session session, EndpointConfig config) {
+        }
     }
 
     public static final class TCKGetIdEndpoint extends Endpoint {

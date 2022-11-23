@@ -77,8 +77,7 @@ public class Client extends ServiceEETest {
         map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
 
         TestUtil.logMsg("JNDI lookup for basicAuthorizedIdService");
-        basicAuthorizedIdService =
-                (jakarta.xml.ws.Service) ctx.lookup("java:comp/env/service/wssecEjb/basicAuthorizedId");
+        basicAuthorizedIdService = (jakarta.xml.ws.Service) ctx.lookup("java:comp/env/service/wssecEjb/basicAuthorizedId");
         TestUtil.logMsg("Get basicAuthorizedIdPort");
         basicAuthorizedIdPort = (HelloBasic) basicAuthorizedIdService.getPort(HelloBasic.class);
         TestUtil.logMsg("basicAuthorizedIdPort obtained");
@@ -88,8 +87,7 @@ public class Client extends ServiceEETest {
         map.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, urlString);
 
         TestUtil.logMsg("JNDI lookup for basicUnauthorizedIdService");
-        basicUnauthorizedIdService =
-                (jakarta.xml.ws.Service) ctx.lookup("java:comp/env/service/wssecEjb/basicUnauthorizedId");
+        basicUnauthorizedIdService = (jakarta.xml.ws.Service) ctx.lookup("java:comp/env/service/wssecEjb/basicUnauthorizedId");
         TestUtil.logMsg("Get basicUnauthorizedIdPort");
         basicUnauthorizedIdPort = (HelloBasic) basicUnauthorizedIdService.getPort(HelloBasic.class);
         TestUtil.logMsg("basicUnauthorizedIdPort obtained");
@@ -152,11 +150,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: secEjbBasicNoId
      *
-     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194;
-     * WS4EE:SPEC:195; WS4EE:SPEC:9000; WS4EE:SPEC:9001;
+     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194; WS4EE:SPEC:195; WS4EE:SPEC:9000; WS4EE:SPEC:9001;
      *
-     * @test_Strategy: Call protected EJB without any user id/password. Expect a
-     * WebServiceException.
+     * @test_Strategy: Call protected EJB without any user id/password. Expect a WebServiceException.
      */
     public void secEjbBasicNoId() throws Fault {
         TestUtil.logMsg("SecEjbBasicNoId");
@@ -180,11 +176,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: secEjbBasicUnauthorizedId
      *
-     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194;
-     * WS4EE:SPEC:195; WS4EE:SPEC:9000; WS4EE:SPEC:9001;
+     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194; WS4EE:SPEC:195; WS4EE:SPEC:9000; WS4EE:SPEC:9001;
      *
-     * @test_Strategy: Call protected EJB with a user id/password that's not
-     * authorized for the port. Expect a WebServiceException.
+     * @test_Strategy: Call protected EJB with a user id/password that's not authorized for the port. Expect a
+     * WebServiceException.
      */
     public void secEjbBasicUnauthorizedId() throws Fault {
         TestUtil.logMsg("SecEjbBasicUnauthorizedId");
@@ -204,11 +199,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: secEjbBasicInvalidId
      *
-     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194;
-     * WS4EE:SPEC:195; WS4EE:SPEC:9000; WS4EE:SPEC:9001;
+     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194; WS4EE:SPEC:195; WS4EE:SPEC:9000; WS4EE:SPEC:9001;
      *
-     * @test_Strategy: Call protected EJB with an invalid id/password. Expect a
-     * WebServiceException.
+     * @test_Strategy: Call protected EJB with an invalid id/password. Expect a WebServiceException.
      */
     public void secEjbBasicInvalidId() throws Fault {
         TestUtil.logMsg("SecEjbBasicInvalidId");
@@ -232,8 +225,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: secEjbBasicAuthorizedId
      *
-     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194;
-     * WS4EE:SPEC:195;
+     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194; WS4EE:SPEC:195;
      *
      * @test_Strategy: Call protected EJB with valid id/password.
      */

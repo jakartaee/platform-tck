@@ -28,9 +28,8 @@ public class JAXRSClient extends JAXRSCommonClient {
     }
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         new JAXRSClient().run(args);
@@ -45,11 +44,9 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:23; JAXRS:SPEC:48; JAXRS:SPEC:55; JAXRS:SPEC:58;
      *
-     * @test_Strategy: Create Application subclass annotated
-     * with @ApplicationPath; Create servlet-name with fully qualified Application
-     * subclass name in web.xml; Package all resource in web.war file; Client
-     * sends a request on a resource at /InheritanceTest, Verify that inheritance
-     * works; Verify deploy JAX-RS resource as Servlet application with
+     * @test_Strategy: Create Application subclass annotated with @ApplicationPath; Create servlet-name with fully qualified
+     * Application subclass name in web.xml; Package all resource in web.war file; Client sends a request on a resource at
+     * /InheritanceTest, Verify that inheritance works; Verify deploy JAX-RS resource as Servlet application with
      * Application with @ApplicationPath works;.
      */
     public void test1() throws Fault {
@@ -64,11 +61,9 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:24; JAXRS:SPEC:48; JAXRS:SPEC:55; JAXRS:SPEC:58;
      *
-     * @test_Strategy: Create Application subclass annotated
-     * with @ApplicationPath; Create servlet-name with fully qualified Application
-     * subclass name in web.xml; Package all resource in web.war file; Client
-     * sends a request on a resource at /InheritanceTest1, Verify that inheritance
-     * works. Verify deploy JAX-RS resource as Servlet application with
+     * @test_Strategy: Create Application subclass annotated with @ApplicationPath; Create servlet-name with fully qualified
+     * Application subclass name in web.xml; Package all resource in web.war file; Client sends a request on a resource at
+     * /InheritanceTest1, Verify that inheritance works. Verify deploy JAX-RS resource as Servlet application with
      * Application with @ApplicationPath works;.
      */
     public void test2() throws Fault {

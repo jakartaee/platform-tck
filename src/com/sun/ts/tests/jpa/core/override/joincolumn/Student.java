@@ -34,7 +34,8 @@ public class Student implements Serializable {
 
     private Set<Course> courses = new HashSet();
 
-    public Student() {}
+    public Student() {
+    }
 
     public Integer getId() {
         return id;

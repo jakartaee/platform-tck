@@ -35,7 +35,8 @@ public class TestBeanEJB implements SessionBean {
 
     public void ejbCreate(Properties p, boolean throwCreate) throws CreateException {
         TestUtil.logTrace("ejbCreate");
-        if (throwCreate) throw new CreateException("a create exception");
+        if (throwCreate)
+            throw new CreateException("a create exception");
         harnessProps = p;
         try {
             TestUtil.logMsg("initialize remote logging");

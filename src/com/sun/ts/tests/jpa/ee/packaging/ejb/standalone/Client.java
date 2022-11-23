@@ -58,27 +58,23 @@ public class Client extends EETest {
      *
      * ejb-jar - EJB 3.0 Container-Managed Stateful Session Bean
      *
-     * EJB-JAR is the root of the persistence unit persistence.xml resides in
-     * EJB-JAR META-INF directory
+     * EJB-JAR is the root of the persistence unit persistence.xml resides in EJB-JAR META-INF directory
      *
-     * persistence unit configuration information: Container-Managed JTA Entity
-     * Manager looked up with sessionContext.lookup EntityManager defined in
-     * ejb.jar.xml with persistence-context-ref deployment descriptor
+     * persistence unit configuration information: Container-Managed JTA Entity Manager looked up with sessionContext.lookup
+     * EntityManager defined in ejb.jar.xml with persistence-context-ref deployment descriptor
      */
 
     /*
      * @testName: test1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:897; PERSISTENCE:SPEC:900;
-     * PERSISTENCE:SPEC:901; PERSISTENCE:SPEC:907; PERSISTENCE:SPEC:938;
-     * JavaEE:SPEC:10063; JavaEE:SPEC:10064; JavaEE:SPEC:10065
+     * @assertion_ids: PERSISTENCE:SPEC:897; PERSISTENCE:SPEC:900; PERSISTENCE:SPEC:901; PERSISTENCE:SPEC:907;
+     * PERSISTENCE:SPEC:938; JavaEE:SPEC:10063; JavaEE:SPEC:10064; JavaEE:SPEC:10065
      *
-     * @test_Strategy: It is not required that an EJB-JAR containing a persistence
-     * unit be packaged in an EAR unless the persistence unit contains persistence
-     * classes in addition to those contained in the EJB-JAR.
+     * @test_Strategy: It is not required that an EJB-JAR containing a persistence unit be packaged in an EAR unless the
+     * persistence unit contains persistence classes in addition to those contained in the EJB-JAR.
      *
-     * Deploy the standalone archive to the application server with the above
-     * content. Create entities, persist them, then find.
+     * Deploy the standalone archive to the application server with the above content. Create entities, persist them, then
+     * find.
      *
      */
 
@@ -94,7 +90,8 @@ public class Client extends EETest {
             TestUtil.logErr("Unexpected Exception :", e);
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     public void cleanup() throws Fault {

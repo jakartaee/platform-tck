@@ -45,7 +45,8 @@ public class Client extends PMClientBase {
 
     private static final String STUDENT3_NAME = "Eliot";
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -67,12 +68,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: testNoManyToManyAnnotation
      *
-     * @assertion_ids: PERSISTENCE:SPEC:574; PERSISTENCE:SPEC:1098;
-     * PERSISTENCE:SPEC:1099; PERSISTENCE:SPEC:1207; PERSISTENCE:SPEC:1209;
-     * PERSISTENCE:SPEC:1254; PERSISTENCE:SPEC:1255; PERSISTENCE:SPEC:1256;
+     * @assertion_ids: PERSISTENCE:SPEC:574; PERSISTENCE:SPEC:1098; PERSISTENCE:SPEC:1099; PERSISTENCE:SPEC:1207;
+     * PERSISTENCE:SPEC:1209; PERSISTENCE:SPEC:1254; PERSISTENCE:SPEC:1255; PERSISTENCE:SPEC:1256;
      *
-     * @test_Strategy: Many-to-Many is tested without using its annotation;instead
-     * it is overridden in orm.xml.
+     * @test_Strategy: Many-to-Many is tested without using its annotation;instead it is overridden in orm.xml.
      */
     public void testNoManyToManyAnnotation() throws Fault {
 

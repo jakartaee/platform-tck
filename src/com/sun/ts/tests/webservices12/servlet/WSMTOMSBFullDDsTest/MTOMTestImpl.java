@@ -32,12 +32,7 @@ import java.awt.Image;
 import java.net.URL;
 import javax.xml.transform.Source;
 
-@WebService(
-        portName = "MTOMTestPort",
-        serviceName = "MTOMTestService",
-        targetNamespace = "http://mtomtestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/MTOMTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.servlet.WSMTOMSBFullDDsTest.MTOMTest")
+@WebService(portName = "MTOMTestPort", serviceName = "MTOMTestService", targetNamespace = "http://mtomtestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/MTOMTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.servlet.WSMTOMSBFullDDsTest.MTOMTest")
 public class MTOMTestImpl implements MTOMTest {
 
     public String mtomIn(com.sun.ts.tests.webservices12.servlet.WSMTOMSBFullDDsTest.DataType data) {

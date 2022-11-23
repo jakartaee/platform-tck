@@ -29,8 +29,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 public class ClosedTopicSessionTests extends ServiceEETest {
-    private static final String testName =
-            "com.sun.ts.tests.jms.ee.ejbjspservlet.closedTopicSession.ClosedTopicSessionTests";
+    private static final String testName = "com.sun.ts.tests.jms.ee.ejbjspservlet.closedTopicSession.ClosedTopicSessionTests";
 
     private static final String testDir = System.getProperty("user.dir");
 
@@ -68,11 +67,9 @@ public class ClosedTopicSessionTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /**
-     * Used by tests that need a closed session for testing. Passes any exceptions
-     * up to caller.
+     * Used by tests that need a closed session for testing. Passes any exceptions up to caller.
      *
-     * @param int
-     *          The type of session that needs to be created and closed
+     * @param int The type of session that needs to be created and closed
      */
     private void createAndCloseSession(int type) throws Exception {
         if ((type == JmsTool.TOPIC) || (type == JmsTool.TX_TOPIC)) {
@@ -85,8 +82,7 @@ public class ClosedTopicSessionTests extends ServiceEETest {
     }
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -130,8 +126,8 @@ public class ClosedTopicSessionTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -155,8 +151,7 @@ public class ClosedTopicSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:330; JMS:JAVADOC:325;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
     public void closedTopicSessionSetMessageListenerTest() throws Fault {
         boolean passed = false;
@@ -166,7 +161,8 @@ public class ClosedTopicSessionTests extends ServiceEETest {
             logTrace("Try to call setMessageListener");
             try {
                 MessageListener foo = new MessageListener() {
-                    public void onMessage(Message m) {}
+                    public void onMessage(Message m) {
+                    }
                 };
 
                 tool.getDefaultTopicSubscriber().setMessageListener(foo);
@@ -191,8 +187,7 @@ public class ClosedTopicSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:328;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicSessionGetMessageListenerTest() throws Fault {

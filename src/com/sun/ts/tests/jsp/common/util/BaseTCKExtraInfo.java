@@ -41,17 +41,15 @@ public abstract class BaseTCKExtraInfo extends TagExtraInfo {
     /**
      * Default constructor.
      */
-    public BaseTCKExtraInfo() {}
+    public BaseTCKExtraInfo() {
+    }
 
     /**
-     * Called by the container to validate the page. This implementation will
-     * inspect the <tt>test</tt> attribute and invoke a method based on its value.
-     * These test methods will exist in subclasses of this base class.
+     * Called by the container to validate the page. This implementation will inspect the <tt>test</tt> attribute and invoke
+     * a method based on its value. These test methods will exist in subclasses of this base class.
      *
-     * @param tagData
-     *          - A TagData instance provided by the container.
-     * @return - null if the test passes, or a non-zero lenght array of
-     *         ValidationMessages if the test fails.
+     * @param tagData - A TagData instance provided by the container.
+     * @return - null if the test passes, or a non-zero lenght array of ValidationMessages if the test fails.
      */
     public ValidationMessage[] validate(TagData tagData) {
         debug("In validate().  Setting _wasCalled to true.");
@@ -113,11 +111,9 @@ public abstract class BaseTCKExtraInfo extends TagExtraInfo {
     }
 
     /**
-     * Utility method that calls JspTestUtil.debug. This method adds this class
-     * name to the message provided.
+     * Utility method that calls JspTestUtil.debug. This method adds this class name to the message provided.
      *
-     * @param message
-     *          - a debug message
+     * @param message - a debug message
      */
     private static void debug(String message) {
         JspTestUtil.debug("[BaseTCKExtraInfo] " + message);

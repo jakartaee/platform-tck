@@ -174,8 +174,10 @@ public abstract class TestBeanBase extends LocalTestBeanBase implements TestIF {
         neverTestOverloaded(txBean);
     }
 
-    public void requiresNewTest() throws TestFailedException {}
+    public void requiresNewTest() throws TestFailedException {
+    }
 
     // to be overridden by certain subclasses to give a meaningful implementation
-    public void sameMethodDifferentTxAttr() throws TestFailedException {}
+    public void sameMethodDifferentTxAttr() throws TestFailedException {
+    }
 }

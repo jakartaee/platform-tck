@@ -55,8 +55,8 @@ public class Client extends com.sun.ts.tests.ejb30.common.messaging.ClientBase {
     }
 
     /*
-     * @class.setup_props: jms_timeout, timout; user, jms user; password,
-     * password; harness.log.traceflag, log; harness.log.port, log;
+     * @class.setup_props: jms_timeout, timout; user, jms user; password, password; harness.log.traceflag, log;
+     * harness.log.port, log;
      */
     public void setup(String[] args, Properties p) throws Fault {
         super.setup(args, p);

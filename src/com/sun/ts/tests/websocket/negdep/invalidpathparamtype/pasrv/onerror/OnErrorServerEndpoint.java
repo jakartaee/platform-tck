@@ -26,15 +26,14 @@ import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/invalid/{arg}",
-        decoders = {StringBeanTextDecoder.class})
+@ServerEndpoint(value = "/invalid/{arg}", decoders = { StringBeanTextDecoder.class })
 public class OnErrorServerEndpoint {
     private static String exception = "";
 
     @OnMessage
     public String echo(String echo) {
-        if ("throw".equals(echo)) throw new RuntimeException(echo);
+        if ("throw".equals(echo))
+            throw new RuntimeException(echo);
         return exception + echo;
     }
 

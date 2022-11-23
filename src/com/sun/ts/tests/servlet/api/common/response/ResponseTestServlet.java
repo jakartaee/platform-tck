@@ -37,7 +37,7 @@ public class ResponseTestServlet extends GenericServlet {
 
     private static final String TEST_HEADER = "testname";
 
-    private static final Class[] TEST_ARGS = {ServletRequest.class, ServletResponse.class};
+    private static final Class[] TEST_ARGS = { ServletRequest.class, ServletResponse.class };
 
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
@@ -48,7 +48,7 @@ public class ResponseTestServlet extends GenericServlet {
         String test = servletRequest.getParameter(TEST_HEADER).trim();
         try {
             Method method = ResponseTests.class.getMethod(test, TEST_ARGS);
-            method.invoke(null, new Object[] {servletRequest, servletResponse});
+            method.invoke(null, new Object[] { servletRequest, servletResponse });
         } catch (InvocationTargetException ite) {
             throw new ServletException(ite.getTargetException());
         } catch (NoSuchMethodException nsme) {

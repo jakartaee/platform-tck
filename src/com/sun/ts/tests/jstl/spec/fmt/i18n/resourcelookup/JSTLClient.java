@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,12 +62,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveResourceBundleLookupTest
      *
-     * @assertion_ids: JSTL:SPEC:26; JSTL:SPEC:26.2; JSTL:SPEC:26.2.1;
-     * JSTL:SPEC:26.2.1.1; JSTL:SPEC:26.2.2; JSTL:SPEC:26.2.4; JSTL:SPEC:29.1.3
+     * @assertion_ids: JSTL:SPEC:26; JSTL:SPEC:26.2; JSTL:SPEC:26.2.1; JSTL:SPEC:26.2.1.1; JSTL:SPEC:26.2.2;
+     * JSTL:SPEC:26.2.4; JSTL:SPEC:29.1.3
      *
-     * @testStrategy: Validate that the resource bundle lookup algorithm works as
-     * specified when using the fmt:bundle action. This test is based on the 4
-     * examples listed in section 8.3.3 of the JSTL specification.
+     * @testStrategy: Validate that the resource bundle lookup algorithm works as specified when using the fmt:bundle
+     * action. This test is based on the 4 examples listed in section 8.3.3 of the JSTL specification.
      */
     public void positiveResourceBundleLookupTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveResourceBundleLookupTest");
@@ -102,12 +99,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveResourceSetBundleLookupTest
      *
-     * @assertion_ids: JSTL:SPEC:26; JSTL:SPEC:26.2; JSTL:SPEC:26.2.1;
-     * JSTL:SPEC:26.2.1.1; JSTL:SPEC:26.2.2; JSTL:SPEC:26.2.4; JSTL:SPEC:92.2
+     * @assertion_ids: JSTL:SPEC:26; JSTL:SPEC:26.2; JSTL:SPEC:26.2.1; JSTL:SPEC:26.2.1.1; JSTL:SPEC:26.2.2;
+     * JSTL:SPEC:26.2.4; JSTL:SPEC:92.2
      *
-     * @testStrategy: Validate that the resource bundle lookup algorithm works as
-     * specified when using the fmt:bundle action. This test is based on the 4
-     * examples listed in section 8.3.3 of the JSTL specification.
+     * @testStrategy: Validate that the resource bundle lookup algorithm works as specified when using the fmt:bundle
+     * action. This test is based on the 4 examples listed in section 8.3.3 of the JSTL specification.
      */
     public void positiveResourceSetBundleLookupTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveSetResourceBundleLookupTest");

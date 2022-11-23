@@ -23,4 +23,5 @@ package com.sun.ts.tests.ejb30.common.covariant;
 import jakarta.ejb.Local;
 
 @Local()
-public interface FuzzyLocalIF extends FuzzyCommonIF {}
+public interface FuzzyLocalIF extends FuzzyCommonIF {
+}

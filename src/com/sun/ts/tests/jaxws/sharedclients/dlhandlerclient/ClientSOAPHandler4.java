@@ -75,8 +75,7 @@ public class ClientSOAPHandler4 extends SOAPHandlerBase {
                     SOAPMessage message = context.getMessage();
                     try {
                         SOAPBody body = message.getSOAPBody();
-                        SOAPElement origBodyParam =
-                                (SOAPElement) body.getChildElements().next();
+                        SOAPElement origBodyParam = (SOAPElement) body.getChildElements().next();
                         System.out.println("-----------------------------");
                         System.out.println("Original SOAP Message Request");
                         System.out.println("-----------------------------");

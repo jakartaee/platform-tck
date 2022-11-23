@@ -30,7 +30,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "SessionBeanCallbackBean")
-@Remote({CallbackIF.class})
+@Remote({ CallbackIF.class })
 public class SessionBeanCallbackBean extends CallbackBeanBase implements CallbackIF, jakarta.ejb.SessionBean {
 
     @Resource
@@ -44,11 +44,14 @@ public class SessionBeanCallbackBean extends CallbackBeanBase implements Callbac
         return this.sctx;
     }
 
-    public void setSessionContext(SessionContext sessionContext) {}
+    public void setSessionContext(SessionContext sessionContext) {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
     // ================= callback methods ====================================
     // @PostConstruct

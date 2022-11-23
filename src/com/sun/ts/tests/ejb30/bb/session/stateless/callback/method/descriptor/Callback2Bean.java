@@ -30,7 +30,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "Callback2Bean")
-@Remote({Callback2IF.class})
+@Remote({ Callback2IF.class })
 public class Callback2Bean extends Callback2BeanBase implements Callback2IF {
 
     @Resource

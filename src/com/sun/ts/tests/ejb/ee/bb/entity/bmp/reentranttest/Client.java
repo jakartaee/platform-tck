@@ -83,9 +83,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:473
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Call loopback test on same bean. Verify the Container allows the loopback
-     * call. Self referential test. This test uses same bean instance.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Call loopback test on same bean. Verify the
+     * Container allows the loopback call. Self referential test. This test uses same bean instance.
      *
      */
 
@@ -97,7 +96,8 @@ public class Client extends EETest {
             logMsg("Calling loopback test via same bean");
             boolean pass = beanRef.loopBackSameBean();
             beanRef.remove();
-            if (!pass) throw new Fault("bmpReentrantTest1 failed");
+            if (!pass)
+                throw new Fault("bmpReentrantTest1 failed");
         } catch (Exception e) {
             throw new Fault("bmpReentrantTest1 failed", e);
         }
@@ -108,9 +108,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:473
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify the Container allows the loopback call. This test uses another bean
-     * instance.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify the Container allows the loopback
+     * call. This test uses another bean instance.
      */
 
     public void bmpReentrantTest2() throws Fault {
@@ -131,7 +130,8 @@ public class Client extends EETest {
 
             logMsg("Calling loopback test via different bean");
             boolean pass = beanRef.loopBackAnotherBean(loopRef);
-            if (!pass) throw new Fault("bmpReentrantTest2 failed");
+            if (!pass)
+                throw new Fault("bmpReentrantTest2 failed");
         } catch (Exception e) {
             throw new Fault("bmpReentrantTest2 failed", e);
         } finally {

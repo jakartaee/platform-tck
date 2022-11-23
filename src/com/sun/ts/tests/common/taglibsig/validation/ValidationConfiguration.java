@@ -25,10 +25,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * This configuration class defines the {@link Validator} names that will be
- * used to perform the validation of the TaglibraryDescriptor objects. This
- * class is used exclusively by the {@link ValidatorFactory}, which will take
- * the names contained within and create {@link Validator} instances.
+ * This configuration class defines the {@link Validator} names that will be used to perform the validation of the
+ * TaglibraryDescriptor objects. This class is used exclusively by the {@link ValidatorFactory}, which will take the
+ * names contained within and create {@link Validator} instances.
  */
 public class ValidationConfiguration {
 
@@ -43,10 +42,9 @@ public class ValidationConfiguration {
     private static final String VALIDATOR_PACKAGE = "com.sun.ts.tests.common.taglibsig.validation.";
 
     /*
-     * All standard validators will be stored in here as well. This is used by the
-     * initValidators() method.
+     * All standard validators will be stored in here as well. This is used by the initValidators() method.
      */
-    private static final String[] VALIDATORS = {URI_VALIDATOR};
+    private static final String[] VALIDATORS = { URI_VALIDATOR };
 
     /*
      * Map of all Validator's and their implementing class.
@@ -72,19 +70,17 @@ public class ValidationConfiguration {
 
     /**
      * <p>
-     * Adds the name of a {@link Validator} implementation to this configuration.
-     * The name must be a known name (i.e. be a constant name defined by this
-     * class), or a {@link Validator} will not be added. If a non-standard
-     * validator is required, use <code>addValidator(String, String)</code>
-     * instead.
+     * Adds the name of a {@link Validator} implementation to this configuration. The name must be a known name (i.e. be a
+     * constant name defined by this class), or a {@link Validator} will not be added. If a non-standard validator is
+     * required, use <code>addValidator(String, String)</code> instead.
      * </p>
      *
-     * @param validatorName
-     *          - Validator name
+     * @param validatorName - Validator name
      */
     public void addValidator(String validatorName) {
         String className = (String) KNOWN_VALIDATORS.get(validatorName);
-        if (className != null) configuredValidatorMap.put(validatorName, className);
+        if (className != null)
+            configuredValidatorMap.put(validatorName, className);
     }
 
     /**
@@ -92,10 +88,8 @@ public class ValidationConfiguration {
      * Adds a custom {@link Validator} name to the current configuration.
      * </p>
      *
-     * @param validatorName
-     *          - Validator name
-     * @param validatorClass
-     *          - The class name of this {@link Validator}
+     * @param validatorName - Validator name
+     * @param validatorClass - The class name of this {@link Validator}
      */
     public void addValidator(String validatorName, String validatorClass) {
         configuredValidatorMap.put(validatorName, validatorClass);
@@ -103,12 +97,10 @@ public class ValidationConfiguration {
 
     /**
      * <p>
-     * Removes the specified {@link Validator} name from the current
-     * configuration.
+     * Removes the specified {@link Validator} name from the current configuration.
      * </p>
      *
-     * @param validatorName
-     *          - Validator name
+     * @param validatorName - Validator name
      */
     public void removeValidator(String validatorName) {
         configuredValidatorMap.remove(validatorName);
@@ -116,8 +108,7 @@ public class ValidationConfiguration {
 
     /**
      * <p>
-     * Returns an Iterator of the {@link Validator} names in the current
-     * configuration.
+     * Returns an Iterator of the {@link Validator} names in the current configuration.
      * </p>
      *
      * @return Iterator of this configuration's {@link Validator} names
@@ -131,8 +122,7 @@ public class ValidationConfiguration {
      * Returns the name of the {@link Validator} implementation class.
      * </p>
      *
-     * @param validatorName
-     *          - Validator name
+     * @param validatorName - Validator name
      * @return The name of the {@link Validator} implementation class.
      */
     public String getValidatorClass(String validatorName) {
@@ -141,15 +131,14 @@ public class ValidationConfiguration {
 
     /**
      * <p>
-     * True if {@link Validator} names have been added to the current
-     * configuration, otherwise false.
+     * True if {@link Validator} names have been added to the current configuration, otherwise false.
      * </p>
      *
-     * @return True if {@link Validator} names have been added to the current
-     *         configuration, otherwise false.
+     * @return True if {@link Validator} names have been added to the current configuration, otherwise false.
      */
     public boolean hasBeenConfigured() {
-        if (configuredValidatorMap.size() > 0) return true;
+        if (configuredValidatorMap.size() > 0)
+            return true;
         return false;
     }
 

@@ -45,15 +45,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textEncoderInitDestroyTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55;
-     * WebSocket:JAVADOC:61; WebSocket:JAVADOC:190; WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55; WebSocket:JAVADOC:61; WebSocket:JAVADOC:190;
+     * WebSocket:SPEC:WSC-4.1.2-1;
      *
-     * @test_Strategy: test text encoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test text encoder init and destroy were called The websocket implementation creates a new instance of
+     * the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      *
      * encode ServerEndpoint.encoders
      */
@@ -67,15 +66,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textStreamEncoderInitDestroyTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55;
-     * WebSocket:JAVADOC:63; WebSocket:JAVADOC:190; WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55; WebSocket:JAVADOC:63; WebSocket:JAVADOC:190;
+     * WebSocket:SPEC:WSC-4.1.2-1;
      *
-     * @test_Strategy: test text stream encoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test text stream encoder init and destroy were called The websocket implementation creates a new
+     * instance of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      *
      * encode ServerEndpoint.encoders
      */
@@ -89,15 +87,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryEncoderInitDestroyTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55;
-     * WebSocket:JAVADOC:56; WebSocket:JAVADOC:190; WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55; WebSocket:JAVADOC:56; WebSocket:JAVADOC:190;
+     * WebSocket:SPEC:WSC-4.1.2-1;
      *
-     * @test_Strategy: test binary encoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test binary encoder init and destroy were called The websocket implementation creates a new instance
+     * of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      *
      * encode ServerEndpoint.encoders
      */
@@ -111,15 +108,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryStreamEncoderInitDestroyTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55;
-     * WebSocket:JAVADOC:58; WebSocket:JAVADOC:190; WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55; WebSocket:JAVADOC:58; WebSocket:JAVADOC:190;
+     * WebSocket:SPEC:WSC-4.1.2-1;
      *
-     * @test_Strategy: test binary stream encoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test binary stream encoder init and destroy were called The websocket implementation creates a new
+     * instance of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      *
      * encode ServerEndpoint.encoders
      */
@@ -135,17 +131,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textDecoderInitDestroyTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36;
-     * WebSocket:JAVADOC:43; WebSocket:JAVADOC:45; WebSocket:JAVADOC:189;
-     * WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36; WebSocket:JAVADOC:43; WebSocket:JAVADOC:45;
+     * WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test text decoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test text decoder init and destroy were called The websocket implementation creates a new instance of
+     * the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      *
      * decode, willdecode ServerEndpoint.decoders
      */
@@ -159,16 +152,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textStreamDecoderInitDestroyTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36;
-     * WebSocket:JAVADOC:46; WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36; WebSocket:JAVADOC:46; WebSocket:JAVADOC:189;
+     * WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test text stream decoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test text stream decoder init and destroy were called The websocket implementation creates a new
+     * instance of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      *
      * decode ServerEndpoint.decoders
      */
@@ -182,17 +173,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryDecoderInitDestroyTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36;
-     * WebSocket:JAVADOC:37; WebSocket:JAVADOC:39; WebSocket:JAVADOC:189;
-     * WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36; WebSocket:JAVADOC:37; WebSocket:JAVADOC:39;
+     * WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test binary decoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test binary decoder init and destroy were called The websocket implementation creates a new instance
+     * of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      *
      * decode, willDecode ServerEndpoint.decoders
      */
@@ -206,16 +194,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryStreamDecoderInitDestroyTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36;
-     * WebSocket:JAVADOC:40; WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36; WebSocket:JAVADOC:40; WebSocket:JAVADOC:189;
+     * WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test binary stream decoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test binary stream decoder init and destroy were called The websocket implementation creates a new
+     * instance of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      *
      * decode ServerEndpoint.decoders
      */
@@ -231,15 +217,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textEncoderEncodeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:61; WebSocket:JAVADOC:190;
-     * WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:61; WebSocket:JAVADOC:190; WebSocket:SPEC:WSC-4.1.2-1;
      *
      * @test_Strategy: test text encoder encode was called
      *
      * ServerEndpoint.encoders
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      */
     public void textEncoderEncodeTest() throws Fault {
         invokeClear();
@@ -250,15 +235,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textStreamEncoderEncodeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:63; WebSocket:JAVADOC:190;
-     * WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:63; WebSocket:JAVADOC:190; WebSocket:SPEC:WSC-4.1.2-1;
      *
      * @test_Strategy: test text stream encode was called
      *
      * ServerEndpoint.encoders
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      */
     public void textStreamEncoderEncodeTest() throws Fault {
         invokeClear();
@@ -269,15 +253,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryEncoderEncodeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:56; WebSocket:JAVADOC:190;
-     * WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:56; WebSocket:JAVADOC:190; WebSocket:SPEC:WSC-4.1.2-1;
      *
      * @test_Strategy: test binary encoder encode was called
      *
      * ServerEndpoint.encoders
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      */
     public void binaryEncoderEncodeTest() throws Fault {
         invokeClear();
@@ -288,15 +271,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryStreamEncoderEncodeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:58; WebSocket:JAVADOC:190;
-     * WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:58; WebSocket:JAVADOC:190; WebSocket:SPEC:WSC-4.1.2-1;
      *
      * @test_Strategy: test binary stream encoder encode was called
      *
      * ServerEndpoint.encoders
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      */
     public void binaryStreamEncoderEncodeTest() throws Fault {
         invokeClear();
@@ -309,17 +291,15 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textDecoderDecodeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:43; WebSocket:JAVADOC:45;
-     * WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:43; WebSocket:JAVADOC:45; WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
      * WebSocket:SPEC:WSC-4.1.3-2;
      *
      * @test_Strategy: test text decoder decode and willDecode were called
      *
      * ServerEndpoint.decoders
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      */
     public void textDecoderDecodeTest() throws Fault {
         invokeClear();
@@ -331,15 +311,12 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textStreamDecoderDecodeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:46; WebSocket:JAVADOC:189;
-     * WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:46; WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test text stream decoder decode was called
-     * ServerEndpoint.decoders
+     * @test_Strategy: test text stream decoder decode was called ServerEndpoint.decoders
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      */
     public void textStreamDecoderDecodeTest() throws Fault {
         invokeClear();
@@ -350,17 +327,15 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryDecoderDecodeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:37; WebSocket:JAVADOC:39;
-     * WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:37; WebSocket:JAVADOC:39; WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
      * WebSocket:SPEC:WSC-4.1.3-2;
      *
      * @test_Strategy: test binary decoder decode and willDecode were called
      *
      * ServerEndpoint.decoders
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      */
     public void binaryDecoderDecodeTest() throws Fault {
         invokeClear();
@@ -372,16 +347,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryStreamDecoderDecodeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:40; WebSocket:JAVADOC:189;
-     * WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:40; WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
      *
      * @test_Strategy: test binary stream decoder decode was called
      *
      * ServerEndpoint.decoders
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      */
     public void binaryStreamDecoderDecodeTest() throws Fault {
         invokeClear();
@@ -392,12 +365,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryDecoderWillDecodeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:37; WebSocket:JAVADOC:39;
-     * WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:37; WebSocket:JAVADOC:39; WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
      * WebSocket:SPEC:WSC-4.1.3-2;
      *
-     * @test_Strategy: test binary decoder with willDecode returning false will
-     * not be used
+     * @test_Strategy: test binary decoder with willDecode returning false will not be used
      *
      * ServerEndpoint.decoders
      */
@@ -412,12 +383,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textDecoderWillDecodeTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:43; WebSocket:JAVADOC:45;
-     * WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:43; WebSocket:JAVADOC:45; WebSocket:JAVADOC:189; WebSocket:SPEC:WSC-4.1.3-1;
      * WebSocket:SPEC:WSC-4.1.3-2;
      *
-     * @test_Strategy: test text decoder with willDecode returning false will not
-     * be used
+     * @test_Strategy: test text decoder with willDecode returning false will not be used
      *
      * ServerEndpoint.decoders
      */
@@ -433,15 +402,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textEncoderInitDestroyOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55;
-     * WebSocket:JAVADOC:61; WebSocket:JAVADOC:3; WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55; WebSocket:JAVADOC:61; WebSocket:JAVADOC:3;
+     * WebSocket:SPEC:WSC-4.1.2-1;
      *
-     * @test_Strategy: test text encoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test text encoder init and destroy were called The websocket implementation creates a new instance of
+     * the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      *
      * encode ClientEndpoint.encoders
      */
@@ -456,15 +424,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textStreamEncoderInitDestroyOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55;
-     * WebSocket:JAVADOC:63; WebSocket:JAVADOC:3; WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55; WebSocket:JAVADOC:63; WebSocket:JAVADOC:3;
+     * WebSocket:SPEC:WSC-4.1.2-1;
      *
-     * @test_Strategy: test text stream encoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test text stream encoder init and destroy were called The websocket implementation creates a new
+     * instance of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      *
      * encode ClientEndpoint.encoders
      */
@@ -479,15 +446,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryEncoderInitDestroyOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55;
-     * WebSocket:JAVADOC:56; WebSocket:JAVADOC:3; WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55; WebSocket:JAVADOC:56; WebSocket:JAVADOC:3;
+     * WebSocket:SPEC:WSC-4.1.2-1;
      *
-     * @test_Strategy: test binary encoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test binary encoder init and destroy were called The websocket implementation creates a new instance
+     * of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      *
      * encode ClientEndpoint.encoders
      */
@@ -502,15 +468,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryStreamEncoderInitDestroyOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55;
-     * WebSocket:JAVADOC:58; WebSocket:JAVADOC:3; WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:54; WebSocket:JAVADOC:55; WebSocket:JAVADOC:58; WebSocket:JAVADOC:3;
+     * WebSocket:SPEC:WSC-4.1.2-1;
      *
-     * @test_Strategy: test binary stream encoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test binary stream encoder init and destroy were called The websocket implementation creates a new
+     * instance of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      *
      * encode ClientEndpoint.encoders
      */
@@ -527,17 +492,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textDecoderInitDestroyOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36;
-     * WebSocket:JAVADOC:43; WebSocket:JAVADOC:45; WebSocket:JAVADOC:2;
-     * WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36; WebSocket:JAVADOC:43; WebSocket:JAVADOC:45;
+     * WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test text decoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test text decoder init and destroy were called The websocket implementation creates a new instance of
+     * the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      *
      * decode, willdecode ClientEndpoint.decoders
      */
@@ -552,16 +514,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textStreamDecoderInitDestroyOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36;
-     * WebSocket:JAVADOC:46; WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36; WebSocket:JAVADOC:46; WebSocket:JAVADOC:2;
+     * WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test text stream decoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test text stream decoder init and destroy were called The websocket implementation creates a new
+     * instance of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      *
      * decode ClientEndpoint.decoders
      */
@@ -576,17 +536,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryDecoderInitDestroyOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36;
-     * WebSocket:JAVADOC:37; WebSocket:JAVADOC:39; WebSocket:JAVADOC:2;
-     * WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36; WebSocket:JAVADOC:37; WebSocket:JAVADOC:39;
+     * WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test binary decoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test binary decoder init and destroy were called The websocket implementation creates a new instance
+     * of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      *
      * decode, willDecode ClientEndpoint.decoders
      */
@@ -601,16 +558,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryStreamDecoderInitDestroyOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36;
-     * WebSocket:JAVADOC:40; WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:35; WebSocket:JAVADOC:36; WebSocket:JAVADOC:40; WebSocket:JAVADOC:2;
+     * WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test binary stream decoder init and destroy were called The
-     * websocket implementation creates a new instance of the encoder per endpoint
-     * instance per connection.
+     * @test_Strategy: test binary stream decoder init and destroy were called The websocket implementation creates a new
+     * instance of the encoder per endpoint instance per connection.
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      *
      * decode ClientEndpoint.decoders
      */
@@ -627,13 +582,12 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textEncoderEncodeOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:61; WebSocket:JAVADOC:3;
-     * WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:61; WebSocket:JAVADOC:3; WebSocket:SPEC:WSC-4.1.2-1;
      *
      * @test_Strategy: test text encoder encode was called ClientEndpoint.encoders
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      */
     public void textEncoderEncodeOnClientTest() throws Fault {
         clientClear();
@@ -645,13 +599,12 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textStreamEncoderEncodeOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:63; WebSocket:JAVADOC:3;
-     * WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:63; WebSocket:JAVADOC:3; WebSocket:SPEC:WSC-4.1.2-1;
      *
      * @test_Strategy: test text stream encode was called ClientEndpoint.encoders
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      */
     public void textStreamEncoderEncodeOnClientTest() throws Fault {
         clientClear();
@@ -663,14 +616,12 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryEncoderEncodeOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:56; WebSocket:JAVADOC:3;
-     * WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:56; WebSocket:JAVADOC:3; WebSocket:SPEC:WSC-4.1.2-1;
      *
-     * @test_Strategy: test binary encoder encode was called
-     * ClientEndpoint.encoders
+     * @test_Strategy: test binary encoder encode was called ClientEndpoint.encoders
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      */
     public void binaryEncoderEncodeOnClientTest() throws Fault {
         clientClear();
@@ -682,14 +633,12 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryStreamEncoderEncodeOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:58; WebSocket:JAVADOC:3;
-     * WebSocket:SPEC:WSC-4.1.2-1;
+     * @assertion_ids: WebSocket:JAVADOC:58; WebSocket:JAVADOC:3; WebSocket:SPEC:WSC-4.1.2-1;
      *
-     * @test_Strategy: test binary stream encoder encode was called
-     * ClientEndpoint.encoders
+     * @test_Strategy: test binary stream encoder encode was called ClientEndpoint.encoders
      *
-     * The implementation must attempt to encode application objects of matching
-     * parametrized type as the encoder when they are attempted to be sent
+     * The implementation must attempt to encode application objects of matching parametrized type as the encoder when they
+     * are attempted to be sent
      */
     public void binaryStreamEncoderEncodeOnClientTest() throws Fault {
         clientClear();
@@ -703,16 +652,13 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textDecoderDecodeOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:43; WebSocket:JAVADOC:45;
-     * WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:43; WebSocket:JAVADOC:45; WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
      * WebSocket:SPEC:WSC-4.1.3-2;
      *
-     * @test_Strategy: test text decoder decode and willDecode were called
-     * ClientEndpoint.decoders
+     * @test_Strategy: test text decoder decode and willDecode were called ClientEndpoint.decoders
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      */
     public void textDecoderDecodeOnClientTest() throws Fault {
         clientClear();
@@ -725,15 +671,12 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textStreamDecoderDecodeOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:46; WebSocket:JAVADOC:2;
-     * WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:46; WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test text stream decoder decode was called
-     * ClientEndpoint.decoders
+     * @test_Strategy: test text stream decoder decode was called ClientEndpoint.decoders
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      */
     public void textStreamDecoderDecodeOnClientTest() throws Fault {
         clientClear();
@@ -745,16 +688,13 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryDecoderDecodeOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:37; WebSocket:JAVADOC:39;
-     * WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:37; WebSocket:JAVADOC:39; WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
      * WebSocket:SPEC:WSC-4.1.3-2;
      *
-     * @test_Strategy: test binary decoder decode and willDecode were called
-     * ClientEndpoint.decoders
+     * @test_Strategy: test binary decoder decode and willDecode were called ClientEndpoint.decoders
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      */
     public void binaryDecoderDecodeOnClientTest() throws Fault {
         clientClear();
@@ -767,15 +707,12 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryStreamDecoderDecodeOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:40; WebSocket:JAVADOC:2;
-     * WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:40; WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
      *
-     * @test_Strategy: test binary stream decoder decode was called
-     * ClientEndpoint.decoders
+     * @test_Strategy: test binary stream decoder decode was called ClientEndpoint.decoders
      *
-     * The implementation must attempt to decode websocket messages using the
-     * decoder in the list appropriate to the native websocket message type and
-     * pass the message in decoded object form to the websocket endpoint
+     * The implementation must attempt to decode websocket messages using the decoder in the list appropriate to the native
+     * websocket message type and pass the message in decoded object form to the websocket endpoint
      */
     public void binaryStreamDecoderDecodeOnClientTest() throws Fault {
         clientClear();
@@ -787,12 +724,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: binaryDecoderWillDecodeOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:37; WebSocket:JAVADOC:39;
-     * WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:37; WebSocket:JAVADOC:39; WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
      * WebSocket:SPEC:WSC-4.1.3-2;
      *
-     * @test_Strategy: test binary decoder with willDecode returning false will
-     * not be used ClientEndpoint.decoders
+     * @test_Strategy: test binary decoder with willDecode returning false will not be used ClientEndpoint.decoders
      */
     public void binaryDecoderWillDecodeOnClientTest() throws Fault {
         clientClear();
@@ -807,12 +742,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: textDecoderWillDecodeOnClientTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:43; WebSocket:JAVADOC:45;
-     * WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
+     * @assertion_ids: WebSocket:JAVADOC:43; WebSocket:JAVADOC:45; WebSocket:JAVADOC:2; WebSocket:SPEC:WSC-4.1.3-1;
      * WebSocket:SPEC:WSC-4.1.3-2;
      *
-     * @test_Strategy: test text decoder with willDecode returning false will not
-     * be used ClientEndpoint.decoders
+     * @test_Strategy: test text decoder with willDecode returning false will not be used ClientEndpoint.decoders
      */
     public void textDecoderWillDecodeOnClientTest() throws Fault {
         clientClear();
@@ -857,11 +790,13 @@ public class WSClient extends WebSocketCommonClient {
     }
 
     private void invokeGetCode(Class<?>... searchClasses) throws Fault {
-        for (Class<?> searchClazz : searchClasses) invokeLogger("getcode", searchClazz.getName());
+        for (Class<?> searchClazz : searchClasses)
+            invokeLogger("getcode", searchClazz.getName());
     }
 
     private void invokeGetWillCode(Class<?>... searchClasses) throws Fault {
-        for (Class<?> searchClazz : searchClasses) invokeLogger("getwillcode", searchClazz.getName());
+        for (Class<?> searchClazz : searchClasses)
+            invokeLogger("getwillcode", searchClazz.getName());
     }
 
     private void invokeLogger(String method, String search) throws Fault {

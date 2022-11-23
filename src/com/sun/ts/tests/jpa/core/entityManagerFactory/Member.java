@@ -36,7 +36,8 @@ public class Member implements java.io.Serializable {
 
     private String memberName;
 
-    public Member() {}
+    public Member() {
+    }
 
     public Member(int memberId, String memberName) {
         this.memberId = memberId;

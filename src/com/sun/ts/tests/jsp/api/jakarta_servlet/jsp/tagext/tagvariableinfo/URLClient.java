@@ -29,16 +29,14 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 import java.io.PrintWriter;
 
 /**
- * Test client for TagVariableInfo. Implementation note, all tests are performed
- * within a TagExtraInfo class. If the test fails, a translation error will be
- * generated and a ValidationMessage array will be returned.
+ * Test client for TagVariableInfo. Implementation note, all tests are performed within a TagExtraInfo class. If the
+ * test fails, a translation error will be generated and a ValidationMessage array will be returned.
  */
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -47,8 +45,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -70,9 +67,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:189
      *
-     * @test_Strategy: Validate the JSP container properly parses the specified
-     * TLD as refereneced by the taglib directive and that the TagVariableInfo
-     * objects created at translation time return the expected values when calling
+     * @test_Strategy: Validate the JSP container properly parses the specified TLD as refereneced by the taglib directive
+     * and that the TagVariableInfo objects created at translation time return the expected values when calling
      * getClassName(). A translation error will occur if the test fails.
      */
     public void tagVariableInfoGetClassNameTest() throws Fault {
@@ -88,9 +84,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:187
      *
-     * @test_Strategy: Validate the JSP container properly parses the specified
-     * TLD as refereneced by the taglib directive and that the TagVariableInfo
-     * objects created at translation time return the expected values when calling
+     * @test_Strategy: Validate the JSP container properly parses the specified TLD as refereneced by the taglib directive
+     * and that the TagVariableInfo objects created at translation time return the expected values when calling
      * getNameGiven(). A translation error will occur if the test fails.
      */
     public void tagVariableInfoGetNameGivenTest() throws Fault {
@@ -106,9 +101,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:188
      *
-     * @test_Strategy: Validate the JSP container properly parses the specified
-     * TLD as refereneced by the taglib directive and that the TagVariableInfo
-     * objects created at translation time return the expected values when calling
+     * @test_Strategy: Validate the JSP container properly parses the specified TLD as refereneced by the taglib directive
+     * and that the TagVariableInfo objects created at translation time return the expected values when calling
      * getNameFromAttribute(). A translation error will occur if the test fails.
      */
     public void tagVariableInfoGetNameFromAttributeTest() throws Fault {
@@ -124,9 +118,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:190
      *
-     * @test_Strategy: Validate the JSP container properly parses the specified
-     * TLD as refereneced by the taglib directive and that the TagVariableInfo
-     * objects created at translation time return the expected values when calling
+     * @test_Strategy: Validate the JSP container properly parses the specified TLD as refereneced by the taglib directive
+     * and that the TagVariableInfo objects created at translation time return the expected values when calling
      * getDeclare(). A translation error will occur if the test fails.
      */
     public void tagVariableInfoGetDeclareTest() throws Fault {
@@ -142,10 +135,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:191
      *
-     * @test_Strategy: Validate the JSP container properly parses the specified
-     * TLD as refereneced by the taglib directive and that the TagVariableInfo
-     * objects created at translation time return the expected values when calling
-     * getScope(). A translation error will occur if the test fails.
+     * @test_Strategy: Validate the JSP container properly parses the specified TLD as refereneced by the taglib directive
+     * and that the TagVariableInfo objects created at translation time return the expected values when calling getScope().
+     * A translation error will occur if the test fails.
      */
     public void tagVariableInfoGetScopeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagvarinfo_web/GetScopeTest.jsp HTTP/1.1");

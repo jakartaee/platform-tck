@@ -88,18 +88,23 @@ public class TestEJB implements SessionBean {
         sctx = sc;
     }
 
-    public void ejbRemove() {}
+    public void ejbRemove() {
+    }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 
     public boolean IsCallerB1(String caller) {
         String name = sctx.getCallerPrincipal().getName();
         TestUtil.logMsg("IsCallerB1: " + name);
 
-        if (name.indexOf(caller) < 0) return false;
-        else return true;
+        if (name.indexOf(caller) < 0)
+            return false;
+        else
+            return true;
     }
 
     public boolean InRole(String role) {
@@ -141,7 +146,8 @@ public class TestEJB implements SessionBean {
             } catch (Exception ex) {
                 TestUtil.logErr("Cannot remove the bean: ", ex);
             }
-        else TestUtil.logMsg("ejbref == null");
+        else
+            TestUtil.logMsg("ejbref == null");
     }
 
     public boolean EjbIsAuthz() {
@@ -151,7 +157,8 @@ public class TestEJB implements SessionBean {
             boolean result = ejb1ref.EjbIsAuthz();
             ejb1ref.remove();
 
-            if (!result) return false;
+            if (!result)
+                return false;
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -167,7 +174,8 @@ public class TestEJB implements SessionBean {
             boolean result = ejb1ref.EjbSecRoleRef(role);
             ejb1ref.remove();
 
-            if (!result) return false;
+            if (!result)
+                return false;
             return true;
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -182,7 +190,8 @@ public class TestEJB implements SessionBean {
             boolean result = ejb1ref.EjbSecRoleRef(role);
             ejb1ref.remove();
 
-            if (result) return false;
+            if (result)
+                return false;
             return true;
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -199,13 +208,15 @@ public class TestEJB implements SessionBean {
             boolean result = ejb1ref.EjbSecRoleRef(role);
             ejb1ref.remove();
 
-            if (!result) return false;
+            if (!result)
+                return false;
 
             ejb2ref = ejb2home.create(props);
             result = ejb2ref.EjbSecRoleRefScope(role);
             ejb2ref.remove();
 
-            if (result) return false;
+            if (result)
+                return false;
             return true;
 
         } catch (Exception e) {

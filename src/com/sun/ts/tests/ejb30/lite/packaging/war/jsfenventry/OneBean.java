@@ -30,12 +30,10 @@ import jakarta.interceptor.Interceptors;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)
-@Interceptors({Interceptor1.class, Interceptor2.class})
+@Interceptors({ Interceptor1.class, Interceptor2.class })
 public class OneBean extends BeanBase {
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myByte",
-            description = "declared in web.xml")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myByte", description = "declared in web.xml")
     private byte myByteFromWebXml;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.JsfClient/myInt")
@@ -47,17 +45,13 @@ public class OneBean extends BeanBase {
     @Resource(description = "declared in ejb-jar.xml#OneBean")
     private int myInt;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myByte",
-            description = "declared in ejb-jar.xml#TwoBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myByte", description = "declared in ejb-jar.xml#TwoBean")
     private byte myByteFromTwo;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.TwoBean/myInt")
     private int myIntFromTwo;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myByte",
-            description = "declared in ejb-jar.xml#ThreeBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myByte", description = "declared in ejb-jar.xml#ThreeBean")
     private byte myByteFromThree;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.jsfenventry.ThreeBean/myInt")

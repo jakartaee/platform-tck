@@ -27,20 +27,17 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
- * This is a Java SE based Permission class, used for Test purposes. This
- * permission extends the BasicPermission class and is used to perform
- * validations of permissions.xml.
+ * This is a Java SE based Permission class, used for Test purposes. This permission extends the BasicPermission class
+ * and is used to perform validations of permissions.xml.
  *
- * This permission should support actions of "read" or "write" and basically
- * tries to behave similar to the JavaSE PropertyPermission class. The reason
- * for this locally defined class is that we want to reference it in the
- * permissions.xml while ensuring it will not be used or pre-defined within any
- * of the vendors app servers. This means there will ONLY be perms defined
- * inpermissions.xml for READ actions. This will allow a different level of
- * testing to be done.
+ * This permission should support actions of "read" or "write" and basically tries to behave similar to the JavaSE
+ * PropertyPermission class. The reason for this locally defined class is that we want to reference it in the
+ * permissions.xml while ensuring it will not be used or pre-defined within any of the vendors app servers. This means
+ * there will ONLY be perms defined inpermissions.xml for READ actions. This will allow a different level of testing to
+ * be done.
  *
- * Sample usage of this permssion: permission
- * com.sun.ts.tests.ejb30.sec.permsxml.CTSPropertyPermission "*" "read.write";
+ * Sample usage of this permssion: permission com.sun.ts.tests.ejb30.sec.permsxml.CTSPropertyPermission "*"
+ * "read.write";
  *
  */
 public final class CTSPropertyPermission extends BasicPermission {
@@ -64,8 +61,7 @@ public final class CTSPropertyPermission extends BasicPermission {
     /**
      * Create a new CTSPropertyPermission with no action
      *
-     * @param name
-     *          -
+     * @param name -
      */
     public CTSPropertyPermission(String name) {
         this(name, "READ");
@@ -74,10 +70,8 @@ public final class CTSPropertyPermission extends BasicPermission {
     /**
      * Creates a new CTSPropertyPermission with action
      *
-     * @param name
-     *          JNDI resource path name
-     * @param action
-     *          JNDI action (none defined)
+     * @param name JNDI resource path name
+     * @param action JNDI action (none defined)
      */
     public CTSPropertyPermission(String name, String actions) {
         super(name);
@@ -110,11 +104,13 @@ public final class CTSPropertyPermission extends BasicPermission {
     }
 
     public boolean equals(Object o) {
-        if (o == null || !(o instanceof CTSPropertyPermission)) return false;
+        if (o == null || !(o instanceof CTSPropertyPermission))
+            return false;
 
         CTSPropertyPermission that = (CTSPropertyPermission) o;
 
-        if (!this.getName().equals(that.getName())) return false;
+        if (!this.getName().equals(that.getName()))
+            return false;
 
         if (this.methodName != null) {
             if (that.methodName == null || !this.methodName.equals(that.methodName)) {

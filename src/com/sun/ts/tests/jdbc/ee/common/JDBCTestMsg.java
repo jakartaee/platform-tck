@@ -39,15 +39,12 @@ public class JDBCTestMsg extends ServiceEETest {
 
     Collection outputMsgList = new ArrayList();
 
-    boolean trace =
-            Boolean.valueOf(TestUtil.getProperty("harness.log.traceflag")).booleanValue();
+    boolean trace = Boolean.valueOf(TestUtil.getProperty("harness.log.traceflag")).booleanValue();
 
     /**
-     * Adds the messages to be printed to a List. If trace is true logs the
-     * message directly.
+     * Adds the messages to be printed to a List. If trace is true logs the message directly.
      *
-     * @param input
-     *          a string to be logged out after the tests execution
+     * @param input a string to be logged out after the tests execution
      */
     public void setMsg(String input) {
         if (trace == true) {
@@ -58,8 +55,8 @@ public class JDBCTestMsg extends ServiceEETest {
     }
 
     /**
-     * This method is called from the error handling methods and also from the
-     * tests to log all the messages contained in the List.
+     * This method is called from the error handling methods and also from the tests to log all the messages contained in
+     * the List.
      *
      */
     public void printTestMsg() {
@@ -76,13 +73,10 @@ public class JDBCTestMsg extends ServiceEETest {
     }
 
     /**
-     * Adds the expected and obtained output string to a List. If trace is true
-     * logs the message directly.
+     * Adds the expected and obtained output string to a List. If trace is true logs the message directly.
      *
-     * @param expected
-     *          the expected output string passed from the tests
-     * @param obtained
-     *          the obtained output string passed from the tests
+     * @param expected the expected output string passed from the tests
+     * @param obtained the obtained output string passed from the tests
      */
     public void addOutputMsg(String expected, String obtained) {
         if (trace == true) {
@@ -94,8 +88,7 @@ public class JDBCTestMsg extends ServiceEETest {
     }
 
     /**
-     * This method is called from the error handling methods to print the expected
-     * and obtained output if the tests fails.
+     * This method is called from the error handling methods to print the expected and obtained output if the tests fails.
      *
      */
     public void printOutputMsg() {
@@ -107,13 +100,10 @@ public class JDBCTestMsg extends ServiceEETest {
     }
 
     /**
-     * This method handles SQLException that is thrown by the tests in case of
-     * failure due to database access error.
+     * This method handles SQLException that is thrown by the tests in case of failure due to database access error.
      *
-     * @param sqle
-     *          SQLException thrown from the tests
-     * @param error
-     *          error messages
+     * @param sqle SQLException thrown from the tests
+     * @param error error messages
      */
     public void printSQLError(SQLException sqle, String error) throws Fault {
         if (trace != true) {
@@ -124,13 +114,10 @@ public class JDBCTestMsg extends ServiceEETest {
     }
 
     /**
-     * This method handles Exception condition occurring due to some failures in
-     * the tests execution.
+     * This method handles Exception condition occurring due to some failures in the tests execution.
      *
-     * @param e
-     *          Exception thrown from the tests
-     * @param error
-     *          error message
+     * @param e Exception thrown from the tests
+     * @param error error message
      */
     public void printError(Exception e, String error) throws Fault {
         if (trace != true) {
@@ -141,13 +128,10 @@ public class JDBCTestMsg extends ServiceEETest {
     }
 
     /**
-     * This method logs any general message and error if the tests does not
-     * passes.
+     * This method logs any general message and error if the tests does not passes.
      *
-     * @param message
-     *          String message passed from the tests when it fails
-     * @param error
-     *          error message
+     * @param message String message passed from the tests when it fails
+     * @param error error message
      */
     public void printTestError(String message, String error) throws Fault {
         TestUtil.logErr(message);

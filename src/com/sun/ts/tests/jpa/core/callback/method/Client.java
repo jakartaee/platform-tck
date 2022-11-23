@@ -101,8 +101,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistMultiTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697;
-     * PERSISTENCE:SPEC:722
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697; PERSISTENCE:SPEC:722
      *
      * @test_Strategy:
      */
@@ -113,8 +112,7 @@ public class Client extends EntityCallbackClientBase {
             product = newProduct(testName);
             getEntityManager().persist(product);
 
-            final List expected =
-                    Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
+            final List expected = Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
             final List actual = product.getPrePersistCalls();
             compareResultList(expected, actual);
             getEntityTransaction().commit();
@@ -186,8 +184,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistMultiCascadeTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697;
-     * PERSISTENCE:SPEC:708
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697; PERSISTENCE:SPEC:708
      *
      * @test_Strategy:
      */
@@ -204,8 +201,7 @@ public class Client extends EntityCallbackClientBase {
             getEntityManager().persist(product);
             getEntityManager().persist(order);
 
-            List expected =
-                    Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.ORDER);
+            List expected = Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.ORDER);
             List actual = order.getPrePersistCalls();
             compareResultList(expected, actual);
 
@@ -271,8 +267,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: preRemoveMultiTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:709;
-     * PERSISTENCE:SPEC:722
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:722
      *
      * @test_Strategy:
      */
@@ -284,8 +279,7 @@ public class Client extends EntityCallbackClientBase {
             getEntityManager().persist(product);
             getEntityManager().remove(product);
 
-            final List expected =
-                    Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
+            final List expected = Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
             final List actual = product.getPreRemoveCalls();
             compareResultList(expected, actual);
 
@@ -362,8 +356,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: preRemoveMultiCascadeTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:708;
-     * PERSISTENCE:SPEC:722
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:722
      *
      * @test_Strategy:
      */
@@ -382,8 +375,7 @@ public class Client extends EntityCallbackClientBase {
             getEntityManager().remove(order);
             final boolean b = order.isPreRemoveCalled();
 
-            List expected =
-                    Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.ORDER);
+            List expected = Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.ORDER);
             List actual = order.getPreRemoveCalls();
             compareResultList(expected, actual);
 
@@ -488,8 +480,7 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: postLoadMultiTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:719;
-     * PERSISTENCE:SPEC:722
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:719; PERSISTENCE:SPEC:722
      *
      * @test_Strategy:
      */
@@ -505,8 +496,7 @@ public class Client extends EntityCallbackClientBase {
             final java.util.List results = q.getResultList();
             TestUtil.logTrace(results.toString());
 
-            final List expected =
-                    Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
+            final List expected = Arrays.asList(Constants.LISTENER_A, Constants.LISTENER_B, Constants.LISTENER_C, Constants.PRODUCT);
             final List actual = product.getPostLoadCalls();
             compareResultList(expected, actual);
 

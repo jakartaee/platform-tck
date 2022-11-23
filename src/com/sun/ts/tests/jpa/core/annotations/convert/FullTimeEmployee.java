@@ -34,16 +34,17 @@ import java.io.Serializable;
 @Entity
 @Table(name = "EMPLOYEE")
 @AttributeOverrides({
-    @AttributeOverride(name = "id", column = @Column(name = "ID")),
-    @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
-    @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME"))
+        @AttributeOverride(name = "id", column = @Column(name = "ID")),
+        @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
+        @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME"))
 })
 @Access(AccessType.PROPERTY)
 public class FullTimeEmployee extends Employee2 implements Serializable {
 
     private String salary;
 
-    public FullTimeEmployee() {}
+    public FullTimeEmployee() {
+    }
 
     public FullTimeEmployee(int id, String firstName, char[] lastName, String salary) {
         super(id, firstName, lastName);
@@ -87,8 +88,10 @@ public class FullTimeEmployee extends Employee2 implements Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof FullTimeEmployee)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof FullTimeEmployee))
+            return false;
 
         FullTimeEmployee o1 = (FullTimeEmployee) o;
 

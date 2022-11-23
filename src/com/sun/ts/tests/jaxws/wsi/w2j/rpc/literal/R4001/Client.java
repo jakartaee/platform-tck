@@ -47,8 +47,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client client = new Client();
@@ -79,9 +78,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R4001
      *
-     * @test_Strategy: A valid request, encoded in UTF-16 with a BOM, is sent to
-     *                 the endpoint. A conformant server must correctly process it
-     *                 and return the expected response.
+     * @test_Strategy: A valid request, encoded in UTF-16 with a BOM, is sent to the endpoint. A conformant server must
+     * correctly process it and return the expected response.
      *
      * @throws Fault
      */

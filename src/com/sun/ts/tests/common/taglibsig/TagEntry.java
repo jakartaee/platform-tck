@@ -81,7 +81,7 @@ public class TagEntry {
             return NO_DEFINED_VARIABLES;
         } else {
             List list = new ArrayList();
-            for (Iterator i = variables.values().iterator(); i.hasNext(); ) {
+            for (Iterator i = variables.values().iterator(); i.hasNext();) {
                 list.add(i.next());
             }
             return (VariableEntry[]) list.toArray(new VariableEntry[list.size()]);
@@ -101,7 +101,7 @@ public class TagEntry {
             return NO_DEFINED_ATTRIBUTES;
         } else {
             List list = new ArrayList();
-            for (Iterator i = attributes.values().iterator(); i.hasNext(); ) {
+            for (Iterator i = attributes.values().iterator(); i.hasNext();) {
                 list.add(i.next());
             }
             return (AttributeEntry[]) list.toArray(new AttributeEntry[list.size()]);

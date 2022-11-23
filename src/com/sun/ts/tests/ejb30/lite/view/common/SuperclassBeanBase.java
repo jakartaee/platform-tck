@@ -24,8 +24,7 @@ import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
 /**
- * BusinessLocalIF1 does not automatically become the business interface of the
- * subclass bean class.
+ * BusinessLocalIF1 does not automatically become the business interface of the subclass bean class.
  */
 public class SuperclassBeanBase implements BusinessLocalIF1 {
     @Resource
@@ -35,5 +34,6 @@ public class SuperclassBeanBase implements BusinessLocalIF1 {
         return null;
     }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

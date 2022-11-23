@@ -41,8 +41,7 @@ public class MDBClient extends EETest {
 
     /* Test setup: */
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.port;
-     * harness.log.traceflag;
+     * @class.setup_props: jms_timeout; user; password; harness.log.port; harness.log.traceflag;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -70,9 +69,8 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:85; JMS:JAVADOC:291;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create an object message. Write a StringBuffer to the message.. modify the
-     * StringBuffer and send the msg, verify that it does not effect the msg
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create an object message. Write a
+     * StringBuffer to the message.. modify the StringBuffer and send the msg, verify that it does not effect the msg
      */
     public void mdbMessageObjectCopyTopicTest() throws Fault {
         String testCase1 = "messageObjectCopyTopicTestCreate";
@@ -95,14 +93,13 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsBoolean
      *
-     * @assertion_ids: JMS:SPEC:75.1; JMS:SPEC:75.2; JMS:JAVADOC:219;
-     * JMS:JAVADOC:150; JMS:JAVADOC:128; JMS:JAVADOC:144; JMS:JAVADOC:723;
-     * JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735;
-     * JMS:JAVADOC:738; JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.1; JMS:SPEC:75.2; JMS:JAVADOC:219; JMS:JAVADOC:150; JMS:JAVADOC:128; JMS:JAVADOC:144;
+     * JMS:JAVADOC:723; JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738;
+     * JMS:JAVADOC:741; JMS:JAVADOC:747;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeBoolean to write a
-     * boolean to the message. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeBoolean to write a boolean to the message. Verify the proper conversion support as in
+     * 3.11.3
      */
 
     public void mdbStreamMessageConversionTopicTestsBoolean() throws Fault {
@@ -126,14 +123,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsByte
      *
-     * @assertion_ids: JMS:SPEC:75.3; JMS:SPEC:75.4; JMS:JAVADOC:152;
-     * JMS:JAVADOC:130; JMS:JAVADOC:132; JMS:JAVADOC:136; JMS:JAVADOC:138;
-     * JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:729; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.3; JMS:SPEC:75.4; JMS:JAVADOC:152; JMS:JAVADOC:130; JMS:JAVADOC:132; JMS:JAVADOC:136;
+     * JMS:JAVADOC:138; JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:729; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeByte to write a
-     * byte. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeByte to write a byte. Verify the proper conversion support as in 3.11.3
      *
      */
     public void mdbStreamMessageConversionTopicTestsByte() throws Fault {
@@ -157,14 +152,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsShort
      *
-     * @assertion_ids: JMS:SPEC:75.5; JMS:SPEC:75.6; JMS:JAVADOC:154;
-     * JMS:JAVADOC:132; JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:144;
-     * JMS:JAVADOC:720; JMS:JAVADOC:723; JMS:JAVADOC:729; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.5; JMS:SPEC:75.6; JMS:JAVADOC:154; JMS:JAVADOC:132; JMS:JAVADOC:136; JMS:JAVADOC:138;
+     * JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:723; JMS:JAVADOC:729; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeShort to write a
-     * short. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeShort to write a short. Verify the proper conversion support as in 3.11.3
      *
      */
     public void mdbStreamMessageConversionTopicTestsShort() throws Fault {
@@ -188,14 +181,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsInt
      *
-     * @assertion_ids: JMS:SPEC:75.9; JMS:SPEC:75.10; JMS:JAVADOC:158;
-     * JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:144; JMS:JAVADOC:720;
-     * JMS:JAVADOC:723; JMS:JAVADOC:725; JMS:JAVADOC:729; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.9; JMS:SPEC:75.10; JMS:JAVADOC:158; JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:144;
+     * JMS:JAVADOC:720; JMS:JAVADOC:723; JMS:JAVADOC:725; JMS:JAVADOC:729; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeInt to write an
-     * int. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeInt to write an int. Verify the proper conversion support as in 3.11.3
      *
      */
     public void mdbStreamMessageConversionTopicTestsInt() throws Fault {
@@ -219,14 +210,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsLong
      *
-     * @assertion_ids: JMS:SPEC:75.11; JMS:SPEC:75.12; JMS:JAVADOC:160;
-     * JMS:JAVADOC:138; JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:723;
-     * JMS:JAVADOC:725; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.11; JMS:SPEC:75.12; JMS:JAVADOC:160; JMS:JAVADOC:138; JMS:JAVADOC:144; JMS:JAVADOC:720;
+     * JMS:JAVADOC:723; JMS:JAVADOC:725; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeLong to write a
-     * long. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeLong to write a long. Verify the proper conversion support as in 3.11.3
      *
      */
     public void mdbStreamMessageConversionTopicTestsLong() throws Fault {
@@ -250,14 +239,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsFloat
      *
-     * @assertion_ids: JMS:SPEC:75.13; JMS:SPEC:75.14; JMS:JAVADOC:162;
-     * JMS:JAVADOC:140; JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:723;
-     * JMS:JAVADOC:725; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.13; JMS:SPEC:75.14; JMS:JAVADOC:162; JMS:JAVADOC:140; JMS:JAVADOC:144; JMS:JAVADOC:720;
+     * JMS:JAVADOC:723; JMS:JAVADOC:725; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeFloat to write a
-     * float. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeFloat to write a float. Verify the proper conversion support as in 3.11.3
      *
      */
     public void mdbStreamMessageConversionTopicTestsFloat() throws Fault {
@@ -281,14 +268,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsDouble
      *
-     * @assertion_ids: JMS:SPEC:75.15; JMS:SPEC:75.16; JMS:JAVADOC:164;
-     * JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:723;
-     * JMS:JAVADOC:725; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735;
-     * JMS:JAVADOC:738; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.15; JMS:SPEC:75.16; JMS:JAVADOC:164; JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:720;
+     * JMS:JAVADOC:723; JMS:JAVADOC:725; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeDouble to write a
-     * double. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeDouble to write a double. Verify the proper conversion support as in 3.11.3
      *
      */
     public void mdbStreamMessageConversionTopicTestsDouble() throws Fault {
@@ -312,14 +297,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsString
      *
-     * @assertion_ids: JMS:SPEC:75.17; JMS:SPEC:75.18; JMS:SPEC:77;
-     * JMS:JAVADOC:166; JMS:JAVADOC:128; JMS:JAVADOC:130; JMS:JAVADOC:132;
-     * JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:140; JMS:JAVADOC:142;
-     * JMS:JAVADOC:144; JMS:JAVADOC:729; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.17; JMS:SPEC:75.18; JMS:SPEC:77; JMS:JAVADOC:166; JMS:JAVADOC:128; JMS:JAVADOC:130;
+     * JMS:JAVADOC:132; JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:140; JMS:JAVADOC:142; JMS:JAVADOC:144;
+     * JMS:JAVADOC:729; JMS:JAVADOC:747;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeString to write a
-     * string. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeString to write a string. Verify the proper conversion support as in 3.11.3
      *
      */
     public void mdbStreamMessageConversionTopicTestsString() throws Fault {
@@ -343,14 +326,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsChar
      *
-     * @assertion_ids: JMS:SPEC:75.7; JMS:SPEC:75.8; JMS:JAVADOC:156;
-     * JMS:JAVADOC:134; JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:723;
-     * JMS:JAVADOC:726; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.7; JMS:SPEC:75.8; JMS:JAVADOC:156; JMS:JAVADOC:134; JMS:JAVADOC:144; JMS:JAVADOC:720;
+     * JMS:JAVADOC:723; JMS:JAVADOC:726; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeChar to write a
-     * char. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeChar to write a char. Verify the proper conversion support as in 3.11.3
      *
      */
     public void mdbStreamMessageConversionTopicTestsChar() throws Fault {
@@ -374,14 +355,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsBytes
      *
-     * @assertion_ids: JMS:SPEC:75.19; JMS:SPEC:75.20; JMS:JAVADOC:168;
-     * JMS:JAVADOC:146; JMS:JAVADOC:720; JMS:JAVADOC:723; JMS:JAVADOC:725;
-     * JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:744;
+     * @assertion_ids: JMS:SPEC:75.19; JMS:SPEC:75.20; JMS:JAVADOC:168; JMS:JAVADOC:146; JMS:JAVADOC:720; JMS:JAVADOC:723;
+     * JMS:JAVADOC:725; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:744;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeBytes to write a
-     * byte[] to the message. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeBytes to write a byte[] to the message. Verify the proper conversion support as in 3.11.3
      */
     public void mdbStreamMessageConversionTopicTestsBytes() throws Fault {
         String testCase1 = "streamMessageConversionTopicTestsBytesCreate";
@@ -404,13 +383,11 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageConversionTopicTestsInvFormatString
      *
-     * @assertion_ids: JMS:SPEC:76; JMS:SPEC:81; JMS:JAVADOC:166; JMS:JAVADOC:130;
-     * JMS:JAVADOC:132; JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:140;
-     * JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:146;
+     * @assertion_ids: JMS:SPEC:76; JMS:SPEC:81; JMS:JAVADOC:166; JMS:JAVADOC:130; JMS:JAVADOC:132; JMS:JAVADOC:136;
+     * JMS:JAVADOC:138; JMS:JAVADOC:140; JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:146;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. use StreamMessage method writeString to write a
-     * text string of "mytest string". Verify NumberFormatException is thrown
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. use
+     * StreamMessage method writeString to write a text string of "mytest string". Verify NumberFormatException is thrown
      * Verify that the pointer was not incremented by doing a read string
      *
      */
@@ -435,17 +412,13 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbStreamMessageTopicTestsFullMsg
      *
-     * @assertion_ids: JMS:SPEC:82; JMS:JAVADOC:150; JMS:JAVADOC:152;
-     * JMS:JAVADOC:154; JMS:JAVADOC:156; JMS:JAVADOC:158; JMS:JAVADOC:160;
-     * JMS:JAVADOC:162; JMS:JAVADOC:164; JMS:JAVADOC:166; JMS:JAVADOC:168;
-     * JMS:JAVADOC:170; JMS:JAVADOC:172; JMS:JAVADOC:128; JMS:JAVADOC:130;
-     * JMS:JAVADOC:132; JMS:JAVADOC:134; JMS:JAVADOC:136; JMS:JAVADOC:138;
-     * JMS:JAVADOC:140; JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:146;
-     * JMS:JAVADOC:148;
+     * @assertion_ids: JMS:SPEC:82; JMS:JAVADOC:150; JMS:JAVADOC:152; JMS:JAVADOC:154; JMS:JAVADOC:156; JMS:JAVADOC:158;
+     * JMS:JAVADOC:160; JMS:JAVADOC:162; JMS:JAVADOC:164; JMS:JAVADOC:166; JMS:JAVADOC:168; JMS:JAVADOC:170;
+     * JMS:JAVADOC:172; JMS:JAVADOC:128; JMS:JAVADOC:130; JMS:JAVADOC:132; JMS:JAVADOC:134; JMS:JAVADOC:136;
+     * JMS:JAVADOC:138; JMS:JAVADOC:140; JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:146; JMS:JAVADOC:148;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. write one of each primitive type. Send the
-     * message. Verify the data received was as sent.
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. write one of
+     * each primitive type. Send the message. Verify the data received was as sent.
      *
      */
     public void mdbStreamMessageTopicTestsFullMsg() throws Fault {
@@ -471,9 +444,8 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:78; JMS:SPEC:86; JMS:JAVADOC:144; JMS:JAVADOC:172;
      *
-     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to
-     * create a StreamMessage -. Use writeString to write a null, then use
-     * readString to read it back.
+     * @test_Strategy: Invoke a session bean. Have it send a request to an mdb to create a StreamMessage -. Use writeString
+     * to write a null, then use readString to read it back.
      */
     public void mdbStreamMessageTopicTestNull() throws Fault {
         String testCase1 = "streamMessageTopicTestNullCreate";

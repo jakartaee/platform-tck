@@ -32,7 +32,8 @@ public class Client extends PMClientBase {
 
     Map map = new HashMap<String, Object>();
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -63,8 +64,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: createEntityManagerSynchronizationTypeMapTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:3318; PERSISTENCE:SPEC:1801;
-     * PERSISTENCE:SPEC:1804; PERSISTENCE:SPEC:1883.2;
+     * @assertion_ids: PERSISTENCE:JAVADOC:3318; PERSISTENCE:SPEC:1801; PERSISTENCE:SPEC:1804; PERSISTENCE:SPEC:1883.2;
      *
      * @test_Strategy: Create an EntityManagerFactory via SynchronizationType,Map
      */
@@ -144,8 +144,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:489
      *
-     * @test_Strategy: Call EntityManager.joinTransaction() method when no
-     * transaction exists
+     * @test_Strategy: Call EntityManager.joinTransaction() method when no transaction exists
      */
     public void joinTransactionTransactionRequiredExceptionTest() throws Fault {
         boolean pass = false;

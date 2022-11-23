@@ -25,4 +25,5 @@ import java.lang.annotation.Target;
 @HttpMethod("TRACE")
 @Target(value = ElementType.METHOD)
 @Retention(value = RetentionPolicy.RUNTIME)
-public @interface TRACE {}
+public @interface TRACE {
+}

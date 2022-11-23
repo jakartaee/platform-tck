@@ -46,8 +46,7 @@ public class MsgBeanForTopic implements MessageDrivenBean, MessageListener {
 
     public MsgBeanForTopic() {
         TestUtil.logTrace("In MsgBeanForTopic::MsgBeanForTopic()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("In MsgBeanForTopic::ejbCreate() !!");

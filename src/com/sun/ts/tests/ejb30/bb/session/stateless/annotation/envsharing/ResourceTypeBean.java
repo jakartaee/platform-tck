@@ -32,7 +32,7 @@ import jakarta.mail.Session;
 import java.net.URL;
 
 @Stateless(name = "ResourceTypeBean")
-@Remote({ResourceIF.class})
+@Remote({ ResourceIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 @Resource(name = "mailSession", type = Session.class, shareable = false)
 @Resource(name = "url", shareable = false, type = URL.class)

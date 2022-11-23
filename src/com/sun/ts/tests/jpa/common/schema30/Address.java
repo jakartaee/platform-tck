@@ -45,7 +45,8 @@ public class Address implements java.io.Serializable {
 
     private Collection<Phone> phones = new java.util.ArrayList<Phone>();
 
-    public Address() {}
+    public Address() {
+    }
 
     public Address(String id, String street, String city, String state, String zip) {
         this.id = id;

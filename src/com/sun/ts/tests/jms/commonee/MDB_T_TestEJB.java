@@ -78,7 +78,8 @@ public class MDB_T_TestEJB implements MDB_T_Test {
 
     private long timeout;
 
-    public MDB_T_TestEJB() {}
+    public MDB_T_TestEJB() {
+    }
 
     public void setup(Properties props) {
         TestUtil.logTrace("MDB_T_TestEJB.setup()");

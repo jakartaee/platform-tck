@@ -42,8 +42,7 @@ public class ClassicAttributeTestTag extends TagSupport implements DynamicAttrib
     /**
      * Sets _fragment. This should be an instance of JspFragment.
      *
-     * @param o
-     *          - a JspFragment instance
+     * @param o - a JspFragment instance
      */
     public void setFragment(Object o) {
         _fragment = o;
@@ -52,28 +51,22 @@ public class ClassicAttributeTestTag extends TagSupport implements DynamicAttrib
     /**
      * Sets a dynamic attribute.
      *
-     * @param s
-     *          - the URL of the attribute
-     * @param s1
-     *          - the attribute name
-     * @param o
-     *          - the attribute value
-     * @throws JspException
-     *           if an unexpected error occurs
+     * @param s - the URL of the attribute
+     * @param s1 - the attribute name
+     * @param o - the attribute value
+     * @throws JspException if an unexpected error occurs
      */
     public void setDynamicAttribute(String s, String s1, Object o) throws JspException {
         _dynamic = o;
     }
 
     /**
-     * If _fragment is not null, it validates the the attribute set was indeed a
-     * JspFragment. If _dynamic is not null it validates the attribute is a String
-     * instance. If in either case the tests fails, a detailed message will be
+     * If _fragment is not null, it validates the the attribute set was indeed a JspFragment. If _dynamic is not null it
+     * validates the attribute is a String instance. If in either case the tests fails, a detailed message will be
      * displayed.
      *
      * @return SKIP_BODY
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doStartTag() throws JspException {
         if (_fragment != null) {

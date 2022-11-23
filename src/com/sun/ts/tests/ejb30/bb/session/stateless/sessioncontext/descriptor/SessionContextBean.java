@@ -40,7 +40,9 @@ public class SessionContextBean extends SessionContextBeanBase
         return sessionContext;
     }
 
-    public SessionContextBean() {}
+    public SessionContextBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

@@ -28,7 +28,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -56,13 +57,11 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:625; PERSISTENCE:SPEC:742;
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows:
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows:
      *
-     * If X is a detached object and the persist method is invoked on it, an
-     * IllegalArgumentException is thrown or the commit() will fail. Check for an
-     * IllegalArgumentException, if not thrown, be sure the persist method was not
+     * If X is a detached object and the persist method is invoked on it, an IllegalArgumentException is thrown or the
+     * commit() will fail. Check for an IllegalArgumentException, if not thrown, be sure the persist method was not
      * successful by invoking find(). Invoke persist on a detached entity.
      *
      */
@@ -122,7 +121,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("detachMX1Test1 failed");
+        if (!pass)
+            throw new Fault("detachMX1Test1 failed");
     }
 
     /*

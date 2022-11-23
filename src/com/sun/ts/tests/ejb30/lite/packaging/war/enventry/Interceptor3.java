@@ -38,19 +38,13 @@ public class Interceptor3 extends InterceptorBase {
 
     // inject 3 float fields that are declared in ejb-jar.xml#OneBean, TwoBean,
     // and ThreeBean
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myFloat",
-            description = "declared in ejb-jar.xml#OneBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myFloat", description = "declared in ejb-jar.xml#OneBean")
     private float myFloatFromOne;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myFloat",
-            description = "declared in ejb-jar.xml#TwoBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myFloat", description = "declared in ejb-jar.xml#TwoBean")
     private float myFloatFromTwo;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myFloat",
-            description = "declared in ejb-jar.xml#ThreeBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myFloat", description = "declared in ejb-jar.xml#ThreeBean")
     private float myFloatFromThree;
 
     // to avoid adding records multiple times
@@ -73,9 +67,8 @@ public class Interceptor3 extends InterceptorBase {
     }
 
     /**
-     * This method does not override InterceptorBase.intercept method, since both
-     * are private methods. This method is invoked after InterceptorBase.
-     * intercept method.
+     * This method does not override InterceptorBase.intercept method, since both are private methods. This method is
+     * invoked after InterceptorBase. intercept method.
      */
     @SuppressWarnings("unused")
     @AroundInvoke

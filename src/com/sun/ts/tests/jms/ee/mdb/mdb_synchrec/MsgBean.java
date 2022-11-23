@@ -64,8 +64,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
 
     public MsgBean() {
         TestUtil.logTrace("@MsgBean()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("In Message Bean ======================================EJBCreate");
@@ -99,7 +98,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
         try {
             testName = "mdbResponse";
             qConnection = qFactory.createQueueConnection();
-            if (qConnection == null) throw new EJBException("MDB connection Error!");
+            if (qConnection == null)
+                throw new EJBException("MDB connection Error!");
 
             qConnection.start();
 

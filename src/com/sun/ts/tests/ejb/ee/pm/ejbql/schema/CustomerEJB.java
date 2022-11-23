@@ -179,7 +179,8 @@ public abstract class CustomerEJB implements EntityBean {
             String orderPK = (String) order.getPrimaryKey();
             OrderLocalHome orderLocalHome = (OrderLocalHome) nctx.lookup(OrderLocal);
             orderLocal = orderLocalHome.findByPrimaryKey(orderPK);
-        } else TestUtil.logMsg("order reference is null");
+        } else
+            TestUtil.logMsg("order reference is null");
 
         TestUtil.logMsg("createCreditCardLocal: Converting customer to customerlocal");
         CustomerLocal customerLocal = null;
@@ -187,12 +188,12 @@ public abstract class CustomerEJB implements EntityBean {
             String customerPK = (String) customer.getPrimaryKey();
             CustomerLocalHome customerLocalHome = (CustomerLocalHome) nctx.lookup(CustomerLocal);
             customerLocal = customerLocalHome.findByPrimaryKey(customerPK);
-        } else TestUtil.logMsg("customer reference is null");
+        } else
+            TestUtil.logMsg("customer reference is null");
 
         TestUtil.logMsg("createCreditCardLocal: Creating creditCardLocal");
         CreditCardLocalHome creditCardLocalHome = (CreditCardLocalHome) nctx.lookup(CreditCardLocal);
-        CreditCardLocal creditCardLocal =
-                creditCardLocalHome.create(id, number, type, expires, approved, balance, orderLocal, customerLocal);
+        CreditCardLocal creditCardLocal = creditCardLocalHome.create(id, number, type, expires, approved, balance, orderLocal, customerLocal);
 
         return creditCardLocal;
     }
@@ -329,8 +330,7 @@ public abstract class CustomerEJB implements EntityBean {
                 PhoneDVC pDvc = new PhoneDVC(pLeb.getId(), pLeb.getArea(), pLeb.getNumber());
                 v1.add(pDvc);
             }
-            AddressDVC aDvc =
-                    new AddressDVC(aLeb.getId(), aLeb.getStreet(), aLeb.getCity(), aLeb.getState(), aLeb.getZip(), v1);
+            AddressDVC aDvc = new AddressDVC(aLeb.getId(), aLeb.getStreet(), aLeb.getCity(), aLeb.getState(), aLeb.getZip(), v1);
             return aDvc;
         } catch (Exception e) {
             TestUtil.printStackTrace(e);

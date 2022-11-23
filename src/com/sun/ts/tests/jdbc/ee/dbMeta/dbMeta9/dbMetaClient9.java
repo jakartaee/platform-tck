@@ -41,8 +41,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The dbMetaClient9 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The dbMetaClient9 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -77,14 +76,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -96,11 +92,16 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
                 dbUser = p.getProperty("user1", "");
                 sPtable = p.getProperty("ptable", "TSTABLE1");
                 sFtable = p.getProperty("ftable", "TSTABLE2");
-                if (dbName.length() == 0) throw new Fault("Invalid db1  Database Name");
-                if (dbUser.length() == 0) throw new Fault("Invalid Login Id");
-                if (sPtable.length() == 0) throw new Fault("Invalid Primary table");
-                if (sFtable.length() == 0) throw new Fault("Invalid Foreign table");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (dbName.length() == 0)
+                    throw new Fault("Invalid db1  Database Name");
+                if (dbUser.length() == 0)
+                    throw new Fault("Invalid Login Id");
+                if (sPtable.length() == 0)
+                    throw new Fault("Invalid Primary table");
+                if (sFtable.length() == 0)
+                    throw new Fault("Invalid Foreign table");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 int nLocdbname = dbName.indexOf('=');
                 sCatalogName = dbName.substring(nLocdbname + 1);
@@ -132,35 +133,33 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTypeInfo
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1072; JDBC:JAVADOC:1073;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1072; JDBC:JAVADOC:1073; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getTypeInfo() method on that object. It should return
-     * a ResultSet object Validate the column names and column ordering.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getTypeInfo() method
+     * on that object. It should return a ResultSet object Validate the column names and column ordering.
      */
     public void testGetTypeInfo() throws Fault {
         try {
             ResultSetMetaData rsmd = null;
             String sColumnNames[] = {
-                "TYPE_NAME",
-                "DATA_TYPE",
-                "PRECISION",
-                "LITERAL_PREFIX",
-                "LITERAL_SUFFIX",
-                "CREATE_PARAMS",
-                "NULLABLE",
-                "CASE_SENSITIVE",
-                "SEARCHABLE",
-                "UNSIGNED_ATTRIBUTE",
-                "FIXED_PREC_SCALE",
-                "AUTO_INCREMENT",
-                "LOCAL_TYPE_NAME",
-                "MINIMUM_SCALE",
-                "MAXIMUM_SCALE",
-                "SQL_DATA_TYPE",
-                "SQL_DATETIME_SUB",
-                "NUM_PREC_RADIX"
+                    "TYPE_NAME",
+                    "DATA_TYPE",
+                    "PRECISION",
+                    "LITERAL_PREFIX",
+                    "LITERAL_SUFFIX",
+                    "CREATE_PARAMS",
+                    "NULLABLE",
+                    "CASE_SENSITIVE",
+                    "SEARCHABLE",
+                    "UNSIGNED_ATTRIBUTE",
+                    "FIXED_PREC_SCALE",
+                    "AUTO_INCREMENT",
+                    "LOCAL_TYPE_NAME",
+                    "MINIMUM_SCALE",
+                    "MAXIMUM_SCALE",
+                    "SQL_DATA_TYPE",
+                    "SQL_DATETIME_SUB",
+                    "NUM_PREC_RADIX"
             };
             boolean statusColumnMatch = true;
             boolean statusColumnCount = true;
@@ -180,11 +179,13 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Minimum Column Count is:" + iColumnNamesLength);
 
             msg.setMsg("Comparing Column Lengths");
-            if (iColumnNamesLength > iCount) statusColumnCount = false;
+            if (iColumnNamesLength > iCount)
+                statusColumnCount = false;
             else if (iColumnNamesLength < iCount) {
                 iCount = iColumnNamesLength;
                 statusColumnCount = true;
-            } else statusColumnCount = true;
+            } else
+                statusColumnCount = true;
 
             msg.setMsg("Comparing Column Names...");
 
@@ -205,9 +206,12 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             }
 
             msg.setMsg("Store all the Type names returned");
-            while (oRet_ResultSet.next()) sRetStr += oRet_ResultSet.getString(1) + ",";
-            if (sRetStr == "") msg.setMsg("getTypeInfo did not return any type names");
-            else msg.setMsg("The Type names returned are : " + sRetStr);
+            while (oRet_ResultSet.next())
+                sRetStr += oRet_ResultSet.getString(1) + ",";
+            if (sRetStr == "")
+                msg.setMsg("getTypeInfo did not return any type names");
+            else
+                msg.setMsg("The Type names returned are : " + sRetStr);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -221,13 +225,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsResultSetType1
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsResultSetType(int resType) method with Type
-     * TYPE_FORWARD_ONLY on that object.It should return a boolean value; either
-     * true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsResultSetType(int resType) method with Type TYPE_FORWARD_ONLY on that object.It should return a boolean
+     * value; either true or false.
      *
      */
     public void testSupportsResultSetType1() throws Fault {
@@ -235,8 +237,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsResultSetType(TYPE_FORWARD_ONLY)");
             // invoke supportsResultSetType method
             boolean retValue = dbmd.supportsResultSetType(ResultSet.TYPE_FORWARD_ONLY);
-            if (retValue) msg.setMsg("TYPE_FORWARD_ONLY ResultSetType is supported");
-            else msg.setMsg("TYPE_FORWARD_ONLY ResultSetType is not supported");
+            if (retValue)
+                msg.setMsg("TYPE_FORWARD_ONLY ResultSetType is supported");
+            else
+                msg.setMsg("TYPE_FORWARD_ONLY ResultSetType is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -250,12 +254,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsResultSetType2
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsResultSetType() method with Type
-     * TYPE_SCROLL_INSENSITIVE on that object.It should return a boolean value;
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsResultSetType() method with Type TYPE_SCROLL_INSENSITIVE on that object.It should return a boolean value;
      * either true or false.
      *
      */
@@ -264,7 +266,8 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsResultSetType(TYPE_SCROLL_INSENSITIVE)");
             // invoke supportsResultSetType method
             boolean retValue = dbmd.supportsResultSetType(ResultSet.TYPE_SCROLL_INSENSITIVE);
-            if (retValue) msg.setMsg("TYPE_SCROLL_INSENSITIVE ResultSetType is supported");
+            if (retValue)
+                msg.setMsg("TYPE_SCROLL_INSENSITIVE ResultSetType is supported");
             else {
                 msg.setMsg("TYPE_SCROLL_INSENSITIVE ResultSetType is not supported");
             }
@@ -280,12 +283,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsResultSetType3
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1076; JDBC:JAVADOC:1077; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsResultSetType() method with Type
-     * TYPE_SCROLL_SENSITIVE on that object.It should return a boolean value;
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsResultSetType() method with Type TYPE_SCROLL_SENSITIVE on that object.It should return a boolean value;
      * either true or false.
      *
      */
@@ -294,8 +295,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsResultSetType(TYPE_SCROLL_SENSITIVE)");
             // invoke supportsResultSetType method
             boolean retValue = dbmd.supportsResultSetType(ResultSet.TYPE_SCROLL_SENSITIVE);
-            if (retValue) msg.setMsg("TYPE_SCROLL_SENSITIVE ResultSetType is supported");
-            else msg.setMsg("TYPE_SCROLL_SENSITIVE ResultSetType is not supported");
+            if (retValue)
+                msg.setMsg("TYPE_SCROLL_SENSITIVE ResultSetType is supported");
+            else
+                msg.setMsg("TYPE_SCROLL_SENSITIVE ResultSetType is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -309,12 +312,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsResultSetConcurrency1
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsResultSetConcurrency(int resType, int
-     * rsConcur) method on that object with TYPE_FORWARD_ONLY and
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsResultSetConcurrency(int resType, int rsConcur) method on that object with TYPE_FORWARD_ONLY and
      * CONCUR_READ_ONLY. It should return a boolean value; either true or false.
      *
      */
@@ -322,10 +323,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
         try {
             msg.setMsg("Calling DatabaseMetaData.supportsResultSetConcurrency(TYPE_FORWARD_ONLY, CONCUR_READ_ONLY)");
             // invoke supportsResultSetConcurrency method
-            boolean retValue =
-                    dbmd.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            if (retValue) msg.setMsg("supportsResultSetConcurrency(TYPE_FORWARD_ONLY, CONCUR_READ_ONLY) is supported");
-            else msg.setMsg("supportsResultSetConcurrency(TYPE_FORWARD_ONLY, CONCUR_READ_ONLY) is not supported");
+            boolean retValue = dbmd.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            if (retValue)
+                msg.setMsg("supportsResultSetConcurrency(TYPE_FORWARD_ONLY, CONCUR_READ_ONLY) is supported");
+            else
+                msg.setMsg("supportsResultSetConcurrency(TYPE_FORWARD_ONLY, CONCUR_READ_ONLY) is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -339,12 +341,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsResultSetConcurrency2
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsResultSetConcurrency(int resType, int
-     * rsConcur) method on that object with TYPE_FORWARD_ONLY and
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsResultSetConcurrency(int resType, int rsConcur) method on that object with TYPE_FORWARD_ONLY and
      * CONCUR_UPDATABLE. It should return a boolean value; either true or false.
      *
      */
@@ -352,10 +352,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
         try {
             msg.setMsg("Calling DatabaseMetaData.supportsResultSetConcurrency(TYPE_FORWARD_ONLY, CONCUR_UPDATABLE)");
             // invoke supportsResultSetConcurrency method
-            boolean retValue =
-                    dbmd.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
-            if (retValue) msg.setMsg("supportsResultSetConcurrency(TYPE_FORWARD_ONLY, CONCUR_UPDATABLE) is supported");
-            else msg.setMsg("supportsResultSetConcurrency(TYPE_FORWARD_ONLY, CONCUR_UPDATABLE) is not supported");
+            boolean retValue = dbmd.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+            if (retValue)
+                msg.setMsg("supportsResultSetConcurrency(TYPE_FORWARD_ONLY, CONCUR_UPDATABLE) is supported");
+            else
+                msg.setMsg("supportsResultSetConcurrency(TYPE_FORWARD_ONLY, CONCUR_UPDATABLE) is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -369,12 +370,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsResultSetConcurrency3
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsResultSetConcurrency(int resType, int
-     * rsConcur) method on that object with TYPE_SCROLL_INSENSITIVE and
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsResultSetConcurrency(int resType, int rsConcur) method on that object with TYPE_SCROLL_INSENSITIVE and
      * CONCUR_READ_ONLY. It should return a boolean value; either true or false.
      *
      */
@@ -383,11 +382,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg(
                     "Calling DatabaseMetaData.supportsResultSetConcurrency(TYPE_SCROLL_INSENSITIVE, CONCUR_READ_ONLY)");
             // invoke supportsResultSetConcurrency method
-            boolean retValue =
-                    dbmd.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            boolean retValue = dbmd.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             if (retValue)
                 msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_INSENSITIVE, CONCUR_READ_ONLY) is supported");
-            else msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_INSENSITIVE, CONCUR_READ_ONLY) is not supported");
+            else
+                msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_INSENSITIVE, CONCUR_READ_ONLY) is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -401,12 +400,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsResultSetConcurrency4
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsResultSetConcurrency(int resType, int
-     * rsConcur) method on that object with TYPE_SCROLL_INSENSITIVE and
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsResultSetConcurrency(int resType, int rsConcur) method on that object with TYPE_SCROLL_INSENSITIVE and
      * CONCUR_UPDATABLE. It should return a boolean value; either true or false.
      *
      */
@@ -415,11 +412,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg(
                     "Calling DatabaseMetaData.supportsResultSetConcurrency(TYPE_SCROLL_INSENSITIVE, CONCUR_UPDATABLE)");
             // invoke supportsResultSetConcurrency method
-            boolean retValue =
-                    dbmd.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            boolean retValue = dbmd.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             if (retValue)
                 msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_INSENSITIVE, CONCUR_UPDATABLE) is supported");
-            else msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_INSENSITIVE, CONCUR_UPDATABLE) is not supported");
+            else
+                msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_INSENSITIVE, CONCUR_UPDATABLE) is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -433,12 +430,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsResultSetConcurrency5
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsResultSetConcurrency(int resType, int
-     * rsConcur) method on that object with TYPE_SCROLL_SENSITIVE and
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsResultSetConcurrency(int resType, int rsConcur) method on that object with TYPE_SCROLL_SENSITIVE and
      * CONCUR_READ_ONLY. It should return a boolean value; either true or false.
      *
      */
@@ -447,11 +442,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg(
                     "Calling DatabaseMetaData.supportsResultSetConcurrency(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY)");
             // invoke supportsResultSetConcurrency method
-            boolean retValue =
-                    dbmd.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            boolean retValue = dbmd.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             if (retValue)
                 msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY) is supported");
-            else msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY) is not supported");
+            else
+                msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_SENSITIVE, CONCUR_READ_ONLY) is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -465,12 +460,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsResultSetConcurrency6
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1078; JDBC:JAVADOC:1079; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsResultSetConcurrency(int resType, int
-     * rsConcur) method on that object with TYPE_SCROLL_SENSITIVE and
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsResultSetConcurrency(int resType, int rsConcur) method on that object with TYPE_SCROLL_SENSITIVE and
      * CONCUR_UPDATABLE. It should return a boolean value; either true or false.
      *
      */
@@ -479,11 +472,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg(
                     "Calling DatabaseMetaData.supportsResultSetConcurrency(TYPE_SCROLL_SENSITIVE, CONCUR_UPDATABLE)");
             // invoke supportsResultSetConcurrency method
-            boolean retValue =
-                    dbmd.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            boolean retValue = dbmd.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             if (retValue)
                 msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_SENSITIVE, CONCUR_UPDATABLE) is supported");
-            else msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_SENSITIVE, CONCUR_UPDATABLE) is not supported");
+            else
+                msg.setMsg("supportsResultSetConcurrency(TYPE_SCROLL_SENSITIVE, CONCUR_UPDATABLE) is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -497,13 +490,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testOwnUpdatesAreVisible1
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the ownUpdatesAreVisible(int resType) method on that
-     * object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value;
-     * either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * ownUpdatesAreVisible(int resType) method on that object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean
+     * value; either true or false.
      *
      */
     public void testOwnUpdatesAreVisible1() throws Fault {
@@ -511,8 +502,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.ownUpdatesAreVisible(TYPE_FORWARD_ONLY)");
             // invoke ownUpdatesAreVisible method
             boolean retValue = dbmd.ownUpdatesAreVisible(ResultSet.TYPE_FORWARD_ONLY);
-            if (retValue) msg.setMsg("Result Set's own updates are visible for TYPE_FORWARD_ONLY");
-            else msg.setMsg("Result Set's own updates are not visible for TYPE_FORWARD_ONLY");
+            if (retValue)
+                msg.setMsg("Result Set's own updates are visible for TYPE_FORWARD_ONLY");
+            else
+                msg.setMsg("Result Set's own updates are not visible for TYPE_FORWARD_ONLY");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -526,13 +519,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testOwnUpdatesAreVisible2
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the ownUpdatesAreVisible(int resType) method on that
-     * object with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a boolean
-     * value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * ownUpdatesAreVisible(int resType) method on that object with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a
+     * boolean value; either true or false.
      *
      */
     public void testOwnUpdatesAreVisible2() throws Fault {
@@ -540,8 +531,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.ownUpdatesAreVisible(TYPE_SCROLL_INSENSITIVE)");
             // invoke ownUpdatesAreVisible method
             boolean retValue = dbmd.ownUpdatesAreVisible(ResultSet.TYPE_SCROLL_INSENSITIVE);
-            if (retValue) msg.setMsg("Result Set's own updates are visible for TYPE_SCROLL_INSENSITIVE");
-            else msg.setMsg("Result Set's own updates are not visible for TYPE_SCROLL_INSENSITIVE");
+            if (retValue)
+                msg.setMsg("Result Set's own updates are visible for TYPE_SCROLL_INSENSITIVE");
+            else
+                msg.setMsg("Result Set's own updates are not visible for TYPE_SCROLL_INSENSITIVE");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -555,13 +548,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testOwnUpdatesAreVisible3
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1080; JDBC:JAVADOC:1081; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the ownUpdatesAreVisible(int resType) method on that
-     * object with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a boolean
-     * value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * ownUpdatesAreVisible(int resType) method on that object with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a
+     * boolean value; either true or false.
      *
      */
     public void testOwnUpdatesAreVisible3() throws Fault {
@@ -569,8 +560,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.ownUpdatesAreVisible(TYPE_SCROLL_SENSITIVE)");
             // invoke ownUpdatesAreVisible method
             boolean retValue = dbmd.ownUpdatesAreVisible(ResultSet.TYPE_SCROLL_SENSITIVE);
-            if (retValue) msg.setMsg("Result Set's own updates are visible for TYPE_SCROLL_SENSITIVE");
-            else msg.setMsg("Result Set's own updates are not visible for TYPE_SCROLL_SENSITIVE");
+            if (retValue)
+                msg.setMsg("Result Set's own updates are visible for TYPE_SCROLL_SENSITIVE");
+            else
+                msg.setMsg("Result Set's own updates are not visible for TYPE_SCROLL_SENSITIVE");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -584,13 +577,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testOwnDeletesAreVisible1
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the ownDeletesAreVisible(int resType) method on that
-     * object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value;
-     * either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * ownDeletesAreVisible(int resType) method on that object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean
+     * value; either true or false.
      *
      */
     public void testOwnDeletesAreVisible1() throws Fault {
@@ -598,8 +589,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.ownDeletesAreVisible(TYPE_FORWARD_ONLY)");
             // invoke ownDeletesAreVisible method
             boolean retValue = dbmd.ownDeletesAreVisible(ResultSet.TYPE_FORWARD_ONLY);
-            if (retValue) msg.setMsg("Result Set's own deletes are visible for TYPE_FORWARD_ONLY");
-            else msg.setMsg("Result Set's own deletes are not visible for TYPE_FORWARD_ONLY");
+            if (retValue)
+                msg.setMsg("Result Set's own deletes are visible for TYPE_FORWARD_ONLY");
+            else
+                msg.setMsg("Result Set's own deletes are not visible for TYPE_FORWARD_ONLY");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -613,13 +606,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testOwnDeletesAreVisible2
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the ownDeletesAreVisible(int resType) method on that
-     * object with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a boolean
-     * value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * ownDeletesAreVisible(int resType) method on that object with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a
+     * boolean value; either true or false.
      *
      */
     public void testOwnDeletesAreVisible2() throws Fault {
@@ -627,8 +618,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.ownDeletesAreVisible(TYPE_SCROLL_INSENSITIVE)");
             // invoke ownDeletesAreVisible method
             boolean retValue = dbmd.ownDeletesAreVisible(ResultSet.TYPE_SCROLL_INSENSITIVE);
-            if (retValue) msg.setMsg("Result Set's own deletes are visible for TYPE_SCROLL_INSENSITIVE");
-            else msg.setMsg("Result Set's own deletes are not visible for TYPE_SCROLL_INSENSITIVE");
+            if (retValue)
+                msg.setMsg("Result Set's own deletes are visible for TYPE_SCROLL_INSENSITIVE");
+            else
+                msg.setMsg("Result Set's own deletes are not visible for TYPE_SCROLL_INSENSITIVE");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -642,13 +635,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testOwnDeletesAreVisible3
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1082; JDBC:JAVADOC:1083; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the ownDeletesAreVisible(int resType) method on that
-     * object with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a boolean
-     * value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * ownDeletesAreVisible(int resType) method on that object with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a
+     * boolean value; either true or false.
      *
      */
     public void testOwnDeletesAreVisible3() throws Fault {
@@ -656,8 +647,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.ownDeletesAreVisible(TYPE_SCROLL_SENSITIVE)");
             // invoke ownDeletesAreVisible method
             boolean retValue = dbmd.ownDeletesAreVisible(ResultSet.TYPE_SCROLL_SENSITIVE);
-            if (retValue) msg.setMsg("Result Set's own deletes are visible for TYPE_SCROLL_SENSITIVE");
-            else msg.setMsg("Result Set's own deletes are not visible for TYPE_SCROLL_SENSITIVE");
+            if (retValue)
+                msg.setMsg("Result Set's own deletes are visible for TYPE_SCROLL_SENSITIVE");
+            else
+                msg.setMsg("Result Set's own deletes are not visible for TYPE_SCROLL_SENSITIVE");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -671,13 +664,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testOwnInsertsAreVisible1
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the ownInsertsAreVisible(int resType) method on that
-     * object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value;
-     * either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * ownInsertsAreVisible(int resType) method on that object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean
+     * value; either true or false.
      *
      */
     public void testOwnInsertsAreVisible1() throws Fault {
@@ -685,8 +676,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.ownInsertsAreVisible(TYPE_FORWARD_ONLY)");
             // invoke ownInsertsAreVisible method
             boolean retValue = dbmd.ownInsertsAreVisible(ResultSet.TYPE_FORWARD_ONLY);
-            if (retValue) msg.setMsg("Result Set's own inserts are visible for TYPE_FORWARD_ONLY");
-            else msg.setMsg("Result Set's own inserts are not visible for TYPE_FORWARD_ONLY");
+            if (retValue)
+                msg.setMsg("Result Set's own inserts are visible for TYPE_FORWARD_ONLY");
+            else
+                msg.setMsg("Result Set's own inserts are not visible for TYPE_FORWARD_ONLY");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -700,13 +693,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testOwnInsertsAreVisible2
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the ownInsertsAreVisible(int resType) method on that
-     * object with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a boolean
-     * value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * ownInsertsAreVisible(int resType) method on that object with ResultSet.TYPE_SCROLL_INSENSITIVE. It should return a
+     * boolean value; either true or false.
      *
      */
     public void testOwnInsertsAreVisible2() throws Fault {
@@ -714,8 +705,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.ownInsertsAreVisible(TYPE_SCROLL_INSENSITIVE)");
             // invoke ownInsertsAreVisible method
             boolean retValue = dbmd.ownInsertsAreVisible(ResultSet.TYPE_SCROLL_INSENSITIVE);
-            if (retValue) msg.setMsg("Result Set's own inserts are visible for TYPE_SCROLL_INSENSITIVE");
-            else msg.setMsg("Result Set's own inserts are not visible for TYPE_SCROLL_INSENSITIVE");
+            if (retValue)
+                msg.setMsg("Result Set's own inserts are visible for TYPE_SCROLL_INSENSITIVE");
+            else
+                msg.setMsg("Result Set's own inserts are not visible for TYPE_SCROLL_INSENSITIVE");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -729,13 +722,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testOwnInsertsAreVisible3
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1084; JDBC:JAVADOC:1085; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the ownInsertsAreVisible(int resType) method on that
-     * object with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a boolean
-     * value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * ownInsertsAreVisible(int resType) method on that object with ResultSet.TYPE_SCROLL_SENSITIVE. It should return a
+     * boolean value; either true or false.
      *
      */
     public void testOwnInsertsAreVisible3() throws Fault {
@@ -743,8 +734,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.ownInsertsAreVisible(TYPE_SCROLL_SENSITIVE)");
             // invoke ownInsertsAreVisible method
             boolean retValue = dbmd.ownInsertsAreVisible(ResultSet.TYPE_SCROLL_SENSITIVE);
-            if (retValue) msg.setMsg("Result Set's own inserts are visible for TYPE_SCROLL_SENSITIVE");
-            else msg.setMsg("Result Set's own inserts are not visible for TYPE_SCROLL_SENSITIVE");
+            if (retValue)
+                msg.setMsg("Result Set's own inserts are visible for TYPE_SCROLL_SENSITIVE");
+            else
+                msg.setMsg("Result Set's own inserts are not visible for TYPE_SCROLL_SENSITIVE");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -758,13 +751,11 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
     /*
      * @testName: testOthersUpdatesAreVisible1
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1086; JDBC:JAVADOC:1087;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1086; JDBC:JAVADOC:1087; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the otherUpdatesAreVisible(int resType) method on that
-     * object with ResultSet.TYPE_FORWARD_ONLY. It should return a boolean value;
-     * either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * otherUpdatesAreVisible(int resType) method on that object with ResultSet.TYPE_FORWARD_ONLY. It should return a
+     * boolean value; either true or false.
      *
      */
     public void testOthersUpdatesAreVisible1() throws Fault {
@@ -772,8 +763,10 @@ public class dbMetaClient9 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.othersUpdatesAreVisible(TYPE_FORWARD_ONLY)");
             // invoke othersUpdatesAreVisible method
             boolean retValue = dbmd.othersUpdatesAreVisible(ResultSet.TYPE_FORWARD_ONLY);
-            if (retValue) msg.setMsg("Updates made by others are visible for TYPE_FORWARD_ONLY");
-            else msg.setMsg("Updates made by others are not visible for TYPE_FORWARD_ONLY");
+            if (retValue)
+                msg.setMsg("Updates made by others are visible for TYPE_FORWARD_ONLY");
+            else
+                msg.setMsg("Updates made by others are not visible for TYPE_FORWARD_ONLY");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {

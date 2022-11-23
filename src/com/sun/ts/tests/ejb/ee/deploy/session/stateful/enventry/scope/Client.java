@@ -86,11 +86,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:757.1
      *
-     * @test_Strategy: Deploy two Stateful Session beans (part of a same JAR file)
-     *                 using the same env-entry-name but declaring different
-     *                 values. Check that we can lookup the env. entry from each
-     *                 EJB, that runtime values are distinct, and that they
-     *                 correspond to the ones in the DD.
+     * @test_Strategy: Deploy two Stateful Session beans (part of a same JAR file) using the same env-entry-name but
+     * declaring different values. Check that we can lookup the env. entry from each EJB, that runtime values are distinct,
+     * and that they correspond to the ones in the DD.
      */
     public void testScopeInternal() throws Fault {
         BeanHome home1 = null;
@@ -133,11 +131,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:757.1
      *
-     * @test_Strategy: Deploy two Stateful Session beans (in 2 distinct JAR files)
-     *                 using the same env-entry-name but declaring different
-     *                 values. Check that we can lookup the env. entry from each
-     *                 EJB, that runtime values are distinct, and that they
-     *                 correspond to the ones in the DD.
+     * @test_Strategy: Deploy two Stateful Session beans (in 2 distinct JAR files) using the same env-entry-name but
+     * declaring different values. Check that we can lookup the env. entry from each EJB, that runtime values are distinct,
+     * and that they correspond to the ones in the DD.
      */
     public void testScopeExternal() throws Fault {
         BeanHome home1 = null;

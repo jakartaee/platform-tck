@@ -27,7 +27,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -53,8 +54,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1497; PERSISTENCE:SPEC:1866;
      *
-     * @test_Strategy: Using the xml shared-cache-mode element with a value of
-     * NONE persist an entity and verify it is not the cache
+     * @test_Strategy: Using the xml shared-cache-mode element with a value of NONE persist an entity and verify it is not
+     * the cache
      */
     public void containsTest() throws Fault {
         Cache cache;

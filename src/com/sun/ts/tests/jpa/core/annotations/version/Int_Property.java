@@ -37,7 +37,8 @@ public class Int_Property implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public Int_Property() {}
+    public Int_Property() {
+    }
 
     public Int_Property(String id) {
         this.id = id;

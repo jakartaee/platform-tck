@@ -47,7 +47,8 @@ public class Employee implements java.io.Serializable, Comparable<Employee> {
 
     private Department department;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(int id, String firstName, String lastName) {
         this.id = id;
@@ -134,8 +135,10 @@ public class Employee implements java.io.Serializable, Comparable<Employee> {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Employee)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Employee))
+            return false;
 
         Employee o1 = (Employee) o;
 

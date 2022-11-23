@@ -38,15 +38,15 @@ public class JsfClient extends JsfClientBase implements Serializable {
     /*
      * @testName: lockedSum1
      *
-     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-     * singleton with bean-managed concurrency. Expecting correct sum result.
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a singleton with bean-managed concurrency.
+     * Expecting correct sum result.
      */
 
     /*
      * @testName: lockedLinkedList1
      *
-     * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
-     * bean-managed concurrency. Expecting correct data in the LinkedList.
+     * @test_Strategy: spawn multiple threads, invoke methods of a singleton with bean-managed concurrency. Expecting
+     * correct data in the LinkedList.
      */
 
 }

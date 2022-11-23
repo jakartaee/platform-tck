@@ -29,7 +29,8 @@ import jakarta.ejb.EJBException;
 
 public abstract class RemoteCalculatorBean0 extends BaseRemoteCalculator implements RemoteCalculator {
 
-    public RemoteCalculatorBean0() {}
+    public RemoteCalculatorBean0() {
+    }
 
     protected abstract EJBContext getEJBContext();
 

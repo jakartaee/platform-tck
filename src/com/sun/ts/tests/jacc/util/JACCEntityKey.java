@@ -29,7 +29,8 @@ public class JACCEntityKey implements java.io.Serializable {
 
     public Long arg3;
 
-    public JACCEntityKey() {}
+    public JACCEntityKey() {
+    }
 
     public JACCEntityKey(String arg1, int arg2, long arg3) {
         this.arg1 = arg1;
@@ -38,14 +39,17 @@ public class JACCEntityKey implements java.io.Serializable {
     }
 
     public boolean equals(Object newObject) {
-        if (!(newObject instanceof JACCEntityKey)) return false;
+        if (!(newObject instanceof JACCEntityKey))
+            return false;
 
         JACCEntityKey newJACCEntityKey = (JACCEntityKey) newObject;
 
         if ((arg1.equals(newJACCEntityKey.arg1))
                 && (arg2.intValue() == newJACCEntityKey.arg2.intValue())
-                && (arg3.longValue() == newJACCEntityKey.arg3.longValue())) return true;
-        else return false;
+                && (arg3.longValue() == newJACCEntityKey.arg3.longValue()))
+            return true;
+        else
+            return false;
     }
 
     public int hashCode() {

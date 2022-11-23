@@ -31,7 +31,8 @@ import jakarta.ejb.SessionBean;
 // @LocalHome(TwoLocalHome.class)
 public class MigrationBean extends MigrationBeanBase implements SessionBean {
 
-    public MigrationBean() {}
+    public MigrationBean() {
+    }
 
     // remove method is already declared in EJBObject and not needed here for
     // 2.1 style beans

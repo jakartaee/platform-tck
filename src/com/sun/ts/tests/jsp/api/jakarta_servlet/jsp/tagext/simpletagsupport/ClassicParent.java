@@ -47,8 +47,7 @@ public class ClassicParent extends TagSupport {
     /**
      * Sets the nesting level.
      *
-     * @param level
-     *          - the nesting level
+     * @param level - the nesting level
      */
     public void setLevel(String level) {
         _level = level;

@@ -37,8 +37,7 @@ import java.io.PrintWriter;
 public class GetNamedDispatcherTestServlet extends GenericServlet {
 
     /**
-     * We will try to get the RequestDispatcher for the servlet Registered as
-     * config
+     * We will try to get the RequestDispatcher for the servlet Registered as config
      */
     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 

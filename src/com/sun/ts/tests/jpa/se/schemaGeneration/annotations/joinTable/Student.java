@@ -32,7 +32,8 @@ public class Student implements java.io.Serializable {
 
     List<Course> courses;
 
-    public Student() {}
+    public Student() {
+    }
 
     public Student(int id) {
         this.studentId = id;

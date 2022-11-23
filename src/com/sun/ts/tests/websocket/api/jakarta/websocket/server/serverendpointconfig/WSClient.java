@@ -46,15 +46,15 @@ public class WSClient extends ServiceEETest {
      * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
      */
     @SuppressWarnings("unused")
-    public void setup(String[] args, Properties p) throws Fault {}
+    public void setup(String[] args, Properties p) throws Fault {
+    }
 
     /* Run test */
     /*
      * @testName: constructortest
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:70; WebSocket:JAVADOC:71; WebSocket:JAVADOC:195;
-     * WebSocket:JAVADOC:197;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:70; WebSocket:JAVADOC:71;
+     * WebSocket:JAVADOC:195; WebSocket:JAVADOC:197;
      *
      *
      * @test_Strategy: Test constructor
@@ -118,8 +118,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: subprotocolsTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:197; WebSocket:JAVADOC:204;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:197; WebSocket:JAVADOC:204;
      *
      * @test_Strategy:
      */
@@ -127,8 +126,7 @@ public class WSClient extends ServiceEETest {
         boolean passed = true;
         StringBuffer log = new StringBuffer();
 
-        List<String> expected_subprotocols =
-                Arrays.asList("MBWS", "MBLWS", "soap", "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
+        List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap", "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
         try {
             ServerEndpointConfig sec = ServerEndpointConfig.Builder.create(TCKEndpoint.class, "/TCKTestServer")
                     .subprotocols(expected_subprotocols)
@@ -176,8 +174,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: extensionsTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:195; WebSocket:JAVADOC:203;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:195; WebSocket:JAVADOC:203;
      *
      * @test_Strategy:
      */
@@ -253,9 +250,8 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: constructorTest1
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:195; WebSocket:JAVADOC:197; WebSocket:JAVADOC:203;
-     * WebSocket:JAVADOC:204;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:195; WebSocket:JAVADOC:197;
+     * WebSocket:JAVADOC:203; WebSocket:JAVADOC:204;
      *
      *
      * @test_Strategy:
@@ -264,8 +260,7 @@ public class WSClient extends ServiceEETest {
         boolean passed = true;
         StringBuffer log = new StringBuffer();
 
-        List<String> expected_subprotocols =
-                Arrays.asList("MBWS", "MBLWS", "soap", "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
+        List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap", "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
 
         final List<Extension.Parameter> extension1 = new ArrayList<Extension.Parameter>() {
 
@@ -369,8 +364,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: encodersTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:71; WebSocket:JAVADOC:202;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:71; WebSocket:JAVADOC:202;
      *
      * @test_Strategy:
      */
@@ -431,8 +425,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: decodersTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:70; WebSocket:JAVADOC:201;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:70; WebSocket:JAVADOC:201;
      *
      * @test_Strategy:
      */
@@ -494,9 +487,8 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: constructorTest2
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:195; WebSocket:JAVADOC:197; WebSocket:JAVADOC:203;
-     * WebSocket:JAVADOC:204; WebSocket:JAVADOC:70; WebSocket:JAVADOC:201;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:195; WebSocket:JAVADOC:197;
+     * WebSocket:JAVADOC:203; WebSocket:JAVADOC:204; WebSocket:JAVADOC:70; WebSocket:JAVADOC:201;
      *
      * @test_Strategy:
      */
@@ -504,8 +496,7 @@ public class WSClient extends ServiceEETest {
         boolean passed = true;
         StringBuffer log = new StringBuffer();
 
-        List<String> expected_subprotocols =
-                Arrays.asList("MBWS", "MBLWS", "soap", "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
+        List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap", "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
 
         List<Class<? extends Decoder>> expected_decoders = new ArrayList<>();
         expected_decoders.add(com.sun.ts.tests.websocket.common.util.ByteDecoder.class);
@@ -643,10 +634,9 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: constructorTest3
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:195; WebSocket:JAVADOC:197; WebSocket:JAVADOC:203;
-     * WebSocket:JAVADOC:204; WebSocket:JAVADOC:70; WebSocket:JAVADOC:71;
-     * WebSocket:JAVADOC:201; WebSocket:JAVADOC:202;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:195; WebSocket:JAVADOC:197;
+     * WebSocket:JAVADOC:203; WebSocket:JAVADOC:204; WebSocket:JAVADOC:70; WebSocket:JAVADOC:71; WebSocket:JAVADOC:201;
+     * WebSocket:JAVADOC:202;
      *
      * @test_Strategy:
      */
@@ -654,8 +644,7 @@ public class WSClient extends ServiceEETest {
         boolean passed = true;
         StringBuffer log = new StringBuffer();
 
-        List<String> expected_subprotocols =
-                Arrays.asList("MBWS", "MBLWS", "soap", "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
+        List<String> expected_subprotocols = Arrays.asList("MBWS", "MBLWS", "soap", "WAMP", "v10.stomp", "v11.stomp", "v12.stomp");
 
         List<Class<? extends Encoder>> expected_encoders = new ArrayList<>();
         expected_encoders.add(com.sun.ts.tests.websocket.common.util.ErrorEncoder.class);
@@ -828,9 +817,8 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: configuratorTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:199; WebSocket:JAVADOC:193; WebSocket:JAVADOC:206;
-     * WebSocket:JAVADOC:207; WebSocket:JAVADOC:69;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:199; WebSocket:JAVADOC:193;
+     * WebSocket:JAVADOC:206; WebSocket:JAVADOC:207; WebSocket:JAVADOC:69;
      *
      * @test_Strategy:
      */
@@ -849,8 +837,7 @@ public class WSClient extends ServiceEETest {
 
             if (!tmpc.getClass()
                     .equals(
-                            com.sun.ts.tests.websocket.api.jakarta.websocket.server.serverendpointconfig.TCKConfigurator
-                                    .class)) {
+                            com.sun.ts.tests.websocket.api.jakarta.websocket.server.serverendpointconfig.TCKConfigurator.class)) {
                 log.append("getConfigurator() returned a different Configurator: "
                         + tmpc.getClass().getName());
                 passed = false;
@@ -871,10 +858,9 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: constructorTest4
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:199; WebSocket:JAVADOC:193; WebSocket:JAVADOC:206;
-     * WebSocket:JAVADOC:207; WebSocket:JAVADOC:69; WebSocket:JAVADOC:70;
-     * WebSocket:JAVADOC:71; WebSocket:JAVADOC:195; WebSocket:JAVADOC:197;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:199; WebSocket:JAVADOC:193;
+     * WebSocket:JAVADOC:206; WebSocket:JAVADOC:207; WebSocket:JAVADOC:69; WebSocket:JAVADOC:70; WebSocket:JAVADOC:71;
+     * WebSocket:JAVADOC:195; WebSocket:JAVADOC:197;
      *
      * @test_Strategy:
      */
@@ -939,8 +925,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: getEndpointClassTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:194;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:194;
      *
      * @test_Strategy:
      */
@@ -975,8 +960,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: getPathTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:196;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:196;
      *
      * @test_Strategy:
      */
@@ -986,8 +970,7 @@ public class WSClient extends ServiceEETest {
         String path = "/TCKTestServer";
 
         try {
-            ServerEndpointConfig sec =
-                    ServerEndpointConfig.Builder.create(TCKEndpoint.class, path).build();
+            ServerEndpointConfig sec = ServerEndpointConfig.Builder.create(TCKEndpoint.class, path).build();
 
             String tmp = sec.getPath();
 
@@ -1011,11 +994,9 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: constructorTest5
      *
-     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:199; WebSocket:JAVADOC:193; WebSocket:JAVADOC:206;
-     * WebSocket:JAVADOC:207; WebSocket:JAVADOC:69; WebSocket:JAVADOC:195;
-     * WebSocket:JAVADOC:197; WebSocket:JAVADOC:203; WebSocket:JAVADOC:204;
-     * WebSocket:JAVADOC:70; WebSocket:JAVADOC:71; WebSocket:JAVADOC:201;
+     * @assertion_ids: WebSocket:JAVADOC:200; WebSocket:JAVADOC:198; WebSocket:JAVADOC:199; WebSocket:JAVADOC:193;
+     * WebSocket:JAVADOC:206; WebSocket:JAVADOC:207; WebSocket:JAVADOC:69; WebSocket:JAVADOC:195; WebSocket:JAVADOC:197;
+     * WebSocket:JAVADOC:203; WebSocket:JAVADOC:204; WebSocket:JAVADOC:70; WebSocket:JAVADOC:71; WebSocket:JAVADOC:201;
      * WebSocket:JAVADOC:202;
      *
      * @test_Strategy:
@@ -1024,8 +1005,7 @@ public class WSClient extends ServiceEETest {
         boolean passed = true;
         StringBuffer log = new StringBuffer();
 
-        List<String> expected_subprotocols =
-                Arrays.asList("JSON", "XML", "XMPP", "Hessian", "Quake", "PUB/SUB", "Query");
+        List<String> expected_subprotocols = Arrays.asList("JSON", "XML", "XMPP", "Hessian", "Quake", "PUB/SUB", "Query");
 
         List<Class<? extends Encoder>> expected_encoders = new ArrayList<>();
         expected_encoders.add(com.sun.ts.tests.websocket.common.util.ErrorEncoder.class);
@@ -1198,7 +1178,8 @@ public class WSClient extends ServiceEETest {
         }
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 }
 
 class TCKConfigurator extends ServerEndpointConfig.Configurator {

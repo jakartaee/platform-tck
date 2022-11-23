@@ -30,7 +30,8 @@ import java.io.Serializable;
 @Entity
 public class UniMX1Person implements Serializable {
 
-    public UniMX1Person() {}
+    public UniMX1Person() {
+    }
 
     private static final long serialVersionUID = 1L;
 

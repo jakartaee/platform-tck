@@ -50,16 +50,13 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @deprecated This class should not be used anymore and is here for historical
- *             purposes.
+ * @deprecated This class should not be used anymore and is here for historical purposes.
  *
- *             FetchLogs servlet is used for collecting logs from the server.
+ * FetchLogs servlet is used for collecting logs from the server.
  *
- *             FetchLogs servlet gets the logfile location from its input
- *             parameters and locates the log file in the server, parses it and
- *             extracts a subset of logs based on various parameters such as
- *             "contextId" or "sequenceNumber" and builds Collection of logs of
- *             type (RecordEntry) and returns the Collection
+ * FetchLogs servlet gets the logfile location from its input parameters and locates the log file in the server, parses
+ * it and extracts a subset of logs based on various parameters such as "contextId" or "sequenceNumber" and builds
+ * Collection of logs of type (RecordEntry) and returns the Collection
  *
  */
 public class FetchLogs extends HttpServlet {
@@ -91,7 +88,8 @@ public class FetchLogs extends HttpServlet {
             ObjectOutputStream ostream = new ObjectOutputStream(outStream);
             String logFileLocation = request.getParameter("LogFilePath");
 
-            if (logFileLocation != null) logfile = new File(logFileLocation);
+            if (logFileLocation != null)
+                logfile = new File(logFileLocation);
 
             if ((logfile == null) || (!logfile.exists())) {
                 String header = "Log file does not exists";
@@ -172,8 +170,7 @@ public class FetchLogs extends HttpServlet {
 
                     // Using the application names, isolate the
                     // application specific logs from the rest of the logs
-                    Collection newAppSpecificRecordCollection =
-                            getAppSpecificRecordCollection(applicationName, linkedApplicationNames);
+                    Collection newAppSpecificRecordCollection = getAppSpecificRecordCollection(applicationName, linkedApplicationNames);
                     // printCollection(newAppSpecificRecordCollection);
 
                     // write applicaiton specific record Collection
@@ -361,11 +358,11 @@ public class FetchLogs extends HttpServlet {
     /**
      * This method retrieves the appId records.
      *
-     * i.e if (log records starts with "appId") then add the records to
-     * appIdRecordCollection else add the records to recordCollection
+     * i.e if (log records starts with "appId") then add the records to appIdRecordCollection else add the records to
+     * recordCollection
      *
-     * Note: In the process of locating appId records the remaining records are
-     * also isolated and stored in a collection called "recordCollection"
+     * Note: In the process of locating appId records the remaining records are also isolated and stored in a collection
+     * called "recordCollection"
      */
     public Collection getAppIdRecordCollection(String queryParams, NodeList nodes) throws Exception {
         String nodeName;
@@ -466,10 +463,14 @@ public class FetchLogs extends HttpServlet {
         System.out.println("seqence no  =" + rec.getSequenceNumber());
         System.out.println("ContextId   =" + rec.getContextId());
         System.out.println("Message     =" + rec.getMessage());
-        if (rec.getClassName() != null) System.out.println("Class name  =" + rec.getClassName());
-        if (rec.getMethodName() != null) System.out.println("Method name =" + rec.getMethodName());
-        if (rec.getLevel() != null) System.out.println("Level        =" + rec.getLevel());
-        if (rec.getThrown() != null) System.out.println("Thrown       =" + rec.getThrown());
+        if (rec.getClassName() != null)
+            System.out.println("Class name  =" + rec.getClassName());
+        if (rec.getMethodName() != null)
+            System.out.println("Method name =" + rec.getMethodName());
+        if (rec.getLevel() != null)
+            System.out.println("Level        =" + rec.getLevel());
+        if (rec.getThrown() != null)
+            System.out.println("Thrown       =" + rec.getThrown());
         System.out.println();
     }
 
@@ -621,9 +622,8 @@ public class FetchLogs extends HttpServlet {
     }
 
     /*
-     * This method reads all non-appId records from the record collection and
-     * isolates current appSpecific records from the rest using the given
-     * applicationName and the linkedApplicationNames.
+     * This method reads all non-appId records from the record collection and isolates current appSpecific records from the
+     * rest using the given applicationName and the linkedApplicationNames.
      */
     public Collection getAppSpecificRecordCollection(String applicationName, Vector linkedApplicationNames) {
         RecordEntry recordEntry = null;
@@ -647,7 +647,7 @@ public class FetchLogs extends HttpServlet {
         if (linkedApplicationNames != null) {
             // retrieve all the records associated with
             // linked applications.
-            for (Enumeration appEnum = linkedApplicationNames.elements(); appEnum.hasMoreElements(); ) {
+            for (Enumeration appEnum = linkedApplicationNames.elements(); appEnum.hasMoreElements();) {
                 applicationName = (String) appEnum.nextElement();
 
                 iterator = this.recordCollection.iterator();
@@ -691,7 +691,7 @@ public class FetchLogs extends HttpServlet {
     public static String unStuffData(String inputStr) {
         char[] outStr = new char[2048];
         char[] str = inputStr.toCharArray();
-        for (int i = 0, j = 0; i < str.length; ) {
+        for (int i = 0, j = 0; i < str.length;) {
 
             int a = (new Character(str[i])).getNumericValue(str[i]);
 

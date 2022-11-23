@@ -53,7 +53,8 @@ public class Customer implements java.io.Serializable {
     @Enumerated(EnumType.STRING)
     private List<Grade> phones = new ArrayList<Grade>();
 
-    public Customer() {}
+    public Customer() {
+    }
 
     public Customer(String id) {
         this.id = id;

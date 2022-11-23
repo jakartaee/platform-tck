@@ -40,8 +40,10 @@ public class AcceptBean extends AcceptBeanBase {
         return sessionContext;
     }
 
-    public AcceptBean() {}
+    public AcceptBean() {
+    }
 
     @Remove(retainIfException = false)
-    public void remove() {}
+    public void remove() {
+    }
 }

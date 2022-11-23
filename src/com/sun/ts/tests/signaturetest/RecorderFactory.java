@@ -22,14 +22,13 @@ package com.sun.ts.tests.signaturetest;
 
 /**
  * <p>
- * This class is a bit overloaded in that it serves as both a factory and entry
- * point from Ant to handle signature recording.
+ * This class is a bit overloaded in that it serves as both a factory and entry point from Ant to handle signature
+ * recording.
  * </p>
  *
  * <p>
- * The desired <code>type</code> is provided using a system property with a key
- * of <code>recorder.type</code>. Valid values for the
- * <code>recorder.type</code> property are:
+ * The desired <code>type</code> is provided using a system property with a key of <code>recorder.type</code>. Valid
+ * values for the <code>recorder.type</code> property are:
  * <ul>
  * <li>apicheck</li>
  * <li>sigtest</li>
@@ -37,8 +36,8 @@ package com.sun.ts.tests.signaturetest;
  * </p>
  *
  * <p>
- * If the <code>recorder.type</code> property is not set, this factory will
- * return a <code>SignatureTestRecorder</code> using the SigTest framework.
+ * If the <code>recorder.type</code> property is not set, this factory will return a <code>SignatureTestRecorder</code>
+ * using the SigTest framework.
  * </p>
  */
 public class RecorderFactory {
@@ -50,15 +49,12 @@ public class RecorderFactory {
     // ---------------------------------------------------------- Public Methods
 
     /**
-     * Returns a {@link Recorder} instance to handle recording signatures based on
-     * the value specified via the <code>type</code> argument.
+     * Returns a {@link Recorder} instance to handle recording signatures based on the value specified via the
+     * <code>type</code> argument.
      *
-     * @param type
-     *          the type of {@link Recorder} to use
-     * @param args
-     *          the args to pass to the {@link Recorder}
-     * @return a {@link Recorder} instanced based on the <code>type</code>
-     *         provided
+     * @param type the type of {@link Recorder} to use
+     * @param args the args to pass to the {@link Recorder}
+     * @return a {@link Recorder} instanced based on the <code>type</code> provided
      */
     public static Recorder getRecorder(String type, String[] args) {
 

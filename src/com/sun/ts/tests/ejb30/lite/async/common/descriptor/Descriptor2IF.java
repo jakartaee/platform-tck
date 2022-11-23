@@ -19,4 +19,5 @@
  */
 package com.sun.ts.tests.ejb30.lite.async.common.descriptor;
 
-public interface Descriptor2IF extends DescriptorIF {}
+public interface Descriptor2IF extends DescriptorIF {
+}

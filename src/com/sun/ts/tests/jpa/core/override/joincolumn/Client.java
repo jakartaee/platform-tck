@@ -102,7 +102,8 @@ public class Client extends PMClientBase {
 
     private static final String CUST2_NAME = "Joey";
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -123,15 +124,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: testNoJoinColumnAnnotation
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039;
-     * PERSISTENCE:SPEC:1040; PERSISTENCE:SPEC:1041; PERSISTENCE:SPEC:1042;
-     * PERSISTENCE:SPEC:1043; PERSISTENCE:SPEC:1044; PERSISTENCE:SPEC:1045;
-     * PERSISTENCE:SPEC:1046; PERSISTENCE:SPEC:1048; PERSISTENCE:SPEC:1097;
-     * PERSISTENCE:SPEC:1214; PERSISTENCE:SPEC:1243;
+     * @assertion_ids: PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039; PERSISTENCE:SPEC:1040; PERSISTENCE:SPEC:1041;
+     * PERSISTENCE:SPEC:1042; PERSISTENCE:SPEC:1043; PERSISTENCE:SPEC:1044; PERSISTENCE:SPEC:1045; PERSISTENCE:SPEC:1046;
+     * PERSISTENCE:SPEC:1048; PERSISTENCE:SPEC:1097; PERSISTENCE:SPEC:1214; PERSISTENCE:SPEC:1243;
      *
-     * @test_Strategy: The two entities "TheatreCompany1" and "Theatre Location1"
-     * have Many-to-One relationship and are joined by the primary key. The
-     * relationships are specified in orm.xml rather than using annotations.
+     * @test_Strategy: The two entities "TheatreCompany1" and "Theatre Location1" have Many-to-One relationship and are
+     * joined by the primary key. The relationships are specified in orm.xml rather than using annotations.
      *
      */
     public void testNoJoinColumnAnnotation() throws Fault {
@@ -173,14 +171,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: testNoJoinTableAnnotation
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039;
-     * PERSISTENCE:SPEC:1040; PERSISTENCE:SPEC:1041; PERSISTENCE:SPEC:1042;
-     * PERSISTENCE:SPEC:1046; PERSISTENCE:SPEC:1048; PERSISTENCE:SPEC:1097;
-     * PERSISTENCE:SPEC:1214; PERSISTENCE:SPEC:1243;
+     * @assertion_ids: PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039; PERSISTENCE:SPEC:1040; PERSISTENCE:SPEC:1041;
+     * PERSISTENCE:SPEC:1042; PERSISTENCE:SPEC:1046; PERSISTENCE:SPEC:1048; PERSISTENCE:SPEC:1097; PERSISTENCE:SPEC:1214;
+     * PERSISTENCE:SPEC:1243;
      *
-     * @test_Strategy: The two entities "Course" and "Student" have Many-to-Many
-     * relationship. The relationship and the join table are specified in orm.xml
-     * rather than using annotations.
+     * @test_Strategy: The two entities "Course" and "Student" have Many-to-Many relationship. The relationship and the join
+     * table are specified in orm.xml rather than using annotations.
      *
      */
 
@@ -228,15 +224,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: testOverrideJoinColumns
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039;
-     * PERSISTENCE:SPEC:1040; PERSISTENCE:SPEC:1041; PERSISTENCE:SPEC:1042;
-     * PERSISTENCE:SPEC:1046; PERSISTENCE:SPEC:1048; PERSISTENCE:SPEC:1097;
-     * PERSISTENCE:SPEC:1214; PERSISTENCE:SPEC:1243; PERSISTENCE:SPEC:2032;
+     * @assertion_ids: PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039; PERSISTENCE:SPEC:1040; PERSISTENCE:SPEC:1041;
+     * PERSISTENCE:SPEC:1042; PERSISTENCE:SPEC:1046; PERSISTENCE:SPEC:1048; PERSISTENCE:SPEC:1097; PERSISTENCE:SPEC:1214;
+     * PERSISTENCE:SPEC:1243; PERSISTENCE:SPEC:2032;
      *
-     * @test_Strategy: "Cubicle" is an entity with a primary key class
-     * "CubiclePK". Hardware is an entity that uses the primary key columns of
-     * Cubicle. These primary key columns are overriden in Orm.xml. The following
-     * test to check the above.
+     * @test_Strategy: "Cubicle" is an entity with a primary key class "CubiclePK". Hardware is an entity that uses the
+     * primary key columns of Cubicle. These primary key columns are overriden in Orm.xml. The following test to check the
+     * above.
      *
      */
 
@@ -281,14 +275,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: testOverrideJoinTable
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039;
-     * PERSISTENCE:SPEC:1040; PERSISTENCE:SPEC:1041; PERSISTENCE:SPEC:1042;
-     * PERSISTENCE:SPEC:1046; PERSISTENCE:SPEC:1048; PERSISTENCE:SPEC:1097;
-     * PERSISTENCE:SPEC:1214; PERSISTENCE:SPEC:1243; PERSISTENCE:JAVADOC:97
+     * @assertion_ids: PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039; PERSISTENCE:SPEC:1040; PERSISTENCE:SPEC:1041;
+     * PERSISTENCE:SPEC:1042; PERSISTENCE:SPEC:1046; PERSISTENCE:SPEC:1048; PERSISTENCE:SPEC:1097; PERSISTENCE:SPEC:1214;
+     * PERSISTENCE:SPEC:1243; PERSISTENCE:JAVADOC:97
      *
-     * @test_Strategy: The two entities "Customer1" and "RetailOrder1" have
-     * One-to-Many relationship. The relationship and the join table names are
-     * overriden in orm.xml.
+     * @test_Strategy: The two entities "Customer1" and "RetailOrder1" have One-to-Many relationship. The relationship and
+     * the join table names are overriden in orm.xml.
      *
      */
     public void testOverrideJoinTable() throws Fault {

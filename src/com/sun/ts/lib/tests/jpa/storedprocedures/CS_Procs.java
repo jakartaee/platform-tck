@@ -114,44 +114,35 @@ public class CS_Procs {
     }
 
     /*
-     * public static void GetTwoRS(int in_param, ResultSet[] rs1, ResultSet[] rs2)
-     * throws SQLException { // rs - resultSet of all the ID's returned by the
-     * select
+     * public static void GetTwoRS(int in_param, ResultSet[] rs1, ResultSet[] rs2) throws SQLException { // rs - resultSet
+     * of all the ID's returned by the select
      *
-     * String query1 = "SELECT ID, FIRSTNAME, LASTNAME FROM EMPLOYEE WHERE ID=" +
-     * in_param; String query2 =
+     * String query1 = "SELECT ID, FIRSTNAME, LASTNAME FROM EMPLOYEE WHERE ID=" + in_param; String query2 =
      * "SELECT INSID, CARRIER FROM INSURANCE WHERE INSID=" + in_param;
      *
      * Connection con = DriverManager.getConnection("jdbc:default:connection");
      *
-     * PreparedStatement pstmt1 = con.prepareStatement(query1); rs1[0] =
-     * pstmt1.executeQuery();
+     * PreparedStatement pstmt1 = con.prepareStatement(query1); rs1[0] = pstmt1.executeQuery();
      *
-     * PreparedStatement pstmt2 = con.prepareStatement(query2); rs2[0] =
-     * pstmt2.executeQuery();
+     * PreparedStatement pstmt2 = con.prepareStatement(query2); rs2[0] = pstmt2.executeQuery();
      *
      * con.close(); con = null;
      *
      * }
      *
-     * public static void GetRSAndOut(int in_param, String[] out_param,
-     * ResultSet[] rs) throws SQLException { // in_param - IN parameter containing
-     * the id value // rs - resultSet of one ID returned by the select
+     * public static void GetRSAndOut(int in_param, String[] out_param, ResultSet[] rs) throws SQLException { // in_param -
+     * IN parameter containing the id value // rs - resultSet of one ID returned by the select
      *
-     * String query1 = "SELECT ID, FIRSTNAME, LASTNAME FROM EMPLOYEE WHERE ID=" +
-     * in_param; String query2 = "SELECT FIRSTNAME from EMPLOYEE WHERE ID=" +
-     * in_param;
+     * String query1 = "SELECT ID, FIRSTNAME, LASTNAME FROM EMPLOYEE WHERE ID=" + in_param; String query2 =
+     * "SELECT FIRSTNAME from EMPLOYEE WHERE ID=" + in_param;
      *
      *
-     * Connection con = DriverManager.getConnection("jdbc:default:connection");
-     * PreparedStatement pstmt = con.prepareStatement(query1); rs[0] =
-     * pstmt.executeQuery();
+     * Connection con = DriverManager.getConnection("jdbc:default:connection"); PreparedStatement pstmt =
+     * con.prepareStatement(query1); rs[0] = pstmt.executeQuery();
      *
-     * Statement stmt = con.createStatement(); ResultSet rs1 =
-     * stmt.executeQuery(query2);
+     * Statement stmt = con.createStatement(); ResultSet rs1 = stmt.executeQuery(query2);
      *
-     * if (rs1.next()) { out_param[0] = rs1.getString(1); } else { throw new
-     * SQLException("Data not found"); }
+     * if (rs1.next()) { out_param[0] = rs1.getString(1); } else { throw new SQLException("Data not found"); }
      *
      * stmt.close(); stmt = null; con.close(); con = null; }
      */

@@ -19,11 +19,11 @@ package com.sun.ts.lib.harness;
 import java.io.*;
 
 /**
- * This abstract class must be extended by all API clients of tests of J2EE
- * service apis; for example, JDBC, RMI-IIOP, JavaMail, JMS, etc. This allows us
- * to bundle a number of API tests into a single J2EE component and reduces the
+ * This abstract class must be extended by all API clients of tests of J2EE service apis; for example, JDBC, RMI-IIOP,
+ * JavaMail, JMS, etc. This allows us to bundle a number of API tests into a single J2EE component and reduces the
  * number of such components that have to be deployed.
  *
  * @author Vella Raman
  */
-public abstract class JCKServiceEETest extends ServiceEETest implements Serializable {}
+public abstract class JCKServiceEETest extends ServiceEETest implements Serializable {
+}

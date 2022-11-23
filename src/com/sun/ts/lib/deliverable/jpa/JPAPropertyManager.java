@@ -27,12 +27,10 @@ public class JPAPropertyManager extends AbstractPropertyManager {
     private static JPAPropertyManager jteMgr = new JPAPropertyManager();
 
     /**
-     * This method returns the singleton instance of JPAPropertyManager which
-     * provides access to all ts.jte properties. This is only called once by the
-     * test harness.
+     * This method returns the singleton instance of JPAPropertyManager which provides access to all ts.jte properties. This
+     * is only called once by the test harness.
      *
-     * @param env
-     *          - TestEnvironment object from JavaTest
+     * @param env - TestEnvironment object from JavaTest
      * @return JPAPropertyManager - singleton property manager object
      */
     public static final JPAPropertyManager getJPAPropertyManager(TestEnvironment env) throws Exception {
@@ -41,12 +39,10 @@ public class JPAPropertyManager extends AbstractPropertyManager {
     }
 
     /**
-     * This method returns the singleton instance of JPAPropertyManager which
-     * provides access to all ts.jte properties. This is only called by the init()
-     * method in ManualDeployment.java
+     * This method returns the singleton instance of JPAPropertyManager which provides access to all ts.jte properties. This
+     * is only called by the init() method in ManualDeployment.java
      *
-     * @param p
-     *          - Properties object from JavaTest
+     * @param p - Properties object from JavaTest
      * @return JPAPropertyManager - singleton property manager object
      */
     public static final JPAPropertyManager getJPAPropertyManager(Properties p) throws Exception {
@@ -59,11 +55,9 @@ public class JPAPropertyManager extends AbstractPropertyManager {
     }
 
     /**
-     * This method is called by the test harness to retrieve all properties needed
-     * by a particular test.
+     * This method is called by the test harness to retrieve all properties needed by a particular test.
      *
-     * @param sPropKeys
-     *          - Properties to retrieve
+     * @param sPropKeys - Properties to retrieve
      * @return Properties - property/value pairs
      */
     public Properties getTestSpecificProperties(String[] sPropKeys) throws PropertyNotSetException {

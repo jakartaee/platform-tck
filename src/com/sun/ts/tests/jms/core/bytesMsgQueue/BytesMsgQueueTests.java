@@ -73,10 +73,9 @@ public class BytesMsgQueueTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -120,8 +119,8 @@ public class BytesMsgQueueTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -146,8 +145,8 @@ public class BytesMsgQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:86.1; JMS:JAVADOC:714;
      *
-     * @test_Strategy: create a byte message. Use writeObject to write a null.
-     * verify a java.lang.NullPointerException is thrown.
+     * @test_Strategy: create a byte message. Use writeObject to write a null. verify a java.lang.NullPointerException is
+     * thrown.
      */
 
     public void bytesMsgNullStreamQTest() throws Fault {
@@ -190,17 +189,14 @@ public class BytesMsgQueueTests extends ServiceEETest {
     /*
      * @testName: bytesMessageQTestsFullMsg
      *
-     * @assertion_ids: JMS:JAVADOC:560; JMS:JAVADOC:562; JMS:JAVADOC:564;
-     * JMS:JAVADOC:566; JMS:JAVADOC:568; JMS:JAVADOC:570; JMS:JAVADOC:572;
-     * JMS:JAVADOC:574; JMS:JAVADOC:576; JMS:JAVADOC:578; JMS:JAVADOC:580;
-     * JMS:JAVADOC:582; JMS:JAVADOC:534; JMS:JAVADOC:536; JMS:JAVADOC:540;
-     * JMS:JAVADOC:544; JMS:JAVADOC:546; JMS:JAVADOC:548; JMS:JAVADOC:550;
-     * JMS:JAVADOC:552; JMS:JAVADOC:554; JMS:JAVADOC:556; JMS:JAVADOC:558;
-     * JMS:JAVADOC:538; JMS:JAVADOC:542; JMS:JAVADOC:532;
+     * @assertion_ids: JMS:JAVADOC:560; JMS:JAVADOC:562; JMS:JAVADOC:564; JMS:JAVADOC:566; JMS:JAVADOC:568; JMS:JAVADOC:570;
+     * JMS:JAVADOC:572; JMS:JAVADOC:574; JMS:JAVADOC:576; JMS:JAVADOC:578; JMS:JAVADOC:580; JMS:JAVADOC:582;
+     * JMS:JAVADOC:534; JMS:JAVADOC:536; JMS:JAVADOC:540; JMS:JAVADOC:544; JMS:JAVADOC:546; JMS:JAVADOC:548;
+     * JMS:JAVADOC:550; JMS:JAVADOC:552; JMS:JAVADOC:554; JMS:JAVADOC:556; JMS:JAVADOC:558; JMS:JAVADOC:538;
+     * JMS:JAVADOC:542; JMS:JAVADOC:532;
      *
-     * @test_Strategy: Create a BytesMessage -. write to the message using each
-     * type of method and as an object. Send the message. Verify the data received
-     * was as sent.
+     * @test_Strategy: Create a BytesMessage -. write to the message using each type of method and as an object. Send the
+     * message. Verify the data received was as sent.
      *
      */
 
@@ -213,8 +209,8 @@ public class BytesMsgQueueTests extends ServiceEETest {
             byte byteValue = 127;
             byte byteValue1 = -12;
             int byteValue2 = 244;
-            byte[] bytesValue = {127, -127, 1, 0};
-            byte[] bytesValueRecvd = {0, 0, 0, 0};
+            byte[] bytesValue = { 127, -127, 1, 0 };
+            byte[] bytesValueRecvd = { 0, 0, 0, 0 };
             char charValue = 'Z';
             double doubleValue = 6.02e23;
             float floatValue = 6.02e23f;
@@ -471,14 +467,12 @@ public class BytesMsgQueueTests extends ServiceEETest {
     /*
      * @testName: bytesMessageQNotWriteable
      *
-     * @assertion_ids: JMS:SPEC:73; JMS:JAVADOC:701; JMS:JAVADOC:702;
-     * JMS:JAVADOC:703; JMS:JAVADOC:704; JMS:JAVADOC:705; JMS:JAVADOC:706;
-     * JMS:JAVADOC:707; JMS:JAVADOC:708; JMS:JAVADOC:709; JMS:JAVADOC:710;
-     * JMS:JAVADOC:711; JMS:JAVADOC:713;
+     * @assertion_ids: JMS:SPEC:73; JMS:JAVADOC:701; JMS:JAVADOC:702; JMS:JAVADOC:703; JMS:JAVADOC:704; JMS:JAVADOC:705;
+     * JMS:JAVADOC:706; JMS:JAVADOC:707; JMS:JAVADOC:708; JMS:JAVADOC:709; JMS:JAVADOC:710; JMS:JAVADOC:711;
+     * JMS:JAVADOC:713;
      *
-     * @test_Strategy: Create a BytesMessage - send it to a Queue. Write to the
-     * received message using each type of method and as an object. Verify
-     * MessageNotWriteableException thrown
+     * @test_Strategy: Create a BytesMessage - send it to a Queue. Write to the received message using each type of method
+     * and as an object. Verify MessageNotWriteableException thrown
      */
 
     public void bytesMessageQNotWriteable() throws Fault {
@@ -487,7 +481,7 @@ public class BytesMsgQueueTests extends ServiceEETest {
             BytesMessage messageReceived = null;
             boolean pass = true;
             byte bValue = 127;
-            byte[] bbValue = {127, -127, 1, 0};
+            byte[] bbValue = { 127, -127, 1, 0 };
             char cValue = 'Z';
             double dValue = 6.02e23;
             float fValue = 6.02e23f;

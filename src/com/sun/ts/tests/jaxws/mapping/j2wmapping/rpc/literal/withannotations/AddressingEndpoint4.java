@@ -21,10 +21,7 @@
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations;
 
 @jakarta.jws.WebService(name = "AddressingEndpoint4", targetNamespace = "http://rpclitservice.org/wsdl")
-@jakarta.jws.soap.SOAPBinding(
-        style = jakarta.jws.soap.SOAPBinding.Style.RPC,
-        use = jakarta.jws.soap.SOAPBinding.Use.LITERAL,
-        parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface AddressingEndpoint4 {
 
     public void address1(String s);

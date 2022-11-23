@@ -781,12 +781,14 @@ public class MessageTestImpl implements Message {
     /**
      * Dummy method for acknowledge
      */
-    public void acknowledge() throws JMSException {}
+    public void acknowledge() throws JMSException {
+    }
 
     /**
      * Dummy method for clear
      */
-    public void clearBody() throws JMSException {}
+    public void clearBody() throws JMSException {
+    }
 
     protected void setBufferIsDirty(boolean state) {
         bufferIsDirty = state;
@@ -801,32 +803,25 @@ public class MessageTestImpl implements Message {
     /**
      * Returns the message body as an object of the specified type.
      *
-     * @param c
-     *          - The type to which the message body will be assigned.
+     * @param c - The type to which the message body will be assigned.
      *
      * @return the message body
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageFormatException
-     *              if this type conversion is invalid.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageFormatException if this type conversion is invalid.
      */
     public <T> T getBody(Class<T> c) throws JMSException {
         return (T) c;
     }
 
     /**
-     * Returns whether the message body is capable of being assigned to the
-     * specified type.
+     * Returns whether the message body is capable of being assigned to the specified type.
      *
-     * @param c
-     *          - The specified type.
+     * @param c - The specified type.
      *
-     * @return whether the message body is capable of being assigned to the
-     *         specified type
+     * @return whether the message body is capable of being assigned to the specified type
      *
-     * @exception JMSException
-     *              if a JMS error occurs.
+     * @exception JMSException if a JMS error occurs.
      */
     public boolean isBodyAssignableTo(Class c) throws JMSException {
         return true;

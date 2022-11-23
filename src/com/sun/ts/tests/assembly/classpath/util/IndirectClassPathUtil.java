@@ -23,15 +23,15 @@ package com.sun.ts.tests.assembly.classpath.util;
 import com.sun.ts.lib.util.TestUtil;
 
 /**
- * This class is useless on its own. Its only interest is to be defined in a
- * package that contains no other class. It is used by some TS tests that check
- * that this package is in their classpath by trying to create an instance of
+ * This class is useless on its own. Its only interest is to be defined in a package that contains no other class. It is
+ * used by some TS tests that check that this package is in their classpath by trying to create an instance of
  * IndirectClassPathUtil.
  */
 public class IndirectClassPathUtil {
 
     /** No args constructor */
-    public IndirectClassPathUtil() {}
+    public IndirectClassPathUtil() {
+    }
 
     /** Check current instance is valid */
     public void test() {

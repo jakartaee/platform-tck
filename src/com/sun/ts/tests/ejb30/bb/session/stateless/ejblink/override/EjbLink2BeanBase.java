@@ -26,8 +26,7 @@ import com.sun.ts.tests.ejb30.common.ejblink.EjbLinkLocalIF;
 import jakarta.ejb.EJB;
 
 /**
- * Adding this superclass to verify that injections on superclass can also be
- * overridden with descriptors.
+ * Adding this superclass to verify that injections on superclass can also be overridden with descriptors.
  */
 public abstract class EjbLink2BeanBase extends EjbLinkBeanBase {
 
@@ -43,9 +42,6 @@ public abstract class EjbLink2BeanBase extends EjbLinkBeanBase {
     private EjbLinkIF bean3;
 
     // this ejb-ref is overridden in two_ejb.xml
-    @EJB(
-            name = "ejb/EjbLink1BeanLocal",
-            beanName = "no-such-bean-name",
-            description = "should be overridden by ejb-jar.xml")
+    @EJB(name = "ejb/EjbLink1BeanLocal", beanName = "no-such-bean-name", description = "should be overridden by ejb-jar.xml")
     private EjbLinkLocalIF localBean1;
 }

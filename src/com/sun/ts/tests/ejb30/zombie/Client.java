@@ -33,20 +33,20 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
-    public void setup(String[] args, Properties p) throws Fault {}
+    public void setup(String[] args, Properties p) throws Fault {
+    }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: test1
      *
      * @assertion_ids:
      *
-     * @test_Strategy: wait for the mdb to consume messages that may have been
-     * left in the queue.
+     * @test_Strategy: wait for the mdb to consume messages that may have been left in the queue.
      *
      */
     public void test1() throws Fault {

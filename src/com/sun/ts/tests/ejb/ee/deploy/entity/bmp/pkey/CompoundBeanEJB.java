@@ -47,7 +47,8 @@ public class CompoundBeanEJB implements EntityBean {
 
     protected CompoundPKCoffeeDAO dao = null;
 
-    public void ping() {}
+    public void ping() {
+    }
 
     /*
      * Bean life cycle.

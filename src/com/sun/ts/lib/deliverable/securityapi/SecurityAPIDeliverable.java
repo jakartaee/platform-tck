@@ -23,9 +23,8 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * This class serves as a default implementation of the Deliverable interface
- * for a generic TCK. TCKs are free to use this impl if it suits their needs.
- * Otherwise, it should be extended.
+ * This class serves as a default implementation of the Deliverable interface for a generic TCK. TCKs are free to use
+ * this impl if it suits their needs. Otherwise, it should be extended.
  *
  * @author
  */
@@ -58,7 +57,7 @@ public class SecurityAPIDeliverable extends TCKDeliverable {
         super.getValidVehicles();
 
         // add default values
-        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"standalone"});
+        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] { "standalone" });
 
         return htTSValidVehicles;
     }

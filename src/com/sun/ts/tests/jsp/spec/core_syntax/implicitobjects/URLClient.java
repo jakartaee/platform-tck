@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -61,9 +59,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:15
      *
-     * @test_Strategy: Validate that the object associated with the session
-     * scripting variable is of type jakarta.servlet.http.HttpSession and that a
-     * method can be called against it.
+     * @test_Strategy: Validate that the object associated with the session scripting variable is of type
+     * jakarta.servlet.http.HttpSession and that a method can be called against it.
      */
 
     public void checkSessionTest() throws Fault {
@@ -76,9 +73,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that the object associated with the config
-     * scripting variable is of type jakarta.servlet.ServletConfig and that a method
-     * can be called against it.
+     * @test_Strategy: Validate that the object associated with the config scripting variable is of type
+     * jakarta.servlet.ServletConfig and that a method can be called against it.
      */
 
     public void checkConfigTest() throws Fault {
@@ -94,9 +90,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:17
      *
-     * @test_Strategy: Validate that the object associated with the exception
-     * scripting variable is of an instance of the exception type thrown (a
-     * subclass of java.lang.Throwable).
+     * @test_Strategy: Validate that the object associated with the exception scripting variable is of an instance of the
+     * exception type thrown (a subclass of java.lang.Throwable).
      */
 
     public void checkExceptionTest() throws Fault {
@@ -110,8 +105,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that the object associated with the out scripting
-     * variable is of type jakarta.servlet.jsp.JspWriter.
+     * @test_Strategy: Validate that the object associated with the out scripting variable is of type
+     * jakarta.servlet.jsp.JspWriter.
      */
 
     public void checkOutTest() throws Fault {
@@ -124,8 +119,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that the object associated with the page scripting
-     * variable is of type java.lang.Object.
+     * @test_Strategy: Validate that the object associated with the page scripting variable is of type java.lang.Object.
      */
 
     public void checkPageTest() throws Fault {
@@ -138,9 +132,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:14
      *
-     * @test_Strategy: Validate that the object associated with the pageContext
-     * scripting variable is of type jakarta.servlet.jsp.PageContext and that a
-     * method can be called against it.
+     * @test_Strategy: Validate that the object associated with the pageContext scripting variable is of type
+     * jakarta.servlet.jsp.PageContext and that a method can be called against it.
      */
 
     public void checkPageContextTest() throws Fault {
@@ -153,9 +146,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:12
      *
-     * @test_Strategy: Validate that the object associated with the request
-     * scripting variable is of type jakarta.servlet.Request (parent class of
-     * HttpServletRequest) and that a method can be called against it.
+     * @test_Strategy: Validate that the object associated with the request scripting variable is of type
+     * jakarta.servlet.Request (parent class of HttpServletRequest) and that a method can be called against it.
      */
 
     public void checkRequestTest() throws Fault {
@@ -171,9 +163,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:13
      *
-     * @test_Strategy: Validate that the object associated with the response
-     * scripting variable is of type jakarta.servlet.Response (parent class of
-     * HttpServletResponse) and that a method can be called against it.
+     * @test_Strategy: Validate that the object associated with the response scripting variable is of type
+     * jakarta.servlet.Response (parent class of HttpServletResponse) and that a method can be called against it.
      */
 
     public void checkResponseTest() throws Fault {
@@ -187,9 +178,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:16
      *
-     * @test_Strategy: Validate that the object associated with the application
-     * scripting variable is of type jakarta.servlet.ServletContext that a method
-     * can be called against it.
+     * @test_Strategy: Validate that the object associated with the application scripting variable is of type
+     * jakarta.servlet.ServletContext that a method can be called against it.
      */
 
     public void checkApplicationTest() throws Fault {

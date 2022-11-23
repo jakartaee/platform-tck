@@ -53,28 +53,27 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: allInterceptors
      *
-     * @test_Strategy: all interceptors (Interceptor1-7) at default, class-level,
-     * and method-level should be invoked, as well as AroundInvoke methods on bean
-     * class.
+     * @test_Strategy: all interceptors (Interceptor1-7) at default, class-level, and method-level should be invoked, as
+     * well as AroundInvoke methods on bean class.
      */
     public void allInterceptors() {
         List<String> history = new ArrayList<String>();
         String[] expected = {
-            // default interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor2",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor1",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor3",
+                // default interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor2",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor1",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor3",
 
-            // class-level interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor5",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor4",
+                // class-level interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor5",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor4",
 
-            // method-level interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor7",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor6",
+                // method-level interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor7",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor6",
 
-            // AroundInvoke methods on bean superclass and bean class
-            "InterceptorBeanBase", "InterceptorBean"
+                // AroundInvoke methods on bean superclass and bean class
+                "InterceptorBeanBase", "InterceptorBean"
         };
         getBean().allInterceptors(history);
         appendReason(Helper.compareResultList(expected, history));
@@ -83,22 +82,21 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: excludeDefaultInterceptors
      *
-     * @test_Strategy: all interceptors except default interceptors should be
-     * invoked in the correct order.
+     * @test_Strategy: all interceptors except default interceptors should be invoked in the correct order.
      */
     public void excludeDefaultInterceptors() {
         List<String> history = new ArrayList<String>();
         String[] expected = {
-            // class-level interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor5",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor4",
+                // class-level interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor5",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor4",
 
-            // method-level interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor6",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor7",
+                // method-level interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor6",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor7",
 
-            // AroundInvoke methods on bean superclass and bean class
-            "InterceptorBeanBase", "InterceptorBean"
+                // AroundInvoke methods on bean superclass and bean class
+                "InterceptorBeanBase", "InterceptorBean"
         };
         getBean().excludeDefaultInterceptors(history);
         appendReason(Helper.compareResultList(expected, history));
@@ -107,23 +105,22 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: excludeClassInterceptors
      *
-     * @test_Strategy: all interceptors except class interceptors should be
-     * invoked in the correct order.
+     * @test_Strategy: all interceptors except class interceptors should be invoked in the correct order.
      */
     public void excludeClassInterceptors() {
         List<String> history = new ArrayList<String>();
         String[] expected = {
-            // default interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor2",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor1",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor3",
+                // default interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor2",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor1",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor3",
 
-            // method-level interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor6",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor7",
+                // method-level interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor6",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor7",
 
-            // AroundInvoke methods on bean superclass and bean class
-            "InterceptorBeanBase", "InterceptorBean"
+                // AroundInvoke methods on bean superclass and bean class
+                "InterceptorBeanBase", "InterceptorBean"
         };
         getBean().excludeClassInterceptors(history);
         appendReason(Helper.compareResultList(expected, history));
@@ -132,25 +129,24 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: overrideInterceptorMethod
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked, whether the overriding method is an interceptor method or not.
-     * This test also excludes default and class-level interceptors.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked, whether the overriding method is an
+     * interceptor method or not. This test also excludes default and class-level interceptors.
      */
     public void overrideInterceptorMethod() {
         List<String> history = new ArrayList<String>();
         String[] expected = {
-            // method-level interceptors
-            "Interceptor8",
-            "InterceptorBaseBase",
-            "InterceptorBase",
-            "Interceptor6",
-            "InterceptorBaseBase",
-            "InterceptorBase",
-            "Interceptor7",
+                // method-level interceptors
+                "Interceptor8",
+                "InterceptorBaseBase",
+                "InterceptorBase",
+                "Interceptor6",
+                "InterceptorBaseBase",
+                "InterceptorBase",
+                "Interceptor7",
 
-            // AroundInvoke methods on bean superclass and bean class
-            "InterceptorBeanBase",
-            "InterceptorBean"
+                // AroundInvoke methods on bean superclass and bean class
+                "InterceptorBeanBase",
+                "InterceptorBean"
         };
         getBean().overrideInterceptorMethod(history);
         appendReason(Helper.compareResultList(expected, history));
@@ -159,13 +155,12 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: overrideBeanInterceptorMethod
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with a non-interceptor method. This test also
-     * excludes default and class-level interceptors.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with a
+     * non-interceptor method. This test also excludes default and class-level interceptors.
      */
     public void overrideBeanInterceptorMethod() {
         List<String> history = new ArrayList<String>();
-        String[] expected = {"InterceptorOverrideBean"};
+        String[] expected = { "InterceptorOverrideBean" };
         getOverrideBean().overrideBeanInterceptorMethod(history);
         appendReason(Helper.compareResultList(expected, history));
     }
@@ -173,19 +168,18 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: overrideBeanInterceptorMethod2
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with a non-interceptor method. This test also
-     * excludes default and declares no class-level interceptors.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with a
+     * non-interceptor method. This test also excludes default and declares no class-level interceptors.
      */
     public void overrideBeanInterceptorMethod2() {
         List<String> history = new ArrayList<String>();
         String[] expected = {
-            // method-level interceptors
-            "InterceptorBaseBase",
-            "InterceptorBase",
-            "Interceptor1",
-            // bean class interceptor method
-            "InterceptorOverrideBean"
+                // method-level interceptors
+                "InterceptorBaseBase",
+                "InterceptorBase",
+                "Interceptor1",
+                // bean class interceptor method
+                "InterceptorOverrideBean"
         };
         getOverrideBean().overrideBeanInterceptorMethod2(history);
         appendReason(Helper.compareResultList(expected, history));
@@ -194,18 +188,18 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: overrideBeanInterceptorMethod3
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with an interceptor method.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with an
+     * interceptor method.
      */
     public void overrideBeanInterceptorMethod3() {
         List<String> history = new ArrayList<String>();
         String[] expected = {
-            // method-level interceptors
-            "InterceptorBaseBase",
-            "InterceptorBase",
-            "Interceptor1",
-            // bean class interceptor method
-            "InterceptorOverride34Bean"
+                // method-level interceptors
+                "InterceptorBaseBase",
+                "InterceptorBase",
+                "Interceptor1",
+                // bean class interceptor method
+                "InterceptorOverride34Bean"
         };
         getOverride34Bean().overrideBeanInterceptorMethod3(history);
         appendReason(Helper.compareResultList(expected, history));
@@ -214,14 +208,14 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: overrideBeanInterceptorMethod4
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with an interceptor method.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with an
+     * interceptor method.
      */
     public void overrideBeanInterceptorMethod4() {
         List<String> history = new ArrayList<String>();
         String[] expected = {
-            // bean class interceptor method
-            "InterceptorOverride34Bean"
+                // bean class interceptor method
+                "InterceptorOverride34Bean"
         };
         getOverride34Bean().overrideBeanInterceptorMethod4(history);
         appendReason(Helper.compareResultList(expected, history));
@@ -230,36 +224,34 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: skipProceed
      *
-     * @test_Strategy: skipProceed in InterceptorBeanBase is declared to ignore
-     * default and class interceptors. This business method also has its own
-     * method-level interceptors (1 & 2). In Interceptor1's around-invoke method,
+     * @test_Strategy: skipProceed in InterceptorBeanBase is declared to ignore default and class interceptors. This
+     * business method also has its own method-level interceptors (1 & 2). In Interceptor1's around-invoke method,
      * InvocationContext.proceed is skipped for business method skipProceed.
      */
     public void skipProceed() {
         List<String> history = new ArrayList<String>();
         getBean().skipProceed(history);
-        String[] expected = {"InterceptorBaseBase", "InterceptorBase", "Interceptor1"};
+        String[] expected = { "InterceptorBaseBase", "InterceptorBase", "Interceptor1" };
         appendReason(Helper.compareResultList(expected, history));
     }
 
     /*
      * testName: getContextData
      *
-     * @test_Strategy: add data to InvocationContext context data, and retrieve
-     * them in EJBContext.getContextData().
+     * @test_Strategy: add data to InvocationContext context data, and retrieve them in EJBContext.getContextData().
      */
     public void getContextData() {
         List<String> history = new ArrayList<String>();
         final String[] expected = {
-            "Interceptor4",
-            "InterceptorBaseBase",
-            "Interceptor3",
-            "Interceptor2",
-            "Interceptor1",
-            "InterceptorBean",
-            "InterceptorBeanBase",
-            "InterceptorBase",
-            "Interceptor5"
+                "Interceptor4",
+                "InterceptorBaseBase",
+                "Interceptor3",
+                "Interceptor2",
+                "Interceptor1",
+                "InterceptorBean",
+                "InterceptorBeanBase",
+                "InterceptorBase",
+                "Interceptor5"
         };
 
         Map<String, Object> contextData = getBean().getContextData(history);
@@ -275,12 +267,10 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: applicationExceptionRollback
      *
-     * @test_Strategy: invokes TestBean, a BMT bean, which in turn invokes
-     * InterceptorBean. InterceptorBean.applicationExceptionRollback has only a
-     * method interceptor (9). Its around-invoke method throws
-     * AtCheckedRollbackAppException. Verifies that the client should get
-     * AtCheckedRollbackAppException, and this application exception from
-     * interceptor's around-invoke method should cause the tx to rollback.
+     * @test_Strategy: invokes TestBean, a BMT bean, which in turn invokes InterceptorBean.
+     * InterceptorBean.applicationExceptionRollback has only a method interceptor (9). Its around-invoke method throws
+     * AtCheckedRollbackAppException. Verifies that the client should get AtCheckedRollbackAppException, and this
+     * application exception from interceptor's around-invoke method should cause the tx to rollback.
      */
     public void applicationExceptionRollback() {
         appendReason(testBean.applicationExceptionRollback());

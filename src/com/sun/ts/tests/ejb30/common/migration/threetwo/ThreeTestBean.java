@@ -39,9 +39,11 @@ public class ThreeTestBean extends ThreeTestBeanBase implements ThreeTestIF {
     @Resource(name = "sctx")
     private SessionContext sctx;
 
-    public ThreeTestBean() {}
+    public ThreeTestBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected TwoRemoteHome getTwoRemoteHome() {
         return (TwoRemoteHome) (sctx.lookup("twoRemoteHome"));

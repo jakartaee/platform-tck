@@ -24,6 +24,7 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 
 @Stateless
-@Local({AsyncAnnotatedMethodsIF.class})
-@Remote({AsyncAnnotatedMethodsRemoteIF.class})
-public class AsyncAnnotatedMethodsBean extends AsyncAnnotatedMethodsBeanBase {}
+@Local({ AsyncAnnotatedMethodsIF.class })
+@Remote({ AsyncAnnotatedMethodsRemoteIF.class })
+public class AsyncAnnotatedMethodsBean extends AsyncAnnotatedMethodsBeanBase {
+}

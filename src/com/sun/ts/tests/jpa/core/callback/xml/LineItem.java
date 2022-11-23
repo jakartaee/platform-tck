@@ -36,7 +36,8 @@ public class LineItem extends LineItemSuper implements java.io.Serializable, Cal
 
     private Product product;
 
-    public LineItem() {}
+    public LineItem() {
+    }
 
     public LineItem(String v1, int v2, Order v3, Product v4) {
         id = v1;

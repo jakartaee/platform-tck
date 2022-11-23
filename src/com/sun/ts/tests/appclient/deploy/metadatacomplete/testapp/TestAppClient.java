@@ -37,27 +37,10 @@ import jakarta.xml.ws.WebServiceRef;
 import java.util.Properties;
 import javax.naming.InitialContext;
 
-@MailSessionDefinition(
-        name = "java:comp/myMailSession",
-        host = "smtp.gmail.com",
-        transportProtocol = "smtps",
-        properties = {"mail.debug=true"})
-@DataSourceDefinition(
-        name = "java:global/MyApp/MyDataSource",
-        className = "oracle.jdbc.pool.OracleDataSource",
-        url = "jdbc:oracle:thin:@localhost:1521:orcl",
-        user = "TESTU",
-        password = "TESTU")
-@JMSConnectionFactoryDefinition(
-        description = "Define ConnectionFactory JSPMyTestConnectionFactory",
-        interfaceName = "jakarta.jms.ConnectionFactory",
-        name = "java:global/JSPMyTestConnectionFactory",
-        user = "j2ee",
-        password = "j2ee")
-@JMSDestinationDefinition(
-        name = "java:app/jms/myappTopic",
-        interfaceName = "jakarta.jms.Topic",
-        destinationName = "MyPhysicalAppTopic")
+@MailSessionDefinition(name = "java:comp/myMailSession", host = "smtp.gmail.com", transportProtocol = "smtps", properties = { "mail.debug=true" })
+@DataSourceDefinition(name = "java:global/MyApp/MyDataSource", className = "oracle.jdbc.pool.OracleDataSource", url = "jdbc:oracle:thin:@localhost:1521:orcl", user = "TESTU", password = "TESTU")
+@JMSConnectionFactoryDefinition(description = "Define ConnectionFactory JSPMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/JSPMyTestConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSDestinationDefinition(name = "java:app/jms/myappTopic", interfaceName = "jakarta.jms.Topic", destinationName = "MyPhysicalAppTopic")
 public class TestAppClient extends EETest {
 
     private InitialContext initialContext;
@@ -88,8 +71,7 @@ public class TestAppClient extends EETest {
     static EntityManagerFactory emf;
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -117,11 +99,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,ManagedBean annotation - should work as
-     *                 metadata-complete attribute is not applicable to it.
+     * - When the meta-data complete attribute is set to true,ManagedBean annotation - should work as metadata-complete
+     * attribute is not applicable to it.
      *
      */
     public void testResourceLookup() throws Fault {
@@ -143,12 +124,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,Resource annotation should be ignored - as it is one
-     *                 of the annotations to which metadata-complete is
-     *                 applicable.
+     * - When the meta-data complete attribute is set to true,Resource annotation should be ignored - as it is one of the
+     * annotations to which metadata-complete is applicable.
      *
      */
     public void testResourceAnnotation() throws Fault {
@@ -169,12 +148,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,Resource annotation should be ignored - as it is one
-     *                 of the annotations to which metadata-complete is
-     *                 applicable.
+     * - When the meta-data complete attribute is set to true,Resource annotation should be ignored - as it is one of the
+     * annotations to which metadata-complete is applicable.
      *
      */
     public void testMailSession() throws Fault {
@@ -196,12 +173,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,MailSessionDefinition annotation should be ignored -
-     *                 as it is one of the annotations to which metadata-complete
-     *                 is applicable.
+     * - When the meta-data complete attribute is set to true,MailSessionDefinition annotation should be ignored - as it is
+     * one of the annotations to which metadata-complete is applicable.
      *
      */
     public void testMailSessionDefinition() throws Fault {
@@ -223,11 +198,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to true,EJB
-     *                 annotation should be ignored - as it is one of the
-     *                 annotations to which metadata-complete is applicable.
+     * - When the meta-data complete attribute is set to true,EJB annotation should be ignored - as it is one of the
+     * annotations to which metadata-complete is applicable.
      *
      */
     public void testEJBAnnotation() throws Fault {
@@ -248,12 +222,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,WebServiceRef annotation should be ignored - as it is
-     *                 one of the annotations to which metadata-complete is
-     *                 applicable.
+     * - When the meta-data complete attribute is set to true,WebServiceRef annotation should be ignored - as it is one of
+     * the annotations to which metadata-complete is applicable.
      *
      */
     public void testWebServiceRefAnnotation() throws Fault {
@@ -274,12 +246,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,DataSourceDefinition annotation should be ignored - as
-     *                 it is one of the annotations to which metadat-complete is
-     *                 applicable.
+     * - When the meta-data complete attribute is set to true,DataSourceDefinition annotation should be ignored - as it is
+     * one of the annotations to which metadat-complete is applicable.
      *
      */
     public void testDataSourceDefinitionAnnotation() throws Fault {
@@ -300,12 +270,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,JMSConnectionFactoryDefinition annotation should be
-     *                 ignored - as it is one of the annotations to which
-     *                 metadata-complete is applicable.
+     * - When the meta-data complete attribute is set to true,JMSConnectionFactoryDefinition annotation should be ignored -
+     * as it is one of the annotations to which metadata-complete is applicable.
      *
      */
     public void testJMSConnectionFactoryDefinitionAnnotation() throws Fault {
@@ -327,12 +295,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,JMSDestinationDefinition annotation should be ignored
-     *                 - as it is one of the annotations to which
-     *                 metadata-complete is applicable.
+     * - When the meta-data complete attribute is set to true,JMSDestinationDefinition annotation should be ignored - as it
+     * is one of the annotations to which metadata-complete is applicable.
      *
      */
     public void testJMSDestinationDefinitionAnnotation() throws Fault {
@@ -354,12 +320,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,ConnectionFactoryDefinition annotation should be
-     *                 ignored - as it is one of the annotations to which
-     *                 metadata-complete is applicable.
+     * - When the meta-data complete attribute is set to true,ConnectionFactoryDefinition annotation should be ignored - as
+     * it is one of the annotations to which metadata-complete is applicable.
      *
      */
     public void testConnectionFactoryDefinitionAnnotation() throws Fault {
@@ -380,12 +344,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,AdministeredObjectDefinition annotation should be
-     *                 ignored - as it is one of the annotations to which
-     *                 metadata-complete is applicable.
+     * - When the meta-data complete attribute is set to true,AdministeredObjectDefinition annotation should be ignored - as
+     * it is one of the annotations to which metadata-complete is applicable.
      *
      */
     public void testAdministeredObjectDefinitionAnnotation() throws Fault {
@@ -406,12 +368,10 @@ public class TestAppClient extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - When the meta-data complete attribute is set to
-     *                 true,PersistenceUnitDefinition annotation should be ignored
-     *                 - as it is one of the annotations to which
-     *                 metadata-complete is applicable.
+     * - When the meta-data complete attribute is set to true,PersistenceUnitDefinition annotation should be ignored - as it
+     * is one of the annotations to which metadata-complete is applicable.
      *
      */
     public void testPersistenceUnitDefinitionAnnotation() throws Fault {

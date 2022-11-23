@@ -336,15 +336,13 @@ public abstract class BaseUrlClient extends EETest {
     protected boolean _redirect = false;
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * <code>setTestDir</code> sets the current test directory.
      *
-     * @param testDir
-     *          a <code>String</code> value
+     * @param testDir a <code>String</code> value
      */
     public void setTestDir(String testDir) {
         TESTDIR = testDir;
@@ -366,8 +364,7 @@ public abstract class BaseUrlClient extends EETest {
     /**
      * Sets the goldenfile directory
      *
-     * @param goldenDir
-     *          goldenfile directory based off test directory
+     * @param goldenDir goldenfile directory based off test directory
      */
     public void setGoldenFileDir(String goldenDir) {
         GOLDENFILEDIR = goldenDir;
@@ -376,12 +373,9 @@ public abstract class BaseUrlClient extends EETest {
     /**
      * <code>setup</code> is by the test harness to initialize the tests.
      *
-     * @param args
-     *          a <code>String[]</code> value
-     * @param p
-     *          a <code>Properties</code> value
-     * @exception Fault
-     *              if an error occurs
+     * @param args a <code>String[]</code> value
+     * @param p a <code>Properties</code> value
+     * @exception Fault if an error occurs
      */
     public void setup(String[] args, Properties p) throws Fault {
         _props = p;
@@ -411,19 +405,16 @@ public abstract class BaseUrlClient extends EETest {
     }
 
     /**
-     * <code>cleanup</code> is called by the test harness to cleanup after text
-     * execution
+     * <code>cleanup</code> is called by the test harness to cleanup after text execution
      *
-     * @exception Fault
-     *              if an error occurs
+     * @exception Fault if an error occurs
      */
     public void cleanup() throws Fault {
         TestUtil.logMsg("[BaseUrlClient] Test cleanup OK");
     }
 
     /*
-     * protected methods
-     * ========================================================================
+     * protected methods ========================================================================
      */
 
     /**
@@ -433,8 +424,7 @@ public abstract class BaseUrlClient extends EETest {
      * the properties in TEST_PROPS will be cleared.
      * </PRE>
      *
-     * @throws Fault
-     *           If an error occurs during the test run
+     * @throws Fault If an error occurs during the test run
      */
     protected void invoke() throws Fault {
         try {
@@ -501,7 +491,7 @@ public abstract class BaseUrlClient extends EETest {
         String key = null;
         String value = null;
         // proces the remainder of the properties
-        for (Enumeration e = TEST_PROPS.propertyNames(); e.hasMoreElements(); ) {
+        for (Enumeration e = TEST_PROPS.propertyNames(); e.hasMoreElements();) {
             key = (String) e.nextElement();
             value = TEST_PROPS.getProperty(key);
 
@@ -564,8 +554,7 @@ public abstract class BaseUrlClient extends EETest {
     }
 
     /*
-     * private methods
-     * ========================================================================
+     * private methods ========================================================================
      */
 
     private String getTSRequest(String request) {

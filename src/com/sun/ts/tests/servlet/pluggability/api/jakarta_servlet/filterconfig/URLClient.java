@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -56,8 +54,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:45; Servlet:JAVADOC:281;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
     public void GetFilterNameTest() throws Fault {
         String testName = "GetFilterNameTest";
@@ -70,8 +67,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:45; Servlet:JAVADOC:285;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
     public void GetInitParamNamesTest() throws Fault {
         String testName = "GetInitParamNamesTest";
@@ -84,8 +80,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:45; Servlet:JAVADOC:286;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
     public void GetInitParamNamesNullTest() throws Fault {
         String testName = "GetInitParamNamesNullTest";
@@ -98,8 +93,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:45; Servlet:JAVADOC:283;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
     public void GetInitParamTest() throws Fault {
         String testName = "GetInitParamTest";
@@ -112,8 +106,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:45; Servlet:JAVADOC:284;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
     public void GetInitParamNullTest() throws Fault {
         String testName = "GetInitParamNullTest";
@@ -126,8 +119,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:45; Servlet:JAVADOC:282;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
     public void GetServletContextTest() throws Fault {
         String testName = "GetServletContextTest";

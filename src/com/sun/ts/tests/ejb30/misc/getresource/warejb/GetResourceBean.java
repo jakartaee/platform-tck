@@ -24,4 +24,5 @@ import com.sun.ts.tests.ejb30.misc.getresource.common.GetResourceIF;
 import jakarta.ejb.Stateless;
 
 @Stateless()
-public class GetResourceBean extends GetResourceDelegateForEJB implements GetResourceIF {}
+public class GetResourceBean extends GetResourceDelegateForEJB implements GetResourceIF {
+}

@@ -35,7 +35,8 @@ import java.util.Vector;
 public class VectELResolver extends ELResolver {
 
     public Object getValue(ELContext context, Object base, Object property) throws ELException {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
         if (base == null && "vect".equals(property)) {
             context.setPropertyResolved(true);
@@ -45,24 +46,30 @@ public class VectELResolver extends ELResolver {
     }
 
     public Class getType(ELContext context, Object base, Object property) throws ELException {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
-        if (base == null && "vect".equals(property)) context.setPropertyResolved(true);
+        if (base == null && "vect".equals(property))
+            context.setPropertyResolved(true);
 
         // we never set a value
         return null;
     }
 
     public void setValue(ELContext context, Object base, Object property, Object value) {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
-        if (base == null && "vect".equals(property)) context.setPropertyResolved(true);
+        if (base == null && "vect".equals(property))
+            context.setPropertyResolved(true);
     }
 
     public boolean isReadOnly(ELContext context, Object base, Object property) {
-        if (context == null) throw new NullPointerException();
+        if (context == null)
+            throw new NullPointerException();
 
-        if (base == null && "vect".equals(property)) context.setPropertyResolved(true);
+        if (base == null && "vect".equals(property))
+            context.setPropertyResolved(true);
         return true;
     }
 

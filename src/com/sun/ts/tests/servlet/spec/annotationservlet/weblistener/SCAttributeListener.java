@@ -47,5 +47,6 @@ public final class SCAttributeListener implements ServletContextAttributeListene
         event.getServletContext().setAttribute("SCAList", al);
     }
 
-    public void attributeReplaced(ServletContextAttributeEvent event) {}
+    public void attributeReplaced(ServletContextAttributeEvent event) {
+    }
 }

@@ -42,7 +42,8 @@ public class TestBean2 implements java.io.Serializable {
 
     private float price;
 
-    public TestBean2() {}
+    public TestBean2() {
+    }
 
     public TestBean2(Integer pmIDInteger, String pmIDString, Float pmIDFloat, String brandName, float price) {
         this.pmIDInteger = pmIDInteger;

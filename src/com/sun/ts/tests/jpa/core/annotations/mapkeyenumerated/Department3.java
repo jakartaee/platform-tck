@@ -38,7 +38,8 @@ public class Department3 implements java.io.Serializable {
 
     private Map lastNameEmployees;
 
-    public Department3() {}
+    public Department3() {
+    }
 
     public Department3(int id, String name) {
         this.id = id;

@@ -25,7 +25,8 @@ import java.nio.ByteBuffer;
 public class StringBeanBinaryDecoder implements Binary<StringBean> {
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
     public StringBean decode(ByteBuffer arg0) throws DecodeException {
@@ -38,5 +39,6 @@ public class StringBeanBinaryDecoder implements Binary<StringBean> {
     }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

@@ -22,4 +22,5 @@ package com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant;
 
 import com.sun.ts.tests.ejb30.common.covariant.TestServletBase;
 
-public class TestServlet extends TestServletBase {}
+public class TestServlet extends TestServletBase {
+}

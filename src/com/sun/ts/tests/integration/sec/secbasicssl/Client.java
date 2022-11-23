@@ -100,8 +100,8 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; webServerHost; webServerPort;
-     * user; password; securedWebServicePort; certLoginUserAlias;
+     * @class.setup_props: org.omg.CORBA.ORBClass; webServerHost; webServerPort; user; password; securedWebServicePort;
+     * certLoginUserAlias;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -123,12 +123,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:249; Servlet:SPEC:26; JavaEE:SPEC:22
      *
-     * @test_Strategy: This assertion ensures that HTTP Basic authentication over
-     * SSL is supported by the J2EE server. It first calls request.isSecure() to
-     * ensure it returns true, indicating that a secure connection is in place.
-     * Next, the fully qualified URL for the page being viewed is received via the
-     * HttpUtils.getRequestURL( request ) method. This url is checked to make sure
-     * it begins with https, indicating HTTPS is in use.
+     * @test_Strategy: This assertion ensures that HTTP Basic authentication over SSL is supported by the J2EE server. It
+     * first calls request.isSecure() to ensure it returns true, indicating that a secure connection is in place. Next, the
+     * fully qualified URL for the page being viewed is received via the HttpUtils.getRequestURL( request ) method. This url
+     * is checked to make sure it begins with https, indicating HTTPS is in use.
      *
      */
     public void test_login_basic_over_ssl() throws Fault {
@@ -182,13 +180,11 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     * This assertion checks that a user is granted access to an unprotected web
-     * resource (e.g. webNoAuthz.jsp), independent of authentication status. That
-     * is, they are not denied access, whether they are authenticated or not. The
-     * assertion executes in webNoAuthz.jsp, and calls getUserPrincipal() to
-     * ensure the user is not authenticated (should return null). If this value is
-     * null, and the user gained access to the page, that means an unauthenticated
-     * user was not denied access to an unprotected web resource.
+     * This assertion checks that a user is granted access to an unprotected web resource (e.g. webNoAuthz.jsp), independent
+     * of authentication status. That is, they are not denied access, whether they are authenticated or not. The assertion
+     * executes in webNoAuthz.jsp, and calls getUserPrincipal() to ensure the user is not authenticated (should return
+     * null). If this value is null, and the user gained access to the page, that means an unauthenticated user was not
+     * denied access to an unprotected web resource.
      */
     public void test_web_no_authz() throws Fault {
 
@@ -217,11 +213,9 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     * This assertion checks that when isCallerInRole() is called from an
-     * unprotected web resource, and the caller is not authenticated, it must
-     * return false for all roles. The four role references "ADM", "MGR", "VMP",
-     * and "EMP" are checked. If a call to isCallerInRole() returns true for any
-     * of these role references, the assertion fails.
+     * This assertion checks that when isCallerInRole() is called from an unprotected web resource, and the caller is not
+     * authenticated, it must return false for all roles. The four role references "ADM", "MGR", "VMP", and "EMP" are
+     * checked. If a call to isCallerInRole() returns true for any of these role references, the assertion fails.
      *
      */
     public void test_web_not_in_role() throws Fault {
@@ -251,14 +245,11 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     * The web_api_remoteuser assertion is broken into two parts. The first part,
-     * web_api_remoteuser[1] needs to be performed under the identity of an
-     * unauthenticated user. This tests that if getRemoteUser() returns null
-     * (which means that no user has been authenticated), the isUserInRole()
-     * method will always return false and getUserPrincipal() will always return
-     * null. We have already established that isUserInRole() always returns false
-     * in the "web_not_in_role" assertion. We also already checked that
-     * getUserPrincipal() returns null in web_no_authz. This assertion checks that
+     * The web_api_remoteuser assertion is broken into two parts. The first part, web_api_remoteuser[1] needs to be
+     * performed under the identity of an unauthenticated user. This tests that if getRemoteUser() returns null (which means
+     * that no user has been authenticated), the isUserInRole() method will always return false and getUserPrincipal() will
+     * always return null. We have already established that isUserInRole() always returns false in the "web_not_in_role"
+     * assertion. We also already checked that getUserPrincipal() returns null in web_no_authz. This assertion checks that
      * getRemoteUser() returns null as well.
      *
      */
@@ -286,13 +277,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:SPEC:140; Servlet:SPEC:368; Servlet:SPEC:369
      *
-     * @test_Strategy: The second part of the web_api_remoteuser assertion needs
-     * to be performed under the identity of an authenticated user. When
-     * authorized.jsp is loaded, this assertion checks that the getRemoteUser()
-     * method returns the user name that the client authenticated with. In order
-     * to have gained access to this page, the user must have authenticated. A
-     * call to getRemoteUser() is made, and the result is later compared to the
-     * value specified in the "user" property in ts.jte.
+     * @test_Strategy: The second part of the web_api_remoteuser assertion needs to be performed under the identity of an
+     * authenticated user. When authorized.jsp is loaded, this assertion checks that the getRemoteUser() method returns the
+     * user name that the client authenticated with. In order to have gained access to this page, the user must have
+     * authenticated. A call to getRemoteUser() is made, and the result is later compared to the value specified in the
+     * "user" property in ts.jte.
      *
      */
     public void test_web_api_remoteuser_2() throws Fault {
@@ -339,7 +328,8 @@ public class Client extends EETest {
             if (output.indexOf(userNameToSearch) == -1) {
                 throw new Fault(
                         testName + ": getRemoteUser(): " + "- did not find \"" + userNameToSearch + "\" in log.");
-            } else TestUtil.logMsg("Additional verification done");
+            } else
+                TestUtil.logMsg("Additional verification done");
 
             // verify output for expected test result
             verifyTestOutput(output, testName);
@@ -359,14 +349,12 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     * The web_roleref_scope assertion is performed in two separate stages. It
-     * tests that given two servlets in the same application, each of which calls
-     * isUserInRole( X ), and where X is linked to different roles in the scope of
-     * each of the servlets (i.e. R1 for servlet 1 and R2 for servlet 2), then a
-     * user whose identity is mapped to R1 but not R2 shall get a true return
-     * value from isUserInRole( X ) in servlet 1, and a false return value from
-     * servlet 2. The first part of the test is performed in webRoleRefScope1.jsp
-     * and ensures that isUserInRole( X ) works correctly for servlet 1.
+     * The web_roleref_scope assertion is performed in two separate stages. It tests that given two servlets in the same
+     * application, each of which calls isUserInRole( X ), and where X is linked to different roles in the scope of each of
+     * the servlets (i.e. R1 for servlet 1 and R2 for servlet 2), then a user whose identity is mapped to R1 but not R2
+     * shall get a true return value from isUserInRole( X ) in servlet 1, and a false return value from servlet 2. The first
+     * part of the test is performed in webRoleRefScope1.jsp and ensures that isUserInRole( X ) works correctly for servlet
+     * 1.
      */
     public void test_web_roleref_scope_1() throws Fault {
         String testName = "test_web_roleref_scope_1";
@@ -418,12 +406,10 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     * This is the second part of the web_roleref_scope assertion, and is
-     * performed in a separate jsp called rolereverse.jsp. In this jsp, the role
-     * reference links for the "Manager" and "Administrator" roles are swapped as
-     * compared to authorized.jsp (i.e. "ADM" is linked to "Manager" and "MGR" is
-     * linked to "Administrator"). This assertion tests that isUserInRole is
-     * working correctly for servlet 2.
+     * This is the second part of the web_roleref_scope assertion, and is performed in a separate jsp called
+     * rolereverse.jsp. In this jsp, the role reference links for the "Manager" and "Administrator" roles are swapped as
+     * compared to authorized.jsp (i.e. "ADM" is linked to "Manager" and "MGR" is linked to "Administrator"). This assertion
+     * tests that isUserInRole is working correctly for servlet 2.
      *
      */
     public void test_web_roleref_scope_2() throws Fault {
@@ -476,12 +462,10 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     * The web_is_authz assertion is performed under the identity of an
-     * authenticated user that is authorized to access the page authorized.jsp. It
-     * tests that an authenticated user is granted access to a protected web
-     * resource (i.e. one that is attributed with an authorization constraint)
-     * when its identity is mapped to one of the permitted roles identified in the
-     * authorization constraint.
+     * The web_is_authz assertion is performed under the identity of an authenticated user that is authorized to access the
+     * page authorized.jsp. It tests that an authenticated user is granted access to a protected web resource (i.e. one that
+     * is attributed with an authorization constraint) when its identity is mapped to one of the permitted roles identified
+     * in the authorization constraint.
      */
     public void test_web_is_authz() throws Fault {
         String testName = "test_web_is_authz";
@@ -520,7 +504,8 @@ public class Client extends EETest {
             String stringToSearch = "PASSED";
             if (output.indexOf(stringToSearch) == -1) {
                 throw new Fault(testName + ": getRemoteUser(): " + "- did not find \"" + stringToSearch + "\" in log.");
-            } else TestUtil.logMsg("Additional verification done");
+            } else
+                TestUtil.logMsg("Additional verification done");
 
             // close connection
             httpsURLConn.disconnect();
@@ -533,22 +518,17 @@ public class Client extends EETest {
     /*
      * @testName: test_request_attributes
      *
-     * @assertion_ids:Servlet:SPEC:26; Servlet:SPEC:26.1; Servlet:SPEC:26.2;
-     * Servlet:SPEC:26.3
+     * @assertion_ids:Servlet:SPEC:26; Servlet:SPEC:26.1; Servlet:SPEC:26.2; Servlet:SPEC:26.3
      *
-     * @test_strategy: 1. Look for the following request attributes a)
-     * cipher-suite b) key-size c) SSL certificate If any of the above attributes
-     * are not set report test failure.
+     * @test_strategy: 1. Look for the following request attributes a) cipher-suite b) key-size c) SSL certificate If any of
+     * the above attributes are not set report test failure.
      *
-     * Note: If a request has been transmitted over a secure protocol, such as
-     * HTTPS, this information must be exposed via the isSecure method of the
-     * ServletRequest interface. The web container must expose the following
-     * attributes to the servlet programmer. 1) The cipher suite 2) the bit size
-     * of the algorithm
+     * Note: If a request has been transmitted over a secure protocol, such as HTTPS, this information must be exposed via
+     * the isSecure method of the ServletRequest interface. The web container must expose the following attributes to the
+     * servlet programmer. 1) The cipher suite 2) the bit size of the algorithm
      *
-     * If there is an SSL certificate associated with the request, it must be
-     * exposed by the servlet container to the servlet programmer as an array of
-     * objects of type java.security.cert.X509Certificate
+     * If there is an SSL certificate associated with the request, it must be exposed by the servlet container to the
+     * servlet programmer as an array of objects of type java.security.cert.X509Certificate
      *
      *
      */
@@ -590,7 +570,8 @@ public class Client extends EETest {
             httpsURLConn.setDoOutput(true);
             httpsURLConn.setUseCaches(false);
 
-        } else throw new IOException("Error opening httsURLConnection");
+        } else
+            throw new IOException("Error opening httsURLConnection");
 
         return httpsURLConn;
     }
@@ -619,11 +600,14 @@ public class Client extends EETest {
         if (j != -1) {
             String cValue = cookieHeader.substring(0, j);
             cookie = cValue.trim();
-        } else cookie = cookieHeader.trim();
+        } else
+            cookie = cookieHeader.trim();
 
         // append cookie with existing cookies
-        if (cookies == null) cookies = cookie;
-        else cookies += ";" + cookie;
+        if (cookies == null)
+            cookies = cookie;
+        else
+            cookies += ";" + cookie;
 
         return cookies;
     }

@@ -25,17 +25,21 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 public abstract class LocalTxBeanBase extends TxBeanBase0 implements LocalTxIF {
-    public void localMandatoryTest() {}
+    public void localMandatoryTest() {
+    }
 
-    public void neverTest() {}
+    public void neverTest() {
+    }
 
-    public void requiresNewNoop() throws TestFailedException {}
+    public void requiresNewNoop() throws TestFailedException {
+    }
 
     public void localRequiresNewTest() {
         getSessionContext().setRollbackOnly();
     }
 
-    public void localRequiresNewRemoveTest() {}
+    public void localRequiresNewRemoveTest() {
+    }
 
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public String localSupportsTest() throws TestFailedException {

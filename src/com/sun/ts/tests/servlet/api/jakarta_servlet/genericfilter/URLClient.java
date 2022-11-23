@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -57,8 +55,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: NA;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
 
     public void initFilterTest() throws Fault {
@@ -71,8 +68,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: NA;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
 
     public void initFilterConfigTest() throws Fault {
@@ -85,8 +81,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: NA;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
 
     public void GetFilterNameTest() throws Fault {
@@ -100,8 +95,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: NA;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
 
     public void GetInitParamTest() throws Fault {
@@ -115,8 +109,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: NA;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
 
     public void GetInitParamNamesTest() throws Fault {
@@ -130,8 +123,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: NA;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
 
     public void GetInitParamNamesNullTest() throws Fault {
@@ -145,8 +137,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: NA;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
 
     public void GetInitParamNullTest() throws Fault {
@@ -160,8 +151,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: NA;
      *
-     * @test_Strategy: Client attempts to access a servlet and the filter
-     * configured for that servlet should be invoked.
+     * @test_Strategy: Client attempts to access a servlet and the filter configured for that servlet should be invoked.
      */
 
     public void GetServletContextTest() throws Fault {

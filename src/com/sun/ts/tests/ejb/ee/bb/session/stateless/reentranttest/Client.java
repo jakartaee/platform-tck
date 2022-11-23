@@ -100,10 +100,9 @@ public class Client extends EETest implements Runnable {
      *
      * @assertion_ids: EJB:SPEC:69.1
      *
-     * @test_Strategy: Container must ensure that multiple threads can be
-     * executing an instance at any time for a STATELESS sessionbean (i.e.
-     * reentrant). Create a stateless Session Bean. Deploy it on the J2EE server.
-     * Spawn 2 threads and attempt to call same bean. Both threads should succeed.
+     * @test_Strategy: Container must ensure that multiple threads can be executing an instance at any time for a STATELESS
+     * sessionbean (i.e. reentrant). Create a stateless Session Bean. Deploy it on the J2EE server. Spawn 2 threads and
+     * attempt to call same bean. Both threads should succeed.
      *
      */
 
@@ -157,7 +156,8 @@ public class Client extends EETest implements Runnable {
             }
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -165,10 +165,9 @@ public class Client extends EETest implements Runnable {
      *
      * @assertion_ids: EJB:SPEC:69.1
      *
-     * @test_Strategy: It is possible for an application to make loopback calls to
-     * a session STATELESS instance. This test uses same bean instance. Create a
-     * stateless Session EJBean. Deploy it on the J2EE server. Call loopback test
-     * on same bean. Self referential test.
+     * @test_Strategy: It is possible for an application to make loopback calls to a session STATELESS instance. This test
+     * uses same bean instance. Create a stateless Session EJBean. Deploy it on the J2EE server. Call loopback test on same
+     * bean. Self referential test.
      *
      */
 
@@ -181,7 +180,8 @@ public class Client extends EETest implements Runnable {
             logMsg("Calling loopback test via same bean");
             boolean pass = beanRef.loopBackSameBean();
             beanRef.remove();
-            if (!pass) throw new Fault("test2 failed");
+            if (!pass)
+                throw new Fault("test2 failed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         }
@@ -192,11 +192,9 @@ public class Client extends EETest implements Runnable {
      *
      * @assertion_ids: EJB:SPEC:69.1
      *
-     * @test_Strategy: It is possible for an application to make loopback calls to
-     * a session STATELESS instance (i.e. reentrant). This test uses another bean
-     * instance. Create a stateless Session EJBean. Deploy it on the J2EE server.
-     * Call loopback test on first bean which in turn calls a second bean which
-     * then calls first bean again.
+     * @test_Strategy: It is possible for an application to make loopback calls to a session STATELESS instance (i.e.
+     * reentrant). This test uses another bean instance. Create a stateless Session EJBean. Deploy it on the J2EE server.
+     * Call loopback test on first bean which in turn calls a second bean which then calls first bean again.
      *
      *
      */
@@ -210,7 +208,8 @@ public class Client extends EETest implements Runnable {
             logMsg("Calling loopback test via different bean");
             boolean pass = beanRef.loopBackAnotherBean(props);
             beanRef.remove();
-            if (!pass) throw new Fault("test3 failed");
+            if (!pass)
+                throw new Fault("test3 failed");
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         }
@@ -221,10 +220,9 @@ public class Client extends EETest implements Runnable {
      *
      * @assertion_ids: EJB:SPEC:69.1
      *
-     * @test_Strategy: It is possible for an application to make loopback calls to
-     * a session STATELESS instance (i.e reentrant). This test uses same bean
-     * instance. Create a stateless Session EJBean. Deploy it on the J2EE server.
-     * Call loopback test on same bean. Self referential test.
+     * @test_Strategy: It is possible for an application to make loopback calls to a session STATELESS instance (i.e
+     * reentrant). This test uses same bean instance. Create a stateless Session EJBean. Deploy it on the J2EE server. Call
+     * loopback test on same bean. Self referential test.
      *
      */
 
@@ -236,7 +234,8 @@ public class Client extends EETest implements Runnable {
             logMsg("Calling loopback test via same bean");
             boolean pass = beanRef2.loopBackSameBeanLocal();
             beanRef2.remove();
-            if (!pass) throw new Fault("test4 failed");
+            if (!pass)
+                throw new Fault("test4 failed");
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         }
@@ -247,11 +246,9 @@ public class Client extends EETest implements Runnable {
      *
      * @assertion_ids: EJB:SPEC:69.1
      *
-     * @test_Strategy: It is possible for an application to make loopback calls to
-     * a session STATELESS instance (i.e. reentrant). This test uses another bean
-     * instance. Create a stateless Session EJBean. Deploy it on the J2EE server.
-     * Call loopback test on first bean which in turn calls a second bean which
-     * then calls first bean again.
+     * @test_Strategy: It is possible for an application to make loopback calls to a session STATELESS instance (i.e.
+     * reentrant). This test uses another bean instance. Create a stateless Session EJBean. Deploy it on the J2EE server.
+     * Call loopback test on first bean which in turn calls a second bean which then calls first bean again.
      *
      *
      */
@@ -265,7 +262,8 @@ public class Client extends EETest implements Runnable {
             logMsg("Calling loopback test via different bean");
             boolean pass = beanRef2.loopBackAnotherBeanLocal();
             beanRef2.remove();
-            if (!pass) throw new Fault("test5 failed");
+            if (!pass)
+                throw new Fault("test5 failed");
         } catch (Exception e) {
             throw new Fault("test5 failed", e);
         }

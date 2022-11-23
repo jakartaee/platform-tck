@@ -29,8 +29,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
- * All @AccessTimeout metadata are specified in bean class itself at method
- * level and class level. The method-level metadata takes precedence.
+ * All @AccessTimeout metadata are specified in bean class itself at method level and class level. The method-level
+ * metadata takes precedence.
  */
 @AccessTimeout(value = BEAN_CLASS_LEVEL_TIMEOUT_MILLIS, unit = TimeUnit.MILLISECONDS)
 @Stateful

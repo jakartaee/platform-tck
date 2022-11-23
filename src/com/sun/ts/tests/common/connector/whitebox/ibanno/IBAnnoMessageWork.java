@@ -187,7 +187,7 @@ public class IBAnnoMessageWork implements Work, WorkContextProvider {
         Method onMessageMethod = null;
         try {
             Class msgListenerClass = TSMessageListenerInterface.class;
-            Class[] paramTypes = {java.lang.String.class};
+            Class[] paramTypes = { java.lang.String.class };
             onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
         } catch (NoSuchMethodException ex) {
             ex.printStackTrace();
@@ -212,7 +212,8 @@ public class IBAnnoMessageWork implements Work, WorkContextProvider {
         contextsList.add(ic);
     }
 
-    public void release() {}
+    public void release() {
+    }
 
     public void stop() {
         this.stop = true;

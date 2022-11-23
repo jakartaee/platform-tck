@@ -30,19 +30,24 @@ import javax.naming.NamingException;
 public class FastPathBean implements SessionBean {
     private SessionContext sctx = null;
 
-    public FastPathBean() {}
+    public FastPathBean() {
+    }
 
-    public void ejbCreate() throws CreateException {}
+    public void ejbCreate() throws CreateException {
+    }
 
     public void setSessionContext(SessionContext sc) {
         this.sctx = sc;
     }
 
-    public void ejbRemove() {}
+    public void ejbRemove() {
+    }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 
     public String getIt(String envEntryName) {
         String result = null;

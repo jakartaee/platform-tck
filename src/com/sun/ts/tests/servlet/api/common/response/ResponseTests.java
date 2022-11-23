@@ -417,7 +417,8 @@ public class ResponseTests {
             response.setBufferSize(50);
 
             // commit the response
-            if (response.isCommitted() == false) notYet = true;
+            if (response.isCommitted() == false)
+                notYet = true;
 
             response.flushBuffer();
 
@@ -1176,7 +1177,7 @@ public class ResponseTests {
         PrintWriter pw = response.getWriter();
         Boolean passed = true;
         String name = "TestheadersUnique";
-        String[] values = {"first", "second", "third"};
+        String[] values = { "first", "second", "third" };
 
         response.setHeader(name, values[0]);
         response.addHeader(name, values[1]);
@@ -1210,7 +1211,7 @@ public class ResponseTests {
         PrintWriter pw = response.getWriter();
         Boolean passed = false;
         String name = "TestheadersUnique";
-        String[] values = {"first", "second", "third"};
+        String[] values = { "first", "second", "third" };
 
         response.setHeader(name, values[0]);
         response.addHeader(name, values[1]);
@@ -1233,10 +1234,10 @@ public class ResponseTests {
             throws ServletException, IOException {
         PrintWriter pw = response.getWriter();
         Boolean passed = true;
-        String[] names = {"TestheadersUnique", "TestheadersUniqueInt", "TestheadersUniqueDate"};
-        String[] values = {"first", "second", "third"};
-        int[] values1 = {1, 2, 3};
-        long[] values2 = {11L, 22L, 33L};
+        String[] names = { "TestheadersUnique", "TestheadersUniqueInt", "TestheadersUniqueDate" };
+        String[] values = { "first", "second", "third" };
+        int[] values1 = { 1, 2, 3 };
+        long[] values2 = { 11L, 22L, 33L };
 
         response.setHeader(names[0], values[0]);
         response.addHeader(names[0], values[1]);
@@ -1268,47 +1269,47 @@ public class ResponseTests {
         PrintWriter pw = response.getWriter();
 
         int[] status_codes = {
-            HttpServletResponse.SC_ACCEPTED,
-            HttpServletResponse.SC_BAD_GATEWAY,
-            HttpServletResponse.SC_BAD_REQUEST,
-            HttpServletResponse.SC_CONFLICT,
-            HttpServletResponse.SC_CONTINUE,
-            HttpServletResponse.SC_CREATED,
-            HttpServletResponse.SC_EXPECTATION_FAILED,
-            HttpServletResponse.SC_FORBIDDEN,
-            HttpServletResponse.SC_FOUND,
-            HttpServletResponse.SC_GATEWAY_TIMEOUT,
-            HttpServletResponse.SC_GONE,
-            HttpServletResponse.SC_HTTP_VERSION_NOT_SUPPORTED,
-            HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-            HttpServletResponse.SC_LENGTH_REQUIRED,
-            HttpServletResponse.SC_METHOD_NOT_ALLOWED,
-            HttpServletResponse.SC_MOVED_PERMANENTLY,
-            HttpServletResponse.SC_MOVED_TEMPORARILY,
-            HttpServletResponse.SC_MULTIPLE_CHOICES,
-            HttpServletResponse.SC_NO_CONTENT,
-            HttpServletResponse.SC_NON_AUTHORITATIVE_INFORMATION,
-            HttpServletResponse.SC_NOT_ACCEPTABLE,
-            HttpServletResponse.SC_NOT_FOUND,
-            HttpServletResponse.SC_NOT_IMPLEMENTED,
-            HttpServletResponse.SC_NOT_MODIFIED,
-            HttpServletResponse.SC_OK,
-            HttpServletResponse.SC_PARTIAL_CONTENT,
-            HttpServletResponse.SC_PAYMENT_REQUIRED,
-            HttpServletResponse.SC_PRECONDITION_FAILED,
-            HttpServletResponse.SC_PROXY_AUTHENTICATION_REQUIRED,
-            HttpServletResponse.SC_REQUEST_ENTITY_TOO_LARGE,
-            HttpServletResponse.SC_REQUEST_TIMEOUT,
-            HttpServletResponse.SC_REQUEST_URI_TOO_LONG,
-            HttpServletResponse.SC_REQUESTED_RANGE_NOT_SATISFIABLE,
-            HttpServletResponse.SC_RESET_CONTENT,
-            HttpServletResponse.SC_SEE_OTHER,
-            HttpServletResponse.SC_SERVICE_UNAVAILABLE,
-            HttpServletResponse.SC_SWITCHING_PROTOCOLS,
-            HttpServletResponse.SC_TEMPORARY_REDIRECT,
-            HttpServletResponse.SC_UNAUTHORIZED,
-            HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE,
-            HttpServletResponse.SC_USE_PROXY
+                HttpServletResponse.SC_ACCEPTED,
+                HttpServletResponse.SC_BAD_GATEWAY,
+                HttpServletResponse.SC_BAD_REQUEST,
+                HttpServletResponse.SC_CONFLICT,
+                HttpServletResponse.SC_CONTINUE,
+                HttpServletResponse.SC_CREATED,
+                HttpServletResponse.SC_EXPECTATION_FAILED,
+                HttpServletResponse.SC_FORBIDDEN,
+                HttpServletResponse.SC_FOUND,
+                HttpServletResponse.SC_GATEWAY_TIMEOUT,
+                HttpServletResponse.SC_GONE,
+                HttpServletResponse.SC_HTTP_VERSION_NOT_SUPPORTED,
+                HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                HttpServletResponse.SC_LENGTH_REQUIRED,
+                HttpServletResponse.SC_METHOD_NOT_ALLOWED,
+                HttpServletResponse.SC_MOVED_PERMANENTLY,
+                HttpServletResponse.SC_MOVED_TEMPORARILY,
+                HttpServletResponse.SC_MULTIPLE_CHOICES,
+                HttpServletResponse.SC_NO_CONTENT,
+                HttpServletResponse.SC_NON_AUTHORITATIVE_INFORMATION,
+                HttpServletResponse.SC_NOT_ACCEPTABLE,
+                HttpServletResponse.SC_NOT_FOUND,
+                HttpServletResponse.SC_NOT_IMPLEMENTED,
+                HttpServletResponse.SC_NOT_MODIFIED,
+                HttpServletResponse.SC_OK,
+                HttpServletResponse.SC_PARTIAL_CONTENT,
+                HttpServletResponse.SC_PAYMENT_REQUIRED,
+                HttpServletResponse.SC_PRECONDITION_FAILED,
+                HttpServletResponse.SC_PROXY_AUTHENTICATION_REQUIRED,
+                HttpServletResponse.SC_REQUEST_ENTITY_TOO_LARGE,
+                HttpServletResponse.SC_REQUEST_TIMEOUT,
+                HttpServletResponse.SC_REQUEST_URI_TOO_LONG,
+                HttpServletResponse.SC_REQUESTED_RANGE_NOT_SATISFIABLE,
+                HttpServletResponse.SC_RESET_CONTENT,
+                HttpServletResponse.SC_SEE_OTHER,
+                HttpServletResponse.SC_SERVICE_UNAVAILABLE,
+                HttpServletResponse.SC_SWITCHING_PROTOCOLS,
+                HttpServletResponse.SC_TEMPORARY_REDIRECT,
+                HttpServletResponse.SC_UNAUTHORIZED,
+                HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE,
+                HttpServletResponse.SC_USE_PROXY
         };
 
         for (int i = 0; i < status_codes.length; i++) {

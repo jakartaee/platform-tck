@@ -54,8 +54,10 @@ public final class SRAttributeListener implements ServletRequestAttributeListene
     }
 
     @Override
-    public void attributeRemoved(ServletRequestAttributeEvent event) {}
+    public void attributeRemoved(ServletRequestAttributeEvent event) {
+    }
 
     @Override
-    public void attributeReplaced(ServletRequestAttributeEvent event) {}
+    public void attributeReplaced(ServletRequestAttributeEvent event) {
+    }
 }

@@ -68,12 +68,12 @@ public class TestServlet2 extends TestServletBase {
 
         AppResRemoteIF lookupResult = null;
         String[] names = {
-            "java:module/ModuleMBean",
-            "java:module/Module2Bean",
-            "java:app/renamed2_twowars_web/ModuleMBean",
-            "java:app/renamed2_twowars_web/Module2Bean",
-            "java:global/ejb3_misc_moduleName_twowars/renamed_twowars_web/ModuleBean",
-            "java:global/renamed2_twowars_web/Module2Bean"
+                "java:module/ModuleMBean",
+                "java:module/Module2Bean",
+                "java:app/renamed2_twowars_web/ModuleMBean",
+                "java:app/renamed2_twowars_web/Module2Bean",
+                "java:global/ejb3_misc_moduleName_twowars/renamed_twowars_web/ModuleBean",
+                "java:global/renamed2_twowars_web/Module2Bean"
         };
         for (String name : names) {
             postConstructRecords.append("About to look up " + name);

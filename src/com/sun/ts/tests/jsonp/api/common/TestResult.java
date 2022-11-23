@@ -33,8 +33,7 @@ public class TestResult {
     /**
      * Creates an instance of tests result record.
      *
-     * @param name
-     *          Name of test suite.
+     * @param name Name of test suite.
      */
     public TestResult(final String name) {
         this.name = name;
@@ -44,10 +43,8 @@ public class TestResult {
     /**
      * Records test failure.
      *
-     * @param name
-     *          Test name.
-     * @param message
-     *          Error message.
+     * @param name Test name.
+     * @param message Error message.
      */
     public void fail(final String name, final String message) {
         fails.addLast(new TestFail(name, message));
@@ -56,8 +53,7 @@ public class TestResult {
     /**
      * Evaluate test results.
      *
-     * @throws Fault
-     *           when any test failed.
+     * @throws Fault when any test failed.
      */
     public void eval() throws Fault {
         if (fails.isEmpty()) {

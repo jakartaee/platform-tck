@@ -45,8 +45,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The resultSetClient41 class tests methods of resultSet interface using Sun's
- * J2EE Reference Implementation.
+ * The resultSetClient41 class tests methods of resultSet interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 99/10/12
@@ -94,14 +93,11 @@ public class resultSetClient41 extends ServiceEETest implements Serializable {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -110,10 +106,11 @@ public class resultSetClient41 extends ServiceEETest implements Serializable {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 /*
-                 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery","");
-                 * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+                 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+                 * sqlp.load(istr);
                  */
                 sqlp = p;
                 if (drManager.equals("yes")) {
@@ -129,9 +126,8 @@ public class resultSetClient41 extends ServiceEETest implements Serializable {
                 rsSch = new rsSchema();
                 csSch = new csSchema();
                 stmt = conn.createStatement(/*
-                                     * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                     * ResultSet.CONCUR_READ_ONLY
-                                     */ );
+                                             * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+                                             */ );
                 dbmd = conn.getMetaData();
                 msg = new JDBCTestMsg();
             } catch (SQLException ex) {
@@ -146,14 +142,11 @@ public class resultSetClient41 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBoolean67
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-     * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406; JDBC:JAVADOC:407; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that gets the
-     * maximum value of table Bit_Tab.Call the getBoolean(String columnName)
-     * method. Compare the returned result with the value extracted from
-     * tssql.stmt file.Both of them should be equal and the returned result must
-     * be equal to the Maximum Value of JDBC Bit datatype.
+     * @test_Strategy: Get a ResultSet object by executing the query that gets the maximum value of table Bit_Tab.Call the
+     * getBoolean(String columnName) method. Compare the returned result with the value extracted from tssql.stmt file.Both
+     * of them should be equal and the returned result must be equal to the Maximum Value of JDBC Bit datatype.
      */
 
     public void testGetBoolean67() throws Fault {
@@ -174,7 +167,8 @@ public class resultSetClient41 extends ServiceEETest implements Serializable {
             boolean oExtVal = rsSch.extractValAsBoolVal("Bit_Tab", 1, sqlp, conn);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getBoolean returns the Maximum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getBoolean returns the Maximum Value " + oRetVal);
             else {
                 msg.printTestError("getBoolean did not return the Maximum Value", "test getBoolean Failed");
             }
@@ -199,14 +193,11 @@ public class resultSetClient41 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBoolean68
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-     * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406; JDBC:JAVADOC:407; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that gets the
-     * minimum value of table Bit_Tab.Call the getBoolean(String columnName)
-     * method. Compare the returned result with the value extracted from
-     * tssql.stmt file.Both of them should be equal and the returned result must
-     * be equal to the Minimum Value of JDBC Bit datatype.
+     * @test_Strategy: Get a ResultSet object by executing the query that gets the minimum value of table Bit_Tab.Call the
+     * getBoolean(String columnName) method. Compare the returned result with the value extracted from tssql.stmt file.Both
+     * of them should be equal and the returned result must be equal to the Minimum Value of JDBC Bit datatype.
      */
     public void testGetBoolean68() throws Fault {
         try {
@@ -226,7 +217,8 @@ public class resultSetClient41 extends ServiceEETest implements Serializable {
             boolean oExtVal = rsSch.extractValAsBoolVal("Bit_Tab", 2, sqlp, conn);
 
             msg.addOutputMsg("" + oExtVal, "" + oRetVal);
-            if (oRetVal == oExtVal) msg.setMsg("getBoolean returns the Minimum Value " + oRetVal);
+            if (oRetVal == oExtVal)
+                msg.setMsg("getBoolean returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getBoolean did not return the Minimum Value", "test getBoolean Failed");
             }
@@ -251,12 +243,10 @@ public class resultSetClient41 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBoolean69
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406;
-     * JDBC:JAVADOC:407; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:406; JDBC:JAVADOC:407; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Bit_Tab.Call the getBoolean(String columnName)
-     * method.Check if the value returned is boolean value false.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Bit_Tab.Call the
+     * getBoolean(String columnName) method.Check if the value returned is boolean value false.
      */
     public void testGetBoolean69() throws Fault {
         try {

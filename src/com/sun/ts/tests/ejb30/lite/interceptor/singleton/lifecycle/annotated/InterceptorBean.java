@@ -31,7 +31,7 @@ import jakarta.interceptor.Interceptors;
 import java.util.logging.Level;
 
 @Singleton
-@Interceptors({Interceptor5.class, Interceptor4.class, Interceptor8.class})
+@Interceptors({ Interceptor5.class, Interceptor4.class, Interceptor8.class })
 public class InterceptorBean extends InterceptorBeanBase implements InterceptorIF {
     private static final String simpleName = "InterceptorBean";
 

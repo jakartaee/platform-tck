@@ -28,9 +28,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -59,13 +57,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: nonServletExceptionTest
      *
-     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:106; Servlet:SPEC:104.3.1;
-     * Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3; Servlet:SPEC:104.3.4;
-     * Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
+     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:106; Servlet:SPEC:104.3.1; Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3;
+     * Servlet:SPEC:104.3.4; Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
      *
-     * @test_Strategy: Servlet throws IllegalStateException; Verify the Error Page
-     * defined to deal with IllegalStateException is invoked with the appropriate
-     * info regarding the error
+     * @test_Strategy: Servlet throws IllegalStateException; Verify the Error Page defined to deal with
+     * IllegalStateException is invoked with the appropriate info regarding the error
      */
 
     public void nonServletExceptionTest() throws Fault {
@@ -85,15 +81,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: servletExceptionTest
      *
-     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:107; Servlet:SPEC:104.3.1;
-     * Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3; Servlet:SPEC:104.3.4;
-     * Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
+     * @assertion_ids: Servlet:SPEC:108; Servlet:SPEC:107; Servlet:SPEC:104.3.1; Servlet:SPEC:104.3.2; Servlet:SPEC:104.3.3;
+     * Servlet:SPEC:104.3.4; Servlet:SPEC:104.3.5; Servlet:SPEC:104.3.6;
      *
-     * @test_Strategy: Invoke TestServlet The Servlet throws TestServletException
-     * which wraps a TestException; --- TestServletException extends
-     * ServletException; There is an error page defined for TestServletException;
-     * --- No error pages are defined to deal with TestException; Verify this
-     * Error Page is invoked with the appropriate info regarding the error
+     * @test_Strategy: Invoke TestServlet The Servlet throws TestServletException which wraps a TestException; ---
+     * TestServletException extends ServletException; There is an error page defined for TestServletException; --- No error
+     * pages are defined to deal with TestException; Verify this Error Page is invoked with the appropriate info regarding
+     * the error
      */
 
     public void servletExceptionTest() throws Fault {

@@ -47,8 +47,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match1ExactTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /a
      */
@@ -63,8 +62,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match1ParamTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /{a}
      */
@@ -81,8 +79,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match2CParamDTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /c/{d}
      */
@@ -114,8 +111,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match2ParamCExactDTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /{c}/d
      */
@@ -132,8 +128,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match2ParamCDTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /{c}/{d}
      */
@@ -152,8 +147,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match3ACDExactTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /a/c/d
      */
@@ -168,8 +162,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match3AParamCDTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /a/{c}/{d}
      */
@@ -188,8 +181,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match3CParamADTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /{a}/c/{d}
      */
@@ -208,8 +200,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match3DParamACTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /{a}/{c}/d
      */
@@ -228,8 +219,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match3ParamACDTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /{a}/c/{d}
      */
@@ -250,8 +240,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match3ACParamDTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /a/c/{d}
      */
@@ -268,8 +257,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match3ADParamCTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /a/{c}/d
      */
@@ -286,8 +274,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: match3CDParamATest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3;
-     * WebSocket:SPEC:WSC-4.3-3;
+     * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-1; WebSocket:SPEC:WSC-3.1.1-3; WebSocket:SPEC:WSC-4.3-3;
      *
      * @test_Strategy: Match /a/{c}/d
      */
@@ -306,9 +293,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-3.1.1-4;
      *
-     * @test_Strategy: no Match for /a/c/d/e The implementation must not establish
-     * the connection unless there is a match. Throws: DeploymentException - if
-     * the configuration is not valid
+     * @test_Strategy: no Match for /a/c/d/e The implementation must not establish the connection unless there is a match.
+     * Throws: DeploymentException - if the configuration is not valid
      */
     public void noMatch4ACDETest() throws Fault {
         setProperty(Property.REQUEST, buildRequest("a/c/d/e"));

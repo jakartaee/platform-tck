@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     String CONTEXT_ROOT = "/servlet_jsh_asynccontext_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     @Override
     public Status run(String args[], PrintWriter out, PrintWriter err) {
@@ -60,26 +58,23 @@ public class URLClient extends AbstractUrlClient {
     /*
      * Test set up:
      *
-     * Define two servets AsyncTestServlet and AsyncTests that supports async in
-     * web.xml; Define three AsyncListeners using annotation: ACListener,
-     * ACListener1, ACListenerBad; - ACListenerBad does not instantiate; Define a
-     * ServletRequestWrapper that wraps the original request; Define a
-     * ServletResponseWrapper that wraps the original response;
+     * Define two servets AsyncTestServlet and AsyncTests that supports async in web.xml; Define three AsyncListeners using
+     * annotation: ACListener, ACListener1, ACListenerBad; - ACListenerBad does not instantiate; Define a
+     * ServletRequestWrapper that wraps the original request; Define a ServletResponseWrapper that wraps the original
+     * response;
      *
      */
 
     /*
      * @testName: dispatchZeroArgTest
      *
-     * @assertion_ids: Servlet:JAVADOC:639; Servlet:JAVADOC:639.2;
-     * Servlet:JAVADOC:639.4; Servlet:JAVADOC:703; Servlet:JAVADOC:707;
-     * Servlet:JAVADOC:708; Servlet:JAVADOC:710;
+     * @assertion_ids: Servlet:JAVADOC:639; Servlet:JAVADOC:639.2; Servlet:JAVADOC:639.4; Servlet:JAVADOC:703;
+     * Servlet:JAVADOC:707; Servlet:JAVADOC:708; Servlet:JAVADOC:710;
      *
-     * @test_Strategy: Create a Servlet AsyncTestServlet which supports async;
-     * Client send a request to AsyncTestServlet; StartAsync in AsyncTestServlet
-     * ServletRequest.startAsync(); call ac.dispatch(); call
-     * ServletRequest.isAsyncSupported() call ServletRequest.isAsyncStarted() call
-     * ServletRequest.getDispatcherType() verifies all work accordingly.
+     * @test_Strategy: Create a Servlet AsyncTestServlet which supports async; Client send a request to AsyncTestServlet;
+     * StartAsync in AsyncTestServlet ServletRequest.startAsync(); call ac.dispatch(); call
+     * ServletRequest.isAsyncSupported() call ServletRequest.isAsyncStarted() call ServletRequest.getDispatcherType()
+     * verifies all work accordingly.
      */
     public void dispatchZeroArgTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "dispatchZeroArgTest");
@@ -95,15 +90,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: dispatchZeroArgTest1
      *
-     * @assertion_ids: Servlet:JAVADOC:639; Servlet:JAVADOC:639.2;
-     * Servlet:JAVADOC:639.4; Servlet:JAVADOC:703; Servlet:JAVADOC:707;
-     * Servlet:JAVADOC:708; Servlet:JAVADOC:710;
+     * @assertion_ids: Servlet:JAVADOC:639; Servlet:JAVADOC:639.2; Servlet:JAVADOC:639.4; Servlet:JAVADOC:703;
+     * Servlet:JAVADOC:707; Servlet:JAVADOC:708; Servlet:JAVADOC:710;
      *
-     * @test_Strategy: Create a Servlet AsyncTestServlet which supports async;
-     * Client send a request to AsyncTestServlet; StartAsync in AsyncTestServlet
-     * ServletRequest.startAsync(); call ac.dispatch(); call
-     * ServletRequest.isAsyncSupported() call ServletRequest.isAsyncStarted() call
-     * ServletRequest.getDispatcherType() verifies all work accordingly.
+     * @test_Strategy: Create a Servlet AsyncTestServlet which supports async; Client send a request to AsyncTestServlet;
+     * StartAsync in AsyncTestServlet ServletRequest.startAsync(); call ac.dispatch(); call
+     * ServletRequest.isAsyncSupported() call ServletRequest.isAsyncStarted() call ServletRequest.getDispatcherType()
+     * verifies all work accordingly.
      */
     public void dispatchZeroArgTest1() throws Fault {
         TEST_PROPS.setProperty(APITEST, "dispatchZeroArgTest");
@@ -117,15 +110,12 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /*
-     * @testName: dispatchContextPathTest @assertion_ids: Servlet:JAVADOC:641;
-     * Servlet:JAVADOC:703; Servlet:JAVADOC:707; Servlet:JAVADOC:708;
-     * Servlet:JAVADOC:710;
+     * @testName: dispatchContextPathTest @assertion_ids: Servlet:JAVADOC:641; Servlet:JAVADOC:703; Servlet:JAVADOC:707;
+     * Servlet:JAVADOC:708; Servlet:JAVADOC:710;
      *
-     * @test_Strategy: Create two Servlets AsyncTestServlet and AsynTest both
-     * support async; Client send a request to AsyncTestServlet; StartAsync in
-     * AsyncTestServlet ServletRequest.startAsync(); call
-     * ac.dispatch(ServltContext, path to AsynTest); call
-     * ServletRequest.isAsyncSupported() call ServletRequest.isAsyncStarted() call
+     * @test_Strategy: Create two Servlets AsyncTestServlet and AsynTest both support async; Client send a request to
+     * AsyncTestServlet; StartAsync in AsyncTestServlet ServletRequest.startAsync(); call ac.dispatch(ServltContext, path to
+     * AsynTest); call ServletRequest.isAsyncSupported() call ServletRequest.isAsyncStarted() call
      * ServletRequest.getDispatcherType() verifies all work accordingly.
      */
     public void dispatchContextPathTest() throws Fault {
@@ -140,12 +130,10 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /*
-     * @testName: getRequestTest @assertion_ids: Servlet:JAVADOC:642;
-     * Servlet:JAVADOC:710;
+     * @testName: getRequestTest @assertion_ids: Servlet:JAVADOC:642; Servlet:JAVADOC:710;
      *
-     * @test_Strategy: Create a Servlet AsyncTestServlet which support async;
-     * Client send a request to AsyncTestServlet; StartAsync in AsyncTestServlet
-     * ServletRequest.startAsync(); call ac.getRequest() verifies it works.
+     * @test_Strategy: Create a Servlet AsyncTestServlet which support async; Client send a request to AsyncTestServlet;
+     * StartAsync in AsyncTestServlet ServletRequest.startAsync(); call ac.getRequest() verifies it works.
      */
     public void getRequestTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getRequestTest");
@@ -155,12 +143,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: asyncListenerTest1
      *
-     * @assertion_ids: Servlet:JAVADOC:649; Servlet:JAVADOC:710;
-     * Servlet:JAVADOC:846; Servlet:JAVADOC:866; Servlet:JAVADOC:873;
+     * @assertion_ids: Servlet:JAVADOC:649; Servlet:JAVADOC:710; Servlet:JAVADOC:846; Servlet:JAVADOC:866;
+     * Servlet:JAVADOC:873;
      *
-     * @test_Strategy: Create a Servlet AsyncTestServlet which support async;
-     * Create an AsyncListenerBad; Client send a request to AsyncTestServlet;
-     * StartAsync in AsyncTestServlet; AsyncContext.createistener(clazz) verifies
+     * @test_Strategy: Create a Servlet AsyncTestServlet which support async; Create an AsyncListenerBad; Client send a
+     * request to AsyncTestServlet; StartAsync in AsyncTestServlet; AsyncContext.createistener(clazz) verifies
      * ServletException is thrown when clazz fails to be instantiated.
      */
     public void asyncListenerTest1() throws Fault {
@@ -171,12 +158,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: timeOutTest
      *
-     * @assertion_ids: Servlet:JAVADOC:710; Servlet:JAVADOC:846;
-     * Servlet:JAVADOC:868; Servlet:JAVADOC:869;
+     * @assertion_ids: Servlet:JAVADOC:710; Servlet:JAVADOC:846; Servlet:JAVADOC:868; Servlet:JAVADOC:869;
      *
-     * @test_Strategy: Create a Servlet AsyncTestServlet which support async;
-     * Client send a request to AsyncTestServlet; StartAsync in AsyncTestServlet;
-     * AsyncContext.setTimeout(L) verifies it works using getTimeout.
+     * @test_Strategy: Create a Servlet AsyncTestServlet which support async; Client send a request to AsyncTestServlet;
+     * StartAsync in AsyncTestServlet; AsyncContext.setTimeout(L) verifies it works using getTimeout.
      */
     public void timeOutTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "timeOutTest");
@@ -186,12 +171,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: timeOutTest1
      *
-     * @assertion_ids: Servlet:JAVADOC:651; Servlet:JAVADOC:710;
-     * Servlet:JAVADOC:846; Servlet:JAVADOC:868; Servlet:JAVADOC:869;
+     * @assertion_ids: Servlet:JAVADOC:651; Servlet:JAVADOC:710; Servlet:JAVADOC:846; Servlet:JAVADOC:868;
+     * Servlet:JAVADOC:869;
      *
-     * @test_Strategy: Create a Servlet AsyncTestServlet which support async;
-     * Client send a request to AsyncTestServlet; StartAsync in AsyncTestServlet;
-     * AsyncContext.setTimeout(L) verifies it works by letting it timeout.
+     * @test_Strategy: Create a Servlet AsyncTestServlet which support async; Client send a request to AsyncTestServlet;
+     * StartAsync in AsyncTestServlet; AsyncContext.setTimeout(L) verifies it works by letting it timeout.
      */
     public void timeOutTest1() throws Fault {
         TEST_PROPS.setProperty(APITEST, "timeOutTest1");
@@ -203,13 +187,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: originalRequestTest
      *
-     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:644;
-     * Servlet:JAVADOC:710; Servlet:JAVADOC:710.2;
+     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:644; Servlet:JAVADOC:710; Servlet:JAVADOC:710.2;
      *
-     * @test_Strategy: Create a Servlet AsyncTestServlet which support async;
-     * Client send a request to AsyncTestServlet; Call ServletRequest.startAsync()
-     * in AsyncTestServlet; verifies AsyncContext.hasOriginalRequestAndResponse
-     * works.
+     * @test_Strategy: Create a Servlet AsyncTestServlet which support async; Client send a request to AsyncTestServlet;
+     * Call ServletRequest.startAsync() in AsyncTestServlet; verifies AsyncContext.hasOriginalRequestAndResponse works.
      */
     public void originalRequestTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "originalRequestTest");
@@ -219,11 +200,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: originalRequestTest1
      *
-     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:644;
-     * Servlet:JAVADOC:712; Servlet:JAVADOC:712.1; Servlet:JAVADOC:712.3;
-     * * @test_Strategy: Create a Servlet AsyncTestServlet which support async;
-     * Client send a request to AsyncTestServlet; Call
-     * ServletRequest.startAsync(ServletRequest, ServletResponse); verifies
+     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:644; Servlet:JAVADOC:712; Servlet:JAVADOC:712.1;
+     * Servlet:JAVADOC:712.3; * @test_Strategy: Create a Servlet AsyncTestServlet which support async; Client send a request
+     * to AsyncTestServlet; Call ServletRequest.startAsync(ServletRequest, ServletResponse); verifies
      * AsyncContext.hasOriginalRequestAndResponse works.
      */
     public void originalRequestTest1() throws Fault {
@@ -234,13 +213,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: originalRequestTest2
      *
-     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:644;
-     * Servlet:JAVADOC:712; Servlet:JAVADOC:712.1; Servlet:JAVADOC:712.3;
+     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:644; Servlet:JAVADOC:712; Servlet:JAVADOC:712.1;
+     * Servlet:JAVADOC:712.3;
      *
-     * @test_Strategy: Create a Servlet AsyncTestServlet which support async;
-     * Client send a request to AsyncTestServlet; Call
-     * ServletRequest.startAsync(ServletRequestWrapper, ServletResponseWrapper);
-     * verifies AsyncContext.hasOriginalRequestAndResponse works.
+     * @test_Strategy: Create a Servlet AsyncTestServlet which support async; Client send a request to AsyncTestServlet;
+     * Call ServletRequest.startAsync(ServletRequestWrapper, ServletResponseWrapper); verifies
+     * AsyncContext.hasOriginalRequestAndResponse works.
      */
     public void originalRequestTest2() throws Fault {
         TEST_PROPS.setProperty(APITEST, "originalRequestTest2");
@@ -250,12 +228,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: originalRequestTest3
      *
-     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:644;
-     * Servlet:JAVADOC:712; Servlet:JAVADOC:712.1; Servlet:JAVADOC:712.3;
+     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:644; Servlet:JAVADOC:712; Servlet:JAVADOC:712.1;
+     * Servlet:JAVADOC:712.3;
      *
-     * @test_Strategy: Create a Servlet AsyncTestServlet which support async;
-     * Client send a request to AsyncTestServlet; Call
-     * ServletRequest.startAsync(ServletRequestWrapper, ServletResponse); verifies
+     * @test_Strategy: Create a Servlet AsyncTestServlet which support async; Client send a request to AsyncTestServlet;
+     * Call ServletRequest.startAsync(ServletRequestWrapper, ServletResponse); verifies
      * AsyncContext.hasOriginalRequestAndResponse works.
      */
     public void originalRequestTest3() throws Fault {
@@ -266,12 +243,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: originalRequestTest4
      *
-     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:644;
-     * Servlet:JAVADOC:712; Servlet:JAVADOC:712.1; Servlet:JAVADOC:712.3;
+     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:644; Servlet:JAVADOC:712; Servlet:JAVADOC:712.1;
+     * Servlet:JAVADOC:712.3;
      *
-     * @test_Strategy: Create a Servlet AsyncTestServlet which support async;
-     * Client send a request to AsyncTestServlet; Call
-     * ServletRequest.startAsync(ServletRequest, ServletResponseWrapper); verifies
+     * @test_Strategy: Create a Servlet AsyncTestServlet which support async; Client send a request to AsyncTestServlet;
+     * Call ServletRequest.startAsync(ServletRequest, ServletResponseWrapper); verifies
      * AsyncContext.hasOriginalRequestAndResponse works.
      */
     public void originalRequestTest4() throws Fault {

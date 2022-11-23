@@ -67,7 +67,8 @@ public class JavaBean implements java.io.Serializable {
     private Calendar myCalendar;
 
     // Default constructor
-    public JavaBean() {}
+    public JavaBean() {
+    }
 
     public void setMyBoolean(boolean v) {
         myBoolean = v;

@@ -46,8 +46,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The resultSetClient49 class tests methods of resultSet interface using Sun's
- * J2EE Reference Implementation.
+ * The resultSetClient49 class tests methods of resultSet interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 99/10/12
@@ -93,14 +92,11 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -109,10 +105,11 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 /*
-                 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery","");
-                 * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+                 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+                 * sqlp.load(istr);
                  */
                 sqlp = p;
                 if (drManager.equals("yes")) {
@@ -127,9 +124,8 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
                 dbSch = new dbSchema();
                 rsSch = new rsSchema();
                 stmt = conn.createStatement(/*
-                                     * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                     * ResultSet.CONCUR_READ_ONLY
-                                     */ );
+                                             * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+                                             */ );
                 dbmd = conn.getMetaData();
                 msg = new JDBCTestMsg();
             } catch (SQLException ex) {
@@ -144,15 +140,12 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTime13
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:394;
-     * JDBC:JAVADOC:395; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:394; JDBC:JAVADOC:395; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing a query that returns
-     * the non-null column of Time_Tab as a Time object.Call the getTime(int
-     * columnIndex) method to retrieve this value.Extract the non-null value of
-     * Time_Tab from the tssql.stmt file as a String.Convert this value into a
-     * Time object.Compare this object with the object returned by the getTime(int
-     * columnIndex).Both of them should be equal.
+     * @test_Strategy: Get a ResultSet object by executing a query that returns the non-null column of Time_Tab as a Time
+     * object.Call the getTime(int columnIndex) method to retrieve this value.Extract the non-null value of Time_Tab from
+     * the tssql.stmt file as a String.Convert this value into a Time object.Compare this object with the object returned by
+     * the getTime(int columnIndex).Both of them should be equal.
      */
     public void testGetTime13() throws Fault {
         Time retVal;
@@ -174,7 +167,8 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
             brkVal = Time.valueOf(str);
 
             msg.addOutputMsg("" + brkVal, "" + retVal);
-            if (retVal.equals(brkVal)) msg.setMsg("getTime method returns: " + retVal);
+            if (retVal.equals(brkVal))
+                msg.setMsg("getTime method returns: " + retVal);
             else {
 
                 msg.printTestError(
@@ -201,12 +195,10 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTime14
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:394;
-     * JDBC:JAVADOC:395; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:394; JDBC:JAVADOC:395; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing a query that returns
-     * null value from Time_Tab as a Time object.Call the getTime(int columnIndex)
-     * method. Check if the value returned is null.
+     * @test_Strategy: Get a ResultSet object by executing a query that returns null value from Time_Tab as a Time
+     * object.Call the getTime(int columnIndex) method. Check if the value returned is null.
      */
     public void testGetTime14() throws Fault {
         Time retVal;
@@ -218,7 +210,8 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
             rs.next();
             msg.setMsg("Calling getTime on Time_Tab");
             retVal = rs.getTime(1);
-            if (retVal == null) msg.setMsg("getTime method returns :" + retVal);
+            if (retVal == null)
+                msg.setMsg("getTime method returns :" + retVal);
             else {
                 msg.printTestError("getTime method does not return null", "test getTime Failed");
             }
@@ -241,12 +234,10 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTime16
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:394;
-     * JDBC:JAVADOC:395; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:394; JDBC:JAVADOC:395; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing a query that returns
-     * null value from Timestamp_Tab as a Time object.Call the getTime(int
-     * columnIndex) method. Check if the value returned is null.
+     * @test_Strategy: Get a ResultSet object by executing a query that returns null value from Timestamp_Tab as a Time
+     * object.Call the getTime(int columnIndex) method. Check if the value returned is null.
      */
     public void testGetTime16() throws Fault {
         Time retVal;
@@ -258,7 +249,8 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
             rs.next();
             msg.setMsg("Calling getTime on Timestamp_Tab");
             retVal = rs.getTime(1);
-            if (retVal == null) msg.setMsg("getTime method returns :" + retVal);
+            if (retVal == null)
+                msg.setMsg("getTime method returns :" + retVal);
             else {
                 msg.printTestError("getTime method does not return null", "test getTime Failed");
             }
@@ -281,15 +273,12 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTime17
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:426;
-     * JDBC:JAVADOC:427; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:426; JDBC:JAVADOC:427; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing a query that returns
-     * non null column of Time_Tab as a Time object.Call the getTime(String
-     * columnName) to retrieve this value.Extract the non-null value ofTime_Tab
-     * from the tssql.stmt file as a String.Convert this value into a Time
-     * object.Compare this object with the object returned by the getTime(String
-     * columnName) method. Both of them should be equal.
+     * @test_Strategy: Get a ResultSet object by executing a query that returns non null column of Time_Tab as a Time
+     * object.Call the getTime(String columnName) to retrieve this value.Extract the non-null value ofTime_Tab from the
+     * tssql.stmt file as a String.Convert this value into a Time object.Compare this object with the object returned by the
+     * getTime(String columnName) method. Both of them should be equal.
      */
     public void testGetTime17() throws Fault {
         Time retVal;
@@ -315,7 +304,8 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
             brkVal = Time.valueOf(str);
 
             msg.addOutputMsg("" + brkVal, "" + retVal);
-            if (retVal.equals(brkVal)) msg.setMsg("getTime method returns: " + retVal);
+            if (retVal.equals(brkVal))
+                msg.setMsg("getTime method returns: " + retVal);
             else {
 
                 msg.printTestError(
@@ -342,12 +332,10 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTime18
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:426;
-     * JDBC:JAVADOC:427; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:426; JDBC:JAVADOC:427; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing a query that returns
-     * null value from Time_Tab as a Time object.Call the getTime(String
-     * columnName) method. Check if the value returned is null.
+     * @test_Strategy: Get a ResultSet object by executing a query that returns null value from Time_Tab as a Time
+     * object.Call the getTime(String columnName) method. Check if the value returned is null.
      */
     public void testGetTime18() throws Fault {
         Time retVal;
@@ -363,7 +351,8 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling getTime on Time_Tab");
             columname = rsmd.getColumnName(1);
             retVal = rs.getTime(columname);
-            if (retVal == null) msg.setMsg("getTime method returns :" + retVal);
+            if (retVal == null)
+                msg.setMsg("getTime method returns :" + retVal);
             else {
                 msg.printTestError("getTime method does not return null", "test getTime Failed!");
             }
@@ -386,15 +375,12 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTimestamp01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:396;
-     * JDBC:JAVADOC:397; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:396; JDBC:JAVADOC:397; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the non-null column of Char_Tab table with the
-     * non-null value of Timestamp_Tab.Execute a query that returns the non-null
-     * column of Char_Tab. table.Call the getTimeStamp(int columnIndex) to
-     * retrieve this value.Compare the value returned with the non null column
-     * value of Timestamp_Tab table. Both of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the non-null
+     * column of Char_Tab table with the non-null value of Timestamp_Tab.Execute a query that returns the non-null column of
+     * Char_Tab. table.Call the getTimeStamp(int columnIndex) to retrieve this value.Compare the value returned with the non
+     * null column value of Timestamp_Tab table. Both of them should be equal.
      */
     public void testGetTimestamp01() throws Fault {
         Timestamp retVal;
@@ -426,7 +412,8 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
             retVal = rs.getTimestamp(1);
 
             msg.addOutputMsg("" + brkVal, "" + retVal);
-            if (retVal.equals(brkVal)) msg.setMsg("getTimestamp method returns: " + retVal);
+            if (retVal.equals(brkVal))
+                msg.setMsg("getTimestamp method returns: " + retVal);
             else {
                 msg.printTestError(
                         "getTimestamp does not return the Timestamp value from Char_Tab",
@@ -453,12 +440,10 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTimestamp13
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:396;
-     * JDBC:JAVADOC:397; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:396; JDBC:JAVADOC:397; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing a query that returns
-     * null value from from Char_Tab.Call the getTimestamp(String columnIndex)
-     * method.Check if it returns null.
+     * @test_Strategy: Get a ResultSet object by executing a query that returns null value from from Char_Tab.Call the
+     * getTimestamp(String columnIndex) method.Check if it returns null.
      */
     public void testGetTimestamp13() throws Fault {
         Timestamp retVal;
@@ -470,7 +455,8 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
             rs.next();
             msg.setMsg("Calling getTimestamp on Char_Tab");
             retVal = rs.getTimestamp(1);
-            if (retVal == null) msg.setMsg("getTimestamp method returns :" + retVal);
+            if (retVal == null)
+                msg.setMsg("getTimestamp method returns :" + retVal);
             else {
                 msg.printTestError("getTimestamp method does not return null", "test getTimestamp Failed!");
             }
@@ -493,15 +479,12 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTimestamp03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:396;
-     * JDBC:JAVADOC:397; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:396; JDBC:JAVADOC:397; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the non-null column of Varchar_Tab table with
-     * the non-null value of Timestamp_Tab.Execute a query that returns the
-     * non-null column of Varchar_Tab. table.Call the getTimeStamp(int
-     * columnIndex) to retrieve this value.Compare the value returned with the non
-     * null column value of Timestamp_Tab table. Both of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the non-null
+     * column of Varchar_Tab table with the non-null value of Timestamp_Tab.Execute a query that returns the non-null column
+     * of Varchar_Tab. table.Call the getTimeStamp(int columnIndex) to retrieve this value.Compare the value returned with
+     * the non null column value of Timestamp_Tab table. Both of them should be equal.
      */
     public void testGetTimestamp03() throws Fault {
         Timestamp retVal;
@@ -558,12 +541,10 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTimestamp04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:396;
-     * JDBC:JAVADOC:397; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:396; JDBC:JAVADOC:397; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing a query that returns
-     * null value from from Varchar_Tab.Call the getTimestamp(int columnIndex)
-     * method.Check if it returns null.
+     * @test_Strategy: Get a ResultSet object by executing a query that returns null value from from Varchar_Tab.Call the
+     * getTimestamp(int columnIndex) method.Check if it returns null.
      */
     public void testGetTimestamp04() throws Fault {
         Timestamp retVal;
@@ -575,7 +556,8 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
             rs.next();
             msg.setMsg("Calling getTime on Varchar_Tab");
             retVal = rs.getTimestamp(1);
-            if (retVal == null) msg.setMsg("getTimestamp method returns :" + retVal);
+            if (retVal == null)
+                msg.setMsg("getTimestamp method returns :" + retVal);
             else {
                 msg.printTestError("getTimestamp method does not return null", "call to getTimestamp failed");
             }
@@ -598,15 +580,12 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTimestamp12
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:396;
-     * JDBC:JAVADOC:397; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:396; JDBC:JAVADOC:397; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the non-null column of Longvarchar_Tab table
-     * with the non-null value of Timestamp_Tab.Execute a query that returns the
-     * non-null column of Longvarchar_Tab. table.Call the getTimeStamp(String
-     * columnIndex) to retrieve this value.Compare the value returned with the non
-     * null column value of Timestamp_Tab table. Both of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the non-null
+     * column of Longvarchar_Tab table with the non-null value of Timestamp_Tab.Execute a query that returns the non-null
+     * column of Longvarchar_Tab. table.Call the getTimeStamp(String columnIndex) to retrieve this value.Compare the value
+     * returned with the non null column value of Timestamp_Tab table. Both of them should be equal.
      */
     public void testGetTimestamp12() throws Fault {
         Timestamp retVal;
@@ -634,7 +613,8 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
             retVal = rs.getTimestamp(1);
             // Compare the values of retVal & brkVal
             msg.addOutputMsg("" + brkVal, "" + retVal);
-            if (retVal.equals(brkVal)) msg.setMsg("getTimestamp method returns: " + retVal);
+            if (retVal.equals(brkVal))
+                msg.setMsg("getTimestamp method returns: " + retVal);
             else {
                 msg.printTestError(
                         "getTimestamp does not return the Timestamp value from Longvarchar_Tab",
@@ -659,10 +639,9 @@ public class resultSetClient49 extends ServiceEETest implements Serializable {
     }
 
     /*
-     * convenience method to help us facilitate the extracting of strings that are
-     * encased within single quotes ('). If the passed in string contains more
-     * than 2 single quotes, we will only extract the portion of the string that
-     * is between the first 2 single quotes we find.
+     * convenience method to help us facilitate the extracting of strings that are encased within single quotes ('). If the
+     * passed in string contains more than 2 single quotes, we will only extract the portion of the string that is between
+     * the first 2 single quotes we find.
      */
     private String getSingleQuoteContent(String str) {
         int index1 = str.indexOf("'"); // get 1st quote

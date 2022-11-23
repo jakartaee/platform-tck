@@ -27,7 +27,7 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 
 @Stateless()
-@Remote({TxIF.class, SameMethodRemoteIF.class})
+@Remote({ TxIF.class, SameMethodRemoteIF.class })
 @Local(SameMethodLocalIF.class)
 // @TransactionAttribute(TransactionAttributeType.NEVER)
 public class TxBean extends TxBeanBase implements TxIF, SameMethodLocalIF, SameMethodRemoteIF {
@@ -41,7 +41,8 @@ public class TxBean extends TxBeanBase implements TxIF, SameMethodLocalIF, SameM
         super.neverTest();
     }
 
-    public void sameMethod() {}
+    public void sameMethod() {
+    }
 
     // The two overloaded methods share the same transaction-attribute with
     // their respective no-arg methods, since transaction-attribute is specified

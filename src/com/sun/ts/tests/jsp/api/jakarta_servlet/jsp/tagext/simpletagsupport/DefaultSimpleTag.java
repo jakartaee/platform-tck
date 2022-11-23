@@ -27,10 +27,8 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.simpletagsupport;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 /**
- * This will validate that the default behavior of SimpleTagSupport is to do
- * nothing. This will be validated by having the SimpleTag surround another tag
- * instance. If the default behavior is correct, the nested tag will not be
- * invoked.
+ * This will validate that the default behavior of SimpleTagSupport is to do nothing. This will be validated by having
+ * the SimpleTag surround another tag instance. If the default behavior is correct, the nested tag will not be invoked.
  */
 public class DefaultSimpleTag extends SimpleTagSupport {
 

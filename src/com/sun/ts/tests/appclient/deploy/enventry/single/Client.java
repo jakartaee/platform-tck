@@ -58,9 +58,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:103.1
      *
-     * @test_Strategy: Deploy and create an application client whose DD declares a
-     *                 String environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create an application client whose DD declares a String environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testString() throws Fault {
@@ -81,9 +80,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:103.7
      *
-     * @test_Strategy: Deploy and create an application client whose DD declares a
-     *                 Boolean environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create an application client whose DD declares a Boolean environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testBoolean() throws Fault {
@@ -104,9 +102,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:103.3
      *
-     * @test_Strategy: Deploy and create an application client whose DD declares a
-     *                 Byte environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create an application client whose DD declares a Byte environment entry. Lookup this entry
+     * and check that its runtime value match the DD value.
      *
      */
     public void testByte() throws Fault {
@@ -127,9 +124,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:103.4
      *
-     * @test_Strategy: Deploy and create an application client whose DD declares a
-     *                 Short environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create an application client whose DD declares a Short environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testShort() throws Fault {
@@ -150,9 +146,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:103.5
      *
-     * @test_Strategy: Deploy and create an application client whose DD declares a
-     *                 Integer environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create an application client whose DD declares a Integer environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testInteger() throws Fault {
@@ -173,9 +168,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:103.8
      *
-     * @test_Strategy: Deploy and create an application client whose DD declares a
-     *                 Long environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create an application client whose DD declares a Long environment entry. Lookup this entry
+     * and check that its runtime value match the DD value.
      *
      */
     public void testLong() throws Fault {
@@ -196,9 +190,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:103.9
      *
-     * @test_Strategy: Deploy and create an application client whose DD declares a
-     *                 Float environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create an application client whose DD declares a Float environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testFloat() throws Fault {
@@ -219,9 +212,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:103.6
      *
-     * @test_Strategy: Deploy and create an application client whose DD declares a
-     *                 Double environment entry. Lookup this entry and check that
-     *                 its runtime value match the DD value.
+     * @test_Strategy: Deploy and create an application client whose DD declares a Double environment entry. Lookup this
+     * entry and check that its runtime value match the DD value.
      *
      */
     public void testDouble() throws Fault {
@@ -243,9 +235,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:103
      *
-     * @test_Strategy: Deploy and create an application client whose DD declares
-     *                 an environment entry of each type. Lookup these entries and
-     *                 check that their runtime value match their DD value.
+     * @test_Strategy: Deploy and create an application client whose DD declares an environment entry of each type. Lookup
+     * these entries and check that their runtime value match their DD value.
      *
      */
     public void testAll() throws Fault {

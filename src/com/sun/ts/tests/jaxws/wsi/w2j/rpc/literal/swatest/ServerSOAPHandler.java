@@ -103,8 +103,10 @@ public class ServerSOAPHandler extends HTTPSOAPHandler {
                                 || (mimeHeaderValues[i].indexOf("binary") >= 0)
                                 || (mimeHeaderValues[i].indexOf("quoted-printable") >= 0)
                                 || (mimeHeaderValues[i].indexOf("base64") >= 0)) {
-                            if (result == null) result = "PASSED: Attach[" + k + "]=";
-                            else result = result + "Attach[" + k + "]=";
+                            if (result == null)
+                                result = "PASSED: Attach[" + k + "]=";
+                            else
+                                result = result + "Attach[" + k + "]=";
                             result = result + mimeHeaderValues[i] + " ";
                         } else {
                             return "FAILED: INVALID Content-Transfer-Encoding mime header value of ["
@@ -114,7 +116,8 @@ public class ServerSOAPHandler extends HTTPSOAPHandler {
                     }
                 }
             }
-            if (result == null) result = "PASSED: No Content-Transfer-Encoding mime headers were found";
+            if (result == null)
+                result = "PASSED: No Content-Transfer-Encoding mime headers were found";
         } catch (Exception e) {
             result = "FAILED: exception occurred:" + e;
         }

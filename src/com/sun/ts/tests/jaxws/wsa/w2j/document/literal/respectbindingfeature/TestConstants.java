@@ -20,13 +20,11 @@
 package com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature;
 
 public class TestConstants {
-    public static final String ADD_NUMBERS_IN_ACTION_URI =
-            "http://respectbindingfeatureservice.org/AddNumbersPortType/addRequest";
+    public static final String ADD_NUMBERS_IN_ACTION_URI = "http://respectbindingfeatureservice.org/AddNumbersPortType/addRequest";
 
     public static final String ADD_NUMBERS_IN_ACTION = "inputAction";
 
-    public static final String ADD_NUMBERS_OUT_ACTION_URI =
-            "http://respectbindingfeatureservice.org/AddNumbersPortType/addResponse";
+    public static final String ADD_NUMBERS_OUT_ACTION_URI = "http://respectbindingfeatureservice.org/AddNumbersPortType/addResponse";
 
     public static final String ADD_NUMBERS_OUT_ACTION = "outputAction";
 }

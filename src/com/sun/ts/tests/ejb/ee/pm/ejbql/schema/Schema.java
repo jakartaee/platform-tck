@@ -119,7 +119,8 @@ public class Schema {
         productHome = (ProductHome) nctx.lookup(ProductBean, ProductHome.class);
         try {
             TestUtil.logMsg("Check if Schema already exists in Persistent Storage");
-            if (SchemaAlreadyExists()) return;
+            if (SchemaAlreadyExists())
+                return;
 
             TestUtil.logMsg("Begin creating Schema in Persistent Storage");
             TestUtil.logMsg("Create Schema DVC Data");
@@ -220,9 +221,11 @@ public class Schema {
         Vector v1 = null;
         Vector v2 = null;
 
-        if (printMsgs) TestUtil.logTrace("Schema.createSchemaDVCs");
+        if (printMsgs)
+            TestUtil.logTrace("Schema.createSchemaDVCs");
 
-        if (printMsgs) TestUtil.logMsg("Create Phone Data [28 phone numbers]");
+        if (printMsgs)
+            TestUtil.logMsg("Create Phone Data [28 phone numbers]");
         phoneDVC[0] = new PhoneDVC("1", "617", "664-8122");
         phoneDVC[1] = new PhoneDVC("2", "781", "442-8122");
         phoneDVC[2] = new PhoneDVC("3", "508", "662-7117");
@@ -252,7 +255,8 @@ public class Schema {
         phoneDVC[26] = new PhoneDVC("27", "890", "670-9138");
         phoneDVC[27] = new PhoneDVC("28", "781", "442-0230");
 
-        if (printMsgs) TestUtil.logMsg("Create Country Data [14 countries]");
+        if (printMsgs)
+            TestUtil.logMsg("Create Country Data [14 countries]");
         countryDVC[0] = new Country("United States", "USA");
         countryDVC[1] = new Country("United States", "USA");
         countryDVC[2] = new Country("United States", "USA");
@@ -268,7 +272,8 @@ public class Schema {
         countryDVC[12] = new Country("China", "CHA");
         countryDVC[13] = new Country("Japan", "JPN");
 
-        if (printMsgs) TestUtil.logMsg("Create Address Data [28 addresses]");
+        if (printMsgs)
+            TestUtil.logMsg("Create Address Data [28 addresses]");
         v1 = new Vector();
         v2 = new Vector();
         v1.add(phoneDVC[0]);
@@ -367,7 +372,8 @@ public class Schema {
         addressDVC[26] = new AddressDVC("27", "4 Rangeway Road", "Lawrence", "RI", "53026", v1);
         addressDVC[27] = new AddressDVC("28", "1 Network Drive", "Burlington", "MA", "00252", v2);
 
-        if (printMsgs) TestUtil.logMsg("Create Credit Card Data [20 creditcards]");
+        if (printMsgs)
+            TestUtil.logMsg("Create Credit Card Data [20 creditcards]");
         creditCardDVC[0] = new CreditCardDVC("1", "1234-2567-1222-9999", "VISA", "04/02", true, (double) 5579);
         creditCardDVC[1] = new CreditCardDVC("2", "3455-9876-1221-0060", "MCARD", "10/03", false, (double) 15000);
         creditCardDVC[2] = new CreditCardDVC("3", "1210-1449-2200-3254", "AXP", "11/02", true, (double) 3000);
@@ -389,7 +395,8 @@ public class Schema {
         creditCardDVC[18] = new CreditCardDVC("19", "8736-0980-8765-4869", "MCARD", "09/02", true, (double) 5500);
         creditCardDVC[19] = new CreditCardDVC("20", "6745-0979-0970-2345", "VISA", "02/05", true, (double) 1400);
 
-        if (printMsgs) TestUtil.logMsg("Create LineItem Data [44 lineitems]");
+        if (printMsgs)
+            TestUtil.logMsg("Create LineItem Data [44 lineitems]");
         lineItemDVC[0] = new LineItemDVC("1", 1);
         lineItemDVC[1] = new LineItemDVC("2", 1);
         lineItemDVC[2] = new LineItemDVC("3", 1);
@@ -435,7 +442,8 @@ public class Schema {
         lineItemDVC[42] = new LineItemDVC("43", 1);
         lineItemDVC[43] = new LineItemDVC("44", 3);
 
-        if (printMsgs) TestUtil.logMsg("Create Spouse Info Data [6 entries of spouse info data]");
+        if (printMsgs)
+            TestUtil.logMsg("Create Spouse Info Data [6 entries of spouse info data]");
         infoDVC[0] = new InfoDVC("1", "634 Goldstar Road", "Peabody", "MA", "88444");
         infoDVC[1] = new InfoDVC("2", "3212 Boston Road", "Chelmsford", "MA", "01824");
         infoDVC[2] = new InfoDVC("3", "47 Skyline Drive", "Attleboro", "MA", "76656");
@@ -443,7 +451,8 @@ public class Schema {
         infoDVC[4] = new InfoDVC("5", "212 Edgewood Drive", "Claremont", "NH", "58976");
         infoDVC[5] = new InfoDVC("6", "11 Richmond Lane", "Chatham", "NJ", "65490");
 
-        if (printMsgs) TestUtil.logMsg("Create Spouse Data [6 spouses]");
+        if (printMsgs)
+            TestUtil.logMsg("Create Spouse Data [6 spouses]");
         spouseDVC[0] = new SpouseDVC("1", "Kathleen", "Jones", "Porter", "034-58-0988", infoDVC[0]);
         spouseDVC[1] = new SpouseDVC("2", "Judith", "Connors", "McCall", "074-22-6431", infoDVC[1]);
         spouseDVC[2] = new SpouseDVC("3", "Linda", "Kelly", "Morrison", "501-22-5940", infoDVC[2]);
@@ -491,19 +500,16 @@ public class Schema {
         customerRef[9] = customerHome.create("10", "Kate P. Hudson", addressDVC[18], addressDVC[19], countryDVC[9]);
         customerRef[9].initLogging(props);
 
-        customerRef[10] =
-                customerHome.create("11", "Jonathan K. Smith", addressDVC[20], addressDVC[21], countryDVC[10]);
+        customerRef[10] = customerHome.create("11", "Jonathan K. Smith", addressDVC[20], addressDVC[21], countryDVC[10]);
         customerRef[10].initLogging(props);
 
         customerRef[11] = customerHome.create("12", null, addressDVC[22], addressDVC[23], countryDVC[11]);
         customerRef[11].initLogging(props);
 
-        customerRef[12] =
-                customerHome.create("13", "Douglas A. Donahue", addressDVC[24], addressDVC[25], countryDVC[12]);
+        customerRef[12] = customerHome.create("13", "Douglas A. Donahue", addressDVC[24], addressDVC[25], countryDVC[12]);
         customerRef[12].initLogging(props);
 
-        customerRef[13] =
-                customerHome.create("14", "Kellie A. Sanborn", addressDVC[26], addressDVC[27], countryDVC[13]);
+        customerRef[13] = customerHome.create("14", "Kellie A. Sanborn", addressDVC[26], addressDVC[27], countryDVC[13]);
         customerRef[13].initLogging(props);
 
         TestUtil.logMsg("Create Spouse EJB Only [1 spouse]");
@@ -519,8 +525,7 @@ public class Schema {
         productRef[2] = productHome.create("3", "CORBA Programming", (double) 44.95, 55, (long) 765432198);
         productRef[2].initLogging(props);
 
-        productRef[3] =
-                productHome.create("4", "WEB Programming with JSP's & Servlet's", (double) 33.95, 25, (long) 654321987);
+        productRef[3] = productHome.create("4", "WEB Programming with JSP's & Servlet's", (double) 33.95, 25, (long) 654321987);
         productRef[3].initLogging(props);
 
         productRef[4] = productHome.create("5", "Dell Laptop PC", (double) 1095.95, 50, (long) 543219876);
@@ -538,8 +543,7 @@ public class Schema {
         productRef[8] = productHome.create("9", "Free Samples", (double) 0.00, 10, (long) 000000000);
         productRef[8].initLogging(props);
 
-        productRef[9] =
-                productHome.create("10", "Designing Enterprise Applications", (double) 39.95, 500, (long) 123456789);
+        productRef[9] = productHome.create("10", "Designing Enterprise Applications", (double) 39.95, 500, (long) 123456789);
         productRef[9].initLogging(props);
 
         productRef[10] = productHome.create("11", "Complete Guide to XML", (double) 38.85, 300, (long) 234567891);
@@ -557,8 +561,7 @@ public class Schema {
         productRef[14] = productHome.create("15", "Very Best Tutorial", (double) 25.99, 0, (long) 678912345);
         productRef[14].initLogging(props);
 
-        productRef[15] =
-                productHome.create("16", "Home Grown Programming Examples", (double) 10.95, 25, (long) 789123456);
+        productRef[15] = productHome.create("16", "Home Grown Programming Examples", (double) 10.95, 25, (long) 789123456);
         productRef[15].initLogging(props);
 
         productRef[16] = productHome.create("17", "Programming in ANSI C", (double) 23.95, 10, (long) 891234567);

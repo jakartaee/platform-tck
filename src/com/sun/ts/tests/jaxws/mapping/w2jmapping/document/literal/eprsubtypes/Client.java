@@ -32,8 +32,7 @@ import java.util.Properties;
 
 public class Client extends ServiceEETest {
 
-    private static final String EXPECTED_SEI_CLASS =
-            "com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.eprsubtypes.Hello";
+    private static final String EXPECTED_SEI_CLASS = "com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.eprsubtypes.Hello";
 
     /*
      * Test entry point.
@@ -61,13 +60,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2086;
      *
-     * @test_Strategy: Generate classes from a wsdl/xsd that contain
-     * wsa:EndpointReference types and verify that JAXB correctly maps all
-     * wsa:EndpointReference types to W3CEndpointReference. Verify that the hello
-     * method on the generated sei class has the correct signatures for return
-     * type and method parameters. They should all be of type
-     * W3CEndpointReference. Any schema element of the type wsa:EndpointReference
-     * or its subtypes MUST be mapped to
+     * @test_Strategy: Generate classes from a wsdl/xsd that contain wsa:EndpointReference types and verify that JAXB
+     * correctly maps all wsa:EndpointReference types to W3CEndpointReference. Verify that the hello method on the generated
+     * sei class has the correct signatures for return type and method parameters. They should all be of type
+     * W3CEndpointReference. Any schema element of the type wsa:EndpointReference or its subtypes MUST be mapped to
      * jakarta.xml.ws.wsaddressing.W3CEndpointReferencedefault.
      */
     public void VerifyEPRSubTypesTest1() throws Fault {
@@ -107,7 +103,8 @@ public class Client extends ServiceEETest {
             throw new Fault("VerifyEPRSubTypesTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyEPRSubTypesTest1 failed");
+        if (!pass)
+            throw new Fault("VerifyEPRSubTypesTest1 failed");
     }
 
     /*
@@ -115,13 +112,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2086;
      *
-     * @test_Strategy: Generate classes from a wsdl/xsd that contain
-     * wsa:EndpointReference types and verify that JAXB correctly maps all
-     * wsa:EndpointReference types to W3CEndpointReference. Verify that the hello2
-     * method on the generated sei class has the correct signatures for return
-     * type and method parameters. They should all be of type
-     * W3CEndpointReference. Any schema element of the type wsa:EndpointReference
-     * or its subtypes MUST be mapped to
+     * @test_Strategy: Generate classes from a wsdl/xsd that contain wsa:EndpointReference types and verify that JAXB
+     * correctly maps all wsa:EndpointReference types to W3CEndpointReference. Verify that the hello2 method on the
+     * generated sei class has the correct signatures for return type and method parameters. They should all be of type
+     * W3CEndpointReference. Any schema element of the type wsa:EndpointReference or its subtypes MUST be mapped to
      * jakarta.xml.ws.wsaddressing.W3CEndpointReferencedefault.
      */
     public void VerifyEPRSubTypesTest2() throws Fault {
@@ -154,7 +148,8 @@ public class Client extends ServiceEETest {
             throw new Fault("VerifyEPRSubTypesTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyEPRSubTypesTest2 failed");
+        if (!pass)
+            throw new Fault("VerifyEPRSubTypesTest2 failed");
     }
 
     /*
@@ -162,13 +157,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2086;
      *
-     * @test_Strategy: Generate classes from a wsdl/xsd that contain
-     * wsa:EndpointReference types and verify that JAXB correctly maps all
-     * wsa:EndpointReference types to W3CEndpointReference. Verify that the hello3
-     * method on the generated sei class has the correct signatures for return
-     * type and method parameters. They should all be of type
-     * W3CEndpointReference. Any schema element of the type wsa:EndpointReference
-     * or its subtypes MUST be mapped to
+     * @test_Strategy: Generate classes from a wsdl/xsd that contain wsa:EndpointReference types and verify that JAXB
+     * correctly maps all wsa:EndpointReference types to W3CEndpointReference. Verify that the hello3 method on the
+     * generated sei class has the correct signatures for return type and method parameters. They should all be of type
+     * W3CEndpointReference. Any schema element of the type wsa:EndpointReference or its subtypes MUST be mapped to
      * jakarta.xml.ws.wsaddressing.W3CEndpointReferencedefault.
      */
     public void VerifyEPRSubTypesTest3() throws Fault {
@@ -199,6 +191,7 @@ public class Client extends ServiceEETest {
             throw new Fault("VerifyEPRSubTypesTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyEPRSubTypesTest3 failed");
+        if (!pass)
+            throw new Fault("VerifyEPRSubTypesTest3 failed");
     }
 }

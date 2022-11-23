@@ -32,7 +32,8 @@ public class Client extends PMClientBase {
 
     private static Coffee cRef[] = new Coffee[5];
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -59,16 +60,14 @@ public class Client extends PMClientBase {
     /*
      * @testName: annotationEntityTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:993; PERSISTENCE:SPEC:995;
-     * PERSISTENCE:JAVADOC:29; PERSISTENCE:SPEC:762; PERSISTENCE:SPEC:402;
-     * PERSISTENCE:SPEC:404;
+     * @assertion_ids: PERSISTENCE:SPEC:993; PERSISTENCE:SPEC:995; PERSISTENCE:JAVADOC:29; PERSISTENCE:SPEC:762;
+     * PERSISTENCE:SPEC:402; PERSISTENCE:SPEC:404;
      *
-     * @test_Strategy: The name annotation element defaults to the unqualified
-     * name of the entity class. This name is used to refer to the entities in
-     * queries.
+     * @test_Strategy: The name annotation element defaults to the unqualified name of the entity class. This name is used
+     * to refer to the entities in queries.
      *
-     * Name the entity using a lower case name and ensure the query can be
-     * executed with the lower case entity name as the abstract schema name.
+     * Name the entity using a lower case name and ensure the query can be executed with the lower case entity name as the
+     * abstract schema name.
      *
      */
 
@@ -80,8 +79,7 @@ public class Client extends PMClientBase {
 
         try {
             getEntityTransaction().begin();
-            final String[] expectedBrands =
-                    new String[] {"vanilla creme", "mocha", "hazelnut", "decaf", "breakfast blend"};
+            final String[] expectedBrands = new String[] { "vanilla creme", "mocha", "hazelnut", "decaf", "breakfast blend" };
 
             TestUtil.logTrace("find coffees by brand name");
             c = getEntityManager()
@@ -120,22 +118,20 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("annotationEntityTest1 failed");
+        if (!pass)
+            throw new Fault("annotationEntityTest1 failed");
     }
 
     /*
      * @testName: annotationEntityTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:993; PERSISTENCE:SPEC:995;
-     * PERSISTENCE:JAVADOC:29
+     * @assertion_ids: PERSISTENCE:SPEC:993; PERSISTENCE:SPEC:995; PERSISTENCE:JAVADOC:29
      *
-     * @test_Strategy: The name annotation element defaults to the unqualified
-     * name of the entity class. This name is used to refer to the entities in
-     * queries.
+     * @test_Strategy: The name annotation element defaults to the unqualified name of the entity class. This name is used
+     * to refer to the entities in queries.
      *
-     * Name the entity using a different name than the entity class name and
-     * ensure the query can be executed with the lower case entity name as the
-     * abstract schema name selecting teh
+     * Name the entity using a different name than the entity class name and ensure the query can be executed with the lower
+     * case entity name as the abstract schema name selecting teh
      *
      */
 
@@ -148,7 +144,7 @@ public class Client extends PMClientBase {
 
         try {
             getEntityTransaction().begin();
-            final Integer[] expectedPKs = new Integer[] {21, 22, 23, 24, 25};
+            final Integer[] expectedPKs = new Integer[] { 21, 22, 23, 24, 25 };
 
             TestUtil.logTrace("find all coffees");
             c = getEntityManager()
@@ -198,7 +194,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("annotationEntityTest1 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("annotationEntityTest1 failed");
     }
 
     /*

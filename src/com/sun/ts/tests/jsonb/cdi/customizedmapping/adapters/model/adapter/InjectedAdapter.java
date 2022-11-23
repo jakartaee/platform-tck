@@ -38,16 +38,16 @@ public class InjectedAdapter implements JsonbAdapter<Animal, AnimalJson> {
     public AnimalJson adaptToJson(Animal animal) throws Exception {
         AnimalJson adapted = new AnimalJson();
         switch (animalIdentifier.getType(animal)) {
-            case CAT:
-                adapted.setType(CAT);
-                adapted.setCuddly(((Cat) animal).isCuddly());
-                break;
-            case DOG:
-                adapted.setType(DOG);
-                adapted.setBarking(((Dog) animal).isBarking());
-                break;
-            default:
-                adapted.setType(GENERIC);
+        case CAT:
+            adapted.setType(CAT);
+            adapted.setCuddly(((Cat) animal).isCuddly());
+            break;
+        case DOG:
+            adapted.setType(DOG);
+            adapted.setBarking(((Dog) animal).isBarking());
+            break;
+        default:
+            adapted.setType(GENERIC);
         }
         adapted.setName(animal.getName());
         adapted.setAge(animal.getAge());
@@ -60,16 +60,16 @@ public class InjectedAdapter implements JsonbAdapter<Animal, AnimalJson> {
     public Animal adaptFromJson(AnimalJson adapted) throws Exception {
         Animal animal;
         switch (adapted.getType()) {
-            case CAT:
-                animal = new Cat();
-                ((Cat) animal).setCuddly(adapted.isCuddly());
-                break;
-            case DOG:
-                animal = new Dog();
-                ((Dog) animal).setBarking(adapted.isBarking());
-                break;
-            default:
-                animal = new Animal();
+        case CAT:
+            animal = new Cat();
+            ((Cat) animal).setCuddly(adapted.isCuddly());
+            break;
+        case DOG:
+            animal = new Dog();
+            ((Dog) animal).setBarking(adapted.isBarking());
+            break;
+        default:
+            animal = new Animal();
         }
         animal.setName(adapted.getName());
         animal.setAge(adapted.getAge());

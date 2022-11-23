@@ -169,7 +169,8 @@ public class Client extends ServiceEETest {
                     if (!value.equals(CUSTOMER_KEY_VALUE)) {
                         TestUtil.logErr("CUSTOMER_KEY_VALUE: expected: " + CUSTOMER_KEY_VALUE + ", received: " + value);
                         return false;
-                    } else found = true;
+                    } else
+                        found = true;
                 }
             }
             if (!found) {
@@ -238,8 +239,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -278,8 +281,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: testReplyToRefps
      *
-     * @assertion_ids: WSACORE:SPEC:3012; WSACORE:SPEC:3012.1;
-     * WSACORE:SPEC:3012.2; WSACORE:SPEC:2004; WSACORE:SPEC:2004.3;
+     * @assertion_ids: WSACORE:SPEC:3012; WSACORE:SPEC:3012.1; WSACORE:SPEC:3012.2; WSACORE:SPEC:2004; WSACORE:SPEC:2004.3;
      * WSACORE:SPEC:3021;
      *
      * @test_Strategy:
@@ -306,14 +308,14 @@ public class Client extends ServiceEETest {
             throw new Fault("testReplyToRefps failed", e);
         }
 
-        if (!pass) throw new Fault("testReplyToRefps failed");
+        if (!pass)
+            throw new Fault("testReplyToRefps failed");
     }
 
     /*
      * @testName: testFaultToRefps
      *
-     * @assertion_ids: WSACORE:SPEC:3012; WSACORE:SPEC:3012.1;
-     * WSACORE:SPEC:3012.2; WSACORE:SPEC:2004; WSACORE:SPEC:2004.3;
+     * @assertion_ids: WSACORE:SPEC:3012; WSACORE:SPEC:3012.1; WSACORE:SPEC:3012.2; WSACORE:SPEC:2004; WSACORE:SPEC:2004.3;
      * WSACORE:SPEC:3021;
      *
      * @test_Strategy:
@@ -362,6 +364,7 @@ public class Client extends ServiceEETest {
             throw new Fault("testFaultToRefps failed", e);
         }
 
-        if (!pass) throw new Fault("testFaultToRefps failed");
+        if (!pass)
+            throw new Fault("testFaultToRefps failed");
     }
 }

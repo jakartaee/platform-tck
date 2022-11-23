@@ -35,16 +35,12 @@ import jakarta.ejb.TransactionManagementType;
 // some meta data are annotated here and others are in ejb-jar.xml, but there
 // is no overriding, which is tested by ../override directory.
 //
-@MessageDriven(
-        name = "ActivationConfigBean",
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Topic"),
-            @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Dups-ok-acknowledge"),
-            @ActivationConfigProperty(propertyName = "subscriptionDurability", propertyValue = "NonDurable"),
-            @ActivationConfigProperty(
-                    propertyName = "messageSelector",
-                    propertyValue = "COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999")
-        })
+@MessageDriven(name = "ActivationConfigBean", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Topic"),
+        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Dups-ok-acknowledge"),
+        @ActivationConfigProperty(propertyName = "subscriptionDurability", propertyValue = "NonDurable"),
+        @ActivationConfigProperty(propertyName = "messageSelector", propertyValue = "COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum NOT BETWEEN 1 AND 9999")
+})
 
 // assembler not permitted to override transaction management type.
 @TransactionManagement(TransactionManagementType.BEAN)

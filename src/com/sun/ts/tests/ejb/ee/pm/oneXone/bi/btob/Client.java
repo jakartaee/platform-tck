@@ -47,8 +47,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -79,12 +78,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:232.1
      *
-     * @test_Strategy: A 1x1 bi-directional relationship between entitybean
-     * objects. Create a 1x1 bi-directional relationship between entitybean
-     * objects. Do not set relationship fields. The results should be set to null.
-     * Deploy EAR on the J2EE server. Ensure the entitybean objects were created
-     * and that the persistence manager has null settings for the relationship
-     * fields not set.
+     * @test_Strategy: A 1x1 bi-directional relationship between entitybean objects. Create a 1x1 bi-directional
+     * relationship between entitybean objects. Do not set relationship fields. The results should be set to null. Deploy
+     * EAR on the J2EE server. Ensure the entitybean objects were created and that the persistence manager has null settings
+     * for the relationship fields not set.
      */
 
     public void btob_1x1_bi_test0() throws Fault {
@@ -100,7 +97,8 @@ public class Client extends EETest {
 
             // Bi-Directional relationship fields should be null for both
             // entitybean objects
-            if (bRef.test0()) TestUtil.logMsg("relationship fields are null - expected");
+            if (bRef.test0())
+                TestUtil.logMsg("relationship fields are null - expected");
             else {
                 TestUtil.logErr("relationship fields are nonnull - unexpected");
                 pass = false;
@@ -117,7 +115,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1x1_bi_test0 failed");
+        if (!pass)
+            throw new Fault("btob_1x1_bi_test0 failed");
     }
 
     /*
@@ -125,12 +124,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:232.1
      *
-     * @test_Strategy: A 1x1 bi-directional relationship between entitybean
-     * objects. Create a 1x1 bi-directional relationship between entitybean
-     * objects. Do set relationship fields to null. The results should be set to
-     * null. Deploy EAR on the J2EE server. Ensure the entitybean objects were
-     * created and that the persistence manager has null settings for the
-     * relationship fields not set.
+     * @test_Strategy: A 1x1 bi-directional relationship between entitybean objects. Create a 1x1 bi-directional
+     * relationship between entitybean objects. Do set relationship fields to null. The results should be set to null.
+     * Deploy EAR on the J2EE server. Ensure the entitybean objects were created and that the persistence manager has null
+     * settings for the relationship fields not set.
      */
 
     public void btob_1x1_bi_test1() throws Fault {
@@ -146,7 +143,8 @@ public class Client extends EETest {
 
             // Bi-Directional relationship fields should be null for both
             // entitybean objects
-            if (bRef.test1()) TestUtil.logMsg("relationship fields are null - expected");
+            if (bRef.test1())
+                TestUtil.logMsg("relationship fields are null - expected");
             else {
                 TestUtil.logErr("relationship fields are nonnull - unexpected");
                 pass = false;
@@ -163,7 +161,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1x1_bi_test1 failed");
+        if (!pass)
+            throw new Fault("btob_1x1_bi_test1 failed");
     }
 
     /*
@@ -171,11 +170,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:203
      *
-     * @test_Strategy: A 1x1 bi-directional relationship between entitybean
-     * objects. Create a 1x1 bi-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Perform the relationship assignment
-     * per assertion tag. Ensure the proper relationship results are correct after
-     * the assignment by the persistence manager.
+     * @test_Strategy: A 1x1 bi-directional relationship between entitybean objects. Create a 1x1 bi-directional
+     * relationship between entitybean objects. Deploy EAR on the J2EE server. Perform the relationship assignment per
+     * assertion tag. Ensure the proper relationship results are correct after the assignment by the persistence manager.
      *
      */
 
@@ -205,7 +202,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1x1_bi_test2 failed");
+        if (!pass)
+            throw new Fault("btob_1x1_bi_test2 failed");
     }
 
     /*
@@ -213,10 +211,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:191; EJB:SPEC:164; EJB:SPEC:163
      *
-     * @test_Strategy: Create a 1x1 bi-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Ensure the entity beans were
-     * created and that the persistence manager is handling getting/setting of
-     * data. Ensure bi-directional data access from both entitybean objects.
+     * @test_Strategy: Create a 1x1 bi-directional relationship between entitybean objects. Deploy EAR on the J2EE server.
+     * Ensure the entity beans were created and that the persistence manager is handling getting/setting of data. Ensure
+     * bi-directional data access from both entitybean objects.
      *
      */
 
@@ -263,6 +260,7 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1x1_bi_test3 failed");
+        if (!pass)
+            throw new Fault("btob_1x1_bi_test3 failed");
     }
 }

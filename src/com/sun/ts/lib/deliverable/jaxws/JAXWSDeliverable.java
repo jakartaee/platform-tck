@@ -21,9 +21,8 @@ import com.sun.ts.lib.deliverable.PropertyManagerInterface;
 import java.util.Properties;
 
 /**
- * This class serves as a default implementation of the Deliverable interface
- * for the jaxws TCK. TCKs are free to use this impl if it suits their needs.
- * Otherwise, it should be extended.
+ * This class serves as a default implementation of the Deliverable interface for the jaxws TCK. TCKs are free to use
+ * this impl if it suits their needs. Otherwise, it should be extended.
  *
  */
 public class JAXWSDeliverable extends com.sun.ts.lib.deliverable.tck.TCKDeliverable {

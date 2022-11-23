@@ -27,7 +27,8 @@ import java.io.Serializable;
 @Entity
 public class UniMXMProject implements Serializable {
 
-    public UniMXMProject() {}
+    public UniMXMProject() {
+    }
 
     private static final long serialVersionUID = 1L;
 

@@ -135,8 +135,7 @@ public class Client extends ServiceEETest {
     }
 
     /*
-     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost;
-     * webServerPort; platform.mode;
+     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost; webServerPort; platform.mode;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -145,8 +144,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -196,7 +197,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testPing failed", e);
         }
 
-        if (!pass) throw new Fault("testPing failed");
+        if (!pass)
+            throw new Fault("testPing failed");
     }
 
     /*
@@ -229,7 +231,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testPingWSDL failed", e);
         }
 
-        if (!pass) throw new Fault("testPingWSDL failed");
+        if (!pass)
+            throw new Fault("testPingWSDL failed");
     }
 
     /*
@@ -284,8 +287,7 @@ public class Client extends ServiceEETest {
 
                         if (bindingQName != null) {
 
-                            Element bindingElement =
-                                    com.sun.ts.tests.jws.common.WsdlUtils.findSoapBindingElement(doc, bindingQName);
+                            Element bindingElement = com.sun.ts.tests.jws.common.WsdlUtils.findSoapBindingElement(doc, bindingQName);
 
                             if (bindingElement != null) {
 
@@ -295,7 +297,8 @@ public class Client extends ServiceEETest {
 
                                     node = soapBindingElementList.item(i);
 
-                                    if (!(node instanceof Element)) continue;
+                                    if (!(node instanceof Element))
+                                        continue;
 
                                     soapBindingElement = (Element) node;
 
@@ -319,6 +322,7 @@ public class Client extends ServiceEETest {
 
         if (!pass)
             throw new Fault("testWSDL1 failed : style is not set to document in the WSDL " + attValue + "  " + att);
-        if (pass) TestUtil.logMsg("testWSDL1 passed : style is set to document in the WSDL ");
+        if (pass)
+            TestUtil.logMsg("testWSDL1 passed : style is set to document in the WSDL ");
     }
 }

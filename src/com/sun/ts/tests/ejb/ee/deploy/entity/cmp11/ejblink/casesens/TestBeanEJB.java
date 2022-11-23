@@ -41,8 +41,8 @@ public class TestBeanEJB extends CMP11Wrapper {
      */
 
     /**
-     * Check that two ejblink entries whose names differ only by case are
-     * associated with different runtime values (as specified in DD).
+     * Check that two ejblink entries whose names differ only by case are associated with different runtime values (as
+     * specified in DD).
      */
     public boolean testCaseSensitivity(java.util.Properties props) {
         CaseBeanHome home1 = null;

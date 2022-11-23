@@ -31,7 +31,7 @@ import jakarta.ejb.TransactionManagementType;
 import java.net.URL;
 
 @Stateless(name = "ResourceFieldBean")
-@Remote({ResourceIF.class})
+@Remote({ ResourceIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ResourceFieldBean extends EnvSharingBeanBase implements ResourceIF {
 

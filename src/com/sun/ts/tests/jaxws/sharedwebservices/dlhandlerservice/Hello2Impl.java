@@ -31,12 +31,7 @@ import jakarta.xml.ws.WebServiceException;
 import jakarta.xml.ws.soap.SOAPFaultException;
 import javax.xml.namespace.QName;
 
-@WebService(
-        portName = "Hello2Port",
-        targetNamespace = "http://dlhandlerservice.org/wsdl",
-        serviceName = "DLHandlerService",
-        wsdlLocation = "WEB-INF/wsdl/DLHandlerService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.Hello2")
+@WebService(portName = "Hello2Port", targetNamespace = "http://dlhandlerservice.org/wsdl", serviceName = "DLHandlerService", wsdlLocation = "WEB-INF/wsdl/DLHandlerService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.Hello2")
 public class Hello2Impl implements Hello2 {
 
     private static final String NAMESPACEURI = "http://dlhandlerservice.org/wsdl";

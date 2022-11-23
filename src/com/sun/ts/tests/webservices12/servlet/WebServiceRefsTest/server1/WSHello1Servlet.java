@@ -22,11 +22,7 @@ package com.sun.ts.tests.webservices12.servlet.WebServiceRefsTest.server1;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "WSHello1Port",
-        serviceName = "WSHello1Service",
-        targetNamespace = "http://helloservlet.org/wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.servlet.WebServiceRefsTest.server1.WSHello1")
+@WebService(portName = "WSHello1Port", serviceName = "WSHello1Service", targetNamespace = "http://helloservlet.org/wsdl", endpointInterface = "com.sun.ts.tests.webservices12.servlet.WebServiceRefsTest.server1.WSHello1")
 public class WSHello1Servlet implements WSHello1 {
     public String sayServletHello(String who) {
         return "WSHello1Servlet: " + who;

@@ -41,14 +41,11 @@ public class WSLibClient extends WSClient {
     /*
      * @testName: usedServerTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:182; WebSocket:SPEC:WSC-6.2-1;
-     * WebSocket:SPEC:WSC-6.2-2; WebSocket:SPEC:WSC-6.2-5;
+     * @assertion_ids: WebSocket:JAVADOC:182; WebSocket:SPEC:WSC-6.2-1; WebSocket:SPEC:WSC-6.2-2; WebSocket:SPEC:WSC-6.2-5;
      *
-     * @test_Strategy: Test the Endpoint which should be used by
-     * ServerApplicationConfig is really used Return a set of annotated endpoint
-     * classes that the server container must deploy. The set of classes passed in
-     * to this method is the set obtained by scanning the archive containing the
-     * implementation of this interface.
+     * @test_Strategy: Test the Endpoint which should be used by ServerApplicationConfig is really used Return a set of
+     * annotated endpoint classes that the server container must deploy. The set of classes passed in to this method is the
+     * set obtained by scanning the archive containing the implementation of this interface.
      */
     @Override
     public void usedServerTest() throws Fault {
@@ -58,14 +55,12 @@ public class WSLibClient extends WSClient {
     /*
      * @testName: unusedServerTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:182; WebSocket:SPEC:WSC-6.2-1;
-     * WebSocket:SPEC:WSC-6.2-2; WebSocket:SPEC:WSC-6.2-5;
+     * @assertion_ids: WebSocket:JAVADOC:182; WebSocket:SPEC:WSC-6.2-1; WebSocket:SPEC:WSC-6.2-2; WebSocket:SPEC:WSC-6.2-5;
      *
-     * @test_Strategy: Test the Endpoint which should be NOT used by
-     * ServerApplicationConfig is really NOT used
+     * @test_Strategy: Test the Endpoint which should be NOT used by ServerApplicationConfig is really NOT used
      *
-     * Therefore, this set passed in contains all the annotated endpoint classes
-     * in the JAR or WAR file containing the implementation of this interface.
+     * Therefore, this set passed in contains all the annotated endpoint classes in the JAR or WAR file containing the
+     * implementation of this interface.
      */
     @Override
     public void unusedServerTest() throws Fault {
@@ -75,12 +70,10 @@ public class WSLibClient extends WSClient {
     /*
      * @testName: otherUsedServerTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:182; WebSocket:SPEC:WSC-6.2-1;
-     * WebSocket:SPEC:WSC-6.2-2; WebSocket:SPEC:WSC-6.2-4;
+     * @assertion_ids: WebSocket:JAVADOC:182; WebSocket:SPEC:WSC-6.2-1; WebSocket:SPEC:WSC-6.2-2; WebSocket:SPEC:WSC-6.2-4;
      * WebSocket:SPEC:WSC-6.2-5;
      *
-     * @test_Strategy: Test all
-     * ServerApplicationConfig#getAnnotatedEndpointClasses methods are really used
+     * @test_Strategy: Test all ServerApplicationConfig#getAnnotatedEndpointClasses methods are really used
      */
     @Override
     public void otherUsedServerTest() throws Fault {
@@ -90,18 +83,15 @@ public class WSLibClient extends WSClient {
     /*
      * @testName: configuredServerTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:183; WebSocket:SPEC:WSC-6.2-1;
-     * WebSocket:SPEC:WSC-6.2-2; WebSocket:SPEC:WSC-6.2-4;
+     * @assertion_ids: WebSocket:JAVADOC:183; WebSocket:SPEC:WSC-6.2-1; WebSocket:SPEC:WSC-6.2-2; WebSocket:SPEC:WSC-6.2-4;
      * WebSocket:SPEC:WSC-6.2-5;
      *
      * @test_Strategy: Test the correct ServerEndpointConfig is used
      *
-     * Return a set of ServerEndpointConfig instances that the server container
-     * will use to deploy the programmatic endpoints. The set of Endpoint classes
-     * passed in to this method is the set obtained by scanning the archive
-     * containing the implementation of this ServerApplication Config. This set
-     * passed in may be used the build the set of ServerEndpointConfig instances
-     * to return to the container for deployment.
+     * Return a set of ServerEndpointConfig instances that the server container will use to deploy the programmatic
+     * endpoints. The set of Endpoint classes passed in to this method is the set obtained by scanning the archive
+     * containing the implementation of this ServerApplication Config. This set passed in may be used the build the set of
+     * ServerEndpointConfig instances to return to the container for deployment.
      */
     @Override
     public void configuredServerTest() throws Fault {
@@ -111,8 +101,7 @@ public class WSLibClient extends WSClient {
     /*
      * @testName: unusedConfiguredServerTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:183; WebSocket:SPEC:WSC-6.2-1;
-     * WebSocket:SPEC:WSC-6.2-2; WebSocket:SPEC:WSC-6.2-4;
+     * @assertion_ids: WebSocket:JAVADOC:183; WebSocket:SPEC:WSC-6.2-1; WebSocket:SPEC:WSC-6.2-2; WebSocket:SPEC:WSC-6.2-4;
      * WebSocket:SPEC:WSC-6.2-5;
      *
      * @test_Strategy: Test the incorrect ServerEndpointConfig is NOT used

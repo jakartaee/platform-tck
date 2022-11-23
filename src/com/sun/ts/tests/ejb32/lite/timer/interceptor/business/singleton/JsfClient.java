@@ -37,7 +37,6 @@ public class JsfClient extends JsfClientBase implements Serializable {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: create a timer in all interceptor methods. Verify they
-     * expire as expected.
+     * @test_Strategy: create a timer in all interceptor methods. Verify they expire as expected.
      */
 }

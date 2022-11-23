@@ -48,7 +48,8 @@ public class Employee2 implements java.io.Serializable {
     @JoinColumn(name = "FK_DEPT")
     private Department2 department;
 
-    public Employee2() {}
+    public Employee2() {
+    }
 
     public Employee2(int id, String firstName, String lastName, float salary) {
         this.id = id;

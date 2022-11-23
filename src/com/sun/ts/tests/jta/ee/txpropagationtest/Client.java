@@ -130,12 +130,10 @@ public class Client extends ServiceEETest implements Serializable {
     /*
      * @testName: test1
      *
-     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46;
-     * EJB:SPEC:543.1; EJB:SPEC:543.2
+     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46; EJB:SPEC:543.1; EJB:SPEC:543.2
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the TxBean (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a commit to a single table.
      *
@@ -170,8 +168,10 @@ public class Client extends ServiceEETest implements Serializable {
             ut.begin();
             beanRef.dbConnect(tName1);
             TestUtil.logMsg("Inserting 2 new rows");
-            if (beanRef.insert(tName1, tSize + 1)) tSize++;
-            if (beanRef.insert(tName1, tSize + 1)) tSize++;
+            if (beanRef.insert(tName1, tSize + 1))
+                tSize++;
+            if (beanRef.insert(tName1, tSize + 1))
+                tSize++;
             TestUtil.logMsg("Deleting a row");
             beanRef.delete(tName1, tRng, tRng);
             beanRef.dbUnConnect(tName1);
@@ -183,12 +183,15 @@ public class Client extends ServiceEETest implements Serializable {
             dbResults = beanRef.getResults(tName1);
 
             TestUtil.logMsg("Verifying the test results");
-            if (!dbResults.contains(new Integer(tRng))) b1 = true;
+            if (!dbResults.contains(new Integer(tRng)))
+                b1 = true;
 
             for (int i = 1; i <= tSize; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains(new Integer(i))) b2 = true;
+                    if (dbResults.contains(new Integer(i)))
+                        b2 = true;
                     else {
                         b2 = false;
                         break;
@@ -198,7 +201,8 @@ public class Client extends ServiceEETest implements Serializable {
             beanRef.dbUnConnect(tName1);
             ut.commit();
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -217,19 +221,18 @@ public class Client extends ServiceEETest implements Serializable {
                 TestUtil.printStackTrace(e);
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
     /*
      * @testName: test2
      *
-     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46;
-     * EJB:SPEC:543.1; EJB:SPEC:543.2
+     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46; EJB:SPEC:543.1; EJB:SPEC:543.2
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the TxBean (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a rollback to a single table.
      *
@@ -266,8 +269,10 @@ public class Client extends ServiceEETest implements Serializable {
             ut.begin();
             beanRef.dbConnect(tName2);
             TestUtil.logMsg("Inserting 2 new rows");
-            if (beanRef.insert(tName2, tSize + 1)) tSize++;
-            if (beanRef.insert(tName2, tSize + 1)) tSize++;
+            if (beanRef.insert(tName2, tSize + 1))
+                tSize++;
+            if (beanRef.insert(tName2, tSize + 1))
+                tSize++;
             TestUtil.logMsg("Deleting a row");
             beanRef.delete(tName2, tRngFrom, tRngTo);
             beanRef.dbUnConnect(tName2);
@@ -298,10 +303,13 @@ public class Client extends ServiceEETest implements Serializable {
             beanRef.dbUnConnect(tName2);
             ut.commit();
 
-            if (b1) TestUtil.logTrace("b1 true");
-            if (b2) TestUtil.logTrace("b2 true");
+            if (b1)
+                TestUtil.logTrace("b1 true");
+            if (b2)
+                TestUtil.logTrace("b2 true");
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -320,19 +328,18 @@ public class Client extends ServiceEETest implements Serializable {
                 TestUtil.printStackTrace(e);
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
     /*
      * @testName: test3
      *
-     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46;
-     * EJB:SPEC:543.1; EJB:SPEC:543.2
+     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46; EJB:SPEC:543.1; EJB:SPEC:543.2
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the TxBean (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a commit to a single table and checking TxStatus.
      *
@@ -370,8 +377,10 @@ public class Client extends ServiceEETest implements Serializable {
             beanRef.createData(tName2);
 
             TestUtil.logMsg("Inserting 2 new rows");
-            if (beanRef.insert(tName2, tSize + 1)) tSize++;
-            if (beanRef.insert(tName2, tSize + 1)) tSize++;
+            if (beanRef.insert(tName2, tSize + 1))
+                tSize++;
+            if (beanRef.insert(tName2, tSize + 1))
+                tSize++;
 
             TestUtil.logMsg("Deleting a row");
             beanRef.delete(tName2, tRng, tRng);
@@ -385,11 +394,15 @@ public class Client extends ServiceEETest implements Serializable {
 
             // Verify the test results
             TestUtil.logMsg("Verifying the test results");
-            if (txStatus1 == jakarta.transaction.Status.STATUS_NO_TRANSACTION) b1 = true;
-            if (txStatus2 == jakarta.transaction.Status.STATUS_ACTIVE) b2 = true;
-            if (txStatus3 == jakarta.transaction.Status.STATUS_NO_TRANSACTION) b3 = true;
+            if (txStatus1 == jakarta.transaction.Status.STATUS_NO_TRANSACTION)
+                b1 = true;
+            if (txStatus2 == jakarta.transaction.Status.STATUS_ACTIVE)
+                b2 = true;
+            if (txStatus3 == jakarta.transaction.Status.STATUS_NO_TRANSACTION)
+                b3 = true;
 
-            if (b1 && b2 && b3) testResult = true;
+            if (b1 && b2 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -408,18 +421,18 @@ public class Client extends ServiceEETest implements Serializable {
                 TestUtil.printStackTrace(e);
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
     /*
      * @testName: test4
      *
-     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46;
-     * EJB:SPEC:543.1; EJB:SPEC:543.2
+     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46; EJB:SPEC:543.1; EJB:SPEC:543.2
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions directly to RDBMS.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * directly to RDBMS.
      *
      * Insert/Delete followed by a commit to a single table.
      *
@@ -454,8 +467,10 @@ public class Client extends ServiceEETest implements Serializable {
             ut.begin();
             db.dbConnect(tName1);
             TestUtil.logMsg("Inserting 2 new rows");
-            if (db.insert(tName1, tSize + 1)) tSize++;
-            if (db.insert(tName1, tSize + 1)) tSize++;
+            if (db.insert(tName1, tSize + 1))
+                tSize++;
+            if (db.insert(tName1, tSize + 1))
+                tSize++;
             TestUtil.logMsg("Deleting a row");
             db.delete(tName1, tRng, tRng);
             db.dbUnConnect(tName1);
@@ -467,12 +482,15 @@ public class Client extends ServiceEETest implements Serializable {
             dbResults = db.getResults(tName1);
 
             TestUtil.logMsg("Verifying the test results");
-            if (!dbResults.contains(new Integer(tRng))) b1 = true;
+            if (!dbResults.contains(new Integer(tRng)))
+                b1 = true;
 
             for (int i = 1; i <= tSize; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains(new Integer(i))) b2 = true;
+                    if (dbResults.contains(new Integer(i)))
+                        b2 = true;
                     else {
                         b2 = false;
                         break;
@@ -482,7 +500,8 @@ public class Client extends ServiceEETest implements Serializable {
             db.dbUnConnect(tName1);
             ut.commit();
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -500,18 +519,18 @@ public class Client extends ServiceEETest implements Serializable {
                 TestUtil.printStackTrace(e);
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
     /*
      * @testName: test5
      *
-     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46;
-     * EJB:SPEC:543.1; EJB:SPEC:543.2
+     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46; EJB:SPEC:543.1; EJB:SPEC:543.2
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions directly to RDBMS.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * directly to RDBMS.
      *
      * Insert/Delete followed by a rollback to a single table.
      *
@@ -548,8 +567,10 @@ public class Client extends ServiceEETest implements Serializable {
             ut.begin();
             db.dbConnect(tName2);
             TestUtil.logMsg("Inserting 2 new rows");
-            if (db.insert(tName2, tSize + 1)) tSize++;
-            if (db.insert(tName2, tSize + 1)) tSize++;
+            if (db.insert(tName2, tSize + 1))
+                tSize++;
+            if (db.insert(tName2, tSize + 1))
+                tSize++;
             TestUtil.logMsg("Deleting a row");
             db.delete(tName2, tRngFrom, tRngTo);
             db.dbUnConnect(tName2);
@@ -580,10 +601,13 @@ public class Client extends ServiceEETest implements Serializable {
             db.dbUnConnect(tName2);
             ut.commit();
 
-            if (b1) TestUtil.logTrace("b1 true");
-            if (b2) TestUtil.logTrace("b2 true");
+            if (b1)
+                TestUtil.logTrace("b1 true");
+            if (b2)
+                TestUtil.logTrace("b2 true");
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -601,18 +625,18 @@ public class Client extends ServiceEETest implements Serializable {
                 TestUtil.printStackTrace(e);
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
     /*
      * @testName: test6
      *
-     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46;
-     * EJB:SPEC:543.1; EJB:SPEC:543.2
+     * @assertion_ids: JavaEE:SPEC:39; JavaEE:SPEC:45; JavaEE:SPEC:46; EJB:SPEC:543.1; EJB:SPEC:543.2
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions directly to RDBMS.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * directly to RDBMS.
      *
      * Insert/Delete followed by a commit to a single table and checking TxStatus.
      *
@@ -650,8 +674,10 @@ public class Client extends ServiceEETest implements Serializable {
             db.createData(tName2);
 
             TestUtil.logMsg("Inserting 2 new rows");
-            if (db.insert(tName2, tSize + 1)) tSize++;
-            if (db.insert(tName2, tSize + 1)) tSize++;
+            if (db.insert(tName2, tSize + 1))
+                tSize++;
+            if (db.insert(tName2, tSize + 1))
+                tSize++;
 
             TestUtil.logMsg("Deleting a row");
             db.delete(tName2, tRng, tRng);
@@ -665,11 +691,15 @@ public class Client extends ServiceEETest implements Serializable {
 
             // Verify the test results
             TestUtil.logMsg("Verifying the test results");
-            if (txStatus1 == jakarta.transaction.Status.STATUS_NO_TRANSACTION) b1 = true;
-            if (txStatus2 == jakarta.transaction.Status.STATUS_ACTIVE) b2 = true;
-            if (txStatus3 == jakarta.transaction.Status.STATUS_NO_TRANSACTION) b3 = true;
+            if (txStatus1 == jakarta.transaction.Status.STATUS_NO_TRANSACTION)
+                b1 = true;
+            if (txStatus2 == jakarta.transaction.Status.STATUS_ACTIVE)
+                b2 = true;
+            if (txStatus3 == jakarta.transaction.Status.STATUS_NO_TRANSACTION)
+                b3 = true;
 
-            if (b1 && b2 && b3) testResult = true;
+            if (b1 && b2 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -687,7 +717,8 @@ public class Client extends ServiceEETest implements Serializable {
                 TestUtil.printStackTrace(e);
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 }

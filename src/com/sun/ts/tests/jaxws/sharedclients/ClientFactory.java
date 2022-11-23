@@ -58,17 +58,17 @@ public class ClientFactory {
         }
         try {
             if (mode == SOAPClient.MODE_STANDALONE) {
-                Constructor ctr = clazz.getConstructor(new Class[] {String.class, int.class, int.class});
+                Constructor ctr = clazz.getConstructor(new Class[] { String.class, int.class, int.class });
                 return (SOAPClient) ctr.newInstance(
-                        new Object[] {webServerHost, Integer.valueOf(webServerPort), Integer.valueOf(mode)});
+                        new Object[] { webServerHost, Integer.valueOf(webServerPort), Integer.valueOf(mode) });
             } else {
                 Constructor ctr = clazz.getConstructor(
-                        new Class[] {String.class, int.class, int.class, jakarta.xml.ws.Service.class});
+                        new Class[] { String.class, int.class, int.class, jakarta.xml.ws.Service.class });
                 return (SOAPClient) ctr.newInstance(new Object[] {
-                    webServerHost,
-                    Integer.valueOf(webServerPort),
-                    Integer.valueOf(mode),
-                    getWebServiceRef(theTest, theService)
+                        webServerHost,
+                        Integer.valueOf(webServerPort),
+                        Integer.valueOf(mode),
+                        getWebServiceRef(theTest, theService)
                 });
             }
         } catch (NoSuchMethodException e) {

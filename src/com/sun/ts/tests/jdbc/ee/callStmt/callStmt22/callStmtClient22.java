@@ -40,9 +40,8 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The callStmtClient22 class tests methods of CallableStatement interface (to
- * check the Support for IN, OUT and INOUT parameters of Stored Procedure) using
- * Sun's J2EE Reference Implementation.
+ * The callStmtClient22 class tests methods of CallableStatement interface (to check the Support for IN, OUT and INOUT
+ * parameters of Stored Procedure) using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -78,14 +77,11 @@ public class callStmtClient22 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -93,7 +89,8 @@ public class callStmtClient22 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
 
                 if (drManager.equals("yes")) {
@@ -119,16 +116,12 @@ public class callStmtClient22 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter49
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-     * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235; JDBC:JAVADOC:1236; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject() method to
-     * set Date value in null column of Date table and call
-     * registerOutParameter(int parameterIndex, int jdbcType) method and call
-     * getDate method. It should return a Date object that is been set. (Note:
-     * This test case also checks the support for INOUT parameter in Stored
-     * Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject() method to set Date value in null column of Date table and call registerOutParameter(int
+     * parameterIndex, int jdbcType) method and call getDate method. It should return a Date object that is been set. (Note:
+     * This test case also checks the support for INOUT parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter49() throws Fault {
@@ -153,7 +146,8 @@ public class callStmtClient22 extends ServiceEETest implements Serializable {
             java.sql.Date oRetVal = (java.sql.Date) cstmt.getObject(1);
 
             msg.addOutputMsg(" " + mfgDate, "" + oRetVal);
-            if (mfgDate.equals(oRetVal)) msg.setMsg("registerOutParameter registers the OUT parameter");
+            if (mfgDate.equals(oRetVal))
+                msg.setMsg("registerOutParameter registers the OUT parameter");
             else {
                 msg.printTestError(
                         "registerOutParameter does not register the OUT parameter", "test registerOutParameter Failed");
@@ -182,16 +176,12 @@ public class callStmtClient22 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter50
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-     * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235; JDBC:JAVADOC:1236; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject() method to
-     * set Time Object in null column of Time table and call
-     * registerOutParameter(int parameterIndex, int jdbcType) method and call
-     * getTime method. It should return a Time object that is been set. (Note:
-     * This test case also checks the support for INOUT parameter in Stored
-     * Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject() method to set Time Object in null column of Time table and call registerOutParameter(int
+     * parameterIndex, int jdbcType) method and call getTime method. It should return a Time object that is been set. (Note:
+     * This test case also checks the support for INOUT parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter50() throws Fault {
@@ -250,16 +240,12 @@ public class callStmtClient22 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter51
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-     * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235; JDBC:JAVADOC:1236; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject() method to
-     * set Timestamp value in null column of Timestamp table and call
-     * registerOutParameter(int parameterIndex, int jdbcType) method and call
-     * getObject method. It should return a Timestamp object that is been set.
-     * (Note: This test case also checks the support for INOUT parameter in Stored
-     * Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject() method to set Timestamp value in null column of Timestamp table and call
+     * registerOutParameter(int parameterIndex, int jdbcType) method and call getObject method. It should return a Timestamp
+     * object that is been set. (Note: This test case also checks the support for INOUT parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter51() throws Fault {
@@ -284,7 +270,8 @@ public class callStmtClient22 extends ServiceEETest implements Serializable {
             java.sql.Timestamp oRetVal = (java.sql.Timestamp) cstmt.getObject(1);
 
             msg.addOutputMsg(" " + inTimestamp, "" + oRetVal);
-            if (inTimestamp.compareTo(oRetVal) == 0) msg.setMsg("registerOutParameter registers the OUT parameter");
+            if (inTimestamp.compareTo(oRetVal) == 0)
+                msg.setMsg("registerOutParameter registers the OUT parameter");
             else {
                 msg.printTestError(
                         "registerOutParameter does not register the OUT parameter", "test registerOutParameter Failed");
@@ -313,15 +300,12 @@ public class callStmtClient22 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter52
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-     * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235; JDBC:JAVADOC:1236; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject() method to
-     * set Byte Array object in Binary table and call registerOutParameter(int
-     * parameterIndex, int jdbcType) method and call getObject method. It should
-     * return a Byte Array object that is been set. (Note: This test case also
-     * checks the support for INOUT parameter in Stored Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject() method to set Byte Array object in Binary table and call registerOutParameter(int
+     * parameterIndex, int jdbcType) method and call getObject method. It should return a Byte Array object that is been
+     * set. (Note: This test case also checks the support for INOUT parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter52() throws Fault {
@@ -393,15 +377,12 @@ public class callStmtClient22 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter53
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-     * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235; JDBC:JAVADOC:1236; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject() method to
-     * set Byte Array object in Varbinary table and call registerOutParameter(int
-     * parameterIndex, int jdbcType) method and call getObject method. It should
-     * return a Byte Array object that is been set. (Note: This test case also
-     * checks the support for INOUT parameter in Stored Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject() method to set Byte Array object in Varbinary table and call registerOutParameter(int
+     * parameterIndex, int jdbcType) method and call getObject method. It should return a Byte Array object that is been
+     * set. (Note: This test case also checks the support for INOUT parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter53() throws Fault {
@@ -473,16 +454,12 @@ public class callStmtClient22 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter54
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-     * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235; JDBC:JAVADOC:1236; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject() method to
-     * set Byte Array object in Longvarbinary table and call
-     * registerOutParameter(int parameterIndex, int jdbcType) method and call
-     * getObject method. It should return a Byte Array object that is been set.
-     * (Note: This test case also checks the support for INOUT parameter in Stored
-     * Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject() method to set Byte Array object in Longvarbinary table and call registerOutParameter(int
+     * parameterIndex, int jdbcType) method and call getObject method. It should return a Byte Array object that is been
+     * set. (Note: This test case also checks the support for INOUT parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter54() throws Fault {

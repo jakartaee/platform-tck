@@ -29,7 +29,8 @@ public class DID6bPersonId implements java.io.Serializable {
 
     String lastName;
 
-    public DID6bPersonId() {}
+    public DID6bPersonId() {
+    }
 
     public DID6bPersonId(String firstName, String lastName) {
         this.firstName = firstName;

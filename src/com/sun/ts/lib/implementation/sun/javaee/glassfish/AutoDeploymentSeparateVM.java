@@ -27,13 +27,11 @@ import java.util.*;
 import org.apache.tools.ant.*;
 
 /**
- * This is an implementation of the TSDeploymentInterface. An implementation of
- * this class must be supplied by any J2EE implementation wishing to have
- * JavaTest (the harness which drives the TS tests) automatically deploy and
- * undeploy test applications. Providing this functionality enables the entire
- * test suite to be run without having to manually deploy/undeploy the J2EE test
- * applications prior to running the tests. This particular implementation uses
- * the deploy/undeploy semantics of Sun's J2EE reference implementation.
+ * This is an implementation of the TSDeploymentInterface. An implementation of this class must be supplied by any J2EE
+ * implementation wishing to have JavaTest (the harness which drives the TS tests) automatically deploy and undeploy
+ * test applications. Providing this functionality enables the entire test suite to be run without having to manually
+ * deploy/undeploy the J2EE test applications prior to running the tests. This particular implementation uses the
+ * deploy/undeploy semantics of Sun's J2EE reference implementation.
  *
  * @author Kyle Grucci
  */
@@ -59,8 +57,7 @@ public class AutoDeploymentSeparateVM extends AutoDeployment {
             }
 
             // Do a lookup of our porting server
-            deploymentServer = (AutoDeploymentServerInterface)
-                    Naming.lookup("rmi://" + sHost + ":" + sPort + "/AutoDeploymentServer");
+            deploymentServer = (AutoDeploymentServerInterface) Naming.lookup("rmi://" + sHost + ":" + sPort + "/AutoDeploymentServer");
 
             extraParameters.put("porting_set", new Integer(iPortingSet));
             deploymentServer.init(propMgr.getJteProperties(), extraParameters);
@@ -86,9 +83,8 @@ public class AutoDeploymentSeparateVM extends AutoDeployment {
     }
 
     /**
-     * This method is called by the test harness to deploy an .ear file We extract
-     * such info as the app earfile from the provided deployment information. The
-     * following properties are available for this method's use:
+     * This method is called by the test harness to deploy an .ear file We extract such info as the app earfile from the
+     * provided deployment information. The following properties are available for this method's use:
      * <p>
      * generateSQL - "true" if SQL is to be generated for CMP beans
      * <p>
@@ -98,16 +94,15 @@ public class AutoDeploymentSeparateVM extends AutoDeployment {
      *
      * All additional information is queryable from the DeploymentInfo interface.
      *
-     * @param info
-     *          Object containing necessary deployment info.
-     * @return This method should return a string which is formatted such that it
-     *         can be appended to the classpath.
+     * @param info Object containing necessary deployment info.
+     * @return This method should return a string which is formatted such that it can be appended to the classpath.
      */
     public String deploy(DeploymentInfo info) throws TSDeploymentException {
         String classpath = null;
 
         try {
-            if (deploymentServer == null) getDeploymentServer();
+            if (deploymentServer == null)
+                getDeploymentServer();
 
             // send deploy info across to proxy
             classpath = deploymentServer.deploy(info);

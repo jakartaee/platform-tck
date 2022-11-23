@@ -34,7 +34,9 @@ public abstract class AbstractMessageBodyRW {
     @SuppressWarnings("unchecked")
     public static <T extends Annotation> T getSpecifiedAnnotation(Annotation[] annotations, Class<T> clazz) {
         T t = null;
-        for (Annotation a : annotations) if (a.annotationType() == clazz) t = (T) a;
+        for (Annotation a : annotations)
+            if (a.annotationType() == clazz)
+                t = (T) a;
         return t != null ? t : null;
     }
 

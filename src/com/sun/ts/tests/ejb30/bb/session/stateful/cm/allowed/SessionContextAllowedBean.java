@@ -36,9 +36,9 @@ import jakarta.interceptor.Interceptors;
 import java.util.Properties;
 
 @Stateful(name = "SessionContextAllowedBean")
-@Remote({SessionContextAllowedIF.class})
-@Local({SessionContextAllowedLocalIF.class})
-@Interceptors({com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class})
+@Remote({ SessionContextAllowedIF.class })
+@Local({ SessionContextAllowedLocalIF.class })
+@Interceptors({ com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class })
 @EJB(name = "ejb/TimerEJB", beanName = "TimerEJB", beanInterface = TimerLocalIF.class)
 public class SessionContextAllowedBean extends SessionContextAllowedBeanBase
         implements SessionContextAllowedIF, SessionContextAllowedLocalIF, java.io.Serializable {

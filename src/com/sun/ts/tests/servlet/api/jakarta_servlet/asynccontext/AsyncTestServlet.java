@@ -542,8 +542,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
             throws ServletException, IOException {
 
         AsyncContext ac = request.startAsync();
-        AsyncListener acl =
-                ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener.class);
+        AsyncListener acl = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener.class);
         ac.addListener(acl);
 
         ac.complete();
@@ -558,8 +557,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
         response.getWriter().println("Default timeout: " + ac.getTimeout());
 
         try {
-            AsyncListener acl =
-                    ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListenerBad.class);
+            AsyncListener acl = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListenerBad.class);
             response.getWriter().println("Test FAILED without throwing expected exception.");
         } catch (ServletException ex) {
             response.getWriter().println("Test PASSED with exception: " + ex.getMessage());
@@ -575,8 +573,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
             throws ServletException, IOException {
 
         AsyncContext ac = request.startAsync();
-        AsyncListener acl =
-                ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener.class);
+        AsyncListener acl = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener.class);
         ac.addListener(acl, request, response);
 
         ac.complete();
@@ -589,8 +586,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
 
         final AsyncContext ac = request.startAsync();
 
-        AsyncListener acl =
-                ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener.class);
+        AsyncListener acl = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener.class);
         ac.addListener(acl);
         ac.start(new TimerTask() {
 
@@ -610,8 +606,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
         response.getWriter().println("Default timeout: " + ac.getTimeout());
 
         try {
-            AsyncListener acl =
-                    ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListenerBad.class);
+            AsyncListener acl = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListenerBad.class);
             response.getWriter().println("Test FAILED without throwing expected exception.");
         } catch (ServletException ex) {
             response.getWriter().println("Test PASSED with exception: " + ex.getMessage());
@@ -634,8 +629,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
             throws ServletException, IOException {
 
         final AsyncContext ac = request.startAsync();
-        AsyncListener acl =
-                ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener.class);
+        AsyncListener acl = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener.class);
         ac.addListener(acl, request, response);
 
         ac.start(new TimerTask() {
@@ -697,8 +691,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
         AsyncContext ac = request.startAsync();
         timeout_default = ac.getTimeout();
         response.getWriter().println("Default timeout: " + timeout_default);
-        AsyncListener acl2 =
-                ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener2.class);
+        AsyncListener acl2 = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener2.class);
         ac.addListener(acl2);
 
         ac.setTimeout(timeout_default);
@@ -718,8 +711,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
         AsyncContext ac = request.startAsync();
         timeout_default = ac.getTimeout();
         response.getWriter().println("Default timeout: " + timeout_default);
-        AsyncListener acl =
-                ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener.class);
+        AsyncListener acl = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener.class);
         ac.addListener(acl);
 
         ac.setTimeout(0L);
@@ -744,8 +736,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
         AsyncContext ac = request.startAsync();
         timeout_default = ac.getTimeout();
         response.getWriter().println("Default timeout: " + timeout_default);
-        AsyncListener acl2 =
-                ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener2.class);
+        AsyncListener acl2 = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet.asynccontext.ACListener2.class);
         ac.addListener(acl2);
 
         try {

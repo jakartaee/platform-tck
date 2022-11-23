@@ -85,8 +85,7 @@ public final class GetInitParam_Filter extends GenericFilter {
         } else {
 
             String param = "GetInitParam_Filter_attribute";
-            String expected =
-                    "com.sun.ts.tests.servlet.api.jakarta_servlet.genericfilter.GetInitParam_Filter.SERVLET_MAPPED";
+            String expected = "com.sun.ts.tests.servlet.api.jakarta_servlet.genericfilter.GetInitParam_Filter.SERVLET_MAPPED";
             String result = getInitParameter(param);
 
             if (expected.equals(result)) {
@@ -102,5 +101,6 @@ public final class GetInitParam_Filter extends GenericFilter {
     }
 
     // remove the filter configuration object for this filter.
-    public void destroy() {}
+    public void destroy() {
+    }
 }

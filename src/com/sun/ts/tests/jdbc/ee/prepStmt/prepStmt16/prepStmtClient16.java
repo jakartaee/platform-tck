@@ -51,8 +51,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 /**
- * The prepStmtClient16 class tests methods of PreparedStatement interface using
- * Sun's J2EE Reference Implementation.
+ * The prepStmtClient16 class tests methods of PreparedStatement interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.0, 10/09/2002
@@ -100,14 +99,11 @@ public class prepStmtClient16 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -116,7 +112,8 @@ public class prepStmtClient16 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
                 props = p;
 
@@ -147,13 +144,11 @@ public class prepStmtClient16 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetParameterMetaData
      *
-     * @assertion_ids: JavaEE:SPEC:186.3; JDBC:JAVADOC:724; JDBC:JAVADOC:725;
-     * JDBC:SPEC:9; JDBC:SPEC:26;
+     * @assertion_ids: JavaEE:SPEC:186.3; JDBC:JAVADOC:724; JDBC:JAVADOC:725; JDBC:SPEC:9; JDBC:SPEC:26;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the method getParameterMetaData on the preparedStatement
-     * object. Get the information about the number of parameters by executing the
-     * method getParameterCount(). It should return the number of parameters.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the method
+     * getParameterMetaData on the preparedStatement object. Get the information about the number of parameters by executing
+     * the method getParameterCount(). It should return the number of parameters.
      *
      */
 
@@ -209,15 +204,12 @@ public class prepStmtClient16 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetAsciiStream
      *
-     * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:684; JDBC:JAVADOC:685;
-     * JDBC:SPEC:9; JDBC:SPEC:26;
+     * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:684; JDBC:JAVADOC:685; JDBC:SPEC:9; JDBC:SPEC:26;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Get the InputStream object. Excecute the method
-     * preparedStatement.setAsciiStream to Update the Longvarchar_Tab_Name with
-     * the value extracted from the Char_Tab. Query the Longvarchar_Tab in the
-     * database to retrieve the value that is been set. Compare the value that is
-     * inserted with the value retrieved. These values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Get the InputStream object.
+     * Excecute the method preparedStatement.setAsciiStream to Update the Longvarchar_Tab_Name with the value extracted from
+     * the Char_Tab. Query the Longvarchar_Tab in the database to retrieve the value that is been set. Compare the value
+     * that is inserted with the value retrieved. These values should be equal.
      *
      */
 
@@ -287,15 +279,12 @@ public class prepStmtClient16 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetBinaryStream
      *
-     * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:688; JDBC:JAVADOC:689;
-     * JDBC:SPEC:9; JDBC:SPEC:26;
+     * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:688; JDBC:JAVADOC:689; JDBC:SPEC:9; JDBC:SPEC:26;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Get the InputStream object. Excecute the method
-     * preparedStatement.setBinaryStream to Update the Longvarbinary_Tab_Name with
-     * some byte array value. Query the Longvarbinary_Tab in the database to
-     * retrieve the value that is been set. Compare the byte array value that is
-     * inserted with the value retrieved. These cvalues should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Get the InputStream object.
+     * Excecute the method preparedStatement.setBinaryStream to Update the Longvarbinary_Tab_Name with some byte array
+     * value. Query the Longvarbinary_Tab in the database to retrieve the value that is been set. Compare the byte array
+     * value that is inserted with the value retrieved. These cvalues should be equal.
      *
      */
 
@@ -379,16 +368,13 @@ public class prepStmtClient16 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetCharacterStream
      *
-     * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:702; JDBC:JAVADOC:703;
-     * JDBC:SPEC:9; JDBC:SPEC:26;
+     * @assertion_ids: JavaEE:SPEC:186; JDBC:JAVADOC:702; JDBC:JAVADOC:703; JDBC:SPEC:9; JDBC:SPEC:26;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Get the InputStream object. Get a Reader object from this
-     * InputStream. Excecute the method preparedStatement.setCharacterStream to
-     * Update the Longvarchar_Tab_Name with the value extracted from Char_tab.
-     * Query the Longvarchar_Tab in the database to retrieve the value that is
-     * been set. Compare the byte array value that is inserted with the value
-     * retrieved. These values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Get the InputStream object. Get a
+     * Reader object from this InputStream. Excecute the method preparedStatement.setCharacterStream to Update the
+     * Longvarchar_Tab_Name with the value extracted from Char_tab. Query the Longvarchar_Tab in the database to retrieve
+     * the value that is been set. Compare the byte array value that is inserted with the value retrieved. These values
+     * should be equal.
      *
      */
 

@@ -27,12 +27,7 @@ import jakarta.jws.WebService;
 import jakarta.xml.soap.*;
 import java.util.*;
 
-@WebService(
-        targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl",
-        portName = "MarshallTestPort4",
-        serviceName = "MarshallTestService",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLMarshallTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.OneWayTest")
+@WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort4", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JDLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.OneWayTest")
 public class OneWayTestImpl implements OneWayTest {
 
     public void oneWayMethod(OneWayMessage v) {

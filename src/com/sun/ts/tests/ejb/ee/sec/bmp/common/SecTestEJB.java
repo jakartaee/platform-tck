@@ -62,7 +62,8 @@ public class SecTestEJB implements EntityBean {
             ctspassword = TestUtil.getProperty(password1);
             db.getDBConnection(ctsuser, ctspassword);
 
-            if (newTable) db.tableInit();
+            if (newTable)
+                db.tableInit();
             db.createNewRow(cofID, cofName, cofPrice);
         } catch (RemoteLoggingInitException e) {
             TestUtil.printStackTrace(e);
@@ -122,8 +123,10 @@ public class SecTestEJB implements EntityBean {
             db.getDBConnection(ctsuser, ctspassword);
 
             boolean foundKey = db.keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (SQLException se) {
             TestUtil.printStackTrace(se);
             throw new FinderException("SQL Exception in primary key finder");
@@ -152,8 +155,10 @@ public class SecTestEJB implements EntityBean {
             db.getDBConnection(ctsuser, ctspassword);
 
             boolean foundKey = db.keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (SQLException se) {
             TestUtil.printStackTrace(se);
             throw new FinderException("SQL Exception in primary key finder");
@@ -199,8 +204,10 @@ public class SecTestEJB implements EntityBean {
     }
 
     public boolean IsCaller(String caller) {
-        if (ectx.getCallerPrincipal().getName().indexOf(caller) < 0) return false;
-        else return true;
+        if (ectx.getCallerPrincipal().getName().indexOf(caller) < 0)
+            return false;
+        else
+            return true;
     }
 
     public boolean EjbNotAuthz() {

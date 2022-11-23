@@ -20,4 +20,5 @@
 
 package com.sun.ts.tests.common.vehicle.appmanagedNoTx;
 
-public interface AppManagedNoTxVehicleIF extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF {}
+public interface AppManagedNoTxVehicleIF extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF {
+}

@@ -37,10 +37,10 @@ import jakarta.interceptor.Interceptors;
 import java.util.Properties;
 
 @Stateless(name = "SessionContextAllowedBean")
-@Remote({SessionContextAllowedIF.class})
-@Local({SessionContextAllowedLocalIF.class})
+@Remote({ SessionContextAllowedIF.class })
+@Local({ SessionContextAllowedLocalIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
-@Interceptors({com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class})
+@Interceptors({ com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class })
 public class SessionContextAllowedBean extends SessionContextAllowedBeanBase
         implements SessionContextAllowedIF, SessionContextAllowedLocalIF {
 

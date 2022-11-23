@@ -46,7 +46,8 @@ public class LongBeanEJB implements EntityBean {
 
     protected LongPKCoffeeDAO dao = null;
 
-    public void ping() {}
+    public void ping() {
+    }
 
     /*
      * Bean life cycle.

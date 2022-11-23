@@ -73,8 +73,7 @@ import java.io.PrintWriter;
 public class DoServiceTestServlet extends CoreServletTest {
 
     /**
-     * We1'll override init method and assign some value to the String We'll check
-     * for that value in the service method
+     * We1'll override init method and assign some value to the String We'll check for that value in the service method
      */
     String precedence = "starting";
 

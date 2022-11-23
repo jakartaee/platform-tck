@@ -34,7 +34,7 @@ import jakarta.persistence.PersistenceUnit;
 import java.util.Properties;
 
 @Stateful(name = "AppManagedNoTxVehicleBean")
-@Remote({AppManagedNoTxVehicleIF.class})
+@Remote({ AppManagedNoTxVehicleIF.class })
 public class AppManagedNoTxVehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
         implements AppManagedNoTxVehicleIF, java.io.Serializable {
 

@@ -41,7 +41,8 @@ public class Client extends PMClientBase {
     List<Date> expectedDates;
     List<Calendar> expectedCalendars;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -65,9 +66,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: basicFieldTest
      *
-     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.1;
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.1;
      *
-     * @test_Strategy:  Used with a Basic annotation for field access
+     * @test_Strategy: Used with a Basic annotation for field access
      */
     public void basicFieldTest() throws Fault {
 
@@ -95,9 +96,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: basicPropertyTest
      *
-     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.1;
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.1;
      *
-     * @test_Strategy:  Used with a Basic annotation for property access
+     * @test_Strategy: Used with a Basic annotation for property access
      */
     public void basicPropertyTest() throws Fault {
         boolean pass = false;
@@ -125,8 +126,10 @@ public class Client extends PMClientBase {
 
     /*
      * @testName: fieldElementCollectionTemporalTest
-     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.3;
-     * @test_Strategy:   ElementCollection of a basic type
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.3;
+     *
+     * @test_Strategy: ElementCollection of a basic type
      */
     public void fieldElementCollectionTemporalTest() throws Fault {
         boolean pass = false;
@@ -170,8 +173,10 @@ public class Client extends PMClientBase {
 
     /*
      * @testName: propertyElementCollectionTemporalTest
-     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.3;
-     * @test_Strategy:   ElementCollection of a basic type
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.3;
+     *
+     * @test_Strategy: ElementCollection of a basic type
      */
     public void propertyElementCollectionTemporalTest() throws Fault {
         boolean pass = false;
@@ -216,9 +221,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: idFieldTest
      *
-     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.2;
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.2;
      *
-     * @test_Strategy:  Used with a id annotation for field access
+     * @test_Strategy: Used with a id annotation for field access
      */
     public void idFieldTest() throws Fault {
 
@@ -246,9 +251,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: idPropertyTest
      *
-     * @assertion_ids:  PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.2;
+     * @assertion_ids: PERSISTENCE:SPEC:2114; PERSISTENCE:SPEC:2114.2;
      *
-     * @test_Strategy:  Used with a id annotation for property access
+     * @test_Strategy: Used with a id annotation for property access
      */
     public void idPropertyTest() throws Fault {
         boolean pass = false;

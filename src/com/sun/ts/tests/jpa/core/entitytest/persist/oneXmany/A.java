@@ -70,10 +70,7 @@ public class A implements java.io.Serializable {
     // ===========================================================
     // relationship fields
 
-    @OneToMany(
-            targetEntity = com.sun.ts.tests.jpa.core.entitytest.persist.oneXmany.B.class,
-            cascade = CascadeType.PERSIST,
-            mappedBy = "a1")
+    @OneToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.persist.oneXmany.B.class, cascade = CascadeType.PERSIST, mappedBy = "a1")
     protected Collection bCol = new java.util.ArrayList();
 
     // =======================================================================

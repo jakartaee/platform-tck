@@ -32,7 +32,6 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: create a timer in all interceptor methods. Verify they
-     * expire as expected.
+     * @test_Strategy: create a timer in all interceptor methods. Verify they expire as expected.
      */
 }

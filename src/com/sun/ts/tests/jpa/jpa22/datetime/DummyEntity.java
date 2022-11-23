@@ -33,14 +33,13 @@ public class DummyEntity implements java.io.Serializable {
     /**
      * Creates an instance of dummy entity. Entity attributes are not initialized.
      */
-    public DummyEntity() {}
+    public DummyEntity() {
+    }
 
     /**
-     * Creates an instance of dummy entity. Entity attributes are initialized
-     * using provided values.
+     * Creates an instance of dummy entity. Entity attributes are initialized using provided values.
      *
-     * @param id
-     *          dummy entity primary key
+     * @param id dummy entity primary key
      */
     public DummyEntity(Long id) {
         this.id = id;
@@ -63,8 +62,7 @@ public class DummyEntity implements java.io.Serializable {
     /**
      * Set entity primary key.
      *
-     * @param id
-     *          primary key to set
+     * @param id primary key to set
      */
     public void setId(Long id) {
         this.id = id;

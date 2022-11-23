@@ -22,7 +22,7 @@ package com.sun.ts.tests.jaxws.wsa.j2w.document.literal.typesubstitution;
 
 import jakarta.xml.bind.annotation.XmlSeeAlso;
 
-@XmlSeeAlso({Toyota.class, Ford.class})
+@XmlSeeAlso({ Toyota.class, Ford.class })
 public abstract class Car {
     private String model;
 

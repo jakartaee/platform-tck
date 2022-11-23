@@ -26,11 +26,9 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
 /**
- * TSLogRecord is the custom LogRecord which has one additional logging field
- * ContextId, in addition to the regular Logging fields. The Log fields of
- * TSLogRecord are 1) sequence number 2) context Id (The logging context) 3)
- * message 4) class name (The class which logs the log message) 5) method name (
- * The method which logs the log message)
+ * TSLogRecord is the custom LogRecord which has one additional logging field ContextId, in addition to the regular
+ * Logging fields. The Log fields of TSLogRecord are 1) sequence number 2) context Id (The logging context) 3) message
+ * 4) class name (The class which logs the log message) 5) method name ( The method which logs the log message)
  **/
 public class TSLogRecord extends LogRecord {
 
@@ -42,12 +40,9 @@ public class TSLogRecord extends LogRecord {
     /**
      * Construct a LogRecord with the given level, message and context values.
      *
-     * @param level
-     *          a logging level value
-     * @param contextId
-     *          the logging contextId
-     * @param msg
-     *          the raw non-localized logging message
+     * @param level a logging level value
+     * @param contextId the logging contextId
+     * @param msg the raw non-localized logging message
      *
      */
     TSLogRecord(Level level, String message, String contextId) {
@@ -59,10 +54,8 @@ public class TSLogRecord extends LogRecord {
     /**
      * Construct a LogRecord with the given level and message
      *
-     * @param level
-     *          a logging level value
-     * @param msg
-     *          the raw non-localized logging message
+     * @param level a logging level value
+     * @param msg the raw non-localized logging message
      *
      */
     TSLogRecord(Level level, String message) {
@@ -83,8 +76,7 @@ public class TSLogRecord extends LogRecord {
     /**
      * Set the contextId
      *
-     * @param contextId
-     *          the logging context Id
+     * @param contextId the logging context Id
      */
     public void setContextId(String cId) {
         contextId = cId;

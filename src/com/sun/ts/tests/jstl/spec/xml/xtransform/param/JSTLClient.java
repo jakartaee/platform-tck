@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:74; JSTL:SPEC:74.1; JSTL:SPEC:74.1.1
      *
-     * @testStrategy: Validate the name attribute of the x:param action is able to
-     * accept both static and dynamic values.
+     * @testStrategy: Validate the name attribute of the x:param action is able to accept both static and dynamic values.
      */
     public void positiveXParamNameTest() throws Fault {
         // TEST_PROPS.setProperty(STANDARD, "positiveXParamNameTest");
@@ -82,8 +79,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:74; JSTL:SPEC:74.2; JSTL:SPEC:74.2.1
      *
-     * @testStrategy: Validate the value attribute of the x:param action is able
-     * to accept both static and dynamic values.
+     * @testStrategy: Validate the value attribute of the x:param action is able to accept both static and dynamic values.
      */
     public void positiveXParamValueTest() throws Fault {
         // TEST_PROPS.setProperty(STANDARD, "positiveXParamValueTest");
@@ -98,8 +94,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:74; JSTL:SPEC:74.3
      *
-     * @testStrategy: Validate the value of the param can be provided as body
-     * content to the action.
+     * @testStrategy: Validate the value of the param can be provided as body content to the action.
      */
     public void positiveXParamBodyValueTest() throws Fault {
         // TEST_PROPS.setProperty(STANDARD, "positiveXParamBodyValueTest");

@@ -29,9 +29,8 @@ public class URLClient extends AbstractUrlClient {
     private static String CONTEXT_ROOT = "/jsp_tagfile_directives_tag20_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -40,8 +39,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -78,8 +76,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.19
      *
-     * @test_Strategy: Use the import attribute to import 'java.util.ArrayList'.
-     * Validated that a ArrayList object can be created and used.
+     * @test_Strategy: Use the import attribute to import 'java.util.ArrayList'. Validated that a ArrayList object can be
+     * created and used.
      */
 
     public void positiveImportTest() throws Fault {
@@ -94,8 +92,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.19.1
      *
-     * @test_Strategy: Validate that classes from the java.lang package are
-     * implicitly imported by creating and using a java.lang.Integer object.
+     * @test_Strategy: Validate that classes from the java.lang package are implicitly imported by creating and using a
+     * java.lang.Integer object.
      */
 
     public void implicitImportLangTest() throws Fault {
@@ -110,8 +108,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.19.1
      *
-     * @test_Strategy: Validate that classes from the jakarta.servlet.jsp package
-     * are implicitly imported by calling JspFactory.getDefaultFactory() method.
+     * @test_Strategy: Validate that classes from the jakarta.servlet.jsp package are implicitly imported by calling
+     * JspFactory.getDefaultFactory() method.
      */
 
     public void implicitImportJspTest() throws Fault {
@@ -126,8 +124,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.19.1
      *
-     * @test_Strategy: Validate that classes from the jakarta.servlet package are
-     * implicitly imported by creating and using an instance of RequestDispatcher.
+     * @test_Strategy: Validate that classes from the jakarta.servlet package are implicitly imported by creating and using
+     * an instance of RequestDispatcher.
      */
 
     public void implicitImportServletTest() throws Fault {
@@ -142,8 +140,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.19.1
      *
-     * @test_Strategy: Validate that classes from the jakarta.servlet.http package
-     * are implicitly imported by creating and using an instance of Cookie.
+     * @test_Strategy: Validate that classes from the jakarta.servlet.http package are implicitly imported by creating and
+     * using an instance of Cookie.
      */
 
     public void implicitImportHttpTest() throws Fault {
@@ -190,8 +188,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.17
      *
-     * @test_Strategy: Validate that the language attribute can be set to "java"
-     * without an error.
+     * @test_Strategy: Validate that the language attribute can be set to "java" without an error.
      */
 
     public void positiveLangTest() throws Fault {
@@ -206,8 +203,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.18
      *
-     * @test_Strategy: Declare a tag directive with two language attributes. of
-     * different values. Validate that a fatal translation error occurs.
+     * @test_Strategy: Declare a tag directive with two language attributes. of different values. Validate that a fatal
+     * translation error occurs.
      */
 
     public void negativeDuplicateLanguageFatalTranslationErrorTest() throws Fault {
@@ -222,8 +219,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:232.1.5.5
      *
-     * @test_Strategy: A translation error will result if JSP is used as tag
-     * directive body-content
+     * @test_Strategy: A translation error will result if JSP is used as tag directive body-content
      */
 
     public void negativeBodyContentTest() throws Fault {
@@ -238,9 +234,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: There shall be only one occurrence of any attribute /value
-     * defined in a given translation unit, unless the values for the duplicate
-     * attributes are identical for all occurences.
+     * @test_Strategy: There shall be only one occurrence of any attribute /value defined in a given translation unit,
+     * unless the values for the duplicate attributes are identical for all occurences.
      */
 
     public void positiveDuplicateAttributesTest() throws Fault {
@@ -255,8 +250,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Unrecognized attributes or values result in fatal
-     * translation error.
+     * @test_Strategy: Unrecognized attributes or values result in fatal translation error.
      */
 
     public void negativeUnrecognizedAttributeTest() throws Fault {
@@ -271,8 +265,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: other such multiple attribute/value (re) definitions result
-     * in a fatal translation error if the value do not match.
+     * @test_Strategy: other such multiple attribute/value (re) definitions result in a fatal translation error if the value
+     * do not match.
      */
 
     public void negativeDuplicateDisplayNameTest() throws Fault {
@@ -287,8 +281,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: other such multiple attribute/value (re) definitions result
-     * in a fatal translation error if the value do not match.
+     * @test_Strategy: other such multiple attribute/value (re) definitions result in a fatal translation error if the value
+     * do not match.
      */
 
     public void negativeDuplicateBodyContentTest() throws Fault {
@@ -303,8 +297,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: other such multiple attribute/value (re) definitions result
-     * in a fatal translation error if the value do not match.
+     * @test_Strategy: other such multiple attribute/value (re) definitions result in a fatal translation error if the value
+     * do not match.
      */
 
     public void negativeDuplicateDynamicAttributesTest() throws Fault {
@@ -319,8 +313,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: other such multiple attribute/value (re) definitions result
-     * in a fatal translation error if the value do not match.
+     * @test_Strategy: other such multiple attribute/value (re) definitions result in a fatal translation error if the value
+     * do not match.
      */
 
     public void negativeDuplicateDescriptionTest() throws Fault {
@@ -335,8 +329,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: other such multiple attribute/value (re) definitions result
-     * in a fatal translation error if the value do not match.
+     * @test_Strategy: other such multiple attribute/value (re) definitions result in a fatal translation error if the value
+     * do not match.
      */
 
     public void negativeDuplicateExampleTest() throws Fault {
@@ -351,8 +345,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: other such multiple attribute/value (re) definitions result
-     * in a fatal translation error if the value do not match.
+     * @test_Strategy: other such multiple attribute/value (re) definitions result in a fatal translation error if the value
+     * do not match.
      */
 
     public void negativeDuplicateSmallIconTest() throws Fault {
@@ -367,8 +361,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: other such multiple attribute/value (re) definitions result
-     * in a fatal translation error if the value do not match.
+     * @test_Strategy: other such multiple attribute/value (re) definitions result in a fatal translation error if the value
+     * do not match.
      */
 
     public void negativeDuplicateLargeIconTest() throws Fault {
@@ -383,8 +377,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Only dynamic attributes with no uri are to be present in
-     * the Map; all other are ignored.
+     * @test_Strategy: Only dynamic attributes with no uri are to be present in the Map; all other are ignored.
      */
 
     public void dynamicAttributesNoUriTest() throws Fault {
@@ -400,9 +393,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:230.8.3
      *
-     * @test_Strategy: [deferredValueMinimumJspVersion] Show that the use of the
-     * deferredValue attribute for the tag directive causes a translation error if
-     * specified in a tag file with a JSP version less than 2.1.
+     * @test_Strategy: [deferredValueMinimumJspVersion] Show that the use of the deferredValue attribute for the tag
+     * directive causes a translation error if specified in a tag file with a JSP version less than 2.1.
      */
 
     public void deferredValueMinimumJspVersionTest() throws Fault {

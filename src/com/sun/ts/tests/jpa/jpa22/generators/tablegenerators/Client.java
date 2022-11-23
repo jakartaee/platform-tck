@@ -26,7 +26,8 @@ public class Client extends PMClientBase {
 
     private DataTypes d0;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -77,7 +78,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("generatorOnEntityTest failed");
+        if (!pass)
+            throw new Fault("generatorOnEntityTest failed");
     }
     // Methods used for Tests
 

@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -59,8 +57,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:69
      *
-     * @test_Strategy: Using an include directive, include content referenced by a
-     * context-relative path. PENDING Merge with test below
+     * @test_Strategy: Using an include directive, include content referenced by a context-relative path. PENDING Merge with
+     * test below
      */
 
     public void positiveIncludeCtxRelativeDirectiveTest() throws Fault {
@@ -73,8 +71,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:69
      *
-     * @test_Strategy: Using an include directive, include content referenced by a
-     * page-relative path.
+     * @test_Strategy: Using an include directive, include content referenced by a page-relative path.
      */
 
     public void positiveIncludePageRelativeDirectiveTest() throws Fault {

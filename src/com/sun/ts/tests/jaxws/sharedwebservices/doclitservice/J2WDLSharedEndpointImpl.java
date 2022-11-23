@@ -22,11 +22,7 @@ package com.sun.ts.tests.jaxws.sharedwebservices.doclitservice;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "J2WDLSharedEndpointPort",
-        targetNamespace = "http://doclitservice.org/wsdl",
-        serviceName = "J2WDLShared",
-        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclitservice.J2WDLSharedEndpoint")
+@WebService(portName = "J2WDLSharedEndpointPort", targetNamespace = "http://doclitservice.org/wsdl", serviceName = "J2WDLShared", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclitservice.J2WDLSharedEndpoint")
 public class J2WDLSharedEndpointImpl implements J2WDLSharedEndpoint {
     public String helloWorld() {
         return "hello world";
@@ -37,7 +33,7 @@ public class J2WDLSharedEndpointImpl implements J2WDLSharedEndpoint {
     }
 
     public String[] arrayOperation() {
-        return new String[] {"one", "two", "three"};
+        return new String[] { "one", "two", "three" };
     }
 
     public J2WDLSharedBean getBean() {

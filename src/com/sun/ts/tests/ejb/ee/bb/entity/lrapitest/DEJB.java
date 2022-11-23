@@ -135,8 +135,10 @@ public class DEJB implements EntityBean {
             TestUtil.logMsg("Get DB Connection");
             db.getDBConnection();
             boolean foundKey = db.keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (SQLException se) {
             TestUtil.printStackTrace(se);
             throw new FinderException("SQL Exception in primary key finder");

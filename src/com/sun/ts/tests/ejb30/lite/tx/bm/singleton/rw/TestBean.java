@@ -44,8 +44,8 @@ public class TestBean extends RWTestBeanBase {
     @SuppressWarnings("unused")
     @PostConstruct
     private void postConstruct() {
-        int[] ids = {1000, 2000};
-        String[] brandNames = {"postConstructCoffee1", "postConstructCoffee2"};
+        int[] ids = { 1000, 2000 };
+        String[] brandNames = { "postConstructCoffee1", "postConstructCoffee2" };
 
         try {
             ut.begin();

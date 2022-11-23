@@ -29,11 +29,12 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@EntityListeners({ListenerA.class, ListenerB.class})
+@EntityListeners({ ListenerA.class, ListenerB.class })
 public class LineItemSuper extends CallbackStatusImpl implements java.io.Serializable, CallbackStatusIF {
     public int quantity;
 
-    public LineItemSuper() {}
+    public LineItemSuper() {
+    }
 
     @Column(name = "QUANTITY")
     public int getQuantity() {

@@ -39,8 +39,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -71,10 +70,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1027
      *
-     * @test_Strategy: Make a request with envelope with soap header with
-     *                 mustUnderstnad = 1, that the server doesn't understand.
-     *                 Inspect repsonse to ensure it is a soap:Fault with
-     *                 faultcode of "MustUnderstand"
+     * @test_Strategy: Make a request with envelope with soap header with mustUnderstnad = 1, that the server doesn't
+     * understand. Inspect repsonse to ensure it is a soap:Fault with faultcode of "MustUnderstand"
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

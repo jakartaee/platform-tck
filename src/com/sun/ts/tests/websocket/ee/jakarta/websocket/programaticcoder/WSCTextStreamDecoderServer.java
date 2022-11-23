@@ -16,4 +16,5 @@
 
 package com.sun.ts.tests.websocket.ee.jakarta.websocket.programaticcoder;
 
-public class WSCTextStreamDecoderServer extends WSCBinaryDecoderServer {}
+public class WSCTextStreamDecoderServer extends WSCBinaryDecoderServer {
+}

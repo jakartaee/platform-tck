@@ -77,10 +77,14 @@ public class Util {
     }
 
     public static boolean isPasswordCredentialEqual(PasswordCredential a, PasswordCredential b) {
-        if (a == b) return true;
-        if ((a == null) && (b != null)) return false;
-        if ((a != null) && (b == null)) return false;
-        if (!isEqual(a.getUserName(), b.getUserName())) return false;
+        if (a == b)
+            return true;
+        if ((a == null) && (b != null))
+            return false;
+        if ((a != null) && (b == null))
+            return false;
+        if (!isEqual(a.getUserName(), b.getUserName()))
+            return false;
         String p1 = null;
         String p2 = null;
         if (a.getPassword() != null) {

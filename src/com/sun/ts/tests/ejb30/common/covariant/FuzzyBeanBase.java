@@ -27,10 +27,10 @@ public class FuzzyBeanBase implements FuzzyRemoteIF, FuzzyLocalIF {
     }
 
     public String[] getMessages() {
-        return new String[] {"A String array, not Object array, is returned"};
+        return new String[] { "A String array, not Object array, is returned" };
     }
 
     public Number[] getNumbers() {
-        return new Double[] {8D};
+        return new Double[] { 8D };
     }
 }

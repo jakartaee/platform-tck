@@ -42,49 +42,17 @@ import java.util.Properties;
 // -------------------------------------
 // JMS Destination Resource Definitions
 // -------------------------------------
-@JMSDestinationDefinition(
-        description = "Define Queue AppClientMyTestQueue",
-        interfaceName = "jakarta.jms.Queue",
-        name = "java:global/env/AppClientMyTestQueue",
-        destinationName = "AppClientMyTestQueue")
-@JMSDestinationDefinition(
-        description = "Define Topic AppClientMyTestTopic",
-        interfaceName = "jakarta.jms.Topic",
-        name = "java:app/env/AppClientMyTestTopic",
-        destinationName = "AppClientMyTestTopic")
+@JMSDestinationDefinition(description = "Define Queue AppClientMyTestQueue", interfaceName = "jakarta.jms.Queue", name = "java:global/env/AppClientMyTestQueue", destinationName = "AppClientMyTestQueue")
+@JMSDestinationDefinition(description = "Define Topic AppClientMyTestTopic", interfaceName = "jakarta.jms.Topic", name = "java:app/env/AppClientMyTestTopic", destinationName = "AppClientMyTestTopic")
 
 // -------------------------------------------
 // JMS ConnectionFactory Resource Definitions
 // -------------------------------------------
-@JMSConnectionFactoryDefinition(
-        description = "Define ConnectionFactory AppClientMyTestConnectionFactory",
-        interfaceName = "jakarta.jms.ConnectionFactory",
-        name = "java:global/AppClientMyTestConnectionFactory",
-        user = "j2ee",
-        password = "j2ee")
-@JMSConnectionFactoryDefinition(
-        description = "Define QueueConnectionFactory AppClientMyTestQueueConnectionFactory",
-        interfaceName = "jakarta.jms.QueueConnectionFactory",
-        name = "java:app/AppClientMyTestQueueConnectionFactory",
-        user = "j2ee",
-        password = "j2ee")
-@JMSConnectionFactoryDefinition(
-        description = "Define TopicConnectionFactory AppClientMyTestTopicConnectionFactory",
-        interfaceName = "jakarta.jms.TopicConnectionFactory",
-        name = "java:module/AppClientMyTestTopicConnectionFactory",
-        user = "j2ee",
-        password = "j2ee")
-@JMSConnectionFactoryDefinition(
-        description = "Define Durable TopicConnectionFactory AppClientMyTestDurableTopicConnectionFactory",
-        interfaceName = "jakarta.jms.TopicConnectionFactory",
-        name = "java:comp/env/jms/AppClientMyTestDurableTopicConnectionFactory",
-        user = "j2ee",
-        password = "j2ee",
-        clientId = "MyClientID",
-        properties = {"Property1=10", "Property2=20"},
-        transactional = false,
-        maxPoolSize = 30,
-        minPoolSize = 20)
+@JMSConnectionFactoryDefinition(description = "Define ConnectionFactory AppClientMyTestConnectionFactory", interfaceName = "jakarta.jms.ConnectionFactory", name = "java:global/AppClientMyTestConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSConnectionFactoryDefinition(description = "Define QueueConnectionFactory AppClientMyTestQueueConnectionFactory", interfaceName = "jakarta.jms.QueueConnectionFactory", name = "java:app/AppClientMyTestQueueConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSConnectionFactoryDefinition(description = "Define TopicConnectionFactory AppClientMyTestTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:module/AppClientMyTestTopicConnectionFactory", user = "j2ee", password = "j2ee")
+@JMSConnectionFactoryDefinition(description = "Define Durable TopicConnectionFactory AppClientMyTestDurableTopicConnectionFactory", interfaceName = "jakarta.jms.TopicConnectionFactory", name = "java:comp/env/jms/AppClientMyTestDurableTopicConnectionFactory", user = "j2ee", password = "j2ee", clientId = "MyClientID", properties = {
+        "Property1=10", "Property2=20" }, transactional = false, maxPoolSize = 30, minPoolSize = 20)
 public class Client extends EETest {
     private static final long serialVersionUID = 1L;
 
@@ -165,8 +133,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: jms_timeout; user; password; platform.mode;
-     * webServerHost; webServerPort;
+     * @class.setup_props: jms_timeout; user; password; platform.mode; webServerHost; webServerPort;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -235,8 +202,7 @@ public class Client extends EETest {
             TestUtil.logMsg("Lookup java:module/AppClientMyTestTopicConnectionFactory");
             tcf = (TopicConnectionFactory) namingctx.lookup("java:module/AppClientMyTestTopicConnectionFactory");
             TestUtil.logMsg("Lookup java:comp/env/jms/AppClientMyTestDurableTopicConnectionFactory");
-            dtcf = (TopicConnectionFactory)
-                    namingctx.lookup("java:comp/env/jms/AppClientMyTestDurableTopicConnectionFactory");
+            dtcf = (TopicConnectionFactory) namingctx.lookup("java:comp/env/jms/AppClientMyTestDurableTopicConnectionFactory");
             TestUtil.logMsg("Lookup java:global/env/AppClientMyTestQueue");
             queue = (Queue) namingctx.lookup("java:global/env/AppClientMyTestQueue");
             TestUtil.logMsg("Lookup java:app/env/AppClientMyTestTopic");
@@ -269,9 +235,11 @@ public class Client extends EETest {
                 }
                 consumerQ.close();
             }
-            if (consumerT != null) consumerT.close();
+            if (consumerT != null)
+                consumerT.close();
             TestUtil.logMsg("Close JMSContext Objects");
-            if (context != null) context.close();
+            if (context != null)
+                context.close();
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
             throw new Exception("doCleanup failed!", e);
@@ -281,12 +249,10 @@ public class Client extends EETest {
     /*
      * @testName: sendAndRecvQueueTestFromAppClient
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Send and receive a message to/from a Queue.
      *
@@ -336,12 +302,10 @@ public class Client extends EETest {
     /*
      * @testName: sendAndRecvTopicTestFromAppClient
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Send and receive a message to/from a Topic.
      *
@@ -391,12 +355,10 @@ public class Client extends EETest {
     /*
      * @testName: sendAndRecvQueueTestFromServletClient
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Send and receive a message to/from a Queue.
      *
@@ -435,12 +397,10 @@ public class Client extends EETest {
     /*
      * @testName: sendAndRecvTopicTestFromServletClient
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Send and receive a message to/from a Topic.
      *
@@ -479,12 +439,10 @@ public class Client extends EETest {
     /*
      * @testName: sendAndRecvQueueTestFromJspClient
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Send and receive a message to/from a Queue.
      *
@@ -523,12 +481,10 @@ public class Client extends EETest {
     /*
      * @testName: sendAndRecvTopicTestFromJspClient
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Send and receive a message to/from a Topic.
      *
@@ -567,12 +523,10 @@ public class Client extends EETest {
     /*
      * @testName: sendAndRecvQueueTestFromEjbClient
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Send and receive a message to/from a Queue.
      *
@@ -607,12 +561,10 @@ public class Client extends EETest {
     /*
      * @testName: sendAndRecvTopicTestFromEjbClient
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Send and receive a message to/from a Topic.
      *
@@ -647,12 +599,10 @@ public class Client extends EETest {
     /*
      * @testName: checkClientIDOnDurableConnFactoryTest
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Check client id setting on durable connection factory
      *
@@ -732,7 +682,8 @@ public class Client extends EETest {
             throw new Fault("checkClientIDOnDurableConnFactoryTest", e);
         } finally {
             try {
-                if (context != null) context.close();
+                if (context != null)
+                    context.close();
                 doCleanup();
             } catch (Exception e) {
                 TestUtil.logErr("Error cleanup " + e);

@@ -24,6 +24,5 @@ public class TestConstants {
 
     public static final String ADD_NUMBERS_OUT_ACTION = "outputAction";
 
-    public static final String ADD_NUMBERS_IN_ACTION4 =
-            "http://addressingfeatureservice.org/wsdl/AddressingFeatureTest4/addNumbers4Request";
+    public static final String ADD_NUMBERS_IN_ACTION4 = "http://addressingfeatureservice.org/wsdl/AddressingFeatureTest4/addNumbers4Request";
 }

@@ -31,7 +31,8 @@ public class FullTimeEmployee extends Employee {
 
     private float salary;
 
-    public FullTimeEmployee() {}
+    public FullTimeEmployee() {
+    }
 
     // ===========================================================
     // getters and setters for the state fields

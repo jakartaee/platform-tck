@@ -102,6 +102,7 @@ public class Client extends EETest {
             throw new Fault("SOAPMessageTest failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPMessageTest failed");
+        if (!pass)
+            throw new Fault("SOAPMessageTest failed");
     }
 }

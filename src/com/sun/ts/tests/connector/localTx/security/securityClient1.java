@@ -63,9 +63,8 @@ public class securityClient1 extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: whitebox-tx, JNDI name of TS WhiteBox;
-     * whitebox-tx-param, conn w/ params; rauser1, user name; rapassword1,
-     * password for user name;
+     * @class.setup_props: whitebox-tx, JNDI name of TS WhiteBox; whitebox-tx-param, conn w/ params; rauser1, user name;
+     * rapassword1, password for user name;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -109,15 +108,12 @@ public class securityClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testContainerManaged
      *
-     * @assertion_ids: Connector:SPEC:63; Connector:SPEC:62;
-     * Connector:JAVADOC:238; Connector:JAVADOC:333; Connector:JAVADOC:334;
-     * Connector:JAVADOC:335; Connector:JAVADOC:337; Connector:JAVADOC:338;
-     * Connector:JAVADOC:244;
+     * @assertion_ids: Connector:SPEC:63; Connector:SPEC:62; Connector:JAVADOC:238; Connector:JAVADOC:333;
+     * Connector:JAVADOC:334; Connector:JAVADOC:335; Connector:JAVADOC:337; Connector:JAVADOC:338; Connector:JAVADOC:244;
      *
-     * @test_Strategy: Call the TSDataSource.getConnection. Providing there are no
-     * unused existing getConnection will call createManagedConnection and
-     * PasswordCredential will be returned. If the PasswordCredential is not null
-     * the test passes. This is option A.
+     * @test_Strategy: Call the TSDataSource.getConnection. Providing there are no unused existing getConnection will call
+     * createManagedConnection and PasswordCredential will be returned. If the PasswordCredential is not null the test
+     * passes. This is option A.
      */
     public void testContainerManaged() throws Fault {
 
@@ -157,14 +153,12 @@ public class securityClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testComponentManaged
      *
-     * @assertion_ids: Connector:SPEC:63; Connector:JAVADOC:238;
-     * Connector:JAVADOC:333; Connector:JAVADOC:334; Connector:JAVADOC:335;
-     * Connector:JAVADOC:337; Connector:JAVADOC:338;
+     * @assertion_ids: Connector:SPEC:63; Connector:JAVADOC:238; Connector:JAVADOC:333; Connector:JAVADOC:334;
+     * Connector:JAVADOC:335; Connector:JAVADOC:337; Connector:JAVADOC:338;
      *
-     * @test_Strategy: Call the TSDataSource.getConnection(uname, password).
-     * Providing there are no unused existing getConnection will call
-     * createManagedConnection and PasswordCredential will be returned. If the
-     * PasswordCredential is not null the test passes. This is option C defined.
+     * @test_Strategy: Call the TSDataSource.getConnection(uname, password). Providing there are no unused existing
+     * getConnection will call createManagedConnection and PasswordCredential will be returned. If the PasswordCredential is
+     * not null the test passes. This is option C defined.
      */
     public void testComponentManaged() throws Fault {
         try {
@@ -204,8 +198,8 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      * @assertion_ids: Connector:SPEC:65; Connector:JAVADOC:239;
      *
      * @test_Strategy: Call the TSDataSource.getConnection method. Check whether
-     * LocalTxManagedConnectionFactory.createManagedConnection was called. Check
-     * if the connection is valid or not by performing some transactions.
+     * LocalTxManagedConnectionFactory.createManagedConnection was called. Check if the connection is valid or not by
+     * performing some transactions.
      *
      */
     public void testAppEISSignon() throws Fault {
@@ -245,8 +239,8 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:234;
      *
-     * @test_Strategy: This validates the handling of a CPC - where no principals
-     * will be added to the CPC execSubject and the CPC has a null principal.
+     * @test_Strategy: This validates the handling of a CPC - where no principals will be added to the CPC execSubject and
+     * the CPC has a null principal.
      */
     public void testCBTestCPCandNullPrin() throws Fault {
 
@@ -291,9 +285,8 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:235; Connector:SPEC:238;
      *
-     * @test_Strategy: Test case where GPC is followed by CPC - no principals are
-     * added to the subject, the CPC (with a non-null principal), and one or more
-     * GPC's (each non-null group) are handled.
+     * @test_Strategy: Test case where GPC is followed by CPC - no principals are added to the subject, the CPC (with a
+     * non-null principal), and one or more GPC's (each non-null group) are handled.
      */
     public void testCBTestCPCandGPC() throws Fault {
 
@@ -338,8 +331,8 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:229;
      *
-     * @test_Strategy: Test handling of a CPC - where no principals will be added
-     * to the CPC execSubject and the CPC has a null principal.
+     * @test_Strategy: Test handling of a CPC - where no principals will be added to the CPC execSubject and the CPC has a
+     * null principal.
      */
     public void testCBTestAllCallbacksAndPrin() throws Fault {
         Vector log1 = null;
@@ -383,8 +376,8 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:234; Connector:SPEC:239;
      *
-     * @test_Strategy: Test handling of a CPC - where no principals will be added
-     * to the CPC subject and the CPC has a null principal.
+     * @test_Strategy: Test handling of a CPC - where no principals will be added to the CPC subject and the CPC has a null
+     * principal.
      *
      */
     public void testCBTestCPCandPrin() throws Fault {
@@ -429,8 +422,8 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:229;
      *
-     * @test_Strategy: Test handling of a CPC - where no principals will be added
-     * to the CPC subject and the CPC has a null principal.
+     * @test_Strategy: Test handling of a CPC - where no principals will be added to the CPC subject and the CPC has a null
+     * principal.
      *
      */
     public void testCBTestAllCallbacksNullPrin() throws Fault {
@@ -475,8 +468,7 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:234;
      *
-     * @test_Strategy: Test case where PVC is followed by CPC - no principals are
-     * added to the subject.
+     * @test_Strategy: Test case where PVC is followed by CPC - no principals are added to the subject.
      *
      */
     public void testCBTestCPCandPVC() throws Fault {
@@ -521,8 +513,8 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:235;
      *
-     * @test_Strategy: Test that a single (presumably non-group) principal was
-     * added to the execSubject and the CPC is NOT handled.
+     * @test_Strategy: Test that a single (presumably non-group) principal was added to the execSubject and the CPC is NOT
+     * handled.
      *
      */
     public void testCBTestGPCandCPCFail() throws Fault {
@@ -567,10 +559,9 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:238; Connector:SPEC:239;
      *
-     * @test_Strategy: Test handling of a CPC - where no principals will be added
-     * to the CPC subject and the CPC has a null principal. This is testing the
-     * CPC being handled in a case-2 scenario with security-mapping on such that
-     * the EIS creds need to be used and mapped.
+     * @test_Strategy: Test handling of a CPC - where no principals will be added to the CPC subject and the CPC has a null
+     * principal. This is testing the CPC being handled in a case-2 scenario with security-mapping on such that the EIS
+     * creds need to be used and mapped.
      */
     public void testCBTestEISCPCandPrin() throws Fault {
         Vector log2 = null;
@@ -615,10 +606,9 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      * @assertion_ids: Connector:SPEC:64;
      *
      *
-     * @test_Strategy: Call the TSDataSource.getConnection(). TSDataSource
-     * instance calls connectionManger.allocationConnection internally to get the
-     * the connection. If the connection is returned then check the validity of
-     * the connection.
+     * @test_Strategy: Call the TSDataSource.getConnection(). TSDataSource instance calls
+     * connectionManger.allocationConnection internally to get the the connection. If the connection is returned then check
+     * the validity of the connection.
      */
     public void testConnManagerAllocateConnection() throws Fault {
 

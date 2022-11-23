@@ -34,7 +34,8 @@ public class WSFieldServer {
 
     @OnMessage
     public String inject(String echo) {
-        if (injectableServer == null) return "Nothing injected using CDI";
+        if (injectableServer == null)
+            return "Nothing injected using CDI";
         return injectableServer.getName(echo);
     }
 

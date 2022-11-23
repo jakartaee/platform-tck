@@ -24,12 +24,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(
-        targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl",
-        portName = "MarshallTestPort3",
-        serviceName = "MarshallTestService",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JRLMarshallTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.CompoundTest")
+@WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort3", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JRLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.marshalltest.CompoundTest")
 public class CompoundTestImpl implements CompoundTest {
     public EchoEmployeeResponse echoEmployee(EchoEmployeeRequest employee) {
         EchoEmployeeResponse employeeResp = new EchoEmployeeResponse();

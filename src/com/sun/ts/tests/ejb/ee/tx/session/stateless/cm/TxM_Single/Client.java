@@ -81,11 +81,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:587.1; EJB:SPEC:587.3
      *
-     * @test_Strategy: Create an instance of a stateful session Testbean bean.
-     * Create an instance of a stateless session TxBean (Mandatory) bean. Access a
-     * TX_MANDATORY EJB without a global transaction context and ensure that this
-     * operation throws the jakarta.transaction.TransactionRequiredException
-     * exception.
+     * @test_Strategy: Create an instance of a stateful session Testbean bean. Create an instance of a stateless session
+     * TxBean (Mandatory) bean. Access a TX_MANDATORY EJB without a global transaction context and ensure that this
+     * operation throws the jakarta.transaction.TransactionRequiredException exception.
      *
      */
     public void test1() throws Fault {
@@ -101,8 +99,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {

@@ -26,4 +26,5 @@ import jakarta.interceptor.Interceptors;
 
 @ManagedBean("InvocationContextInterceptorBean")
 @Interceptors(com.sun.ts.tests.ejb30.common.invocationcontext.InterceptorForAll.class)
-public class InvocationContextInterceptorBean extends InvocationContextBase implements InvocationContextIF {}
+public class InvocationContextInterceptorBean extends InvocationContextBase implements InvocationContextIF {
+}

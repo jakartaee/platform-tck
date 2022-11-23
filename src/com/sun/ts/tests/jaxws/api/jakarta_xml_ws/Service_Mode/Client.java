@@ -34,7 +34,7 @@ public class Client extends ServiceEETest {
 
     // Expected Enum Constant Summary
     private static final jakarta.xml.ws.Service.Mode expectedEnums[] = {
-        jakarta.xml.ws.Service.Mode.MESSAGE, jakarta.xml.ws.Service.Mode.PAYLOAD,
+            jakarta.xml.ws.Service.Mode.MESSAGE, jakarta.xml.ws.Service.Mode.PAYLOAD,
     };
 
     private boolean findEnums(jakarta.xml.ws.Service.Mode[] args) {
@@ -62,7 +62,8 @@ public class Client extends ServiceEETest {
     private void printEnums(jakarta.xml.ws.Service.Mode[] args) {
         TestUtil.logMsg("Print Enums");
         TestUtil.logMsg("-----------");
-        for (jakarta.xml.ws.Service.Mode c : args) TestUtil.logMsg("" + c);
+        for (jakarta.xml.ws.Service.Mode c : args)
+            TestUtil.logMsg("" + c);
     }
 
     public static void main(String[] args) {
@@ -90,8 +91,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:60; JAXWS:JAVADOC:61;
      *
-     * @test_Strategy: Verify jakarta.xml.ws.Service.Mode.values() returns array
-     * containing the constants of this enum type.
+     * @test_Strategy: Verify jakarta.xml.ws.Service.Mode.values() returns array containing the constants of this enum type.
      */
     public void valuesTest() throws Fault {
         TestUtil.logTrace("valuesTest");
@@ -107,7 +107,8 @@ public class Client extends ServiceEETest {
             throw new Fault("valuesTest failed", e);
         }
 
-        if (!pass) throw new Fault("valuesTest failed");
+        if (!pass)
+            throw new Fault("valuesTest failed");
     }
 
     /*
@@ -115,8 +116,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:59;
      *
-     * @test_Strategy: Verify jakarta.xml.ws.Service.Mode.valueOf(String name)
-     * returns the enum constant of this type with specified name.
+     * @test_Strategy: Verify jakarta.xml.ws.Service.Mode.valueOf(String name) returns the enum constant of this type with
+     * specified name.
      */
     public void valueOfTest() throws Fault {
         TestUtil.logTrace("valuesTest");
@@ -137,6 +138,7 @@ public class Client extends ServiceEETest {
             throw new Fault("valuesTest failed", e);
         }
 
-        if (!pass) throw new Fault("valuesTest failed");
+        if (!pass)
+            throw new Fault("valuesTest failed");
     }
 }

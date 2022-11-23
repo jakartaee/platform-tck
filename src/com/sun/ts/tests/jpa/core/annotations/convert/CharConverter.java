@@ -42,7 +42,7 @@ public class CharConverter implements AttributeConverter<char[], String> {
         System.out.println("*** Entering CharConverter:convertToEntityAttribute[" + dbData.toString() + "] ***");
         char[] c = dbData.toCharArray();
         if (dbData.equals("Smith")) {
-            c = new char[] {'J', 'a', 'm', 'e', 's'};
+            c = new char[] { 'J', 'a', 'm', 'e', 's' };
         }
         StringBuffer sb = new StringBuffer();
         for (char c1 : c) {

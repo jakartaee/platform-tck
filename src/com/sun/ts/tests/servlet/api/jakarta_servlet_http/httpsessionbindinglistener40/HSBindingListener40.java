@@ -60,4 +60,5 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionbindinglist
 
 import jakarta.servlet.http.HttpSessionBindingListener;
 
-public final class HSBindingListener40 implements HttpSessionBindingListener {}
+public final class HSBindingListener40 implements HttpSessionBindingListener {
+}

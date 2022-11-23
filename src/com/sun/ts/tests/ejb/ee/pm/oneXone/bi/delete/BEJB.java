@@ -71,8 +71,10 @@ public abstract class BEJB implements EntityBean {
 
     public boolean isA() {
         TestUtil.logTrace("isA");
-        if (getA() != null) TestUtil.logMsg("Relationship set for A ...");
-        else TestUtil.logMsg("Relationship not set for A ...");
+        if (getA() != null)
+            TestUtil.logMsg("Relationship set for A ...");
+        else
+            TestUtil.logMsg("Relationship not set for A ...");
         return getA() != null;
     }
 
@@ -83,7 +85,8 @@ public abstract class BEJB implements EntityBean {
                 ALocal a = getA();
                 ADVC aDVC = new ADVC(a.getId(), a.getName(), a.getValue());
                 return aDVC;
-            } else return null;
+            } else
+                return null;
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new EJBException("Exception occurred: " + e);

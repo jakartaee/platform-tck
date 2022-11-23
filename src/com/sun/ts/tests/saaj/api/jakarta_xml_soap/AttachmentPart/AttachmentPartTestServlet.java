@@ -464,8 +464,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -491,8 +493,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -518,8 +522,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -548,8 +554,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -578,8 +586,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -616,8 +626,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -646,8 +658,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -685,8 +699,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -727,8 +743,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -825,8 +843,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -851,8 +871,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -911,8 +933,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -984,8 +1008,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1056,8 +1082,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1097,8 +1125,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1132,8 +1162,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1171,8 +1203,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1206,8 +1240,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1241,8 +1277,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1279,8 +1317,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1307,7 +1347,8 @@ public class AttachmentPartTestServlet extends HttpServlet {
             Object o = ap.getContent();
             TestUtil.logMsg("object returned=" + o);
             if (o != null) {
-                if (o instanceof StreamSource) TestUtil.logMsg("StreamSource object was returned (ok)");
+                if (o instanceof StreamSource)
+                    TestUtil.logMsg("StreamSource object was returned (ok)");
                 else {
                     TestUtil.logErr("Unexpected object was returned (not ok)");
                     TestUtil.logErr("Unexpected object=" + o);
@@ -1324,8 +1365,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1352,8 +1395,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             Object o = ap.getContent();
             TestUtil.logMsg("object returned=" + o);
             if (o != null) {
-                if (o instanceof String) TestUtil.logMsg("String object was returned (ok)");
-                else if (o instanceof InputStream) TestUtil.logMsg("InputStream object was returned (ok)");
+                if (o instanceof String)
+                    TestUtil.logMsg("String object was returned (ok)");
+                else if (o instanceof InputStream)
+                    TestUtil.logMsg("InputStream object was returned (ok)");
                 else {
                     TestUtil.logErr("Unexpected object was returned (not ok)");
                     TestUtil.logErr("Unexpected object=" + o);
@@ -1370,8 +1415,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1388,15 +1435,12 @@ public class AttachmentPartTestServlet extends HttpServlet {
 
             url = tsurl.getURL("http", host, port, cntxroot + "/" + GIF_FILE);
             /******
-             * Comment out (using DataHandler for gif requires DISPLAY environment
-             * variable to be set because GifDataContentHandler appserver code calls
-             * Toolkit.getDefaultToolkit() TestUtil.logMsg("Get DataHandler to gif
-             * attachment: " + GIF_FILE); TestUtil.logMsg("URL = " + url); dh = new
-             * DataHandler(url); TestUtil.logMsg("DataHandler = " + dh);
+             * Comment out (using DataHandler for gif requires DISPLAY environment variable to be set because GifDataContentHandler
+             * appserver code calls Toolkit.getDefaultToolkit() TestUtil.logMsg("Get DataHandler to gif attachment: " + GIF_FILE);
+             * TestUtil.logMsg("URL = " + url); dh = new DataHandler(url); TestUtil.logMsg("DataHandler = " + dh);
              *
-             * TestUtil.logMsg("Create image/gif mime attachment using DataHandler");
-             * ap = msg.createAttachmentPart(dh); TestUtil.logMsg("Set the content
-             * type to image/gif"); ap.setContentType("image/gif");
+             * TestUtil.logMsg("Create image/gif mime attachment using DataHandler"); ap = msg.createAttachmentPart(dh);
+             * TestUtil.logMsg("Set the content type to image/gif"); ap.setContentType("image/gif");
              *****/
             TestUtil.logMsg("Create image/gif mime attachment using ImageIO");
             Image image = javax.imageio.ImageIO.read(url);
@@ -1406,7 +1450,8 @@ public class AttachmentPartTestServlet extends HttpServlet {
             Object o = ap.getContent();
             TestUtil.logMsg("object returned=" + o);
             if (o != null) {
-                if (o instanceof Image) TestUtil.logMsg("Image object was returned (ok)");
+                if (o instanceof Image)
+                    TestUtil.logMsg("Image object was returned (ok)");
                 else {
                     TestUtil.logErr("Unexpected object was returned (not ok)");
                     TestUtil.logErr("Unexpected object=" + o);
@@ -1416,18 +1461,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 pass = false;
             }
             /*****
-             * Comment out (appserver does not allow use of
-             * Toolkit.getDefaultToolkit()) ap.clearContent(); TestUtil.logMsg(
-             * "Setting Content via Image for image/gif mime type");
-             * TestUtil.logMsg("URL to GIF file=" + url); Image image =
-             * Toolkit.getDefaultToolkit().createImage(url);
-             * ap.setContent(image,"image/gif"); TestUtil.logMsg("Getting Content
-             * should return Image object"); o = ap.getContent();
-             * TestUtil.logMsg("object returned="+o); if(o != null) { if(o instanceof
-             * Image) TestUtil.logMsg("Image object was returned (ok)"); else {
-             * TestUtil.logErr("Unexpected object was returned (not ok)");
-             * TestUtil.logErr("Unexpected object="+o); } } else {
-             * TestUtil.logErr("null was returned"); pass = false; }
+             * Comment out (appserver does not allow use of Toolkit.getDefaultToolkit()) ap.clearContent(); TestUtil.logMsg(
+             * "Setting Content via Image for image/gif mime type"); TestUtil.logMsg("URL to GIF file=" + url); Image image =
+             * Toolkit.getDefaultToolkit().createImage(url); ap.setContent(image,"image/gif"); TestUtil.logMsg("Getting Content
+             * should return Image object"); o = ap.getContent(); TestUtil.logMsg("object returned="+o); if(o != null) { if(o
+             * instanceof Image) TestUtil.logMsg("Image object was returned (ok)"); else { TestUtil.logErr("Unexpected object was
+             * returned (not ok)"); TestUtil.logErr("Unexpected object="+o); } } else { TestUtil.logErr("null was returned"); pass =
+             * false; }
              *****/
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -1435,8 +1475,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1466,7 +1508,8 @@ public class AttachmentPartTestServlet extends HttpServlet {
             Object o = ap.getContent();
             TestUtil.logMsg("object returned=" + o);
             if (o != null) {
-                if (o instanceof Image) TestUtil.logMsg("Image object was returned (ok)");
+                if (o instanceof Image)
+                    TestUtil.logMsg("Image object was returned (ok)");
                 else {
                     TestUtil.logErr("Unexpected object was returned (not ok)");
                     TestUtil.logErr("Unexpected object=" + o);
@@ -1476,18 +1519,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 pass = false;
             }
             /*****
-             * Comment out (appserver does not allow use of
-             * Toolkit.getDefaultToolkit()) ap.clearContent(); TestUtil.logMsg(
-             * "Setting Content via Image for image/jpeg mime type");
-             * TestUtil.logMsg("URL to JPEG file=" + url); Image image =
-             * Toolkit.getDefaultToolkit().createImage(url);
-             * ap.setContent(image,"image/jpeg"); TestUtil.logMsg("Getting Content
-             * should return Image object"); o = ap.getContent();
-             * TestUtil.logMsg("object returned="+o); if(o != null) { if(o instanceof
-             * Image) TestUtil.logMsg("Image object was returned (ok)"); else {
-             * TestUtil.logErr("Unexpected object was returned (not ok)");
-             * TestUtil.logErr("Unexpected object="+o); } } else {
-             * TestUtil.logErr("null was returned"); pass = false; }
+             * Comment out (appserver does not allow use of Toolkit.getDefaultToolkit()) ap.clearContent(); TestUtil.logMsg(
+             * "Setting Content via Image for image/jpeg mime type"); TestUtil.logMsg("URL to JPEG file=" + url); Image image =
+             * Toolkit.getDefaultToolkit().createImage(url); ap.setContent(image,"image/jpeg"); TestUtil.logMsg("Getting Content
+             * should return Image object"); o = ap.getContent(); TestUtil.logMsg("object returned="+o); if(o != null) { if(o
+             * instanceof Image) TestUtil.logMsg("Image object was returned (ok)"); else { TestUtil.logErr("Unexpected object was
+             * returned (not ok)"); TestUtil.logErr("Unexpected object="+o); } } else { TestUtil.logErr("null was returned"); pass =
+             * false; }
              *****/
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -1495,8 +1533,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1554,8 +1594,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1594,8 +1636,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1626,8 +1670,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1671,8 +1717,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1712,7 +1760,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 TestUtil.logMsg("received: name=" + name + ", value=" + value);
             }
 
-            String sArray[] = {"Content-Description"};
+            String sArray[] = { "Content-Description" };
             TestUtil.logMsg("List of matching MimeHeaders contains:");
             displayArray(sArray);
 
@@ -1745,8 +1793,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1780,7 +1830,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 TestUtil.logMsg("received: name=" + name + ", value=" + value);
             }
 
-            String sArray[] = {"Content-Description"};
+            String sArray[] = { "Content-Description" };
             TestUtil.logMsg("List of matching MimeHeaders contains:");
             displayArray(sArray);
 
@@ -1813,8 +1863,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1848,7 +1900,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 TestUtil.logMsg("received: name=" + name + ", value=" + value);
             }
 
-            String sArray[] = {"Content-Description"};
+            String sArray[] = { "Content-Description" };
             TestUtil.logMsg("List of matching MimeHeaders contains:");
             displayArray(sArray);
 
@@ -1904,8 +1956,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1938,7 +1992,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 TestUtil.logMsg("received: name=" + name + ", value=" + value);
             }
 
-            String sArray[] = {"doesnotexist"};
+            String sArray[] = { "doesnotexist" };
             TestUtil.logMsg("List of matching MimeHeaders contains:");
             displayArray(sArray);
 
@@ -1965,8 +2019,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
 
         resultProps.list(out);
     }
@@ -2002,7 +2058,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 TestUtil.logMsg("received: name=" + name + ", value=" + value);
             }
 
-            String sArray[] = {"Content-Description", "Content-Id", "Content-Location"};
+            String sArray[] = { "Content-Description", "Content-Id", "Content-Location" };
             TestUtil.logMsg("List of matching MimeHeaders contains:");
             displayArray(sArray);
 
@@ -2068,8 +2124,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2111,8 +2169,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2177,8 +2237,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2224,8 +2286,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2260,8 +2324,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
 
         resultProps.list(out);
     }
@@ -2295,7 +2361,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 TestUtil.logMsg("received: name=" + name + ", value=" + value);
             }
 
-            String sArray[] = {"Content-Id"};
+            String sArray[] = { "Content-Id" };
             TestUtil.logMsg("List of non matching MimeHeaders contains:");
             displayArray(sArray);
 
@@ -2328,8 +2394,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2363,7 +2431,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 TestUtil.logMsg("received: name=" + name + ", value=" + value);
             }
 
-            String sArray[] = {"Content-Id"};
+            String sArray[] = { "Content-Id" };
             TestUtil.logMsg("List of non matching MimeHeaders contains:");
             displayArray(sArray);
 
@@ -2396,8 +2464,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2431,7 +2501,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 TestUtil.logMsg("received: name=" + name + ", value=" + value);
             }
 
-            String sArray[] = {"Content-Id"};
+            String sArray[] = { "Content-Id" };
             TestUtil.logMsg("List of non matching MimeHeaders contains:");
             displayArray(sArray);
 
@@ -2487,8 +2557,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2521,7 +2593,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 TestUtil.logMsg("received: name=" + name + ", value=" + value);
             }
 
-            String sArray[] = {"Content-Description"};
+            String sArray[] = { "Content-Description" };
             TestUtil.logMsg("List of non matching MimeHeaders contains:");
             displayArray(sArray);
 
@@ -2549,8 +2621,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2585,7 +2659,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 TestUtil.logMsg("received: name=" + name + ", value=" + value);
             }
 
-            String sArray[] = {"Content-Id", "Content-Location"};
+            String sArray[] = { "Content-Id", "Content-Location" };
             TestUtil.logMsg("List of non matching MimeHeaders contains:");
             displayArray(sArray);
 
@@ -2640,8 +2714,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2670,8 +2746,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2712,8 +2790,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2752,8 +2832,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2794,8 +2876,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2841,8 +2925,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2889,8 +2975,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2937,8 +3025,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -2963,8 +3053,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3010,8 +3102,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3062,8 +3156,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3109,8 +3205,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3152,8 +3250,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
 
         resultProps.list(out);
     }
@@ -3179,8 +3279,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3212,8 +3314,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3240,8 +3344,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3269,8 +3375,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3295,8 +3403,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3330,8 +3440,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3356,8 +3468,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3385,8 +3499,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3418,8 +3534,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3451,8 +3569,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3486,8 +3606,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3545,8 +3667,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3571,8 +3695,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3601,8 +3727,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3630,8 +3758,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3676,8 +3806,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3745,8 +3877,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3795,8 +3929,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3840,8 +3976,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
 
         resultProps.list(out);
     }
@@ -3893,8 +4031,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3943,8 +4083,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -3974,7 +4116,8 @@ public class AttachmentPartTestServlet extends HttpServlet {
             int length1 = 0, count1 = 0;
             while (count1 != -1) {
                 count1 = is1.read(buf1, length1, (30000 - length1));
-                if (count1 > 0) length1 += count1;
+                if (count1 > 0)
+                    length1 += count1;
             }
             is1.close();
             TestUtil.logMsg("length1=" + length1);
@@ -4005,11 +4148,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 int length2 = 0, count2 = 0;
                 while (count2 != -1) {
                     count2 = r.read(cbuf2, length2, (30000 - length2));
-                    if (count2 > 0) length2 += count2;
+                    if (count2 > 0)
+                        length2 += count2;
                 }
                 r.close();
                 TestUtil.logMsg("length2=" + length2);
-                for (int i = 0; i < length2; i++) buf2[i] = cbuf2[i];
+                for (int i = 0; i < length2; i++)
+                    buf2[i] = cbuf2[i];
                 TestUtil.logMsg("Compare data in buf1 and buf2 (Must be Equal)");
                 if (length1 != length2) {
                     TestUtil.logErr("Lengths are different: length1=" + length1 + ", length2=" + length2);
@@ -4034,8 +4179,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4071,8 +4218,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4110,8 +4259,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4150,8 +4301,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4180,7 +4333,8 @@ public class AttachmentPartTestServlet extends HttpServlet {
             int length1 = 0, count1 = 0;
             while (count1 != -1) {
                 count1 = is1.read(buf1, length1, (30000 - length1));
-                if (count1 > 0) length1 += count1;
+                if (count1 > 0)
+                    length1 += count1;
             }
             is1.close();
             TestUtil.logMsg("length1=" + length1);
@@ -4200,7 +4354,8 @@ public class AttachmentPartTestServlet extends HttpServlet {
                 int length2 = 0, count2 = 0;
                 while (count2 != -1) {
                     count2 = is2.read(buf2, length2, (30000 - length2));
-                    if (count2 > 0) length2 += count2;
+                    if (count2 > 0)
+                        length2 += count2;
                 }
                 is2.close();
                 TestUtil.logMsg("length2=" + length2);
@@ -4228,8 +4383,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4265,8 +4422,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4294,12 +4453,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
             int length1 = 0, count1 = 0;
             while (count1 != -1) {
                 count1 = is1.read(buf1, length1, (30000 - length1));
-                if (count1 > 0) length1 += count1;
+                if (count1 > 0)
+                    length1 += count1;
             }
             is1.close();
             TestUtil.logMsg("length1=" + length1);
             byte data1[] = new byte[length1];
-            for (int i = 0; i < length1; i++) data1[i] = buf1[i];
+            for (int i = 0; i < length1; i++)
+                data1[i] = buf1[i];
             dh = new DataHandler(url);
             is1 = dh.getInputStream();
 
@@ -4337,8 +4498,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4368,8 +4531,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4399,8 +4564,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4432,8 +4599,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4464,8 +4633,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4499,8 +4670,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4533,8 +4706,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4565,8 +4740,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4593,8 +4770,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -4621,8 +4800,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

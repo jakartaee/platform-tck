@@ -95,8 +95,7 @@ public class Client extends ServiceEETest {
     }
 
     private void getPortStandalone() throws Exception {
-        port = (MarshallTest)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME, MarshallTest.class);
+        port = (MarshallTest) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME, MarshallTest.class);
         JAXWS_Util.setTargetEndpointAddress(port, url);
     }
 
@@ -137,8 +136,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -182,41 +183,52 @@ public class Client extends ServiceEETest {
     /*
      * @testName: MarshallPrimitiveTest
      *
-     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011;
-     * JAXWS:SPEC:3000; JAXWS:SPEC:3012; JAXWS:SPEC:3057; JAXWS:SPEC:7000;
-     * JAXWS:SPEC:3058;
+     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011; JAXWS:SPEC:3000; JAXWS:SPEC:3012;
+     * JAXWS:SPEC:3057; JAXWS:SPEC:7000; JAXWS:SPEC:3058;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each primitive type pass its value as input to the
-     * corresponding RPC method and receive it back as the return value. Compare
-     * results of each value/type of what was sent and what was returned. Verify
-     * they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each primitive type pass its value as input to the
+     * corresponding RPC method and receive it back as the return value. Compare results of each value/type of what was sent
+     * and what was returned. Verify they are equal.
      *
-     * Description Java primititive types and the corresponding Java classes:
-     * boolean,byte,short,int,long,float,double as well as:
-     * Boolean,Byte,Short,Integer,Long,Float,Double
+     * Description Java primititive types and the corresponding Java classes: boolean,byte,short,int,long,float,double as
+     * well as: Boolean,Byte,Short,Integer,Long,Float,Double
      */
     public void MarshallPrimitiveTest() throws Fault {
         TestUtil.logMsg("MarshallPrimitiveTest");
         boolean pass = true;
 
-        if (!booleanTest()) pass = false;
-        if (!BooleanTest()) pass = false;
-        if (!byteTest()) pass = false;
-        if (!ByteTest()) pass = false;
-        if (!shortTest()) pass = false;
-        if (!ShortTest()) pass = false;
-        if (!intTest()) pass = false;
-        if (!IntegerTest()) pass = false;
-        if (!longTest()) pass = false;
-        if (!LongTest()) pass = false;
-        if (!floatTest()) pass = false;
-        if (!FloatTest()) pass = false;
-        if (!doubleTest()) pass = false;
-        if (!DoubleTest()) pass = false;
+        if (!booleanTest())
+            pass = false;
+        if (!BooleanTest())
+            pass = false;
+        if (!byteTest())
+            pass = false;
+        if (!ByteTest())
+            pass = false;
+        if (!shortTest())
+            pass = false;
+        if (!ShortTest())
+            pass = false;
+        if (!intTest())
+            pass = false;
+        if (!IntegerTest())
+            pass = false;
+        if (!longTest())
+            pass = false;
+        if (!LongTest())
+            pass = false;
+        if (!floatTest())
+            pass = false;
+        if (!FloatTest())
+            pass = false;
+        if (!doubleTest())
+            pass = false;
+        if (!DoubleTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallPrimitiveTest failed");
+        if (!pass)
+            throw new Fault("MarshallPrimitiveTest failed");
     }
 
     // ====================================================================
@@ -226,30 +238,32 @@ public class Client extends ServiceEETest {
     /*
      * @testName: MarshallStandardJavaClassesTest
      *
-     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011;
-     * JAXWS:SPEC:3000; JAXWS:SPEC:3012; JAXWS:SPEC:3057; JAXWS:SPEC:7000;
-     * JAXWS:SPEC:3058;
+     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011; JAXWS:SPEC:3000; JAXWS:SPEC:3012;
+     * JAXWS:SPEC:3057; JAXWS:SPEC:7000; JAXWS:SPEC:3058;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * standard java class type. For each standard java class above pass its value
-     * as input to the corresponding RPC method and receive it back as the return
-     * value. Compare results of each value/type of what was sent sent and what
-     * was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each standard java class type. For each standard java class above pass its value as
+     * input to the corresponding RPC method and receive it back as the return value. Compare results of each value/type of
+     * what was sent sent and what was returned. Verify they are equal.
      *
-     * Description Standard Java Classes: o java.lang.String o java.util.Calendar
-     * o java.math.BigInteger o java.math.BigDecimal
+     * Description Standard Java Classes: o java.lang.String o java.util.Calendar o java.math.BigInteger o
+     * java.math.BigDecimal
      */
     public void MarshallStandardJavaClassesTest() throws Fault {
         TestUtil.logMsg("MarshallStandardJavaClassesTest");
         boolean pass = true;
 
-        if (!StringTest()) pass = false;
-        if (!CalendarTest()) pass = false;
-        if (!BigIntegerTest()) pass = false;
-        if (!BigDecimalTest()) pass = false;
+        if (!StringTest())
+            pass = false;
+        if (!CalendarTest())
+            pass = false;
+        if (!BigIntegerTest())
+            pass = false;
+        if (!BigDecimalTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallStandardJavaClassesTest failed");
+        if (!pass)
+            throw new Fault("MarshallStandardJavaClassesTest failed");
     }
 
     // ====================================================================
@@ -259,16 +273,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: MarshallJavaArrayTest
      *
-     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011;
-     * JAXWS:SPEC:3000; JAXWS:SPEC:3012; JAXWS:SPEC:3057; JAXWS:SPEC:7000;
-     * JAXWS:SPEC:3058;
+     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011; JAXWS:SPEC:3000; JAXWS:SPEC:3012;
+     * JAXWS:SPEC:3057; JAXWS:SPEC:7000; JAXWS:SPEC:3058;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, invoke the RPC methods for each
-     * java type supported. For each java type supported pass an arrary of values
-     * as input to the corresponding RPC method and receive it back as the return
-     * value. Compare results of each array type of what was sent and what was
-     * returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * invoke the RPC methods for each java type supported. For each java type supported pass an arrary of values as input
+     * to the corresponding RPC method and receive it back as the return value. Compare results of each array type of what
+     * was sent and what was returned. Verify they are equal.
      *
      * Description Single dimensional Java arrays are tested.
      */
@@ -276,27 +287,47 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("MarshallJavaArrayTest");
         boolean pass = true;
 
-        if (!booleanArrayTest()) pass = false;
-        if (!byteArrayTest()) pass = false;
-        if (!shortArrayTest()) pass = false;
-        if (!intArrayTest()) pass = false;
-        if (!longArrayTest()) pass = false;
-        if (!floatArrayTest()) pass = false;
-        if (!doubleArrayTest()) pass = false;
-        if (!wrapperBooleanArrayTest()) pass = false;
-        if (!wrapperByteArrayTest()) pass = false;
-        if (!wrapperShortArrayTest()) pass = false;
-        if (!wrapperIntArrayTest()) pass = false;
-        if (!wrapperLongArrayTest()) pass = false;
-        if (!wrapperFloatArrayTest()) pass = false;
-        if (!wrapperDoubleArrayTest()) pass = false;
-        if (!StringArrayTest()) pass = false;
-        if (!CalendarArrayTest()) pass = false;
-        if (!BigIntegerArrayTest()) pass = false;
-        if (!BigDecimalArrayTest()) pass = false;
-        if (!JavaBeanArrayTest()) pass = false;
+        if (!booleanArrayTest())
+            pass = false;
+        if (!byteArrayTest())
+            pass = false;
+        if (!shortArrayTest())
+            pass = false;
+        if (!intArrayTest())
+            pass = false;
+        if (!longArrayTest())
+            pass = false;
+        if (!floatArrayTest())
+            pass = false;
+        if (!doubleArrayTest())
+            pass = false;
+        if (!wrapperBooleanArrayTest())
+            pass = false;
+        if (!wrapperByteArrayTest())
+            pass = false;
+        if (!wrapperShortArrayTest())
+            pass = false;
+        if (!wrapperIntArrayTest())
+            pass = false;
+        if (!wrapperLongArrayTest())
+            pass = false;
+        if (!wrapperFloatArrayTest())
+            pass = false;
+        if (!wrapperDoubleArrayTest())
+            pass = false;
+        if (!StringArrayTest())
+            pass = false;
+        if (!CalendarArrayTest())
+            pass = false;
+        if (!BigIntegerArrayTest())
+            pass = false;
+        if (!BigDecimalArrayTest())
+            pass = false;
+        if (!JavaBeanArrayTest())
+            pass = false;
 
-        if (!pass) throw new Fault("MarshallJavaArrayTest failed");
+        if (!pass)
+            throw new Fault("MarshallJavaArrayTest failed");
     }
 
     // ====================================================================
@@ -306,17 +337,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: MarshallServiceExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011;
-     * JAXWS:SPEC:3000; JAXWS:SPEC:3012; JAXWS:SPEC:3057; JAXWS:SPEC:7000;
-     * JAXWS:SPEC:3058;
+     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011; JAXWS:SPEC:3000; JAXWS:SPEC:3012;
+     * JAXWS:SPEC:3057; JAXWS:SPEC:7000; JAXWS:SPEC:3058;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method
-     * ServiceExceptionTest that generates a fault condition. Verify a fault
-     * condition occurs.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method ServiceExceptionTest that generates a fault condition. Verify a fault condition occurs.
      *
-     * Description A client can invoke an RPC method via generated stub and
-     * receive a fault.
+     * Description A client can invoke an RPC method via generated stub and receive a fault.
      */
     public void MarshallServiceExceptionTest() throws Fault {
         TestUtil.logMsg("MarshallServiceExceptionTest");
@@ -337,7 +364,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallServiceExceptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallServiceExceptionTest failed");
+        if (!pass)
+            throw new Fault("MarshallServiceExceptionTest failed");
     }
 
     // ====================================================================
@@ -347,19 +375,15 @@ public class Client extends ServiceEETest {
     /*
      * @testName: MarshallJavaBeanTest
      *
-     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011;
-     * JAXWS:SPEC:3000; JAXWS:SPEC:3012; JAXWS:SPEC:3057; JAXWS:SPEC:7000;
-     * JAXWS:SPEC:3058;
+     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011; JAXWS:SPEC:3000; JAXWS:SPEC:3012;
+     * JAXWS:SPEC:3057; JAXWS:SPEC:7000; JAXWS:SPEC:3058;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method
-     * JavaBeanTest. Pass a JavaBean value to the RPC method and receive it back
-     * as the return value. Compare results of JavaBean value from what was sent
-     * and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method JavaBeanTest. Pass a JavaBean value to the RPC method and receive it back as the return
+     * value. Compare results of JavaBean value from what was sent and what was returned. Verify they are equal.
      *
-     * Description A client can invoke an RPC method via generated stub passing a
-     * JavaBean value as input argument and receiving a JavaBean value as a return
-     * value.
+     * Description A client can invoke an RPC method via generated stub passing a JavaBean value as input argument and
+     * receiving a JavaBean value as a return value.
      */
     public void MarshallJavaBeanTest() throws Fault {
         TestUtil.logMsg("MarshallJavaBeanTest");
@@ -372,7 +396,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.javaBeanTest(values[i]);
-                if (!compareJavaBeans(values[i], response)) pass = false;
+                if (!compareJavaBeans(values[i], response))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -380,7 +405,8 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallJavaBeanTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallJavaBeanTest failed");
+        if (!pass)
+            throw new Fault("MarshallJavaBeanTest failed");
     }
 
     // ====================================================================
@@ -390,16 +416,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: MarshallVoidTest
      *
-     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011;
-     * JAXWS:SPEC:3000; JAXWS:SPEC:3012; JAXWS:SPEC:3057; JAXWS:SPEC:7000;
-     * JAXWS:SPEC:3058;
+     * @assertion_ids: JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011; JAXWS:SPEC:3000; JAXWS:SPEC:3012;
+     * JAXWS:SPEC:3057; JAXWS:SPEC:7000; JAXWS:SPEC:3058;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC method voidTest.
-     * Verify normal invocation and return.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC method voidTest. Verify normal invocation and return.
      *
-     * Description A client can invoke an RPC method via generated stub and handle
-     * void type.
+     * Description A client can invoke an RPC method via generated stub and handle void type.
      */
     public void MarshallVoidTest() throws Fault {
         TestUtil.logMsg("MarshallVoidTest");
@@ -413,12 +436,15 @@ public class Client extends ServiceEETest {
             throw new Fault("MarshallVoidTest failed", e);
         }
 
-        if (!pass) throw new Fault("MarshallVoidTest failed");
+        if (!pass)
+            throw new Fault("MarshallVoidTest failed");
     }
 
     private boolean printTestStatus(boolean pass, String test) {
-        if (pass) TestUtil.logMsg("" + test + " ... PASSED");
-        else TestUtil.logErr("" + test + " ... FAILED");
+        if (pass)
+            TestUtil.logMsg("" + test + " ... PASSED");
+        else
+            TestUtil.logErr("" + test + " ... FAILED");
 
         return pass;
     }
@@ -432,7 +458,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.booleanTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Boolean")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Boolean"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -452,7 +479,8 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Passing/Returning Boolean class to/from JAXWS Service");
             for (int i = 0; i < values.length; i++) {
                 response = port.wrapperBooleanTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Boolean")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Boolean"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -472,7 +500,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.byteTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Byte")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Byte"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -492,7 +521,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.wrapperByteTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Byte")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Byte"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -512,7 +542,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.shortTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Short")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Short"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -531,9 +562,11 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Passing/Returning Short class to/from JAXWS Service");
         try {
             for (int i = 0; i < values.length; i++) {
-                if (values[i] == null) continue;
+                if (values[i] == null)
+                    continue;
                 response = port.wrapperShortTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Short")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Short"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -553,7 +586,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.intTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Integer")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Integer"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -573,7 +607,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.wrapperIntegerTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Integer")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Integer"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -593,7 +628,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.longTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Long")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Long"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -613,7 +649,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.wrapperLongTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Long")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Long"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -633,7 +670,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.floatTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Float")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Float"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -653,7 +691,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.wrapperFloatTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Float")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Float"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -673,7 +712,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.doubleTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Double")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Double"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -693,7 +733,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.wrapperDoubleTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "Double")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "Double"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -713,7 +754,8 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Passing/Returning String class to/from JAXWS Service");
             for (int i = 0; i < values.length; i++) {
                 response = port.stringTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "String")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "String"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -733,7 +775,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.calendarTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "XMLGregorianCalendar")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "XMLGregorianCalendar"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -753,7 +796,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.bigIntegerTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "BigInteger")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "BigInteger"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -773,7 +817,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.bigDecimalTest(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "BigDecimal")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "BigDecimal"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1197,7 +1242,8 @@ public class Client extends ServiceEETest {
         System.out.println("Dumping " + t + " array, size=" + getArraySize(o, t));
         if (t.equals("JavaBean")) {
             JavaBean[] v = (JavaBean[]) o;
-            for (int i = 0; i < v.length; i++) System.out.println("- " + toStringJavaBean(v[i]));
+            for (int i = 0; i < v.length; i++)
+                System.out.println("- " + toStringJavaBean(v[i]));
         }
     }
 
@@ -1215,7 +1261,8 @@ public class Client extends ServiceEETest {
         if (t.equals("JavaBean")) {
             JavaBean exp = (JavaBean) e;
             JavaBean rec = (JavaBean) r;
-            if (rec == exp) return true;
+            if (rec == exp)
+                return true;
             if ((rec == null && exp != null) || (rec != null && exp == null)) {
                 pass = false;
             } else if (!compareJavaBeans(exp, rec)) {
@@ -1239,7 +1286,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
             for (int i = 0; i < rec.length; i++) {
-                if (rec[i] == exp[i]) continue;
+                if (rec[i] == exp[i])
+                    continue;
                 if ((rec[i] == null && exp[i] != null) || (rec[i] != null && exp[i] == null)) {
                     pass = false;
                 } else if (!compareJavaBeans(exp[i], rec[i])) {

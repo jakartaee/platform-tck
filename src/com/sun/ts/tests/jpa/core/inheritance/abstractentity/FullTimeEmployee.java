@@ -37,7 +37,8 @@ public class FullTimeEmployee extends Employee {
 
     private float salary;
 
-    public FullTimeEmployee() {}
+    public FullTimeEmployee() {
+    }
 
     public FullTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
         this.id = id;

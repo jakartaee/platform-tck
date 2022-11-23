@@ -38,7 +38,7 @@ import java.net.URL;
 import javax.sql.DataSource;
 
 @Stateless(name = "ResourceFieldBean")
-@Remote({ResourceIF.class})
+@Remote({ ResourceIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
 
@@ -135,9 +135,11 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
         return "queue";
     }
 
-    public ResourceFieldBean() {}
+    public ResourceFieldBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected jakarta.ejb.EJBContext getEJBContext() {
         return sessionContext;

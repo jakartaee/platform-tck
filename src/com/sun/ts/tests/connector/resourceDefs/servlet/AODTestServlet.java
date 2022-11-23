@@ -39,41 +39,17 @@ import java.io.PrintWriter;
  *
  */
 
-@DeclareRoles({"Administrator", "Manager", "Employee"})
-@ServletSecurity(
-        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
-        httpMethodConstraints = {
-            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
-        })
-@WebServlet(
-        name = "AODTestServlet",
-        urlPatterns = {"/AODTestServlet"})
+@DeclareRoles({ "Administrator", "Manager", "Employee" })
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = { "Administrator" }), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
+})
+@WebServlet(name = "AODTestServlet", urlPatterns = { "/AODTestServlet" })
 @AdministeredObjectDefinitions({
-    @AdministeredObjectDefinition(
-            name = "java:app/env/CTSAdminObjectForAppScope",
-            description = "application scoped AdminObjectDefinition",
-            interfaceName = "jakarta.jms.Queue",
-            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
-            resourceAdapter = "#whitebox-rd"),
-    @AdministeredObjectDefinition(
-            name = "java:comp/env/CTSAdminObjectForCompScope",
-            description = "component scoped AdminObjectDefinition",
-            interfaceName = "jakarta.jms.Queue",
-            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
-            resourceAdapter = "#whitebox-rd"),
-    @AdministeredObjectDefinition(
-            name = "java:module/env/CTSAdminObjectForModuleScope",
-            description = "module scoped AdminObjectDefinition",
-            interfaceName = "jakarta.jms.Queue",
-            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
-            resourceAdapter = "#whitebox-rd"),
-    @AdministeredObjectDefinition(
-            name = "java:global/env/CTSAdminObjectForGlobalScope",
-            description = "globally scoped AdminObjectDefinition",
-            interfaceName = "jakarta.jms.Queue",
-            className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject",
-            resourceAdapter = "#whitebox-rd")
+        @AdministeredObjectDefinition(name = "java:app/env/CTSAdminObjectForAppScope", description = "application scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+        @AdministeredObjectDefinition(name = "java:comp/env/CTSAdminObjectForCompScope", description = "component scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+        @AdministeredObjectDefinition(name = "java:module/env/CTSAdminObjectForModuleScope", description = "module scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd"),
+        @AdministeredObjectDefinition(name = "java:global/env/CTSAdminObjectForGlobalScope", description = "globally scoped AdminObjectDefinition", interfaceName = "jakarta.jms.Queue", className = "com.sun.ts.tests.common.connector.embedded.adapter1.CRDAdminObject", resourceAdapter = "#whitebox-rd")
 })
 public class AODTestServlet extends HttpServlet {
     private String servletAppContext = null;

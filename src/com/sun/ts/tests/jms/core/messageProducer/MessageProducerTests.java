@@ -107,7 +107,9 @@ public class MessageProducerTests extends ServiceEETest {
 
     private void flushTheQueue() throws Fault {
         try {
-            if (tool != null) if (tool.getDefaultConnection() != null) cleanup();
+            if (tool != null)
+                if (tool.getDefaultConnection() != null)
+                    cleanup();
 
             tool = new JmsTool(JmsTool.COMMON_Q, jmsUser, jmsPassword, mode);
 
@@ -129,8 +131,7 @@ public class MessageProducerTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:321; JMS:SPEC:253;
      *
-     * @test_Strategy: Send and receive single message using
-     * MessageProducer.send(Destination, Message) and
+     * @test_Strategy: Send and receive single message using MessageProducer.send(Destination, Message) and
      * MessageConsumer.receive(long). Verify message receipt.
      */
 
@@ -184,8 +185,7 @@ public class MessageProducerTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:323; JMS:SPEC:253;
      *
-     * @test_Strategy: Send and receive single message using
-     * MessageProducer.send(Destination, Message, int, int, long) and
+     * @test_Strategy: Send and receive single message using MessageProducer.send(Destination, Message, int, int, long) and
      * MessageConsumer.receive(long). Verify message receipt.
      */
 
@@ -232,7 +232,8 @@ public class MessageProducerTests extends ServiceEETest {
                 logErr("Priority =" + messageReceived.getJMSPriority());
             }
 
-            if (!pass) throw new Fault(testName + " falied");
+            if (!pass)
+                throw new Fault(testName + " falied");
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new Fault(testName);
@@ -250,8 +251,7 @@ public class MessageProducerTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:319; JMS:JAVADOC:313; JMS:SPEC:253;
      *
-     * @test_Strategy: Send and receive single message using
-     * MessageProducer.send(Message, int, int, long) and
+     * @test_Strategy: Send and receive single message using MessageProducer.send(Message, int, int, long) and
      * MessageConsumer.receive(long). Verify message receipt.
      */
 
@@ -298,7 +298,8 @@ public class MessageProducerTests extends ServiceEETest {
                 logErr("Priority =" + messageReceived.getJMSPriority());
             }
 
-            if (!pass) throw new Fault(testName + " falied");
+            if (!pass)
+                throw new Fault(testName + " falied");
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new Fault(testName);
@@ -316,8 +317,7 @@ public class MessageProducerTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:321; JMS:SPEC:253;
      *
-     * @test_Strategy: Send and receive single message using
-     * MessageProducer.send(Destination, Message) and
+     * @test_Strategy: Send and receive single message using MessageProducer.send(Destination, Message) and
      * MessageConsumer.receive(long). Verify message receipt.
      */
 
@@ -365,8 +365,7 @@ public class MessageProducerTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:323; JMS:SPEC:253;
      *
-     * @test_Strategy: Send and receive single message using
-     * MessageProducer.send(Destination, Message, int, int, long). and
+     * @test_Strategy: Send and receive single message using MessageProducer.send(Destination, Message, int, int, long). and
      * MessageConsumer.receive(long). Verify message receipt.
      */
 
@@ -413,7 +412,8 @@ public class MessageProducerTests extends ServiceEETest {
                 logErr("Priority =" + messageReceived.getJMSPriority());
             }
 
-            if (!pass) throw new Fault(testName + " falied");
+            if (!pass)
+                throw new Fault(testName + " falied");
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new Fault(testName);
@@ -425,8 +425,7 @@ public class MessageProducerTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:319; JMS:JAVADOC:313; JMS:SPEC:253;
      *
-     * @test_Strategy: Send and receive single message using
-     * MessageProducer.send(Message, int, int, long) and
+     * @test_Strategy: Send and receive single message using MessageProducer.send(Message, int, int, long) and
      * MessageConsumer.receive(long). Verify message receipt.
      */
 
@@ -473,7 +472,8 @@ public class MessageProducerTests extends ServiceEETest {
                 logErr("Priority =" + messageReceived.getJMSPriority());
             }
 
-            if (!pass) throw new Fault(testName + " falied");
+            if (!pass)
+                throw new Fault(testName + " falied");
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new Fault(testName);

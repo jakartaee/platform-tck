@@ -72,11 +72,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:872
      *
-     * @test_Strategy: Deploy a BMP Entity bean with two String environment
-     *                 entries whose name differ only by case and are assigned to
-     *                 two distinct values. Check that we can lookup the two
-     *                 environment entries. Check that their runtime values are
-     *                 distinct and match the the ones specified in the DD.
+     * @test_Strategy: Deploy a BMP Entity bean with two String environment entries whose name differ only by case and are
+     * assigned to two distinct values. Check that we can lookup the two environment entries. Check that their runtime
+     * values are distinct and match the the ones specified in the DD.
      */
     public void testCaseSensitivity() throws Fault {
         boolean pass = true;

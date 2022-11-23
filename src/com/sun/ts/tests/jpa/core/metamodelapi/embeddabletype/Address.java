@@ -47,7 +47,8 @@ public class Address implements java.io.Serializable {
     @ElementCollection
     protected Set<ZipCode> sZipcode = new HashSet<ZipCode>();
 
-    public Address() {}
+    public Address() {
+    }
 
     public Address(String street, String city, String state) {
         this.street = street;

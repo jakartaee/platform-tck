@@ -57,8 +57,7 @@ import org.w3c.dom.ProcessingInstruction;
 public class Client extends EETest {
     private Properties props = null;
 
-    private String srcDir =
-            "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/soap/soaptests";
+    private String srcDir = "src/com/sun/ts/tests/internal/implementation/sjsas/saaj/com/sun/xml/messaging/saaj/soap/soaptests";
 
     private String testDir = null;
 
@@ -137,7 +136,8 @@ public class Client extends EETest {
             throw new Fault("SOAPIOExceptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPIOExceptionTest failed");
+        if (!pass)
+            throw new Fault("SOAPIOExceptionTest failed");
     }
 
     /*
@@ -188,7 +188,8 @@ public class Client extends EETest {
             throw new Fault("SOAPVersionMismatchExceptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPVersionMismatchExceptionTest failed");
+        if (!pass)
+            throw new Fault("SOAPVersionMismatchExceptionTest failed");
     }
 
     /*
@@ -240,7 +241,8 @@ public class Client extends EETest {
             throw new Fault("MessageFactoryImplTest failed", e);
         }
 
-        if (!pass) throw new Fault("MessageFactoryImplTest failed");
+        if (!pass)
+            throw new Fault("MessageFactoryImplTest failed");
     }
 
     /*
@@ -262,7 +264,8 @@ public class Client extends EETest {
             throw new Fault("SOAPDocumentFragmentTest failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPDocumentFragmentTest failed");
+        if (!pass)
+            throw new Fault("SOAPDocumentFragmentTest failed");
     }
 
     /*
@@ -350,7 +353,8 @@ public class Client extends EETest {
             throw new Fault("SOAPDocumentImplTest failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPDocumentImplTest failed");
+        if (!pass)
+            throw new Fault("SOAPDocumentImplTest failed");
     }
 
     /*
@@ -371,7 +375,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Call EnvelopeFactory.createEnvelope(Source, SOAPPartImpl) method");
             String fileToOpen = testDir + "/data/data.soapmsg";
             fileToOpen = fileToOpen.replace('/', File.separatorChar);
-            if (File.separator.equals("\\")) fileToOpen = "C:" + fileToOpen;
+            if (File.separator.equals("\\"))
+                fileToOpen = "C:" + fileToOpen;
             StreamSource ssrc = new StreamSource(new File(fileToOpen));
             Envelope env = envFactory.createEnvelope(ssrc, (SOAPPartImpl) part);
         } catch (Exception e) {
@@ -380,7 +385,8 @@ public class Client extends EETest {
             throw new Fault("EnvelopeFactoryTest failed", e);
         }
 
-        if (!pass) throw new Fault("EnvelopeFactoryTest failed");
+        if (!pass)
+            throw new Fault("EnvelopeFactoryTest failed");
     }
 
     /*
@@ -532,7 +538,8 @@ public class Client extends EETest {
             throw new Fault("SOAPPartImplTest failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPPartImplTest failed");
+        if (!pass)
+            throw new Fault("SOAPPartImplTest failed");
     }
 
     /*
@@ -553,7 +560,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Call GifDataContentHandler.getTransferData(DataFlavor, DataSource) method");
             String fileToOpen = testDir + "/data/data.gif";
             fileToOpen = fileToOpen.replace('/', File.separatorChar);
-            if (File.separator.equals("\\")) fileToOpen = "C:" + fileToOpen;
+            if (File.separator.equals("\\"))
+                fileToOpen = "C:" + fileToOpen;
             FileDataSource ds = new FileDataSource(fileToOpen);
             Object data = gifdch.getTransferData(df[0], ds);
             TestUtil.logMsg("Call GifDataContentHandler.getContext(DataSource) method");
@@ -570,7 +578,8 @@ public class Client extends EETest {
             throw new Fault("GifDataContentHandlerTest failed", e);
         }
 
-        if (!pass) throw new Fault("GifDataContentHandlerTest failed");
+        if (!pass)
+            throw new Fault("GifDataContentHandlerTest failed");
     }
 
     /*
@@ -591,7 +600,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Call JpegDataContentHandler.getTransferData(DataFlavor, DataSource) method");
             String fileToOpen = testDir + "/data/data.jpeg";
             fileToOpen = fileToOpen.replace('/', File.separatorChar);
-            if (File.separator.equals("\\")) fileToOpen = "C:" + fileToOpen;
+            if (File.separator.equals("\\"))
+                fileToOpen = "C:" + fileToOpen;
             FileDataSource ds = new FileDataSource(fileToOpen);
             Object data = jpegdch.getTransferData(df[0], ds);
             TestUtil.logMsg("Call JpegDataContentHandler.getContext(DataSource) method");
@@ -604,7 +614,8 @@ public class Client extends EETest {
             throw new Fault("JpegDataContentHandlerTest failed", e);
         }
 
-        if (!pass) throw new Fault("JpegDataContentHandlerTest failed");
+        if (!pass)
+            throw new Fault("JpegDataContentHandlerTest failed");
     }
 
     /*
@@ -625,7 +636,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Call XmlDataContentHandler.getTransferData(DataFlavor, DataSource) method");
             String fileToOpen = testDir + "/data/data.xml";
             fileToOpen = fileToOpen.replace('/', File.separatorChar);
-            if (File.separator.equals("\\")) fileToOpen = "C:" + fileToOpen;
+            if (File.separator.equals("\\"))
+                fileToOpen = "C:" + fileToOpen;
             FileDataSource ds = new FileDataSource(fileToOpen);
             Object data = xmldch.getTransferData(df[0], ds);
             TestUtil.logMsg("Call XmlDataContentHandler.getContext(DataSource) method");
@@ -638,7 +650,8 @@ public class Client extends EETest {
             throw new Fault("XmlDataContentHandlerTest failed", e);
         }
 
-        if (!pass) throw new Fault("XmlDataContentHandlerTest failed");
+        if (!pass)
+            throw new Fault("XmlDataContentHandlerTest failed");
     }
 
     /*
@@ -659,7 +672,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Call StringDataContentHandler.getTransferData(DataFlavor, DataSource) method");
             String fileToOpen = testDir + "/data/data.text";
             fileToOpen = fileToOpen.replace('/', File.separatorChar);
-            if (File.separator.equals("\\")) fileToOpen = "C:" + fileToOpen;
+            if (File.separator.equals("\\"))
+                fileToOpen = "C:" + fileToOpen;
             FileDataSource ds = new FileDataSource(fileToOpen);
             Object data = strdch.getTransferData(df[0], ds);
             TestUtil.logMsg("Call StringDataContentHandler.getContext(DataSource) method");
@@ -672,6 +686,7 @@ public class Client extends EETest {
             throw new Fault("StringDataContentHandlerTest failed", e);
         }
 
-        if (!pass) throw new Fault("StringDataContentHandlerTest failed");
+        if (!pass)
+            throw new Fault("StringDataContentHandlerTest failed");
     }
 }

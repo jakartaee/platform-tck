@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -61,9 +59,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:87; JSP:SPEC:162.10
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a
-     * Boolean property of the bean using a String constant. PENDING Merge with
-     * prim test
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a Boolean property of the bean using a String
+     * constant. PENDING Merge with prim test
      */
 
     public void positiveSetBooleanObjTest() throws Fault {
@@ -76,8 +73,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:87
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a
-     * boolean property of the bean using a String constant.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a boolean property of the bean using a String
+     * constant.
      *
      */
 
@@ -91,9 +88,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:88;JSP:SPEC:162.10
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a
-     * Byte property of the bean using a String constant. PENDING Merge with prim
-     * test
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a Byte property of the bean using a String
+     * constant. PENDING Merge with prim test
      */
 
     public void positiveSetByteObjTest() throws Fault {
@@ -120,9 +116,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:89;JSP:SPEC:162.10
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a
-     * Character property of the bean using a String constant. PENDING Merge with
-     * prim test
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a Character property of the bean using a String
+     * constant. PENDING Merge with prim test
      */
 
     public void positiveSetCharObjTest() throws Fault {
@@ -135,8 +130,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:89
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a
-     * char property of the bean using a String constant.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a char property of the bean using a String
+     * constant.
      *
      */
 
@@ -150,8 +145,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:90; JSP:SPEC:162.10
      *
-     * @test_Strategy: and set a Double property of the bean using a String
-     * constant. PENDING Merge with prim test
+     * @test_Strategy: and set a Double property of the bean using a String constant. PENDING Merge with prim test
      */
 
     public void positiveSetDoubleObjTest() throws Fault {
@@ -164,8 +158,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:90
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a
-     * double property of the bean using a String constant.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a double property of the bean using a String
+     * constant.
      *
      */
 
@@ -179,8 +173,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:92;JSP:SPEC:162.10
      *
-     * @test_Strategy: and set a Float property of the bean using a String
-     * constant. PENDING Merge with prim test
+     * @test_Strategy: and set a Float property of the bean using a String constant. PENDING Merge with prim test
      */
 
     public void positiveSetFloatObjTest() throws Fault {
@@ -193,8 +186,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:92
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a
-     * float property of the bean using a String constant.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a float property of the bean using a String
+     * constant.
      *
      */
 
@@ -208,12 +201,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:162.12
      *
-     * @test_Strategy: Create a bean using useBean tag, use setProperty and set
-     * properties using the following array types: <ul> <li> byte <li> char <li>
-     * short <li> int <li> float <li> long <li> double <li> boolean <li> Byte <li>
-     * Character <li> Short <li> Integer <li> Float <li> Long <li> Double <li>
-     * Boolean <ul> Access each of the properties via scripting, iterate through
-     * the array, and display the values.
+     * @test_Strategy: Create a bean using useBean tag, use setProperty and set properties using the following array types:
+     * <ul> <li> byte <li> char <li> short <li> int <li> float <li> long <li> double <li> boolean <li> Byte <li> Character
+     * <li> Short <li> Integer <li> Float <li> Long <li> Double <li> Boolean <ul> Access each of the properties via
+     * scripting, iterate through the array, and display the values.
      */
 
     public void positiveSetIndexedPropTest() throws Fault {
@@ -226,9 +217,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:91;JSP:SPEC:162.10
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set an
-     * Integer property of the bean using a String constant. PENDING Merge with
-     * prim test
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set an Integer property of the bean using a String
+     * constant. PENDING Merge with prim test
      */
 
     public void positiveSetIntObjTest() throws Fault {
@@ -241,8 +231,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:91
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set an
-     * int property of the bean using a String constant.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set an int property of the bean using a String
+     * constant.
      */
 
     public void positiveSetIntPrimTest() throws Fault {
@@ -255,8 +245,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:93;JSP:SPEC:162.10
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set an
-     * Long property of the bean using a String constant.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set an Long property of the bean using a String
+     * constant.
      */
 
     public void positiveSetLongObjTest() throws Fault {
@@ -269,9 +259,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:93
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a
-     * long property of the bean using a String constant. PENDING Merge with prim
-     * test
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set a long property of the bean using a String
+     * constant. PENDING Merge with prim test
      */
     public void positiveSetLongPrimTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetLongPrim");
@@ -283,9 +272,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:162.2.1
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance and set the
-     * property attribute to '*'. The following properties should be set by the
-     * tag: name, num, str.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance and set the property attribute to '*'. The following
+     * properties should be set by the tag: name, num, str.
      */
 
     public void positiveSetPropAllTest() throws Fault {
@@ -305,11 +293,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:162.4
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance.
-     * jsp:setProperty only specifies the name and property properties. The
-     * container should set the value of the Bean's property to the value of the
-     * request parameter that has the same name as specified by the property
-     * attribute.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance. jsp:setProperty only specifies the name and property
+     * properties. The container should set the value of the Bean's property to the value of the request parameter that has
+     * the same name as specified by the property attribute.
      */
 
     public void positiveSetPropNoParamTest() throws Fault {
@@ -327,10 +313,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:162.3
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance.
-     * jsp:setProperty only specifies the param property. The container should set
-     * the value of the Bean's property to the value of the request parameter that
-     * has the same name as specified by the param attribute.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance. jsp:setProperty only specifies the param property. The
+     * container should set the value of the Bean's property to the value of the request parameter that has the same name as
+     * specified by the param attribute.
      */
 
     public void positiveSetPropParamTest() throws Fault {
@@ -348,10 +333,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:162.7.1
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance. Set the
-     * value of a bean property using a request-time attribute expression
-     * delimited by single quotes. PENDING Merge with
-     * positiveSetPropReqTimeDoubleQuotesTest
+     * @test_Strategy: Using jsp:useBean, create a new bean instance. Set the value of a bean property using a request-time
+     * attribute expression delimited by single quotes. PENDING Merge with positiveSetPropReqTimeDoubleQuotesTest
      */
 
     public void positiveSetPropReqTimeSingleQuotesTest() throws Fault {
@@ -364,9 +347,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:162.7.1
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance. Set the
-     * value of a bean property using a request-time attribute expression
-     * delimited by double quotes.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance. Set the value of a bean property using a request-time
+     * attribute expression delimited by double quotes.
      *
      */
 
@@ -380,8 +362,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:162.1; JSP:SPEC:162.2; JSP:SPEC:162.7
      *
-     * @test_Strategy: Using jsp:useBean, create a new bean instance. Set the
-     * value of a bean property using the value attribute.
+     * @test_Strategy: Using jsp:useBean, create a new bean instance. Set the value of a bean property using the value
+     * attribute.
      */
 
     public void positiveSetPropValueTest() throws Fault {
@@ -394,8 +376,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:86
      *
-     * @test_Strategy: Create a bean using useBean tag, use setProperty and and
-     * verfiy results using getProperty.
+     * @test_Strategy: Create a bean using useBean tag, use setProperty and and verfiy results using getProperty.
      */
 
     public void positiveBeanPropertyEditorTest() throws Fault {

@@ -23,12 +23,7 @@ import jakarta.jws.WebService;
 import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.WebServiceException;
 
-@WebService(
-        portName = "W2JRLR2738TestPort",
-        serviceName = "W2JRLR2738TestService",
-        targetNamespace = "http://w2jrlr2738testservice.org/W2JRLR2738TestService.wsdl",
-        wsdlLocation = "WEB-INF/wsdl/W2JRLR2738TestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2738.W2JRLR2738Test")
+@WebService(portName = "W2JRLR2738TestPort", serviceName = "W2JRLR2738TestService", targetNamespace = "http://w2jrlr2738testservice.org/W2JRLR2738TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2738TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2738.W2JRLR2738Test")
 public class W2JRLR2738TestImpl implements W2JRLR2738Test {
     public void echoIt(
             String text,

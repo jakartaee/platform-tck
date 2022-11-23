@@ -31,7 +31,8 @@ public class Order implements java.io.Serializable {
 
     Collection itemNames = new Vector();
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(int total) {
         this.total = total;

@@ -81,15 +81,18 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
                 pass = false;
             }
-            if (pass) getPort();
+            if (pass)
+                getPort();
         } catch (Exception e) {
             throw new Fault("setup failed:", e);
         }
@@ -112,17 +115,15 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbSOAPHandlersTest
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187; WS4EE:SPEC:6021;
-     * WS4EE:SPEC:6022; WS4EE:SPEC:6024; WS4EE:SPEC:6026; WS4EE:SPEC:6029;
-     * WS4EE:SPEC:6035; WS4EE:SPEC:6038; WS4EE:SPEC:6048; WS4EE:SPEC:6049;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187; WS4EE:SPEC:6021;
+     * WS4EE:SPEC:6022; WS4EE:SPEC:6024; WS4EE:SPEC:6026; WS4EE:SPEC:6029; WS4EE:SPEC:6035; WS4EE:SPEC:6038;
+     * WS4EE:SPEC:6048; WS4EE:SPEC:6049;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef, @WebService, and @HandlerChain annotations.
-     * Tests client-side and server-side handlers and callbacks.
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint.
+     * Tests @WebServiceRef, @WebService, and @HandlerChain annotations. Tests client-side and server-side handlers and
+     * callbacks.
      */
     public void WSEjbSOAPHandlersTest() throws Fault {
         TestUtil.logMsg("WSEjbSOAPHandlersTest");
@@ -157,7 +158,8 @@ public class Client extends EETest {
                 TestUtil.logMsg("ServerSide Handler CallBacks (correct)");
             }
 
-            if (!pass) throw new Fault("WSEjbSOAPHandlersTest failed");
+            if (!pass)
+                throw new Fault("WSEjbSOAPHandlersTest failed");
         } catch (Throwable t) {
             throw new Fault("WSEjbSOAPHandlersTest failed");
         }

@@ -28,13 +28,7 @@ import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.RespectBinding;
 import jakarta.xml.ws.soap.SOAPBinding;
 
-@WebService(
-        portName = "RespectBindingFeatureTest21Port",
-        serviceName = "RespectBindingFeatureTestService",
-        targetNamespace = "http://respectbindingfeatureservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/RespectBindingFeatureTestService.wsdl",
-        endpointInterface =
-                "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTest21")
+@WebService(portName = "RespectBindingFeatureTest21Port", serviceName = "RespectBindingFeatureTestService", targetNamespace = "http://respectbindingfeatureservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/RespectBindingFeatureTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.respectbindingfeature.RespectBindingFeatureTest21")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @RespectBinding(enabled = false)
 public class RespectBindingFeatureTestImpl21 implements RespectBindingFeatureTest21 {

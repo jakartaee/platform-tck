@@ -143,8 +143,8 @@ public class TypesBean {
     }
 
     /**
-     * This method will return an HaashMap of Key = Class, Value = String for the
-     * purpose of using them in an ElProcessor expression.
+     * This method will return an HaashMap of Key = Class, Value = String for the purpose of using them in an ElProcessor
+     * expression.
      *
      *
      * @return - A common List of Number types with a constant value.

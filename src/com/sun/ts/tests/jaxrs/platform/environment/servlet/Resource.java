@@ -51,7 +51,8 @@ public class Resource {
     }
 
     private static void assertNull(StringBuilder sb, String objectName, Object o) {
-        if (o == null) sb.append(objectName).append(" is null!").append("\n");
+        if (o == null)
+            sb.append(objectName).append(" is null!").append("\n");
     }
 
     @Path("streamreader")

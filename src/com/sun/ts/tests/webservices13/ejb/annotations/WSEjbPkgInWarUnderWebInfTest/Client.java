@@ -77,15 +77,18 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
                 pass = false;
             }
-            if (pass) getPort();
+            if (pass)
+                getPort();
         } catch (Exception e) {
             throw new Fault("setup failed:", e);
         }
@@ -110,16 +113,17 @@ public class Client extends EETest {
      *
      * @assertion_ids: WS4EE:SPEC:5012; WS4EE:SPEC:5013; WS4EE:SPEC:5014;
      *
-     * @test_Strategy: Verify packaging the class files of an ejb webservice
-     * endpoint within a WAR archive under WEB-INF/classes. This verifies the
-     * packaging requirement of an ejb webservice endpoint within a WAR archive.
+     * @test_Strategy: Verify packaging the class files of an ejb webservice endpoint within a WAR archive under
+     * WEB-INF/classes. This verifies the packaging requirement of an ejb webservice endpoint within a WAR archive.
      */
     public void CallHello() throws Fault {
         TestUtil.logMsg("CallHello");
         try {
             String txt = port.hello("Hi there");
-            if (txt.equals("Hi there to you too!")) TestUtil.logMsg("CallHello passed");
-            else throw new RuntimeException("Msg returned from hello() incorrect");
+            if (txt.equals("Hi there to you too!"))
+                TestUtil.logMsg("CallHello passed");
+            else
+                throw new RuntimeException("Msg returned from hello() incorrect");
         } catch (Throwable t) {
             TestUtil.printStackTrace(t);
             throw new Fault("CallHello failed");
@@ -132,16 +136,17 @@ public class Client extends EETest {
      *
      * @assertion_ids: WS4EE:SPEC:5012; WS4EE:SPEC:5013; WS4EE:SPEC:5014;
      *
-     * @test_Strategy: Verify packaging the class files of an ejb webservice
-     * endpoint within a WAR archive under WEB-INF/classes. This verifies the
-     * packaging requirement of an ejb webservice endpoint within a WAR archive.
+     * @test_Strategy: Verify packaging the class files of an ejb webservice endpoint within a WAR archive under
+     * WEB-INF/classes. This verifies the packaging requirement of an ejb webservice endpoint within a WAR archive.
      */
     public void CallBye() throws Fault {
         TestUtil.logMsg("CallBye");
         try {
             String txt = port.bye("Bye-bye");
-            if (txt.equals("Bye-bye and take care")) TestUtil.logMsg("CallBye passed");
-            else throw new RuntimeException("Msg returned from bye() incorrect");
+            if (txt.equals("Bye-bye and take care"))
+                TestUtil.logMsg("CallBye passed");
+            else
+                throw new RuntimeException("Msg returned from bye() incorrect");
         } catch (Throwable t) {
             TestUtil.printStackTrace(t);
             throw new Fault("CallBye failed");

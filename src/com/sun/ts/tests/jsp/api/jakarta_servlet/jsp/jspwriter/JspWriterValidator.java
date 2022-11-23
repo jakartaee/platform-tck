@@ -36,12 +36,10 @@ public class JspWriterValidator extends TokenizedValidator {
     private static final String EOL_HEADER = "Server-EOL";
 
     /**
-     * This validator preprocesses the search strings of the test case. It will
-     * replace all intances of <code>#eol#</code> with the line separator used by
-     * the container.
+     * This validator preprocesses the search strings of the test case. It will replace all intances of <code>#eol#</code>
+     * with the line separator used by the container.
      *
-     * @param testCase
-     *          - The test case to validate
+     * @param testCase - The test case to validate
      * @return true if the test passes, otherwise, false.
      */
     public boolean validate(WebTestCase testCase) {

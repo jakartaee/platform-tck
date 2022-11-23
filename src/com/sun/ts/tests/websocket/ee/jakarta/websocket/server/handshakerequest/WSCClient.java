@@ -43,7 +43,7 @@ public class WSCClient extends WebSocketCommonClient {
     static final String KEY = "aFirstKey";
 
     static final String[] HEADERS = {
-        "header1", "header2", "header3", "header4", "header5", "header6", "header7", "header8"
+            "header1", "header2", "header3", "header4", "header5", "header6", "header7", "header8"
     };
 
     /* Run test */
@@ -51,15 +51,12 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getHeadersIsReadonlyTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:174; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:174; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
      *
      * @test_Strategy: HandshakeRequest.getHeaders HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake
      *
-     * Return the read only Map of Http Headers that came with the handshake
-     * request.
+     * Return the read only Map of Http Headers that came with the handshake request.
      */
     public void getHeadersIsReadonlyTest() throws Fault {
         ClientConfigurator configurator = new ClientConfigurator() {
@@ -77,8 +74,7 @@ public class WSCClient extends WebSocketCommonClient {
                 logMsg("HandshakeRequest.getHeaders is readonly as expected");
             }
         };
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         invoke("readonlygetheaders", "anything", "anything");
         configurator.assertAfterResponseHasBeenCalled();
@@ -87,12 +83,11 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getHeadersHasCaseInsensitiveNamesTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:174; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:16; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:174; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:16;
+     * WebSocket:JAVADOC:210;
      *
      * @test_Strategy: HandshakeRequest.getHeaders HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ClientEndpointConfig.Configurator.beforeRequest
+     * ClientEndpointConfig.Configurator.afterResponse ClientEndpointConfig.Configurator.beforeRequest
      * ServerEndpointConfig.Configurator.modifyHandshake
      *
      * The header names are case insensitive.
@@ -103,8 +98,7 @@ public class WSCClient extends WebSocketCommonClient {
                 CaseInsensitiveHeaderNamesConfigurator.REQUEST_KEY,
                 CaseInsensitiveHeaderNamesConfigurator.REQUEST_VALUES);
         configurator.addToResponse(CaseInsensitiveHeaderNamesConfigurator.RESPONSE_KEY, String.valueOf(true));
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         invoke("caseinsensitiveheadernames", "anything", "anything");
         configurator.assertBeforeRequestHasBeenCalled();
@@ -114,13 +108,10 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getParameterMapIsUnmodifiableTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
      *
-     * @test_Strategy: HandshakeRequest.getParameterMap
-     * HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake
+     * @test_Strategy: HandshakeRequest.getParameterMap HandshakeResponse.getHeaders
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake
      *
      * Returns: the unmodifiable map of the request parameters.
      */
@@ -140,8 +131,7 @@ public class WSCClient extends WebSocketCommonClient {
                 logMsg("HandshakeRequest.getParameterMap is readonly as expected");
             }
         };
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         invoke("readonlygetparams", "anything", "anything");
         configurator.assertAfterResponseHasBeenCalled();
@@ -150,13 +140,10 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getParameterMapOneParamTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
      *
-     * @test_Strategy: HandshakeRequest.getParameterMap
-     * HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake
+     * @test_Strategy: HandshakeRequest.getParameterMap HandshakeResponse.getHeaders
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake
      *
      * Returns: the unmodifiable map of the request parameters.
      */
@@ -164,8 +151,7 @@ public class WSCClient extends WebSocketCommonClient {
         String param = "firstParam";
         ClientConfigurator configurator = new ClientConfigurator();
         configurator.addToResponse("first", param);
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         setProperty(Property.SEARCH_STRING, param);
         invoke("getoneparam/" + param, "anything", "anything");
@@ -175,13 +161,10 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getParameterMapOneParamOneQueryParamTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
      *
-     * @test_Strategy: HandshakeRequest.getParameterMap
-     * HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake
+     * @test_Strategy: HandshakeRequest.getParameterMap HandshakeResponse.getHeaders
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake
      *
      * Returns: the unmodifiable map of the request parameters.
      */
@@ -192,8 +175,7 @@ public class WSCClient extends WebSocketCommonClient {
         ClientConfigurator configurator = new ClientConfigurator();
         // configurator.addToResponse("first", param);
         configurator.addToResponse("second", queryParam, param);
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         setProperty(Property.SEARCH_STRING, param);
         invoke("getoneparam/" + param + query, "anything", "anything");
@@ -203,23 +185,19 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getParameterMapTwoParamsTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:176; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
      *
-     * @test_Strategy: HandshakeRequest.getParameterMap
-     * HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake
+     * @test_Strategy: HandshakeRequest.getParameterMap HandshakeResponse.getHeaders
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake
      *
      * Returns: the unmodifiable map of the request parameters.
      */
     public void getParameterMapTwoParamsTest() throws Fault {
-        String[] params = {String.valueOf(123L), String.valueOf(123.456d)};
+        String[] params = { String.valueOf(123L), String.valueOf(123.456d) };
         ClientConfigurator configurator = new ClientConfigurator();
         configurator.addToResponse("first", params[0]);
         configurator.addToResponse("second", params[1]);
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         setProperty(Property.SEARCH_STRING, params[0]);
         setProperty(Property.SEARCH_STRING, params[1]);
@@ -230,13 +208,10 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getQueryStringTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:177; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:177; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
      *
-     * @test_Strategy: HandshakeRequest.getQueryString
-     * HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake
+     * @test_Strategy: HandshakeRequest.getQueryString HandshakeResponse.getHeaders
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake
      *
      * Return the query string associated with the request.
      */
@@ -244,8 +219,7 @@ public class WSCClient extends WebSocketCommonClient {
         String query = "abc=123&def=456";
         ClientConfigurator configurator = new ClientConfigurator();
         configurator.addToResponse(GetQueryStringConfigurator.KEY, query);
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         invoke("getquerystring?" + query, "anything", "anything");
         configurator.assertAfterResponseHasBeenCalled();
@@ -254,12 +228,10 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getRequestUriTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:178; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:178; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
      *
      * @test_Strategy: HandshakeRequest.getRequestUri HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake
      *
      * Returns: the request uri of the handshake request.
      */
@@ -267,8 +239,7 @@ public class WSCClient extends WebSocketCommonClient {
         String uri = "getrequesturi";
         ClientConfigurator configurator = new ClientConfigurator();
         configurator.addToResponse(GetRequestUriConfigurator.KEY, uri);
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         invoke(uri, "anything", "anything");
         configurator.assertAfterResponseHasBeenCalled();
@@ -277,22 +248,17 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getUserPrincipalNotAuthenticatedTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:179; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:179; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
      *
-     * @test_Strategy: HandshakeRequest.getUserPrincipal
-     * HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake
+     * @test_Strategy: HandshakeRequest.getUserPrincipal HandshakeResponse.getHeaders
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake
      *
-     * Return the authenticated user or null if no user is authenticated for this
-     * handshake.
+     * Return the authenticated user or null if no user is authenticated for this handshake.
      */
     public void getUserPrincipalNotAuthenticatedTest() throws Fault {
         ClientConfigurator configurator = new ClientConfigurator();
         configurator.addToResponse(GetUserPrincipalNotAuthenticatedConfigurator.KEY, String.valueOf(true));
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         invoke("getuserprincipal", "anything", "anything");
         configurator.assertAfterResponseHasBeenCalled();
@@ -301,20 +267,17 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: isUserInRoleNotAuthenticatedTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:180; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:180; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
      *
      * @test_Strategy: HandshakeRequest.isUserInRole HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake
      *
      * If the user has not been authenticated, the method returns false.
      */
     public void isUserInRoleNotAuthenticatedTest() throws Fault {
         ClientConfigurator configurator = new ClientConfigurator();
         configurator.addToResponse(IsUserInRoleNotAuthenticatedConfigurator.KEY, String.valueOf(false));
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         invoke("isuserinrole", "anything", "anything");
         configurator.assertAfterResponseHasBeenCalled();

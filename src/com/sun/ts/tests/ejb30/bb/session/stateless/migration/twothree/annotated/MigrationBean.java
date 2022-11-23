@@ -35,8 +35,8 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "MigrationBean")
-@Remote({ThreeIF.class})
-@Local({ThreeLocalIF.class})
+@Remote({ ThreeIF.class })
+@Local({ ThreeLocalIF.class })
 @RemoteHome(TwoRemoteHome.class)
 @LocalHome(TwoLocalHome.class)
 public class MigrationBean extends MigrationBeanBase implements ThreeIF {
@@ -48,7 +48,9 @@ public class MigrationBean extends MigrationBeanBase implements ThreeIF {
         return sessionContext;
     }
 
-    public MigrationBean() {}
+    public MigrationBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

@@ -17,9 +17,8 @@
 package com.sun.ts.lib.deliverable;
 
 /**
- * This is a factory class for creating instances of TSDeploymentInterface. The
- * implementation classes used are determined by the values of the porting
- * package properties in TS_HOME/bin/ts.jte.
+ * This is a factory class for creating instances of TSDeploymentInterface. The implementation classes used are
+ * determined by the values of the porting package properties in TS_HOME/bin/ts.jte.
  *
  * @author Kyle Grucci
  */
@@ -27,12 +26,14 @@ public class DeliverableFactory {
     private static DeliverableInterface di;
 
     public static DeliverableInterface getDeliverableInstance() throws Exception {
-        if (di == null) di = createInstance();
+        if (di == null)
+            di = createInstance();
         return di;
     }
 
     public static DeliverableInterface getDeliverableInstance(ClassLoader classLoader) throws Exception {
-        if (di == null) di = createInstance(classLoader);
+        if (di == null)
+            di = createInstance(classLoader);
         return di;
     }
 

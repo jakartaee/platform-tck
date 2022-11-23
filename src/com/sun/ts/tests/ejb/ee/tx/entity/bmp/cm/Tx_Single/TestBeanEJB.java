@@ -130,10 +130,12 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Verifying the transaction is commited on method return");
             tempName1 = beanRef1.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
             tempName2 = beanRef1.getDbBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             TestUtil.logTrace("Updating the Price");
@@ -141,10 +143,12 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Verifying the transaction is commited on method return");
             tempPrice1 = beanRef2.getPrice();
-            if (tempPrice1 == expPrice) b3 = true;
+            if (tempPrice1 == expPrice)
+                b3 = true;
             TestUtil.logTrace("Instance Price is " + tempPrice1);
             tempPrice2 = beanRef2.getDbPrice();
-            if (tempPrice2 == expPrice) b4 = true;
+            if (tempPrice2 == expPrice)
+                b4 = true;
             TestUtil.logTrace("DB Price is " + tempPrice2);
 
             if (!b1) {
@@ -234,10 +238,12 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Verifying the transaction is commited on method return");
             tempName1 = beanRef2.getBrandName();
-            if (tempName1.equals(expName)) b2 = true;
+            if (tempName1.equals(expName))
+                b2 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
             tempName2 = beanRef2.getDbBrandName();
-            if (tempName2.equals(expName)) b3 = true;
+            if (tempName2.equals(expName))
+                b3 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b2) {

@@ -56,8 +56,8 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBooleanLiteralTest
      * @assertion_ids: EL:SPEC:13.1
-     * @test_Strategy: Validate that the EL Boolean literal: - 'true' is evaluated
-     *                 as expected. - 'false' is evaluated as expected.
+     * @test_Strategy: Validate that the EL Boolean literal: - 'true' is evaluated as expected. - 'false' is evaluated as
+     * expected.
      */
     public void elBooleanLiteralTest() throws Fault {
 
@@ -90,15 +90,17 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass1) throw new Fault("TEST FAILED: Literal true evaluated incorrectly.");
-        if (!pass2) throw new Fault("TEST FAILED: Literal false evaluated " + "incorrectly.");
+        if (!pass1)
+            throw new Fault("TEST FAILED: Literal true evaluated incorrectly.");
+        if (!pass2)
+            throw new Fault("TEST FAILED: Literal false evaluated " + "incorrectly.");
     }
 
     /**
      * @testName: elIntegerLiteralTest
      * @assertion_ids: EL:SPEC:13.2
-     * @test_Strategy: Validate that the EL Integer literal with the: - '$' is
-     *                 evaluated as expected. - '#' is evaluated as expected.
+     * @test_Strategy: Validate that the EL Integer literal with the: - '$' is evaluated as expected. - '#' is evaluated as
+     * expected.
      */
     public void elIntegerLiteralTest() throws Fault {
 
@@ -107,7 +109,7 @@ public class ELClient extends ServiceEETest {
 
         List ilist = this.getIntegerList();
 
-        for (Iterator it = ilist.iterator(); it.hasNext(); ) {
+        for (Iterator it = ilist.iterator(); it.hasNext();) {
             Integer tInteger = (Integer) it.next();
             expectedResult = Long.valueOf(tInteger);
 
@@ -138,16 +140,18 @@ public class ELClient extends ServiceEETest {
                 throw new Fault(e);
             }
 
-            if (!pass1) throw new Fault("TEST FAILED: Literal Integer \"$\" evaluated" + " incorrectly.");
-            if (!pass2) throw new Fault("TEST FAILED: Literal Integer \"#\" evaluated" + " incorrectly.");
+            if (!pass1)
+                throw new Fault("TEST FAILED: Literal Integer \"$\" evaluated" + " incorrectly.");
+            if (!pass2)
+                throw new Fault("TEST FAILED: Literal Integer \"#\" evaluated" + " incorrectly.");
         }
     }
 
     /**
      * @testName: elFloatingPointLiteralTest
      * @assertion_ids: EL:SPEC:13.3
-     * @test_Strategy: Validate that the EL Float literal with the: - '$' is
-     *                 evaluated as expected. - '#' is evaluated as expected.
+     * @test_Strategy: Validate that the EL Float literal with the: - '$' is evaluated as expected. - '#' is evaluated as
+     * expected.
      */
     public void elFloatingPointLiteralTest() throws Fault {
 
@@ -156,7 +160,7 @@ public class ELClient extends ServiceEETest {
 
         List flist = this.getFloatList();
 
-        for (Iterator it = flist.iterator(); it.hasNext(); ) {
+        for (Iterator it = flist.iterator(); it.hasNext();) {
             Float tFloat = (Float) it.next();
             expectedResult = Float.valueOf(tFloat);
 
@@ -186,16 +190,18 @@ public class ELClient extends ServiceEETest {
                 throw new Fault(e);
             }
 
-            if (!pass1) throw new Fault("TEST FAILED: Literal Float \"$\" evaluated" + " incorrectly.");
-            if (!pass2) throw new Fault("TEST FAILED: Literal Float \"#\" evaluated" + " incorrectly.");
+            if (!pass1)
+                throw new Fault("TEST FAILED: Literal Float \"$\" evaluated" + " incorrectly.");
+            if (!pass2)
+                throw new Fault("TEST FAILED: Literal Float \"#\" evaluated" + " incorrectly.");
         }
     }
 
     /**
      * @testName: elStringLiteralTest
      * @assertion_ids: EL:SPEC:13.4; EL:SPEC:13.5
-     * @test_Strategy: Validate that the EL String literal with the: - '$' is
-     *                 evaluated as expected. - '#' is evaluated as expected.
+     * @test_Strategy: Validate that the EL String literal with the: - '$' is evaluated as expected. - '#' is evaluated as
+     * expected.
      */
     public void elStringLiteralTest() throws Fault {
 
@@ -238,8 +244,10 @@ public class ELClient extends ServiceEETest {
                 throw new Fault(e);
             }
 
-            if (!pass1) throw new Fault("TEST FAILED: Literal String \"$\" evaluated" + " incorrectly.");
-            if (!pass2) throw new Fault("TEST FAILED: Literal String \"#\" evaluated" + " incorrectly.");
+            if (!pass1)
+                throw new Fault("TEST FAILED: Literal String \"$\" evaluated" + " incorrectly.");
+            if (!pass2)
+                throw new Fault("TEST FAILED: Literal String \"#\" evaluated" + " incorrectly.");
         }
     }
 
@@ -271,17 +279,18 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass1) throw new Fault("TEST FAILED: Literal 'null' \"$\" evaluated" + " incorrectly.");
+        if (!pass1)
+            throw new Fault("TEST FAILED: Literal 'null' \"$\" evaluated" + " incorrectly.");
 
-        if (!pass2) throw new Fault("TEST FAILED: Literal 'null \"#\" evaluated" + " incorrectly.");
+        if (!pass2)
+            throw new Fault("TEST FAILED: Literal 'null \"#\" evaluated" + " incorrectly.");
     }
 
     /**
      * @testName: elSyntaxAsLiteralTest
      * @assertion_ids: EL:SPEC:7
-     * @test_Strategy: [ELSyntaxAsLiteral] Verify that to generate literal values
-     *                 that include the character sequence "${" or "#{" a
-     *                 composite expression can be used.
+     * @test_Strategy: [ELSyntaxAsLiteral] Verify that to generate literal values that include the character sequence "${"
+     * or "#{" a composite expression can be used.
      */
     public void elSyntaxAsLiteralTest() throws Fault {
         boolean pass = false;
@@ -314,7 +323,8 @@ public class ELClient extends ServiceEETest {
                 throw new Fault(e);
             }
 
-            if (!pass) throw new Fault("TEST FAILED!");
+            if (!pass)
+                throw new Fault("TEST FAILED!");
         }
     }
 

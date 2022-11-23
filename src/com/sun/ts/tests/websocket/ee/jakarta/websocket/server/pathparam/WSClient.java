@@ -43,8 +43,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: multipleStringParamsOnMessageTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-4;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-4;
      *
      * @test_Strategy: test sending more path params
      */
@@ -57,9 +56,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
      *
-     * @test_Strategy: test sending zero path params If the name does not match a
-     * path variable in the URI-template, the value of the method parameter this
-     * annotation annotates is null.
+     * @test_Strategy: test sending zero path params If the name does not match a path variable in the URI-template, the
+     * value of the method parameter this annotation annotates is null.
      */
     public void noStringParamsOnMessageTest() throws Fault {
         noStringParams(OPS.MESSAGE);
@@ -68,8 +66,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: directStringParamOnMessageTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-4;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-4;
      *
      * @test_Strategy: test sending zero path params
      */
@@ -80,8 +77,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: primitiveBooleanAndCharParamsOnMessageTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-5;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-5;
      *
      * @test_Strategy: test sending boolean and char to primitives
      */
@@ -92,8 +88,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: fullDoubleAndFloatParamsOnMessageTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-5;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-5;
      *
      * @test_Strategy: test sending double and float to Full classes
      */
@@ -106,8 +101,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: multipleStringParamsOnOpenTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-4;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-4;
      *
      * @test_Strategy: test sending more path params
      */
@@ -120,9 +114,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
      *
-     * @test_Strategy: test sending zero path params If the name does not match a
-     * path variable in the URI-template, the value of the method parameter this
-     * annotation annotates is null.
+     * @test_Strategy: test sending zero path params If the name does not match a path variable in the URI-template, the
+     * value of the method parameter this annotation annotates is null.
      */
     public void noStringParamsOnOpenTest() throws Fault {
         noStringParams(OPS.OPEN);
@@ -131,8 +124,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: directStringParamOnOpenTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-4;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-4;
      *
      * @test_Strategy: test sending zero path params
      */
@@ -143,8 +135,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: primitiveBooleanAndCharParamsOnOpenTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-5;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-5;
      *
      * @test_Strategy: test sending boolean and char to primitives
      */
@@ -155,8 +146,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: fullDoubleAndFloatParamsOnOpenTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-5;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-5;
      *
      * @test_Strategy: test sending double and float to Full classes
      */
@@ -169,8 +159,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: multipleStringParamsOnIOETest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-4;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-4;
      *
      * @test_Strategy: test sending more path params
      */
@@ -183,9 +172,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
      *
-     * @test_Strategy: test sending zero path params If the name does not match a
-     * path variable in the URI-template, the value of the method parameter this
-     * annotation annotates is null.
+     * @test_Strategy: test sending zero path params If the name does not match a path variable in the URI-template, the
+     * value of the method parameter this annotation annotates is null.
      */
     public void noStringParamsOnIOETest() throws Fault {
         noStringParams(OPS.IOEXCEPTION);
@@ -194,8 +182,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: directStringParamOnIOETest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-4;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-4;
      *
      * @test_Strategy: test sending zero path params
      */
@@ -206,8 +193,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: primitiveBooleanAndCharParamsOnIOETest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-5;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-5;
      *
      * @test_Strategy: test sending boolean and char to primitives
      */
@@ -218,8 +204,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: fullDoubleAndFloatParamsOnIOTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-5;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-5;
      *
      * @test_Strategy: test sending double and float to Full classes
      */
@@ -232,8 +217,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: multipleStringParamsOnRETest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-4;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-4;
      *
      * @test_Strategy: test sending more path params
      */
@@ -246,9 +230,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
      *
-     * @test_Strategy: test sending zero path params If the name does not match a
-     * path variable in the URI-template, the value of the method parameter this
-     * annotation annotates is null.
+     * @test_Strategy: test sending zero path params If the name does not match a path variable in the URI-template, the
+     * value of the method parameter this annotation annotates is null.
      */
     public void noStringParamsOnRETest() throws Fault {
         noStringParams(OPS.RUNTIMEEXCEPTION);
@@ -257,8 +240,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: directStringParamOnRETest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-4;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-4;
      *
      * @test_Strategy: test sending zero path params
      */
@@ -269,8 +251,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: primitiveBooleanAndCharParamsOnRETest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-5;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-5;
      *
      * @test_Strategy: test sending boolean and char to primitives
      */
@@ -281,8 +262,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: fullDoubleAndFloatParamsOnRETest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-5;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-5;
      *
      * @test_Strategy: test sending double and float to Full classes
      */
@@ -295,8 +275,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: multipleStringParamsOnCloseTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-4;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-4;
      *
      * @test_Strategy: test sending more path params
      */
@@ -311,7 +290,8 @@ public class WSClient extends WebSocketCommonClient {
             setProperty(Property.CONTENT, OPS.MESSAGE.name());
             invoke();
             TestUtil.sleepMsec(200);
-            for (int j = 0; j != i; j++) invoke("onclose", String.valueOf(j), param + String.valueOf(j + 1));
+            for (int j = 0; j != i; j++)
+                invoke("onclose", String.valueOf(j), param + String.valueOf(j + 1));
         }
     }
 
@@ -320,9 +300,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
      *
-     * @test_Strategy: test sending zero path params If the name does not match a
-     * path variable in the URI-template, the value of the method parameter this
-     * annotation annotates is null.
+     * @test_Strategy: test sending zero path params If the name does not match a path variable in the URI-template, the
+     * value of the method parameter this annotation annotates is null.
      */
     public void noStringParamsOnCloseTest() throws Fault {
         invoke("onclose", "-1", WSOnClosePathParamServer.RESET);
@@ -334,8 +313,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: directStringParamOnCloseTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-4;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-4;
      *
      * @test_Strategy: test sending zero path params
      */
@@ -349,8 +327,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: primitiveBooleanAndCharParamsOnCloseTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-5;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-5;
      *
      * @test_Strategy: test sending boolean and char to primitives
      */
@@ -365,8 +342,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: fullDoubleAndFloatParamsOnCloseTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3;
-     * WebSocket:SPEC:WSC-4.3-5;
+     * @assertion_ids: WebSocket:JAVADOC:181; WebSocket:SPEC:WSC-4.3-3; WebSocket:SPEC:WSC-4.3-5;
      *
      * @test_Strategy: test sending double and float to Full classes
      */
@@ -411,7 +387,7 @@ public class WSClient extends WebSocketCommonClient {
     }
 
     private String[] primitiveBooleanAndCharParams(OPS op) throws Fault {
-        String[] param = {"true", "0"};
+        String[] param = { "true", "0" };
         setProperty(Property.REQUEST, buildRequest("different/", param[0], "/", param[1]));
         setProperty(Property.SEARCH_STRING, param[0] + param[1]);
         setProperty(Property.CONTENT, op.name());
@@ -420,7 +396,7 @@ public class WSClient extends WebSocketCommonClient {
     }
 
     private String[] fullDoubleAndFloatParams(OPS op) throws Fault {
-        String[] param = {String.valueOf(12.34), String.valueOf(56.78f)};
+        String[] param = { String.valueOf(12.34), String.valueOf(56.78f) };
         setProperty(Property.REQUEST, buildRequest("full/", param[0], "/", param[1]));
         setProperty(Property.SEARCH_STRING, param[0] + param[1]);
         setProperty(Property.CONTENT, op.name());

@@ -33,7 +33,8 @@ import java.net.URL;
 public class GetResourceTest {
     public static final String NON_EXISTING_RESOURCE = "nbmvzpoqacfkol91267bm.txt";
 
-    public GetResourceTest() {}
+    public GetResourceTest() {
+    }
 
     public void getResourceWithClass(Class cls, String name, String expected) throws TestFailedException {
         verify(getResourceContent(cls, name), expected);

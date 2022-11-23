@@ -42,9 +42,11 @@ public class Client extends EETest {
         s.exit();
     }
 
-    public void setup(String[] args, Properties p) {}
+    public void setup(String[] args, Properties p) {
+    }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 
     private static void nonPostConstruct() {
         lookupShouldFail("java:module/ModuleMBean", postConstructRecords);
@@ -66,9 +68,9 @@ public class Client extends EETest {
 
         AppResRemoteIF lookupResult = null;
         String[] names = {
-            "java:app/renamed_twojars_ejb/ModuleBean",
-            "java:global/ejb3_misc_moduleName_twojars/renamed_twojars_ejb/ModuleBean",
-            "java:global/renamed2_twojars_ejb/Module2Bean"
+                "java:app/renamed_twojars_ejb/ModuleBean",
+                "java:global/ejb3_misc_moduleName_twojars/renamed_twojars_ejb/ModuleBean",
+                "java:global/renamed2_twojars_ejb/Module2Bean"
         };
         for (String name : names) {
             postConstructRecords.append("About to look up " + name);
@@ -81,8 +83,7 @@ public class Client extends EETest {
     /*
      * @testName: clientPostConstruct
      *
-     * @test_Strategy: verify data sources injected and declared in descriptors
-     * inside appclient
+     * @test_Strategy: verify data sources injected and declared in descriptors inside appclient
      */
     public void clientPostConstruct() {
         nonPostConstruct();
@@ -92,8 +93,7 @@ public class Client extends EETest {
     /*
      * @testName: ejbPostConstruct
      *
-     * @test_Strategy: verify data sources injected and declared in descriptors
-     * inside ejb
+     * @test_Strategy: verify data sources injected and declared in descriptors inside ejb
      */
     public void ejbPostConstruct() {
         Helper.getLogger().info(moduleBean.getPostConstructRecords().toString());
@@ -102,8 +102,7 @@ public class Client extends EETest {
     /*
      * @testName: ejb2PostConstruct
      *
-     * @test_Strategy: verify data sources injected and declared in descriptors
-     * inside standalone ejb module
+     * @test_Strategy: verify data sources injected and declared in descriptors inside standalone ejb module
      */
     public void ejb2PostConstruct() {
         AppResRemoteIF module2Bean = (AppResRemoteIF) lookupNoTry("java:global/renamed2_twojars_ejb/Module2Bean");

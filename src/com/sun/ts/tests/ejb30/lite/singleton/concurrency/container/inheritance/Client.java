@@ -37,16 +37,15 @@ public class Client extends ClientBase {
     /*
      * @testName: lockedSum1
      *
-     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-     * singleton with container-managed concurrency. Expecting correct sum result.
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a singleton with container-managed
+     * concurrency. Expecting correct sum result.
      */
 
     /*
      * @testName: lockedSum2
      *
-     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-     * singleton with container-managed concurrency. Expecting correct sum result.
-     * Note: the business methods are getAndResetUnlockedSum and addUnlocked.
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a singleton with container-managed
+     * concurrency. Expecting correct sum result. Note: the business methods are getAndResetUnlockedSum and addUnlocked.
      */
     @Override
     public void lockedSum2() {

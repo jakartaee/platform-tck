@@ -93,8 +93,7 @@ public class Client extends ServiceEETest {
     static W2JRLR1141TestService service;
 
     // expect 2xx http status code
-    String GoodSoapMessage =
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://w2jrlr1141testservice.org/types\"><soap:Body><ns:HelloRequestElement><string>Rocky</string></ns:HelloRequestElement></soap:Body></soap:Envelope>";
+    String GoodSoapMessage = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns=\"http://w2jrlr1141testservice.org/types\"><soap:Body><ns:HelloRequestElement><string>Rocky</string></ns:HelloRequestElement></soap:Body></soap:Envelope>";
 
     private void getTestURLs() throws Exception {
         TestUtil.logMsg("Get URL's used by the test");
@@ -139,8 +138,7 @@ public class Client extends ServiceEETest {
     /*
      * @class.testArgs: -ap jaxws-url-props.dat
      *
-     * @class.setup_props: webServerHost; webServerPort; user; password;
-     * platform.mode;
+     * @class.setup_props: webServerHost; webServerPort; user; password; platform.mode;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -153,8 +151,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -194,9 +194,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSI:SPEC:R1141
      *
-     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection use
-     * a http version of 1.0. Verify that we get a correct HTTP status code of
-     * 2xx.
+     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection use a http version of 1.0. Verify that we get
+     * a correct HTTP status code of 2xx.
      */
     public void TestHTTP10Message() throws Fault {
         boolean pass = true;
@@ -211,14 +210,16 @@ public class Client extends ServiceEETest {
             if (httpStatusCode < 200 || httpStatusCode > 299) {
                 TestUtil.logErr("Expected 2xx status code, instead got " + httpStatusCode);
                 pass = false;
-            } else TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
+            } else
+                TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("TestGoodSoapMessage failed", e);
         }
 
-        if (!pass) throw new Fault("TestGoodSoapMessage failed");
+        if (!pass)
+            throw new Fault("TestGoodSoapMessage failed");
     }
 
     /*
@@ -226,9 +227,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSI:SPEC:R1141
      *
-     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection use
-     * a http version of 1.1. Verify that we get a correct HTTP status code of
-     * 2xx.
+     * @test_Strategy: Send a good SOAP RPC request over an HttpURLConnection use a http version of 1.1. Verify that we get
+     * a correct HTTP status code of 2xx.
      */
     public void TestHTTP11Message() throws Fault {
         boolean pass = true;
@@ -243,14 +243,16 @@ public class Client extends ServiceEETest {
             if (httpStatusCode < 200 || httpStatusCode > 299) {
                 TestUtil.logErr("Expected 2xx status code, instead got " + httpStatusCode);
                 pass = false;
-            } else TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
+            } else
+                TestUtil.logMsg("Received expected 2xx status code of " + httpStatusCode);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("TestGoodSoapMessage failed", e);
         }
 
-        if (!pass) throw new Fault("TestGoodSoapMessage failed");
+        if (!pass)
+            throw new Fault("TestGoodSoapMessage failed");
     }
 
     private HttpURLConnection openHttpConnection(String s) throws IOException {
@@ -331,8 +333,10 @@ public class Client extends ServiceEETest {
                 String buf = null;
                 reader = new BufferedReader(new InputStreamReader(istream));
                 while ((buf = reader.readLine()) != null) {
-                    if (response != null) response += buf;
-                    else response = buf;
+                    if (response != null)
+                        response += buf;
+                    else
+                        response = buf;
                 }
             }
         } finally {

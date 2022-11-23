@@ -42,8 +42,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The rsMetaClient class tests methods of ResultSetMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The rsMetaClient class tests methods of ResultSetMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -84,14 +83,11 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -100,19 +96,20 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
         try {
             try {
                 /*
-                 * sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new
-                 * FileInputStream(sqlStmt); Properties sqlp=new Properties();
-                 * sqlp.load(istr); query=sqlp.getProperty("selectCoffee","");
+                 * sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt); Properties sqlp=new
+                 * Properties(); sqlp.load(istr); query=sqlp.getProperty("selectCoffee","");
                  */
 
                 String fTableName = p.getProperty("ftable", "");
                 query = "SELECT COF_NAME, PRICE FROM " + fTableName;
 
-                if (query.length() == 0) throw new Fault("Invalid SQL Statement ");
+                if (query.length() == 0)
+                    throw new Fault("Invalid SQL Statement ");
                 logTrace("SQL Statement : " + query);
 
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 if (drManager.equals("yes")) {
                     logTrace("Using DriverManager");
@@ -123,9 +120,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
                     // Since scrollable resultSet is optional, the parameters are
                     // commented out.
                     stmt = coffeeCon.createStatement(/*
-                                            * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                            * ResultSet.CONCUR_READ_ONLY
-                                            */ );
+                                                      * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+                                                      */ );
                     rs = stmt.executeQuery(query);
                     rsmd = rs.getMetaData();
                 } else {
@@ -137,9 +133,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
                     // Since scrollable resultSet is optional, the parameters are
                     // commented out.
                     stmt = coffeeCon.createStatement(/*
-                                            * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                            * ResultSet.CONCUR_READ_ONLY
-                                            */ );
+                                                      * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+                                                      */ );
                     rs = stmt.executeQuery(query);
                     rsmd = rs.getMetaData();
                 }
@@ -159,10 +154,9 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:314; JDBC:JAVADOC:315;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getColumnCount() method on the ResultSetMetaData object.It should return an
-     * integer value greater than or equal to zero.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getColumnCount() method on the ResultSetMetaData object.It should return an integer value
+     * greater than or equal to zero.
      */
     public void testGetColumnCount() throws Fault {
         try {
@@ -190,9 +184,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:316; JDBC:JAVADOC:317;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * isAutoIncrement(int column) method.It should return a boolean value.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the isAutoIncrement(int column) method.It should return a boolean value.
      */
     public void testIsAutoIncrement() throws Fault {
         try {
@@ -218,9 +211,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:318; JDBC:JAVADOC:319;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * isCaseSensitive(int column) method.It should return a boolean value.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the isCaseSensitive(int column) method.It should return a boolean value.
      */
     public void testIsCaseSensitive() throws Fault {
         try {
@@ -246,9 +238,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:320; JDBC:JAVADOC:321;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * isSearchable(int column) method.It should return a boolean value.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the isSearchable(int column) method.It should return a boolean value.
      */
 
     public void testIsSearchable() throws Fault {
@@ -275,9 +266,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:322; JDBC:JAVADOC:323;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * isCurrency(int column) method.It should return a boolean value.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the isCurrency(int column) method.It should return a boolean value.
      */
     public void testIsCurrency() throws Fault {
         try {
@@ -301,14 +291,12 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testIsNullable
      *
-     * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:324; JDBC:JAVADOC:325;
-     * JDBC:JAVADOC:311; JDBC:JAVADOC:312; JDBC:JAVADOC:313;
+     * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:324; JDBC:JAVADOC:325; JDBC:JAVADOC:311; JDBC:JAVADOC:312;
+     * JDBC:JAVADOC:313;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * isNullable(int column) method.It should return an integer value which is
-     * one of the constants columnNoNulls(0),columnNullable(1) and
-     * columnNullableUnknown(2).
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the isNullable(int column) method.It should return an integer value which is one of the
+     * constants columnNoNulls(0),columnNullable(1) and columnNullableUnknown(2).
      */
     public void testIsNullable() throws Fault {
         try {
@@ -336,9 +324,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:326; JDBC:JAVADOC:327;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the isSigned(int
-     * column) method.It should return a boolean value.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the isSigned(int column) method.It should return a boolean value.
      */
     public void testIsSigned() throws Fault {
         try {
@@ -364,10 +351,9 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:328; JDBC:JAVADOC:329;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getColumnDisplaySize(int colindex) method.It should return an integer
-     * representing the normal maximum width in characters for column colindex.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getColumnDisplaySize(int colindex) method.It should return an integer representing the
+     * normal maximum width in characters for column colindex.
      */
     public void testGetColumnDisplaySize() throws Fault {
         try {
@@ -395,9 +381,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:330; JDBC:JAVADOC:331;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getColumnLabel(int colindex) method.It should return a String object.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getColumnLabel(int colindex) method.It should return a String object.
      */
     public void testGetColumnLabel() throws Fault {
         try {
@@ -423,9 +408,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:332; JDBC:JAVADOC:333;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getColumnName(int colindex) method.It should return a String object.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getColumnName(int colindex) method.It should return a String object.
      */
     public void testGetColumnName() throws Fault {
         try {
@@ -451,9 +435,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:334; JDBC:JAVADOC:335;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getSchemaName(int colindex) method.It should return a String object.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getSchemaName(int colindex) method.It should return a String object.
      */
     public void testGetSchemaName() throws Fault {
         try {
@@ -479,10 +462,9 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:336; JDBC:JAVADOC:337;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getPrecision(int colindex) method.It should return an integer greater than
-     * or equal to zero.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getPrecision(int colindex) method.It should return an integer greater than or equal to
+     * zero.
      */
     public void testGetPrecision() throws Fault {
         try {
@@ -508,9 +490,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:338; JDBC:JAVADOC:339;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the getScale(int
-     * colindex) method.It should return an integer greater than or equal to zero.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getScale(int colindex) method.It should return an integer greater than or equal to zero.
      */
     public void testGetScale() throws Fault {
         try {
@@ -536,9 +517,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:340; JDBC:JAVADOC:341;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getTableName(int colindex) method.It should return a String object.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getTableName(int colindex) method.It should return a String object.
      */
     public void testGetTableName() throws Fault {
         try {
@@ -564,9 +544,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:342; JDBC:JAVADOC:343;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getCatalogName(int colindex) method.It should return a String object.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getCatalogName(int colindex) method.It should return a String object.
      */
     public void testGetCatalogName() throws Fault {
         try {
@@ -592,9 +571,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:344; JDBC:JAVADOC:345;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getColumnType(int colindex) method.Check if an integer value is returned.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getColumnType(int colindex) method.Check if an integer value is returned.
      */
     public void testGetColumnType() throws Fault {
         try {
@@ -603,39 +581,39 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
             int colType = rsmd.getColumnType(1);
 
             switch (colType) {
-                case Types.BIT:
-                case Types.TINYINT:
-                case Types.SMALLINT:
-                case Types.INTEGER:
-                case Types.BIGINT:
-                case Types.FLOAT:
-                case Types.REAL:
-                case Types.DOUBLE:
-                case Types.NUMERIC:
-                case Types.DECIMAL:
-                case Types.CHAR:
-                case Types.VARCHAR:
-                case Types.LONGVARCHAR:
-                case Types.DATE:
-                case Types.TIME:
-                case Types.TIMESTAMP:
-                case Types.BINARY:
-                case Types.VARBINARY:
-                case Types.LONGVARBINARY:
-                case Types.NULL:
-                case Types.OTHER:
-                case Types.JAVA_OBJECT:
-                case Types.DISTINCT:
-                case Types.STRUCT:
-                case Types.ARRAY:
-                case Types.BLOB:
-                case Types.CLOB:
-                case Types.REF:
-                    msg.setMsg("getColumnType method returns: " + colType);
-                    break;
-                default:
-                    msg.printTestError(
-                            " getColumnType method returns a illegal value", "Call to getColumnTypeName failed !");
+            case Types.BIT:
+            case Types.TINYINT:
+            case Types.SMALLINT:
+            case Types.INTEGER:
+            case Types.BIGINT:
+            case Types.FLOAT:
+            case Types.REAL:
+            case Types.DOUBLE:
+            case Types.NUMERIC:
+            case Types.DECIMAL:
+            case Types.CHAR:
+            case Types.VARCHAR:
+            case Types.LONGVARCHAR:
+            case Types.DATE:
+            case Types.TIME:
+            case Types.TIMESTAMP:
+            case Types.BINARY:
+            case Types.VARBINARY:
+            case Types.LONGVARBINARY:
+            case Types.NULL:
+            case Types.OTHER:
+            case Types.JAVA_OBJECT:
+            case Types.DISTINCT:
+            case Types.STRUCT:
+            case Types.ARRAY:
+            case Types.BLOB:
+            case Types.CLOB:
+            case Types.REF:
+                msg.setMsg("getColumnType method returns: " + colType);
+                break;
+            default:
+                msg.printTestError(
+                        " getColumnType method returns a illegal value", "Call to getColumnTypeName failed !");
             }
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -651,9 +629,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:346; JDBC:JAVADOC:347;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getColumnTypeName(int colindex) method.It should return a String object.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getColumnTypeName(int colindex) method.It should return a String object.
      */
     public void testGetColumnTypeName() throws Fault {
         try {
@@ -681,9 +658,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:348; JDBC:JAVADOC:349;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * isReadOnly(int column) method.It should return a boolean value.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the isReadOnly(int column) method.It should return a boolean value.
      */
     public void testIsReadOnly() throws Fault {
         try {
@@ -709,9 +685,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:350; JDBC:JAVADOC:351;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * isWritable(int column) method.It should return a boolean value.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the isWritable(int column) method.It should return a boolean value.
      */
     public void testIsWritable() throws Fault {
         try {
@@ -739,9 +714,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:352; JDBC:JAVADOC:353;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * isDefinitelyWritable(int column) method.It should return a boolean value.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the isDefinitelyWritable(int column) method.It should return a boolean value.
      */
     public void testIsDefinitelyWritable() throws Fault {
         try {
@@ -767,9 +741,8 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:194; JDBC:JAVADOC:354; JDBC:JAVADOC:355;
      *
-     * @test_Strategy: Get the ResultSetMetaData object from the corresponding
-     * ResultSet by using the ResultSet's getMetaData method.Call the
-     * getColumnClassName(int colindex) method.It should return a String object.
+     * @test_Strategy: Get the ResultSetMetaData object from the corresponding ResultSet by using the ResultSet's
+     * getMetaData method.Call the getColumnClassName(int colindex) method.It should return a String object.
      */
     public void testGetColumnClassName() throws Fault {
         try {
@@ -799,8 +772,7 @@ public class rsMetaClient extends ServiceEETest implements Serializable {
             dbSch.dbUnConnect(coffeeCon);
 
             /*
-             * if(coffeeCon == null) msg.setMsg("coffeeCon returns null value"); else
-             * coffeeCon.close();
+             * if(coffeeCon == null) msg.setMsg("coffeeCon returns null value"); else coffeeCon.close();
              */
 
             logMsg("Cleanup ok;");

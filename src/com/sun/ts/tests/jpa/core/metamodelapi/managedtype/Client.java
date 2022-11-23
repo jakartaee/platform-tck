@@ -36,7 +36,8 @@ import java.util.Set;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -460,8 +461,7 @@ public class Client extends PMClientBase {
     }
 
     /*
-     * @testName:
-     * getDeclaredSingularAttributeStringClassIllegalArgumentExceptionTest
+     * @testName: getDeclaredSingularAttributeStringClassIllegalArgumentExceptionTest
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1391
      *
@@ -971,8 +971,7 @@ public class Client extends PMClientBase {
                 ManagedType<A> mType = metaModel.managedType(A.class);
                 if (mType != null) {
                     TestUtil.logTrace("Obtained Non-null ManagedType");
-                    SetAttribute<? super A, Address> setAttrib =
-                            mType.getSet("address", com.sun.ts.tests.jpa.core.metamodelapi.managedtype.Address.class);
+                    SetAttribute<? super A, Address> setAttrib = mType.getSet("address", com.sun.ts.tests.jpa.core.metamodelapi.managedtype.Address.class);
                     Type t = setAttrib.getElementType();
                     if (t != null) {
                         TestUtil.logTrace("element Type  = " + t.getJavaType());
@@ -1397,8 +1396,7 @@ public class Client extends PMClientBase {
                 ManagedType<Department> mType = metaModel.managedType(Department.class);
                 if (mType != null) {
                     TestUtil.logTrace("Obtained Non-null ManagedType");
-                    MapAttribute<? super Department, String, Employee> mapAttrib =
-                            mType.getMap("lastNameEmployees", java.lang.String.class, Employee.class);
+                    MapAttribute<? super Department, String, Employee> mapAttrib = mType.getMap("lastNameEmployees", java.lang.String.class, Employee.class);
                     Type t = mapAttrib.getElementType();
                     if (t != null) {
                         TestUtil.logTrace("element Type  = " + t.getJavaType());
@@ -2260,8 +2258,7 @@ public class Client extends PMClientBase {
                 ManagedType<Department> mType = metaModel.managedType(Department.class);
                 if (mType != null) {
                     TestUtil.logTrace("Obtained Non-null ManagedType");
-                    MapAttribute<Department, String, Employee> mapAttrib =
-                            mType.getDeclaredMap("lastNameEmployees", java.lang.String.class, Employee.class);
+                    MapAttribute<Department, String, Employee> mapAttrib = mType.getDeclaredMap("lastNameEmployees", java.lang.String.class, Employee.class);
                     Type t = mapAttrib.getElementType();
                     if (t != null) {
                         TestUtil.logTrace("element Type  = " + t.getJavaType());

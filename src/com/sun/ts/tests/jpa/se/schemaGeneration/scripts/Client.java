@@ -39,7 +39,8 @@ public class Client extends PMClientBase {
 
     String schemaGenerationDir = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -77,12 +78,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: scriptsURLTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.2;
-     * PERSISTENCE:SPEC:1893.2; PERSISTENCE:SPEC:1898.3; PERSISTENCE:SPEC:1898.4;
-     * PERSISTENCE:SPEC:1898.8; PERSISTENCE:SPEC:1898.9;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.2; PERSISTENCE:SPEC:1893.2; PERSISTENCE:SPEC:1898.3;
+     * PERSISTENCE:SPEC:1898.4; PERSISTENCE:SPEC:1898.8; PERSISTENCE:SPEC:1898.9;
      *
-     * @test_Strategy: create scripts via createEntityManagerFactory using a URL
-     * location
+     * @test_Strategy: create scripts via createEntityManagerFactory using a URL location
      */
     public void scriptsURLTest() throws Fault {
         boolean pass1 = false;
@@ -125,11 +124,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: scriptsPrintWriterTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.2;
-     * PERSISTENCE:SPEC:1898.8; PERSISTENCE:SPEC:1898.9;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.2; PERSISTENCE:SPEC:1898.8; PERSISTENCE:SPEC:1898.9;
      *
-     * @test_Strategy: create scripts via createEntityManagerFactory using a
-     * PrintWriter
+     * @test_Strategy: create scripts via createEntityManagerFactory using a PrintWriter
      */
     public void scriptsPrintWriterTest() throws Fault {
         boolean pass1 = false;
@@ -176,8 +173,10 @@ public class Client extends PMClientBase {
         emf.close();
         emf = null;
 
-        if (pw1 != null) pw1.close();
-        if (pw2 != null) pw2.close();
+        if (pw1 != null)
+            pw1.close();
+        if (pw2 != null)
+            pw2.close();
 
         TestUtil.logMsg("Check script(s) content");
 
@@ -191,13 +190,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: scriptsURL2Test
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:JAVADOC:3335;
-     * PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475;
-     * PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:SPEC:2480;
-     * PERSISTENCE:SPEC:1915;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:JAVADOC:3335; PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:2474;
+     * PERSISTENCE:SPEC:2475; PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:SPEC:2480; PERSISTENCE:SPEC:1915;
      *
-     * @test_Strategy: create scripts via Persistence.generateSchema using a URL
-     * location
+     * @test_Strategy: create scripts via Persistence.generateSchema using a URL location
      */
     public void scriptsURL2Test() throws Fault {
         boolean pass1 = false;
@@ -238,13 +234,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: scriptsPrintWriter2Test
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:JAVADOC:3335;
-     * PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475;
-     * PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:SPEC:2480;
-     * PERSISTENCE:SPEC:1915;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:JAVADOC:3335; PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:2474;
+     * PERSISTENCE:SPEC:2475; PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:SPEC:2480; PERSISTENCE:SPEC:1915;
      *
-     * @test_Strategy: create scripts via Persistence.generateSchema using a
-     * PrintWriter
+     * @test_Strategy: create scripts via Persistence.generateSchema using a PrintWriter
      */
     public void scriptsPrintWriter2Test() throws Fault {
         boolean pass1 = false;
@@ -289,8 +282,10 @@ public class Client extends PMClientBase {
         TestUtil.logMsg("Executing Persistence.generateSchema(...)");
         Persistence.generateSchema(getPersistenceUnitName(), props);
 
-        if (pw1 != null) pw1.close();
-        if (pw2 != null) pw2.close();
+        if (pw1 != null)
+            pw1.close();
+        if (pw2 != null)
+            pw2.close();
 
         TestUtil.logMsg("Check script(s) content");
 
@@ -304,11 +299,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: databaseAndScriptsURLTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.2;
-     * PERSISTENCE:SPEC:1898.3
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.2; PERSISTENCE:SPEC:1898.3
      *
-     * @test_Strategy: create scripts and generate the schema via
-     * createEntityManagerFactory using a URL location
+     * @test_Strategy: create scripts and generate the schema via createEntityManagerFactory using a URL location
      */
     public void databaseAndScriptsURLTest() throws Fault {
         boolean pass1 = false;
@@ -376,8 +369,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.2;
      *
-     * @test_Strategy: create scripts and generate the schema via
-     * createEntityManagerFactory using a PrintWriter
+     * @test_Strategy: create scripts and generate the schema via createEntityManagerFactory using a PrintWriter
      */
     public void databaseAndScriptsPrintWriterTest() throws Fault {
         boolean pass1 = false;
@@ -423,8 +415,10 @@ public class Client extends PMClientBase {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
         emf.close();
         emf = null;
-        if (pw1 != null) pw1.close();
-        if (pw2 != null) pw2.close();
+        if (pw1 != null)
+            pw1.close();
+        if (pw2 != null)
+            pw2.close();
 
         TestUtil.logMsg("Check script(s) content");
 
@@ -460,13 +454,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: databaseAndScriptsURL2Test
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1;
-     * PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475; PERSISTENCE:SPEC:2476;
-     * PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
-     * PERSISTENCE:SPEC:1915;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475;
+     * PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480; PERSISTENCE:SPEC:1915;
      *
-     * @test_Strategy: create scripts and generate the schema via
-     * Persistence.generateSchema using a URL location
+     * @test_Strategy: create scripts and generate the schema via Persistence.generateSchema using a URL location
      */
     public void databaseAndScriptsURL2Test() throws Fault {
         boolean pass = false;
@@ -523,13 +514,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: databaseAndScriptsPrintWriter2Test
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1;
-     * PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475; PERSISTENCE:SPEC:2476;
-     * PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
-     * PERSISTENCE:SPEC:1893; PERSISTENCE:SPEC:1893.1; PERSISTENCE:SPEC:1915;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475;
+     * PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480; PERSISTENCE:SPEC:1893;
+     * PERSISTENCE:SPEC:1893.1; PERSISTENCE:SPEC:1915;
      *
-     * @test_Strategy: create scripts and generate the schema via
-     * Persistence.generateSchema using a PrintWriter
+     * @test_Strategy: create scripts and generate the schema via Persistence.generateSchema using a PrintWriter
      */
     public void databaseAndScriptsPrintWriter2Test() throws Fault {
         boolean pass1 = false;
@@ -573,8 +562,10 @@ public class Client extends PMClientBase {
 
         TestUtil.logMsg("Executing Persistence.generateSchema(...)");
         Persistence.generateSchema(getPersistenceUnitName(), props);
-        if (pw1 != null) pw1.close();
-        if (pw2 != null) pw2.close();
+        if (pw1 != null)
+            pw1.close();
+        if (pw2 != null)
+            pw2.close();
 
         clearEMAndEMF();
 
@@ -611,13 +602,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: databaseCreateTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1;
-     * PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475; PERSISTENCE:SPEC:2476;
-     * PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475;
+     * PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
      * PERSISTENCE:SPEC:1898.3; PERSISTENCE:SPEC:1898.4; PERSISTENCE:SPEC:1915;
      *
-     * @test_Strategy: create scripts and generate the schema via
-     * Persistence.generateSchema using a PrintWriter
+     * @test_Strategy: create scripts and generate the schema via Persistence.generateSchema using a PrintWriter
      */
     public void databaseCreateTest() throws Fault {
         boolean pass = false;
@@ -664,14 +653,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: executeCreateScriptURLTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1;
-     * PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475; PERSISTENCE:SPEC:2476;
-     * PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
-     * PERSISTENCE:SPEC:1898.4; PERSISTENCE:SPEC:1898.12;
-     * PERSISTENCE:SPEC:1898.14; PERSISTENCE:SPEC:1915;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475;
+     * PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
+     * PERSISTENCE:SPEC:1898.4; PERSISTENCE:SPEC:1898.12; PERSISTENCE:SPEC:1898.14; PERSISTENCE:SPEC:1915;
      *
-     * @test_Strategy: create a create script then use a URL location to execute
-     * it
+     * @test_Strategy: create a create script then use a URL location to execute it
      */
     public void executeCreateScriptURLTest() throws Fault {
         boolean pass1 = false;
@@ -743,13 +729,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: executeCreateScriptReaderTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1;
-     * PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475; PERSISTENCE:SPEC:2476;
-     * PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475;
+     * PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
      * PERSISTENCE:SPEC:1870.1; PERSISTENCE:SPEC:1898.14; PERSISTENCE:SPEC:1915;
      *
-     * @test_Strategy: create a create script then use a Reader to load and
-     * execute it
+     * @test_Strategy: create a create script then use a Reader to load and execute it
      */
     public void executeCreateScriptReaderTest() throws Fault {
         boolean pass1 = false;
@@ -803,7 +787,8 @@ public class Client extends PMClientBase {
 
         TestUtil.logMsg("Executing Persistence.generateSchema(...)");
         Persistence.generateSchema(getPersistenceUnitName(), props);
-        if (pw1 != null) pw1.close();
+        if (pw1 != null)
+            pw1.close();
 
         clearEMAndEMF();
 
@@ -835,11 +820,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: executeDropScriptURLTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1;
-     * PERSISTENCE:SPEC:1899.2; PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475;
-     * PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357;
-     * PERSISTENCE:SPEC:2480; PERSISTENCE:SPEC:1870.2; PERSISTENCE:SPEC:1898.3;
-     * PERSISTENCE:SPEC:1898.4; PERSISTENCE:SPEC:1898.12;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:1899.2; PERSISTENCE:SPEC:2474;
+     * PERSISTENCE:SPEC:2475; PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
+     * PERSISTENCE:SPEC:1870.2; PERSISTENCE:SPEC:1898.3; PERSISTENCE:SPEC:1898.4; PERSISTENCE:SPEC:1898.12;
      * PERSISTENCE:SPEC:1898.15; PERSISTENCE:SPEC:1915;
      *
      * @test_Strategy: create drop script using a URL location and execute it
@@ -936,13 +919,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: executeDropScriptReaderTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1;
-     * PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475; PERSISTENCE:SPEC:2476;
-     * PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
+     * @assertion_ids: PERSISTENCE:SPEC:1899; PERSISTENCE:SPEC:1899.1; PERSISTENCE:SPEC:2474; PERSISTENCE:SPEC:2475;
+     * PERSISTENCE:SPEC:2476; PERSISTENCE:SPEC:2478; PERSISTENCE:JAVADOC:3357; PERSISTENCE:SPEC:2480;
      * PERSISTENCE:SPEC:1898.15; PERSISTENCE:SPEC:1915;
      *
-     * @test_Strategy: create drop script then use a Reader to load and execute
-     * it.
+     * @test_Strategy: create drop script then use a Reader to load and execute it.
      */
     public void executeDropScriptReaderTest() throws Fault {
         boolean pass1 = false;
@@ -974,7 +955,8 @@ public class Client extends PMClientBase {
         TestUtil.logMsg("Executing Persistence.generateSchema(...)");
         Persistence.generateSchema(getPersistenceUnitName(), props);
 
-        if (pw2 != null) pw2.close();
+        if (pw2 != null)
+            pw2.close();
 
         TestUtil.logMsg("Check script(s) content");
 

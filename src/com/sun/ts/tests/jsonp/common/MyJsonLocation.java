@@ -30,7 +30,8 @@ public class MyJsonLocation implements JsonLocation {
 
     private long streamOffset = -1;
 
-    public MyJsonLocation() {}
+    public MyJsonLocation() {
+    }
 
     public MyJsonLocation(long lineNumber, long columnNumber, long streamOffset) {
         this.lineNumber = lineNumber;

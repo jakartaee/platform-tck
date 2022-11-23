@@ -41,8 +41,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The stmtClient1 class tests methods of Statement interface using Sun's J2EE
- * Reference Implementation.
+ * The stmtClient1 class tests methods of Statement interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -82,14 +81,11 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -98,7 +94,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
 
                 if (drManager.equals("yes")) {
@@ -129,8 +126,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:139; JDBC:JAVADOC:140;
      *
-     * @test_Strategy: Get a Statement object and call close() method and call
-     * executeQuery() method to check and it should throw SQLException
+     * @test_Strategy: Get a Statement object and call close() method and call executeQuery() method to check and it should
+     * throw SQLException
      *
      */
     public void testClose() throws Fault {
@@ -173,8 +170,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:163; JDBC:JAVADOC:164;
      *
-     * @test_Strategy: Call execute(String sql) of updating a row It should return
-     * a boolean value and the value should be equal to false
+     * @test_Strategy: Call execute(String sql) of updating a row It should return a boolean value and the value should be
+     * equal to false
      *
      */
     public void testExecute01() throws Fault {
@@ -205,9 +202,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:163; JDBC:JAVADOC:164;
      *
-     * @test_Strategy: Get a Statement object and call execute(String sql) of
-     * selecting rows from the database It should return a boolean value and the
-     * value should be equal to true
+     * @test_Strategy: Get a Statement object and call execute(String sql) of selecting rows from the database It should
+     * return a boolean value and the value should be equal to true
      *
      */
     public void testExecute02() throws Fault {
@@ -239,8 +235,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:135; JDBC:JAVADOC:136;
      *
-     * @test_Strategy: Get a Statement object and call executeQuery(String sql) to
-     * select a row from the database It should return a ResultSet object
+     * @test_Strategy: Get a Statement object and call executeQuery(String sql) to select a row from the database It should
+     * return a ResultSet object
      *
      */
     public void testExecuteQuery01() throws Fault {
@@ -273,10 +269,9 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:135; JDBC:JAVADOC:136;
      *
-     * @test_Strategy: Get a Statement object and call executeQuery(String sql) to
-     * select a non-existent row from the database It should return a ResultSet
-     * object which is empty and call ResultSet.next() method to check and it
-     * should return a false
+     * @test_Strategy: Get a Statement object and call executeQuery(String sql) to select a non-existent row from the
+     * database It should return a ResultSet object which is empty and call ResultSet.next() method to check and it should
+     * return a false
      *
      */
     public void testExecuteQuery02() throws Fault {
@@ -311,8 +306,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:135; JDBC:JAVADOC:136;
      *
      *
-     * @test_Strategy: Get a Statement object and call executeQuery(String sql) to
-     * insert a row to the database It should throw SQLException
+     * @test_Strategy: Get a Statement object and call executeQuery(String sql) to insert a row to the database It should
+     * throw SQLException
      *
      */
     public void testExecuteQuery03() throws Fault {
@@ -349,8 +344,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:137; JDBC:JAVADOC:138;
      *
-     * @test_Strategy: Get a Statement object and call executeUpdate(String sql)
-     * It should return an int value which is equal to row count
+     * @test_Strategy: Get a Statement object and call executeUpdate(String sql) It should return an int value which is
+     * equal to row count
      */
     public void testExecuteUpdate01() throws Fault {
         int updCount = 0;
@@ -392,8 +387,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:137; JDBC:JAVADOC:138;
      *
-     * @test_Strategy: Get a Statement object and call executeUpdate(String sql)
-     * for selecting row from the table It should throw a SQL Exception
+     * @test_Strategy: Get a Statement object and call executeUpdate(String sql) for selecting row from the table It should
+     * throw a SQL Exception
      *
      */
     public void testExecuteUpdate03() throws Fault {
@@ -429,12 +424,10 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetFetchDirection
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:173; JDBC:JAVADOC:174;
-     * JDBC:JAVADOC:356;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:173; JDBC:JAVADOC:174; JDBC:JAVADOC:356;
      *
-     * @test_Strategy: Get a Statement object and call the getFetchDirection()
-     * method It should return a int value and the value should be equal to any of
-     * the values FETCH_FORWARD or FETCH_REVERSE or FETCH_UNKNOWN
+     * @test_Strategy: Get a Statement object and call the getFetchDirection() method It should return a int value and the
+     * value should be equal to any of the values FETCH_FORWARD or FETCH_REVERSE or FETCH_UNKNOWN
      *
      */
     public void testGetFetchDirection() throws Fault {
@@ -468,8 +461,7 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:177; JDBC:JAVADOC:178;
      *
-     * @test_Strategy: Get a ResultSet object and call the getFetchSize() method
-     * It should return a int value
+     * @test_Strategy: Get a ResultSet object and call the getFetchSize() method It should return a int value
      *
      */
     public void testGetFetchSize() throws Fault {
@@ -497,8 +489,7 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:141; JDBC:JAVADOC:142;
      *
-     * @test_Strategy: Get a Statement object and call the getMaxFieldSize()
-     * method It should return a int value
+     * @test_Strategy: Get a Statement object and call the getMaxFieldSize() method It should return a int value
      *
      */
     public void testGetMaxFieldSize() throws Fault {
@@ -527,8 +518,7 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:145; JDBC:JAVADOC:146;
      *
-     * @test_Strategy: Get a Statement object and call the getMaxRows() method It
-     * should return a int value
+     * @test_Strategy: Get a Statement object and call the getMaxRows() method It should return a int value
      *
      */
     public void testGetMaxRows() throws Fault {
@@ -556,9 +546,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:169; JDBC:JAVADOC:170;
      *
-     * @test_Strategy: Get a Statement object and call the execute() method for
-     * selecting a row and call getMoreResults() method It should return a boolean
-     * value
+     * @test_Strategy: Get a Statement object and call the execute() method for selecting a row and call getMoreResults()
+     * method It should return a boolean value
      *
      */
     public void testGetMoreResults01() throws Fault {
@@ -592,9 +581,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:169; JDBC:JAVADOC:170;
      *
-     * @test_Strategy: Get a Statement object and call the execute() method for
-     * selecting a non-existent row and call getMoreResults() method It should
-     * return a boolean value and the value should be equal to false
+     * @test_Strategy: Get a Statement object and call the execute() method for selecting a non-existent row and call
+     * getMoreResults() method It should return a boolean value and the value should be equal to false
      *
      */
     public void testGetMoreResults02() throws Fault {
@@ -628,9 +616,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:169; JDBC:JAVADOC:170;
      *
-     * @test_Strategy: Get a Statement object and call the execute() method for
-     * updating a row and call getMoreResults() method It should return a boolean
-     * value and the value should be equal to false
+     * @test_Strategy: Get a Statement object and call the execute() method for updating a row and call getMoreResults()
+     * method It should return a boolean value and the value should be equal to false
      *
      */
     public void testGetMoreResults03() throws Fault {
@@ -664,8 +651,7 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:151; JDBC:JAVADOC:152;
      *
-     * @test_Strategy: Get a Statement object and call getQueryTimeout() method It
-     * should return a int value
+     * @test_Strategy: Get a Statement object and call getQueryTimeout() method It should return a int value
      *
      */
     public void testGetQueryTimeout() throws Fault {
@@ -695,9 +681,8 @@ public class stmtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:165; JDBC:JAVADOC:166;
      *
-     * @test_Strategy: Get a Statement object and call execute() method for
-     * selecting a row and call getResultSet() method It should return a ResultSet
-     * object
+     * @test_Strategy: Get a Statement object and call execute() method for selecting a row and call getResultSet() method
+     * It should return a ResultSet object
      *
      */
     public void testGetResultSet01() throws Fault {

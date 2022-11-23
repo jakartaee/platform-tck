@@ -42,20 +42,17 @@ import java.util.Map.Entry;
 
 /**
  * <p>
- * Possibly there might be different
- * {@link com.sun.ts.tests.common.webclient.TestCase}s for different technology
+ * Possibly there might be different {@link com.sun.ts.tests.common.webclient.TestCase}s for different technology
  * </p>
  * <p>
- * This one uses existing routines to check result of client-server
- * request-response by websocket technology
+ * This one uses existing routines to check result of client-server request-response by websocket technology
  * </p>
  *
- * TODO Create an instance of endpoint class using reflection with zero arg
- * constructor from the given ClientEndpoint class
- * <li>Then ClientEndpoinData do not need to be static, make it accessible from
- * CientEndpoint instance</li>
- * <li>Do not forget to pass a reference of the endpoint instance to each single
- * callback for ClientEndpointData to be accessible from the callback</li>
+ * TODO Create an instance of endpoint class using reflection with zero arg constructor from the given ClientEndpoint
+ * class
+ * <li>Then ClientEndpoinData do not need to be static, make it accessible from CientEndpoint instance</li>
+ * <li>Do not forget to pass a reference of the endpoint instance to each single callback for ClientEndpointData to be
+ * accessible from the callback</li>
  *
  * @author supol
  */
@@ -67,27 +64,23 @@ public class WebSocketTestCase extends WebTestCase {
     protected HttpResponse _response;
 
     /**
-     * A reference to WebSocketCommonClient, holder of properties needed to build
-     * request
+     * A reference to WebSocketCommonClient, holder of properties needed to build request
      */
     protected WebSocketCommonClient client;
 
     /**
-     * A reference to ClientEndpoint, a websocket endpoint the messages are passed
-     * into it
+     * A reference to ClientEndpoint, a websocket endpoint the messages are passed into it
      */
     protected Class<? extends ClientEndpoint<?>> endpoint = StringClientEndpoint.class;
 
     /**
-     * An Instance to ClientEndpoint, a websocket endpoint the messages are passed
-     * into it
+     * An Instance to ClientEndpoint, a websocket endpoint the messages are passed into it
      */
     protected ClientEndpoint<?> endpointInstance = null;
 
     /**
-     * An annotated endpoint, in this implementation merely a bridge to
-     * ClientEndpoint, to be sure the annotated methods are called and also to
-     * have all the EndpointCallbacks working there
+     * An annotated endpoint, in this implementation merely a bridge to ClientEndpoint, to be sure the annotated methods are
+     * called and also to have all the EndpointCallbacks working there
      */
     protected AnnotatedClientEndpoint<?> annotatedEndpoint = null;
 
@@ -97,8 +90,8 @@ public class WebSocketTestCase extends WebTestCase {
     protected volatile EndpointCallback clientCallback = null;
 
     /*
-     * Callbacks to be added to a given master callback or to a default
-     * SendMessageCallback master callback if no master callback is provided
+     * Callbacks to be added to a given master callback or to a default SendMessageCallback master callback if no master
+     * callback is provided
      */
     protected List<EndpointCallback> slaveClientCallbacks = null;
 
@@ -108,8 +101,7 @@ public class WebSocketTestCase extends WebTestCase {
     protected TextCaser textCaser = TextCaser.NONE;
 
     /**
-     * Strategy to use when validating the test case against the server's
-     * response.
+     * Strategy to use when validating the test case against the server's response.
      */
     protected ValidationStrategy strategy = null;
 
@@ -150,11 +142,8 @@ public class WebSocketTestCase extends WebTestCase {
     /**
      * Executes the test case.
      *
-     * @throws TestFailureException
-     *           if the test fails for any reason.
-     * @throws IllegalStateException
-     *           if no request was configured or if no Validator is available at
-     *           runtime.
+     * @throws TestFailureException if the test fails for any reason.
+     * @throws IllegalStateException if no request was configured or if no Validator is available at runtime.
      */
     @Override
     public void execute() throws TestFailureException {
@@ -164,12 +153,16 @@ public class WebSocketTestCase extends WebTestCase {
         try {
             WebSocketContainer clientContainer = ContainerProvider.getWebSocketContainer();
             String path = client.TEST_PROPS.get(Property.REQUEST);
-            if (printClientCall) logTrace("\n-----------\n", printClientCall(), "-----------\n");
+            if (printClientCall)
+                logTrace("\n-----------\n", printClientCall(), "-----------\n");
             logMsg("Connecting to", path);
-            if (slaveClientCallbacks.size() != 0) clientCallback = createMasterEndpointCallback();
+            if (slaveClientCallbacks.size() != 0)
+                clientCallback = createMasterEndpointCallback();
             if (client.entity != null) {
-                if (clientCallback != null) ClientEndpointData.callback = clientCallback;
-                else ClientEndpointData.callback = new SendMessageCallback(client.entity);
+                if (clientCallback != null)
+                    ClientEndpointData.callback = clientCallback;
+                else
+                    ClientEndpointData.callback = new SendMessageCallback(client.entity);
             }
             client.setupWebSocketContainerBeforeConnect(clientContainer);
             newCountDown();
@@ -181,7 +174,8 @@ public class WebSocketTestCase extends WebTestCase {
             StringBuilder sb = new StringBuilder();
             sb.append("[FATAL] Unexpected failure during test execution.\n");
             // print client call code to report into JIRA when needed
-            if (client.logExceptionOnInvoke) sb.append(printClientCall().toString());
+            if (client.logExceptionOnInvoke)
+                sb.append(printClientCall().toString());
             // Inherited message
             sb.append((message == null ? t.toString() : message));
 
@@ -255,10 +249,12 @@ public class WebSocketTestCase extends WebTestCase {
                 endpointInstance == null || annotatedEndpoint == null,
                 "Either a ClientEndpoint instance or Annotated endpoint can be used, not both");
 
-        if (annotatedEndpoint != null) session = clientContainer.connectToServer(annotatedEndpoint, new URI(path));
+        if (annotatedEndpoint != null)
+            session = clientContainer.connectToServer(annotatedEndpoint, new URI(path));
         else if (endpointInstance != null)
             session = clientContainer.connectToServer(endpointInstance, clientEndpointConfig, new URI(path));
-        else session = clientContainer.connectToServer(endpoint, clientEndpointConfig, new URI(path));
+        else
+            session = clientContainer.connectToServer(endpoint, clientEndpointConfig, new URI(path));
         logTrace("Connection session id:", session.getId());
         return session;
     }
@@ -288,8 +284,10 @@ public class WebSocketTestCase extends WebTestCase {
             @Override
             public void afterResponse(HandshakeResponse hr) {
                 if (configurators != null)
-                    for (ClientEndpointConfig.Configurator configurator : configurators) configurator.afterResponse(hr);
-                if (original != null) original.afterResponse(hr);
+                    for (ClientEndpointConfig.Configurator configurator : configurators)
+                        configurator.afterResponse(hr);
+                if (original != null)
+                    original.afterResponse(hr);
             }
 
             @Override
@@ -297,9 +295,11 @@ public class WebSocketTestCase extends WebTestCase {
                 if (configurators != null)
                     for (ClientEndpointConfig.Configurator configurator : configurators)
                         configurator.beforeRequest(headers);
-                if (original != null) original.beforeRequest(headers);
+                if (original != null)
+                    original.beforeRequest(headers);
 
-                if (true) printHeaders(headers);
+                if (true)
+                    printHeaders(headers);
             }
 
             void printHeaders(Map<String, List<String>> headers) {
@@ -315,31 +315,34 @@ public class WebSocketTestCase extends WebTestCase {
 
     protected EndpointCallback createMasterEndpointCallback() {
         EndpointCallback master = new EndpointCallback() {
-            EndpointCallback original =
-                    clientCallback == null ? new SendMessageCallback(client.entity) : clientCallback;
+            EndpointCallback original = clientCallback == null ? new SendMessageCallback(client.entity) : clientCallback;
 
             @Override
             public void onOpen(Session session, EndpointConfig config) {
                 original.onOpen(session, config);
-                for (EndpointCallback callback : slaveClientCallbacks) callback.onOpen(session, config);
+                for (EndpointCallback callback : slaveClientCallbacks)
+                    callback.onOpen(session, config);
             }
 
             @Override
             public void onMessage(Object o) {
                 original.onMessage(o);
-                for (EndpointCallback callback : slaveClientCallbacks) callback.onMessage(o);
+                for (EndpointCallback callback : slaveClientCallbacks)
+                    callback.onMessage(o);
             }
 
             @Override
             public void onError(Session session, Throwable t) {
                 original.onError(session, t);
-                for (EndpointCallback callback : slaveClientCallbacks) callback.onError(session, t);
+                for (EndpointCallback callback : slaveClientCallbacks)
+                    callback.onError(session, t);
             }
 
             @Override
             public void onClose(Session session, CloseReason closeReason) {
                 original.onClose(session, closeReason);
-                for (EndpointCallback callback : slaveClientCallbacks) callback.onClose(session, closeReason);
+                for (EndpointCallback callback : slaveClientCallbacks)
+                    callback.onClose(session, closeReason);
             }
         };
         return master;
@@ -356,7 +359,8 @@ public class WebSocketTestCase extends WebTestCase {
     }
 
     protected void verifySettings() throws TestFailureException {
-        if (client.getContextRoot() == null) throw new TestFailureException("No resource url request set");
+        if (client.getContextRoot() == null)
+            throw new TestFailureException("No resource url request set");
     }
 
     protected void awaitCountDown() {
@@ -392,8 +396,7 @@ public class WebSocketTestCase extends WebTestCase {
     /**
      * Sets the validation strategy for this test case instance.
      *
-     * @param validator
-     *          - the fully qualified class name of the response validator to use.
+     * @param validator - the fully qualified class name of the response validator to use.
      */
     @Override
     public void setStrategy(String validator) {
@@ -416,24 +419,23 @@ public class WebSocketTestCase extends WebTestCase {
     }
 
     /**
-     * set ClientEndpoint class. This endpoint class can be overriden by client
-     * endpoint instance set by {@link #setClientEndpointInstance}
+     * set ClientEndpoint class. This endpoint class can be overriden by client endpoint instance set by
+     * {@link #setClientEndpointInstance}
      */
     protected void setClientEndpoint(Class<? extends ClientEndpoint<?>> endpoint) {
         this.endpoint = endpoint;
     }
 
     /**
-     * The ClientEndpoint instance. It holds precedence over ClientEndpoint class
-     * set by {@link #setClientEndpoint}
+     * The ClientEndpoint instance. It holds precedence over ClientEndpoint class set by {@link #setClientEndpoint}
      */
     protected void setClientEndpointInstance(ClientEndpoint<?> endpointInstance) {
         this.endpointInstance = endpointInstance;
     }
 
     /**
-     * The annotated client endpoint alternative to ClientEndpoint instance. It
-     * has precedence over ClientEndpoint class set by {@link #setClientEndpoint}
+     * The annotated client endpoint alternative to ClientEndpoint instance. It has precedence over ClientEndpoint class set
+     * by {@link #setClientEndpoint}
      */
     protected void setAnnotatedClientEndpoint(AnnotatedClientEndpoint<?> annotatedEndpoint) {
         this.annotatedEndpoint = annotatedEndpoint;
@@ -468,7 +470,7 @@ public class WebSocketTestCase extends WebTestCase {
         return ClientEndpoint.getMessageBuilder().toString();
     }
 
-    @SuppressWarnings({"unchecked", "unused"})
+    @SuppressWarnings({ "unchecked", "unused" })
     protected <T> T getLastResponse(Class<T> type) {
         return (T) ClientEndpointData.lastMessage;
     }

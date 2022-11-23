@@ -30,11 +30,7 @@ import javax.xml.transform.stream.StreamSource;
 /*
  * Provider<Source> - req/res a Source in Payload Mode (use of JAXB objects)
  */
-@WebServiceProvider(
-        serviceName = "HelloService",
-        portName = "HelloPort",
-        targetNamespace = "http://helloservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSDLHelloProviderService.wsdl")
+@WebServiceProvider(serviceName = "HelloService", portName = "HelloPort", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSDLHelloProviderService.wsdl")
 @BindingType(value = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING)
 @ServiceMode(value = jakarta.xml.ws.Service.Mode.PAYLOAD)
 public class HelloImpl implements Provider<Source> {
@@ -71,15 +67,22 @@ public class HelloImpl implements Provider<Source> {
                 oneWay = true;
             }
             System.out.println("arg=" + arg);
-            if (arg == null) throw new WebServiceException("arg is null");
+            if (arg == null)
+                throw new WebServiceException("arg is null");
             if (!oneWay) {
-                if (arg.equals("sendBean")) return sendBean();
-                else if (arg.equals("sendSource")) return sendSource();
-                else if (arg.equals("sendEmptyStreamSource")) return sendEmptyStreamSource();
-                else throw new WebServiceException("Unexpected Argument: " + arg);
+                if (arg.equals("sendBean"))
+                    return sendBean();
+                else if (arg.equals("sendSource"))
+                    return sendSource();
+                else if (arg.equals("sendEmptyStreamSource"))
+                    return sendEmptyStreamSource();
+                else
+                    throw new WebServiceException("Unexpected Argument: " + arg);
             } else {
-                if (arg.equals("sendEmptyStreamSource")) return null;
-                else throw new WebServiceException("Unexpected Argument: " + arg);
+                if (arg.equals("sendEmptyStreamSource"))
+                    return null;
+                else
+                    throw new WebServiceException("Unexpected Argument: " + arg);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,8 +92,7 @@ public class HelloImpl implements Provider<Source> {
 
     private Source sendSource() {
         System.out.println("*** sendSource ***");
-        String body =
-                "<HelloResponse xmlns=\"http://helloservice.org/types\"><argument>sendSource</argument></HelloResponse>";
+        String body = "<HelloResponse xmlns=\"http://helloservice.org/types\"><argument>sendSource</argument></HelloResponse>";
         Source source = new StreamSource(new StringReader(body));
         return source;
     }

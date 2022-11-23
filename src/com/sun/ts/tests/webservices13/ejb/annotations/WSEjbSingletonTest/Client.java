@@ -78,8 +78,10 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -111,24 +113,23 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbSingletonTestCallHello
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187; WS4EE:SPEC:3000;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187; WS4EE:SPEC:3000;
      * WS4EE:SPEC:3001; WS4EE:SPEC:3004; WS4EE:SPEC:3005;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef and @WebService annotations. The EJBBean
-     * Implementation class is packaged in the ear file. The @WebServiceRef uses
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. Tests @WebServiceRef
+     * and @WebService annotations. The EJBBean Implementation class is packaged in the ear file. The @WebServiceRef uses
      * the name attribute field to access the service ref.
      */
     public void WSEjbSingletonTestCallHello() throws Fault {
         TestUtil.logMsg("WSEjbSingletonTestCallHello");
         try {
             String txt = port.hello("Hi there");
-            if (txt.equals("Hi there to you too!")) TestUtil.logMsg("WSEjbSingletonTestCallHello passed");
-            else throw new RuntimeException("Msg returned from hello() incorrect");
+            if (txt.equals("Hi there to you too!"))
+                TestUtil.logMsg("WSEjbSingletonTestCallHello passed");
+            else
+                throw new RuntimeException("Msg returned from hello() incorrect");
         } catch (Throwable t) {
             TestUtil.printStackTrace(t);
             throw new Fault("WSEjbSingletonTestCallHello failed");
@@ -139,24 +140,23 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbSingletonTestCallBye
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187; WS4EE:SPEC:3000;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187; WS4EE:SPEC:3000;
      * WS4EE:SPEC:3001; WS4EE:SPEC:3004; WS4EE:SPEC:3005;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef and @WebService annotations. The EJBBean
-     * Implementation class is packaged in the ear file. The @WebServiceRef uses
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. Tests @WebServiceRef
+     * and @WebService annotations. The EJBBean Implementation class is packaged in the ear file. The @WebServiceRef uses
      * the name attribute field to access the service ref.
      */
     public void WSEjbSingletonTestCallBye() throws Fault {
         TestUtil.logMsg("WSEjbSingletonTestCallBye");
         try {
             String txt = port.bye("Bye-bye");
-            if (txt.equals("Bye-bye and take care")) TestUtil.logMsg("WSEjbSingletonTestCallBye passed");
-            else throw new RuntimeException("Msg returned from bye() incorrect");
+            if (txt.equals("Bye-bye and take care"))
+                TestUtil.logMsg("WSEjbSingletonTestCallBye passed");
+            else
+                throw new RuntimeException("Msg returned from bye() incorrect");
         } catch (Throwable t) {
             TestUtil.printStackTrace(t);
             throw new Fault("WSEjbSingletonTestCallBye failed");
@@ -167,19 +167,15 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbSingletonTestVerifyTargetEndpointAddress
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187; WS4EE:SPEC:3000;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187; WS4EE:SPEC:3000;
      * WS4EE:SPEC:3001; WS4EE:SPEC:3004; WS4EE:SPEC:3005;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef and @WebService annotations. The EJBBean
-     * Implementation class is packaged in the ear file. The @WebServiceRef uses
-     * the name attribute field to access the service ref. The enpoint-address-uri
-     * is specified in the runtime deployment descriptor. Verify that the target
-     * endpoint ends with this enpoint-address-uri.
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. Tests @WebServiceRef
+     * and @WebService annotations. The EJBBean Implementation class is packaged in the ear file. The @WebServiceRef uses
+     * the name attribute field to access the service ref. The enpoint-address-uri is specified in the runtime deployment
+     * descriptor. Verify that the target endpoint ends with this enpoint-address-uri.
      */
     public void WSEjbSingletonTestVerifyTargetEndpointAddress() throws Fault {
         TestUtil.logMsg("WSEjbSingletonTestVerifyTargetEndpointAddress");
@@ -189,7 +185,8 @@ public class Client extends EETest {
                     "Verify that the target endpoint address ends with [WSEjbSingletonTestHelloService/HelloBean]");
             if (endpointaddr.endsWith("WSEjbSingletonTestHelloService/HelloBean"))
                 TestUtil.logMsg("WSEjbSingletonTestVerifyTargetEndpointAddress passed");
-            else throw new RuntimeException("Target Endpoint Address is incorrect: " + endpointaddr);
+            else
+                throw new RuntimeException("Target Endpoint Address is incorrect: " + endpointaddr);
         } catch (Throwable t) {
             TestUtil.printStackTrace(t);
             throw new Fault("WSEjbSingletonTestVerifyTargetEndpointAddress failed");
@@ -200,27 +197,22 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbSingletonTestVerifyJNDILookupOfService
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
      *
-     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB
-     * endpoint. Tests @WebServiceRef and @WebService annotations. The EJBBean
-     * Implementation class is packaged in the ear file. The @WebServiceRef uses
-     * the name attribute field to access the service ref. The runtime deployment
-     * descriptor specifies the service ref. Verify that the container correctly
-     * publishes the web service implementation under the service ref via the JNDI
-     * name "java:comp/env/service/wsejbsingletontest".
+     * @test_Strategy: This is a prebuilt client and prebuilt webservice using EJB endpoint. Tests @WebServiceRef
+     * and @WebService annotations. The EJBBean Implementation class is packaged in the ear file. The @WebServiceRef uses
+     * the name attribute field to access the service ref. The runtime deployment descriptor specifies the service ref.
+     * Verify that the container correctly publishes the web service implementation under the service ref via the JNDI name
+     * "java:comp/env/service/wsejbsingletontest".
      */
     public void WSEjbSingletonTestVerifyJNDILookupOfService() throws Fault {
         TestUtil.logMsg("WSEjbSingletonTestVerifyJNDILookupOfService");
         try {
             TestUtil.logMsg("Test JNDI lookup for wsejbsingletontest Service");
             InitialContext ctx = new InitialContext();
-            WSEjbSingletonTestHelloService service =
-                    (WSEjbSingletonTestHelloService) ctx.lookup("java:comp/env/service/wsejbsingletontest");
+            WSEjbSingletonTestHelloService service = (WSEjbSingletonTestHelloService) ctx.lookup("java:comp/env/service/wsejbsingletontest");
             TestUtil.logMsg("service=" + service);
             TestUtil.logMsg("WSEjbSingletonTestVerifyJNDILookupOfService passed");
         } catch (Throwable t) {

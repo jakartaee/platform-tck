@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,9 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:13.1; JSTL:SPEC:13.1.1; JSTL:SPEC:13.3
      *
-     * @testStrategy: Validate that the dynamic and static values provided to the
-     * 'value' attribute are made available to the test page by using <c:out> to
-     * print the values.
+     * @testStrategy: Validate that the dynamic and static values provided to the 'value' attribute are made available to
+     * the test page by using <c:out> to print the values.
      */
     public void positiveSetTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetTest");
@@ -80,8 +77,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:13.2
      *
-     * @testStrategy: Validate the value of the exported var can be set within the
-     * body of the <c:set> action. Verify the result using <c:out>
+     * @testStrategy: Validate the value of the exported var can be set within the body of the <c:set> action. Verify the
+     * result using <c:out>
      */
     public void positiveSetBodyBehaviorTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetBodyBehaviorTest");
@@ -91,13 +88,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveSetScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:13.4.1; JSTL:SPEC:13.4.2; JSTL:SPEC:13.4.3;
-     * JSTL:SPEC:13.4.4; JSTL:SPEC:13.5
+     * @assertion_ids: JSTL:SPEC:13.4.1; JSTL:SPEC:13.4.2; JSTL:SPEC:13.4.3; JSTL:SPEC:13.4.4; JSTL:SPEC:13.5
      *
-     * @testStrategy: Validated the different scope behaviors (default and
-     * explicitly set scopes) by exporting different vairables to the assorted
-     * scopes and then print the values using PageContext.getAttribute(String,
-     * int).
+     * @testStrategy: Validated the different scope behaviors (default and explicitly set scopes) by exporting different
+     * vairables to the assorted scopes and then print the values using PageContext.getAttribute(String, int).
      */
     public void positiveSetScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetScopeTest");
@@ -109,14 +103,11 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:13.7
      *
-     * @testStrategy: Validate the following: - if setting a scoped variable and
-     * value is null, the variable referenced by var and scope is removed. This is
-     * validated by setting a scoped variable, and then calling remove using that
-     * var name. Then validate that the variable is indeed removed by using an out
-     * action with that variable (which is now null. - If setting a property in a
-     * Map and value is null, the key/value is removed from the map. - If setting
-     * a property in a Bean and value is null, will return null when calling the
-     * get method for that propery after the set completes.
+     * @testStrategy: Validate the following: - if setting a scoped variable and value is null, the variable referenced by
+     * var and scope is removed. This is validated by setting a scoped variable, and then calling remove using that var
+     * name. Then validate that the variable is indeed removed by using an out action with that variable (which is now null.
+     * - If setting a property in a Map and value is null, the key/value is removed from the map. - If setting a property in
+     * a Bean and value is null, will return null when calling the get method for that propery after the set completes.
      */
     public void positiveSetNullValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetNullValueTest");
@@ -128,9 +119,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:13.10.1
      *
-     * @testStrategy: Validate that the set action can set properties of JavaBeans
-     * and set key/values in Map instances using the target and property
-     * attributes.
+     * @testStrategy: Validate that the set action can set properties of JavaBeans and set key/values in Map instances using
+     * the target and property attributes.
      */
     public void positiveSetPropertyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetPropertyTest");
@@ -142,8 +132,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:13.9
      *
-     * @testStrategy: Validate that if the body content of the action is thrown,
-     * that it is properly propagated.
+     * @testStrategy: Validate that if the body content of the action is thrown, that it is properly propagated.
      */
     public void negativeSetBodyContextExcTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeSetBodyContentExcTest");
@@ -155,9 +144,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:13.10.2; JSTL:SPEC:13.10.3
      *
-     * @testStrategy: Validate that a jakarta.servet.jsp.JspException is thrown if
-     * the target attribute is null, or is provided an object that is no a
-     * JavaBean or an instance of java.util.Map.
+     * @testStrategy: Validate that a jakarta.servet.jsp.JspException is thrown if the target attribute is null, or is
+     * provided an object that is no a JavaBean or an instance of java.util.Map.
      */
     public void negativeSetTargetNullInvalidObjTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeSetTargetNullInvalidObjTest");
@@ -169,9 +157,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:13.18
      *
-     * @test_Strategy: In a c:set tag, assign a deferred value to a variable. In a
-     * second tag, set the variable to have application scope. Verify that the
-     * value can be retrieved after the execution of the tag.
+     * @test_Strategy: In a c:set tag, assign a deferred value to a variable. In a second tag, set the variable to have
+     * application scope. Verify that the value can be retrieved after the execution of the tag.
      */
     public void positiveSetDeferredValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetDeferredValueTest");

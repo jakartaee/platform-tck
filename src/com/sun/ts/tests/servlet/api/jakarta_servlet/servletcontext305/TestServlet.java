@@ -118,7 +118,7 @@ public class TestServlet extends GenericTCKServlet {
         PrintWriter pw = response.getWriter();
 
         String[] names = {
-            "SERVLET_TEST", "FILTER_TEST", "LISTENER_TEST", "GC_LISTENER_TEST", "GS_LISTENER_TEST", "CGC_LISTENER_TEST"
+                "SERVLET_TEST", "FILTER_TEST", "LISTENER_TEST", "GC_LISTENER_TEST", "GS_LISTENER_TEST", "CGC_LISTENER_TEST"
         };
 
         for (String name : names) {

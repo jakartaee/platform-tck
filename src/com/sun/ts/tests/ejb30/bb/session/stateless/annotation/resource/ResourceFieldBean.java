@@ -43,7 +43,7 @@ import java.net.URL;
 import javax.sql.DataSource;
 
 @Stateless(name = "ResourceFieldBean")
-@Remote({ResourceIF.class})
+@Remote({ ResourceIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
     @Resource(name = "dog", description = "inject a custom jndi resource")
@@ -76,11 +76,7 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
         return "dataSource";
     }
 
-    @Resource(
-            name = "myDataSource2",
-            type = DataSource.class,
-            shareable = true,
-            authenticationType = AuthenticationType.CONTAINER)
+    @Resource(name = "myDataSource2", type = DataSource.class, shareable = true, authenticationType = AuthenticationType.CONTAINER)
     private DataSource dataSource2;
 
     protected String getDataSource2Name() {
@@ -173,9 +169,7 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
         return "queue";
     }
 
-    @Resource(
-            name = "myTransactionSynchronizationRegistry",
-            description = "TransactionSynchronizationRegistry injected")
+    @Resource(name = "myTransactionSynchronizationRegistry", description = "TransactionSynchronizationRegistry injected")
     private TransactionSynchronizationRegistry transactionSynchronizationRegistry;
 
     protected String getTransactionSynchronizationRegistryName() {
@@ -189,9 +183,11 @@ public class ResourceFieldBean extends ResourceBeanBase implements ResourceIF {
         return "myTimerService";
     }
 
-    public ResourceFieldBean() {}
+    public ResourceFieldBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected jakarta.ejb.EJBContext getEJBContext() {
         return sessionContext;

@@ -29,11 +29,9 @@ import jakarta.websocket.server.ServerContainer;
 public class TestListener implements ServletContextListener {
 
     /**
-     * Receives notification that the web application initialization process is
-     * starting.
+     * Receives notification that the web application initialization process is starting.
      *
-     * @param sce
-     *          The ServletContextEvent
+     * @param sce The ServletContextEvent
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -42,8 +40,7 @@ public class TestListener implements ServletContextListener {
         StringBuilder log = new StringBuilder();
 
         try {
-            final ServerContainer serverContainer =
-                    (ServerContainer) sce.getServletContext().getAttribute("jakarta.websocket.server.ServerContainer");
+            final ServerContainer serverContainer = (ServerContainer) sce.getServletContext().getAttribute("jakarta.websocket.server.ServerContainer");
             serverContainer.addEndpoint(com.sun.ts.tests.websocket.spec.servercontainer.addendpoint.WSTestServer.class);
             serverContainer.addEndpoint(
                     com.sun.ts.tests.websocket.spec.servercontainer.addendpoint.WSCloseTestServer.class);
@@ -74,8 +71,7 @@ public class TestListener implements ServletContextListener {
     /**
      * Receives notification that the servlet context is about to be shut down.
      *
-     * @param sce
-     *          The servlet context event
+     * @param sce The servlet context event
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {

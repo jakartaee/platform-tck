@@ -41,16 +41,13 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
 /**
- * This is a delegating Policy Implementation class which delegates the
- * permission evaluation to vendor's policy implentation defined by
- * "vendor.jakarta.security.jacc.policy.provider"
+ * This is a delegating Policy Implementation class which delegates the permission evaluation to vendor's policy
+ * implentation defined by "vendor.jakarta.security.jacc.policy.provider"
  *
- * In case the vendor doesn't provide Policy implementation default jdk policy
- * will be used.
+ * In case the vendor doesn't provide Policy implementation default jdk policy will be used.
  *
- * Note: Since J2EE 1.3 appservers are not required to support JSR115, the 1.3
- * policy implementation defined by "jakarta.security.auth.policy.provider" will
- * not used for testing in this TCK
+ * Note: Since J2EE 1.3 appservers are not required to support JSR115, the 1.3 policy implementation defined by
+ * "jakarta.security.auth.policy.provider" will not used for testing in this TCK
  */
 public final class TSPolicy extends java.security.Policy {
     private java.security.Policy policy = null;
@@ -76,7 +73,8 @@ public final class TSPolicy extends java.security.Policy {
     // This constructor will be used by vendor AppServer
     public TSPolicy() {
         initializeTSLogger();
-        if (!POLICY_INSTALLED) loadPolicy();
+        if (!POLICY_INSTALLED)
+            loadPolicy();
 
         // invoke equals and hashCode method on all JACC Permissions.
         if (firstInvocationForJACCPermissions) {
@@ -87,19 +85,14 @@ public final class TSPolicy extends java.security.Policy {
     }
 
     /**
-     * Evaluates the global policy and returns a PermissionCollection object
-     * specifying the set of permissions allowed for code from the specified code
-     * source.
+     * Evaluates the global policy and returns a PermissionCollection object specifying the set of permissions allowed for
+     * code from the specified code source.
      *
-     * @param codesource
-     *          the CodeSource associated with the caller. This encapsulates the
-     *          original location of the code (where the code came from) and the
-     *          public key(s) of its signer.
+     * @param codesource the CodeSource associated with the caller. This encapsulates the original location of the code
+     * (where the code came from) and the public key(s) of its signer.
      *
-     * @return the set of permissions allowed for code from <i>codesource</i>
-     *         according to the policy.The returned set of permissions must be a
-     *         new mutable instance and it must support heterogeneous Permission
-     *         types.
+     * @return the set of permissions allowed for code from <i>codesource</i> according to the policy.The returned set of
+     * permissions must be a new mutable instance and it must support heterogeneous Permission types.
      *
      */
     public PermissionCollection getPermissions(CodeSource codesource) {
@@ -111,16 +104,13 @@ public final class TSPolicy extends java.security.Policy {
     }
 
     /**
-     * Evaluates the global policy and returns a PermissionCollection object
-     * specifying the set of permissions allowed given the characteristics of the
-     * protection domain.
+     * Evaluates the global policy and returns a PermissionCollection object specifying the set of permissions allowed given
+     * the characteristics of the protection domain.
      *
-     * @param domain
-     *          the ProtectionDomain associated with the caller.
+     * @param domain the ProtectionDomain associated with the caller.
      *
-     * @return the set of permissions allowed for the <i>domain</i> according to
-     *         the policy.The returned set of permissions must be a new mutable
-     *         instance and it must support heterogeneous Permission types.
+     * @return the set of permissions allowed for the <i>domain</i> according to the policy.The returned set of permissions
+     * must be a new mutable instance and it must support heterogeneous Permission types.
      *
      * @see java.security.ProtectionDomain
      * @see java.security.SecureClassLoader
@@ -135,16 +125,13 @@ public final class TSPolicy extends java.security.Policy {
     }
 
     /**
-     * Evaluates the global policy for the permissions granted to the
-     * ProtectionDomain and tests whether the permission is granted.
+     * Evaluates the global policy for the permissions granted to the ProtectionDomain and tests whether the permission is
+     * granted.
      *
-     * @param domain
-     *          the ProtectionDomain to test
-     * @param permission
-     *          the Permission object to be tested for implication.
+     * @param domain the ProtectionDomain to test
+     * @param permission the Permission object to be tested for implication.
      *
-     * @return true if "permission" is a proper subset of a permission granted to
-     *         this ProtectionDomain.
+     * @return true if "permission" is a proper subset of a permission granted to this ProtectionDomain.
      *
      * @see java.security.ProtectionDomain
      * @since 1.4
@@ -213,21 +200,20 @@ public final class TSPolicy extends java.security.Policy {
     }
 
     /**
-     * Refreshes/reloads the policy configuration. The behavior of this method
-     * depends on the implementation. For example, calling <code>refresh</code> on
-     * a file-based policy will cause the file to be re-read.
+     * Refreshes/reloads the policy configuration. The behavior of this method depends on the implementation. For example,
+     * calling <code>refresh</code> on a file-based policy will cause the file to be re-read.
      *
      */
     public void refresh() {
         policy.refresh();
-        if (logger != null) logger.log(Level.INFO, "TSPolicy.refresh() invoked");
+        if (logger != null)
+            logger.log(Level.INFO, "TSPolicy.refresh() invoked");
     }
 
     /**
-     * Loads vendor's policy implementation or JDK's default policy Note:
-     * LoadPolicy does not set the policy using setPolicy(policy), since setPolicy
-     * method will be called by the underlying provider, this task is delegated to
-     * the underlying provider.
+     * Loads vendor's policy implementation or JDK's default policy Note: LoadPolicy does not set the policy using
+     * setPolicy(policy), since setPolicy method will be called by the underlying provider, this task is delegated to the
+     * underlying provider.
      */
     private void loadPolicy() {
         String javaPolicy = System.getProperty(VENDOR_POLICY_PROVIDER);
@@ -271,7 +257,8 @@ public final class TSPolicy extends java.security.Policy {
 
     private static void initializeTSLogger() {
         String logFileLocation = null;
-        if (logger != null) return;
+        if (logger != null)
+            return;
         else {
             try {
                 logFileLocation = System.getProperty("log.file.location");
@@ -317,17 +304,14 @@ public final class TSPolicy extends java.security.Policy {
      *
      * @assertion_ids: JACC:SPEC:99; JACC:JAVADOC:30
      *
-     * @test_Strategy: 1) call
-     *                 PolicyContext.getContext("jakarta.servlet.http.HttpServletRequest")
-     *                 2) verify the return value is an instance of
-     *                 HttpServletRequest
+     * @test_Strategy: 1) call PolicyContext.getContext("jakarta.servlet.http.HttpServletRequest") 2) verify the return
+     * value is an instance of HttpServletRequest
      *
      */
     private void policyContextKey1() {
         try {
             // Get HttpServletRequest object
-            jakarta.servlet.http.HttpServletRequest ctx =
-                    PolicyContext.getContext("jakarta.servlet.http.HttpServletRequest");
+            jakarta.servlet.http.HttpServletRequest ctx = PolicyContext.getContext("jakarta.servlet.http.HttpServletRequest");
             logger.log(
                     Level.INFO,
                     "PolicyContext.getContext() " + "test passed for" + "jakarta.servlet.http.HttpServletRequest");
@@ -348,10 +332,8 @@ public final class TSPolicy extends java.security.Policy {
      *
      * @assertion_ids: JACC:SPEC:97; JACC:JAVADOC:30
      *
-     * @test_Strategy: 1) call
-     *                 PolicyContext.getContext("javax.security.auth.Subject.container)
-     *                 2) verify the return value is an instance of
-     *                 javax.security.auth.Subject
+     * @test_Strategy: 1) call PolicyContext.getContext("javax.security.auth.Subject.container) 2) verify the return value
+     * is an instance of javax.security.auth.Subject
      *
      */
     private void policyContextKey3() {
@@ -374,8 +356,7 @@ public final class TSPolicy extends java.security.Policy {
     }
 
     /**
-     * Gets the method interface name and method Name from the given permission's
-     * action string
+     * Gets the method interface name and method Name from the given permission's action string
      */
     public String[] getTokensFromString(String actions) {
         String[] array = new String[2];
@@ -398,13 +379,10 @@ public final class TSPolicy extends java.security.Policy {
     /**
      * testName: jaccPermissionsEquals
      *
-     * assertion_ids: JACC:JAVADOC:4; JACC:JAVADOC:9; JACC:JAVADOC:43;
-     * JACC:JAVADOC:47; JACC:JAVADOC:53
+     * assertion_ids: JACC:JAVADOC:4; JACC:JAVADOC:9; JACC:JAVADOC:43; JACC:JAVADOC:47; JACC:JAVADOC:53
      *
-     * test_Strategy: 1) verify EJBMethodPermission.equals() or 2) verify
-     * EJBRoleRefPermission.equals() or 3) verify WebResourcePermission.equals()
-     * or 4) verify WebRoleRefPermission.equals() or 5) verify
-     * WebUserDataPermission.equals()
+     * test_Strategy: 1) verify EJBMethodPermission.equals() or 2) verify EJBRoleRefPermission.equals() or 3) verify
+     * WebResourcePermission.equals() or 4) verify WebRoleRefPermission.equals() or 5) verify WebUserDataPermission.equals()
      *
      */
     private void jaccPermissionsEquals() {
@@ -490,13 +468,10 @@ public final class TSPolicy extends java.security.Policy {
     /**
      * testName: jaccPermissionsHashCode
      *
-     * assertion_ids: JACC:JAVADOC:6; JACC:JAVADOC:11; JACC:JAVADOC:42;
-     * JACC:JAVADOC:49; JACC:JAVADOC:55
+     * assertion_ids: JACC:JAVADOC:6; JACC:JAVADOC:11; JACC:JAVADOC:42; JACC:JAVADOC:49; JACC:JAVADOC:55
      *
-     * test_Strategy: 1) verify EJBMethodPermission.hashCode(); or 2) verify
-     * EJBRoleRefPermission.hashCode(); or 3) verify
-     * WebResourcePermission.hashCode() or 4) verify
-     * WebRoleRefPermission.hashCode() or 5) verify
+     * test_Strategy: 1) verify EJBMethodPermission.hashCode(); or 2) verify EJBRoleRefPermission.hashCode(); or 3) verify
+     * WebResourcePermission.hashCode() or 4) verify WebRoleRefPermission.hashCode() or 5) verify
      * WebUserDataPermission.hashCode()
      */
     private void jaccPermissionsHashCode() {

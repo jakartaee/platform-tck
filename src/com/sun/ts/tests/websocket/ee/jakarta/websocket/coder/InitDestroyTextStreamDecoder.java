@@ -39,6 +39,5 @@ public class InitDestroyTextStreamDecoder extends StringBeanTextStreamDecoder {
     public StringBean decode(Reader r) throws DecodeException, IOException {
         Logger.onCode(getClass());
         return super.decode(r);
-    }
-    ;
+    };
 }

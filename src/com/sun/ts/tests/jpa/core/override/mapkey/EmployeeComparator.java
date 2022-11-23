@@ -21,7 +21,8 @@ import java.util.Comparator;
 
 public class EmployeeComparator implements Comparator, Serializable {
 
-    public EmployeeComparator() {}
+    public EmployeeComparator() {
+    }
 
     public int compare(Object o1, Object o2) {
         Employee emp1 = (Employee) o1;

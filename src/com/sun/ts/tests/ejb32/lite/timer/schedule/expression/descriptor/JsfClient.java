@@ -36,8 +36,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: defaultSchedule
      *
-     * @test_Strategy: verify a auto timer declared in ejb-jar.xml with default
-     * values in schedule
+     * @test_Strategy: verify a auto timer declared in ejb-jar.xml with default values in schedule
      */
     public void defaultSchedule() {
         Timer t = scheduleBean.findTimer(getTestName());
@@ -48,8 +47,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: schedule1
      *
-     * @test_Strategy: verify a auto timer declared in ejb-jar.xml with various
-     * values in schedule
+     * @test_Strategy: verify a auto timer declared in ejb-jar.xml with various values in schedule
      */
     public void schedule1() {
         schedule0();

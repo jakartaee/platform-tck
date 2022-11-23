@@ -34,7 +34,8 @@ public class CompoundPK3 implements java.io.Serializable {
     private Float pmIDFloat;
 
     /** No-arg Constructor */
-    public CompoundPK3() {}
+    public CompoundPK3() {
+    }
 
     /** Standard Constructor */
     public CompoundPK3(int intID, String strID, float floatID) {

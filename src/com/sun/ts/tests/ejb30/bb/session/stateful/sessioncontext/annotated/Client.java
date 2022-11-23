@@ -220,8 +220,7 @@ public class Client extends ClientBase {
     /*
      * @testName: getInvokedBusinessInterfaceRemoteIllegal
      *
-     * @assertion_ids: EJB:JAVADOC:10; EJB:JAVADOC:11; EJB:JAVADOC:171;
-     * EJB:JAVADOC:148
+     * @assertion_ids: EJB:JAVADOC:10; EJB:JAVADOC:11; EJB:JAVADOC:171; EJB:JAVADOC:148
      *
      * @test_Strategy:
      *

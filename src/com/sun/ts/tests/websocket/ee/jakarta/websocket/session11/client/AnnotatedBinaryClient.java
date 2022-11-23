@@ -29,7 +29,7 @@ import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 import java.io.InputStream;
 
-@ClientEndpoint(decoders = {AlternativeInputStreamDecoder.class})
+@ClientEndpoint(decoders = { AlternativeInputStreamDecoder.class })
 public class AnnotatedBinaryClient extends AnnotatedClientEndpoint<String> {
 
     public AnnotatedBinaryClient() {

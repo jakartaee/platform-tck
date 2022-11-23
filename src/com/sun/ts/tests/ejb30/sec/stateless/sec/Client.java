@@ -89,10 +89,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827; JavaEE:SPEC:30
      *
-     * @test_Strategy: 1. Create a stateless session bean with a method. 2.
-     * Protect bean method with multiple security roles. 3. Call bean method as a
-     * principal who is not in any of the security roles that protects the method.
-     * 4. Verify jakarta.ejb.EJBAccessException is generated.
+     * @test_Strategy: 1. Create a stateless session bean with a method. 2. Protect bean method with multiple security
+     * roles. 3. Call bean method as a principal who is not in any of the security roles that protects the method. 4. Verify
+     * jakarta.ejb.EJBAccessException is generated.
      */
 
     public void test1() throws Fault {
@@ -114,17 +113,18 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827; JavaEE:SPEC:26; JavaEE:SPEC:30
      *
-     * @test_Strategy: 1. Create a stateless session bean with a method. 2.
-     * Protect a method within the bean with multiple security roles. 3. Call bean
-     * method as a principal who is in one some of the security roles but not in
-     * others. 4. Verify call returns successfully.
+     * @test_Strategy: 1. Create a stateless session bean with a method. 2. Protect a method within the bean with multiple
+     * security roles. 3. Call bean method as a principal who is in one some of the security roles but not in others. 4.
+     * Verify call returns successfully.
      */
 
     public void test2() throws Fault {
         logMsg("Starting Caller authorization test");
         try {
-            if (ejb1ref.EjbIsAuthz()) logMsg("Caller authorization test passed");
-            else throw new Fault("Caller authorization test failed");
+            if (ejb1ref.EjbIsAuthz())
+                logMsg("Caller authorization test passed");
+            else
+                throw new Fault("Caller authorization test failed");
         } catch (Exception e) {
             throw new Fault("Caller authorization test failed: ", e);
         }
@@ -135,11 +135,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61.7; EJB:SPEC:81.4
      *
-     * @test_Strategy: 1. Create a stateless session bean. 2. Protect a method in
-     * the bean using role1 as the security role. 3. Link a security role ref -
-     * emp_secrole_ref - to role1 in the bean. 4. Invoke the method with
-     * emp_secrole_ref as parameter. 5. bean calls isCallerInRole(emp_secrole_ref)
-     * and returns return value. 6. Verify return value is true.
+     * @test_Strategy: 1. Create a stateless session bean. 2. Protect a method in the bean using role1 as the security role.
+     * 3. Link a security role ref - emp_secrole_ref - to role1 in the bean. 4. Invoke the method with emp_secrole_ref as
+     * parameter. 5. bean calls isCallerInRole(emp_secrole_ref) and returns return value. 6. Verify return value is true.
      */
 
     public void test3() throws Fault {
@@ -148,7 +146,8 @@ public class Client extends EETest {
             if (!ejb1ref.EjbSecRoleRef(emp_secrole_ref)) {
                 logErr("EjbSecRoleRef(" + emp_secrole_ref + ") returned false");
                 throw new Fault("Security role reference positive test failed");
-            } else logMsg("Security role reference positive test passed");
+            } else
+                logMsg("Security role reference positive test passed");
         } catch (Exception e) {
             throw new Fault("Security role reference positive test failed: ", e);
         }
@@ -159,12 +158,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61.8
      *
-     * @test_Strategy: 1. Create a stateless session bean. 2. Protect a method in
-     * the bean using a security role - role1. 3. Link a security role ref -
-     * emp_secrole_ref - to role1 in the bean. 4. Invoke the method with
-     * mgr_secrole_ref as a parameter. 5. bean calls
-     * isCallerInRole(mgr_secrole_ref) and returns return value. 6. Verify return
-     * value is false.
+     * @test_Strategy: 1. Create a stateless session bean. 2. Protect a method in the bean using a security role - role1. 3.
+     * Link a security role ref - emp_secrole_ref - to role1 in the bean. 4. Invoke the method with mgr_secrole_ref as a
+     * parameter. 5. bean calls isCallerInRole(mgr_secrole_ref) and returns return value. 6. Verify return value is false.
      */
 
     public void test4() throws Fault {
@@ -185,13 +181,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:799; EJB:SPEC:804
      *
-     * @test_Strategy: 1. Create two stateless session beans - SecTestEJB and
-     * SecTestRoleRefEJB. 2. Link security role reference (roleref) to role1 in
-     * SecTestEJB and role2 in SecTestRoleRefEJB. 3. Ensure caller principal is in
-     * role1 but not in role2. 4. Invoke method in SecTestEJB that returns value
-     * of isCallerInRole(roleref). Verify return value is true. 5. Invoke method
-     * in SecTestRoleRefEJB that returns value of isCallerInRole(roleref). Verify
-     * return value is false.
+     * @test_Strategy: 1. Create two stateless session beans - SecTestEJB and SecTestRoleRefEJB. 2. Link security role
+     * reference (roleref) to role1 in SecTestEJB and role2 in SecTestRoleRefEJB. 3. Ensure caller principal is in role1 but
+     * not in role2. 4. Invoke method in SecTestEJB that returns value of isCallerInRole(roleref). Verify return value is
+     * true. 5. Invoke method in SecTestRoleRefEJB that returns value of isCallerInRole(roleref). Verify return value is
+     * false.
      */
 
     public void test5() throws Fault {
@@ -226,11 +220,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:811
      *
-     * @test_Strategy: 1. Create a stateless session bean with overloaded methods.
-     * 2. Call method1 passing emp_secrole_ref. 3. Method returns
-     * isCallerInRole(emp_secrole_ref) which must be true. 4. Call method2 passing
-     * two role references as parameters. 5. Method must return false ( caller not
-     * in both security role refs).
+     * @test_Strategy: 1. Create a stateless session bean with overloaded methods. 2. Call method1 passing emp_secrole_ref.
+     * 3. Method returns isCallerInRole(emp_secrole_ref) which must be true. 4. Call method2 passing two role references as
+     * parameters. 5. Method must return false ( caller not in both security role refs).
      */
 
     public void test6() throws Fault {
@@ -260,8 +252,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827; JavaEE:SPEC:30
      *
-     * @test_Strategy: 1. Create a stateless session bean with a remote interface
-     * method permission unchecked 2. Verify that access is allowed.
+     * @test_Strategy: 1. Create a stateless session bean with a remote interface method permission unchecked 2. Verify that
+     * access is allowed.
      */
 
     public void test7() throws Fault {
@@ -283,9 +275,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:808
      *
-     * @test_Strategy: 1. Create a stateless session bean with a remote method on
-     * exclude-list. 2. Verify java.rmi.RemoteException is generated when the
-     * method is invoked.
+     * @test_Strategy: 1. Create a stateless session bean with a remote method on exclude-list. 2. Verify
+     * java.rmi.RemoteException is generated when the method is invoked.
      */
 
     public void test8() throws Fault {

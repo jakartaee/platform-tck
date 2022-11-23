@@ -141,8 +141,10 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Insert and delete some rows");
             TestUtil.logTrace("Inserting 2 new rows");
-            if (beanRef.insert(tName, size + 1)) size++;
-            if (beanRef.insert(tName, size + 1)) size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
             TestUtil.logTrace("Deleting a row");
             beanRef.delete(tName, tRng, tRng);
 
@@ -150,12 +152,15 @@ public class TestBeanEJB implements SessionBean {
             dbResults = beanRef.getResults(tName);
 
             TestUtil.logTrace("Verifying the test results");
-            if (!dbResults.contains(new Integer(tRng))) b1 = true;
+            if (!dbResults.contains(new Integer(tRng)))
+                b1 = true;
 
             for (int i = 1; i <= size; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains(new Integer(i))) b2 = true;
+                    if (dbResults.contains(new Integer(i)))
+                        b2 = true;
                     else {
                         b2 = false;
                         break;
@@ -166,16 +171,18 @@ public class TestBeanEJB implements SessionBean {
             ut.commit();
 
             dbResults = beanRef.getResults(tName);
-            if (dbResults.isEmpty()) b3 = true;
-            else TestUtil.logMsg("Error:dbResults size should be 0 but returned:" + dbResults.size());
+            if (dbResults.isEmpty())
+                b3 = true;
+            else
+                TestUtil.logMsg("Error:dbResults size should be 0 but returned:" + dbResults.size());
 
             /*
-             * try { dbResults = beanRef.getResults(tName); } catch
-             * (jakarta.ejb.EJBException re) { // Table or view should not exist
-             * TestUtil.logTrace("Caught expected EJBException"); b3 = true; }
+             * try { dbResults = beanRef.getResults(tName); } catch (jakarta.ejb.EJBException re) { // Table or view should not
+             * exist TestUtil.logTrace("Caught expected EJBException"); b3 = true; }
              */
 
-            if (b1 && b2 && b3) testResult = true;
+            if (b1 && b2 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -221,8 +228,10 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Insert and delete some rows");
             TestUtil.logTrace("Inserting 2 new rows");
-            if (beanRef.insert(tName, size + 1)) size++;
-            if (beanRef.insert(tName, size + 1)) size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
             TestUtil.logTrace("Deleting a row");
             beanRef.delete(tName, tRng, tRng);
 
@@ -230,12 +239,15 @@ public class TestBeanEJB implements SessionBean {
             dbResults = beanRef.getResults(tName);
 
             TestUtil.logTrace("Verifying the test results");
-            if (!dbResults.contains(new Integer(tRng))) b1 = true;
+            if (!dbResults.contains(new Integer(tRng)))
+                b1 = true;
 
             for (int i = 1; i <= size; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains(new Integer(i))) b2 = true;
+                    if (dbResults.contains(new Integer(i)))
+                        b2 = true;
                     else {
                         b2 = false;
                         break;
@@ -247,16 +259,18 @@ public class TestBeanEJB implements SessionBean {
             // See exception tests for RequiresNew auto-rollback.
 
             dbResults = beanRef.getResults(tName);
-            if (dbResults.isEmpty()) b3 = true;
-            else TestUtil.logMsg("Error:dbResults size should be 0 but returned:" + dbResults.size());
+            if (dbResults.isEmpty())
+                b3 = true;
+            else
+                TestUtil.logMsg("Error:dbResults size should be 0 but returned:" + dbResults.size());
 
             /*
-             * try { dbResults = beanRef.getResults(tName); } catch
-             * (jakarta.ejb.EJBException ee) { // Table or view should not exist
-             * TestUtil.logTrace("Caught expected EJBException"); b3 = true; }
+             * try { dbResults = beanRef.getResults(tName); } catch (jakarta.ejb.EJBException ee) { // Table or view should not
+             * exist TestUtil.logTrace("Caught expected EJBException"); b3 = true; }
              */
 
-            if (b1 && b2 && b3) testResult = true;
+            if (b1 && b2 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -310,8 +324,10 @@ public class TestBeanEJB implements SessionBean {
             beanRef.createData(tName);
 
             TestUtil.logTrace("Inserting 2 new rows");
-            if (beanRef.insert(tName, size + 1)) size++;
-            if (beanRef.insert(tName, size + 1)) size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
 
             TestUtil.logTrace("Deleting a row");
             beanRef.delete(tName, tRng, tRng);
@@ -325,11 +341,15 @@ public class TestBeanEJB implements SessionBean {
 
             // Verify the test results
             TestUtil.logTrace("Verifying the test results");
-            if (txStatus1 == Status.STATUS_NO_TRANSACTION) b1 = true;
-            if (txStatus2 == Status.STATUS_ACTIVE) b2 = true;
-            if (txStatus3 == Status.STATUS_NO_TRANSACTION) b3 = true;
+            if (txStatus1 == Status.STATUS_NO_TRANSACTION)
+                b1 = true;
+            if (txStatus2 == Status.STATUS_ACTIVE)
+                b2 = true;
+            if (txStatus3 == Status.STATUS_NO_TRANSACTION)
+                b3 = true;
 
-            if (b1 && b2 && b3) testResult = true;
+            if (b1 && b2 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

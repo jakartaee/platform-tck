@@ -188,8 +188,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -235,11 +237,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: MTOMInTest
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:7001; WS4EE:SPEC:7002; WS4EE:SPEC:4013;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:7001; WS4EE:SPEC:7002;
+     * WS4EE:SPEC:4013;
      *
-     * @test_Strategy: Test MTOM attachments on input. Uses full deployment
-     * descriptors to enable mtom and protocol binding.
+     * @test_Strategy: Test MTOM attachments on input. Uses full deployment descriptors to enable mtom and protocol binding.
      */
     public void MTOMInTest() throws Fault {
         TestUtil.logMsg("MTOMInTest");
@@ -281,17 +282,18 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MTOMInTest failed");
+        if (!pass)
+            throw new Fault("MTOMInTest failed");
     }
 
     /*
      * @testName: MTOMInOutTest
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:7001; WS4EE:SPEC:7002; WS4EE:SPEC:4013;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:7001; WS4EE:SPEC:7002;
+     * WS4EE:SPEC:4013;
      *
-     * @test_Strategy: Test MTOM attachments on input and output. Uses full
-     * deployment descriptors to enable mtom and protocol binding.
+     * @test_Strategy: Test MTOM attachments on input and output. Uses full deployment descriptors to enable mtom and
+     * protocol binding.
      */
     public void MTOMInOutTest() throws Fault {
         TestUtil.logMsg("MTOMInOutTest");
@@ -360,24 +362,26 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error: " + tmpRes);
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("All received documents are as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("All received documents are as expected (ok)");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MTOMInOutTest failed");
+        if (!pass)
+            throw new Fault("MTOMInOutTest failed");
     }
 
     /*
      * @testName: MTOMOutTest
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:7001; WS4EE:SPEC:7002; WS4EE:SPEC:4013;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:7001; WS4EE:SPEC:7002;
+     * WS4EE:SPEC:4013;
      *
-     * @test_Strategy: Test MTOM attachments on output. Uses full deployment
-     * descriptors to enable mtom and protocol binding.
+     * @test_Strategy: Test MTOM attachments on output. Uses full deployment descriptors to enable mtom and protocol
+     * binding.
      */
     public void MTOMOutTest() throws Fault {
         TestUtil.logMsg("MTOMOutTest");
@@ -390,8 +394,7 @@ public class Client extends ServiceEETest {
             DataHandler doc3 = AttachmentHelper.getDataHandlerDoc(docURL3);
             Image doc4 = AttachmentHelper.getImageDoc(docURL4);
 
-            String urls =
-                    docURL1.toString() + "," + docURL2.toString() + "," + docURL3.toString() + "," + docURL4.toString();
+            String urls = docURL1.toString() + "," + docURL2.toString() + "," + docURL3.toString() + "," + docURL4.toString();
             TestUtil.logTrace("urls=" + urls);
             TestUtil.logMsg("Receive 4 documents using MTOM via webservice method mtomOut()");
             TestUtil.logMsg("Documents to receive: [" + SDOC1 + "," + SDOC2 + "," + SDOC3 + "," + SDOC4 + "]");
@@ -417,23 +420,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error: " + tmpRes);
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("All received documents are as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("All received documents are as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MTOMOutTest failed");
+        if (!pass)
+            throw new Fault("MTOMOutTest failed");
     }
 
     /*
      * @testName: MTOMIn2CheckHttpHeadersTest
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:7001; WS4EE:SPEC:7002; WS4EE:SPEC:4013;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:7001; WS4EE:SPEC:7002;
+     * WS4EE:SPEC:4013;
      *
-     * @test_Strategy: Test MTOM HTTP Content-Type Header for correctness. Uses
-     * full deployment descriptors to enable mtom and protocol binding.
+     * @test_Strategy: Test MTOM HTTP Content-Type Header for correctness. Uses full deployment descriptors to enable mtom
+     * and protocol binding.
      */
     public void MTOMIn2CheckHttpHeadersTest() throws Fault {
         TestUtil.logMsg("MTOMIn2CheckHttpHeadersTest");
@@ -460,23 +465,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Content-Type Request HTTP header was incorrect (ok)");
                 TestUtil.logErr("Expected (multipart/related,application/xop+xml,text/xml) in header");
                 pass = false;
-            } else TestUtil.logMsg("Content-Type Request HTTP header was correct (ok)");
+            } else
+                TestUtil.logMsg("Content-Type Request HTTP header was correct (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MTOMIn2CheckHttpHeadersTest failed");
+        if (!pass)
+            throw new Fault("MTOMIn2CheckHttpHeadersTest failed");
     }
 
     /*
      * @testName: MTOMOut2Test
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:7001; WS4EE:SPEC:7002; WS4EE:SPEC:4013;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:7001; WS4EE:SPEC:7002;
+     * WS4EE:SPEC:4013;
      *
-     * @test_Strategy: Test MTOM attachments on output. Uses full deployment
-     * descriptors to enable mtom and protocol binding.
+     * @test_Strategy: Test MTOM attachments on output. Uses full deployment descriptors to enable mtom and protocol
+     * binding.
      */
     public void MTOMOut2Test() throws Fault {
         TestUtil.logMsg("MTOMOut2Test");
@@ -496,24 +503,25 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error: " + tmpRes);
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MTOMOut2Test failed");
+        if (!pass)
+            throw new Fault("MTOMOut2Test failed");
     }
 
     /*
      * @testName: VerifySOAPProtocolBindingOnPorts
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:7001; WS4EE:SPEC:7002; WS4EE:SPEC:4013;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:7001; WS4EE:SPEC:7002;
+     * WS4EE:SPEC:4013;
      *
-     * @test_Strategy: Verify the soap protocol binding on the ports as specified
-     * by the deployment descriptors. Uses full deployment descriptors to set the
-     * soap protocol binding for each port.
+     * @test_Strategy: Verify the soap protocol binding on the ports as specified by the deployment descriptors. Uses full
+     * deployment descriptors to set the soap protocol binding for each port.
      */
     public void VerifySOAPProtocolBindingOnPorts() throws Fault {
         TestUtil.logMsg("VerifySOAPProtocolBindingOnPorts");
@@ -527,11 +535,13 @@ public class Client extends ServiceEETest {
             if (!(bindingprovider1.getBinding() instanceof SOAPBinding)) {
                 TestUtil.logErr("First port is not instance of SOAPBinding");
                 pass = false;
-            } else TestUtil.logMsg("First port is an instance of SOAPBinding");
+            } else
+                TestUtil.logMsg("First port is an instance of SOAPBinding");
             if (!(bindingprovider2.getBinding() instanceof SOAPBinding)) {
                 TestUtil.logErr("Second port is not instance of SOAPBinding");
                 pass = false;
-            } else TestUtil.logMsg("Second port is an instance of SOAPBinding");
+            } else
+                TestUtil.logMsg("Second port is an instance of SOAPBinding");
             if (pass) {
                 SOAPFactory factory1 = ((SOAPBinding) bindingprovider1.getBinding()).getSOAPFactory();
                 SOAPFactory factory2 = ((SOAPBinding) bindingprovider2.getBinding()).getSOAPFactory();
@@ -559,18 +569,18 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("VerifySOAPProtocolBindingOnPorts failed");
+        if (!pass)
+            throw new Fault("VerifySOAPProtocolBindingOnPorts failed");
     }
 
     /*
      * @testName: VerifyMTOMEnabledOnPorts
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:7001; WS4EE:SPEC:7002; WS4EE:SPEC:4013;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:7001; WS4EE:SPEC:7002;
+     * WS4EE:SPEC:4013;
      *
-     * @test_Strategy: Verify the mtom enable setting on the ports as specified by
-     * the deployment descriptors. Uses full deployment descriptors to set the
-     * mtom enable setting for each port.
+     * @test_Strategy: Verify the mtom enable setting on the ports as specified by the deployment descriptors. Uses full
+     * deployment descriptors to set the mtom enable setting for each port.
      */
     public void VerifyMTOMEnabledOnPorts() throws Fault {
         TestUtil.logMsg("VerifyMTOMEnabledOnPorts");
@@ -582,16 +592,19 @@ public class Client extends ServiceEETest {
             if (!(((SOAPBinding) bindingprovider1.getBinding()).isMTOMEnabled())) {
                 TestUtil.logErr("First port does not have MTOM enabled");
                 pass = false;
-            } else TestUtil.logMsg("First port does have MTOM enabled");
+            } else
+                TestUtil.logMsg("First port does have MTOM enabled");
             if (!(((SOAPBinding) bindingprovider2.getBinding()).isMTOMEnabled())) {
                 TestUtil.logErr("Second port does not have MTOM enabled");
                 pass = false;
-            } else TestUtil.logMsg("Second port does have MTOM enabled");
+            } else
+                TestUtil.logMsg("Second port does have MTOM enabled");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyMTOMEnabledOnPorts failed");
+        if (!pass)
+            throw new Fault("VerifyMTOMEnabledOnPorts failed");
     }
 }

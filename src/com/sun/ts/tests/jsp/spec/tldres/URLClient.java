@@ -30,9 +30,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -41,8 +40,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,9 +61,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that a taglibrary packaged as specified by the JSP
-     * 1.1 specification will be properly added to the containers taglib map and
-     * that the defined tag within can be used.
+     * @test_Strategy: Validate that a taglibrary packaged as specified by the JSP 1.1 specification will be properly added
+     * to the containers taglib map and that the defined tag within can be used.
      */
     public void tldResourcePathJsp11Test() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tldres_web/TldResPath11Test.jsp HTTP/1.1");
@@ -78,9 +75,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the container can properly process a JAR
-     * containing multiple TLDs and adds the TLDs that are found containing a
-     * <uri> element to the taglib map.
+     * @test_Strategy: Validate the container can properly process a JAR containing multiple TLDs and adds the TLDs that are
+     * found containing a <uri> element to the taglib map.
      */
     public void tldResourcePathMultiTldJarTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tldres_web/TldResPathMultiTldTest.jsp HTTP/1.1");
@@ -93,9 +89,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that if a TLD exists in the WEB-INF directory or
-     * some subdirectory thereof, and that TLD contains a <uri> element, the
-     * container will add that taglibrary to the taglibrary map.
+     * @test_Strategy: Validate that if a TLD exists in the WEB-INF directory or some subdirectory thereof, and that TLD
+     * contains a <uri> element, the container will add that taglibrary to the taglibrary map.
      */
     public void tldResourcePathWebInfUriTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tldres_web/TldResPathWebInfUriTest.jsp HTTP/1.1");
@@ -108,9 +103,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Valdiate that the container adds any explicit taglibrary
-     * entries found in the deployment descriptor to the taglib map and that the
-     * tag or tags within can be properly used.
+     * @test_Strategy: Valdiate that the container adds any explicit taglibrary entries found in the deployment descriptor
+     * to the taglib map and that the tag or tags within can be properly used.
      */
     public void tldResourcePathWebXmlTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tldres_web/TldResPathExplicitWebXmlTest.jsp HTTP/1.1");
@@ -123,8 +117,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the TLD can be directly referenced in the taglib
-     * directive and that the tag(s) declared in this TLD can be properly used.
+     * @test_Strategy: Validate the TLD can be directly referenced in the taglib directive and that the tag(s) declared in
+     * this TLD can be properly used.
      */
     public void tldResourcePathDirectTldReference() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tldres_web/TldResPathDirectTldReferenceTest.jsp HTTP/1.1");
@@ -137,9 +131,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that tag library entries explicity defined in the
-     * web deployment descriptor (web.xml) have precedence over other tag
-     * libraries defined with the same URI.
+     * @test_Strategy: Validate that tag library entries explicity defined in the web deployment descriptor (web.xml) have
+     * precedence over other tag libraries defined with the same URI.
      */
     public void tldExplicitWebXmlPrecedenceTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tldres_web/TldExplicitWebXmlPrecedenceTest.jsp HTTP/1.1");
@@ -152,9 +145,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate a tag library can be resolved when referenced
-     * though a relative path (no leading '/'). No translation error should occur
-     * and the tag should be usable within the translation unit.
+     * @test_Strategy: Validate a tag library can be resolved when referenced though a relative path (no leading '/'). No
+     * translation error should occur and the tag should be usable within the translation unit.
      */
     public void tldResPathRelativeUriTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tldres_web/path/TldResPathRelativeUriTest.jsp HTTP/1.1");
@@ -167,9 +159,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that if the uri attribute of the taglib directive
-     * is an absolute URI that is not present in the container's tag library map,
-     * that a translation time error is raised.
+     * @test_Strategy: Validate that if the uri attribute of the taglib directive is an absolute URI that is not present in
+     * the container's tag library map, that a translation time error is raised.
      */
     public void tldResPathAbsUriNotFoundTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tldres_web/TldResPathAbsUriNotFoundTest.jsp HTTP/1.1");
@@ -182,8 +173,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: omit body-content in a 1.2 style tld and a container is
-     * required to apply default JSP.
+     * @test_Strategy: omit body-content in a 1.2 style tld and a container is required to apply default JSP.
      */
 
     public void tld12DefaultBodyContentTest() throws Fault {
@@ -198,8 +188,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: use jsp prefix for an element that is not a standard action
-     * and expect a translation error.
+     * @test_Strategy: use jsp prefix for an element that is not a standard action and expect a translation error.
      */
 
     public void negativeJSPPrefixTest() throws Fault {
@@ -215,8 +204,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: A container is required to read listener element in all TLD
-     * files and treat them as extension to web.xml.
+     * @test_Strategy: A container is required to read listener element in all TLD files and treat them as extension to
+     * web.xml.
      */
 
     public void listenerTldTest() throws Fault {
@@ -233,8 +222,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: It is a fatal translation error for the taglib directive to
-     * appear after actions or functions using the prefix.
+     * @test_Strategy: It is a fatal translation error for the taglib directive to appear after actions or functions using
+     * the prefix.
      */
     public void negativeTaglibAfterActionTest() throws Fault {
         String testName = "negativeTaglibAfterActionTest";

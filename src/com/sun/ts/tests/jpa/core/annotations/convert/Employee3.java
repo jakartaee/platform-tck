@@ -29,7 +29,8 @@ public abstract class Employee3 {
 
     private String lastName;
 
-    protected Employee3() {}
+    protected Employee3() {
+    }
 
     protected Employee3(int id, String firstName, String lastName) {
         this.id = id;

@@ -32,9 +32,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/jsp_core_act_output_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -43,8 +42,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -65,9 +63,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that jsp:output can be used within JSP documents
-     * and Tag files in XML syntax and that a translation-time error is raised if
-     * used within the context of a standard syntax JSP or Tag file.
+     * @test_Strategy: Validate that jsp:output can be used within JSP documents and Tag files in XML syntax and that a
+     * translation-time error is raised if used within the context of a standard syntax JSP or Tag file.
      */
     public void jspOutputUsageContextTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_output_web/JspOutputUsageContextTest1.jsp HTTP/1.1");
@@ -89,10 +86,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the valid values for the omit-xml-declaration are
-     * 'true', 'false', 'yes', and 'no'. If the attribute values are 'false' or
-     * 'no', then the xml declaration will be generated. If 'true' or 'yes' no
-     * declaration will be generated.
+     * @test_Strategy: Validate the valid values for the omit-xml-declaration are 'true', 'false', 'yes', and 'no'. If the
+     * attribute values are 'false' or 'no', then the xml declaration will be generated. If 'true' or 'yes' no declaration
+     * will be generated.
      */
     public void jspOutputOmitDeclValidValuesTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_output_web/JspOutputOmitDeclValidValuesTest1.jspx HTTP/1.1");
@@ -126,9 +122,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that if a JSP document contains jsp:root, and a
-     * jsp:output action is present without the omit-xml-declaration attribute,
-     * the xml declaration will not be generated.
+     * @test_Strategy: Validate that if a JSP document contains jsp:root, and a jsp:output action is present without the
+     * omit-xml-declaration attribute, the xml declaration will not be generated.
      */
     public void jspOutputJspRootOmitDeclDefaultTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -142,9 +137,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that if jsp:output is present in a JSP document
-     * without a jsp:root element, and the omit-xml-declaration attribute is not
-     * present, the default behavior is that an xml declaration is generated.
+     * @test_Strategy: Validate that if jsp:output is present in a JSP document without a jsp:root element, and the
+     * omit-xml-declaration attribute is not present, the default behavior is that an xml declaration is generated.
      */
     public void jspOutputOmitDeclDefaultTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_output_web/JspOutputOmitDeclDefaultTest.jspx HTTP/1.1");
@@ -157,9 +151,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that if jsp:output is present in a Tag file in XML
-     * syntax, and the omit-xml-declaration attribute is not present, the default
-     * behavior will be the generation of an XML declaration.
+     * @test_Strategy: Validate that if jsp:output is present in a Tag file in XML syntax, and the omit-xml-declaration
+     * attribute is not present, the default behavior will be the generation of an XML declaration.
      */
     public void jspOutputOmitDeclDefaultTagTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_output_web/JspOutputOmitDeclDefaultTest.jspx HTTP/1.1");
@@ -172,8 +165,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that a translation error occurs if the body of
-     * jsp:output is not empty.
+     * @test_Strategy: Validate that a translation error occurs if the body of jsp:output is not empty.
      */
     public void jspOutputBodyTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_output_web/JspOutputBodyTest1.jspx HTTP/1.1");
@@ -189,8 +181,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: use a jsp document without jsp:output. response encoding is
-     * not set so use default for jsp document
+     * @test_Strategy: use a jsp document without jsp:output. response encoding is not set so use default for jsp document
      */
 
     public void simpleDefaultTest() throws Fault {
@@ -205,10 +196,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: A DOCTYPE must be automatically output if and only if the
-     * doctype-system element appears in the translation unit as part of a
-     * <jsp:output> action. The format of the DOCTYPE: <!DOCTYPE nameOfRootElement
-     * SYSTEM "doctypeSystem">
+     * @test_Strategy: A DOCTYPE must be automatically output if and only if the doctype-system element appears in the
+     * translation unit as part of a <jsp:output> action. The format of the DOCTYPE: <!DOCTYPE nameOfRootElement SYSTEM
+     * "doctypeSystem">
      */
 
     public void doctypeSystemTest() throws Fault {
@@ -225,10 +215,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: A DOCTYPE must be automatically output if and only if the
-     * doctype-system element appears in the translation unit as part of a
-     * <jsp:output> action. The format of the DOCTYPE: <!DOCTYPE nameOfRootElement
-     * PUBLIC "doctypePublic" "doctypeSystem">
+     * @test_Strategy: A DOCTYPE must be automatically output if and only if the doctype-system element appears in the
+     * translation unit as part of a <jsp:output> action. The format of the DOCTYPE: <!DOCTYPE nameOfRootElement PUBLIC
+     * "doctypePublic" "doctypeSystem">
      */
 
     public void doctypeSystemPublicTest() throws Fault {
@@ -245,8 +234,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: The doctype- root-element must appear and must only appear
-     * if the doctype-system property appears, or a translation error must occur.
+     * @test_Strategy: The doctype- root-element must appear and must only appear if the doctype-system property appears, or
+     * a translation error must occur.
      */
 
     public void negativeDoctypeRootTest() throws Fault {
@@ -263,9 +252,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: The doctype-public property is optional, but must not
-     * appear unless the doctype-system property appears, or a translation error
-     * must occur.
+     * @test_Strategy: The doctype-public property is optional, but must not appear unless the doctype-system property
+     * appears, or a translation error must occur.
      */
 
     public void negativeDoctypePublicNoSystemTest() throws Fault {
@@ -279,9 +267,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Multiple occurrences of the doctype-root-element,
-     * doctype-system or doctype-public properties will cause a translation error
-     * if the values for the properties differ from the previous occurrence.
+     * @test_Strategy: Multiple occurrences of the doctype-root-element, doctype-system or doctype-public properties will
+     * cause a translation error if the values for the properties differ from the previous occurrence.
      */
 
     public void negativeMultipleDoctypeTest() throws Fault {

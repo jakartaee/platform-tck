@@ -27,7 +27,8 @@ public class Client extends PMClientBase {
 
     private static final long serialVersionUID = 20L;
 
-    public Client() {}
+    public Client() {
+    }
 
     private static Employee empRef[] = new Employee[5];
     private static Employee2 empRef2[] = new Employee2[5];
@@ -55,23 +56,17 @@ public class Client extends PMClientBase {
     }
 
     /*
-        public void setupCust(String[] args, Properties p) throws Fault {
-            TestUtil.logTrace("setup");
-            try {
-                super.setup(args, p);
-                removeCustTestData();
-            } catch (Exception e) {
-                TestUtil.logErr("Exception: ", e);
-                throw new Fault("Setup failed:", e);
-
-            }
-        }
-    */
+     * public void setupCust(String[] args, Properties p) throws Fault { TestUtil.logTrace("setup"); try { super.setup(args,
+     * p); removeCustTestData(); } catch (Exception e) { TestUtil.logErr("Exception: ", e); throw new Fault("Setup failed:",
+     * e);
+     *
+     * } }
+     */
 
     /*
      * @testName: mapKeyEnumeratedTest
-     * @assertion_ids: PERSISTENCE:SPEC:2051; PERSISTENCE:SPEC:2052;
-     *                   PERSISTENCE:SPEC:2052.2
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2051; PERSISTENCE:SPEC:2052; PERSISTENCE:SPEC:2052.2
      *
      * @test_Strategy:
      *
@@ -156,8 +151,9 @@ public class Client extends PMClientBase {
 
     /*
      * @testName: mapKeyEnumeratedDefaultTypeTest
-     * @assertion_ids: PERSISTENCE:SPEC:2054; PERSISTENCE:SPEC:2052;
-     *                   PERSISTENCE:SPEC:2052.2;
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2054; PERSISTENCE:SPEC:2052; PERSISTENCE:SPEC:2052.2;
+     *
      * @test_Strategy:
      *
      */
@@ -239,8 +235,9 @@ public class Client extends PMClientBase {
 
     /*
      * @testName: mapKeyEnumeratedWithMayKeyAnnotationTest
-     * @assertion_ids:  PERSISTENCE:SPEC:2053; PERSISTENCE:SPEC:2052;
-     *                   PERSISTENCE:SPEC:2052.2;
+     *
+     * @assertion_ids: PERSISTENCE:SPEC:2053; PERSISTENCE:SPEC:2052; PERSISTENCE:SPEC:2052.2;
+     *
      * @test_Strategy:
      *
      */
@@ -323,7 +320,9 @@ public class Client extends PMClientBase {
 
     /*
      * @testName: elementCollectionTest
+     *
      * @assertion_ids: PERSISTENCE:SPEC:2052; PERSISTENCE:SPEC:2052.1;
+     *
      * @test_Strategy:
      */
     public void elementCollectionTest() throws Fault {
@@ -404,7 +403,7 @@ public class Client extends PMClientBase {
     }
 
     /*
-     *  Business Methods to set up data for Test Cases
+     * Business Methods to set up data for Test Cases
      */
     private void createTestData() throws Exception {
         TestUtil.logTrace("createTestData");
@@ -598,12 +597,10 @@ public class Client extends PMClientBase {
         super.cleanup();
     }
 
-    /*   public void cleanupCust() throws Fault {
-        TestUtil.logTrace("cleanup");
-        removeCustTestData();
-        TestUtil.logTrace("cleanup complete, calling super.cleanup");
-        super.cleanup();
-    }*/
+    /*
+     * public void cleanupCust() throws Fault { TestUtil.logTrace("cleanup"); removeCustTestData();
+     * TestUtil.logTrace("cleanup complete, calling super.cleanup"); super.cleanup(); }
+     */
 
     private void removeTestData() {
         TestUtil.logTrace("removeTestData");
@@ -631,26 +628,13 @@ public class Client extends PMClientBase {
         }
     }
 
-    /*   private void removeCustTestData() {
-        TestUtil.logTrace("removeCustTestData");
-        if (getEntityTransaction().isActive()) {
-            getEntityTransaction().rollback();
-        }
-        try {
-            getEntityTransaction().begin();
-            getEntityManager().createNativeQuery("DELETE FROM CUST_TABLE").executeUpdate();
-            getEntityManager().createNativeQuery("DELETE FROM PHONES").executeUpdate();
-            getEntityTransaction().commit();
-        } catch (Exception e) {
-            TestUtil.logErr("Exception encountered while removing entities:", e);
-        } finally {
-            try {
-                if (getEntityTransaction().isActive()) {
-                    getEntityTransaction().rollback();
-                }
-            } catch (Exception re) {
-                TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-            }
-        }
-    }*/
+    /*
+     * private void removeCustTestData() { TestUtil.logTrace("removeCustTestData"); if (getEntityTransaction().isActive()) {
+     * getEntityTransaction().rollback(); } try { getEntityTransaction().begin();
+     * getEntityManager().createNativeQuery("DELETE FROM CUST_TABLE").executeUpdate();
+     * getEntityManager().createNativeQuery("DELETE FROM PHONES").executeUpdate(); getEntityTransaction().commit(); } catch
+     * (Exception e) { TestUtil.logErr("Exception encountered while removing entities:", e); } finally { try { if
+     * (getEntityTransaction().isActive()) { getEntityTransaction().rollback(); } } catch (Exception re) {
+     * TestUtil.logErr("Unexpected Exception in removeTestData:", re); } } }
+     */
 }

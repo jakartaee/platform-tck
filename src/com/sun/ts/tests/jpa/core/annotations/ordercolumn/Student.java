@@ -32,7 +32,8 @@ public class Student implements java.io.Serializable {
     @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
     List<Course> courses;
 
-    public Student() {}
+    public Student() {
+    }
 
     public Student(int id) {
         this.id = id;

@@ -32,7 +32,8 @@ public class Department implements java.io.Serializable {
 
     private List<Employee> employees;
 
-    public Department() {}
+    public Department() {
+    }
 
     public Department(int id) {
         this.deptId = id;

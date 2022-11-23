@@ -97,7 +97,8 @@ public class Client extends PMClientBase {
 
     private List<RetailOrder> consumer1Orders;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -118,14 +119,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: testNoOrderByAnnotation
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101;
-     * PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104; PERSISTENCE:SPEC:1106;
-     * PERSISTENCE:SPEC:1107; PERSISTENCE:SPEC:1108; PERSISTENCE:SPEC:1110;
-     * PERSISTENCE:SPEC:1268;
+     * @assertion_ids: PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101; PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104;
+     * PERSISTENCE:SPEC:1106; PERSISTENCE:SPEC:1107; PERSISTENCE:SPEC:1108; PERSISTENCE:SPEC:1110; PERSISTENCE:SPEC:1268;
      *
-     * @test_Strategy: Department and Employee are two entities and are related by
-     * "Many-to-One" but is specified only in orm.xml. All of the annotations like
-     * "mappedBy" and "orderBy" are overriden in orm.xml.
+     * @test_Strategy: Department and Employee are two entities and are related by "Many-to-One" but is specified only in
+     * orm.xml. All of the annotations like "mappedBy" and "orderBy" are overriden in orm.xml.
      */
     public void testNoOrderByAnnotation() throws Fault {
 
@@ -175,14 +173,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: testOverrideMapKey
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101;
-     * PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104; PERSISTENCE:SPEC:1106;
-     * PERSISTENCE:SPEC:1107; PERSISTENCE:SPEC:1108; PERSISTENCE:SPEC:1110;
-     * PERSISTENCE:SPEC:1268;
+     * @assertion_ids: PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101; PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104;
+     * PERSISTENCE:SPEC:1106; PERSISTENCE:SPEC:1107; PERSISTENCE:SPEC:1108; PERSISTENCE:SPEC:1110; PERSISTENCE:SPEC:1268;
      *
-     * @test_Strategy: TheatreCompany is an entity with "id" specified as MapKey
-     * using annotation. It is overriden by code as MapKey in orm.xml. The
-     * following test checks for the overriden value.
+     * @test_Strategy: TheatreCompany is an entity with "id" specified as MapKey using annotation. It is overriden by code
+     * as MapKey in orm.xml. The following test checks for the overriden value.
      *
      */
     public void testOverrideMapKey() throws Fault {
@@ -231,15 +226,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: testNoMapKeyAnnotation
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101;
-     * PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104; PERSISTENCE:SPEC:1106;
-     * PERSISTENCE:SPEC:1107; PERSISTENCE:SPEC:1108; PERSISTENCE:SPEC:1110;
-     * PERSISTENCE:SPEC:1268; PERSISTENCE:JAVADOC:19
+     * @assertion_ids: PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101; PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104;
+     * PERSISTENCE:SPEC:1106; PERSISTENCE:SPEC:1107; PERSISTENCE:SPEC:1108; PERSISTENCE:SPEC:1110; PERSISTENCE:SPEC:1268;
+     * PERSISTENCE:JAVADOC:19
      *
-     * @test_Strategy: Store and Customers are two entities whose relationship is
-     * defined by "Many-to-One" annotation. The MapKey is defined only in orm.xml
-     * and not by using annotation. The following test checks whether MapKey is
-     * read or not.
+     * @test_Strategy: Store and Customers are two entities whose relationship is defined by "Many-to-One" annotation. The
+     * MapKey is defined only in orm.xml and not by using annotation. The following test checks whether MapKey is read or
+     * not.
      */
     public void testNoMapKeyAnnotation() throws Fault {
 
@@ -289,16 +282,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: testOverrideOrderBy
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101;
-     * PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104; PERSISTENCE:SPEC:1106;
-     * PERSISTENCE:SPEC:1107; PERSISTENCE:SPEC:1108; PERSISTENCE:SPEC:1110;
-     * PERSISTENCE:SPEC:1268;
+     * @assertion_ids: PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101; PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104;
+     * PERSISTENCE:SPEC:1106; PERSISTENCE:SPEC:1107; PERSISTENCE:SPEC:1108; PERSISTENCE:SPEC:1110; PERSISTENCE:SPEC:1268;
      *
-     * @test_Strategy: Consumer and RetailOrder are two entities whose
-     * relationship is defined by "Many-to-Many" and OrderBy of cost in ascending
-     * order using annotations. The OrderBy value is overriden in orm.xml to
-     * descending. The following test checks whether OrderBy is performed in
-     * descending or not.
+     * @test_Strategy: Consumer and RetailOrder are two entities whose relationship is defined by "Many-to-Many" and OrderBy
+     * of cost in ascending order using annotations. The OrderBy value is overriden in orm.xml to descending. The following
+     * test checks whether OrderBy is performed in descending or not.
      *
      */
     public void testOverrideOrderBy() throws Fault {

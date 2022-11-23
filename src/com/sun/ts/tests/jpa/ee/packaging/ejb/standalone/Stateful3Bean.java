@@ -33,7 +33,7 @@ import jakarta.persistence.EntityManager;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
-@Remote({Stateful3IF.class})
+@Remote({ Stateful3IF.class })
 public class Stateful3Bean implements Stateful3IF {
 
     private EntityManager entityManager;

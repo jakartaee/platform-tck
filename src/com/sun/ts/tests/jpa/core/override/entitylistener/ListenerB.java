@@ -21,7 +21,8 @@ import jakarta.persistence.PostRemove;
 
 public class ListenerB {
 
-    public ListenerB() {}
+    public ListenerB() {
+    }
 
     @PostRemove
     public void postRemoveFromXML(Object obj) {

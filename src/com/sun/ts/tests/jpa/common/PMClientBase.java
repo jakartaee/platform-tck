@@ -78,37 +78,31 @@ public abstract class PMClientBase extends ServiceEETest
     public static final transient String RESOURCE_LOCAL = "RESOURCE_LOCAL";
 
     /**
-     * Name of a property defined in ts.jte, to denote whether tests run in JakartaEE
-     * or Java SE mode.
+     * Name of a property defined in ts.jte, to denote whether tests run in JakartaEE or Java SE mode.
      */
     public static final transient String MODE_PROP = "platform.mode";
 
     /**
-     * Denotes that tests are running in Java EE mode. This is the only valid
-     * non-null value for this property.
+     * Denotes that tests are running in Java EE mode. This is the only valid non-null value for this property.
      */
     public static final transient String JAVAEE_MODE = "jakartaEE";
 
     /**
-     * Denotes that tests are running in Java SE mode. This is the only valid
-     * non-null value for this property.
+     * Denotes that tests are running in Java SE mode. This is the only valid non-null value for this property.
      */
     public static final transient String STANDALONE_MODE = "standalone";
 
     /**
-     * Name of a property defined in ts.jte, to specify the name of the
-     * persistence unit used in the testsuite. It must be consistent with the
-     * value in persistence.xml
+     * Name of a property defined in ts.jte, to specify the name of the persistence unit used in the testsuite. It must be
+     * consistent with the value in persistence.xml
      */
     public static final transient String PERSISTENCE_UNIT_NAME_PROP = "persistence.unit.name";
 
     public static final transient String SECOND_PERSISTENCE_UNIT_NAME_PROP = "persistence.unit.name.2";
 
     /**
-     * Name of the property in ts.jte that specifies an absolute path to the
-     * properties file that contains properties for initializing
-     * EntityManagerFactory, including both standard and provider-specific
-     * properties.
+     * Name of the property in ts.jte that specifies an absolute path to the properties file that contains properties for
+     * initializing EntityManagerFactory, including both standard and provider-specific properties.
      */
     public static final transient String JAVAX_PERSISTENCE_PROVIDER = "jakarta.persistence.provider";
 
@@ -120,11 +114,9 @@ public abstract class PMClientBase extends ServiceEETest
 
     public static final transient String JAVAX_PERSISTENCE_JDBC_PASSWORD = "jakarta.persistence.jdbc.password";
 
-    public static final transient String JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES =
-            "jpa.provider.implementation.specific.properties";
+    public static final transient String JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES = "jpa.provider.implementation.specific.properties";
 
-    public static final transient String PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED =
-            "persistence.second.level.caching.supported";
+    public static final transient String PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED = "persistence.second.level.caching.supported";
 
     /**
      * The current test mode. The only valid non-null value is "standalone".
@@ -164,8 +156,7 @@ public abstract class PMClientBase extends ServiceEETest
     }
 
     /**
-     * If a subclass overrides this method, the overriding implementation must
-     * call super.setup() at the beginning.
+     * If a subclass overrides this method, the overriding implementation must call super.setup() at the beginning.
      */
     public void setup(String[] args, Properties p) throws Fault {
         TestUtil.logTrace("PMClientBase.setup");
@@ -205,25 +196,23 @@ public abstract class PMClientBase extends ServiceEETest
     }
 
     /**
-     * In JakartaEE environment, does nothing. In Java SE environment, closes the
-     * EntityManager if its open, and closes the EntityManagerFactory if its open.
-     * If a subclass overrides this method, the overriding implementation must
-     * call super.cleanup() at the end. Also, the cache cleared.
+     * In JakartaEE environment, does nothing. In Java SE environment, closes the EntityManager if its open, and closes the
+     * EntityManagerFactory if its open. If a subclass overrides this method, the overriding implementation must call
+     * super.cleanup() at the end. Also, the cache cleared.
      */
     public void cleanup() throws Fault {
         closeEMAndEMF();
     }
 
     /*
-     * This method is inherited by clients and is used when no super.cleanup()
-     * call is needed
+     * This method is inherited by clients and is used when no super.cleanup() call is needed
      */
-    public void cleanupNoSuper() throws Fault {}
+    public void cleanupNoSuper() throws Fault {
+    }
 
     /**
-     * In JakartaEE environment, does nothing. In Java SE environment, closes the
-     * EntityManager if its open, and closes the EntityManagerFactory if its open.
-     * Also, the cache cleared.
+     * In JakartaEE environment, does nothing. In Java SE environment, closes the EntityManager if its open, and closes the
+     * EntityManagerFactory if its open. Also, the cache cleared.
      */
     public void closeEMAndEMF() throws Fault {
 
@@ -418,8 +407,8 @@ public abstract class PMClientBase extends ServiceEETest
     }
 
     /**
-     * Creates EntityManager in JavaSE environment. In JakartaEE environment,
-     * EntityManager should already have been set from within the vehicle.
+     * Creates EntityManager in JavaSE environment. In JakartaEE environment, EntityManager should already have been set
+     * from within the vehicle.
      */
     protected void initEntityManager(String persistenceUnitName, boolean useProps) {
         if (isStandAloneMode()) {
@@ -444,8 +433,8 @@ public abstract class PMClientBase extends ServiceEETest
     }
 
     /**
-     * Creates EntityTransaction in JavaSE environment. In JakartaEE environment,
-     * EntityManager should already have been set from within the vehicle.
+     * Creates EntityTransaction in JavaSE environment. In JakartaEE environment, EntityManager should already have been set
+     * from within the vehicle.
      */
     protected void initEntityTransaction() {
         EntityTransaction delegate = getEntityManager().getTransaction();
@@ -453,8 +442,8 @@ public abstract class PMClientBase extends ServiceEETest
     }
 
     /**
-     * Creates EntityTransaction in JavaSE environment. In JakartaEE environment,
-     * EntityManager should already have been set from within the vehicle.
+     * Creates EntityTransaction in JavaSE environment. In JakartaEE environment, EntityManager should already have been set
+     * from within the vehicle.
      */
     protected void initEntityTransaction(EntityManager em) {
         EntityTransaction delegate = em.getTransaction();
@@ -506,8 +495,7 @@ public abstract class PMClientBase extends ServiceEETest
     }
 
     /**
-     * Verifies certain properties that are not applicable in Java SE environment
-     * are not filtered out, and not passed to
+     * Verifies certain properties that are not applicable in Java SE environment are not filtered out, and not passed to
      * Persistence.createEntityManagerFactory.
      */
     private void checkPersistenceUnitProperties(Properties jpaProps) {
@@ -812,7 +800,8 @@ public abstract class PMClientBase extends ServiceEETest
         boolean duplicates = false;
         for (int ii = 0; ii < iArray.length; ii++) {
             for (int j = 0; j < iArray.length; j++) {
-                if (ii == j) continue;
+                if (ii == j)
+                    continue;
                 if (iArray[ii].equals(iArray[j])) {
                     duplicates = true;
                     break;

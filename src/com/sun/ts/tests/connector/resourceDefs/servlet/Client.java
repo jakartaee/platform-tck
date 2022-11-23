@@ -30,12 +30,11 @@ import java.net.URL;
 import java.util.Properties;
 
 /**
- * This class will be used to perform simple servlet invocations. The servlet
- * invocations should be used to test Connector Resource Definition (CRD) uses.
+ * This class will be used to perform simple servlet invocations. The servlet invocations should be used to test
+ * Connector Resource Definition (CRD) uses.
  *
- * We will check for success or failure from within this file. So the actual
- * testcases in this class will simply consist of checking the server side
- * servlet invocations for success or failure.
+ * We will check for success or failure from within this file. So the actual testcases in this class will simply consist
+ * of checking the server side servlet invocations for success or failure.
  *
  */
 public class Client extends ServiceEETest implements Serializable {
@@ -83,14 +82,12 @@ public class Client extends ServiceEETest implements Serializable {
     }
 
     /**
-     * @class.setup_props: logical.hostname.servlet; webServerHost; webServerPort;
-     *                     authuser; authpassword; user; password;
-     *                     securedWebServicePort;
+     * @class.setup_props: logical.hostname.servlet; webServerHost; webServerPort; authuser; authpassword; user; password;
+     * securedWebServicePort;
      *
      */
     /*
-     * resdef_global_resdef; resdef_app_resdef; resdef_module_resdef;
-     * resdef_comp_resdef;
+     * resdef_global_resdef; resdef_app_resdef; resdef_module_resdef; resdef_comp_resdef;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -111,19 +108,17 @@ public class Client extends ServiceEETest implements Serializable {
         }
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
      * @testName: ValidateGlobalResourceDef
      *
      * @assertion_ids: JavaEE:SPEC:306; JavaEE:SPEC:307; JavaEE:SPEC:310;
      *
-     * @test_Strategy: - this calls a servlet and passes info about what to test
-     *                 as request params. - this is going to test that a Servlet
-     *                 can create a ConnectionFactoryDefinition in the global
-     *                 scope (e.g. java:/global/env/..) - this verifies that
-     *                 creation worked by doing a lookup of the
-     *                 ConnectionFactoryDefinition's jndiName.
+     * @test_Strategy: - this calls a servlet and passes info about what to test as request params. - this is going to test
+     * that a Servlet can create a ConnectionFactoryDefinition in the global scope (e.g. java:/global/env/..) - this
+     * verifies that creation worked by doing a lookup of the ConnectionFactoryDefinition's jndiName.
      *
      */
     public void ValidateGlobalResourceDef() throws Fault {
@@ -147,19 +142,15 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:306; JavaEE:SPEC:307; JavaEE:SPEC:310;
      *
-     * @test_Strategy: - this calls a servlet and passes info about what to test
-     *                 as request params. - this is going to test that a Servlet
-     *                 can create a ConnectionFactoryDefinition in the app scope
-     *                 (e.g. java:/app/env/..) - this verifies that creation
-     *                 worked by doing a lookup of the
-     *                 ConnectionFactoryDefinition's jndiName.
+     * @test_Strategy: - this calls a servlet and passes info about what to test as request params. - this is going to test
+     * that a Servlet can create a ConnectionFactoryDefinition in the app scope (e.g. java:/app/env/..) - this verifies that
+     * creation worked by doing a lookup of the ConnectionFactoryDefinition's jndiName.
      *
      */
     public void ValidateAppResourceDef() throws Fault {
         String strMsg1 = "CRDTestServlet->ValidateAppResourceDef() passed";
 
-        String str =
-                invokeServletAndGetResponse(crdServletPath, "POST", "ValidateAppResourceDef", RARAppScopedJndiName);
+        String str = invokeServletAndGetResponse(crdServletPath, "POST", "ValidateAppResourceDef", RARAppScopedJndiName);
 
         TestUtil.logMsg("ValidateAppResourceDef : str = " + str);
 
@@ -177,11 +168,9 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:306; JavaEE:SPEC:307; JavaEE:SPEC:310;
      *
-     * @test_Strategy: - this calls a servlet and passes info about what to test
-     *                 as request params. - this is going to test that a Servlet
-     *                 can create a ConnectionFactoryDefinition in the module
-     *                 scope (e.g. java:/module/env/..) - this verifies that
-     *                 creation worked by doing a lookup of the
+     * @test_Strategy: - this calls a servlet and passes info about what to test as request params. - this is going to test
+     * that a Servlet can create a ConnectionFactoryDefinition in the module scope (e.g. java:/module/env/..) - this
+     * verifies that creation worked by doing a lookup of the
      */
     public void ValidateModuleResourceDef() throws Fault {
         String strMsg1 = "CRDTestServlet->ValidateModuleResourceDef() passed";
@@ -205,18 +194,14 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:306; JavaEE:SPEC:307; JavaEE:SPEC:310;
      *
-     * @test_Strategy: - this calls a servlet and passes info about what to test
-     *                 as request params. - this is going to test that a Servlet
-     *                 can create a ConnectionFactoryDefinition in the component
-     *                 scope (e.g. java:/comp/env/..) - this verifies that
-     *                 creation worked by doing a lookup of the
-     *                 ConnectionFactoryDefinition's jndiName.
+     * @test_Strategy: - this calls a servlet and passes info about what to test as request params. - this is going to test
+     * that a Servlet can create a ConnectionFactoryDefinition in the component scope (e.g. java:/comp/env/..) - this
+     * verifies that creation worked by doing a lookup of the ConnectionFactoryDefinition's jndiName.
      */
     public void ValidateCompResourceDef() throws Fault {
         String strMsg1 = "CRDTestServlet->ValidateCompResourceDef() passed";
 
-        String str =
-                invokeServletAndGetResponse(crdServletPath, "POST", "ValidateCompResourceDef", RARCompScopedJndiName);
+        String str = invokeServletAndGetResponse(crdServletPath, "POST", "ValidateCompResourceDef", RARCompScopedJndiName);
 
         TestUtil.logMsg("ValidateCompResourceDef : str = " + str);
 
@@ -234,18 +219,15 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:321; Connector:SPEC:326; Connector:SPEC:327;
      *
-     * @test_Strategy: - this calls a servlet and passes info about what to test
-     *                 as request params. - this is going to test that a Servlet
-     *                 can create a ConnectorAdminObj in the global scope (e.g.
-     *                 java:/global/env/..) - this verifies that creation worked
-     *                 by doing a lookup of the ConnectorAdminObj's jndiName.
+     * @test_Strategy: - this calls a servlet and passes info about what to test as request params. - this is going to test
+     * that a Servlet can create a ConnectorAdminObj in the global scope (e.g. java:/global/env/..) - this verifies that
+     * creation worked by doing a lookup of the ConnectorAdminObj's jndiName.
      *
      */
     public void ValidateGlobalAdminObj() throws Fault {
         String strMsg1 = "ValidateGlobalAdminObj() passed.";
 
-        String str =
-                invokeServletAndGetResponse(aodServletPath, "POST", "ValidateGlobalAdminObj", AODGlobalScopedJndiName);
+        String str = invokeServletAndGetResponse(aodServletPath, "POST", "ValidateGlobalAdminObj", AODGlobalScopedJndiName);
         TestUtil.logMsg("ValidateGlobalAdminObj : str = " + str);
 
         int ii = str.indexOf(strMsg1);
@@ -262,11 +244,9 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:321; Connector:SPEC:326; Connector:SPEC:327;
      *
-     * @test_Strategy: - this calls a servlet and passes info about what to test
-     *                 as request params. - this is going to test that a Servlet
-     *                 can create a ConnectorAdminObj in the app scope (e.g.
-     *                 java:/app/env/..) - this verifies that creation worked by
-     *                 doing a lookup of the ConnectorAdminObj's jndiName.
+     * @test_Strategy: - this calls a servlet and passes info about what to test as request params. - this is going to test
+     * that a Servlet can create a ConnectorAdminObj in the app scope (e.g. java:/app/env/..) - this verifies that creation
+     * worked by doing a lookup of the ConnectorAdminObj's jndiName.
      *
      */
     public void ValidateAppAdminObj() throws Fault {
@@ -290,17 +270,14 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:321; Connector:SPEC:326; Connector:SPEC:327;
      *
-     * @test_Strategy: - this calls a servlet and passes info about what to test
-     *                 as request params. - this is going to test that a Servlet
-     *                 can create a ConnectorAdminObj in the module scope (e.g.
-     *                 java:/module/env/..) - this verifies that creation worked
-     *                 by doing a lookup of the
+     * @test_Strategy: - this calls a servlet and passes info about what to test as request params. - this is going to test
+     * that a Servlet can create a ConnectorAdminObj in the module scope (e.g. java:/module/env/..) - this verifies that
+     * creation worked by doing a lookup of the
      */
     public void ValidateModuleAdminObj() throws Fault {
         String strMsg1 = "ValidateModuleAdminObj() passed.";
 
-        String str =
-                invokeServletAndGetResponse(aodServletPath, "POST", "ValidateModuleAdminObj", AODModuleScopedJndiName);
+        String str = invokeServletAndGetResponse(aodServletPath, "POST", "ValidateModuleAdminObj", AODModuleScopedJndiName);
 
         TestUtil.logMsg("ValidateModuleAdminObj : str = " + str);
 
@@ -318,11 +295,9 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:321; Connector:SPEC:326; Connector:SPEC:327;
      *
-     * @test_Strategy: - this calls a servlet and passes info about what to test
-     *                 as request params. - this is going to test that a Servlet
-     *                 can create a ConnectorAdminObj in the component scope (e.g.
-     *                 java:/comp/env/..) - this verifies that creation worked by
-     *                 doing a lookup of the ConnectorAdminObj's jndiName.
+     * @test_Strategy: - this calls a servlet and passes info about what to test as request params. - this is going to test
+     * that a Servlet can create a ConnectorAdminObj in the component scope (e.g. java:/comp/env/..) - this verifies that
+     * creation worked by doing a lookup of the ConnectorAdminObj's jndiName.
      */
     public void ValidateCompAdminObj() throws Fault {
         String strMsg1 = "ValidateCompAdminObj() passed.";
@@ -341,9 +316,8 @@ public class Client extends ServiceEETest implements Serializable {
     }
 
     /*
-     * Convenience method that will establish a url connections and perform a
-     * get/post request. A username and password will be passed in the request
-     * header and they will be encoded using the BASE64Encoder class.
+     * Convenience method that will establish a url connections and perform a get/post request. A username and password will
+     * be passed in the request header and they will be encoded using the BASE64Encoder class.
      */
     private int invokeServlet(String sContext, String requestMethod) {
         int code = 200;
@@ -406,11 +380,9 @@ public class Client extends ServiceEETest implements Serializable {
     } // invokeServlet()
 
     /*
-     * This is a convenience method used to post a url to a servlet so that our
-     * servlet can do some tests and send back status about success or failure.
-     * This passes some params onto the request/context so that the servlet will
-     * have info it needs in order to properly perform its serverside ACF and ACP
-     * tests.
+     * This is a convenience method used to post a url to a servlet so that our servlet can do some tests and send back
+     * status about success or failure. This passes some params onto the request/context so that the servlet will have info
+     * it needs in order to properly perform its serverside ACF and ACP tests.
      *
      */
     private String invokeServletAndGetResponse(String sContext, String requestMethod) {

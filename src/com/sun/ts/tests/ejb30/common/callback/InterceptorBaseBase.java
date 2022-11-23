@@ -32,11 +32,9 @@ public abstract class InterceptorBaseBase {
     }
 
     /**
-     * Note that this method may be overridden by subclasses. If so, the value
-     * returned may be different from the shortName defined in the current
-     * enclosing class. That is why we need to pass a symbol (same as shortName)
-     * to myCreate0(InvocatioinContext, String symbol), to force a hardcoded
-     * value.
+     * Note that this method may be overridden by subclasses. If so, the value returned may be different from the shortName
+     * defined in the current enclosing class. That is why we need to pass a symbol (same as shortName) to
+     * myCreate0(InvocatioinContext, String symbol), to force a hardcoded value.
      */
     protected String getShortName() {
         return "BASEBASE";

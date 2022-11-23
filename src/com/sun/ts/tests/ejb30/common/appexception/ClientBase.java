@@ -41,7 +41,8 @@ public abstract class ClientBase extends EETest {
         props = p;
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
     //////////////////////////////////////////////////////////////////////
     // Tests whose name does NOT begin with "at" are for /annotated/
     // directory. It means these exceptions are NOT annotated with

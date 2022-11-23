@@ -38,7 +38,8 @@ public class Client extends PMClientBase {
 
     String schemaGenerationDir = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -103,18 +104,17 @@ public class Client extends PMClientBase {
     private static final OffsetTime OFFSET_TIME = OffsetTime.of(LOCAL_TIME, ZoneOffset.ofHours(0));
 
     /** Default OffsetDateTime constant. */
-    private static final OffsetDateTime OFFSET_DATE_TIME_DEF =
-            OffsetDateTime.of(LOCAL_DATE_TIME_DEF, ZoneOffset.ofHours(1));
+    private static final OffsetDateTime OFFSET_DATE_TIME_DEF = OffsetDateTime.of(LOCAL_DATE_TIME_DEF, ZoneOffset.ofHours(1));
 
     /** OffsetDateTime constant. */
     private static final OffsetDateTime OFFSET_DATE_TIME = OffsetDateTime.of(LOCAL_DATE_TIME, ZoneOffset.ofHours(0));
 
     private static final DateTimeEntity[] entities = {
-        new DateTimeEntity(1L, LOCAL_DATE, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF, OFFSET_DATE_TIME_DEF),
-        new DateTimeEntity(2L, LOCAL_DATE_DEF, LOCAL_TIME, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF, OFFSET_DATE_TIME_DEF),
-        new DateTimeEntity(3L, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME, OFFSET_TIME_DEF, OFFSET_DATE_TIME_DEF),
-        new DateTimeEntity(4L, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME, OFFSET_DATE_TIME_DEF),
-        new DateTimeEntity(5L, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF, OFFSET_DATE_TIME)
+            new DateTimeEntity(1L, LOCAL_DATE, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF, OFFSET_DATE_TIME_DEF),
+            new DateTimeEntity(2L, LOCAL_DATE_DEF, LOCAL_TIME, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF, OFFSET_DATE_TIME_DEF),
+            new DateTimeEntity(3L, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME, OFFSET_TIME_DEF, OFFSET_DATE_TIME_DEF),
+            new DateTimeEntity(4L, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME, OFFSET_DATE_TIME_DEF),
+            new DateTimeEntity(5L, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF, OFFSET_DATE_TIME)
     };
 
     // Databases precision is usually not nanoseconds. Truncate to miliseconds.
@@ -126,12 +126,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: dateTimeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:320; PERSISTENCE:SPEC:2118.19;
-     * PERSISTENCE:SPEC:2118.5;
+     * @assertion_ids: PERSISTENCE:JAVADOC:320; PERSISTENCE:SPEC:2118.19; PERSISTENCE:SPEC:2118.5;
      *
-     * @test_Strategy: Test new JPA 2.2 date and time types: java.time.LocalDate,
-     * java.time.LocalTime, java.time.LocalDateTime, java.time.OffsetTime and
-     * java.time.OffsetDateTime
+     * @test_Strategy: Test new JPA 2.2 date and time types: java.time.LocalDate, java.time.LocalTime,
+     * java.time.LocalDateTime, java.time.OffsetTime and java.time.OffsetDateTime
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault when test failed
      */
@@ -146,11 +144,9 @@ public class Client extends PMClientBase {
         }
         boolean localDateResult = queryEntities("DateTimeEntity.findByLocalDate", "date", LOCAL_DATE, entities[0]);
         boolean localTimeResult = queryEntities("DateTimeEntity.findByLocalTime", "time", LOCAL_TIME, entities[1]);
-        boolean localDateTimeResult =
-                queryEntities("DateTimeEntity.findByLocalDateTime", "dateTime", LOCAL_DATE_TIME, entities[2]);
+        boolean localDateTimeResult = queryEntities("DateTimeEntity.findByLocalDateTime", "dateTime", LOCAL_DATE_TIME, entities[2]);
         boolean offsetTimeResult = queryEntities("DateTimeEntity.findByOffsetTime", "time", OFFSET_TIME, entities[3]);
-        boolean offsetDateTimeResult =
-                queryEntities("DateTimeEntity.findByOffsetDateTime", "dateTime", OFFSET_DATE_TIME, entities[4]);
+        boolean offsetDateTimeResult = queryEntities("DateTimeEntity.findByOffsetDateTime", "dateTime", OFFSET_DATE_TIME, entities[4]);
         boolean localDateRangeResult = queryEntitiesRange(
                 "DateTimeEntity.findLocalDateRange",
                 "min",
@@ -218,8 +214,7 @@ public class Client extends PMClientBase {
     /**
      * Create entities with Java 8 date and time types.
      *
-     * @return value of {@code true} when entities were created successfully or
-     *         {@code false} otherwise
+     * @return value of {@code true} when entities were created successfully or {@code false} otherwise
      */
     private boolean createEntities() {
         TestUtil.logMsg(" - creating test entities");
@@ -243,10 +238,8 @@ public class Client extends PMClientBase {
     /**
      * Find entity by primary key.
      *
-     * @param expected
-     *          entity to find and compare to (must contain proper ID)
-     * @return value of {@code true} when entity was found and matches
-     *         {@code expected} argument or {@code false} otherwise
+     * @param expected entity to find and compare to (must contain proper ID)
+     * @return value of {@code true} when entity was found and matches {@code expected} argument or {@code false} otherwise
      */
     private boolean findEntityById(DateTimeEntity expected) {
         TestUtil.logMsg(" - executing find by ID=" + expected.getId().toString());
@@ -272,17 +265,12 @@ public class Client extends PMClientBase {
     /**
      * Find entity by Java 8 date and time type value.
      *
-     * @param queryName
-     *          named query identifier (named queries are defined in
-     *          DateTimeEntity class)
-     * @param paramName
-     *          name of query parameter to set
-     * @param paramValue
-     *          query parameter value to set
-     * @param expected
-     *          expected returned entity
-     * @return value of {@code true} when exactly one entity was found and matches
-     *         {@code expected} argument or {@code false} otherwise
+     * @param queryName named query identifier (named queries are defined in DateTimeEntity class)
+     * @param paramName name of query parameter to set
+     * @param paramValue query parameter value to set
+     * @param expected expected returned entity
+     * @return value of {@code true} when exactly one entity was found and matches {@code expected} argument or
+     * {@code false} otherwise
      */
     private boolean queryEntities(String queryName, String paramName, Object paramValue, DateTimeEntity expected) {
         TestUtil.logMsg(" - executing query " + queryName + ": " + paramName + "=" + paramValue.toString());
@@ -318,17 +306,12 @@ public class Client extends PMClientBase {
     /**
      * Find entity by Java 8 date and time type value.
      *
-     * @param queryName
-     *          named query identifier (named queries are defined in
-     *          DateTimeEntity class)
-     * @param paramName
-     *          name of query parameter to set
-     * @param paramValue
-     *          query parameter value to set
-     * @param expected
-     *          expected returned entity
-     * @return value of {@code true} when exactly one entity was found and matches
-     *         {@code expected} argument or {@code false} otherwise
+     * @param queryName named query identifier (named queries are defined in DateTimeEntity class)
+     * @param paramName name of query parameter to set
+     * @param paramValue query parameter value to set
+     * @param expected expected returned entity
+     * @return value of {@code true} when exactly one entity was found and matches {@code expected} argument or
+     * {@code false} otherwise
      */
     private boolean queryEntitiesRange(
             String queryName,
@@ -371,8 +354,8 @@ public class Client extends PMClientBase {
     }
 
     /**
-     * Verify generated schema. Java 8 date and time support is not finished so
-     * using dummy entity containing only ID to verify that schema exists.
+     * Verify generated schema. Java 8 date and time support is not finished so using dummy entity containing only ID to
+     * verify that schema exists.
      *
      * @return verification result
      */
@@ -414,10 +397,8 @@ public class Client extends PMClientBase {
     /**
      * Log test result message.
      *
-     * @param name
-     *          test name
-     * @param result
-     *          test result
+     * @param name test name
+     * @param result test result
      */
     private void logTestResult(String name, boolean result) {
         StringBuilder sb = new StringBuilder();

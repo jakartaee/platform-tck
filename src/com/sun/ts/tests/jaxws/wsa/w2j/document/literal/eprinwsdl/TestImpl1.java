@@ -29,12 +29,7 @@ import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.SOAPBinding;
 
-@WebService(
-        portName = "Test1Port",
-        serviceName = "EPRInWsdlTestService",
-        targetNamespace = "http://eprinwsdltestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/EPRInWsdlTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.eprinwsdl.Test1")
+@WebService(portName = "Test1Port", serviceName = "EPRInWsdlTestService", targetNamespace = "http://eprinwsdltestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/EPRInWsdlTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.eprinwsdl.Test1")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @Addressing(enabled = true, required = false)
 public class TestImpl1 implements Test1 {

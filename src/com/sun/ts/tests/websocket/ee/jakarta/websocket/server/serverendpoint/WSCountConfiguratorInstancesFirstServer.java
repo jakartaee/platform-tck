@@ -33,8 +33,7 @@ public class WSCountConfiguratorInstancesFirstServer {
         ServerEndpoint endpoint = (ServerEndpoint) ann;
         Class<? extends Configurator> config = endpoint.configurator();
         try {
-            CountingConfigurator cc =
-                    (CountingConfigurator) config.getConstructor(boolean.class).newInstance(true);
+            CountingConfigurator cc = (CountingConfigurator) config.getConstructor(boolean.class).newInstance(true);
             return String.valueOf(cc.getCounterValue());
         } catch (Exception e) {
             return IOUtil.printStackTrace(e);

@@ -33,14 +33,17 @@ import jakarta.ejb.Stateful;
 @Stateful(name = "BusinessBean")
 // remote interfaced is declared in ejb-jar.xml
 // @Remote({BusinessIF1.class, BusinessIF2.class})
-@Local({BusinessLocalIF1.class})
+@Local({ BusinessLocalIF1.class })
 public class BusinessBean extends BusinessBeanBase {
     @Resource
     private SessionContext sessionContext;
 
-    public BusinessBean() {}
+    public BusinessBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
-    public void remove2() {}
+    public void remove2() {
+    }
 }

@@ -23,4 +23,5 @@ import com.sun.ts.tests.ejb30.lite.async.common.descriptor.TimeoutDescriptorBean
 import jakarta.ejb.Singleton;
 
 @Singleton
-public class TimeoutDescriptorBean extends TimeoutDescriptorBeanBase {}
+public class TimeoutDescriptorBean extends TimeoutDescriptorBeanBase {
+}

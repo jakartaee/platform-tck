@@ -115,5 +115,6 @@ public abstract class TestBeanBase implements TestIF {
     }
 
     // this method should be overridden by stateful bean with @Remove
-    public void remove() {}
+    public void remove() {
+    }
 }

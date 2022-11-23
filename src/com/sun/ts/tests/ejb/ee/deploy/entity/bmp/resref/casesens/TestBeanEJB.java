@@ -27,9 +27,8 @@ import java.util.Properties;
 public class TestBeanEJB extends BMPWrapper {
 
     /**
-     * Check that two resref entries whose names differ only by case are
-     * associated with different runtime values (more exactly to distinct java
-     * types, as specified in DD).
+     * Check that two resref entries whose names differ only by case are associated with different runtime values (more
+     * exactly to distinct java types, as specified in DD).
      */
     public boolean testCaseSensitivity(Properties p) {
         return TestCode.testCaseSensitivity(nctx);

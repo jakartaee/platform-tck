@@ -30,7 +30,8 @@ public abstract class CallbackAllowedBeanBase implements CallbackAllowedIF, Call
 
     public abstract Properties runOperations(SessionContext sctx);
 
-    public void timeout(jakarta.ejb.Timer timer) {}
+    public void timeout(jakarta.ejb.Timer timer) {
+    }
 
     public void ejbCreate() {
         this.results = null;
@@ -41,7 +42,8 @@ public abstract class CallbackAllowedBeanBase implements CallbackAllowedIF, Call
         this.sessionContext = sc;
     }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     public Properties getResults() {
         return this.results;

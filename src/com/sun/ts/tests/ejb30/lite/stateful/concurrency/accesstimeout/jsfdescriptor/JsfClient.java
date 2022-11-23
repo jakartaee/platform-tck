@@ -38,10 +38,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @EJBs({
-    @EJB(
-            name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal,
-            beanName = "BeanClassLevelAccessTimeoutBean",
-            beanInterface = AccessTimeoutIF.class)
+        @EJB(name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal, beanName = "BeanClassLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class)
 })
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
@@ -88,8 +85,7 @@ public class JsfClient extends StatefulConcurrencyJsfClientBase implements Seria
     /*
      * @testName: pingMethodInBeanSuperClass
      *
-     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their
-     * <access-timeout>
+     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their <access-timeout>
      */
     public void pingMethodInBeanSuperClass() throws Exception {
         final AccessTimeoutIF b = getBeanClassLevelAccessTimeoutBeanLocal();
@@ -104,8 +100,8 @@ public class JsfClient extends StatefulConcurrencyJsfClientBase implements Seria
     /*
      * @testName: beanClassMethodLevel
      *
-     * @test_Strategy: beanClassMethodLevel is a concurrent method with default
-     * access-timeout. It is not declared in ejb-jar.xml with <concurrent-method>
+     * @test_Strategy: beanClassMethodLevel is a concurrent method with default access-timeout. It is not declared in
+     * ejb-jar.xml with <concurrent-method>
      */
     public void beanClassMethodLevel() throws InterruptedException {
         final AccessTimeoutIF b = getBeanClassLevelAccessTimeoutBeanLocal();

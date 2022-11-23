@@ -38,8 +38,7 @@ public class BodyContentClearBodyTag extends BodyTagSupport {
      * Validates the behavior of clearBody().
      *
      * @return SKIP_BODY
-     * @throws JspException
-     *           - if an error occurs
+     * @throws JspException - if an error occurs
      */
     public int doAfterBody() throws JspException {
         JspTestUtil.debug("[BodyContentClearBodyTag] in doAfterBody()");

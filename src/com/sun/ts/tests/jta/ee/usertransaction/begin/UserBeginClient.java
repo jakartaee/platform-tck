@@ -33,8 +33,8 @@ import java.io.Serializable;
 import java.util.Properties;
 
 /**
- * The UserBeginClient class tests begin() method of UserTransaction interface
- * using Sun's J2EE Reference Implementation.
+ * The UserBeginClient class tests begin() method of UserTransaction interface using Sun's J2EE Reference
+ * Implementation.
  *
  * @author P.Sandani Basha
  * @version 1.0.1, 09/17/99
@@ -77,9 +77,8 @@ public class UserBeginClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserBegin001
      * @assertion_ids: JTA:JAVADOC:21
-     * @test_Strategy: Check the status of UserTransaction before calling begin()
-     *                 and check the status of UserTransaction after calling
-     *                 begin()
+     * @test_Strategy: Check the status of UserTransaction before calling begin() and check the status of UserTransaction
+     * after calling begin()
      */
     public void testUserBegin001() throws Fault {
         // TestCase id :- 4.1.1
@@ -124,8 +123,7 @@ public class UserBeginClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserBegin002
      * @assertion_ids: JTA:JAVADOC:22
-     * @test_Strategy: Start the User Transaction and again call the begin()
-     *                 method on User Transaction
+     * @test_Strategy: Start the User Transaction and again call the begin() method on User Transaction
      */
     public void testUserBegin002() throws Fault {
         // TestCase id :- 4.1.2

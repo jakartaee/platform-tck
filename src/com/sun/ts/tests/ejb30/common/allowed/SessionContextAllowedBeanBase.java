@@ -30,7 +30,8 @@ public abstract class SessionContextAllowedBeanBase implements SessionContextAll
 
     public abstract Properties runOperations(SessionContext sctx);
 
-    public void timeout(jakarta.ejb.Timer timer) {}
+    public void timeout(jakarta.ejb.Timer timer) {
+    }
 
     public void setSessionContext(SessionContext sc) {
         this.sessionContext = sc;
@@ -39,10 +40,12 @@ public abstract class SessionContextAllowedBeanBase implements SessionContextAll
     }
 
     public void clearResults() {
-        if (this.results != null) this.results.clear();
+        if (this.results != null)
+            this.results.clear();
     }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     public Properties getResults() {
         return this.results;

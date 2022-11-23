@@ -30,29 +30,25 @@ import java.util.Vector;
 import javax.security.auth.x500.X500Principal;
 
 /**
- * The policy for a Java runtime (specifying which permissions are available for
- * code from various principals) is represented as a separate persistent
- * configuration. The configuration may be stored as a flat ASCII file, as a
+ * The policy for a Java runtime (specifying which permissions are available for code from various principals) is
+ * represented as a separate persistent configuration. The configuration may be stored as a flat ASCII file, as a
  * serialized binary file of the Policy class, or as a database.
  * <p>
  *
  * <p>
- * The Java runtime creates one global Policy object, which is used to represent
- * the static policy configuration file. It is consulted by a ProtectionDomain
- * when the protection domain initializes its set of permissions.
+ * The Java runtime creates one global Policy object, which is used to represent the static policy configuration file.
+ * It is consulted by a ProtectionDomain when the protection domain initializes its set of permissions.
  * <p>
  *
  * <p>
- * The Policy <code>init</code> method parses the policy configuration file, and
- * then populates the Policy object. The Policy object is agnostic in that it is
- * not involved in making policy decisions. It is merely the Java runtime
+ * The Policy <code>init</code> method parses the policy configuration file, and then populates the Policy object. The
+ * Policy object is agnostic in that it is not involved in making policy decisions. It is merely the Java runtime
  * representation of the persistent policy configuration file.
  * <p>
  *
  * <p>
- * When a protection domain needs to initialize its set of permissions, it
- * executes code such as the following to ask the global Policy object to
- * populate a Permissions object with the appropriate permissions:
+ * When a protection domain needs to initialize its set of permissions, it executes code such as the following to ask
+ * the global Policy object to populate a Permissions object with the appropriate permissions:
  *
  * <pre>
  *  policy = Policy.getPolicy();
@@ -60,11 +56,9 @@ import javax.security.auth.x500.X500Principal;
  * </pre>
  *
  * <p>
- * The protection domain contains CodeSource object, which encapsulates its
- * codebase (URL) and public key attributes. It also contains the principals
- * associated with the domain. The Policy object evaluates the global policy in
- * light of who the principal is and what the code source is and returns an
- * appropriate Permissions object.
+ * The protection domain contains CodeSource object, which encapsulates its codebase (URL) and public key attributes. It
+ * also contains the principals associated with the domain. The Policy object evaluates the global policy in light of
+ * who the principal is and what the code source is and returns an appropriate Permissions object.
  *
  * @author Roland Schemers
  * @author Ram Marti
@@ -123,14 +117,11 @@ public class PolicyParser {
      * Reads a policy configuration into the Policy object using a Reader object.
      * <p>
      *
-     * @param policy
-     *          the policy Reader object.
+     * @param policy the policy Reader object.
      *
-     * @exception ParsingException
-     *              if the policy configuration contains a syntax error.
+     * @exception ParsingException if the policy configuration contains a syntax error.
      *
-     * @exception IOException
-     *              if an error occurs while reading the policy configuration.
+     * @exception IOException if an error occurs while reading the policy configuration.
      */
     public void read(Reader policy) throws ParsingException, IOException {
         if (!(policy instanceof BufferedReader)) {
@@ -138,9 +129,8 @@ public class PolicyParser {
         }
 
         /**
-         * Configure the stream tokenizer: Recognize strings between "..." Don't
-         * convert words to lowercase Recognize both C-style and C++-style comments
-         * Treat end-of-line as white space, not as a token
+         * Configure the stream tokenizer: Recognize strings between "..." Don't convert words to lowercase Recognize both
+         * C-style and C++-style comments Treat end-of-line as white space, not as a token
          */
         st = new StreamTokenizer(policy);
 
@@ -162,10 +152,8 @@ public class PolicyParser {
         st.slashStarComments(true);
 
         /**
-         * The main parsing loop. The loop is executed once for each entry in the
-         * config file. The entries are delimited by semicolons. Once we've read in
-         * the information for an entry, go ahead and try to add it to the policy
-         * vector.
+         * The main parsing loop. The loop is executed once for each entry in the config file. The entries are delimited by
+         * semicolons. Once we've read in the information for an entry, go ahead and try to add it to the policy vector.
          *
          */
         lookahead = st.nextToken();
@@ -173,7 +161,8 @@ public class PolicyParser {
             if (peek("grant")) {
                 GrantEntry ge = parseGrantEntry();
                 // could be null if we couldn't expand a property
-                if (ge != null) add(ge);
+                if (ge != null)
+                    add(ge);
             } else if (peek("keystore") && keyStoreUrlString == null) {
                 // only one keystore entry per policy file, others will be
                 // ignored
@@ -207,8 +196,7 @@ public class PolicyParser {
     }
 
     /**
-     * Returns the (possibly expanded) keystore location, or null if the expansion
-     * fails.
+     * Returns the (possibly expanded) keystore location, or null if the expansion fails.
      */
     public String getKeyStoreUrl() {
         try {
@@ -263,9 +251,8 @@ public class PolicyParser {
     }
 
     /**
-     * Enumerate all the entries in the global policy object. This method is used
-     * by policy admin tools. The tools should use the Enumeration methods on the
-     * returned object to fetch the elements sequentially.
+     * Enumerate all the entries in the global policy object. This method is used by policy admin tools. The tools should
+     * use the Enumeration methods on the returned object to fetch the elements sequentially.
      */
     public Enumeration<GrantEntry> grantElements() {
         return grantEntries.elements();
@@ -345,8 +332,10 @@ public class PolicyParser {
         out.print("keystore \"");
         out.print(keyStoreUrlString);
         out.print('"');
-        if (keyStoreType != null && keyStoreType.length() > 0) out.print(", \"" + keyStoreType + "\"");
-        if (keyStoreProvider != null && keyStoreProvider.length() > 0) out.print(", \"" + keyStoreProvider + "\"");
+        if (keyStoreType != null && keyStoreType.length() > 0)
+            out.print(", \"" + keyStoreType + "\"");
+        if (keyStoreProvider != null && keyStoreProvider.length() > 0)
+            out.print(", \"" + keyStoreProvider + "\"");
         out.println(";");
         out.println();
     }
@@ -387,8 +376,10 @@ public class PolicyParser {
                 int cctr = 0;
                 while (aliases.hasMoreTokens()) {
                     String alias = aliases.nextToken().trim();
-                    if (alias.equals(",")) cctr++;
-                    else if (alias.length() > 0) actr++;
+                    if (alias.equals(","))
+                        cctr++;
+                    else if (alias.length() > 0)
+                        actr++;
                 }
                 if (actr <= cctr)
                     throw new ParsingException(st.lineno(), ResourcesMgr.getString("SignedBy has empty alias"));
@@ -469,7 +460,8 @@ public class PolicyParser {
             }
         }
 
-        if (principals != null) e.principals = principals;
+        if (principals != null)
+            e.principals = principals;
         match("{");
 
         while (!peek("}")) {
@@ -492,7 +484,8 @@ public class PolicyParser {
         match("}");
 
         try {
-            if (e.signedBy != null) e.signedBy = expand(e.signedBy);
+            if (e.signedBy != null)
+                e.signedBy = expand(e.signedBy);
             if (e.codeBase != null) {
 
                 e.codeBase = expand(e.codeBase, true).replace(File.separatorChar, '/');
@@ -560,25 +553,31 @@ public class PolicyParser {
         boolean found = false;
 
         switch (lookahead) {
-            case StreamTokenizer.TT_WORD:
-                if (expect.equalsIgnoreCase(st.sval)) found = true;
-                break;
-            case ',':
-                if (expect.equalsIgnoreCase(",")) found = true;
-                break;
-            case '{':
-                if (expect.equalsIgnoreCase("{")) found = true;
-                break;
-            case '}':
-                if (expect.equalsIgnoreCase("}")) found = true;
-                break;
-            case '"':
-                if (expect.equalsIgnoreCase("\"")) found = true;
-                break;
-            case '*':
-                if (expect.equalsIgnoreCase("*")) found = true;
-                break;
-            default:
+        case StreamTokenizer.TT_WORD:
+            if (expect.equalsIgnoreCase(st.sval))
+                found = true;
+            break;
+        case ',':
+            if (expect.equalsIgnoreCase(","))
+                found = true;
+            break;
+        case '{':
+            if (expect.equalsIgnoreCase("{"))
+                found = true;
+            break;
+        case '}':
+            if (expect.equalsIgnoreCase("}"))
+                found = true;
+            break;
+        case '"':
+            if (expect.equalsIgnoreCase("\""))
+                found = true;
+            break;
+        case '*':
+            if (expect.equalsIgnoreCase("*"))
+                found = true;
+            break;
+        default:
         }
         return found;
     }
@@ -587,62 +586,72 @@ public class PolicyParser {
         String value = null;
 
         switch (lookahead) {
-            case StreamTokenizer.TT_NUMBER:
-                throw new ParsingException(
-                        st.lineno(), expect, ResourcesMgr.getString("number ") + String.valueOf(st.nval));
-            case StreamTokenizer.TT_EOF:
-                MessageFormat form = new MessageFormat(ResourcesMgr.getString("expected [expect], read [end of file]"));
-                Object[] source = {expect};
-                throw new ParsingException(form.format(source));
-            case StreamTokenizer.TT_WORD:
-                if (expect.equalsIgnoreCase(st.sval)) {
-                    lookahead = st.nextToken();
-                } else if (expect.equalsIgnoreCase("permission type")) {
-                    value = st.sval;
-                    lookahead = st.nextToken();
-                } else if (expect.equalsIgnoreCase("principal type")) {
-                    value = st.sval;
-                    lookahead = st.nextToken();
-                } else {
-                    throw new ParsingException(st.lineno(), expect, st.sval);
-                }
-                break;
-            case '"':
-                if (expect.equalsIgnoreCase("quoted string")) {
-                    value = st.sval;
-                    lookahead = st.nextToken();
-                } else if (expect.equalsIgnoreCase("permission type")) {
-                    value = st.sval;
-                    lookahead = st.nextToken();
-                } else if (expect.equalsIgnoreCase("principal type")) {
-                    value = st.sval;
-                    lookahead = st.nextToken();
-                } else {
-                    throw new ParsingException(st.lineno(), expect, st.sval);
-                }
-                break;
-            case ',':
-                if (expect.equalsIgnoreCase(",")) lookahead = st.nextToken();
-                else throw new ParsingException(st.lineno(), expect, ",");
-                break;
-            case '{':
-                if (expect.equalsIgnoreCase("{")) lookahead = st.nextToken();
-                else throw new ParsingException(st.lineno(), expect, "{");
-                break;
-            case '}':
-                if (expect.equalsIgnoreCase("}")) lookahead = st.nextToken();
-                else throw new ParsingException(st.lineno(), expect, "}");
-                break;
-            case ';':
-                if (expect.equalsIgnoreCase(";")) lookahead = st.nextToken();
-                else throw new ParsingException(st.lineno(), expect, ";");
-                break;
-            case '*':
-                if (expect.equalsIgnoreCase("*")) lookahead = st.nextToken();
-                else throw new ParsingException(st.lineno(), expect, "*");
-                break;
-            default:
-                throw new ParsingException(st.lineno(), expect, new String(new char[] {(char) lookahead}));
+        case StreamTokenizer.TT_NUMBER:
+            throw new ParsingException(
+                    st.lineno(), expect, ResourcesMgr.getString("number ") + String.valueOf(st.nval));
+        case StreamTokenizer.TT_EOF:
+            MessageFormat form = new MessageFormat(ResourcesMgr.getString("expected [expect], read [end of file]"));
+            Object[] source = { expect };
+            throw new ParsingException(form.format(source));
+        case StreamTokenizer.TT_WORD:
+            if (expect.equalsIgnoreCase(st.sval)) {
+                lookahead = st.nextToken();
+            } else if (expect.equalsIgnoreCase("permission type")) {
+                value = st.sval;
+                lookahead = st.nextToken();
+            } else if (expect.equalsIgnoreCase("principal type")) {
+                value = st.sval;
+                lookahead = st.nextToken();
+            } else {
+                throw new ParsingException(st.lineno(), expect, st.sval);
+            }
+            break;
+        case '"':
+            if (expect.equalsIgnoreCase("quoted string")) {
+                value = st.sval;
+                lookahead = st.nextToken();
+            } else if (expect.equalsIgnoreCase("permission type")) {
+                value = st.sval;
+                lookahead = st.nextToken();
+            } else if (expect.equalsIgnoreCase("principal type")) {
+                value = st.sval;
+                lookahead = st.nextToken();
+            } else {
+                throw new ParsingException(st.lineno(), expect, st.sval);
+            }
+            break;
+        case ',':
+            if (expect.equalsIgnoreCase(","))
+                lookahead = st.nextToken();
+            else
+                throw new ParsingException(st.lineno(), expect, ",");
+            break;
+        case '{':
+            if (expect.equalsIgnoreCase("{"))
+                lookahead = st.nextToken();
+            else
+                throw new ParsingException(st.lineno(), expect, "{");
+            break;
+        case '}':
+            if (expect.equalsIgnoreCase("}"))
+                lookahead = st.nextToken();
+            else
+                throw new ParsingException(st.lineno(), expect, "}");
+            break;
+        case ';':
+            if (expect.equalsIgnoreCase(";"))
+                lookahead = st.nextToken();
+            else
+                throw new ParsingException(st.lineno(), expect, ";");
+            break;
+        case '*':
+            if (expect.equalsIgnoreCase("*"))
+                lookahead = st.nextToken();
+            else
+                throw new ParsingException(st.lineno(), expect, "*");
+            break;
+        default:
+            throw new ParsingException(st.lineno(), expect, new String(new char[] { (char) lookahead }));
         }
         return value;
     }
@@ -653,20 +662,19 @@ public class PolicyParser {
     private void skipEntry() throws ParsingException, IOException {
         while (lookahead != ';') {
             switch (lookahead) {
-                case StreamTokenizer.TT_NUMBER:
-                    throw new ParsingException(
-                            st.lineno(), ";", ResourcesMgr.getString("number ") + String.valueOf(st.nval));
-                case StreamTokenizer.TT_EOF:
-                    throw new ParsingException(ResourcesMgr.getString("expected [;], read [end of file]"));
-                default:
-                    lookahead = st.nextToken();
+            case StreamTokenizer.TT_NUMBER:
+                throw new ParsingException(
+                        st.lineno(), ";", ResourcesMgr.getString("number ") + String.valueOf(st.nval));
+            case StreamTokenizer.TT_EOF:
+                throw new ParsingException(ResourcesMgr.getString("expected [;], read [end of file]"));
+            default:
+                lookahead = st.nextToken();
             }
         }
     }
 
     /**
-     * Each grant entry in the policy configuration file is represented by a
-     * GrantEntry object.
+     * Each grant entry in the policy configuration file is represented by a GrantEntry object.
      * <p>
      *
      * <p>
@@ -693,7 +701,7 @@ public class PolicyParser {
      *
      * @author Roland Schemers
      *
-     *         version 1.19, 05/21/98
+     * version 1.19, 05/21/98
      */
     public static class GrantEntry {
 
@@ -750,13 +758,15 @@ public class PolicyParser {
                 out.print(" signedBy \"");
                 out.print(signedBy);
                 out.print('"');
-                if (codeBase != null) out.print(", ");
+                if (codeBase != null)
+                    out.print(", ");
             }
             if (codeBase != null) {
                 out.print(" codeBase \"");
                 out.print(codeBase);
                 out.print('"');
-                if (principals != null && principals.size() > 0) out.print(",\n");
+                if (principals != null && principals.size() > 0)
+                    out.print(",\n");
             }
             if (principals != null && principals.size() > 0) {
                 ListIterator<PrincipalEntry> pli = principals.listIterator();
@@ -764,7 +774,8 @@ public class PolicyParser {
                     out.print("      ");
                     PrincipalEntry pe = pli.next();
                     pe.write(out);
-                    if (pli.hasNext()) out.print(",\n");
+                    if (pli.hasNext())
+                        out.print(",\n");
                 }
             }
             out.println(" {");
@@ -801,18 +812,15 @@ public class PolicyParser {
         String principalName;
 
         /**
-         * A PrincipalEntry consists of the <code>Principal</code> class and
-         * <code>Principal</code> name.
+         * A PrincipalEntry consists of the <code>Principal</code> class and <code>Principal</code> name.
          *
          * <p>
          *
-         * @param principalClass
-         *          the <code>Principal</code> class.
-         *          <p>
+         * @param principalClass the <code>Principal</code> class.
+         * <p>
          *
-         * @param principalName
-         *          the <code>Principal</code> name.
-         *          <p>
+         * @param principalName the <code>Principal</code> name.
+         * <p>
          */
         public PrincipalEntry(String principalClass, String principalName) {
             if (principalClass == null || principalName == null)
@@ -834,7 +842,8 @@ public class PolicyParser {
                 return "*";
             } else if (principalClass.equals(REPLACE_NAME)) {
                 return "";
-            } else return principalClass;
+            } else
+                return principalClass;
         }
 
         public String getDisplayName() {
@@ -845,8 +854,10 @@ public class PolicyParser {
             if (principalName.equals(WILDCARD_NAME)) {
                 return "*";
             } else {
-                if (addQuote) return "\"" + principalName + "\"";
-                else return principalName;
+                if (addQuote)
+                    return "\"" + principalName + "\"";
+                else
+                    return principalName;
             }
         }
 
@@ -859,21 +870,21 @@ public class PolicyParser {
         }
 
         /**
-         * Test for equality between the specified object and this object. Two
-         * PrincipalEntries are equal if their PrincipalClass and PrincipalName
-         * values are equal.
+         * Test for equality between the specified object and this object. Two PrincipalEntries are equal if their
+         * PrincipalClass and PrincipalName values are equal.
          *
          * <p>
          *
-         * @param obj
-         *          the object to test for equality with this object.
+         * @param obj the object to test for equality with this object.
          *
          * @return true if the objects are equal, false otherwise.
          */
         public boolean equals(Object obj) {
-            if (this == obj) return true;
+            if (this == obj)
+                return true;
 
-            if (!(obj instanceof PrincipalEntry)) return false;
+            if (!(obj instanceof PrincipalEntry))
+                return false;
 
             PrincipalEntry that = (PrincipalEntry) obj;
             if (this.principalClass.equals(that.principalClass) && this.principalName.equals(that.principalName)) {
@@ -900,8 +911,7 @@ public class PolicyParser {
     }
 
     /**
-     * Each permission entry in the policy configuration file is represented by a
-     * PermissionEntry object.
+     * Each permission entry in the policy configuration file is represented by a PermissionEntry object.
      * <p>
      *
      * <p>
@@ -920,7 +930,7 @@ public class PolicyParser {
      *
      * @author Roland Schemers
      *
-     *         version 1.19, 05/21/98
+     * version 1.19, 05/21/98
      */
     public static class PermissionEntry {
 
@@ -932,7 +942,8 @@ public class PolicyParser {
 
         public String signedBy;
 
-        public PermissionEntry() {}
+        public PermissionEntry() {
+        }
 
         public PermissionEntry(String permission, String name, String action) {
             this.permission = permission;
@@ -941,45 +952,56 @@ public class PolicyParser {
         }
 
         /**
-         * Calculates a hash code value for the object. Objects which are equal will
-         * also have the same hashcode.
+         * Calculates a hash code value for the object. Objects which are equal will also have the same hashcode.
          */
         public int hashCode() {
             int retval = permission.hashCode();
-            if (name != null) retval ^= name.hashCode();
-            if (action != null) retval ^= action.hashCode();
+            if (name != null)
+                retval ^= name.hashCode();
+            if (action != null)
+                retval ^= action.hashCode();
             return retval;
         }
 
         public boolean equals(Object obj) {
-            if (obj == this) return true;
+            if (obj == this)
+                return true;
 
-            if (!(obj instanceof PermissionEntry)) return false;
+            if (!(obj instanceof PermissionEntry))
+                return false;
 
             PermissionEntry that = (PermissionEntry) obj;
 
             if (this.permission == null) {
-                if (that.permission != null) return false;
+                if (that.permission != null)
+                    return false;
             } else {
-                if (!this.permission.equals(that.permission)) return false;
+                if (!this.permission.equals(that.permission))
+                    return false;
             }
 
             if (this.name == null) {
-                if (that.name != null) return false;
+                if (that.name != null)
+                    return false;
             } else {
-                if (!this.name.equals(that.name)) return false;
+                if (!this.name.equals(that.name))
+                    return false;
             }
 
             if (this.action == null) {
-                if (that.action != null) return false;
+                if (that.action != null)
+                    return false;
             } else {
-                if (!this.action.equals(that.action)) return false;
+                if (!this.action.equals(that.action))
+                    return false;
             }
 
             if (this.signedBy == null) {
-                if (that.signedBy != null) return false;
+                if (that.signedBy != null)
+                    return false;
             } else {
-                if (!this.signedBy.equals(that.signedBy)) return false;
+                if (!this.signedBy.equals(that.signedBy))
+                    return false;
             }
 
             // everything matched -- the 2 objects are equal
@@ -1022,12 +1044,10 @@ public class PolicyParser {
         private String i18nMessage;
 
         /**
-         * Constructs a ParsingException with the specified detail message. A detail
-         * message is a String that describes this particular exception, which may,
-         * for example, specify which algorithm is not available.
+         * Constructs a ParsingException with the specified detail message. A detail message is a String that describes this
+         * particular exception, which may, for example, specify which algorithm is not available.
          *
-         * @param msg
-         *          the detail message.
+         * @param msg the detail message.
          */
         public ParsingException(String msg) {
             super(msg);
@@ -1037,15 +1057,14 @@ public class PolicyParser {
         public ParsingException(int line, String msg) {
             super("line " + line + ": " + msg);
             MessageFormat form = new MessageFormat(ResourcesMgr.getString("line number: msg"));
-            Object[] source = {new Integer(line), msg};
+            Object[] source = { new Integer(line), msg };
             i18nMessage = form.format(source);
         }
 
         public ParsingException(int line, String expect, String actual) {
             super("line " + line + ": expected [" + expect + "], found [" + actual + "]");
-            MessageFormat form =
-                    new MessageFormat(ResourcesMgr.getString("line number: expected [expect], found [actual]"));
-            Object[] source = {new Integer(line), expect, actual};
+            MessageFormat form = new MessageFormat(ResourcesMgr.getString("line number: expected [expect], found [actual]"));
+            Object[] source = { new Integer(line), expect, actual };
             i18nMessage = form.format(source);
         }
 

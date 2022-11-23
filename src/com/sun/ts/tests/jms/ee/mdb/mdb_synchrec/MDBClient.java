@@ -77,8 +77,8 @@ public class MDBClient extends EETest {
     /*
      * Test setup:
      *
-     * @class.setup_props: jms_timeout, in milliseconds - how long to wait on
-     * synchronous receive; user;password;harness.log.port; harness.log.traceflag;
+     * @class.setup_props: jms_timeout, in milliseconds - how long to wait on synchronous receive;
+     * user;password;harness.log.port; harness.log.traceflag;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -111,15 +111,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: test1
      *
-     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
-     * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:198; JMS:JAVADOC:184; JMS:JAVADOC:334; JMS:JAVADOC:405;
+     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:198; JMS:JAVADOC:184; JMS:JAVADOC:334; JMS:JAVADOC:405;
      *
-     * @test_Strategy: Verify synchronous receive in an mdb. send a msg to
-     * MDB_QURUR_REPLY - mdb will do a synchronous rec on it Invoke a cmt mdb by
-     * writing to MDB_QUEUE In onMessage mdb method, do a synchronous receive
-     * Notify the client by sending a message to QUEUE_REPLY if mdb was able to
-     * successfully receive the message
+     * @test_Strategy: Verify synchronous receive in an mdb. send a msg to MDB_QURUR_REPLY - mdb will do a synchronous rec
+     * on it Invoke a cmt mdb by writing to MDB_QUEUE In onMessage mdb method, do a synchronous receive Notify the client by
+     * sending a message to QUEUE_REPLY if mdb was able to successfully receive the message
      *
      */
     public void test1() throws Fault {
@@ -186,7 +183,8 @@ public class MDBClient extends EETest {
             TestUtil.logTrace("@checkOnResponse");
             for (int i = 0; i < 10; i++) {
                 status = getMessage(session, prop);
-                if (status) break;
+                if (status)
+                    break;
             }
             TestUtil.logTrace("Close the session");
         } catch (Exception e) {

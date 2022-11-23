@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/jsp_coresyntx_act_include_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -62,12 +60,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Include content, using a context-relative path, from JSP
-     * page into the current JSP page.
+     * @test_Strategy: Include content, using a context-relative path, from JSP page into the current JSP page.
      *
-     * jsp:include provides for the inclusion of dynamic resources, within the
-     * same context, using a context-relative path. JavaServer Pages Specification
-     * v1.2, Sec. 4.4
+     * jsp:include provides for the inclusion of dynamic resources, within the same context, using a context-relative path.
+     * JavaServer Pages Specification v1.2, Sec. 4.4
      */
 
     public void positiveIncludeCtxRelativeTest() throws Fault {
@@ -80,9 +76,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:164.1
      *
-     * @test_Strategy: Include content, using a context-relative path, from a
-     * static HTML page into the current JSP page. PENDING Merge existing tests
-     * into one test.
+     * @test_Strategy: Include content, using a context-relative path, from a static HTML page into the current JSP page.
+     * PENDING Merge existing tests into one test.
      */
 
     public void positiveIncludeCtxRelativeHtmlTest() throws Fault {
@@ -95,8 +90,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:164.1
      *
-     * @test_Strategy: Include content, using a page-relative path, from a JSP
-     * page into the current JSP page.
+     * @test_Strategy: Include content, using a page-relative path, from a JSP page into the current JSP page.
      */
     public void positiveIncludePageRelativeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveIncludePageRelative");
@@ -108,8 +102,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:164.1;JSP:SPEC:164.9
      *
-     * @test_Strategy: Validate the page attribute of jsp:include can correctly
-     * accept request-time attribute values which contain context-relative paths.
+     * @test_Strategy: Validate the page attribute of jsp:include can correctly accept request-time attribute values which
+     * contain context-relative paths.
      */
 
     public void positiveRequestAttrCtxRelativeTest() throws Fault {
@@ -122,8 +116,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:164.1
      *
-     * @test_Strategy: Validate the page attribute of jsp:include can correctly
-     * accept request-time attribute values which contain page-relative paths.
+     * @test_Strategy: Validate the page attribute of jsp:include can correctly accept request-time attribute values which
+     * contain page-relative paths.
      */
 
     public void positiveRequestAttrPageRelativeTest() throws Fault {
@@ -136,9 +130,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:164.1
      *
-     * @test_Strategy: Include content, using a page-relative path, from a JSP
-     * page in a different dir into the current JSP page, with a jsp-config
-     * url-pattern in web.xml
+     * @test_Strategy: Include content, using a page-relative path, from a JSP page in a different dir into the current JSP
+     * page, with a jsp-config url-pattern in web.xml
      */
     public void positiveIncludePageRelative2Test() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveIncludePageRelative2");
@@ -150,10 +143,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:164.1
      *
-     * @test_Strategy: Include a jsp, which forwards to a html file Only the
-     * output from the forwarded target should be sent to client, because the test
-     * jsp and included jsp shared the same out (JSP 5.4), and a forwarding clears
-     * the response buffer (SVR 8.4).
+     * @test_Strategy: Include a jsp, which forwards to a html file Only the output from the forwarded target should be sent
+     * to client, because the test jsp and included jsp shared the same out (JSP 5.4), and a forwarding clears the response
+     * buffer (SVR 8.4).
      *
      */
     public void positiveIncludeForwardTest() throws Fault {

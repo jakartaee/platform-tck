@@ -73,8 +73,7 @@ public class TestMessageListener implements jakarta.jms.MessageListener {
     /**
      * Responds to incoming Messages. A TextMessage is the end of stream signal.
      *
-     * @param Message
-     *          the message passed to the listener
+     * @param Message the message passed to the listener
      */
     public void onMessage(Message message) {
         try {

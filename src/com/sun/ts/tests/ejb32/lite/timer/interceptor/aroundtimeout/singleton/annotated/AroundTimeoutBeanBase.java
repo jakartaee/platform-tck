@@ -35,7 +35,7 @@ public class AroundTimeoutBeanBase extends TimerBeanBaseWithoutTimeOutMethod imp
 
     @Override
     @Timeout
-    @Interceptors({Interceptor6.class, Interceptor5.class})
+    @Interceptors({ Interceptor6.class, Interceptor5.class })
     protected void timeout(Timer timer) {
         super.timeout(timer);
         InterceptorBase.addAroundInvokeRecord(timer, simpleName + ".timeout", this, "timeout");
@@ -81,7 +81,7 @@ public class AroundTimeoutBeanBase extends TimerBeanBaseWithoutTimeOutMethod imp
         }
         InterceptorBase.addAroundInvokeRecord(timer, rec, this, "invocationContextMethods");
 
-        Object[] newParams = {parameters[0]};
+        Object[] newParams = { parameters[0] };
         inv.setParameters(newParams);
         rec = "setParameters";
         InterceptorBase.addAroundInvokeRecord(timer, rec, this, "invocationContextMethods");

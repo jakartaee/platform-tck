@@ -286,16 +286,20 @@ public class SOAPConstantsTestServlet extends HttpServlet {
                 TestUtil.logErr("Received: " + SOAPConstants.SOAP_VERSIONMISMATCH_FAULT);
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("All SOAP constants are correct");
-            else TestUtil.logErr("Some SOAP constants are incorrect");
+            if (pass)
+                TestUtil.logMsg("All SOAP constants are correct");
+            else
+                TestUtil.logErr("Some SOAP constants are incorrect");
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

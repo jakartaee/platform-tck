@@ -33,18 +33,14 @@ import com.sun.ts.tests.signaturetest.SigTestEE;
  */
 public class JACCSigTest extends SigTestEE {
 
-    private static final String[] packagesNameArray = {"jakarta.security.jacc"};
+    private static final String[] packagesNameArray = { "jakarta.security.jacc" };
 
     /**
-     * Returns a list of strings where each string represents a package name. Each
-     * package name will have it's signature tested by the signature test
-     * framework.
+     * Returns a list of strings where each string represents a package name. Each package name will have it's signature
+     * tested by the signature test framework.
      *
-     * @param vehicleName
-     *          The name of the Java EE container where the signature tests should
-     *          be conducted.
-     * @return String[] The names of the packages whose signatures should be
-     *         verified within the specified vehicle.
+     * @param vehicleName The name of the Java EE container where the signature tests should be conducted.
+     * @return String[] The names of the packages whose signatures should be verified within the specified vehicle.
      */
     protected String[] getPackages(String vehicleName) {
         return packagesNameArray;
@@ -60,10 +56,9 @@ public class JACCSigTest extends SigTestEE {
     }
 
     /*
-     * The following comments are specified in the base class that defines the
-     * signature tests. This is done so the test finders will find the right class
-     * to run. The implementation of these methods is inherited from the super
-     * class which is part of the signature test framework.
+     * The following comments are specified in the base class that defines the signature tests. This is done so the test
+     * finders will find the right class to run. The implementation of these methods is inherited from the super class which
+     * is part of the signature test framework.
      */
 
     /*
@@ -73,12 +68,10 @@ public class JACCSigTest extends SigTestEE {
     /*
      * @testName: signatureTest
      *
-     * @assertion: A Java EE platform must implement the required classes and APIs
-     * specified in the JSR 115 Specification.
+     * @assertion: A Java EE platform must implement the required classes and APIs specified in the JSR 115 Specification.
      *
-     * @test_Strategy: Using reflection, gather the implementation specific
-     * classes and APIs. Compare these results with the expected (required)
-     * classes and APIs.
+     * @test_Strategy: Using reflection, gather the implementation specific classes and APIs. Compare these results with the
+     * expected (required) classes and APIs.
      *
      */
 

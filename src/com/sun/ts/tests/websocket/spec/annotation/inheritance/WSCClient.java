@@ -27,24 +27,19 @@ import jakarta.websocket.DeploymentException;
  *                     ws_wait;
  */
 /**
- * The Spec is a bit fuzzy about how the annotation should work. But the proper
- * meaning should be that it works the way java se states, i.e. annotation
- * inheritance from java language specification.
+ * The Spec is a bit fuzzy about how the annotation should work. But the proper meaning should be that it works the way
+ * java se states, i.e. annotation inheritance from java language specification.
  * <p/>
  * <ul>
- * <li>So first if the super class has the annotation then the subclass has it,
- * too.</li>
- * <li>Second, if super class has the annotation and the subclass override the
- * method, the annotation is gone</li>
- * <li>Third, most tricky, if the annotation is on superclass not overridden in
- * subclass and annotation is put to some other method in subclass, the subclass
- * has the annotation twice, first from superclass and second from subclass and
- * the class should not deploy, i.e. DeploymentException is thrown as stated by
- * WSC-4.8.1, Section 4.8 WebSockets and Inheritance, WebSocket
- * Specification</li>
+ * <li>So first if the super class has the annotation then the subclass has it, too.</li>
+ * <li>Second, if super class has the annotation and the subclass override the method, the annotation is gone</li>
+ * <li>Third, most tricky, if the annotation is on superclass not overridden in subclass and annotation is put to some
+ * other method in subclass, the subclass has the annotation twice, first from superclass and second from subclass and
+ * the class should not deploy, i.e. DeploymentException is thrown as stated by WSC-4.8.1, Section 4.8 WebSockets and
+ * Inheritance, WebSocket Specification</li>
  * </ul>
- * This has proven to be incorrectly understood by various implementing teams,
- * but after several discussions, the common agreement is the java se behavior.
+ * This has proven to be incorrectly understood by various implementing teams, but after several discussions, the common
+ * agreement is the java se behavior.
  */
 public class WSCClient extends WebSocketCommonClient {
 
@@ -93,8 +88,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @test_Strategy: The subclass defines its own @OnMessage
      *
-     * Implementations should not deploy Java classes that mistakenly mix Java
-     * inheritance with websocket annotations in these ways.
+     * Implementations should not deploy Java classes that mistakenly mix Java inheritance with websocket annotations in
+     * these ways.
      */
     public void annotationOnMessageIsTwiceTest() throws Fault {
         try {
@@ -118,8 +113,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @test_Strategy: The subclass defines its own @OnOpen
      *
-     * Implementations should not deploy Java classes that mistakenly mix Java
-     * inheritance with websocket annotations in these ways.
+     * Implementations should not deploy Java classes that mistakenly mix Java inheritance with websocket annotations in
+     * these ways.
      */
     public void annotationOnOpenIsTwiceTest() throws Fault {
         try {
@@ -143,8 +138,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @test_Strategy: The subclass defines its own @OnClose
      *
-     * Implementations should not deploy Java classes that mistakenly mix Java
-     * inheritance with websocket annotations in these ways.
+     * Implementations should not deploy Java classes that mistakenly mix Java inheritance with websocket annotations in
+     * these ways.
      */
     public void annotationOnCloseIsTwiceTest() throws Fault {
         try {
@@ -168,8 +163,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @test_Strategy: The subclass defines its own @OnError
      *
-     * Implementations should not deploy Java classes that mistakenly mix Java
-     * inheritance with websocket annotations in these ways.
+     * Implementations should not deploy Java classes that mistakenly mix Java inheritance with websocket annotations in
+     * these ways.
      */
     public void annotationOnErrorIsTwiceTest() throws Fault {
         try {

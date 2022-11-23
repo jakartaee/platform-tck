@@ -47,9 +47,8 @@ public class B implements java.io.Serializable {
     // ===========================================================
     // relationship fields
 
-    @OneToOne(
-            targetEntity = com.sun.ts.tests.jpa.core.entitytest.detach.oneXone.A.class,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH})
+    @OneToOne(targetEntity = com.sun.ts.tests.jpa.core.entitytest.detach.oneXone.A.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REMOVE, CascadeType.REFRESH })
     @JoinColumn(name = "FK_FOR_AEJB_1X1_BI_BTOB")
     protected A a1;
 
@@ -86,8 +85,10 @@ public class B implements java.io.Serializable {
 
     public boolean isA() {
         TestUtil.logTrace("isA");
-        if (getA1() != null) TestUtil.logTrace("Relationship for A is not null...");
-        else TestUtil.logTrace("Relationship for A is null...");
+        if (getA1() != null)
+            TestUtil.logTrace("Relationship for A is not null...");
+        else
+            TestUtil.logTrace("Relationship for A is null...");
         return getA1() != null;
     }
 
@@ -96,7 +97,8 @@ public class B implements java.io.Serializable {
         if (isA()) {
             A a1 = getA1();
             return a1;
-        } else return null;
+        } else
+            return null;
     }
 
     public String getBId() {

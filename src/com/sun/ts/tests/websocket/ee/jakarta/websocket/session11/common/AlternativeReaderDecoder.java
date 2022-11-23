@@ -29,10 +29,12 @@ public class AlternativeReaderDecoder implements Decoder.Text<Reader> {
     public static final String DECODER_SAYS = "Reader decoder";
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 
     @Override
     public Reader decode(String s) throws DecodeException {

@@ -25,9 +25,7 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/binarywilldecode",
-        decoders = {WillDecodeFirstBinaryDecoder.class, WillDecodeSecondBinaryDecoder.class})
+@ServerEndpoint(value = "/binarywilldecode", decoders = { WillDecodeFirstBinaryDecoder.class, WillDecodeSecondBinaryDecoder.class })
 public class WSWillDecodeBinaryDecoderServer {
 
     @OnMessage

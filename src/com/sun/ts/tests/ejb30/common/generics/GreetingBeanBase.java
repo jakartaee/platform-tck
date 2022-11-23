@@ -40,19 +40,16 @@ public abstract class GreetingBeanBase implements RemoteIntGreetingIF, LocalIntG
     /*
      * (non-Javadoc)
      *
-     * @see
-     * com.sun.ts.tests.ejb30.common.generics.ParameterizedIF#parameterizedParam(
-     * java.util.List)
+     * @see com.sun.ts.tests.ejb30.common.generics.ParameterizedIF#parameterizedParam( java.util.List)
      */
     @TransactionAttribute(TransactionAttributeType.MANDATORY)
-    public void parameterizedParam(List<String> ls) {}
+    public void parameterizedParam(List<String> ls) {
+    }
 
     /*
      * (non-Javadoc)
      *
-     * @see
-     * com.sun.ts.tests.ejb30.common.generics.ParameterizedIF#parameterizedReturn(
-     * int)
+     * @see com.sun.ts.tests.ejb30.common.generics.ParameterizedIF#parameterizedReturn( int)
      */
     @TransactionAttribute(TransactionAttributeType.MANDATORY)
     public List<String> parameterizedReturn(int i) {

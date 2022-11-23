@@ -80,14 +80,11 @@ public class dateTimeClient3 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -115,8 +112,8 @@ public class dateTimeClient3 extends ServiceEETest implements Serializable {
                 throw new Fault("Invalid DriverManager Name");
             }
             /*
-             * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery","");
-             * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+             * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+             * sqlp.load(istr);
              */
             sqlp = p;
             msg = new JDBCTestMsg();
@@ -130,9 +127,8 @@ public class dateTimeClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:100
      *
-     * @test_Strategy: Create a Date Object with a long value as an argument. Then
-     * get the String representation of that Date object. Check whether it is same
-     * as equivalent String Value in property file.
+     * @test_Strategy: Create a Date Object with a long value as an argument. Then get the String representation of that
+     * Date object. Check whether it is same as equivalent String Value in property file.
      */
 
     public void testDate01() throws Fault {
@@ -174,9 +170,8 @@ public class dateTimeClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:100
      *
-     * @test_Strategy: Create a Date Object with a long value as an argument. Then
-     * get the String representation of that Date object. Check whether it is same
-     * as equivalent String Value in property file.
+     * @test_Strategy: Create a Date Object with a long value as an argument. Then get the String representation of that
+     * Date object. Check whether it is same as equivalent String Value in property file.
      */
     public void testDate02() throws Fault {
         String sDateLongVal = null;
@@ -219,10 +214,8 @@ public class dateTimeClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:103
      *
-     * @test_Strategy: Create a Date Object with a long value as an argument. Then
-     * get the String representation of that Date object. using the toString()
-     * method.Check whether it is same as equivalent String Value in property
-     * file.
+     * @test_Strategy: Create a Date Object with a long value as an argument. Then get the String representation of that
+     * Date object. using the toString() method.Check whether it is same as equivalent String Value in property file.
      */
     public void testToString01() throws Fault {
         String sDateLongVal = null;
@@ -266,10 +259,8 @@ public class dateTimeClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:103
      *
-     * @test_Strategy: Create a Date Object with a long value as an argument. Then
-     * get the String representation of that Date object. using the toString()
-     * method.Check whether it is same as equivalent String Value in property
-     * file.
+     * @test_Strategy: Create a Date Object with a long value as an argument. Then get the String representation of that
+     * Date object. using the toString() method.Check whether it is same as equivalent String Value in property file.
      */
     public void testToString02() throws Fault {
         String sDateLongVal = null;
@@ -312,9 +303,8 @@ public class dateTimeClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:102
      *
-     * @test_Strategy: Call valueof(String ts) static method in java.sql.Date
-     * class with a String argument to get a Date object Check whether it is same
-     * as Date object obtained from equivalent long value .
+     * @test_Strategy: Call valueof(String ts) static method in java.sql.Date class with a String argument to get a Date
+     * object Check whether it is same as Date object obtained from equivalent long value .
      */
     public void testValueOf01() throws Fault {
         String sDateLongVal = null;
@@ -359,9 +349,8 @@ public class dateTimeClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:102
      *
-     * @test_Strategy: Call valueof(String ts) static method in java.sql.Date
-     * class with a String argument to get a Date object Check whether it is same
-     * as Date object obtained from equivalent long value .
+     * @test_Strategy: Call valueof(String ts) static method in java.sql.Date class with a String argument to get a Date
+     * object Check whether it is same as Date object obtained from equivalent long value .
      */
     public void testValueOf02() throws Fault {
         String sDateLongVal = null;
@@ -408,10 +397,9 @@ public class dateTimeClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:101
      *
-     * @test_Strategy: Create two Date objects with two different long values. Set
-     * the same long value in the second object as used in the first object using
-     * setTime(long) method Check whether both the Date objects are equal using
-     * equals method
+     * @test_Strategy: Create two Date objects with two different long values. Set the same long value in the second object
+     * as used in the first object using setTime(long) method Check whether both the Date objects are equal using equals
+     * method
      */
     public void testSetTime01() throws Fault {
         String sDateLongVal1 = null;
@@ -472,10 +460,9 @@ public class dateTimeClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:101
      *
-     * @test_Strategy: Create two Date objects with two different long values. Set
-     * the same long value in the second object as used in the first object using
-     * setTime(long) method Check whether both the Date objects are equal using
-     * equals method
+     * @test_Strategy: Create two Date objects with two different long values. Set the same long value in the second object
+     * as used in the first object using setTime(long) method Check whether both the Date objects are equal using equals
+     * method
      */
 
     public void testSetTime02() throws Fault {

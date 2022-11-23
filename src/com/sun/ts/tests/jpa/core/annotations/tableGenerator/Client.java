@@ -32,7 +32,8 @@ public class Client extends PMClientBase {
 
     private DataTypes4 d4;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -94,8 +95,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: generatorOnEntityTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:2111; PERSISTENCE:SPEC:2111.1;
-     * PERSISTENCE:SPEC:2113;
+     * @assertion_ids: PERSISTENCE:SPEC:2111; PERSISTENCE:SPEC:2111.1; PERSISTENCE:SPEC:2113;
      *
      * @test_Strategy: use a generator specified on an entity
      */
@@ -122,14 +122,14 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("generatorOnEntityTest failed");
+        if (!pass)
+            throw new Fault("generatorOnEntityTest failed");
     }
 
     /*
      * @testName: generatorOnFieldTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:2111; PERSISTENCE:SPEC:2111.2;
-     * PERSISTENCE:SPEC:2113;
+     * @assertion_ids: PERSISTENCE:SPEC:2111; PERSISTENCE:SPEC:2111.2; PERSISTENCE:SPEC:2113;
      *
      * @test_Strategy: use a generator specified on a field
      */
@@ -156,14 +156,14 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("generatorOnFieldTest failed");
+        if (!pass)
+            throw new Fault("generatorOnFieldTest failed");
     }
 
     /*
      * @testName: generatorOnPropertyTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:2111; PERSISTENCE:SPEC:2111.3;
-     * PERSISTENCE:SPEC:2113;
+     * @assertion_ids: PERSISTENCE:SPEC:2111; PERSISTENCE:SPEC:2111.3; PERSISTENCE:SPEC:2113;
      *
      * @test_Strategy: use a generator specified on a property
      */
@@ -190,7 +190,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("generatorOnPropertyTest failed");
+        if (!pass)
+            throw new Fault("generatorOnPropertyTest failed");
     }
 
     /*
@@ -223,7 +224,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("generatorGlobalTest failed");
+        if (!pass)
+            throw new Fault("generatorGlobalTest failed");
     }
 
     // Methods used for Tests

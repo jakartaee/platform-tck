@@ -22,8 +22,7 @@ import com.sun.ts.lib.deliverable.PropertyNotSetException;
 import java.util.Properties;
 
 /**
- * This class serves as a well known place for harness, util, and porting
- * classes to retrieve property values.
+ * This class serves as a well known place for harness, util, and porting classes to retrieve property values.
  *
  * @author Kyle Grucci
  */
@@ -103,15 +102,14 @@ public class CTSPropertyManager extends AbstractPropertyManager {
 
     private String password2;
 
-    private CTSPropertyManager() {}
+    private CTSPropertyManager() {
+    }
 
     /**
-     * This method returns the singleton instance of TSPropertyManager which
-     * provides access to all ts.jte properties. This is only called once by the
-     * test harness.
+     * This method returns the singleton instance of TSPropertyManager which provides access to all ts.jte properties. This
+     * is only called once by the test harness.
      *
-     * @param env
-     *          - TestEnvironment object from JavaTest
+     * @param env - TestEnvironment object from JavaTest
      * @return TSPropertyManager - singleton property manager object
      */
     public static final CTSPropertyManager getCTSPropertyManager(TestEnvironment env) throws PropertyNotSetException {
@@ -121,12 +119,10 @@ public class CTSPropertyManager extends AbstractPropertyManager {
     }
 
     /**
-     * This method returns the singleton instance of CTSPropertyManager which
-     * provides access to all ts.jte properties. This is only called by the init()
-     * method in ManualDeployment.java
+     * This method returns the singleton instance of CTSPropertyManager which provides access to all ts.jte properties. This
+     * is only called by the init() method in ManualDeployment.java
      *
-     * @param p
-     *          - Properties object from JavaTest
+     * @param p - Properties object from JavaTest
      * @return CTSPropertyManager - singleton property manager object
      */
     public static final CTSPropertyManager getCTSPropertyManager(Properties p) throws PropertyNotSetException {
@@ -266,11 +262,9 @@ public class CTSPropertyManager extends AbstractPropertyManager {
     }
 
     /**
-     * This method is called by the test harness to retrieve all properties needed
-     * by a particular test.
+     * This method is called by the test harness to retrieve all properties needed by a particular test.
      *
-     * @param sPropKeys
-     *          - Properties to retrieve
+     * @param sPropKeys - Properties to retrieve
      * @return Properties - property/value pairs
      */
     public Properties getTestSpecificProperties(String[] sPropKeys) throws PropertyNotSetException {

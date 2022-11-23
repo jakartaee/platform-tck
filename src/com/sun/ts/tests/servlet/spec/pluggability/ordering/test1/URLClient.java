@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String[] args, PrintWriter out, PrintWriter err) {
         setContextRoot("/servlet_spec_ordering1_web");
@@ -51,15 +49,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: initParamTest
      *
-     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:241; Servlet:SPEC:242;
-     * Servlet:SPEC:244; Servlet:SPEC:245; Servlet:SPEC:258.1;
-     * Servlet:SPEC:258.5.1; Servlet:SPEC:258.6.1; Servlet:SPEC:258.7.1;
+     * @assertion_ids: Servlet:SPEC:232; Servlet:SPEC:241; Servlet:SPEC:242; Servlet:SPEC:244; Servlet:SPEC:245;
+     * Servlet:SPEC:258.1; Servlet:SPEC:258.5.1; Servlet:SPEC:258.6.1; Servlet:SPEC:258.7.1;
      *
-     * @test_Strategy: 1. Define servlet TestServlet4 in web.xml as well as three
-     * web-fragment.xml; 2. Send request to /TestServlet4, verify TestServlet4 is
-     * invoked 3. Also verify that <init-param> defined in web.xml and all
-     * web-fragment.xml are considered, and the one defined in web.xml take
-     * precedence.
+     * @test_Strategy: 1. Define servlet TestServlet4 in web.xml as well as three web-fragment.xml; 2. Send request to
+     * /TestServlet4, verify TestServlet4 is invoked 3. Also verify that <init-param> defined in web.xml and all
+     * web-fragment.xml are considered, and the one defined in web.xml take precedence.
      */
     public void initParamTest() throws Fault {
         TEST_PROPS.setProperty(

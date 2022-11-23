@@ -34,4 +34,5 @@ import jakarta.ejb.StatefulTimeout;
 @Local(StatefulTimeoutIF.class)
 @Remote(StatefulTimeoutRemoteIF.class)
 @LocalBean
-public class DefaultUnitBean extends StatefulTimeoutBeanBase {}
+public class DefaultUnitBean extends StatefulTimeoutBeanBase {
+}

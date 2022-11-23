@@ -23,9 +23,7 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/subprotocoled",
-        subprotocols = {"def", "abc", "ghi"})
+@ServerEndpoint(value = "/subprotocoled", subprotocols = { "def", "abc", "ghi" })
 public class WSSubprotocoledServer extends WSAbstractServer {
 
     @OnMessage

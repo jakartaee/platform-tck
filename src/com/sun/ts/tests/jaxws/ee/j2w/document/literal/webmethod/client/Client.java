@@ -131,8 +131,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -168,14 +170,16 @@ public class Client extends ServiceEETest {
 
     private void assertEquals(String s1, String s2, String m) throws Fault {
         TestUtil.logMsg("assert method exists for " + m);
-        if (!s1.equals(s2)) throw new Fault("" + m);
-        else TestUtil.logMsg("method exists for " + m);
+        if (!s1.equals(s2))
+            throw new Fault("" + m);
+        else
+            TestUtil.logMsg("method exists for " + m);
     }
 
     private void assertMethodNonExistant(String m) throws Fault {
         TestUtil.logMsg("assert method does not exist for " + m);
         try {
-            port.getClass().getMethod(m, new Class[] {String.class});
+            port.getClass().getMethod(m, new Class[] { String.class });
             throw new Fault("" + m + " should not be a Web Method");
         } catch (NoSuchMethodException e) {
             TestUtil.logMsg("method does not exist for " + m);
@@ -185,8 +189,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: webMethodTestMapping
      *
-     * @assertion_ids: JAXWS:SPEC:3010; JAXWS:SPEC:3011; JAXWS:SPEC:3006;
-     * JAXWS:SPEC:3036;
+     * @assertion_ids: JAXWS:SPEC:3010; JAXWS:SPEC:3011; JAXWS:SPEC:3006; JAXWS:SPEC:3036;
      *
      * @test_Strategy:
      *

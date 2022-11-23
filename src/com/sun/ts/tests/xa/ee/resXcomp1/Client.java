@@ -128,9 +128,8 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:68
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the TxBean (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a commit to a single table.
      *
@@ -164,8 +163,10 @@ public class Client extends ServiceEETest implements Serializable {
             ut.begin();
             beanRef.dbConnect(tName1);
             TestUtil.logMsg("Inserting 2 new rows");
-            if (beanRef.insert(tName1, tSize + 1)) tSize++;
-            if (beanRef.insert(tName1, tSize + 1)) tSize++;
+            if (beanRef.insert(tName1, tSize + 1))
+                tSize++;
+            if (beanRef.insert(tName1, tSize + 1))
+                tSize++;
             TestUtil.logMsg("Deleting a row");
             beanRef.delete(tName1, tRng, tRng);
             beanRef.dbUnConnect(tName1);
@@ -177,12 +178,15 @@ public class Client extends ServiceEETest implements Serializable {
             dbResults = beanRef.getResults(tName1);
 
             TestUtil.logMsg("Verifying the test results");
-            if (!dbResults.contains(new Integer(tRng))) b1 = true;
+            if (!dbResults.contains(new Integer(tRng)))
+                b1 = true;
 
             for (int i = 1; i <= tSize; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains(new Integer(i))) b2 = true;
+                    if (dbResults.contains(new Integer(i)))
+                        b2 = true;
                     else {
                         b2 = false;
                         break;
@@ -192,7 +196,8 @@ public class Client extends ServiceEETest implements Serializable {
             beanRef.dbUnConnect(tName1);
             ut.commit();
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
             //
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -210,7 +215,8 @@ public class Client extends ServiceEETest implements Serializable {
             } catch (Exception e) {
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
@@ -219,9 +225,8 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:68
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the TxBean (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a rollback to a single table.
      *
@@ -257,8 +262,10 @@ public class Client extends ServiceEETest implements Serializable {
             ut.begin();
             beanRef.dbConnect(tName1);
             TestUtil.logMsg("Inserting 2 new rows");
-            if (beanRef.insert(tName1, tSize + 1)) tSize++;
-            if (beanRef.insert(tName1, tSize + 1)) tSize++;
+            if (beanRef.insert(tName1, tSize + 1))
+                tSize++;
+            if (beanRef.insert(tName1, tSize + 1))
+                tSize++;
             TestUtil.logMsg("Deleting a row");
             beanRef.delete(tName1, tRngFrom, tRngTo);
             beanRef.dbUnConnect(tName1);
@@ -289,10 +296,13 @@ public class Client extends ServiceEETest implements Serializable {
             beanRef.dbUnConnect(tName1);
             ut.commit();
 
-            if (b1) TestUtil.logTrace("b1 true");
-            if (b2) TestUtil.logTrace("b2 true");
+            if (b1)
+                TestUtil.logTrace("b1 true");
+            if (b2)
+                TestUtil.logTrace("b2 true");
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -310,7 +320,8 @@ public class Client extends ServiceEETest implements Serializable {
             } catch (Exception e) {
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
@@ -319,9 +330,8 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:74
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the TxBean (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a commit to a single table.
      *
@@ -355,8 +365,10 @@ public class Client extends ServiceEETest implements Serializable {
             ut.begin();
             beanRef.dbConnect("EIS");
             TestUtil.logMsg("Inserting 2 new rows");
-            if (beanRef.insert("EIS", tSize + 1)) tSize++;
-            if (beanRef.insert("EIS", tSize + 1)) tSize++;
+            if (beanRef.insert("EIS", tSize + 1))
+                tSize++;
+            if (beanRef.insert("EIS", tSize + 1))
+                tSize++;
             TestUtil.logMsg("Deleting a row");
             beanRef.delete("EIS", tRng, tRng);
             beanRef.dbUnConnect("EIS");
@@ -368,12 +380,15 @@ public class Client extends ServiceEETest implements Serializable {
             dbResults = beanRef.getResults("EIS");
 
             TestUtil.logMsg("Verifying the test results");
-            if (!dbResults.contains((new Integer(tRng)).toString())) b1 = true;
+            if (!dbResults.contains((new Integer(tRng)).toString()))
+                b1 = true;
 
             for (int i = 1; i <= tSize; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains((new Integer(i)).toString())) b2 = true;
+                    if (dbResults.contains((new Integer(i)).toString()))
+                        b2 = true;
                     else {
                         b2 = false;
                         break;
@@ -383,7 +398,8 @@ public class Client extends ServiceEETest implements Serializable {
             beanRef.dbUnConnect("EIS");
             ut.commit();
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
             //
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -401,7 +417,8 @@ public class Client extends ServiceEETest implements Serializable {
             } catch (Exception e) {
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
@@ -410,9 +427,8 @@ public class Client extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:74
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the TxBean (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the TxBean (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a rollback to a single table.
      *
@@ -448,8 +464,10 @@ public class Client extends ServiceEETest implements Serializable {
             ut.begin();
             beanRef.dbConnect("EIS");
             TestUtil.logMsg("Inserting 2 new rows");
-            if (beanRef.insert("EIS", tSize + 1)) tSize++;
-            if (beanRef.insert("EIS", tSize + 1)) tSize++;
+            if (beanRef.insert("EIS", tSize + 1))
+                tSize++;
+            if (beanRef.insert("EIS", tSize + 1))
+                tSize++;
             TestUtil.logMsg("Deleting a row");
             beanRef.delete("EIS", tRngFrom, tRngTo);
             beanRef.dbUnConnect("EIS");
@@ -480,10 +498,13 @@ public class Client extends ServiceEETest implements Serializable {
                 }
             }
 
-            if (b1) TestUtil.logTrace("b1 true");
-            if (b2) TestUtil.logTrace("b2 true");
+            if (b1)
+                TestUtil.logTrace("b1 true");
+            if (b2)
+                TestUtil.logTrace("b2 true");
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -501,7 +522,8 @@ public class Client extends ServiceEETest implements Serializable {
             } catch (Exception e) {
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 }

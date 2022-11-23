@@ -62,8 +62,7 @@ public abstract class SessionSyncBeanBase implements SessionSyncIF {
     /*
      * (non-Javadoc)
      *
-     * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF#
-     * getHistory()
+     * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF# getHistory()
      */
     @Interceptors(Interceptor1.class)
     public List<String> getHistory() {
@@ -74,8 +73,7 @@ public abstract class SessionSyncBeanBase implements SessionSyncIF {
     /*
      * (non-Javadoc)
      *
-     * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF#
-     * resetHistory()
+     * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF# resetHistory()
      */
     public void resetHistory() {
         history.clear();
@@ -84,8 +82,7 @@ public abstract class SessionSyncBeanBase implements SessionSyncIF {
     /*
      * (non-Javadoc)
      *
-     * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF#
-     * addToHistory(java.lang.String)
+     * @see com.sun.ts.tests.ejb30.lite.tx.cm.stateful.sessionsync.SessionSyncIF# addToHistory(java.lang.String)
      */
     public void addToHistory(String s) {
         history.add(s);

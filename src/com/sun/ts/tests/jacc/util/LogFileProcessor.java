@@ -51,11 +51,11 @@ import org.w3c.dom.NodeList;
  *
  * 1) Fetches log records from JACCLog.txt
  *
- * 2) Checks for the existance of search string in the log for example to verify
- * whether server log contains a string "Java EE rocks" use the following code
+ * 2) Checks for the existance of search string in the log for example to verify whether server log contains a string
+ * "Java EE rocks" use the following code
  *
- * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean
- * contains = logProcessor.verifyLogContains("Java EE rocks");
+ * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean contains =
+ * logProcessor.verifyLogContains("Java EE rocks");
  *
  * where "properties" contains the following key value pair 1) log.file.location
  *
@@ -80,7 +80,8 @@ public class LogFileProcessor {
 
     private Permissions appSpecificAddToRolePermissions = new Permissions();
 
-    public LogFileProcessor() {}
+    public LogFileProcessor() {
+    }
 
     public LogFileProcessor(Properties props) {
         setup(props);
@@ -131,12 +132,10 @@ public class LogFileProcessor {
     }
 
     /*
-     * This is convenience method for pulling out a list of permissions from
-     * records that are identified with passed in that match all of the following:
-     * - permission category (e.g. "excluded", "unchecked", "addToRole") -
-     * permission type ("WebResourcePermission", etc) - with an appcontext that
-     * contains the passed in appContext value. If you want a complete matching
-     * appContext, then pass the whole thing in.
+     * This is convenience method for pulling out a list of permissions from records that are identified with passed in that
+     * match all of the following: - permission category (e.g. "excluded", "unchecked", "addToRole") - permission type
+     * ("WebResourcePermission", etc) - with an appcontext that contains the passed in appContext value. If you want a
+     * complete matching appContext, then pass the whole thing in.
      */
     public Permissions getAppSpecificPermissions(String permCat, String permType, String appContext) {
         Permissions permsToReturn = new Permissions();
@@ -268,8 +267,7 @@ public class LogFileProcessor {
 
                     // Using the application names, isolate the
                     // application specific logs from the rest of the logs
-                    Collection newAppSpecificRecordCollection =
-                            getAppSpecificRecordCollection(applicationName, linkedApplicationNames);
+                    Collection newAppSpecificRecordCollection = getAppSpecificRecordCollection(applicationName, linkedApplicationNames);
                     // printCollection(newAppSpecificRecordCollection);
 
                 }
@@ -544,14 +542,14 @@ public class LogFileProcessor {
         Permissions expectedPermissionCollection = new Permissions();
 
         if (permissionType.equals("WebResourcePermission")) {
-            for (Enumeration en = suppliedPermCollection.elements(); en.hasMoreElements(); ) {
+            for (Enumeration en = suppliedPermCollection.elements(); en.hasMoreElements();) {
                 p = (Permission) en.nextElement();
                 if (p instanceof WebResourcePermission) {
                     expectedPermissionCollection.add(p);
                 }
             }
         } else if (permissionType.equals("WebUserDataPermission")) {
-            for (Enumeration en = suppliedPermCollection.elements(); en.hasMoreElements(); ) {
+            for (Enumeration en = suppliedPermCollection.elements(); en.hasMoreElements();) {
                 p = (Permission) en.nextElement();
 
                 if (p instanceof WebUserDataPermission) {
@@ -559,21 +557,21 @@ public class LogFileProcessor {
                 }
             }
         } else if (permissionType.equals("WebRoleRefPermission")) {
-            for (Enumeration en = suppliedPermCollection.elements(); en.hasMoreElements(); ) {
+            for (Enumeration en = suppliedPermCollection.elements(); en.hasMoreElements();) {
                 p = (Permission) en.nextElement();
                 if (p instanceof WebRoleRefPermission) {
                     expectedPermissionCollection.add(p);
                 }
             }
         } else if (permissionType.equals("EJBMethodPermission")) {
-            for (Enumeration en = suppliedPermCollection.elements(); en.hasMoreElements(); ) {
+            for (Enumeration en = suppliedPermCollection.elements(); en.hasMoreElements();) {
                 p = (Permission) en.nextElement();
                 if (p instanceof EJBMethodPermission) {
                     expectedPermissionCollection.add(p);
                 }
             }
         } else if (permissionType.equals("EJBRoleRefPermission")) {
-            for (Enumeration en = suppliedPermCollection.elements(); en.hasMoreElements(); ) {
+            for (Enumeration en = suppliedPermCollection.elements(); en.hasMoreElements();) {
                 p = (Permission) en.nextElement();
                 if (p instanceof EJBRoleRefPermission) {
                     expectedPermissionCollection.add(p);
@@ -627,11 +625,11 @@ public class LogFileProcessor {
     }
 
     /**
-     * Checks for the existance of search string in the log. For example to verify
-     * whether server log contains a string "Java EE rocks" use the following code
+     * Checks for the existance of search string in the log. For example to verify whether server log contains a string
+     * "Java EE rocks" use the following code
      *
-     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean
-     * contains = logProcessor.verifyLogContains("Java EE rocks");
+     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean contains =
+     * logProcessor.verifyLogContains("Java EE rocks");
      *
      * where "properties" contains the key value pair for 1) log.file.location
      */
@@ -713,17 +711,14 @@ public class LogFileProcessor {
     }
 
     /**
-     * Checks for the existance of one of the search string(from a given String
-     * array.
+     * Checks for the existance of one of the search string(from a given String array.
      *
-     * For example to verify whether server log contains one of the following
-     * String String[] arr ={"aaa", "bbb", "ccc"};
+     * For example to verify whether server log contains one of the following String String[] arr ={"aaa", "bbb", "ccc"};
      *
-     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean
-     * contains = logProcessor.verifyLogContainsOneOf(arr);
+     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean contains =
+     * logProcessor.verifyLogContainsOneOf(arr);
      *
-     * This method will return true if the log file contains one of the specified
-     * String (say "aaa" )
+     * This method will return true if the log file contains one of the specified String (say "aaa" )
      *
      * where "properties" contains the key value pair for 1) log.file.location
      */
@@ -742,8 +737,7 @@ public class LogFileProcessor {
         int numberOfArgs = args.length;
 
         Iterator iterator = recordCollection.iterator();
-        searchLabel:
-        while (iterator.hasNext()) {
+        searchLabel: while (iterator.hasNext()) {
             // loop thru all message tag/entries in the log file
             recordEntry = (LogRecordEntry) iterator.next();
             String message = recordEntry.getMessage();
@@ -775,26 +769,22 @@ public class LogFileProcessor {
     }
 
     /**
-     * This method looks for the presence of the given substring (from the array
-     * of strings "args") in the serverlog, which starts with the given
-     * "srchStrPrefix" search-string-prefix.
+     * This method looks for the presence of the given substring (from the array of strings "args") in the serverlog, which
+     * starts with the given "srchStrPrefix" search-string-prefix.
      *
      *
-     * For example to verify whether server log contains one of the following
-     * Strings in a server log with appContextId as the message prefix we can
-     * issue the following command
+     * For example to verify whether server log contains one of the following Strings in a server log with appContextId as
+     * the message prefix we can issue the following command
      *
      * String[] arr ={"aaa", "bbb", "ccc"}; String srchStrPrefix ="appContextId";
      *
-     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean
-     * contains = logProcessor.verifyLogContainsOneOf(arr);
+     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean contains =
+     * logProcessor.verifyLogContainsOneOf(arr);
      *
-     * "appContextId= xxxx aaa yyyyyyyyyyyyyyyyy" "appContextId= yyyy bbb
-     * xxxxxxxxxxxxxxxxx"
+     * "appContextId= xxxx aaa yyyyyyyyyyyyyyyyy" "appContextId= yyyy bbb xxxxxxxxxxxxxxxxx"
      *
-     * This method will return true if the log file contains one of the specified
-     * String (say "aaa" ) in the message log with "appContextId" as its message
-     * prefix.
+     * This method will return true if the log file contains one of the specified String (say "aaa" ) in the message log
+     * with "appContextId" as its message prefix.
      *
      * where "properties" contains the key value pair for 1) log.file.location
      */
@@ -813,8 +803,7 @@ public class LogFileProcessor {
         int numberOfArgs = args.length;
 
         Iterator iterator = recordCollection.iterator();
-        searchLabel:
-        while (iterator.hasNext()) {
+        searchLabel: while (iterator.hasNext()) {
             // loop thru all message tag/entries in the log file
             recordEntry = (LogRecordEntry) iterator.next();
             String message = recordEntry.getMessage();
@@ -846,14 +835,14 @@ public class LogFileProcessor {
     }
 
     /**
-     * verifyLogImplies() takes the individual expectedPermissions and and checks
-     * whether the generatedPermissions.implies() is true.
+     * verifyLogImplies() takes the individual expectedPermissions and and checks whether the generatedPermissions.implies()
+     * is true.
      */
     public boolean verifyLogImplies(Permissions expectedPermissions, Permissions generatedPermissions) {
         boolean verified = false;
         Permission p;
 
-        for (Enumeration en = expectedPermissions.elements(); en.hasMoreElements(); ) {
+        for (Enumeration en = expectedPermissions.elements(); en.hasMoreElements();) {
             p = (Permission) en.nextElement();
 
             verified = generatedPermissions.implies(p);
@@ -874,7 +863,7 @@ public class LogFileProcessor {
 
         // following code compares each generatedPermission with
         // expectedPermissionCollection and lists the extra permissions
-        for (Enumeration en = generatedPermissions.elements(); en.hasMoreElements(); ) {
+        for (Enumeration en = generatedPermissions.elements(); en.hasMoreElements();) {
             p = (Permission) en.nextElement();
             verified = expectedPermissions.implies(p);
             if (!verified) {
@@ -901,7 +890,7 @@ public class LogFileProcessor {
     // Print heterogeneous collection of permissions
     public void printPermissions(Permissions perms) {
         int count = 0;
-        for (Enumeration en = perms.elements(); en.hasMoreElements(); ) {
+        for (Enumeration en = perms.elements(); en.hasMoreElements();) {
             count++;
             Permission p = (Permission) en.nextElement();
             TestUtil.logMsg("-------------");
@@ -915,7 +904,7 @@ public class LogFileProcessor {
         String permissionType = null;
         int count = 0;
 
-        for (Enumeration en = permCollection.elements(); en.hasMoreElements(); ) {
+        for (Enumeration en = permCollection.elements(); en.hasMoreElements();) {
             count++;
 
             Permission p = (Permission) en.nextElement();
@@ -1070,11 +1059,11 @@ public class LogFileProcessor {
     /**
      * This method retrieves the appId records.
      *
-     * i.e if (log records starts with "appId") then add the records to
-     * appIdRecordCollection else add the records to recordCollection
+     * i.e if (log records starts with "appId") then add the records to appIdRecordCollection else add the records to
+     * recordCollection
      *
-     * Note: In the process of locating appId records the remaining records are
-     * also isolated and stored in a collection called "recordCollection"
+     * Note: In the process of locating appId records the remaining records are also isolated and stored in a collection
+     * called "recordCollection"
      */
     public Collection getAppIdRecordCollection(String queryParams, NodeList nodes) throws Exception {
         String nodeName;
@@ -1280,10 +1269,9 @@ public class LogFileProcessor {
     }
 
     /*
-     * This returns the collection of records that have a message field that
-     * contains the keyword "MSG_TAG". This is a generic flag used to put a phrase
-     * or info into a records message field so that we can easily search on those
-     * MSG_TAG fields later on.
+     * This returns the collection of records that have a message field that contains the keyword "MSG_TAG". This is a
+     * generic flag used to put a phrase or info into a records message field so that we can easily search on those MSG_TAG
+     * fields later on.
      */
     public Collection<LogRecordEntry> getMsgTagRecordCollection() {
         LogRecordEntry recordEntry = null;
@@ -1310,9 +1298,8 @@ public class LogFileProcessor {
     }
 
     /*
-     * This method reads all non-appId records from the record collection and
-     * isolates current appSpecific records from the rest using the given
-     * applicationName and the linkedApplicationNames.
+     * This method reads all non-appId records from the record collection and isolates current appSpecific records from the
+     * rest using the given applicationName and the linkedApplicationNames.
      */
     public Collection getAppSpecificRecordCollection(String applicationName, Vector linkedApplicationNames) {
         LogRecordEntry recordEntry = null;
@@ -1336,7 +1323,7 @@ public class LogFileProcessor {
         if (linkedApplicationNames != null) {
             // retrieve all the records associated with
             // linked applications.
-            for (Enumeration appEnum = linkedApplicationNames.elements(); appEnum.hasMoreElements(); ) {
+            for (Enumeration appEnum = linkedApplicationNames.elements(); appEnum.hasMoreElements();) {
                 applicationName = (String) appEnum.nextElement();
 
                 iterator = this.recordCollection.iterator();
@@ -1364,7 +1351,7 @@ public class LogFileProcessor {
 
         TestUtil.logMsg("unStuffData called with:  " + inputStr);
 
-        for (int i = 0, j = 0; i < str.length; ) {
+        for (int i = 0, j = 0; i < str.length;) {
 
             int a = Character.getNumericValue(str[i]);
 

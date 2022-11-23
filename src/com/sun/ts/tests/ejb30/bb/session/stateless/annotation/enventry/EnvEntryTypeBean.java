@@ -31,36 +31,38 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "EnvEntryTypeBean")
-@Remote({EnvEntryIF.class})
+@Remote({ EnvEntryIF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Resources({
-    @Resource(name = "myString", type = String.class, description = "<env-entry> string"),
-    @Resource(name = "myChar", type = char.class, description = "<env-entry> Character"),
-    @Resource(name = "myInt", type = int.class, description = "<env-entry> Integer"),
-    @Resource(name = "myBoolean", type = boolean.class, description = "<env-entry> Boolean"),
-    @Resource(name = "myDouble", type = double.class, description = "<env-entry> Double"),
-    @Resource(name = "myByte", type = byte.class, description = "<env-entry> Byte"),
-    @Resource(name = "myShort", type = short.class, description = "<env-entry> Short"),
-    @Resource(name = "myLong", type = long.class, description = "<env-entry> Long"),
-    @Resource(name = "myFloat", type = float.class, description = "<env-entry> Float"),
-    @Resource(name = "a/a/a/myString", type = String.class, description = "<env-entry> string"),
-    @Resource(name = "a/a/a/myChar", type = char.class, description = "<env-entry> Character"),
-    @Resource(name = "a/a/a/myInt", type = int.class, description = "<env-entry> Integer"),
-    @Resource(name = "a/a/a/myBoolean", type = boolean.class, description = "<env-entry> Boolean"),
-    @Resource(name = "a/a/a/myDouble", type = double.class, description = "<env-entry> Double"),
-    @Resource(name = "a/a/a/myByte", type = byte.class, description = "<env-entry> Byte"),
-    @Resource(name = "a/a/a/myShort", type = short.class, description = "<env-entry> Short"),
-    @Resource(name = "a/a/a/myLong", type = long.class, description = "<env-entry> Long"),
-    @Resource(name = "a/a/a/myFloat", type = float.class, description = "<env-entry> Float")
+        @Resource(name = "myString", type = String.class, description = "<env-entry> string"),
+        @Resource(name = "myChar", type = char.class, description = "<env-entry> Character"),
+        @Resource(name = "myInt", type = int.class, description = "<env-entry> Integer"),
+        @Resource(name = "myBoolean", type = boolean.class, description = "<env-entry> Boolean"),
+        @Resource(name = "myDouble", type = double.class, description = "<env-entry> Double"),
+        @Resource(name = "myByte", type = byte.class, description = "<env-entry> Byte"),
+        @Resource(name = "myShort", type = short.class, description = "<env-entry> Short"),
+        @Resource(name = "myLong", type = long.class, description = "<env-entry> Long"),
+        @Resource(name = "myFloat", type = float.class, description = "<env-entry> Float"),
+        @Resource(name = "a/a/a/myString", type = String.class, description = "<env-entry> string"),
+        @Resource(name = "a/a/a/myChar", type = char.class, description = "<env-entry> Character"),
+        @Resource(name = "a/a/a/myInt", type = int.class, description = "<env-entry> Integer"),
+        @Resource(name = "a/a/a/myBoolean", type = boolean.class, description = "<env-entry> Boolean"),
+        @Resource(name = "a/a/a/myDouble", type = double.class, description = "<env-entry> Double"),
+        @Resource(name = "a/a/a/myByte", type = byte.class, description = "<env-entry> Byte"),
+        @Resource(name = "a/a/a/myShort", type = short.class, description = "<env-entry> Short"),
+        @Resource(name = "a/a/a/myLong", type = long.class, description = "<env-entry> Long"),
+        @Resource(name = "a/a/a/myFloat", type = float.class, description = "<env-entry> Float")
 })
 public class EnvEntryTypeBean extends EnvEntryBeanBase implements EnvEntryIF {
 
     @Resource(name = "sessionContext")
     private SessionContext sessionContext;
 
-    public EnvEntryTypeBean() {}
+    public EnvEntryTypeBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected jakarta.ejb.EJBContext getEJBContext() {
         return sessionContext;

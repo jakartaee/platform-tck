@@ -47,7 +47,8 @@ public class SerialTestMessageListenerImpl implements jakarta.jms.MessageListene
             } else {
 
                 // wait to force next onMessage() to wait
-                for (int i = 0; i < 10000; i++) {}
+                for (int i = 0; i < 10000; i++) {
+                }
             }
         } catch (Exception e) {
             TestUtil.printStackTrace(e);

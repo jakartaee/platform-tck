@@ -28,5 +28,6 @@ import java.lang.annotation.Target;
 
 @Qualifier
 @Retention(RUNTIME)
-@Target({TYPE, METHOD, FIELD, PARAMETER})
-public @interface TwoManagedQualifier {}
+@Target({ TYPE, METHOD, FIELD, PARAMETER })
+public @interface TwoManagedQualifier {
+}

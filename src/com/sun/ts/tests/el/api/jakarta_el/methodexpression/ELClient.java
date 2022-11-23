@@ -64,9 +64,8 @@ public class ELClient extends ServiceEETest {
      * @testName: positiveMethodExpressionTest
      *
      * @assertion_ids: EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:58; EL:JAVADOC:60
-     * @test_Strategy: Validate the behavior of MethodExpression API
-     *                 MethodExpression.getMethodInfo() MethodExpression.invoke()
-     *                 Expression.isLiteralText() Expression.getExpressionString()
+     * @test_Strategy: Validate the behavior of MethodExpression API MethodExpression.getMethodInfo()
+     * MethodExpression.invoke() Expression.isLiteralText() Expression.getExpressionString()
      */
     public void positiveMethodExpressionTest() throws Fault {
 
@@ -81,16 +80,16 @@ public class ELClient extends ServiceEETest {
             ELContext context = simpleContext.getELContext();
 
             // case 1: non-null return value
-            Object[] params1 = new Object[] {"new member"};
-            Class<?>[] paramTypes1 = {Object.class};
+            Object[] params1 = new Object[] { "new member" };
+            Class<?>[] paramTypes1 = { Object.class };
             String exprStr1 = "#{vect.add}";
 
             MethodExpression mexp1 = expFactory.createMethodExpression(context, exprStr1, boolean.class, paramTypes1);
             pass1 = ExpressionTest.testMethodExpression(mexp1, context, exprStr1, params1, Boolean.TRUE, false, buf);
 
             // case 2: null return value
-            Object[] params2 = new Object[] {Integer.valueOf(0), "new member"};
-            Class<?>[] paramTypes2 = {int.class, Object.class};
+            Object[] params2 = new Object[] { Integer.valueOf(0), "new member" };
+            Class<?>[] paramTypes2 = { int.class, Object.class };
             String exprStr2 = "#{vect.add}";
 
             MethodExpression mexp2 = expFactory.createMethodExpression(context, exprStr2, null, paramTypes2);
@@ -116,19 +115,18 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!(pass1 && pass2 && pass3 && pass4)) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!(pass1 && pass2 && pass3 && pass4))
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
     }
 
     /**
      * @testName: negativeMethodExpressionTest
      *
-     * @assertion_ids: EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:302;
-     *                 EL:JAVADOC:306; EL:JAVADOC:303; EL:JAVADOC:307;
-     *                 EL:JAVADOC:309; EL:JAVADOC:310; EL:JAVADOC:304;
-     *                 EL:JAVADOC:308
+     * @assertion_ids: EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:302; EL:JAVADOC:306; EL:JAVADOC:303; EL:JAVADOC:307;
+     * EL:JAVADOC:309; EL:JAVADOC:310; EL:JAVADOC:304; EL:JAVADOC:308
      *
-     * @test_Strategy: Validate the behavior of MethodExpression API
-     *                 MethodExpression.getMethodInfo() MethodExpression.invoke()
+     * @test_Strategy: Validate the behavior of MethodExpression API MethodExpression.getMethodInfo()
+     * MethodExpression.invoke()
      */
     public void negativeMethodExpressionTest() throws Fault {
 
@@ -139,8 +137,8 @@ public class ELClient extends ServiceEETest {
         SimpleELContext simpleContext = new SimpleELContext(ResolverType.VECT_ELRESOLVER);
         ELContext context = simpleContext.getELContext();
 
-        Object[] params = new Object[] {"new member"};
-        Class<?>[] paramTypes = {Object.class};
+        Object[] params = new Object[] { "new member" };
+        Class<?>[] paramTypes = { Object.class };
 
         // case 1: NullPointerException. Null ELContext passed to methods.
         String exprStr1 = "#{vect.add}";
@@ -332,7 +330,8 @@ public class ELClient extends ServiceEETest {
             e.printStackTrace();
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL);
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL);
     }
 
     /*
@@ -340,13 +339,13 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:44
      *
-     * @test_Strategy: Validate that MethodExpression implements Serializable and
-     * that a MethodExpression can be manually serialized and deserialized.
+     * @test_Strategy: Validate that MethodExpression implements Serializable and that a MethodExpression can be manually
+     * serialized and deserialized.
      */
     public void methodExpressionSerializableTest() throws Fault {
 
         StringBuffer buf = new StringBuffer();
-        Class<?>[] paramTypes = {Object.class};
+        Class<?>[] paramTypes = { Object.class };
         String exprStr = "#{vect.add}";
 
         boolean pass = true;
@@ -361,8 +360,7 @@ public class ELClient extends ServiceEETest {
             TestUtil.logTrace("Eval Method Expression For Testing: " + evalmexp.toString() + NL);
 
             // Setup literal-expression
-            MethodExpression literalmexp =
-                    expFactory.createMethodExpression(context, "vect.add", Boolean.class, paramTypes);
+            MethodExpression literalmexp = expFactory.createMethodExpression(context, "vect.add", Boolean.class, paramTypes);
             TestUtil.logTrace("Literal Method Expression For Testing: " + literalmexp.toString() + NL);
 
             // Test both eval & literal expressions.
@@ -375,8 +373,10 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
-        else TestUtil.logTrace(buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        else
+            TestUtil.logTrace(buf.toString());
     }
 
     /*
@@ -384,9 +384,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:80
      *
-     * @test_Strategy: Validate that MethodExpression identifies the correct
-     * method for the given parameters and that exact type matches are always
-     * preferred.
+     * @test_Strategy: Validate that MethodExpression identifies the correct method for the given parameters and that exact
+     * type matches are always preferred.
      */
     public void methodExpressionMatchingExactPreferredTest() throws Fault {
 
@@ -417,8 +416,10 @@ public class ELClient extends ServiceEETest {
             ex.printStackTrace();
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
-        else TestUtil.logTrace(buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        else
+            TestUtil.logTrace(buf.toString());
     }
 
     /*
@@ -426,9 +427,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:80
      *
-     * @test_Strategy: Validate that MethodExpression identifies the correct
-     * method for the given parameters and that overloading is preferred to
-     * coercion.
+     * @test_Strategy: Validate that MethodExpression identifies the correct method for the given parameters and that
+     * overloading is preferred to coercion.
      */
     public void methodExpressionMatchingOverloadBeatsCoercionTest() throws Fault {
 
@@ -458,8 +458,10 @@ public class ELClient extends ServiceEETest {
             ex.printStackTrace();
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
-        else TestUtil.logTrace(buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        else
+            TestUtil.logTrace(buf.toString());
     }
 
     /*
@@ -467,9 +469,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:80
      *
-     * @test_Strategy: Validate that MethodExpression identifies the correct
-     * method for the given parameters and that any match without varags is
-     * preferred to all matches with varrags
+     * @test_Strategy: Validate that MethodExpression identifies the correct method for the given parameters and that any
+     * match without varags is preferred to all matches with varrags
      */
     public void methodExpressionMatchingOverloadBeatsExactVarArgsTest() throws Fault {
 
@@ -500,8 +501,10 @@ public class ELClient extends ServiceEETest {
             ex.printStackTrace();
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
-        else TestUtil.logTrace(buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        else
+            TestUtil.logTrace(buf.toString());
     }
 
     /*
@@ -509,9 +512,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:80
      *
-     * @test_Strategy: Validate that MethodExpression identifies the correct
-     * method for the given parameters and that any match without varags is
-     * preferred to all matches with varrags
+     * @test_Strategy: Validate that MethodExpression identifies the correct method for the given parameters and that any
+     * match without varags is preferred to all matches with varrags
      */
     public void methodExpressionMatchingCoercionBeatsExactVarArgsTest() throws Fault {
 
@@ -541,8 +543,10 @@ public class ELClient extends ServiceEETest {
             ex.printStackTrace();
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
-        else TestUtil.logTrace(buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        else
+            TestUtil.logTrace(buf.toString());
     }
 
     /*
@@ -550,9 +554,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:80
      *
-     * @test_Strategy: Validate that MethodExpression identifies the correct
-     * method for the given parameters and that varags will be matched if no other
-     * suitable match is available
+     * @test_Strategy: Validate that MethodExpression identifies the correct method for the given parameters and that varags
+     * will be matched if no other suitable match is available
      */
     public void methodExpressionMatchingVarArgsTest() throws Fault {
 
@@ -582,8 +585,10 @@ public class ELClient extends ServiceEETest {
             ex.printStackTrace();
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
-        else TestUtil.logTrace(buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        else
+            TestUtil.logTrace(buf.toString());
     }
 
     /*
@@ -591,8 +596,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:80
      *
-     * @test_Strategy: Validate that MethodExpression does not match a method when
-     * the match is ambiguous and that a MethodNotFoundException is thrown
+     * @test_Strategy: Validate that MethodExpression does not match a method when the match is ambiguous and that a
+     * MethodNotFoundException is thrown
      */
     public void methodExpressionMatchingAmbiguousTest() throws Fault {
 
@@ -624,7 +629,9 @@ public class ELClient extends ServiceEETest {
             ex.printStackTrace();
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
-        else TestUtil.logTrace(buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
+        else
+            TestUtil.logTrace(buf.toString());
     }
 }

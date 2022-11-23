@@ -34,8 +34,7 @@ public class TSEISException extends Exception {
     /**
      * Creates exception with the message.
      *
-     * @param message
-     *          Error message
+     * @param message Error message
      */
     public TSEISException(String message) {
         super(message);

@@ -27,10 +27,10 @@ import com.sun.ts.lib.util.TSNamingContextInterface;
 import java.util.Properties;
 
 /**
- * The TwoBeanClient class tests a client calling a bean which
- * calls another bean.
- * @author   Tester
- * @version  1.2 99/03/01
+ * The TwoBeanClient class tests a client calling a bean which calls another bean.
+ *
+ * @author Tester
+ * @version 1.2 99/03/01
  */
 public class TwoBeanClient extends EETest {
 
@@ -83,13 +83,11 @@ public class TwoBeanClient extends EETest {
     /*
      * @testName: twobeanTest1
      *
-     * @assertion: Sucessfully call the "business" method of bean1 which calls a
-     * business method in bean2.
+     * @assertion: Sucessfully call the "business" method of bean1 which calls a business method in bean2.
      *
-     * @test_Strategy: Create 2 stateful Session EJBeans. Deploy them on the J2EE
-     * server. From the EJB client. call the simpletest1() business method. This
-     * in turn should call the bean2test() method. The calls should complete
-     * without throwing any exceptions.
+     * @test_Strategy: Create 2 stateful Session EJBeans. Deploy them on the J2EE server. From the EJB client. call the
+     * simpletest1() business method. This in turn should call the bean2test() method. The calls should complete without
+     * throwing any exceptions.
      *
      */
     public void twobeanTest1() throws Fault {
@@ -100,8 +98,10 @@ public class TwoBeanClient extends EETest {
             result = ref.simpleTest1();
             // logData = ref.getServerLogData();
             // logMsg( logData.toString());
-            if (result) logMsg("Test passed;");
-            else throw new Fault("Test Failed!");
+            if (result)
+                logMsg("Test passed;");
+            else
+                throw new Fault("Test Failed!");
         } catch (Exception e) {
             throw new Fault("Test Failed!", e);
         }
@@ -112,9 +112,8 @@ public class TwoBeanClient extends EETest {
      *
      * @assertion: Sucessfully call the "business" method of bean1.
      *
-     * @test_Strategy: Create 2 stateful Session EJBeans. Deploy them on the J2EE
-     * server. From the EJB client, call the simpletest2(n) business method which
-     * just sleeps for n seconds. The call should complete without throwing any
+     * @test_Strategy: Create 2 stateful Session EJBeans. Deploy them on the J2EE server. From the EJB client, call the
+     * simpletest2(n) business method which just sleeps for n seconds. The call should complete without throwing any
      * exceptions.
      *
      */
@@ -126,8 +125,10 @@ public class TwoBeanClient extends EETest {
             result = ref.simpleTest2(100);
             // logData = ref.getServerLogData();
             // logMsg( logData.toString());
-            if (result) logMsg("Test passed;");
-            else throw new Fault("Test Failed!");
+            if (result)
+                logMsg("Test passed;");
+            else
+                throw new Fault("Test Failed!");
         } catch (Exception e) {
             throw new Fault("Test Failed!", e);
         }

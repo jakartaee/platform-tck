@@ -27,17 +27,16 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(
-        encoders = {
-            BinaryCoderBool.class,
-            BinaryCoderByte.class,
-            BinaryCoderChar.class,
-            BinaryCoderDouble.class,
-            BinaryCoderInt.class,
-            BinaryCoderLong.class,
-            BinaryCoderFloat.class,
-            BinaryCoderShort.class
-        })
+@ClientEndpoint(encoders = {
+        BinaryCoderBool.class,
+        BinaryCoderByte.class,
+        BinaryCoderChar.class,
+        BinaryCoderDouble.class,
+        BinaryCoderInt.class,
+        BinaryCoderLong.class,
+        BinaryCoderFloat.class,
+        BinaryCoderShort.class
+})
 public class WSCBinaryClientEndpoint extends AnnotatedStringClientEndpoint {
 
     @Override

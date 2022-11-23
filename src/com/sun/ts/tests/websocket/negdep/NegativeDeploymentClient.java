@@ -20,9 +20,8 @@ import com.sun.ts.tests.websocket.common.client.WebSocketCommonClient;
 import java.util.Properties;
 
 /**
- * Can turn off printing of the exception stacktrace on screen with ts.jte
- * property log.exception=false. This feature works just with negative
- * deployment tests
+ * Can turn off printing of the exception stacktrace on screen with ts.jte property log.exception=false. This feature
+ * works just with negative deployment tests
  *
  * @since 1.11
  */
@@ -40,12 +39,12 @@ public class NegativeDeploymentClient extends WebSocketCommonClient {
     }
 
     protected void throwWhenCts() throws Fault {
-        if (tslib_name.equalsIgnoreCase("cts")) throwDeploymentDidNotFail();
+        if (tslib_name.equalsIgnoreCase("cts"))
+            throwDeploymentDidNotFail();
     }
 
     protected void throwValidEndpointMustBeRemoved() throws Fault {
-        String msg =
-                "Test Failed - a deployment error raised during the deployment process must halt the deployment of the application, any well formed endpoints deployed prior to the error being raised must be removed from service and no more websocket endpoints from that application may be deployed by the container, even if they are valid";
+        String msg = "Test Failed - a deployment error raised during the deployment process must halt the deployment of the application, any well formed endpoints deployed prior to the error being raised must be removed from service and no more websocket endpoints from that application may be deployed by the container, even if they are valid";
         throw new Fault(msg);
     }
 

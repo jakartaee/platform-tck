@@ -35,11 +35,9 @@ import java.util.Properties;
 import javax.xml.transform.stream.StreamSource;
 
 public class Client extends ServiceEETest {
-    private String GoodSoapMessage =
-            "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:tns=\"http://helloservice.org/wsdl\" xmlns:xsi=\"http://www.w3.org/451/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/451/XMLSchema\"><soap:Body soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><tns:hello><String_1 xsi:type=\"xsd:string\">&lt;Bozo&gt;</String_1></tns:hello></soap:Body></soap:Envelope>";
+    private String GoodSoapMessage = "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:tns=\"http://helloservice.org/wsdl\" xmlns:xsi=\"http://www.w3.org/451/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/451/XMLSchema\"><soap:Body soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><tns:hello><String_1 xsi:type=\"xsd:string\">&lt;Bozo&gt;</String_1></tns:hello></soap:Body></soap:Envelope>";
 
-    private String GoodSoapMessageSOAP12 =
-            "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:soapenc=\"http://www.w3.org/2003/05/soap-encoding\" xmlns:tns=\"http://helloservice.org/wsdl\" xmlns:xsi=\"http://www.w3.org/451/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/451/XMLSchema\"><soap:Body soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><tns:hello><String_1 xsi:type=\"xsd:string\">&lt;Bozo&gt;</String_1></tns:hello></soap:Body></soap:Envelope>";
+    private String GoodSoapMessageSOAP12 = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:soapenc=\"http://www.w3.org/2003/05/soap-encoding\" xmlns:tns=\"http://helloservice.org/wsdl\" xmlns:xsi=\"http://www.w3.org/451/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/451/XMLSchema\"><soap:Body soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><tns:hello><String_1 xsi:type=\"xsd:string\">&lt;Bozo&gt;</String_1></tns:hello></soap:Body></soap:Envelope>";
 
     private StreamSource ssrc = null;
 
@@ -110,7 +108,8 @@ public class Client extends ServiceEETest {
             throw new Fault("TestSetCharEncodingUtf16 failed", e);
         }
 
-        if (!pass) throw new Fault("TestSetCharEncodingUtf16 failed");
+        if (!pass)
+            throw new Fault("TestSetCharEncodingUtf16 failed");
     }
 
     /*
@@ -158,7 +157,8 @@ public class Client extends ServiceEETest {
             throw new Fault("TestSetCharEncodingUtf8 failed", e);
         }
 
-        if (!pass) throw new Fault("TestSetCharEncodingUtf8 failed");
+        if (!pass)
+            throw new Fault("TestSetCharEncodingUtf8 failed");
     }
 
     /*
@@ -217,7 +217,8 @@ public class Client extends ServiceEETest {
             throw new Fault("TestVerifyXmlDeclarationUtf16 failed", e);
         }
 
-        if (!pass) throw new Fault("TestVerifyXmlDeclarationUtf16 failed");
+        if (!pass)
+            throw new Fault("TestVerifyXmlDeclarationUtf16 failed");
     }
 
     /*
@@ -273,7 +274,8 @@ public class Client extends ServiceEETest {
             throw new Fault("TestVerifyXmlDeclarationUtf8 failed", e);
         }
 
-        if (!pass) throw new Fault("TestVerifyXmlDeclarationUtf8 failed");
+        if (!pass)
+            throw new Fault("TestVerifyXmlDeclarationUtf8 failed");
     }
 
     /*
@@ -327,7 +329,8 @@ public class Client extends ServiceEETest {
             throw new Fault("TestVerifyNoXmlDeclarationOutput failed", e);
         }
 
-        if (!pass) throw new Fault("TestVerifyNoXmlDeclarationOutput failed");
+        if (!pass)
+            throw new Fault("TestVerifyNoXmlDeclarationOutput failed");
     }
 
     /*
@@ -335,8 +338,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:45;
      *
-     * @test_Strategy: Test that no xml declaration is output. Default behavior
-     * case.
+     * @test_Strategy: Test that no xml declaration is output. Default behavior case.
      */
     public void TestVerifyNoXmlDeclarationDefaultCase() throws Fault {
         boolean pass = true;
@@ -380,6 +382,7 @@ public class Client extends ServiceEETest {
             throw new Fault("TestVerifyNoXmlDeclarationDefaultCase failed", e);
         }
 
-        if (!pass) throw new Fault("TestVerifyNoXmlDeclarationDefaultCase failed");
+        if (!pass)
+            throw new Fault("TestVerifyNoXmlDeclarationDefaultCase failed");
     }
 }

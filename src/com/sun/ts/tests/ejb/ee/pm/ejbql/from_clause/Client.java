@@ -79,9 +79,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:312; EJB:SPEC:322
      *
-     * @test_Strategy: Execute findAllOrdersByCustomerName method to determine how
-     * many orders per customer. Verify the results were accurately returned. This
-     * query is defined on a many-one relationship.
+     * @test_Strategy: Execute findAllOrdersByCustomerName method to determine how many orders per customer. Verify the
+     * results were accurately returned. This query is defined on a many-one relationship.
      *
      */
 
@@ -108,7 +107,8 @@ public class Client extends EETest {
             throw new Fault("fromTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("fromTest1 failed");
+        if (!pass)
+            throw new Fault("fromTest1 failed");
     }
 
     /*
@@ -116,8 +116,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:317.1
      *
-     * @test_Strategy: Execute the findAllCustomers method to find all customers.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute the findAllCustomers method to find all customers. Verify the results were accurately
+     * returned.
      *
      */
 
@@ -130,7 +130,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Find All Customers");
             c = customerHome.findAllCustomers();
             expectedPKs = new String[Schema.NUMOFCUSTOMERS];
-            for (int i = 0; i < Schema.NUMOFCUSTOMERS; i++) expectedPKs[i] = Integer.toString(i + 1);
+            for (int i = 0; i < Schema.NUMOFCUSTOMERS; i++)
+                expectedPKs[i] = Integer.toString(i + 1);
             if (!Util.checkEJBs(c, Schema.CUSTOMERREF, expectedPKs)) {
                 TestUtil.logErr("UnSuccessfully found all customers in CustomerEJB");
                 pass = false;
@@ -143,7 +144,8 @@ public class Client extends EETest {
             throw new Fault("fromTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("fromTest2 failed");
+        if (!pass)
+            throw new Fault("fromTest2 failed");
     }
 
     /*
@@ -151,9 +153,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:321; EJB:SPEC:317.2; EJB:SPEC:323
      *
-     * @test_Strategy: Execute the findAllCustomersByAliasName method to find all
-     * customers with a given alias name. This query is defined on a many-many
-     * relationship.
+     * @test_Strategy: Execute the findAllCustomersByAliasName method to find all customers with a given alias name. This
+     * query is defined on a many-many relationship.
      */
 
     public void fromTest3() throws Fault {
@@ -177,7 +178,8 @@ public class Client extends EETest {
             throw new Fault("fromTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("fromTest3 failed");
+        if (!pass)
+            throw new Fault("fromTest3 failed");
     }
 
     /*
@@ -185,10 +187,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:322
      *
-     * @test_Strategy: Execute the findCustomerByHomeAddress method to find
-     * customer with given address information. Verify the results are accurate.
-     * This query is defined on a one-one relationship and used conditional AND in
-     * query.
+     * @test_Strategy: Execute the findCustomerByHomeAddress method to find customer with given address information. Verify
+     * the results are accurate. This query is defined on a one-one relationship and used conditional AND in query.
      *
      */
 
@@ -210,7 +210,8 @@ public class Client extends EETest {
             throw new Fault("fromTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("fromTest4 failed");
+        if (!pass)
+            throw new Fault("fromTest4 failed");
     }
 
     /*
@@ -218,9 +219,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:323
      *
-     * @test_Strategy: Execute the findCustomersByCreditCardType method to find
-     * customers with a certain credit card type. This query is defined on a
-     * one-many relationship. Verify the results.
+     * @test_Strategy: Execute the findCustomersByCreditCardType method to find customers with a certain credit card type.
+     * This query is defined on a one-many relationship. Verify the results.
      *
      */
 
@@ -251,7 +251,8 @@ public class Client extends EETest {
             throw new Fault("fromTest5 failed", e);
         }
 
-        if (!pass) throw new Fault("fromTest5 failed");
+        if (!pass)
+            throw new Fault("fromTest5 failed");
     }
 
     /*
@@ -259,9 +260,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:348.4; EJB:SPEC:338; EJB:SPEC:339
      *
-     * @test_Strategy: Execute the findCustomerByHomeInfo method to find customers
-     * with a given home information. This query is defined on a one-one
-     * relationship using conditional OR in query.
+     * @test_Strategy: Execute the findCustomerByHomeInfo method to find customers with a given home information. This query
+     * is defined on a one-one relationship using conditional OR in query.
      *
      */
 
@@ -290,7 +290,8 @@ public class Client extends EETest {
             throw new Fault("fromTest6 failed", e);
         }
 
-        if (!pass) throw new Fault("fromTest6 failed");
+        if (!pass)
+            throw new Fault("fromTest6 failed");
     }
 
     /*
@@ -298,8 +299,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:319
      *
-     * @test_Strategy: Execute the findProductsByQuery9 and ensure the
-     * identification variables can be interpreted correctly regardless of case.
+     * @test_Strategy: Execute the findProductsByQuery9 and ensure the identification variables can be interpreted correctly
+     * regardless of case.
      *
      */
 
@@ -311,7 +312,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Find All Products");
             p = productHome.findProductsByQuery9();
             expectedPKs = new String[Schema.NUMOFPRODUCTS];
-            for (int i = 0; i < Schema.NUMOFPRODUCTS; i++) expectedPKs[i] = Integer.toString(i + 1);
+            for (int i = 0; i < Schema.NUMOFPRODUCTS; i++)
+                expectedPKs[i] = Integer.toString(i + 1);
             if (!Util.checkEJBs(p, Schema.PRODUCTREF, expectedPKs)) {
                 TestUtil.logErr("UnSuccessfully found all products");
                 pass = false;
@@ -324,7 +326,8 @@ public class Client extends EETest {
             throw new Fault("fromTest7 failed", e);
         }
 
-        if (!pass) throw new Fault("fromTest7 failed");
+        if (!pass)
+            throw new Fault("fromTest7 failed");
     }
 
     public void cleanup() throws Fault {

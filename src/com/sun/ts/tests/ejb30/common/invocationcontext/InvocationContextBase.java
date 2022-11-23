@@ -24,11 +24,12 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import jakarta.interceptor.ExcludeClassInterceptors;
 
 public abstract class InvocationContextBase implements InvocationContextIF {
-    protected InvocationContextBase() {}
+    protected InvocationContextBase() {
+    }
 
     // ===================== business methods ===========================
     public Number[] setParametersIllegalArgumentExceptionForNumber(Number m, Number n) throws TestFailedException {
-        return new Number[] {m, n};
+        return new Number[] { m, n };
     }
 
     public String[] setParametersIllegalArgumentExceptionForStringArray(String[] ss) throws TestFailedException {
@@ -36,15 +37,15 @@ public abstract class InvocationContextBase implements InvocationContextIF {
     }
 
     public String[] setParametersIllegalArgumentExceptionForString(String m, String n) throws TestFailedException {
-        return new String[] {m, n};
+        return new String[] { m, n };
     }
 
     public char[] setParametersIllegalArgumentExceptionForChar(char m, char n) throws TestFailedException {
-        return new char[] {m, n};
+        return new char[] { m, n };
     }
 
     public Number[] setParametersIllegalArgumentExceptionForShortLong(short s, long l) throws TestFailedException {
-        return new Number[] {s, l};
+        return new Number[] { s, l };
     }
 
     @ExcludeClassInterceptors()
@@ -63,13 +64,16 @@ public abstract class InvocationContextBase implements InvocationContextIF {
         return System.identityHashCode(this);
     }
 
-    public void getSetParametersEmpty() throws TestFailedException {}
+    public void getSetParametersEmpty() throws TestFailedException {
+    }
 
     public String getSetParameters(String a, String b) throws TestFailedException {
         return a + b;
     }
 
-    public void getContextData() throws TestFailedException {}
+    public void getContextData() throws TestFailedException {
+    }
 
-    public void getTimer() throws TestFailedException {}
+    public void getTimer() throws TestFailedException {
+    }
 }

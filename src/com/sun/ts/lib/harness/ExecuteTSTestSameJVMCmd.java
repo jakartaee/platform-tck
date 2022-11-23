@@ -24,13 +24,13 @@ import java.lang.reflect.Method;
 
 /**
  * <p>
- * Allows the execution of CTS/TCK tests within the same JVM. This should only
- * be used for tests that can guarantee that running in such a configuration
- * will have no impact on the test results.
+ * Allows the execution of CTS/TCK tests within the same JVM. This should only be used for tests that can guarantee that
+ * running in such a configuration will have no impact on the test results.
  */
 public class ExecuteTSTestSameJVMCmd extends Command {
 
-    public ExecuteTSTestSameJVMCmd() {}
+    public ExecuteTSTestSameJVMCmd() {
+    }
 
     public Status run(String[] args, PrintWriter log, PrintWriter ref) {
         int repeat = 1;
@@ -79,7 +79,7 @@ public class ExecuteTSTestSameJVMCmd extends Command {
                 }
 
                 Object t = c.newInstance();
-                Class[] mainArgs = {Class.forName("[Ljava.lang.String;"), PrintWriter.class, PrintWriter.class};
+                Class[] mainArgs = { Class.forName("[Ljava.lang.String;"), PrintWriter.class, PrintWriter.class };
 
                 Method runMethod = c.getMethod("run", mainArgs);
                 Object[] execArgs = new Object[3];

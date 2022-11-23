@@ -82,9 +82,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:588.2; EJB:SPEC:588.3
      *
-     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the
-     * UserTransaction interface. Initiate a global transaction using the TxBean
-     * (deployed as TX_NEVER) to a single RDBMS table. java.rmi.RemoteException
+     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the UserTransaction interface. Initiate a
+     * global transaction using the TxBean (deployed as TX_NEVER) to a single RDBMS table. java.rmi.RemoteException
      * exception is expected.
      *
      *
@@ -102,8 +101,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {

@@ -30,7 +30,8 @@ import jakarta.interceptor.ExcludeDefaultInterceptors;
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class NoMethodStatelessBean implements NoMethodRemoteIF, NoMethodLocalIF {
 
-    public NoMethodStatelessBean() {}
+    public NoMethodStatelessBean() {
+    }
 
     public void nonBusinessMethod() {
         throw new IllegalStateException("This is not a business method and must not be exposed.");

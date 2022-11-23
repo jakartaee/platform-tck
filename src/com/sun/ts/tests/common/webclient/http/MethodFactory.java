@@ -34,11 +34,10 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
 
 /**
- * Simple factory class which returns HttpMethod implementations based on a
- * request line.
+ * Simple factory class which returns HttpMethod implementations based on a request line.
  * <p>
- * For example, a request line of <tt>GET /index.jsp HTTP/1.0</tt> would return
- * an HttpMethod implementation that handles GET requests using HTTP/1.0.
+ * For example, a request line of <tt>GET /index.jsp HTTP/1.0</tt> would return an HttpMethod implementation that
+ * handles GET requests using HTTP/1.0.
  * </p>
  */
 public class MethodFactory {
@@ -79,20 +78,18 @@ public class MethodFactory {
     private static final TSURL TS_URL = new TSURL();
 
     /**
-     * Private constructor as all interaction with this class is through the
-     * getInstance() method.
+     * Private constructor as all interaction with this class is through the getInstance() method.
      */
-    private MethodFactory() {}
+    private MethodFactory() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Returns the approriate request method based on the provided request string.
-     * The request must be in the format of METHOD URI_PATH HTTP_VERSION, i.e. GET
-     * /index.jsp HTTP/1.1.
+     * Returns the approriate request method based on the provided request string. The request must be in the format of
+     * METHOD URI_PATH HTTP_VERSION, i.e. GET /index.jsp HTTP/1.1.
      *
      * @return HttpMethod based in request.
      */
@@ -146,17 +143,14 @@ public class MethodFactory {
     }
 
     /*
-     * private methods
-     * ========================================================================
+     * private methods ========================================================================
      */
 
     /**
      * Sets the HTTP version for the method in question.
      *
-     * @param version
-     *          HTTP version to use for this request
-     * @param method
-     *          method to adjust HTTP version
+     * @param version HTTP version to use for this request
+     * @param method method to adjust HTTP version
      */
     private static void setHttpVersion(String version, HttpMethodBase method) {
         final String oneOne = "HTTP/1.1";

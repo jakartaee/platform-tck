@@ -32,4 +32,5 @@ import jakarta.ejb.Stateful;
 @Remote(StatefulConcurrencyRemoteIF.class)
 @LocalBean
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
-public class ContainerConcurrencyBean extends StatefulConcurrencyBeanBase2 {}
+public class ContainerConcurrencyBean extends StatefulConcurrencyBeanBase2 {
+}

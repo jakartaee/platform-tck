@@ -43,8 +43,8 @@ public class TestCode {
     public static final String ddValue2 = "windsurf";
 
     /**
-     * Check that two environment entries whose names differ only by case are
-     * associated with different runtime values (as specified in DD).
+     * Check that two environment entries whose names differ only by case are associated with different runtime values (as
+     * specified in DD).
      */
     public static boolean testCaseSensitivity(TSNamingContext nctx) {
         /* Runtime values */

@@ -30,8 +30,8 @@ import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
 
 @Stateless(name = "CallbackBean")
-@Remote({CallbackIF.class})
-@Interceptors({StatelessCallbackListener.class})
+@Remote({ CallbackIF.class })
+@Interceptors({ StatelessCallbackListener.class })
 public class CallbackBean extends CallbackBeanBase implements CallbackIF {
 
     @Resource

@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -55,12 +53,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetServletTempDirTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:SPEC:19.1;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:SPEC:19.1;
      *
-     * @test_Strategy: Servlet verify's that the value from the
-     * ServletContext.getAttribute("jakarta.servlet.temp.dir") returns non-null
-     * value that points an exsiting directory.
+     * @test_Strategy: Servlet verify's that the value from the ServletContext.getAttribute("jakarta.servlet.temp.dir")
+     * returns non-null value that points an exsiting directory.
      */
     public void GetServletTempDirTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getServletTempDir");
@@ -70,11 +66,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetMajorVersionTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:220;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:220;
      *
-     * @test_Strategy: Test the ServletContext.getMajorVersion() for this servlet
-     * itself
+     * @test_Strategy: Test the ServletContext.getMajorVersion() for this servlet itself
      */
     public void GetMajorVersionTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getMajorVersion");
@@ -84,11 +78,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetMinorVersionTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:221;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:221;
      *
-     * @test_Strategy: Test the ServletContext.getMinorVersion() for this servlet
-     * itself
+     * @test_Strategy: Test the ServletContext.getMinorVersion() for this servlet itself
      */
     public void GetMinorVersionTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getMinorVersion");
@@ -98,11 +90,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetMimeTypeTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:222;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:222;
      *
-     * @test_Strategy: Test the ServletContext.getMimeType() for this servlet
-     * itself
+     * @test_Strategy: Test the ServletContext.getMimeType() for this servlet itself
      */
     public void GetMimeTypeTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getMimeType");
@@ -112,11 +102,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetMimeType_1Test
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:223;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:223;
      *
-     * @test_Strategy: A negative test for getMimeType(). Test the
-     * ServletContext.getMimeType() for this servlet itself
+     * @test_Strategy: A negative test for getMimeType(). Test the ServletContext.getMimeType() for this servlet itself
      */
     public void GetMimeType_1Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getMimeType_1");
@@ -126,11 +114,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetRealPathTest
      *
-     * @assertion_ids: Servlet:SPEC:90; Servlet:SPEC:92.2; Servlet:JAVADOC:124;
-     * Servlet:JAVADOC:258; Servlet:JAVADOC:241;
+     * @assertion_ids: Servlet:SPEC:90; Servlet:SPEC:92.2; Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:241;
      *
-     * @test_Strategy: Test the ServletContext.getRealPath() for this servlet
-     * itself
+     * @test_Strategy: Test the ServletContext.getRealPath() for this servlet itself
      */
     public void GetRealPathTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getRealPath");
@@ -140,8 +126,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetResourcePathsTest
      *
-     * @assertion_ids: Servlet:SPEC:90; Servlet:SPEC:92.2; Servlet:JAVADOC:124;
-     * Servlet:JAVADOC:258; Servlet:JAVADOC:224;
+     * @assertion_ids: Servlet:SPEC:90; Servlet:SPEC:92.2; Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:224;
      *
      * @test_Strategy: Test the ServletContext.getResourcePaths() for this servlet
      */
@@ -166,8 +151,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetResourceAsStreamTest
      *
-     * @assertion_ids: Servlet:SPEC:90; Servlet:SPEC:92.2; Servlet:JAVADOC:124;
-     * Servlet:JAVADOC:258; Servlet:JAVADOC:228;
+     * @assertion_ids: Servlet:SPEC:90; Servlet:SPEC:92.2; Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:228;
      *
      * @test_Strategy: A Test for getResourceAs Stream method
      */
@@ -179,8 +163,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetResourceAsStream_1Test
      *
-     * @assertion_ids: Servlet:SPEC:90; Servlet:SPEC:92.2; Servlet:JAVADOC:124;
-     * Servlet:JAVADOC:258; Servlet:JAVADOC:229;
+     * @assertion_ids: Servlet:SPEC:90; Servlet:SPEC:92.2; Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:229;
      *
      * @test_Strategy: A negative test for getResourceAsStream() method
      */
@@ -192,8 +175,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetResourceTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:226;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:226;
      *
      * @test_Strategy: A Test for ServletContext.getResource(String) method
      */
@@ -205,11 +187,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetResource_1Test
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:225;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:225;
      *
-     * @test_Strategy: A negative test for ServletContext.getResource(String)
-     * method
+     * @test_Strategy: A negative test for ServletContext.getResource(String) method
      */
     public void GetResource_1Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getResource_1");
@@ -219,11 +199,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetResource_2Test
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:227;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:227;
      *
-     * @test_Strategy: A negative test for ServletContext.getResource(String path)
-     * if path does not start with /, MalformedURLException should be thrown
+     * @test_Strategy: A negative test for ServletContext.getResource(String path) if path does not start with /,
+     * MalformedURLException should be thrown
      */
     public void GetResource_2Test() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "");
@@ -234,8 +213,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetServerInfoTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:242;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:242;
      *
      * @test_Strategy: Test for ServletContext.getServerInfo() method
      */
@@ -247,8 +225,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextGetAttributeTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:250; Servlet:JAVADOC:247;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:250; Servlet:JAVADOC:247;
      *
      * @test_Strategy: Try to get the attributes for this servlet itself
      */
@@ -260,11 +237,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextGetAttribute_1Test
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:248;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:248;
      *
-     * @test_Strategy: A negative test for ServletContext.getAttribute(). Test for
-     * null attribute values for this servlet itself
+     * @test_Strategy: A negative test for ServletContext.getAttribute(). Test for null attribute values for this servlet
+     * itself
      */
     public void ServletContextGetAttribute_1Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "servletContextGetAttribute_1");
@@ -274,8 +250,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextGetContextTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:219;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:219;
      *
      * @test_Strategy: Test for ServletContext object for this servlet itself
      */
@@ -287,11 +262,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextGetInitParameterNamesTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:245;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:245;
      *
-     * @test_Strategy: Test the ServletContext.getInitParameterNames() for this
-     * servlet itself
+     * @test_Strategy: Test the ServletContext.getInitParameterNames() for this servlet itself
      */
     public void ServletContextGetInitParameterNamesTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "servletContextGetInitParameterNames");
@@ -301,11 +274,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextGetInitParameterTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:243;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:243;
      *
-     * @test_Strategy: Test the ServletContext.getInitParameter(String) for this
-     * servlet itself
+     * @test_Strategy: Test the ServletContext.getInitParameter(String) for this servlet itself
      */
     public void ServletContextGetInitParameterTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "servletContextGetInitParameter");
@@ -317,9 +288,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:125; Servlet:JAVADOC:244;
      *
-     * @test_Strategy: Test the ServletContext.getInitParameter(String name)
-     * returns null when name(nothing_is_set_here_negative_compatibility_test) is
-     * not set
+     * @test_Strategy: Test the ServletContext.getInitParameter(String name) returns null when
+     * name(nothing_is_set_here_negative_compatibility_test) is not set
      */
     public void ServletContextGetInitParameterTestNull() throws Fault {
         TEST_PROPS.setProperty(APITEST, "servletContextGetInitParameterNull");
@@ -329,8 +299,8 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextRemoveAttributeTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:250; Servlet:JAVADOC:254; Servlet:JAVADOC:248;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:250; Servlet:JAVADOC:254;
+     * Servlet:JAVADOC:248;
      *
      * @test_Strategy: Test for ServletContext.removeAttribute() method
      */
@@ -342,8 +312,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextSetAttributeTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:250; Servlet:JAVADOC:247;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:250; Servlet:JAVADOC:247;
      *
      * @test_Strategy: Test for ServletContext.setAttribute() method
      */
@@ -355,12 +324,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextSetAttribute_1Test
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:250; Servlet:JAVADOC:251; Servlet:JAVADOC:247;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:250; Servlet:JAVADOC:251;
+     * Servlet:JAVADOC:247;
      *
-     * @test_Strategy: Test for ServletContext.setAttribute() method Call
-     * ServletContext.setAttribute(String Attribute, Object value) twice with the
-     * same Attribute, verify that second value replace the first Attribute value.
+     * @test_Strategy: Test for ServletContext.setAttribute() method Call ServletContext.setAttribute(String Attribute,
+     * Object value) twice with the same Attribute, verify that second value replace the first Attribute value.
      */
     public void ServletContextSetAttribute_1Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "servletContextSetAttribute_1");
@@ -370,11 +338,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextSetAttribute_2Test
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:250; Servlet:JAVADOC:253; Servlet:JAVADOC:248;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:250; Servlet:JAVADOC:253;
+     * Servlet:JAVADOC:248;
      *
-     * @test_Strategy: Test for ServletContext.setAttribute() method Set Attribute
-     * to null and verify getAttribute return null.
+     * @test_Strategy: Test for ServletContext.setAttribute() method Set Attribute to null and verify getAttribute return
+     * null.
      */
     public void ServletContextSetAttribute_2Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "servletContextSetAttribute_2");
@@ -384,8 +352,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextGetAttributeNamesTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:250; Servlet:JAVADOC:249;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:250; Servlet:JAVADOC:249;
      *
      * @test_Strategy: Servlet retrieves attributes which it set itself
      */
@@ -397,11 +364,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: ServletContextGetRequestDispatcherTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:230;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:230;
      *
-     * @test_Strategy: Test the ServletContext.getRequestDispatcher(String) for
-     * this servlet itself
+     * @test_Strategy: Test the ServletContext.getRequestDispatcher(String) for this servlet itself
      */
     public void ServletContextGetRequestDispatcherTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "servletContextGetRequestDispatcher");
@@ -411,12 +376,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetNamedDispatcherTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:232;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:232;
      *
-     * @test_Strategy: Servlet verify's that the result from the
-     * getNamedDispatcher call and the getServletName call are the same for the
-     * servlet.
+     * @test_Strategy: Servlet verify's that the result from the getNamedDispatcher call and the getServletName call are the
+     * same for the servlet.
      */
     public void GetNamedDispatcherTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getNamedDispatcher");
@@ -426,11 +389,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetNamedDispatcher_1Test
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:233;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:233;
      *
-     * @test_Strategy: Servlet verify's that the result from the
-     * getNamedDispatcher call return null with non-existent path. Negative test.
+     * @test_Strategy: Servlet verify's that the result from the getNamedDispatcher call return null with non-existent path.
+     * Negative test.
      */
     public void GetNamedDispatcher_1Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getNamedDispatcher_1");
@@ -440,12 +402,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: GetServletNameTest
      *
-     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:256;
+     * @assertion_ids: Servlet:JAVADOC:124; Servlet:JAVADOC:258; Servlet:JAVADOC:256;
      *
-     * @test_Strategy: Servlet verify's that the result from the
-     * ServletContext.getServletContextName call is the same as set in Deployment
-     * Descriptor <display-name> for the servlet.
+     * @test_Strategy: Servlet verify's that the result from the ServletContext.getServletContextName call is the same as
+     * set in Deployment Descriptor <display-name> for the servlet.
      */
     public void GetServletNameTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getServletNameTest");

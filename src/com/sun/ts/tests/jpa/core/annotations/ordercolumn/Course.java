@@ -32,15 +32,13 @@ public class Course implements java.io.Serializable {
 
     String courseName;
 
-    @JoinTable(
-            name = "COURSE_STUDENT",
-            joinColumns = @JoinColumn(name = "COURSE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "STUDENT_ID"))
+    @JoinTable(name = "COURSE_STUDENT", joinColumns = @JoinColumn(name = "COURSE_ID"), inverseJoinColumns = @JoinColumn(name = "STUDENT_ID"))
     @OrderColumn(name = "STUDENTS_ORDER", nullable = true, updatable = true, insertable = true)
     @ManyToMany(cascade = CascadeType.ALL)
     List<Student> students;
 
-    public Course() {}
+    public Course() {
+    }
 
     public Course(int id, String name) {
         this.id = id;

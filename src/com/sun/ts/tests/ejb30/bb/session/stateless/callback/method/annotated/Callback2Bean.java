@@ -32,7 +32,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "Callback2Bean")
-@Remote({Callback2IF.class})
+@Remote({ Callback2IF.class })
 public class Callback2Bean extends Callback2BeanBase implements Callback2IF {
 
     @Resource
@@ -48,8 +48,8 @@ public class Callback2Bean extends Callback2BeanBase implements Callback2IF {
 
     // ================= callback methods ===================================
     /**
-     * 2 callback annotations are applied on the same method. Private access
-     * should work as well as public, protected, and package level default.
+     * 2 callback annotations are applied on the same method. Private access should work as well as public, protected, and
+     * package level default.
      */
     @PostConstruct
     @PreDestroy

@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,16 +58,13 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:304;JSP:SPEC:305
      *
-     * @test_Strategy: [EventListenerResourceInjection]
-     * [EventListenerResourceInjectionTiming] Create a SessionListener, Package
-     * the servlet in a WAR file without declaring serveral resources references
-     * in deployment descriptor - javax.sql.DataSource -
-     * jakarta.jms.QueueConnectionFactory - jakarta.jms.TopicConnectionFactory -
-     * jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
-     * jakarta.mail.Session - java.net.URL
+     * @test_Strategy: [EventListenerResourceInjection] [EventListenerResourceInjectionTiming] Create a SessionListener,
+     * Package the servlet in a WAR file without declaring serveral resources references in deployment descriptor -
+     * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory - jakarta.jms.TopicConnectionFactory -
+     * jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
      *
-     * Check that: - We can deploy the application. - We can lookup the all the
-     * above resource using annotation @Resource in the SessionListener
+     * Check that: - We can deploy the application. - We can lookup the all the above resource using annotation @Resource in
+     * the SessionListener
      */
 
     public void testResourceSL() throws Fault {
@@ -84,16 +79,14 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:304;JSP:SPEC:305
      *
-     * @test_Strategy: [EventListenerResourceInjection]
-     * [EventListenerResourceInjectionTiming] Create a
-     * HttpSessionAttributeListener, Package all above in a WAR file without
-     * declaring serveral resources references in deployment descriptor -
-     * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
-     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
-     * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
+     * @test_Strategy: [EventListenerResourceInjection] [EventListenerResourceInjectionTiming] Create a
+     * HttpSessionAttributeListener, Package all above in a WAR file without declaring serveral resources references in
+     * deployment descriptor - javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
+     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
+     * jakarta.mail.Session - java.net.URL
      *
-     * Check that: - We can deploy the application. - We can lookup the all the
-     * above resource using annotation inside the HttpSessionAttributeListener
+     * Check that: - We can deploy the application. - We can lookup the all the above resource using annotation inside the
+     * HttpSessionAttributeListener
      */
 
     public void testResourceSAL() throws Fault {

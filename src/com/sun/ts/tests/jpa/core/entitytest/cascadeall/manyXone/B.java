@@ -47,10 +47,7 @@ public class B implements java.io.Serializable {
     // ===========================================================
     // relationship fields
 
-    @ManyToOne(
-            targetEntity = com.sun.ts.tests.jpa.core.entitytest.cascadeall.manyXone.A.class,
-            cascade = CascadeType.ALL,
-            optional = true)
+    @ManyToOne(targetEntity = com.sun.ts.tests.jpa.core.entitytest.cascadeall.manyXone.A.class, cascade = CascadeType.ALL, optional = true)
     @JoinColumn(name = "FK_FOR_AEJB_MX1_UNI_BTOB")
     protected A a1;
 
@@ -87,8 +84,10 @@ public class B implements java.io.Serializable {
 
     public boolean isA() {
         TestUtil.logTrace("isA");
-        if (getA1() != null) TestUtil.logTrace("Relationship set for A ...");
-        else TestUtil.logTrace("Relationship not set for A ...");
+        if (getA1() != null)
+            TestUtil.logTrace("Relationship set for A ...");
+        else
+            TestUtil.logTrace("Relationship not set for A ...");
         return getA1() != null;
     }
 
@@ -97,7 +96,8 @@ public class B implements java.io.Serializable {
         if (isA()) {
             A a1 = getA1();
             return a1;
-        } else return null;
+        } else
+            return null;
     }
 
     public String getBId() {

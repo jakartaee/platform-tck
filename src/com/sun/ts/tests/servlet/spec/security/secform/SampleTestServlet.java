@@ -41,9 +41,7 @@ import java.io.PrintWriter;
  *
  */
 @ServletSecurity(@HttpConstraint(EmptyRoleSemantic.DENY))
-@WebServlet(
-        name = "SampleTestServletLogicalName",
-        urlPatterns = {"/SampleTest"})
+@WebServlet(name = "SampleTestServletLogicalName", urlPatterns = { "/SampleTest" })
 public class SampleTestServlet extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

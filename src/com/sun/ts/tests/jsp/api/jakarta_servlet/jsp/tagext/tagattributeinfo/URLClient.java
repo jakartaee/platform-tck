@@ -29,16 +29,14 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 import java.io.PrintWriter;
 
 /**
- * Test client for TagAttributeInfo. Implementation note, all tests are
- * performed within a TagExtraInfo class. If the test fails, a translation error
- * will be generated and a ValidationMessage array will be returned.
+ * Test client for TagAttributeInfo. Implementation note, all tests are performed within a TagExtraInfo class. If the
+ * test fails, a translation error will be generated and a ValidationMessage array will be returned.
  */
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -47,8 +45,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -94,8 +91,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:280
      *
-     * @test_Strategy: Validate the behavior of
-     * TagAttributeInfo.catBeRequestTime().
+     * @test_Strategy: Validate the behavior of TagAttributeInfo.catBeRequestTime().
      */
     public void tagAttributeInfoCanBeRequestTimeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagattrinfo_web/CanBeRequestTimeTest.jsp HTTP/1.1");
@@ -147,8 +143,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:282
      *
-     * @test_Strategy: Convenience static method that goes through an array of
-     * TagAttributeInfo objects and looks for "id".
+     * @test_Strategy: Convenience static method that goes through an array of TagAttributeInfo objects and looks for "id".
      */
     public void tagAttributeInfoGetIdAttribute() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagattrinfo_web/GetIdAttribute.jsp HTTP/1.1");

@@ -39,11 +39,11 @@ public class TagExtraInfoTEI extends TagExtraInfo {
     /**
      * Default Constructor.
      */
-    public TagExtraInfoTEI() {}
+    public TagExtraInfoTEI() {
+    }
 
     /**
-     * Validates that TagExtraInfo instances are properly handled by the
-     * container.
+     * Validates that TagExtraInfo instances are properly handled by the container.
      *
      * @param tagData
      * @return
@@ -126,8 +126,7 @@ public class TagExtraInfoTEI extends TagExtraInfo {
     /**
      * Used to validate the proper default behavior of TagExtraInfo.validate().
      *
-     * @param data
-     *          - a TagData instance
+     * @param data - a TagData instance
      * @return - true of _returnFalse is false, otherwise true.
      */
     public boolean isValid(TagData data) {
@@ -157,11 +156,9 @@ public class TagExtraInfoTEI extends TagExtraInfo {
     }
 
     /**
-     * Wraps JspTestUtil.debug. This also prepends this TEI's classname to the
-     * debug message.
+     * Wraps JspTestUtil.debug. This also prepends this TEI's classname to the debug message.
      *
-     * @param message
-     *          - the debug message
+     * @param message - the debug message
      */
     private static void debug(String message) {
         JspTestUtil.debug("[TagExtraInfoTEI] " + message);

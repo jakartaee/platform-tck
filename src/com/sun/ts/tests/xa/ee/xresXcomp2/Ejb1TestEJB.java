@@ -82,7 +82,8 @@ public class Ejb1TestEJB implements SessionBean {
 
     private transient Statement stmt = null;
 
-    public Ejb1TestEJB() {}
+    public Ejb1TestEJB() {
+    }
 
     public void ejbCreate(java.util.Properties props) throws CreateException {
         this.testProps = props;

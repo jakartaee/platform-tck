@@ -44,8 +44,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: isPersistent
      *
-     * @test_Strategy: create non-persistent timers and verify isPersistent in a
-     * separate business method.
+     * @test_Strategy: create non-persistent timers and verify isPersistent in a separate business method.
      */
     public void isPersistent() {
         String name = getTestName() + "-nonpersistent";
@@ -86,8 +85,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: resetTimerConfig
      *
-     * @test_Strategy: Any modification to TimerConfig after timer creation is not
-     * reflected in the state of timer.
+     * @test_Strategy: Any modification to TimerConfig after timer creation is not reflected in the state of timer.
      */
     public void resetTimerConfig() {
         timerConfigBean.resetTimerConfig(getTestName(), getReasonBuffer());

@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,8 +100,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:34;
      *
-     * @test_Strategy: Call SOAPMessage.addAttachmentPart(AttachmentPart) and
-     * verify attachment part was added.
+     * @test_Strategy: Call SOAPMessage.addAttachmentPart(AttachmentPart) and verify attachment part was added.
      *
      * Description: add an attachment object to the message
      *
@@ -114,12 +115,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addAttachmentPartTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -128,7 +132,8 @@ public class URLClient extends EETest {
             throw new Fault("addAttachmentPartTest failed", e);
         }
 
-        if (!pass) throw new Fault("addAttachmentPartTest failed");
+        if (!pass)
+            throw new Fault("addAttachmentPartTest failed");
     }
 
     /*
@@ -136,8 +141,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:29;
      *
-     * @test_Strategy: Call SOAPMessage.countAttachments() and verify correct
-     * count of attachments added.
+     * @test_Strategy: Call SOAPMessage.countAttachments() and verify correct count of attachments added.
      *
      * Description: count number of attachments in the message
      *
@@ -152,12 +156,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "countAttachmentsTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -166,7 +173,8 @@ public class URLClient extends EETest {
             throw new Fault("countAttachmentsTest failed", e);
         }
 
-        if (!pass) throw new Fault("countAttachmentsTest failed");
+        if (!pass)
+            throw new Fault("countAttachmentsTest failed");
     }
 
     /*
@@ -174,8 +182,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:30;
      *
-     * @test_Strategy: Call SOAPMessage.getAttachments() and verify correct get of
-     * attachments.
+     * @test_Strategy: Call SOAPMessage.getAttachments() and verify correct get of attachments.
      *
      * Description: get number of attachments in the message
      *
@@ -190,12 +197,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAttachmentsTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -204,7 +214,8 @@ public class URLClient extends EETest {
             throw new Fault("getAttachmentsTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("getAttachmentsTest1 failed");
+        if (!pass)
+            throw new Fault("getAttachmentsTest1 failed");
     }
 
     /*
@@ -212,8 +223,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:31;
      *
-     * @test_Strategy: Call SOAPMessage.getAttachments(MimeHeaders) and verify
-     * correct get of attachments.
+     * @test_Strategy: Call SOAPMessage.getAttachments(MimeHeaders) and verify correct get of attachments.
      *
      * Description: get number of attachments in the message
      *
@@ -228,12 +238,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAttachmentsTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -242,7 +255,8 @@ public class URLClient extends EETest {
             throw new Fault("getAttachmentsTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("getAttachmentsTest2 failed");
+        if (!pass)
+            throw new Fault("getAttachmentsTest2 failed");
     }
 
     /*
@@ -250,8 +264,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:28;
      *
-     * @test_Strategy: Call SOAPMessage.removeAllAttachments() and verify correct
-     * remove of attachments.
+     * @test_Strategy: Call SOAPMessage.removeAllAttachments() and verify correct remove of attachments.
      *
      * Description: remove attachments in the message
      *
@@ -266,12 +279,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "removeAllAttachmentsTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -280,7 +296,8 @@ public class URLClient extends EETest {
             throw new Fault("removeAllAttachmentsTest failed", e);
         }
 
-        if (!pass) throw new Fault("removeAllAttachmentsTest failed");
+        if (!pass)
+            throw new Fault("removeAllAttachmentsTest failed");
     }
 
     /*
@@ -288,8 +305,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:28;
      *
-     * @test_Strategy: Call SOAPMessage.removeAttachments() and verify correct
-     * attachments were removed.
+     * @test_Strategy: Call SOAPMessage.removeAttachments() and verify correct attachments were removed.
      *
      * Description: remove attachments in the message
      *
@@ -304,12 +320,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "removeAttachmentsTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -318,7 +337,8 @@ public class URLClient extends EETest {
             throw new Fault("removeAttachmentsTest failed", e);
         }
 
-        if (!pass) throw new Fault("removeAttachmentsTest failed");
+        if (!pass)
+            throw new Fault("removeAttachmentsTest failed");
     }
 
     /*
@@ -326,11 +346,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:21;
      *
-     * @test_Strategy: Call SOAPMessage.setContentDecription(String) and verify
-     * correct setting of description.
+     * @test_Strategy: Call SOAPMessage.setContentDecription(String) and verify correct setting of description.
      *
-     * Description: Set the description of this SOAPMessage object's content with
-     * the given description.
+     * Description: Set the description of this SOAPMessage object's content with the given description.
      *
      */
     public void setContentDescriptionTest() throws Fault {
@@ -343,12 +361,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setContentDescriptionTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -357,7 +378,8 @@ public class URLClient extends EETest {
             throw new Fault("setContentDescriptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("setContentDescriptionTest failed");
+        if (!pass)
+            throw new Fault("setContentDescriptionTest failed");
     }
 
     /*
@@ -365,8 +387,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:22;
      *
-     * @test_Strategy: Call SOAPMessage.getContentDecription() and verify correct
-     * description is returned.
+     * @test_Strategy: Call SOAPMessage.getContentDecription() and verify correct description is returned.
      *
      * Description: Get the description of this SOAPMessage object's content.
      *
@@ -381,12 +402,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getContentDescriptionTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -395,7 +419,8 @@ public class URLClient extends EETest {
             throw new Fault("getContentDescriptionTest failed", e);
         }
 
-        if (!pass) throw new Fault("getContentDescriptionTest failed");
+        if (!pass)
+            throw new Fault("getContentDescriptionTest failed");
     }
 
     /*
@@ -403,8 +428,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:35;
      *
-     * @test_Strategy: Call SOAPMessage.createAttachmentPart() and verify an empty
-     * AttachmentPart object is returned.
+     * @test_Strategy: Call SOAPMessage.createAttachmentPart() and verify an empty AttachmentPart object is returned.
      *
      * Description: Create a new empty AttachmentPart object
      *
@@ -419,12 +443,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "createAttachmentPartTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -433,7 +460,8 @@ public class URLClient extends EETest {
             throw new Fault("createAttachmentPartTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("createAttachmentPartTest1 failed");
+        if (!pass)
+            throw new Fault("createAttachmentPartTest1 failed");
     }
 
     /*
@@ -441,11 +469,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:36;
      *
-     * @test_Strategy: Call SOAPMessage.createAttachmentPart(DataHandler) and
-     * verify a non-empty AttachmentPart object is returned.
+     * @test_Strategy: Call SOAPMessage.createAttachmentPart(DataHandler) and verify a non-empty AttachmentPart object is
+     * returned.
      *
-     * Description: Create an AttachmentPart object and populate it with a given
-     * DataHandler object.
+     * Description: Create an AttachmentPart object and populate it with a given DataHandler object.
      *
      */
     public void createAttachmentPartTest2() throws Fault {
@@ -458,12 +485,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "createAttachmentPartTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -472,7 +502,8 @@ public class URLClient extends EETest {
             throw new Fault("createAttachmentPartTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("createAttachmentPartTest2 failed");
+        if (!pass)
+            throw new Fault("createAttachmentPartTest2 failed");
     }
 
     /*
@@ -480,11 +511,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:38;
      *
-     * @test_Strategy: Call SOAPMessage.createAttachmentPart(Object,String) and
-     * verify non-empty AttachmentPart object is returned.
+     * @test_Strategy: Call SOAPMessage.createAttachmentPart(Object,String) and verify non-empty AttachmentPart object is
+     * returned.
      *
-     * Description: Create an AttachmentPart object and populate it with the
-     * specified data of the specified content-type.
+     * Description: Create an AttachmentPart object and populate it with the specified data of the specified content-type.
      *
      */
     public void createAttachmentPartTest3() throws Fault {
@@ -498,12 +528,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "createAttachmentPartTest3");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -512,7 +545,8 @@ public class URLClient extends EETest {
             throw new Fault("createAttachmentPartTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("createAttachmentPartTest3 failed");
+        if (!pass)
+            throw new Fault("createAttachmentPartTest3 failed");
     }
 
     /*
@@ -520,8 +554,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:42; SAAJ:JAVADOC:43; SAAJ:JAVADOC:44;
      *
-     * @test_Strategy: Call SOAPMessage.writeTo(OutputStream) and verify
-     * SOAPMessage was written to stream.
+     * @test_Strategy: Call SOAPMessage.writeTo(OutputStream) and verify SOAPMessage was written to stream.
      *
      * Description: Write a SOAPMessage without attachments to output stream
      *
@@ -536,12 +569,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "writeToTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -550,7 +586,8 @@ public class URLClient extends EETest {
             throw new Fault("writeToTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("writeToTest1 failed");
+        if (!pass)
+            throw new Fault("writeToTest1 failed");
     }
 
     /*
@@ -558,8 +595,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:42; SAAJ:JAVADOC:43; SAAJ:JAVADOC:44;
      *
-     * @test_Strategy: Call SOAPMessage.writeTo(OutputStream) and verify
-     * SOAPMessage was written to stream.
+     * @test_Strategy: Call SOAPMessage.writeTo(OutputStream) and verify SOAPMessage was written to stream.
      *
      * Description: Write a SOAPMessage with attachments to output stream
      *
@@ -574,12 +610,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "writeToTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -588,7 +627,8 @@ public class URLClient extends EETest {
             throw new Fault("writeToTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("writeToTest2 failed");
+        if (!pass)
+            throw new Fault("writeToTest2 failed");
     }
 
     /*
@@ -596,11 +636,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:41;
      *
-     * @test_Strategy: Call SOAPMessage.saveRequired() and verify false is
-     * returned since saveChanges has not been called.
+     * @test_Strategy: Call SOAPMessage.saveRequired() and verify false is returned since saveChanges has not been called.
      *
-     * Description: Test SOAPMessage object to see that saveChanges has not been
-     * called on it.
+     * Description: Test SOAPMessage object to see that saveChanges has not been called on it.
      *
      */
     public void saveRequiredTest1() throws Fault {
@@ -613,12 +651,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "saveRequiredTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -627,7 +668,8 @@ public class URLClient extends EETest {
             throw new Fault("saveRequiredTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("saveRequiredTest1 failed");
+        if (!pass)
+            throw new Fault("saveRequiredTest1 failed");
     }
 
     /*
@@ -635,11 +677,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:41; SAAJ:JAVADOC:40;
      *
-     * @test_Strategy: Call SOAPMessage.saveRequired() after calling
-     * SOAPMessage.saveChanges() and verify true is returned.
+     * @test_Strategy: Call SOAPMessage.saveRequired() after calling SOAPMessage.saveChanges() and verify true is returned.
      *
-     * Description: Test SOAPMessage object to see that saveChanges has been
-     * called on it.
+     * Description: Test SOAPMessage object to see that saveChanges has been called on it.
      *
      */
     public void saveRequiredTest2() throws Fault {
@@ -652,12 +692,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "saveRequiredTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -666,7 +709,8 @@ public class URLClient extends EETest {
             throw new Fault("saveRequiredTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("saveRequiredTest2 failed");
+        if (!pass)
+            throw new Fault("saveRequiredTest2 failed");
     }
 
     /*
@@ -674,11 +718,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:37;
      *
-     * @test_Strategy: Call SOAPMessage.getMimeHeaders() to return the
-     * transport-specific MimeHeaders for this SOAPMessage.
+     * @test_Strategy: Call SOAPMessage.getMimeHeaders() to return the transport-specific MimeHeaders for this SOAPMessage.
      *
-     * Description: Test get of transport-specific MimeHeaders for this
-     * SOAPMessage.
+     * Description: Test get of transport-specific MimeHeaders for this SOAPMessage.
      *
      */
     public void getMimeHeadersTest() throws Fault {
@@ -691,12 +733,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getMimeHeadersTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -705,7 +750,8 @@ public class URLClient extends EETest {
             throw new Fault("getMimeHeadersTest failed", e);
         }
 
-        if (!pass) throw new Fault("getMimeHeadersTest failed");
+        if (!pass)
+            throw new Fault("getMimeHeadersTest failed");
     }
 
     /*
@@ -713,8 +759,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:23;
      *
-     * @test_Strategy: Call SOAPMessage.getSOAPPart() method to retrieve the
-     * SOAPPart of the message.
+     * @test_Strategy: Call SOAPMessage.getSOAPPart() method to retrieve the SOAPPart of the message.
      *
      * Description: Get the SOAPPart for this soap message.
      *
@@ -730,12 +775,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getSOAPPartTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -744,7 +792,8 @@ public class URLClient extends EETest {
             throw new Fault("getSOAPPartTest failed", e);
         }
 
-        if (!pass) throw new Fault("getSOAPPartTest failed");
+        if (!pass)
+            throw new Fault("getSOAPPartTest failed");
     }
 
     /*
@@ -752,8 +801,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:45; SAAJ:JAVADOC:46;
      *
-     * @test_Strategy: Call SOAPMessage.setProperty(String, String) method and
-     * verify that the property was set correctly.
+     * @test_Strategy: Call SOAPMessage.setProperty(String, String) method and verify that the property was set correctly.
      *
      * Description: Set a property for this soap message.
      *
@@ -769,12 +817,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setPropertyTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -782,7 +833,8 @@ public class URLClient extends EETest {
             throw new Fault("setPropertyTest failed", e);
         }
 
-        if (!pass) throw new Fault("setPropertyTest failed");
+        if (!pass)
+            throw new Fault("setPropertyTest failed");
     }
 
     /*
@@ -790,8 +842,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:47; SAAJ:JAVADOC:48;
      *
-     * @test_Strategy: Call SOAPMessage.getProperty(String) method and verify that
-     * the correct property was retrieved.
+     * @test_Strategy: Call SOAPMessage.getProperty(String) method and verify that the correct property was retrieved.
      *
      * Description: Set a property for this soap message.
      *
@@ -807,12 +858,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getPropertyTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -820,7 +874,8 @@ public class URLClient extends EETest {
             throw new Fault("getPropertyTest failed", e);
         }
 
-        if (!pass) throw new Fault("getPropertyTest failed");
+        if (!pass)
+            throw new Fault("getPropertyTest failed");
     }
 
     /*
@@ -828,8 +883,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:24; SAAJ:JAVADOC:25;
      *
-     * @test_Strategy: Call SOAPMessage.getSOAPBody() method to retrieve the
-     * SOAPBody of the message.
+     * @test_Strategy: Call SOAPMessage.getSOAPBody() method to retrieve the SOAPBody of the message.
      *
      * Description: Get the SOAPBody for this soap message.
      *
@@ -845,12 +899,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getSOAPBodyTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -859,7 +916,8 @@ public class URLClient extends EETest {
             throw new Fault("getSOAPBodyTest failed", e);
         }
 
-        if (!pass) throw new Fault("getSOAPBodyTest failed");
+        if (!pass)
+            throw new Fault("getSOAPBodyTest failed");
     }
 
     /*
@@ -867,8 +925,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:26; SAAJ:JAVADOC:27;
      *
-     * @test_Strategy: Call SOAPMessage.getSOAPHeader() method to retrieve the
-     * SOAPHeader of the message.
+     * @test_Strategy: Call SOAPMessage.getSOAPHeader() method to retrieve the SOAPHeader of the message.
      *
      * Description: Get the SOAPHeader for this soap message.
      *
@@ -884,12 +941,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getSOAPHeaderTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -898,7 +958,8 @@ public class URLClient extends EETest {
             throw new Fault("getSOAPHeaderTest failed", e);
         }
 
-        if (!pass) throw new Fault("getSOAPHeaderTest failed");
+        if (!pass)
+            throw new Fault("getSOAPHeaderTest failed");
     }
 
     /*
@@ -906,9 +967,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:32; SAAJ:JAVADOC:33;
      *
-     * @test_Strategy: Call SOAPMessage.getAttachment() method to retrieve an
-     * attachment from the message. Retrieve attachments using SwaRef "cid:uri"
-     * scheme. Create a SOAP message with a Body element and a text node of SwaRef
+     * @test_Strategy: Call SOAPMessage.getAttachment() method to retrieve an attachment from the message. Retrieve
+     * attachments using SwaRef "cid:uri" scheme. Create a SOAP message with a Body element and a text node of SwaRef
      * "cid:uri".
      *
      */
@@ -923,12 +983,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAttachmentBySwaRefTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -936,7 +999,8 @@ public class URLClient extends EETest {
             throw new Fault("getAttachmentBySwaRefTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("getAttachmentBySwaRefTest1 failed");
+        if (!pass)
+            throw new Fault("getAttachmentBySwaRefTest1 failed");
     }
 
     /*
@@ -944,10 +1008,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:32; SAAJ:JAVADOC:33;
      *
-     * @test_Strategy: Call SOAPMessage.getAttachment() method to retrieve an
-     * attachment from the message. Retrieve attachments using SwaRef "cid:uri"
-     * scheme. Create a SOAP message with a Body element and a Child element with
-     * a text node of SwaRef "cid:uri".
+     * @test_Strategy: Call SOAPMessage.getAttachment() method to retrieve an attachment from the message. Retrieve
+     * attachments using SwaRef "cid:uri" scheme. Create a SOAP message with a Body element and a Child element with a text
+     * node of SwaRef "cid:uri".
      *
      */
     public void getAttachmentBySwaRefTest2() throws Fault {
@@ -961,12 +1024,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAttachmentBySwaRefTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -974,7 +1040,8 @@ public class URLClient extends EETest {
             throw new Fault("getAttachmentBySwaRefTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("getAttachmentBySwaRefTest2 failed");
+        if (!pass)
+            throw new Fault("getAttachmentBySwaRefTest2 failed");
     }
 
     /*
@@ -982,10 +1049,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:32; SAAJ:JAVADOC:33;
      *
-     * @test_Strategy: Call SOAPMessage.getAttachment() method to retrieve an
-     * attachment from the message. Retrieve attachments using SwaRef "uri"
-     * scheme. Create a SOAP message with a Body element and a text node of SwaRef
-     * "uri". This uses URI and Content-Location.
+     * @test_Strategy: Call SOAPMessage.getAttachment() method to retrieve an attachment from the message. Retrieve
+     * attachments using SwaRef "uri" scheme. Create a SOAP message with a Body element and a text node of SwaRef "uri".
+     * This uses URI and Content-Location.
      *
      */
     public void getAttachmentBySwaRefTest3() throws Fault {
@@ -999,12 +1065,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAttachmentBySwaRefTest3");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1012,7 +1081,8 @@ public class URLClient extends EETest {
             throw new Fault("getAttachmentBySwaRefTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("getAttachmentBySwaRefTest3 failed");
+        if (!pass)
+            throw new Fault("getAttachmentBySwaRefTest3 failed");
     }
 
     /*
@@ -1020,10 +1090,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:32; SAAJ:JAVADOC:33;
      *
-     * @test_Strategy: Call SOAPMessage.getAttachment() method to retrieve an
-     * attachment from the message. Retrieve attachments using "href=cid:uri"
-     * attribute scheme. This deals with using the Content-ID and URI setting to
-     * retrieve the attachment.
+     * @test_Strategy: Call SOAPMessage.getAttachment() method to retrieve an attachment from the message. Retrieve
+     * attachments using "href=cid:uri" attribute scheme. This deals with using the Content-ID and URI setting to retrieve
+     * the attachment.
      *
      */
     public void getAttachmentByHrefTest1() throws Fault {
@@ -1037,12 +1106,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAttachmentByHrefTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1050,7 +1122,8 @@ public class URLClient extends EETest {
             throw new Fault("getAttachmentByHrefTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("getAttachmentByHrefTest1 failed");
+        if (!pass)
+            throw new Fault("getAttachmentByHrefTest1 failed");
     }
 
     /*
@@ -1058,10 +1131,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:32; SAAJ:JAVADOC:33;
      *
-     * @test_Strategy: Call SOAPMessage.getAttachment() method to retrieve an
-     * attachment from the message. Retrieve attachments using "href=uri"
-     * attribute scheme. This deals with using the Content-Location and URI
-     * setting to retrieve the attachment.
+     * @test_Strategy: Call SOAPMessage.getAttachment() method to retrieve an attachment from the message. Retrieve
+     * attachments using "href=uri" attribute scheme. This deals with using the Content-Location and URI setting to retrieve
+     * the attachment.
      */
     public void getAttachmentByHrefTest2() throws Fault {
         boolean pass = true;
@@ -1074,12 +1146,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAttachmentByHrefTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1087,6 +1162,7 @@ public class URLClient extends EETest {
             throw new Fault("getAttachmentByHrefTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("getAttachmentByHrefTest2 failed");
+        if (!pass)
+            throw new Fault("getAttachmentByHrefTest2 failed");
     }
 }

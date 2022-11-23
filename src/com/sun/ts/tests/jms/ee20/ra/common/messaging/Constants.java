@@ -34,12 +34,10 @@ public interface Constants {
     public static final long MESSAGE_TIME_TO_LIVE = 30 * 1000;
 
     /**
-     * The two properties ar eno longer used. Number of seconds to sleep after
-     * calling QueueConnection.createQueueSession(). This is currently used in
-     * StatusReporter. Note that the QueueSession is cached in StatusReporter, so
-     * the sleep occurs only at the first time. Without the sleep time, the first
-     * test sending back result will fail with errors: Message resent too many
-     * times; sending it to DLQ...
+     * The two properties ar eno longer used. Number of seconds to sleep after calling QueueConnection.createQueueSession().
+     * This is currently used in StatusReporter. Note that the QueueSession is cached in StatusReporter, so the sleep occurs
+     * only at the first time. Without the sleep time, the first test sending back result will fail with errors: Message
+     * resent too many times; sending it to DLQ...
      */
     public static final int SLEEP_AFTER_CONNECT_SECONDS = 3;
 

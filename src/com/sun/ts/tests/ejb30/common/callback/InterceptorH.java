@@ -70,7 +70,8 @@ public class InterceptorH extends InterceptorF {
     }
 
     @Override
-    protected void myCreateInE(InvocationContext inv) throws RuntimeException {}
+    protected void myCreateInE(InvocationContext inv) throws RuntimeException {
+    }
 
     @Override
     protected void myCreate(InvocationContext inv) throws RuntimeException {

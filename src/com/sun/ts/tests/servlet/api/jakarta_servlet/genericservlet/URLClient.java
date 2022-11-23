@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,8 +58,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:119
      *
-     * @test_Strategy: Create a GenericServlet and take out of service using
-     * destroy method
+     * @test_Strategy: Create a GenericServlet and take out of service using destroy method
      *
      */
 
@@ -81,8 +78,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:124
      *
-     * @test_Strategy: Create a GenericServlet and check for its ServletConfig
-     * object existence
+     * @test_Strategy: Create a GenericServlet and check for its ServletConfig object existence
      *
      */
 
@@ -96,8 +92,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:125
      *
-     * @test_Strategy: Create a GenericServlet and check for its ServletContext
-     * object existence
+     * @test_Strategy: Create a GenericServlet and check for its ServletContext object existence
      *
      */
 
@@ -111,8 +106,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:126
      *
-     * @test_Strategy: Create a GenericServlet and check for its ServletInfo
-     * object values
+     * @test_Strategy: Create a GenericServlet and check for its ServletInfo object values
      *
      */
 
@@ -184,8 +178,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:129
      *
-     * @test_Strategy: Servlet has init method that puts a value into the context.
-     * Servlet when called reads value from context
+     * @test_Strategy: Servlet has init method that puts a value into the context. Servlet when called reads value from
+     * context
      */
 
     public void initTest() throws Fault {
@@ -219,8 +213,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:127
      *
-     * @test_Strategy: Servlet has init method that puts a value into the context.
-     * Servlet when called reads value from context
+     * @test_Strategy: Servlet has init method that puts a value into the context. Servlet when called reads value from
+     * context
      */
 
     public void init_ServletConfigTest() throws Fault {

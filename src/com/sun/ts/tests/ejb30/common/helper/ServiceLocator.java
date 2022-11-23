@@ -26,7 +26,8 @@ import javax.naming.NamingException;
 
 public class ServiceLocator {
 
-    private ServiceLocator() {}
+    private ServiceLocator() {
+    }
 
     public static Object lookup(String name, Context... context) throws NamingException {
         return lookup(name, (Class) null, context);
@@ -61,9 +62,8 @@ public class ServiceLocator {
     }
 
     /**
-     * Looks up a resource by its name or fully qualified type name. If name is
-     * not null, then use it to look up and type is ignored. If name is null, then
-     * try to use the fully qualified class name of type.
+     * Looks up a resource by its name or fully qualified type name. If name is not null, then use it to look up and type is
+     * ignored. If name is null, then try to use the fully qualified class name of type.
      *
      */
     public static Object lookup(String name, Class type, Context... context) throws NamingException {

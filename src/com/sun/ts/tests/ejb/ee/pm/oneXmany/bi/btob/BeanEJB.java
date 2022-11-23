@@ -120,8 +120,10 @@ public abstract class BeanEJB implements EntityBean {
         ALocal a1 = bOne.getA();
         Collection b1 = aOne.getB();
 
-        if (a1 == null && b1.isEmpty()) return true;
-        else return false;
+        if (a1 == null && b1.isEmpty())
+            return true;
+        else
+            return false;
     }
 
     public boolean test0() {
@@ -167,9 +169,11 @@ public abstract class BeanEJB implements EntityBean {
             BLocal b = (BLocal) iterator.next();
             ALocal a = b.getA();
             if (theA == null) {
-                if (a != null) return false;
+                if (a != null)
+                    return false;
             } else {
-                if (!a.isIdentical(theA)) return false;
+                if (!a.isIdentical(theA))
+                    return false;
             }
         }
         return true;
@@ -178,7 +182,8 @@ public abstract class BeanEJB implements EntityBean {
     private Collection copyCollection(Collection c) {
         Vector copy = new Vector();
         Iterator iterator = c.iterator();
-        while (iterator.hasNext()) copy.add(iterator.next());
+        while (iterator.hasNext())
+            copy.add(iterator.next());
         return copy;
     }
 
@@ -236,12 +241,16 @@ public abstract class BeanEJB implements EntityBean {
                 return true;
             } else {
                 TestUtil.logMsg("Relationship assignment failed");
-                if (!b1.containsAll(b2col)) TestUtil.logErr("b1 collection results unexpected");
+                if (!b1.containsAll(b2col))
+                    TestUtil.logErr("b1 collection results unexpected");
                 if (b1.size() != b2col.size())
                     TestUtil.logErr("collection size mismatch, expected: " + b2col.size() + ", received: " + b1.size());
-                if (!b2.isEmpty()) TestUtil.logErr("b2 is not empty");
-                if (b1 != bOne) TestUtil.logErr("b1 is not same collection reference");
-                if (b2 != bTwo) TestUtil.logErr("b2 is not same collection reference");
+                if (!b2.isEmpty())
+                    TestUtil.logErr("b2 is not empty");
+                if (b1 != bOne)
+                    TestUtil.logErr("b1 is not same collection reference");
+                if (b2 != bTwo)
+                    TestUtil.logErr("b2 is not same collection reference");
                 return false;
             }
 
@@ -470,15 +479,15 @@ public abstract class BeanEJB implements EntityBean {
             setB1(b1);
 
             switch (flag) {
-                case NO_RELATION_SET:
-                    break;
-                case NULL_RELATION_SET:
-                    b1.setA(null);
-                    break;
-                case RELATION_SET:
-                    Collection c = a1.getB();
-                    c.add(b1);
-                    break;
+            case NO_RELATION_SET:
+                break;
+            case NULL_RELATION_SET:
+                b1.setA(null);
+                break;
+            case RELATION_SET:
+                Collection c = a1.getB();
+                c.add(b1);
+                break;
             }
 
         } catch (Exception e) {
@@ -520,7 +529,8 @@ public abstract class BeanEJB implements EntityBean {
             setB2(b2);
             bcol1.add(b2);
 
-            if (aTwo == null) return;
+            if (aTwo == null)
+                return;
 
             ALocal a2 = createALocal(aTwo.getId(), aTwo.getName(), aTwo.getValue());
             setA2(a2);

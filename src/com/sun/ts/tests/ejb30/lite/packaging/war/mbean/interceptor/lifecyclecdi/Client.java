@@ -25,9 +25,8 @@ import jakarta.annotation.Resource;
 import java.util.List;
 
 /**
- * This test directory contains an empty beans.xml that will be packaged in WAR
- * as WEB-INF/beans.xml. This is to verify when CDI is enabled, the overriding
- * of ManagedBean's lifecycle methods still works. The similar tests without
+ * This test directory contains an empty beans.xml that will be packaged in WAR as WEB-INF/beans.xml. This is to verify
+ * when CDI is enabled, the overriding of ManagedBean's lifecycle methods still works. The similar tests without
  * beans.xml are in ../lifecycle.
  */
 public class Client extends EJBLiteClientBase {
@@ -41,22 +40,21 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: overrideWithRegularMethod
      *
-     * @test_Strategy: If a PostConstruct method is overridden, it is no longer
-     * invoked. This test override with a non-PostConstruct method. This test also
-     * excludes default and class-level interceptors.
+     * @test_Strategy: If a PostConstruct method is overridden, it is no longer invoked. This test override with a
+     * non-PostConstruct method. This test also excludes default and class-level interceptors.
      */
     public void overrideWithRegularMethod() {
-        checkPostConstructRecords(overrideBean, new String[] {"OverrideBean"});
+        checkPostConstructRecords(overrideBean, new String[] { "OverrideBean" });
     }
 
     /*
      * @testName: overrideWithPostConstructBean
      *
-     * @test_Strategy: If a PostConstruct method is overridden, it is no longer
-     * invoked. This test override with a PostConstruct method.
+     * @test_Strategy: If a PostConstruct method is overridden, it is no longer invoked. This test override with a
+     * PostConstruct method.
      */
     public void overrideWithPostConstructBean() {
-        checkPostConstructRecords(overrideWithPostConstructBean, new String[] {"OverrideWithPostConstructBean"});
+        checkPostConstructRecords(overrideWithPostConstructBean, new String[] { "OverrideWithPostConstructBean" });
     }
 
     protected void checkPostConstructRecords(OverrideBeanBase b, String[] expectedPostConstruct) {

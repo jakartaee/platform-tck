@@ -44,9 +44,8 @@ public class URLClient extends AbstractUrlClient {
     String dir;
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -55,8 +54,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setContextRoot("/servlet_jsh_part1_web");
@@ -72,13 +70,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getPartTest
      *
-     * @assertion_ids: Servlet:JAVADOC:767; Servlet:JAVADOC:770;
-     * Servlet:JAVADOC:787; Servlet:JAVADOC:789; Servlet:JAVADOC:793;
-     * Servlet:JAVADOC:794; Servlet:JAVADOC:955;
+     * @assertion_ids: Servlet:JAVADOC:767; Servlet:JAVADOC:770; Servlet:JAVADOC:787; Servlet:JAVADOC:789;
+     * Servlet:JAVADOC:793; Servlet:JAVADOC:794; Servlet:JAVADOC:955;
      *
-     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request;
-     * From client, send multi-part form without file Verify that the data is
-     * received correctly Verify all relevant API works correctly
+     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request; From client, send multi-part form without
+     * file Verify that the data is received correctly Verify all relevant API works correctly
      */
     public void getPartTest() throws Fault {
         dir = _tsHome + "/src/com/sun/ts/tests/servlet/api/jakarta_servlet_http/part/";
@@ -176,9 +172,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:769;
      *
-     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request;
-     * From client, send a non-multi-part form data request with a form data
-     * Verify getPart(String name) throw ServletException
+     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request; From client, send a non-multi-part form
+     * data request with a form data Verify getPart(String name) throw ServletException
      */
     public void getPartTest1() throws Fault {
         dir = _tsHome + "/src/com/sun/ts/tests/servlet/api/jakarta_servlet_http/part/";
@@ -275,9 +270,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:772;
      *
-     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request;
-     * From client, send a non-multi-part form data request with a few form data
-     * Verify getParts() throw ServletException
+     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request; From client, send a non-multi-part form
+     * data request with a few form data Verify getParts() throw ServletException
      */
     public void getPartsTest() throws Fault {
         dir = _tsHome + "/src/com/sun/ts/tests/servlet/api/jakarta_servlet_http/part/";
@@ -377,13 +371,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getPartsTest1
      *
-     * @assertion_ids: Servlet:JAVADOC:767; Servlet:JAVADOC:770;
-     * Servlet:JAVADOC:787; Servlet:JAVADOC:789; Servlet:JAVADOC:793;
-     * Servlet:JAVADOC:794; Servlet:JAVADOC:955;
+     * @assertion_ids: Servlet:JAVADOC:767; Servlet:JAVADOC:770; Servlet:JAVADOC:787; Servlet:JAVADOC:789;
+     * Servlet:JAVADOC:793; Servlet:JAVADOC:794; Servlet:JAVADOC:955;
      *
-     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request;
-     * From client, send multi-part form with several parts, with and without file
-     * Verify that the data is received correctly Verify all relevant API works
+     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request; From client, send multi-part form with
+     * several parts, with and without file Verify that the data is received correctly Verify all relevant API works
      * correctly
      */
     public void getPartsTest1() throws Fault {
@@ -492,22 +484,20 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:788;
      *
-     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request;
-     * From client, send multi-part form with several parts, with and without file
-     * Verify that Part.getHeader(String) works correctly
+     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request; From client, send multi-part form with
+     * several parts, with and without file Verify that Part.getHeader(String) works correctly
      */
     public void getHeaderTest() throws Fault {
         dir = _tsHome + "/src/com/sun/ts/tests/servlet/api/jakarta_servlet_http/part/";
         String testname = "getHeaderTest";
 
         Boolean passed = true;
-        String EXPECTED_RESPONSE =
-                "Part name: myFile|content-disposition:|form-data;|name=\"myFile\";|filename=\"test.txt\"|content-type: text/plain"
-                        + "|TCKDummyNameNonExistant: null"
-                        + "|Part name: myFile2|content-disposition:|form-data;|name=\"myFile2\";|filename=\"test2.txt\"|content-type: text/plain"
-                        + "|TCKDummyNameNonExistant: null"
-                        + "|Part name: xyz|content-disposition:|form-data;|name=\"xyz\"|content-type: text/plain"
-                        + "|TCKDummyNameNonExistant: null";
+        String EXPECTED_RESPONSE = "Part name: myFile|content-disposition:|form-data;|name=\"myFile\";|filename=\"test.txt\"|content-type: text/plain"
+                + "|TCKDummyNameNonExistant: null"
+                + "|Part name: myFile2|content-disposition:|form-data;|name=\"myFile2\";|filename=\"test2.txt\"|content-type: text/plain"
+                + "|TCKDummyNameNonExistant: null"
+                + "|Part name: xyz|content-disposition:|form-data;|name=\"xyz\"|content-type: text/plain"
+                + "|TCKDummyNameNonExistant: null";
 
         StringBuilder test_log = new StringBuilder();
 
@@ -601,22 +591,20 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:790;
      *
-     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request;
-     * From client, send multi-part form with several parts, with and without file
-     * Verify that Part.getHeaders(String) works correctly
+     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request; From client, send multi-part form with
+     * several parts, with and without file Verify that Part.getHeaders(String) works correctly
      */
     public void getHeadersTest() throws Fault {
         dir = _tsHome + "/src/com/sun/ts/tests/servlet/api/jakarta_servlet_http/part/";
         String testname = "getHeadersTest";
 
         Boolean passed = true;
-        String EXPECTED_RESPONSE =
-                "Part name: myFile|content-disposition:|form-data;|name=\"myFile\";|filename=\"test.txt\"|content-type: text/plain"
-                        + "|TCKDummyNameNonExistant: 0"
-                        + "|Part name: myFile2|content-disposition:|form-data;|name=\"myFile2\";|filename=\"test2.txt\"|content-type: text/plain"
-                        + "|TCKDummyNameNonExistant: 0"
-                        + "|Part name: xyz|content-disposition:|form-data;|name=\"xyz\"|content-type: text/plain"
-                        + "|TCKDummyNameNonExistant: 0";
+        String EXPECTED_RESPONSE = "Part name: myFile|content-disposition:|form-data;|name=\"myFile\";|filename=\"test.txt\"|content-type: text/plain"
+                + "|TCKDummyNameNonExistant: 0"
+                + "|Part name: myFile2|content-disposition:|form-data;|name=\"myFile2\";|filename=\"test2.txt\"|content-type: text/plain"
+                + "|TCKDummyNameNonExistant: 0"
+                + "|Part name: xyz|content-disposition:|form-data;|name=\"xyz\"|content-type: text/plain"
+                + "|TCKDummyNameNonExistant: 0";
 
         StringBuilder test_log = new StringBuilder();
 
@@ -710,17 +698,15 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:791;
      *
-     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request;
-     * From client, send multi-part form with several parts, with and without file
-     * Verify that Part.getInputStream() works correctly
+     * @test_Strategy: Create a Servlet TestServletWrapper that wraps the Request; From client, send multi-part form with
+     * several parts, with and without file Verify that Part.getInputStream() works correctly
      */
     public void getInputStreamTest() throws Fault {
         dir = _tsHome + "/src/com/sun/ts/tests/servlet/api/jakarta_servlet_http/part/";
         String testname = "getInputStreamTest";
 
         Boolean passed = true;
-        String EXPECTED_RESPONSE =
-                "Parts size=1" + "|Part name: myFile" + "|First line." + "|Second line." + "|Last line.";
+        String EXPECTED_RESPONSE = "Parts size=1" + "|Part name: myFile" + "|First line." + "|Second line." + "|Last line.";
 
         StringBuilder test_log = new StringBuilder();
 

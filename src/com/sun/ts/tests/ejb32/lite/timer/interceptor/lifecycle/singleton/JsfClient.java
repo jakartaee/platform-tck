@@ -37,8 +37,8 @@ public class JsfClient extends JsfClientBase implements Serializable {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: create a timer in singleton PostConstruct method in bean
-     * class and its superclass. Verify they expire as expected.
+     * @test_Strategy: create a timer in singleton PostConstruct method in bean class and its superclass. Verify they expire
+     * as expected.
      */
     public void postConstructInBeanClass() {
         bean.getTimers(); // the first request to activate the singleton
@@ -51,8 +51,8 @@ public class JsfClient extends JsfClientBase implements Serializable {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: create a timer in PostConstruct methods of lifecycle
-     * interceptor classes. Verify they all expire as expected.
+     * @test_Strategy: create a timer in PostConstruct methods of lifecycle interceptor classes. Verify they all expire as
+     * expected.
      */
     public void postConstructInInterceptorClasses() {
         bean.getTimers(); // the first request to activate the singleton
@@ -67,8 +67,8 @@ public class JsfClient extends JsfClientBase implements Serializable {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: create a timer in singleton PostConstruct method in bean
-     * class and its superclass. Verify they expire as expected.
+     * @test_Strategy: create a timer in singleton PostConstruct method in bean class and its superclass. Verify they expire
+     * as expected.
      */
     public void aroundConstructInBeanClass() {
         aroundConstructTimerBean.getTimers(); // the first request to activate the

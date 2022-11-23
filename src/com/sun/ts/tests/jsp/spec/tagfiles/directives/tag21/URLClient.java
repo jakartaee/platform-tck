@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     private static String CONTEXT_ROOT = "/jsp_tagfile_directives_tag21_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -61,10 +59,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.26
      *
-     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralTagDirectiveAttribute]
-     * Verify that when the DeferredSyntaxAllowedAsLiteral tag directive attribute
-     * is set to false, a translation error occurs when the '{#' character
-     * sequence is used in template text and the jsp version is 2.1 or greater.
+     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralTagDirectiveAttribute] Verify that when the
+     * DeferredSyntaxAllowedAsLiteral tag directive attribute is set to false, a translation error occurs when the '{#'
+     * character sequence is used in template text and the jsp version is 2.1 or greater.
      */
     public void deferredSyntaxAllowedAsLiteralFalseTemplateTextTest() throws Fault {
         String testName = "DeferredSyntaxAllowedAsLiteralFalseTemplateText";
@@ -78,10 +75,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.26
      *
-     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralTagDirectiveAttribute]
-     * Verify that when the DeferredSyntaxAllowedAsLiteral tag directive attribute
-     * is set to true, the '{#' character sequence is allowed in template text
-     * when the jsp version is 2.1 or greater.
+     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralTagDirectiveAttribute] Verify that when the
+     * DeferredSyntaxAllowedAsLiteral tag directive attribute is set to true, the '{#' character sequence is allowed in
+     * template text when the jsp version is 2.1 or greater.
      */
     public void deferredSyntaxAllowedAsLiteralTrueTemplateTextTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "DeferredSyntaxAllowedAsLiteralTrueTemplateText");
@@ -93,10 +89,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.26
      *
-     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralTagDirectiveAttribute]
-     * Verify that when the DeferredSyntaxAllowedAsLiteral tag directive attribute
-     * is set to false, a translation error occurs when the '{#' character
-     * sequence is used in actions and the jsp version is 2.1 or greater.
+     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralTagDirectiveAttribute] Verify that when the
+     * DeferredSyntaxAllowedAsLiteral tag directive attribute is set to false, a translation error occurs when the '{#'
+     * character sequence is used in actions and the jsp version is 2.1 or greater.
      */
     public void deferredSyntaxAllowedAsLiteralFalseActionTest() throws Fault {
         String testName = "DeferredSyntaxAllowedAsLiteralFalseAction";
@@ -110,10 +105,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:229.26
      *
-     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralTagDirectiveAttribute]
-     * Verify that when the DeferredSyntaxAllowedAsLiteral tag directive attribute
-     * is set to true, the '{#' character sequence is allowed in actions when the
-     * jsp version is 2.1 or greater.
+     * @test_Strategy: [DeferredSyntaxAllowedAsLiteralTagDirectiveAttribute] Verify that when the
+     * DeferredSyntaxAllowedAsLiteral tag directive attribute is set to true, the '{#' character sequence is allowed in
+     * actions when the jsp version is 2.1 or greater.
      */
     public void deferredSyntaxAllowedAsLiteralTrueActionTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "DeferredSyntaxAllowedAsLiteralTrueAction");

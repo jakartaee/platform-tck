@@ -138,8 +138,10 @@ public class TestEJB implements EntityBean {
         String name = ectx.getCallerPrincipal().getName();
         TestUtil.logMsg("IsCallerB1: " + name);
 
-        if (name.indexOf(caller) < 0) return false;
-        else return true;
+        if (name.indexOf(caller) < 0)
+            return false;
+        else
+            return true;
     }
 
     public boolean IsCallerB2(String caller, java.util.Properties props) {
@@ -213,7 +215,8 @@ public class TestEJB implements EntityBean {
             if (ejbref != null) {
                 ejbref.remove();
                 ejbref = null;
-            } else TestUtil.logMsg("ejbref == null");
+            } else
+                TestUtil.logMsg("ejbref == null");
         } catch (Exception ex) {
             TestUtil.logErr("ERROR: trying to remove the bean in cleanup: ", ex);
         }
@@ -284,7 +287,8 @@ public class TestEJB implements EntityBean {
             }
         }
 
-        if (result) return false;
+        if (result)
+            return false;
         return true;
     }
 
@@ -311,7 +315,8 @@ public class TestEJB implements EntityBean {
             }
         }
 
-        if (!result1) return false;
+        if (!result1)
+            return false;
 
         try {
             ejb2ref = ejb2home.create(props, newTable, 2, "coffee-1", 1);
@@ -330,7 +335,8 @@ public class TestEJB implements EntityBean {
                 TestUtil.logErr("Exception caught removing ejb2ref in EjbSecRoleRefScope", e);
             }
         }
-        if (result2) return false;
+        if (result2)
+            return false;
         return true;
     }
 
@@ -356,7 +362,8 @@ public class TestEJB implements EntityBean {
                 TestUtil.logErr("Exception caught removing ejb1ref in EjbOverloadedSecRoleRefs", e);
             }
         }
-        if (!result1) return false;
+        if (!result1)
+            return false;
 
         try {
             ejb1ref2 = ejb1home.create(props, newTable, 2, "coffee-1", 1);
@@ -375,7 +382,8 @@ public class TestEJB implements EntityBean {
                 TestUtil.logErr("Exception caught removing ejb2ref in EjbOverloadedSecRoleRefs", e);
             }
         }
-        if (result2) return false;
+        if (result2)
+            return false;
         return true;
     }
 

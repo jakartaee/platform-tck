@@ -30,10 +30,9 @@ import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-@MessageDriven(
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
-        })
+@MessageDriven(activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+})
 // @Interceptors({MDBCallbackListener.class})
 public class CallbackBean extends MDBCallbackBeanBase implements MessageListener {
     @Resource(name = "mdc")

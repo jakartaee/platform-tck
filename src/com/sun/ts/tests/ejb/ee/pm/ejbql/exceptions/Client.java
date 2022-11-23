@@ -81,9 +81,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:146; EJB:SPEC:285
      *
-     * @test_Strategy: Execute the findProductByName method defined to expect a
-     * single-object with the result set that does not exist. Check that an
-     * ObjectNotFoundException is thrown.
+     * @test_Strategy: Execute the findProductByName method defined to expect a single-object with the result set that does
+     * not exist. Check that an ObjectNotFoundException is thrown.
      *
      */
 
@@ -105,7 +104,8 @@ public class Client extends EETest {
             throw new Fault("exceptionTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("exceptionTest1 failed");
+        if (!pass)
+            throw new Fault("exceptionTest1 failed");
     }
 
     /*
@@ -113,9 +113,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:284
      *
-     * @test_Strategy: Execute findAllProductsByName method defined to expect a
-     * collection with the result set that returns no matches. Ensure that an
-     * exception is not thrown.
+     * @test_Strategy: Execute findAllProductsByName method defined to expect a collection with the result set that returns
+     * no matches. Ensure that an exception is not thrown.
      *
      */
 
@@ -140,7 +139,8 @@ public class Client extends EETest {
             throw new Fault("exceptionTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("exceptionTest2 failed");
+        if (!pass)
+            throw new Fault("exceptionTest2 failed");
     }
 
     /*
@@ -148,9 +148,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:146; EJB:SPEC:285
      *
-     * @test_Strategy: Execute ejbSelectProductName method defined to expect a
-     * single-object with the result set that does not exist. Check that an
-     * ObjectNotFoundException is thrown.
+     * @test_Strategy: Execute ejbSelectProductName method defined to expect a single-object with the result set that does
+     * not exist. Check that an ObjectNotFoundException is thrown.
      *
      */
 
@@ -172,7 +171,8 @@ public class Client extends EETest {
             throw new Fault("exceptionTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("exceptionTest3 failed");
+        if (!pass)
+            throw new Fault("exceptionTest3 failed");
     }
 
     /*
@@ -180,9 +180,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:284; EJB:JAVADOC:145
      *
-     * @test_Strategy: Execute ejbSelectAllProducts method defined to expect a
-     * collection with the result set that returns no matches. Ensure that an
-     * exception is not thrown.
+     * @test_Strategy: Execute ejbSelectAllProducts method defined to expect a collection with the result set that returns
+     * no matches. Ensure that an exception is not thrown.
      *
      */
 
@@ -207,7 +206,8 @@ public class Client extends EETest {
             throw new Fault("exceptionTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("exceptionTest4 failed");
+        if (!pass)
+            throw new Fault("exceptionTest4 failed");
     }
 
     /*
@@ -215,9 +215,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:119; EJB:SPEC:279; EJB:SPEC:378
      *
-     * @test_Strategy: Execute ejbSelectProductByType method defined to expect a
-     * single object with the result set that returns more than one. Ensure that a
-     * FinderException is thrown.
+     * @test_Strategy: Execute ejbSelectProductByType method defined to expect a single object with the result set that
+     * returns more than one. Ensure that a FinderException is thrown.
      *
      */
 
@@ -238,7 +237,8 @@ public class Client extends EETest {
             throw new Fault("exceptionTest5 failed", e);
         }
 
-        if (!pass) throw new Fault("exceptionTest5 failed");
+        if (!pass)
+            throw new Fault("exceptionTest5 failed");
     }
 
     /*
@@ -246,9 +246,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:118; EJB:SPEC:10283; EJB:SPEC:378
      *
-     * @test_Strategy: Execute findProductByName method defined to expect a single
-     * object with the result set that returns more than one. Ensure that a
-     * FinderException is thrown.
+     * @test_Strategy: Execute findProductByName method defined to expect a single object with the result set that returns
+     * more than one. Ensure that a FinderException is thrown.
      *
      */
 
@@ -269,7 +268,8 @@ public class Client extends EETest {
             throw new Fault("exceptionTest6 failed", e);
         }
 
-        if (!pass) throw new Fault("exceptionTest6 failed");
+        if (!pass)
+            throw new Fault("exceptionTest6 failed");
     }
 
     public void cleanup() throws Fault {

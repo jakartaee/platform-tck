@@ -21,11 +21,11 @@ import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import jakarta.ejb.Singleton;
 
 /**
- * timeout-method is only specified in ejb-jar.xml. The timeout-method (timeout)
- * is implemented in superclass TimerBeanBaseWithoutTimeOutMethod.
+ * timeout-method is only specified in ejb-jar.xml. The timeout-method (timeout) is implemented in superclass
+ * TimerBeanBaseWithoutTimeOutMethod.
  *
- * The timeout-method is specified without <method-params> element, since the
- * method timeout is not overloaded and sufficient to identify.
+ * The timeout-method is specified without <method-params> element, since the method timeout is not overloaded and
+ * sufficient to identify.
  */
 @Singleton
 public class SingletonTimerBean extends TimerBeanBaseWithoutTimeOutMethod {

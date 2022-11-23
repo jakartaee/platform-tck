@@ -62,7 +62,8 @@ public class ReceivingServlet extends HttpServlet {
         while (enumlist.hasMoreElements()) {
             String headerName = (String) enumlist.nextElement();
             String headerValue = req.getHeader(headerName);
-            if (headerName.equalsIgnoreCase("Content-Type")) headers.addHeader(headerName, headerValue);
+            if (headerName.equalsIgnoreCase("Content-Type"))
+                headers.addHeader(headerName, headerValue);
         }
 
         return headers;

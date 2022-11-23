@@ -33,17 +33,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -52,8 +51,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,13 +64,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveTransformXmlInputTest
      *
-     * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.2; JSTL:SPEC:73.2.1;
-     * JSTL:SPEC:73.2.1.1; JSTL:SPEC:73.2.1.2; JSTL:SPEC:73.2.1.3;
-     * JSTL:SPEC:73.2.1.4; JSTL:SPEC:73.2.1.5
+     * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.2; JSTL:SPEC:73.2.1; JSTL:SPEC:73.2.1.1; JSTL:SPEC:73.2.1.2;
+     * JSTL:SPEC:73.2.1.3; JSTL:SPEC:73.2.1.4; JSTL:SPEC:73.2.1.5
      *
-     * @testStrategy: Validate the transform action is able to accept XML input
-     * from the following sources: - String - Reader - javax.xml.transform.Source
-     * - Objects exported by: + x:parse + x:set + x:transform
+     * @testStrategy: Validate the transform action is able to accept XML input from the following sources: - String -
+     * Reader - javax.xml.transform.Source - Objects exported by: + x:parse + x:set + x:transform
      */
     public void positiveTransformXmlInputTest() throws Fault {
         String testName = "positiveTransformXmlInputTest";
@@ -94,11 +90,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveTransformXsltInputTest
      *
-     * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.4; JSTL:SPEC:73.4.1.1;
-     * JSTL:SPEC:73.4.1.2; JSTL:SPEC:73.4.1.3
+     * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.4; JSTL:SPEC:73.4.1.1; JSTL:SPEC:73.4.1.2; JSTL:SPEC:73.4.1.3
      *
-     * @testStrategy: Validate the transform action is able to accept XSL input
-     * from the following sources: - String - Reader - javax.xml.transform.Source.
+     * @testStrategy: Validate the transform action is able to accept XSL input from the following sources: - String -
+     * Reader - javax.xml.transform.Source.
      */
     public void positiveTransformXsltInputTest() throws Fault {
         String testName = "positiveTransformXsltInputTest";
@@ -118,10 +113,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.16; JSTL:SPEC:73.16.1
      *
-     * @testStrategy: Validate the transform action is able to properly resolve
-     * external entity references when the docSystemId attribute is set. Validate
-     * that the entities can be resolved when parsing both as as a String provided
-     * to the xml attribute and as body content to the action.
+     * @testStrategy: Validate the transform action is able to properly resolve external entity references when the
+     * docSystemId attribute is set. Validate that the entities can be resolved when parsing both as as a String provided to
+     * the xml attribute and as body content to the action.
      */
     public void positiveTransformDocSystemIdTest() throws Fault {
         String testName = "positiveTransformDocSystemIdTest";
@@ -135,8 +129,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.3; JSTL:SPEC:73.3.1
      *
-     * @testStrategy: Validate the transform action is able to properly resolve
-     * external references within a style sheet.
+     * @testStrategy: Validate the transform action is able to properly resolve external references within a style sheet.
      */
     public void positiveTransformXsltSystemIdTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveTransformXsltSystemIdTest");
@@ -148,9 +141,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.5; JSTL:SPEC:73.5.1
      *
-     * @testStrategy: Validate that if var is specified, the variable name
-     * reference by var is available in the PageContext and is of type
-     * org.w3c.dom.Document.
+     * @testStrategy: Validate that if var is specified, the variable name reference by var is available in the PageContext
+     * and is of type org.w3c.dom.Document.
      */
     public void positiveTransformVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveTransformVarTest");
@@ -160,12 +152,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveTransformScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.6; JSTL:SPEC:73.6.1;
-     * JSTL:SPEC:73.6.2; JSTL:SPEC:73.6.3; JSTL:SPEC:73.6.4; JSTL:SPEC:73.8
+     * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.6; JSTL:SPEC:73.6.1; JSTL:SPEC:73.6.2; JSTL:SPEC:73.6.3; JSTL:SPEC:73.6.4;
+     * JSTL:SPEC:73.8
      *
-     * @testStrategy: Validate that if var is provided and scope is specified,
-     * that var is exported to the specified scope. If var is specified and scope
-     * is not, validate that var is exported to the page scope by default.
+     * @testStrategy: Validate that if var is provided and scope is specified, that var is exported to the specified scope.
+     * If var is specified and scope is not, validate that var is exported to the page scope by default.
      */
     public void positiveTransformScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveTransformScopeTest");
@@ -177,11 +168,10 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:73
      *
-     * @testStrategy: Validate that transform action properly handles a case where
-     * it is passed a javax.xml.transform.Result. The Result object is in scope
-     * before calling the transform action. The Result object is passed to the
-     * transform action. The Result object is obtained from scope, and is then
-     * manipulated to display the results of the transformation.
+     * @testStrategy: Validate that transform action properly handles a case where it is passed a
+     * javax.xml.transform.Result. The Result object is in scope before calling the transform action. The Result object is
+     * passed to the transform action. The Result object is obtained from scope, and is then manipulated to display the
+     * results of the transformation.
      */
     public void positiveTransformResultTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveTransformResultTest");
@@ -193,8 +183,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.12
      *
-     * @testStrategy: Validate the transform action is able to parse and then
-     * transform an XML document provided as body content to the action.
+     * @testStrategy: Validate the transform action is able to parse and then transform an XML document provided as body
+     * content to the action.
      */
     public void positiveTransformXmlBodyTest() throws Fault {
         String testName = "positiveTransformXmlBodyTest";
@@ -208,8 +198,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.13
      *
-     * @testStrategy: Validate that xsl parameters provided as x:param subtags to
-     * the transform action are properly passed to the stylesheet.
+     * @testStrategy: Validate that xsl parameters provided as x:param subtags to the transform action are properly passed
+     * to the stylesheet.
      */
     public void positiveTransformBodyParamsTest() throws Fault {
         // TEST_PROPS.setProperty(STANDARD, "positiveTransformBodyParamsTest");
@@ -225,10 +215,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.10
      *
-     * @testStrategy: Validate that xsl parameters provided as x:param subtags
-     * along with XML provided as body content to the action, that the xml will be
-     * parsed and transform with the parameters properly supplied to the
-     * stylesheet.
+     * @testStrategy: Validate that xsl parameters provided as x:param subtags along with XML provided as body content to
+     * the action, that the xml will be parsed and transform with the parameters properly supplied to the stylesheet.
      */
     public void positiveTransformBodyXmlParamsTest() throws Fault {
         // TEST_PROPS.setProperty(STANDARD, "positiveTransformBodyXmlParamsTest");
@@ -244,8 +232,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:73; JSTL:SPEC:73.8
      *
-     * @testStrategy: Validate that if either the xml or xslt attributes are null
-     * or empty, that a JspException is thrown.
+     * @testStrategy: Validate that if either the xml or xslt attributes are null or empty, that a JspException is thrown.
      */
     public void negativeTransformXmlXsltNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeTransformXmlXsltNullEmptyTest");
@@ -257,8 +244,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:73
      *
-     * @test_Strategy: Validate that the xml and xmlSystemId attributes can still
-     * be used (deprecated and not removed).
+     * @test_Strategy: Validate that the xml and xmlSystemId attributes can still be used (deprecated and not removed).
      */
     public void positiveTransformXmlAndXmlSystemIdTest() throws Fault {
         String testName = "positiveTransformXmlAndXmlSystemIdTest";

@@ -51,7 +51,8 @@ public class StatelessTestBean extends TestBeanBase implements TestIF {
     @EJB(name = "twoLocalHome")
     private TwoLocalHome twoLocalHome;
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected RemoveLocalIF getRemoveLocalBean() {
         // return removeBean;

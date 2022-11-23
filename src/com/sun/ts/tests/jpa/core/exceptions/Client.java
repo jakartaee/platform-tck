@@ -35,7 +35,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -58,16 +59,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: TransactionRequiredExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:606; PERSISTENCE:JAVADOC:220;
-     * JavaEE:SPEC:10006;
+     * @assertion_ids: PERSISTENCE:SPEC:606; PERSISTENCE:JAVADOC:220; JavaEE:SPEC:10006;
      *
-     * @test_Strategy: persist throws a TransactionRequiredException if invoked on
-     * a container-managed entity manager of type
-     * PersistenceContextType.TRANSACTION and there is no transaction
+     * @test_Strategy: persist throws a TransactionRequiredException if invoked on a container-managed entity manager of
+     * type PersistenceContextType.TRANSACTION and there is no transaction
      *
-     * When an EntityManager with an extended persistence context is used (as in
-     * Java SE environments) the persist operation may be called regardless
-     * whether a transaction is active.
+     * When an EntityManager with an extended persistence context is used (as in Java SE environments) the persist operation
+     * may be called regardless whether a transaction is active.
      */
 
     public void TransactionRequiredExceptionTest() throws Fault {
@@ -90,15 +88,15 @@ public class Client extends PMClientBase {
             pass = true;
         }
 
-        if (!pass) throw new Fault("TransactionRequiredExceptionTest failed");
+        if (!pass)
+            throw new Fault("TransactionRequiredExceptionTest failed");
     }
     /*
      * @testName: TransactionRequiredException2Test
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:219; PERSISTENCE:JAVADOC:157
      *
-     * @test_Strategy: create and throw TransactionRequiredException() and
-     * validate contents of Exception
+     * @test_Strategy: create and throw TransactionRequiredException() and validate contents of Exception
      */
 
     public void TransactionRequiredException2Test() throws Fault {
@@ -144,17 +142,16 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("TransactionRequiredException2Test failed");
+        if (!pass)
+            throw new Fault("TransactionRequiredException2Test failed");
     }
 
     /*
      * @testName: exceptionTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:606; PERSISTENCE:SPEC:738;
-     * PERSISTENCE:SPEC:740; JavaEE:SPEC:10006
+     * @assertion_ids: PERSISTENCE:SPEC:606; PERSISTENCE:SPEC:738; PERSISTENCE:SPEC:740; JavaEE:SPEC:10006
      *
-     * @test_Strategy: flush() throws a
-     * jakarta.persistence.TransactionRequiredException if there is no transaction
+     * @test_Strategy: flush() throws a jakarta.persistence.TransactionRequiredException if there is no transaction
      */
 
     public void exceptionTest2() throws Fault {
@@ -186,7 +183,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("exceptionTest2 failed");
+        if (!pass)
+            throw new Fault("exceptionTest2 failed");
     }
 
     /*
@@ -194,13 +192,11 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:606; JavaEE:SPEC:10006
      *
-     * @test_Strategy: refresh throws a TransactionRequiredException if invoked on
-     * a container-managed entity manager of type
-     * PersistenceContextType.TRANSACTION and there is no transaction
+     * @test_Strategy: refresh throws a TransactionRequiredException if invoked on a container-managed entity manager of
+     * type PersistenceContextType.TRANSACTION and there is no transaction
      *
-     * When an EntityManager with an extended persistence context is used (as in
-     * Java SE environments) the refresh operation may be called regardless
-     * whether a transaction is active.
+     * When an EntityManager with an extended persistence context is used (as in Java SE environments) the refresh operation
+     * may be called regardless whether a transaction is active.
      */
 
     public void exceptionTest3() throws Fault {
@@ -240,7 +236,8 @@ public class Client extends PMClientBase {
             pass = true;
         }
 
-        if (!pass) throw new Fault("exceptionTest3 failed");
+        if (!pass)
+            throw new Fault("exceptionTest3 failed");
     }
 
     /*
@@ -248,13 +245,11 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:606; JavaEE:SPEC:10006
      *
-     * @test_Strategy: remove throws a TransactionRequiredException if there
-     * invoked on a container-managed entity manager of type
-     * PersistenceContextType.TRANSACTION and there is no transaction
+     * @test_Strategy: remove throws a TransactionRequiredException if there invoked on a container-managed entity manager
+     * of type PersistenceContextType.TRANSACTION and there is no transaction
      *
-     * When an EntityManager with an extended persistence context is used (as in
-     * Java SE environments) the remove operation may be called regardless whether
-     * a transaction is active.
+     * When an EntityManager with an extended persistence context is used (as in Java SE environments) the remove operation
+     * may be called regardless whether a transaction is active.
      *
      */
 
@@ -293,17 +288,16 @@ public class Client extends PMClientBase {
             pass = true;
         }
 
-        if (!pass) throw new Fault("exceptionTest4 failed");
+        if (!pass)
+            throw new Fault("exceptionTest4 failed");
     }
 
     /*
      * @testName: exceptionTest5
      *
-     * @assertion_ids: PERSISTENCE:SPEC:606; PERSISTENCE:JAVADOC:36;
-     * JavaEE:SPEC:10006
+     * @assertion_ids: PERSISTENCE:SPEC:606; PERSISTENCE:JAVADOC:36; JavaEE:SPEC:10006
      *
-     * @test_Strategy: close throws an IllegalStateException will be thrown if the
-     * EntityManager is container-managed.
+     * @test_Strategy: close throws an IllegalStateException will be thrown if the EntityManager is container-managed.
      */
 
     public void exceptionTest5() throws Fault {
@@ -336,7 +330,8 @@ public class Client extends PMClientBase {
             pass = true;
         }
 
-        if (!pass) throw new Fault("exceptionTest5 failed");
+        if (!pass)
+            throw new Fault("exceptionTest5 failed");
     }
 
     /*
@@ -344,8 +339,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:606; JavaEE:SPEC:10006
      *
-     * @test_Strategy: refresh throws an IllegalArgumentException if the entity is
-     * not managed
+     * @test_Strategy: refresh throws an IllegalArgumentException if the entity is not managed
      */
 
     public void exceptionTest6() throws Fault {
@@ -381,17 +375,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("exceptionTest6 failed");
+        if (!pass)
+            throw new Fault("exceptionTest6 failed");
     }
 
     /*
      * @testName: RollbackExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:184; PERSISTENCE:JAVADOC:185;
-     * PERSISTENCE:JAVADOC:186; PERSISTENCE:JAVADOC:187
+     * @assertion_ids: PERSISTENCE:JAVADOC:184; PERSISTENCE:JAVADOC:185; PERSISTENCE:JAVADOC:186; PERSISTENCE:JAVADOC:187
      *
-     * @test_Strategy: create and throw RollbackException() and validate contents
-     * of Exception
+     * @test_Strategy: create and throw RollbackException() and validate contents of Exception
      */
 
     public void RollbackExceptionTest() throws Fault {
@@ -497,17 +490,16 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected Exception Caught", e);
         }
 
-        if (!pass) throw new Fault("RollbackExceptionTest failed");
+        if (!pass)
+            throw new Fault("RollbackExceptionTest failed");
     }
 
     /*
      * @testName: EntityExistsExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:30; PERSISTENCE:JAVADOC:31;
-     * PERSISTENCE:JAVADOC:32; PERSISTENCE:JAVADOC:33
+     * @assertion_ids: PERSISTENCE:JAVADOC:30; PERSISTENCE:JAVADOC:31; PERSISTENCE:JAVADOC:32; PERSISTENCE:JAVADOC:33
      *
-     * @test_Strategy: create and throw EntityExistsException() and validate
-     * contents of Exception
+     * @test_Strategy: create and throw EntityExistsException() and validate contents of Exception
      */
 
     public void EntityExistsExceptionTest() throws Fault {
@@ -618,7 +610,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected Exception Caught", e);
         }
 
-        if (!pass) throw new Fault("EntityExistsExceptionTest failed");
+        if (!pass)
+            throw new Fault("EntityExistsExceptionTest failed");
     }
 
     /*
@@ -626,8 +619,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:61; PERSISTENCE:JAVADOC:62
      *
-     * @test_Strategy: create and throw EntityNotFoundException() and validate
-     * contents of Exception
+     * @test_Strategy: create and throw EntityNotFoundException() and validate contents of Exception
      */
 
     public void EntityNotFoundExceptionTest() throws Fault {
@@ -673,18 +665,17 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected Exception Caught", e);
         }
 
-        if (!pass) throw new Fault("EntityNotFoundExceptionTest failed");
+        if (!pass)
+            throw new Fault("EntityNotFoundExceptionTest failed");
     }
 
     /*
      * @testName: OptimisticLockExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:139; PERSISTENCE:JAVADOC:140;
-     * PERSISTENCE:JAVADOC:141; PERSISTENCE:JAVADOC:142; PERSISTENCE:JAVADOC:143;
-     * PERSISTENCE:JAVADOC:138; PERSISTENCE:JAVADOC:144
+     * @assertion_ids: PERSISTENCE:JAVADOC:139; PERSISTENCE:JAVADOC:140; PERSISTENCE:JAVADOC:141; PERSISTENCE:JAVADOC:142;
+     * PERSISTENCE:JAVADOC:143; PERSISTENCE:JAVADOC:138; PERSISTENCE:JAVADOC:144
      *
-     * @test_Strategy: create and throw OptimisticLockException() and validate
-     * contents of Exception
+     * @test_Strategy: create and throw OptimisticLockException() and validate contents of Exception
      */
 
     public void OptimisticLockExceptionTest() throws Fault {
@@ -865,17 +856,16 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected Exception Caught", e);
         }
 
-        if (!pass) throw new Fault("OptimisticLockExceptionTest failed");
+        if (!pass)
+            throw new Fault("OptimisticLockExceptionTest failed");
     }
 
     /*
      * @testName: PersistenceExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:156; PERSISTENCE:JAVADOC:157;
-     * PERSISTENCE:JAVADOC:158; PERSISTENCE:JAVADOC:159
+     * @assertion_ids: PERSISTENCE:JAVADOC:156; PERSISTENCE:JAVADOC:157; PERSISTENCE:JAVADOC:158; PERSISTENCE:JAVADOC:159
      *
-     * @test_Strategy: create and throw PersistenceException() and validate
-     * contents of Exception
+     * @test_Strategy: create and throw PersistenceException() and validate contents of Exception
      */
 
     public void PersistenceExceptionTest() throws Fault {
@@ -986,18 +976,17 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected Exception Caught", e);
         }
 
-        if (!pass) throw new Fault("PersistenceExceptionTest failed");
+        if (!pass)
+            throw new Fault("PersistenceExceptionTest failed");
     }
 
     /*
      * @testName: LockTimeoutExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:344; PERSISTENCE:JAVADOC:345;
-     * PERSISTENCE:JAVADOC:346; PERSISTENCE:JAVADOC:347; PERSISTENCE:JAVADOC:348;
-     * PERSISTENCE:JAVADOC:343; PERSISTENCE:JAVADOC:349
+     * @assertion_ids: PERSISTENCE:JAVADOC:344; PERSISTENCE:JAVADOC:345; PERSISTENCE:JAVADOC:346; PERSISTENCE:JAVADOC:347;
+     * PERSISTENCE:JAVADOC:348; PERSISTENCE:JAVADOC:343; PERSISTENCE:JAVADOC:349
      *
-     * @test_Strategy: create and throw LockTimeoutException() and validate
-     * contents of Exception
+     * @test_Strategy: create and throw LockTimeoutException() and validate contents of Exception
      */
 
     public void LockTimeoutExceptionTest() throws Fault {
@@ -1178,18 +1167,17 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected Exception Caught", e);
         }
 
-        if (!pass) throw new Fault("LockTimeoutExceptionTest failed");
+        if (!pass)
+            throw new Fault("LockTimeoutExceptionTest failed");
     }
 
     /*
      * @testName: PessimisticLockExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:391; PERSISTENCE:JAVADOC:392;
-     * PERSISTENCE:JAVADOC:393; PERSISTENCE:JAVADOC:394; PERSISTENCE:JAVADOC:395;
-     * PERSISTENCE:JAVADOC:390; PERSISTENCE:JAVADOC:396
+     * @assertion_ids: PERSISTENCE:JAVADOC:391; PERSISTENCE:JAVADOC:392; PERSISTENCE:JAVADOC:393; PERSISTENCE:JAVADOC:394;
+     * PERSISTENCE:JAVADOC:395; PERSISTENCE:JAVADOC:390; PERSISTENCE:JAVADOC:396
      *
-     * @test_Strategy: create and throw PessimisticLockException() and validate
-     * contents of Exception
+     * @test_Strategy: create and throw PessimisticLockException() and validate contents of Exception
      */
 
     public void PessimisticLockExceptionTest() throws Fault {
@@ -1369,18 +1357,17 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected Exception Caught", e);
         }
 
-        if (!pass) throw new Fault("PessimisticLockExceptionTest failed");
+        if (!pass)
+            throw new Fault("PessimisticLockExceptionTest failed");
     }
 
     /*
      * @testName: QueryTimeoutExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:419; PERSISTENCE:JAVADOC:420;
-     * PERSISTENCE:JAVADOC:421; PERSISTENCE:JAVADOC:422; PERSISTENCE:JAVADOC:423;
-     * PERSISTENCE:JAVADOC:418; PERSISTENCE:JAVADOC:424
+     * @assertion_ids: PERSISTENCE:JAVADOC:419; PERSISTENCE:JAVADOC:420; PERSISTENCE:JAVADOC:421; PERSISTENCE:JAVADOC:422;
+     * PERSISTENCE:JAVADOC:423; PERSISTENCE:JAVADOC:418; PERSISTENCE:JAVADOC:424
      *
-     * @test_Strategy: create and throw QueryTimeoutException() and validate
-     * contents of Exception
+     * @test_Strategy: create and throw QueryTimeoutException() and validate contents of Exception
      */
 
     public void QueryTimeoutExceptionTest() throws Fault {
@@ -1560,7 +1547,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("QueryTimeoutExceptionTest failed");
+        if (!pass)
+            throw new Fault("QueryTimeoutExceptionTest failed");
     }
 
     /*
@@ -1568,8 +1556,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:125; PERSISTENCE:JAVADOC:126
      *
-     * @test_Strategy: create and throw NonUniqueResultException() and validate
-     * contents of Exception
+     * @test_Strategy: create and throw NonUniqueResultException() and validate contents of Exception
      */
 
     public void NonUniqueResultExceptionTest() throws Fault {
@@ -1615,15 +1602,15 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("NonUniqueResultExceptionTest failed");
+        if (!pass)
+            throw new Fault("NonUniqueResultExceptionTest failed");
     }
     /*
      * @testName: NoResultExceptionTest
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:127; PERSISTENCE:JAVADOC:128
      *
-     * @test_Strategy: create and throw NonUniqueResultException() and validate
-     * contents of Exception
+     * @test_Strategy: create and throw NonUniqueResultException() and validate contents of Exception
      */
 
     public void NoResultExceptionTest() throws Fault {
@@ -1663,7 +1650,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("NoResultExceptionTest failed");
+        if (!pass)
+            throw new Fault("NoResultExceptionTest failed");
     }
 
     public void cleanup() throws Fault {

@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,11 +62,9 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveParamNameValueTest
      *
-     * @assertion_ids: JSTL:SPEC:25; JSTL:SPEC:25.1; JSTL:SPEC:25.1.1;
-     * JSTL:SPEC:25.2; JSTL:SPEC:25.2.1
+     * @assertion_ids: JSTL:SPEC:25; JSTL:SPEC:25.1; JSTL:SPEC:25.1.1; JSTL:SPEC:25.2; JSTL:SPEC:25.2.1
      *
-     * @testStrategy: Validate the the name and value attributes can accept both
-     * dynamic and static values.
+     * @testStrategy: Validate the the name and value attributes can accept both dynamic and static values.
      */
     public void positiveParamNameValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParamNameValueTest");
@@ -80,8 +76,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:25.4
      *
-     * @testStrategy: Validate that the action properly encodes parameter names
-     * and values if it contains characters that require URL encoding.
+     * @testStrategy: Validate that the action properly encodes parameter names and values if it contains characters that
+     * require URL encoding.
      */
     public void positiveParamEncodingTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParamEncodingTest");
@@ -93,8 +89,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:25.5
      *
-     * @testStrategy: Validate the the param tag can accept a parameter value as
-     * body content.
+     * @testStrategy: Validate the the param tag can accept a parameter value as body content.
      */
     public void positiveParamBodyValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParamBodyValueTest");
@@ -106,10 +101,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:25.7.1
      *
-     * @testStrategy: Validate that request parameters are properly aggregated if
-     * the parent action's URL contains the same parameter name as the name
-     * specified in the param tag. The value in the param tag should take
-     * precedence.
+     * @testStrategy: Validate that request parameters are properly aggregated if the parent action's URL contains the same
+     * parameter name as the name specified in the param tag. The value in the param tag should take precedence.
      */
     public void positiveParamAggregationTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParamAggregationTest");
@@ -121,8 +114,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:25.8
      *
-     * @testStrategy: Validate that if name is null or empty, that the action is
-     * effectively ignored.
+     * @testStrategy: Validate that if name is null or empty, that the action is effectively ignored.
      */
     public void positiveParamNameNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParamNameNullEmptyTest");
@@ -134,8 +126,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:25.9
      *
-     * @testStrategy: Validate that if value is null, that the value of the param
-     * is an empty string ("").
+     * @testStrategy: Validate that if value is null, that the value of the param is an empty string ("").
      */
     public void positiveParamValueNullTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParamValueNullTest");
@@ -147,8 +138,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:25.10
      *
-     * @testStrategy: Validate that if the body content of the action causes an
-     * exception, that it is properly propagated.
+     * @testStrategy: Validate that if the body content of the action causes an exception, that it is properly propagated.
      */
     public void negativeParamExcBodyContentTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeParamExcBodyContentTest");

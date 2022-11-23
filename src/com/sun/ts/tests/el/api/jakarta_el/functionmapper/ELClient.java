@@ -52,8 +52,7 @@ public class ELClient extends ServiceEETest {
      * @testName: functionMapperTest
      *
      * @assertion_ids: EL:JAVADOC:35; EL:JAVADOC:67
-     * @test_Strategy: Validate the behavior of ELContext.getFunctionMapper()
-     *                 FunctionMapper.resolveFunction()
+     * @test_Strategy: Validate the behavior of ELContext.getFunctionMapper() FunctionMapper.resolveFunction()
      */
     public void functionMapperTest() throws Fault {
 

@@ -81,24 +81,19 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:586.2.1; EJB:SPEC:586.2.2; EJB:SPEC:586.2.4
      *
-     * @assertion: If the client invokes the EJB's methods while the client is not
-     * associated with a transaction context, the container automatically starts a
-     * new transaction context before delegating a method call to the EJB business
-     * method. The Container automatically enlists all the resources accessed by
-     * the business method with the transaction.
+     * @assertion: If the client invokes the EJB's methods while the client is not associated with a transaction context,
+     * the container automatically starts a new transaction context before delegating a method call to the EJB business
+     * method. The Container automatically enlists all the resources accessed by the business method with the transaction.
      *
-     * If the business method invokes other EJBs, the Container passes the
-     * transaction context with the invocation.
+     * If the business method invokes other EJBs, the Container passes the transaction context with the invocation.
      *
-     * The Container attempts to commit the transaction when the business method
-     * has completed. The Container performs the commit protocol before the method
-     * result is sent to the client. (Section 17.6.2.4 Container Managed
-     * Transactions - RequiresNew)
+     * The Container attempts to commit the transaction when the business method has completed. The Container performs the
+     * commit protocol before the method result is sent to the client. (Section 17.6.2.4 Container Managed Transactions -
+     * RequiresNew)
      *
-     * @test_Strategy: Create an instance of a stateful session Testbean bean.
-     * Create an instance of a stateful session TxBean (RequiresNew) bean. Perform
-     * Insert/Delete operations to a single table and ensure that these operations
-     * are commited automatically after each method completes.
+     * @test_Strategy: Create an instance of a stateful session Testbean bean. Create an instance of a stateful session
+     * TxBean (RequiresNew) bean. Perform Insert/Delete operations to a single table and ensure that these operations are
+     * commited automatically after each method completes.
      *
      */
     public void test1() throws Fault {
@@ -114,8 +109,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {

@@ -37,11 +37,9 @@ import java.util.Map;
 import java.util.Vector;
 
 /**
- * This is a specific implementation of the TagTestFinder which is to be used
- * for J2EE-TS testing.
+ * This is a specific implementation of the TagTestFinder which is to be used for J2EE-TS testing.
  *
- * A test description consists of a single block comment in Java files. A file
- * may contain multiple test descriptions.
+ * A test description consists of a single block comment in Java files. A file may contain multiple test descriptions.
  *
  * @author Vella Raman
  * @see com.sun.javatest.TestFinder
@@ -63,10 +61,10 @@ public class TSTestFinder extends TagTestFinder {
 
     private static final String SRC_TOKEN = File.separator + "src" + File.separator;
 
-    private static final String[] defaultVehicles = {"ejb", "servlet", "jsp", "appclient"};
+    private static final String[] defaultVehicles = { "ejb", "servlet", "jsp", "appclient" };
 
     private static final String[] EXCLUDE_NAMES = {
-        "SCCS", "Codemgr_wsdata", "DeletedFiles", "DELETED-FILES", "deleted_files", "TemporarilyRemoved", "ts_dep"
+            "SCCS", "Codemgr_wsdata", "DeletedFiles", "DELETED-FILES", "deleted_files", "TemporarilyRemoved", "ts_dep"
     };
 
     private static final String KEY_CLASS_SETUP_PROPS = "class.setup_props:";
@@ -86,14 +84,14 @@ public class TSTestFinder extends TagTestFinder {
     private static final String KEY_KEYWORDS = "keywords:";
 
     private static final String[] VALID_TAG_NAMES = {
-        KEY_CLASS_SETUP_PROPS,
-        KEY_CLASS_TEST_ARGS,
-        KEY_TEST_NAME,
-        KEY_TEST_ARGS,
-        KEY_CUSTOM,
-        KEY_TEST_CASE_SETUP_PROPS,
-        KEY_ASSERTION_IDS,
-        KEY_KEYWORDS
+            KEY_CLASS_SETUP_PROPS,
+            KEY_CLASS_TEST_ARGS,
+            KEY_TEST_NAME,
+            KEY_TEST_ARGS,
+            KEY_CUSTOM,
+            KEY_TEST_CASE_SETUP_PROPS,
+            KEY_ASSERTION_IDS,
+            KEY_KEYWORDS
     };
 
     private static final boolean PROCESS_ASSERTION;
@@ -109,10 +107,10 @@ public class TSTestFinder extends TagTestFinder {
         ASSERTION_COVERAGE = Boolean.getBoolean("assertion.coverage");
 
         NON_TEST_DIRS = new File[] {
-            new File(TS_HOME, "src/web"),
-            new File(TS_HOME, "src/org/omg/stub"),
-            new File(TS_HOME, "src/com/sun/ts/lib"),
-            new File(TS_HOME, "src/com/sun/ts/tests/common")
+                new File(TS_HOME, "src/web"),
+                new File(TS_HOME, "src/org/omg/stub"),
+                new File(TS_HOME, "src/com/sun/ts/lib"),
+                new File(TS_HOME, "src/com/sun/ts/tests/common")
         };
     }
 
@@ -140,9 +138,8 @@ public class TSTestFinder extends TagTestFinder {
     // Constructors
 
     /**
-     * Constructs the list of file names to exclude for pruning in the search for
-     * files to examine for test descriptions. This constructor also sets the
-     * allowable comment formats.
+     * Constructs the list of file names to exclude for pruning in the search for files to examine for test descriptions.
+     * This constructor also sets the allowable comment formats.
      */
     public TSTestFinder() {
         super();
@@ -151,8 +148,7 @@ public class TSTestFinder extends TagTestFinder {
         setInitialTag(null);
 
         try {
-            PropertyManagerInterface propMgr =
-                    DeliverableFactory.getDeliverableInstance().getPropertyManager();
+            PropertyManagerInterface propMgr = DeliverableFactory.getDeliverableInstance().getPropertyManager();
             executionMode = ExecutionMode.getExecutionMode(propMgr);
         } catch (Exception e) {
             e.printStackTrace();
@@ -160,11 +156,10 @@ public class TSTestFinder extends TagTestFinder {
     }
 
     /**
-     * Scan a file, looking for test descriptions and/or more files to scan.
-     * Overwrite to filter out directories that do not contain any tests.
+     * Scan a file, looking for test descriptions and/or more files to scan. Overwrite to filter out directories that do not
+     * contain any tests.
      *
-     * @param file
-     *          The file to scan
+     * @param file The file to scan
      */
     public void scan(File file) {
         for (int i = 0; i < NON_TEST_DIRS.length; i++) {
@@ -200,7 +195,7 @@ public class TSTestFinder extends TagTestFinder {
         try {
             tf.init(TestUtil.EMPTY_STRING_ARRAY, new File(sRoot), null);
             tfq.setTestFinder(tf);
-            tfq.setTests(new String[] {sRoot});
+            tfq.setTests(new String[] { sRoot });
         } catch (Exception e) {
             TestUtil.logHarness("Exception initializing the TestFinder");
             e.printStackTrace();
@@ -218,15 +213,11 @@ public class TSTestFinder extends TagTestFinder {
     }
 
     /**
-     * Make sure that the provide name-value pair is of the proper format as
-     * described in the tag-spec.
+     * Make sure that the provide name-value pair is of the proper format as described in the tag-spec.
      *
-     * @param tagValues
-     *          The dictionary of the entries being read
-     * @param name
-     *          The name of the entry that has been read
-     * @param value
-     *          The value of the entry that has been read
+     * @param tagValues The dictionary of the entries being read
+     * @param name The name of the entry that has been read
+     * @param value The value of the entry that has been read
      */
     protected void processEntry(Map tagValues, String name, String value) {
         if (Arrays.binarySearch(VALID_TAG_NAMES, name) < 0) {
@@ -237,12 +228,10 @@ public class TSTestFinder extends TagTestFinder {
     }
 
     /**
-     * Override the scan method in TagTestFinder since we have to deal with
-     * CommentStreams that are valid test tags ( but not a test description object
-     * of themselves -- the class.setup_props tag ).
+     * Override the scan method in TagTestFinder since we have to deal with CommentStreams that are valid test tags ( but
+     * not a test description object of themselves -- the class.setup_props tag ).
      *
-     * @param file
-     *          The file to scan
+     * @param file The file to scan
      */
     protected void scanFile(File file) {
         String name = file.getName();
@@ -256,13 +245,15 @@ public class TSTestFinder extends TagTestFinder {
         }
 
         int dot = name.indexOf('.');
-        if (dot == 0) return;
-        if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("Scanning " + name);
+        if (dot == 0)
+            return;
+        if (TestUtil.harnessDebug)
+            TestUtil.logHarnessDebug("Scanning " + name);
         String sVal = null;
         String extn = name.substring(dot);
         Class csc = getClassForExtension(extn);
         if (csc == null) {
-            String[] msgs = {"no parser found for specified file", "file: " + file, "extension: " + extn};
+            String[] msgs = { "no parser found for specified file", "file: " + file, "extension: " + extn };
             TestUtil.logErr(msgs[0] + msgs[1] + msgs[2]);
             return;
         }
@@ -271,22 +262,23 @@ public class TSTestFinder extends TagTestFinder {
             cs = (CommentStream) (csc.newInstance());
         } catch (InstantiationException e) {
             String[] msgs = {
-                "problem instantiating class for extension", "extension: " + extn, "class: " + csc.getName()
+                    "problem instantiating class for extension", "extension: " + extn, "class: " + csc.getName()
             };
             TestUtil.logErr(msgs[0] + msgs[1] + msgs[2]);
             return;
         } catch (IllegalAccessException e) {
             String[] msgs = {
-                "illegal access while instantiating class for extension",
-                "extension: " + extn,
-                "class: " + csc.getName()
+                    "illegal access while instantiating class for extension",
+                    "extension: " + extn,
+                    "class: " + csc.getName()
             };
             TestUtil.logErr(msgs[0] + msgs[1] + msgs[2]);
             return;
         }
         try {
             cs.init(new BufferedReader(new FileReader(file)));
-            if (fastScan) cs.setFastScan(true);
+            if (fastScan)
+                cs.setFastScan(true);
             Map propTags = new Hashtable();
             String comment;
 
@@ -329,7 +321,8 @@ public class TSTestFinder extends TagTestFinder {
             TestUtil.logErr(msgs);
         } finally {
             try {
-                if (cs != null) cs.close();
+                if (cs != null)
+                    cs.close();
             } catch (IOException e) {
                 TestUtil.logErr(e.getMessage());
             }
@@ -418,12 +411,13 @@ public class TSTestFinder extends TagTestFinder {
             test_dir = file.getParent();
         }
         desc.put("test_directory", TestUtil.getRelativePath(test_dir));
-        for (Iterator e = tags.keySet().iterator(); e.hasNext(); ) {
+        for (Iterator e = tags.keySet().iterator(); e.hasNext();) {
             key = ((String) e.next());
 
             if ((key.equals(KEY_TEST_NAME))) {
                 sval = (String) tags.get(key);
-                if (sval != null) sval = sval.trim();
+                if (sval != null)
+                    sval = sval.trim();
 
                 if (htTestNamesFound.containsKey((String) (file.getPath() + "#" + sval))) {
                     // TestUtil.logHarness("Found duplicate @testName declaration: " +
@@ -451,12 +445,14 @@ public class TSTestFinder extends TagTestFinder {
             }
             if ((key.equals(KEY_TEST_NAME)) || (key.equals(KEY_CUSTOM))) {
                 sval = (String) tags.get(key);
-                if (sval != null) sval = sval.trim();
+                if (sval != null)
+                    sval = sval.trim();
                 key = key.substring(0, key.indexOf(':'));
                 desc.put(key, sval);
             } else if (key.equals(KEY_ASSERTION_IDS) && PROCESS_ASSERTION) {
                 sval = (String) tags.get(key);
-                if (sval != null) sval = sval.trim();
+                if (sval != null)
+                    sval = sval.trim();
                 key = key.substring(0, key.indexOf(':'));
                 if (ASSERTION_COVERAGE) {
                     // use the original value as specified in source code for coverage
@@ -468,11 +464,14 @@ public class TSTestFinder extends TagTestFinder {
             } else if ((key.equals(KEY_CLASS_TEST_ARGS)) || (key.equals(KEY_TEST_ARGS))) {
                 String sCurrentArgs = (String) desc.get("testArgs");
                 sval = (String) tags.get(key);
-                if (sval == null) continue;
+                if (sval == null)
+                    continue;
                 sval = sval.trim();
                 key = key.substring(0, key.indexOf(':'));
-                if (sCurrentArgs == null) desc.put("testArgs", sval);
-                else desc.put("testArgs", sCurrentArgs + " " + sval);
+                if (sCurrentArgs == null)
+                    desc.put("testArgs", sval);
+                else
+                    desc.put("testArgs", sCurrentArgs + " " + sval);
             } else if ((key.equals(KEY_KEYWORDS))) {
                 sval = (String) tags.get(key);
                 if (sval != null) {
@@ -485,7 +484,8 @@ public class TSTestFinder extends TagTestFinder {
             if ((key.equals(KEY_CLASS_SETUP_PROPS)) || (key.equals(KEY_TEST_CASE_SETUP_PROPS))) {
                 sval = (String) tags.get(key);
                 TestUtil.logHarnessDebug("KEY_TEST_CASE_SETUP_PROPS sval \"" + sval + "\"");
-                if (sval == null) continue;
+                if (sval == null)
+                    continue;
                 sval = sval.trim();
                 // if there is no final semi-colon add one to avoid the hang
                 if (!sval.endsWith(";")) {
@@ -504,7 +504,8 @@ public class TSTestFinder extends TagTestFinder {
                         sval = sval.substring(sep + 1);
                         // remove description (if there is a ',' in our string)
                         // we only want property names
-                        if ((sep2 = propdesc.indexOf(',')) != -1) propdesc = propdesc.substring(0, sep2);
+                        if ((sep2 = propdesc.indexOf(',')) != -1)
+                            propdesc = propdesc.substring(0, sep2);
                         propv.addElement(propdesc);
                         count += sep + 1;
                     } else {
@@ -515,7 +516,8 @@ public class TSTestFinder extends TagTestFinder {
 
             // Put properties as space separated String..
             String s1 = "";
-            for (int j = 0, size = propv.size(); j < size; j++) s1 = s1 + ' ' + propv.elementAt(j);
+            for (int j = 0, size = propv.size(); j < size; j++)
+                s1 = s1 + ' ' + propv.elementAt(j);
             desc.put("testProps", s1);
         }
 
@@ -544,11 +546,11 @@ public class TSTestFinder extends TagTestFinder {
             // the vehicle in use for the test is required by a web profile impl.
             if (sKeywordsFromProperties[ii].contains("web_profile") && sVehicle != null) {
                 if ((sVehicle.contains("web")
-                                || sVehicle.contains("servlet")
-                                || sVehicle.contains("jsp")
-                                || sVehicle.contains("ejbembed")
-                                || sVehicle.contains("ejblite")
-                                || sVehicle.contains("jsf"))
+                        || sVehicle.contains("servlet")
+                        || sVehicle.contains("jsp")
+                        || sVehicle.contains("ejbembed")
+                        || sVehicle.contains("ejblite")
+                        || sVehicle.contains("jsf"))
                         && !sVehicle.contains("puservlet")) {
                     sKeywords += sKeywordsFromProperties[ii] + " ";
                 }

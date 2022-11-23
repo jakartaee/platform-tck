@@ -32,7 +32,8 @@ public class DataTypes2 implements java.io.Serializable {
 
     private String stringData;
 
-    public DataTypes2() {}
+    public DataTypes2() {
+    }
 
     public DataTypes2(String stringData) {
         this.stringData = stringData;
@@ -40,14 +41,7 @@ public class DataTypes2 implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "myTableGenerator2")
-    @TableGenerator(
-            name = "myTableGenerator2",
-            table = "GENERATOR_TABLE",
-            pkColumnName = "PK_COL",
-            valueColumnName = "VAL_COL",
-            pkColumnValue = "DT2_ID",
-            allocationSize = 1,
-            initialValue = 100)
+    @TableGenerator(name = "myTableGenerator2", table = "GENERATOR_TABLE", pkColumnName = "PK_COL", valueColumnName = "VAL_COL", pkColumnValue = "DT2_ID", allocationSize = 1, initialValue = 100)
     @Column(name = "ID")
     public int getId() {
         return id;

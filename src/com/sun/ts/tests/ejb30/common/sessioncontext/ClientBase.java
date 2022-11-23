@@ -55,7 +55,8 @@ public abstract class ClientBase extends EETest {
         acceptBean = getAcceptBean();
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     protected void removeBeans() {
         if (sessionContextBean != null) {

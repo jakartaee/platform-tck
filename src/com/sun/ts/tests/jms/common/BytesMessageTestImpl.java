@@ -44,7 +44,7 @@ import java.io.ObjectStreamField;
  * @author
  */
 public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessage {
-    private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField("buf", byte[].class)};
+    private static final ObjectStreamField[] serialPersistentFields = { new ObjectStreamField("buf", byte[].class) };
 
     long bodyLength = 0;
 
@@ -134,12 +134,9 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
      *
      * @return the <code>boolean</code> value read.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if end of message stream
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if end of message stream
      */
     public boolean readBoolean() throws JMSException {
         boolean ret = false;
@@ -161,15 +158,11 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read a signed 8-bit value from the BytesMessage.
      *
-     * @return the next byte from the BytesMessage as a signed 8-bit
-     *         <code>byte</code>.
+     * @return the next byte from the BytesMessage as a signed 8-bit <code>byte</code>.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public byte readByte() throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readByte");
@@ -192,15 +185,11 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read an unsigned 8-bit number from the BytesMessage.
      *
-     * @return the next byte from the BytesMessage, interpreted as an unsigned
-     *         8-bit number.
+     * @return the next byte from the BytesMessage, interpreted as an unsigned 8-bit number.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public int readUnsignedByte() throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readUnsignedByte");
@@ -223,15 +212,11 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read a signed 16-bit number from the BytesMessage.
      *
-     * @return the next two bytes from the BytesMessage, interpreted as a signed
-     *         16-bit number.
+     * @return the next two bytes from the BytesMessage, interpreted as a signed 16-bit number.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public short readShort() throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readShort");
@@ -254,15 +239,11 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read an unsigned 16-bit number from the BytesMessage.
      *
-     * @return the next two bytes from the BytesMessage, interpreted as an
-     *         unsigned 16-bit integer.
+     * @return the next two bytes from the BytesMessage, interpreted as an unsigned 16-bit integer.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public int readUnsignedShort() throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readUnsignedShort");
@@ -287,12 +268,9 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
      *
      * @return the next two bytes from the BytesMessage as a Unicode character.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public char readChar() throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readChar");
@@ -315,15 +293,11 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read a signed 32-bit integer from the BytesMessage.
      *
-     * @return the next four bytes from the BytesMessage, interpreted as an
-     *         <code>int</code>.
+     * @return the next four bytes from the BytesMessage, interpreted as an <code>int</code>.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public int readInt() throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readInt");
@@ -346,15 +320,11 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read a signed 64-bit integer from the BytesMessage.
      *
-     * @return the next eight bytes from the BytesMessage, interpreted as a
-     *         <code>long</code>.
+     * @return the next eight bytes from the BytesMessage, interpreted as a <code>long</code>.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public long readLong() throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readLong");
@@ -377,15 +347,11 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read a <code>float</code> from the BytesMessage.
      *
-     * @return the next four bytes from the BytesMessage, interpreted as a
-     *         <code>float</code>.
+     * @return the next four bytes from the BytesMessage, interpreted as a <code>float</code>.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public float readFloat() throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readFloat");
@@ -408,15 +374,11 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read a <code>double</code> from the BytesMessage.
      *
-     * @return the next eight bytes from the BytesMessage, interpreted as a
-     *         <code>double</code>.
+     * @return the next eight bytes from the BytesMessage, interpreted as a <code>double</code>.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public double readDouble() throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readDouble");
@@ -437,23 +399,18 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     } // readDouble()
 
     /**
-     * Read in a string that has been encoded using a modified UTF-8 format from
-     * the BytesMessage.
+     * Read in a string that has been encoded using a modified UTF-8 format from the BytesMessage.
      *
      * <P>
-     * For more information on the UTF-8 format, see "File System Safe UCS
-     * Transformation Format (FSS_UFT)", X/Open Preliminary Specification, X/Open
-     * Company Ltd., Document Number: P316. This information also appears in
-     * ISO/IEC 10646, Annex P.
+     * For more information on the UTF-8 format, see "File System Safe UCS Transformation Format (FSS_UFT)", X/Open
+     * Preliminary Specification, X/Open Company Ltd., Document Number: P316. This information also appears in ISO/IEC
+     * 10646, Annex P.
      *
      * @return a Unicode string from the BytesMessage.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public String readUTF() throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readUTF");
@@ -476,18 +433,14 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read a byte array from the BytesMessage.
      *
-     * @param value
-     *          the buffer into which the data is read.
+     * @param value the buffer into which the data is read.
      *
-     * @return the total number of bytes read into the buffer, or -1 if there is
-     *         no more data because the end of the stream has been reached.
+     * @return the total number of bytes read into the buffer, or -1 if there is no more data because the end of the stream
+     * has been reached.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public int readBytes(byte[] value) throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readBytes");
@@ -508,20 +461,15 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Read a portion of the bytes message.
      *
-     * @param value
-     *          the buffer into which the data is read.
-     * @param length
-     *          the number of bytes to read.
+     * @param value the buffer into which the data is read.
+     * @param length the number of bytes to read.
      *
-     * @return the total number of bytes read into the buffer, or -1 if there is
-     *         no more data because the end of the stream has been reached.
+     * @return the total number of bytes read into the buffer, or -1 if there is no more data because the end of the stream
+     * has been reached.
      *
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
-     * @exception MessageEOFException
-     *              if end of message stream
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotReadableException if message in write-only mode.
+     * @exception MessageEOFException if end of message stream
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
      */
     public int readBytes(byte[] value, int length) throws JMSException {
         com.sun.ts.lib.util.TestUtil.logTrace("readBytes");
@@ -543,18 +491,13 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     } // readBytes()
 
     /**
-     * Write a <code>boolean</code> to the BytesMessage as a 1-byte value. The
-     * value <code>true</code> is written out as the value <code>(byte)1</code>;
-     * the value <code>false</code> is written out as the value
-     * <code>(byte)0</code>.
+     * Write a <code>boolean</code> to the BytesMessage as a 1-byte value. The value <code>true</code> is written out as the
+     * value <code>(byte)1</code>; the value <code>false</code> is written out as the value <code>(byte)0</code>.
      *
-     * @param value
-     *          the <code>boolean</code> value to be written.
+     * @param value the <code>boolean</code> value to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeBoolean(boolean writeBoolean) throws JMSException {
 
@@ -571,13 +514,10 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Write out a <code>byte</code> to the BytesMessage as a 1-byte value.
      *
-     * @param value
-     *          the <code>byte</code> value to be written.
+     * @param value the <code>byte</code> value to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeByte(byte value) throws JMSException {
 
@@ -593,16 +533,12 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     } // writeByte()
 
     /**
-     * Write a <code>short</code> to the BytesMessage as two bytes, high byte
-     * first.
+     * Write a <code>short</code> to the BytesMessage as two bytes, high byte first.
      *
-     * @param value
-     *          the <code>short</code> to be written.
+     * @param value the <code>short</code> to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeShort(short value) throws JMSException {
 
@@ -618,16 +554,12 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     } // writeShort()
 
     /**
-     * Write a <code>char</code> to the BytesMessage as a 2-byte value, high byte
-     * first.
+     * Write a <code>char</code> to the BytesMessage as a 2-byte value, high byte first.
      *
-     * @param value
-     *          the <code>char</code> value to be written.
+     * @param value the <code>char</code> value to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeChar(char value) throws JMSException {
 
@@ -643,16 +575,12 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     } // writeChar()
 
     /**
-     * Write an <code>int</code> to the BytesMessage as four bytes, high byte
-     * first.
+     * Write an <code>int</code> to the BytesMessage as four bytes, high byte first.
      *
-     * @param value
-     *          the <code>int</code> to be written.
+     * @param value the <code>int</code> to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeInt(int value) throws JMSException {
         try {
@@ -667,16 +595,12 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     } // writeInt()
 
     /**
-     * Write a <code>long</code> to the BytesMessage as eight bytes, high byte
-     * first.
+     * Write a <code>long</code> to the BytesMessage as eight bytes, high byte first.
      *
-     * @param value
-     *          the <code>long</code> to be written.
+     * @param value the <code>long</code> to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeLong(long value) throws JMSException {
         try {
@@ -691,18 +615,14 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     } // writeLong()
 
     /**
-     * Convert the float argument to an <code>int</code> using the
-     * <code>floatToIntBits</code> method in class <code>Float</code>, and then
-     * writes that <code>int</code> value to the stream message as a 4-byte
-     * quantity, high byte first.
+     * Convert the float argument to an <code>int</code> using the <code>floatToIntBits</code> method in class
+     * <code>Float</code>, and then writes that <code>int</code> value to the stream message as a 4-byte quantity, high byte
+     * first.
      *
-     * @param value
-     *          the <code>float</code> value to be written.
+     * @param value the <code>float</code> value to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeFloat(float value) throws JMSException {
         try {
@@ -717,18 +637,14 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     } // writeFloat()
 
     /**
-     * Convert the double argument to a <code>long</code> using the
-     * <code>doubleToLongBits</code> method in class <code>Double</code>, and then
-     * writes that <code>long</code> value to the stream message as an 8-byte
-     * quantity, high byte first.
+     * Convert the double argument to a <code>long</code> using the <code>doubleToLongBits</code> method in class
+     * <code>Double</code>, and then writes that <code>long</code> value to the stream message as an 8-byte quantity, high
+     * byte first.
      *
-     * @param value
-     *          the <code>double</code> value to be written.
+     * @param value the <code>double</code> value to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeDouble(double value) throws JMSException {
         try {
@@ -743,22 +659,17 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     } // writeDouble()
 
     /**
-     * Write a string to the BytesMessage using UTF-8 encoding in a
-     * machine-independent manner.
+     * Write a string to the BytesMessage using UTF-8 encoding in a machine-independent manner.
      *
      * <P>
-     * For more information on the UTF-8 format, see "File System Safe UCS
-     * Transformation Format (FSS_UFT)", X/Open Preliminary Specification, X/Open
-     * Company Ltd., Document Number: P316. This information also appears in
-     * ISO/IEC 10646, Annex P.
+     * For more information on the UTF-8 format, see "File System Safe UCS Transformation Format (FSS_UFT)", X/Open
+     * Preliminary Specification, X/Open Company Ltd., Document Number: P316. This information also appears in ISO/IEC
+     * 10646, Annex P.
      *
-     * @param value
-     *          the <code>String</code> value to be written.
+     * @param value the <code>String</code> value to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeUTF(String value) throws JMSException {
         try {
@@ -775,13 +686,10 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Write a byte array to the BytesMessage.
      *
-     * @param value
-     *          the byte array to be written.
+     * @param value the byte array to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeBytes(byte[] value) throws JMSException {
         try {
@@ -798,17 +706,12 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     /**
      * Write a portion of a byte array to the BytesMessage.
      *
-     * @param value
-     *          the byte array value to be written.
-     * @param offset
-     *          the initial offset within the byte array.
-     * @param length
-     *          the number of bytes to use.
+     * @param value the byte array value to be written.
+     * @param offset the initial offset within the byte array.
+     * @param length the number of bytes to use.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeBytes(byte[] value, int offset, int length) throws JMSException {
         try {
@@ -826,18 +729,14 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
      * Write a Java object to the BytesMessage.
      *
      * <P>
-     * Note that this method only works for the objectified primitive object types
-     * (Integer, Double, Long ...), String's and byte arrays.
+     * Note that this method only works for the objectified primitive object types (Integer, Double, Long ...), String's and
+     * byte arrays.
      *
-     * @param value
-     *          the Java object to be written.
+     * @param value the Java object to be written.
      *
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception MessageFormatException
-     *              if object is invalid type.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception MessageFormatException if object is invalid type.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
      */
     public void writeObject(Object value) throws JMSException {
         if (value == null) {
@@ -869,14 +768,10 @@ public class BytesMessageTestImpl extends MessageTestImpl implements BytesMessag
     } // writeObject()
 
     /**
-     * Put the message in read-only mode, and reposition the stream of bytes to
-     * the beginning.
+     * Put the message in read-only mode, and reposition the stream of bytes to the beginning.
      *
-     * @exception JMSException
-     *              if JMS fails to reset the message due to some internal JMS
-     *              error.
-     * @exception MessageFormatException
-     *              if message has an invalid format
+     * @exception JMSException if JMS fails to reset the message due to some internal JMS error.
+     * @exception MessageFormatException if message has an invalid format
      */
     public void reset() throws JMSException {
 

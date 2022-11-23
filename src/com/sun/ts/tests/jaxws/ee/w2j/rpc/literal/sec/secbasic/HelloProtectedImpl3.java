@@ -24,12 +24,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HelloProtectedPort3",
-        serviceName = "BasicAuthServiceTestService",
-        targetNamespace = "http://BasicAuthServiceTestService.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/BasicAuthServiceTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected3")
+@WebService(portName = "HelloProtectedPort3", serviceName = "BasicAuthServiceTestService", targetNamespace = "http://BasicAuthServiceTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/BasicAuthServiceTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected3")
 public class HelloProtectedImpl3 implements HelloProtected3 {
 
     public String helloProtected3(String s) {

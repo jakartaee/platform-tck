@@ -30,7 +30,8 @@ public class NoListener implements Serializable {
     @Column(name = "ID")
     private Long id;
 
-    public NoListener() {}
+    public NoListener() {
+    }
 
     public Long getId() {
         return id;

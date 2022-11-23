@@ -27,7 +27,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -54,9 +55,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:635
      *
-     * @test_Strategy: If X is a detached entity, invoking the remove method on it
-     * will cause an IllegalArgumentException to be thrown or the transaction
-     * commit will fail. Invoke remove on a detached entity.
+     * @test_Strategy: If X is a detached entity, invoking the remove method on it will cause an IllegalArgumentException to
+     * be thrown or the transaction commit will fail. Invoke remove on a detached entity.
      *
      */
 
@@ -115,17 +115,17 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("detachBasicTest1 failed");
+        if (!pass)
+            throw new Fault("detachBasicTest1 failed");
     }
 
     /*
      * @testName: detachBasicTest2
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:323; PERSISTENCE:SPEC:649;
-     * PERSISTENCE:SPEC:650;
+     * @assertion_ids: PERSISTENCE:JAVADOC:323; PERSISTENCE:SPEC:649; PERSISTENCE:SPEC:650;
      *
-     * @test_Strategy: Do a find of an entity, detached it, then modify it. Do
-     * another find and verify the changes were not persisted.
+     * @test_Strategy: Do a find of an entity, detached it, then modify it. Do another find and verify the changes were not
+     * persisted.
      *
      */
 
@@ -175,7 +175,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("detachBasicTest2 failed");
+        if (!pass)
+            throw new Fault("detachBasicTest2 failed");
     }
 
     /*

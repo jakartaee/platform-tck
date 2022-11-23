@@ -149,7 +149,8 @@ public class StubContext {
         TestUtil.logMsg("entering createJavaEEStub()");
         try {
             TestUtil.logMsg("webServiceRef=" + webServiceRef);
-            if (webServiceRef == null) throw new Exception("webServiceRef is null");
+            if (webServiceRef == null)
+                throw new Exception("webServiceRef is null");
             TestUtil.logMsg("Getting port from WebServiceRef for " + endpointInterface.getName());
             stub = webServiceRef.getPort(endpointInterface);
             TestUtil.logMsg("port=" + stub);
@@ -215,8 +216,7 @@ public class StubContext {
     /**
      * Sets the namespace.
      *
-     * @param namespace
-     *          The namespace to set
+     * @param namespace The namespace to set
      */
     public void setNamespace(String namespace) {
         this.namespace = namespace;
@@ -225,8 +225,7 @@ public class StubContext {
     /**
      * Sets the portName.
      *
-     * @param portName
-     *          The portName to set
+     * @param portName The portName to set
      */
     public void setPortName(QName portName) {
         this.portName = portName;
@@ -235,8 +234,7 @@ public class StubContext {
     /**
      * Sets the port.
      *
-     * @param port
-     *          The port to set
+     * @param port The port to set
      */
     public void setPort(String port) {
         this.port = port;
@@ -245,8 +243,7 @@ public class StubContext {
     /**
      * Sets the service.
      *
-     * @param service
-     *          The service to set
+     * @param service The service to set
      */
     public void setService(String service) {
         this.service = service;
@@ -255,8 +252,7 @@ public class StubContext {
     /**
      * Sets the endpointInterface.
      *
-     * @param endpointInterface
-     *          The endpointInterface to set
+     * @param endpointInterface The endpointInterface to set
      */
     public void setEndpointInterface(Class endpointInterface) {
         this.endpointInterface = endpointInterface;
@@ -265,8 +261,7 @@ public class StubContext {
     /**
      * Sets the serviceName.
      *
-     * @param serviceName
-     *          The serviceName to set
+     * @param serviceName The serviceName to set
      */
     public void setServiceName(QName serviceName) {
         this.serviceName = serviceName;
@@ -275,8 +270,7 @@ public class StubContext {
     /**
      * Sets the webServiceRef.
      *
-     * @param webServiceRef
-     *          The webServiceRef to set
+     * @param webServiceRef The webServiceRef to set
      */
     public void setWebServiceRef(jakarta.xml.ws.Service webServiceRef) {
         this.webServiceRef = webServiceRef;

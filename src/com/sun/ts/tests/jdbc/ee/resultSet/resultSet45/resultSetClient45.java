@@ -44,8 +44,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The resultSetClient45 class tests methods of resultSet interface using Sun's
- * J2EE Reference Implementation.
+ * The resultSetClient45 class tests methods of resultSet interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 99/10/12
@@ -89,14 +88,11 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -105,7 +101,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
                 if (drManager.equals("yes")) {
                     logTrace("Using DriverManager");
@@ -133,15 +130,12 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString41
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the minimum value of Smallint_Tab table. Call the getString(String
-     * columnName) method to retrieve this value.Extract the minimum value of
-     * Smallint_Tab table as a String from the tssql.stmt file. Compare this value
-     * with the value returned by the getString method. Both the values should be
-     * equal.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the minimum value of Smallint_Tab table.
+     * Call the getString(String columnName) method to retrieve this value.Extract the minimum value of Smallint_Tab table
+     * as a String from the tssql.stmt file. Compare this value with the value returned by the getString method. Both the
+     * values should be equal.
      */
     public void testGetString41() throws Fault {
         try {
@@ -166,7 +160,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             Short intExtVal = new Short(sExtVal);
 
             msg.addOutputMsg("" + intExtVal, "" + intRetVal);
-            if (intRetVal.equals(intExtVal)) msg.setMsg("getString returns the Minimum Value " + oRetVal);
+            if (intRetVal.equals(intExtVal))
+                msg.setMsg("getString returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the Minimum Value", "test getString Failed!");
             }
@@ -191,12 +186,10 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString42
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the null column value from Smallint_Tab table. Call the getString(String
-     * columnName) method.Check if it returns null.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the null column value from Smallint_Tab
+     * table. Call the getString(String columnName) method.Check if it returns null.
      */
     public void testGetString42() throws Fault {
         try {
@@ -213,7 +206,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             String oRetVal = oRes.getString(sColName);
 
             // check whether the value is null or not
-            if (oRetVal == null) msg.setMsg("getString returns the null value " + oRetVal);
+            if (oRetVal == null)
+                msg.setMsg("getString returns the null value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the null value", "test getString Failed!");
             }
@@ -238,15 +232,12 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString43
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the maximum value of Integer_Tab table. Call the getString(String
-     * columnName) method to retrieve this value.Extract the maximum value of
-     * Integer_Tab table as a String from the tssql.stmt file. Compare this value
-     * with the value returned by the getString method. Both the values should be
-     * equal.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the maximum value of Integer_Tab table.
+     * Call the getString(String columnName) method to retrieve this value.Extract the maximum value of Integer_Tab table as
+     * a String from the tssql.stmt file. Compare this value with the value returned by the getString method. Both the
+     * values should be equal.
      */
     public void testGetString43() throws Fault {
         try {
@@ -271,7 +262,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             Integer intExtVal = new Integer(sExtVal);
 
             msg.addOutputMsg("" + intExtVal, "" + intRetVal);
-            if (intRetVal.equals(intExtVal)) msg.setMsg("getString returns the Maximum Value " + oRetVal);
+            if (intRetVal.equals(intExtVal))
+                msg.setMsg("getString returns the Maximum Value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the Maximum Value", "test getString Failed!");
             }
@@ -296,15 +288,12 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString44
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the minimum value of Integer_Tab table. Call the getString(String
-     * columnName) method to retrieve this value.Extract the minimum value of
-     * Integer_Tab table as a String from the tssql.stmt file. Compare this value
-     * with the value returned by the getString method. Both the values should be
-     * equal.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the minimum value of Integer_Tab table.
+     * Call the getString(String columnName) method to retrieve this value.Extract the minimum value of Integer_Tab table as
+     * a String from the tssql.stmt file. Compare this value with the value returned by the getString method. Both the
+     * values should be equal.
      */
     public void testGetString44() throws Fault {
         try {
@@ -329,7 +318,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             Integer intExtVal = new Integer(sExtVal);
 
             msg.addOutputMsg("" + intExtVal, "" + intRetVal);
-            if (intRetVal.equals(intExtVal)) msg.setMsg("getString returns the Minimum Value " + oRetVal);
+            if (intRetVal.equals(intExtVal))
+                msg.setMsg("getString returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the Minimum Value", "test getString Failed!");
             }
@@ -354,12 +344,10 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString45
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the null column value from Integer_Tab table. Call the getString(String
-     * columnName) method.Check if it returns null.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the null column value from Integer_Tab
+     * table. Call the getString(String columnName) method.Check if it returns null.
      */
     public void testGetString45() throws Fault {
         try {
@@ -376,7 +364,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             String oRetVal = oRes.getString(sColName);
 
             // check whether the value is null or not
-            if (oRetVal == null) msg.setMsg("getString returns the null value " + oRetVal);
+            if (oRetVal == null)
+                msg.setMsg("getString returns the null value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the null value", "test getString Failed!");
             }
@@ -401,14 +390,12 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString47
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the minimum value of Real_Tab table. Call the getString(String columnName)
-     * method to retrieve this value.Extract the minimum value of Real_Tab table
-     * as a String from the tssql.stmt file. Compare this value with the value
-     * returned by the getString method. Both the values should be equal.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the minimum value of Real_Tab table. Call
+     * the getString(String columnName) method to retrieve this value.Extract the minimum value of Real_Tab table as a
+     * String from the tssql.stmt file. Compare this value with the value returned by the getString method. Both the values
+     * should be equal.
      */
     public void testGetString47() throws Fault {
         try {
@@ -433,7 +420,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             Float fltExtVal = new Float(sExtVal);
 
             msg.addOutputMsg("" + fltExtVal, "" + fltRetVal);
-            if (fltRetVal.equals(fltExtVal)) msg.setMsg("getString returns the Minimum Value " + oRetVal);
+            if (fltRetVal.equals(fltExtVal))
+                msg.setMsg("getString returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the Minimum Value", "test getString Failed!");
             }
@@ -458,12 +446,10 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString48
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the null column value from Real_Tab table. Call the getString(String
-     * columnName) method.Check if it returns null.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the null column value from Real_Tab table.
+     * Call the getString(String columnName) method.Check if it returns null.
      */
     public void testGetString48() throws Fault {
         try {
@@ -480,7 +466,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             String oRetVal = oRes.getString(sColName);
 
             // check whether the value is null or not
-            if (oRetVal == null) msg.setMsg("getString returns the null value " + oRetVal);
+            if (oRetVal == null)
+                msg.setMsg("getString returns the null value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the null value", "test getString Failed!");
             }
@@ -505,14 +492,12 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString53
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the minimum value of Float_Tab table. Call the getString(String columnName)
-     * method to retrieve this value.Extract the minimum value of Float_Tab table
-     * as a String from the tssql.stmt file. Compare this value with the value
-     * returned by the getString method. Both the values should be equal.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the minimum value of Float_Tab table. Call
+     * the getString(String columnName) method to retrieve this value.Extract the minimum value of Float_Tab table as a
+     * String from the tssql.stmt file. Compare this value with the value returned by the getString method. Both the values
+     * should be equal.
      */
     public void testGetString53() throws Fault {
         try {
@@ -536,7 +521,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             Double dbRetVal = new Double(oRetVal);
             Double dbExtVal = new Double(sExtVal);
 
-            if (dbRetVal.equals(dbExtVal)) msg.setMsg("getString returns the Minimum Value " + oRetVal);
+            if (dbRetVal.equals(dbExtVal))
+                msg.setMsg("getString returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the Minimum Value", "test getString Failed!");
             }
@@ -561,12 +547,10 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString54
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the null column value from Float_Tab table. Call the getString(String
-     * columnName) method.Check if it returns null.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the null column value from Float_Tab
+     * table. Call the getString(String columnName) method.Check if it returns null.
      */
     public void testGetString54() throws Fault {
         try {
@@ -583,7 +567,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             String oRetVal = oRes.getString(sColName);
 
             // check whether the value is null or not
-            if (oRetVal == null) msg.setMsg("getString returns the null value " + oRetVal);
+            if (oRetVal == null)
+                msg.setMsg("getString returns the null value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the null value", "test getString Failed!");
             }
@@ -608,15 +593,12 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString58
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the maximum value of Decimal_Tab table. Call the getString(String
-     * columnName) method to retrieve this value.Extract the maximum value of
-     * Decimal_Tab table as a String from the tssql.stmt file. Compare this value
-     * with the value returned by the getString method. Both the values should be
-     * equal.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the maximum value of Decimal_Tab table.
+     * Call the getString(String columnName) method to retrieve this value.Extract the maximum value of Decimal_Tab table as
+     * a String from the tssql.stmt file. Compare this value with the value returned by the getString method. Both the
+     * values should be equal.
      */
     public void testGetString58() throws Fault {
         try {
@@ -642,7 +624,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             BigDecimal bdExtVal = new BigDecimal(sExtVal);
 
             msg.addOutputMsg("" + bdExtVal, "" + bdRetVal);
-            if (bdRetVal.compareTo(bdExtVal) == 0) msg.setMsg("getString returns the Maximum Value " + oRetVal);
+            if (bdRetVal.compareTo(bdExtVal) == 0)
+                msg.setMsg("getString returns the Maximum Value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the Maximum Value", "test getString Failed!");
             }
@@ -667,15 +650,12 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString59
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the minimum value of Decimal_Tab table. Call the getString(String
-     * columnName) method to retrieve this value.Extract the minimum value of
-     * Decimal_Tab table as a String from the tssql.stmt file. Compare this value
-     * with the value returned by the getString method. Both the values should be
-     * equal.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the minimum value of Decimal_Tab table.
+     * Call the getString(String columnName) method to retrieve this value.Extract the minimum value of Decimal_Tab table as
+     * a String from the tssql.stmt file. Compare this value with the value returned by the getString method. Both the
+     * values should be equal.
      */
     public void testGetString59() throws Fault {
         try {
@@ -700,7 +680,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             BigDecimal bdExtVal = new BigDecimal(sExtVal);
 
             msg.addOutputMsg("" + bdExtVal, "" + bdRetVal);
-            if (bdRetVal.compareTo(bdExtVal) == 0) msg.setMsg("getString returns the Minimum Value " + oRetVal);
+            if (bdRetVal.compareTo(bdExtVal) == 0)
+                msg.setMsg("getString returns the Minimum Value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the Minimum Value", "test getString Failed!");
             }
@@ -725,12 +706,10 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString60
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * the null column value from Decimal_Tab table. Call the getString(String
-     * columnName) method.Check if it returns null.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns the null column value from Decimal_Tab
+     * table. Call the getString(String columnName) method.Check if it returns null.
      */
     public void testGetString60() throws Fault {
         try {
@@ -747,7 +726,8 @@ public class resultSetClient45 extends ServiceEETest implements Serializable {
             String oRetVal = oRes.getString(sColName);
 
             // check whether the value is null or not
-            if (oRetVal == null) msg.setMsg("getString returns the null value " + oRetVal);
+            if (oRetVal == null)
+                msg.setMsg("getString returns the null value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the null value", "test getString Failed!");
             }

@@ -26,12 +26,7 @@ import java.math.BigInteger;
 import javax.xml.datatype.*;
 import javax.xml.namespace.QName;
 
-@WebService(
-        portName = "HolderTestPort",
-        serviceName = "HolderTestService",
-        targetNamespace = "http://holdertest.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JRLHolderTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.HolderTest")
+@WebService(portName = "HolderTestPort", serviceName = "HolderTestService", targetNamespace = "http://holdertest.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLHolderTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.holdertest.HolderTest")
 public class HolderTestImpl implements HolderTest {
     private static DatatypeFactory dtfactory = null;
 
@@ -373,7 +368,8 @@ public class HolderTestImpl implements HolderTest {
         StringBuffer result = new StringBuffer();
         System.out.println("Entering echoInOutBookArray()");
         java.util.List<Book> blist = varBook.value.getArrayOfBook();
-        if (blist.size() != 2) throw new WebServiceException("list size not 2, it was" + blist.size());
+        if (blist.size() != 2)
+            throw new WebServiceException("list size not 2, it was" + blist.size());
         Book bentry0 = blist.get(0);
         Book bentry1 = blist.get(1);
         if (!bentry0.getAuthor().equals("author0")) {

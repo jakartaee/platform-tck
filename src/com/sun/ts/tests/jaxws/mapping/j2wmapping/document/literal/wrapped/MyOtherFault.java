@@ -20,11 +20,7 @@
 
 package com.sun.ts.tests.jaxws.mapping.j2wmapping.document.literal.wrapped;
 
-@jakarta.xml.ws.WebFault(
-        name = "MyOtherFault",
-        messageName = "YesItsMyOtherFault",
-        targetNamespace = "http://doclitservice.org/wsdl",
-        faultBean = "MyOtherFaultBean")
+@jakarta.xml.ws.WebFault(name = "MyOtherFault", messageName = "YesItsMyOtherFault", targetNamespace = "http://doclitservice.org/wsdl", faultBean = "MyOtherFaultBean")
 public class MyOtherFault extends Exception {
     private MyOtherFaultBean faultInfo;
 

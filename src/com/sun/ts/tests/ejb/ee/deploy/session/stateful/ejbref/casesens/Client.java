@@ -28,8 +28,7 @@ import java.util.Properties;
 
 public class Client extends EETest {
 
-    private static final String testName =
-            "com.sun.ts.tests.ejb.ee.deploy.session.stateful" + ".ejbref.casesens.TestBean";
+    private static final String testName = "com.sun.ts.tests.ejb.ee.deploy.session.stateful" + ".ejbref.casesens.TestBean";
 
     private static final String testDir = System.getProperty("user.dir");
 
@@ -74,16 +73,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:872
      *
-     * @test_Strategy: Deploy a Stateful Session bean (TestBean) with two EJB
-     *                 references whose name differ only by case and are assigned
-     *                 to two distinct beans (Same type of bean, but the two beans
-     *                 are packaged with different values for a String environment
-     *                 entry called 'myName').
+     * @test_Strategy: Deploy a Stateful Session bean (TestBean) with two EJB references whose name differ only by case and
+     * are assigned to two distinct beans (Same type of bean, but the two beans are packaged with different values for a
+     * String environment entry called 'myName').
      *
-     *                 Check that TestBean can lookup the two beans. Check that
-     *                 their runtime values for the 'myName' env. entry are
-     *                 distinct and correspond the ones specified in the DD (to
-     *                 check that the EJB reference are resolved correctly).
+     * Check that TestBean can lookup the two beans. Check that their runtime values for the 'myName' env. entry are
+     * distinct and correspond the ones specified in the DD (to check that the EJB reference are resolved correctly).
      */
     public void testCaseSensitivity() throws Fault {
 

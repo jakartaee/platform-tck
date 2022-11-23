@@ -50,7 +50,8 @@ public class AnnotatedOnErrorClientEndpoint extends AnnotatedStringClientEndpoin
 
     @SuppressWarnings("unused")
     @OnError
-    public void onError(Throwable t) {}
+    public void onError(Throwable t) {
+    }
 
     @Override
     @OnError

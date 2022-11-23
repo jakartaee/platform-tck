@@ -17,8 +17,7 @@
 package com.sun.ts.lib.util;
 
 /**
- * This class contains additional constants documenting limits of the
- * <code>double</code> type.
+ * This class contains additional constants documenting limits of the <code>double</code> type.
  *
  * @author Joseph D. Darcy
  */
@@ -26,7 +25,8 @@ public class DoubleConsts {
     /**
      * Don't let anyone instantiate this class.
      */
-    private DoubleConsts() {}
+    private DoubleConsts() {
+    }
 
     public static final double POSITIVE_INFINITY = java.lang.Double.POSITIVE_INFINITY;
 
@@ -39,36 +39,33 @@ public class DoubleConsts {
     public static final double MIN_VALUE = java.lang.Double.MIN_VALUE;
 
     /**
-     * A constant holding the smallest positive normal value of type
-     * <code>double</code>, 2<sup>-1022</sup>. It is equal to the value returned
-     * by <code>Double.longBitsToDouble(0x0010000000000000L)</code>.
+     * A constant holding the smallest positive normal value of type <code>double</code>, 2<sup>-1022</sup>. It is equal to
+     * the value returned by <code>Double.longBitsToDouble(0x0010000000000000L)</code>.
      *
      * @since 1.5
      */
     public static final double MIN_NORMAL = 2.2250738585072014E-308;
 
     /**
-     * The number of logical bits in the significand of a <code>double</code>
-     * number, including the implicit bit.
+     * The number of logical bits in the significand of a <code>double</code> number, including the implicit bit.
      */
     public static final int SIGNIFICAND_WIDTH = 53;
 
     /**
-     * Maximum exponent a finite <code>double</code> number may have. It is equal
-     * to the value returned by <code>Math.ilogb(Double.MAX_VALUE)</code>.
+     * Maximum exponent a finite <code>double</code> number may have. It is equal to the value returned by
+     * <code>Math.ilogb(Double.MAX_VALUE)</code>.
      */
     public static final int MAX_EXPONENT = 1023;
 
     /**
-     * Minimum exponent a normalized <code>double</code> number may have. It is
-     * equal to the value returned by <code>Math.ilogb(Double.MIN_NORMAL)</code>.
+     * Minimum exponent a normalized <code>double</code> number may have. It is equal to the value returned by
+     * <code>Math.ilogb(Double.MIN_NORMAL)</code>.
      */
     public static final int MIN_EXPONENT = -1022;
 
     /**
-     * The exponent the smallest positive <code>double</code> subnormal value
-     * would have if it could be normalized. It is equal to the value returned by
-     * <code>FpUtils.ilogb(Double.MIN_VALUE)</code>.
+     * The exponent the smallest positive <code>double</code> subnormal value would have if it could be normalized. It is
+     * equal to the value returned by <code>FpUtils.ilogb(Double.MIN_VALUE)</code>.
      */
     public static final int MIN_SUB_EXPONENT = MIN_EXPONENT - (SIGNIFICAND_WIDTH - 1);
 

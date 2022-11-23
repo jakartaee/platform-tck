@@ -24,9 +24,8 @@ import static jakarta.transaction.Status.STATUS_ACTIVE;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 /**
- * A bean base class for tests in appexception/override/ directory, where the
- * rollback attribute of some application exceptions are overridden with
- * ejb-jar.xml. Therefore some methods will behave differently.
+ * A bean base class for tests in appexception/override/ directory, where the rollback attribute of some application
+ * exceptions are overridden with ejb-jar.xml. Therefore some methods will behave differently.
  */
 public class RollbackOverrideBeanBase extends RollbackBeanBase {
     @Override

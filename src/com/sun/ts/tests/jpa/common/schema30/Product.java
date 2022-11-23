@@ -40,7 +40,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCT_TABLE")
-@SecondaryTables({@SecondaryTable(name = "PRODUCT_DETAILS", pkJoinColumns = @PrimaryKeyJoinColumn(name = "ID"))})
+@SecondaryTables({ @SecondaryTable(name = "PRODUCT_DETAILS", pkJoinColumns = @PrimaryKeyJoinColumn(name = "ID")) })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "PRODUCT_TYPE", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Product")
@@ -61,7 +61,8 @@ public class Product implements java.io.Serializable, Comparable<Product> {
 
     private ShelfLife shelfLife;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Product(String id, String name, double price, int quantity, long partNumber) {
         this.id = id;
@@ -131,8 +132,8 @@ public class Product implements java.io.Serializable, Comparable<Product> {
 
     @Embedded
     @AttributeOverrides({
-        @AttributeOverride(name = "inceptionDate", column = @Column(name = "INCEPTION", nullable = true)),
-        @AttributeOverride(name = "soldDate", column = @Column(name = "SOLD", nullable = true))
+            @AttributeOverride(name = "inceptionDate", column = @Column(name = "INCEPTION", nullable = true)),
+            @AttributeOverride(name = "soldDate", column = @Column(name = "SOLD", nullable = true))
     })
     public ShelfLife getShelfLife() {
         return shelfLife;

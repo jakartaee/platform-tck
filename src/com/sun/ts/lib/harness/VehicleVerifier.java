@@ -25,11 +25,10 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class is used by the TS harness to figure out which vehicles are to be
- * used by the Service tests in the TS. These defaults can be overridden by
- * editing appropriate properties file. However, this override mechanism is only
- * to be used for debugging purposes. When testing for J2EE certification, the
- * defaults specified in this class must be used.
+ * This class is used by the TS harness to figure out which vehicles are to be used by the Service tests in the TS.
+ * These defaults can be overridden by editing appropriate properties file. However, this override mechanism is only to
+ * be used for debugging purposes. When testing for J2EE certification, the defaults specified in this class must be
+ * used.
  *
  * A singleton class not intended for concurrent access.
  *
@@ -55,7 +54,8 @@ public class VehicleVerifier {
     // an uninitialized singleton instance
     private static VehicleVerifier instance = new VehicleVerifier();
 
-    private VehicleVerifier() {}
+    private VehicleVerifier() {
+    }
 
     public static VehicleVerifier getInstance(File path) {
         if (instance == null) {
@@ -115,8 +115,7 @@ public class VehicleVerifier {
     }
 
     /**
-     * This method gets the current set of vehicles to be used for a given
-     * directory path.
+     * This method gets the current set of vehicles to be used for a given directory path.
      *
      * @return a String array of the vehicles that this test should be run in
      */

@@ -21,13 +21,13 @@
 package com.sun.ts.tests.ejb30.common.helper;
 
 /**
- * A convenience class to use different logging, e.g., cts TestUtil.log, or
- * System.out.println.
+ * A convenience class to use different logging, e.g., cts TestUtil.log, or System.out.println.
  */
 public class TLogger {
     public static final String NL = System.getProperty("line.separator");
 
-    private TLogger() {}
+    private TLogger() {
+    }
 
     public static void log(String... args) {
         String msg = null;

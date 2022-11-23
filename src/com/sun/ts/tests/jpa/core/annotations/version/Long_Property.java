@@ -37,7 +37,8 @@ public class Long_Property implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public Long_Property() {}
+    public Long_Property() {
+    }
 
     public Long_Property(String id) {
         this.id = id;

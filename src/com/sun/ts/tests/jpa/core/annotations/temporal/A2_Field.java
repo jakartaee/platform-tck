@@ -41,7 +41,8 @@ public class A2_Field implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public A2_Field() {}
+    public A2_Field() {
+    }
 
     public A2_Field(Date id) {
         this.id = id;

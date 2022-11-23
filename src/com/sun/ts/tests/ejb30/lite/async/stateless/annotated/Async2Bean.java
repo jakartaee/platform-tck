@@ -28,7 +28,7 @@ import jakarta.ejb.Stateless;
 import java.util.concurrent.Future;
 
 @Stateless
-@Local({Async2IF.class, AsyncIF.class})
+@Local({ Async2IF.class, AsyncIF.class })
 public class Async2Bean extends AsyncBeanBase implements AsyncIF {
     // override all business methods to apply @Asynchronous on bean class
     // business methods

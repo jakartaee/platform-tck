@@ -38,5 +38,6 @@ public class CommonBase implements CommonIF {
         throw new UncheckedAppException("UncheckedAppException from bean.");
     }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

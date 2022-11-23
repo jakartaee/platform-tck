@@ -51,8 +51,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void linkedListHashSetTextHandlerTest() throws Fault {
         invoke(
@@ -69,8 +68,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void linkedListTextHandlerTest() throws Fault {
         invoke(TypeEnum.LIST_TEXT.name().toLowerCase(), ECHO, StringListWholeMessageHandler.HANDLER_SAYS, ECHO);
@@ -82,8 +80,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void textStringBeanHandlerTest() throws Fault {
         invoke(TypeEnum.STRINGBEAN.name().toLowerCase(), ECHO, StringBeanMessageHandler.HANDLER_SAYS, ECHO);
@@ -95,8 +92,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void textStreamStringBeanHandlerTest() throws Fault {
         invoke(TypeEnum.STRINGBEANSTREAM.name().toLowerCase(), ECHO, StringBeanMessageHandler.HANDLER_SAYS, ECHO);
@@ -108,8 +104,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void stringTextHandlerTest() throws Fault {
         invoke(TypeEnum.STRING_WHOLE.name().toLowerCase(), ECHO, StringWholeMessageHandler.HANDLER_SAYS, ECHO);
@@ -121,8 +116,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void readerMessageHandlerTest() throws Fault {
         invoke(TypeEnum.READER.name().toLowerCase(), ECHO, ReaderMessageHandler.HANDLER_SAYS, ECHO);
@@ -138,8 +132,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void pongMessageHandlerTest() throws Fault {
         invoke(TypeEnum.PONG.name().toLowerCase(), new StringPongMessage(ECHO), PongMessageHandler.HANDLER_SAYS, ECHO);
@@ -155,8 +148,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void byteBufferMessageHandlerTest() throws Fault {
         invoke(
@@ -172,8 +164,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void byteArrayMessageHandlerTest() throws Fault {
         invoke(
@@ -189,8 +180,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void inputStreamMessageHandlerTest() throws Fault {
         invoke(
@@ -206,8 +196,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void binaryStringBeanMessageHandlerTest() throws Fault {
         invoke(
@@ -223,8 +212,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void binaryStreamStringBeanMessageHandlerTest() throws Fault {
         invoke(
@@ -244,8 +232,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:213
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void stringPartialHandlerTest() throws Fault {
         setEntity(ECHO, ECHO_PARTIAL);
@@ -265,8 +252,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:213;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void byteBufferPartialMessageHandlerTest() throws Fault {
         setEntity(ByteBuffer.wrap(ECHO.getBytes()), ByteBuffer.wrap(ECHO_PARTIAL.getBytes()));
@@ -287,8 +273,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:213;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void byteArrayPartialMessageHandlerTest() throws Fault {
         setEntity(ByteBuffer.wrap(ECHO.getBytes()), ByteBuffer.wrap(ECHO_PARTIAL.getBytes()));
@@ -312,8 +297,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void binaryAnnotatedStringBeanMessageHandlerTest() throws Fault {
         invoke("annotatedbinary", ByteBuffer.wrap(ECHO.getBytes()), StringBeanMessageHandler.HANDLER_SAYS, ECHO);
@@ -325,8 +309,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Register to handle to incoming messages in this
-     * conversation.
+     * @test_Strategy: Register to handle to incoming messages in this conversation.
      */
     public void textAnnotatedStringBeanMessageHandlerTest() throws Fault {
         invoke("annotatedtext", ECHO, StringBeanMessageHandler.HANDLER_SAYS, ECHO);
@@ -342,8 +325,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Adding more than one of any one type will result in a
-     * runtime exception.
+     * @test_Strategy: Adding more than one of any one type will result in a runtime exception.
      */
     public void addMessageHandlerPongMessageThrowsExceptionTest() throws Fault {
         // do not throw
@@ -368,8 +350,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Adding more than one of any one type will result in a
-     * runtime exception.
+     * @test_Strategy: Adding more than one of any one type will result in a runtime exception.
      */
     public void addMessageHandlerStringPartialMessageThrowsExceptionTest() throws Fault {
         // do not throw
@@ -394,8 +375,7 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:212;
      *
-     * @test_Strategy: Adding more than one of any one type will result in a
-     * runtime exception.
+     * @test_Strategy: Adding more than one of any one type will result in a runtime exception.
      */
     public void addMessageHandlerInputStreamThrowsExceptionTest() throws Fault {
         // do not throw

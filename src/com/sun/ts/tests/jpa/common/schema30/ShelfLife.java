@@ -32,7 +32,8 @@ public class ShelfLife implements java.io.Serializable {
 
     private Date soldDate;
 
-    public ShelfLife() {}
+    public ShelfLife() {
+    }
 
     public ShelfLife(Date d1, Date d2) {
         inceptionDate = d1;

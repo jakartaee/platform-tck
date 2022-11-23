@@ -25,7 +25,8 @@ public class Product implements java.io.Serializable {
 
     public String country;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Product(int quantity, String country) {
         this.quantity = quantity;

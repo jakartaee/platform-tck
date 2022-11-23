@@ -28,7 +28,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -51,14 +52,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: versionTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1068; PERSISTENCE:SPEC:690;
-     * PERSISTENCE:SPEC:666; PERSISTENCE:JAVADOC:13; PERSISTENCE:JAVADOC:16;
-     * PERSISTENCE:JAVADOC:17; PERSISTENCE:JAVADOC:18; PERSISTENCE:SPEC:1400;
+     * @assertion_ids: PERSISTENCE:SPEC:1068; PERSISTENCE:SPEC:690; PERSISTENCE:SPEC:666; PERSISTENCE:JAVADOC:13;
+     * PERSISTENCE:JAVADOC:16; PERSISTENCE:JAVADOC:17; PERSISTENCE:JAVADOC:18; PERSISTENCE:SPEC:1400;
      *
-     * @test_Strategy: The version annotation specifies the version field or
-     * property of an entity class that serves as an optimistic lock value. The
-     * version is used to ensure integrity when performing the merge operation and
-     * for optimistic concurrency control.
+     * @test_Strategy: The version annotation specifies the version field or property of an entity class that serves as an
+     * optimistic lock value. The version is used to ensure integrity when performing the merge operation and for optimistic
+     * concurrency control.
      *
      * positive test with sequential tx
      *
@@ -144,7 +143,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2 || !pass3) throw new Fault("versionTest1 failed");
+        if (!pass1 || !pass2 || !pass3)
+            throw new Fault("versionTest1 failed");
     }
 
     public void cleanup() throws Fault {

@@ -35,17 +35,15 @@ import jakarta.validation.ValidatorFactory;
 import java.util.Properties;
 
 /**
- * This client tests java:global, java:app, java:module namespaces for an
- * application packaged as EAR that includes appclient jar and ejb jar.
+ * This client tests java:global, java:app, java:module namespaces for an application packaged as EAR that includes
+ * appclient jar and ejb jar.
  *
  * All 3 namespaces can be used for look up by any ejb for other co-located ejb.
  *
- * Appclient can use java:global and java:app to look up the remote view of
- * TestBean. Other ejbs are all local views or no-interface views and thus no
- * accessible to appclient.
+ * Appclient can use java:global and java:app to look up the remote view of TestBean. Other ejbs are all local views or
+ * no-interface views and thus no accessible to appclient.
  *
- * ejb30/lite/basic contains similar tests that use WAR packaging with all local
- * beans.
+ * ejb30/lite/basic contains similar tests that use WAR packaging with all local beans.
  *
  */
 public class Client extends EETest {
@@ -85,7 +83,8 @@ public class Client extends EETest {
         props = p;
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 
     private String lookupTestBeanAndAdd(String lookupName) {
         Helper.getLogger().info("About to look up " + lookupName);
@@ -146,15 +145,12 @@ public class Client extends EETest {
     /*
      * @testName: globalJNDIHelloEJB
      *
-     * @test_Strategy: lookup portable global jndi names of HelloBean from
-     * application client. helloejb is deployed as a standalone ejb module. Its
-     * jndi name must have FQN of the remote interface since HelloBean exposes
-     * both a remote and a local business interface, though the local intf won't
-     * be accessible.
+     * @test_Strategy: lookup portable global jndi names of HelloBean from application client. helloejb is deployed as a
+     * standalone ejb module. Its jndi name must have FQN of the remote interface since HelloBean exposes both a remote and
+     * a local business interface, though the local intf won't be accessible.
      */
     public void globalJNDIHelloEJB() {
-        String lookupName =
-                GlobalJNDITest.getGlobalJNDIName(null, HELLO_EJB_MODULE_NAME, HELLO_BEAN_NAME, HelloRemoteIF.class);
+        String lookupName = GlobalJNDITest.getGlobalJNDIName(null, HELLO_EJB_MODULE_NAME, HELLO_BEAN_NAME, HelloRemoteIF.class);
         HelloRemoteIF h = (HelloRemoteIF) ServiceLocator.lookupNoTry(lookupName);
         Helper.getLogger().info(h.getMessage().toString());
     }
@@ -162,8 +158,7 @@ public class Client extends EETest {
     /*
      * @testName: ejbRefHello
      *
-     * @test_Strategy: declare a ejb-ref in application-client.xml, and look up it
-     * java:comp/env namespace.
+     * @test_Strategy: declare a ejb-ref in application-client.xml, and look up it java:comp/env namespace.
      */
     public void ejbRefHello() {
         String lookupName = "java:comp/env/ejb/hello";
@@ -174,8 +169,8 @@ public class Client extends EETest {
     /*
      * @testName: globalJNDIHelloEJB2
      *
-     * @test_Strategy: lookup portable global jndi names of HelloBean from
-     * TestBean. helloejb is deployed as a standalone ejb module.
+     * @test_Strategy: lookup portable global jndi names of HelloBean from TestBean. helloejb is deployed as a standalone
+     * ejb module.
      */
     public void globalJNDIHelloEJB2() {
         Helper.getLogger()
@@ -185,23 +180,20 @@ public class Client extends EETest {
     /*
      * @testName: globalJNDI
      *
-     * @test_Strategy: lookup portable global jndi names of various beans from
-     * application client.
+     * @test_Strategy: lookup portable global jndi names of various beans from application client.
      */
     public void globalJNDI() {
         String lookupName = GlobalJNDITest.getGlobalJNDIName(TestIF.APP_NAME, TestIF.EJB_MODULE_NAME, TEST_BEAN_NAME);
         Helper.getLogger().info(lookupTestBeanAndAdd(lookupName));
 
-        lookupName =
-                GlobalJNDITest.getGlobalJNDIName(TestIF.APP_NAME, TestIF.EJB_MODULE_NAME, TEST_BEAN_NAME, TestIF.class);
+        lookupName = GlobalJNDITest.getGlobalJNDIName(TestIF.APP_NAME, TestIF.EJB_MODULE_NAME, TEST_BEAN_NAME, TestIF.class);
         Helper.getLogger().info(lookupTestBeanAndAdd(lookupName));
     }
 
     /*
      * @testName: appJNDI
      *
-     * @test_Strategy: lookup portable app jndi names of various beans from
-     * application client.
+     * @test_Strategy: lookup portable app jndi names of various beans from application client.
      */
     public void appJNDI() {
         String lookupName = GlobalJNDITest.getAppJNDIName(TestIF.EJB_MODULE_NAME, TEST_BEAN_NAME);
@@ -214,8 +206,7 @@ public class Client extends EETest {
     /*
      * @testName: globalJNDI2
      *
-     * @test_Strategy: lookup portable global jndi names of various beans from ejb
-     * bean class
+     * @test_Strategy: lookup portable global jndi names of various beans from ejb bean class
      */
     public void globalJNDI2() {
         Helper.getLogger().info((testBean.globalJNDI(TestIF.APP_NAME, TestIF.EJB_MODULE_NAME)));
@@ -224,8 +215,7 @@ public class Client extends EETest {
     /*
      * @testName: appJNDI2
      *
-     * @test_Strategy: lookup portable app jndi names of various beans from ejb
-     * bean class
+     * @test_Strategy: lookup portable app jndi names of various beans from ejb bean class
      */
     public void appJNDI2() {
         Helper.getLogger().info((testBean.appJNDI(TestIF.EJB_MODULE_NAME)));
@@ -234,8 +224,7 @@ public class Client extends EETest {
     /*
      * @testName: moduleJNDI2
      *
-     * @test_Strategy: lookup portable module jndi names of various beans from ejb
-     * bean class
+     * @test_Strategy: lookup portable module jndi names of various beans from ejb bean class
      */
     public void moduleJNDI2() {
         Helper.getLogger().info((testBean.moduleJNDI()));

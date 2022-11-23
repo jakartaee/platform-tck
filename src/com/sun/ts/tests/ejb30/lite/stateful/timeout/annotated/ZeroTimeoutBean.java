@@ -32,4 +32,5 @@ import java.util.concurrent.TimeUnit;
 @StatefulTimeout(value = 0, unit = TimeUnit.DAYS)
 @AccessTimeout(value = StatefulTimeoutIF.TIMEOUT_DAYS, unit = TimeUnit.DAYS)
 @Local(StatefulTimeoutIF.class)
-public class ZeroTimeoutBean extends StatefulTimeoutBeanBase {}
+public class ZeroTimeoutBean extends StatefulTimeoutBeanBase {
+}

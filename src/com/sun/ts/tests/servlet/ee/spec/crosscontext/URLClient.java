@@ -29,9 +29,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/servlet_ee_spec_crosscontext1_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -40,8 +39,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,12 +61,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:63;
      *
-     * @test_Strategy: 1. Create two web applications; One with a jsp page
-     * JSPAccessServlet.jsp under contextroot /servlet_spec_crosscontext1_web; The
-     * other with servlet FowardedServlet under contextroot
-     * /servlet_spec_crosscontext2_web; 2. client calls to the jsp page; 3. In jsp
-     * page, use RequestDispatcher to forward to the servlet; 4. Verify that
-     * Session attributes set in jsp cannot be seen in servlet
+     * @test_Strategy: 1. Create two web applications; One with a jsp page JSPAccessServlet.jsp under contextroot
+     * /servlet_spec_crosscontext1_web; The other with servlet FowardedServlet under contextroot
+     * /servlet_spec_crosscontext2_web; 2. client calls to the jsp page; 3. In jsp page, use RequestDispatcher to forward to
+     * the servlet; 4. Verify that Session attributes set in jsp cannot be seen in servlet
      */
 
     public void forwardJSPServlet() throws Fault {
@@ -81,12 +77,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:63;
      *
-     * @test_Strategy: 1. Create two web applications; One with a jsp page
-     * JSPAccessServlet.jsp under contextroot /servlet_spec_crosscontext1_web; The
-     * other with servlet IncludedServlet under contextroot
-     * /servlet_spec_crosscontext2_web; 2. client calls to the jsp page; 3. In jsp
-     * page, use RequestDispatcher to include the servlet; 4. Verify that Session
-     * attributes set in jsp cannot be seen in servlet and vice versa
+     * @test_Strategy: 1. Create two web applications; One with a jsp page JSPAccessServlet.jsp under contextroot
+     * /servlet_spec_crosscontext1_web; The other with servlet IncludedServlet under contextroot
+     * /servlet_spec_crosscontext2_web; 2. client calls to the jsp page; 3. In jsp page, use RequestDispatcher to include
+     * the servlet; 4. Verify that Session attributes set in jsp cannot be seen in servlet and vice versa
      */
 
     public void includeJSPServlet() throws Fault {

@@ -31,7 +31,8 @@ public class WSCOriginServer {
     public String onMessage(String msg) {
         if (msg.equals("reset")) {
             OriginConfigurator.setOrigin("");
-        } else if (msg.equals("get")) return OriginConfigurator.getOrigin();
+        } else if (msg.equals("get"))
+            return OriginConfigurator.getOrigin();
         return "";
     }
 

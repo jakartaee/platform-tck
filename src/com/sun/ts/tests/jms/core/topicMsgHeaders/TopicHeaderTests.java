@@ -75,8 +75,7 @@ public class TopicHeaderTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -93,10 +92,9 @@ public class TopicHeaderTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the TestTools object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the TestTools object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -139,8 +137,8 @@ public class TopicHeaderTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -161,8 +159,7 @@ public class TopicHeaderTests extends ServiceEETest {
     /* Tests */
 
     /*
-     * helper method for msgHdrIDQTest and msgHdrIDTopicTest verifies that the
-     * JMSMessageID starts with ID:
+     * helper method for msgHdrIDQTest and msgHdrIDTopicTest verifies that the JMSMessageID starts with ID:
      *
      *
      * @param String returned from getJMSMessageID
@@ -171,7 +168,7 @@ public class TopicHeaderTests extends ServiceEETest {
      */
 
     private boolean chkMessageID(String id) {
-        String status[] = {"Pass", "Fail"};
+        String status[] = { "Pass", "Fail" };
         boolean retcode = true;
 
         // message id must start with ID: - unless it is null
@@ -194,9 +191,8 @@ public class TopicHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:4; JMS:JAVADOC:343;
      *
-     * @test_Strategy: With a topic destination Send and receive single Text, map,
-     * bytes, stream, and object message call getJMSMessageID and verify that it
-     * starts with ID:
+     * @test_Strategy: With a topic destination Send and receive single Text, map, bytes, stream, and object message call
+     * getJMSMessageID and verify that it starts with ID:
      */
 
     public void msgHdrIDTopicTest() throws Fault {
@@ -226,8 +222,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentObjectMsg.setObject("msgHdrIDTopicTest for Object Message");
             messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrIDToopicTest");
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("getJMSMessageID ");
             logTrace(" " + messageReceivedObjectMsg.getJMSMessageID());
             id = messageReceivedObjectMsg.getJMSMessageID();
@@ -242,8 +237,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentMapMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrIDTopicTest");
             messageSentMapMessage.setString("aString", "value");
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("getJMSMessageID ");
             logTrace(" " + messageReceivedMapMessage.getJMSMessageID());
             id = messageReceivedMapMessage.getJMSMessageID();
@@ -258,8 +252,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentBytesMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrIDTopicTest");
             messageSentBytesMessage.writeByte(bValue);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("getJMSMessageID ");
             logTrace(" " + messageReceivedBytesMessage.getJMSMessageID());
             id = messageReceivedBytesMessage.getJMSMessageID();
@@ -275,8 +268,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentStreamMessage.writeString("Testing...");
             logTrace("Sending message");
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("getJMSMessageID ");
             logTrace(" " + messageReceivedStreamMessage.getJMSMessageID());
             id = messageReceivedStreamMessage.getJMSMessageID();
@@ -313,9 +305,8 @@ public class TopicHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:7; JMS:JAVADOC:347;
      *
-     * @test_Strategy: With a Topic destination Send a single Text, map, bytes,
-     * stream, and object message check time of send against time send returns
-     * JMSTimeStamp should be between these two
+     * @test_Strategy: With a Topic destination Send a single Text, map, bytes, stream, and object message check time of
+     * send against time send returns JMSTimeStamp should be between these two
      */
 
     public void msgHdrTimeStampTopicTest() throws Fault {
@@ -469,8 +460,8 @@ public class TopicHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Send a message to a Topic with CorrelationID set. Receive
-     * msg and verify the correlationid is as set by client
+     * @test_Strategy: Send a message to a Topic with CorrelationID set. Receive msg and verify the correlationid is as set
+     * by client
      *
      */
 
@@ -519,8 +510,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrCorlIdTopicTest");
             messageSentObjectMsg.setJMSCorrelationID(jmsCorrelationID);
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("jmsCorrelationID:  " + messageReceivedObjectMsg.getJMSCorrelationID());
             if (messageReceivedObjectMsg.getJMSCorrelationID() == null) {
                 pass = false;
@@ -539,8 +529,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentMapMessage.setJMSCorrelationID(jmsCorrelationID);
             messageSentMapMessage.setString("aString", "value");
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("jmsCorrelationID:  " + messageReceivedMapMessage.getJMSCorrelationID());
             if (messageReceivedMapMessage.getJMSCorrelationID() == null) {
                 pass = false;
@@ -559,8 +548,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentBytesMessage.setJMSCorrelationID(jmsCorrelationID);
             messageSentBytesMessage.writeByte(bValue);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("jmsCorrelationID:  " + messageReceivedBytesMessage.getJMSCorrelationID());
             if (messageReceivedBytesMessage.getJMSCorrelationID() == null) {
                 pass = false;
@@ -580,8 +568,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentStreamMessage.writeString("Testing...");
             logTrace("Sending Stream message");
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("jmsCorrelationID:  " + messageReceivedStreamMessage.getJMSCorrelationID());
             if (messageReceivedStreamMessage.getJMSCorrelationID() == null) {
                 pass = false;
@@ -604,13 +591,11 @@ public class TopicHeaderTests extends ServiceEETest {
     /*
      * @testName: msgHdrReplyToTopicTest
      *
-     * @assertion_ids: JMS:SPEC:12; JMS:JAVADOC:359; JMS:JAVADOC:361;
-     * JMS:JAVADOC:117; JMS:SPEC:246.8; JMS:JAVADOC:289; JMS:JAVADOC:562;
-     * JMS:JAVADOC:166;
+     * @assertion_ids: JMS:SPEC:12; JMS:JAVADOC:359; JMS:JAVADOC:361; JMS:JAVADOC:117; JMS:SPEC:246.8; JMS:JAVADOC:289;
+     * JMS:JAVADOC:562; JMS:JAVADOC:166;
      *
-     * @test_Strategy: Send a message to a Topic with ReplyTo set to null and then
-     * set to a destination test with Text, map, object, byte, and stream messages
-     * verify on receive.
+     * @test_Strategy: Send a message to a Topic with ReplyTo set to null and then set to a destination test with Text, map,
+     * object, byte, and stream messages verify on receive.
      *
      */
 
@@ -667,8 +652,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentObjectMsg.setObject("msgHdrReplyToTopicTest for Object Message");
             messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrReplyToTopicTest");
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             if (messageReceivedObjectMsg.getJMSReplyTo() == null) {
                 logTrace(" as expected replyto field is null");
             } else {
@@ -678,8 +662,7 @@ public class TopicHeaderTests extends ServiceEETest {
             logTrace("Set ReplyTo and resend msg");
             messageSentObjectMsg.setJMSReplyTo(tool.getDefaultTopic());
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             replyTopic = (Topic) messageReceivedObjectMsg.getJMSReplyTo();
             logTrace("Topic name is " + replyTopic.getTopicName());
             if (replyTopic.getTopicName().equals(tool.getDefaultTopic().getTopicName())) {
@@ -695,8 +678,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentMapMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrReplyToTopicTest");
             messageSentMapMessage.setString("aString", "value");
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             if (messageReceivedMapMessage.getJMSReplyTo() == null) {
                 logTrace(" as expected replyto field is null");
             } else {
@@ -706,8 +688,7 @@ public class TopicHeaderTests extends ServiceEETest {
             logTrace("Set ReplyTo and resend msg");
             messageSentMapMessage.setJMSReplyTo(tool.getDefaultTopic());
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("Received Map message ");
             replyTopic = (Topic) messageReceivedMapMessage.getJMSReplyTo();
             logTrace("Topic name is " + replyTopic.getTopicName());
@@ -724,8 +705,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentBytesMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrReplyToTopicTest");
             messageSentBytesMessage.writeByte(bValue);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             if (messageReceivedBytesMessage.getJMSReplyTo() == null) {
                 logTrace(" as expected replyto field is null");
             } else {
@@ -735,8 +715,7 @@ public class TopicHeaderTests extends ServiceEETest {
             logTrace("Set ReplyTo and resend msg");
             messageSentBytesMessage.setJMSReplyTo(tool.getDefaultTopic());
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("Received Bytes message ");
             replyTopic = (Topic) messageReceivedBytesMessage.getJMSReplyTo();
             logTrace("Topic name is " + replyTopic.getTopicName());
@@ -754,8 +733,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentStreamMessage.writeString("Testing...");
             logTrace("Sending Stream message");
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             if (messageReceivedStreamMessage.getJMSReplyTo() == null) {
                 logTrace(" as expected replyto field is null");
             } else {
@@ -765,8 +743,7 @@ public class TopicHeaderTests extends ServiceEETest {
             logTrace("Set ReplyTo and resend msg");
             messageSentStreamMessage.setJMSReplyTo(tool.getDefaultTopic());
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("Received Stream message ");
             replyTopic = (Topic) messageReceivedStreamMessage.getJMSReplyTo();
             logTrace("Topic name is " + replyTopic.getTopicName());
@@ -790,8 +767,8 @@ public class TopicHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:246.9; JMS:JAVADOC:375; JMS:JAVADOC:377;
      *
-     * @test_Strategy: Send a message to a Topic with JMSType set to TESTMSG test
-     * with Text, map, object, byte, and stream messages verify on receive.
+     * @test_Strategy: Send a message to a Topic with JMSType set to TESTMSG test with Text, map, object, byte, and stream
+     * messages verify on receive.
      *
      */
 
@@ -837,8 +814,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSTypeTopicTest");
             messageSentObjectMsg.setJMSType(type);
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSType is " + (String) messageReceivedObjectMsg.getJMSType());
             if (messageReceivedObjectMsg.getJMSType().equals(type)) {
                 logTrace("Pass ");
@@ -854,8 +830,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentMapMessage.setString("aString", "value");
             messageSentMapMessage.setJMSType(type);
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSType is " + (String) messageReceivedMapMessage.getJMSType());
             if (messageReceivedMapMessage.getJMSType().equals(type)) {
                 logTrace("Pass ");
@@ -871,8 +846,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentBytesMessage.writeByte(bValue);
             messageSentBytesMessage.setJMSType(type);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSType is " + (String) messageReceivedBytesMessage.getJMSType());
             if (messageReceivedBytesMessage.getJMSType().equals(type)) {
                 logTrace("Pass ");
@@ -888,8 +862,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentStreamMessage.writeString("Testing...");
             messageSentStreamMessage.setJMSType(type);
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSType is " + (String) messageReceivedStreamMessage.getJMSType());
             if (messageReceivedStreamMessage.getJMSType().equals(type)) {
                 logTrace("Pass ");
@@ -909,11 +882,10 @@ public class TopicHeaderTests extends ServiceEETest {
     /*
      * @testName: msgHdrJMSPriorityTopicTest
      *
-     * @assertion_ids: JMS:SPEC:16; JMS:SPEC:18; JMS:SPEC:140; JMS:JAVADOC:305;
-     * JMS:JAVADOC:383;
+     * @assertion_ids: JMS:SPEC:16; JMS:SPEC:18; JMS:SPEC:140; JMS:JAVADOC:305; JMS:JAVADOC:383;
      *
-     * @test_Strategy: Send a message to a Topic with JMSPriority set to 2 test
-     * with Text, map, object, byte, and stream messages verify on receive.
+     * @test_Strategy: Send a message to a Topic with JMSPriority set to 2 test with Text, map, object, byte, and stream
+     * messages verify on receive.
      *
      */
 
@@ -959,8 +931,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSPriorityTopicTest");
             tool.getDefaultTopicPublisher().setPriority(priority);
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSPriority is " + messageReceivedObjectMsg.getJMSPriority());
             if (messageReceivedObjectMsg.getJMSPriority() == priority) {
                 logTrace("Pass ");
@@ -976,8 +947,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentMapMessage.setString("aString", "value");
             tool.getDefaultTopicPublisher().setPriority(priority);
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSPriority is " + messageReceivedMapMessage.getJMSPriority());
             if (messageReceivedMapMessage.getJMSPriority() == priority) {
                 logTrace("Pass ");
@@ -993,8 +963,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentBytesMessage.writeByte(bValue);
             tool.getDefaultTopicPublisher().setPriority(priority);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSPriority is " + messageReceivedBytesMessage.getJMSPriority());
             if (messageReceivedBytesMessage.getJMSPriority() == priority) {
                 logTrace("Pass ");
@@ -1010,8 +979,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentStreamMessage.writeString("Testing...");
             tool.getDefaultTopicPublisher().setPriority(priority);
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSPriority is " + messageReceivedStreamMessage.getJMSPriority());
             if (messageReceivedStreamMessage.getJMSPriority() == priority) {
                 logTrace("Pass ");
@@ -1031,12 +999,10 @@ public class TopicHeaderTests extends ServiceEETest {
     /*
      * @testName: msgHdrJMSExpirationTopicTest
      *
-     * @assertion_ids: JMS:SPEC:15; JMS:SPEC:15.2; JMS:SPEC:15.3; JMS:SPEC:140;
-     * JMS:JAVADOC:309; JMS:JAVADOC:379;
+     * @assertion_ids: JMS:SPEC:15; JMS:SPEC:15.2; JMS:SPEC:15.3; JMS:SPEC:140; JMS:JAVADOC:309; JMS:JAVADOC:379;
      *
-     * @test_Strategy: Send a message to a Topic with time to live set to 0 Verify
-     * that JMSExpiration gets set to 0 test with Text, map, object, byte, and
-     * stream messages verify on receive.
+     * @test_Strategy: Send a message to a Topic with time to live set to 0 Verify that JMSExpiration gets set to 0 test
+     * with Text, map, object, byte, and stream messages verify on receive.
      *
      */
 
@@ -1099,8 +1065,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSExpirationTopicTest");
             tool.getDefaultTopicPublisher().setTimeToLive(forever);
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logMsg("JMSExpiration is " + messageReceivedObjectMsg.getJMSExpiration());
             if (messageReceivedObjectMsg.getJMSExpiration() == forever) {
                 logMsg("Pass ");
@@ -1113,8 +1078,7 @@ public class TopicHeaderTests extends ServiceEETest {
             logMsg("JMSExpiration test (set timetoLive=60000) - Send ObjectMessage to Topic.");
             tool.getDefaultTopicPublisher().setTimeToLive(60000);
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             currentTime = System.currentTimeMillis();
             logMsg("JMSExpiration is " + messageReceivedObjectMsg.getJMSExpiration());
             timeLeftToExpiration = messageReceivedObjectMsg.getJMSExpiration() - currentTime;
@@ -1135,8 +1099,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentMapMessage.setString("aString", "value");
             tool.getDefaultTopicPublisher().setTimeToLive(forever);
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logMsg("JMSExpiration is " + messageReceivedMapMessage.getJMSExpiration());
             if (messageReceivedMapMessage.getJMSExpiration() == forever) {
                 logMsg("Pass ");
@@ -1149,8 +1112,7 @@ public class TopicHeaderTests extends ServiceEETest {
             logMsg("JMSExpiration test (set timetoLive=60000) - Send MapMessage to Topic.");
             tool.getDefaultTopicPublisher().setTimeToLive(60000);
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             currentTime = System.currentTimeMillis();
             logMsg("JMSExpiration is " + messageReceivedMapMessage.getJMSExpiration());
             timeLeftToExpiration = messageReceivedMapMessage.getJMSExpiration() - currentTime;
@@ -1170,8 +1132,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentBytesMessage.writeByte(bValue);
             tool.getDefaultTopicPublisher().setTimeToLive(forever);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logMsg("JMSExpiration is " + messageReceivedBytesMessage.getJMSExpiration());
             if (messageReceivedBytesMessage.getJMSExpiration() == forever) {
                 logMsg("Pass ");
@@ -1184,8 +1145,7 @@ public class TopicHeaderTests extends ServiceEETest {
             logMsg("JMSExpiration test (set timetoLive=60000) - Send BytesMessage to Topic.");
             tool.getDefaultTopicPublisher().setTimeToLive(60000);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             currentTime = System.currentTimeMillis();
             logMsg("JMSExpiration is " + messageReceivedBytesMessage.getJMSExpiration());
             timeLeftToExpiration = messageReceivedBytesMessage.getJMSExpiration() - currentTime;
@@ -1206,8 +1166,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentStreamMessage.writeString("Testing...");
             tool.getDefaultTopicPublisher().setTimeToLive(forever);
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logMsg("JMSExpiration is " + messageReceivedStreamMessage.getJMSExpiration());
             if (messageReceivedStreamMessage.getJMSExpiration() == forever) {
                 logMsg("Pass ");
@@ -1220,8 +1179,7 @@ public class TopicHeaderTests extends ServiceEETest {
             logMsg("JMSExpiration test (set timetoLive=60000) - Send StreamMessage to Topic.");
             tool.getDefaultTopicPublisher().setTimeToLive(60000);
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             currentTime = System.currentTimeMillis();
             logMsg("JMSExpiration is " + messageReceivedStreamMessage.getJMSExpiration());
             timeLeftToExpiration = messageReceivedStreamMessage.getJMSExpiration() - currentTime;
@@ -1248,9 +1206,8 @@ public class TopicHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:2; JMS:JAVADOC:363; JMS:JAVADOC:117;
      *
-     * @test_Strategy: Create and publish a message to the default Topic. Receive
-     * the msg and verify that JMSDestination is set to the default Topic test
-     * with Text, map, object, byte, and stream messages
+     * @test_Strategy: Create and publish a message to the default Topic. Receive the msg and verify that JMSDestination is
+     * set to the default Topic test with Text, map, object, byte, and stream messages
      *
      */
 
@@ -1282,7 +1239,8 @@ public class TopicHeaderTests extends ServiceEETest {
             messageReceived = (TextMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSDestination:  " + messageReceived.getJMSDestination());
             replyDestination = (Topic) messageReceived.getJMSDestination();
-            if (replyDestination != null) logTrace("Topic name is " + replyDestination.getTopicName());
+            if (replyDestination != null)
+                logTrace("Topic name is " + replyDestination.getTopicName());
             if (replyDestination == null) {
                 pass = false;
                 logMsg("Text Message Error: JMSDestination returned a  null");
@@ -1301,11 +1259,11 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentObjectMsg.setObject("msgHdrIDQTest for Object Message");
             messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSDestinationTopicTest");
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSDestination:  " + messageReceivedObjectMsg.getJMSDestination());
             replyDestination = (Topic) messageReceived.getJMSDestination();
-            if (replyDestination != null) logTrace("Topic name is " + replyDestination.getTopicName());
+            if (replyDestination != null)
+                logTrace("Topic name is " + replyDestination.getTopicName());
             if (replyDestination == null) {
                 pass = false;
                 logMsg("Object Message Error: JMSDestination returned a  null");
@@ -1324,11 +1282,11 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentMapMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSDestinationTopicTest");
             messageSentMapMessage.setString("aString", "value");
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSDestination:  " + messageReceivedMapMessage.getJMSDestination());
             replyDestination = (Topic) messageReceived.getJMSDestination();
-            if (replyDestination != null) logTrace("Topic name is " + replyDestination.getTopicName());
+            if (replyDestination != null)
+                logTrace("Topic name is " + replyDestination.getTopicName());
             if (replyDestination == null) {
                 pass = false;
                 logMsg("Map Message Error: JMSDestination returned a  null");
@@ -1347,11 +1305,11 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentBytesMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSDestinationTopicTest");
             messageSentBytesMessage.writeByte(bValue);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSDestination:  " + messageReceivedBytesMessage.getJMSDestination());
             replyDestination = (Topic) messageReceived.getJMSDestination();
-            if (replyDestination != null) logTrace("Topic name is " + replyDestination.getTopicName());
+            if (replyDestination != null)
+                logTrace("Topic name is " + replyDestination.getTopicName());
             if (replyDestination == null) {
                 pass = false;
                 logMsg("Bytes Message Error: JMSDestination returned a  null");
@@ -1371,11 +1329,11 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentStreamMessage.writeString("Testing...");
             logTrace("publishing Stream message");
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSDestination:  " + messageReceivedStreamMessage.getJMSDestination());
             replyDestination = (Topic) messageReceived.getJMSDestination();
-            if (replyDestination != null) logTrace("Topic name is " + replyDestination.getTopicName());
+            if (replyDestination != null)
+                logTrace("Topic name is " + replyDestination.getTopicName());
             if (replyDestination == null) {
                 pass = false;
                 logMsg("Stream Message Error: JMSDestination returned a  null");
@@ -1399,13 +1357,11 @@ public class TopicHeaderTests extends ServiceEETest {
     /*
      * @testName: msgHdrJMSDeliveryModeTopicTest
      *
-     * @assertion_ids: JMS:SPEC:3; JMS:SPEC:140; JMS:JAVADOC:367; JMS:SPEC:246.2;
-     * JMS:JAVADOC:301;
+     * @assertion_ids: JMS:SPEC:3; JMS:SPEC:140; JMS:JAVADOC:367; JMS:SPEC:246.2; JMS:JAVADOC:301;
      *
-     * @test_Strategy: Create and publish a message to the default Topic. Receive
-     * the msg and verify that JMSDeliveryMode is set the default delivery mode of
-     * persistent. Create and test another message with a nonpersistent delivery
-     * mode. test with Text, map, object, byte, and stream messages
+     * @test_Strategy: Create and publish a message to the default Topic. Receive the msg and verify that JMSDeliveryMode is
+     * set the default delivery mode of persistent. Create and test another message with a nonpersistent delivery mode. test
+     * with Text, map, object, byte, and stream messages
      */
 
     public void msgHdrJMSDeliveryModeTopicTest() throws Fault {
@@ -1454,8 +1410,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentObjectMsg.setObject("Test for Object Message");
             messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSDeliveryModeTopicTest");
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSDeliveryMode:  " + messageReceived.getJMSDeliveryMode());
             if (messageReceived.getJMSDeliveryMode() != DeliveryMode.PERSISTENT) {
                 pass = false;
@@ -1470,8 +1425,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentMapMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSDeliveryModeTopicTest");
             messageSentMapMessage.setString("aString", "value");
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSDeliveryMode:  " + messageReceived.getJMSDeliveryMode());
             if (messageReceived.getJMSDeliveryMode() != DeliveryMode.PERSISTENT) {
                 pass = false;
@@ -1486,8 +1440,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentBytesMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSDeliveryModeTopicTest");
             messageSentBytesMessage.writeByte(bValue);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSDeliveryMode:  " + messageReceived.getJMSDeliveryMode());
             if (messageReceived.getJMSDeliveryMode() != DeliveryMode.PERSISTENT) {
                 pass = false;
@@ -1503,8 +1456,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentStreamMessage.writeString("Testing...");
             logTrace("publishing Stream message");
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             logTrace("JMSDeliveryMode:  " + messageReceived.getJMSDeliveryMode());
             if (messageReceived.getJMSDeliveryMode() != DeliveryMode.PERSISTENT) {
                 pass = false;
@@ -1535,9 +1487,9 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentObjectMsg.setObject("msgHdrJMSDeliveryModeTopicTest for Object Message");
             messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSDeliveryModeTopicTest");
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
-            if (messageReceivedObjectMsg != null) logTrace("messageReceivedObjectMsg=" + messageReceivedObjectMsg);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            if (messageReceivedObjectMsg != null)
+                logTrace("messageReceivedObjectMsg=" + messageReceivedObjectMsg);
             logTrace("JMSDeliveryMode:  " + messageReceived.getJMSDeliveryMode());
             if (messageReceived.getJMSDeliveryMode() != DeliveryMode.NON_PERSISTENT) {
                 pass = false;
@@ -1552,9 +1504,9 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentMapMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSDeliveryModeTopicTest");
             messageSentMapMessage.setString("aString", "value");
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
-            if (messageReceivedMapMessage != null) logTrace("messageReceivedMapMessage=" + messageReceivedMapMessage);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            if (messageReceivedMapMessage != null)
+                logTrace("messageReceivedMapMessage=" + messageReceivedMapMessage);
             logTrace("JMSDeliveryMode:  " + messageReceived.getJMSDeliveryMode());
             if (messageReceived.getJMSDeliveryMode() != DeliveryMode.NON_PERSISTENT) {
                 pass = false;
@@ -1569,8 +1521,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentBytesMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgHdrJMSDeliveryModeTopicTest");
             messageSentBytesMessage.writeByte(bValue);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             if (messageReceivedBytesMessage != null)
                 logTrace("messageReceivedBytesMessage=" + messageReceivedBytesMessage);
             logTrace("JMSDeliveryMode:  " + messageReceived.getJMSDeliveryMode());
@@ -1588,8 +1539,7 @@ public class TopicHeaderTests extends ServiceEETest {
             messageSentStreamMessage.writeString("Testing...");
             logTrace("publishing Stream message");
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             if (messageReceivedStreamMessage != null)
                 logTrace("messageReceivedStreamMessage=" + messageReceivedStreamMessage);
             logTrace("JMSDeliveryMode:  " + messageReceived.getJMSDeliveryMode());

@@ -42,16 +42,16 @@ public class WS0StringPathParamServer {
     public String param(@PathParam("param1") String p1, String content) throws IOException {
         OPS o = OPS.valueOf(content);
         switch (o) {
-            case OPEN:
-                content = getPathParam(this.p1);
-                break;
-            case MESSAGE:
-                content = getPathParam(p1);
-                break;
-            case IOEXCEPTION:
-                throw new IOException(ERR);
-            case RUNTIMEEXCEPTION:
-                throw new RuntimeException(ERR);
+        case OPEN:
+            content = getPathParam(this.p1);
+            break;
+        case MESSAGE:
+            content = getPathParam(p1);
+            break;
+        case IOEXCEPTION:
+            throw new IOException(ERR);
+        case RUNTIMEEXCEPTION:
+            throw new RuntimeException(ERR);
         }
         return content;
     }

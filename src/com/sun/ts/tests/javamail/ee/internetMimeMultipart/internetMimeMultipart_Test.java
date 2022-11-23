@@ -65,9 +65,8 @@ public class internetMimeMultipart_Test extends ServiceEETest {
 
     /* Test setup: */
     /*
-     * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
-     * javamail.password ; javamail.mailbox; javamail.root.path; work.dir; iofile;
-     * smtp.port; imap.port;
+     * @class.setup_props: javamail.protocol; javamail.server; javamail.username; javamail.password ; javamail.mailbox;
+     * javamail.root.path; work.dir; iofile; smtp.port; imap.port;
      */
     public void setup(String[] args, Properties props) throws Fault {
         try {
@@ -369,7 +368,8 @@ public class internetMimeMultipart_Test extends ServiceEETest {
             TestUtil.logMsg("UNIT TEST 1:  MimeMultipart()");
             MimeMultipart mp = new MimeMultipart(); // API TEST
 
-            if ((mp != null) && (mp instanceof MimeMultipart)) TestUtil.logMsg("UNIT TEST 1: passed");
+            if ((mp != null) && (mp instanceof MimeMultipart))
+                TestUtil.logMsg("UNIT TEST 1: passed");
             else {
                 TestUtil.logMsg("UNIT TEST 1: FAILED");
                 errors++;
@@ -386,7 +386,8 @@ public class internetMimeMultipart_Test extends ServiceEETest {
 
             MimeMultipart mmp = new MimeMultipart((DataSource) ds); // API TEST
 
-            if ((mmp != null) && (mmp instanceof MimeMultipart)) TestUtil.logMsg("UNIT TEST 2: passed");
+            if ((mmp != null) && (mmp instanceof MimeMultipart))
+                TestUtil.logMsg("UNIT TEST 2: passed");
             else {
                 TestUtil.logMsg("UNIT TEST 2: FAILED");
                 errors++;
@@ -405,7 +406,8 @@ public class internetMimeMultipart_Test extends ServiceEETest {
 
             if (mpp.getCount() == 2
                     && mpp.getBodyPart(0).getContent().equals(cont1)
-                    && mpp.getBodyPart(1).getContent().equals(cont2)) TestUtil.logMsg("UNIT TEST 3: passed");
+                    && mpp.getBodyPart(1).getContent().equals(cont2))
+                TestUtil.logMsg("UNIT TEST 3: passed");
             else {
                 TestUtil.logMsg("UNIT TEST 3: FAILED");
                 errors++;
@@ -430,8 +432,10 @@ public class internetMimeMultipart_Test extends ServiceEETest {
     }
 
     public void checkStatus() {
-        if (errors == 0) status = Status.passed("OKAY");
-        else status = Status.failed("");
+        if (errors == 0)
+            status = Status.passed("OKAY");
+        else
+            status = Status.failed("");
     }
 
     private static void clearAll() {
@@ -442,9 +446,8 @@ public class internetMimeMultipart_Test extends ServiceEETest {
     }
 
     /**
-     * Create a test message. If param is not null, it specifies the boundary
-     * parameter. The actual boundary is specified by "actual". If "end" is true,
-     * include the end boundary.
+     * Create a test message. If param is not null, it specifies the boundary parameter. The actual boundary is specified by
+     * "actual". If "end" is true, include the end boundary.
      */
     private static MimeMessage createMessage(String param, String actual, boolean end) throws MessagingException {
         String content = "Mime-Version: 1.0\n" + "Subject: Example\n"
@@ -461,8 +464,7 @@ public class internetMimeMultipart_Test extends ServiceEETest {
      * Create a test message with no parts.
      */
     private static MimeMessage createEmptyMessage() throws MessagingException {
-        String content =
-                "Mime-Version: 1.0\n" + "Subject: Example\n" + "Content-Type: multipart/mixed; boundary=\"x\"\n\n";
+        String content = "Mime-Version: 1.0\n" + "Subject: Example\n" + "Content-Type: multipart/mixed; boundary=\"x\"\n\n";
 
         return new MimeMessage(session, new StringBufferInputStream(content));
     }
@@ -499,9 +501,12 @@ class MyMimeMultipart extends MimeMultipart {
  */
 class NullOutputStream extends OutputStream {
 
-    public void write(int b) throws IOException {}
+    public void write(int b) throws IOException {
+    }
 
-    public void write(byte[] b) throws IOException {}
+    public void write(byte[] b) throws IOException {
+    }
 
-    public void write(byte[] b, int off, int len) throws IOException {}
+    public void write(byte[] b, int off, int len) throws IOException {
+    }
 }

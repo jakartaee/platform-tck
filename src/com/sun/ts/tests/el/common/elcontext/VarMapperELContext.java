@@ -30,9 +30,8 @@ import jakarta.el.VariableMapper;
 import java.util.Properties;
 
 /**
- * This ELContext provides a VariableELResolver to enable the setting and
- * resolution of variables as well as a VariableMapper implementation. The path
- * to the implementation is passed to the EL Context via a property in the
+ * This ELContext provides a VariableELResolver to enable the setting and resolution of variables as well as a
+ * VariableMapper implementation. The path to the implementation is passed to the EL Context via a property in the
  * ts.jte file.
  */
 public class VarMapperELContext extends ELContext {

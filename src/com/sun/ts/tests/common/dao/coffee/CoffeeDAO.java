@@ -60,8 +60,7 @@ public interface CoffeeDAO extends DAO {
     public void deleteAll() throws DAOException;
 
     /**
-     * Convenience method for test setup. Start its own session and delete all
-     * pre-existing entities
+     * Convenience method for test setup. Start its own session and delete all pre-existing entities
      */
     public void cleanup() throws DAOException;
 }

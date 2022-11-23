@@ -38,8 +38,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The stmtClient3 class tests methods of Statement interface using Sun's J2EE
- * Reference Implementation.
+ * The stmtClient3 class tests methods of Statement interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -73,14 +72,11 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -89,7 +85,8 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
 
                 if (drManager.equals("yes")) {
@@ -117,8 +114,8 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:175; JDBC:JAVADOC:176;
      *
-     * @test_Strategy: Get a Statement object and call the setFetchSize(int rows)
-     * method with the negative value and it should throw SQLException
+     * @test_Strategy: Get a Statement object and call the setFetchSize(int rows) method with the negative value and it
+     * should throw SQLException
      *
      */
     public void testSetFetchSize05() throws Fault {
@@ -156,9 +153,8 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:143; JDBC:JAVADOC:144;
      *
-     * @test_Strategy: Get a Statement object and call the setMaxFieldSize(int
-     * max) method and call getMaxFieldSize() method and it should return an
-     * integer value that is been set
+     * @test_Strategy: Get a Statement object and call the setMaxFieldSize(int max) method and call getMaxFieldSize() method
+     * and it should return an integer value that is been set
      *
      */
     public void testSetMaxFieldSize01() throws Fault {
@@ -200,9 +196,8 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:143; JDBC:JAVADOC:144;
      *
-     * @test_Strategy: Get a Statement object and call the setMaxFieldSize(int
-     * max) method with an invalid value (negative value) and It should throw a
-     * SQLException
+     * @test_Strategy: Get a Statement object and call the setMaxFieldSize(int max) method with an invalid value (negative
+     * value) and It should throw a SQLException
      *
      */
 
@@ -243,9 +238,8 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:147; JDBC:JAVADOC:148;
      *
-     * @test_Strategy: Get a Statement object and call the setMaxRows(int rows)
-     * method and call getMaxRows() method and it should return a integer value
-     * that is been set
+     * @test_Strategy: Get a Statement object and call the setMaxRows(int rows) method and call getMaxRows() method and it
+     * should return a integer value that is been set
      *
      */
     public void testSetMaxRows01() throws Fault {
@@ -288,9 +282,8 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:147; JDBC:JAVADOC:148;
      *
-     * @test_Strategy: Get a Statement object and call the setMaxRows(int rows)
-     * method with an invalid value (negative value) and It should throw an
-     * SQLException
+     * @test_Strategy: Get a Statement object and call the setMaxRows(int rows) method with an invalid value (negative
+     * value) and It should throw an SQLException
      *
      */
     public void testSetMaxRows02() throws Fault {
@@ -329,9 +322,8 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:153; JDBC:JAVADOC:154;
      *
-     * @test_Strategy: Get a Statement object and call the setQueryTimeout(int
-     * secval) method with an invalid value (negative value)and It should throw an
-     * SQLException
+     * @test_Strategy: Get a Statement object and call the setQueryTimeout(int secval) method with an invalid value
+     * (negative value)and It should throw an SQLException
      *
      */
 

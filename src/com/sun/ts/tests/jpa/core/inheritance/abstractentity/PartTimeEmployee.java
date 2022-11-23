@@ -35,7 +35,8 @@ public class PartTimeEmployee extends Employee {
 
     private float wage;
 
-    public PartTimeEmployee() {}
+    public PartTimeEmployee() {
+    }
 
     public PartTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
         this.id = id;

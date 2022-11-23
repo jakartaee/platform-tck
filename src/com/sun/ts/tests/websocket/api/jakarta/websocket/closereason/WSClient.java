@@ -31,60 +31,60 @@ import java.util.Properties;
 public class WSClient extends ServiceEETest {
 
     final CloseCodes[] codes = {
-        CloseReason.CloseCodes.CANNOT_ACCEPT,
-        CloseReason.CloseCodes.CLOSED_ABNORMALLY,
-        CloseReason.CloseCodes.GOING_AWAY,
-        CloseReason.CloseCodes.NORMAL_CLOSURE,
-        CloseReason.CloseCodes.NOT_CONSISTENT,
-        CloseReason.CloseCodes.NO_EXTENSION,
-        CloseReason.CloseCodes.NO_STATUS_CODE,
-        CloseReason.CloseCodes.PROTOCOL_ERROR,
-        CloseReason.CloseCodes.RESERVED,
-        CloseReason.CloseCodes.SERVICE_RESTART,
-        CloseReason.CloseCodes.TLS_HANDSHAKE_FAILURE,
-        CloseReason.CloseCodes.TOO_BIG,
-        CloseReason.CloseCodes.TRY_AGAIN_LATER,
-        CloseReason.CloseCodes.UNEXPECTED_CONDITION,
-        CloseReason.CloseCodes.VIOLATED_POLICY
+            CloseReason.CloseCodes.CANNOT_ACCEPT,
+            CloseReason.CloseCodes.CLOSED_ABNORMALLY,
+            CloseReason.CloseCodes.GOING_AWAY,
+            CloseReason.CloseCodes.NORMAL_CLOSURE,
+            CloseReason.CloseCodes.NOT_CONSISTENT,
+            CloseReason.CloseCodes.NO_EXTENSION,
+            CloseReason.CloseCodes.NO_STATUS_CODE,
+            CloseReason.CloseCodes.PROTOCOL_ERROR,
+            CloseReason.CloseCodes.RESERVED,
+            CloseReason.CloseCodes.SERVICE_RESTART,
+            CloseReason.CloseCodes.TLS_HANDSHAKE_FAILURE,
+            CloseReason.CloseCodes.TOO_BIG,
+            CloseReason.CloseCodes.TRY_AGAIN_LATER,
+            CloseReason.CloseCodes.UNEXPECTED_CONDITION,
+            CloseReason.CloseCodes.VIOLATED_POLICY
     };
 
     final String[] codes_string = {
-        "CANNOT_ACCEPT",
-        "CLOSED_ABNORMALLY",
-        "GOING_AWAY",
-        "NORMAL_CLOSURE",
-        "NOT_CONSISTENT",
-        "NO_EXTENSION",
-        "NO_STATUS_CODE",
-        "PROTOCOL_ERROR",
-        "RESERVED",
-        "SERVICE_RESTART",
-        "TLS_HANDSHAKE_FAILURE",
-        "TOO_BIG",
-        "TRY_AGAIN_LATER",
-        "UNEXPECTED_CONDITION",
-        "VIOLATED_POLICY"
+            "CANNOT_ACCEPT",
+            "CLOSED_ABNORMALLY",
+            "GOING_AWAY",
+            "NORMAL_CLOSURE",
+            "NOT_CONSISTENT",
+            "NO_EXTENSION",
+            "NO_STATUS_CODE",
+            "PROTOCOL_ERROR",
+            "RESERVED",
+            "SERVICE_RESTART",
+            "TLS_HANDSHAKE_FAILURE",
+            "TOO_BIG",
+            "TRY_AGAIN_LATER",
+            "UNEXPECTED_CONDITION",
+            "VIOLATED_POLICY"
     };
 
-    final int[] codes_number = {1003, 1006, 1001, 1000, 1007, 1010, 1005, 1002, 1004, 1012, 1015, 1009, 1013, 1011, 1008
+    final int[] codes_number = { 1003, 1006, 1001, 1000, 1007, 1010, 1005, 1002, 1004, 1012, 1015, 1009, 1013, 1011, 1008
     };
 
     final String[] tck_codes_reason = {
-        "TCK_CANNOT_ACCEPT",
-        "TCK_CLOSED_ABNORMALLY",
-        "TCK_GOING_AWAY",
-        "TCK_NORMAL_CLOSURE",
-        "TCK_NOT_CONSISTENT",
-        "TCK_NO_EXTENSION",
-        "TCK_NO_STATUS_CODE",
-        "TCK_PROTOCOL_ERROR",
-        "TCK_RESERVED",
-        "TCK_SERVICE_RESTART",
-        "TCK_TLS_HANDSHAKE_FAILURE",
-        "TCK_TOO_BIG",
-        "TCK_TRY_AGAIN_LATER",
-        "TCK_UNEXPECTED_CONDITION",
-        "TCK_VIOLATED_POLICY"
+            "TCK_CANNOT_ACCEPT",
+            "TCK_CLOSED_ABNORMALLY",
+            "TCK_GOING_AWAY",
+            "TCK_NORMAL_CLOSURE",
+            "TCK_NOT_CONSISTENT",
+            "TCK_NO_EXTENSION",
+            "TCK_NO_STATUS_CODE",
+            "TCK_PROTOCOL_ERROR",
+            "TCK_RESERVED",
+            "TCK_SERVICE_RESTART",
+            "TCK_TLS_HANDSHAKE_FAILURE",
+            "TCK_TOO_BIG",
+            "TCK_TRY_AGAIN_LATER",
+            "TCK_UNEXPECTED_CONDITION",
+            "TCK_VIOLATED_POLICY"
     };
 
     public static void main(String[] args) {
@@ -97,7 +97,8 @@ public class WSClient extends ServiceEETest {
      * @class.setup_props: webServerHost; webServerPort; ts_home;
      */
     @SuppressWarnings("unused")
-    public void setup(String[] args, Properties p) throws Fault {}
+    public void setup(String[] args, Properties p) throws Fault {
+    }
 
     /* Run test */
     /*
@@ -211,8 +212,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: constructorTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:18; WebSocket:JAVADOC:19;
-     * WebSocket:JAVADOC:20;
+     * @assertion_ids: WebSocket:JAVADOC:18; WebSocket:JAVADOC:19; WebSocket:JAVADOC:20;
      *
      * @test_Strategy: Test constructor CloseReason( CloseCode, String )
      */
@@ -267,5 +267,6 @@ public class WSClient extends ServiceEETest {
         }
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 }

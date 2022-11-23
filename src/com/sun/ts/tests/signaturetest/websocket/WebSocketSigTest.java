@@ -45,48 +45,40 @@ public class WebSocketSigTest extends SigTestEE {
     public static final String NO_VEHICLE = "standalone";
 
     /*
-     * Defines the packages that are included when running signature tests for any
-     * container (the default packages). This includes the appclient, ejb, jsp,
-     * and servlet containers.
+     * Defines the packages that are included when running signature tests for any container (the default packages). This
+     * includes the appclient, ejb, jsp, and servlet containers.
      */
-    private static final String[] DEFAULT_PKGS = {"jakarta.websocket", "jakarta.websocket.server"};
+    private static final String[] DEFAULT_PKGS = { "jakarta.websocket", "jakarta.websocket.server" };
 
     /*
-     * Defines additional packages that are included when running signature tests
-     * for the ejb, jsp and servlet containers.
+     * Defines additional packages that are included when running signature tests for the ejb, jsp and servlet containers.
      */
     private static final String[] EJB_SERVLET_JSP_PKGS = {};
 
     /*
-     * Defines additional packages that are included when running signature tests
-     * for the jsp and servlet containers.
+     * Defines additional packages that are included when running signature tests for the jsp and servlet containers.
      */
     private static final String[] SERVLET_JSP_PKGS = {};
 
-    private static final String[] NO_CONTAINER_PKGS = {"jakarta.websocket", "jakarta.websocket.server"};
+    private static final String[] NO_CONTAINER_PKGS = { "jakarta.websocket", "jakarta.websocket.server" };
 
     /***** Abstract Method Implementation *****/
     /**
-     * Returns a list of strings where each string represents a package name. Each
-     * package name will have it's signature tested by the signature test
-     * framework.
+     * Returns a list of strings where each string represents a package name. Each package name will have it's signature
+     * tested by the signature test framework.
      *
-     * @return String[] The names of the packages whose signatures should be
-     *         verified.
+     * @return String[] The names of the packages whose signatures should be verified.
      */
     protected String[] getPackages() {
         return DEFAULT_PKGS;
     }
 
     /**
-     * Adds the default packages and the command line flags to the specified list
-     * for each package defined in the list of default packages to check during
-     * signature tests. Note: The specified list is modified as a result of this
-     * method call.
+     * Adds the default packages and the command line flags to the specified list for each package defined in the list of
+     * default packages to check during signature tests. Note: The specified list is modified as a result of this method
+     * call.
      *
-     * @param sigArgsList
-     *          The arg list being constructed to pass to the utility that records
-     *          and runs signature file tests.
+     * @param sigArgsList The arg list being constructed to pass to the utility that records and runs signature file tests.
      */
     private static void addDefaultPkgs(List<String> sigArgsList) {
         for (int i = 0; i < DEFAULT_PKGS.length; i++) {
@@ -95,14 +87,11 @@ public class WebSocketSigTest extends SigTestEE {
     }
 
     /**
-     * Adds the ejb, servlet, and jsp packages and the command line flags to the
-     * specified list for each package defined in the list of ejb, servlet, and
-     * jsp packages to check during signature tests. Note: The specified list is
-     * modified as a result of this method call.
+     * Adds the ejb, servlet, and jsp packages and the command line flags to the specified list for each package defined in
+     * the list of ejb, servlet, and jsp packages to check during signature tests. Note: The specified list is modified as a
+     * result of this method call.
      *
-     * @param sigArgsList
-     *          The arg list being constructed to pass to the utility that records
-     *          and runs signature file tests.
+     * @param sigArgsList The arg list being constructed to pass to the utility that records and runs signature file tests.
      */
     private static void addEjbServletJspPkgs(List<String> sigArgsList) {
         for (int i = 0; i < EJB_SERVLET_JSP_PKGS.length; i++) {
@@ -111,14 +100,11 @@ public class WebSocketSigTest extends SigTestEE {
     }
 
     /**
-     * Adds the servlet, and jsp packages and the command line flags to the
-     * specified list for each package defined in the list of servlet, and jsp
-     * packages to check during signature tests. Note: The specified list is
-     * modified as a result of this method call.
+     * Adds the servlet, and jsp packages and the command line flags to the specified list for each package defined in the
+     * list of servlet, and jsp packages to check during signature tests. Note: The specified list is modified as a result
+     * of this method call.
      *
-     * @param sigArgsList
-     *          The arg list being constructed to pass to the utility that records
-     *          and runs signature file tests.
+     * @param sigArgsList The arg list being constructed to pass to the utility that records and runs signature file tests.
      */
     private static void addServletJspPkgs(List<String> sigArgsList) {
         for (int i = 0; i < SERVLET_JSP_PKGS.length; i++) {
@@ -127,13 +113,10 @@ public class WebSocketSigTest extends SigTestEE {
     }
 
     /**
-     * Adds the pkgs for tests to be run in NO Container (ie standalone) packages
-     * to check during signature tests. Note: The specified list is modified as a
-     * result of this method call.
+     * Adds the pkgs for tests to be run in NO Container (ie standalone) packages to check during signature tests. Note: The
+     * specified list is modified as a result of this method call.
      *
-     * @param sigArgsList
-     *          The arg list being constructed to pass to the utility that records
-     *          and runs signature file tests.
+     * @param sigArgsList The arg list being constructed to pass to the utility that records and runs signature file tests.
      */
     private static void addNoContainerPkgs(List<String> sigArgsList) {
         for (int i = 0; i < NO_CONTAINER_PKGS.length; i++) {
@@ -142,15 +125,11 @@ public class WebSocketSigTest extends SigTestEE {
     }
 
     /**
-     * Returns a list of strings where each string represents a package name. Each
-     * package name will have it's signature tested by the signature test
-     * framework.
+     * Returns a list of strings where each string represents a package name. Each package name will have it's signature
+     * tested by the signature test framework.
      *
-     * @param vehicleName
-     *          The name of the Jaspic container where the signature tests should
-     *          be conducted.
-     * @return String[] The names of the packages whose signatures should be
-     *         verified.
+     * @param vehicleName The name of the Jaspic container where the signature tests should be conducted.
+     * @return String[] The names of the packages whose signatures should be verified.
      */
     protected String[] getPackages(String vehicleName) {
         List<String> packages = new LinkedList<String>();
@@ -183,10 +162,9 @@ public class WebSocketSigTest extends SigTestEE {
     }
 
     /*
-     * The following comments are specified in the base class that defines the
-     * signature tests. This is done so the test finders will find the right class
-     * to run. The implementation of these methods is inherited from the super
-     * class which is part of the signature test framework.
+     * The following comments are specified in the base class that defines the signature tests. This is done so the test
+     * finders will find the right class to run. The implementation of these methods is inherited from the super class which
+     * is part of the signature test framework.
      */
 
     // NOTE: If the API under test is not part of your testing runtime
@@ -203,12 +181,11 @@ public class WebSocketSigTest extends SigTestEE {
     /*
      * @testName: signatureTest
      *
-     * @assertion: A WebSocket container must implement the required classes and
-     * APIs specified in the WebSocket Specification (JSR 356).
+     * @assertion: A WebSocket container must implement the required classes and APIs specified in the WebSocket
+     * Specification (JSR 356).
      *
-     * @test_Strategy: Using reflection, gather the implementation specific
-     * classes and APIs. Compare these results with the expected (required)
-     * classes and APIs.
+     * @test_Strategy: Using reflection, gather the implementation specific classes and APIs. Compare these results with the
+     * expected (required) classes and APIs.
      *
      */
     /*

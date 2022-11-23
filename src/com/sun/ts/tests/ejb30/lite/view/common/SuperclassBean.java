@@ -24,11 +24,9 @@ import jakarta.ejb.Stateless;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 /**
- * This bean class may be extended by other bean classes, Stateless, Stateful,
- * or Singleton. When inherited by other bean classes, it is only
- * implementation- inheritance, not component inheritance. The
- * component-defining metadata is not inherited. BusinessLocalIF1 does not
- * automatically become the business interface of the subclass bean class.
+ * This bean class may be extended by other bean classes, Stateless, Stateful, or Singleton. When inherited by other
+ * bean classes, it is only implementation- inheritance, not component inheritance. The component-defining metadata is
+ * not inherited. BusinessLocalIF1 does not automatically become the business interface of the subclass bean class.
  */
 @Stateless
 @ExcludeDefaultInterceptors

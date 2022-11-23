@@ -20,7 +20,7 @@ import jakarta.jms.JMSException;
 import jakarta.jms.Queue;
 import jakarta.resource.spi.AdministeredObject;
 
-@AdministeredObject(adminObjectInterfaces = {Queue.class})
+@AdministeredObject(adminObjectInterfaces = { Queue.class })
 public class CRDAdminObject implements Queue {
 
     @Override

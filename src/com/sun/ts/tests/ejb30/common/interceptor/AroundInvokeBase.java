@@ -25,7 +25,8 @@ import jakarta.ejb.EJBContext;
 import java.util.ArrayList;
 
 public abstract class AroundInvokeBase implements AroundInvokeIF, java.io.Serializable {
-    protected AroundInvokeBase() {}
+    protected AroundInvokeBase() {
+    }
 
     protected abstract EJBContext getEJBContext();
 
@@ -39,7 +40,8 @@ public abstract class AroundInvokeBase implements AroundInvokeIF, java.io.Serial
     }
 
     // ===================== business methods ===========================
-    public void remove() {}
+    public void remove() {
+    }
 
     public boolean sameSecContextTest() throws CalculatorException {
         return true;
@@ -47,23 +49,28 @@ public abstract class AroundInvokeBase implements AroundInvokeIF, java.io.Serial
         // exceptions will be thrown if the check failed.
     }
 
-    public void getBeanTest() throws CalculatorException {}
+    public void getBeanTest() throws CalculatorException {
+    }
 
     public String getParametersTest(String param) throws CalculatorException {
         return param;
     }
 
-    public void getParametersEmptyTest() throws CalculatorException {}
+    public void getParametersEmptyTest() throws CalculatorException {
+    }
 
     public String setParametersTest(String param) throws CalculatorException {
         return param;
     }
 
-    public void getEJBContextTest() throws CalculatorException {}
+    public void getEJBContextTest() throws CalculatorException {
+    }
 
-    public void getContextDataTest() throws CalculatorException {}
+    public void getContextDataTest() throws CalculatorException {
+    }
 
-    public void getMethodTest() throws CalculatorException {}
+    public void getMethodTest() throws CalculatorException {
+    }
 
     public String exceptionTest() throws CalculatorException {
         return "This test failed if you see this.  A CalculatorException should have been thrown from the interceptor.";
@@ -74,9 +81,11 @@ public abstract class AroundInvokeBase implements AroundInvokeIF, java.io.Serial
                 "This test failed if you see this. This exception should have been supressed by interceptor method.");
     }
 
-    public void sameInvocationContextTest() throws CalculatorException {}
+    public void sameInvocationContextTest() throws CalculatorException {
+    }
 
-    public void orderTest() throws CalculatorException {}
+    public void orderTest() throws CalculatorException {
+    }
 
     public void txRollbackOnlyTest() throws CalculatorException {
         ensureRollbackOnly();
@@ -91,11 +100,14 @@ public abstract class AroundInvokeBase implements AroundInvokeIF, java.io.Serial
         ensureRollbackOnly();
     }
 
-    public void runtimeExceptionAfterTest() throws CalculatorException {}
+    public void runtimeExceptionAfterTest() throws CalculatorException {
+    }
 
-    public void beforeCompletionTest() throws CalculatorException {}
+    public void beforeCompletionTest() throws CalculatorException {
+    }
 
-    public void afterBeginTest() throws CalculatorException {}
+    public void afterBeginTest() throws CalculatorException {
+    }
 
     public ArrayList<String> methodLevelInterceptorMixedTest(ArrayList<String> alist) throws CalculatorException {
         return addBeanName(alist);

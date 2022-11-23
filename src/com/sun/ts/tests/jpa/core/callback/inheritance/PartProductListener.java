@@ -32,9 +32,8 @@ import jakarta.persistence.PreRemove;
 import jakarta.persistence.PreUpdate;
 
 /**
- * All callback methods except PrePersist in this class throw RuntimeException,
- * since they must not be called. This listener is intended to be used by
- * PartProduct entity, whose callback methods take precedence.
+ * All callback methods except PrePersist in this class throw RuntimeException, since they must not be called. This
+ * listener is intended to be used by PartProduct entity, whose callback methods take precedence.
  */
 public class PartProductListener {
 

@@ -53,7 +53,8 @@ public class ApacheResponseAdapter extends HttpResponse {
 
     @Override
     public String getResponseBodyAsString() throws IOException {
-        if (entity == null) entity = response.readEntity(String.class);
+        if (entity == null)
+            entity = response.readEntity(String.class);
         return entity == null ? "" : caser.getCasedText(entity);
     }
 
@@ -81,7 +82,9 @@ public class ApacheResponseAdapter extends HttpResponse {
 
     @Override
     public Header getResponseHeader(String headerName) {
-        for (Header header : getResponseHeaders()) if (header.getName().equals(headerName)) return header;
+        for (Header header : getResponseHeaders())
+            if (header.getName().equals(headerName))
+                return header;
         return null;
     }
 

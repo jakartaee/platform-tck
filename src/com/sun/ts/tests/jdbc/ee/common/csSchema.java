@@ -32,8 +32,7 @@ import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
- * The csSchema class creates the database and procedures using Sun's J2EE
- * Reference Implementation.
+ * The csSchema class creates the database and procedures using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -71,12 +70,15 @@ public class csSchema extends ServiceEETest {
                         // the typeName is usually "BOOLEAN" but for mysql, it
                         // sometimes comes in as "BOOL" so we need to check both
                         short dataType = rs.getShort(2);
-                        if (matchesExpectedType(dataTypeParam, dataType)) retValue = true;
+                        if (matchesExpectedType(dataTypeParam, dataType))
+                            retValue = true;
                     }
                 }
             }
-            if (retValue == true) logTrace("DataType: " + dataTypeParam + " is supported");
-            else logTrace("DataType: " + dataTypeParam + " is not supported");
+            if (retValue == true)
+                logTrace("DataType: " + dataTypeParam + " is supported");
+            else
+                logTrace("DataType: " + dataTypeParam + " is not supported");
 
         } catch (Exception ex2) {
 
@@ -89,19 +91,22 @@ public class csSchema extends ServiceEETest {
     public static boolean matchesExpectedType(String dataTypeParam, short dataType) {
         boolean retValue = false;
         switch (dataType) {
-            case java.sql.Types.BOOLEAN:
-            case java.sql.Types.BIT:
-                if (dataTypeParam.equalsIgnoreCase("BOOLEAN")) retValue = true;
-                break;
-            case java.sql.Types.TINYINT:
-                if (dataTypeParam.equalsIgnoreCase("TINYINT")) retValue = true;
-                break;
-            case java.sql.Types.SMALLINT:
-                if (dataTypeParam.equalsIgnoreCase("SMALLINT")) retValue = true;
-                break;
-                // Other types have a direct mapping.
-            default:
+        case java.sql.Types.BOOLEAN:
+        case java.sql.Types.BIT:
+            if (dataTypeParam.equalsIgnoreCase("BOOLEAN"))
                 retValue = true;
+            break;
+        case java.sql.Types.TINYINT:
+            if (dataTypeParam.equalsIgnoreCase("TINYINT"))
+                retValue = true;
+            break;
+        case java.sql.Types.SMALLINT:
+            if (dataTypeParam.equalsIgnoreCase("SMALLINT"))
+                retValue = true;
+            break;
+        // Other types have a direct mapping.
+        default:
+            retValue = true;
         }
         return retValue;
     }

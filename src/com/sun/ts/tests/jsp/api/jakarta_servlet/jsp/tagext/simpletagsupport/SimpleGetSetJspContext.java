@@ -40,13 +40,11 @@ public class SimpleGetSetJspContext extends SimpleTagSupport {
     }
 
     /**
-     * Validates that getJspContext() returns a non null value. This indirectly
-     * ensures that the container properly called setJspContext().
+     * Validates that getJspContext() returns a non null value. This indirectly ensures that the container properly called
+     * setJspContext().
      *
-     * @throws JspException
-     *           - if an unexpected error occured.
-     * @throws IOException
-     *           - if an unexpected I/O error occured.
+     * @throws JspException - if an unexpected error occured.
+     * @throws IOException - if an unexpected I/O error occured.
      */
     public void doTag() throws JspException, IOException {
         JspTestUtil.debug("[SimpleGetSetJspcontext] in doTag()");

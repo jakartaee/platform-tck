@@ -73,10 +73,9 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -119,8 +118,8 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -144,14 +143,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsBoolean
      *
-     * @assertion_ids: JMS:SPEC:75.1; JMS:SPEC:75.2; JMS:JAVADOC:219;
-     * JMS:JAVADOC:150; JMS:JAVADOC:128; JMS:JAVADOC:144; JMS:JAVADOC:723;
-     * JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735;
-     * JMS:JAVADOC:738; JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.1; JMS:SPEC:75.2; JMS:JAVADOC:219; JMS:JAVADOC:150; JMS:JAVADOC:128; JMS:JAVADOC:144;
+     * JMS:JAVADOC:723; JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738;
+     * JMS:JAVADOC:741; JMS:JAVADOC:747;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method
-     * writeBoolean to write a boolean to the message. Verify the proper
-     * conversion support as in 3.11.3
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeBoolean to write a boolean to the message.
+     * Verify the proper conversion support as in 3.11.3
      */
 
     public void streamMessageConversionQTestsBoolean() throws Fault {
@@ -160,7 +157,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -409,14 +406,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsByte
      *
-     * @assertion_ids: JMS:SPEC:75.3; JMS:SPEC:75.4; JMS:JAVADOC:152;
-     * JMS:JAVADOC:130; JMS:JAVADOC:132; JMS:JAVADOC:136; JMS:JAVADOC:138;
-     * JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:729; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.3; JMS:SPEC:75.4; JMS:JAVADOC:152; JMS:JAVADOC:130; JMS:JAVADOC:132; JMS:JAVADOC:136;
+     * JMS:JAVADOC:138; JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:729; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method
-     * writeByte to write a byte. Verify the proper conversion support as in
-     * 3.11.3
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeByte to write a byte. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -426,7 +421,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -675,14 +670,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsShort
      *
-     * @assertion_ids: JMS:SPEC:75.5; JMS:SPEC:75.6; JMS:JAVADOC:154;
-     * JMS:JAVADOC:132; JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:144;
-     * JMS:JAVADOC:720; JMS:JAVADOC:723; JMS:JAVADOC:729; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.5; JMS:SPEC:75.6; JMS:JAVADOC:154; JMS:JAVADOC:132; JMS:JAVADOC:136; JMS:JAVADOC:138;
+     * JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:723; JMS:JAVADOC:729; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method
-     * writeShort to write a short. Verify the proper conversion support as in
-     * 3.11.3
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeShort to write a short. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -692,7 +685,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -940,13 +933,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsInt
      *
-     * @assertion_ids: JMS:SPEC:75.9; JMS:SPEC:75.10; JMS:JAVADOC:158;
-     * JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:144; JMS:JAVADOC:720;
-     * JMS:JAVADOC:723; JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.9; JMS:SPEC:75.10; JMS:JAVADOC:158; JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:144;
+     * JMS:JAVADOC:720; JMS:JAVADOC:723; JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeInt
-     * to write an int. Verify the proper conversion support as in 3.11.3
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeInt to write an int. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -956,7 +948,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -1205,14 +1197,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsLong
      *
-     * @assertion_ids: JMS:SPEC:75.11; JMS:SPEC:75.12; JMS:JAVADOC:160;
-     * JMS:JAVADOC:138; JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:723;
-     * JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.11; JMS:SPEC:75.12; JMS:JAVADOC:160; JMS:JAVADOC:138; JMS:JAVADOC:144; JMS:JAVADOC:720;
+     * JMS:JAVADOC:723; JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method
-     * writeLong to write a long. Verify the proper conversion support as in
-     * 3.11.3
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeLong to write a long. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -1222,7 +1212,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -1471,14 +1461,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsFloat
      *
-     * @assertion_ids: JMS:SPEC:75.13; JMS:SPEC:75.14; JMS:JAVADOC:162;
-     * JMS:JAVADOC:140; JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:723;
-     * JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.13; JMS:SPEC:75.14; JMS:JAVADOC:162; JMS:JAVADOC:140; JMS:JAVADOC:144; JMS:JAVADOC:720;
+     * JMS:JAVADOC:723; JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method
-     * writeFloat to write a float. Verify the proper conversion support as in
-     * 3.11.3
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeFloat to write a float. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -1488,7 +1476,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -1736,14 +1724,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsDouble
      *
-     * @assertion_ids: JMS:SPEC:75.15; JMS:SPEC:75.16; JMS:JAVADOC:164;
-     * JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:723;
-     * JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735;
-     * JMS:JAVADOC:738; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.15; JMS:SPEC:75.16; JMS:JAVADOC:164; JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:720;
+     * JMS:JAVADOC:723; JMS:JAVADOC:726; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method
-     * writeDouble to write a double. Verify the proper conversion support as in
-     * 3.11.3
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeDouble to write a double. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -1753,7 +1739,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -2003,14 +1989,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsString
      *
-     * @assertion_ids: JMS:SPEC:75.17; JMS:SPEC:75.18; JMS:SPEC:77;
-     * JMS:JAVADOC:166; JMS:JAVADOC:128; JMS:JAVADOC:130; JMS:JAVADOC:132;
-     * JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:140; JMS:JAVADOC:142;
-     * JMS:JAVADOC:144; JMS:JAVADOC:729; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.17; JMS:SPEC:75.18; JMS:SPEC:77; JMS:JAVADOC:166; JMS:JAVADOC:128; JMS:JAVADOC:130;
+     * JMS:JAVADOC:132; JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:140; JMS:JAVADOC:142; JMS:JAVADOC:144;
+     * JMS:JAVADOC:729; JMS:JAVADOC:747;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method
-     * writeString to write a string. Verify the proper conversion support as in
-     * 3.11.3
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeString to write a string. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -2020,7 +2004,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -2289,14 +2273,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsChar
      *
-     * @assertion_ids: JMS:SPEC:75.7; JMS:SPEC:75.8; JMS:JAVADOC:156;
-     * JMS:JAVADOC:134; JMS:JAVADOC:144; JMS:JAVADOC:720; JMS:JAVADOC:723;
-     * JMS:JAVADOC:726; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:747;
+     * @assertion_ids: JMS:SPEC:75.7; JMS:SPEC:75.8; JMS:JAVADOC:156; JMS:JAVADOC:134; JMS:JAVADOC:144; JMS:JAVADOC:720;
+     * JMS:JAVADOC:723; JMS:JAVADOC:726; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:747;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method
-     * writeChar to write a char. Verify the proper conversion support as in
-     * 3.11.3
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeChar to write a char. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
 
@@ -2306,7 +2288,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -2554,14 +2536,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsBytes
      *
-     * @assertion_ids: JMS:SPEC:75.19; JMS:SPEC:75.20; JMS:JAVADOC:168;
-     * JMS:JAVADOC:146; JMS:JAVADOC:720; JMS:JAVADOC:723; JMS:JAVADOC:725;
-     * JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738;
-     * JMS:JAVADOC:741; JMS:JAVADOC:744;
+     * @assertion_ids: JMS:SPEC:75.19; JMS:SPEC:75.20; JMS:JAVADOC:168; JMS:JAVADOC:146; JMS:JAVADOC:720; JMS:JAVADOC:723;
+     * JMS:JAVADOC:725; JMS:JAVADOC:729; JMS:JAVADOC:732; JMS:JAVADOC:735; JMS:JAVADOC:738; JMS:JAVADOC:741;
+     * JMS:JAVADOC:744;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method
-     * writeBytes to write a byte[] to the message. Verify the proper conversion
-     * support as in 3.11.3
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeBytes to write a byte[] to the message.
+     * Verify the proper conversion support as in 3.11.3
      */
 
     public void streamMessageConversionQTestsBytes() throws Fault {
@@ -2570,8 +2550,8 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {1, 2, 3};
-            byte[] bValues2 = {0, 0, 0};
+            byte[] bValues = { 1, 2, 3 };
+            byte[] bValues2 = { 0, 0, 0 };
             short sValue = 1;
             long lValue = 2;
             double dValue = 3;
@@ -2831,14 +2811,12 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageConversionQTestsInvFormatString
      *
-     * @assertion_ids: JMS:SPEC:76; JMS:SPEC:81; JMS:JAVADOC:166; JMS:JAVADOC:130;
-     * JMS:JAVADOC:132; JMS:JAVADOC:136; JMS:JAVADOC:138; JMS:JAVADOC:140;
-     * JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:146;
+     * @assertion_ids: JMS:SPEC:76; JMS:SPEC:81; JMS:JAVADOC:166; JMS:JAVADOC:130; JMS:JAVADOC:132; JMS:JAVADOC:136;
+     * JMS:JAVADOC:138; JMS:JAVADOC:140; JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:146;
      *
-     * @test_Strategy: Create a StreamMessage -. use StreamMessage method
-     * writeString to write a text string of "mytest string". Verify
-     * NumberFormatException is thrown Verify that the pointer was not incremented
-     * by doing a read string
+     * @test_Strategy: Create a StreamMessage -. use StreamMessage method writeString to write a text string of
+     * "mytest string". Verify NumberFormatException is thrown Verify that the pointer was not incremented by doing a read
+     * string
      *
      */
 
@@ -3024,16 +3002,13 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageQTestsFullMsg
      *
-     * @assertion_ids: JMS:SPEC:82; JMS:JAVADOC:150; JMS:JAVADOC:152;
-     * JMS:JAVADOC:154; JMS:JAVADOC:156; JMS:JAVADOC:158; JMS:JAVADOC:160;
-     * JMS:JAVADOC:162; JMS:JAVADOC:164; JMS:JAVADOC:166; JMS:JAVADOC:168;
-     * JMS:JAVADOC:170; JMS:JAVADOC:172; JMS:JAVADOC:128; JMS:JAVADOC:130;
-     * JMS:JAVADOC:132; JMS:JAVADOC:134; JMS:JAVADOC:136; JMS:JAVADOC:138;
-     * JMS:JAVADOC:140; JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:146;
-     * JMS:JAVADOC:148;
+     * @assertion_ids: JMS:SPEC:82; JMS:JAVADOC:150; JMS:JAVADOC:152; JMS:JAVADOC:154; JMS:JAVADOC:156; JMS:JAVADOC:158;
+     * JMS:JAVADOC:160; JMS:JAVADOC:162; JMS:JAVADOC:164; JMS:JAVADOC:166; JMS:JAVADOC:168; JMS:JAVADOC:170;
+     * JMS:JAVADOC:172; JMS:JAVADOC:128; JMS:JAVADOC:130; JMS:JAVADOC:132; JMS:JAVADOC:134; JMS:JAVADOC:136;
+     * JMS:JAVADOC:138; JMS:JAVADOC:140; JMS:JAVADOC:142; JMS:JAVADOC:144; JMS:JAVADOC:146; JMS:JAVADOC:148;
      *
-     * @test_Strategy: Create a StreamMessage -. write one of each primitive type.
-     * Send the message. Verify the data received was as sent.
+     * @test_Strategy: Create a StreamMessage -. write one of each primitive type. Send the message. Verify the data
+     * received was as sent.
      *
      */
 
@@ -3043,10 +3018,10 @@ public class StreamMsgQueueTests extends ServiceEETest {
             StreamMessage messageReceived = null;
             byte bValue = 127;
             boolean abool = false;
-            byte[] bValues = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-            byte[] bValues2 = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-            byte[] bValuesReturned = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            byte[] bValuesReturned2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            byte[] bValues = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            byte[] bValues2 = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+            byte[] bValuesReturned = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            byte[] bValuesReturned2 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             char charValue = 'Z';
             short sValue = 32767;
             long lValue = 9223372036854775807L;
@@ -3275,8 +3250,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:78; JMS:SPEC:86; JMS:JAVADOC:144; JMS:JAVADOC:172;
      *
-     * @test_Strategy: Create a StreamMessage Use writeString to write a null,
-     * then use readString to read it back.
+     * @test_Strategy: Create a StreamMessage Use writeString to write a null, then use readString to read it back.
      */
 
     public void streamMessageQTestNull() throws Fault {
@@ -3339,14 +3313,11 @@ public class StreamMsgQueueTests extends ServiceEETest {
     /*
      * @testName: streamMessageQNotWritable
      *
-     * @assertion_ids: JMS:SPEC:73; JMS:JAVADOC:752; JMS:JAVADOC:753;
-     * JMS:JAVADOC:754; JMS:JAVADOC:755; JMS:JAVADOC:756; JMS:JAVADOC:757;
-     * JMS:JAVADOC:758; JMS:JAVADOC:759; JMS:JAVADOC:761; JMS:JAVADOC:762;
-     * JMS:JAVADOC:764;
+     * @assertion_ids: JMS:SPEC:73; JMS:JAVADOC:752; JMS:JAVADOC:753; JMS:JAVADOC:754; JMS:JAVADOC:755; JMS:JAVADOC:756;
+     * JMS:JAVADOC:757; JMS:JAVADOC:758; JMS:JAVADOC:759; JMS:JAVADOC:761; JMS:JAVADOC:762; JMS:JAVADOC:764;
      *
-     * @test_Strategy: Create a StreamMessage, send it to a Queue. Receive it and
-     * try to write to the received Message's body, MessageNotWritableException
-     * should be thrown.
+     * @test_Strategy: Create a StreamMessage, send it to a Queue. Receive it and try to write to the received Message's
+     * body, MessageNotWritableException should be thrown.
      */
 
     public void streamMessageQNotWritable() throws Fault {
@@ -3362,7 +3333,7 @@ public class StreamMsgQueueTests extends ServiceEETest {
             float fValue = 0.0f;
             double dValue = -0.0;
             String ssValue = "abc";
-            byte[] bbValue = {0, 88, 127};
+            byte[] bbValue = { 0, 88, 127 };
 
             // set up test tool for Queue
             tool = new JmsTool(JmsTool.QUEUE, user, password, mode);

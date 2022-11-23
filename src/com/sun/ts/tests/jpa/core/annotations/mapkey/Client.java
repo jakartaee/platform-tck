@@ -33,7 +33,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     private Employee empRef[] = new Employee[10];
 
@@ -89,14 +90,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: annotationMapKeyTest1
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100;
-     * PERSISTENCE:SPEC:1101; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:1980;
+     * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101; PERSISTENCE:SPEC:518;
+     * PERSISTENCE:SPEC:1980;
      *
-     * @test_Strategy: The MapKey annotation is used to specify the map key for
-     * associations of type java.util.Map.
+     * @test_Strategy: The MapKey annotation is used to specify the map key for associations of type java.util.Map.
      *
-     * The name element designates the name of the persistence property or field
-     * of the associated entity that is used as the map key.
+     * The name element designates the name of the persistence property or field of the associated entity that is used as
+     * the map key.
      *
      * Execute a query returning Employees objects.
      *
@@ -156,20 +156,19 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("annotationMapKeyTest1 failed");
+        if (!pass)
+            throw new Fault("annotationMapKeyTest1 failed");
     }
 
     /*
      * @testName: annotationMapKeyTest2
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100;
-     * PERSISTENCE:SPEC:1101
+     * @assertion_ids: PERSISTENCE:JAVADOC:114; PERSISTENCE:SPEC:1100; PERSISTENCE:SPEC:1101
      *
-     * @test_Strategy: The MapKey annotation is used to specify the map key for
-     * associations of type java.util.Map.
+     * @test_Strategy: The MapKey annotation is used to specify the map key for associations of type java.util.Map.
      *
-     * The name element designates the name of the persistence property or field
-     * of the associated entity that is used as the map key.
+     * The name element designates the name of the persistence property or field of the associated entity that is used as
+     * the map key.
      *
      * Execute a query returning Employee IDs.
      */
@@ -228,7 +227,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("annotationMapKeyTest2 failed");
+        if (!pass)
+            throw new Fault("annotationMapKeyTest2 failed");
     }
 
     /*
@@ -236,9 +236,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:90
      *
-     * @test_Strategy: The JoinColumn annotation with an attribute of insertable
-     * used to specify the mapping for the fk column to a second entity Execute a
-     * query returning Employees objects.
+     * @test_Strategy: The JoinColumn annotation with an attribute of insertable used to specify the mapping for the fk
+     * column to a second entity Execute a query returning Employees objects.
      */
     @SetupMethod(name = "setupCreateTestData2")
     public void joinColumnInsertable() throws Fault {
@@ -307,9 +306,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:96
      *
-     * @test_Strategy: The JoinColumn annotation with an attribute of updatable
-     * used to specify the mapping for the fk column to a second entity Execute a
-     * query returning Employees objects.
+     * @test_Strategy: The JoinColumn annotation with an attribute of updatable used to specify the mapping for the fk
+     * column to a second entity Execute a query returning Employees objects.
      */
     @SetupMethod(name = "setupCreateTestData2")
     public void joinColumnUpdatable() throws Fault {
@@ -415,9 +413,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:12
      *
-     * @test_Strategy: The JoinColumn annotation with an attribute of insertable
-     * used to specify the mapping for the fk column to a second entity Execute a
-     * query returning Employees objects.
+     * @test_Strategy: The JoinColumn annotation with an attribute of insertable used to specify the mapping for the fk
+     * column to a second entity Execute a query returning Employees objects.
      */
     @SetupMethod(name = "setupCreateTestData2")
     public void columnInsertable() throws Fault {
@@ -482,9 +479,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:20
      *
-     * @test_Strategy: The JoinColumn annotation with an attribute of updatable
-     * used to specify the mapping for the fk column to a second entity Execute a
-     * query returning Employees objects.
+     * @test_Strategy: The JoinColumn annotation with an attribute of updatable used to specify the mapping for the fk
+     * column to a second entity Execute a query returning Employees objects.
      */
     @SetupMethod(name = "setupCreateTestData2")
     public void columnUpdatable() throws Fault {

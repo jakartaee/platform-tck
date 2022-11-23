@@ -20,10 +20,9 @@ import jakarta.resource.spi.work.ExecutionContext;
 import jakarta.resource.spi.work.WorkContext;
 
 /**
- * This class is to be used to test assertion Connector:SPEC:214. The server
- * should not have knowledge of this work context class and so attempts to
- * submit this context class to the appserver via a WorkInst should cause the
- * server to throw a proper error code.
+ * This class is to be used to test assertion Connector:SPEC:214. The server should not have knowledge of this work
+ * context class and so attempts to submit this context class to the appserver via a WorkInst should cause the server to
+ * throw a proper error code.
  */
 public class UnknownWorkContext extends ExecutionContext implements WorkContext {
 

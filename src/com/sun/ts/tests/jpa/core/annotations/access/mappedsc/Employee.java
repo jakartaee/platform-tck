@@ -48,7 +48,8 @@ public abstract class Employee extends AbstractPersonnel {
     /** the department this Employee belongs to */
     protected Department department;
 
-    protected Employee() {}
+    protected Employee() {
+    }
 
     protected Employee(int id, String firstName, String lastName, Date hireDate) {
         this.id = id;

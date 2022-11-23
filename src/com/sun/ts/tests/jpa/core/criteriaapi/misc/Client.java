@@ -482,7 +482,7 @@ public class Client extends Util {
 
             EntityType<Customer> Customer_ = customer.getModel();
             Path<String> idPath = customer.get(Customer_.getSingularAttribute("id", String.class));
-            Object[] o = {"1", "2"};
+            Object[] o = { "1", "2" };
             cquery.where(idPath.in(o));
             cquery.select(customer);
 
@@ -582,7 +582,7 @@ public class Client extends Util {
 
             EntityType<Customer> Customer_ = customer.getModel();
             Path<String> idPath = customer.get(Customer_.getSingularAttribute("id", String.class));
-            Expression[] e = {cbuilder.literal("1"), cbuilder.literal("2")};
+            Expression[] e = { cbuilder.literal("1"), cbuilder.literal("2") };
             cquery.where(idPath.in(e));
 
             cquery.select(customer);
@@ -777,8 +777,7 @@ public class Client extends Util {
     /*
      * @testName: compoundSelectionGetCompoundSelectionItemsTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:731; PERSISTENCE:JAVADOC:733;
-     * PERSISTENCE:JAVADOC:773
+     * @assertion_ids: PERSISTENCE:JAVADOC:731; PERSISTENCE:JAVADOC:733; PERSISTENCE:JAVADOC:773
      *
      * @test_Strategy:
      *
@@ -1003,8 +1002,7 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * SELECT c.id FROM Customer c WHERE c.ID IN (SELECT c1.id FROM Customer c1
-     * WHERE (c1.ID IN (1)))
+     * SELECT c.id FROM Customer c WHERE c.ID IN (SELECT c1.id FROM Customer c1 WHERE (c1.ID IN (1)))
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1025,7 +1023,7 @@ public class Client extends Util {
 
             Subquery<String> sq = cquery.subquery(String.class);
             Root<Customer> sqc = sq.from(Customer.class);
-            Object[] o = {"1"};
+            Object[] o = { "1" };
             sq.where(sqc.get(Customer_.id).in(o));
             sq.select(sqc.get(Customer_.id));
 
@@ -1060,8 +1058,7 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * SELECT c.id FROM Customer c WHERE c.ID IN (SELECT c1.id FROM Customer c1
-     * WHERE (c1.ID IN (1)))
+     * SELECT c.id FROM Customer c WHERE c.ID IN (SELECT c1.id FROM Customer c1 WHERE (c1.ID IN (1)))
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1082,7 +1079,7 @@ public class Client extends Util {
 
             Subquery<String> sq = cquery.subquery(String.class);
             Root<Customer> sqc = sq.from(Customer.class);
-            Expression[] exp = {cbuilder.literal("1")};
+            Expression[] exp = { cbuilder.literal("1") };
             sq.where(sqc.get(Customer_.id).in(exp));
             sq.select(sqc.get(Customer_.id));
 
@@ -1117,8 +1114,7 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * SELECT c.id FROM Customer c WHERE c.ID IN (SELECT c1.id FROM Customer c1
-     * WHERE (c1.ID IN (1)))
+     * SELECT c.id FROM Customer c WHERE c.ID IN (SELECT c1.id FROM Customer c1 WHERE (c1.ID IN (1)))
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1174,8 +1170,7 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * SELECT c.id FROM Customer c WHERE c.ID IN (SELECT c1.id FROM Customer c1
-     * WHERE (c1.ID IN (1)))
+     * SELECT c.id FROM Customer c WHERE c.ID IN (SELECT c1.id FROM Customer c1 WHERE (c1.ID IN (1)))
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1231,8 +1226,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1211;
      *
-     * @test_Strategy: SELECT c.id FROM Customer c WHERE c.id IN (SELECT c1.ID
-     * FROM Customer c1 WHERE ((c1.NAME IS NOT NULL) AND (t1.ID = "1")))
+     * @test_Strategy: SELECT c.id FROM Customer c WHERE c.id IN (SELECT c1.ID FROM Customer c1 WHERE ((c1.NAME IS NOT NULL)
+     * AND (t1.ID = "1")))
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1284,8 +1279,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1212;
      *
-     * @test_Strategy: SELECT c.id FROM Customer c WHERE c.id IN (SELECT c1.ID
-     * FROM Customer c1 WHERE (c1.NAME IS NULL))
+     * @test_Strategy: SELECT c.id FROM Customer c WHERE c.id IN (SELECT c1.ID FROM Customer c1 WHERE (c1.NAME IS NULL))
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -1338,8 +1332,7 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * SELECT c FROM Customer c WHERE ((SELECT COUNT(o.id) FROM Order o WHERE
-     * (o.customer.id = c.ID)) > 1)
+     * SELECT c FROM Customer c WHERE ((SELECT COUNT(o.id) FROM Order o WHERE (o.customer.id = c.ID)) > 1)
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -1383,8 +1376,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:801; PERSISTENCE:JAVADOC:1172;
      *
-     * @test_Strategy: Use LIKE expression in a sub query. Select the customers
-     * with name like Caruso. The name Caruso is derived in the subquery.
+     * @test_Strategy: Use LIKE expression in a sub query. Select the customers with name like Caruso. The name Caruso is
+     * derived in the subquery.
      */
     @SetupMethod(name = "setupOrderData")
     public void subquery() throws Fault {
@@ -1433,8 +1426,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1182; PERSISTENCE:JAVADOC:1192;
      *
-     * @test_Strategy: Use LIKE expression in a sub query. Select the customers
-     * with name like Caruso. The name Caruso is derived in the subquery.
+     * @test_Strategy: Use LIKE expression in a sub query. Select the customers with name like Caruso. The name Caruso is
+     * derived in the subquery.
      */
     @SetupMethod(name = "setupOrderData")
     public void subqueryGroupByExpressionTest() throws Fault {
@@ -1539,8 +1532,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1198;
      *
-     * @test_Strategy: Use groupBy expression in a sub query. Select the customers
-     * with name like Caruso. The name Caruso is derived in the subquery.
+     * @test_Strategy: Use groupBy expression in a sub query. Select the customers with name like Caruso. The name Caruso is
+     * derived in the subquery.
      */
     @SetupMethod(name = "setupOrderData")
     public void subqueryGroupByExpressionArrayTest() throws Fault {
@@ -1564,7 +1557,7 @@ public class Client extends Util {
             subquery.select(customer.get(Customer_.getSingularAttribute("id", String.class)));
             subquery.where(
                     qbuilder.like(customer.get(Customer_.getSingularAttribute("name", String.class)), "%Caruso"));
-            Expression[] exp = {customer.get(Customer_.getSingularAttribute("id", String.class))};
+            Expression[] exp = { customer.get(Customer_.getSingularAttribute("id", String.class)) };
 
             subquery.groupBy(exp);
 
@@ -1599,8 +1592,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1183; PERSISTENCE:JAVADOC:1199;
      *
-     * @test_Strategy: Use groupBy expression in a sub query. Select the customers
-     * with name like Caruso. The name Caruso is derived in the subquery.
+     * @test_Strategy: Use groupBy expression in a sub query. Select the customers with name like Caruso. The name Caruso is
+     * derived in the subquery.
      */
     @SetupMethod(name = "setupOrderData")
     public void subqueryGroupByListTest() throws Fault {
@@ -1801,8 +1794,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1129; PERSISTENCE:JAVADOC:937
      *
-     * @test_Strategy: select c.country.code FROM Customer c GROUP BY
-     * c.country.code"
+     * @test_Strategy: select c.country.code FROM Customer c GROUP BY c.country.code"
      */
     public void getGroupList() throws Fault {
         boolean pass1 = false;
@@ -1890,7 +1882,7 @@ public class Client extends Util {
             CriteriaQuery cquery = qbuilder.createQuery();
             if (cquery != null) {
                 Root<Customer> customer = cquery.from(Customer.class);
-                Predicate[] pred = {qbuilder.like(customer.get(Customer_.name), "K%")};
+                Predicate[] pred = { qbuilder.like(customer.get(Customer_.name), "K%") };
                 cquery.having(pred);
                 Predicate restriction = cquery.getGroupRestriction();
                 if (restriction != null) {
@@ -1979,8 +1971,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:940
      *
-     * @test_Strategy: Use Conjunction Select Distinct c FROM Customer c where
-     * customer.name = 'Robert E. Bissett'
+     * @test_Strategy: Use Conjunction Select Distinct c FROM Customer c where customer.name = 'Robert E. Bissett'
      *
      *
      */

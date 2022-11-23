@@ -56,7 +56,8 @@ public class TxServlet extends HttpServlet {
     @EJB(name = "remoteBean")
     private RemoteIF remoteBean;
 
-    public TxServlet() {}
+    public TxServlet() {
+    }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);

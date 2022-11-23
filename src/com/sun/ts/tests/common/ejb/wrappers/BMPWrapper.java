@@ -37,9 +37,8 @@ import java.util.Properties;
 import javax.naming.NamingException;
 
 /**
- * BMP wrapper that provide the bean life cycle methods for a BMP bean. This
- * class is intended to be subclassed by the final entity bean class that will
- * provide the test logic (core of business methods.
+ * BMP wrapper that provide the bean life cycle methods for a BMP bean. This class is intended to be subclassed by the
+ * final entity bean class that will provide the test logic (core of business methods.
  */
 public class BMPWrapper implements EntityBean {
 

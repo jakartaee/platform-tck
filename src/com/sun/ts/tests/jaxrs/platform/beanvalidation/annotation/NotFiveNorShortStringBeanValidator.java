@@ -23,12 +23,14 @@ public class NotFiveNorShortStringBeanValidator
         implements ConstraintValidator<NotFiveNorShort, NotShortNorFiveStringBean> {
 
     @Override
-    public void initialize(NotFiveNorShort arg0) {}
+    public void initialize(NotFiveNorShort arg0) {
+    }
 
     @Override
     public boolean isValid(NotShortNorFiveStringBean bean, ConstraintValidatorContext context) {
         String value = bean.get();
-        if (value == null || value.length() == 5) return false;
+        if (value == null || value.length() == 5)
+            return false;
         return true;
     }
 }

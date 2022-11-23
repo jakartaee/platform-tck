@@ -34,13 +34,11 @@ public class RetailOrder implements Serializable {
     private double cost;
 
     @ManyToMany()
-    @JoinTable(
-            name = "RETAILORDER_CONSUMER",
-            joinColumns = @JoinColumn(name = "ORDERS_ID"),
-            inverseJoinColumns = @JoinColumn(name = "CONSUMERS_ID"))
+    @JoinTable(name = "RETAILORDER_CONSUMER", joinColumns = @JoinColumn(name = "ORDERS_ID"), inverseJoinColumns = @JoinColumn(name = "CONSUMERS_ID"))
     private Set<Consumer> consumers = new HashSet();
 
-    public RetailOrder() {}
+    public RetailOrder() {
+    }
 
     public Long getId() {
         return id;

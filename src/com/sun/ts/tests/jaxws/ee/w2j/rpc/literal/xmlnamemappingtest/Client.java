@@ -149,8 +149,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -193,8 +195,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: JavaKeywordsTest
      *
-     * @assertion_ids: JAXWS:SPEC:2057; JAXWS:SPEC:2066; JAXWS:SPEC:2067;
-     * JAXWS:SPEC:2068;
+     * @assertion_ids: JAXWS:SPEC:2057; JAXWS:SPEC:2066; JAXWS:SPEC:2067; JAXWS:SPEC:2068;
      *
      * @test_Strategy:
      */
@@ -202,115 +203,165 @@ public class Client extends ServiceEETest {
         TestUtil.logTrace("JavaKeywordsTest");
         boolean pass = true;
 
-        if (!nullTest()) pass = false;
+        if (!nullTest())
+            pass = false;
         printSeperationLine();
-        if (!trueTest()) pass = false;
+        if (!trueTest())
+            pass = false;
         printSeperationLine();
-        if (!falseTest()) pass = false;
+        if (!falseTest())
+            pass = false;
         printSeperationLine();
-        if (!abstractTest()) pass = false;
+        if (!abstractTest())
+            pass = false;
         printSeperationLine();
-        if (!booleanTest()) pass = false;
+        if (!booleanTest())
+            pass = false;
         printSeperationLine();
-        if (!breakTest()) pass = false;
+        if (!breakTest())
+            pass = false;
         printSeperationLine();
-        if (!byteTest()) pass = false;
+        if (!byteTest())
+            pass = false;
         printSeperationLine();
-        if (!caseTest()) pass = false;
+        if (!caseTest())
+            pass = false;
         printSeperationLine();
-        if (!catchTest()) pass = false;
+        if (!catchTest())
+            pass = false;
         printSeperationLine();
-        if (!charTest()) pass = false;
+        if (!charTest())
+            pass = false;
         printSeperationLine();
-        if (!classTest()) pass = false;
+        if (!classTest())
+            pass = false;
         printSeperationLine();
-        if (!constTest()) pass = false;
+        if (!constTest())
+            pass = false;
         printSeperationLine();
-        if (!continueTest()) pass = false;
+        if (!continueTest())
+            pass = false;
         printSeperationLine();
-        if (!defaultTest()) pass = false;
+        if (!defaultTest())
+            pass = false;
         printSeperationLine();
-        if (!doTest()) pass = false;
+        if (!doTest())
+            pass = false;
         printSeperationLine();
-        if (!doubleTest()) pass = false;
+        if (!doubleTest())
+            pass = false;
         printSeperationLine();
-        if (!elseTest()) pass = false;
+        if (!elseTest())
+            pass = false;
         printSeperationLine();
-        if (!extendsTest()) pass = false;
+        if (!extendsTest())
+            pass = false;
         printSeperationLine();
-        if (!finalTest()) pass = false;
+        if (!finalTest())
+            pass = false;
         printSeperationLine();
-        if (!finallyTest()) pass = false;
+        if (!finallyTest())
+            pass = false;
         printSeperationLine();
-        if (!floatTest()) pass = false;
+        if (!floatTest())
+            pass = false;
         printSeperationLine();
-        if (!forTest()) pass = false;
+        if (!forTest())
+            pass = false;
         printSeperationLine();
-        if (!gotoTest()) pass = false;
+        if (!gotoTest())
+            pass = false;
         printSeperationLine();
-        if (!ifTest()) pass = false;
+        if (!ifTest())
+            pass = false;
         printSeperationLine();
-        if (!implementsTest()) pass = false;
+        if (!implementsTest())
+            pass = false;
         printSeperationLine();
-        if (!importTest()) pass = false;
+        if (!importTest())
+            pass = false;
         printSeperationLine();
-        if (!instanceofTest()) pass = false;
+        if (!instanceofTest())
+            pass = false;
         printSeperationLine();
-        if (!intTest()) pass = false;
+        if (!intTest())
+            pass = false;
         printSeperationLine();
-        if (!interfaceTest()) pass = false;
+        if (!interfaceTest())
+            pass = false;
         printSeperationLine();
-        if (!longTest()) pass = false;
+        if (!longTest())
+            pass = false;
         printSeperationLine();
-        if (!nativeTest()) pass = false;
+        if (!nativeTest())
+            pass = false;
         printSeperationLine();
-        if (!newTest()) pass = false;
+        if (!newTest())
+            pass = false;
         printSeperationLine();
-        if (!packageTest()) pass = false;
+        if (!packageTest())
+            pass = false;
         printSeperationLine();
-        if (!privateTest()) pass = false;
+        if (!privateTest())
+            pass = false;
         printSeperationLine();
-        if (!protectedTest()) pass = false;
+        if (!protectedTest())
+            pass = false;
         printSeperationLine();
-        if (!publicTest()) pass = false;
+        if (!publicTest())
+            pass = false;
         printSeperationLine();
-        if (!returnTest()) pass = false;
+        if (!returnTest())
+            pass = false;
         printSeperationLine();
-        if (!shortTest()) pass = false;
+        if (!shortTest())
+            pass = false;
         printSeperationLine();
-        if (!staticTest()) pass = false;
+        if (!staticTest())
+            pass = false;
         printSeperationLine();
-        if (!superTest()) pass = false;
+        if (!superTest())
+            pass = false;
         printSeperationLine();
-        if (!switchTest()) pass = false;
+        if (!switchTest())
+            pass = false;
         printSeperationLine();
-        if (!synchronizedTest()) pass = false;
+        if (!synchronizedTest())
+            pass = false;
         printSeperationLine();
-        if (!thisTest()) pass = false;
+        if (!thisTest())
+            pass = false;
         printSeperationLine();
-        if (!throwTest()) pass = false;
+        if (!throwTest())
+            pass = false;
         printSeperationLine();
-        if (!throwsTest()) pass = false;
+        if (!throwsTest())
+            pass = false;
         printSeperationLine();
-        if (!transientTest()) pass = false;
+        if (!transientTest())
+            pass = false;
         printSeperationLine();
-        if (!tryTest()) pass = false;
+        if (!tryTest())
+            pass = false;
         printSeperationLine();
-        if (!voidTest()) pass = false;
+        if (!voidTest())
+            pass = false;
         printSeperationLine();
-        if (!volatileTest()) pass = false;
+        if (!volatileTest())
+            pass = false;
         printSeperationLine();
-        if (!whileTest()) pass = false;
+        if (!whileTest())
+            pass = false;
         printSeperationLine();
 
-        if (!pass) throw new Fault("JavaKeywordsTest failed");
+        if (!pass)
+            throw new Fault("JavaKeywordsTest failed");
     }
 
     /*
      * @testName: JavaNamingConventionsTest
      *
-     * @assertion_ids: JAXWS:SPEC:2057; JAXWS:SPEC:2066; JAXWS:SPEC:2067;
-     * JAXWS:SPEC:2068;
+     * @assertion_ids: JAXWS:SPEC:2057; JAXWS:SPEC:2066; JAXWS:SPEC:2067; JAXWS:SPEC:2068;
      *
      * @test_Strategy:
      */
@@ -318,17 +369,22 @@ public class Client extends ServiceEETest {
         TestUtil.logTrace("JavaNamingConventionsTest");
         boolean pass = true;
 
-        if (!eyeColorTest()) pass = false;
+        if (!eyeColorTest())
+            pass = false;
         printSeperationLine();
-        if (!structTest()) pass = false;
+        if (!structTest())
+            pass = false;
         printSeperationLine();
 
-        if (!pass) throw new Fault("JavaNamingConventionsTest failed");
+        if (!pass)
+            throw new Fault("JavaNamingConventionsTest failed");
     }
 
     private boolean printTestStatus(boolean pass, String test) {
-        if (pass) TestUtil.logMsg("" + test + " ... PASSED");
-        else TestUtil.logErr("" + test + " ... FAILED");
+        if (pass)
+            TestUtil.logMsg("" + test + " ... PASSED");
+        else
+            TestUtil.logErr("" + test + " ... FAILED");
 
         return pass;
     }

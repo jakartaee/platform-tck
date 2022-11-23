@@ -36,7 +36,9 @@ public class CartBean
         return sessionContext;
     }
 
-    public CartBean() {}
+    public CartBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

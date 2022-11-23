@@ -37,7 +37,8 @@ public abstract class AllowedBeanBase implements AllowedIF, AllowedLocalIF {
 
     public abstract Properties runOperations(SessionContext sctx);
 
-    public void timeout(jakarta.ejb.Timer timer) {}
+    public void timeout(jakarta.ejb.Timer timer) {
+    }
 
     public void setSessionContext(SessionContext sc) {
         this.sessionContext = sc;
@@ -83,15 +84,20 @@ public abstract class AllowedBeanBase implements AllowedIF, AllowedLocalIF {
     }
 
     // ===================== business methods ===========================
-    public void remove() {}
+    public void remove() {
+    }
 
-    public void txNotSupported() throws TestFailedException {}
+    public void txNotSupported() throws TestFailedException {
+    }
 
-    public void txSupports() throws TestFailedException {}
+    public void txSupports() throws TestFailedException {
+    }
 
-    public void txNever() throws TestFailedException {}
+    public void txNever() throws TestFailedException {
+    }
 
-    public void utBeginTest() throws TestFailedException {}
+    public void utBeginTest() throws TestFailedException {
+    }
 
     public Properties business() {
         return runOperations(this.sessionContext);
@@ -109,7 +115,8 @@ public abstract class AllowedBeanBase implements AllowedIF, AllowedLocalIF {
         return this.postInvokeResults;
     }
 
-    public void setTestMethod(String testMethod) {}
+    public void setTestMethod(String testMethod) {
+    }
 
     public Properties getResultsAfterCompletion() {
         return null;
@@ -119,7 +126,8 @@ public abstract class AllowedBeanBase implements AllowedIF, AllowedLocalIF {
         return null;
     }
 
-    public void afterCompletionTest() {}
+    public void afterCompletionTest() {
+    }
 
     public Properties afterBeginTest() {
         return null;

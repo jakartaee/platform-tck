@@ -35,8 +35,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * See com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.Client. All ejb
- * classes are packaged under WEB-INF/lib/*.jar
+ * See com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.Client. All ejb classes are packaged under WEB-INF/lib/*.jar
  */
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
@@ -67,9 +66,8 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: clientToBeanClassLookup
      *
-     * @test_Strategy: client looking up ejb-ref injections in bean class. It must
-     * succeed since cleint and ejb packaged together share the same naming. Not
-     * for standalone client.
+     * @test_Strategy: client looking up ejb-ref injections in bean class. It must succeed since cleint and ejb packaged
+     * together share the same naming. Not for standalone client.
      */
     public void clientToBeanClassLookup() {
         for (BeanBase b : beans) {
@@ -86,9 +84,8 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: beanClassToClientLookup
      *
-     * @test_Strategy: bean looking up resource injected into client. It must
-     * succeed since cleint and ejb packaged together share the same naming. Not
-     * for standalone client.
+     * @test_Strategy: bean looking up resource injected into client. It must succeed since cleint and ejb packaged together
+     * share the same naming. Not for standalone client.
      */
     public void beanClassToClientLookup() {
         for (BeanBase b : beans) {
@@ -100,8 +97,8 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: crossEJBLookup
      *
-     * @test_Strategy: EJBContext looking up ejb-ref injected into other beans. It
-     * must succeed since ejbs packaged together share the same naming context.
+     * @test_Strategy: EJBContext looking up ejb-ref injected into other beans. It must succeed since ejbs packaged together
+     * share the same naming context.
      */
     public void crossEJBLookup() {
         for (BeanBase lookupFrom : beans) {

@@ -47,15 +47,13 @@ public class TypeCheckTag extends TagSupport {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * Sets the type of the variable to test.
      *
-     * @param exceptionClass
-     *          Exception class.
+     * @param exceptionClass Exception class.
      */
     public void setType(String type) {
         this._type = type;
@@ -64,8 +62,7 @@ public class TypeCheckTag extends TagSupport {
     /**
      * Sets the name of the variable to export.
      *
-     * @param Name
-     *          of the variable to export.
+     * @param Name of the variable to export.
      */
     public void setVarName(String varName) {
         this._varName = varName;
@@ -75,8 +72,7 @@ public class TypeCheckTag extends TagSupport {
      * <code>doStartTag</code> has been overridden
      *
      * @return <code>SKIP_BODY</code>
-     * @exception JspException
-     *              if an error occurs
+     * @exception JspException if an error occurs
      */
     public int doStartTag() throws JspException {
         JspWriter out = pageContext.getOut();
@@ -101,8 +97,8 @@ public class TypeCheckTag extends TagSupport {
     }
 
     /**
-     * <code>release</code> is called by the tag handler to release state. This
-     * method is invoked by the JSP page implementation object.
+     * <code>release</code> is called by the tag handler to release state. This method is invoked by the JSP page
+     * implementation object.
      */
     public void release() {
         _type = null;

@@ -27,7 +27,8 @@ import jakarta.websocket.EndpointConfig;
 public class ByteDecoder implements Decoder.Text<Byte> {
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
     public Byte decode(String s) throws DecodeException {
@@ -40,5 +41,6 @@ public class ByteDecoder implements Decoder.Text<Byte> {
     }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

@@ -29,15 +29,14 @@ import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
 
 /**
- * A bean that overrides and thus disables all lifecycle callback methods in its
- * superclasses. Its class-level interceptor, InterceptorH, also overrides and
- * disables its superclasses' lifecycle callback methods. In both cases,
+ * A bean that overrides and thus disables all lifecycle callback methods in its superclasses. Its class-level
+ * interceptor, InterceptorH, also overrides and disables its superclasses' lifecycle callback methods. In both cases,
  * overriding methods themselves are not lifecycle methods.
  */
 @Stateless(name = "CallbackBean")
-@Remote({CallbackIF.class})
+@Remote({ CallbackIF.class })
 @ExcludeDefaultInterceptors
-@Interceptors({InterceptorH.class})
+@Interceptors({ InterceptorH.class })
 public class CallbackBean extends CallbackBeanSuper {
     public CallbackBean() {
         super();

@@ -17,8 +17,8 @@
 package com.sun.ts.tests.websocket.negdep;
 
 /**
- * Use rather this user specific class than a java class such as stringbuilder
- * for sake of java class being allowed in future version by default
+ * Use rather this user specific class than a java class such as stringbuilder for sake of java class being allowed in
+ * future version by default
  *
  * @since 1.11
  */
@@ -29,7 +29,8 @@ public class StringHolder implements CharSequence {
         inner = hold;
     }
 
-    public StringHolder() {}
+    public StringHolder() {
+    }
 
     @Override
     public int length() {

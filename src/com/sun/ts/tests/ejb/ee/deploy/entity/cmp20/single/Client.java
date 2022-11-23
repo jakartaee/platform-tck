@@ -49,8 +49,7 @@ public class Client extends EETest {
     }
 
     /**
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -71,9 +70,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:71
      *
-     * @test_Strategy: Deploy a CMP 2.0 Entity Bean and lookup its home interface.
-     *                 Invoke getEJBMetaData().isSession() method at runtime and
-     *                 check that returned value is 'false'.
+     * @test_Strategy: Deploy a CMP 2.0 Entity Bean and lookup its home interface. Invoke getEJBMetaData().isSession()
+     * method at runtime and check that returned value is 'false'.
      */
     public void testIsSession() throws Fault {
         try {
@@ -90,9 +88,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:72
      *
-     * @test_Strategy: Deploy a CMP 2.0 Entity Bean and lookup its home interface.
-     *                 Invoke getEJBMetaData().isStatelessSession() method at
-     *                 runtime and check that returned value is 'false'.
+     * @test_Strategy: Deploy a CMP 2.0 Entity Bean and lookup its home interface. Invoke
+     * getEJBMetaData().isStatelessSession() method at runtime and check that returned value is 'false'.
      */
     public void testIsStateless() throws Fault {
         boolean pass;
@@ -113,9 +110,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:78
      *
-     * @test_Strategy: Deploy and create a CMP 2.0 Entity bean. Attempt to call
-     *                 getPrimaryKey() and check that we do not geet any
-     *                 Exception.
+     * @test_Strategy: Deploy and create a CMP 2.0 Entity bean. Attempt to call getPrimaryKey() and check that we do not
+     * geet any Exception.
      */
     public void testGetPrimaryKey() throws Fault {
         Object pkey;
@@ -134,10 +130,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:68
      *
-     * @test_Strategy: Deploy a CMP 2.0 Entity Bean. Invoke
-     *                 getEJBMetaData().getHomeInterfaceClass() on its Home
-     *                 interface and check that the name of the returned Class
-     *                 match the one specified in the DD.
+     * @test_Strategy: Deploy a CMP 2.0 Entity Bean. Invoke getEJBMetaData().getHomeInterfaceClass() on its Home interface
+     * and check that the name of the returned Class match the one specified in the DD.
      */
     public void testHomeInterface() throws Fault {
         Class runtimeHome = null;
@@ -159,10 +153,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:70
      *
-     * @test_Strategy: Deploy a CMP 2.0 Entity bean and lookup its interface.
-     *                 Invoke getEJBMetaData().getRemoteInterfaceClass() on its
-     *                 home interface and check that the name of the returned
-     *                 Class match the one specified in the DD.
+     * @test_Strategy: Deploy a CMP 2.0 Entity bean and lookup its interface. Invoke
+     * getEJBMetaData().getRemoteInterfaceClass() on its home interface and check that the name of the returned Class match
+     * the one specified in the DD.
      */
     public void testRemoteInterface() throws Fault {
         Class runtimeRemote = null;
@@ -184,8 +177,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:231
      *
-     * @test_Strategy: Deploy and create a CMP 2.0 Entity bean using the special
-     *                 create method.
+     * @test_Strategy: Deploy and create a CMP 2.0 Entity bean using the special create method.
      */
     public void testCreate() throws Fault {
         try {
@@ -201,9 +193,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:301
      *
-     * @test_Strategy: Deploy and create a CMP 2.0 Entity bean. Invoke a method of
-     *                 its remote interface returning a String we use to "tag"
-     *                 this particular home interface.
+     * @test_Strategy: Deploy and create a CMP 2.0 Entity bean. Invoke a method of its remote interface returning a String
+     * we use to "tag" this particular home interface.
      *
      */
     public void testBusinessMethod() throws Fault {

@@ -24,8 +24,7 @@ import jakarta.ejb.Lock;
 import jakarta.ejb.LockType;
 
 /**
- * This class does not specify any @AccessTimeout metadata. Its subclass can
- * specify it at class- or method-level.
+ * This class does not specify any @AccessTimeout metadata. Its subclass can specify it at class- or method-level.
  */
 public abstract class PlainAccessTimeoutBeanBase implements AccessTimeoutIF {
     @Lock(LockType.READ)

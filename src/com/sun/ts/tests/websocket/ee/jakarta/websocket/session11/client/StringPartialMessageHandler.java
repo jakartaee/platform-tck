@@ -36,6 +36,7 @@ public class StringPartialMessageHandler implements MessageHandler.Partial<Strin
     @Override
     public void onMessage(String message, boolean finite) {
         sb.append(message);
-        if (finite) endpoint.onMessage(HANDLER_SAYS + sb.toString());
+        if (finite)
+            endpoint.onMessage(HANDLER_SAYS + sb.toString());
     }
 }

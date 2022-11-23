@@ -55,34 +55,29 @@ public class JspTestUtil {
     public static boolean DEBUG = true;
 
     /**
-     * <code>TEST_HEADER</code> is the constant for the <code>testname</code>
-     * header.
+     * <code>TEST_HEADER</code> is the constant for the <code>testname</code> header.
      */
     private static final String TEST_HEADER = "testname";
 
     /**
      * <code>TEST_ARGS</code> is an array of Classes used during reflection.
      */
-    private static final Class[] TEST_ARGS = {HttpServletRequest.class, HttpServletResponse.class, JspWriter.class};
+    private static final Class[] TEST_ARGS = { HttpServletRequest.class, HttpServletResponse.class, JspWriter.class };
 
     /**
      * Private as this class will only have static methods and members.
      */
-    private JspTestUtil() {}
+    private JspTestUtil() {
+    }
 
     /**
      * Utility method to invoke JSP API Tests.
      *
-     * @param testObject
-     *          - the JSP test object
-     * @param req
-     *          - the incoming client request
-     * @param res
-     *          - response to the client
-     * @param out
-     *          - used to write the response
-     * @throws ServletException
-     *           - if an error occurs
+     * @param testObject - the JSP test object
+     * @param req - the incoming client request
+     * @param res - response to the client
+     * @param out - used to write the response
+     * @throws ServletException - if an error occurs
      */
     public static void invokeTest(Object testObject, HttpServletRequest req, HttpServletResponse res, JspWriter out)
             throws ServletException {
@@ -90,7 +85,7 @@ public class JspTestUtil {
         debug("[JspTestUtil] Test to invoke: " + test);
         try {
             Method method = testObject.getClass().getMethod(test, TEST_ARGS);
-            method.invoke(testObject, new Object[] {req, res, out});
+            method.invoke(testObject, new Object[] { req, res, out });
         } catch (InvocationTargetException ite) {
             throw new ServletException(ite.getTargetException().toString());
         } catch (NoSuchMethodException nsme) {
@@ -103,14 +98,10 @@ public class JspTestUtil {
     /**
      * Utility method to handle exceptions from tests in a generic fashion.
      *
-     * @param t
-     *          - offending Throwable instance
-     * @param out
-     *          - JspWriter to write the error info to
-     * @param identifier
-     *          - a test name or other logical identifier
-     * @throws IOException
-     *           if an I/O error occurs when writing to the stream.
+     * @param t - offending Throwable instance
+     * @param out - JspWriter to write the error info to
+     * @param identifier - a test name or other logical identifier
+     * @throws IOException if an I/O error occurs when writing to the stream.
      */
     public static void handleThrowable(Throwable t, JspWriter out, String identifier) throws IOException {
         out.println("Test FAILED.  " + identifier + " Unexpected Throwable caught");
@@ -126,19 +117,16 @@ public class JspTestUtil {
     }
 
     /**
-     * Compares the String values in an Enumeration against the provides String
-     * array of values. The number of elements in the enumeration must be the same
-     * as the size of the array, or false will be returned. False will also be
-     * returned if the provided Enumeration or String array is null.
+     * Compares the String values in an Enumeration against the provides String array of values. The number of elements in
+     * the enumeration must be the same as the size of the array, or false will be returned. False will also be returned if
+     * the provided Enumeration or String array is null.
      *
      * If all values are found, true will be returned.
      *
      * The comparison is performed in a case sensitive manner.
      *
-     * @param e
-     *          - Enumeration to validate
-     * @param values
-     *          - the values expected to be found in the Enumeration
+     * @param e - Enumeration to validate
+     * @param values - the values expected to be found in the Enumeration
      * @return true if all the expected values are found, otherwise false.
      */
     public static boolean checkEnumeration(Enumeration e, String[] values) {
@@ -174,11 +162,9 @@ public class JspTestUtil {
     }
 
     /**
-     * Returns the provided String array in the following format:
-     * <tt>[n1,n2,n...]</tt>
+     * Returns the provided String array in the following format: <tt>[n1,n2,n...]</tt>
      *
-     * @param sArray
-     *          - an array of String values
+     * @param sArray - an array of String values
      * @return - a String based off the values in the array
      */
     public static String getAsString(String[] sArray) {
@@ -198,11 +184,9 @@ public class JspTestUtil {
     }
 
     /**
-     * Returns the provided Enumeration as a String in the following format:
-     * <tt>[n1,n2,n...]</tt>
+     * Returns the provided Enumeration as a String in the following format: <tt>[n1,n2,n...]</tt>
      *
-     * @param e
-     *          - an Enumeration
+     * @param e - an Enumeration
      * @return - a printable version of the contents of the Enumeration
      */
     public static String getAsString(Enumeration e) {
@@ -212,8 +196,7 @@ public class JspTestUtil {
     /**
      * Returnes the provides Enumeration as an Array of String Arguments.
      *
-     * @param e
-     *          - an Enumeration
+     * @param e - an Enumeration
      * @return - the elements of the Enumeration as an array of Strings
      */
     public static String[] getAsStringArray(Enumeration e) {
@@ -248,8 +231,7 @@ public class JspTestUtil {
     /**
      * Writes the provided message to System.out when the <tt>debug</tt> is set.
      *
-     * @param message
-     *          - the message to write to System.out
+     * @param message - the message to write to System.out
      */
     public static void debug(String message) {
         if (DEBUG) {
@@ -260,17 +242,15 @@ public class JspTestUtil {
     /**
      * Creates an array of ValidationMessages.
      *
-     * @param id
-     *          - the jsp:id
-     * @param message
-     *          - the error message
+     * @param id - the jsp:id
+     * @param message - the error message
      * @return an arrary of ValidationMessages, or null if message is null.
      */
     public static ValidationMessage[] getValidationMessage(String id, String message) {
         if (message == null) {
             return null;
         } else {
-            return new ValidationMessage[] {new ValidationMessage(id, message)};
+            return new ValidationMessage[] { new ValidationMessage(id, message) };
         }
     }
 
@@ -279,15 +259,14 @@ public class JspTestUtil {
      * Returns a String representation of the {@link Map} provided.
      * </p>
      *
-     * @param map
-     *          input map
+     * @param map input map
      * @return String representation of the Map
      */
     public static String getAsString(Map map) {
         StringBuffer sb = new StringBuffer(32);
         Set entrySet = map.entrySet();
         sb.append("Map Entries\n----------------\n");
-        for (Iterator i = entrySet.iterator(); i.hasNext(); ) {
+        for (Iterator i = entrySet.iterator(); i.hasNext();) {
             Map.Entry entry = (Map.Entry) i.next();
             sb.append(entry.getKey()).append(", ");
             sb.append(entry.getValue() instanceof Cookie ? ((Cookie) entry.getValue()).getValue() : entry.getValue());
@@ -298,54 +277,51 @@ public class JspTestUtil {
     }
 
     /**
-     * Utility class to get a String version of a Tag return value based on the
-     * int value, the type, and the method it was returned from.
+     * Utility class to get a String version of a Tag return value based on the int value, the type, and the method it was
+     * returned from.
      *
-     * @param method
-     *          - the Tag method returning the int status
-     * @param type
-     *          - the tag interface type (i.e. Tag, IterationTag)
-     * @param status
-     *          - the return value from the method
+     * @param method - the Tag method returning the int status
+     * @param type - the tag interface type (i.e. Tag, IterationTag)
+     * @param status - the return value from the method
      * @return a String representation of the information provided
      */
     public static String getTagStatusAsString(String method, String type, int status) {
         String value = "UNIDENTIFIED VALUE";
         if ("doStartTag".equals(method)) {
             switch (status) {
-                case Tag.EVAL_BODY_INCLUDE:
-                    value = "EVAL_BODY_INCLUDE";
-                    break;
-                case Tag.SKIP_BODY:
-                    value = "SKIP_BODY";
-                    break;
+            case Tag.EVAL_BODY_INCLUDE:
+                value = "EVAL_BODY_INCLUDE";
+                break;
+            case Tag.SKIP_BODY:
+                value = "SKIP_BODY";
+                break;
             }
         } else if ("doEndTag".equals(method)) {
             switch (status) {
-                case Tag.SKIP_PAGE:
-                    value = "SKIP_PAGE";
-                    break;
-                case Tag.EVAL_PAGE:
-                    value = "EVAL_PAGE";
-                    break;
+            case Tag.SKIP_PAGE:
+                value = "SKIP_PAGE";
+                break;
+            case Tag.EVAL_PAGE:
+                value = "EVAL_PAGE";
+                break;
             }
         } else if ("doAfterBody".equals(method) && "IterationTag".equals(type)) {
             switch (status) {
-                case Tag.SKIP_BODY:
-                    value = "SKIP_BODY";
-                    break;
-                case IterationTag.EVAL_BODY_AGAIN:
-                    value = "EVAL_BODY_AGAIN";
-                    break;
+            case Tag.SKIP_BODY:
+                value = "SKIP_BODY";
+                break;
+            case IterationTag.EVAL_BODY_AGAIN:
+                value = "EVAL_BODY_AGAIN";
+                break;
             }
         } else if ("doAfterBody".equals(method) && "BodyTag".equals(type)) {
             switch (status) {
-                case Tag.SKIP_BODY:
-                    value = "SKIP_BODY";
-                    break;
-                case BodyTag.EVAL_BODY_BUFFERED:
-                    value = "EVAL_BODY_BUFFERED";
-                    break;
+            case Tag.SKIP_BODY:
+                value = "SKIP_BODY";
+                break;
+            case BodyTag.EVAL_BODY_BUFFERED:
+                value = "EVAL_BODY_BUFFERED";
+                break;
             }
         }
         return value;
@@ -354,16 +330,16 @@ public class JspTestUtil {
     public static String getScopeName(int scope) {
         final String UNKNOWN_SCOPE = "Unknown Scope";
         switch (scope) {
-            case PageContext.PAGE_SCOPE:
-                return "Page";
-            case PageContext.REQUEST_SCOPE:
-                return "Request";
-            case PageContext.SESSION_SCOPE:
-                return "Session";
-            case PageContext.APPLICATION_SCOPE:
-                return "Application";
-            default:
-                return UNKNOWN_SCOPE;
+        case PageContext.PAGE_SCOPE:
+            return "Page";
+        case PageContext.REQUEST_SCOPE:
+            return "Request";
+        case PageContext.SESSION_SCOPE:
+            return "Session";
+        case PageContext.APPLICATION_SCOPE:
+            return "Application";
+        default:
+            return UNKNOWN_SCOPE;
         }
     }
 }

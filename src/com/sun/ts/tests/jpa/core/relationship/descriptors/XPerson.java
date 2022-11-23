@@ -44,7 +44,8 @@ public class XPerson implements java.io.Serializable {
 
     private Collection<XProject> xProjects = new java.util.ArrayList<XProject>();
 
-    public XPerson() {}
+    public XPerson() {
+    }
 
     public XPerson(int xPersonId, String firstName, String lastName) {
         this.xPersonId = xPersonId;

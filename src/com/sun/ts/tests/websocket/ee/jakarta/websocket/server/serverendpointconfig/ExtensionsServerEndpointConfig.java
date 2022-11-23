@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class ExtensionsServerEndpointConfig implements ServerEndpointConfig {
 
-    static final String[] EXT_NAMES = new String[] {"empty", "secondEmpty"};
+    static final String[] EXT_NAMES = new String[] { "empty", "secondEmpty" };
 
     @Override
     public Map<String, Object> getUserProperties() {
@@ -80,7 +80,8 @@ public class ExtensionsServerEndpointConfig implements ServerEndpointConfig {
 
     @Override
     public Configurator getConfigurator() {
-        return new ServerEndpointConfig.Configurator() {};
+        return new ServerEndpointConfig.Configurator() {
+        };
     }
 
     @Override

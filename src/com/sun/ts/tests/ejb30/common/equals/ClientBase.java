@@ -37,7 +37,8 @@ public abstract class ClientBase extends EETest {
         props = p;
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 
     //////////////////////////////////////////////////////////////////////
 

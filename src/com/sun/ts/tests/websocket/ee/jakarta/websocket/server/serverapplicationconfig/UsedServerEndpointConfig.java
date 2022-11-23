@@ -56,7 +56,8 @@ public class UsedServerEndpointConfig implements ServerEndpointConfig {
 
     @Override
     public Configurator getConfigurator() {
-        return new ServerEndpointConfig.Configurator() {};
+        return new ServerEndpointConfig.Configurator() {
+        };
     }
 
     @Override

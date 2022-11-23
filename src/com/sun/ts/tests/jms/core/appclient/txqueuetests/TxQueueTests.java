@@ -81,10 +81,9 @@ public class TxQueueTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -128,8 +127,8 @@ public class TxQueueTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -153,8 +152,7 @@ public class TxQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:122; JMS:SPEC:123; JMS:SPEC:124; JMS:SPEC:125;
      *
-     * @test_Strategy: Send and receive single message to verify that Queues are
-     * working in a transacted session.
+     * @test_Strategy: Send and receive single message to verify that Queues are working in a transacted session.
      */
     public void simpleSendReceiveTxQueueTest() throws Fault {
         try {
@@ -198,9 +196,8 @@ public class TxQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:130;
      *
-     * @test_Strategy: Create tx_session and receive one message from a queue.
-     * Call commit() and close session. Create non_tx new session and send/receive
-     * message. Should only receive the one message.
+     * @test_Strategy: Create tx_session and receive one message from a queue. Call commit() and close session. Create
+     * non_tx new session and send/receive message. Should only receive the one message.
      */
     public void commitAckMsgQueueTest() throws Fault {
         try {
@@ -272,8 +269,8 @@ public class TxQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:130;
      *
-     * @test_Strategy: Create tx_session and receive one message from a queue.
-     * Call rollback() and close session. Create new session and receive message.
+     * @test_Strategy: Create tx_session and receive one message from a queue. Call rollback() and close session. Create new
+     * session and receive message.
      */
     public void rollbackRecoverQueueTest() throws Fault {
         try {
@@ -340,9 +337,8 @@ public class TxQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:129; JMS:JAVADOC:371; JMS:SPEC:13;
      *
-     * @test_Strategy: Send message to a queue and receive it with a CLIENT_ACK
-     * session. Check that the redelivered flag is FALSE. Call rollback and
-     * receive the message again. Check that the flag is now TRUE.
+     * @test_Strategy: Send message to a queue and receive it with a CLIENT_ACK session. Check that the redelivered flag is
+     * FALSE. Call rollback and receive the message again. Check that the flag is now TRUE.
      */
     public void redeliveredFlagTxQueueTest() throws Fault {
         try {
@@ -401,10 +397,9 @@ public class TxQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:104;
      *
-     * @test_Strategy: Use the default queue session, receiver and sender. Set up
-     * an additional queue session and sender. Send and receive a transacted
-     * message. Send another transacted message, but close the session after
-     * receive with no commit. Verify that the message is rolled back to the queue
+     * @test_Strategy: Use the default queue session, receiver and sender. Set up an additional queue session and sender.
+     * Send and receive a transacted message. Send another transacted message, but close the session after receive with no
+     * commit. Verify that the message is rolled back to the queue
      */
     public void transactionRollbackOnSessionCloseRecQTest() throws Fault {
         try {
@@ -468,10 +463,9 @@ public class TxQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:123;
      *
-     * @test_Strategy: Use the default queue session, receiver and sender. Set up
-     * an additional queue session and sender. Send and receive a transacted
-     * message. Send another transacted message, but rollback after the send.
-     * Verify that the message is not received.
+     * @test_Strategy: Use the default queue session, receiver and sender. Set up an additional queue session and sender.
+     * Send and receive a transacted message. Send another transacted message, but rollback after the send. Verify that the
+     * message is not received.
      */
     public void transactionRollbackOnSendQTest() throws Fault {
         try {
@@ -537,10 +531,9 @@ public class TxQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:123;
      *
-     * @test_Strategy: Use the default queue session, receiver and sender. Set up
-     * an additional queue session and sender. Send and receive a transacted
-     * message. Send another transacted message, but rollback the session after
-     * receive. Verify that the message is rolled back to the queue
+     * @test_Strategy: Use the default queue session, receiver and sender. Set up an additional queue session and sender.
+     * Send and receive a transacted message. Send another transacted message, but rollback the session after receive.
+     * Verify that the message is rolled back to the queue
      */
     public void transactionRollbackOnRecQTest() throws Fault {
         try {
@@ -607,10 +600,9 @@ public class TxQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:104;
      *
-     * @test_Strategy: Use the default queue session, receiver and sender. Set up
-     * an additional queue session and sender. Send and receive a transacted
-     * message. Send another transacted message, but close the connection after
-     * receive with no commit. Verify that the message is rolled back to the queue
+     * @test_Strategy: Use the default queue session, receiver and sender. Set up an additional queue session and sender.
+     * Send and receive a transacted message. Send another transacted message, but close the connection after receive with
+     * no commit. Verify that the message is rolled back to the queue
      */
     public void txRollbackOnConnectionCloseRecQTest() throws Fault {
         try {
@@ -694,11 +686,9 @@ public class TxQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:104;
      *
-     * @test_Strategy: Use the default queue session, receiver and sender. Set up
-     * an additional queue session and sender. Send and receive a transacted
-     * message. Send another transacted message, do a rollback and close the
-     * sesion after receive with no commit. Verify that the message is rolled back
-     * to the queue.
+     * @test_Strategy: Use the default queue session, receiver and sender. Set up an additional queue session and sender.
+     * Send and receive a transacted message. Send another transacted message, do a rollback and close the sesion after
+     * receive with no commit. Verify that the message is rolled back to the queue.
      */
     public void txCloseRolledBackSessionRecQTest() throws Fault {
         try {
@@ -774,12 +764,10 @@ public class TxQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:125;
      *
-     * @test_Strategy: Use 2 destination Queues - the default and create a new
-     * one. In the default session Send and commit a message to MY_QUEUE Create a
-     * new newQSess, qSender and qReceiver for Q2. Send a msg to Q2. - no commit
-     * yet Have qReceiver request a msg - expect none - send was not committed.
-     * Request a msg with the default receiver - expect a msg from MY_QUEUE commit
-     * the send form newQSess - for Q2. Verify qReceiver receives message from Q2.
+     * @test_Strategy: Use 2 destination Queues - the default and create a new one. In the default session Send and commit a
+     * message to MY_QUEUE Create a new newQSess, qSender and qReceiver for Q2. Send a msg to Q2. - no commit yet Have
+     * qReceiver request a msg - expect none - send was not committed. Request a msg with the default receiver - expect a
+     * msg from MY_QUEUE commit the send form newQSess - for Q2. Verify qReceiver receives message from Q2.
      *
      */
     public void txMultiQTest() throws Fault {
@@ -795,8 +783,7 @@ public class TxQueueTests extends ServiceEETest {
 
             // Create another Queue Session, queue receiver and queue sender
             QueueSession newQSess = tool.getDefaultQueueConnection().createQueueSession(true, Session.AUTO_ACKNOWLEDGE);
-            QueueSession newQSess1 =
-                    tool.getDefaultQueueConnection().createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+            QueueSession newQSess1 = tool.getDefaultQueueConnection().createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
             Queue newQueue = tool.createNewQueue("Q2");
             QueueSender qSender = newQSess.createSender(newQueue);
             QueueReceiver qReceiver = newQSess1.createReceiver(newQueue);
@@ -869,26 +856,21 @@ public class TxQueueTests extends ServiceEETest {
     /*
      * @testName: commitRollbackMultiMsgsTest
      *
-     * @assertion_ids: JMS:JAVADOC:231; JMS:JAVADOC:221; JMS:JAVADOC:244;
-     * JMS:JAVADOC:242; JMS:JAVADOC:229; JMS:JAVADOC:504; JMS:JAVADOC:510;
-     * JMS:JAVADOC:597; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:JAVADOC:231; JMS:JAVADOC:221; JMS:JAVADOC:244; JMS:JAVADOC:242; JMS:JAVADOC:229; JMS:JAVADOC:504;
+     * JMS:JAVADOC:510; JMS:JAVADOC:597; JMS:JAVADOC:334;
      *
      * @test_Strategy: Test the following APIs:
      *
-     * ConnectionFactory.createConnection(String, String)
-     * Connection.createSession(boolean, int) Session.createTextMessage(String)
-     * Session.createConsumer(Destination) Session.createProducer(Destination)
-     * Session.commit() Session.rollback() MessageProducer.send(Message)
-     * MessagingConsumer.receive(long timeout)
+     * ConnectionFactory.createConnection(String, String) Connection.createSession(boolean, int)
+     * Session.createTextMessage(String) Session.createConsumer(Destination) Session.createProducer(Destination)
+     * Session.commit() Session.rollback() MessageProducer.send(Message) MessagingConsumer.receive(long timeout)
      *
-     * 1. Create Session with SESSION_TRANSACTED. This is done in the setup()
-     * routine. 2. Send x messages to a Queue. 3. Call rollback() to rollback the
-     * sent messages. 4. Create a MessageConsumer to consume the messages in the
-     * Queue. Should not receive any messages since the sent messages were rolled
-     * back. Verify that no messages are received. 5. Send x messages to a Queue.
-     * 6. Call commit() to commit the sent messages. 7. Create a MessageConsumer
-     * to consume the messages in the Queue. Should receive all the messages since
-     * the sent messages were committed. Verify that all messages are received.
+     * 1. Create Session with SESSION_TRANSACTED. This is done in the setup() routine. 2. Send x messages to a Queue. 3.
+     * Call rollback() to rollback the sent messages. 4. Create a MessageConsumer to consume the messages in the Queue.
+     * Should not receive any messages since the sent messages were rolled back. Verify that no messages are received. 5.
+     * Send x messages to a Queue. 6. Call commit() to commit the sent messages. 7. Create a MessageConsumer to consume the
+     * messages in the Queue. Should receive all the messages since the sent messages were committed. Verify that all
+     * messages are received.
      */
     public void commitRollbackMultiMsgsTest() throws Fault {
         boolean pass = true;

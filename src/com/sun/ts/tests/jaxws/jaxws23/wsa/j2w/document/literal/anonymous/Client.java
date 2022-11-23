@@ -145,20 +145,15 @@ public class Client extends ServiceEETest {
 
     static AddNumbersService23002 service23002 = null;
 
-    String ReplyToHeaderForAnonymousResponsesSoapMsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType23001/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testAnonymousResponsesReplyToHeader</testName></addNumbers></S:Body></S:Envelope>";
+    String ReplyToHeaderForAnonymousResponsesSoapMsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType23001/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testAnonymousResponsesReplyToHeader</testName></addNumbers></S:Body></S:Envelope>";
 
-    String FaultToHeaderForAnonymousResponsesSoapMsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><FaultTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></FaultTo><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{3}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType23001/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>-10</number1><number2>-10</number2><testName>testAnonymousResponsesFaultToHeader</testName></addNumbers></S:Body></S:Envelope>";
+    String FaultToHeaderForAnonymousResponsesSoapMsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><FaultTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></FaultTo><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{3}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType23001/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>-10</number1><number2>-10</number2><testName>testAnonymousResponsesFaultToHeader</testName></addNumbers></S:Body></S:Envelope>";
 
-    String ReplyToHeaderForNonAnonymousResponsesSoapMsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType23002/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testNonAnonymousResponsesReplyToHeader</testName></addNumbers></S:Body></S:Envelope>";
+    String ReplyToHeaderForNonAnonymousResponsesSoapMsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType23002/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testNonAnonymousResponsesReplyToHeader</testName></addNumbers></S:Body></S:Envelope>";
 
-    String FaultToHeaderForNonAnonymousResponsesSoapMsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><FaultTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></FaultTo><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{3}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType23002/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>-10</number1><number2>-10</number2><testName>testNonAnonymousResponsesFaultToHeader</testName></addNumbers></S:Body></S:Envelope>";
+    String FaultToHeaderForNonAnonymousResponsesSoapMsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><FaultTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></FaultTo><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{3}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType23002/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>-10</number1><number2>-10</number2><testName>testNonAnonymousResponsesFaultToHeader</testName></addNumbers></S:Body></S:Envelope>";
 
-    String TestNonAnonymousResponsesAssertionSoapMsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType23002/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testNonAnonymousResponsesAssertion</testName></addNumbers></S:Body></S:Envelope>";
+    String TestNonAnonymousResponsesAssertionSoapMsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType23002/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testNonAnonymousResponsesAssertion</testName></addNumbers></S:Body></S:Envelope>";
 
     private Dispatch<SOAPMessage> createDispatchSOAPMessage(Service service, QName port) throws Exception {
         return service.createDispatch(
@@ -192,10 +187,8 @@ public class Client extends ServiceEETest {
         file23002 = JAXWS_Util.getURLFromProp(ENDPOINT_URL23002);
         url23002 = ctsurl.getURLString(PROTOCOL, hostname, portnum, file23002);
         if (endpointPublishSupport) {
-            urlToNonAnonymousProcessor =
-                    ctsurl.getURLString(PROTOCOL, hostname, javaseServerPort, NONANONYMOUSPROCESSOR);
-            urlToNonAnonymousProcessor2 =
-                    ctsurl.getURLString(PROTOCOL, hostname, javaseServerPort, NONANONYMOUSPROCESSOR2);
+            urlToNonAnonymousProcessor = ctsurl.getURLString(PROTOCOL, hostname, javaseServerPort, NONANONYMOUSPROCESSOR);
+            urlToNonAnonymousProcessor2 = ctsurl.getURLString(PROTOCOL, hostname, javaseServerPort, NONANONYMOUSPROCESSOR2);
         } else {
             urlToNonAnonymousProcessor = ctsurl.getURLString(PROTOCOL, hostname, portnum, NONANONYMOUSPROCESSOR);
             urlToNonAnonymousProcessor2 = ctsurl.getURLString(PROTOCOL, hostname, portnum, NONANONYMOUSPROCESSOR2);
@@ -214,10 +207,8 @@ public class Client extends ServiceEETest {
     }
 
     private void getPortsStandalone() throws Exception {
-        port23001 = (AddNumbersPortType23001)
-                JAXWS_Util.getPort(service23001, PORT_QNAME23001, AddNumbersPortType23001.class);
-        port23002 = (AddNumbersPortType23002)
-                JAXWS_Util.getPort(service23002, PORT_QNAME23002, AddNumbersPortType23002.class);
+        port23001 = (AddNumbersPortType23001) JAXWS_Util.getPort(service23001, PORT_QNAME23001, AddNumbersPortType23001.class);
+        port23002 = (AddNumbersPortType23002) JAXWS_Util.getPort(service23002, PORT_QNAME23002, AddNumbersPortType23002.class);
         TestUtil.logMsg("port3=" + port23001);
         TestUtil.logMsg("port4=" + port23002);
         JAXWS_Util.setTargetEndpointAddress(port23001, url23001);
@@ -254,8 +245,8 @@ public class Client extends ServiceEETest {
     /*
      * @class.testArgs: -ap jaxws-url-props.dat
      *
-     * @class.setup_props: webServerHost; webServerPort; platform.mode;
-     * port.range.min; port.range.max; http.server.supports.endpoint.publish;
+     * @class.setup_props: webServerHost; webServerPort; platform.mode; port.range.min; port.range.max;
+     * http.server.supports.endpoint.publish;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -265,8 +256,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -301,10 +294,8 @@ public class Client extends ServiceEETest {
                 }
 
                 getTestURLs();
-                service23001 = (AddNumbersService23001)
-                        JAXWS_Util.getService(wsdlurl23001, SERVICE_QNAME23001, AddNumbersService23001.class);
-                service23002 = (AddNumbersService23002)
-                        JAXWS_Util.getService(wsdlurl23002, SERVICE_QNAME23002, AddNumbersService23002.class);
+                service23001 = (AddNumbersService23001) JAXWS_Util.getService(wsdlurl23001, SERVICE_QNAME23001, AddNumbersService23001.class);
+                service23002 = (AddNumbersService23002) JAXWS_Util.getService(wsdlurl23002, SERVICE_QNAME23002, AddNumbersService23002.class);
                 getPortsStandalone();
             } else {
                 TestUtil.logMsg("WebServiceRef is not set in Client (get it from specific vehicle)");
@@ -331,15 +322,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: testAnonymousResponsesAssertion
      *
-     * @assertion_ids: JAXWS:JAVADOC:83; JAXWS:JAVADOC:84; JAXWS:JAVADOC:86;
-     * WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2;
+     * @assertion_ids: JAXWS:JAVADOC:83; JAXWS:JAVADOC:84; JAXWS:JAVADOC:86; WSAMD:SPEC:3003; WSAMD:SPEC:3003.1;
+     * WSAMD:SPEC:3003.2;
      *
-     * @test_Strategy: Invocation on port marked with AnonymousResponses assertion
-     * Verify that wsa:ReplyTo in the SOAPRequest is the anonymous URI. Verify
-     * that wsa:To in the SOAPResponse is the anonymous URI.
+     * @test_Strategy: Invocation on port marked with AnonymousResponses assertion Verify that wsa:ReplyTo in the
+     * SOAPRequest is the anonymous URI. Verify that wsa:To in the SOAPResponse is the anonymous URI.
      *
-     * Test multiple @WebServiceRef annotations can be used due
-     * to @Repeatable(value=WebServiceRefs.class)
+     * Test multiple @WebServiceRef annotations can be used due to @Repeatable(value=WebServiceRefs.class)
      */
     public void testAnonymousResponsesAssertion() throws Fault {
         TestUtil.logMsg("testAnonymousResponsesAssertion");
@@ -352,21 +341,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("testAnonymousResponsesAssertion failed");
+        if (!pass)
+            throw new Fault("testAnonymousResponsesAssertion failed");
     }
 
     /*
      * @testName: testNonAnonymousResponsesAssertion
      *
-     * @assertion_ids: JAXWS:JAVADOC:83; JAXWS:JAVADOC:84; JAXWS:JAVADOC:86;
-     * WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.3;
+     * @assertion_ids: JAXWS:JAVADOC:83; JAXWS:JAVADOC:84; JAXWS:JAVADOC:86; WSAMD:SPEC:3003; WSAMD:SPEC:3003.1;
+     * WSAMD:SPEC:3003.3;
      *
-     * @test_Strategy: Invocation on port marked with NonAnonymousResponses
-     * assertion. The <ReplyTo> header may or may not be set by default depending
-     * on the implementation. The test has to account for this.
+     * @test_Strategy: Invocation on port marked with NonAnonymousResponses assertion. The <ReplyTo> header may or may not
+     * be set by default depending on the implementation. The test has to account for this.
      *
-     * Test multiple @WebServiceRef annotations can be used due
-     * to @Repeatable(value=WebServiceRefs.class)
+     * Test multiple @WebServiceRef annotations can be used due to @Repeatable(value=WebServiceRefs.class)
      */
     public void testNonAnonymousResponsesAssertion() throws Fault {
         TestUtil.logMsg("testNonAnonymousResponsesAssertion");
@@ -382,6 +370,7 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
 
-        if (!pass) throw new Fault("testNonAnonymousResponsesAssertion failed");
+        if (!pass)
+            throw new Fault("testNonAnonymousResponsesAssertion failed");
     }
 }

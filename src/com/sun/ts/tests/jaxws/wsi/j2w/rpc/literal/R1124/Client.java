@@ -38,8 +38,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -70,8 +69,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1124
      *
-     * @test_Strategy: Make a request that generates a successful outcome, inpsect
-     *                 HTTP response to make sure the status code is 2xx.
+     * @test_Strategy: Make a request that generates a successful outcome, inpsect HTTP response to make sure the status
+     * code is 2xx.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

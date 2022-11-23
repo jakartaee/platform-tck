@@ -27,6 +27,5 @@ public interface Constants {
 
     public static final String TIMER_SERVICE_JNDI_NAME = "java:comp/TimerService";
 
-    public static final String TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME =
-            "java:comp/TransactionSynchronizationRegistry";
+    public static final String TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME = "java:comp/TransactionSynchronizationRegistry";
 }

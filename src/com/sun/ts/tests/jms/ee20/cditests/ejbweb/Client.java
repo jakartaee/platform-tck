@@ -70,8 +70,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: jms_timeout; user; password; platform.mode;
-     * webServerHost; webServerPort;
+     * @class.setup_props: jms_timeout; user; password; platform.mode; webServerHost; webServerPort;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -125,20 +124,18 @@ public class Client extends EETest {
     /*
      * @testName: sendRecvQueueTestUsingCDIFromServlet
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278; JMS:SPEC:279;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278;
+     * JMS:SPEC:279;
      *
-     * @test_Strategy: Send and receive single message to verify that Queue is
-     * working. Uses CDI and resource injection to inject the JMSContext. Uses
-     * Resource injection to inject the ConnectionFactory, and Queue destination.
+     * @test_Strategy: Send and receive single message to verify that Queue is working. Uses CDI and resource injection to
+     * inject the JMSContext. Uses Resource injection to inject the ConnectionFactory, and Queue destination.
      *
      * @Inject
      *
      * @JMSConnectionFactory("jms/QueueConnectionFactory") JMSContext context1;
      *
-     * ConnectionFactory --> jms/QueueConnectionFactory Queue --> jms/MY_QUEUE
-     * JMSContext --> context1 [Variables injected: --> qcfactory, context1,
-     * queue]
+     * ConnectionFactory --> jms/QueueConnectionFactory Queue --> jms/MY_QUEUE JMSContext --> context1 [Variables injected:
+     * --> qcfactory, context1, queue]
      */
     public void sendRecvQueueTestUsingCDIFromServlet() throws Fault {
         boolean pass = true;
@@ -171,20 +168,18 @@ public class Client extends EETest {
     /*
      * @testName: sendRecvTopicTestUsingCDIFromServlet
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278; JMS:SPEC:279;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278;
+     * JMS:SPEC:279;
      *
-     * @test_Strategy: Send and receive single message to verify that Topic is
-     * working. Uses CDI and resource injection to inject the JMSContext. Uses
-     * Resource injection to inject the ConnectionFactory, and Queue destination.
+     * @test_Strategy: Send and receive single message to verify that Topic is working. Uses CDI and resource injection to
+     * inject the JMSContext. Uses Resource injection to inject the ConnectionFactory, and Queue destination.
      *
      * @Inject
      *
      * @JMSConnectionFactory("jms/TopicConnectionFactory") JMSContext context2;
      *
-     * ConnectionFactory --> jms/TopicConnectionFactory Topic --> jms/MY_TOPIC
-     * JMSContext --> context1 [Variables injected: --> tcfactory, context2,
-     * topic]
+     * ConnectionFactory --> jms/TopicConnectionFactory Topic --> jms/MY_TOPIC JMSContext --> context1 [Variables injected:
+     * --> tcfactory, context2, topic]
      */
     public void sendRecvTopicTestUsingCDIFromServlet() throws Fault {
         boolean pass = true;
@@ -217,17 +212,16 @@ public class Client extends EETest {
     /*
      * @testName: sendRecvUsingCDIDefaultFactoryFromServlet
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278; JMS:SPEC:279;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278;
+     * JMS:SPEC:279;
      *
-     * @test_Strategy: Send and receive single message to/from Queue/Topic using
-     * CDI with the system default connection factory.
+     * @test_Strategy: Send and receive single message to/from Queue/Topic using CDI with the system default connection
+     * factory.
      *
      * @Inject JMSContext context4;
      *
-     * ConnectionFactory --> jms/ConnectionFactory Topic --> jms/MY_TOPIC Queue
-     * --> jms/MY_QUEUE JMSContext --> context4 [Variables injected: --> cfactory,
-     * context4, topic, queue]
+     * ConnectionFactory --> jms/ConnectionFactory Topic --> jms/MY_TOPIC Queue --> jms/MY_QUEUE JMSContext --> context4
+     * [Variables injected: --> cfactory, context4, topic, queue]
      */
     public void sendRecvUsingCDIDefaultFactoryFromServlet() throws Fault {
         boolean pass = true;
@@ -260,11 +254,11 @@ public class Client extends EETest {
     /*
      * @testName: verifySessionModeOnCDIJMSContextFromServlet
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278; JMS:SPEC:279;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278;
+     * JMS:SPEC:279;
      *
-     * @test_Strategy: Check the Session Mode on JMSContext for correctness.
-     * Checks the session mode of the 3 context injections.
+     * @test_Strategy: Check the Session Mode on JMSContext for correctness. Checks the session mode of the 3 context
+     * injections.
      *
      * @Inject
      *
@@ -313,18 +307,14 @@ public class Client extends EETest {
     /*
      * @testName: testRestrictionsOnCDIJMSContextFromServlet
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:281; JMS:JAVADOC:1366; JMS:JAVADOC:1367;
-     * JMS:JAVADOC:1368; JMS:JAVADOC:1353; JMS:JAVADOC:1354; JMS:JAVADOC:917;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:281;
+     * JMS:JAVADOC:1366; JMS:JAVADOC:1367; JMS:JAVADOC:1368; JMS:JAVADOC:1353; JMS:JAVADOC:1354; JMS:JAVADOC:917;
      * JMS:JAVADOC:997; JMS:JAVADOC:1043;
      *
-     * @test_Strategy: Test restrictions on a CDI injected JMSContext. The
-     * following API calls MUST throw a JMSRuntimeException or
-     * IllegalStateRuntimeException if called on an injected CDI JMSContext.
-     * JMSContext.setClientID() JMSContext.setExceptionListener()
-     * JMSContext.stop() JMSContext.acknowledge() JMSContext.commit()
-     * JMSContext.rollback() JMSContext.recover() JMSContext.setAutoStart()
-     * JMSContext.start() JMSContext.close()
+     * @test_Strategy: Test restrictions on a CDI injected JMSContext. The following API calls MUST throw a
+     * JMSRuntimeException or IllegalStateRuntimeException if called on an injected CDI JMSContext. JMSContext.setClientID()
+     * JMSContext.setExceptionListener() JMSContext.stop() JMSContext.acknowledge() JMSContext.commit()
+     * JMSContext.rollback() JMSContext.recover() JMSContext.setAutoStart() JMSContext.start() JMSContext.close()
      */
     public void testRestrictionsOnCDIJMSContextFromServlet() throws Fault {
         boolean pass = true;
@@ -357,20 +347,18 @@ public class Client extends EETest {
     /*
      * @testName: sendRecvQueueTestUsingCDIFromEjb
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278; JMS:SPEC:279;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278;
+     * JMS:SPEC:279;
      *
-     * @test_Strategy: Send and receive single message to verify that Queue is
-     * working. Uses CDI and resource injection to inject the JMSContext. Uses
-     * Resource injection to inject the ConnectionFactory, and Queue destination.
+     * @test_Strategy: Send and receive single message to verify that Queue is working. Uses CDI and resource injection to
+     * inject the JMSContext. Uses Resource injection to inject the ConnectionFactory, and Queue destination.
      *
      * @Inject
      *
      * @JMSConnectionFactory("jms/QueueConnectionFactory") JMSContext context1;
      *
-     * ConnectionFactory --> jms/QueueConnectionFactory Queue --> jms/MY_QUEUE
-     * JMSContext --> context1 [Variables injected: --> qcfactory, context1,
-     * queue]
+     * ConnectionFactory --> jms/QueueConnectionFactory Queue --> jms/MY_QUEUE JMSContext --> context1 [Variables injected:
+     * --> qcfactory, context1, queue]
      */
     public void sendRecvQueueTestUsingCDIFromEjb() throws Fault {
         boolean pass = true;
@@ -398,20 +386,18 @@ public class Client extends EETest {
     /*
      * @testName: sendRecvTopicTestUsingCDIFromEjb
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278; JMS:SPEC:279;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278;
+     * JMS:SPEC:279;
      *
-     * @test_Strategy: Send and receive single message to verify that Topic is
-     * working. Uses CDI and resource injection to inject the JMSContext. Uses
-     * Resource injection to inject the ConnectionFactory, and Queue destination.
+     * @test_Strategy: Send and receive single message to verify that Topic is working. Uses CDI and resource injection to
+     * inject the JMSContext. Uses Resource injection to inject the ConnectionFactory, and Queue destination.
      *
      * @Inject
      *
      * @JMSConnectionFactory("jms/TopicConnectionFactory") JMSContext context2;
      *
-     * ConnectionFactory --> jms/TopicConnectionFactory Topic --> jms/MY_TOPIC
-     * JMSContext --> context2 [Variables injected: --> tcfactory, context2,
-     * topic]
+     * ConnectionFactory --> jms/TopicConnectionFactory Topic --> jms/MY_TOPIC JMSContext --> context2 [Variables injected:
+     * --> tcfactory, context2, topic]
      */
     public void sendRecvTopicTestUsingCDIFromEjb() throws Fault {
         boolean pass = true;
@@ -439,17 +425,16 @@ public class Client extends EETest {
     /*
      * @testName: sendRecvUsingCDIDefaultFactoryFromEjb
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278; JMS:SPEC:279;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278;
+     * JMS:SPEC:279;
      *
-     * @test_Strategy: Send and receive single message to/from Queue/Topic using
-     * CDI with the system default connection factory.
+     * @test_Strategy: Send and receive single message to/from Queue/Topic using CDI with the system default connection
+     * factory.
      *
      * @Inject JMSContext context4;
      *
-     * ConnectionFactory --> jms/ConnectionFactory Topic --> jms/MY_TOPIC Queue
-     * --> jms/MY_QUEUE JMSContext --> context4 [Variables injected: --> cfactory,
-     * context4, topic, queue]
+     * ConnectionFactory --> jms/ConnectionFactory Topic --> jms/MY_TOPIC Queue --> jms/MY_QUEUE JMSContext --> context4
+     * [Variables injected: --> cfactory, context4, topic, queue]
      */
     public void sendRecvUsingCDIDefaultFactoryFromEjb() throws Fault {
         boolean pass = true;
@@ -477,11 +462,11 @@ public class Client extends EETest {
     /*
      * @testName: verifySessionModeOnCDIJMSContextFromEjb
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278; JMS:SPEC:279;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278;
+     * JMS:SPEC:279;
      *
-     * @test_Strategy: Check the Session Mode on JMSContext for correctness.
-     * Checks the session mode of the 3 context injections.
+     * @test_Strategy: Check the Session Mode on JMSContext for correctness. Checks the session mode of the 3 context
+     * injections.
      *
      * @Inject
      *
@@ -525,18 +510,14 @@ public class Client extends EETest {
     /*
      * @testName: testRestrictionsOnCDIJMSContextFromEjb
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:281; JMS:JAVADOC:1366; JMS:JAVADOC:1367;
-     * JMS:JAVADOC:1368; JMS:JAVADOC:1353; JMS:JAVADOC:1354; JMS:JAVADOC:917;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:281;
+     * JMS:JAVADOC:1366; JMS:JAVADOC:1367; JMS:JAVADOC:1368; JMS:JAVADOC:1353; JMS:JAVADOC:1354; JMS:JAVADOC:917;
      * JMS:JAVADOC:997; JMS:JAVADOC:1043;
      *
-     * @test_Strategy: Test restrictions on a CDI injected JMSContext. The
-     * following API calls MUST throw a JMSRuntimeException or
-     * IllegalStateRuntimeException if called on an injected CDI JMSContext.
-     * JMSContext.setClientID() JMSContext.setExceptionListener()
-     * JMSContext.stop() JMSContext.acknowledge() JMSContext.commit()
-     * JMSContext.rollback() JMSContext.recover() JMSContext.setAutoStart()
-     * JMSContext.start() JMSContext.close()
+     * @test_Strategy: Test restrictions on a CDI injected JMSContext. The following API calls MUST throw a
+     * JMSRuntimeException or IllegalStateRuntimeException if called on an injected CDI JMSContext. JMSContext.setClientID()
+     * JMSContext.setExceptionListener() JMSContext.stop() JMSContext.acknowledge() JMSContext.commit()
+     * JMSContext.rollback() JMSContext.recover() JMSContext.setAutoStart() JMSContext.start() JMSContext.close()
      */
     public void testRestrictionsOnCDIJMSContextFromEjb() throws Fault {
         boolean pass = true;
@@ -564,11 +545,9 @@ public class Client extends EETest {
     /*
      * @testName: testActiveJTAUsingCDIAcross2MethodsFromEjb
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:280;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:280;
      *
-     * @test_Strategy: Test active JTA transaction on CDI injected JMSContext
-     * across 2 methods.
+     * @test_Strategy: Test active JTA transaction on CDI injected JMSContext across 2 methods.
      */
     public void testActiveJTAUsingCDIAcross2MethodsFromEjb() throws Fault {
         boolean pass = true;
@@ -603,21 +582,19 @@ public class Client extends EETest {
     /*
      * @testName: sendRecvQueueTestUsingCDIFromManagedBean
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278; JMS:SPEC:279;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278;
+     * JMS:SPEC:279;
      *
-     * @test_Strategy: Send and receive single message to verify that Queue is
-     * working. Uses CDI and resource injection to inject the JMSContext. Uses
-     * Resource injection to inject the ConnectionFactory, and Queue destination.
-     * Verifies CDI injection from a CDI Managed Bean.
+     * @test_Strategy: Send and receive single message to verify that Queue is working. Uses CDI and resource injection to
+     * inject the JMSContext. Uses Resource injection to inject the ConnectionFactory, and Queue destination. Verifies CDI
+     * injection from a CDI Managed Bean.
      *
      * @Inject
      *
      * @JMSConnectionFactory("jms/QueueConnectionFactory") JMSContext context1;
      *
-     * ConnectionFactory --> jms/QueueConnectionFactory Queue --> jms/MY_QUEUE
-     * JMSContext --> context1 [Variables injected: --> qcfactory, context1,
-     * queue]
+     * ConnectionFactory --> jms/QueueConnectionFactory Queue --> jms/MY_QUEUE JMSContext --> context1 [Variables injected:
+     * --> qcfactory, context1, queue]
      */
     public void sendRecvQueueTestUsingCDIFromManagedBean() throws Fault {
         boolean pass = true;
@@ -650,21 +627,19 @@ public class Client extends EETest {
     /*
      * @testName: sendRecvTopicTestUsingCDIFromManagedBean
      *
-     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-     * JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278; JMS:SPEC:279;
+     * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127; JMS:JAVADOC:1128; JMS:SPEC:277; JMS:SPEC:278;
+     * JMS:SPEC:279;
      *
-     * @test_Strategy: Send and receive single message to verify that Topic is
-     * working. Uses CDI and resource injection to inject the JMSContext. Uses
-     * Resource injection to inject the ConnectionFactory, and Topic destination.
-     * Verifies CDI injection from a CDI Managed Bean.
+     * @test_Strategy: Send and receive single message to verify that Topic is working. Uses CDI and resource injection to
+     * inject the JMSContext. Uses Resource injection to inject the ConnectionFactory, and Topic destination. Verifies CDI
+     * injection from a CDI Managed Bean.
      *
      * @Inject
      *
      * @JMSConnectionFactory("jms/TopicConnectionFactory") JMSContext context1;
      *
-     * ConnectionFactory --> jms/TopicConnectionFactory Topic --> jms/MY_TOPIC
-     * JMSContext --> context2 [Variables injected: --> tcfactory, context2,
-     * topic]
+     * ConnectionFactory --> jms/TopicConnectionFactory Topic --> jms/MY_TOPIC JMSContext --> context2 [Variables injected:
+     * --> tcfactory, context2, topic]
      */
     public void sendRecvTopicTestUsingCDIFromManagedBean() throws Fault {
         boolean pass = true;

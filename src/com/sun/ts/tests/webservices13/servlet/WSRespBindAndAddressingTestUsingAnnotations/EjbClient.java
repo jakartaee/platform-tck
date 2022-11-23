@@ -29,7 +29,7 @@ import jakarta.xml.ws.soap.*;
 import java.util.*;
 
 @Stateful(name = "WSRespBindAndAddressingTestUsingAnnotationsClntBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
     private Properties harnessProps = null;
@@ -100,7 +100,8 @@ public class EjbClient implements EjbClientIF {
             return afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest();
         else if (testName.equals("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest"))
             return afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest();
-        else return false;
+        else
+            return false;
     }
 
     private boolean afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest() {

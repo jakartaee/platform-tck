@@ -52,7 +52,7 @@ public class JACCDeliverable extends AbstractDeliverable {
         super.getValidVehicles();
 
         // add default values
-        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"standalone", "appclient"});
+        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] { "standalone", "appclient" });
 
         return htTSValidVehicles;
     }

@@ -97,9 +97,11 @@ public final class SOAP_Util {
         System.out.println("SOAP_Util:setup");
         try {
             System.out.println("Create SOAPConnectionFactory object");
-            if (sconfactory == null) sconfactory = SOAPConnectionFactory.newInstance();
+            if (sconfactory == null)
+                sconfactory = SOAPConnectionFactory.newInstance();
             System.out.println("Create SOAPConnection object");
-            if (scon == null) scon = sconfactory.createConnection();
+            if (scon == null)
+                scon = sconfactory.createConnection();
         } catch (UnsupportedOperationException e) {
             SOAPConnectionFactorySupported = false;
         } catch (Exception e) {
@@ -140,7 +142,8 @@ public final class SOAP_Util {
             soapVersion = null;
             hostname = null;
             portnum = -1;
-            if (harnessProps.getProperty(SOAPVERSION) != null) soapVersion = harnessProps.getProperty(SOAPVERSION);
+            if (harnessProps.getProperty(SOAPVERSION) != null)
+                soapVersion = harnessProps.getProperty(SOAPVERSION);
             if (harnessProps.getProperty(WEBSERVERHOSTPROP) != null)
                 hostname = harnessProps.getProperty(WEBSERVERHOSTPROP);
             if (harnessProps.getProperty(WEBSERVERPORTPROP) != null)
@@ -149,7 +152,8 @@ public final class SOAP_Util {
                 httpProxyHost = harnessProps.getProperty(HTTPPROXYHOST);
             if (harnessProps.getProperty(HTTPPROXYPORT) != null)
                 httpProxyPort = harnessProps.getProperty(HTTPPROXYPORT);
-            if (harnessProps.getProperty(PLATFORMMODE) != null) platformMode = harnessProps.getProperty(PLATFORMMODE);
+            if (harnessProps.getProperty(PLATFORMMODE) != null)
+                platformMode = harnessProps.getProperty(PLATFORMMODE);
         } catch (Exception e) {
             TestUtil.logMsg("Caught exception: " + e);
             e.printStackTrace();
@@ -170,7 +174,8 @@ public final class SOAP_Util {
 
         if (soapVersion == null || soapVersion.equals(SOAP_Util.SOAP11))
             TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
-        else TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+        else
+            TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
     }
 
     public static Properties getHarnessProps() {
@@ -208,8 +213,10 @@ public final class SOAP_Util {
 
     public static String getSOAPVersion() {
         System.out.println("SOAP_Util:getSOAPVersion");
-        if (soapVersion == null || soapVersion.equals(SOAP_Util.SOAP11)) return SOAP_Util.SOAP11;
-        else return SOAP_Util.SOAP12;
+        if (soapVersion == null || soapVersion.equals(SOAP_Util.SOAP11))
+            return SOAP_Util.SOAP11;
+        else
+            return SOAP_Util.SOAP12;
     }
 
     public static void setSOAPVersion(String s) {
@@ -217,19 +224,22 @@ public final class SOAP_Util {
         soapVersion = s;
         if (soapVersion == null || soapVersion.equals(SOAP_Util.SOAP11))
             TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
-        else TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+        else
+            TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
     }
 
     public static SOAPConnection openSOAPConnection() throws Exception {
         System.out.println("SOAP_Util:openSOAPConnection");
-        if (SOAPConnectionFactorySupported && sconfactory != null) scon = sconfactory.createConnection();
+        if (SOAPConnectionFactorySupported && sconfactory != null)
+            scon = sconfactory.createConnection();
         return scon;
     }
 
     public static void closeSOAPConnection() {
         System.out.println("SOAP_Util:closeSOAPConnection");
         try {
-            if (SOAPConnectionFactorySupported && scon != null) scon.close();
+            if (SOAPConnectionFactorySupported && scon != null)
+                scon.close();
         } catch (Exception e) {
         }
         scon = null;
@@ -243,13 +253,16 @@ public final class SOAP_Util {
     public static MessageFactory getMessageFactory() throws Exception {
         System.out.println("SOAP_Util:getMessageFactory");
         if (soapVersion == null) {
-            if (mfactorySOAP11 == null) mfactorySOAP11 = MessageFactory.newInstance();
+            if (mfactorySOAP11 == null)
+                mfactorySOAP11 = MessageFactory.newInstance();
             return mfactorySOAP11;
         } else if (soapVersion.equals(SOAP11)) {
-            if (mfactorySOAP11 == null) mfactorySOAP11 = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
+            if (mfactorySOAP11 == null)
+                mfactorySOAP11 = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
             return mfactorySOAP11;
         } else {
-            if (mfactorySOAP12 == null) mfactorySOAP12 = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
+            if (mfactorySOAP12 == null)
+                mfactorySOAP12 = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
             return mfactorySOAP12;
         }
     }
@@ -257,13 +270,16 @@ public final class SOAP_Util {
     public static SOAPFactory getSOAPFactory() throws Exception {
         System.out.println("SOAP_Util:getSOAPFactory");
         if (soapVersion == null) {
-            if (sfactorySOAP11 == null) sfactorySOAP11 = SOAPFactory.newInstance();
+            if (sfactorySOAP11 == null)
+                sfactorySOAP11 = SOAPFactory.newInstance();
             return sfactorySOAP11;
         } else if (soapVersion.equals(SOAP11)) {
-            if (sfactorySOAP11 == null) sfactorySOAP11 = SOAPFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
+            if (sfactorySOAP11 == null)
+                sfactorySOAP11 = SOAPFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
             return sfactorySOAP11;
         } else {
-            if (sfactorySOAP12 == null) sfactorySOAP12 = SOAPFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
+            if (sfactorySOAP12 == null)
+                sfactorySOAP12 = SOAPFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
             return sfactorySOAP12;
         }
     }
@@ -289,14 +305,16 @@ public final class SOAP_Util {
     public static StringBuffer copyToBuffer(InputStream is) {
         System.out.println("SOAP_Util.copyToBuffer");
 
-        if (is == null) return null;
+        if (is == null)
+            return null;
 
         StringWriter sw = new StringWriter();
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
         try {
             String s;
-            while ((s = br.readLine()) != null) sw.write(s);
+            while ((s = br.readLine()) != null)
+                sw.write(s);
         } catch (Exception e) {
         }
         return sw.getBuffer();

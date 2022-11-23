@@ -37,8 +37,7 @@ public class FormatResponseWrapper extends HttpServletResponseWrapper {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /*
@@ -54,8 +53,7 @@ public class FormatResponseWrapper extends HttpServletResponseWrapper {
     /*
      * Returns the name of the charset used for the MIME body sent in this reponse
      *
-     * @return a String specifying the name of the charset, for example,
-     * ISO-8859-1
+     * @return a String specifying the name of the charset, for example, ISO-8859-1
      */
     public String getCharacterEncoding() {
         super.setHeader("charencoding", "called");

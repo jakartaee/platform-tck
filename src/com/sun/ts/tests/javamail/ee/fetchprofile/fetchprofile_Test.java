@@ -54,9 +54,8 @@ public class fetchprofile_Test extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
-     * javamail.password ; javamail.mailbox; javamail.root.path; smtp.port;
-     * imap.port;
+     * @class.setup_props: javamail.protocol; javamail.server; javamail.username; javamail.password ; javamail.mailbox;
+     * javamail.root.path; smtp.port; imap.port;
      */
     public void setup(String[] args, Properties props) throws Fault {
         try {
@@ -153,7 +152,8 @@ public class fetchprofile_Test extends ServiceEETest implements Serializable {
 
             fp.add(FetchProfile.Item.ENVELOPE); // API TEST
 
-            if (fp.contains(FetchProfile.Item.ENVELOPE)) TestUtil.logTrace("UNIT TEST 1: passed.\n");
+            if (fp.contains(FetchProfile.Item.ENVELOPE))
+                TestUtil.logTrace("UNIT TEST 1: passed.\n");
             else {
                 TestUtil.logTrace("UNIT TEST 1: FAILED.\n");
                 errors++;
@@ -165,7 +165,8 @@ public class fetchprofile_Test extends ServiceEETest implements Serializable {
 
             fp.add(FetchProfile.Item.FLAGS); // API TEST
 
-            if (fp.contains(FetchProfile.Item.FLAGS)) TestUtil.logTrace("UNIT TEST 2: passed.\n");
+            if (fp.contains(FetchProfile.Item.FLAGS))
+                TestUtil.logTrace("UNIT TEST 2: passed.\n");
             else {
                 TestUtil.logTrace("UNIT TEST 2: FAILED.\n");
                 errors++;
@@ -177,7 +178,8 @@ public class fetchprofile_Test extends ServiceEETest implements Serializable {
 
             fp.add(FetchProfile.Item.CONTENT_INFO); // API TEST
 
-            if (fp.contains(FetchProfile.Item.CONTENT_INFO)) TestUtil.logTrace("UNIT TEST 3: passed.\n");
+            if (fp.contains(FetchProfile.Item.CONTENT_INFO))
+                TestUtil.logTrace("UNIT TEST 3: passed.\n");
             else {
                 TestUtil.logTrace("UNIT TEST 3: FAILED.\n");
                 errors++;
@@ -189,7 +191,8 @@ public class fetchprofile_Test extends ServiceEETest implements Serializable {
 
             fp.add("Subject"); // API TEST
 
-            if (fp.contains("Subject")) TestUtil.logTrace("UNIT TEST 4: passed.\n");
+            if (fp.contains("Subject"))
+                TestUtil.logTrace("UNIT TEST 4: passed.\n");
             else {
                 TestUtil.logTrace("UNIT TEST 4: FAILED.\n");
                 errors++;
@@ -201,7 +204,8 @@ public class fetchprofile_Test extends ServiceEETest implements Serializable {
 
             fp.add("From"); // API TEST
 
-            if (fp.contains("From")) TestUtil.logTrace("UNIT TEST 5: passed.\n");
+            if (fp.contains("From"))
+                TestUtil.logTrace("UNIT TEST 5: passed.\n");
             else {
                 TestUtil.logTrace("UNIT TEST 5: FAILED.\n");
                 errors++;
@@ -213,7 +217,8 @@ public class fetchprofile_Test extends ServiceEETest implements Serializable {
 
             fp.add("X-mailer"); // API TEST
 
-            if (fp.contains("X-mailer")) TestUtil.logTrace("UNIT TEST 6: passed.\n");
+            if (fp.contains("X-mailer"))
+                TestUtil.logTrace("UNIT TEST 6: passed.\n");
             else {
                 TestUtil.logTrace("UNIT TEST 6: FAILED.\n");
                 errors++;
@@ -264,13 +269,18 @@ public class fetchprofile_Test extends ServiceEETest implements Serializable {
 
             boolean foundEnv = false, foundFlags = false, foundCont = false, foundSize = false;
             for (int j = 0; j < items.length; j++) {
-                if (items[j] == FetchProfile.Item.ENVELOPE) foundEnv = true;
-                else if (items[j] == FetchProfile.Item.FLAGS) foundFlags = true;
-                else if (items[j] == FetchProfile.Item.CONTENT_INFO) foundCont = true;
-                else if (items[j] == FetchProfile.Item.SIZE) foundSize = true;
+                if (items[j] == FetchProfile.Item.ENVELOPE)
+                    foundEnv = true;
+                else if (items[j] == FetchProfile.Item.FLAGS)
+                    foundFlags = true;
+                else if (items[j] == FetchProfile.Item.CONTENT_INFO)
+                    foundCont = true;
+                else if (items[j] == FetchProfile.Item.SIZE)
+                    foundSize = true;
             }
 
-            if (foundEnv && foundFlags && foundCont && foundSize) TestUtil.logMsg("UNIT TEST 1: passed.\n");
+            if (foundEnv && foundFlags && foundCont && foundSize)
+                TestUtil.logMsg("UNIT TEST 1: passed.\n");
             else {
                 TestUtil.logMsg("UNIT TEST 1: FAILED.\n");
                 errors++;
@@ -287,8 +297,10 @@ public class fetchprofile_Test extends ServiceEETest implements Serializable {
     }
 
     public void checkStatus() {
-        if (errors == 0) status = Status.passed("OKAY");
-        else status = Status.failed("");
+        if (errors == 0)
+            status = Status.passed("OKAY");
+        else
+            status = Status.failed("");
     }
 
     /* cleanup */
@@ -308,8 +320,10 @@ public class fetchprofile_Test extends ServiceEETest implements Serializable {
     public Folder getRootFolder(Store store) {
         Folder folder = null;
         try {
-            if (rootPath.equals("")) folder = store.getDefaultFolder();
-            else folder = store.getFolder(rootPath);
+            if (rootPath.equals(""))
+                folder = store.getDefaultFolder();
+            else
+                folder = store.getFolder(rootPath);
         } catch (Exception e) {
             e.printStackTrace();
         }

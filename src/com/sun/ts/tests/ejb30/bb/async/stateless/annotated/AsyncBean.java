@@ -22,4 +22,5 @@ import jakarta.ejb.Stateless;
 
 @Stateless
 @Asynchronous
-public class AsyncBean extends AsyncBeanBase {}
+public class AsyncBean extends AsyncBeanBase {
+}

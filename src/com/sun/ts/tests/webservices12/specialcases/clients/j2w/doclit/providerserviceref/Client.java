@@ -110,8 +110,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -143,13 +145,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: SpecialCasesJ2wProviderServiceRefTest
      *
-     * @assertion_ids: WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5001;
-     * WS4EE:SPEC:5002;
+     * @assertion_ids: WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5001; WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Client imports wsdl from a deployed webservice endpoint,
-     * builds the client-side artifacts, then uses the WebServiceRef annotation
-     * with name attribute to access and communicate with the deployed webservice
-     * endpoint.
+     * @test_Strategy: Client imports wsdl from a deployed webservice endpoint, builds the client-side artifacts, then uses
+     * the WebServiceRef annotation with name attribute to access and communicate with the deployed webservice endpoint.
      */
     public void SpecialCasesJ2wProviderServiceRefTest() throws Fault {
         TestUtil.logMsg("SpecialCasesJ2wProviderServiceRefTest");
@@ -161,8 +160,10 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Unexpected greeting " + ret);
                 pass = false;
                 break;
-            } else TestUtil.logMsg("Got expected greeting " + ret);
+            } else
+                TestUtil.logMsg("Got expected greeting " + ret);
         }
-        if (!pass) throw new Fault("SpecialCasesJ2wProviderServiceRefTest failed");
+        if (!pass)
+            throw new Fault("SpecialCasesJ2wProviderServiceRefTest failed");
     }
 }

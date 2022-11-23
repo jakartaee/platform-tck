@@ -109,7 +109,8 @@ public class EJBInjectionFilterBase implements Filter {
         }
     }
 
-    public void destroy() {}
+    public void destroy() {
+    }
 
     public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;

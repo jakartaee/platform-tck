@@ -28,16 +28,14 @@ public interface TestCase {
     /**
      * Executes the test case.
      *
-     * @throws TestFailureException
-     *           if the test fails for any reason.
+     * @throws TestFailureException if the test fails for any reason.
      */
     public void execute() throws TestFailureException;
 
     /**
      * Sets the name of the test case.
      *
-     * @param name
-     *          of the test case
+     * @param name of the test case
      */
     public void setName(String name);
 
@@ -49,18 +47,15 @@ public interface TestCase {
     public String getName();
 
     /**
-     * Sets the state for this test case. This state will differ from
-     * implementation to implementation.
+     * Sets the state for this test case. This state will differ from implementation to implementation.
      *
-     * @param state
-     *          test state
+     * @param state test state
      */
     public void setState(Object state);
 
     /**
-     * Returns the state of the test case. The state returned could possibly
-     * differ depending on when this method is called and when the test case has
-     * been executed.
+     * Returns the state of the test case. The state returned could possibly differ depending on when this method is called
+     * and when the test case has been executed.
      */
     public Object getState();
 }

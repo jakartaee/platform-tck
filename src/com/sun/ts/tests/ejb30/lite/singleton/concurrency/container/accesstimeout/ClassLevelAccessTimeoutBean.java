@@ -27,9 +27,8 @@ import jakarta.ejb.Startup;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The purpose of this class is to verify its class-level @AccessTimeout applies
- * to all its business methods. Its superclass, AccessTimeoutBeanBase, contains
- * no AccessTimeout metadata.
+ * The purpose of this class is to verify its class-level @AccessTimeout applies to all its business methods. Its
+ * superclass, AccessTimeoutBeanBase, contains no AccessTimeout metadata.
  */
 @Singleton(name = "ClassLevel")
 @Startup

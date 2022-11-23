@@ -46,9 +46,8 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The callStmtClient7 class tests methods of CallableStatement interface (to
- * check the Support for IN, OUT and INOUT parameters of Stored Procedure) using
- * Sun's J2EE Reference Implementation.
+ * The callStmtClient7 class tests methods of CallableStatement interface (to check the Support for IN, OUT and INOUT
+ * parameters of Stored Procedure) using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -94,14 +93,11 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -110,7 +106,8 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
 
                 if (drManager.equals("yes")) {
@@ -126,9 +123,8 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
                 csSch = new csSchema();
                 msg = new JDBCTestMsg();
                 stmt = conn.createStatement(/*
-                                     * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                     * ResultSet.CONCUR_READ_ONLY
-                                     */ );
+                                             * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+                                             */ );
             } catch (SQLException ex) {
                 logErr("SQL Exception : " + ex.getMessage(), ex);
             }
@@ -141,15 +137,12 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetFloat01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:668;
-     * JDBC:JAVADOC:669; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:668; JDBC:JAVADOC:669; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Using setFloat(int parameterIndex,float x),update the column the
-     * minimum value of Float_Tab. Now execute a query to get the minimum value
-     * and retrieve the result of the query using the getFloat(int columnIndex)
-     * method.Compare the returned value, with the minimum value extracted from
-     * the tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Using setFloat(int
+     * parameterIndex,float x),update the column the minimum value of Float_Tab. Now execute a query to get the minimum
+     * value and retrieve the result of the query using the getFloat(int columnIndex) method.Compare the returned value,
+     * with the minimum value extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testSetFloat01() throws Fault {
         float minFloatVal;
@@ -223,15 +216,12 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetFloat02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:668;
-     * JDBC:JAVADOC:669; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:668; JDBC:JAVADOC:669; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Using setFloat(int parameterIndex,float x),update the column the
-     * maximum value of Float_Tab. Now execute a query to get the maximum value
-     * and retrieve the result of the query using the getFloat(int columnIndex)
-     * method.Compare the returned value, with the maximum value extracted from
-     * the tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Using setFloat(int
+     * parameterIndex,float x),update the column the maximum value of Float_Tab. Now execute a query to get the maximum
+     * value and retrieve the result of the query using the getFloat(int columnIndex) method.Compare the returned value,
+     * with the maximum value extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testSetFloat02() throws Fault {
         float maxFloatVal;
@@ -302,15 +292,13 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetDouble01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:670;
-     * JDBC:JAVADOC:671; JDBC:JAVADOC:386; JDBC:JAVADOC:387; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:670; JDBC:JAVADOC:671; JDBC:JAVADOC:386; JDBC:JAVADOC:387;
+     * JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Using setDouble(int parameterIndex,double x),update the column
-     * the minimum value of Double_Tab. Now execute a query to get the minimum
-     * value and retrieve the result of the query using the getDouble(int
-     * columnIndex) method.Compare the returned value, with the minimum value
-     * extracted from the tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Using setDouble(int
+     * parameterIndex,double x),update the column the minimum value of Double_Tab. Now execute a query to get the minimum
+     * value and retrieve the result of the query using the getDouble(int columnIndex) method.Compare the returned value,
+     * with the minimum value extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testSetDouble01() throws Fault {
         double minDoubleVal;
@@ -382,15 +370,13 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetDouble02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:670;
-     * JDBC:JAVADOC:671; JDBC:JAVADOC:386; JDBC:JAVADOC:387; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:670; JDBC:JAVADOC:671; JDBC:JAVADOC:386; JDBC:JAVADOC:387;
+     * JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Using setDouble(int parameterIndex,double x),update the column
-     * the maximum value of Double_Tab. Now execute a query to get the maximum
-     * value and retrieve the result of the query using the getDouble(int
-     * columnIndex) method.Compare the returned value, with the maximum value
-     * extracted from the tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Using setDouble(int
+     * parameterIndex,double x),update the column the maximum value of Double_Tab. Now execute a query to get the maximum
+     * value and retrieve the result of the query using the getDouble(int columnIndex) method.Compare the returned value,
+     * with the maximum value extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testSetDouble02() throws Fault {
         double maxDoubleVal;
@@ -463,16 +449,12 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetBytes01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:676;
-     * JDBC:JAVADOC:677; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:676; JDBC:JAVADOC:677; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Binary_Val of Binary_Tab with a byte array.Execute
-     * a query to get the byte array and retrieve the result of the query using
-     * the getBytes(int parameterIndex) method.It should return the byte array
-     * object that has been set.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Binary_Val of Binary_Tab with a byte array.Execute a query to get the byte array and retrieve the result of
+     * the query using the getBytes(int parameterIndex) method.It should return the byte array object that has been set.
      */
     public void testSetBytes01() throws Fault {
         String binarySize = null;
@@ -544,16 +526,12 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetBytes02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:676;
-     * JDBC:JAVADOC:677; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:676; JDBC:JAVADOC:677; JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database Using the IN parameter of that
-     * object,update the column Varbinary_Val of Varbinary_Tab with a byte
-     * array.Execute a query to get the byte array and retrieve the result of the
-     * query using the getBytes(int parameterIndex) method.It should return the
-     * byte array object that has been set.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database Using the IN parameter of that object,update the
+     * column Varbinary_Val of Varbinary_Tab with a byte array.Execute a query to get the byte array and retrieve the result
+     * of the query using the getBytes(int parameterIndex) method.It should return the byte array object that has been set.
      */
     public void testSetBytes02() throws Fault {
         String varbinarySize = null;
@@ -626,15 +604,13 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetDate01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:678;
-     * JDBC:JAVADOC:679; JDBC:JAVADOC:392; JDBC:JAVADOC:393; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:678; JDBC:JAVADOC:679; JDBC:JAVADOC:392; JDBC:JAVADOC:393;
+     * JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Mfg_Date of Date_Tab with the null value.Execute a
-     * query to get the null value and retrieve the result of the query using the
-     * getDate(int parameterIndex) method.Check if it is null.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Mfg_Date of Date_Tab with the null value.Execute a query to get the null value and retrieve the result of the
+     * query using the getDate(int parameterIndex) method.Check if it is null.
      */
     public void testSetDate01() throws Fault {
         try {
@@ -696,17 +672,14 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetDate02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:678;
-     * JDBC:JAVADOC:679; JDBC:JAVADOC:392; JDBC:JAVADOC:393; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:678; JDBC:JAVADOC:679; JDBC:JAVADOC:392; JDBC:JAVADOC:393;
+     * JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Null_Val of Date_Tab with a non null Date value
-     * extracted from tssql.stmt file Execute a query to get the non null Date
-     * value and retrieve the result of the query using the getDate(int
-     * parameterIndex) method. Compare the returned value with the value extracted
-     * from tssql.stmt file. Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Null_Val of Date_Tab with a non null Date value extracted from tssql.stmt file Execute a query to get the non
+     * null Date value and retrieve the result of the query using the getDate(int parameterIndex) method. Compare the
+     * returned value with the value extracted from tssql.stmt file. Both of them should be equal.
      */
     public void testSetDate02() throws Fault {
         try {
@@ -775,15 +748,13 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetDate03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:678;
-     * JDBC:JAVADOC:679; JDBC:JAVADOC:612; JDBC:JAVADOC:613;JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:678; JDBC:JAVADOC:679; JDBC:JAVADOC:612;
+     * JDBC:JAVADOC:613;JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database. Using the IN parameter of that
-     * object,update the column Mfg_Date of Date_Tab with the null value.Execute a
-     * query to get the null value and retrieve the result of the query using the
-     * getDate(int parameterIndex,Calender cal) method.Check if it is null.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database. Using the IN parameter of that object,update the
+     * column Mfg_Date of Date_Tab with the null value.Execute a query to get the null value and retrieve the result of the
+     * query using the getDate(int parameterIndex,Calender cal) method.Check if it is null.
      */
     public void testSetDate03() throws Fault {
         try {
@@ -846,17 +817,14 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetDate04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:714;
-     * JDBC:JAVADOC:715; JDBC:JAVADOC:612; JDBC:JAVADOC:613; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:714; JDBC:JAVADOC:715; JDBC:JAVADOC:612; JDBC:JAVADOC:613;
+     * JavaEE:SPEC:186;
      *
-     * @test_Strategy: This test case is meant for checking the support for IN
-     * parameter in CallableStatement Interface. Get a CallableStatement object
-     * from the connection to the database Using the IN parameter of that
-     * object,update the column Null_Val of Date_Tab with a non null Date value
-     * extracted from tssql.stmt file. Execute a query to get the non null Date
-     * value and retrieve the result of the query using the getDate(int
-     * parameterIndex,Calender cal) method.Compare the returned value with the
-     * value extracted from tssql.stmt file.Both of them should be equal.
+     * @test_Strategy: This test case is meant for checking the support for IN parameter in CallableStatement Interface. Get
+     * a CallableStatement object from the connection to the database Using the IN parameter of that object,update the
+     * column Null_Val of Date_Tab with a non null Date value extracted from tssql.stmt file. Execute a query to get the non
+     * null Date value and retrieve the result of the query using the getDate(int parameterIndex,Calender cal)
+     * method.Compare the returned value with the value extracted from tssql.stmt file.Both of them should be equal.
      */
     public void testSetDate04() throws Fault {
         try {
@@ -926,15 +894,12 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetTime01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:680;
-     * JDBC:JAVADOC:681; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:680; JDBC:JAVADOC:681; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Using the setTime(int parameterIndex, Time x) method,update the
-     * column value with the Non-Null Time value. Call the getTime(int columnno)
-     * method to retrieve this value. Extract the Time value from the tssql.stmt
-     * file. Compare this value with the value returned by the getTime(int
-     * columnno) method. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Using the setTime(int
+     * parameterIndex, Time x) method,update the column value with the Non-Null Time value. Call the getTime(int columnno)
+     * method to retrieve this value. Extract the Time value from the tssql.stmt file. Compare this value with the value
+     * returned by the getTime(int columnno) method. Both the values should be equal.
      */
 
     public void testSetTime01() throws Fault {
@@ -1009,16 +974,13 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetTime02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:716;
-     * JDBC:JAVADOC:717; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:716; JDBC:JAVADOC:717; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Using the setTime(int parameterIndex, Time x, Calendar cal)
-     * method,update the column value with the Non-Null Time value using the
-     * Calendar Object. Call the getTime(int columnno) method to retrieve this
-     * value. Extract the Time value from the tssql.stmt file. Compare this value
-     * with the value returned by the getTime(int columnno) method. Both the
-     * values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Using the setTime(int
+     * parameterIndex, Time x, Calendar cal) method,update the column value with the Non-Null Time value using the Calendar
+     * Object. Call the getTime(int columnno) method to retrieve this value. Extract the Time value from the tssql.stmt
+     * file. Compare this value with the value returned by the getTime(int columnno) method. Both the values should be
+     * equal.
      */
     public void testSetTime02() throws Fault {
         Time inTimeVal = null;
@@ -1093,16 +1055,12 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetTimestamp01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:682;
-     * JDBC:JAVADOC:683; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:682; JDBC:JAVADOC:683; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Using the setTimestamp(int parameterIndex, Timestamp x)
-     * method,update the column value with the Non-Null Timestamp value. Call the
-     * getTimestamp(int columnno) method to retrieve this value. Extract the
-     * Timestamp value from the tssql.stmt file. Compare this value with the value
-     * returned by the getTimestamp(int columnno) method. Both the values should
-     * be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Using the setTimestamp(int
+     * parameterIndex, Timestamp x) method,update the column value with the Non-Null Timestamp value. Call the
+     * getTimestamp(int columnno) method to retrieve this value. Extract the Timestamp value from the tssql.stmt file.
+     * Compare this value with the value returned by the getTimestamp(int columnno) method. Both the values should be equal.
      */
     public void testSetTimestamp01() throws Fault {
         Timestamp brkTimeVal = null;
@@ -1176,16 +1134,13 @@ public class callStmtClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetTimestamp02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:718;
-     * JDBC:JAVADOC:719; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:718; JDBC:JAVADOC:719; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Using the setTimestamp(int parameterIndex, Time x, Calendar cal)
-     * method,update the column value with the Non-Null Timestamp value using the
-     * Calendar Object. Call the getTimestamp(int columnno) method to retrieve
-     * this value. Extract the Timestamp value from the tssql.stmt file. Compare
-     * this value with the value returned by the getTimestamp(int columnno)
-     * method. Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Using the setTimestamp(int
+     * parameterIndex, Time x, Calendar cal) method,update the column value with the Non-Null Timestamp value using the
+     * Calendar Object. Call the getTimestamp(int columnno) method to retrieve this value. Extract the Timestamp value from
+     * the tssql.stmt file. Compare this value with the value returned by the getTimestamp(int columnno) method. Both the
+     * values should be equal.
      */
     public void testSetTimestamp02() throws Fault {
         Timestamp inTimeVal = null;

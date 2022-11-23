@@ -33,7 +33,8 @@ public class Client extends PMClientBase {
 
     Department[] deptRef = new Department[2];
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -82,8 +83,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:3417;
      *
-     * @test_Strategy: Use getName to get the name of the named entity graph in
-     * the Employee2 entity that has no name
+     * @test_Strategy: Use getName to get the name of the named entity graph in the Employee2 entity that has no name
      */
     public void entityGraphGetNameNoNameExistsTest() throws Fault {
         boolean pass = false;
@@ -135,8 +135,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:3417;
      *
-     * @test_Strategy: Use getEntityGraph to get the named entity graphs in the
-     * Employee entity
+     * @test_Strategy: Use getEntityGraph to get the named entity graphs in the Employee entity
      */
     public void getEntityGraphsClassTest() throws Fault {
         boolean pass = false;

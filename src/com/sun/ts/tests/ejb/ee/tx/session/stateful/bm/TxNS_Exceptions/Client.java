@@ -82,12 +82,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:632.1; EJB:SPEC:632.2
      *
-     * @test_Strategy: AppException from EJB. Create an instance of a stateful
-     * session Testbean bean. Create an instance of a stateful session TxBean
-     * (NotSupported) bean. Initiate a bean managed transaction and perform a
-     * delete row operation to a table and throw AppException. Ensure that the
-     * exception does not cause an automatic rolledback. Ensure that the client
-     * receives AppException.
+     * @test_Strategy: AppException from EJB. Create an instance of a stateful session Testbean bean. Create an instance of
+     * a stateful session TxBean (NotSupported) bean. Initiate a bean managed transaction and perform a delete row operation
+     * to a table and throw AppException. Ensure that the exception does not cause an automatic rolledback. Ensure that the
+     * client receives AppException.
      */
     public void test1() throws Fault {
         try {
@@ -102,8 +100,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -120,11 +120,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:633.3
      *
-     * @test_Strategy: SystemException from EJB. Create an instance of a stateful
-     * session Testbean bean. Create an instance of a stateful session TxBean
-     * (NotSupported) bean. Initiate a bean managed transaction and perform a
-     * delete row operation to a table and throw SystemException. Ensure that the
-     * instance gets discarded. Ensure that the client receives RemoteException.
+     * @test_Strategy: SystemException from EJB. Create an instance of a stateful session Testbean bean. Create an instance
+     * of a stateful session TxBean (NotSupported) bean. Initiate a bean managed transaction and perform a delete row
+     * operation to a table and throw SystemException. Ensure that the instance gets discarded. Ensure that the client
+     * receives RemoteException.
      */
     public void test2() throws Fault {
         try {
@@ -139,8 +138,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test2");
             testResult = beanRef.test2();
 
-            if (!testResult) throw new Fault("test2 failed");
-            else logMsg("test2 passed");
+            if (!testResult)
+                throw new Fault("test2 failed");
+            else
+                logMsg("test2 passed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {
@@ -157,11 +158,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:633.3
      *
-     * @test_Strategy: EJBException from EJB. Create an instance of a stateful
-     * session Testbean bean. Create an instance of a stateful session TxBean
-     * (NotSupported) bean. Initiate a bean managed transaction and perform a
-     * delete row operation to a table and throw EJBException. Ensure that the
-     * instance gets discarded. Ensure that the client receives RemoteException.
+     * @test_Strategy: EJBException from EJB. Create an instance of a stateful session Testbean bean. Create an instance of
+     * a stateful session TxBean (NotSupported) bean. Initiate a bean managed transaction and perform a delete row operation
+     * to a table and throw EJBException. Ensure that the instance gets discarded. Ensure that the client receives
+     * RemoteException.
      */
     public void test4() throws Fault {
         try {
@@ -176,8 +176,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test4");
             testResult = beanRef.test4();
 
-            if (!testResult) throw new Fault("test4 failed");
-            else logMsg("test4 passed");
+            if (!testResult)
+                throw new Fault("test4 failed");
+            else
+                logMsg("test4 passed");
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         } finally {
@@ -194,11 +196,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:633.3
      *
-     * @test_Strategy: Error from EJB. Create an instance of a stateful session
-     * Testbean bean. Create an instance of a stateful session TxBean
-     * (NotSupported) bean. Initiate a bean managed transaction and perform a
-     * delete row operation to a table and throw Error. Ensure that the instance
-     * gets discarded. Ensure that the client receives RemoteException.
+     * @test_Strategy: Error from EJB. Create an instance of a stateful session Testbean bean. Create an instance of a
+     * stateful session TxBean (NotSupported) bean. Initiate a bean managed transaction and perform a delete row operation
+     * to a table and throw Error. Ensure that the instance gets discarded. Ensure that the client receives RemoteException.
      */
     public void test5() throws Fault {
         try {
@@ -213,8 +213,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test5");
             testResult = beanRef.test5();
 
-            if (!testResult) throw new Fault("test5 failed");
-            else logMsg("test5 passed");
+            if (!testResult)
+                throw new Fault("test5 failed");
+            else
+                logMsg("test5 passed");
         } catch (Exception e) {
             throw new Fault("test5 failed", e);
         } finally {

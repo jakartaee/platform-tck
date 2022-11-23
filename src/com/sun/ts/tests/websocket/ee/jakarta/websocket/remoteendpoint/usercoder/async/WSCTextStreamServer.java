@@ -33,18 +33,16 @@ import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-@ServerEndpoint(
-        value = "/textstream",
-        encoders = {
-            TextStreamCoderBool.class,
-            TextStreamCoderByte.class,
-            TextStreamCoderChar.class,
-            TextStreamCoderDouble.class,
-            TextStreamCoderInt.class,
-            TextStreamCoderLong.class,
-            TextStreamCoderFloat.class,
-            TextStreamCoderShort.class
-        })
+@ServerEndpoint(value = "/textstream", encoders = {
+        TextStreamCoderBool.class,
+        TextStreamCoderByte.class,
+        TextStreamCoderChar.class,
+        TextStreamCoderDouble.class,
+        TextStreamCoderInt.class,
+        TextStreamCoderLong.class,
+        TextStreamCoderFloat.class,
+        TextStreamCoderShort.class
+})
 public class WSCTextStreamServer extends WSCCommonServer {
 
     @Override

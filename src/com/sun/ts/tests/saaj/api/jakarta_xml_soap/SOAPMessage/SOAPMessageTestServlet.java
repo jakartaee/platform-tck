@@ -300,8 +300,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -326,7 +328,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
             if (cnt != 3) {
                 TestUtil.logErr("attachment count expected 3, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("attachment count was correct");
+            } else
+                TestUtil.logMsg("attachment count was correct");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -334,8 +337,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -382,8 +387,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -465,8 +472,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -549,8 +558,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -597,8 +608,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -648,8 +661,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -676,7 +691,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
             if (!received.equals(description)) {
                 TestUtil.logErr("Content description mismatch: expected " + description + ", received " + received);
                 pass = false;
-            } else TestUtil.logMsg("Content description matches - " + description);
+            } else
+                TestUtil.logMsg("Content description matches - " + description);
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -684,8 +700,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -718,8 +736,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -747,7 +767,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
             if (cnt != 3) {
                 TestUtil.logErr("only 3 attachments was added, count not correct");
                 pass = false;
-            } else TestUtil.logMsg("3 attachments exist as expected");
+            } else
+                TestUtil.logMsg("3 attachments exist as expected");
 
             TestUtil.logMsg("remove all attachments");
             msg.removeAllAttachments();
@@ -758,7 +779,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
             if (iterator.hasNext()) {
                 TestUtil.logErr("attachments were not removed - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("attachments were removed - expected");
+            } else
+                TestUtil.logMsg("attachments were removed - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -766,8 +788,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -795,7 +819,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
             if (cnt != 3) {
                 TestUtil.logErr("only 3 attachments was added, count not correct");
                 pass = false;
-            } else TestUtil.logMsg("3 attachments exist as expected");
+            } else
+                TestUtil.logMsg("3 attachments exist as expected");
 
             TestUtil.logMsg("remove just the text/xml attachments which are 2");
             MimeHeaders mhs = new MimeHeaders();
@@ -832,8 +857,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -862,8 +889,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -897,7 +926,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
             } else if (!value1.equals("MyValue1")) {
                 TestUtil.logErr("Property value mismatch: expected MyValue1" + ", received " + value1);
                 pass = false;
-            } else TestUtil.logMsg("Property value matches: MyValue1");
+            } else
+                TestUtil.logMsg("Property value matches: MyValue1");
 
             TestUtil.logMsg("Verify that second property value is correct");
             if (value2 == null) {
@@ -906,15 +936,18 @@ public class SOAPMessageTestServlet extends HttpServlet {
             } else if (!value2.equals("MyValue2")) {
                 TestUtil.logErr("Property value mismatch: expected MyValue2" + ", received " + value2);
                 pass = false;
-            } else TestUtil.logMsg("Property value matches: MyValue2");
+            } else
+                TestUtil.logMsg("Property value matches: MyValue2");
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -953,7 +986,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
             } else if (!value1.equals("MyValue1Again")) {
                 TestUtil.logErr("Property value1 mismatch: expected MyValue1Again" + ", received " + value1);
                 pass = false;
-            } else TestUtil.logMsg("Property value matches: MyValue1Again");
+            } else
+                TestUtil.logMsg("Property value matches: MyValue1Again");
 
             TestUtil.logMsg("Verify that second property value is correct");
             if (value2 == null) {
@@ -962,15 +996,18 @@ public class SOAPMessageTestServlet extends HttpServlet {
             } else if (!value2.equals("MyValue2Again")) {
                 TestUtil.logErr("Property value2 mismatch: expected MyValue2Again" + ", received " + value2);
                 pass = false;
-            } else TestUtil.logMsg("Property value matches: MyValue2Again");
+            } else
+                TestUtil.logMsg("Property value matches: MyValue2Again");
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -999,8 +1036,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1030,8 +1069,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1062,8 +1103,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
         }
 
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1097,8 +1140,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
         }
 
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1125,7 +1170,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
             if (!received.equals(description)) {
                 TestUtil.logErr("Content description mismatch: expected " + description + ", received " + received);
                 pass = false;
-            } else TestUtil.logMsg("Content description matches - " + description);
+            } else
+                TestUtil.logMsg("Content description matches - " + description);
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -1133,8 +1179,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1165,8 +1213,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1205,8 +1255,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1318,7 +1370,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
                 TestUtil.logErr("Wrong attachment was returned: Got Content-Type of " + myap.getContentType()
                         + ", Expected Content-Type of image/gif");
                 pass = false;
-            } else TestUtil.logMsg("Correct attachment was returned");
+            } else
+                TestUtil.logMsg("Correct attachment was returned");
 
             TestUtil.logMsg("Retrieve attachment with swaref=cid:THEXML");
             myap = msg.getAttachment(sbe2);
@@ -1329,14 +1382,16 @@ public class SOAPMessageTestServlet extends HttpServlet {
                 TestUtil.logErr("Wrong attachment was returned: Got Content-Type of " + myap.getContentType()
                         + ", Expected Content-Type of text/xml");
                 pass = false;
-            } else TestUtil.logMsg("Correct attachment was returned");
+            } else
+                TestUtil.logMsg("Correct attachment was returned");
 
             TestUtil.logMsg("Retrieve attachment with swaref=cid:boo-hoo (expect null)");
             QName myqname = new QName("boo-hoo");
             SOAPElement myse = SOAP_Util.getSOAPFactory().createElement(myqname);
             myse.addTextNode("<theBooHooAttachment href=\"cid:boo-hoo\"/>");
             myap = msg.getAttachment(myse);
-            if (myap == null) TestUtil.logMsg("Returned null (expected)");
+            if (myap == null)
+                TestUtil.logMsg("Returned null (expected)");
             else {
                 TestUtil.logErr("Returned non null (unexpected)");
                 pass = false;
@@ -1354,8 +1409,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         TestUtil.logMsg("TESTRESULT=" + resultProps.getProperty("TESTRESULT"));
         resultProps.list(out);
     }
@@ -1473,7 +1530,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
                 TestUtil.logErr("Wrong attachment was returned: Got Content-Type of " + myap.getContentType()
                         + ", Expected Content-Type of image/gif");
                 pass = false;
-            } else TestUtil.logMsg("Correct attachment was returned");
+            } else
+                TestUtil.logMsg("Correct attachment was returned");
 
             TestUtil.logMsg("Retrieve attachment with swaref=cid:THEXML");
             myap = msg.getAttachment(cse2);
@@ -1484,14 +1542,16 @@ public class SOAPMessageTestServlet extends HttpServlet {
                 TestUtil.logErr("Wrong attachment was returned: Got Content-Type of " + myap.getContentType()
                         + ", Expected Content-Type of text/xml");
                 pass = false;
-            } else TestUtil.logMsg("Correct attachment was returned");
+            } else
+                TestUtil.logMsg("Correct attachment was returned");
 
             TestUtil.logMsg("Retrieve attachment with swaref=cid:boo-hoo (expect null)");
             QName myqname = new QName("boo-hoo");
             SOAPElement myse = SOAP_Util.getSOAPFactory().createElement(myqname);
             myse.addTextNode("<theBooHooAttachment href=\"cid:boo-hoo\"/>");
             myap = msg.getAttachment(myse);
-            if (myap == null) TestUtil.logMsg("Returned null (expected)");
+            if (myap == null)
+                TestUtil.logMsg("Returned null (expected)");
             else {
                 TestUtil.logErr("Returned non null (unexpected)");
                 pass = false;
@@ -1509,8 +1569,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         TestUtil.logMsg("TESTRESULT=" + resultProps.getProperty("TESTRESULT"));
         resultProps.list(out);
     }
@@ -1627,7 +1689,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
                 TestUtil.logErr("Wrong attachment was returned: Got Content-Type of " + myap.getContentType()
                         + ", Expected Content-Type of image/gif");
                 pass = false;
-            } else TestUtil.logMsg("Correct attachment was returned");
+            } else
+                TestUtil.logMsg("Correct attachment was returned");
 
             TestUtil.logMsg("Retrieve attachment with swaref=THEXML");
             myap = msg.getAttachment(sbe2);
@@ -1638,14 +1701,16 @@ public class SOAPMessageTestServlet extends HttpServlet {
                 TestUtil.logErr("Wrong attachment was returned: Got Content-Type of " + myap.getContentType()
                         + ", Expected Content-Type of text/xml");
                 pass = false;
-            } else TestUtil.logMsg("Correct attachment was returned");
+            } else
+                TestUtil.logMsg("Correct attachment was returned");
 
             TestUtil.logMsg("Retrieve attachment with swaref=boo-hoo (expect null)");
             QName myqname = new QName("boo-hoo");
             SOAPElement myse = SOAP_Util.getSOAPFactory().createElement(myqname);
             myse.addTextNode("<theBooHooAttachment href=\"boo-hoo\"/>");
             myap = msg.getAttachment(myse);
-            if (myap == null) TestUtil.logMsg("Returned null (expected)");
+            if (myap == null)
+                TestUtil.logMsg("Returned null (expected)");
             else {
                 TestUtil.logErr("Returned non null (unexpected)");
                 pass = false;
@@ -1663,8 +1728,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         TestUtil.logMsg("TESTRESULT=" + resultProps.getProperty("TESTRESULT"));
         resultProps.list(out);
     }
@@ -1781,7 +1848,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
                 TestUtil.logErr("Wrong attachment was returned: Got Content-Type of " + myap.getContentType()
                         + ", Expected Content-Type of image/gif");
                 pass = false;
-            } else TestUtil.logMsg("Correct attachment was returned");
+            } else
+                TestUtil.logMsg("Correct attachment was returned");
 
             TestUtil.logMsg("Retrieve attachment with href=cid:THEXML");
             myap = msg.getAttachment(sbe2);
@@ -1792,14 +1860,16 @@ public class SOAPMessageTestServlet extends HttpServlet {
                 TestUtil.logErr("Wrong attachment was returned: Got Content-Type of " + myap.getContentType()
                         + ", Expected Content-Type of text/xml");
                 pass = false;
-            } else TestUtil.logMsg("Correct attachment was returned");
+            } else
+                TestUtil.logMsg("Correct attachment was returned");
 
             TestUtil.logMsg("Retrieve attachment with href=cid:boo-hoo (expect null)");
             QName myqname = new QName("boo-hoo");
             SOAPElement myse = SOAP_Util.getSOAPFactory().createElement(myqname);
             myse.addTextNode("<theBooHooAttachment href=\"cid:boo-hoo\"/>");
             myap = msg.getAttachment(myse);
-            if (myap == null) TestUtil.logMsg("Returned null (expected)");
+            if (myap == null)
+                TestUtil.logMsg("Returned null (expected)");
             else {
                 TestUtil.logErr("Returned non null (unexpected)");
                 pass = false;
@@ -1817,8 +1887,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         TestUtil.logMsg("TESTRESULT=" + resultProps.getProperty("TESTRESULT"));
         resultProps.list(out);
     }
@@ -1943,7 +2015,8 @@ public class SOAPMessageTestServlet extends HttpServlet {
                 TestUtil.logErr("Wrong attachment was returned: Got Content-Type of " + myap.getContentType()
                         + ", Expected Content-Type of image/gif");
                 pass = false;
-            } else TestUtil.logMsg("Correct attachment was returned");
+            } else
+                TestUtil.logMsg("Correct attachment was returned");
 
             TestUtil.logMsg("Retrieve attachment with href=THEXML");
             myap = msg.getAttachment(sbe2);
@@ -1954,14 +2027,16 @@ public class SOAPMessageTestServlet extends HttpServlet {
                 TestUtil.logErr("Wrong attachment was returned: Got Content-Type of " + myap.getContentType()
                         + ", Expected Content-Type of text/xml");
                 pass = false;
-            } else TestUtil.logMsg("Correct attachment was returned");
+            } else
+                TestUtil.logMsg("Correct attachment was returned");
 
             TestUtil.logMsg("Retrieve attachment with href=boo-hoo (expect null)");
             QName myqname = new QName("boo-hoo");
             SOAPElement myse = SOAP_Util.getSOAPFactory().createElement(myqname);
             myse.addTextNode("<theBooHooAttachment href=\"boo-hoo\"/>");
             myap = msg.getAttachment(myse);
-            if (myap == null) TestUtil.logMsg("Returned null (expected)");
+            if (myap == null)
+                TestUtil.logMsg("Returned null (expected)");
             else {
                 TestUtil.logErr("Returned non null (unexpected)");
                 pass = false;
@@ -1979,8 +2054,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         TestUtil.logMsg("TESTRESULT=" + resultProps.getProperty("TESTRESULT"));
         resultProps.list(out);
     }

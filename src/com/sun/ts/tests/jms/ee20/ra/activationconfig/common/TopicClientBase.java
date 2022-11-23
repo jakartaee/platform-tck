@@ -60,14 +60,13 @@ public abstract class TopicClientBase extends com.sun.ts.tests.jms.ee20.ra.commo
     /*
      * testName: test1
      *
-     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-     * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
+     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2; JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5;
+     * JMS:SPEC:276.6;
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      *
-     * Sends message and waits for response. The message should reach the target
-     * MDB, and a response should be received by this client.
+     * Sends message and waits for response. The message should reach the target MDB, and a response should be received by
+     * this client.
      */
     public void test1() throws Fault {
         sendReceive("test1", 0);
@@ -76,14 +75,13 @@ public abstract class TopicClientBase extends com.sun.ts.tests.jms.ee20.ra.commo
     /*
      * testName: negativeTest1
      *
-     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-     * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
+     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2; JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5;
+     * JMS:SPEC:276.6;
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      *
-     * Sends message and waits for response. The message should not reach the
-     * target MDB, and no response should be received by this client.
+     * Sends message and waits for response. The message should not reach the target MDB, and no response should be received
+     * by this client.
      */
     public void negativeTest1() throws Fault {
         // the next messages should be filtered out by the ActivationConfigBean
@@ -93,14 +91,13 @@ public abstract class TopicClientBase extends com.sun.ts.tests.jms.ee20.ra.commo
     /*
      * testName: negativeTest2
      *
-     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-     * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
+     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2; JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5;
+     * JMS:SPEC:276.6;
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      *
-     * Sends message and waits for response. The message should not reach the
-     * target MDB, and no response should be received by this client.
+     * Sends message and waits for response. The message should not reach the target MDB, and no response should be received
+     * by this client.
      */
     public void negativeTest2() throws Fault {
         // the next messages should be filtered out by the ActivationConfigBean

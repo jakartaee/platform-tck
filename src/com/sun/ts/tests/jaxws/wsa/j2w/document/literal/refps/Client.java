@@ -100,14 +100,11 @@ public class Client extends ServiceEETest {
 
     static AddNumbersService service = null;
 
-    private static String xmlInterfaceName =
-            "<wsam:InterfaceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:myns=\"http://example.com\">myns:AddNumbersPortType</wsam:InterfaceName>";
+    private static String xmlInterfaceName = "<wsam:InterfaceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:myns=\"http://example.com\">myns:AddNumbersPortType</wsam:InterfaceName>";
 
-    private static String xmlRefParam1 =
-            "<myns1:MyParam1 IsReferenceParameter='true' xmlns:myns1=\"http://example.com/myparam1\">Hello</myns1:MyParam1>";
+    private static String xmlRefParam1 = "<myns1:MyParam1 IsReferenceParameter='true' xmlns:myns1=\"http://example.com/myparam1\">Hello</myns1:MyParam1>";
 
-    private static String xmlRefParam2 =
-            "<myns2:MyParam2 IsReferenceParameter='true' xmlns:myns2=\"http://example.com/myparam2\">There</myns2:MyParam2>";
+    private static String xmlRefParam2 = "<myns2:MyParam2 IsReferenceParameter='true' xmlns:myns2=\"http://example.com/myparam2\">There</myns2:MyParam2>";
 
     public static final String REQUEST_REFERENCE_PARAMETERS = "<?xml version=\"1.0\"?><S:Envelope "
             + "xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" "
@@ -154,7 +151,7 @@ public class Client extends ServiceEETest {
 
     private static AddressingFeature DISABLED_ADDRESSING_FEATURE = new AddressingFeature(false);
 
-    private static WebServiceFeature[] enabledRequiredwsf = {new AddressingFeature(true, true)};
+    private static WebServiceFeature[] enabledRequiredwsf = { new AddressingFeature(true, true) };
 
     // Reference parameter constants
     private QName CUSTOMER_KEY = new QName("http://example.org/customer", "CustomerKey");
@@ -194,7 +191,8 @@ public class Client extends ServiceEETest {
                     if (!value.equals(CUSTOMER_KEY_VALUE)) {
                         TestUtil.logErr("CUSTOMER_KEY_VALUE: expected: " + CUSTOMER_KEY_VALUE + ", received: " + value);
                         return false;
-                    } else found = true;
+                    } else
+                        found = true;
                 }
             }
             if (!found) {
@@ -267,8 +265,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -307,8 +307,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: testReplyToRefps
      *
-     * @assertion_ids: WSACORE:SPEC:3012; WSACORE:SPEC:3012.1;
-     * WSACORE:SPEC:3012.2; WSACORE:SPEC:2004; WSACORE:SPEC:2004.3;
+     * @assertion_ids: WSACORE:SPEC:3012; WSACORE:SPEC:3012.1; WSACORE:SPEC:3012.2; WSACORE:SPEC:2004; WSACORE:SPEC:2004.3;
      * WSACORE:SPEC:3021;
      *
      * @test_Strategy:
@@ -334,14 +333,14 @@ public class Client extends ServiceEETest {
             throw new Fault("testReplyToRefps failed", e);
         }
 
-        if (!pass) throw new Fault("testReplyToRefps failed");
+        if (!pass)
+            throw new Fault("testReplyToRefps failed");
     }
 
     /*
      * @testName: testFaultToRefps
      *
-     * @assertion_ids: WSACORE:SPEC:3012; WSACORE:SPEC:3012.1;
-     * WSACORE:SPEC:3012.2; WSACORE:SPEC:2004; WSACORE:SPEC:2004.3;
+     * @assertion_ids: WSACORE:SPEC:3012; WSACORE:SPEC:3012.1; WSACORE:SPEC:3012.2; WSACORE:SPEC:2004; WSACORE:SPEC:2004.3;
      * WSACORE:SPEC:3021;
      *
      * @test_Strategy:
@@ -389,7 +388,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testFaultToRefps failed", e);
         }
 
-        if (!pass) throw new Fault("testFaultToRefps failed");
+        if (!pass)
+            throw new Fault("testFaultToRefps failed");
     }
 
     /*
@@ -425,14 +425,14 @@ public class Client extends ServiceEETest {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             epr.writeTo(new StreamResult(baos));
             TestUtil.logMsg(baos.toString());
-            AddNumbersPortType myport =
-                    (AddNumbersPortType) service.getPort(epr, AddNumbersPortType.class, ENABLED_ADDRESSING_FEATURE);
+            AddNumbersPortType myport = (AddNumbersPortType) service.getPort(epr, AddNumbersPortType.class, ENABLED_ADDRESSING_FEATURE);
             myport.addNumbersAndPassString(10, 10, "RequestReferenceParametersTest");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("RequestReferenceParametersTest failed");
+        if (!pass)
+            throw new Fault("RequestReferenceParametersTest failed");
     }
 }

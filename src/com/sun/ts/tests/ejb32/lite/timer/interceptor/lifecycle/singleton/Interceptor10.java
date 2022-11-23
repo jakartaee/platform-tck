@@ -47,9 +47,8 @@ public class Interceptor10 extends InterceptorBase {
     }
 
     /**
-     * Asserts that InvocationContext.getMethod() returns null for lifecycle
-     * interceptor methods. This method should only be used for checking lifecycle
-     * interceptor methods.
+     * Asserts that InvocationContext.getMethod() returns null for lifecycle interceptor methods. This method should only be
+     * used for checking lifecycle interceptor methods.
      */
     public static void assertNullGetMethod(InvocationContext inv) throws IllegalStateException {
 

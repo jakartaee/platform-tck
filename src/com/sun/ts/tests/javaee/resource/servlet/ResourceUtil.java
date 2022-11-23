@@ -30,8 +30,10 @@ public class ResourceUtil {
         try {
             InitialContext ic = new InitialContext();
             Object obj = ic.lookup(jndiName);
-            if (obj instanceof Session) return (Session) obj;
-            else return null;
+            if (obj instanceof Session)
+                return (Session) obj;
+            else
+                return null;
         } catch (NamingException nex) {
             return null;
         }

@@ -32,9 +32,11 @@ public class EventMonitorAdapter implements ResourceAdapter {
 
     private Map<EventMonitorConfig, ActivatedEndpoint> endpoints = new HashMap<EventMonitorConfig, ActivatedEndpoint>();
 
-    public void start(BootstrapContext bootstrapContext) throws ResourceAdapterInternalException {}
+    public void start(BootstrapContext bootstrapContext) throws ResourceAdapterInternalException {
+    }
 
-    public void stop() {}
+    public void stop() {
+    }
 
     public void endpointActivation(MessageEndpointFactory messageEndpointFactory, ActivationSpec activationSpec)
             throws ResourceException {

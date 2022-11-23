@@ -125,7 +125,8 @@ public class TSManagedConnection implements ManagedConnection {
     @Override
     public void destroy() throws ResourceException {
         try {
-            if (destroyed) return;
+            if (destroyed)
+                return;
             destroyed = true;
             Iterator it = connectionSet.iterator();
             while (it.hasNext()) {
@@ -135,7 +136,8 @@ public class TSManagedConnection implements ManagedConnection {
             }
             connectionSet.clear();
             con.close();
-            if (xacon != null) xacon.close();
+            if (xacon != null)
+                xacon.close();
         } catch (Exception ex) {
             throwResourceException(ex);
         }
@@ -144,8 +146,7 @@ public class TSManagedConnection implements ManagedConnection {
     /*
      * @name cleanup
      *
-     * @desc recycles the connection from the connection pool which is being
-     * handed over to the new client.
+     * @desc recycles the connection from the connection pool which is being handed over to the new client.
      *
      * @exception ResourceException
      */
@@ -173,8 +174,8 @@ public class TSManagedConnection implements ManagedConnection {
     /*
      * @name associateConnection
      *
-     * @desc Used by the container to change the association of an
-     * application-level connection handle with a ManagedConneciton instance.
+     * @desc Used by the container to change the association of an application-level connection handle with a
+     * ManagedConneciton instance.
      *
      * @param Object
      *
@@ -196,8 +197,8 @@ public class TSManagedConnection implements ManagedConnection {
     /*
      * @name addConnectionEventListener
      *
-     * @desc Used by the container to change the association of an
-     * application-level connection handle with a ManagedConneciton instance.
+     * @desc Used by the container to change the association of an application-level connection handle with a
+     * ManagedConneciton instance.
      *
      * @param ConnectionEventListener
      */
@@ -210,8 +211,7 @@ public class TSManagedConnection implements ManagedConnection {
     /*
      * @name removeConnectionEventListener
      *
-     * @desc Removes an already registered connection event listener from the
-     * ManagedConnection instance.
+     * @desc Removes an already registered connection event listener from the ManagedConnection instance.
      *
      * @param ConnectionEventListener
      */
@@ -270,8 +270,7 @@ public class TSManagedConnection implements ManagedConnection {
     /*
      * @name getMetaData
      *
-     * @desc Gets the metadata information for this connection's underlying EIS
-     * resource manager instance.
+     * @desc Gets the metadata information for this connection's underlying EIS resource manager instance.
      *
      * @return ManagedConnectionMetaData
      *

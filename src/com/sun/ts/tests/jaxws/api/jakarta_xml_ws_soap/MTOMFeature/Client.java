@@ -59,8 +59,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:171; JAXWS:JAVADOC:170;
      *
-     * @test_Strategy: Create instance via MTOMFeature() constructor. Verify
-     * MTOMFeature object created successfully.
+     * @test_Strategy: Create instance via MTOMFeature() constructor. Verify MTOMFeature object created successfully.
      */
     public void MTOMFeatureDefaultConstructorTest() throws Fault {
         TestUtil.logTrace("MTOMFeatureDefaultConstructorTest");
@@ -102,8 +101,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:172;
      *
-     * @test_Strategy: Create instance via MTOMFeature(true) constructor. Verify
-     * MTOMFeature object created successfully.
+     * @test_Strategy: Create instance via MTOMFeature(true) constructor. Verify MTOMFeature object created successfully.
      */
     public void MTOMFeatureConstructorTest1() throws Fault {
         TestUtil.logTrace("MTOMFeatureConstructorTest1");
@@ -138,8 +136,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:172;
      *
-     * @test_Strategy: Create instance via MTOMFeature(false) constructor. Verify
-     * MTOMFeature object created successfully.
+     * @test_Strategy: Create instance via MTOMFeature(false) constructor. Verify MTOMFeature object created successfully.
      */
     public void MTOMFeatureConstructorTest2() throws Fault {
         TestUtil.logTrace("MTOMFeatureConstructorTest2");
@@ -174,8 +171,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:174; JAXWS:JAVADOC:170;
      *
-     * @test_Strategy: Create instance via MTOMFeature(true, int) constructor.
-     * Verify MTOMFeature object created successfully.
+     * @test_Strategy: Create instance via MTOMFeature(true, int) constructor. Verify MTOMFeature object created
+     * successfully.
      */
     public void MTOMFeatureConstructorTest3() throws Fault {
         TestUtil.logTrace("MTOMFeatureConstructorTest3");
@@ -213,8 +210,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:174; JAXWS:JAVADOC:170;
      *
-     * @test_Strategy: Create instance via MTOMFeature(false, int) constructor.
-     * Verify MTOMFeature object created successfully.
+     * @test_Strategy: Create instance via MTOMFeature(false, int) constructor. Verify MTOMFeature object created
+     * successfully.
      */
     public void MTOMFeatureConstructorTest4() throws Fault {
         TestUtil.logTrace("MTOMFeatureConstructorTest4");
@@ -252,8 +249,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:173; JAXWS:JAVADOC:170;
      *
-     * @test_Strategy: Create instance via MTOMFeature(int) constructor. Verify
-     * MTOMFeature object created successfully.
+     * @test_Strategy: Create instance via MTOMFeature(int) constructor. Verify MTOMFeature object created successfully.
      */
     public void MTOMFeatureConstructorTest5() throws Fault {
         TestUtil.logTrace("MTOMFeatureConstructorTest5");
@@ -297,8 +293,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:169; JAXWS:JAVADOC:160;
      *
-     * @test_Strategy: Test getting ID string of MTOMFeature object. Verify value
-     * returned is set correctly.
+     * @test_Strategy: Test getting ID string of MTOMFeature object. Verify value returned is set correctly.
      */
     public void getIDTest() throws Fault {
         TestUtil.logTrace("getIDTest");
@@ -336,8 +331,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:170;
      *
-     * @test_Strategy: Test setting threshold of MTOMFeature object. Get value and
-     * verify value returned is set correctly.
+     * @test_Strategy: Test setting threshold of MTOMFeature object. Get value and verify value returned is set correctly.
      */
     public void getSetThresholdTest() throws Fault {
         TestUtil.logTrace("getSetThresholdTest");

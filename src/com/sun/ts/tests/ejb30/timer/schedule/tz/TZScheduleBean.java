@@ -37,20 +37,12 @@ public class TZScheduleBean extends TZScheduleBareBean {
     @Override
     @Timeout
     @Schedules({
-        // @Schedule(year = "5000", start="4000-10-26T21:32:52",
-        // end="6000-10-26T21:32:52", info = DEFAULT_TZ),
-        @Schedule(year = "5000", info = DEFAULT_TZ),
-        @Schedule(year = "5000", info = ASIA_SHANGHAI, persistent = false, timezone = ASIA_SHANGHAI),
-        @Schedule(
-                year = "5000",
-                info = AMERICA_ARGENTINA_SAN_LUIS,
-                persistent = false,
-                timezone = AMERICA_ARGENTINA_SAN_LUIS),
-        @Schedule(
-                year = "5000",
-                info = AMERICA_ARGENTINA_USHUAIA,
-                persistent = false,
-                timezone = AMERICA_ARGENTINA_USHUAIA)
+            // @Schedule(year = "5000", start="4000-10-26T21:32:52",
+            // end="6000-10-26T21:32:52", info = DEFAULT_TZ),
+            @Schedule(year = "5000", info = DEFAULT_TZ),
+            @Schedule(year = "5000", info = ASIA_SHANGHAI, persistent = false, timezone = ASIA_SHANGHAI),
+            @Schedule(year = "5000", info = AMERICA_ARGENTINA_SAN_LUIS, persistent = false, timezone = AMERICA_ARGENTINA_SAN_LUIS),
+            @Schedule(year = "5000", info = AMERICA_ARGENTINA_USHUAIA, persistent = false, timezone = AMERICA_ARGENTINA_USHUAIA)
     })
     protected void year5000() {
         super.year5000();

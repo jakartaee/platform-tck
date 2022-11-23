@@ -21,10 +21,9 @@ import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 
 /**
- * A utility class to expand properties embedded in a string. Strings of the
- * form ${some.property.name} are expanded to be the value of the property.
- * Also, the special ${/} property is expanded to be the same as file.separator.
- * If a property is not set, a GeneralSecurityException will be thrown.
+ * A utility class to expand properties embedded in a string. Strings of the form ${some.property.name} are expanded to
+ * be the value of the property. Also, the special ${/} property is expanded to be the same as file.separator. If a
+ * property is not set, a GeneralSecurityException will be thrown.
  *
  * @author Roland Schemers
  */
@@ -44,19 +43,20 @@ public class PropertyExpander {
     }
 
     public static String expand(String value, boolean encodeURL) throws ExpandException {
-        if (value == null) return null;
+        if (value == null)
+            return null;
 
         int p = value.indexOf("${", 0);
 
         // no special characters
-        if (p == -1) return value;
+        if (p == -1)
+            return value;
 
         StringBuffer sb = new StringBuffer(value.length());
         int max = value.length();
         int i = 0; // index of last character we copied
 
-        scanner:
-        while (p < max) {
+        scanner: while (p < max) {
             if (p > i) {
                 // copy in anything before the special stuff
                 sb.append(value.substring(i, p));

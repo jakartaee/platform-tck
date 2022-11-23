@@ -31,33 +31,34 @@ public abstract class WSCCommonServer implements WSCSuperEndpoint {
         OPS op = OPS.valueOf(msg);
         WaitingSendHandler handler = new WaitingSendHandler();
         switch (op) {
-            case BOOL:
-                session.getAsyncRemote().sendObject(BOOL, handler);
-                break;
-            case BYTE:
-                session.getAsyncRemote().sendObject(NUMERIC.byteValue(), handler);
-                break;
-            case CHAR:
-                session.getAsyncRemote().sendObject(CHAR, handler);
-                break;
-            case DOUBLE:
-                session.getAsyncRemote().sendObject(NUMERIC.doubleValue(), handler);
-                break;
-            case FLOAT:
-                session.getAsyncRemote().sendObject(NUMERIC.floatValue(), handler);
-                break;
-            case INT:
-                session.getAsyncRemote().sendObject(NUMERIC.intValue(), handler);
-                break;
-            case LONG:
-                session.getAsyncRemote().sendObject(NUMERIC.longValue(), handler);
-                break;
-            case SHORT:
-                session.getAsyncRemote().sendObject(NUMERIC.shortValue(), handler);
-                break;
+        case BOOL:
+            session.getAsyncRemote().sendObject(BOOL, handler);
+            break;
+        case BYTE:
+            session.getAsyncRemote().sendObject(NUMERIC.byteValue(), handler);
+            break;
+        case CHAR:
+            session.getAsyncRemote().sendObject(CHAR, handler);
+            break;
+        case DOUBLE:
+            session.getAsyncRemote().sendObject(NUMERIC.doubleValue(), handler);
+            break;
+        case FLOAT:
+            session.getAsyncRemote().sendObject(NUMERIC.floatValue(), handler);
+            break;
+        case INT:
+            session.getAsyncRemote().sendObject(NUMERIC.intValue(), handler);
+            break;
+        case LONG:
+            session.getAsyncRemote().sendObject(NUMERIC.longValue(), handler);
+            break;
+        case SHORT:
+            session.getAsyncRemote().sendObject(NUMERIC.shortValue(), handler);
+            break;
         }
         SendResult result = handler.waitForResult(4);
-        if (!result.isOK() || result.getException() != null) throw new RuntimeException(result.getException());
+        if (!result.isOK() || result.getException() != null)
+            throw new RuntimeException(result.getException());
     }
 
     public void onError(Session session, Throwable t) throws IOException {

@@ -78,10 +78,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:399.2; EJB:SPEC:404
      *
-     * @test_Strategy: Execute a query where the select clause denotes a
-     * collection of orders using an identification variable and ordered by the
-     * order's total price for the customer defined as the argument to the query
-     * method.
+     * @test_Strategy: Execute a query where the select clause denotes a collection of orders using an identification
+     * variable and ordered by the order's total price for the customer defined as the argument to the query method.
      */
 
     public void orderByTest1() throws Fault {
@@ -107,7 +105,8 @@ public class Client extends EETest {
             throw new Fault("orderByTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("orderByTest1 failed");
+        if (!pass)
+            throw new Fault("orderByTest1 failed");
     }
 
     /*
@@ -115,10 +114,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:399.3; EJB:SPEC:401
      *
-     * @test_Strategy: Execute a query where the select clause denotes a
-     * cmp_path_expression and the query is ordered by same. Ascending order is
-     * expected as the ordering is not explictly specified and ascending is
-     * default.
+     * @test_Strategy: Execute a query where the select clause denotes a cmp_path_expression and the query is ordered by
+     * same. Ascending order is expected as the ordering is not explictly specified and ascending is default.
      *
      */
 
@@ -126,24 +123,24 @@ public class Client extends EETest {
         boolean pass = false;
         Collection p = null;
         Long[] expectedPartNumbers = new Long[] {
-            new Long(0L),
-            new Long(123456789L),
-            new Long(219876543L),
-            new Long(234567891L),
-            new Long(321987654L),
-            new Long(345678912L),
-            new Long(432198765L),
-            new Long(456789123L),
-            new Long(543219876L),
-            new Long(567891234L),
-            new Long(654321987L),
-            new Long(678912345L),
-            new Long(765432198L),
-            new Long(789123456L),
-            new Long(876543219L),
-            new Long(891234567L),
-            new Long(912345678L),
-            new Long(987654321L)
+                new Long(0L),
+                new Long(123456789L),
+                new Long(219876543L),
+                new Long(234567891L),
+                new Long(321987654L),
+                new Long(345678912L),
+                new Long(432198765L),
+                new Long(456789123L),
+                new Long(543219876L),
+                new Long(567891234L),
+                new Long(654321987L),
+                new Long(678912345L),
+                new Long(765432198L),
+                new Long(789123456L),
+                new Long(876543219L),
+                new Long(891234567L),
+                new Long(912345678L),
+                new Long(987654321L)
         };
 
         try {
@@ -157,7 +154,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("orderByTest2 failed", e);
         }
-        if (!pass) throw new Fault("orderByTest2 failed");
+        if (!pass)
+            throw new Fault("orderByTest2 failed");
     }
 
     /*
@@ -165,9 +163,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:329; EJB:SPEC:399.1; EJB:SPEC:401
      *
-     * @test_Strategy: Execute a query where the select clause denotes a
-     * single_valued_cmr_path expression and the query is ordered using same.
-     * Keyword ASC is used to return results in Ascending order.
+     * @test_Strategy: Execute a query where the select clause denotes a single_valued_cmr_path expression and the query is
+     * ordered using same. Keyword ASC is used to return results in Ascending order.
      *
      */
 
@@ -175,21 +172,21 @@ public class Client extends EETest {
         boolean pass = false;
         Collection o = null;
         Double[] expectedBalances = new Double[] {
-            new Double(500D),
-            new Double(750D),
-            new Double(1000D),
-            new Double(1400D),
-            new Double(1500D),
-            new Double(2000D),
-            new Double(2500D),
-            new Double(4400D),
-            new Double(5000D),
-            new Double(5500D),
-            new Double(7000D),
-            new Double(8000D),
-            new Double(13000D),
-            new Double(15000D),
-            new Double(23000D)
+                new Double(500D),
+                new Double(750D),
+                new Double(1000D),
+                new Double(1400D),
+                new Double(1500D),
+                new Double(2000D),
+                new Double(2500D),
+                new Double(4400D),
+                new Double(5000D),
+                new Double(5500D),
+                new Double(7000D),
+                new Double(8000D),
+                new Double(13000D),
+                new Double(15000D),
+                new Double(23000D)
         };
 
         try {
@@ -204,7 +201,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("orderByTest3 failed", e);
         }
-        if (!pass) throw new Fault("orderByTest3 failed");
+        if (!pass)
+            throw new Fault("orderByTest3 failed");
     }
 
     /*
@@ -212,10 +210,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:402
      *
-     * @test_Strategy: Execute a query where the select clause denotes a
-     * collection of products which are ordered by the available quantity using
-     * the keyword DESC to obtain the result set from of products with highest
-     * available quantity to the lowest.
+     * @test_Strategy: Execute a query where the select clause denotes a collection of products which are ordered by the
+     * available quantity using the keyword DESC to obtain the result set from of products with highest available quantity
+     * to the lowest.
      *
      */
 
@@ -228,7 +225,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Obtain a list of orders with the highest total price");
             p = productHome.findProductsByHighestQuantity();
             expectedPKs = new String[Schema.NUMOFPRODUCTS];
-            for (int i = 0; i < Schema.NUMOFPRODUCTS; i++) expectedPKs[i] = Integer.toString(i + 1);
+            for (int i = 0; i < Schema.NUMOFPRODUCTS; i++)
+                expectedPKs[i] = Integer.toString(i + 1);
 
             if (!Util.checkEJBs(p, Schema.PRODUCTREF, expectedPKs)) {
                 TestUtil.logErr("UnSuccessfully returned all product with highest quantity");
@@ -242,7 +240,8 @@ public class Client extends EETest {
             throw new Fault("orderByTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("orderByTest4 failed");
+        if (!pass)
+            throw new Fault("orderByTest4 failed");
     }
 
     /*
@@ -250,9 +249,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:400
      *
-     * @test_Strategy: Execute a query where the select clause denotes a
-     * collection of aliases which are ordered by multiple orderby_item elements.
-     * The expected result set is ordered from left-to-right.
+     * @test_Strategy: Execute a query where the select clause denotes a collection of aliases which are ordered by multiple
+     * orderby_item elements. The expected result set is ordered from left-to-right.
      *
      */
 
@@ -305,7 +303,8 @@ public class Client extends EETest {
             throw new Fault("orderByTest5 failed", e);
         }
 
-        if (!pass) throw new Fault("orderByTest5 failed");
+        if (!pass)
+            throw new Fault("orderByTest5 failed");
     }
 
     public void cleanup() throws Fault {

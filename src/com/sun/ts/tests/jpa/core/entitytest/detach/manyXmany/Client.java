@@ -29,7 +29,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -56,18 +57,14 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:659; PERSISTENCE:SPEC:662;
      *
-     * @test_Strategy: The merge operation allows for the propagation of state
-     * from detached entities onto persistence entities managed by the
-     * EntityManager. The semantics of the merge operation applied to entity X are
-     * as follows:
+     * @test_Strategy: The merge operation allows for the propagation of state from detached entities onto persistence
+     * entities managed by the EntityManager. The semantics of the merge operation applied to entity X are as follows:
      *
-     * If X is a detached entity, the state of X is copied onto a pre-existing
-     * managed entity instance X1 of the same identity or a new managed copy of X1
-     * is created.
+     * If X is a detached entity, the state of X is copied onto a pre-existing managed entity instance X1 of the same
+     * identity or a new managed copy of X1 is created.
      *
-     * If X is a managed entity, it is ignored by the merge operation however, the
-     * merge operation is cascaded to entities referenced by relationships from X
-     * if these relationships have been annotated with the cascade element value
+     * If X is a managed entity, it is ignored by the merge operation however, the merge operation is cascaded to entities
+     * referenced by relationships from X if these relationships have been annotated with the cascade element value
      *
      */
 
@@ -77,7 +74,7 @@ public class Client extends PMClientBase {
         final B b1 = new B("1", "b1", 1);
         final B b2 = new B("2", "b2", 2);
         int foundB = 0;
-        final String[] expectedResults = new String[] {"1", "2"};
+        final String[] expectedResults = new String[] { "1", "2" };
         boolean pass1 = true;
         boolean pass2 = false;
 
@@ -154,7 +151,8 @@ public class Client extends PMClientBase {
             pass2 = true;
         }
 
-        if (!pass1 || !pass2) throw new Fault("detachMXMTest1 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("detachMXMTest1 failed");
     }
 
     /*

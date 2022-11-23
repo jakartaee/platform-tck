@@ -34,7 +34,8 @@ public class Name implements java.io.Serializable {
         this.lastName = lastName;
     }
 
-    public Name() {}
+    public Name() {
+    }
 
     public String getFirstName() {
         return firstName;

@@ -44,8 +44,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: dataTypesTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: test primitive and boxed datatypes
      */
@@ -155,7 +154,7 @@ public class WSClient extends WebSocketCommonClient {
     }
 
     private void invokeDataTypeSequence(String search, String type) throws Fault {
-        String[] sequence = {"primitive" + type, "full" + type};
+        String[] sequence = { "primitive" + type, "full" + type };
         invokeSequence(search, sequence);
     }
 }

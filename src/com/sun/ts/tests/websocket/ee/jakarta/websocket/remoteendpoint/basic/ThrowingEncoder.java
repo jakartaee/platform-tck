@@ -25,10 +25,12 @@ public class ThrowingEncoder implements Encoder.Text<HolderForThrowingEncoder> {
     static final String ERR_MSG = "Meant TCK EncodeException";
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 
     @Override
     public String encode(HolderForThrowingEncoder object) throws EncodeException {

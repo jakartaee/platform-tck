@@ -27,11 +27,9 @@ import com.sun.ts.tests.ejb30.common.annotation.resource.UserTransactionNegative
 import jakarta.ejb.EJB;
 
 /**
- * The tested requirements are in Java EE Platform Specification section
- * EE.5.2.2 Sharing of Environment Entries This is about the sharing and
- * non-sharing of resource connection factory objects, not resource connections.
- * Although some annotations have shareable attribute, as
- * in @Resource(name="mailSession", shareable= false), it value (true or false)
+ * The tested requirements are in Java EE Platform Specification section EE.5.2.2 Sharing of Environment Entries This is
+ * about the sharing and non-sharing of resource connection factory objects, not resource connections. Although some
+ * annotations have shareable attribute, as in @Resource(name="mailSession", shareable= false), it value (true or false)
  * should not affect the test result.
  */
 public class Client extends ClientBase {

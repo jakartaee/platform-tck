@@ -28,12 +28,7 @@ import jakarta.xml.ws.soap.SOAPBinding;
 import java.awt.Image;
 import java.net.URL;
 
-@WebService(
-        portName = "MTOMTest3Port",
-        serviceName = "MTOMTestService",
-        targetNamespace = "http://mtomservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/MTOMTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest3")
+@WebService(portName = "MTOMTest3Port", serviceName = "MTOMTestService", targetNamespace = "http://mtomservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/MTOMTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSMTOMFeaturesTestUsingDDs.MTOMTest3")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @MTOM(enabled = true, threshold = 2000)
 public class MTOMTestImpl3 implements MTOMTest3 {

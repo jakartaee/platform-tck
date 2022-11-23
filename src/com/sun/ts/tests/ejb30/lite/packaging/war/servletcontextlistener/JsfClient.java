@@ -46,13 +46,11 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: onlyOneTest
      *
-     * @test_Strategy: The test logic is in ServletContextListener. The webapp
-     * initialization will fail if test expectations are not met, assuming
-     * contextInitialized method is invoked. This http request by this test method
-     * does nothing else. Since a ServletContextListener is only called once per
-     * webapp loading, there should be only one test for this directory. Also
-     * verifies that ejb injected into TestServletContextListener can also be
-     * looked up inside the test client (both are web components).
+     * @test_Strategy: The test logic is in ServletContextListener. The webapp initialization will fail if test expectations
+     * are not met, assuming contextInitialized method is invoked. This http request by this test method does nothing else.
+     * Since a ServletContextListener is only called once per webapp loading, there should be only one test for this
+     * directory. Also verifies that ejb injected into TestServletContextListener can also be looked up inside the test
+     * client (both are web components).
      */
     public void onlyOneTest() {
         appendReason("Test logics are in ServletContextListener class");

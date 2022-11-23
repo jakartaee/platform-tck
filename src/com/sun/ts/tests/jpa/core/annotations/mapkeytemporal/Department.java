@@ -38,7 +38,8 @@ public class Department implements java.io.Serializable {
 
     private Map<java.util.Date, Employee> lastNameEmployees;
 
-    public Department() {}
+    public Department() {
+    }
 
     public Department(int id, String name) {
         this.id = id;

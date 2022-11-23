@@ -50,7 +50,8 @@ public class CreditCard implements java.io.Serializable {
 
     private Customer customer;
 
-    public CreditCard() {}
+    public CreditCard() {
+    }
 
     public CreditCard(String v1, String v2, String v3, String v4, boolean v5, double v6, Order v7, Customer v8) {
         id = v1;

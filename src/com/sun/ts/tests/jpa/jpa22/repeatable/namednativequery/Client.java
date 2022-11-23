@@ -24,7 +24,8 @@ import java.util.Properties;
 public class Client extends PMClientBase {
     private static final long serialVersionUID = 22L;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -51,8 +52,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: findTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:117; PERSISTENCE:JAVADOC:118;
-     * PERSISTENCE:JAVADOC:119; PERSISTENCE:JAVADOC:199; PERSISTENCE:JAVADOC:200;
+     * @assertion_ids: PERSISTENCE:JAVADOC:117; PERSISTENCE:JAVADOC:118; PERSISTENCE:JAVADOC:119; PERSISTENCE:JAVADOC:199;
+     * PERSISTENCE:JAVADOC:200;
      *
      * @test_Strategy:
      *
@@ -159,6 +160,7 @@ public class Client extends PMClientBase {
     }
 
     private void assertTrue(boolean b, String message) throws Fault {
-        if (!b) throw new Fault(message);
+        if (!b)
+            throw new Fault(message);
     }
 }

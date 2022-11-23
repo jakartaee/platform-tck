@@ -26,10 +26,12 @@ public class ThrowingBinaryCoder implements Encoder.Binary<ByteBuffer> {
     public static final String ERROR = "TCK intended Exception on transmition";
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 
     @Override
     public ByteBuffer encode(ByteBuffer object) throws EncodeException {

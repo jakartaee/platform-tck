@@ -32,7 +32,8 @@ public class DID3bEmployee implements Serializable {
     @EmbeddedId
     DID3bEmployeeId empId;
 
-    public DID3bEmployee() {}
+    public DID3bEmployee() {
+    }
 
     public DID3bEmployee(DID3bEmployeeId eId) {
         this.empId = eId;

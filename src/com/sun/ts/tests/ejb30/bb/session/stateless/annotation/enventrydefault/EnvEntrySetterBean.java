@@ -30,16 +30,18 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "EnvEntrySetterBean")
-@Remote({EnvEntryIF.class})
+@Remote({ EnvEntryIF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class EnvEntrySetterBean extends EnvEntryLookupFailBeanBase implements EnvEntryIF {
 
     @Resource(name = "sessionContext")
     private SessionContext sessionContext;
 
-    public EnvEntrySetterBean() {}
+    public EnvEntrySetterBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected jakarta.ejb.EJBContext getEJBContext() {
         return sessionContext;

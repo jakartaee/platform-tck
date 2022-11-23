@@ -72,11 +72,9 @@ public class TestServlet extends GenericTCKServlet {
     }
 
     /*
-     * This test is used to trigger events in the HttpSessionAttributeListener but
-     * the REAL testing is done in HttpSessionAttributeListenerTest. So this
-     * method is not the real test, but instead does preparation work for the real
-     * test. (thus this is a pre-test) This pre-test will act on session
-     * attributes in order to force the invocation of the
+     * This test is used to trigger events in the HttpSessionAttributeListener but the REAL testing is done in
+     * HttpSessionAttributeListenerTest. So this method is not the real test, but instead does preparation work for the real
+     * test. (thus this is a pre-test) This pre-test will act on session attributes in order to force the invocation of the
      * HttpSessionAttributeListener methods.
      */
     public void HttpSessionAttributeListenerPreLude(ServletRequest request, ServletResponse response)

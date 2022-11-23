@@ -44,8 +44,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      */
     public void setup(String[] args, Properties props) throws Fault {
@@ -68,17 +67,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:872
      *
-     * @test_Strategy: Have two CMP 1.1 Entity beans whose ejb-name's differ only
-     *                 by case and whose identity is defined by a String
-     *                 environment entry ('myName').
+     * @test_Strategy: Have two CMP 1.1 Entity beans whose ejb-name's differ only by case and whose identity is defined by a
+     * String environment entry ('myName').
      *
-     *                 Another CMP 1.1 Entity bean (TestBean) references these two
-     *                 beans using ejb-link elements. Check that TestBean can
-     *                 lookup the two beans and check each bean identity (based on
-     *                 their value for the 'myName' environment entry). Check that
-     *                 this identity correspond to the references specified in the
-     *                 DD (validates that the EJB references were resolved
-     *                 correctly).
+     * Another CMP 1.1 Entity bean (TestBean) references these two beans using ejb-link elements. Check that TestBean can
+     * lookup the two beans and check each bean identity (based on their value for the 'myName' environment entry). Check
+     * that this identity correspond to the references specified in the DD (validates that the EJB references were resolved
+     * correctly).
      *
      */
     public void testCaseSensitivity() throws Fault {

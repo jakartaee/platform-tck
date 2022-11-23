@@ -37,7 +37,7 @@ import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
 @MessageDriven
-@Interceptors({Interceptor2.class})
+@Interceptors({ Interceptor2.class })
 public class BusinessTimerBean extends BusinessTimerBeanBase implements MessageListener {
     @EJB(beanInterface = TestBean.class, beanName = "TestBean")
     private TestBean testBean;

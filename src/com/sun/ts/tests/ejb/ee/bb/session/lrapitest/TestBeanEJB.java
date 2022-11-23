@@ -431,12 +431,14 @@ public class TestBeanEJB implements SessionBean {
 
     public boolean test4() {
         boolean pass = true;
-        if (createTest()) TestUtil.logMsg("EJBLocalHome.create ... PASSED");
+        if (createTest())
+            TestUtil.logMsg("EJBLocalHome.create ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalHome.create ... FAILED");
             pass = false;
         }
-        if (removeLocalHomeTest()) TestUtil.logMsg("EJBLocalHome.remove ... PASSED");
+        if (removeLocalHomeTest())
+            TestUtil.logMsg("EJBLocalHome.remove ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalHome.remove ... FAILED");
             pass = false;
@@ -446,32 +448,38 @@ public class TestBeanEJB implements SessionBean {
 
     public boolean test5() {
         boolean pass = true;
-        if (getPrimaryKeyTest()) TestUtil.logMsg("EJBLocalObject.getPrimaryKey ... PASSED");
+        if (getPrimaryKeyTest())
+            TestUtil.logMsg("EJBLocalObject.getPrimaryKey ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalObject.getPrimaryKey ... FAILED");
             pass = false;
         }
-        if (isIdenticalStatefulTest()) TestUtil.logMsg("EJBLocalObject.isIdentical (Stateful) ... PASSED");
+        if (isIdenticalStatefulTest())
+            TestUtil.logMsg("EJBLocalObject.isIdentical (Stateful) ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalObject.isIdentical (Stateful) ... FAILED");
             pass = false;
         }
-        if (isIdenticalStatelessTest()) TestUtil.logMsg("EJBLocalObject.isIdentical (Stateless) ... PASSED");
+        if (isIdenticalStatelessTest())
+            TestUtil.logMsg("EJBLocalObject.isIdentical (Stateless) ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalObject.isIdentical (Stateless) ... FAILED");
             pass = false;
         }
-        if (getEJBLocalHomeTest()) TestUtil.logMsg("EJBLocalObject.getEJBLocalHome ... PASSED");
+        if (getEJBLocalHomeTest())
+            TestUtil.logMsg("EJBLocalObject.getEJBLocalHome ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalObject.getEJBLocalHome ... FAILED");
             pass = false;
         }
-        if (callBusinessMethodTest()) TestUtil.logMsg("businessMethod ... PASSED");
+        if (callBusinessMethodTest())
+            TestUtil.logMsg("businessMethod ... PASSED");
         else {
             TestUtil.logMsg("businessMethod ... FAILED");
             pass = false;
         }
-        if (removeLocalObjectTest()) TestUtil.logMsg("EJBLocalObject.remove ... PASSED");
+        if (removeLocalObjectTest())
+            TestUtil.logMsg("EJBLocalObject.remove ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalObject.remove ... FAILED");
             pass = false;

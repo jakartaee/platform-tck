@@ -35,8 +35,7 @@ public class URLClient extends EETest {
 
     private static final int PORTNUM = 8000;
 
-    private static final String VERIFYINFORMATIONITEMS_TESTSERVLET =
-            "/VerifyInformationItems_web/VerifyInformationItemsTestServlet";
+    private static final String VERIFYINFORMATIONITEMS_TESTSERVLET = "/VerifyInformationItems_web/VerifyInformationItemsTestServlet";
 
     private static final String WEBSERVERHOSTPROP = "webServerHost";
 
@@ -72,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -115,14 +116,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyEncodingStyleAttributeInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyEncodingStyleAttributeInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyEncodingStyleAttributeInfoItem failed");
     }
 
     /*
@@ -146,14 +149,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyRoleAttributeInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyRoleAttributeInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyRoleAttributeInfoItem failed");
     }
 
     /*
@@ -177,14 +182,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyRelayAttributeInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyRelayAttributeInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyRelayAttributeInfoItem failed");
     }
 
     /*
@@ -208,14 +215,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyMustUnderstandAttributeInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyMustUnderstandAttributeInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyMustUnderstandAttributeInfoItem failed");
     }
 
     /*
@@ -239,14 +248,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyEnvelopeElementInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyEnvelopeElementInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyEnvelopeElementInfoItem failed");
     }
 
     /*
@@ -270,14 +281,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyHeaderElementInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyHeaderElementInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyHeaderElementInfoItem failed");
     }
 
     /*
@@ -301,14 +314,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyBodyElementInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyBodyElementInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyBodyElementInfoItem failed");
     }
 
     /*
@@ -332,14 +347,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyBodyChildElementInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyBodyChildElementInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyBodyChildElementInfoItem failed");
     }
 
     /*
@@ -363,14 +380,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyFaultElementInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyFaultElementInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyFaultElementInfoItem failed");
     }
 
     /*
@@ -394,14 +413,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyCodeElementInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyCodeElementInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyCodeElementInfoItem failed");
     }
 
     /*
@@ -425,14 +446,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifySubcodeElementInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifySubcodeElementInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifySubcodeElementInfoItem failed");
     }
 
     /*
@@ -456,14 +479,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyDetailElementInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyDetailElementInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyDetailElementInfoItem failed");
     }
 
     /*
@@ -487,14 +512,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyUpgradeElementInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyUpgradeElementInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyUpgradeElementInfoItem failed");
     }
 
     /*
@@ -518,13 +545,15 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("VerifyNotUnderstoodElementInfoItem failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyNotUnderstoodElementInfoItem failed");
+        if (!pass)
+            throw new Fault("VerifyNotUnderstoodElementInfoItem failed");
     }
 }

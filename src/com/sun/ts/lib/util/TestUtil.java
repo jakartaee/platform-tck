@@ -26,9 +26,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * TestUtil is a final utility class responsible for implementing logging across
- * multiple VMs. It also contains many convenience methods for logging property
- * object contents, stacktraces, and header lines.
+ * TestUtil is a final utility class responsible for implementing logging across multiple VMs. It also contains many
+ * convenience methods for logging property object contents, stacktraces, and header lines.
  *
  * @author Kyle Grucci
  *
@@ -86,16 +85,16 @@ public final class TestUtil {
     private static final String UNRECOGNIZED_STATUS = "UNRECOGNIZED_STATUS";
 
     private static final String transactionTable[] = {
-        "STATUS_ACTIVE", // 0
-        "STATUS_MARKED_ROLLBACK", // 1
-        "STATUS_PREPARED", // 2
-        "STATUS_COMMITTED", // 3
-        "STATUS_ROLLEDBACK", // 4
-        "STATUS_UNKNOWN", // 5
-        "STATUS_NO_TRANSACTION", // 6
-        "STATUS_PREPARING", // 7
-        "STATUS_COMMITTING", // 8
-        "STATUS_ROLLING_BACK", // 9
+            "STATUS_ACTIVE", // 0
+            "STATUS_MARKED_ROLLBACK", // 1
+            "STATUS_PREPARED", // 2
+            "STATUS_COMMITTED", // 3
+            "STATUS_ROLLEDBACK", // 4
+            "STATUS_UNKNOWN", // 5
+            "STATUS_NO_TRANSACTION", // 6
+            "STATUS_PREPARING", // 7
+            "STATUS_COMMITTING", // 8
+            "STATUS_ROLLING_BACK", // 9
     };
 
     // debug flag for printing TS harness debug output
@@ -113,8 +112,7 @@ public final class TestUtil {
     /**
      * used by harness to log debug output to the standard output stream
      *
-     * @param s
-     *          the output string
+     * @param s the output string
      */
     public static void logHarnessDebug(String s) {
         if (harnessDebug) {
@@ -123,13 +121,10 @@ public final class TestUtil {
     }
 
     /**
-     * used by TSTestFinder and TSScript to log output to the standard output
-     * stream
+     * used by TSTestFinder and TSScript to log output to the standard output stream
      *
-     * @param s
-     *          the output string
-     * @param t
-     *          a Throwable whose stacktrace gets printed
+     * @param s the output string
+     * @param t a Throwable whose stacktrace gets printed
      */
     public static void logHarness(String s, Throwable t) {
         synchronized (System.out) {
@@ -150,7 +145,8 @@ public final class TestUtil {
     }
 
     private static void logToAdditionalWriter(String s, Throwable t) {
-        if (additionalWriter != null) additionalWriter.println(s);
+        if (additionalWriter != null)
+            additionalWriter.println(s);
         if (t != null) {
             t.printStackTrace(additionalWriter);
         }
@@ -171,8 +167,7 @@ public final class TestUtil {
     /**
      * This method returns the property value for the appropriate property key
      *
-     * @param s
-     *          the property name
+     * @param s the property name
      * @return the property value
      */
     public static String getProperty(String s) {
@@ -183,8 +178,7 @@ public final class TestUtil {
     /**
      * This method returns the property value for the appropriate property key
      *
-     * @param s
-     *          the property name
+     * @param s the property name
      * @return the property value
      */
     public static String getProperty(String s, String defaultValue) {
@@ -193,24 +187,22 @@ public final class TestUtil {
     }
 
     /**
-     * returns the transaction status value as a String given its integer
-     * representation
+     * returns the transaction status value as a String given its integer representation
      *
-     * @param status
-     *          integer representation of a transaction status
+     * @param status integer representation of a transaction status
      * @return string representation of a transaction status
      */
     public static String getTransactionStatus(int status) {
-        if (status < 0 || status > transactionTable.length - 1) return UNRECOGNIZED_STATUS;
-        else return transactionTable[status];
+        if (status < 0 || status > transactionTable.length - 1)
+            return UNRECOGNIZED_STATUS;
+        else
+            return transactionTable[status];
     }
 
     /**
-     * prints the transaction status value as a String given its integer
-     * representation
+     * prints the transaction status value as a String given its integer representation
      *
-     * @param status
-     *          integer representation of a transaction status
+     * @param status integer representation of a transaction status
      */
     public static void printTransactionStatus(int status) {
         logMsg("TRANSACTION_STATUS: " + getTransactionStatus(status));
@@ -222,8 +214,7 @@ public final class TestUtil {
     /**
      * pauses the calling thread for the specified number of seconds
      *
-     * @param s
-     *          number of seconds
+     * @param s number of seconds
      */
     public static void sleepSec(int s) {
         logTrace("Sleeping " + s + " seconds");
@@ -237,8 +228,7 @@ public final class TestUtil {
     /**
      * pauses the calling thread for the specified number of milliseconds
      *
-     * @param s
-     *          number of milliseconds
+     * @param s number of milliseconds
      */
     public static void sleep(int s) {
         sleepMsec(s);
@@ -247,8 +237,7 @@ public final class TestUtil {
     /**
      * pauses the calling thread for the specified number of milliseconds
      *
-     * @param s
-     *          number of milliseconds
+     * @param s number of milliseconds
      */
     public static void sleepMsec(int s) {
         logTrace("Sleeping " + s + " milliseconds");
@@ -368,16 +357,13 @@ public final class TestUtil {
     }
 
     /**
-     * This static method must be called once by each new remote VM. Once called,
-     * a socket connection is created back to the host running the test harness.
-     * All calls to logMsg, logErr, and logTrace are immediately sent back to the
-     * harness host.
+     * This static method must be called once by each new remote VM. Once called, a socket connection is created back to the
+     * host running the test harness. All calls to logMsg, logErr, and logTrace are immediately sent back to the harness
+     * host.
      *
-     * @param p
-     *          properties containing harness host, port, and trace flag
-     * @exception RemoteLoggingInitException
-     *              if an exception occurs while the server side is setting up the
-     *              socket connection back to the client host
+     * @param p properties containing harness host, port, and trace flag
+     * @exception RemoteLoggingInitException if an exception occurs while the server side is setting up the socket
+     * connection back to the client host
      */
     public static void init(Properties p) throws RemoteLoggingInitException {
         savePropsToFile(p); // persist properties to a disk file
@@ -420,8 +406,7 @@ public final class TestUtil {
                     // objectOutputStream.flush();
                     // if this fails, then the connection is gone
                     // this is better than flush, because flush seems to always fail
-                    TestReportInfo tri =
-                            new TestReportInfo("SVR: " + "Logging check", OUTPUT_STREAM, DEBUG_OUTPUT_LEVEL, null);
+                    TestReportInfo tri = new TestReportInfo("SVR: " + "Logging check", OUTPUT_STREAM, DEBUG_OUTPUT_LEVEL, null);
                     objectOutputStream.writeObject(tri);
                     // System.out.println("WROTE TEST OBJECT");
                 }
@@ -463,10 +448,9 @@ public final class TestUtil {
     }
 
     /*
-     * This method is called by our harness code to allow code that is shared
-     * between the harness and the tests and calls TestUtil logMsg and logTrace to
-     * do the right thing inside of the JavaTest VM. These calls will call to our
-     * logHarness methods.
+     * This method is called by our harness code to allow code that is shared between the harness and the tests and calls
+     * TestUtil logMsg and logTrace to do the right thing inside of the JavaTest VM. These calls will call to our logHarness
+     * methods.
      */
     public static void initJavaTest() {
         iWhereAreWe = VM_JAVATEST;
@@ -478,32 +462,30 @@ public final class TestUtil {
     }
 
     /**
-     * This static method must be called once by a VM which does not rely upon any
-     * remote logging.
+     * This static method must be called once by a VM which does not rely upon any remote logging.
      *
      * param p properties containing harness trace flag
      */
     public static void initNoLogging(Properties p) {
-        if (bAlreadyInitialized) return;
+        if (bAlreadyInitialized)
+            return;
 
         testProps = p;
         NEW_LINE = p.getProperty("line.separator");
-        traceflag =
-                Boolean.valueOf(p.getProperty("harness.log.traceflag", "true")).booleanValue();
+        traceflag = Boolean.valueOf(p.getProperty("harness.log.traceflag", "true")).booleanValue();
         iWhereAreWe = VM_HARNESS;
         bAlreadyInitialized = true;
     }
 
     /**
-     * This static method must be called once by the harness VM. Once called, a
-     * serversocket begins listening for Remote VMs to connect on the port
-     * specified by harness.log.port.
+     * This static method must be called once by the harness VM. Once called, a serversocket begins listening for Remote VMs
+     * to connect on the port specified by harness.log.port.
      *
-     * @param p
-     *          properties containing harness trace flag
+     * @param p properties containing harness trace flag
      */
     public static void initClient(Properties p) {
-        if (bAlreadyInitialized) return;
+        if (bAlreadyInitialized)
+            return;
         // start listener thread
         try {
             testProps = p;
@@ -566,16 +548,12 @@ public final class TestUtil {
     }
 
     /**
-     * This static method must be called once by the harness VM in order to set
-     * the output and error streams and the name of the current test.
+     * This static method must be called once by the harness VM in order to set the output and error streams and the name of
+     * the current test.
      *
-     * @param testName
-     *          the currently running testname as specified in the source code
-     *          tags
-     * @param outStream
-     *          stream printed to by the logMsg and logTrace methods
-     * @param errStream
-     *          stream printed to by the logErr methods
+     * @param testName the currently running testname as specified in the source code tags
+     * @param outStream stream printed to by the logMsg and logTrace methods
+     * @param errStream stream printed to by the logErr methods
      */
     public static void setCurrentTest(String testName, PrintWriter outStream, PrintWriter errStream) {
         sTestName = testName;
@@ -584,11 +562,9 @@ public final class TestUtil {
     }
 
     /**
-     * prints a string to the log stream. All tests should use this method for
-     * standard logging messages
+     * prints a string to the log stream. All tests should use this method for standard logging messages
      *
-     * @param s
-     *          string to print to the log stream
+     * @param s string to print to the log stream
      */
     public static void logMsg(String s) {
         if (iWhereAreWe == VM_JAVATEST) {
@@ -602,27 +578,20 @@ public final class TestUtil {
         } else {
             TestReportInfo tri = new TestReportInfo("SVR: " + s, OUTPUT_STREAM, NORMAL_OUTPUT_LEVEL, null);
             writeObject(tri); /*
-                 * try { synchronized(socketMutex) { objectOutputStream.flush();
-                 * objectOutputStream.writeObject(tri);
-                 * objectOutputStream.flush(); //System.out.
-                 * println("successfully wrote to objectOutputStream"); } }
-                 * catch(Exception ex) { //System.out.
-                 * println("got exception trying to write to objectOutputStream"
-                 * ); //if we have any problem, buffer the data
-                 * synchronized(vBuffereredOutput) {
-                 * vBuffereredOutput.addElement(tri); } }
-                 */
+                               * try { synchronized(socketMutex) { objectOutputStream.flush(); objectOutputStream.writeObject(tri);
+                               * objectOutputStream.flush(); //System.out. println("successfully wrote to objectOutputStream"); } } catch(Exception
+                               * ex) { //System.out. println("got exception trying to write to objectOutputStream" ); //if we have any problem, buffer
+                               * the data synchronized(vBuffereredOutput) { vBuffereredOutput.addElement(tri); } }
+                               */
         }
     }
 
     /**
-     * prints a string as well as the provided Throwable's stacktrace to the log
-     * stream. All tests should use this method for standard logging messages
+     * prints a string as well as the provided Throwable's stacktrace to the log stream. All tests should use this method
+     * for standard logging messages
      *
-     * @param s
-     *          string to print to the log stream
-     * @param t
-     *          - throwable whose stacktrace gets printed*
+     * @param s string to print to the log stream
+     * @param t - throwable whose stacktrace gets printed*
      *
      */
     public static void logMsg(String s, Throwable t) {
@@ -649,38 +618,31 @@ public final class TestUtil {
     }
 
     /**
-     * turns on/off debugging. Once on, all calls to the logTrace method result in
-     * messages being printed to the log stream. If off, all logTrace calls are
-     * not printed.
+     * turns on/off debugging. Once on, all calls to the logTrace method result in messages being printed to the log stream.
+     * If off, all logTrace calls are not printed.
      *
-     * @param b
-     *          If <code>true</code>, debugging is on. If false, debugging is
-     *          turned off.
+     * @param b If <code>true</code>, debugging is on. If false, debugging is turned off.
      */
     public static void setTrace(boolean b) {
         traceflag = b;
     }
 
     /**
-     * prints a debug string to the log stream. All tests should use this method
-     * for verbose logging messages. Whether or not the string is printed is
-     * determined by the last call to the setTrace method.
+     * prints a debug string to the log stream. All tests should use this method for verbose logging messages. Whether or
+     * not the string is printed is determined by the last call to the setTrace method.
      *
-     * @param s
-     *          string to print to the log stream
+     * @param s string to print to the log stream
      */
     public static void logTrace(String s) {
         logTrace(s, null);
     }
 
     /**
-     * Prints a debug string as well as the provided Throwable's stacktrace. Use
-     * this if certain exceptions are only desired while tracing.
+     * Prints a debug string as well as the provided Throwable's stacktrace. Use this if certain exceptions are only desired
+     * while tracing.
      *
-     * @param s
-     *          - string to print to the log stream
-     * @param t
-     *          - throwable whose stactrace gets printed
+     * @param s - string to print to the log stream
+     * @param t - throwable whose stactrace gets printed
      */
     public static void logTrace(String s, Throwable t) {
         if (traceflag) {
@@ -690,8 +652,10 @@ public final class TestUtil {
                 if (iWhereAreWe == VM_HARNESS) {
                     synchronized (out) {
                         // just print to the appropriate stream
-                        if (s != null && s.startsWith("SVR-TRACE")) out.println(df.format(new Date()) + ":  " + s);
-                        else out.println(df.format(new Date()) + ":  TRACE: " + s);
+                        if (s != null && s.startsWith("SVR-TRACE"))
+                            out.println(df.format(new Date()) + ":  " + s);
+                        else
+                            out.println(df.format(new Date()) + ":  TRACE: " + s);
                     }
                 } else {
                     TestReportInfo tri = new TestReportInfo("SVR-TRACE: " + s, OUTPUT_STREAM, DEBUG_OUTPUT_LEVEL, null);
@@ -705,13 +669,10 @@ public final class TestUtil {
     }
 
     /**
-     * prints an error string to the error stream. All tests should use this
-     * method for error messages.
+     * prints an error string to the error stream. All tests should use this method for error messages.
      *
-     * @param s
-     *          string to print to the error stream
-     * @param e
-     *          a Throwable whose stacktrace gets printed
+     * @param s string to print to the error stream
+     * @param e a Throwable whose stacktrace gets printed
      */
     public static void logErr(String s, Throwable e) {
         if (iWhereAreWe == VM_JAVATEST) {
@@ -723,8 +684,10 @@ public final class TestUtil {
             if (iWhereAreWe == VM_HARNESS) {
                 synchronized (err) {
                     // just print to the appropriate stream
-                    if (s != null && s.startsWith("SVR-ERROR")) err.println(df.format(new Date()) + ":  " + s);
-                    else err.println(df.format(new Date()) + ":  ERROR: " + s);
+                    if (s != null && s.startsWith("SVR-ERROR"))
+                        err.println(df.format(new Date()) + ":  " + s);
+                    else
+                        err.println(df.format(new Date()) + ":  ERROR: " + s);
                 }
             } else {
                 TestReportInfo tri = new TestReportInfo("SVR-ERROR: " + s, ERROR_STREAM, NORMAL_OUTPUT_LEVEL, null);
@@ -737,11 +700,9 @@ public final class TestUtil {
     }
 
     /**
-     * prints an error string to the error stream. All tests should use this
-     * method for error messages.
+     * prints an error string to the error stream. All tests should use this method for error messages.
      *
-     * @param s
-     *          string to print to the error stream
+     * @param s string to print to the error stream
      */
     public static void logErr(String s) {
         logErr(s, null);
@@ -750,12 +711,12 @@ public final class TestUtil {
     /**
      * prints the contents of a properties object to the logging stream
      *
-     * @param p
-     *          properties to print
+     * @param p properties to print
      */
     public static void list(Properties p) {
         StringBuffer sb = new StringBuffer();
-        if (p == null) return;
+        if (p == null)
+            return;
         sb.append("--- Property Listing ---").append(TestUtil.NEW_LINE);
         Enumeration e = p.propertyNames();
         String key = null;
@@ -770,8 +731,7 @@ public final class TestUtil {
     /**
      * prints the stacktrace of a Throwable to the logging stream
      *
-     * @param e
-     *          exception to print the stacktrace of
+     * @param e exception to print the stacktrace of
      */
     public static void printStackTrace(Throwable e) {
         if (e == null) {
@@ -790,12 +750,12 @@ public final class TestUtil {
     /**
      * prints the stacktrace of a Throwable to a string
      *
-     * @param e
-     *          exception to print the stacktrace of
+     * @param e exception to print the stacktrace of
      */
     public static String printStackTraceToString(Throwable e) {
         String sTrace = "";
-        if (e == null) return "";
+        if (e == null)
+            return "";
         try {
             StringWriter sw = new StringWriter();
             PrintWriter writer = new PrintWriter(sw);
@@ -880,7 +840,8 @@ public final class TestUtil {
             String name = (String) names.nextElement();
             String value = args.getProperty(name);
             buf.append(URLEncoder.encode(name)).append("=").append(URLEncoder.encode(value));
-            if (names.hasMoreElements()) buf.append("&");
+            if (names.hasMoreElements())
+                buf.append("&");
         }
         return buf.toString();
     }
@@ -902,11 +863,9 @@ public final class TestUtil {
     }
 
     /**
-     * Parse a the table name from the ddl string such as: "create table foo" or
-     * "delete from foo"
+     * Parse a the table name from the ddl string such as: "create table foo" or "delete from foo"
      *
-     * @param value
-     *          buffer to parse
+     * @param value buffer to parse
      * @return The name of the table
      */
     public static String getTableName(String value) {
@@ -1039,7 +998,8 @@ class TestReportInfo implements Serializable {
     public int iStream = TestUtil.OUTPUT_STREAM;
 
     public TestReportInfo(String output, int stream, int level, Throwable e) {
-        if (sOutput != null) sOutput = output;
+        if (sOutput != null)
+            sOutput = output;
         iDebugLevel = level;
         exception = e;
         iStream = stream;
@@ -1067,8 +1027,10 @@ class SocketReader extends Thread {
                     TestUtil.logTrace(tri.sOutput);
                 } else {
                     if (tri.iStream == TestUtil.ERROR_STREAM) {
-                        if (tri.exception == null) TestUtil.logErr(tri.sOutput);
-                        else TestUtil.logErr(tri.sOutput, tri.exception);
+                        if (tri.exception == null)
+                            TestUtil.logErr(tri.sOutput);
+                        else
+                            TestUtil.logErr(tri.sOutput, tri.exception);
                         // System.out.println("about to call logErr");
                     } else // assume outputstream
                     {

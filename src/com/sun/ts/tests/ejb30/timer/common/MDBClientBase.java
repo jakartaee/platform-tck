@@ -67,8 +67,7 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
      *
      * @assertion_ids:
      *
-     * @test_Strategy: @TimeOut is at the superclass of MDB; access resource files
-     * from TimeOut method
+     * @test_Strategy: @TimeOut is at the superclass of MDB; access resource files from TimeOut method
      */
     public void getResourceInTimeOut() throws Fault {
         sendReceive();

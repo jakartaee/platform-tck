@@ -43,7 +43,8 @@ public class LongClass_Field implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public LongClass_Field() {}
+    public LongClass_Field() {
+    }
 
     public LongClass_Field(String id) {
         this.id = id;

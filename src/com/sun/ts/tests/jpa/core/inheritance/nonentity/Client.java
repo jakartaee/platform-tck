@@ -52,7 +52,8 @@ public class Client extends PMClientBase {
 
     private final Date d10 = getSQLDate(2003, 1, 25);
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -76,17 +77,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: nonEntityTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590;
-     * PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588; PERSISTENCE:SPEC:603;
-     * PERSISTENCE:JAVADOC:25; PERSISTENCE:SPEC:1126; PERSISTENCE:SPEC:1126.1;
-     * PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4; PERSISTENCE:JAVADOC:26;
-     * PERSISTENCE:JAVADOC:28; PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:509;
-     * PERSISTENCE:SPEC:1113; PERSISTENCE:SPEC:1116; PERSISTENCE:SPEC:1118;
-     * PERSISTENCE:SPEC:1119; PERSISTENCE:SPEC:510; PERSISTENCE:SPEC:1217;
-     * PERSISTENCE:SPEC:1219; PERSISTENCE:SPEC:2029;
+     * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590; PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588;
+     * PERSISTENCE:SPEC:603; PERSISTENCE:JAVADOC:25; PERSISTENCE:SPEC:1126; PERSISTENCE:SPEC:1126.1;
+     * PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4; PERSISTENCE:JAVADOC:26; PERSISTENCE:JAVADOC:28;
+     * PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:509; PERSISTENCE:SPEC:1113; PERSISTENCE:SPEC:1116; PERSISTENCE:SPEC:1118;
+     * PERSISTENCE:SPEC:1119; PERSISTENCE:SPEC:510; PERSISTENCE:SPEC:1217; PERSISTENCE:SPEC:1219; PERSISTENCE:SPEC:2029;
      *
-     * @test_Strategy: An entity may have a non-entity superclass which may be
-     * either abstract or concrete.
+     * @test_Strategy: An entity may have a non-entity superclass which may be either abstract or concrete.
      */
 
     public void nonEntityTest1() throws Fault {
@@ -113,21 +110,19 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("nonEntityTest1 failed, reason: " + reason);
+        if (!pass)
+            throw new Fault("nonEntityTest1 failed, reason: " + reason);
     }
 
     /*
      * @testName: nonEntityTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590;
-     * PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588; PERSISTENCE:SPEC:603;
-     * PERSISTENCE:JAVADOC:25; PERSISTENCE:SPEC:1126; PERSISTENCE:SPEC:1126.1;
-     * PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4; PERSISTENCE:JAVADOC:26;
-     * PERSISTENCE:JAVADOC:28; PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:1113;
-     * PERSISTENCE:SPEC:1116; PERSISTENCE:SPEC:1118; PERSISTENCE:SPEC:2029;
+     * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590; PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588;
+     * PERSISTENCE:SPEC:603; PERSISTENCE:JAVADOC:25; PERSISTENCE:SPEC:1126; PERSISTENCE:SPEC:1126.1;
+     * PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4; PERSISTENCE:JAVADOC:26; PERSISTENCE:JAVADOC:28;
+     * PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:1113; PERSISTENCE:SPEC:1116; PERSISTENCE:SPEC:1118; PERSISTENCE:SPEC:2029;
      *
-     * @test_Strategy: An entity may have a non-entity superclass which may be
-     * either abstract or concrete.
+     * @test_Strategy: An entity may have a non-entity superclass which may be either abstract or concrete.
      */
 
     public void nonEntityTest2() throws Fault {
@@ -154,7 +149,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("nonEntityTest2 failed, reason: " + reason);
+        if (!pass)
+            throw new Fault("nonEntityTest2 failed, reason: " + reason);
     }
 
     /*
@@ -162,10 +158,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:53; PERSISTENCE:SPEC:2029;
      *
-     * @test_Strategy: An IllegalArgumentException is thrown trying to persist an
-     * Object that is not an entity. Exercise this assertion in an inheritance
-     * hierarchy attempting to persist a non-entity class extended from an entity
-     * class.
+     * @test_Strategy: An IllegalArgumentException is thrown trying to persist an Object that is not an entity. Exercise
+     * this assertion in an inheritance hierarchy attempting to persist a non-entity class extended from an entity class.
      */
 
     public void nonEntityTest3() throws Fault {
@@ -198,7 +192,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("nonEntityTest3 failed, reason: " + reason);
+        if (!pass)
+            throw new Fault("nonEntityTest3 failed, reason: " + reason);
     }
 
     public void createTestData() {

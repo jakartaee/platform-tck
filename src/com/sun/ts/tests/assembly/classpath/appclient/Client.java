@@ -65,24 +65,18 @@ public class Client extends EETest {
      *
      * @test_Strategy: We package an application with:
      *
-     *                 - A utility .jar file containing the class ClassPathUtil.
-     *                 This .jar file is not a J2EE module and does not appear in
-     *                 the upper level application DD. It includes a "dummy" DD
-     *                 though, that must be ignored by the deployment tool.
+     * - A utility .jar file containing the class ClassPathUtil. This .jar file is not a J2EE module and does not appear in
+     * the upper level application DD. It includes a "dummy" DD though, that must be ignored by the deployment tool.
      *
-     *                 - An application client jar file. This jar file includes a
-     *                 Class-Path header referencing the utility .jar file in its
-     *                 manifest file, and does not contain any definition of
-     *                 ClassPathUtil.
+     * - An application client jar file. This jar file includes a Class-Path header referencing the utility .jar file in its
+     * manifest file, and does not contain any definition of ClassPathUtil.
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - We can deploy the application
+     * - We can deploy the application
      *
-     *                 - The application client can create a ClassPathUtil
-     *                 instance at runtime, and invoke a method on that instance.
-     *                 This validates that the referenced .jar file appears in the
-     *                 logical classpath of the application client.
+     * - The application client can create a ClassPathUtil instance at runtime, and invoke a method on that instance. This
+     * validates that the referenced .jar file appears in the logical classpath of the application client.
      *
      */
     public void testDirectLibrary() throws Fault {
@@ -110,39 +104,27 @@ public class Client extends EETest {
      *
      * @test_Strategy: We package an application with:
      *
-     *                 - A utility .jar file containing the class
-     *                 IndirectClassPathUtil. This .jar file is not a J2EE module
-     *                 and does not appear in the upper level application DD. It
-     *                 includes a "dummy" DD though, that must be ignored by the
-     *                 deployment tool.
+     * - A utility .jar file containing the class IndirectClassPathUtil. This .jar file is not a J2EE module and does not
+     * appear in the upper level application DD. It includes a "dummy" DD though, that must be ignored by the deployment
+     * tool.
      *
-     *                 - A second utility .jar file containing the class
-     *                 ClassPathUtil. This .jar file is not a J2EE module and does
-     *                 not appear in the upper level application DD. It includes a
-     *                 "dummy" DD though, that must be ignored by the deployment
-     *                 tool. This jar file includes in its manifest file a
-     *                 Class-Path header referencing the utility .jar file
-     *                 containing IndirectClassPathUtil. It does not contain any
-     *                 definition of IndirectClassPathUtil.
+     * - A second utility .jar file containing the class ClassPathUtil. This .jar file is not a J2EE module and does not
+     * appear in the upper level application DD. It includes a "dummy" DD though, that must be ignored by the deployment
+     * tool. This jar file includes in its manifest file a Class-Path header referencing the utility .jar file containing
+     * IndirectClassPathUtil. It does not contain any definition of IndirectClassPathUtil.
      *
-     *                 - An application client jar file. This jar file includes in
-     *                 its manifest file a Class-Path header referencing the
-     *                 second utility .jar file. It does not contain any
-     *                 definition of ClassPathUtil nor IndirectClassPathUtil.
+     * - An application client jar file. This jar file includes in its manifest file a Class-Path header referencing the
+     * second utility .jar file. It does not contain any definition of ClassPathUtil nor IndirectClassPathUtil.
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - We can deploy the application
+     * - We can deploy the application
      *
-     *                 - The application client can create a ClassPathUtil
-     *                 instance at runtime, and invoke a method on that instance.
-     *                 This validates that the second utility .jar file appears in
-     *                 the logical classpath of the application client.
+     * - The application client can create a ClassPathUtil instance at runtime, and invoke a method on that instance. This
+     * validates that the second utility .jar file appears in the logical classpath of the application client.
      *
-     *                 - The application client can create a IndirectClassPathUtil
-     *                 instance at runtime, and invoke a method on that instance.
-     *                 This validates that the first utility .jar file appears in
-     *                 the logical classpath of the application client.
+     * - The application client can create a IndirectClassPathUtil instance at runtime, and invoke a method on that
+     * instance. This validates that the first utility .jar file appears in the logical classpath of the application client.
      *
      */
     public void testIndirectLibrary() throws Fault {

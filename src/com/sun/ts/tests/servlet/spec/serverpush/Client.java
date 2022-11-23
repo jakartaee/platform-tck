@@ -128,7 +128,7 @@ public class Client extends EETest {
         Map<String, String> headers = new HashMap<>();
         headers.put("foo", "bar");
         List<HttpResponse<String>> responses = sendRequest(headers, null, null);
-        verfiyResponses(responses, new String[] {"hello", "INDEX from index.html"});
+        verfiyResponses(responses, new String[] { "hello", "INDEX from index.html" });
     }
 
     /*
@@ -136,8 +136,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: N/A;
      *
-     * @test_Strategy: Verify the returned PushBuilder Object is null if the
-     * current connection does not support server push.
+     * @test_Strategy: Verify the returned PushBuilder Object is null if the current connection does not support server
+     * push.
      */
     public void getNullPushBuilderTest() throws Fault {
         try {
@@ -189,7 +189,8 @@ public class Client extends EETest {
         headers.put("Referer", requestURI + "/test");
 
         List<HttpResponse<String>> responses = sendRequest(headers, null, cm);
-        if (responses.size() != 1) throw new Fault("Test fail");
+        if (responses.size() != 1)
+            throw new Fault("Test fail");
         String sessionid = responses.get(0).headers().allValues("set-cookie").stream()
                 .filter(value -> value.contains("JSESSIONID="))
                 .findFirst()
@@ -307,7 +308,7 @@ public class Client extends EETest {
         CookieManager cm = new CookieManager();
         List<HttpResponse<String>> responses = sendRequest(headers, null, cm);
         verfiyResponses(
-                responses, new String[] {"add cookies [foo,bar] [baz,qux] to response", "INDEX from index.html"});
+                responses, new String[] { "add cookies [foo,bar] [baz,qux] to response", "INDEX from index.html" });
         boolean cookieExisted = false;
         String pbCookies = "";
         try {
@@ -402,7 +403,8 @@ public class Client extends EETest {
             }
         }
 
-        if (pushResp == null) throw new Fault("can not get push response");
+        if (pushResp == null)
+            throw new Fault("can not get push response");
 
         logMsg("expected header: h1=v1, foo=v2; expected querysting: querystring=1&querystring=2");
         Map<String, List<String>> pushHeaders = pushReq.headers().map();
@@ -444,7 +446,8 @@ public class Client extends EETest {
             }
         }
 
-        if (servletResp == null) throw new Fault("can not get servlet response");
+        if (servletResp == null)
+            throw new Fault("can not get servlet response");
         if (servletResp.body().indexOf("test passed") < 0) {
             throw new Fault("test fail");
         }
@@ -453,8 +456,10 @@ public class Client extends EETest {
     private List<HttpResponse<String>> sendRequest(Map<String, String> headers, Authenticator auth, CookieManager cm)
             throws Fault {
         HttpClient.Builder builder = HttpClient.newBuilder();
-        if (auth != null) builder.authenticator(auth);
-        if (cm != null) builder.cookieHandler(cm);
+        if (auth != null)
+            builder.authenticator(auth);
+        if (cm != null)
+            builder.cookieHandler(cm);
 
         HttpClient client = builder.version(HttpClient.Version.HTTP_2)
                 .followRedirects(HttpClient.Redirect.ALWAYS)
@@ -466,8 +471,7 @@ public class Client extends EETest {
 
         try {
             // GET
-            HttpRequest.Builder requestBuilder =
-                    HttpRequest.newBuilder(new URI(requestURI)).version(HttpClient.Version.HTTP_2);
+            HttpRequest.Builder requestBuilder = HttpRequest.newBuilder(new URI(requestURI)).version(HttpClient.Version.HTTP_2);
             for (Map.Entry<String, String> e : headers.entrySet()) {
                 requestBuilder.setHeader(e.getKey(), e.getValue());
             }

@@ -35,10 +35,8 @@ import java.io.IOException;
  *
  */
 
-@ServletSecurity(@HttpConstraint(rolesAllowed = {"Administrator", "Manager", "Employee"}))
-@WebServlet(
-        name = "AllMethodsAllowedAnno",
-        urlPatterns = {"/AllMethodsAllowedAnno"})
+@ServletSecurity(@HttpConstraint(rolesAllowed = { "Administrator", "Manager", "Employee" }))
+@WebServlet(name = "AllMethodsAllowedAnno", urlPatterns = { "/AllMethodsAllowedAnno" })
 public class AllMethodsAllowedAnno extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

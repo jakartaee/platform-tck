@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -55,15 +53,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: servletURLMappingTest
      *
-     * @assertion_ids: Servlet:JAVADOC:676; Servlet:JAVADOC:694;
-     * Servlet:JAVADOC:696; Servlet:JAVADOC:697;
+     * @assertion_ids: Servlet:JAVADOC:676; Servlet:JAVADOC:694; Servlet:JAVADOC:696; Servlet:JAVADOC:697;
      *
-     * @test_Strategy: Create a ServletContextListener, in which, 1. Add the
-     * Servlet ServletContext.addServlet(String, Class), 2. mapping the new
-     * Servlet programmatically. 3. Store information returned in
-     * ServletContextAttribute by jakarta.servlet.ServletRegistration.getMappings 4.
-     * client send a request to another servlet to get the information Verify in
-     * client that getMapping works
+     * @test_Strategy: Create a ServletContextListener, in which, 1. Add the Servlet ServletContext.addServlet(String,
+     * Class), 2. mapping the new Servlet programmatically. 3. Store information returned in ServletContextAttribute by
+     * jakarta.servlet.ServletRegistration.getMappings 4. client send a request to another servlet to get the information
+     * Verify in client that getMapping works
      */
     public void servletURLMappingTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "servletURLMappingTest");
@@ -77,19 +72,15 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: filterServletMappingTest
      *
-     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:655;
-     * Servlet:JAVADOC:657; Servlet:JAVADOC:668; Servlet:JAVADOC:669;
-     * Servlet:JAVADOC:670; Servlet:JAVADOC:677; Servlet:JAVADOC:694;
+     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:655; Servlet:JAVADOC:657; Servlet:JAVADOC:668;
+     * Servlet:JAVADOC:669; Servlet:JAVADOC:670; Servlet:JAVADOC:677; Servlet:JAVADOC:694;
      *
-     * @test_Strategy: Create a ServletContextListener, in which, 1. Create a
-     * FilterRegistration ServletContext.addFilter(String, Class) 2. Create
-     * another FilterRegistration ServletContext.addFilter(String, String), 3.
-     * Create the third FilterRegistration ServletContext.addServlet(String,
-     * Filter), 4. Map all FilterRegistration calling addMappingForServletNames 5.
-     * Store information in ServletContextAttribute:
-     * jakarta.servlet.FilterRegistration.getServletNameMappings 6. client send a
-     * request to another servlet to get the information Verify in client that
-     * getServletNameMappings works
+     * @test_Strategy: Create a ServletContextListener, in which, 1. Create a FilterRegistration
+     * ServletContext.addFilter(String, Class) 2. Create another FilterRegistration ServletContext.addFilter(String,
+     * String), 3. Create the third FilterRegistration ServletContext.addServlet(String, Filter), 4. Map all
+     * FilterRegistration calling addMappingForServletNames 5. Store information in ServletContextAttribute:
+     * jakarta.servlet.FilterRegistration.getServletNameMappings 6. client send a request to another servlet to get the
+     * information Verify in client that getServletNameMappings works
      */
     public void filterServletMappingTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "filterServletMappingTest");
@@ -103,19 +94,15 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: servletRegistrationsTest
      *
-     * @assertion_ids: Servlet:JAVADOC:674; Servlet:JAVADOC:675;
-     * Servlet:JAVADOC:676; Servlet:JAVADOC:681; Servlet:JAVADOC:692;
-     * Servlet:JAVADOC:694; Servlet:JAVADOC:696;
+     * @assertion_ids: Servlet:JAVADOC:674; Servlet:JAVADOC:675; Servlet:JAVADOC:676; Servlet:JAVADOC:681;
+     * Servlet:JAVADOC:692; Servlet:JAVADOC:694; Servlet:JAVADOC:696;
      *
      *
-     * @test_Strategy: Create a ServletContextListener, in which, 1. Add the
-     * Servlet ServletContext.addServlet(String, Class), 2. Add another Servlet
-     * ServletContext.addServlet(String, String), 3. Add the third Servlet
-     * ServletContext.addServlet(String, Servlet), 4. Define a servlet in web.xml;
-     * 5. Store information returned in ServletContextAttribute by
-     * jakarta.servlet.ServletRegistration.getServletRegistrations 6. client send a
-     * request to another servlet to get the information Verify in client that
-     * getServletRegistrations works
+     * @test_Strategy: Create a ServletContextListener, in which, 1. Add the Servlet ServletContext.addServlet(String,
+     * Class), 2. Add another Servlet ServletContext.addServlet(String, String), 3. Add the third Servlet
+     * ServletContext.addServlet(String, Servlet), 4. Define a servlet in web.xml; 5. Store information returned in
+     * ServletContextAttribute by jakarta.servlet.ServletRegistration.getServletRegistrations 6. client send a request to
+     * another servlet to get the information Verify in client that getServletRegistrations works
      */
     public void servletRegistrationsTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getServletRegistrationsTest");
@@ -129,18 +116,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getServletRegistrationTest
      *
-     * @assertion_ids: Servlet:JAVADOC:674; Servlet:JAVADOC:675;
-     * Servlet:JAVADOC:676; Servlet:JAVADOC:681; Servlet:JAVADOC:691;
-     * Servlet:JAVADOC:694; Servlet:JAVADOC:696;
+     * @assertion_ids: Servlet:JAVADOC:674; Servlet:JAVADOC:675; Servlet:JAVADOC:676; Servlet:JAVADOC:681;
+     * Servlet:JAVADOC:691; Servlet:JAVADOC:694; Servlet:JAVADOC:696;
      *
-     * @test_Strategy: Create a ServletContextListener, in which, 1. Add the
-     * Servlet ServletContext.addServlet(String, Class), 2. Add another Servlet
-     * ServletContext.addServlet(String, String), 3. Add the third Servlet
-     * ServletContext.addServlet(String, Servlet), 4. Define a servlet in web.xml;
-     * 5. Store information returned in ServletContextAttribute by
-     * jakarta.servlet.ServletRegistration.getServletRegistration(String) 6. client
-     * send a request to another servlet to get the information Verify in client
-     * that getServletRegistration(String) works
+     * @test_Strategy: Create a ServletContextListener, in which, 1. Add the Servlet ServletContext.addServlet(String,
+     * Class), 2. Add another Servlet ServletContext.addServlet(String, String), 3. Add the third Servlet
+     * ServletContext.addServlet(String, Servlet), 4. Define a servlet in web.xml; 5. Store information returned in
+     * ServletContextAttribute by jakarta.servlet.ServletRegistration.getServletRegistration(String) 6. client send a
+     * request to another servlet to get the information Verify in client that getServletRegistration(String) works
      */
     public void getServletRegistrationTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getServletRegistrationTest");
@@ -154,19 +137,15 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getFilterRegistrationsTest
      *
-     * @assertion_ids: Servlet:JAVADOC:674; Servlet:JAVADOC:675;
-     * Servlet:JAVADOC:676; Servlet:JAVADOC:681; Servlet:JAVADOC:689;
-     * Servlet:JAVADOC:694; Servlet:JAVADOC:696;
+     * @assertion_ids: Servlet:JAVADOC:674; Servlet:JAVADOC:675; Servlet:JAVADOC:676; Servlet:JAVADOC:681;
+     * Servlet:JAVADOC:689; Servlet:JAVADOC:694; Servlet:JAVADOC:696;
      *
      *
-     * @test_Strategy: Create a ServletContextListener, in which, 1. Add the
-     * Servlet ServletContext.addServlet(String, Class), 2. Add another Servlet
-     * ServletContext.addServlet(String, String), 3. Add the third Servlet
-     * ServletContext.addServlet(String, Servlet), 4. Define a servlet in web.xml;
-     * 5. Store information returned in ServletContextAttribute by
-     * jakarta.servlet.ServletRegistration.getFilterRegistrations 6. client send a
-     * request to another servlet to get the information Verify in client that
-     * getFilterRegistrations works
+     * @test_Strategy: Create a ServletContextListener, in which, 1. Add the Servlet ServletContext.addServlet(String,
+     * Class), 2. Add another Servlet ServletContext.addServlet(String, String), 3. Add the third Servlet
+     * ServletContext.addServlet(String, Servlet), 4. Define a servlet in web.xml; 5. Store information returned in
+     * ServletContextAttribute by jakarta.servlet.ServletRegistration.getFilterRegistrations 6. client send a request to
+     * another servlet to get the information Verify in client that getFilterRegistrations works
      */
     public void getFilterRegistrationsTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getFilterRegistrationsTest");
@@ -180,18 +159,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getFilterRegistrationTest
      *
-     * @assertion_ids: Servlet:JAVADOC:674; Servlet:JAVADOC:675;
-     * Servlet:JAVADOC:676; Servlet:JAVADOC:681; Servlet:JAVADOC:688;
-     * Servlet:JAVADOC:694; Servlet:JAVADOC:696;
+     * @assertion_ids: Servlet:JAVADOC:674; Servlet:JAVADOC:675; Servlet:JAVADOC:676; Servlet:JAVADOC:681;
+     * Servlet:JAVADOC:688; Servlet:JAVADOC:694; Servlet:JAVADOC:696;
      *
-     * @test_Strategy: Create a ServletContextListener, in which, 1. Add the
-     * Servlet ServletContext.addServlet(String, Class), 2. Add another Servlet
-     * ServletContext.addServlet(String, String), 3. Add the third Servlet
-     * ServletContext.addServlet(String, Servlet), 4. Define a servlet in web.xml;
-     * 5. Store information returned in ServletContextAttribute by
-     * jakarta.servlet.ServletRegistration.getFilterRegistration(String) 6. client
-     * send a request to another servlet to get the information Verify in client
-     * that getFilterRegistration(String) works
+     * @test_Strategy: Create a ServletContextListener, in which, 1. Add the Servlet ServletContext.addServlet(String,
+     * Class), 2. Add another Servlet ServletContext.addServlet(String, String), 3. Add the third Servlet
+     * ServletContext.addServlet(String, Servlet), 4. Define a servlet in web.xml; 5. Store information returned in
+     * ServletContextAttribute by jakarta.servlet.ServletRegistration.getFilterRegistration(String) 6. client send a request
+     * to another servlet to get the information Verify in client that getFilterRegistration(String) works
      */
     public void getFilterRegistrationTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getFilterRegistrationTest");
@@ -205,23 +180,18 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRegistrationNameTest
      *
-     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:662;
-     * Servlet:JAVADOC:668; Servlet:JAVADOC:669; Servlet:JAVADOC:670;
-     * Servlet:JAVADOC:674; Servlet:JAVADOC:675; Servlet:JAVADOC:676;
-     * Servlet:JAVADOC:677; Servlet:JAVADOC:681; Servlet:JAVADOC:694;
+     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:662; Servlet:JAVADOC:668; Servlet:JAVADOC:669;
+     * Servlet:JAVADOC:670; Servlet:JAVADOC:674; Servlet:JAVADOC:675; Servlet:JAVADOC:676; Servlet:JAVADOC:677;
+     * Servlet:JAVADOC:681; Servlet:JAVADOC:694;
      *
-     * @test_Strategy: Create a ServletContextListener, in which, 1. Create a
-     * ServletRegistration ServletContext.addServlet(String, Class) 2. Create
-     * another ServletRegistration ServletContext.addServlet(String, String), 3.
-     * Create the third ServletRegistration ServletContext.addServlet(String,
-     * Servlet), 4. Create a FilterRegistration ServletContext.addFilter(String,
-     * Class) 5. Create another FilterRegistration
-     * ServletContext.addFilter(String, String), 6. Create the third
-     * FilterRegistration ServletContext.addFilter(String, Filter), 7. Store
-     * information returned in ServletContextAttribute by
-     * jakarta.servlet.Registration.getName() 8. client send a request to another
-     * servlet to get the information Verify in client that
-     * jakarta.servlet.Registration.getName() works
+     * @test_Strategy: Create a ServletContextListener, in which, 1. Create a ServletRegistration
+     * ServletContext.addServlet(String, Class) 2. Create another ServletRegistration ServletContext.addServlet(String,
+     * String), 3. Create the third ServletRegistration ServletContext.addServlet(String, Servlet), 4. Create a
+     * FilterRegistration ServletContext.addFilter(String, Class) 5. Create another FilterRegistration
+     * ServletContext.addFilter(String, String), 6. Create the third FilterRegistration ServletContext.addFilter(String,
+     * Filter), 7. Store information returned in ServletContextAttribute by jakarta.servlet.Registration.getName() 8. client
+     * send a request to another servlet to get the information Verify in client that jakarta.servlet.Registration.getName()
+     * works
      */
     public void getRegistrationNameTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getRegistrationNameTest");
@@ -236,22 +206,17 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRegistrationClassNameTest
      *
-     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:659;
-     * Servlet:JAVADOC:668; Servlet:JAVADOC:669; Servlet:JAVADOC:670;
-     * Servlet:JAVADOC:674; Servlet:JAVADOC:675; Servlet:JAVADOC:676;
-     * Servlet:JAVADOC:677; Servlet:JAVADOC:681; Servlet:JAVADOC:694;
+     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:659; Servlet:JAVADOC:668; Servlet:JAVADOC:669;
+     * Servlet:JAVADOC:670; Servlet:JAVADOC:674; Servlet:JAVADOC:675; Servlet:JAVADOC:676; Servlet:JAVADOC:677;
+     * Servlet:JAVADOC:681; Servlet:JAVADOC:694;
      *
-     * @test_Strategy: Create a ServletContextListener, in which, 1. Create a
-     * ServletRegistration ServletContext.addServlet(String, Class) 2. Create
-     * another ServletRegistration ServletContext.addServlet(String, String), 3.
-     * Create the third ServletRegistration ServletContext.addServlet(String,
-     * Servlet), 4. Create a FilterRegistration ServletContext.addFilter(String,
-     * Class) 5. Create another FilterRegistration
-     * ServletContext.addFilter(String, String), 6. Create the third
-     * FilterRegistration ServletContext.addFilter(String, Filter), 7. Store
-     * information returned in ServletContextAttribute by
-     * jakarta.servlet.Registration.getClassName() 8. client send a request to
-     * another servlet to get the information Verify in client that
+     * @test_Strategy: Create a ServletContextListener, in which, 1. Create a ServletRegistration
+     * ServletContext.addServlet(String, Class) 2. Create another ServletRegistration ServletContext.addServlet(String,
+     * String), 3. Create the third ServletRegistration ServletContext.addServlet(String, Servlet), 4. Create a
+     * FilterRegistration ServletContext.addFilter(String, Class) 5. Create another FilterRegistration
+     * ServletContext.addFilter(String, String), 6. Create the third FilterRegistration ServletContext.addFilter(String,
+     * Filter), 7. Store information returned in ServletContextAttribute by jakarta.servlet.Registration.getClassName() 8.
+     * client send a request to another servlet to get the information Verify in client that
      * jakarta.servlet.Registration.getClassName() works
      */
     public void getRegistrationClassNameTest() throws Fault {
@@ -273,25 +238,18 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRegistrationInitParameterTest
      *
-     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:660;
-     * Servlet:JAVADOC:663; Servlet:JAVADOC:668; Servlet:JAVADOC:669;
-     * Servlet:JAVADOC:670; Servlet:JAVADOC:674; Servlet:JAVADOC:675;
-     * Servlet:JAVADOC:676; Servlet:JAVADOC:677; Servlet:JAVADOC:681;
-     * Servlet:JAVADOC:694;
+     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:660; Servlet:JAVADOC:663; Servlet:JAVADOC:668;
+     * Servlet:JAVADOC:669; Servlet:JAVADOC:670; Servlet:JAVADOC:674; Servlet:JAVADOC:675; Servlet:JAVADOC:676;
+     * Servlet:JAVADOC:677; Servlet:JAVADOC:681; Servlet:JAVADOC:694;
      *
-     * @test_Strategy: Create a ServletContextListener, in which, 1. Create a
-     * ServletRegistration ServletContext.addServlet(String, Class) 2. Create
-     * another ServletRegistration ServletContext.addServlet(String, String), 3.
-     * Create the third ServletRegistration ServletContext.addServlet(String,
-     * Servlet), 4. Create a FilterRegistration ServletContext.addFilter(String,
-     * Class) 5. Create another FilterRegistration
-     * ServletContext.addFilter(String, String), 6. Create the third
-     * FilterRegistration ServletContext.addFilter(String, Filter), 7. Call
-     * setInitParameter(String, String) on all above Registratyion Object; 8.
-     * Store information returned in ServletContextAttribute by
-     * jakarta.servlet.Registration.getInitParameter(String) 9. client send a
-     * request to another servlet to get the information Verify in client that
-     * jakarta.servlet.Registration.getInitParameter(String) works
+     * @test_Strategy: Create a ServletContextListener, in which, 1. Create a ServletRegistration
+     * ServletContext.addServlet(String, Class) 2. Create another ServletRegistration ServletContext.addServlet(String,
+     * String), 3. Create the third ServletRegistration ServletContext.addServlet(String, Servlet), 4. Create a
+     * FilterRegistration ServletContext.addFilter(String, Class) 5. Create another FilterRegistration
+     * ServletContext.addFilter(String, String), 6. Create the third FilterRegistration ServletContext.addFilter(String,
+     * Filter), 7. Call setInitParameter(String, String) on all above Registratyion Object; 8. Store information returned in
+     * ServletContextAttribute by jakarta.servlet.Registration.getInitParameter(String) 9. client send a request to another
+     * servlet to get the information Verify in client that jakarta.servlet.Registration.getInitParameter(String) works
      */
     public void getRegistrationInitParameterTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getRegistrationInitParameterTest");
@@ -307,25 +265,18 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRegistrationInitParametersTest
      *
-     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:661;
-     * Servlet:JAVADOC:664; Servlet:JAVADOC:668; Servlet:JAVADOC:669;
-     * Servlet:JAVADOC:670; Servlet:JAVADOC:674; Servlet:JAVADOC:675;
-     * Servlet:JAVADOC:676; Servlet:JAVADOC:677; Servlet:JAVADOC:681;
-     * Servlet:JAVADOC:694;
+     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:661; Servlet:JAVADOC:664; Servlet:JAVADOC:668;
+     * Servlet:JAVADOC:669; Servlet:JAVADOC:670; Servlet:JAVADOC:674; Servlet:JAVADOC:675; Servlet:JAVADOC:676;
+     * Servlet:JAVADOC:677; Servlet:JAVADOC:681; Servlet:JAVADOC:694;
      *
-     * @test_Strategy: Create a ServletContextListener, in which, 1. Create a
-     * ServletRegistration ServletContext.addServlet(String, Class) 2. Create
-     * another ServletRegistration ServletContext.addServlet(String, String), 3.
-     * Create the third ServletRegistration ServletContext.addServlet(String,
-     * Servlet), 4. Create a FilterRegistration ServletContext.addFilter(String,
-     * Class) 5. Create another FilterRegistration
-     * ServletContext.addFilter(String, String), 6. Create the third
-     * FilterRegistration ServletContext.addFilter(String, Filter), 7. Call
-     * setInitParameters(Map) on all above Registratyion Object; 8. Store
-     * information returned in ServletContextAttribute by
-     * jakarta.servlet.Registration.getInitParameters() 9. client send a request to
-     * another servlet to get the information Verify in client that
-     * jakarta.servlet.Registration.getInitParameters() works
+     * @test_Strategy: Create a ServletContextListener, in which, 1. Create a ServletRegistration
+     * ServletContext.addServlet(String, Class) 2. Create another ServletRegistration ServletContext.addServlet(String,
+     * String), 3. Create the third ServletRegistration ServletContext.addServlet(String, Servlet), 4. Create a
+     * FilterRegistration ServletContext.addFilter(String, Class) 5. Create another FilterRegistration
+     * ServletContext.addFilter(String, String), 6. Create the third FilterRegistration ServletContext.addFilter(String,
+     * Filter), 7. Call setInitParameters(Map) on all above Registratyion Object; 8. Store information returned in
+     * ServletContextAttribute by jakarta.servlet.Registration.getInitParameters() 9. client send a request to another
+     * servlet to get the information Verify in client that jakarta.servlet.Registration.getInitParameters() works
      */
     public void getRegistrationInitParametersTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getRegistrationInitParametersTest");

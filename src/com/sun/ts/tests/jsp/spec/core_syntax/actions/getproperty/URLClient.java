@@ -29,9 +29,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/jsp_coresyntx_act_getproperty_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -40,8 +39,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,8 +61,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:163.1;JSP:SPEC:163.2;JSP:SPEC:163.4
      *
-     * @test_Strategy: Create a bean using jsp:useBean tag, use jsp:getProperty to
-     * access and validate the property.
+     * @test_Strategy: Create a bean using jsp:useBean tag, use jsp:getProperty to access and validate the property.
      */
 
     public void positiveGetPropsTest() throws Fault {
@@ -77,8 +74,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: if the target property value is null, "null" rather than ""
-     * must be outputed, done as in println method.
+     * @test_Strategy: if the target property value is null, "null" rather than "" must be outputed, done as in println
+     * method.
      */
 
     public void nullPropertyValueTest() throws Fault {

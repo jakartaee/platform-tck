@@ -27,9 +27,8 @@ import jakarta.ejb.EJB;
 import java.util.Properties;
 
 /**
- * The MDBClient class invokes a test session bean, which will ask and the
- * message driven bean to send a text, byte, map, stream, and object message to
- * a topic Sun's EJB Reference Implementation.
+ * The MDBClient class invokes a test session bean, which will ask and the message driven bean to send a text, byte,
+ * map, stream, and object message to a topic Sun's EJB Reference Implementation.
  */
 public class MDBClient extends EETest {
 
@@ -46,8 +45,7 @@ public class MDBClient extends EETest {
 
     /* Test setup: */
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.port;
-     * harness.log.traceflag;
+     * @class.setup_props: jms_timeout; user; password; harness.log.port; harness.log.traceflag;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -76,18 +74,13 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbSendTextMsgToTopicTest
      *
-     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
-     * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
-     * JMS:JAVADOC:198;
+     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188; JMS:JAVADOC:198;
      *
-     * @test_Strategy: Instruct the mdb to send a text msg. Create a stateful
-     * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-     * a message to a Topic Destination. handled by a message-driven bean Tell the
-     * mdb (MsgBeanToTopic) to send a text message with TopicPublisher to a topic
-     * that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it
-     * received the message by sending another message to a Queue -
-     * MDB_QUEUE_REPLY.
+     * @test_Strategy: Instruct the mdb to send a text msg. Create a stateful Session EJB Bean. Deploy it on the J2EE
+     * server. Have the EJB component send a message to a Topic Destination. handled by a message-driven bean Tell the mdb
+     * (MsgBeanToTopic) to send a text message with TopicPublisher to a topic that is handled by a second mdb(MsgBeanTopic).
+     * MsgBeanTopic verifies it received the message by sending another message to a Queue - MDB_QUEUE_REPLY.
      *
      */
     public void mdbSendTextMsgToTopicTest() throws Fault {
@@ -113,17 +106,14 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbSendBytesMsgToTopicTest
      *
-     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
-     * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
-     * JMS:JAVADOC:198; JMS:JAVADOC:209; JMS:JAVADOC:562;
+     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188; JMS:JAVADOC:198; JMS:JAVADOC:209;
+     * JMS:JAVADOC:562;
      *
-     * @test_Strategy: Instruct the mdb to send a bytes msg. Create a stateful
-     * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-     * a message to a Topic Destination. handled by a message-driven bean Tell the
-     * mdb (MsgBeanToTopic) to send a bytes message with TopicPublisher to a topic
-     * that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it
-     * received the message by sending another message to a Queue -
+     * @test_Strategy: Instruct the mdb to send a bytes msg. Create a stateful Session EJB Bean. Deploy it on the J2EE
+     * server. Have the EJB component send a message to a Topic Destination. handled by a message-driven bean Tell the mdb
+     * (MsgBeanToTopic) to send a bytes message with TopicPublisher to a topic that is handled by a second
+     * mdb(MsgBeanTopic). MsgBeanTopic verifies it received the message by sending another message to a Queue -
      * MDB_QUEUE_REPLY.
      *
      */
@@ -148,18 +138,14 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbSendMapMsgToTopicTest
      *
-     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
-     * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
-     * JMS:JAVADOC:198; JMS:JAVADOC:211; JMS:JAVADOC:473;
+     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188; JMS:JAVADOC:198; JMS:JAVADOC:211;
+     * JMS:JAVADOC:473;
      *
-     * @test_Strategy: Instruct the mdb to send a map msg. Create a stateful
-     * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-     * a message to a Topic Destination. handled by a message-driven bean Tell the
-     * mdb (MsgBeanToTopic) to send a map message with TopicPublisher to a topic
-     * that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies it
-     * received the message by sending another message to a Queue -
-     * MDB_QUEUE_REPLY.
+     * @test_Strategy: Instruct the mdb to send a map msg. Create a stateful Session EJB Bean. Deploy it on the J2EE server.
+     * Have the EJB component send a message to a Topic Destination. handled by a message-driven bean Tell the mdb
+     * (MsgBeanToTopic) to send a map message with TopicPublisher to a topic that is handled by a second mdb(MsgBeanTopic).
+     * MsgBeanTopic verifies it received the message by sending another message to a Queue - MDB_QUEUE_REPLY.
      *
      */
     public void mdbSendMapMsgToTopicTest() throws Fault {
@@ -183,17 +169,14 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbSendStreamMsgToTopicTest
      *
-     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
-     * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
-     * JMS:JAVADOC:198; JMS:JAVADOC:219; JMS:JAVADOC:166;
+     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188; JMS:JAVADOC:198; JMS:JAVADOC:219;
+     * JMS:JAVADOC:166;
      *
-     * @test_Strategy: Instruct the mdb to send a stream msg. Create a stateful
-     * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-     * a message to a Topic Destination. handled by a message-driven bean Tell the
-     * mdb (MsgBeanToTopic) to send a stream message with TopicPublisher to a
-     * topic that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies
-     * it received the message by sending another message to a Queue -
+     * @test_Strategy: Instruct the mdb to send a stream msg. Create a stateful Session EJB Bean. Deploy it on the J2EE
+     * server. Have the EJB component send a message to a Topic Destination. handled by a message-driven bean Tell the mdb
+     * (MsgBeanToTopic) to send a stream message with TopicPublisher to a topic that is handled by a second
+     * mdb(MsgBeanTopic). MsgBeanTopic verifies it received the message by sending another message to a Queue -
      * MDB_QUEUE_REPLY.
      *
      */
@@ -218,17 +201,14 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbSendObjectMsgToTopicTest
      *
-     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111;
-     * JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-     * JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188;
-     * JMS:JAVADOC:198; JMS:JAVADOC:215; JMS:JAVADOC:289;
+     * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:109; JMS:JAVADOC:111; JMS:JAVADOC:91; JMS:JAVADOC:221; JMS:JAVADOC:120;
+     * JMS:JAVADOC:425; JMS:JAVADOC:99; JMS:JAVADOC:270; JMS:JAVADOC:522; JMS:JAVADOC:188; JMS:JAVADOC:198; JMS:JAVADOC:215;
+     * JMS:JAVADOC:289;
      *
-     * @test_Strategy: Instruct the mdb to send an object msg. Create a stateful
-     * Session EJB Bean. Deploy it on the J2EE server. Have the EJB component send
-     * a message to a Topic Destination. handled by a message-driven bean Tell the
-     * mdb (MsgBeanToTopic) to send an object message with TopicPublisher to a
-     * topic that is handled by a second mdb(MsgBeanTopic). MsgBeanTopic verifies
-     * it received the message by sending another message to a Queue -
+     * @test_Strategy: Instruct the mdb to send an object msg. Create a stateful Session EJB Bean. Deploy it on the J2EE
+     * server. Have the EJB component send a message to a Topic Destination. handled by a message-driven bean Tell the mdb
+     * (MsgBeanToTopic) to send an object message with TopicPublisher to a topic that is handled by a second
+     * mdb(MsgBeanTopic). MsgBeanTopic verifies it received the message by sending another message to a Queue -
      * MDB_QUEUE_REPLY.
      *
      */

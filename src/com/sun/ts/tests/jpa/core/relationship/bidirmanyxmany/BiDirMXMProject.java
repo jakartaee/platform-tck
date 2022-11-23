@@ -49,7 +49,8 @@ public class BiDirMXMProject implements Serializable {
         this.biDirMXMPersons = biDirMXMPersons;
     }
 
-    public BiDirMXMProject() {}
+    public BiDirMXMProject() {
+    }
 
     public Float getBudget() {
         return budget;

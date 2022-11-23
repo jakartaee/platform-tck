@@ -31,9 +31,12 @@ public class BusinessBean extends BusinessBeanBase {
     @Resource
     private SessionContext sessionContext;
 
-    public BusinessBean() {}
+    public BusinessBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
-    public void remove2() {}
+    public void remove2() {
+    }
 }

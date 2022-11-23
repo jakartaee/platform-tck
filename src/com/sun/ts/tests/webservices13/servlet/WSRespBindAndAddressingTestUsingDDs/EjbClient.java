@@ -30,7 +30,7 @@ import java.util.*;
 import javax.naming.InitialContext;
 
 @Stateless(name = "WSRespBindAndAddressingTestUsingDDsClntBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
     private Properties harnessProps = null;
@@ -103,7 +103,8 @@ public class EjbClient implements EjbClientIF {
             return afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest();
         else if (testName.equals("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest"))
             return afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest();
-        else return false;
+        else
+            return false;
     }
 
     private boolean afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest() {

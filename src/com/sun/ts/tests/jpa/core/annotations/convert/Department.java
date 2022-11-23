@@ -34,7 +34,8 @@ public class Department implements java.io.Serializable {
 
     private String name;
 
-    public Department() {}
+    public Department() {
+    }
 
     public Department(int id, String name) {
         this.id = id;
@@ -66,8 +67,10 @@ public class Department implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Department)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Department))
+            return false;
 
         Department o1 = (Department) o;
 

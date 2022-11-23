@@ -86,11 +86,9 @@ public class Client extends ServiceEETest {
 
     AddNumbersPortType port = null;
 
-    String noToHeaderSoapmsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com\"><number1>10</number1><number2>10</number2></addNumbers></S:Body></S:Envelope>";
+    String noToHeaderSoapmsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com\"><number1>10</number1><number2>10</number2></addNumbers></S:Body></S:Envelope>";
 
-    String noActionHeaderSoapmsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To></S:Header><S:Body><addNumbers xmlns=\"http://example.com\"><number1>10</number1><number2>10</number2></addNumbers></S:Body></S:Envelope>";
+    String noActionHeaderSoapmsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To></S:Header><S:Body><addNumbers xmlns=\"http://example.com\"><number1>10</number1><number2>10</number2></addNumbers></S:Body></S:Envelope>";
 
     static AddNumbersService service = null;
 
@@ -141,8 +139,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -181,9 +181,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: testDefaultOneWayAction
      *
-     * @assertion_ids: WSACORE:SPEC:3001; WSACORE:SPEC:3005; WSACORE:SPEC:3017;
-     * WSACORE:SPEC:3022.2; WSACORE:SPEC:3022.2.1; WSACORE:SPEC:3022.2.2;
-     * WSAMD:SPEC:5000
+     * @assertion_ids: WSACORE:SPEC:3001; WSACORE:SPEC:3005; WSACORE:SPEC:3017; WSACORE:SPEC:3022.2; WSACORE:SPEC:3022.2.1;
+     * WSACORE:SPEC:3022.2.2; WSAMD:SPEC:5000
      *
      * @test_Strategy: Test default action pattern for WSDL input
      *
@@ -200,15 +199,15 @@ public class Client extends ServiceEETest {
             throw new Fault("testDefaultOneWayAction failed", e);
         }
 
-        if (!pass) throw new Fault("testDefaultOneWayAction failed");
+        if (!pass)
+            throw new Fault("testDefaultOneWayAction failed");
     }
 
     /*
      * @testName: testExplicitOneWayAction
      *
-     * @assertion_ids: WSACORE:SPEC:3001; WSACORE:SPEC:3005; WSACORE:SPEC:3009;
-     * WSACORE:SPEC:3017; WSACORE:SPEC:3022.2; WSACORE:SPEC:3022.2.1;
-     * WSACORE:SPEC:3022.2.2; WSAMD:SPEC:5000
+     * @assertion_ids: WSACORE:SPEC:3001; WSACORE:SPEC:3005; WSACORE:SPEC:3009; WSACORE:SPEC:3017; WSACORE:SPEC:3022.2;
+     * WSACORE:SPEC:3022.2.1; WSACORE:SPEC:3022.2.2; WSAMD:SPEC:5000
      *
      * @test_Strategy: Test default action pattern for WSDL input
      *
@@ -225,7 +224,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testExplicitOneWayAction failed", e);
         }
 
-        if (!pass) throw new Fault("testExplicitOneWayAction failed");
+        if (!pass)
+            throw new Fault("testExplicitOneWayAction failed");
     }
 
     /*
@@ -250,7 +250,8 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("noToHeaderOneWayTest failed", e);
         }
-        if (!pass) throw new Fault("noToHeaderOneWayTest failed");
+        if (!pass)
+            throw new Fault("noToHeaderOneWayTest failed");
     }
 
     /*
@@ -277,6 +278,7 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("noActionHeaderOneWayTest failed", e);
         }
-        if (!pass) throw new Fault("noActionHeaderOneWayTest failed");
+        if (!pass)
+            throw new Fault("noActionHeaderOneWayTest failed");
     }
 }

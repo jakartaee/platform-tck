@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/jsp_jspdocument_general_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -88,8 +86,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:173; JSP:SPEC:173.2; JSP:SPEC:176
      *
-     * @test_Strategy: identify a jsp document by .jspx extension a jsp document
-     * does not need to have jsp:root
+     * @test_Strategy: identify a jsp document by .jspx extension a jsp document does not need to have jsp:root
      */
 
     public void identifyByExtensionTest() throws Fault {
@@ -104,8 +101,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:173; JSP:SPEC:173.1; JSP:SPEC:176
      *
-     * @test_Strategy: identify a jsp document by jsp-property-group via is-xml a
-     * jsp document does not need to have jsp:root
+     * @test_Strategy: identify a jsp document by jsp-property-group via is-xml a jsp document does not need to have
+     * jsp:root
      */
 
     public void identifyByConfigTest() throws Fault {
@@ -120,8 +117,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:260
      *
-     * @test_Strategy: access an invalid jsp document and expect translation
-     * error.
+     * @test_Strategy: access an invalid jsp document and expect translation error.
      */
 
     public void negativeDTDValidationTest() throws Fault {
@@ -136,8 +132,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error must not be generated if the given
-     * plain uri is not found in the taglib map.
+     * @test_Strategy: a translation error must not be generated if the given plain uri is not found in the taglib map.
      */
 
     public void invalidPlainURITest() throws Fault {
@@ -152,8 +147,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: validate that tagdependent body should be passed verbatim,
-     * tag handles inside body must not be invoked.
+     * @test_Strategy: validate that tagdependent body should be passed verbatim, tag handles inside body must not be
+     * invoked.
      */
 
     public void tagDependentTest() throws Fault {

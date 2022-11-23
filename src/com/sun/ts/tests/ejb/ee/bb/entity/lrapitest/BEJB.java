@@ -71,12 +71,14 @@ public abstract class BEJB implements EntityBean {
     public boolean test2() {
         TestUtil.logTrace("test2");
         boolean pass = true;
-        if (getLocalObjectTest()) TestUtil.logMsg("getEJBLocalObject ... PASSED");
+        if (getLocalObjectTest())
+            TestUtil.logMsg("getEJBLocalObject ... PASSED");
         else {
             TestUtil.logMsg("getEJBLocalObject ... FAILED");
             pass = false;
         }
-        if (getLocalObjectTest()) TestUtil.logMsg("getEJBLocalObject ... PASSED");
+        if (getLocalObjectTest())
+            TestUtil.logMsg("getEJBLocalObject ... PASSED");
         else {
             TestUtil.logMsg("getEJBLocalObject ... FAILED");
             pass = false;
@@ -112,7 +114,8 @@ public abstract class BEJB implements EntityBean {
             EJBObject object = context.getEJBObject();
             if (object != null) {
                 TestUtil.logMsg("getEJBObject() returned EJBObject reference");
-                if (object instanceof B) TestUtil.logMsg("An B object");
+                if (object instanceof B)
+                    TestUtil.logMsg("An B object");
                 else {
                     TestUtil.logErr("Not an B object");
                     pass = false;

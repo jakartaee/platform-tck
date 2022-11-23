@@ -24,7 +24,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -69,8 +70,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:385;
      *
-     * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest on an entity and
-     * verify the correct id is returned
+     * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest on an entity and verify the correct id is returned
      */
     public void getIdentifierTest() throws Fault {
         boolean pass = true;
@@ -78,8 +78,7 @@ public class Client extends PMClientBase {
 
         TestUtil.logMsg("Test entity not yet persisted");
         try {
-            PersistenceUnitUtil puu =
-                    getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+            PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
             Integer id = (Integer) puu.getIdentifier(emp);
             if (id == null || id != 1) {
                 TestUtil.logErr("expected a null or id: 1, actual id:" + id);
@@ -95,8 +94,7 @@ public class Client extends PMClientBase {
             getEntityTransaction().begin();
             getEntityManager().persist(emp);
 
-            PersistenceUnitUtil puu =
-                    getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+            PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
             Integer id = (Integer) puu.getIdentifier(emp);
             if (id != 1) {
                 TestUtil.logErr("expected a null or id: 1, actual id:" + id);
@@ -118,14 +116,13 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:548;
      *
-     * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest of a non-entity
-     * and verify IllegalArgumentException is thrown
+     * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest of a non-entity and verify IllegalArgumentException is
+     * thrown
      */
     public void getIdentifierIllegalArgumentExceptionTest() throws Fault {
         boolean pass = false;
         try {
-            PersistenceUnitUtil puu =
-                    getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+            PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
             puu.getIdentifier(this);
             TestUtil.logErr("IllegalArgumentException was not thrown");
         } catch (IllegalArgumentException iae) {

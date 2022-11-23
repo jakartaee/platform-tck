@@ -26,10 +26,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@MailSessionDefinition(
-        name = "java:module/env/ResourceModuleTestServlet_MailSession",
-        properties = {"test=ResourceModuleTestServlet_MailSession"})
-@WebServlet(urlPatterns = {"/resourceModuleTest"})
+@MailSessionDefinition(name = "java:module/env/ResourceModuleTestServlet_MailSession", properties = { "test=ResourceModuleTestServlet_MailSession" })
+@WebServlet(urlPatterns = { "/resourceModuleTest" })
 public class ResourceModuleTestServlet extends HttpServlet {
 
     // the value of the "test" property above

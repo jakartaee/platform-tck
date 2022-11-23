@@ -40,7 +40,9 @@ public class MigrationBean extends MigrationBeanBase implements ThreeIF {
         return sessionContext;
     }
 
-    public MigrationBean() {}
+    public MigrationBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

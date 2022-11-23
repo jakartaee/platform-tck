@@ -50,16 +50,15 @@ public class StringUtil {
      * http://www.iana.org/assignments/websocket/websocket.xml
      */
     public static final String[] WEBSOCKET_SUBPROTOCOLS = {
-        WEBSOCKET_SUBPROTOCOLS_0, WEBSOCKET_SUBPROTOCOLS_1,
-        WEBSOCKET_SUBPROTOCOLS_2, WEBSOCKET_SUBPROTOCOLS_3,
-        WEBSOCKET_SUBPROTOCOLS_4, WEBSOCKET_SUBPROTOCOLS_5,
-        WEBSOCKET_SUBPROTOCOLS_6, WEBSOCKET_SUBPROTOCOLS_7,
-        WEBSOCKET_SUBPROTOCOLS_8, WEBSOCKET_SUBPROTOCOLS_9
+            WEBSOCKET_SUBPROTOCOLS_0, WEBSOCKET_SUBPROTOCOLS_1,
+            WEBSOCKET_SUBPROTOCOLS_2, WEBSOCKET_SUBPROTOCOLS_3,
+            WEBSOCKET_SUBPROTOCOLS_4, WEBSOCKET_SUBPROTOCOLS_5,
+            WEBSOCKET_SUBPROTOCOLS_6, WEBSOCKET_SUBPROTOCOLS_7,
+            WEBSOCKET_SUBPROTOCOLS_8, WEBSOCKET_SUBPROTOCOLS_9
     };
 
     /**
-     * @param objects
-     *          to be put in a sentence
+     * @param objects to be put in a sentence
      * @return objects in a single string , each object separated by " "
      */
     public static String objectsToString(Object... objects) {
@@ -70,17 +69,18 @@ public class StringUtil {
         StringBuilder sb = new StringBuilder();
         if (objects != null)
             for (Object o : objects) {
-                if (o.getClass().isArray()) sb.append(objectsToStringWithDelimiter(delimiter, (Object[]) o));
+                if (o.getClass().isArray())
+                    sb.append(objectsToStringWithDelimiter(delimiter, (Object[]) o));
                 else if (Collection.class.isInstance(o))
                     sb.append(collectionToStringWithDelimiter(delimiter, (Collection<?>) o));
-                else sb.append(o).append(delimiter);
+                else
+                    sb.append(o).append(delimiter);
             }
         return sb.toString().trim();
     }
 
     /**
-     * @param objects
-     *          to be put in a sentence
+     * @param objects to be put in a sentence
      * @return objects in a single string , each object separated by delimiter
      */
     public static String collectionToStringWithDelimiter(String delimiter, Collection<?> objects) {
@@ -88,8 +88,7 @@ public class StringUtil {
     }
 
     /**
-     * @param objects
-     *          to be put in a sentence
+     * @param objects to be put in a sentence
      * @return objects in a single string , each object separated by " "
      */
     public static String collectionToString(Collection<?> objects) {
@@ -99,26 +98,26 @@ public class StringUtil {
     /**
      * Check that every single String in one List is contained in other List
      *
-     * @param where
-     *          The other list where String items are searched
-     * @param what
-     *          List of String items that are searched in the other List
-     * @param caseSensitive
-     *          define whether the occurrence of Strings is case sensitive
-     * @return true iff every single item in {@link where} List is in {@link what}
-     *         List
+     * @param where The other list where String items are searched
+     * @param what List of String items that are searched in the other List
+     * @param caseSensitive define whether the occurrence of Strings is case sensitive
+     * @return true iff every single item in {@link where} List is in {@link what} List
      */
     public static boolean //
             contains(List<String> where, List<String> what, boolean caseSensitive) {
         // do not use slow and memory consuming contains(List<T> where, List<T>
         // what)
         String whereInOne = objectsToStringWithDelimiter("", where);
-        if (!caseSensitive) whereInOne = whereInOne.toLowerCase();
+        if (!caseSensitive)
+            whereInOne = whereInOne.toLowerCase();
         for (String whatItem : what) {
             boolean found = false;
-            if (caseSensitive) found = whereInOne.contains(whatItem);
-            else found = whereInOne.contains(whatItem.toLowerCase());
-            if (!found) return false;
+            if (caseSensitive)
+                found = whereInOne.contains(whatItem);
+            else
+                found = whereInOne.contains(whatItem.toLowerCase());
+            if (!found)
+                return false;
         }
         return true;
     }
@@ -126,28 +125,24 @@ public class StringUtil {
     /**
      * Check that every single T in one List is contained in other List
      *
-     * @param where
-     *          The other list where T items are searched
-     * @param what
-     *          List of T items that are searched in the other List
-     * @param comparator
-     *          see {@link Comparator}
-     * @return true iff every single item in {@link where} List is in {@link what}
-     *         List
+     * @param where The other list where T items are searched
+     * @param what List of T items that are searched in the other List
+     * @param comparator see {@link Comparator}
+     * @return true iff every single item in {@link where} List is in {@link what} List
      */
-    public static <T>
-            boolean //
-                    contains(List<T> where, List<T> what, Comparator<? super T> comparator) {
+    public static <T> boolean //
+            contains(List<T> where, List<T> what, Comparator<? super T> comparator) {
         where = new ArrayList<>(where); // new collection not to affect
         what = new ArrayList<>(what); // the original by sorting
         Collections.sort(what, comparator);
         Collections.sort(where, comparator);
         Iterator<T> j = where.iterator();
-        for (Iterator<T> i = what.iterator(); i.hasNext(); ) {
+        for (Iterator<T> i = what.iterator(); i.hasNext();) {
             T whatItem = i.next();
             T whereItem;
             do {
-                if (!j.hasNext()) return false;
+                if (!j.hasNext())
+                    return false;
                 whereItem = j.next();
             } while (comparator.compare(whatItem, whereItem) != 0);
         }
@@ -157,15 +152,12 @@ public class StringUtil {
     /**
      * Check that every single T in one List is contained in other List
      *
-     * @param where
-     *          The other list where T items are searched
-     * @param what
-     *          List of T items that are searched in the other List
-     * @return true iff every single item in {@link where} List is in {@link what}
-     *         List
+     * @param where The other list where T items are searched
+     * @param what List of T items that are searched in the other List
+     * @return true iff every single item in {@link where} List is in {@link what} List
      */
     public static <T extends Comparable<? super T>> //
-            boolean contains(List<T> where, List<T> what) {
+    boolean contains(List<T> where, List<T> what) {
         where = new ArrayList<>(where); // new collection not to affect
         what = new ArrayList<>(what); // the original by sorting
         Collections.sort(what);
@@ -174,24 +166,21 @@ public class StringUtil {
     }
 
     /**
-     * Check that every single T in one List is contained in other List in given
-     * order
+     * Check that every single T in one List is contained in other List in given order
      *
-     * @param where
-     *          The other list where T items are searched
-     * @param what
-     *          List of T items that are searched in the other List
-     * @return true iff every single item in {@link where} List is in {@link what}
-     *         List
+     * @param where The other list where T items are searched
+     * @param what List of T items that are searched in the other List
+     * @return true iff every single item in {@link where} List is in {@link what} List
      */
     public static <T extends Comparable<? super T>> //
-            boolean containsInOrder(List<T> where, List<T> what) {
+    boolean containsInOrder(List<T> where, List<T> what) {
         Iterator<T> j = where.iterator();
-        for (Iterator<T> i = what.iterator(); i.hasNext(); ) {
+        for (Iterator<T> i = what.iterator(); i.hasNext();) {
             T whatItem = i.next();
             T whereItem;
             do {
-                if (!j.hasNext()) return false;
+                if (!j.hasNext())
+                    return false;
                 whereItem = j.next();
             } while (whatItem.compareTo(whereItem) != 0);
         }

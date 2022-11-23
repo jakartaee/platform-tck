@@ -23,8 +23,8 @@ import java.security.*;
 import java.util.Arrays;
 
 /**
- * A utility class for getting a KeyStore instance from policy information. In
- * addition, a supporting getInputStream method.
+ * A utility class for getting a KeyStore instance from policy information. In addition, a supporting getInputStream
+ * method.
  *
  */
 public class PolicyUtil {
@@ -36,11 +36,9 @@ public class PolicyUtil {
     private static final String NONE = "NONE";
 
     /*
-     * Fast path reading from file urls in order to avoid calling
-     * FileURLConnection.connect() which can be quite slow the first time it is
-     * called. We really should clean up FileURLConnection so that this is not a
-     * problem but in the meantime this fix helps reduce start up time noticeably
-     * for the new launcher. -- DAC
+     * Fast path reading from file urls in order to avoid calling FileURLConnection.connect() which can be quite slow the
+     * first time it is called. We really should clean up FileURLConnection so that this is not a problem but in the
+     * meantime this fix helps reduce start up time noticeably for the new launcher. -- DAC
      */
     public static InputStream getInputStream(URL url) throws IOException {
         if ("file".equals(url.getProtocol())) {
@@ -53,8 +51,8 @@ public class PolicyUtil {
     }
 
     /**
-     * this is intended for use by policytool and the policy parser to instantiate
-     * a KeyStore from the information in the GUI/policy file
+     * this is intended for use by policytool and the policy parser to instantiate a KeyStore from the information in the
+     * GUI/policy file
      */
     public static KeyStore getKeyStore(
             URL policyUrl, // URL of policy file
@@ -64,7 +62,7 @@ public class PolicyUtil {
             String storePassURL, // input: keyStore password
             Debug debug)
             throws KeyStoreException, MalformedURLException, IOException, NoSuchProviderException,
-                    NoSuchAlgorithmException, java.security.cert.CertificateException {
+            NoSuchAlgorithmException, java.security.cert.CertificateException {
 
         if (keyStoreName == null) {
             throw new IllegalArgumentException("null KeyStore name");
@@ -122,8 +120,7 @@ public class PolicyUtil {
                 return ks;
             } else {
                 /*
-                 * location of keystore is specified as absolute URL in policy file, or
-                 * is relative to URL of policy file
+                 * location of keystore is specified as absolute URL in policy file, or is relative to URL of policy file
                  */
                 URL keyStoreUrl = null;
                 try {

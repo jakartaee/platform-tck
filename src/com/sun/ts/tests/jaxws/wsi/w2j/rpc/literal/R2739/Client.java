@@ -36,8 +36,7 @@ public class Client extends ServiceEETest implements WSIConstants {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -68,8 +67,8 @@ public class Client extends ServiceEETest implements WSIConstants {
      *
      * @assertion_ids: WSI:SPEC:R2739
      *
-     * @test_Strategy: Make a request and add a header not contained in the wsdl.
-     *                 Ensure the request and response are normal.
+     * @test_Strategy: Make a request and add a header not contained in the wsdl. Ensure the request and response are
+     * normal.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

@@ -36,15 +36,16 @@ public class DID5MedicalHistory implements Serializable {
 
     @Id
     @JoinColumns({
-        @JoinColumn(name = "FIRSTNAME", referencedColumnName = "FIRSTNAME"),
-        @JoinColumn(name = "LASTNAME", referencedColumnName = "LASTNAME")
+            @JoinColumn(name = "FIRSTNAME", referencedColumnName = "FIRSTNAME"),
+            @JoinColumn(name = "LASTNAME", referencedColumnName = "LASTNAME")
     })
     @OneToOne
     private DID5Person patient;
 
     private String doctorName;
 
-    public DID5MedicalHistory() {}
+    public DID5MedicalHistory() {
+    }
 
     public DID5MedicalHistory(DID5Person patient, String doctorName) {
         this.patient = patient;

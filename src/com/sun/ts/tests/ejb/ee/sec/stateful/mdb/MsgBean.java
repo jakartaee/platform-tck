@@ -66,8 +66,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
 
     public MsgBean() {
         TestUtil.logTrace("@MsgBean()!");
-    }
-    ;
+    };
 
     public void ejbCreate() throws RemoteException {
         TestUtil.logTrace("@MsgBean-ejbCreate() !!");
@@ -113,8 +112,10 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
                 TestUtil.logTrace("@MsgBean() onMessage! got ejb object" + ejbref);
 
                 TestUtil.logTrace("@MsgBean() onMessage! It is a TextMessage");
-                if (ejbref.EjbIsAuthz()) sendATextMessage();
-                else sendABytesMessage();
+                if (ejbref.EjbIsAuthz())
+                    sendATextMessage();
+                else
+                    sendABytesMessage();
             } else if (msg.getStringProperty("MessageType").equals("BytesMessage")) {
                 ejbref = ejbhome.create();
                 TestUtil.logTrace("@MsgBean() onMessage! got ejb object" + ejbref);

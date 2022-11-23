@@ -29,7 +29,7 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @Stateless()
-@Local({LocalTxIF.class})
+@Local({ LocalTxIF.class })
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class LocalTxBean extends LocalTxBeanBase implements LocalTxIF {
     @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -50,5 +50,6 @@ public class LocalTxBean extends LocalTxBeanBase implements LocalTxIF {
         super.localRequiresNewTest();
     }
 
-    public void localRequiresNewRemoveTest() {}
+    public void localRequiresNewRemoveTest() {
+    }
 }

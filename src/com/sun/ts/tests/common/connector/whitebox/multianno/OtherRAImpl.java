@@ -39,17 +39,8 @@ import javax.transaction.xa.XAResource;
  * assertions Connector:SPEC:272, Connector:SPEC:310, and Connector:SPEC:312.
  *
  */
-@Connector(
-        description = "CTS test RA specified in DD is used",
-        displayName = "OtherRAImpl",
-        vendorName = "Java Software",
-        eisType = "TS EIS",
-        version = "1.0",
-        licenseDescription = "CTS License Required",
-        licenseRequired = true,
-        reauthenticationSupport = false,
-        transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction,
-        requiredWorkContexts = {HintsContext.class, SecurityContext.class})
+@Connector(description = "CTS test RA specified in DD is used", displayName = "OtherRAImpl", vendorName = "Java Software", eisType = "TS EIS", version = "1.0", licenseDescription = "CTS License Required", licenseRequired = true, reauthenticationSupport = false, transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction, requiredWorkContexts = {
+        HintsContext.class, SecurityContext.class })
 public class OtherRAImpl implements ResourceAdapter, Serializable {
     private String raName;
 
@@ -81,7 +72,8 @@ public class OtherRAImpl implements ResourceAdapter, Serializable {
                     myStart(bsc);
                 }
 
-                public void release() {}
+                public void release() {
+                }
             });
         } catch (jakarta.resource.spi.work.WorkException we) {
             throw new ResourceAdapterInternalException();
@@ -96,7 +88,8 @@ public class OtherRAImpl implements ResourceAdapter, Serializable {
         Debug.trace("OtherRAImpl.stop ");
     }
 
-    public void endpointActivation(MessageEndpointFactory mef, ActivationSpec as) {}
+    public void endpointActivation(MessageEndpointFactory mef, ActivationSpec as) {
+    }
 
     public XAResource[] getXAResources(ActivationSpec[] as) {
         Debug.trace("OtherRAImpl.getXAResources ");
@@ -108,11 +101,14 @@ public class OtherRAImpl implements ResourceAdapter, Serializable {
         return onMessageMethod;
     }
 
-    private void chkUniqueMessageEndpointFactory() {}
+    private void chkUniqueMessageEndpointFactory() {
+    }
 
-    public void checkAssociation() {}
+    public void checkAssociation() {
+    }
 
-    public void endpointDeactivation(MessageEndpointFactory mef, ActivationSpec as) {}
+    public void endpointDeactivation(MessageEndpointFactory mef, ActivationSpec as) {
+    }
 
     /*
      * @name equals
@@ -138,7 +134,8 @@ public class OtherRAImpl implements ResourceAdapter, Serializable {
             return false;
         }
 
-        if (!Util.isEqual(this.raName, that.getRaName())) return false;
+        if (!Util.isEqual(this.raName, that.getRaName()))
+            return false;
 
         return true;
     }

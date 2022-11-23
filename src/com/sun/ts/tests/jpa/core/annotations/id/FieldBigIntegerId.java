@@ -38,7 +38,8 @@ public class FieldBigIntegerId implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public FieldBigIntegerId() {}
+    public FieldBigIntegerId() {
+    }
 
     public FieldBigIntegerId(BigInteger id, BigInteger bigInteger) {
 

@@ -39,8 +39,7 @@ public class TSXMLFormatter extends XMLFormatter {
     /**
      * Override parent class format method
      *
-     * @param lrecord
-     *          the LogRecord to be formatted.
+     * @param lrecord the LogRecord to be formatted.
      * @return a formatted log record
      */
     public String format(LogRecord lrecord) {
@@ -55,8 +54,7 @@ public class TSXMLFormatter extends XMLFormatter {
     /**
      * Format the given message to XML.
      *
-     * @param record
-     *          the log record to be formatted.
+     * @param record the log record to be formatted.
      * @return a formatted log record
      */
     public String format(TSLogRecord record) {
@@ -190,8 +188,7 @@ public class TSXMLFormatter extends XMLFormatter {
     /**
      * Return the header string for a set of XML formatted records.
      *
-     * @param h
-     *          The target handler.
+     * @param h The target handler.
      * @return header string
      */
     public String getHead(Handler h) {

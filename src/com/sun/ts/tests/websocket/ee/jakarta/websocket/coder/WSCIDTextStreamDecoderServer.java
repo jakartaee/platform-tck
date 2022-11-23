@@ -25,9 +25,7 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/textstreamdecoder",
-        decoders = {InitDestroyTextStreamDecoder.class})
+@ServerEndpoint(value = "/textstreamdecoder", decoders = { InitDestroyTextStreamDecoder.class })
 public class WSCIDTextStreamDecoderServer {
 
     @OnMessage

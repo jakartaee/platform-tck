@@ -63,11 +63,13 @@ public class ServerSOAPHandler extends WsaBaseSOAPHandler {
         String testName = (String) context.get("test.name");
         TestUtil.logMsg("ServerSOAPHandler.getAction(): testName=" + testName);
         System.out.println("ServerSOAPHandler.getAction(): testName=" + testName);
-        if (testName == null) return super.getAction(context);
+        if (testName == null)
+            return super.getAction(context);
         else if (testName.equals("afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest")
                 || testName.equals("afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest"))
             return super.getAction(context);
-        else return null;
+        else
+            return null;
     }
 
     protected String whichHandler() {

@@ -59,7 +59,8 @@ public class DataTypes implements java.io.Serializable {
 
     private String shouldNotPersist;
 
-    public DataTypes() {}
+    public DataTypes() {
+    }
 
     public DataTypes(
             Integer id,
@@ -90,7 +91,7 @@ public class DataTypes implements java.io.Serializable {
         // these values can not be null because of postgres
         this.characterData = new Character(' ');
         this.characterData = ' ';
-        Byte[] bArray = {(byte) 32};
+        Byte[] bArray = { (byte) 32 };
         this.byteArrayData = bArray;
     }
 

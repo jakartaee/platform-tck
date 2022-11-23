@@ -132,8 +132,10 @@ public class Client extends ServiceEETest {
         // Initialize QName's used in the test
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -170,14 +172,12 @@ public class Client extends ServiceEETest {
     /*
      * @testName: CustomizationEmbeddedTest
      *
-     * @assertion_ids: JAXWS:SPEC:8000; JAXWS:SPEC:8001; JAXWS:SPEC:8002;
-     * JAXWS:SPEC:8005; JAXWS:SPEC:8006; JAXWS:SPEC:8007; JAXWS:SPEC:8010;
-     * JAXWS:SPEC:8012; JAXWS:SPEC:8013; JAXWS:SPEC:2064; JAXWS:SPEC:2023;
-     * JAXWS:SPEC:2028; JAXWS:SPEC:7000; JAXWS:SPEC:8009;
+     * @assertion_ids: JAXWS:SPEC:8000; JAXWS:SPEC:8001; JAXWS:SPEC:8002; JAXWS:SPEC:8005; JAXWS:SPEC:8006; JAXWS:SPEC:8007;
+     * JAXWS:SPEC:8010; JAXWS:SPEC:8012; JAXWS:SPEC:8013; JAXWS:SPEC:2064; JAXWS:SPEC:2023; JAXWS:SPEC:2028;
+     * JAXWS:SPEC:7000; JAXWS:SPEC:8009;
      *
-     * @test_Strategy: Embedded annotations in the wsdl are used to change aspects
-     * of the wsdl file. If the endpoint is reachable then the customization
-     * worked.
+     * @test_Strategy: Embedded annotations in the wsdl are used to change aspects of the wsdl file. If the endpoint is
+     * reachable then the customization worked.
      *
      *
      *
@@ -239,7 +239,8 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
         }
 
-        if (!pass) throw new Fault("CustomizationEmbeddedTest failed");
+        if (!pass)
+            throw new Fault("CustomizationEmbeddedTest failed");
     }
 
     /*
@@ -255,7 +256,7 @@ public class Client extends ServiceEETest {
         boolean pass = true;
         String resStr = "FooBarPopeyeOlive";
         EchoRequest echoRequest = new EchoRequest();
-        Name[] names = {new Name(), new Name()};
+        Name[] names = { new Name(), new Name() };
         names[0].setFirst("Foo");
         names[0].setLast("Bar");
         names[1].setFirst("Popeye");
@@ -274,6 +275,7 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
         }
 
-        if (!pass) throw new Fault("jaxbCustomizationTest failed");
+        if (!pass)
+            throw new Fault("jaxbCustomizationTest failed");
     }
 }

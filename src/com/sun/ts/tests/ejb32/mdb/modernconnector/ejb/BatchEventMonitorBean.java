@@ -24,7 +24,7 @@ import jakarta.ejb.MessageDriven;
 import jakarta.ejb.MessageDrivenContext;
 import jakarta.interceptor.Interceptors;
 
-@MessageDriven(activationConfig = {@ActivationConfigProperty(propertyName = "category", propertyValue = "batch")})
+@MessageDriven(activationConfig = { @ActivationConfigProperty(propertyName = "category", propertyValue = "batch") })
 @Interceptors(LoggerInterceptor.class)
 public class BatchEventMonitorBean implements NoUseListener {
 

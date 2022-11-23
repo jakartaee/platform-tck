@@ -153,8 +153,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: cart1.equals(shoppingCart) should return false for stateful
-     * beans.
+     * @test_Strategy: cart1.equals(shoppingCart) should return false for stateful beans.
      */
     public void differentInterfaceNotEqual() throws Fault {
         try {
@@ -169,8 +168,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: cart1.equals(shoppingCart) should return false for stateful
-     * beans.
+     * @test_Strategy: cart1.equals(shoppingCart) should return false for stateful beans.
      */
     public void differentInterfaceNotEqualLookup() throws Fault {
         try {

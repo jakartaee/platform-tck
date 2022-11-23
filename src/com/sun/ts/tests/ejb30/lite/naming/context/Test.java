@@ -32,10 +32,10 @@ import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 
 public final class Test {
-    public static final String NOT_ALLOWED_TO_MODIFY_ENV =
-            "Application component instances are not allowed to modify the environment at runtime";
+    public static final String NOT_ALLOWED_TO_MODIFY_ENV = "Application component instances are not allowed to modify the environment at runtime";
 
-    private Test() {}
+    private Test() {
+    }
 
     public static InitialContext initialContext() throws NamingException {
         return new InitialContext();
@@ -69,48 +69,48 @@ public final class Test {
         boolean excludeAppEnv = excludeAppEnvs.length == 0 ? false : excludeAppEnvs[0];
         if (excludeAppEnv) {
             return new Context[] {
-                Test.javaCompContext(), Test.javaModuleContext(), Test.javaModuleEnvContext(), Test.javaAppContext()
+                    Test.javaCompContext(), Test.javaModuleContext(), Test.javaModuleEnvContext(), Test.javaAppContext()
             };
         }
         return new Context[] {
-            Test.javaCompContext(),
-            Test.javaModuleContext(),
-            Test.javaModuleEnvContext(),
-            Test.javaAppContext(),
-            Test.javaAppEnvContext()
+                Test.javaCompContext(),
+                Test.javaModuleContext(),
+                Test.javaModuleEnvContext(),
+                Test.javaAppContext(),
+                Test.javaAppEnvContext()
         };
     }
 
     public static Context[] envContexts(boolean... excludeAppEnvs) throws NamingException {
         boolean excludeAppEnv = excludeAppEnvs.length == 0 ? false : excludeAppEnvs[0];
         if (excludeAppEnv) {
-            return new Context[] {Test.javaModuleEnvContext()};
+            return new Context[] { Test.javaModuleEnvContext() };
         }
-        return new Context[] {Test.javaModuleEnvContext(), Test.javaAppEnvContext()};
+        return new Context[] { Test.javaModuleEnvContext(), Test.javaAppEnvContext() };
     }
 
     public static Context[] nonEnvContexts() throws NamingException {
-        return new Context[] {Test.javaCompContext(), Test.javaModuleContext(), Test.javaAppContext()};
+        return new Context[] { Test.javaCompContext(), Test.javaModuleContext(), Test.javaAppContext() };
     }
 
     public static Context[] initialAndJava3Contexts(boolean... excludeAppEnvs) throws NamingException {
         boolean excludeAppEnv = excludeAppEnvs.length == 0 ? false : excludeAppEnvs[0];
         if (excludeAppEnv) {
             return new Context[] {
+                    Test.initialContext(),
+                    Test.javaCompContext(),
+                    Test.javaModuleContext(),
+                    Test.javaModuleEnvContext(),
+                    Test.javaAppContext()
+            };
+        }
+        return new Context[] {
                 Test.initialContext(),
                 Test.javaCompContext(),
                 Test.javaModuleContext(),
                 Test.javaModuleEnvContext(),
-                Test.javaAppContext()
-            };
-        }
-        return new Context[] {
-            Test.initialContext(),
-            Test.javaCompContext(),
-            Test.javaModuleContext(),
-            Test.javaModuleEnvContext(),
-            Test.javaAppContext(),
-            Test.javaAppEnvContext()
+                Test.javaAppContext(),
+                Test.javaAppEnvContext()
         };
     }
 
@@ -123,8 +123,8 @@ public final class Test {
     }
 
     /**
-     * Verifies java url context by invoking its methods. Application component
-     * instances are not allowed to modify the environment at runtime.
+     * Verifies java url context by invoking its methods. Application component instances are not allowed to modify the
+     * environment at runtime.
      */
     public static String getEnvironment(Context... contexts) throws TestFailedException {
         StringWriter sw = new StringWriter();

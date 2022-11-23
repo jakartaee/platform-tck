@@ -58,8 +58,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * user; password; generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; user; password; generateSQL;
      */
     public void setup(String[] args, Properties props) throws Fault {
 
@@ -87,10 +86,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:805; EJB:SPEC:811
      *
-     * @test_Strategy: Package a CMP 1.1 Entity bean using a Style1 declaration to
-     *                 grant permission to role 'Employee'. Login as a user
-     *                 associated to this security role and check that we can call
-     *                 a business method on that bean.
+     * @test_Strategy: Package a CMP 1.1 Entity bean using a Style1 declaration to grant permission to role 'Employee'.
+     * Login as a user associated to this security role and check that we can call a business method on that bean.
      */
     public void testStyle1Positive() throws Fault {
         boolean pass;
@@ -127,11 +124,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:805; EJB:SPEC:811
      *
-     * @test_Strategy: Package a CMP 1.1 Entity bean using a Style1 declaration to
-     *                 grant permissions to role 'Manager' only. Login as a user
-     *                 that is not associated to this security role and check that
-     *                 we get a java.rmi.RemoteException when calling a business
-     *                 method on that bean.
+     * @test_Strategy: Package a CMP 1.1 Entity bean using a Style1 declaration to grant permissions to role 'Manager' only.
+     * Login as a user that is not associated to this security role and check that we get a java.rmi.RemoteException when
+     * calling a business method on that bean.
      */
     public void testStyle1Negative() throws Fault {
         boolean pass;
@@ -170,14 +165,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:805
      *
-     * @test_Strategy: Package a CMP 1.1 Entity bean using: - a Style1 declaration
-     *                 to grant permissions to role Employee only. - a Style2
-     *                 declaration to grant permissions to role Manager only for
-     *                 business method test2.
+     * @test_Strategy: Package a CMP 1.1 Entity bean using: - a Style1 declaration to grant permissions to role Employee
+     * only. - a Style2 declaration to grant permissions to role Manager only for business method test2.
      *
-     *                 Login as a user that is associated with the Employee
-     *                 security role, but not the Manager's one. Check that we can
-     *                 call test2() business method.
+     * Login as a user that is associated with the Employee security role, but not the Manager's one. Check that we can call
+     * test2() business method.
      */
     public void testStyle2Style1() throws Fault {
         boolean pass;
@@ -213,14 +205,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:805
      *
-     * @test_Strategy: Package a CMP 1.1 Entity bean using: - a Style1 declaration
-     *                 to grant permissions to role Employee only. - a Style3
-     *                 declaration to grant permissions to role Manager only for
-     *                 business method test3(int).
+     * @test_Strategy: Package a CMP 1.1 Entity bean using: - a Style1 declaration to grant permissions to role Employee
+     * only. - a Style3 declaration to grant permissions to role Manager only for business method test3(int).
      *
-     *                 Login as a user that is associated with the Employee
-     *                 security role, but not the Manager's one. Check that we can
-     *                 call test3 business method on that bean.
+     * Login as a user that is associated with the Employee security role, but not the Manager's one. Check that we can call
+     * test3 business method on that bean.
      */
     public void testStyle3Style1() throws Fault {
         boolean pass;

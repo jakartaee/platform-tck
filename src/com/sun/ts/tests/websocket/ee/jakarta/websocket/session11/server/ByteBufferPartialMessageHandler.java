@@ -40,7 +40,8 @@ public class ByteBufferPartialMessageHandler implements MessageHandler.Partial<B
     public void onMessage(ByteBuffer message, boolean finite) {
         sb.append(IOUtil.byteBufferToString(message));
         try {
-            if (finite) session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
+            if (finite)
+                session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

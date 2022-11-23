@@ -38,13 +38,13 @@ public final class PermDDLibrary {
      * constructor
      *
      */
-    public PermDDLibrary() {}
+    public PermDDLibrary() {
+    }
 
     /*
      *
-     * NOTE: this test originally used custom permissions (extending Permission)
-     * but the status of custom permissions are not currently specified in EE so
-     * we've modified this test to use common EE Security permissions.
+     * NOTE: this test originally used custom permissions (extending Permission) but the status of custom permissions are
+     * not currently specified in EE so we've modified this test to use common EE Security permissions.
      */
     public static String ValidateCustomPermInLib() {
         String rval = "";
@@ -69,14 +69,12 @@ public final class PermDDLibrary {
     }
 
     /*
-     * This validates permissions for a lib are the same as the perms for the code
-     * that is calling the lib. (in this case, the perms for the lib must be the
-     * same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para)
+     * This validates permissions for a lib are the same as the perms for the code that is calling the lib. (in this case,
+     * the perms for the lib must be the same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para)
      *
-     * This validates that a permission is bundled with the app and that the app
-     * hasx grants defined thru permssions.xml but not thru the higher appserver
-     * level (e.g. server.policy). We expect the perms declared in permissions.xml
-     * to suffice and let us successfully call checkPermission().
+     * This validates that a permission is bundled with the app and that the app hasx grants defined thru permssions.xml but
+     * not thru the higher appserver level (e.g. server.policy). We expect the perms declared in permissions.xml to suffice
+     * and let us successfully call checkPermission().
      */
     public static String ValidateLocalGrantForCustomPermInLib() {
         String rval = "";
@@ -100,12 +98,11 @@ public final class PermDDLibrary {
     }
 
     /*
-     * This validates permissions for a lib are the same as the perms for the code
-     * that is calling the lib. (in this case, the perms for the lib must be the
-     * same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para)
+     * This validates permissions for a lib are the same as the perms for the code that is calling the lib. (in this case,
+     * the perms for the lib must be the same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para)
      *
-     * This validates that the servlet supports the list of required perms that
-     * are listed in JavaEE7 spec, Table EE.6-2 (or at least some of them.)
+     * This validates that the servlet supports the list of required perms that are listed in JavaEE7 spec, Table EE.6-2 (or
+     * at least some of them.)
      */
     public static String ValidateRequiredPermSetInLib() {
         String rval = "";
@@ -146,13 +143,11 @@ public final class PermDDLibrary {
     }
 
     /*
-     * This validates permissions for a lib are the same as the perms for the code
-     * that is calling the lib. (in this case, the perms for the lib must be the
-     * same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para)
+     * This validates permissions for a lib are the same as the perms for the code that is calling the lib. (in this case,
+     * the perms for the lib must be the same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para)
      *
-     * This validates that the servlet will properly fail a permission check when
-     * a particular grant is missing. (in this case, the perm with matching name
-     * does not exist in permissions.xml and so should fail access check.
+     * This validates that the servlet will properly fail a permission check when a particular grant is missing. (in this
+     * case, the perm with matching name does not exist in permissions.xml and so should fail access check.
      *
      */
     public static String ValidateMissingPermFailsInLib() {
@@ -179,15 +174,12 @@ public final class PermDDLibrary {
     }
 
     /*
-     * This validates permissions for a lib are the same as the perms for the code
-     * that is calling the lib. (in this case, the perms for the lib must be the
-     * same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para) This
-     * particular test has a locally defined permission with one name and attempts
-     * to validate access for that perm under a different (non-existing) name.
-     * Access should be denied. Then, as a sanity check, access a perm using a
-     * name that IS validly defined in permissions.xml (but not defined at any
-     * higher appserver level). This tests the permission.xml from within a
-     * library thats embedded within a servlet
+     * This validates permissions for a lib are the same as the perms for the code that is calling the lib. (in this case,
+     * the perms for the lib must be the same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para) This particular
+     * test has a locally defined permission with one name and attempts to validate access for that perm under a different
+     * (non-existing) name. Access should be denied. Then, as a sanity check, access a perm using a name that IS validly
+     * defined in permissions.xml (but not defined at any higher appserver level). This tests the permission.xml from within
+     * a library thats embedded within a servlet
      */
     public static String ValidateLocalPermsInvalidNameInLib() {
         String rval = "";
@@ -238,12 +230,10 @@ public final class PermDDLibrary {
     }
 
     /*
-     * This validates permissions for a lib are the same as the perms for the code
-     * that is calling the lib. (in this case, the perms for the lib must be the
-     * same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para) This
-     * validates that a perm (PropertyPermission) is bundled with the app and that
-     * the app does NOT have grants for that perms write action (though it should
-     * have perms for the read action.
+     * This validates permissions for a lib are the same as the perms for the code that is calling the lib. (in this case,
+     * the perms for the lib must be the same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para) This validates
+     * that a perm (PropertyPermission) is bundled with the app and that the app does NOT have grants for that perms write
+     * action (though it should have perms for the read action.
      */
     public static String ValidateRestrictedLocalPermInLib() {
         String rval = "";
@@ -259,25 +249,19 @@ public final class PermDDLibrary {
             } catch (AccessControlException ex) {
                 // should not get here.
                 ex.printStackTrace();
-                rval =
-                        "FAILURE:  ValidateRestrictedLocalPermInLib() threw unexpected exception for read of TestPropertyPerm.";
+                rval = "FAILURE:  ValidateRestrictedLocalPermInLib() threw unexpected exception for read of TestPropertyPerm.";
                 return rval;
             }
 
             /*
-             * // XXXX: if EE were to conclusively state it supports local
-             * permissions, we could // validate using customPermissions that a write
-             * was not assigned but when // using common EE permissions, we can not be
-             * sure that EE perms restrict // allowing PropertyPermission "write"
-             * actions so we cant assume its restricted // by default and won't test
-             * for this at this current rev. PropertyPermission writePropertyPerm =
-             * new PropertyPermission("TestPropertyPerm", "write"); try {
-             * doCheckPermission(writePropertyPerm); // should NOT get here - we
-             * should have had an excpetion thrown rval =
-             * "FAILURE:  ValidateRestrictedLocalPermInLib() did not throw expected exception for write of TestPropertyPerm."
-             * ; return rval; } catch (AccessControlException ex) { // should get here
-             * debug("SUCCESS:  ValidateRestrictedLocalPermInLib() threw expected exception for write of TestPropertyPerm."
-             * ); }
+             * // XXXX: if EE were to conclusively state it supports local permissions, we could // validate using customPermissions
+             * that a write was not assigned but when // using common EE permissions, we can not be sure that EE perms restrict //
+             * allowing PropertyPermission "write" actions so we cant assume its restricted // by default and won't test for this at
+             * this current rev. PropertyPermission writePropertyPerm = new PropertyPermission("TestPropertyPerm", "write"); try {
+             * doCheckPermission(writePropertyPerm); // should NOT get here - we should have had an excpetion thrown rval =
+             * "FAILURE:  ValidateRestrictedLocalPermInLib() did not throw expected exception for write of TestPropertyPerm." ;
+             * return rval; } catch (AccessControlException ex) { // should get here
+             * debug("SUCCESS:  ValidateRestrictedLocalPermInLib() threw expected exception for write of TestPropertyPerm." ); }
              */
             rval = "SUCCESS:  ValidateRestrictedLocalPermInLib passed.";
         } catch (Exception ex) {
@@ -289,14 +273,12 @@ public final class PermDDLibrary {
     }
 
     /*
-     * This validates that a permission is granted from within the app server not
-     * listed/granted from within the local permissions.xml. In such a case the
-     * permission shoudl be 'inherited' from teh app server and NOT declined just
+     * This validates that a permission is granted from within the app server not listed/granted from within the local
+     * permissions.xml. In such a case the permission shoudl be 'inherited' from teh app server and NOT declined just
      * because it was omitted from the local permissions.xml.
      *
-     * NOTE: this test originally used custom permissions (extending Permission)
-     * but the status of custom permissions are not currently specified in EE so
-     * we've modified this test to use common EE Security permissions.
+     * NOTE: this test originally used custom permissions (extending Permission) but the status of custom permissions are
+     * not currently specified in EE so we've modified this test to use common EE Security permissions.
      */
     public static String ValidateCustomPermFromAppServerInLib() {
         String rval = "";
@@ -312,8 +294,7 @@ public final class PermDDLibrary {
             debug("CTSPermission1_name2 permission okay");
             rval = "SUCCESS:  ValidateCustomPermFromAppServerInLib passed.";
         } catch (AccessControlException ex) {
-            rval =
-                    "FAILURE:  CTSPermission1_name2 perm not inherited from app server grants, throwing AccessControlException.";
+            rval = "FAILURE:  CTSPermission1_name2 perm not inherited from app server grants, throwing AccessControlException.";
             ex.printStackTrace();
         } catch (Exception ex) {
             rval = "FAILURE:  ValidateCustomPermFromAppServerInLib(), throwing unexpected Exception.";

@@ -59,8 +59,7 @@ public class TestServlet extends GenericTCKServlet {
         String SERVLET_REGISTRIONS = "SERVLET_REGISTRATIONS";
 
         pw.println(SERVLET_REGISTRIONS + ":");
-        String servlets =
-                getServletContext().getInitParameter(SERVLET_REGISTRIONS).toUpperCase();
+        String servlets = getServletContext().getInitParameter(SERVLET_REGISTRIONS).toUpperCase();
 
         StringTokenizer st = new StringTokenizer(servlets, "|");
         while (st.hasMoreTokens()) {
@@ -78,8 +77,7 @@ public class TestServlet extends GenericTCKServlet {
         String SERVLET_REGISTRATION = "SERVLET_REGISTRATION";
 
         pw.println(SERVLET_REGISTRATION + ":");
-        String servlets =
-                getServletContext().getInitParameter(SERVLET_REGISTRATION).toUpperCase();
+        String servlets = getServletContext().getInitParameter(SERVLET_REGISTRATION).toUpperCase();
 
         StringTokenizer st = new StringTokenizer(servlets, "|");
         while (st.hasMoreTokens()) {
@@ -133,8 +131,7 @@ public class TestServlet extends GenericTCKServlet {
         String REGISTRATION_NAME = "REGISTRION_NAME";
 
         pw.println(REGISTRATION_NAME + ":");
-        String servlets =
-                getServletContext().getInitParameter(REGISTRATION_NAME).toUpperCase();
+        String servlets = getServletContext().getInitParameter(REGISTRATION_NAME).toUpperCase();
 
         StringTokenizer st = new StringTokenizer(servlets, "|");
         while (st.hasMoreTokens()) {
@@ -152,8 +149,7 @@ public class TestServlet extends GenericTCKServlet {
         String REGISTRATION_CLASS_NAME = "REGISTRATION_CLASS_NAME";
 
         pw.println(REGISTRATION_CLASS_NAME + ":");
-        String servlets =
-                getServletContext().getInitParameter(REGISTRATION_CLASS_NAME).toUpperCase();
+        String servlets = getServletContext().getInitParameter(REGISTRATION_CLASS_NAME).toUpperCase();
 
         StringTokenizer st = new StringTokenizer(servlets, "|");
         while (st.hasMoreTokens()) {

@@ -38,5 +38,6 @@ public class SessionBeanLocalBean extends SessionBeanLocalBeanBase implements Bu
         super.setSessionContext(sessionContext);
     }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

@@ -76,10 +76,9 @@ public class SessionTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -119,24 +118,23 @@ public class SessionTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /* Tests */
 
     /*
      * @testName: SimpleSendAndReceiveQ
      *
-     * @assertion_ids: JMS:SPEC:195; JMS:JAVADOC:502; JMS:JAVADOC:504;
-     * JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:244; JMS:JAVADOC:221;
-     * JMS:JAVADOC:317; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:SPEC:195; JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:244;
+     * JMS:JAVADOC:221; JMS:JAVADOC:317; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Create a Text Message, send use a MessageProducer and
-     * receive it use a MessageConsumer via a Queue.
+     * @test_Strategy: Create a Text Message, send use a MessageProducer and receive it use a MessageConsumer via a Queue.
      */
     public void SimpleSendAndReceiveQ() throws Fault {
 
@@ -168,7 +166,8 @@ public class SessionTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("SimpleSendAndReceiveQ Failed!");
+            if (pass != true)
+                throw new Fault("SimpleSendAndReceiveQ Failed!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -186,12 +185,10 @@ public class SessionTests extends ServiceEETest {
     /*
      * @testName: SimpleSendAndReceiveT
      *
-     * @assertion_ids: JMS:SPEC:196; JMS:JAVADOC:502; JMS:JAVADOC:504;
-     * JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:244; JMS:JAVADOC:221;
-     * JMS:JAVADOC:317; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:SPEC:196; JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:244;
+     * JMS:JAVADOC:221; JMS:JAVADOC:317; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Create a Text Message, send use a MessageProducer and
-     * receive it use a MessageConsumer via a Topic.
+     * @test_Strategy: Create a Text Message, send use a MessageProducer and receive it use a MessageConsumer via a Topic.
      */
     public void SimpleSendAndReceiveT() throws Fault {
 
@@ -222,7 +219,8 @@ public class SessionTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("SimpleSendAndReceiveT Failed!");
+            if (pass != true)
+                throw new Fault("SimpleSendAndReceiveT Failed!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -239,20 +237,15 @@ public class SessionTests extends ServiceEETest {
     /*
      * @testName: selectorAndBrowserTests
      *
-     * @assertion_ids: JMS:SPEC:195; JMS:JAVADOC:502; JMS:JAVADOC:504;
-     * JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:244; JMS:JAVADOC:246;
-     * JMS:JAVADOC:317; JMS:JAVADOC:334; JMS:JAVADOC:338; JMS:JAVADOC:258;
-     * JMS:JAVADOC:260; JMS:JAVADOC:221; JMS:SPEC:148; JMS:SPEC:149;
-     * JMS:JAVADOC:278; JMS:JAVADOC:280; JMS:JAVADOC:288; JMS:JAVADOC:282;
+     * @assertion_ids: JMS:SPEC:195; JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:244;
+     * JMS:JAVADOC:246; JMS:JAVADOC:317; JMS:JAVADOC:334; JMS:JAVADOC:338; JMS:JAVADOC:258; JMS:JAVADOC:260;
+     * JMS:JAVADOC:221; JMS:SPEC:148; JMS:SPEC:149; JMS:JAVADOC:278; JMS:JAVADOC:280; JMS:JAVADOC:288; JMS:JAVADOC:282;
      * JMS:JAVADOC:284;
      *
-     * @test_Strategy: 1. Create two TextMessages, send use a MessageProducer 2.
-     * Create a QueueBrowser to browse the Queue so that all two messages can be
-     * seen. 3. Create a QueueBrowser with selector to browse the Queue so that
-     * only one message can be seen; 4. Create a MessageConsumer with a message
-     * selector so that only last message received. 5. Then create another
-     * MessageConsumer to verify all messages except the last message can be
-     * received from the Queue.
+     * @test_Strategy: 1. Create two TextMessages, send use a MessageProducer 2. Create a QueueBrowser to browse the Queue
+     * so that all two messages can be seen. 3. Create a QueueBrowser with selector to browse the Queue so that only one
+     * message can be seen; 4. Create a MessageConsumer with a message selector so that only last message received. 5. Then
+     * create another MessageConsumer to verify all messages except the last message can be received from the Queue.
      */
     public void selectorAndBrowserTests() throws Fault {
 
@@ -296,7 +289,8 @@ public class SessionTests extends ServiceEETest {
                 TestUtil.logTrace("getting Enumeration " + i);
                 while (msgs.hasMoreElements()) {
                     tempMsg = (TextMessage) msgs.nextElement();
-                    if (tempMsg.getText().equals(messageSent.getText())) msgCount++;
+                    if (tempMsg.getText().equals(messageSent.getText()))
+                        msgCount++;
                 }
                 TestUtil.logTrace("found " + msgCount + " messages total in browser");
             } while ((msgCount < 2) && (i < 10));
@@ -315,8 +309,7 @@ public class SessionTests extends ServiceEETest {
             browseAll.close();
 
             // Browse with selective QueueBrowser
-            selectiveBrowser =
-                    tool.getDefaultSession().createBrowser((Queue) tool.getDefaultDestination(), "TEST = 'test'");
+            selectiveBrowser = tool.getDefaultSession().createBrowser((Queue) tool.getDefaultDestination(), "TEST = 'test'");
 
             // getting Emumeration that contains at least two test messages
             // without getting into dead loop.
@@ -329,7 +322,8 @@ public class SessionTests extends ServiceEETest {
                 TestUtil.logTrace("getting Enumeration " + i);
                 while (msgs.hasMoreElements()) {
                     tempMsg = (TextMessage) msgs.nextElement();
-                    if (tempMsg.getText().equals(messageSent.getText())) msgCount++;
+                    if (tempMsg.getText().equals(messageSent.getText()))
+                        msgCount++;
                 }
                 TestUtil.logTrace("found " + msgCount + " messages total in browser");
             } while ((msgCount < 1) && (i < 10));
@@ -343,8 +337,7 @@ public class SessionTests extends ServiceEETest {
             selectiveBrowser.close();
 
             // check selective consumer
-            MessageConsumer SelectorConsumer =
-                    tool.getDefaultSession().createConsumer(tool.getDefaultDestination(), "TEST = 'test'");
+            MessageConsumer SelectorConsumer = tool.getDefaultSession().createConsumer(tool.getDefaultDestination(), "TEST = 'test'");
             logTrace("Receiving message with selective consumer");
             messageReceived = (TextMessage) SelectorConsumer.receive(timeout);
             if (messageReceived == null) {
@@ -369,7 +362,8 @@ public class SessionTests extends ServiceEETest {
             }
             qRec.close();
 
-            if (pass != true) throw new Fault("selectorAndBrowserTests Failed!");
+            if (pass != true)
+                throw new Fault("selectorAndBrowserTests Failed!");
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new Fault("selectorAndBrowserTests");
@@ -386,19 +380,14 @@ public class SessionTests extends ServiceEETest {
     /*
      * @testName: SubscriberTests
      *
-     * @assertion_ids: JMS:SPEC:196; JMS:SPEC:89; JMS:SPEC:162; JMS:JAVADOC:502;
-     * JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:244;
-     * JMS:JAVADOC:254; JMS:JAVADOC:256; JMS:JAVADOC:266;
+     * @assertion_ids: JMS:SPEC:196; JMS:SPEC:89; JMS:SPEC:162; JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510;
+     * JMS:JAVADOC:242; JMS:JAVADOC:244; JMS:JAVADOC:254; JMS:JAVADOC:256; JMS:JAVADOC:266;
      *
-     * @test_Strategy: 1. Create a new second connection and send two
-     * TextMessages. 2. Create a DurableSubscriber defaultSub to verify all
-     * messages received. 3. Create another DurableSubscriber tSubNoLocal with
-     * noLocal set to true, and verify that no message can be received. 4. Create
-     * another DurableSubscriber tSubSelect off the new connection with selector
-     * to verify only one message received. 5. Send a message from from default
-     * connection. 6. Verify that tSubNoLocal can receive the message from the
-     * default connection 7. Unsubscribe the 3 durable subscriptions created
-     * above.
+     * @test_Strategy: 1. Create a new second connection and send two TextMessages. 2. Create a DurableSubscriber defaultSub
+     * to verify all messages received. 3. Create another DurableSubscriber tSubNoLocal with noLocal set to true, and verify
+     * that no message can be received. 4. Create another DurableSubscriber tSubSelect off the new connection with selector
+     * to verify only one message received. 5. Send a message from from default connection. 6. Verify that tSubNoLocal can
+     * receive the message from the default connection 7. Unsubscribe the 3 durable subscriptions created above.
      */
     public void SubscriberTests() throws Fault {
         String lookup = "DURABLE_SUB_CONNECTION_FACTORY";
@@ -426,8 +415,7 @@ public class SessionTests extends ServiceEETest {
             newConn = tool.getNewConnection(JmsTool.COMMON_T, user, password, lookup);
             newSess = newConn.createSession(false, Session.AUTO_ACKNOWLEDGE);
             logTrace("Create 3 durabale subscriptions (default, selector, nolocal) using second session");
-            tSubNoLocal =
-                    newSess.createDurableSubscriber((Topic) tool.getDefaultDestination(), subscriptionName1, "", true);
+            tSubNoLocal = newSess.createDurableSubscriber((Topic) tool.getDefaultDestination(), subscriptionName1, "", true);
             tSubSelect = newSess.createDurableSubscriber(
                     (Topic) tool.getDefaultDestination(), subscriptionName2, "TEST = 'test'", false);
             defaultSub = newSess.createDurableSubscriber((Topic) tool.getDefaultDestination(), subscriptionName3);
@@ -505,7 +493,8 @@ public class SessionTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("SubscriberTests Failed!");
+            if (pass != true)
+                throw new Fault("SubscriberTests Failed!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -540,12 +529,11 @@ public class SessionTests extends ServiceEETest {
     /*
      * @testName: IllegalStateTestQ
      *
-     * @assertion_ids: JMS:SPEC:195; JMS:JAVADOC:502; JMS:JAVADOC:504;
-     * JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:635; JMS:JAVADOC:317;
+     * @assertion_ids: JMS:SPEC:195; JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:635;
+     * JMS:JAVADOC:317;
      *
-     * @test_Strategy: 1. Create a TextMessages, send use a MessageProducer 2.
-     * Then rollback on the non-transacted session Verify that
-     * IllegalStateException is thrown
+     * @test_Strategy: 1. Create a TextMessages, send use a MessageProducer 2. Then rollback on the non-transacted session
+     * Verify that IllegalStateException is thrown
      */
     public void IllegalStateTestQ() throws Fault {
 
@@ -574,7 +562,8 @@ public class SessionTests extends ServiceEETest {
                 logMsg("Got expected IllegalStateException from QueueSession.rollback()");
             }
 
-            if (pass != true) throw new Fault("IllegalStateTestQ");
+            if (pass != true)
+                throw new Fault("IllegalStateTestQ");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -592,12 +581,11 @@ public class SessionTests extends ServiceEETest {
     /*
      * @testName: ackTests
      *
-     * @assertion_ids: JMS:SPEC:195; JMS:SPEC:196; JMS:JAVADOC:502;
-     * JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:227;
+     * @assertion_ids: JMS:SPEC:195; JMS:SPEC:196; JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242;
+     * JMS:JAVADOC:227;
      *
-     * @test_Strategy: 1. Create a Session with Queue Configuration, verify
-     * getAcknowledgeMode returns correct value; 2. Create a Session with Topic
-     * Configuration, verify getAcknowledgeMode returns correct value;
+     * @test_Strategy: 1. Create a Session with Queue Configuration, verify getAcknowledgeMode returns correct value; 2.
+     * Create a Session with Topic Configuration, verify getAcknowledgeMode returns correct value;
      */
     public void ackTests() throws Fault {
 
@@ -622,7 +610,8 @@ public class SessionTests extends ServiceEETest {
                 logErr("Error: getAcknowledgeMode failed");
             }
 
-            if (pass != true) throw new Fault("ackTests");
+            if (pass != true)
+                throw new Fault("ackTests");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -639,16 +628,13 @@ public class SessionTests extends ServiceEETest {
     /*
      * @testName: InvalidDestinationTests
      *
-     * @assertion_ids: JMS:SPEC:195; JMS:SPEC:196; JMS:JAVADOC:502;
-     * JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:638; JMS:JAVADOC:639;
-     * JMS:JAVADOC:641; JMS:JAVADOC:643; JMS:JAVADOC:644; JMS:JAVADOC:646;
-     * JMS:JAVADOC:647; JMS:JAVADOC:649;
+     * @assertion_ids: JMS:SPEC:195; JMS:SPEC:196; JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:638;
+     * JMS:JAVADOC:639; JMS:JAVADOC:641; JMS:JAVADOC:643; JMS:JAVADOC:644; JMS:JAVADOC:646; JMS:JAVADOC:647;
+     * JMS:JAVADOC:649;
      *
-     * @test_Strategy: 1. Create a Session with Queue Configuration, using a null
-     * Destination/Queue to verify InvalidDestinationException is thrown with
-     * various methods 2. Create a Session with Topic Configuration, using a null
-     * Destination/Topic to verify InvalidDestinationException is thrown with
-     * various methods
+     * @test_Strategy: 1. Create a Session with Queue Configuration, using a null Destination/Queue to verify
+     * InvalidDestinationException is thrown with various methods 2. Create a Session with Topic Configuration, using a null
+     * Destination/Topic to verify InvalidDestinationException is thrown with various methods
      */
     public void InvalidDestinationTests() throws Fault {
         String lookup = "DURABLE_SUB_CONNECTION_FACTORY";
@@ -818,7 +804,8 @@ public class SessionTests extends ServiceEETest {
                 logErr("Error closing new Connection", ex);
             }
 
-            if (pass != true) throw new Fault("InvalidDestinationTests");
+            if (pass != true)
+                throw new Fault("InvalidDestinationTests");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -835,14 +822,12 @@ public class SessionTests extends ServiceEETest {
     /*
      * @testName: InvalidSelectorTests
      *
-     * @assertion_ids: JMS:SPEC:195; JMS:SPEC:196; JMS:SPEC:69; JMS:SPEC:175;
-     * JMS:JAVADOC:640; JMS:JAVADOC:642; JMS:JAVADOC:645; JMS:JAVADOC:648;
+     * @assertion_ids: JMS:SPEC:195; JMS:SPEC:196; JMS:SPEC:69; JMS:SPEC:175; JMS:JAVADOC:640; JMS:JAVADOC:642;
+     * JMS:JAVADOC:645; JMS:JAVADOC:648;
      *
-     * @test_Strategy: 1. Create a Session with Queue Configuration, call
-     * createConsumer/createBrowser with invalid selector to verify
-     * InvalidSelectorException is thrown 2. Create a Session with Topic
-     * Configuration, call createConsumer/createDurableSubscriber with invalid
-     * selector to verify InvalidSelectorException is thrown
+     * @test_Strategy: 1. Create a Session with Queue Configuration, call createConsumer/createBrowser with invalid selector
+     * to verify InvalidSelectorException is thrown 2. Create a Session with Topic Configuration, call
+     * createConsumer/createDurableSubscriber with invalid selector to verify InvalidSelectorException is thrown
      */
     public void InvalidSelectorTests() throws Fault {
         String lookup = "DURABLE_SUB_CONNECTION_FACTORY";
@@ -926,7 +911,8 @@ public class SessionTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("InvalidSelectorTests");
+            if (pass != true)
+                throw new Fault("InvalidSelectorTests");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);

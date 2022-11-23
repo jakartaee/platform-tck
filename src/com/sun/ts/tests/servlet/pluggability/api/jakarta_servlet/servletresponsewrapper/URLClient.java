@@ -28,9 +28,8 @@ public class URLClient extends HttpResponseClient {
     private static final String CONTEXT_ROOT = "/servlet_plu_servletresponsewrapper_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends HttpResponseClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -109,8 +107,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:24
      *
-     * @test_Strategy: Servlet wraps response. Servlet writes data in the buffer
-     * and flushes it
+     * @test_Strategy: Servlet wraps response. Servlet writes data in the buffer and flushes it
      */
 
     /*
@@ -118,8 +115,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:23
      *
-     * @test_Strategy: Servlet wraps response. Servlet flushes buffer and verifies
-     * the size of the buffer
+     * @test_Strategy: Servlet wraps response. Servlet flushes buffer and verifies the size of the buffer
      */
 
     /*
@@ -127,8 +123,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:30
      *
-     * @test_Strategy: Servlet wraps response. Servlet set Locale and then
-     * verifies it
+     * @test_Strategy: Servlet wraps response. Servlet set Locale and then verifies it
      *
      */
 
@@ -137,8 +132,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:15
      *
-     * @test_Strategy: Servlet wraps response. Servlet gets an output stream and
-     * writes to it.
+     * @test_Strategy: Servlet wraps response. Servlet gets an output stream and writes to it.
      */
 
     /*
@@ -146,8 +140,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:17
      *
-     * @test_Strategy: Servlet wraps response. Servlet gets a Writer object, then
-     * sets the content type; Verify that content type didn't get set by servlet
+     * @test_Strategy: Servlet wraps response. Servlet gets a Writer object, then sets the content type; Verify that content
+     * type didn't get set by servlet
      */
 
     /*
@@ -155,8 +149,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:26
      *
-     * @test_Strategy: Servlet wraps response. Servlet checks before and after
-     * response is flushed
+     * @test_Strategy: Servlet wraps response. Servlet checks before and after response is flushed
      *
      */
 
@@ -165,8 +158,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:28
      *
-     * @test_Strategy: Servlet wraps response. Servlet writes data to the
-     * response, resets the buffer and then writes new data
+     * @test_Strategy: Servlet wraps response. Servlet writes data to the response, resets the buffer and then writes new
+     * data
      */
 
     /*
@@ -174,8 +167,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:27
      *
-     * @test_Strategy: Servlet wraps response. Servlet writes data to the
-     * response, does a reset, then writes new data
+     * @test_Strategy: Servlet wraps response. Servlet writes data to the response, does a reset, then writes new data
      */
 
     /*
@@ -183,8 +175,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:27; Servlet:JAVADOC:162; Servlet:SPEC:31;
      *
-     * @test_Strategy: Servlet writes data to the response, set the Headers, does
-     * a reset, then writes new data, set the new Header
+     * @test_Strategy: Servlet writes data to the response, set the Headers, does a reset, then writes new data, set the new
+     * Header
      */
 
     /*
@@ -192,8 +184,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:14
      *
-     * @test_Strategy: Servlet wraps response. Servlet checks for the default
-     * encoding
+     * @test_Strategy: Servlet wraps response. Servlet checks for the default encoding
      */
 
     /*
@@ -201,16 +192,14 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:13
      *
-     * @test_Strategy: Servlet wraps response. Servlet set the encoding and client
-     * verifies it
+     * @test_Strategy: Servlet wraps response. Servlet set the encoding and client verifies it
      */
     /*
      * @testName: setBufferSizeTest
      *
      * @assertion_ids: Servlet:JAVADOC:22
      *
-     * @test_Strategy: Servlet wraps response. Servlet sets the buffer size then
-     * verifies it was set
+     * @test_Strategy: Servlet wraps response. Servlet sets the buffer size then verifies it was set
      */
     /*
      * @testName: setContentLengthTest
@@ -225,8 +214,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:21; Servlet:SPEC:34;
      *
-     * @test_Strategy: Servlet wraps response. Servlet verifies the content type
-     * sent by the client
+     * @test_Strategy: Servlet wraps response. Servlet verifies the content type sent by the client
      */
     /*
      * @testName: setContentTypeTest

@@ -38,16 +38,18 @@ public class WSClient extends WebSocketCommonClient {
 
     static final String ECHO = "Echo message to be sent to server endpoint";
 
-    static final String[] TEXT_PRIMITIVE_SEQUENCE = {"byte", "short", "int", "long", "double", "float"};
+    static final String[] TEXT_PRIMITIVE_SEQUENCE = { "byte", "short", "int", "long", "double", "float" };
 
-    static final String[] TEXT_TYPE_SEQUENCE = {"string", "reader", "textdecoder", "textstreamdecoder"};
+    static final String[] TEXT_TYPE_SEQUENCE = { "string", "reader", "textdecoder", "textstreamdecoder" };
 
     static final String[] BINARY_SEQUENCE = {
-        "bytearray", "bytebuffer", "inputstream", "binarydecoder", "binarystreamdecoder"
+            "bytearray", "bytebuffer", "inputstream", "binarydecoder", "binarystreamdecoder"
     };
 
     public static int getIndex(String item) {
-        for (int i = 0; i != TEXT_PRIMITIVE_SEQUENCE.length; i++) if (TEXT_PRIMITIVE_SEQUENCE[i].equals(item)) return i;
+        for (int i = 0; i != TEXT_PRIMITIVE_SEQUENCE.length; i++)
+            if (TEXT_PRIMITIVE_SEQUENCE[i].equals(item))
+                return i;
         return -1;
     }
 
@@ -322,8 +324,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: byteToTextsTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send byte receive other texts
      */
@@ -338,8 +339,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: shortToTextsTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send short receive other
      */
@@ -354,8 +354,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: intToTextsTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send int receive other
      */
@@ -371,8 +370,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: longToTextsTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send long receive other
      */
@@ -388,8 +386,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: floatToTextsTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send float receive other
      */
@@ -404,8 +401,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: doubleToTextsTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send double receive other
      */
@@ -422,8 +418,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: stringToTextsTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send string receive other
      */
@@ -439,8 +434,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: stringToAllNumbersTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send string receive other
      */
@@ -463,14 +457,13 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: booleanToBooleanWithPathParamTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send boolean receive boolean
      */
     public void booleanToBooleanWithPathParamTest() throws Fault {
         boolean entity = true;
-        String[] SEQUENCE = {"primitiveboolean", "fullboolean"};
+        String[] SEQUENCE = { "primitiveboolean", "fullboolean" };
         setEntity(entity);
         invokeSequence(0, "true", "", "", SEQUENCE);
         invokeSequence(0, "true", "", "session", SEQUENCE);
@@ -481,14 +474,13 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: stringToBooleanTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send string receive boolean
      */
     public void stringToBooleanTest() throws Fault {
         String entity = "true";
-        String[] SEQUENCE = {"primitiveboolean", "fullboolean"};
+        String[] SEQUENCE = { "primitiveboolean", "fullboolean" };
         setEntity(entity);
         invokeSequence(0, entity, "", "", SEQUENCE);
         invokeSequence(0, entity, "", "session", SEQUENCE);
@@ -499,14 +491,13 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: stringToCharTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send string receive char
      */
     public void stringToCharTest() throws Fault {
         String entity = "&";
-        String[] SEQUENCE = {"primitivechar", "fullchar"};
+        String[] SEQUENCE = { "primitivechar", "fullchar" };
         setEntity(entity);
         invokeSequence(0, entity, "", "", SEQUENCE);
         invokeSequence(0, entity, "", "session", SEQUENCE);
@@ -517,8 +508,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: charToTextsTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send char receive other
      */
@@ -532,8 +522,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: partialStringTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send string and string receive the strings, too
      */
@@ -550,8 +539,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: partialStringAndSessionTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send string and string receive the combined string
      */
@@ -567,8 +555,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: partialStringWithPathParamTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send string and string receive the strings, too
      */
@@ -585,8 +572,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: partialStringAndSessionWithPathParamTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send string and string receive the combined string
      */
@@ -654,9 +640,9 @@ public class WSClient extends WebSocketCommonClient {
      */
     public void pongToPongTest() throws Fault {
         setEntity(new StringPongMessage(ECHO));
-        String[] sequence = {"pongmessage", "pongmessagesession"};
+        String[] sequence = { "pongmessage", "pongmessagesession" };
         invokeSequence(0, ECHO, "", "", sequence);
-        String[] paramsequence = {"pongmessagepathparam/param", "pongmessagesessionpathparam/param"};
+        String[] paramsequence = { "pongmessagepathparam/param", "pongmessagesessionpathparam/param" };
         invokeSequence(0, ECHO + "param", "", "", paramsequence);
     }
 

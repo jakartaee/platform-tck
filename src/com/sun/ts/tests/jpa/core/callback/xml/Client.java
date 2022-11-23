@@ -67,12 +67,10 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:708;
-     * PERSISTENCE:SPEC:701; PERSISTENCE:JAVADOC:34; PERSISTENCE:SPEC:1464;
-     * PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1468;
+     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:701; PERSISTENCE:JAVADOC:34;
+     * PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1468;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void prePersistTest() throws Fault {
         String reason;
@@ -108,12 +106,10 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistMultiTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697;
-     * PERSISTENCE:SPEC:722; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465;
-     * PERSISTENCE:SPEC:1468;
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697; PERSISTENCE:SPEC:722; PERSISTENCE:SPEC:1464;
+     * PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1468;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void prePersistMultiTest() throws Fault {
         final String testName = Constants.prePersistMultiTest;
@@ -141,13 +137,10 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistCascadeTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:708;
-     * PERSISTENCE:SPEC:725; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465;
-     * PERSISTENCE:SPEC:1467; PERSISTENCE:SPEC:1468; PERSISTENCE:SPEC:1469;
-     * PERSISTENCE:SPEC:1470;
+     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:725; PERSISTENCE:SPEC:1464;
+     * PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1467; PERSISTENCE:SPEC:1468; PERSISTENCE:SPEC:1469; PERSISTENCE:SPEC:1470;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void prePersistCascadeTest() throws Fault {
         String reason;
@@ -198,14 +191,11 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistMultiCascadeTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697;
-     * PERSISTENCE:SPEC:708; PERSISTENCE:JAVADOC:34; PERSISTENCE:SPEC:723;
-     * PERSISTENCE:SPEC:724; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465;
-     * PERSISTENCE:SPEC:1467; PERSISTENCE:SPEC:1468; PERSISTENCE:SPEC:1469;
-     * PERSISTENCE:SPEC:1470;
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:697; PERSISTENCE:SPEC:708; PERSISTENCE:JAVADOC:34;
+     * PERSISTENCE:SPEC:723; PERSISTENCE:SPEC:724; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1467;
+     * PERSISTENCE:SPEC:1468; PERSISTENCE:SPEC:1469; PERSISTENCE:SPEC:1470;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void prePersistMultiCascadeTest() throws Fault {
         final String testName = Constants.prePersistMultiCascadeTest;
@@ -244,11 +234,10 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: preRemoveTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:708;
-     * PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1468;
+     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465;
+     * PERSISTENCE:SPEC:1468;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void preRemoveTest() throws Fault {
         String reason;
@@ -285,12 +274,10 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: preRemoveMultiTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:709;
-     * PERSISTENCE:SPEC:722; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465;
-     * PERSISTENCE:SPEC:1468;
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:722; PERSISTENCE:SPEC:1464;
+     * PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1468;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void preRemoveMultiTest() throws Fault {
         final String testName = Constants.preRemoveMultiTest;
@@ -321,12 +308,10 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: preRemoveCascadeTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:708;
-     * PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1467;
-     * PERSISTENCE:SPEC:1468; PERSISTENCE:SPEC:1469; PERSISTENCE:SPEC:1470;
+     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465;
+     * PERSISTENCE:SPEC:1467; PERSISTENCE:SPEC:1468; PERSISTENCE:SPEC:1469; PERSISTENCE:SPEC:1470;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void preRemoveCascadeTest() throws Fault {
         String reason;
@@ -379,13 +364,11 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: preRemoveMultiCascadeTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:708;
-     * PERSISTENCE:SPEC:722; PERSISTENCE:SPEC:726; PERSISTENCE:SPEC:727;
-     * PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1467;
-     * PERSISTENCE:SPEC:1468; PERSISTENCE:SPEC:1469; PERSISTENCE:SPEC:1470;
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:722; PERSISTENCE:SPEC:726;
+     * PERSISTENCE:SPEC:727; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1467; PERSISTENCE:SPEC:1468;
+     * PERSISTENCE:SPEC:1469; PERSISTENCE:SPEC:1470;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void preRemoveMultiCascadeTest() throws Fault {
         final String testName = Constants.preRemoveMultiCascadeTest;
@@ -427,11 +410,10 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: preUpdateTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:716;
-     * PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1468;
+     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:716; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465;
+     * PERSISTENCE:SPEC:1468;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void preUpdateTest() throws Fault {
         final String testName = Constants.preUpdateTest;
@@ -460,12 +442,10 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: postLoadTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:719;
-     * PERSISTENCE:SPEC:720; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465;
-     * PERSISTENCE:SPEC:1468;
+     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:719; PERSISTENCE:SPEC:720; PERSISTENCE:SPEC:1464;
+     * PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1468;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void postLoadTest() throws Fault {
         String reason;
@@ -509,12 +489,10 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: postLoadMultiTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:719;
-     * PERSISTENCE:SPEC:722; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465;
-     * PERSISTENCE:SPEC:1468;
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:719; PERSISTENCE:SPEC:722; PERSISTENCE:SPEC:1464;
+     * PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1468;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void postLoadMultiTest() throws Fault {
         final String testName = Constants.postLoadMultiTest;
@@ -548,11 +526,10 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistRuntimeExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:704;
-     * PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465; PERSISTENCE:SPEC:1468;
+     * @assertion_ids: PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:704; PERSISTENCE:SPEC:1464; PERSISTENCE:SPEC:1465;
+     * PERSISTENCE:SPEC:1468;
      *
-     * @test_Strategy: xml elements are used to define behavior instead of
-     * annotations
+     * @test_Strategy: xml elements are used to define behavior instead of annotations
      */
     public void prePersistRuntimeExceptionTest() throws Fault {
         final String testName = Constants.prePersistRuntimeExceptionTest;

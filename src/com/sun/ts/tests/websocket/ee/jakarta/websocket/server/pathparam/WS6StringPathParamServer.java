@@ -61,16 +61,16 @@ public class WS6StringPathParamServer {
             throws IOException {
         OPS op = OPS.valueOf(content);
         switch (op) {
-            case OPEN:
-                content = p[0] + p[1] + p[2] + p[3] + p[4] + p[5];
-                break;
-            case MESSAGE:
-                content = p1 + p2 + p3 + p4 + p5 + p6;
-                break;
-            case IOEXCEPTION:
-                throw new IOException(ERR);
-            case RUNTIMEEXCEPTION:
-                throw new RuntimeException(ERR);
+        case OPEN:
+            content = p[0] + p[1] + p[2] + p[3] + p[4] + p[5];
+            break;
+        case MESSAGE:
+            content = p1 + p2 + p3 + p4 + p5 + p6;
+            break;
+        case IOEXCEPTION:
+            throw new IOException(ERR);
+        case RUNTIMEEXCEPTION:
+            throw new RuntimeException(ERR);
         }
         return content;
     }

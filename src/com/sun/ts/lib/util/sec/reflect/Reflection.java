@@ -26,10 +26,9 @@ import java.util.Map;
 public class Reflection {
 
     /**
-     * Used to filter out fields and methods from certain classes from public
-     * view, where they are sensitive or they may contain VM-internal objects.
-     * These Maps are updated very rarely. Rather than synchronize on each access,
-     * we use copy-on-write
+     * Used to filter out fields and methods from certain classes from public view, where they are sensitive or they may
+     * contain VM-internal objects. These Maps are updated very rarely. Rather than synchronize on each access, we use
+     * copy-on-write
      */
     private static volatile Map<Class, String[]> fieldFilterMap;
 
@@ -37,31 +36,27 @@ public class Reflection {
 
     static {
         Map<Class, String[]> map = new HashMap<Class, String[]>();
-        map.put(Reflection.class, new String[] {"fieldFilterMap", "methodFilterMap"});
-        map.put(System.class, new String[] {"security"});
+        map.put(Reflection.class, new String[] { "fieldFilterMap", "methodFilterMap" });
+        map.put(System.class, new String[] { "security" });
         fieldFilterMap = map;
 
         methodFilterMap = new HashMap<Class, String[]>();
     }
 
     /**
-     * Returns the class of the method <code>realFramesToSkip</code> frames up the
-     * stack (zero-based), ignoring frames associated with
-     * java.lang.reflect.Method.invoke() and its implementation. The first frame
-     * is that associated with this method, so <code>getCallerClass(0)</code>
-     * returns the Class object for sun.reflect.Reflection. Frames associated with
-     * java.lang.reflect.Method.invoke() and its implementation are completely
-     * ignored and do not count toward the number of "real" frames skipped.
+     * Returns the class of the method <code>realFramesToSkip</code> frames up the stack (zero-based), ignoring frames
+     * associated with java.lang.reflect.Method.invoke() and its implementation. The first frame is that associated with
+     * this method, so <code>getCallerClass(0)</code> returns the Class object for sun.reflect.Reflection. Frames associated
+     * with java.lang.reflect.Method.invoke() and its implementation are completely ignored and do not count toward the
+     * number of "real" frames skipped.
      */
     public static native Class getCallerClass(int realFramesToSkip);
 
     /**
-     * Retrieves the access flags written to the class file. For inner classes
-     * these flags may differ from those returned by Class.getModifiers(), which
-     * searches the InnerClasses attribute to find the source-level access flags.
-     * This is used instead of Class.getModifiers() for run-time access checks due
-     * to compatibility reasons; see 4471811. Only the values of the low 13 bits
-     * (i.e., a mask of 0x1FFF) are guaranteed to be valid.
+     * Retrieves the access flags written to the class file. For inner classes these flags may differ from those returned by
+     * Class.getModifiers(), which searches the InnerClasses attribute to find the source-level access flags. This is used
+     * instead of Class.getModifiers() for run-time access checks due to compatibility reasons; see 4471811. Only the values
+     * of the low 13 bits (i.e., a mask of 0x1FFF) are guaranteed to be valid.
      */
     private static native int getClassAccessFlags(Class c);
 
@@ -167,8 +162,8 @@ public class Reflection {
     }
 
     /**
-     * Returns true if two classes are in the same package; classloader and
-     * classname information is enough to determine a class's package
+     * Returns true if two classes are in the same package; classloader and classname information is enough to determine a
+     * class's package
      */
     private static boolean isSameClassPackage(ClassLoader loader1, String name1, ClassLoader loader2, String name2) {
         if (loader1 != loader2) {

@@ -29,4 +29,5 @@ import jakarta.interceptor.Interceptors;
 @Stateless
 @Remote(InvocationContextIF.class)
 @Interceptors(com.sun.ts.tests.ejb30.common.invocationcontext.InterceptorForAll.class)
-public class InvocationContextInterceptorBean extends InvocationContextBase {}
+public class InvocationContextInterceptorBean extends InvocationContextBase {
+}

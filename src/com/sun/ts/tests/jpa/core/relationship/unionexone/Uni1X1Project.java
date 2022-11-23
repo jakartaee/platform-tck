@@ -28,7 +28,8 @@ public class Uni1X1Project implements java.io.Serializable {
 
     private float budget;
 
-    public Uni1X1Project() {}
+    public Uni1X1Project() {
+    }
 
     public Uni1X1Project(long projId, String name, float budget) {
         this.projId = projId;

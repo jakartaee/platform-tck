@@ -38,13 +38,14 @@ public class DID2bDependent implements Serializable {
 
     @MapsId("empPK")
     @JoinColumns({
-        @JoinColumn(name = "FIRSTNAME", referencedColumnName = "firstname"),
-        @JoinColumn(name = "LASTNAME", referencedColumnName = "lastname")
+            @JoinColumn(name = "FIRSTNAME", referencedColumnName = "firstname"),
+            @JoinColumn(name = "LASTNAME", referencedColumnName = "lastname")
     })
     @ManyToOne
     DID2bEmployee emp;
 
-    public DID2bDependent() {}
+    public DID2bDependent() {
+    }
 
     public DID2bDependent(DID2bDependentId dId, DID2bEmployee emp) {
         this.id = dId;

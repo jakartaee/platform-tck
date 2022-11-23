@@ -27,8 +27,8 @@ import jakarta.ejb.MessageDrivenContext;
 import jakarta.jms.MessageListener;
 
 /**
- * This bean must not implement jakarta.jms.MessageListener, since it has been
- * annotated with messageListenerInterface, which is what we are testing here.
+ * This bean must not implement jakarta.jms.MessageListener, since it has been annotated with messageListenerInterface,
+ * which is what we are testing here.
  */
 @MessageDriven(name = "TopicDestBean", messageListenerInterface = MessageListener.class)
 public class TopicDestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase {

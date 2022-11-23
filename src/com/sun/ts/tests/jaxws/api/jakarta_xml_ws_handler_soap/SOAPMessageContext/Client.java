@@ -103,8 +103,7 @@ public class Client extends ServiceEETest {
 
     private QName PORT_QNAME1 = new QName(NAMESPACEURI, PORT_NAME1);
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.DLHandlerService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.DLHandlerService.class;
 
     private static final String THEBINDINGPROTOCOL = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING;
 
@@ -233,8 +232,7 @@ public class Client extends ServiceEETest {
     /*
      * @class.testArgs: -ap jaxws-url-props.dat
      *
-     * @class.setup_props: webServerHost; webServerPort; platform.mode;
-     * harness.log.traceflag;
+     * @class.setup_props: webServerHost; webServerPort; platform.mode; harness.log.traceflag;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -242,8 +240,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -298,14 +298,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: ClientMessageContextTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:100; JAXWS:JAVADOC:101; JAXWS:JAVADOC:102;
-     * JAXWS:JAVADOC:103; JAXWS:SPEC:9022; JAXWS:SPEC:9023; JAXWS:SPEC:9024;
-     * JAXWS:SPEC:9025; JAXWS:SPEC:9026; JAXWS:SPEC:9041; WS4EE:SPEC:6012;
-     * WS4EE:SPEC:6013; WS4EE:SPEC:6014; WS4EE:SPEC:6008; WS4EE:SPEC:6002;
-     * WS4EE:SPEC:6039; WS4EE:SPEC:6047;
+     * @assertion_ids: JAXWS:JAVADOC:100; JAXWS:JAVADOC:101; JAXWS:JAVADOC:102; JAXWS:JAVADOC:103; JAXWS:SPEC:9022;
+     * JAXWS:SPEC:9023; JAXWS:SPEC:9024; JAXWS:SPEC:9025; JAXWS:SPEC:9026; JAXWS:SPEC:9041; WS4EE:SPEC:6012;
+     * WS4EE:SPEC:6013; WS4EE:SPEC:6014; WS4EE:SPEC:6008; WS4EE:SPEC:6002; WS4EE:SPEC:6039; WS4EE:SPEC:6047;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the client-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the client-side soap message handler callbacks are called.
      *
      */
     public void ClientMessageContextTest() throws Fault {
@@ -527,20 +524,18 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientMessageContextTest failed");
+        if (!pass)
+            throw new Fault("ClientMessageContextTest failed");
     }
 
     /*
      * @testName: ServerMessageContextTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:100; JAXWS:JAVADOC:101; JAXWS:JAVADOC:102;
-     * JAXWS:JAVADOC:103; JAXWS:SPEC:9022; JAXWS:SPEC:9023; JAXWS:SPEC:9024;
-     * JAXWS:SPEC:9025; JAXWS:SPEC:9026; JAXWS:SPEC:9041; WS4EE:SPEC:6012;
-     * WS4EE:SPEC:6013; WS4EE:SPEC:6014; WS4EE:SPEC:6002; WS4EE:SPEC:6039;
-     * WS4EE:SPEC:6047;
+     * @assertion_ids: JAXWS:JAVADOC:100; JAXWS:JAVADOC:101; JAXWS:JAVADOC:102; JAXWS:JAVADOC:103; JAXWS:SPEC:9022;
+     * JAXWS:SPEC:9023; JAXWS:SPEC:9024; JAXWS:SPEC:9025; JAXWS:SPEC:9026; JAXWS:SPEC:9041; WS4EE:SPEC:6012;
+     * WS4EE:SPEC:6013; WS4EE:SPEC:6014; WS4EE:SPEC:6002; WS4EE:SPEC:6039; WS4EE:SPEC:6047;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ServerMessageContextTest() throws Fault {
         TestUtil.logTrace("ServerMessageContextTest");
@@ -644,20 +639,19 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ServerMessageContextTest failed");
+        if (!pass)
+            throw new Fault("ServerMessageContextTest failed");
     }
 
     /*
      * @testName: ContextPropertiesTest
      *
-     * @assertion_ids: JAXWS:SPEC:9026; JAXWS:SPEC:9027; JAXWS:SPEC:9033;
-     * JAXWS:SPEC:9034; JAXWS:SPEC:9035; JAXWS:SPEC:9036; JAXWS:SPEC:9037;
-     * JAXWS:SPEC:9038; JAXWS:SPEC:9039; JAXWS:SPEC:9040; WS4EE:SPEC:6012;
-     * WS4EE:SPEC:6013; WS4EE:SPEC:6014; WS4EE:SPEC:6008; WS4EE:SPEC:6002;
-     * WS4EE:SPEC:6047;
+     * @assertion_ids: JAXWS:SPEC:9026; JAXWS:SPEC:9027; JAXWS:SPEC:9033; JAXWS:SPEC:9034; JAXWS:SPEC:9035; JAXWS:SPEC:9036;
+     * JAXWS:SPEC:9037; JAXWS:SPEC:9038; JAXWS:SPEC:9039; JAXWS:SPEC:9040; WS4EE:SPEC:6012; WS4EE:SPEC:6013;
+     * WS4EE:SPEC:6014; WS4EE:SPEC:6008; WS4EE:SPEC:6002; WS4EE:SPEC:6047;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the various
-     * MessageContext and SOAPMessageContext properties are accessible
+     * @test_Strategy: Invoke an RPC method and ensure that the various MessageContext and SOAPMessageContext properties are
+     * accessible
      */
     public void ContextPropertiesTest() throws Fault {
         TestUtil.logTrace("ContextPropertiesTest");
@@ -731,16 +725,14 @@ public class Client extends ServiceEETest {
 
                 if (lResults != null) {
 
-                    if (JAXWS_Util.looseIndexOf(lResults, "Endpoint:MessageContext.INBOUND_MESSAGE_ATTACHMENTS=key[0]")
-                            == -1) {
+                    if (JAXWS_Util.looseIndexOf(lResults, "Endpoint:MessageContext.INBOUND_MESSAGE_ATTACHMENTS=key[0]") == -1) {
                         TestUtil.logErr(
                                 "The property MessageContext.INBOUND_MESSAGE_ATTACHMENTS did not contain an attachment in the endpoint");
                         pass = false;
                     } else {
                         TestUtil.logTrace("Found Endpoint:MessageContext.INBOUND_MESSAGE_ATTACHMENTS=key[0]");
                     }
-                    if (JAXWS_Util.looseIndexOf(lResults, "Endpoint:MessageContext.INBOUND_MESSAGE_ATTACHMENTS=key[1]")
-                            >= 0) {
+                    if (JAXWS_Util.looseIndexOf(lResults, "Endpoint:MessageContext.INBOUND_MESSAGE_ATTACHMENTS=key[1]") >= 0) {
                         TestUtil.logErr(
                                 "The property MessageContext.INBOUND_MESSAGE_ATTACHMENTS contained more than one attachment in the endpoint");
                         pass = false;
@@ -753,8 +745,7 @@ public class Client extends ServiceEETest {
                     } else {
                         TestUtil.logTrace("Found Endpoint:MessageContext.HTTP_REQUEST_METHOD=POST");
                     }
-                    if (JAXWS_Util.looseIndexOf(lResults, "Endpoint:MessageContext.HTTP_REQUEST_HEADERS=value[0]=")
-                            == -1) {
+                    if (JAXWS_Util.looseIndexOf(lResults, "Endpoint:MessageContext.HTTP_REQUEST_HEADERS=value[0]=") == -1) {
                         TestUtil.logErr(
                                 "The property MessageContext.HTTP_REQUEST_HEADERS did not contain any headers in the endpoint");
                         pass = false;
@@ -872,7 +863,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ContextPropertiesTest failed");
+        if (!pass)
+            throw new Fault("ContextPropertiesTest failed");
     }
 
     private void purgeServerSideTrackerData() {

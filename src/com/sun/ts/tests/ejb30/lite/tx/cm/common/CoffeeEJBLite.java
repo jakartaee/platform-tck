@@ -35,7 +35,8 @@ public class CoffeeEJBLite implements java.io.Serializable {
 
     private float price;
 
-    public CoffeeEJBLite() {}
+    public CoffeeEJBLite() {
+    }
 
     public CoffeeEJBLite(Integer id, String brandName, float price) {
         this.id = id;

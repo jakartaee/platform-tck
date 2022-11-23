@@ -27,7 +27,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -53,12 +54,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: removeBasicTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:628;
-     * PERSISTENCE:SPEC:629
+     * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:628; PERSISTENCE:SPEC:629
      *
-     * @test_Strategy: A managed entity instance becomes removed by invoking the
-     * remove method on it or by cascading the remove operation. The semantics of
-     * the remove operation, applied to an entity X are as follows:
+     * @test_Strategy: A managed entity instance becomes removed by invoking the remove method on it or by cascading the
+     * remove operation. The semantics of the remove operation, applied to an entity X are as follows:
      *
      * If X is a new entity, it is ignored by the remove operation.
      *
@@ -89,7 +88,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("removeBasicTest1 failed");
+        if (!pass)
+            throw new Fault("removeBasicTest1 failed");
     }
 
     /*
@@ -97,8 +97,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:632
      *
-     * @test_Strategy: If X is a managed entity, the remove operation causes it to
-     * transition to the removed state. Invoke remove on a managed entity.
+     * @test_Strategy: If X is a managed entity, the remove operation causes it to transition to the removed state. Invoke
+     * remove on a managed entity.
      *
      */
 
@@ -128,7 +128,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("removeBasicTest2 failed");
+        if (!pass)
+            throw new Fault("removeBasicTest2 failed");
     }
 
     /*
@@ -136,8 +137,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:636
      *
-     * @test_Strategy: If X is a removed entity, invoking the remove method on it
-     * will be ignored.
+     * @test_Strategy: If X is a removed entity, invoking the remove method on it will be ignored.
      *
      * Invoke remove on a removed entity.
      *
@@ -188,23 +188,22 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("removeBasicTest3 failed");
+        if (!pass)
+            throw new Fault("removeBasicTest3 failed");
     }
 
     /*
      * @testName: removeBasicTest4
      *
-     * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:637;
-     * PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:648
+     * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:637; PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:648
      *
-     * @test_Strategy: A removed entity will be removed from the database at or
-     * before transaction commit or as a result of a flush operation.
+     * @test_Strategy: A removed entity will be removed from the database at or before transaction commit or as a result of
+     * a flush operation.
      *
-     * Remove an entity. Verify the entity is removed from the database at as a
-     * result of the flush operation.
+     * Remove an entity. Verify the entity is removed from the database at as a result of the flush operation.
      *
-     * The flush method can be used for force synchronization. The semantics of
-     * the flush operation applied to an entity X is as follows:
+     * The flush method can be used for force synchronization. The semantics of the flush operation applied to an entity X
+     * is as follows:
      *
      * If X is a removed entity, it is removed from the database.
      *
@@ -249,7 +248,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("removeBasicTest4 failed");
+        if (!pass)
+            throw new Fault("removeBasicTest4 failed");
     }
 
     /*
@@ -257,8 +257,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:673
      *
-     * @test_Strategy: The contains method [used to determine whether an entity
-     * instance is in the managed state] returns false:
+     * @test_Strategy: The contains method [used to determine whether an entity instance is in the managed state] returns
+     * false:
      *
      * If the remove method has been called on the entity.
      *
@@ -294,7 +294,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("removeBasicTest5 failed");
+        if (!pass)
+            throw new Fault("removeBasicTest5 failed");
     }
 
     /*
@@ -302,8 +303,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:661
      *
-     * @test_Strategy: To merge a removed entity will result in
-     * IllegalArgumentException, or commit will fail.
+     * @test_Strategy: To merge a removed entity will result in IllegalArgumentException, or commit will fail.
      */
 
     public void removeMergeBasicTest() throws Fault {
@@ -351,7 +351,8 @@ public class Client extends PMClientBase {
                 TestUtil.logTrace(reason);
             }
         }
-        if (!pass) throw new Fault("removeMergeBasicTest failed, reason: " + reason);
+        if (!pass)
+            throw new Fault("removeMergeBasicTest failed, reason: " + reason);
     }
 
     /*

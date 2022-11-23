@@ -25,15 +25,13 @@ public class JsfClient extends com.sun.ts.tests.ejb30.bb.async.common.metadata.M
     /*
      * @testName: beanClassLevelReturnType
      *
-     * @test_Strategy:verify 2 types of return types in bean class: Future<T> and
-     * T.
+     * @test_Strategy:verify 2 types of return types in bean class: Future<T> and T.
      */
     /*
      * @testName: beanClassLevelRuntimeException
      *
-     * @test_Strategy: for async method with void return type, RuntimeException is
-     * not visible to the client. For Future return type, RuntimeException is
-     * wrapped as EJBException and then as ExecutionException.
+     * @test_Strategy: for async method with void return type, RuntimeException is not visible to the client. For Future
+     * return type, RuntimeException is wrapped as EJBException and then as ExecutionException.
      */
     /*
      * @testName: customFutureImpl
@@ -43,7 +41,6 @@ public class JsfClient extends com.sun.ts.tests.ejb30.bb.async.common.metadata.M
     /*
      * @testName: beanClassLevelSyncMethod
      *
-     * @test_Strategy: syncMethodException is implemented in a bean superclass
-     * that is not annotated with @Asynchronous.
+     * @test_Strategy: syncMethodException is implemented in a bean superclass that is not annotated with @Asynchronous.
      */
 }

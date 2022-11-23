@@ -57,7 +57,8 @@ public class EntityManagerFactoryImpl implements jakarta.persistence.EntityManag
         this.containerFactory = containerFactory;
     }
 
-    public void addNamedQuery(String s, Query q) {}
+    public void addNamedQuery(String s, Query q) {
+    }
 
     public void close() {
         verifyOpen();
@@ -127,7 +128,8 @@ public class EntityManagerFactoryImpl implements jakarta.persistence.EntityManag
         return null;
     }
 
-    public <T> void addNamedEntityGraph(String graphName, EntityGraph<T> entityGraph) {}
+    public <T> void addNamedEntityGraph(String graphName, EntityGraph<T> entityGraph) {
+    }
 
     public boolean isOpen() {
         return isOpen;

@@ -43,7 +43,7 @@ public class InterceptorBeanBase implements InterceptorIF {
         historySingletonBean.addPostConstructRecordFor(this, simpleName);
     }
 
-    @Interceptors({Interceptor7.class, Interceptor6.class})
+    @Interceptors({ Interceptor7.class, Interceptor6.class })
     public List<String> allInterceptors() {
         return historySingletonBean.getPostConstructRecordsFor(this);
     }

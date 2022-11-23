@@ -188,8 +188,7 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
     }
 
     /*
-     * Test to verify encodingStyle attribute can be set on Envelope. This is
-     * allowed for the SOAP1.1 protocol.
+     * Test to verify encodingStyle attribute can be set on Envelope. This is allowed for the SOAP1.1 protocol.
      */
     private void encodingStyleAttrSOAP11Test1(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -209,14 +208,15 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
     /*
-     * Test to verify encodingStyle attribute can be set on Envelope. This is
-     * allowed for the SOAP1.1 protocol.
+     * Test to verify encodingStyle attribute can be set on Envelope. This is allowed for the SOAP1.1 protocol.
      */
     private void encodingStyleAttrSOAP11Test2(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -237,14 +237,15 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
     /*
-     * Test to verify that trailing blocks are allowed after Body. This is allowed
-     * for the SOAP1.1 protocol.
+     * Test to verify that trailing blocks are allowed after Body. This is allowed for the SOAP1.1 protocol.
      */
     private void noTrailingBlockBodySOAP11Test(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -269,14 +270,15 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
     /*
-     * Test to verify non qualified QNames in BodyElements. This is allowed for
-     * the SOAP1.1 protocol.
+     * Test to verify non qualified QNames in BodyElements. This is allowed for the SOAP1.1 protocol.
      */
     private void enforcedQNameBodyElemSOAP11Test(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -300,14 +302,15 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
     /*
-     * Test to verify encodingStyle attribute cannot be set on Envelope. This is
-     * restricted for the SOAP1.2 protocol.
+     * Test to verify encodingStyle attribute cannot be set on Envelope. This is restricted for the SOAP1.2 protocol.
      */
     private void encodingStyleAttrSOAP12Test1(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -331,14 +334,15 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
     /*
-     * Test to verify encodingStyle attribute cannot be set on Envelope. This is
-     * restricted for the SOAP1.2 protocol.
+     * Test to verify encodingStyle attribute cannot be set on Envelope. This is restricted for the SOAP1.2 protocol.
      */
     private void encodingStyleAttrSOAP12Test2(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -363,14 +367,15 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
     /*
-     * Test to verify that no trailing blocks are allowed after Body. This is
-     * restricted for the SOAP1.2 protocol.
+     * Test to verify that no trailing blocks are allowed after Body. This is restricted for the SOAP1.2 protocol.
      */
     private void noTrailingBlockBodySOAP12Test(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -395,14 +400,15 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
     /*
-     * Test to verify that unqualified QNames are not allowed on HeaderElements
-     * for both SOAP 1.1 and SOAP 1.2 protocols.
+     * Test to verify that unqualified QNames are not allowed on HeaderElements for both SOAP 1.1 and SOAP 1.2 protocols.
      */
     private void enforcedQNameHdrElemTest1(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -429,14 +435,16 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
     /*
-     * Test to verify that unqualified QNames are not allowed for Header
-     * ChildElements for both SOAP 1.1 and SOAP 1.2 protocols.
+     * Test to verify that unqualified QNames are not allowed for Header ChildElements for both SOAP 1.1 and SOAP 1.2
+     * protocols.
      */
     private void enforcedQNameHdrElemTest2(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -462,15 +470,16 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
     /*
-     * Test to verify non qualified QNames in BodyElements. According to the SOAP
-     * 1.2 spec, body elements need not be namespace qualified, but header
-     * elements must be. This is allowed for the SOAP1.2 protocol.
+     * Test to verify non qualified QNames in BodyElements. According to the SOAP 1.2 spec, body elements need not be
+     * namespace qualified, but header elements must be. This is allowed for the SOAP1.2 protocol.
      */
     private void enforcedQNameBodyElemSOAP12Test(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
@@ -490,8 +499,10 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

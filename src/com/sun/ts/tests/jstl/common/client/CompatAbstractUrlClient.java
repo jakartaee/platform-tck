@@ -46,8 +46,7 @@ public class CompatAbstractUrlClient extends BaseUrlClient implements JstlTckCon
     /**
      * Sets the test properties for this testCase.
      *
-     * @param testCase
-     *          - the current test case
+     * @param testCase - the current test case
      */
     protected void setTestProperties(WebTestCase testCase) {
         setStandardProperties(TEST_PROPS.getProperty(STANDARD_COMPAT), testCase);
@@ -64,7 +63,7 @@ public class CompatAbstractUrlClient extends BaseUrlClient implements JstlTckCon
         super.setTestProperties(testCase);
         HttpRequest httpReq = testCase.getRequest();
         Enumeration enumm = dbArgs.propertyNames();
-        for (; enumm.hasMoreElements(); ) {
+        for (; enumm.hasMoreElements();) {
             String name = (String) enumm.nextElement();
             String value = dbArgs.getProperty(name);
             httpReq.addRequestHeader(name, value);
@@ -74,8 +73,7 @@ public class CompatAbstractUrlClient extends BaseUrlClient implements JstlTckCon
     /**
      * Sets the goldenfile directory
      *
-     * @param goldenDir
-     *          goldenfile directory based off test directory
+     * @param goldenDir goldenfile directory based off test directory
      */
     public void setGoldenFileDir(String goldenDir) {
         GOLDENFILEDIR = goldenDir;
@@ -84,10 +82,8 @@ public class CompatAbstractUrlClient extends BaseUrlClient implements JstlTckCon
     /**
      * Consists of a test name, a request, and a goldenfile.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setStandardProperties(String testValue, WebTestCase testCase) {
 

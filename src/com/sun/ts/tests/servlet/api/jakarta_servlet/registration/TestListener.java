@@ -39,11 +39,9 @@ import java.util.Map;
 public class TestListener implements ServletContextListener {
 
     /**
-     * Receives notification that the web application initialization process is
-     * starting.
+     * Receives notification that the web application initialization process is starting.
      *
-     * @param sce
-     *          The servlet context event
+     * @param sce The servlet context event
      */
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext context = sce.getServletContext();
@@ -58,7 +56,7 @@ public class TestListener implements ServletContextListener {
         final String addFilterName3 = "CreateFilter";
         final String addFilterName4 = "AddFilterNotFound";
 
-        final String[] param_names = {"Filter", "FilterName", "Servlet", "DISPATCH", "ServletName"};
+        final String[] param_names = { "Filter", "FilterName", "Servlet", "DISPATCH", "ServletName" };
 
         /*
          * Add Servlet AddServletString
@@ -203,8 +201,7 @@ public class TestListener implements ServletContextListener {
         context.setInitParameter(SERVLET_TEST, servlet_test.toString());
 
         try {
-            Filter badfilter =
-                    context.createFilter(com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.BadFilter.class);
+            Filter badfilter = context.createFilter(com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.BadFilter.class);
         } catch (ServletException ex) {
             filter_test = true;
         }
@@ -247,7 +244,7 @@ public class TestListener implements ServletContextListener {
          */
         String SERVLET_REGISTRATION = "SERVLET_REGISTRATION";
         StringBuffer Value_OF_Registration = new StringBuffer();
-        String[] servlets = {"AddServletString", "AddServletClass", "AddServletNotFound", "CreateServlet", "TestServlet"
+        String[] servlets = { "AddServletString", "AddServletClass", "AddServletNotFound", "CreateServlet", "TestServlet"
         };
         for (String servlet : servlets) {
             Value_OF_Registration.append(servlet + "=" + context.getServletRegistration(servlet) + "|");
@@ -272,7 +269,7 @@ public class TestListener implements ServletContextListener {
          */
         String FILTER_REGISTRATION = "FILTER_REGISTRATION";
         StringBuffer Value_OF_Filter_Registration = new StringBuffer();
-        String[] filters = {"AddFilterString", "AddFilterClass", "AddFilterNotFound", "CreateFilter"};
+        String[] filters = { "AddFilterString", "AddFilterClass", "AddFilterNotFound", "CreateFilter" };
         for (String filter : filters) {
             Value_OF_Filter_Registration.append(filter + "=" + context.getFilterRegistration(filter) + "|");
         }
@@ -283,7 +280,7 @@ public class TestListener implements ServletContextListener {
          */
         String FILTER_SERVLET_MAPPING = "FILTER_SERVLET_MAPPING";
         StringBuffer Value_OF_Servlet_URL = new StringBuffer();
-        FilterRegistration[] Filters = {frString, frClass, frNotFound, frFilter};
+        FilterRegistration[] Filters = { frString, frClass, frNotFound, frFilter };
         for (FilterRegistration Filter_Test : Filters) {
             Collection<String> servlet_mappings = Filter_Test.getServletNameMappings();
             for (String servlet : servlet_mappings) {
@@ -293,10 +290,8 @@ public class TestListener implements ServletContextListener {
         context.setInitParameter(FILTER_SERVLET_MAPPING, Value_OF_Servlet_URL.toString());
 
         /*
-         * Test for Registration.getName() Test for Registration.getClassName() Test
-         * for Registration.setInitParameter(String) Test for
-         * Registration.getInitParameter(String) Test for
-         * Registration.setInitParameters() Test for
+         * Test for Registration.getName() Test for Registration.getClassName() Test for Registration.setInitParameter(String)
+         * Test for Registration.getInitParameter(String) Test for Registration.setInitParameters() Test for
          * Registration.getInitParameters()
          */
 
@@ -311,7 +306,7 @@ public class TestListener implements ServletContextListener {
         StringBuffer Value_OF_Registration_InitParameters = new StringBuffer();
 
         Registration[] registrations = {
-            srString, frString, srClass, frClass, srServlet, frFilter, srNotFound, frNotFound
+                srString, frString, srClass, frClass, srServlet, frFilter, srNotFound, frNotFound
         };
 
         for (Registration registration : registrations) {
@@ -337,8 +332,7 @@ public class TestListener implements ServletContextListener {
     /**
      * Receives notification that the servlet context is about to be shut down.
      *
-     * @param sce
-     *          The servlet context event
+     * @param sce The servlet context event
      */
     public void contextDestroyed(ServletContextEvent sce) {
         // Do nothing

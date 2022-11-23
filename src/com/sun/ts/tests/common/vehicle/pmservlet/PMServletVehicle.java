@@ -39,8 +39,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 @PersistenceContexts({
-    @PersistenceContext(name = "persistence/CTS-EM", unitName = "CTS-EM"),
-    @PersistenceContext(name = "persistence/CTS-EM2", unitName = "CTS-EM2")
+        @PersistenceContext(name = "persistence/CTS-EM", unitName = "CTS-EM"),
+        @PersistenceContext(name = "persistence/CTS-EM2", unitName = "CTS-EM2")
 })
 public class PMServletVehicle extends ServletVehicle {
 

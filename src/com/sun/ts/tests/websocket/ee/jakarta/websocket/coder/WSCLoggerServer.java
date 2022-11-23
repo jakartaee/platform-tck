@@ -34,12 +34,18 @@ public class WSCLoggerServer {
 
     public static String operation(String operation) {
         String ret = operation;
-        if (operation.equals("clearinit")) Logger.clearInitLog();
-        else if (operation.equals("cleardestroy")) Logger.clearDestroyLog();
-        else if (operation.equals("getinit")) ret = Logger.getInitLog();
-        else if (operation.equals("getdestroy")) ret = Logger.getDestroyLog();
-        else if (operation.equals("getcode")) ret = Logger.getCodeLog();
-        else if (operation.equals("getwillcode")) ret = Logger.getWillCodeLog();
+        if (operation.equals("clearinit"))
+            Logger.clearInitLog();
+        else if (operation.equals("cleardestroy"))
+            Logger.clearDestroyLog();
+        else if (operation.equals("getinit"))
+            ret = Logger.getInitLog();
+        else if (operation.equals("getdestroy"))
+            ret = Logger.getDestroyLog();
+        else if (operation.equals("getcode"))
+            ret = Logger.getCodeLog();
+        else if (operation.equals("getwillcode"))
+            ret = Logger.getWillCodeLog();
         else if (operation.equals("clearall")) {
             Logger.clearInitLog();
             Logger.clearDestroyLog();

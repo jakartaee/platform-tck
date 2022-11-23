@@ -80,7 +80,8 @@ public class Ejb1TestEJB implements SessionBean {
 
     private transient Statement stmt = null;
 
-    public Ejb1TestEJB() {}
+    public Ejb1TestEJB() {
+    }
 
     public void ejbCreate(java.util.Properties props) throws CreateException {
         this.testProps = props;
@@ -606,56 +607,39 @@ public class Ejb1TestEJB implements SessionBean {
         }
     }
     /*
-     * public boolean verifyData(String operation, String tName, int []
-     * expResults) { boolean status = false; int linenum = 0; PreparedStatement
-     * queryStatement = null; ResultSet theResults = null; Vector queryResults =
-     * new Vector(); try{ if(operation.equals("commit")){ //operation is commit
-     * TestUtil.logMsg("Expected number of rows is: " + expResults.length ); if(
-     * tName.equals(dbTable1) ){ String query =
-     * testProps.getProperty("Xa_Tab1_query"); TestUtil.logMsg("query is " + query
-     * ); queryStatement = con1.prepareStatement(query); theResults =
-     * queryStatement.executeQuery(); ResultSetMetaData rsmeta =
-     * theResults.getMetaData(); int numColumns = rsmeta.getColumnCount();
-     * TestUtil.logTrace("Number of columns from rsmeta " + numColumns); while
-     * (theResults.next() ) { linenum++; TestUtil.logMsg("Line No: " + linenum +
-     * " results: " + theResults.getInt(1) + " expResults: " +
+     * public boolean verifyData(String operation, String tName, int [] expResults) { boolean status = false; int linenum =
+     * 0; PreparedStatement queryStatement = null; ResultSet theResults = null; Vector queryResults = new Vector(); try{
+     * if(operation.equals("commit")){ //operation is commit TestUtil.logMsg("Expected number of rows is: " +
+     * expResults.length ); if( tName.equals(dbTable1) ){ String query = testProps.getProperty("Xa_Tab1_query");
+     * TestUtil.logMsg("query is " + query ); queryStatement = con1.prepareStatement(query); theResults =
+     * queryStatement.executeQuery(); ResultSetMetaData rsmeta = theResults.getMetaData(); int numColumns =
+     * rsmeta.getColumnCount(); TestUtil.logTrace("Number of columns from rsmeta " + numColumns); while (theResults.next() )
+     * { linenum++; TestUtil.logMsg("Line No: " + linenum + " results: " + theResults.getInt(1) + " expResults: " +
      * expResults[linenum-1] );
      *
      * if (theResults.getInt(1) == expResults[linenum-1] ) { status = true;
-     * TestUtil.logMsg("verifyData OK, Status is : "+status ); } else { status =
-     * false; TestUtil.logMsg("verifyData ERROR, Status is : "+status); break; } }
-     * // while if ( expResults.length != linenum) { TestUtil.
-     * logTrace("Error - expected row count does not match table in verifyData!!"
-     * ); status = false; } } else { //EIS
-     * TestUtil.logMsg("Getting a connection con3"); con3 = ds3.getConnection();
-     * TestUtil.logMsg("con3: " + con3.toString() ); queryResults =
-     * con3.readData(); for (int i=0; i <expResults.length; i++) {
-     * TestUtil.logMsg("Expected results: " + expResults.length ); if(
-     * queryResults.contains((new Integer(expResults[i])).toString()) ){ status =
-     * true; TestUtil.logMsg("VerifyData OK, Status is : " + status); } else {
-     * status = false; TestUtil.logMsg("VerifyData Error, Status is : " + status);
-     * break; } } for( int i=0; i<queryResults.size(); i++){
-     * TestUtil.logMsg("Query Results contains : " + queryResults.elementAt(i) );
-     * } } } else { //operation is rollback if( tName.equals(dbTable1) ){ String
-     * query = testProps.getProperty("Xa_Tab1_query"); TestUtil.logMsg("query is "
-     * + query ); queryStatement = con1.prepareStatement(query); theResults =
-     * queryStatement.executeQuery(); TestUtil.logTrace("status is " + status );
-     * status = !theResults.next(); TestUtil.logMsg("Resultset has no data? " +
-     * status ); } else { //EIS TestUtil.logMsg("Getting a connection con3"); con3
-     * = ds3.getConnection(); TestUtil.logMsg("con3: " + con3.toString() );
-     * queryResults = con3.readData(); for (int i=0; i <expResults.length; i++) {
-     * TestUtil.logMsg("Not Expected results: " + expResults[i] ); if(
-     * queryResults.contains((new Integer(expResults[i])).toString())) { status =
-     * false; TestUtil.logMsg("VerifyData Error, Status is : " + status); break; }
-     * else{ status = true; TestUtil.logMsg("VerifyData OK, Status is : " +
-     * status); } } for( int i=0; i<queryResults.size(); i++){
-     * TestUtil.logMsg("Query REsults contains : " + queryResults.elementAt(i) );
-     * } } } } catch (Exception e) {
-     * TestUtil.logTrace("Error verifyData database inserts Ejb1 ");
-     * e.printStackTrace(); status=false; throw new EJBException( e.getMessage()
-     * ); } finally { try { if( theResults != null ) { theResults.close(); } if(
-     * queryStatement != null ) { queryStatement.close(); } if (con3!=null) {
-     * con3.close(); con3 = null; } } catch(Exception ee) {}
+     * TestUtil.logMsg("verifyData OK, Status is : "+status ); } else { status = false;
+     * TestUtil.logMsg("verifyData ERROR, Status is : "+status); break; } } // while if ( expResults.length != linenum) {
+     * TestUtil. logTrace("Error - expected row count does not match table in verifyData!!" ); status = false; } } else {
+     * //EIS TestUtil.logMsg("Getting a connection con3"); con3 = ds3.getConnection(); TestUtil.logMsg("con3: " +
+     * con3.toString() ); queryResults = con3.readData(); for (int i=0; i <expResults.length; i++) {
+     * TestUtil.logMsg("Expected results: " + expResults.length ); if( queryResults.contains((new
+     * Integer(expResults[i])).toString()) ){ status = true; TestUtil.logMsg("VerifyData OK, Status is : " + status); } else
+     * { status = false; TestUtil.logMsg("VerifyData Error, Status is : " + status); break; } } for( int i=0;
+     * i<queryResults.size(); i++){ TestUtil.logMsg("Query Results contains : " + queryResults.elementAt(i) ); } } } else {
+     * //operation is rollback if( tName.equals(dbTable1) ){ String query = testProps.getProperty("Xa_Tab1_query");
+     * TestUtil.logMsg("query is " + query ); queryStatement = con1.prepareStatement(query); theResults =
+     * queryStatement.executeQuery(); TestUtil.logTrace("status is " + status ); status = !theResults.next();
+     * TestUtil.logMsg("Resultset has no data? " + status ); } else { //EIS TestUtil.logMsg("Getting a connection con3");
+     * con3 = ds3.getConnection(); TestUtil.logMsg("con3: " + con3.toString() ); queryResults = con3.readData(); for (int
+     * i=0; i <expResults.length; i++) { TestUtil.logMsg("Not Expected results: " + expResults[i] ); if(
+     * queryResults.contains((new Integer(expResults[i])).toString())) { status = false;
+     * TestUtil.logMsg("VerifyData Error, Status is : " + status); break; } else{ status = true;
+     * TestUtil.logMsg("VerifyData OK, Status is : " + status); } } for( int i=0; i<queryResults.size(); i++){
+     * TestUtil.logMsg("Query REsults contains : " + queryResults.elementAt(i) ); } } } } catch (Exception e) {
+     * TestUtil.logTrace("Error verifyData database inserts Ejb1 "); e.printStackTrace(); status=false; throw new
+     * EJBException( e.getMessage() ); } finally { try { if( theResults != null ) { theResults.close(); } if( queryStatement
+     * != null ) { queryStatement.close(); } if (con3!=null) { con3.close(); con3 = null; } } catch(Exception ee) {}
      * TestUtil.logMsg("Verify Data Status is : " + status); return status; } }
      *
      */

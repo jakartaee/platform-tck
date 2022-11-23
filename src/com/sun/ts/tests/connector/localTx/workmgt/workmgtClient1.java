@@ -85,15 +85,12 @@ public class workmgtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testWorkManagerImplementaion
      *
-     * @assertion_ids: Connector:SPEC:70; Connector:JAVADOC:396;
-     * Connector:JAVADOC:404;
+     * @assertion_ids: Connector:SPEC:70; Connector:JAVADOC:396; Connector:JAVADOC:404;
      *
-     * @test_Strategy: Check to see if a non null WorkManager was acquired from
-     * BootStrapContext and whether work object can be submitted to the acquired
-     * workmanager object.
+     * @test_Strategy: Check to see if a non null WorkManager was acquired from BootStrapContext and whether work object can
+     * be submitted to the acquired workmanager object.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis.
      *
      *
      */
@@ -173,15 +170,12 @@ public class workmgtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testWorkListenerImplementation
      *
-     * @assertion_ids: Connector:SPEC:77; Connector:JAVADOC:365;
-     * Connector:JAVADOC:392;
+     * @assertion_ids: Connector:SPEC:77; Connector:JAVADOC:365; Connector:JAVADOC:392;
      *
-     * @test_Strategy: Submit a work object to the WorkManager and see if the
-     * notification is being received by the WorkListener provided at the time of
-     * submition.
+     * @test_Strategy: Submit a work object to the WorkManager and see if the notification is being received by the
+     * WorkListener provided at the time of submition.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis.
      *
      *
      */
@@ -249,11 +243,9 @@ public class workmgtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:77; Connector:JAVADOC:402;
      *
-     * @test_Strategy: Submit a work object to the WorkManager using scheduleWork
-     * and see it the work is completed.
+     * @test_Strategy: Submit a work object to the WorkManager using scheduleWork and see it the work is completed.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis.
      *
      *
      */
@@ -321,11 +313,10 @@ public class workmgtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:77; Connector:JAVADOC:339;
      *
-     * @test_Strategy: Submit a work object to the WorkManager using scheduleWork
-     * with worklistener call and see it the work is completed.
+     * @test_Strategy: Submit a work object to the WorkManager using scheduleWork with worklistener call and see it the work
+     * is completed.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis.
      *
      *
      */
@@ -391,14 +382,11 @@ public class workmgtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testWorkCompletedException
      *
-     * @assertion_ids: Connector:SPEC:73; Connector:JAVADOC:399;
-     * Connector:JAVADOC:407; Connector:JAVADOC:409;
+     * @assertion_ids: Connector:SPEC:73; Connector:JAVADOC:399; Connector:JAVADOC:407; Connector:JAVADOC:409;
      *
-     * @test_Strategy: Submit a rogue work object to the WorkManager and see if it
-     * throws a WorkCompletedException.
+     * @test_Strategy: Submit a rogue work object to the WorkManager and see if it throws a WorkCompletedException.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis.
      *
      *
      */
@@ -466,13 +454,12 @@ public class workmgtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:80; Connector:JAVADOC:128;
      *
-     * @test_Strategy: Get two Timer instance from BootStrapContext check for
-     * equality of the intance. If they are not equal then the tests passes. If
-     * UnavailableException is thrown the tests passes. If
-     * java.lang.UnsupportedOpera -tionException is thrown then the tests passes.
+     * @test_Strategy: Get two Timer instance from BootStrapContext check for equality of the intance. If they are not equal
+     * then the tests passes. If UnavailableException is thrown the tests passes. If java.lang.UnsupportedOpera
+     * -tionException is thrown then the tests passes.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis for end to end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis for end to end
+     * verification.
      *
      */
     public void testForUnsharedTimer() throws Fault {
@@ -562,12 +549,11 @@ public class workmgtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:71;
      *
-     * @test_Strategy: WorkImpl object in whitebox creates a nested work object
-     * which is then submitted to the workmanager. If the NestWork object is
-     * sucessfully submitted to the WorkManager then the test passes.
+     * @test_Strategy: WorkImpl object in whitebox creates a nested work object which is then submitted to the workmanager.
+     * If the NestWork object is sucessfully submitted to the WorkManager then the test passes.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis for end to end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis for end to end
+     * verification.
      *
      */
     public void testNestedWork() throws Fault {
@@ -634,13 +620,12 @@ public class workmgtClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:76; Connector:JAVADOC:406;
      *
-     * @test_Strategy: Submit Work object to WorkManager with a low startTimeout.
-     * See if the Value returned from the WorkManager is less than -1. If the
-     * value is less than -1 then tests fails. If the value is -1 or a positive
-     * value then the test passes.
+     * @test_Strategy: Submit Work object to WorkManager with a low startTimeout. See if the Value returned from the
+     * WorkManager is less than -1. If the value is less than -1 then tests fails. If the value is -1 or a positive value
+     * then the test passes.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis for end to end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis for end to end
+     * verification.
      *
      */
     public void testUnknownWorkDuration() throws Fault {

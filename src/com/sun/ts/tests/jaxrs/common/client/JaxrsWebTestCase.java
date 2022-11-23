@@ -68,8 +68,8 @@ public class JaxrsWebTestCase extends WebTestCase {
     protected String urlRequest;
 
     /**
-     * The HTTP content entity. A MessageBodyWriter<entity.getClass()> needs to be
-     * registered if not a standard entity type supported by JAXRS
+     * The HTTP content entity. A MessageBodyWriter<entity.getClass()> needs to be registered if not a standard entity type
+     * supported by JAXRS
      */
     protected Object entity;
 
@@ -114,8 +114,7 @@ public class JaxrsWebTestCase extends WebTestCase {
     protected List<Object> providersToRegister;
 
     /**
-     * Strategy to use when validating the test case against the server's
-     * response.
+     * Strategy to use when validating the test case against the server's response.
      */
     protected ValidationStrategy strategy = null;
 
@@ -162,8 +161,7 @@ public class JaxrsWebTestCase extends WebTestCase {
     /**
      * Sets the validation strategy for this test case instance.
      *
-     * @param validator
-     *          - the fully qualified class name of the response validator to use.
+     * @param validator - the fully qualified class name of the response validator to use.
      */
     public void setStrategy(String validator) {
         ValidationStrategy strat = ValidationFactory.getInstance(validator);
@@ -182,11 +180,8 @@ public class JaxrsWebTestCase extends WebTestCase {
     /**
      * Executes the test case.
      *
-     * @throws TestFailureException
-     *           if the test fails for any reason.
-     * @throws IllegalStateException
-     *           if no request was configured or if no Validator is available at
-     *           runtime.
+     * @throws TestFailureException if the test fails for any reason.
+     * @throws IllegalStateException if no request was configured or if no Validator is available at runtime.
      */
     public void execute() throws TestFailureException {
         verifyValidationStrategy();
@@ -198,7 +193,8 @@ public class JaxrsWebTestCase extends WebTestCase {
             WebTarget target = client.target(url.toString());
             Invocation i = buildRequest(target);
             response = invoke(i);
-            if (bufferEntity) response.bufferEntity();
+            if (bufferEntity)
+                response.bufferEntity();
         } catch (Throwable t) {
             String message = t.getMessage();
 
@@ -219,7 +215,8 @@ public class JaxrsWebTestCase extends WebTestCase {
     }
 
     public void closeClient() {
-        if (client != null) client.close();
+        if (client != null)
+            client.close();
         client = null;
     }
 
@@ -234,10 +231,14 @@ public class JaxrsWebTestCase extends WebTestCase {
     }
 
     protected void verifySettings() throws TestFailureException {
-        if (hostname == null) throw new TestFailureException("No hostname set");
-        if (port == 0) throw new TestFailureException("Port not set");
-        if (requestType == null) throw new TestFailureException("No request method set");
-        if (urlRequest == null) throw new TestFailureException("No resource url request set");
+        if (hostname == null)
+            throw new TestFailureException("No hostname set");
+        if (port == 0)
+            throw new TestFailureException("Port not set");
+        if (requestType == null)
+            throw new TestFailureException("No request method set");
+        if (urlRequest == null)
+            throw new TestFailureException("No resource url request set");
     }
 
     /**
@@ -247,8 +248,10 @@ public class JaxrsWebTestCase extends WebTestCase {
         Client client = ClientBuilder.newClient();
         client.register(new JdkLoggingFilter(isPrintedEntity()));
         for (Object o : providersToRegister)
-            if (o instanceof Class) client.register((Class<?>) o); // otherwise it does not work
-            else client.register(o);
+            if (o instanceof Class)
+                client.register((Class<?>) o); // otherwise it does not work
+            else
+                client.register(o);
         return client;
     }
 
@@ -270,7 +273,8 @@ public class JaxrsWebTestCase extends WebTestCase {
         TestUtil.logMsg(msg.toString());
         TestUtil.logMsg("###############################");
 
-        if (printClientCall) TestUtil.logMsg(printClientCall().toString());
+        if (printClientCall)
+            TestUtil.logMsg(printClientCall().toString());
 
         return url.toString();
     }
@@ -288,8 +292,10 @@ public class JaxrsWebTestCase extends WebTestCase {
         sb.append("Client client = ClientFactory.newClient();\n");
         for (Object o : providersToRegister) {
             sb.append("client.configuration().register(");
-            if (o instanceof Class) sb.append(((Class<?>) o).getName()).append(".class");
-            else sb.append(o.getClass().getName());
+            if (o instanceof Class)
+                sb.append(((Class<?>) o).getName()).append(".class");
+            else
+                sb.append(o.getClass().getName());
             sb.append(");\n");
         }
         sb.append("WebTarget target = client.target(\"").append(url.toString()).append("\");\n");
@@ -323,14 +329,18 @@ public class JaxrsWebTestCase extends WebTestCase {
         Invocation.Builder builder;
         builder = target.request(getAcceptMediaType());
         for (Entry<String, String> entry : headerMap.entrySet()) {
-            if (!entry.getKey().equals("Accept")) builder.header(entry.getKey(), entry.getValue());
+            if (!entry.getKey().equals("Accept"))
+                builder.header(entry.getKey(), entry.getValue());
         }
         Invocation i;
         if (entity != null) {
-            if (entity instanceof Entity) i = builder.build(requestType, (Entity<?>) entity);
-            else i = builder.build(requestType, Entity.entity(entity, getContentType()));
+            if (entity instanceof Entity)
+                i = builder.build(requestType, (Entity<?>) entity);
+            else
+                i = builder.build(requestType, Entity.entity(entity, getContentType()));
             TestUtil.logMsg("[Request] Adding entity: " + entity);
-        } else i = builder.build(requestType);
+        } else
+            i = builder.build(requestType);
         return i;
     }
 
@@ -340,43 +350,43 @@ public class JaxrsWebTestCase extends WebTestCase {
     protected Response invoke(Invocation invocation) throws TestFailureException {
         Response response = null;
         switch (executionType) {
-            case SYNCHRONOUS:
-                response = invocation.invoke();
-                break;
-            case ASYNCHRONOUS:
-                int cnt = 0;
-                try {
-                    final boolean[] buffered = {false};
-                    InvocationCallback<Response> callback = new InvocationCallback<Response>() {
-                        @Override
-                        public void completed(Response res) {
-                            try {
-                                JaxrsWebTestCase.this.response = res;
-                                // buffer before stream is closed
-                                getResponse().getResponseBodyAsString();
-                                buffered[0] = true;
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
+        case SYNCHRONOUS:
+            response = invocation.invoke();
+            break;
+        case ASYNCHRONOUS:
+            int cnt = 0;
+            try {
+                final boolean[] buffered = { false };
+                InvocationCallback<Response> callback = new InvocationCallback<Response>() {
+                    @Override
+                    public void completed(Response res) {
+                        try {
+                            JaxrsWebTestCase.this.response = res;
+                            // buffer before stream is closed
+                            getResponse().getResponseBodyAsString();
+                            buffered[0] = true;
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
                         }
-
-                        @Override
-                        public void failed(Throwable throwable) {
-                            throw new RuntimeException(throwable);
-                        }
-                    };
-                    Future<Response> future = invocation.submit(callback);
-                    while (!buffered[0] && cnt++ < 50) {
-                        Thread.sleep(100L);
                     }
-                    response = future.get();
-                    // response = invocation.submit().get();
-                } catch (Exception e) {
-                    throw new TestFailureException(e);
+
+                    @Override
+                    public void failed(Throwable throwable) {
+                        throw new RuntimeException(throwable);
+                    }
+                };
+                Future<Response> future = invocation.submit(callback);
+                while (!buffered[0] && cnt++ < 50) {
+                    Thread.sleep(100L);
                 }
-                if (cnt > 49) {
-                    throw new TestFailureException("Invocation callback has not been called within 5 second");
-                }
+                response = future.get();
+                // response = invocation.submit().get();
+            } catch (Exception e) {
+                throw new TestFailureException(e);
+            }
+            if (cnt > 49) {
+                throw new TestFailureException("Invocation callback has not been called within 5 second");
+            }
         }
         return response;
     }
@@ -386,7 +396,8 @@ public class JaxrsWebTestCase extends WebTestCase {
      */
     protected String getAcceptMediaType() {
         String media = headerMap.get("Accept");
-        if (media == null) media = MediaType.WILDCARD;
+        if (media == null)
+            media = MediaType.WILDCARD;
         return media;
     }
 
@@ -395,7 +406,8 @@ public class JaxrsWebTestCase extends WebTestCase {
      */
     protected String getContentType() {
         String media = headerMap.get("Content-Type");
-        if (media == null) media = MediaType.WILDCARD;
+        if (media == null)
+            media = MediaType.WILDCARD;
         return media;
     }
 

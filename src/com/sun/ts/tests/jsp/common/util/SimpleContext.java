@@ -35,8 +35,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 /**
- * Simple class to validate release is called on the PageContext object provide
- * to JspFactory.release.
+ * Simple class to validate release is called on the PageContext object provide to JspFactory.release.
  */
 public class SimpleContext extends PageContext {
 
@@ -45,7 +44,8 @@ public class SimpleContext extends PageContext {
      */
     private boolean _releaseCalled = false;
 
-    public SimpleContext() {}
+    public SimpleContext() {
+    }
 
     /**
      * No-op.
@@ -171,14 +171,16 @@ public class SimpleContext extends PageContext {
      * @param s
      * @param i
      */
-    public void removeAttribute(String s, int i) {}
+    public void removeAttribute(String s, int i) {
+    }
 
     /**
      * No-op.
      *
      * @param s
      */
-    public void removeAttribute(String s) {}
+    public void removeAttribute(String s) {
+    }
 
     /**
      * Returns null.
@@ -218,7 +220,8 @@ public class SimpleContext extends PageContext {
      * @param o
      * @param i
      */
-    public void setAttribute(String s, Object o, int i) {}
+    public void setAttribute(String s, Object o, int i) {
+    }
 
     /**
      * No-op.
@@ -226,7 +229,8 @@ public class SimpleContext extends PageContext {
      * @param s
      * @param o
      */
-    public void setAttribute(String s, Object o) {}
+    public void setAttribute(String s, Object o) {
+    }
 
     /**
      * No-op.
@@ -235,7 +239,8 @@ public class SimpleContext extends PageContext {
      * @throws ServletException
      * @throws IOException
      */
-    public void handlePageException(Throwable throwable) throws ServletException, IOException {}
+    public void handlePageException(Throwable throwable) throws ServletException, IOException {
+    }
 
     /**
      * No-op
@@ -244,7 +249,8 @@ public class SimpleContext extends PageContext {
      * @throws ServletException
      * @throws IOException
      */
-    public void handlePageException(Exception e) throws ServletException, IOException {}
+    public void handlePageException(Exception e) throws ServletException, IOException {
+    }
 
     /**
      * No-op.
@@ -254,7 +260,8 @@ public class SimpleContext extends PageContext {
      * @throws ServletException
      * @throws IOException
      */
-    public void include(String s, boolean b) throws ServletException, IOException {}
+    public void include(String s, boolean b) throws ServletException, IOException {
+    }
 
     /**
      * No-op
@@ -263,7 +270,8 @@ public class SimpleContext extends PageContext {
      * @throws ServletException
      * @throws IOException
      */
-    public void include(String s) throws ServletException, IOException {}
+    public void include(String s) throws ServletException, IOException {
+    }
 
     /**
      * No-op
@@ -272,7 +280,8 @@ public class SimpleContext extends PageContext {
      * @throws ServletException
      * @throws IOException
      */
-    public void forward(String s) throws ServletException, IOException {}
+    public void forward(String s) throws ServletException, IOException {
+    }
 
     /**
      * Returns null.

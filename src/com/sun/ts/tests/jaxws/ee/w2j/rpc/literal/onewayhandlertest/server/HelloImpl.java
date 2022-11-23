@@ -29,12 +29,7 @@ import jakarta.xml.ws.handler.*;
 import jakarta.xml.ws.handler.soap.*;
 import java.io.*;
 
-@WebService(
-        portName = "HelloPort",
-        targetNamespace = "http://rlowhandlertestservice.org/wsdl",
-        serviceName = "RLOWHandlerTestService",
-        wsdlLocation = "WEB-INF/wsdl/WSRLOWHandlerTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.Hello")
+@WebService(portName = "HelloPort", targetNamespace = "http://rlowhandlertestservice.org/wsdl", serviceName = "RLOWHandlerTestService", wsdlLocation = "WEB-INF/wsdl/WSRLOWHandlerTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.Hello")
 public class HelloImpl implements Hello {
 
     public void doHandlerTest1(com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.onewayhandlertest.server.MyActionType action) {

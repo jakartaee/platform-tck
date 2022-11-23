@@ -31,8 +31,7 @@ public class WSTestServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ServerContainer sc =
-                (ServerContainer) getServletContext().getAttribute("jakarta.websocket.server.ServerContainer");
+        ServerContainer sc = (ServerContainer) getServletContext().getAttribute("jakarta.websocket.server.ServerContainer");
         ServerEndpointConfig sec = ServerEndpointConfig.Builder.create(WSTestServer.class, "/TCKTestServer")
                 .build();
         try {

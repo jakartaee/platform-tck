@@ -62,7 +62,8 @@ public class TestBeanEJB implements EntityBean {
             if (dao.exists(cofID)) {
                 TestUtil.logErr("key exists - duplicate");
                 throw new DuplicateKeyException();
-            } else TestUtil.logMsg("key does not exist - create entity");
+            } else
+                TestUtil.logMsg("key does not exist - create entity");
 
             TestUtil.logTrace("DAO: Create new row...");
             dao.create(cofID, cofName, cofPrice);

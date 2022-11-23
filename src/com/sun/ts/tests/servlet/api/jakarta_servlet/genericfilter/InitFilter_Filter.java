@@ -88,5 +88,6 @@ public final class InitFilter_Filter extends GenericFilter {
     }
 
     // remove the filter
-    public void destroy() {}
+    public void destroy() {
+    }
 }

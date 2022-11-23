@@ -39,6 +39,5 @@ public class InitDestroyBinaryStreamDecoder extends StringBeanBinaryStreamDecode
     public StringBean decode(InputStream arg0) throws DecodeException, IOException {
         Logger.onCode(getClass());
         return super.decode(arg0);
-    }
-    ;
+    };
 }

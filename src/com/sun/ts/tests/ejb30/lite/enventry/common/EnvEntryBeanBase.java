@@ -299,8 +299,8 @@ public abstract class EnvEntryBeanBase {
     }
 
     /**
-     * May be overridden to return lookup names in different namespace. The
-     * default impl is to return a lookup name in component namespace.
+     * May be overridden to return lookup names in different namespace. The default impl is to return a lookup name in
+     * component namespace.
      */
     public String getLookupName(String s) {
         if (s == null) {

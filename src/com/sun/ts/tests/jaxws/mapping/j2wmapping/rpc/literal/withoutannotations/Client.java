@@ -59,8 +59,7 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
 
     private String wsdlFileUrl = null;
 
-    private static final String EXPECTED_TARGETNAMESPACE =
-            "http://withoutannotations.literal.rpc.j2wmapping.mapping.jaxws.tests.ts.sun.com/";
+    private static final String EXPECTED_TARGETNAMESPACE = "http://withoutannotations.literal.rpc.j2wmapping.mapping.jaxws.tests.ts.sun.com/";
 
     private static final String EXPECTED_PORTTYPE_NAME = "J2WRLSharedEndpoint";
 
@@ -106,15 +105,12 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
     /*
      * @testName: VerifyTargetNamespaceWithoutAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3013;
-     * JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
-     * JAXWS:SPEC:3035;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034; JAXWS:SPEC:3035;
      *
-     * @test_Strategy: Verify that the targetNamespace in the generated WSDL is
-     * derived from the package name when no targetNamespace is specified in the
-     * jakarta.jws.WebService annotation. This is the default value case. (Java to
-     * WSDL 1.1 Mapping). Conformance requirement done: - Package name mapping
+     * @test_Strategy: Verify that the targetNamespace in the generated WSDL is derived from the package name when no
+     * targetNamespace is specified in the jakarta.jws.WebService annotation. This is the default value case. (Java to WSDL
+     * 1.1 Mapping). Conformance requirement done: - Package name mapping
      *
      */
     public void VerifyTargetNamespaceWithoutAnnotation() throws Fault {
@@ -129,29 +125,28 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 TestUtil.logErr("TargetNamespace is incorrect, expected: " + EXPECTED_TARGETNAMESPACE + ", got: "
                         + targetNamespace);
                 pass = false;
-            } else TestUtil.logMsg("TargetNamespace is correct: " + targetNamespace);
+            } else
+                TestUtil.logMsg("TargetNamespace is correct: " + targetNamespace);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception:" + e.getMessage());
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyTargetNamespaceWithoutAnnotation failed");
+        if (!pass)
+            throw new Fault("VerifyTargetNamespaceWithoutAnnotation failed");
     }
 
     /*
      * @testName: VerifyOneWayOperationWithoutAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3011;
-     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
-     * JAXWS:SPEC:3034; JAXWS:SPEC:3035;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3011; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
+     * JAXWS:SPEC:3035;
      *
-     * @test_Strategy: Verify that the operation oneWayOperation in the generated
-     * WSDL is either mapped one way or two way when it is not specified as Oneway
-     * by using the jakarta.jws.Oneway annotation. The spec is vague in this regard
-     * so you must assume that the mapping could be one way or two way. (Java to
-     * WSDL 1.1 Mapping). Conformance requirement done: - One-way mapping or
-     * Two-way mapping
+     * @test_Strategy: Verify that the operation oneWayOperation in the generated WSDL is either mapped one way or two way
+     * when it is not specified as Oneway by using the jakarta.jws.Oneway annotation. The spec is vague in this regard so
+     * you must assume that the mapping could be one way or two way. (Java to WSDL 1.1 Mapping). Conformance requirement
+     * done: - One-way mapping or Two-way mapping
      *
      *
      */
@@ -168,12 +163,12 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             TestUtil.logMsg("Verify that operation=oneWayOperation is mapped to oneway in generated WSDL");
             Element[] bindings = DescriptionUtils.getBindings(document);
             for (int i = 0; i < bindings.length; i++) {
-                Element[] operations =
-                        DescriptionUtils.getChildElements(bindings[i], WSDL_NAMESPACE_URI, WSDL_OPERATION_LOCAL_NAME);
+                Element[] operations = DescriptionUtils.getChildElements(bindings[i], WSDL_NAMESPACE_URI, WSDL_OPERATION_LOCAL_NAME);
                 for (int j = 0; j < operations.length; j++) {
                     operationName = operations[j].getAttribute("name");
                     if (operationName.equals("oneWayOperation")) {
-                        if (debug) DescriptionUtils.dumpDOMNodes(operations[j]);
+                        if (debug)
+                            DescriptionUtils.dumpDOMNodes(operations[j]);
                         foundOperation = true;
                         Element[] children = DescriptionUtils.getChildElements(operations[j]);
                         TestUtil.logMsg("Verify that operation=oneWayOperation has an <input> element");
@@ -197,9 +192,11 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                                 pass = false;
                             }
                         }
-                        if (foundOperation) break;
+                        if (foundOperation)
+                            break;
                     }
-                    if (foundOperation) break;
+                    if (foundOperation)
+                        break;
                 }
             }
             if (!foundOperation) {
@@ -210,27 +207,26 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 TestUtil.logErr("Operation name: " + operationName + " should have an <input> element");
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The operation=oneWayOperation in correctly mapped to oneway in generated WSDL");
+            if (pass)
+                TestUtil.logMsg("The operation=oneWayOperation in correctly mapped to oneway in generated WSDL");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception:" + e.getMessage());
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyOneWayOperationWithoutAnnotation failed");
+        if (!pass)
+            throw new Fault("VerifyOneWayOperationWithoutAnnotation failed");
     }
 
     /*
      * @testName: VerifySOAPElementNamespaceUseAttributeWithoutAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3013;
-     * JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
-     * JAXWS:SPEC:3035;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034; JAXWS:SPEC:3035;
      *
-     * @test_Strategy: Verify the namespace and use attributes for all SOAP
-     * Elements in the generated WSDL (Java to WSDL 1.1 Mapping and BP1.1).
-     * Conformance requirement done: - verify use attribute of literal for all
-     * SOAP elements - verify namespace attribute on all soap:body elements
+     * @test_Strategy: Verify the namespace and use attributes for all SOAP Elements in the generated WSDL (Java to WSDL 1.1
+     * Mapping and BP1.1). Conformance requirement done: - verify use attribute of literal for all SOAP elements - verify
+     * namespace attribute on all soap:body elements
      *
      *
      */
@@ -246,22 +242,22 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 + "soap:header, soap:headerfault elements");
         verifier = new NamespaceAttributeVerifier(document, 2726);
         verifier.verify();
-        if (pass) TestUtil.logMsg("Verification passed");
-        if (!pass) throw new Fault("VerifySOAPElementNamespaceUseAttributeWithoutAnnotation failed");
+        if (pass)
+            TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifySOAPElementNamespaceUseAttributeWithoutAnnotation failed");
     }
 
     /*
      * @testName: VerifySOAPBindingTransportStyleAttributeWithoutAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3013;
-     * JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
-     * JAXWS:SPEC:3035; JAXWS:SPEC:3041; JAXWS:SPEC:3042;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034; JAXWS:SPEC:3035;
+     * JAXWS:SPEC:3041; JAXWS:SPEC:3042;
      *
-     * @test_Strategy: Verify the soap:binding transport and style attributes in
-     * the generated WSDL. (Java to WSDL 1.1 Mapping and BP1.1). Conformance
-     * requirement done: - SOAP binding support - SOAP binding style required -
-     * SOAP binding transport required
+     * @test_Strategy: Verify the soap:binding transport and style attributes in the generated WSDL. (Java to WSDL 1.1
+     * Mapping and BP1.1). Conformance requirement done: - SOAP binding support - SOAP binding style required - SOAP binding
+     * transport required
      *
      *
      */
@@ -273,9 +269,9 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         TestUtil.logMsg("Verify soap:binding transport and style attribute");
         Element[] bindings = DescriptionUtils.getBindings(document);
         for (int i = 0; i < bindings.length; i++) {
-            if (debug) DescriptionUtils.dumpDOMNodes(bindings[i]);
-            Element soapBinding =
-                    DescriptionUtils.getChildElement(bindings[i], SOAP_NAMESPACE_URI, SOAP_BINDING_LOCAL_NAME);
+            if (debug)
+                DescriptionUtils.dumpDOMNodes(bindings[i]);
+            Element soapBinding = DescriptionUtils.getChildElement(bindings[i], SOAP_NAMESPACE_URI, SOAP_BINDING_LOCAL_NAME);
             if (soapBinding == null) {
                 TestUtil.logErr("soap:binding is null unexpected");
                 pass = false;
@@ -294,20 +290,20 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 }
             }
         }
-        if (pass) TestUtil.logMsg("Verification passed");
-        if (!pass) throw new Fault("VerifySOAPBindingTransportStyleAttributeWithoutAnnotation failed");
+        if (pass)
+            TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifySOAPBindingTransportStyleAttributeWithoutAnnotation failed");
     }
 
     /*
      * @testName: VerifyPortTypeNameWithoutAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3013;
-     * JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
-     * JAXWS:SPEC:3035;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034; JAXWS:SPEC:3035;
      *
-     * @test_Strategy: Verify the wsdl:portType name is correct in the generated
-     * WSDL. Conformance requirement done: - portType naming
+     * @test_Strategy: Verify the wsdl:portType name is correct in the generated WSDL. Conformance requirement done: -
+     * portType naming
      *
      *
      */
@@ -317,8 +313,10 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
 
         TestUtil.logMsg("Checking for portType name verification of: " + EXPECTED_PORTTYPE_NAME);
         pass = DescriptionUtils.isPortTypeNameAttr(client.getDocument(), EXPECTED_PORTTYPE_NAME);
-        if (!pass) throw new Fault("VerifyPortTypeNameWithoutAnnotation failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyPortTypeNameWithoutAnnotation failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
@@ -326,8 +324,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
      *
      * @assertion_ids: JAXWS:SPEC:3037;
      *
-     * @test_Strategy: Verify the wsdl:service name is correct in the generated
-     * WSDL. Conformance requirement done: - service naming
+     * @test_Strategy: Verify the wsdl:service name is correct in the generated WSDL. Conformance requirement done: -
+     * service naming
      *
      *
      */
@@ -337,20 +335,21 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
 
         TestUtil.logMsg("Checking for service name verification of: " + EXPECTED_SERVICE_NAME);
         pass = DescriptionUtils.isServiceNameAttr(client.getDocument(), EXPECTED_SERVICE_NAME);
-        if (!pass) throw new Fault("VerifyServiceNameWithoutAnnotation failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyServiceNameWithoutAnnotation failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifyPortNameWithoutAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3012; JAXWS:SPEC:3019; JAXWS:SPEC:3020; JAXWS:SPEC:3033;
-     * JAXWS:SPEC:3034; JAXWS:SPEC:3035;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3012; JAXWS:SPEC:3019; JAXWS:SPEC:3020; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
+     * JAXWS:SPEC:3035;
      *
-     * @test_Strategy: Verify the wsdl:port name is correct in the generated WSDL.
-     * Conformance requirement done: - port naming
+     * @test_Strategy: Verify the wsdl:port name is correct in the generated WSDL. Conformance requirement done: - port
+     * naming
      *
      *
      */
@@ -360,7 +359,9 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
 
         TestUtil.logMsg("Checking for port name verification of: " + EXPECTED_PORT_NAME);
         pass = DescriptionUtils.isPortNameAttr(client.getDocument(), EXPECTED_PORT_NAME);
-        if (!pass) throw new Fault("VerifyPortNameWithoutAnnotation failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyPortNameWithoutAnnotation failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 }

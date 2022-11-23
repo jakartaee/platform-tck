@@ -25,16 +25,14 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 import java.io.PrintWriter;
 
 /**
- * Test client for TagAttributeInfo. Implementation note, all tests are
- * performed within a TagExtraInfo class. If the test fails, a translation error
- * will be generated and a ValidationMessage array will be returned.
+ * Test client for TagAttributeInfo. Implementation note, all tests are performed within a TagExtraInfo class. If the
+ * test fails, a translation error will be generated and a ValidationMessage array will be returned.
  */
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -43,8 +41,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,17 +61,13 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:313
      *
-     * @test_Strategy: Validate the following: - We can get an inputstream from
-     * the PageData object provided to the validation method of the
-     * TagLibraryValidator. - Validate the XML view of a JSP page: - page
-     * directives are jsp:directive.page elements - taglib directives are includes
-     * in the namespace declaration in the jsp:root element - include directives
-     * are not present in the XML view - template text is wrapped by jsp:text
-     * elements - scriptlets are wrapped by jsp:scriptlet elements - declarations
-     * are wrapped by jsp:declaration elements - JSP expressions are wrapped by
-     * jsp:expression elements - rt expressions are converted from '<%=' '%>' to
-     * '%=' '%' - Custom taglib usages are passed through - the jsp:root element
-     * is present - the jsp namespace is present in the jsp:root element.
+     * @test_Strategy: Validate the following: - We can get an inputstream from the PageData object provided to the
+     * validation method of the TagLibraryValidator. - Validate the XML view of a JSP page: - page directives are
+     * jsp:directive.page elements - taglib directives are includes in the namespace declaration in the jsp:root element -
+     * include directives are not present in the XML view - template text is wrapped by jsp:text elements - scriptlets are
+     * wrapped by jsp:scriptlet elements - declarations are wrapped by jsp:declaration elements - JSP expressions are
+     * wrapped by jsp:expression elements - rt expressions are converted from '<%=' '%>' to '%=' '%' - Custom taglib usages
+     * are passed through - the jsp:root element is present - the jsp namespace is present in the jsp:root element.
      */
     public void pageDataTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_pagedata_web/PageDataTest.jsp HTTP/1.1");

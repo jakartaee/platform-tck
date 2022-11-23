@@ -40,7 +40,8 @@ public class BiDir1XMPerson implements Serializable {
     @OneToMany(mappedBy = "biDir1XMPerson", cascade = CascadeType.ALL)
     private Collection<BiDir1XMProject> projects;
 
-    public BiDir1XMPerson() {}
+    public BiDir1XMPerson() {
+    }
 
     public BiDir1XMPerson(long l, String string) {
         this.id = l;

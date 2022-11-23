@@ -41,8 +41,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -73,8 +72,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2113
      *
-     * @test_Strategy: Make a request and inspect response to ensure
-     *                 soap-enc:arrayType attribute is not included.
+     * @test_Strategy: Make a request and inspect response to ensure soap-enc:arrayType attribute is not included.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -98,15 +96,14 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2113
      *
-     * @test_Strategy: Make a request and inspect response to ensure
-     *                 soap-enc:arrayType attribute is not included.
+     * @test_Strategy: Make a request and inspect response to ensure soap-enc:arrayType attribute is not included.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public void testNoArrayTypeInRequest() throws EETest.Fault {
         String response = "";
         try {
-            response = client.arrayOperationFromClient(new String[] {"one", "two", "three"});
+            response = client.arrayOperationFromClient(new String[] { "one", "two", "three" });
         } catch (Exception e) {
             throw new EETest.Fault("Test didn't complete properly: ", e);
         }
@@ -125,8 +122,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
             Name soapEncArrayType = response.getSOAPPart()
                     .getEnvelope()
                     .createName("arrayType", prefix, SOAPUtils.URI_NS_SOAP_ENCODING);
-            String soapEncArrayTypeValue =
-                    response.getSOAPPart().getEnvelope().getBody().getAttributeValue(soapEncArrayType);
+            String soapEncArrayTypeValue = response.getSOAPPart().getEnvelope().getBody().getAttributeValue(soapEncArrayType);
             if (soapEncArrayTypeValue == null || soapEncArrayTypeValue.equals("")) {
                 soapEncArrayTypeValue = response.getSOAPPart().getEnvelope().getAttributeValue(soapEncArrayType);
             }

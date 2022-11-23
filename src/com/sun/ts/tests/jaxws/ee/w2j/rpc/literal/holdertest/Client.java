@@ -128,8 +128,7 @@ public class Client extends ServiceEETest {
     }
 
     private void getPortStandalone() throws Exception {
-        port = (HolderTest)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, HolderTestService.class, PORT_QNAME, HolderTest.class);
+        port = (HolderTest) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, HolderTestService.class, PORT_QNAME, HolderTest.class);
         JAXWS_Util.setTargetEndpointAddress(port, url);
     }
 
@@ -161,8 +160,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -204,8 +205,10 @@ public class Client extends ServiceEETest {
     }
 
     private boolean printTestStatus(boolean pass, String test) {
-        if (pass) TestUtil.logMsg("" + test + " ... PASSED");
-        else TestUtil.logErr("" + test + " ... FAILED");
+        if (pass)
+            TestUtil.logMsg("" + test + " ... PASSED");
+        else
+            TestUtil.logErr("" + test + " ... FAILED");
 
         return pass;
     }
@@ -422,8 +425,7 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        BigInteger[] bigintArray =
-                new BigInteger[inoutarray2.value.getArrayOfinteger().size()];
+        BigInteger[] bigintArray = new BigInteger[inoutarray2.value.getArrayOfinteger().size()];
         for (int i = 0; i < inoutarray2.value.getArrayOfinteger().size(); i++)
             bigintArray[i] = inoutarray2.value.getArrayOfinteger().get(i);
         if (!JAXWS_Data.compareArrayValues(JAXWS_Data.BigInteger_nonull_data, bigintArray, "BigInteger")) {
@@ -455,8 +457,7 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        BigDecimal[] bigdecArray =
-                new BigDecimal[inoutarray6.value.getArrayOfdecimal().size()];
+        BigDecimal[] bigdecArray = new BigDecimal[inoutarray6.value.getArrayOfdecimal().size()];
         for (int i = 0; i < inoutarray6.value.getArrayOfdecimal().size(); i++)
             bigdecArray[i] = inoutarray6.value.getArrayOfdecimal().get(i);
         if (!JAXWS_Data.compareArrayValues(JAXWS_Data.BigDecimal_nonull_data, bigdecArray, "BigDecimal")) {
@@ -480,8 +481,7 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        boolean[] booleanArray =
-                new boolean[inoutarray9.value.getArrayOfboolean().size()];
+        boolean[] booleanArray = new boolean[inoutarray9.value.getArrayOfboolean().size()];
         for (int i = 0; i < inoutarray9.value.getArrayOfboolean().size(); i++)
             booleanArray[i] = inoutarray9.value.getArrayOfboolean().get(i).booleanValue();
         if (!JAXWS_Data.compareArrayValues(JAXWS_Data.boolean_data, booleanArray, "boolean")) {
@@ -505,8 +505,7 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        XMLGregorianCalendar[] dateTimeArray =
-                new XMLGregorianCalendar[inoutarray12.value.getArrayOfdateTime().size()];
+        XMLGregorianCalendar[] dateTimeArray = new XMLGregorianCalendar[inoutarray12.value.getArrayOfdateTime().size()];
         for (int i = 0; i < inoutarray12.value.getArrayOfdateTime().size(); i++)
             dateTimeArray[i] = inoutarray12.value.getArrayOfdateTime().get(i);
         if (!JAXWS_Data.compareArrayValues(
@@ -522,11 +521,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2031;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InOutSimpleTypesTest() throws Fault {
         TestUtil.logTrace("InOutSimpleTypesTest");
@@ -546,7 +544,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutSimpleTypesTest failed");
+        if (!pass)
+            throw new Fault("InOutSimpleTypesTest failed");
     }
 
     /*
@@ -554,11 +553,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2031;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InOutSimpleTypesArrayTest() throws Fault {
         TestUtil.logTrace("InOutSimpleTypesArrayTest");
@@ -588,7 +586,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutSimpleTypesArrayTest failed");
+        if (!pass)
+            throw new Fault("InOutSimpleTypesArrayTest failed");
     }
 
     /*
@@ -596,11 +595,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2031;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InOutUserDefinedTypeTest() throws Fault {
         TestUtil.logTrace("InOutUserDefinedTypeTest");
@@ -632,7 +630,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutUserDefinedTypeTest failed");
+        if (!pass)
+            throw new Fault("InOutUserDefinedTypeTest failed");
     }
 
     /*
@@ -640,11 +639,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2031;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void InOutUserDefinedTypeArrayTest() throws Fault {
         TestUtil.logTrace("InOutUserDefinedTypeArrayTest");
@@ -700,6 +698,7 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("InOutUserDefinedTypeArrayTest failed");
+        if (!pass)
+            throw new Fault("InOutUserDefinedTypeArrayTest failed");
     }
 }

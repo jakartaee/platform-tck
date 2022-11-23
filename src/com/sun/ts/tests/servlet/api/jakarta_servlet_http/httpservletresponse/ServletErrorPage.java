@@ -36,21 +36,17 @@ import java.io.PrintWriter;
  */
 public class ServletErrorPage extends HttpServlet {
 
-    private static final String STATUS_CODE =
-            RequestDispatcher.ERROR_STATUS_CODE; // "jakarta.servlet.error.status_code";
+    private static final String STATUS_CODE = RequestDispatcher.ERROR_STATUS_CODE; // "jakarta.servlet.error.status_code";
 
-    private static final String EXCEPTION_TYPE =
-            RequestDispatcher.ERROR_EXCEPTION_TYPE; // "jakarta.servlet.error.exception_type";
+    private static final String EXCEPTION_TYPE = RequestDispatcher.ERROR_EXCEPTION_TYPE; // "jakarta.servlet.error.exception_type";
 
     private static final String MESSAGE = RequestDispatcher.ERROR_MESSAGE; // "jakarta.servlet.error.message";
 
     private static final String EXCEPTION = RequestDispatcher.ERROR_EXCEPTION; // "jakarta.servlet.error.exception"
 
-    private static final String REQUEST_URI =
-            RequestDispatcher.ERROR_REQUEST_URI; // "jakarta.servlet.error.request_uri";
+    private static final String REQUEST_URI = RequestDispatcher.ERROR_REQUEST_URI; // "jakarta.servlet.error.request_uri";
 
-    private static final String SERVLET_NAME =
-            RequestDispatcher.ERROR_SERVLET_NAME; // "jakarta.servlet.error.servlet_name"
+    private static final String SERVLET_NAME = RequestDispatcher.ERROR_SERVLET_NAME; // "jakarta.servlet.error.servlet_name"
 
     private static final String EXP_MESSAGE = "error page invoked";
 

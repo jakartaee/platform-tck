@@ -36,7 +36,7 @@ import jakarta.persistence.PersistenceUnit;
 
 @Stateless(name = "Stateless3VehicleBean")
 @PersistenceContext(name = "STATELESS3EM", unitName = "CTS-EM")
-@Remote({Stateless3VehicleIF.class})
+@Remote({ Stateless3VehicleIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class Stateless3VehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
         implements Stateless3VehicleIF {

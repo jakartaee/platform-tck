@@ -26,13 +26,10 @@ import com.sun.ts.lib.util.TestUtil;
 public class TestCode {
 
     /**
-     * Lookup a String env entry and compare its runtime value with a reference
-     * value.
+     * Lookup a String env entry and compare its runtime value with a reference value.
      *
-     * @param name
-     *          Name of the env entry to lookup.
-     * @param ref
-     *          Reference value for this env entry (the one in DD).
+     * @param name Name of the env entry to lookup.
+     * @param ref Reference value for this env entry (the one in DD).
      *
      * @return true if runtime value and reference matches. False otherwise.
      */

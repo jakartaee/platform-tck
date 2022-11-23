@@ -35,12 +35,7 @@ import java.awt.Image;
 import java.net.URL;
 import javax.xml.transform.Source;
 
-@WebService(
-        portName = "MTOMFeatureTest2Port",
-        serviceName = "MTOMFeatureTestService",
-        targetNamespace = "http://mtomfeatureservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/MTOMFeatureTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTest2")
+@WebService(portName = "MTOMFeatureTest2Port", serviceName = "MTOMFeatureTestService", targetNamespace = "http://mtomfeatureservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/MTOMFeatureTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomfeature.MTOMFeatureTest2")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @MTOM(enabled = false)
 public class MTOMFeatureTestImpl2 implements MTOMFeatureTest2 {

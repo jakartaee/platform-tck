@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,14 +58,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: valueExpressionEvaluateTest
      *
-     * @assertion_ids: EL:JAVADOC:110; EL:JAVADOC:111; EL:JAVADOC:112;
-     * EL:JAVADOC:113; EL:JAVADOC:114; EL:JAVADOC:60
+     * @assertion_ids: EL:JAVADOC:110; EL:JAVADOC:111; EL:JAVADOC:112; EL:JAVADOC:113; EL:JAVADOC:114; EL:JAVADOC:60
      *
-     * @test_Strategy: Validate the behavior of ValueExpression API and
-     * Expression.isLiteralText() ValueExpression.getValue()
-     * ValueExpression.setValue() ValueExpression.getType()
-     * ValueExpression.getExpectedType() ValueExpression.isReadOnly()
-     * Expression.isLiteralText()
+     * @test_Strategy: Validate the behavior of ValueExpression API and Expression.isLiteralText()
+     * ValueExpression.getValue() ValueExpression.setValue() ValueExpression.getType() ValueExpression.getExpectedType()
+     * ValueExpression.isReadOnly() Expression.isLiteralText()
      */
     public void valueExpressionEvaluateTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "valueExpressionEvaluateTest");

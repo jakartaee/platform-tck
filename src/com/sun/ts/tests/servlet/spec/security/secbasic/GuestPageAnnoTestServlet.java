@@ -43,11 +43,9 @@ import java.io.PrintWriter;
  * roles just as is done with GuestPageTestServlet.
  *
  */
-@DeclareRoles({"Administrator", "Manager", "Employee"})
-@ServletSecurity(@HttpConstraint(rolesAllowed = {"Administrator", "Manager", "Employee"}))
-@WebServlet(
-        name = "GuestPageAnnoTest",
-        urlPatterns = {"/GuestPageAnnoTest"})
+@DeclareRoles({ "Administrator", "Manager", "Employee" })
+@ServletSecurity(@HttpConstraint(rolesAllowed = { "Administrator", "Manager", "Employee" }))
+@WebServlet(name = "GuestPageAnnoTest", urlPatterns = { "/GuestPageAnnoTest" })
 public class GuestPageAnnoTestServlet extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -30,9 +30,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -41,8 +40,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,8 +61,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the use of jsp:element with a simple body (not
-     * using jsp:body).
+     * @test_Strategy: Validate the use of jsp:element with a simple body (not using jsp:body).
      */
     public void jspElementTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_element_web/JspElementTest1.jsp HTTP/1.1");
@@ -84,9 +81,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the use of jsp:attribute as a child of
-     * jsp:element. The attributes specified by jsp:attribute should be translated
-     * into the attributes of the new XML element.
+     * @test_Strategy: Validate the use of jsp:attribute as a child of jsp:element. The attributes specified by
+     * jsp:attribute should be translated into the attributes of the new XML element.
      */
     public void jspElementJspAttributeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_element_web/JspElementJspAttributeTest1.jsp HTTP/1.1");
@@ -106,8 +102,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the use of jsp:body as a chile of jsp:element. The
-     * body of the generated element should be that specified by jsp:body.
+     * @test_Strategy: Validate the use of jsp:body as a chile of jsp:element. The body of the generated element should be
+     * that specified by jsp:body.
      */
     public void jspElementJspBodyTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_element_web/JspElementJspBodyTest1.jsp HTTP/1.1");
@@ -127,8 +123,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that the name attribute of the jsp:element action
-     * is indeed required by the container.
+     * @test_Strategy: Validate that the name attribute of the jsp:element action is indeed required by the container.
      */
     public void jspElementNameReqAttributeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_element_web/JspElementNameReqAttributeTest1.jsp HTTP/1.1");
@@ -147,8 +142,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the name attribute of jsp:element can accept both
-     * EL and RT expressions.
+     * @test_Strategy: Validate the name attribute of jsp:element can accept both EL and RT expressions.
      */
     public void jspElementDynamicAttributeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_element_web/JspElementDynamicAttributeTest1.jsp HTTP/1.1");

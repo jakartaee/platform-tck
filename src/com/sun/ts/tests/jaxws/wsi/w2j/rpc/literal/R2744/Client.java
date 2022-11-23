@@ -41,8 +41,7 @@ public class Client extends ServiceEETest {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client client = new Client();
@@ -71,13 +70,11 @@ public class Client extends ServiceEETest {
     /**
      * @testName: testSOAPAction
      *
-     * @assertion_ids: WSI:SPEC:R2744; WSASB:SPEC:4001; WSASB:SPEC:4001.1;
-     *                 WSASB:SPEC:4001.2;
+     * @assertion_ids: WSI:SPEC:R2744; WSASB:SPEC:4001; WSASB:SPEC:4001.1; WSASB:SPEC:4001.2;
      *
-     * @test_Strategy: The supplied WSDL, containing a soap:operation with a
-     *                 soapAction attribute, has been used by the WSDL-to-Java
-     *                 tool to generate an endpoint and client. A handler verifies
-     *                 the presence of the SOAPAction header and its quoted value.
+     * @test_Strategy: The supplied WSDL, containing a soap:operation with a soapAction attribute, has been used by the
+     * WSDL-to-Java tool to generate an endpoint and client. A handler verifies the presence of the SOAPAction header and
+     * its quoted value.
      *
      * @throws Fault
      */

@@ -24,4 +24,5 @@ import jakarta.ejb.SessionSynchronization;
 
 // stateful session beans can implement this interface, thus indirectly implementing
 // jakarta.ejb.SessionSynchronization
-public interface MySessionSynchronization extends SessionSynchronization {}
+public interface MySessionSynchronization extends SessionSynchronization {
+}

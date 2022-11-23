@@ -30,9 +30,8 @@ import jakarta.ejb.SessionContext;
 import java.util.Properties;
 
 /**
- * Stateless wrapper that provide the bean life cycle methods for a Stateless
- * Session bean. This class is intended to be subclassed by the final entity
- * bean class that will provide the test logic (business methods).
+ * Stateless wrapper that provide the bean life cycle methods for a Stateless Session bean. This class is intended to be
+ * subclassed by the final entity bean class that will provide the test logic (business methods).
  */
 public class StatelessWrapper implements SessionBean {
 
@@ -47,8 +46,7 @@ public class StatelessWrapper implements SessionBean {
     /**
      * Initialize TS logging.
      *
-     * @param props
-     *          TS properties need by TestUtil
+     * @param props TS properties need by TestUtil
      *
      */
     public void initLogging(Properties props) {

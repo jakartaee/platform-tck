@@ -26,12 +26,12 @@ import jakarta.interceptor.InvocationContext;
 public class InterceptorHelper {
     private static final Object[] newParams = new Object[] {};
 
-    private InterceptorHelper() {}
+    private InterceptorHelper() {
+    }
 
     /**
-     * When this method is called from an interceptor's lifecycle callback method,
-     * InvocationContext should throw IllegalStateException. When called from
-     * around-invoke methods, it works as usual and the return value is ignored.
+     * When this method is called from an interceptor's lifecycle callback method, InvocationContext should throw
+     * IllegalStateException. When called from around-invoke methods, it works as usual and the return value is ignored.
      */
     public static void invokeGetParameters(InvocationContext inv) throws IllegalStateException {
         inv.getParameters();
@@ -55,9 +55,8 @@ public class InterceptorHelper {
     }
 
     /**
-     * When this method is called from an interceptor's lifecycle callback method,
-     * InvocationContext should throw IllegalStateException. When called from
-     * around-invoke methods, it works as usual and the return value is ignored.
+     * When this method is called from an interceptor's lifecycle callback method, InvocationContext should throw
+     * IllegalStateException. When called from around-invoke methods, it works as usual and the return value is ignored.
      */
     public static void invokeSetParameters(InvocationContext inv) throws IllegalStateException {
         inv.setParameters(newParams);

@@ -52,18 +52,16 @@ public class StringPKDSCoffeeDAO extends DataSourceDAO implements StringPKCoffee
     protected static final String SQL_DELETE_ALL = "delete_all";
 
     /**
-     * Create a new CoffeeDAO object. If called from an EJB or a Web component,
-     * you must make sure to call TestUtil.init() before creating a new DBSupport
-     * object.
+     * Create a new CoffeeDAO object. If called from an EJB or a Web component, you must make sure to call TestUtil.init()
+     * before creating a new DBSupport object.
      */
     public StringPKDSCoffeeDAO(String sqlTablePrefix) throws DAOException {
         super(sqlTablePrefix);
     }
 
     /**
-     * Create a new CoffeeDAO object. If called from an EJB or a Web component,
-     * you must make sure to call TestUtil.init() before creating a new DBSupport
-     * object.
+     * Create a new CoffeeDAO object. If called from an EJB or a Web component, you must make sure to call TestUtil.init()
+     * before creating a new DBSupport object.
      */
     public StringPKDSCoffeeDAO(String sqlTablePrefix, String user, String password) throws DAOException {
 

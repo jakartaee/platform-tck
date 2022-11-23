@@ -54,7 +54,8 @@ public class Client extends PMClientBase {
 
     private String LOGMESSAGE_PREFIX = "JPA_ALTERNATE_PROVIDER : ";
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -84,8 +85,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getPersistenceProviderClassName
      * @assertion_ids: PERSISTENCE:JAVADOC:1496
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getPersistenceProviderClassName() throws Fault {
         boolean pass1 = false;
@@ -101,7 +101,7 @@ public class Client extends PMClientBase {
         }
 
         getLogProcessor();
-        String expected2[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceProviderClassName()"};
+        String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceProviderClassName()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected2);
@@ -114,8 +114,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getPersistenceUnitNameTest
      * @assertion_ids: PERSISTENCE:JAVADOC:1497; PERSISTENCE:JAVADOC:153;
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getPersistenceUnitNameTest() throws Fault {
         boolean pass1 = false;
@@ -140,7 +139,7 @@ public class Client extends PMClientBase {
 
         getLogProcessor();
 
-        String expected2[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceUnitName()"};
+        String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceUnitName()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected2);
@@ -153,8 +152,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getTransactionType
      * @assertion_ids: PERSISTENCE:JAVADOC:1502; PERSISTENCE:SPEC:1909;
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getTransactionType() throws Fault {
         boolean pass1 = false;
@@ -174,7 +172,7 @@ public class Client extends PMClientBase {
         }
         getLogProcessor();
 
-        String expected2[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getTransactionType()"};
+        String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getTransactionType()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected2);
@@ -187,8 +185,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getManagedClassNames
      * @assertion_ids: PERSISTENCE:JAVADOC:1492
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getManagedClassNames() throws Fault {
         boolean pass1 = false;
@@ -214,7 +211,7 @@ public class Client extends PMClientBase {
         }
         getLogProcessor();
 
-        String expected1[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getManagedClassNames()"};
+        String expected1[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getManagedClassNames()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected1);
@@ -227,8 +224,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getJarFileUrls
      * @assertion_ids: PERSISTENCE:JAVADOC:1490
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getJarFileUrls() throws Fault {
         boolean pass1 = false;
@@ -252,7 +248,7 @@ public class Client extends PMClientBase {
         }
         getLogProcessor();
 
-        String expected2[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getJarFileUrls()"};
+        String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getJarFileUrls()" };
         logProcessor.fetchLog();
         // verify log does contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected2);
@@ -265,8 +261,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getPersistenceUnitRootUrl
      * @assertion_ids: PERSISTENCE:JAVADOC:1498
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getPersistenceUnitRootUrl() throws Fault {
         boolean pass1 = false;
@@ -283,7 +278,7 @@ public class Client extends PMClientBase {
         }
         getLogProcessor();
 
-        String expected2[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceUnitRootUrl()"};
+        String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceUnitRootUrl()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected2);
@@ -296,8 +291,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getPersistenceXMLSchemaVersion
      * @assertion_ids: PERSISTENCE:JAVADOC:1499
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getPersistenceXMLSchemaVersion() throws Fault {
         boolean pass1 = false;
@@ -314,7 +308,7 @@ public class Client extends PMClientBase {
         }
         getLogProcessor();
 
-        String expected2[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceXMLSchemaVersion()"};
+        String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceXMLSchemaVersion()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected2);
@@ -327,8 +321,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getProperties
      * @assertion_ids: PERSISTENCE:JAVADOC:1500
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getProperties() throws Fault {
         boolean pass1 = true;
@@ -374,7 +367,7 @@ public class Client extends PMClientBase {
 
         getLogProcessor();
 
-        String expected[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getProperties()"};
+        String expected[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getProperties()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected);
@@ -386,8 +379,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getSharedCacheMode
      * @assertion_ids: PERSISTENCE:JAVADOC:1501; PERSISTENCE:SPEC:1910;
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getSharedCacheMode() throws Fault {
         boolean pass1 = false;
@@ -404,7 +396,7 @@ public class Client extends PMClientBase {
         }
         getLogProcessor();
 
-        String expected2[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getSharedCacheMode()"};
+        String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getSharedCacheMode()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected2);
@@ -417,8 +409,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getValidationMode
      * @assertion_ids: PERSISTENCE:JAVADOC:1503
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getValidationMode() throws Fault {
         boolean pass1 = false;
@@ -435,7 +426,7 @@ public class Client extends PMClientBase {
         }
         getLogProcessor();
 
-        String expected2[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getValidationMode()"};
+        String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getValidationMode()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected2);
@@ -448,8 +439,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getClassLoader
      * @assertion_ids: PERSISTENCE:JAVADOC:1489
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getClassLoader() throws Fault {
         boolean pass1 = false;
@@ -463,7 +453,7 @@ public class Client extends PMClientBase {
         }
         getLogProcessor();
 
-        String expected[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getClassLoader()"};
+        String expected[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getClassLoader()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected);
@@ -476,8 +466,7 @@ public class Client extends PMClientBase {
     /**
      * @testName: getMappingFileNames
      * @assertion_ids: PERSISTENCE:JAVADOC:1493
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getMappingFileNames() throws Fault {
         boolean pass1 = false;
@@ -507,7 +496,7 @@ public class Client extends PMClientBase {
         }
         getLogProcessor();
 
-        String expected1[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getMappingFileNames()"};
+        String expected1[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getMappingFileNames()" };
         logProcessor.fetchLog();
         // verify log does NOT contain the string
         boolean pass2 = logProcessor.verifyLogContains(expected1);
@@ -520,13 +509,12 @@ public class Client extends PMClientBase {
     /**
      * @testName: excludeUnlistedClasses
      * @assertion_ids: PERSISTENCE:JAVADOC:1488
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void excludeUnlistedClasses() throws Fault {
         boolean pass1 = false;
 
-        String expected[] = {LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.excludeUnlistedClasses()"};
+        String expected[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.excludeUnlistedClasses()" };
         getClassObjects();
         if (puInfo.excludeUnlistedClasses() == false) {
             TestUtil.logTrace("excludeUnlistedClasses() returned expected result:" + puInfo.excludeUnlistedClasses());
@@ -548,12 +536,11 @@ public class Client extends PMClientBase {
     /**
      * @testName: getProviderUtil
      * @assertion_ids: PERSISTENCE:JAVADOC:1481
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void getProviderUtil() throws Fault {
 
-        String expected[] = {LOGMESSAGE_PREFIX + "Called getProviderUtil()"};
+        String expected[] = { LOGMESSAGE_PREFIX + "Called getProviderUtil()" };
 
         jakarta.persistence.Persistence.getPersistenceUtil().isLoaded("Order");
         getLogProcessor();
@@ -569,12 +556,11 @@ public class Client extends PMClientBase {
     /**
      * @testName: isLoaded
      * @assertion_ids: PERSISTENCE:JAVADOC:1506
-     * @test_Strategy: Specify a third Party Persistence Provider through
-     *                 persistence.xml file
+     * @test_Strategy: Specify a third Party Persistence Provider through persistence.xml file
      */
     public void isLoaded() throws Fault {
 
-        String expected[] = {LOGMESSAGE_PREFIX + "Called isLoaded()"};
+        String expected[] = { LOGMESSAGE_PREFIX + "Called isLoaded()" };
 
         jakarta.persistence.Persistence.getPersistenceUtil().isLoaded("Order");
         getLogProcessor();

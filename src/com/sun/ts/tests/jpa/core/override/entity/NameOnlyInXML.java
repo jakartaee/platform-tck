@@ -26,7 +26,8 @@ public class NameOnlyInXML implements java.io.Serializable {
 
     private Long id;
 
-    public NameOnlyInXML() {}
+    public NameOnlyInXML() {
+    }
 
     @Id
     public Long getId() {

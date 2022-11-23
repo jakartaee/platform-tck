@@ -34,16 +34,8 @@ import java.io.PrintWriter;
 import javax.naming.NamingException;
 
 @EJBs({
-    @EJB(
-            name = "noMethodStatefulRemote",
-            beanName = "NoMethodStatefulBean",
-            beanInterface = NoMethodRemoteIF.class,
-            description = "remote ejb3 stateful session bean with no business methods"),
-    @EJB(
-            name = "noMethodStatefulLocal",
-            beanName = "NoMethodStatefulBean",
-            beanInterface = NoMethodLocalIF.class,
-            description = "local ejb3 stateful session bean with no business methods")
+        @EJB(name = "noMethodStatefulRemote", beanName = "NoMethodStatefulBean", beanInterface = NoMethodRemoteIF.class, description = "remote ejb3 stateful session bean with no business methods"),
+        @EJB(name = "noMethodStatefulLocal", beanName = "NoMethodStatefulBean", beanInterface = NoMethodLocalIF.class, description = "local ejb3 stateful session bean with no business methods")
 })
 @WebServlet(urlPatterns = "/TestServlet", loadOnStartup = 1)
 public class TestServlet extends HttpTCKServlet {

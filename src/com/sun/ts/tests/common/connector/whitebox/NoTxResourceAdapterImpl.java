@@ -95,7 +95,8 @@ public class NoTxResourceAdapterImpl implements ResourceAdapter, Serializable {
                     myStart(bsc);
                 }
 
-                public void release() {}
+                public void release() {
+                }
             });
         } catch (jakarta.resource.spi.work.WorkException we) {
             throw new ResourceAdapterInternalException();
@@ -124,7 +125,8 @@ public class NoTxResourceAdapterImpl implements ResourceAdapter, Serializable {
     }
 
     @Override
-    public void endpointActivation(MessageEndpointFactory mef, ActivationSpec as) {}
+    public void endpointActivation(MessageEndpointFactory mef, ActivationSpec as) {
+    }
 
     @Override
     public void stop() {
@@ -133,7 +135,8 @@ public class NoTxResourceAdapterImpl implements ResourceAdapter, Serializable {
     }
 
     @Override
-    public void endpointDeactivation(MessageEndpointFactory mef, ActivationSpec as) {}
+    public void endpointDeactivation(MessageEndpointFactory mef, ActivationSpec as) {
+    }
 
     @Override
     public XAResource[] getXAResources(ActivationSpec[] as) {
@@ -145,7 +148,7 @@ public class NoTxResourceAdapterImpl implements ResourceAdapter, Serializable {
         Method onMessageMethod = null;
         try {
             Class msgListenerClass = TSMessageListenerInterface.class;
-            Class[] paramTypes = {java.lang.String.class};
+            Class[] paramTypes = { java.lang.String.class };
             onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
 
         } catch (NoSuchMethodException ex) {
@@ -162,11 +165,9 @@ public class NoTxResourceAdapterImpl implements ResourceAdapter, Serializable {
     }
 
     /*
-     * This method is used to assist in the verification process of assertion
-     * Connector:SPEC:245 This method must be called befor the work instances
-     * 'run' method is called. This method checks if the setResourceAdapter()
-     * method was called and if so, then this method logs a message to indicate
-     * that it was called prior to the 'run' method of the run method.
+     * This method is used to assist in the verification process of assertion Connector:SPEC:245 This method must be called
+     * befor the work instances 'run' method is called. This method checks if the setResourceAdapter() method was called and
+     * if so, then this method logs a message to indicate that it was called prior to the 'run' method of the run method.
      */
     public void checkAssociation() {
         Vector vLog = ConnectorStatus.getConnectorStatus().getStateLogVector();
@@ -244,10 +245,10 @@ public class NoTxResourceAdapterImpl implements ResourceAdapter, Serializable {
             return false;
         }
 
-        if (!Util.isEqual(this.RAName, that.getRAName())) return false;
+        if (!Util.isEqual(this.RAName, that.getRAName()))
+            return false;
 
-        if (this.getUseSecurityMapping().booleanValue()
-                != that.getUseSecurityMapping().booleanValue()) {
+        if (this.getUseSecurityMapping().booleanValue() != that.getUseSecurityMapping().booleanValue()) {
             return false;
         }
 

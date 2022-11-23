@@ -24,7 +24,8 @@ import com.sun.ts.tests.common.taglibsig.validation.ValidationConfiguration;
 
 public class Test {
 
-    public Test() {}
+    public Test() {
+    }
 
     public static void main(String[] args) {
         TagLibraryDescriptor tld = TagLibraryDescriptor.getInstance(

@@ -40,13 +40,11 @@ public class SimpleGetSetJspBody extends SimpleTagSupport {
     }
 
     /**
-     * Validate that getJspBody() returns a non null value. This indirectly
-     * ensures that the container properly called setJspBody().
+     * Validate that getJspBody() returns a non null value. This indirectly ensures that the container properly called
+     * setJspBody().
      *
-     * @throws JspException
-     *           - if an unexpected error occurs
-     * @throws IOException
-     *           - if an unexpected I/O error occurs
+     * @throws JspException - if an unexpected error occurs
+     * @throws IOException - if an unexpected I/O error occurs
      */
     public void doTag() throws JspException, IOException {
         JspTestUtil.debug("[SimpleGetSetJspBody] in doGet()");

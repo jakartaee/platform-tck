@@ -126,7 +126,8 @@ public class TestBeanEJB implements SessionBean {
                 if (b1) {
                     TestUtil.logTrace("Tx was rolledback as expected");
                     b1 = true;
-                } else TestUtil.logTrace("Tx was NOT rolledback as expected");
+                } else
+                    TestUtil.logTrace("Tx was NOT rolledback as expected");
             } catch (Exception rb) {
                 TestUtil.logTrace("Exception rolling back the transaction");
                 TestUtil.printStackTrace(rb);
@@ -137,12 +138,15 @@ public class TestBeanEJB implements SessionBean {
             // beanRef.listTableData(dbResults);
 
             TestUtil.logTrace("Verifying the test results");
-            if (dbResults.contains(new Integer(tRng))) b2 = true;
+            if (dbResults.contains(new Integer(tRng)))
+                b2 = true;
 
             for (int i = 1; i <= size; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains(new Integer(i))) b3 = true;
+                    if (dbResults.contains(new Integer(i)))
+                        b3 = true;
                     else {
                         b3 = false;
                         break;
@@ -151,7 +155,8 @@ public class TestBeanEJB implements SessionBean {
             }
             beanRef.destroyData(tName);
 
-            if (b1 && b2 && b3) testResult = true;
+            if (b1 && b2 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             try {
@@ -205,7 +210,8 @@ public class TestBeanEJB implements SessionBean {
                 if (b1) {
                     TestUtil.logTrace("Tx was rolledback as expected");
                     b1 = true;
-                } else TestUtil.logTrace("Tx was NOT rolledback as expected");
+                } else
+                    TestUtil.logTrace("Tx was NOT rolledback as expected");
             } catch (Exception rb) {
                 TestUtil.logTrace("Exception rolling back the transaction");
                 TestUtil.printStackTrace(rb);
@@ -216,12 +222,15 @@ public class TestBeanEJB implements SessionBean {
             // beanRef.listTableData(dbResults);
 
             TestUtil.logTrace("Verifying the test results");
-            if (dbResults.contains(new Integer(tRng))) b2 = true;
+            if (dbResults.contains(new Integer(tRng)))
+                b2 = true;
 
             for (int i = 1; i <= size; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains(new Integer(i))) b3 = true;
+                    if (dbResults.contains(new Integer(i)))
+                        b3 = true;
                     else {
                         b3 = false;
                         break;
@@ -230,7 +239,8 @@ public class TestBeanEJB implements SessionBean {
             }
             beanRef.destroyData(tName);
 
-            if (b1 && b2 && b3) testResult = true;
+            if (b1 && b2 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             try {
@@ -289,7 +299,8 @@ public class TestBeanEJB implements SessionBean {
                 if (b1) {
                     TestUtil.logTrace("Tx was rolledback as expected");
                     b2 = true;
-                } else TestUtil.logTrace("Tx was NOT rolledback as expected");
+                } else
+                    TestUtil.logTrace("Tx was NOT rolledback as expected");
             } catch (Exception rb) {
                 TestUtil.logTrace("Exception rolling back the transaction");
                 TestUtil.printStackTrace(rb);
@@ -300,12 +311,15 @@ public class TestBeanEJB implements SessionBean {
             // beanRef.listTableData(dbResults);
 
             TestUtil.logTrace("Verifying the test results");
-            if (dbResults.contains(new Integer(tRng))) b3 = true;
+            if (dbResults.contains(new Integer(tRng)))
+                b3 = true;
 
             for (int i = 1; i <= size; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains(new Integer(i))) b4 = true;
+                    if (dbResults.contains(new Integer(i)))
+                        b4 = true;
                     else {
                         b4 = false;
                         break;
@@ -314,7 +328,8 @@ public class TestBeanEJB implements SessionBean {
             }
             beanRef.destroyData(tName);
 
-            if (b1 && b2 && b3 && b4) testResult = true;
+            if (b1 && b2 && b3 && b4)
+                testResult = true;
 
         } catch (Exception e) {
             try {

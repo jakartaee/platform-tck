@@ -134,11 +134,9 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
     private QName EXPECTED_PART_ELEMENT_QNAME_1 = new QName(NAMESPACEURI, EXPECTED_PART_ELEMENT_NAME_1);
 
-    private QName EXPECTED_PART_ELEMENT_QNAME_2 =
-            new QName(EXPECTED_ELEMENT_TARGETNAMESPACE_2, EXPECTED_PART_ELEMENT_NAME_2);
+    private QName EXPECTED_PART_ELEMENT_QNAME_2 = new QName(EXPECTED_ELEMENT_TARGETNAMESPACE_2, EXPECTED_PART_ELEMENT_NAME_2);
 
-    private QName EXPECTED_PART_ELEMENT_QNAME_4 =
-            new QName(EXPECTED_ELEMENT_TARGETNAMESPACE_4, EXPECTED_PART_ELEMENT_NAME_4);
+    private QName EXPECTED_PART_ELEMENT_QNAME_4 = new QName(EXPECTED_ELEMENT_TARGETNAMESPACE_4, EXPECTED_PART_ELEMENT_NAME_4);
 
     private QName EXPECTED_PART_ELEMENT_QNAME_5 = new QName(NAMESPACEURI, EXPECTED_PART_ELEMENT_NAME_5);
 
@@ -149,17 +147,16 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
     private QName EXPECTED_DEFAULT_PART_ELEMENT_QNAME_3 = new QName(NAMESPACEURI, EXPECTED_DEFAULT_PART_ELEMENT_NAME_3);
 
     private String[] DEFAULT_NAMES = {
-        EXPECTED_DEFAULT_PART_ELEMENT_NAME_1, EXPECTED_DEFAULT_PART_ELEMENT_NAME_2, EXPECTED_DEFAULT_PART_ELEMENT_NAME_3
+            EXPECTED_DEFAULT_PART_ELEMENT_NAME_1, EXPECTED_DEFAULT_PART_ELEMENT_NAME_2, EXPECTED_DEFAULT_PART_ELEMENT_NAME_3
     };
 
     private QName[] DEFAULT_QNAMES = {
-        EXPECTED_DEFAULT_PART_ELEMENT_QNAME_1,
-        EXPECTED_DEFAULT_PART_ELEMENT_QNAME_2,
-        EXPECTED_DEFAULT_PART_ELEMENT_QNAME_3
+            EXPECTED_DEFAULT_PART_ELEMENT_QNAME_1,
+            EXPECTED_DEFAULT_PART_ELEMENT_QNAME_2,
+            EXPECTED_DEFAULT_PART_ELEMENT_QNAME_3
     };
 
-    private QName EXPECTED_HEADER_PART_ELEMENT_QNAME_1 =
-            new QName(EXPECTED_ELEMENT_TARGETNAMESPACE_5, EXPECTED_HEADER_PART_ELEMENT_NAME_1);
+    private QName EXPECTED_HEADER_PART_ELEMENT_QNAME_1 = new QName(EXPECTED_ELEMENT_TARGETNAMESPACE_5, EXPECTED_HEADER_PART_ELEMENT_NAME_1);
 
     private static final String EXPECTED_RESULT_1 = "Hello First Name:jsr181 Last Name:jsr109 to Web Service";
 
@@ -220,8 +217,7 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
     }
 
     /*
-     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost;
-     * webServerPort; platform.mode;
+     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost; webServerPort; platform.mode;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -229,8 +225,10 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -240,8 +238,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
             modeProperty = p.getProperty(MODEPROP);
             if (modeProperty.equals("standalone")) {
                 /*
-                 * url = "file://C:/jsr181/test-wsdl/issue1.wsdl"; File myfile = new
-                 * File("C:/jsr181/test-wsdl/issue1.wsdl"); wsdlurl = myfile.toURL();
+                 * url = "file://C:/jsr181/test-wsdl/issue1.wsdl"; File myfile = new File("C:/jsr181/test-wsdl/issue1.wsdl"); wsdlurl =
+                 * myfile.toURL();
                  */
                 getTestURLs();
                 getPortStandalone();
@@ -296,11 +294,13 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                     }
                 }
             }
-            if (parameterElement != null) pass = true;
+            if (parameterElement != null)
+                pass = true;
         } else {
             if (checkList) {
                 Element parameterElement = WsdlUtils.getParameterElement(doc, list, qName);
-                if (parameterElement != null) pass = true;
+                if (parameterElement != null)
+                    pass = true;
             } else {
                 throw new Fault("Test failed : Cannot find a element with a reference to " + qName);
             }
@@ -328,14 +328,16 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
         try {
             TestUtil.logMsg("Invoke the helloString() method of WebParamWebService");
             String result = port.helloString(name);
-            if (!result.equals(EXPECTED_RESULT_1)) pass = false;
+            if (!result.equals(EXPECTED_RESULT_1))
+                pass = false;
             TestUtil.logMsg("Invocation of helloString() passed");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHelloString failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString failed");
+        if (!pass)
+            throw new Fault("testHelloString failed");
     }
 
     /*
@@ -355,14 +357,16 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
             TestUtil.logMsg("Invoke the helloString2() method of WebMethodWebService");
 
             result = port.helloString2("jsr181", "jsr109", address);
-            if (!result.equals(EXPECTED_RESULT_2)) pass = false;
+            if (!result.equals(EXPECTED_RESULT_2))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHelloString failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString failed, got result : " + result);
+        if (!pass)
+            throw new Fault("testHelloString failed, got result : " + result);
         TestUtil.logMsg("Invocation of helloString2() passed");
     }
 
@@ -382,14 +386,16 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
         try {
             TestUtil.logMsg("Invoke the helloString5() method of WebParamWebService");
             String result = port.helloString(name);
-            if (!result.equals(EXPECTED_RESULT_1)) pass = false;
+            if (!result.equals(EXPECTED_RESULT_1))
+                pass = false;
             TestUtil.logMsg("Invocation of helloString5() passed");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHelloString5 failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString5 failed");
+        if (!pass)
+            throw new Fault("testHelloString5 failed");
     }
 
     /*
@@ -408,14 +414,16 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
         try {
             TestUtil.logMsg("Invoke the helloString6() method of WebParamWebService");
             HelloString6Response result = port.helloString6(new HelloString6(), name);
-            if (!result.getReturn().equals(EXPECTED_RESULT_6)) pass = false;
+            if (!result.getReturn().equals(EXPECTED_RESULT_6))
+                pass = false;
             TestUtil.logMsg("Invocation of helloString() passed");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHelloString6 failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString6 failed");
+        if (!pass)
+            throw new Fault("testHelloString6 failed");
     }
 
     /*
@@ -448,7 +456,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
             throw new Fault("testPingWSDL failed", e);
         }
 
-        if (!pass) throw new Fault("testPingWSDL failed");
+        if (!pass)
+            throw new Fault("testPingWSDL failed");
     }
 
     /*
@@ -488,7 +497,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
                 elementName = partElement.getAttribute(WSDL_ELEMENT_ATTR);
                 int index = elementName.indexOf(":");
-                if (index != -1) prefix = elementName.substring(0, index);
+                if (index != -1)
+                    prefix = elementName.substring(0, index);
                 partElementName = elementName.substring(index + 1);
 
                 nameSpace = WsdlUtils.getNamespaceOfPrefix(partElement, prefix);
@@ -517,7 +527,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         Node[] complexTypeNodes = WsdlUtils.getComplexType(doc, wrapperElement, baseURL);
                         complexType = WsdlUtils.getElement(complexTypeNodes);
                         currentDoc = WsdlUtils.getDocument(complexTypeNodes);
-                        if (currentDoc.getDocumentURI() != null) baseURL = new URL(currentDoc.getDocumentURI());
+                        if (currentDoc.getDocumentURI() != null)
+                            baseURL = new URL(currentDoc.getDocumentURI());
                     }
                     if (complexType != null) {
                         pass = findParameterElement(
@@ -547,8 +558,7 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
     /*
      * @testName: testWSDL2
      *
-     * @assertion_ids: JWS:SPEC:6004; JWS:SPEC:6006; JWS:SPEC:6003; JWS:SPEC:3014;
-     * JWS:SPEC:5010
+     * @assertion_ids: JWS:SPEC:6004; JWS:SPEC:6006; JWS:SPEC:6003; JWS:SPEC:3014; JWS:SPEC:5010
      *
      * @test_Strategy: Check for the element parameter Name
      *
@@ -582,7 +592,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
                 elementName = partElement.getAttribute(WSDL_ELEMENT_ATTR);
                 int index = elementName.indexOf(":");
-                if (index != -1) prefix = elementName.substring(0, index);
+                if (index != -1)
+                    prefix = elementName.substring(0, index);
                 partElementName = elementName.substring(index + 1);
 
                 nameSpace = WsdlUtils.getNamespaceOfPrefix(partElement, prefix);
@@ -591,7 +602,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
                 wrapperElement = WsdlUtils.getSchemasElementName(doc, wrapperQName, baseURL);
 
-                if (wrapperElement != null) currentDoc = wrapperElement.getOwnerDocument();
+                if (wrapperElement != null)
+                    currentDoc = wrapperElement.getOwnerDocument();
 
                 if (wrapperElement == null) {
                     TestUtil.logMsg("Wrapper Element is NULL will search in the imports");
@@ -614,7 +626,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         Node[] complexTypeNodes = WsdlUtils.getComplexType(doc, wrapperElement, baseURL);
                         complexType = WsdlUtils.getElement(complexTypeNodes);
                         currentDoc = WsdlUtils.getDocument(complexTypeNodes);
-                        if (currentDoc.getDocumentURI() != null) baseURL = new URL(currentDoc.getDocumentURI());
+                        if (currentDoc.getDocumentURI() != null)
+                            baseURL = new URL(currentDoc.getDocumentURI());
                     }
                     if (complexType != null) {
                         pass = findParameterElement(
@@ -675,7 +688,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
             if (partElement != null) {
                 elementName = partElement.getAttribute(WSDL_ELEMENT_ATTR);
                 int index = elementName.indexOf(":");
-                if (index != -1) prefix = elementName.substring(0, index);
+                if (index != -1)
+                    prefix = elementName.substring(0, index);
                 partElementName = elementName.substring(index + 1);
 
                 nameSpace = WsdlUtils.getNamespaceOfPrefix(partElement, prefix);
@@ -703,11 +717,13 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         Node[] complexTypeNodes = WsdlUtils.getComplexType(doc, wrapperElement, baseURL);
                         complexType = WsdlUtils.getElement(complexTypeNodes);
                         currentDoc = WsdlUtils.getDocument(complexTypeNodes);
-                        if (currentDoc.getDocumentURI() != null) baseURL = new URL(currentDoc.getDocumentURI());
+                        if (currentDoc.getDocumentURI() != null)
+                            baseURL = new URL(currentDoc.getDocumentURI());
                     }
                     if (complexType != null) {
                         result = WsdlUtils.checkParameterOrder(currentDoc, baseURL, complexType, DEFAULT_QNAMES);
-                        if (WsdlUtils.checkQNamesEquals(DEFAULT_NAMES, result)) pass = true;
+                        if (WsdlUtils.checkQNamesEquals(DEFAULT_NAMES, result))
+                            pass = true;
                     } else {
                         throw new Fault("Cannot Find Complex Type " + wrapperElement.getAttribute(XSD_TYPE_ATTR));
                     }
@@ -767,7 +783,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
                 elementName = partElement.getAttribute(WSDL_ELEMENT_ATTR);
                 int index = elementName.indexOf(":");
-                if (index != -1) prefix = elementName.substring(0, index);
+                if (index != -1)
+                    prefix = elementName.substring(0, index);
                 partElementName = elementName.substring(index + 1);
 
                 nameSpace = WsdlUtils.getNamespaceOfPrefix(partElement, prefix);
@@ -795,7 +812,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         Node[] complexTypeNodes = WsdlUtils.getComplexType(doc, wrapperElement, baseURL);
                         complexType = WsdlUtils.getElement(complexTypeNodes);
                         currentDoc = WsdlUtils.getDocument(complexTypeNodes);
-                        if (currentDoc.getDocumentURI() != null) baseURL = new URL(currentDoc.getDocumentURI());
+                        if (currentDoc.getDocumentURI() != null)
+                            baseURL = new URL(currentDoc.getDocumentURI());
                     }
                     if (complexType != null) {
                         pass = findParameterElement(
@@ -863,7 +881,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
                 elementName = partElement.getAttribute(WSDL_ELEMENT_ATTR);
                 int index = elementName.indexOf(":");
-                if (index != -1) prefix = elementName.substring(0, index);
+                if (index != -1)
+                    prefix = elementName.substring(0, index);
                 partElementName = elementName.substring(index + 1);
 
                 nameSpace = WsdlUtils.getNamespaceOfPrefix(partElement, prefix);
@@ -876,7 +895,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                     Node[] nodes = WsdlUtils.getWrapperElement(doc, nameSpace, baseURL, partElementName);
                     wrapperElement = WsdlUtils.getElement(nodes);
                     currentDoc = WsdlUtils.getDocument(nodes);
-                    if (currentDoc.getDocumentURI() != null) baseURL = new URL(currentDoc.getDocumentURI());
+                    if (currentDoc.getDocumentURI() != null)
+                        baseURL = new URL(currentDoc.getDocumentURI());
                 }
 
                 if (wrapperElement != null) {
@@ -893,7 +913,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         Node[] complexTypeNodes = WsdlUtils.getComplexType(doc, wrapperElement, baseURL);
                         complexType = WsdlUtils.getElement(complexTypeNodes);
                         currentDoc = WsdlUtils.getDocument(complexTypeNodes);
-                        if (currentDoc.getDocumentURI() != null) baseURL = new URL(currentDoc.getDocumentURI());
+                        if (currentDoc.getDocumentURI() != null)
+                            baseURL = new URL(currentDoc.getDocumentURI());
                     }
                     if (complexType != null) {
                         pass = findParameterElement(
@@ -958,7 +979,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
                 elementName = partElement.getAttribute(WSDL_ELEMENT_ATTR);
                 int index = elementName.indexOf(":");
-                if (index != -1) prefix = elementName.substring(0, index);
+                if (index != -1)
+                    prefix = elementName.substring(0, index);
                 partElementName = elementName.substring(index + 1);
 
                 nameSpace = WsdlUtils.getNamespaceOfPrefix(partElement, prefix);
@@ -986,7 +1008,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         Node[] complexTypeNodes = WsdlUtils.getComplexType(doc, wrapperElement, baseURL);
                         complexType = WsdlUtils.getElement(complexTypeNodes);
                         currentDoc = WsdlUtils.getDocument(complexTypeNodes);
-                        if (currentDoc.getDocumentURI() != null) baseURL = new URL(currentDoc.getDocumentURI());
+                        if (currentDoc.getDocumentURI() != null)
+                            baseURL = new URL(currentDoc.getDocumentURI());
                     }
                     if (complexType != null) {
                         pass = findParameterElement(
@@ -1032,8 +1055,7 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
         try {
 
-            operationElement =
-                    WsdlUtils.findOperationElement(doc, EXPECTED_OPERATION_QNAME_5, SERVICE_QNAME, PORT_QNAME);
+            operationElement = WsdlUtils.findOperationElement(doc, EXPECTED_OPERATION_QNAME_5, SERVICE_QNAME, PORT_QNAME);
 
             if (operationElement != null) {
 
@@ -1054,7 +1076,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         doc, messageElement, EXPECTED_HEADER_PART_ELEMENT_QNAME_1, true);
             }
 
-            if (soapHeaderElement != null && partElement != null) pass = true;
+            if (soapHeaderElement != null && partElement != null)
+                pass = true;
 
         } catch (Exception ex) {
             TestUtil.logErr("Exception occurred: " + ex.getMessage());

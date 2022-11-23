@@ -34,7 +34,8 @@ public class Coffee implements java.io.Serializable {
 
     private float price;
 
-    public Coffee() {}
+    public Coffee() {
+    }
 
     public Coffee(Integer id, String brandName, float price) {
         this.id = id;

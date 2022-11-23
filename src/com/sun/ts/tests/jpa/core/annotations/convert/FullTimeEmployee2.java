@@ -30,12 +30,13 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "EMPLOYEE")
-@Converts({@Convert(attributeName = "firstName", converter = DotConverter2.class)})
+@Converts({ @Convert(attributeName = "firstName", converter = DotConverter2.class) })
 public class FullTimeEmployee2 extends Employee3 implements Serializable {
 
     private String salary;
 
-    public FullTimeEmployee2() {}
+    public FullTimeEmployee2() {
+    }
 
     public FullTimeEmployee2(int id, String firstName, String lastName, String salary) {
         super(id, firstName, lastName);
@@ -75,8 +76,10 @@ public class FullTimeEmployee2 extends Employee3 implements Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof FullTimeEmployee2)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof FullTimeEmployee2))
+            return false;
 
         FullTimeEmployee2 o1 = (FullTimeEmployee2) o;
 

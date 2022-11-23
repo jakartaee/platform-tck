@@ -47,8 +47,7 @@ public class Client extends EETest {
     }
 
     /**
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
     public void setup(String[] args, Properties props) throws Fault {
         try {
@@ -72,33 +71,25 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:906
      *
-     * @test_Strategy: This is applicable to : - a Session Stateful Callee bean
-     *                 defining a remote client view only (No local view). - a CMP
-     *                 1.1 Caller bean, Calling this Session Bean home or remote
-     *                 interface.
+     * @test_Strategy: This is applicable to : - a Session Stateful Callee bean defining a remote client view only (No local
+     * view). - a CMP 1.1 Caller bean, Calling this Session Bean home or remote interface.
      *
-     *                 We package in the same ejb-jar: - a Session Stateful Callee
-     *                 bean defining a remote client view only (No local view). -
-     *                 a CMP 1.1 Entity Caller bean
+     * We package in the same ejb-jar: - a Session Stateful Callee bean defining a remote client view only (No local view).
+     * - a CMP 1.1 Entity Caller bean
      *
-     *                 Remote Home arg semantics verification:
+     * Remote Home arg semantics verification:
      *
-     *                 - We set a non-remote object 'arg' (of type SimpleArgument)
-     *                 to an initial value. This SimpleArgument class is just a
-     *                 data structure holding an int.
+     * - We set a non-remote object 'arg' (of type SimpleArgument) to an initial value. This SimpleArgument class is just a
+     * data structure holding an int.
      *
-     *                 - The Caller bean calls the Callee Home create(...) method,
-     *                 passing this 'arg' object as an argument.
+     * - The Caller bean calls the Callee Home create(...) method, passing this 'arg' object as an argument.
      *
-     *                 - The Callee create(..) method modifies the value of the
-     *                 argument (should be a copy of 'arg')
+     * - The Callee create(..) method modifies the value of the argument (should be a copy of 'arg')
      *
-     *                 - When we return from the create method, the Caller check
-     *                 that the argument value is still set to the initial value.
+     * - When we return from the create method, the Caller check that the argument value is still set to the initial value.
      *
-     *                 Remote interface arg semantics verif/loication: Same
-     *                 strategy but the Caller call a business method on the
-     *                 Callee remote interface.
+     * Remote interface arg semantics verif/loication: Same strategy but the Caller call a business method on the Callee
+     * remote interface.
      */
     public void testStatefulRemote() throws Fault {
         boolean pass;
@@ -128,36 +119,29 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:907.2; EJB:SPEC:1
      *
-     * @test_Strategy: This is applicable to : - a Session Stateful Callee bean
-     *                 defining a local client view only (No remote view).
+     * @test_Strategy: This is applicable to : - a Session Stateful Callee bean defining a local client view only (No remote
+     * view).
      *
-     *                 - a CMP 1.1 Caller bean, Calling this Session Bean local
-     *                 home or local interface.
+     * - a CMP 1.1 Caller bean, Calling this Session Bean local home or local interface.
      *
-     *                 We package in the same ejb-jar: - a Session Stateful Callee
-     *                 bean defining a local client view only (No remote view). -
-     *                 a CMP 1.1 Entity Caller bean
+     * We package in the same ejb-jar: - a Session Stateful Callee bean defining a local client view only (No remote view).
+     * - a CMP 1.1 Entity Caller bean
      *
-     *                 Local Home arg semantics verification:
+     * Local Home arg semantics verification:
      *
-     *                 - We set a non-remote object 'arg' (of type SimpleArgument)
-     *                 to an initial value. This SimpleArgument class is just a
-     *                 data structure holding an int.
+     * - We set a non-remote object 'arg' (of type SimpleArgument) to an initial value. This SimpleArgument class is just a
+     * data structure holding an int.
      *
-     *                 - The Caller bean calls the Callee local home create(...)
-     *                 method, passing this 'arg' object as an argument.
+     * - The Caller bean calls the Callee local home create(...) method, passing this 'arg' object as an argument.
      *
-     *                 - The Callee create(..) method modifies the value of the
-     *                 argument (should be a reference to original 'arg')
+     * - The Callee create(..) method modifies the value of the argument (should be a reference to original 'arg')
      *
-     *                 - When we return from the create method, the Caller check
-     *                 that the argument value is not set to the initial value,
-     *                 and reflect the changes made by the Callee.
+     * - When we return from the create method, the Caller check that the argument value is not set to the initial value,
+     * and reflect the changes made by the Callee.
      *
-     *                 Local interface arg semantics verification:
+     * Local interface arg semantics verification:
      *
-     *                 Same strategy but the Caller call a business method on the
-     *                 Callee local interface.
+     * Same strategy but the Caller call a business method on the Callee local interface.
      */
     public void testStatefulLocal() throws Fault {
         boolean pass;
@@ -189,18 +173,14 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     *                 This is applicable to :
+     * This is applicable to :
      *
-     *                 - a Session Stateful Callee bean defining a remote AND a
-     *                 local client view.
+     * - a Session Stateful Callee bean defining a remote AND a local client view.
      *
-     *                 - a CMP 1.1 Caller bean, Calling this Session Bean home,
-     *                 local home, remote, or local interface.
+     * - a CMP 1.1 Caller bean, Calling this Session Bean home, local home, remote, or local interface.
      *
-     *                 The test strategy is a cumulated version of the two
-     *                 previous tests ('testStatefulRemote' and
-     *                 'testStatefulLocal') on the Callee bean defining a local
-     *                 and a remote client view.
+     * The test strategy is a cumulated version of the two previous tests ('testStatefulRemote' and 'testStatefulLocal') on
+     * the Callee bean defining a local and a remote client view.
      */
     public void testStatefulBoth() throws Fault {
         boolean pass;
@@ -233,32 +213,25 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     *                 This is applicable to : - a CMP 2.0 Callee bean defining a
-     *                 remote client view only (No local view). - a CMP 1.1 Caller
-     *                 bean, Calling this CMP 2.0 Bean home or remote interface.
+     * This is applicable to : - a CMP 2.0 Callee bean defining a remote client view only (No local view). - a CMP 1.1
+     * Caller bean, Calling this CMP 2.0 Bean home or remote interface.
      *
-     *                 We package in the same ejb-jar: - a CMP 2.0 Callee bean
-     *                 defining a remote client view only (No local view). - a CMP
-     *                 1.1 Entity Caller bean
+     * We package in the same ejb-jar: - a CMP 2.0 Callee bean defining a remote client view only (No local view). - a CMP
+     * 1.1 Entity Caller bean
      *
-     *                 Remote Home arg semantics verification:
+     * Remote Home arg semantics verification:
      *
-     *                 - We set a non-remote object 'arg' (of type SimpleArgument)
-     *                 to an initial value. This SimpleArgument class is just a
-     *                 data structure holding an int.
+     * - We set a non-remote object 'arg' (of type SimpleArgument) to an initial value. This SimpleArgument class is just a
+     * data structure holding an int.
      *
-     *                 - The Caller bean calls the Callee Home create(...) method,
-     *                 passing this 'arg' object as an argument.
+     * - The Caller bean calls the Callee Home create(...) method, passing this 'arg' object as an argument.
      *
-     *                 - The Callee create(..) method modifies the value of the
-     *                 argument (should be a copy of 'arg')
+     * - The Callee create(..) method modifies the value of the argument (should be a copy of 'arg')
      *
-     *                 - When we return from the create method, the Caller check
-     *                 that the argument value is still set to the initial value.
+     * - When we return from the create method, the Caller check that the argument value is still set to the initial value.
      *
-     *                 Remote interface arg semantics verification: Same strategy
-     *                 but the Caller call a business method on the Callee remote
-     *                 interface.
+     * Remote interface arg semantics verification: Same strategy but the Caller call a business method on the Callee remote
+     * interface.
      */
     public void testCMP20Remote() throws Fault {
         boolean pass;
@@ -289,39 +262,31 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     *                 This is applicable to : - a CMP 2.0 Callee bean defining a
-     *                 local client view only (No remote view).
+     * This is applicable to : - a CMP 2.0 Callee bean defining a local client view only (No remote view).
      *
-     *                 - a CMP 1.1 Caller bean, Calling this CMP 2.0 Bean local
-     *                 home or local interface.
+     * - a CMP 1.1 Caller bean, Calling this CMP 2.0 Bean local home or local interface.
      *
-     *                 We package in the same ejb-jar:
+     * We package in the same ejb-jar:
      *
-     *                 - a CMP 2.0 Callee bean defining a local client view only
-     *                 (No remote view).
+     * - a CMP 2.0 Callee bean defining a local client view only (No remote view).
      *
-     *                 - a CMP 1.1 Entity Caller bean
+     * - a CMP 1.1 Entity Caller bean
      *
-     *                 Local Home arg semantics verification:
+     * Local Home arg semantics verification:
      *
-     *                 - We set a non-remote object 'arg' (of type SimpleArgument)
-     *                 to an initial value. This SimpleArgument class is just a
-     *                 data structure holding an int.
+     * - We set a non-remote object 'arg' (of type SimpleArgument) to an initial value. This SimpleArgument class is just a
+     * data structure holding an int.
      *
-     *                 - The Caller bean calls the Callee local home create(...)
-     *                 method, passing this 'arg' object as an argument.
+     * - The Caller bean calls the Callee local home create(...) method, passing this 'arg' object as an argument.
      *
-     *                 - The Callee create(..) method modifies the value of the
-     *                 argument (should be a reference to original 'arg')
+     * - The Callee create(..) method modifies the value of the argument (should be a reference to original 'arg')
      *
-     *                 - When we return from the create method, the Caller check
-     *                 that the argument value is not set to the initial value,
-     *                 and reflect the changes made by the Callee.
+     * - When we return from the create method, the Caller check that the argument value is not set to the initial value,
+     * and reflect the changes made by the Callee.
      *
-     *                 Local interface arg semantics verification:
+     * Local interface arg semantics verification:
      *
-     *                 Same strategy but the Caller call a business method on the
-     *                 Callee local interface.
+     * Same strategy but the Caller call a business method on the Callee local interface.
      */
     public void testCMP20Local() throws Fault {
         boolean pass;
@@ -352,17 +317,14 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     *                 This is applicable to :
+     * This is applicable to :
      *
-     *                 - a CMP 2.0 Callee bean defining a remote AND a local
-     *                 client view.
+     * - a CMP 2.0 Callee bean defining a remote AND a local client view.
      *
-     *                 - a CMP 1.1 Caller bean, Calling the CMP 2.0 Bean home,
-     *                 local home, remote, or local interface.
+     * - a CMP 1.1 Caller bean, Calling the CMP 2.0 Bean home, local home, remote, or local interface.
      *
-     *                 The test strategy is a cumulated version of the two
-     *                 previous tests ('testCMP20Remote' and 'testCMP20Local') on
-     *                 the Callee bean defining a local and a remote client view.
+     * The test strategy is a cumulated version of the two previous tests ('testCMP20Remote' and 'testCMP20Local') on the
+     * Callee bean defining a local and a remote client view.
      */
     public void testCMP20Both() throws Fault {
         boolean pass;

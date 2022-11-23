@@ -29,9 +29,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -40,8 +39,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,15 +56,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getMaxInactiveIntervalTest
      *
-     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202;
-     * Servlet:SPEC:66; Servlet:JAVADOC:565; Servlet:JAVADOC:566;
+     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202; Servlet:SPEC:66; Servlet:JAVADOC:565;
+     * Servlet:JAVADOC:566;
      *
-     * @test_Strategy: 1. Client sends request to TestServlet which - create a new
-     * HttpSession using request.getSession(true); - set the session's
-     * maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in
-     * the response. 2. Within maxInactiveInterval, client sends a request that
-     * contains the JSESSIONID in a request cookie to the servlet again, verify
-     * that MaxInactiveInterval is set correctly
+     * @test_Strategy: 1. Client sends request to TestServlet which - create a new HttpSession using
+     * request.getSession(true); - set the session's maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned
+     * in the response. 2. Within maxInactiveInterval, client sends a request that contains the JSESSIONID in a request
+     * cookie to the servlet again, verify that MaxInactiveInterval is set correctly
      */
     public void getMaxInactiveIntervalTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getNewSession");
@@ -86,18 +82,15 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: expireHttpSessionTest
      *
-     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202;
-     * Servlet:SPEC:66; Servlet:JAVADOC:565; Servlet:JAVADOC:566;
+     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202; Servlet:SPEC:66; Servlet:JAVADOC:565;
+     * Servlet:JAVADOC:566;
      *
-     * @test_Strategy: 1. Client sends request to TestServlet which - creates a
-     * session using request.getSession() - and sets the session's
-     * maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in
-     * the response.
+     * @test_Strategy: 1. Client sends request to TestServlet which - creates a session using request.getSession() - and
+     * sets the session's maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in the response.
      *
-     * 2. Client waits for longer than maxInactiveInterval, and sends a
-     * request(including JSESSIONID) to the servlet. The servlet tries to resume
-     * the session by calling request.getSession(false). Verify that no session is
-     * returned this time
+     * 2. Client waits for longer than maxInactiveInterval, and sends a request(including JSESSIONID) to the servlet. The
+     * servlet tries to resume the session by calling request.getSession(false). Verify that no session is returned this
+     * time
      */
 
     public void expireHttpSessionTest() throws Fault {
@@ -124,17 +117,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: expireHttpSessionxTest
      *
-     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202;
-     * Servlet:SPEC:66; Servlet:JAVADOC:565; Servlet:JAVADOC:566;
+     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202; Servlet:SPEC:66; Servlet:JAVADOC:565;
+     * Servlet:JAVADOC:566;
      *
-     * @test_Strategy: 1. Client sends request to TestServlet which - creates a
-     * session using request.getSession() - and sets the session's
-     * maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in
-     * the response.
+     * @test_Strategy: 1. Client sends request to TestServlet which - creates a session using request.getSession() - and
+     * sets the session's maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in the response.
      *
-     * 2. Client waits for longer than maxInactiveInterval, sends a request with
-     * JSESSIONID to a servlet with different context. The servlet tries to resume
-     * the session by calling request.getSession(false). Verify that no session is
+     * 2. Client waits for longer than maxInactiveInterval, sends a request with JSESSIONID to a servlet with different
+     * context. The servlet tries to resume the session by calling request.getSession(false). Verify that no session is
      * returned this time
      */
 
@@ -164,19 +154,15 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: expireHttpSessionxriTest
      *
-     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202;
-     * Servlet:SPEC:66; Servlet:JAVADOC:565; Servlet:JAVADOC:566;
+     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202; Servlet:SPEC:66; Servlet:JAVADOC:565;
+     * Servlet:JAVADOC:566;
      *
-     * @test_Strategy: 1. Client sends request to TestServlet which - creates a
-     * session using request.getSession() - and sets the session's
-     * maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in
-     * the response.
+     * @test_Strategy: 1. Client sends request to TestServlet which - creates a session using request.getSession() - and
+     * sets the session's maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in the response.
      *
-     * 2. Client waits for longer than maxInactiveInterval, sends a request with
-     * JSESSIONID to the servlet. The servlet send request to second servlet using
-     * RequestDispatcher. Then the second servlet tries to resume the session by
-     * calling request.getSession(false). Verify that no session is returned this
-     * time
+     * 2. Client waits for longer than maxInactiveInterval, sends a request with JSESSIONID to the servlet. The servlet send
+     * request to second servlet using RequestDispatcher. Then the second servlet tries to resume the session by calling
+     * request.getSession(false). Verify that no session is returned this time
      */
 
     public void expireHttpSessionxriTest() throws Fault {
@@ -203,22 +189,20 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: expireHttpSessionxri1Test
      *
-     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202;
-     * Servlet:SPEC:66; Servlet:JAVADOC:565; Servlet:JAVADOC:566;
+     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202; Servlet:SPEC:66; Servlet:JAVADOC:565;
+     * Servlet:JAVADOC:566;
      *
-     * @test_Strategy: 1. Client sends request to TestServlet which The servlet
-     * send request to second servlet using RequestDispatcher.include.
+     * @test_Strategy: 1. Client sends request to TestServlet which The servlet send request to second servlet using
+     * RequestDispatcher.include.
      *
-     * 2. The second servlet tries to - creates a session using
-     * request.getSession() - and sets the session's maxInactiveInterval to 10
-     * secs. Client captures the JSESSIONID returned in the response.
+     * 2. The second servlet tries to - creates a session using request.getSession() - and sets the session's
+     * maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in the response.
      *
-     * 3. Client waits for longer than maxInactiveInterval, sends a request with
-     * JSESSIONID to the first servlet. Which again send request to second servlet
-     * using RequestDispatcher.
+     * 3. Client waits for longer than maxInactiveInterval, sends a request with JSESSIONID to the first servlet. Which
+     * again send request to second servlet using RequestDispatcher.
      *
-     * 4. The second servlet tries to resume the session by calling
-     * request.getSession(false). Verify that no session is returned this time
+     * 4. The second servlet tries to resume the session by calling request.getSession(false). Verify that no session is
+     * returned this time
      */
 
     public void expireHttpSessionxri1Test() throws Fault {
@@ -240,22 +224,20 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: expireHttpSessionxrfTest
      *
-     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202;
-     * Servlet:SPEC:66; Servlet:JAVADOC:565; Servlet:JAVADOC:566;
+     * @assertion_ids: Servlet:JAVADOC:473; Servlet:JAVADOC:474; Servlet:SPEC:202; Servlet:SPEC:66; Servlet:JAVADOC:565;
+     * Servlet:JAVADOC:566;
      *
-     * @test_Strategy: 1. Client sends request to TestServlet which The servlet
-     * send request to second servlet using RequestDispatcher.forward.
+     * @test_Strategy: 1. Client sends request to TestServlet which The servlet send request to second servlet using
+     * RequestDispatcher.forward.
      *
-     * 2. The second servlet tries to - creates a session using
-     * request.getSession() - and sets the session's maxInactiveInterval to 10
-     * secs. Client captures the JSESSIONID returned in the response.
+     * 2. The second servlet tries to - creates a session using request.getSession() - and sets the session's
+     * maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in the response.
      *
-     * 3. Client waits for longer than maxInactiveInterval, sends a request with
-     * JSESSIONID to the first servlet. Which again send request to second servlet
-     * using RequestDispatcher.forward.
+     * 3. Client waits for longer than maxInactiveInterval, sends a request with JSESSIONID to the first servlet. Which
+     * again send request to second servlet using RequestDispatcher.forward.
      *
-     * 4. The second servlet tries to resume the session by calling
-     * request.getSession(false). Verify that no session is returned this time
+     * 4. The second servlet tries to resume the session by calling request.getSession(false). Verify that no session is
+     * returned this time
      */
 
     public void expireHttpSessionxrfTest() throws Fault {
@@ -277,16 +259,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: invalidateHttpSessionTest
      *
-     * @assertion_ids: Servlet:JAVADOC:566; Servlet:JAVADOC:565; Servlet:SPEC:202;
-     * Servlet:JAVADOC:496; Servlet:JAVADOC:568;
+     * @assertion_ids: Servlet:JAVADOC:566; Servlet:JAVADOC:565; Servlet:SPEC:202; Servlet:JAVADOC:496; Servlet:JAVADOC:568;
      *
-     * @test_Strategy: 1. Client sends request to TestServlet which - creates a
-     * session using request.getSession(true) Client captures the JSESSIONID
-     * returned in the response.
+     * @test_Strategy: 1. Client sends request to TestServlet which - creates a session using request.getSession(true)
+     * Client captures the JSESSIONID returned in the response.
      *
-     * 2. Client sends a request(including JSESSIONID) to the servlet. The servlet
-     * tries to resume the session, then invalidate the session by calling
-     * Session.invalidate(). Verify that session is invalidated
+     * 2. Client sends a request(including JSESSIONID) to the servlet. The servlet tries to resume the session, then
+     * invalidate the session by calling Session.invalidate(). Verify that session is invalidated
      */
 
     public void invalidateHttpSessionTest() throws Fault {
@@ -302,18 +281,15 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: invalidateHttpSessionxTest
      *
-     * @assertion_ids: Servlet:JAVADOC:566; Servlet:JAVADOC:565; Servlet:SPEC:202;
-     * Servlet:JAVADOC:496; Servlet:JAVADOC:568;
+     * @assertion_ids: Servlet:JAVADOC:566; Servlet:JAVADOC:565; Servlet:SPEC:202; Servlet:JAVADOC:496; Servlet:JAVADOC:568;
      *
-     * @test_Strategy: 1. Client sends request to TestServlet which - send request
-     * to a second servlet using RequestDispatcher - which creates a session using
-     * request.getSession(true) Client captures the JSESSIONID returned in the
-     * response.
+     * @test_Strategy: 1. Client sends request to TestServlet which - send request to a second servlet using
+     * RequestDispatcher - which creates a session using request.getSession(true) Client captures the JSESSIONID returned in
+     * the response.
      *
-     * 2. Client sends a request with JSESSIONID to the first servlet. The first
-     * servlet invoke the second servlet using RequestDispatcher, The second
-     * servlet invalidate the session by calling Session.invalidate(). Verify that
-     * session is invalidated
+     * 2. Client sends a request with JSESSIONID to the first servlet. The first servlet invoke the second servlet using
+     * RequestDispatcher, The second servlet invalidate the session by calling Session.invalidate(). Verify that session is
+     * invalidated
      */
 
     public void invalidateHttpSessionxTest() throws Fault {

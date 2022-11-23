@@ -82,11 +82,9 @@ public class WorkAndAssocImpl extends WorkImpl implements ResourceAdapterAssocia
     }
 
     /*
-     * This method is used to assist in the verification process of assertion
-     * Connector:SPEC:245 This method must be called befor the work instances
-     * 'run' method is called. This method checks if the setResourceAdapter()
-     * method was called and if so, then this method logs a message to indicate
-     * that it was called prior to the 'run' method of the run method.
+     * This method is used to assist in the verification process of assertion Connector:SPEC:245 This method must be called
+     * befor the work instances 'run' method is called. This method checks if the setResourceAdapter() method was called and
+     * if so, then this method logs a message to indicate that it was called prior to the 'run' method of the run method.
      */
     public void checkAssociation() {
         Vector vLog = ConnectorStatus.getConnectorStatus().getStateLogVector();

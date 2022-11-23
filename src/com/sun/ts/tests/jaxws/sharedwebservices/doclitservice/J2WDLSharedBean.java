@@ -26,7 +26,8 @@ public class J2WDLSharedBean {
 
     private String myString;
 
-    public J2WDLSharedBean() {}
+    public J2WDLSharedBean() {
+    }
 
     public J2WDLSharedBean(int i, String s) {
         setMyInt(i);

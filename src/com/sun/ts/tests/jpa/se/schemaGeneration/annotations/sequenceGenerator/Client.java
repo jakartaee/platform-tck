@@ -34,7 +34,8 @@ public class Client extends PMClientBase {
 
     boolean supportSequence;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -127,8 +128,7 @@ public class Client extends PMClientBase {
         pass1b = findDataInFile(f1, "CREATE SEQUENCE SEQGENERATOR START WITH 10");
 
         /*
-         * CREATE TABLE SCHEMAGENSIMPLE (ID INTEGER NOT NULL, PRIMARY KEY (ID))
-         * CREATE SEQUENCE SEQGENERATOR START WITH 10
+         * CREATE TABLE SCHEMAGENSIMPLE (ID INTEGER NOT NULL, PRIMARY KEY (ID)) CREATE SEQUENCE SEQGENERATOR START WITH 10
          */
 
         pass2a = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");

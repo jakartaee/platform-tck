@@ -41,15 +41,11 @@ import java.io.IOException;
  * then the "uncovered" methods must be DENIED.
  */
 
-@ServletSecurity(
-        value = @HttpConstraint(EmptyRoleSemantic.PERMIT),
-        httpMethodConstraints = {
-            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator"),
-        })
-@WebServlet(
-        name = "PartialDDServlet",
-        urlPatterns = {"/PartialDDServlet"})
+@ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.PERMIT), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator"),
+})
+@WebServlet(name = "PartialDDServlet", urlPatterns = { "/PartialDDServlet" })
 public class PartialDDServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

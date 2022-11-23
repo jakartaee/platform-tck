@@ -31,18 +31,12 @@ import jakarta.xml.ws.Action;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.AddressingFeature;
 
-@WebService(
-        name = "AddNumbersPortType3",
-        portName = "AddNumbersPort3",
-        serviceName = "AddNumbersService3",
-        targetNamespace = "http://example.com/")
+@WebService(name = "AddNumbersPortType3", portName = "AddNumbersPort3", serviceName = "AddNumbersService3", targetNamespace = "http://example.com/")
 @Addressing(enabled = true, required = true, responses = AddressingFeature.Responses.ANONYMOUS)
 @HandlerChain(name = "", file = "server-handler.xml")
 public class AddNumbersImpl3 {
 
-    @Action(
-            input = "http://example.com/AddNumbersPortType3/add",
-            output = "http://example.com/AddNumbersPortType3/addResponse")
+    @Action(input = "http://example.com/AddNumbersPortType3/add", output = "http://example.com/AddNumbersPortType3/addResponse")
     @WebMethod
     public int addNumbers(
             @WebParam(name = "number1", targetNamespace = "http://example.com/") int number1,

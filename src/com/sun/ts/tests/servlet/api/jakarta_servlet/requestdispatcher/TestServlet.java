@@ -75,9 +75,8 @@ public class TestServlet extends GenericTCKServlet {
     }
 
     /**
-     * The included servlet is not supposed to change the Response Headers. Our
-     * included servlet changes it we will check whether that changed header value
-     * gets reflected in the client side or not
+     * The included servlet is not supposed to change the Response Headers. Our included servlet changes it we will check
+     * whether that changed header value gets reflected in the client side or not
      */
     public void include_1Test(ServletRequest request, ServletResponse response) throws ServletException, IOException {
         response.setContentType("text/sgml");

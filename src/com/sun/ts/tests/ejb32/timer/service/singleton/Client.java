@@ -24,11 +24,9 @@ public class Client extends ClientBase {
     /*
      * @testName: testGetAllTimers
      *
-     * @test_Strategy: create a bunch of auto-timers & programmatic timers
-     * respectively in a SLSB and a Singleton Bean, then run getAllTimers() from
-     * the singleton bean, which should return all the timers created within the
-     * same module. A SFSB with no associated timers is also packaged in the
-     * module but should not cause problems.
+     * @test_Strategy: create a bunch of auto-timers & programmatic timers respectively in a SLSB and a Singleton Bean, then
+     * run getAllTimers() from the singleton bean, which should return all the timers created within the same module. A SFSB
+     * with no associated timers is also packaged in the module but should not cause problems.
      */
 
     public void setup(String[] args, Properties p) {

@@ -37,7 +37,7 @@ import java.util.Properties;
 
 public class ELClient extends ServiceEETest {
 
-    private static final String[] names = {"doug", "nick", "roger", "ryan", "ed"};
+    private static final String[] names = { "doug", "nick", "roger", "ryan", "ed" };
 
     private Properties testProps;
 
@@ -59,14 +59,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: compositeELResolverTest
      *
-     * @assertion_ids: EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:26; EL:JAVADOC:27;
-     *                 EL:JAVADOC:28; EL:JAVADOC:29; EL:JAVADOC:30; EL:JAVADOC:31;
-     *                 EL:JAVADOC:34
+     * @assertion_ids: EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:26; EL:JAVADOC:27; EL:JAVADOC:28; EL:JAVADOC:29;
+     * EL:JAVADOC:30; EL:JAVADOC:31; EL:JAVADOC:34
      *
-     * @test_Strategy: Verify that API calls work as expected:
-     *                 CompositeELResolver() add() getValue() getType() setValue()
-     *                 isReadOnly() getCommonPropertyType()
-     *                 getFeatureDescriptors() ELContext.getELResolver()
+     * @test_Strategy: Verify that API calls work as expected: CompositeELResolver() add() getValue() getType() setValue()
+     * isReadOnly() getCommonPropertyType() getFeatureDescriptors() ELContext.getELResolver()
      */
     public void compositeELResolverTest() throws Fault {
 
@@ -86,7 +83,8 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
         TestUtil.logTrace(buf.toString());
     }
 
@@ -95,8 +93,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:181
      *
-     * @test_Strategy: Verify that API calls work as expected for
-     *                 BeanELResolver.invoke().
+     * @test_Strategy: Verify that API calls work as expected for BeanELResolver.invoke().
      */
     public void compositeELResolverInvokeTest() throws Fault {
         SimpleBean sb = new SimpleBean();
@@ -113,8 +110,8 @@ public class ELClient extends ServiceEETest {
 
             compResolver.add(beanResolver);
 
-            Class<?>[] types = {String.class, String.class};
-            String[] values = {"Doug", "Donahue"};
+            Class<?>[] types = { String.class, String.class };
+            String[] values = { "Doug", "Donahue" };
 
             pass = ResolverTest.testELResolverInvoke(context, compResolver, sb, "isName", types, values, false, buf);
 
@@ -133,8 +130,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:174
      *
-     * @test_Strategy: Verify that the CompositeELResolver.add method throws a
-     *                 NullPointerException if the provided resolver is null.
+     * @test_Strategy: Verify that the CompositeELResolver.add method throws a NullPointerException if the provided resolver
+     * is null.
      */
     public void compositeELResolverAddNPETest() throws Fault {
 
@@ -162,21 +159,19 @@ public class ELClient extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
         TestUtil.logTrace(buf.toString());
     }
 
     /**
      * @testName: compositeELResolverNPETest
      *
-     * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:26; EL:JAVADOC:27; EL:JAVADOC:28;
-     *                 EL:JAVADOC:29; EL:JAVADOC:30; EL:JAVADOC:31;
-     *                 EL:JAVADOC:175; EL:JAVADOC:178; EL:JAVADOC:175;
-     *                 EL:JAVADOC:182; EL:JAVADOC:185
+     * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:26; EL:JAVADOC:27; EL:JAVADOC:28; EL:JAVADOC:29; EL:JAVADOC:30;
+     * EL:JAVADOC:31; EL:JAVADOC:175; EL:JAVADOC:178; EL:JAVADOC:175; EL:JAVADOC:182; EL:JAVADOC:185
      *
-     * @test_Strategy: Verify that API calls work as expected: getValue()
-     *                 getType() setValue() isReadOnly() getCommonPropertyType()
-     *                 getFeatureDescriptors()
+     * @test_Strategy: Verify that API calls work as expected: getValue() getType() setValue() isReadOnly()
+     * getCommonPropertyType() getFeatureDescriptors()
      */
     public void compositeELResolverNPETest() throws Fault {
 
@@ -202,19 +197,18 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
         TestUtil.logTrace(buf.toString());
     }
 
     /**
      * @testName: compositeELResolverPNFETest
      *
-     * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:28; EL:JAVADOC:30; EL:JAVADOC:31;
-     *                 EL:JAVADOC:176; EL:JAVADOC:179; EL:JAVADOC:183;
-     *                 EL:JAVADOC:186
+     * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:28; EL:JAVADOC:30; EL:JAVADOC:31; EL:JAVADOC:176; EL:JAVADOC:179;
+     * EL:JAVADOC:183; EL:JAVADOC:186
      *
-     * @test_Strategy: Verify that API calls throw PropertyNotFoundException as
-     *                 expected: getType() setValue() isReadOnly()
+     * @test_Strategy: Verify that API calls throw PropertyNotFoundException as expected: getType() setValue() isReadOnly()
      */
     public void compositeELResolverPNFETest() throws Fault {
 
@@ -238,7 +232,8 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
         TestUtil.logTrace(buf.toString());
     }
 
@@ -247,11 +242,10 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:187
      *
-     * @test_Strategy: Verify that the setValue() method throws a
-     *                 PropertyNotWritableException, if the resolver was
-     *                 constructed in read-only mode.
+     * @test_Strategy: Verify that the setValue() method throws a PropertyNotWritableException, if the resolver was
+     * constructed in read-only mode.
      *
-     *                 setValue()
+     * setValue()
      */
     public void compositeELResolverPNWETest() throws Fault {
         boolean pass = false;

@@ -51,8 +51,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -75,15 +74,13 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     *                 Package an .ear file (JavaEE 5.0 application DD) with: - 1
-     *                 ejb-jar file using a J2EE 1.2 DD - 1 ejb-jar file using a
-     *                 JavaEE 5.0 DD - 1 application client jar file using a J2EE
-     *                 1.2 DD - 1 application client jar file using a JavEE 5.0 DD
+     * Package an .ear file (JavaEE 5.0 application DD) with: - 1 ejb-jar file using a J2EE 1.2 DD - 1 ejb-jar file using a
+     * JavaEE 5.0 DD - 1 application client jar file using a J2EE 1.2 DD - 1 application client jar file using a JavEE 5.0
+     * DD
      *
-     *                 Deploy the .ear file.
+     * Deploy the .ear file.
      *
-     *                 Run the 1.2 client and check that it can call a bean in
-     *                 each ejb-jar at runtime.
+     * Run the 1.2 client and check that it can call a bean in each ejb-jar at runtime.
      */
     public void test12DD() throws Fault {
         ReferencedBeanHome home1 = null;

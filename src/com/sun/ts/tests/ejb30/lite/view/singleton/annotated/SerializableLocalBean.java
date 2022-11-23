@@ -26,5 +26,6 @@ import jakarta.ejb.Singleton;
 
 @Singleton
 public class SerializableLocalBean extends BusinessLocal1Base implements java.io.Serializable, BusinessLocalIF1 {
-    public void remove() {}
+    public void remove() {
+    }
 }

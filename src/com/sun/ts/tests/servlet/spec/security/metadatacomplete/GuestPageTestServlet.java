@@ -42,12 +42,9 @@ import java.io.PrintWriter;
  * state that role Administrator (user=j2ee) can issue GET requests.
  */
 
-@ServletSecurity(
-        value = @HttpConstraint(EmptyRoleSemantic.DENY),
-        httpMethodConstraints = {@HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator")})
-@WebServlet(
-        name = "GuestPageTestLogicalName",
-        urlPatterns = {"/GuestPageTest"})
+@ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.DENY), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator") })
+@WebServlet(name = "GuestPageTestLogicalName", urlPatterns = { "/GuestPageTest" })
 public class GuestPageTestServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

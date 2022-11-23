@@ -142,8 +142,10 @@ public class TestBeanEJB implements SessionBean {
             TestUtil.logTrace("Insert and delete some rows");
             ut.begin();
             TestUtil.logTrace("Inserting 2 new rows");
-            if (beanRef.insert(tName, size + 1)) size++;
-            if (beanRef.insert(tName, size + 1)) size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
             TestUtil.logTrace("Deleting a row");
             beanRef.delete(tName, tRng, tRng);
             ut.commit();
@@ -152,12 +154,15 @@ public class TestBeanEJB implements SessionBean {
             dbResults = beanRef.getResults(tName);
 
             TestUtil.logTrace("Verifying the test results");
-            if (!dbResults.contains(new Integer(tRng))) b1 = true;
+            if (!dbResults.contains(new Integer(tRng)))
+                b1 = true;
 
             for (int i = 1; i <= size; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains(new Integer(i))) b2 = true;
+                    if (dbResults.contains(new Integer(i)))
+                        b2 = true;
                     else {
                         b2 = false;
                         break;
@@ -165,7 +170,8 @@ public class TestBeanEJB implements SessionBean {
                 }
             }
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -217,8 +223,10 @@ public class TestBeanEJB implements SessionBean {
             TestUtil.logTrace("Insert and delete some rows");
             ut.begin();
             TestUtil.logTrace("Inserting 2 new rows");
-            if (beanRef.insert(tName, size + 1)) size++;
-            if (beanRef.insert(tName, size + 1)) size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
             TestUtil.logTrace("Deleting a row");
             beanRef.delete(tName, tRngFrom, tRngTo);
             ut.rollback();
@@ -244,10 +252,13 @@ public class TestBeanEJB implements SessionBean {
                 }
             }
 
-            if (b1) TestUtil.logTrace("b1 true");
-            if (b2) TestUtil.logTrace("b2 true");
+            if (b1)
+                TestUtil.logTrace("b1 true");
+            if (b2)
+                TestUtil.logTrace("b2 true");
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -302,8 +313,10 @@ public class TestBeanEJB implements SessionBean {
             beanRef.createData(tName);
 
             TestUtil.logTrace("Inserting 2 new rows");
-            if (beanRef.insert(tName, size + 1)) size++;
-            if (beanRef.insert(tName, size + 1)) size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
+            if (beanRef.insert(tName, size + 1))
+                size++;
 
             TestUtil.logTrace("Deleting a row");
             beanRef.delete(tName, tRng, tRng);
@@ -316,11 +329,15 @@ public class TestBeanEJB implements SessionBean {
 
             // Verify the test results
             TestUtil.logTrace("Verifying the test results");
-            if (txStatus1 == Status.STATUS_NO_TRANSACTION) b1 = true;
-            if (txStatus2 == Status.STATUS_ACTIVE) b2 = true;
-            if (txStatus3 == Status.STATUS_NO_TRANSACTION) b3 = true;
+            if (txStatus1 == Status.STATUS_NO_TRANSACTION)
+                b1 = true;
+            if (txStatus2 == Status.STATUS_ACTIVE)
+                b2 = true;
+            if (txStatus3 == Status.STATUS_NO_TRANSACTION)
+                b3 = true;
 
-            if (b1 && b2 && b3) testResult = true;
+            if (b1 && b2 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

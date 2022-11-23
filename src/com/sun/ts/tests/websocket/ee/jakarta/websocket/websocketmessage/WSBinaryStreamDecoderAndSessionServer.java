@@ -26,9 +26,7 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/binarystreamdecodersession",
-        decoders = {StringBeanBinaryStreamDecoder.class})
+@ServerEndpoint(value = "/binarystreamdecodersession", decoders = { StringBeanBinaryStreamDecoder.class })
 public class WSBinaryStreamDecoderAndSessionServer {
 
     @SuppressWarnings("unused")

@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,13 +62,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveSetBundleBasenameTest
      *
-     * @assertion_ids: JSTL:SPEC:92; JSTL:SPEC:92.1; JSTL:SPEC:92.1.1;
-     * JSTL:SPEC:92.2; JSTL:SPEC:92.5
+     * @assertion_ids: JSTL:SPEC:92; JSTL:SPEC:92.1; JSTL:SPEC:92.1.1; JSTL:SPEC:92.2; JSTL:SPEC:92.5
      *
-     * @testStrategy: Validate the behavior of the setBundle action when basename
-     * is present and var is not. The configuration variable
-     * jakarta.servlet.jsp.jstl.fmt.localizationContext will be set with the
-     * LocalizationContext returned from the lookup algorithm.
+     * @testStrategy: Validate the behavior of the setBundle action when basename is present and var is not. The
+     * configuration variable jakarta.servlet.jsp.jstl.fmt.localizationContext will be set with the LocalizationContext
+     * returned from the lookup algorithm.
      */
     public void positiveSetBundleBasenameTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveSetBundleBasenameTest");
@@ -85,9 +81,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:92.4
      *
-     * @testStrategy: Validate that if var is specified, the result of the
-     * resource lookup is stored in the PageContext accessible by referencing var
-     * and is of type jakarta.servlet.jsp.jstl.fmt.LocalizationContext.
+     * @testStrategy: Validate that if var is specified, the result of the resource lookup is stored in the PageContext
+     * accessible by referencing var and is of type jakarta.servlet.jsp.jstl.fmt.LocalizationContext.
      */
     public void positiveSetBundleVarTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveSetBundleVarTest");
@@ -100,13 +95,12 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveSetBundleScopeVarTest
      *
-     * @assertion_ids: JSTL:SPEC:92.6; JSTL:SPEC:92.6.1; JSTL:SPEC:92.6.2;
-     * JSTL:SPEC:92.6.3; JSTL:SPEC:92.6.4; JSTL:SPEC:92.6.6
+     * @assertion_ids: JSTL:SPEC:92.6; JSTL:SPEC:92.6.1; JSTL:SPEC:92.6.2; JSTL:SPEC:92.6.3; JSTL:SPEC:92.6.4;
+     * JSTL:SPEC:92.6.6
      *
-     * @testStrategy: Validate the behavior of the action when both scope and var
-     * are specified. Var should be exported to the scope as specified by the
-     * scope attribute. If scope is not present and var is, var will be exported
-     * to the page scope by default.
+     * @testStrategy: Validate the behavior of the action when both scope and var are specified. Var should be exported to
+     * the scope as specified by the scope attribute. If scope is not present and var is, var will be exported to the page
+     * scope by default.
      */
     public void positiveSetBundleScopeVarTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveSetBundleScopeVarTest");
@@ -119,14 +113,12 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveSetBundleScopeLocCtxTest
      *
-     * @assertion_ids: JSTL:SPEC:92.5; JSTL:SPEC:92.6; JSTL:SPEC:92.6.1;
-     * JSTL:SPEC:92.6.2; JSTL:SPEC:92.6.3; JSTL:SPEC:92.6.4; JSTL:SPEC:92.6.6
+     * @assertion_ids: JSTL:SPEC:92.5; JSTL:SPEC:92.6; JSTL:SPEC:92.6.1; JSTL:SPEC:92.6.2; JSTL:SPEC:92.6.3;
+     * JSTL:SPEC:92.6.4; JSTL:SPEC:92.6.6
      *
-     * @testStrategy: Validate the behavior of the action when scope is specified
-     * and var is not. The action should properly export the configuration
-     * variable jakarta.servlet.jsp.jstl.fmt.localizationContext to the scope
-     * specified. If scope is not specified, then the configuration variable will
-     * be exported to the page scope by default.
+     * @testStrategy: Validate the behavior of the action when scope is specified and var is not. The action should properly
+     * export the configuration variable jakarta.servlet.jsp.jstl.fmt.localizationContext to the scope specified. If scope
+     * is not specified, then the configuration variable will be exported to the page scope by default.
      */
     public void positiveSetBundleScopeLocCtxTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveSetBundleScopeLocCtxTest");
@@ -141,9 +133,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:92.3
      *
-     * @testStrategy: Validate that if basename is null or empty, that no
-     * exception occurs and the result of the action is a null
-     * LocalizationContext.
+     * @testStrategy: Validate that if basename is null or empty, that no exception occurs and the result of the action is a
+     * null LocalizationContext.
      */
     public void positiveSetBundleBasenameNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveSetBundleBasenameNullEmptyTest");
@@ -158,13 +149,11 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:92.2
      *
-     * @testStrategy: Validate that if the jakarta.servlet.jsp.jstl.fmt.locale
-     * configuration variable is present, that setBundle, both when it sets the
-     * jakarta.servlet.jsp.jstl.fmt.localizationContext configuration variable and
-     * when it exports a LocalizationContext, is able to lookup the proper
-     * ResourceBundle. To try to throw a wrench in things, the client will send a
-     * preferred locale across the wire that, if used, will not resolve to any
-     * ResourceBundle (no fallback defined).
+     * @testStrategy: Validate that if the jakarta.servlet.jsp.jstl.fmt.locale configuration variable is present, that
+     * setBundle, both when it sets the jakarta.servlet.jsp.jstl.fmt.localizationContext configuration variable and when it
+     * exports a LocalizationContext, is able to lookup the proper ResourceBundle. To try to throw a wrench in things, the
+     * client will send a preferred locale across the wire that, if used, will not resolve to any ResourceBundle (no
+     * fallback defined).
      */
     public void positiveSetBundleLocaleConfigurationTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveSetBundleLocaleConfigurationTest");
@@ -179,14 +168,11 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:92.2
      *
-     * @testStrategy: Validate that if the setBundle action is unable to determine
-     * a locale based on the locale configuration variable or the client's
-     * preferred locales, it will use the fallbackLocale configuration variable.
-     * To try to throw a wrench in things, the client will send a preferred locale
-     * across the wire that, if used, will not resolve to any ResourceBundle (no
-     * fallback defined). Additionally verify that the fallbackLocale variable can
-     * be configured using a String representation of a locale as well as an
-     * instance of Locale.
+     * @testStrategy: Validate that if the setBundle action is unable to determine a locale based on the locale
+     * configuration variable or the client's preferred locales, it will use the fallbackLocale configuration variable. To
+     * try to throw a wrench in things, the client will send a preferred locale across the wire that, if used, will not
+     * resolve to any ResourceBundle (no fallback defined). Additionally verify that the fallbackLocale variable can be
+     * configured using a String representation of a locale as well as an instance of Locale.
      */
     public void positiveSetBundleFallbackLocaleTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveSetBundleFallbackLocaleTest");

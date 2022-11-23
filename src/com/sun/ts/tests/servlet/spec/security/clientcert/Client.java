@@ -72,8 +72,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; securedWebServicePort;
-     * certLoginUserAlias;
+     * @class.setup_props: webServerHost; webServerPort; securedWebServicePort; certLoginUserAlias;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -95,25 +94,20 @@ public class Client extends EETest {
     /*
      * @testName: clientCertTest
      *
-     * @assertion_ids: Servlet:SPEC:140; Servlet:SPEC:368; Servlet:SPEC:369;
-     * Servlet:SPEC:26; Servlet:SPEC:26.1; Servlet:SPEC:26.2; Servlet:SPEC:26.3;
-     * Servlet:JAVADOC:356
+     * @assertion_ids: Servlet:SPEC:140; Servlet:SPEC:368; Servlet:SPEC:369; Servlet:SPEC:26; Servlet:SPEC:26.1;
+     * Servlet:SPEC:26.2; Servlet:SPEC:26.3; Servlet:JAVADOC:356
      *
-     * @test_strategy: 1. Look for the following request attributes a)
-     * cipher-suite b) key-size c) SSL certificate If any of the above attributes
-     * are not set report test failure.
+     * @test_strategy: 1. Look for the following request attributes a) cipher-suite b) key-size c) SSL certificate If any of
+     * the above attributes are not set report test failure.
      *
      * 2. Verify the request.getAuthType returns CLIENT_CERT
      *
-     * Note: If a request has been transmitted over a secure protocol, such as
-     * HTTPS, this information must be exposed via the isSecure method of the
-     * ServletRequest interface. The web container must expose the following
-     * attributes to the servlet programmer. 1) The cipher suite 2) the bit size
-     * of the algorithm
+     * Note: If a request has been transmitted over a secure protocol, such as HTTPS, this information must be exposed via
+     * the isSecure method of the ServletRequest interface. The web container must expose the following attributes to the
+     * servlet programmer. 1) The cipher suite 2) the bit size of the algorithm
      *
-     * If there is an SSL certificate associated with the request, it must be
-     * exposed by the servlet container to the servlet programmer as an array of
-     * objects of type java.security.cert.X509Certificate
+     * If there is an SSL certificate associated with the request, it must be exposed by the servlet container to the
+     * servlet programmer as an array of objects of type java.security.cert.X509Certificate
      *
      */
     public void clientCertTest() throws Fault {
@@ -152,7 +146,8 @@ public class Client extends EETest {
             if (output.indexOf(userNameToSearch) == -1) {
                 throw new Fault(
                         testName + ": getRemoteUser(): " + "- did not find \"" + userNameToSearch + "\" in log.");
-            } else TestUtil.logMsg("Additional verification done");
+            } else
+                TestUtil.logMsg("Additional verification done");
 
             // verify output for expected test result
             verifyTestOutput(output, testName);
@@ -184,7 +179,8 @@ public class Client extends EETest {
             httpsURLConn.setDoOutput(true);
             httpsURLConn.setUseCaches(false);
 
-        } else throw new IOException("Error opening httsURLConnection");
+        } else
+            throw new IOException("Error opening httsURLConnection");
 
         return httpsURLConn;
     }

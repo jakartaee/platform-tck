@@ -36,8 +36,8 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless(name = "SecTestRoleRefEJB")
-@Remote({SecTestRoleRef.class})
-@Local({SecTestRoleRefLocal.class})
+@Remote({ SecTestRoleRef.class })
+@Local({ SecTestRoleRefLocal.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 // @DeclareRoles({"EMP=Manager"})
 
@@ -48,7 +48,7 @@ public class SecTestRoleRefEJB implements SecTestRoleRef {
     // This is equivalent to * as all the roles can call this method
     // @RolesAllowed("*")
 
-    @RolesAllowed({"Administrator", "Manager", "VP", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "VP", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void initLogging(java.util.Properties p) {
         try {
@@ -58,7 +58,7 @@ public class SecTestRoleRefEJB implements SecTestRoleRef {
         }
     }
 
-    @RolesAllowed({"Manager", "Employee"})
+    @RolesAllowed({ "Manager", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean EjbSecRoleRefScope(String role) {
         return sctx.isCallerInRole(role);

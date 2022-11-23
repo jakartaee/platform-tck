@@ -26,7 +26,8 @@ import jakarta.ejb.TransactionAttributeType;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public abstract class DBeanBase extends TxBeanBase {
 
-    public DBeanBase() {}
+    public DBeanBase() {
+    }
 
     // This method has REQUIRES_NEW transaction attribute.
     public String bar() {

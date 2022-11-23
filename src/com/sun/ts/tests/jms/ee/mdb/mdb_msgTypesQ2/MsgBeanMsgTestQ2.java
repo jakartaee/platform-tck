@@ -65,8 +65,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
     public MsgBeanMsgTestQ2() {
         TestUtil.logTrace("@MsgBeanMsgTestQ2()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("jms.ee.mdb.mdb_msgTypesQ2  - @MsgBeanMsgTestQ2-ejbCreate() !!");
@@ -230,9 +229,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create an object message. Write a StringBuffer to the message.
-     * modify the StringBuffer and send the msg, verify that it does not effect
-     * the msg
+     * Description: Create an object message. Write a StringBuffer to the message. modify the StringBuffer and send the msg,
+     * verify that it does not effect the msg
      */
     public void messageObjectCopyQTestCreate() {
         boolean pass = true;
@@ -257,9 +255,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Create a StreamMessage -. use StreamMessage method
-     * writeBoolean to write a boolean to the message. Verify the proper
-     * conversion support as in 3.11.3
+     * Description: Create a StreamMessage -. use StreamMessage method writeBoolean to write a boolean to the message.
+     * Verify the proper conversion support as in 3.11.3
      */
     private void streamMessageConversionQTestsBooleanCreate() {
         try {
@@ -285,8 +282,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Create a StreamMessage -. use StreamMessage method writeByte
-     * to write a byte. Verify the proper conversion support as in 3.11.3
+     * Description: Create a StreamMessage -. use StreamMessage method writeByte to write a byte. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsByteCreate() {
@@ -314,8 +311,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a StreamMessage -. use StreamMessage method writeShort
-     * to write a short. Verify the proper conversion support as in 3.11.3
+     * Description: Create a StreamMessage -. use StreamMessage method writeShort to write a short. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsShortCreate() {
@@ -339,8 +336,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a StreamMessage -. use StreamMessage method writeInt to
-     * write an int. Verify the proper conversion support as in 3.11.3
+     * Description: Create a StreamMessage -. use StreamMessage method writeInt to write an int. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsIntCreate() {
@@ -366,8 +363,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a StreamMessage -. use StreamMessage method writeLong
-     * to write a long. Verify the proper conversion support as in 3.11.3
+     * Description: Create a StreamMessage -. use StreamMessage method writeLong to write a long. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsLongCreate() {
@@ -391,8 +388,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a StreamMessage -. use StreamMessage method writeFloat
-     * to write a float. Verify the proper conversion support as in 3.11.3
+     * Description: Create a StreamMessage -. use StreamMessage method writeFloat to write a float. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsFloatCreate() {
@@ -420,8 +417,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Create a StreamMessage -. use StreamMessage method writeDouble
-     * to write a double. Verify the proper conversion support as in 3.11.3
+     * Description: Create a StreamMessage -. use StreamMessage method writeDouble to write a double. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsDoubleCreate() {
@@ -448,8 +445,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a StreamMessage -. use StreamMessage method writeString
-     * to write a string. Verify the proper conversion support as in 3.11.3
+     * Description: Create a StreamMessage -. use StreamMessage method writeString to write a string. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsStringCreate() {
@@ -476,8 +473,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a StreamMessage -. use StreamMessage method writeChar
-     * to write a char. Verify the proper conversion support as in 3.11.3
+     * Description: Create a StreamMessage -. use StreamMessage method writeChar to write a char. Verify the proper
+     * conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsCharCreate() {
@@ -505,14 +502,13 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Create a StreamMessage -. use StreamMessage method writeBytes
-     * to write a byte[] to the message. Verify the proper conversion support as
-     * in 3.11.3
+     * Description: Create a StreamMessage -. use StreamMessage method writeBytes to write a byte[] to the message. Verify
+     * the proper conversion support as in 3.11.3
      */
     private void streamMessageConversionQTestsBytesCreate() {
         try {
             StreamMessage messageSent = null;
-            byte[] bValues = {1, 2, 3};
+            byte[] bValues = { 1, 2, 3 };
             messageSent = qSession.createStreamMessage();
             JmsUtil.addPropsToMessage(messageSent, p);
             messageSent.setStringProperty("COM_SUN_JMS_TESTNAME", "streamMessageConversionQTestsBytes");
@@ -533,9 +529,9 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Create a StreamMessage -. use StreamMessage method writeString
-     * to write a text string of "mytest string". Verify NumberFormatException is
-     * thrown Verify that the pointer was not incremented by doing a read string
+     * Description: Create a StreamMessage -. use StreamMessage method writeString to write a text string of
+     * "mytest string". Verify NumberFormatException is thrown Verify that the pointer was not incremented by doing a read
+     * string
      *
      */
     private void streamMessageConversionQTestsInvFormatStringCreate() {
@@ -561,8 +557,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Create a StreamMessage -. write one of each primitive type.
-     * Send the message. Verify the data received was as sent.
+     * Description: Create a StreamMessage -. write one of each primitive type. Send the message. Verify the data received
+     * was as sent.
      *
      */
     private void streamMessageQTestsFullMsgCreate() {
@@ -572,8 +568,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
             byte bValue = 127;
             boolean abool = false;
-            byte[] bValues = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-            byte[] bValues2 = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+            byte[] bValues = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            byte[] bValues2 = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
             char charValue = 'Z';
             short sValue = 32767;
             long lValue = 9223372036854775807L;
@@ -618,8 +614,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Create a StreamMessage Use writeString to write a null, then
-     * use readString to read it back.
+     * Description: Create a StreamMessage Use writeString to write a null, then use readString to read it back.
      */
     private void streamMessageQTestNullCreate() {
         try {
@@ -643,9 +638,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Read ObjectMessage created by messageObjectCopyQTestCreate.
-     * verify that modifying the sBuff object after the write does not effect the
-     * msg
+     * Description: Read ObjectMessage created by messageObjectCopyQTestCreate. verify that modifying the sBuff object after
+     * the write does not effect the msg
      */
     public void messageObjectCopyQTest(jakarta.jms.ObjectMessage messageReceivedObjectMsg) {
         boolean pass = true;
@@ -668,8 +662,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Read a StreamMessage -. Verify the proper conversion support
-     * as in 3.11.3
+     * Description: Read a StreamMessage -. Verify the proper conversion support as in 3.11.3
      */
     private void streamMessageConversionQTestsBoolean(jakarta.jms.StreamMessage messageReceived) {
         String testCase = "streamMessageConversionQTestsBoolean";
@@ -677,7 +670,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             boolean pass = true;
 
             // now test conversions for boolean
@@ -878,8 +871,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Read a StreamMessage -. Verify the proper conversion support
-     * as in 3.11.3
+     * Description: Read a StreamMessage -. Verify the proper conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsByte(jakarta.jms.StreamMessage messageReceived) {
@@ -887,7 +879,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         try {
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -1095,8 +1087,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Read a StreamMessage -. Verify the proper conversion support
-     * as in 3.11.3
+     * Description: Read a StreamMessage -. Verify the proper conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsShort(jakarta.jms.StreamMessage messageReceived) {
@@ -1105,7 +1096,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -1311,8 +1302,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Read a StreamMessage -. Verify the proper conversion support
-     * as in 3.11.3
+     * Description: Read a StreamMessage -. Verify the proper conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsInt(jakarta.jms.StreamMessage messageReceived) {
@@ -1322,7 +1312,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -1527,8 +1517,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Read a StreamMessage -. Verify the proper conversion support
-     * as in 3.11.3
+     * Description: Read a StreamMessage -. Verify the proper conversion support as in 3.11.3
      */
     private void streamMessageConversionQTestsLong(jakarta.jms.StreamMessage messageReceived) {
         String testCase = "streamMessageConversionQTestsLong";
@@ -1537,7 +1526,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -1739,8 +1728,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Read a StreamMessage -. Verify the proper conversion support
-     * as in 3.11.3
+     * Description: Read a StreamMessage -. Verify the proper conversion support as in 3.11.3
      */
     private void streamMessageConversionQTestsFloat(jakarta.jms.StreamMessage messageReceived) {
         String testCase = "streamMessageConversionQTestsFloat";
@@ -1749,7 +1737,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -1951,8 +1939,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Read a StreamMessage -. Verify the proper conversion support
-     * as in 3.11.3
+     * Description: Read a StreamMessage -. Verify the proper conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsDouble(jakarta.jms.StreamMessage messageReceived) {
@@ -1962,7 +1949,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -2163,8 +2150,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Read a StreamMessage -. Verify the proper conversion support
-     * as in 3.11.3
+     * Description: Read a StreamMessage -. Verify the proper conversion support as in 3.11.3
      */
     private void streamMessageConversionQTestsString(jakarta.jms.StreamMessage messageReceived) {
         String testCase = "streamMessageConversionQTestsString";
@@ -2173,7 +2159,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -2405,8 +2391,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Read a StreamMessage -. Verify the proper conversion support
-     * as in 3.11.3
+     * Description: Read a StreamMessage -. Verify the proper conversion support as in 3.11.3
      *
      */
     private void streamMessageConversionQTestsChar(jakarta.jms.StreamMessage messageReceived) {
@@ -2416,7 +2401,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues = {0};
+            byte[] bValues = { 0 };
             char charValue = 'a';
             short sValue = 1;
             long lValue = 2;
@@ -2616,8 +2601,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Read a StreamMessage -. Verify the proper conversion support
-     * as in 3.11.3
+     * Description: Read a StreamMessage -. Verify the proper conversion support as in 3.11.3
      */
     private void streamMessageConversionQTestsBytes(jakarta.jms.StreamMessage messageReceived) {
         String testCase = "streamMessageConversionQTestsBytes";
@@ -2626,7 +2610,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
             byte bValue = 127;
             boolean abool = true;
-            byte[] bValues2 = {0, 0, 0};
+            byte[] bValues2 = { 0, 0, 0 };
             short sValue = 1;
             long lValue = 2;
             double dValue = 3;
@@ -2829,8 +2813,8 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Read a StreamMessage -. Verify NumberFormatException is thrown
-     * Verify that the pointer was not incremented by doing a read string
+     * Description: Read a StreamMessage -. Verify NumberFormatException is thrown Verify that the pointer was not
+     * incremented by doing a read string
      *
      */
     private void streamMessageConversionQTestsInvFormatString(jakarta.jms.StreamMessage messageReceived) {
@@ -2987,9 +2971,9 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
         try {
             byte bValue = 127;
             boolean abool = false;
-            byte[] bValues2 = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-            byte[] bValuesReturned = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            byte[] bValuesReturned2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            byte[] bValues2 = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+            byte[] bValuesReturned = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            byte[] bValuesReturned2 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             char charValue = 'Z';
             short sValue = 32767;
             long lValue = 9223372036854775807L;
@@ -3216,8 +3200,7 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: send test results to response queue (MDB_QUEUE_REPLY) for
-     * verification
+     * Description: send test results to response queue (MDB_QUEUE_REPLY) for verification
      */
     private void sendTestResults(String testCase, boolean results) {
         TextMessage msg = null;
@@ -3229,8 +3212,10 @@ public class MsgBeanMsgTestQ2 implements MessageDrivenBean, MessageListener {
             msg = qSession.createTextMessage();
             msg.setStringProperty("TestCase", testCase);
             msg.setText(testCase);
-            if (results) msg.setStringProperty("Status", "Pass");
-            else msg.setStringProperty("Status", "Fail");
+            if (results)
+                msg.setStringProperty("Status", "Pass");
+            else
+                msg.setStringProperty("Status", "Fail");
 
             TestUtil.logTrace("Sending response message");
             mSender.send(msg);

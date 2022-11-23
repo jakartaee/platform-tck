@@ -62,9 +62,8 @@ public abstract class TopicClientBase extends com.sun.ts.tests.ejb30.common.mess
      *
      * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
      *
-     * @test_Strategy: test message destination related elements in deployment
-     * descriptors: message-destination, message-destination-ref,
-     * message-destination-link
+     * @test_Strategy: test message destination related elements in deployment descriptors: message-destination,
+     * message-destination-ref, message-destination-link
      */
     public void test1() throws Fault {
         sendReceive();

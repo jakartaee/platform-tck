@@ -27,7 +27,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -51,12 +52,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: containsTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1498; PERSISTENCE:SPEC:1498.1;
-     * PERSISTENCE:SPEC:1498.2; PERSISTENCE:SPEC:1866; PERSISTENCE:SPEC:1978;
+     * @assertion_ids: PERSISTENCE:SPEC:1498; PERSISTENCE:SPEC:1498.1; PERSISTENCE:SPEC:1498.2; PERSISTENCE:SPEC:1866;
+     * PERSISTENCE:SPEC:1978;
      *
-     * @test_Strategy: Using the xml shared-cache-mode element with a value of
-     * ENABLE_SELECTIVE persist some entities with various Cachable values and
-     * verify the behavior of whether or not each is retained or not in the cache.
+     * @test_Strategy: Using the xml shared-cache-mode element with a value of ENABLE_SELECTIVE persist some entities with
+     * various Cachable values and verify the behavior of whether or not each is retained or not in the cache.
      */
     public void containsTest() throws Fault {
         Cache cache;

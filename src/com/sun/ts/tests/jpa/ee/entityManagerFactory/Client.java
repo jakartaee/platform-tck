@@ -30,11 +30,11 @@ public class Client extends PMClientBase {
 
     Properties props = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
-        com.sun.ts.tests.jpa.core.entityManagerFactory.Client theTests =
-                new com.sun.ts.tests.jpa.core.entityManagerFactory.Client();
+        com.sun.ts.tests.jpa.core.entityManagerFactory.Client theTests = new com.sun.ts.tests.jpa.core.entityManagerFactory.Client();
         Status s = theTests.run(args, System.out, System.err);
         s.exit();
     }

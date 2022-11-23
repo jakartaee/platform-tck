@@ -77,14 +77,14 @@ public class AnimalBuilder {
         Animal animal;
 
         switch (type) {
-            case CAT:
-                animal = new Cat(age, name, weight, furry, cuddly);
-                break;
-            case DOG:
-                animal = new Dog(age, name, weight, furry, barking);
-                break;
-            default:
-                animal = new Animal(age, name, weight, furry);
+        case CAT:
+            animal = new Cat(age, name, weight, furry, cuddly);
+            break;
+        case DOG:
+            animal = new Dog(age, name, weight, furry, barking);
+            break;
+        default:
+            animal = new Animal(age, name, weight, furry);
         }
 
         return animal;

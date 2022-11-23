@@ -23,7 +23,8 @@ import jakarta.persistence.PrePersist;
 
 public class ListenerC {
 
-    public ListenerC() {}
+    public ListenerC() {
+    }
 
     @PrePersist
     public void prePersistFromXML(Object obj) {

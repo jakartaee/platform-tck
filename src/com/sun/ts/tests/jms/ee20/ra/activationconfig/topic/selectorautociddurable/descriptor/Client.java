@@ -32,22 +32,19 @@ public class Client extends com.sun.ts.tests.jms.ee20.ra.activationconfig.common
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
 
     /*
      * @testName: test1
      *
-     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-     * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
-     * JMS:SPEC:276.7; JMS:SPEC:276.8; JMS:SPEC:276.9;
+     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2; JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5;
+     * JMS:SPEC:276.6; JMS:SPEC:276.7; JMS:SPEC:276.8; JMS:SPEC:276.9;
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      *
-     * Sends message and waits for response. The message should reach the target
-     * MDB, and a response should be received by this client.
+     * Sends message and waits for response. The message should reach the target MDB, and a response should be received by
+     * this client.
      */
     public void test1() throws Fault {
         TestUtil.logMsg("Testing the following activationConfig properties");
@@ -69,15 +66,13 @@ public class Client extends com.sun.ts.tests.jms.ee20.ra.activationconfig.common
     /*
      * @testName: negativeTest1
      *
-     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-     * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
-     * JMS:SPEC:276.7; JMS:SPEC:276.8; JMS:SPEC:276.9;
+     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2; JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5;
+     * JMS:SPEC:276.6; JMS:SPEC:276.7; JMS:SPEC:276.8; JMS:SPEC:276.9;
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      *
-     * Sends message and waits for response. The message should not reach the
-     * target MDB, and no response should be received by this client.
+     * Sends message and waits for response. The message should not reach the target MDB, and no response should be received
+     * by this client.
      */
     public void negativeTest1() throws Fault {
         TestUtil.logMsg("Testing the following activationConfig properties");
@@ -99,15 +94,13 @@ public class Client extends com.sun.ts.tests.jms.ee20.ra.activationconfig.common
     /*
      * @testName: negativeTest2
      *
-     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2;
-     * JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5; JMS:SPEC:276.6;
-     * JMS:SPEC:276.7; JMS:SPEC:276.8; JMS:SPEC:276.9;
+     * @assertion_ids: JMS:SPEC:276; JMS:SPEC:276.1; JMS:SPEC:276.2; JMS:SPEC:276.3; JMS:SPEC:276.4; JMS:SPEC:276.5;
+     * JMS:SPEC:276.6; JMS:SPEC:276.7; JMS:SPEC:276.8; JMS:SPEC:276.9;
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      *
-     * Sends message and waits for response. The message should not reach the
-     * target MDB, and no response should be received by this client.
+     * Sends message and waits for response. The message should not reach the target MDB, and no response should be received
+     * by this client.
      */
     public void negativeTest2() throws Fault {
         TestUtil.logMsg("Testing the following activationConfig properties");

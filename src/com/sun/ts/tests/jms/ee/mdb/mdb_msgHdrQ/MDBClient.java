@@ -41,8 +41,7 @@ public class MDBClient extends EETest {
 
     /* Test setup: */
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.port;
-     * harness.log.traceflag;
+     * @class.setup_props: jms_timeout; user; password; harness.log.port; harness.log.traceflag;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -70,12 +69,10 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:7; JMS:JAVADOC:347;
      *
-     * @test_Strategy: With a queue destination Invoke a session bean, have the
-     * bean request an mdb for a queue
+     * @test_Strategy: With a queue destination Invoke a session bean, have the bean request an mdb for a queue
      *
-     * to send a single Text, map, bytes, stream, and object message check time of
-     * send against time send returns JMSTimeStamp should be between these two
-     * Have the mdb send the test results to MDB_QUEUE_REPLY
+     * to send a single Text, map, bytes, stream, and object message check time of send against time send returns
+     * JMSTimeStamp should be between these two Have the mdb send the test results to MDB_QUEUE_REPLY
      */
     public void mdbMsgHdrTimeStampQTest() throws Fault {
         String testCase = "msgHdrTimeStampQTest";
@@ -98,9 +95,8 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a
-     * queue to send a text message to a Queue with CorrelationID set. Receive msg
-     * and verify the correlationid is as set by client Have the mdb send the test
+     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a queue to send a text message to a Queue
+     * with CorrelationID set. Receive msg and verify the correlationid is as set by client Have the mdb send the test
      * results to MDB_QUEUE_REPLY
      *
      */
@@ -126,10 +122,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a
-     * queue to send a Bytes message to a Queue with CorrelationID set. Receive
-     * msg and verify the correlationid is as set by client Have the mdb send the
-     * test results to MDB_QUEUE_REPLY
+     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a queue to send a Bytes message to a Queue
+     * with CorrelationID set. Receive msg and verify the correlationid is as set by client Have the mdb send the test
+     * results to MDB_QUEUE_REPLY
      *
      */
     public void mdbMsgHdrCorlIdQBytesTest() throws Fault {
@@ -154,10 +149,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a
-     * queue to send a map message to a Queue with CorrelationID set. Receive msg
-     * and verify the correlationid is as set by client Have the mdb send the test
-     * results to MDB_QUEUE_REPLY
+     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a queue to send a map message to a Queue with
+     * CorrelationID set. Receive msg and verify the correlationid is as set by client Have the mdb send the test results to
+     * MDB_QUEUE_REPLY
      *
      */
     public void mdbMsgHdrCorlIdQMapTest() throws Fault {
@@ -182,10 +176,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a
-     * queue to send a stream message to a Queue with CorrelationID set. Receive
-     * msg and verify the correlationid is as set by client Have the mdb send the
-     * test results to MDB_QUEUE_REPLY
+     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a queue to send a stream message to a Queue
+     * with CorrelationID set. Receive msg and verify the correlationid is as set by client Have the mdb send the test
+     * results to MDB_QUEUE_REPLY
      *
      */
     public void mdbMsgHdrCorlIdQStreamTest() throws Fault {
@@ -211,9 +204,8 @@ public class MDBClient extends EETest {
      * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
      *
-     * @test_Strategy: Send an Object message to a Queue with CorrelationID set.
-     * Receive msg and verify the correlationid is as set by client Have the mdb
-     * send the test results to MDB_QUEUE_REPLY
+     * @test_Strategy: Send an Object message to a Queue with CorrelationID set. Receive msg and verify the correlationid is
+     * as set by client Have the mdb send the test results to MDB_QUEUE_REPLY
      *
      */
     public void mdbMsgHdrCorlIdQObjectTest() throws Fault {
@@ -236,14 +228,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgHdrReplyToQTest
      *
-     * @assertion_ids: JMS:SPEC:12; JMS:SPEC:246.8; JMS:JAVADOC:359;
-     * JMS:JAVADOC:361; JMS:JAVADOC:286; JMS:JAVADOC:562; JMS:JAVADOC:166;
+     * @assertion_ids: JMS:SPEC:12; JMS:SPEC:246.8; JMS:JAVADOC:359; JMS:JAVADOC:361; JMS:JAVADOC:286; JMS:JAVADOC:562;
+     * JMS:JAVADOC:166;
      *
      *
-     * @test_Strategy: Invoke a session bean. Have the session bean request an mdb
-     * to send a message to a Queue with ReplyTo set to a destination. Have the
-     * mdb verify on receive. Have the mdb send the test results to
-     * MDB_QUEUE_REPLY
+     * @test_Strategy: Invoke a session bean. Have the session bean request an mdb to send a message to a Queue with ReplyTo
+     * set to a destination. Have the mdb verify on receive. Have the mdb send the test results to MDB_QUEUE_REPLY
      *
      */
     public void mdbMsgHdrReplyToQTest() throws Fault {
@@ -268,9 +258,8 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:246.9; JMS:JAVADOC:375; JMS:JAVADOC:377;
      *
-     * @test_Strategy: Invoke a session bean. Have the session bean request an mdb
-     * to send a message to a Queue with JMSType set to TESTMSG verify on receive.
-     * Have the mdb send the test results to MDB_QUEUE_REPLY
+     * @test_Strategy: Invoke a session bean. Have the session bean request an mdb to send a message to a Queue with JMSType
+     * set to TESTMSG verify on receive. Have the mdb send the test results to MDB_QUEUE_REPLY
      *
      */
     public void mdbMsgHdrJMSTypeQTest() throws Fault {
@@ -293,13 +282,11 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgHdrJMSPriorityQTest
      *
-     * @assertion_ids: JMS:SPEC:16; JMS:SPEC:18; JMS:SPEC:140; JMS:JAVADOC:305;
-     * JMS:JAVADOC:383;
+     * @assertion_ids: JMS:SPEC:16; JMS:SPEC:18; JMS:SPEC:140; JMS:JAVADOC:305; JMS:JAVADOC:383;
      *
-     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a
-     * queue to send a message to a Queue with JMSPriority set to 2 test with
-     * Text, map, object, byte, and stream messages verify on receive. Have the
-     * mdb send the test results to MDB_QUEUE_REPLY
+     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a queue to send a message to a Queue with
+     * JMSPriority set to 2 test with Text, map, object, byte, and stream messages verify on receive. Have the mdb send the
+     * test results to MDB_QUEUE_REPLY
      *
      */
     public void mdbMsgHdrJMSPriorityQTest() throws Fault {
@@ -322,14 +309,11 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgHdrJMSExpirationQueueTest
      *
-     * @assertion_ids: JMS:SPEC:15.2; JMS:SPEC:15.3; JMS:SPEC:140;
-     * JMS:JAVADOC:309; JMS:JAVADOC:379;
+     * @assertion_ids: JMS:SPEC:15.2; JMS:SPEC:15.3; JMS:SPEC:140; JMS:JAVADOC:309; JMS:JAVADOC:379;
      *
-     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a
-     * queue to send a message to a Queue with time to live set to 0 Verify that
-     * JMSExpiration gets set to 0 test with Text, map, object, byte, and stream
-     * messages verify on receive. Have the mdb send the test results to
-     * MDB_QUEUE_REPLY
+     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a queue to send a message to a Queue with
+     * time to live set to 0 Verify that JMSExpiration gets set to 0 test with Text, map, object, byte, and stream messages
+     * verify on receive. Have the mdb send the test results to MDB_QUEUE_REPLY
      *
      */
     public void mdbMsgHdrJMSExpirationQueueTest() throws Fault {
@@ -354,11 +338,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:2; JMS:JAVADOC:363; JMS:JAVADOC:286;
      *
-     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a
-     * queue to create and send a message set to the default Queue. Receive msg
-     * and verify that JMSDestination is set to the default Queue test with Text,
-     * map, object, byte, and stream messages Have the mdb send the test results
-     * to MDB_QUEUE_REPLY
+     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a queue to create and send a message set to
+     * the default Queue. Receive msg and verify that JMSDestination is set to the default Queue test with Text, map,
+     * object, byte, and stream messages Have the mdb send the test results to MDB_QUEUE_REPLY
      */
     public void mdbMsgHdrJMSDestinationQTest() throws Fault {
         String testCase1 = "msgHdrJMSDestinationQTestCreate";
@@ -380,15 +362,12 @@ public class MDBClient extends EETest {
     /*
      * @testName: mdbMsgHdrJMSDeliveryModeQTest
      *
-     * @assertion_ids: JMS:SPEC:246.2; JMS:SPEC:3; JMS:SPEC:140; JMS:JAVADOC:367;
-     * JMS:JAVADOC:301;
+     * @assertion_ids: JMS:SPEC:246.2; JMS:SPEC:3; JMS:SPEC:140; JMS:JAVADOC:367; JMS:JAVADOC:301;
      *
-     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a
-     * queue to create and send a message. Receive the msg and verify that
-     * JMSDeliveryMode is set the default delivery mode of persistent. Create and
-     * test another message with a nonpersistent delivery mode. test with Text,
-     * map, object, byte, and stream messages Have the mdb send the test results
-     * to MDB_QUEUE_REPLY
+     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a queue to create and send a message. Receive
+     * the msg and verify that JMSDeliveryMode is set the default delivery mode of persistent. Create and test another
+     * message with a nonpersistent delivery mode. test with Text, map, object, byte, and stream messages Have the mdb send
+     * the test results to MDB_QUEUE_REPLY
      */
     public void mdbMsgHdrJMSDeliveryModeQTest() throws Fault {
         String testCase1 = "msgHdrJMSDeliveryModeQTestCreate";
@@ -412,10 +391,9 @@ public class MDBClient extends EETest {
      *
      * @assertion_ids: JMS:SPEC:4; JMS:JAVADOC:343;
      *
-     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a
-     * queue to send and receive single Text, map, bytes, stream, and object
-     * message call getJMSMessageID and verify that it starts with ID: 3.4.3 Have
-     * the mdb send the test results to MDB_QUEUE_REPLY
+     * @test_Strategy: Invoke a session bean, have the bean request an mdb for a queue to send and receive single Text, map,
+     * bytes, stream, and object message call getJMSMessageID and verify that it starts with ID: 3.4.3 Have the mdb send the
+     * test results to MDB_QUEUE_REPLY
      */
     public void mdbMsgHdrIDQTest() throws Fault {
 

@@ -80,31 +80,31 @@ public class NamespaceAttributeVerifier implements DescriptionConstants, SOAPCon
      */
     public void verify() throws EETest.Fault {
         switch (requirement) {
-            case 2716:
-                style = SOAP_DOCUMENT;
-                wsdlTargets = new String[] {WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME, WSDL_FAULT_LOCAL_NAME};
-                soapTargets = new String[] {
+        case 2716:
+            style = SOAP_DOCUMENT;
+            wsdlTargets = new String[] { WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME, WSDL_FAULT_LOCAL_NAME };
+            soapTargets = new String[] {
                     SOAP_BODY_LOCAL_NAME, SOAP_HEADER_LOCAL_NAME, SOAP_HEADERFAULT_LOCAL_NAME, SOAP_FAULT_LOCAL_NAME
-                };
-                forbidden = true;
-                break;
+            };
+            forbidden = true;
+            break;
 
-            case 2717:
-                style = SOAP_RPC;
-                wsdlTargets = new String[] {WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME};
-                soapTargets = new String[] {SOAP_BODY_LOCAL_NAME};
-                forbidden = false;
-                break;
+        case 2717:
+            style = SOAP_RPC;
+            wsdlTargets = new String[] { WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME };
+            soapTargets = new String[] { SOAP_BODY_LOCAL_NAME };
+            forbidden = false;
+            break;
 
-            case 2726:
-                style = SOAP_RPC;
-                wsdlTargets = new String[] {WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME, WSDL_FAULT_LOCAL_NAME};
-                soapTargets = new String[] {SOAP_HEADER_LOCAL_NAME, SOAP_HEADERFAULT_LOCAL_NAME, SOAP_FAULT_LOCAL_NAME};
-                forbidden = true;
-                break;
+        case 2726:
+            style = SOAP_RPC;
+            wsdlTargets = new String[] { WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME, WSDL_FAULT_LOCAL_NAME };
+            soapTargets = new String[] { SOAP_HEADER_LOCAL_NAME, SOAP_HEADERFAULT_LOCAL_NAME, SOAP_FAULT_LOCAL_NAME };
+            forbidden = true;
+            break;
 
-            default:
-                throw new EETest.Fault("The requirement 'R" + requirement + "' not supported");
+        default:
+            throw new EETest.Fault("The requirement 'R" + requirement + "' not supported");
         }
 
         Element[] bindings = DescriptionUtils.getBindings(document);
@@ -124,8 +124,7 @@ public class NamespaceAttributeVerifier implements DescriptionConstants, SOAPCon
                     + "-literal, received " + style
                     + "-literal, no further parsing test failed ...");
         }
-        Element[] operations =
-                DescriptionUtils.getChildElements(binding, WSDL_NAMESPACE_URI, WSDL_OPERATION_LOCAL_NAME);
+        Element[] operations = DescriptionUtils.getChildElements(binding, WSDL_NAMESPACE_URI, WSDL_OPERATION_LOCAL_NAME);
         for (int i = 0; i < operations.length; i++) {
             verifyOperation(operations[i]);
         }

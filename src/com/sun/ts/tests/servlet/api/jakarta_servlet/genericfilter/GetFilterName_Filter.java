@@ -100,5 +100,6 @@ public final class GetFilterName_Filter extends GenericFilter {
     }
 
     // remove the filter configuration object for this filter.
-    public void destroy() {}
+    public void destroy() {
+    }
 }

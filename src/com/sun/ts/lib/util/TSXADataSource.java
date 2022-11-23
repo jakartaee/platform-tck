@@ -36,7 +36,8 @@ public class TSXADataSource {
 
     private static TSXADataSource instance = new TSXADataSource();
 
-    private TSXADataSource() {}
+    private TSXADataSource() {
+    }
 
     public static TSXADataSource instance() {
         return instance;
@@ -115,13 +116,10 @@ public class TSXADataSource {
     /**
      * Find a specific method within a Class
      *
-     * @param methodName
-     *          the name of the method to search for in clazz
-     * @param clazz
-     *          The Class to search for 'methodName' in
+     * @param methodName the name of the method to search for in clazz
+     * @param clazz The Class to search for 'methodName' in
      * @return the returned Method.
-     * @throws <code>Exception</code>,
-     *           in case methodName cannot be found in clazz
+     * @throws <code>Exception</code>, in case methodName cannot be found in clazz
      */
     private Method findMethod(String methodName, Class clazz) throws Exception {
         Method[] methods = clazz.getMethods();
@@ -144,13 +142,10 @@ public class TSXADataSource {
     /**
      * Converts the type from String to the Class type.
      *
-     * @param type
-     *          Class name to which the conversion is required.
-     * @param parameter
-     *          String value to be converted.
+     * @param type Class name to which the conversion is required.
+     * @param parameter String value to be converted.
      * @return Converted value.
-     * @throws <code>NumberFormatException</code>,
-     *           in case of the mismatch of parameter values.
+     * @throws <code>NumberFormatException</code>, in case of the mismatch of parameter values.
      */
     private Object convertType(Class type, String parameter) throws NumberFormatException {
         try {

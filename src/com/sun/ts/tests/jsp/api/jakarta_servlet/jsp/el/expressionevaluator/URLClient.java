@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -62,10 +60,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:168
      *
-     * @test_Strategy: Validate the following: - An expression can be prepared
-     * using a FunctionMapper. - An expression can be prepared passing a null
-     * reference for the FunctionMapper - If the expression uses a function an no
-     * prefix is provided, the default prefix will be used.
+     * @test_Strategy: Validate the following: - An expression can be prepared using a FunctionMapper. - An expression can
+     * be prepared passing a null reference for the FunctionMapper - If the expression uses a function an no prefix is
+     * provided, the default prefix will be used.
      */
     public void expressionEvaluatorParseExpressionTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "expressionEvaluatorParseExpressionTest");
@@ -77,13 +74,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:171;JSP:JAVADOC:165
      *
-     * @test_Strategy: Validate the following: - Evaluation can occur using a
-     * FunctionMapper. - Evaluation can occur when a null reference passed as the
-     * FunctionMapper - If the expression uses a function an no prefix is
-     * provided, the default prefix will be used. - When the FunctionMapper is
-     * used, the resolveFunction method must be called. - Validate the the
-     * provided VariableResolver is used. - Validate the result of the
-     * expressions.
+     * @test_Strategy: Validate the following: - Evaluation can occur using a FunctionMapper. - Evaluation can occur when a
+     * null reference passed as the FunctionMapper - If the expression uses a function an no prefix is provided, the default
+     * prefix will be used. - When the FunctionMapper is used, the resolveFunction method must be called. - Validate the the
+     * provided VariableResolver is used. - Validate the result of the expressions.
      */
     public void expressionEvaluatorEvaluateTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "expressionEvaluatorEvaluateTest");

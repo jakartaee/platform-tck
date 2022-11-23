@@ -37,8 +37,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: resolveByEjbLinkInXml
      *
-     * @test_Strategy: @EJB in TestBean is incomplete. But the corresponding
-     * ejb-local-ref in web.xml resolves it with ejb-link.
+     * @test_Strategy: @EJB in TestBean is incomplete. But the corresponding ejb-local-ref in web.xml resolves it with
+     * ejb-link.
      */
     public void resolveByEjbLinkInXml() {
         assertEquals("Check correct target EJB is resolved. ", 1, overrideBean.getNumber());
@@ -47,8 +47,7 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: availableInEjb
      *
-     * @test_Strategy: the ejb-local-ref declared in web.xml should be available
-     * for lookup in ejb components.
+     * @test_Strategy: the ejb-local-ref declared in web.xml should be available for lookup in ejb components.
      */
     public void availableInEjb() {
         assertEquals("Look up OverrideBean and invoke: ", 1, getTestBean().getNumber());

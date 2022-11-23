@@ -34,19 +34,22 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
 @Stateful(name = "BusinessBean")
-@Remote({BusinessIF1.class, BusinessIF2.class})
-@Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
+@Remote({ BusinessIF1.class, BusinessIF2.class })
+@Local({ BusinessLocalIF1.class, BusinessLocalIF2.class })
 public class BusinessBean extends BusinessBeanBase implements java.io.Serializable {
     @Resource
     private SessionContext sessionContext;
 
-    public BusinessBean() {}
+    public BusinessBean() {
+    }
 
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 
     @Remove
-    public void remove2() {}
+    public void remove2() {
+    }
 
     //////////////////////////////////////////////////////////////////////
     // These 3 methods should not be called since this bean does not

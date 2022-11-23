@@ -19,12 +19,7 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2751;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceException;
 
-@WebService(
-        portName = "W2JRLR2751TestPort",
-        serviceName = "W2JRLR2751TestService",
-        targetNamespace = "http://w2jrlr2751testservice.org/W2JRLR2751TestService.wsdl",
-        wsdlLocation = "WEB-INF/wsdl/W2JRLR2751TestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2751.W2JRLR2751Test")
+@WebService(portName = "W2JRLR2751TestPort", serviceName = "W2JRLR2751TestService", targetNamespace = "http://w2jrlr2751testservice.org/W2JRLR2751TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR2751TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2751.W2JRLR2751Test")
 public class W2JRLR2751TestImpl implements W2JRLR2751Test {
     public String echoIt(String item, ConfigHeader ch, ConfigHeader2 ch2, ConfigHeader3 ch3) {
 

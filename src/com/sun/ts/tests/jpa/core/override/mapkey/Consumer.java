@@ -34,7 +34,8 @@ public class Consumer implements Serializable {
     @OrderBy("cost ASC")
     private List<RetailOrder> orders = new ArrayList<RetailOrder>();
 
-    public Consumer() {}
+    public Consumer() {
+    }
 
     public Long getId() {
         return id;

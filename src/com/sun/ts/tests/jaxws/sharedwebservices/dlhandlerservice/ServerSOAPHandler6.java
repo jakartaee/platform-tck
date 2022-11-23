@@ -66,8 +66,7 @@ public class ServerSOAPHandler6 extends SOAPHandlerBase {
                 if (Handler_Util.checkForMsg(
                         this, context, "ServerSOAPInboundHandlerThrowsSOAPFaultToClientHandlersTest")) {
                     HandlerTracker.reportComment(this, "Throwing an inbound SOAPFaultException");
-                    String faultString =
-                            "ServerSOAPHandler6.handleMessage throws SOAPFaultException for ServerSOAPInboundHandlerThrowsSOAPFaultToClientHandlersTest";
+                    String faultString = "ServerSOAPHandler6.handleMessage throws SOAPFaultException for ServerSOAPInboundHandlerThrowsSOAPFaultToClientHandlersTest";
                     try {
                         name = SOAPFactory.newInstance().createName("somefaultentry");
                         sf = JAXWS_Util.createSOAPFault("soap11", FAULTCODE, FAULTACTOR, faultString, name);
@@ -82,8 +81,7 @@ public class ServerSOAPHandler6 extends SOAPHandlerBase {
                 if (Handler_Util.checkForMsg(
                         this, context, "ServerSOAPOutboundHandlerThrowsSOAPFaultToClientHandlersTest")) {
                     HandlerTracker.reportComment(this, "Throwing an outbound SOAPFaultException");
-                    String faultString =
-                            "ServerSOAPHandler6.handleMessage throws SOAPFaultException for ServerSOAPOutboundHandlerThrowsSOAPFaultToClientHandlersTest";
+                    String faultString = "ServerSOAPHandler6.handleMessage throws SOAPFaultException for ServerSOAPOutboundHandlerThrowsSOAPFaultToClientHandlersTest";
                     try {
                         name = SOAPFactory.newInstance().createName("somefaultentry");
                         sf = JAXWS_Util.createSOAPFault("soap11", FAULTCODE, FAULTACTOR, faultString, name);

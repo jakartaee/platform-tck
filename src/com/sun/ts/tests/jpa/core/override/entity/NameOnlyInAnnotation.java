@@ -24,7 +24,8 @@ public class NameOnlyInAnnotation implements java.io.Serializable {
 
     private Long id;
 
-    public NameOnlyInAnnotation() {}
+    public NameOnlyInAnnotation() {
+    }
 
     @Id
     public Long getId() {

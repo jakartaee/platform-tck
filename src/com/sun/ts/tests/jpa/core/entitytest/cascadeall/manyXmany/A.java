@@ -71,14 +71,8 @@ public class A implements java.io.Serializable {
     // ===========================================================
     // relationship fields
 
-    @ManyToMany(
-            targetEntity = com.sun.ts.tests.jpa.core.entitytest.cascadeall.manyXmany.B.class,
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "FKEYS_MXM_BI_BTOB",
-            joinColumns = @JoinColumn(name = "FK_FOR_AEJB_MXM_BI_BTOB", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "FK_FOR_BEJB_MXM_BI_BTOB", referencedColumnName = "ID"))
+    @ManyToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.cascadeall.manyXmany.B.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "FKEYS_MXM_BI_BTOB", joinColumns = @JoinColumn(name = "FK_FOR_AEJB_MXM_BI_BTOB", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "FK_FOR_BEJB_MXM_BI_BTOB", referencedColumnName = "ID"))
     protected Collection bCol = new java.util.ArrayList();
 
     // =======================================================================

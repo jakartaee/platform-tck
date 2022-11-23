@@ -30,10 +30,12 @@ public class AlternativeInputStreamDecoder implements Decoder.Binary<InputStream
     public static final String DECODER_SAYS = "InputStream decoder";
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 
     @Override
     public boolean willDecode(ByteBuffer bytes) {

@@ -25,8 +25,7 @@ import jakarta.ejb.EJBException;
 import jakarta.ejb.NoSuchEJBException;
 
 /**
- * no interface view EJBs are used in many other test directories. This
- * directory covers uncommon requirements.
+ * no interface view EJBs are used in many other test directories. This directory covers uncommon requirements.
  */
 public class JsfClientBase extends EJBLiteJsfClientBase {
     protected BeanBase stateless;
@@ -66,9 +65,8 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: invokeRemovedStateful
      *
-     * @test_Strategy: Invoking a removed stateful no-interface bean results in
-     * jakarta.ejb.NoSuchEJBException. Also verify the overloaded method with same
-     * method name but different params is not considered a remove-method.
+     * @test_Strategy: Invoking a removed stateful no-interface bean results in jakarta.ejb.NoSuchEJBException. Also verify
+     * the overloaded method with same method name but different params is not considered a remove-method.
      */
     public void invokeRemovedStateful() {
         statefulToBeRemoved.remove(false);
@@ -87,8 +85,8 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: passAsParam
      *
-     * @test_Strategy: no-interface view bean reference can be passed by param of
-     * any local business interface or no-interface method. Using varargs...
+     * @test_Strategy: no-interface view bean reference can be passed by param of any local business interface or
+     * no-interface method. Using varargs...
      */
     public void passAsParam() {
         appendReason(
@@ -113,9 +111,8 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: passAsReturn
      *
-     * @test_Strategy: no-interface view bean reference can be passed by param of
-     * any local business interface or no-interface method. Using covariant return
-     * types. Also tests that injected no-interface beans can be looked up via
+     * @test_Strategy: no-interface view bean reference can be passed by param of any local business interface or
+     * no-interface method. Using covariant return types. Also tests that injected no-interface beans can be looked up via
      * jndi.
      */
     public void passAsReturn() {
@@ -129,8 +126,7 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: passEnumAsParams
      *
-     * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the
-     * sum.
+     * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the sum.
      */
     public void passEnumAsParams() {
         int expected = NumberEnum.ONE.add(NumberEnum.TWO.getNumber());
@@ -143,8 +139,7 @@ public class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: passEnumAsReturn
      *
-     * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the
-     * sum.
+     * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the sum.
      */
     public void passEnumAsReturn() {
         NumberEnum expected = NumberEnum.THREE;

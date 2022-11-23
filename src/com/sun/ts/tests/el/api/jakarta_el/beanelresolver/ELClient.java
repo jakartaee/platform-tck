@@ -57,12 +57,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: beanELResolverTest
      *
-     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
-     *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
+     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
+     * EL:JAVADOC:16
      *
-     * @test_Strategy: Verify that API calls work as expected: beanELResolver()
-     *                 getValue() getType() setValue() isReadOnly()
-     *                 getCommonPropertyType() getFeatureDescriptors()
+     * @test_Strategy: Verify that API calls work as expected: beanELResolver() getValue() getType() setValue() isReadOnly()
+     * getCommonPropertyType() getFeatureDescriptors()
      */
     public void beanELResolverTest() throws Fault {
 
@@ -89,11 +88,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: beanELResolverDefaultMethodReadOnlyTest
      *
-     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
-     *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
+     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
+     * EL:JAVADOC:16
      *
-     * @test_Strategy: Verify that API calls work as expected when accessing
-     *                 read-only properties defined via a default interface method
+     * @test_Strategy: Verify that API calls work as expected when accessing read-only properties defined via a default
+     * interface method
      */
     public void beanELResolverDefaultMethodReadOnlyTest() throws Fault {
 
@@ -125,11 +124,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: beanELResolverDefaultMethodReadWriteTest
      *
-     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
-     *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
+     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
+     * EL:JAVADOC:16
      *
-     * @test_Strategy: Verify that API calls work as expected when accessing
-     *                 writable properties defined via a default interface method
+     * @test_Strategy: Verify that API calls work as expected when accessing writable properties defined via a default
+     * interface method
      */
     public void beanELResolverDefaultMethodReadWriteTest() throws Fault {
 
@@ -160,10 +159,9 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: beanELResolverInvokeTest
-     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
-     *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16; EL:JAVADOC:142
-     * @test_Strategy: Verify that API calls work as expected for
-     *                 BeanELResolver.invoke().
+     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
+     * EL:JAVADOC:16; EL:JAVADOC:142
+     * @test_Strategy: Verify that API calls work as expected for BeanELResolver.invoke().
      */
     public void beanELResolverInvokeTest() throws Fault {
 
@@ -175,8 +173,8 @@ public class ELClient extends ServiceEETest {
             BareBonesELContext barebonesContext = new BareBonesELContext();
             ELContext context = barebonesContext.getELContext();
 
-            Class<?>[] types = {String.class, String.class};
-            String[] values = {"Doug", "Donahue"};
+            Class<?>[] types = { String.class, String.class };
+            String[] values = { "Doug", "Donahue" };
 
             pass = ResolverTest.testELResolverInvoke(context, beanResolver, sb, "isName", types, values, false, buf);
         } catch (Exception ex) {
@@ -191,10 +189,10 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: beanELResolverInvokeVoidTest
-     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
-     *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
-     * @test_Strategy: Verify that the ELResolver.invoke() API calls work as
-     *                 expected when calling a method that returns void.
+     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
+     * EL:JAVADOC:16
+     * @test_Strategy: Verify that the ELResolver.invoke() API calls work as expected when calling a method that returns
+     * void.
      */
     public void beanELResolverInvokeVoidTest() throws Fault {
 
@@ -206,8 +204,8 @@ public class ELClient extends ServiceEETest {
             BareBonesELContext barebonesContext = new BareBonesELContext();
             ELContext context = barebonesContext.getELContext();
 
-            Class<?>[] types = {String.class, String.class};
-            String[] values = {"Peter", "Pan"};
+            Class<?>[] types = { String.class, String.class };
+            String[] values = { "Peter", "Pan" };
 
             Object result = beanResolver.invoke(context, sb, "setFullName", types, values);
 
@@ -234,10 +232,9 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: beanELResolverInvokeMNFETest
-     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
-     *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16; EL:JAVADOC:143
-     * @test_Strategy: Verify that the invoke() method throws
-     *                 MethodNotFoundException if no suitable method can be found.
+     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
+     * EL:JAVADOC:16; EL:JAVADOC:143
+     * @test_Strategy: Verify that the invoke() method throws MethodNotFoundException if no suitable method can be found.
      */
     public void beanELResolverInvokeMNFETest() throws Fault {
 
@@ -249,8 +246,8 @@ public class ELClient extends ServiceEETest {
             BareBonesELContext barebonesContext = new BareBonesELContext();
             ELContext context = barebonesContext.getELContext();
 
-            Class<?>[] types = {String.class, String.class};
-            String[] values = {"Doug", "Donahue"};
+            Class<?>[] types = { String.class, String.class };
+            String[] values = { "Doug", "Donahue" };
 
             pass = ResolverTest.testELResolverInvoke(
                     context, beanResolver, sb, "bogus_Method", types, values, true, buf);
@@ -268,14 +265,12 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: beanELResolverNPETest
      *
-     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
-     *                 EL:JAVADOC:16; EL:JAVADOC:136; EL:JAVADOC:139;
-     *                 EL:JAVADOC:145; EL:JAVADOC:148
+     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16; EL:JAVADOC:136;
+     * EL:JAVADOC:139; EL:JAVADOC:145; EL:JAVADOC:148
      *
-     * @test_Strategy: Verify that the following methods throw a
-     *                 NullPointerException, if context is null:
+     * @test_Strategy: Verify that the following methods throw a NullPointerException, if context is null:
      *
-     *                 getType() getValue() isReadOnly() setValue()
+     * getType() getValue() isReadOnly() setValue()
      */
     public void beanELResolverNPETest() throws Fault {
 
@@ -300,15 +295,13 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: beanELResolverPNFETest
      *
-     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
-     *                 EL:JAVADOC:16; EL:JAVADOC:137; EL:JAVADOC:140;
-     *                 EL:JAVADOC:146; EL:JAVADOC:149
+     * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16; EL:JAVADOC:137;
+     * EL:JAVADOC:140; EL:JAVADOC:146; EL:JAVADOC:149
      *
-     * @test_Strategy: Verify that the following methods throw a
-     *                 PropertyNotFoundException, if the base is not null and the
-     *                 specified property does not exist.
+     * @test_Strategy: Verify that the following methods throw a PropertyNotFoundException, if the base is not null and the
+     * specified property does not exist.
      *
-     *                 getType() isReadOnly() setValue() getValue()
+     * getType() isReadOnly() setValue() getValue()
      */
     public void beanELResolverPNFETest() throws Fault {
 
@@ -338,13 +331,11 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:10; EL:JAVADOC:16; EL:JAVADOC:150
      *
-     * @test_Strategy: Verify that the single-parameter constructor for
-     *                 beanELResolver can be used to construct a read-only
-     *                 resolver, and that the setValue() method throws a
-     *                 PropertyNotWritableException, if the resolver was
-     *                 constructed in read-only mode.
+     * @test_Strategy: Verify that the single-parameter constructor for beanELResolver can be used to construct a read-only
+     * resolver, and that the setValue() method throws a PropertyNotWritableException, if the resolver was constructed in
+     * read-only mode.
      *
-     *                 BeanELResolver(boolean) setValue()
+     * BeanELResolver(boolean) setValue()
      */
     public void beanELResolverPNWETest() throws Fault {
 

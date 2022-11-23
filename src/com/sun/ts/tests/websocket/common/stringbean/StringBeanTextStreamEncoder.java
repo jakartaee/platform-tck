@@ -26,7 +26,8 @@ import java.io.Writer;
 public class StringBeanTextStreamEncoder implements TextStream<StringBean> {
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
     public void encode(StringBean bean, Writer writer) throws EncodeException, IOException {
@@ -34,5 +35,6 @@ public class StringBeanTextStreamEncoder implements TextStream<StringBean> {
     }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

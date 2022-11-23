@@ -36,7 +36,8 @@ public class TheatreCompany implements Serializable {
     @MapKey(name = "id")
     private Map<String, TheatreLocation> locations = new HashMap<String, TheatreLocation>();
 
-    public TheatreCompany() {}
+    public TheatreCompany() {
+    }
 
     public Long getId() {
         return id;

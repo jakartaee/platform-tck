@@ -80,10 +80,9 @@ public class Client extends EETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. TestsT that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. TestsT that require multiple
+     * Destinations create the extras within the test
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
      *
@@ -131,16 +130,16 @@ public class Client extends EETest {
     /*
      * cleanup() is called after each test
      */
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: simpleSendReceiveT
      *
-     * @assertion_ids: JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242;
-     * JMS:JAVADOC:244; JMS:JAVADOC:317; JMS:JAVADOC:334; JMS:JAVADOC:221;
+     * @assertion_ids: JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:244; JMS:JAVADOC:317; JMS:JAVADOC:334;
+     * JMS:JAVADOC:221;
      *
-     * @test_Strategy: Create a Text Message, send use a MessageProducer and
-     * receive it use a MessageConsumer via a Topic
+     * @test_Strategy: Create a Text Message, send use a MessageProducer and receive it use a MessageConsumer via a Topic
      */
     public void simpleSendReceiveT() throws Fault {
         String testMessage = "Just a test from simpleSendReceiveT";
@@ -148,7 +147,8 @@ public class Client extends EETest {
 
         try {
             connr = cf.createConnection(user, password);
-            if (connr.getClientID() == null) connr.setClientID("cts");
+            if (connr.getClientID() == null)
+                connr.setClientID("cts");
 
             Session sessr = connr.createSession(true, Session.AUTO_ACKNOWLEDGE);
             TopicSubscriber recr = sessr.createDurableSubscriber(testDestination, name);
@@ -202,7 +202,8 @@ public class Client extends EETest {
             }
 
             try {
-                if (null != beanRef) beanRef.remove();
+                if (null != beanRef)
+                    beanRef.remove();
             } catch (Exception e) {
                 TestUtil.logErr("[Client] Ignoring Exception on " + "bean remove", e);
             }

@@ -149,7 +149,7 @@ public class PersistenceUnitInfoImpl implements PersistenceUnitInfo, Cloneable {
     @Override
     public Properties getProperties() {
         logger.log("Called PersistenceUnitInfoImpl.getProperties()");
-        for (Iterator iter = properties.keySet().iterator(); iter.hasNext(); ) {
+        for (Iterator iter = properties.keySet().iterator(); iter.hasNext();) {
             String key = (String) iter.next();
             String val = (String) properties.get(key);
             logger.log("Property:[" + key + "," + val + "]");

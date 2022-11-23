@@ -41,42 +41,42 @@ public class AnimalDeserializer implements JsonbDeserializer<Animal> {
             }
             if (event == JsonParser.Event.KEY_NAME) {
                 switch (jsonParser.getString()) {
-                    case "type":
-                        jsonParser.next();
-                        switch (jsonParser.getString()) {
-                            case "cat":
-                                animal = new Cat();
-                                break;
-                            case "dog":
-                                animal = new Dog();
-                                break;
-                            default:
-                                animal = new Animal();
-                        }
+                case "type":
+                    jsonParser.next();
+                    switch (jsonParser.getString()) {
+                    case "cat":
+                        animal = new Cat();
                         break;
-                    case "name":
-                        jsonParser.next();
-                        animal.setName(jsonParser.getString());
+                    case "dog":
+                        animal = new Dog();
                         break;
-                    case "age":
-                        jsonParser.next();
-                        animal.setAge(jsonParser.getInt());
-                        break;
-                    case "furry":
-                        event = jsonParser.next();
-                        animal.setFurry(event == JsonParser.Event.VALUE_TRUE);
-                        break;
-                    case "weight":
-                        jsonParser.next();
-                        animal.setWeight(jsonParser.getBigDecimal().floatValue());
-                        break;
-                    case "cuddly":
-                        event = jsonParser.next();
-                        ((Cat) animal).setCuddly(event == JsonParser.Event.VALUE_TRUE);
-                        break;
-                    case "barking":
-                        event = jsonParser.next();
-                        ((Dog) animal).setBarking(event == JsonParser.Event.VALUE_TRUE);
+                    default:
+                        animal = new Animal();
+                    }
+                    break;
+                case "name":
+                    jsonParser.next();
+                    animal.setName(jsonParser.getString());
+                    break;
+                case "age":
+                    jsonParser.next();
+                    animal.setAge(jsonParser.getInt());
+                    break;
+                case "furry":
+                    event = jsonParser.next();
+                    animal.setFurry(event == JsonParser.Event.VALUE_TRUE);
+                    break;
+                case "weight":
+                    jsonParser.next();
+                    animal.setWeight(jsonParser.getBigDecimal().floatValue());
+                    break;
+                case "cuddly":
+                    event = jsonParser.next();
+                    ((Cat) animal).setCuddly(event == JsonParser.Event.VALUE_TRUE);
+                    break;
+                case "barking":
+                    event = jsonParser.next();
+                    ((Dog) animal).setBarking(event == JsonParser.Event.VALUE_TRUE);
                 }
             }
         }

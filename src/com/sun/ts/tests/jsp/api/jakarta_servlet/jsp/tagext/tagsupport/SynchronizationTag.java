@@ -32,12 +32,10 @@ public class SynchronizationTag extends ContainerInteractionTag {
     }
 
     /**
-     * Adds attributes for begin and nested scripting variables and returns what
-     * ever value is configured by the tag.
+     * Adds attributes for begin and nested scripting variables and returns what ever value is configured by the tag.
      *
      * @return an int value based on what the tag is configured to return
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doStartTag() throws JspException {
         pageContext.setAttribute("begin", Integer.valueOf(1));
@@ -46,8 +44,7 @@ public class SynchronizationTag extends ContainerInteractionTag {
     }
 
     /**
-     * Adds attributes for begin and end scripting variables as well as removing
-     * nested from the PageContext.
+     * Adds attributes for begin and end scripting variables as well as removing nested from the PageContext.
      *
      * @return an int value based on what the tag is configured to return
      * @throws JspException

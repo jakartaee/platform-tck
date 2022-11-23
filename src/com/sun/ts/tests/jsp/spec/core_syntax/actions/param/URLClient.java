@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -59,9 +57,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:166.3
      *
-     * @test_Strategy: Validate a translation-time error is raised if the
-     * jsp:param element is not a child of jsp:forward, jsp:include, or
-     * jsp:params.
+     * @test_Strategy: Validate a translation-time error is raised if the jsp:param element is not a child of jsp:forward,
+     * jsp:include, or jsp:params.
      */
     public void jspParamUsageContextTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_param_web/JspParamUsageContextTest1.jsp HTTP/1.1");
@@ -81,15 +78,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: jspParamAttributesTest
      *
-     * @assertion_ids: JSP:SPEC:166.1;JSP:SPEC:166.2;JSP:SPEC:166.6;
-     * JSP:SPEC:166.7;JSP:SPEC:166.8;JSP:SPEC:166.9
+     * @assertion_ids: JSP:SPEC:166.1;JSP:SPEC:166.2;JSP:SPEC:166.6; JSP:SPEC:166.7;JSP:SPEC:166.8;JSP:SPEC:166.9
      *
-     * @test_Strategy: Validate the following: - Confirm name and values
-     * attributes are required by checking for a translation-time error if they
-     * are not present. - Confirm that the value attribute can accept both EL and
-     * RT expressions. - Confirm that the name attribute cannot accept either RT
-     * or EL expressions by looking for a translation-time error if the attribute
-     * is provided with either. - The attributes can be set using jsp:attribute
+     * @test_Strategy: Validate the following: - Confirm name and values attributes are required by checking for a
+     * translation-time error if they are not present. - Confirm that the value attribute can accept both EL and RT
+     * expressions. - Confirm that the name attribute cannot accept either RT or EL expressions by looking for a
+     * translation-time error if the attribute is provided with either. - The attributes can be set using jsp:attribute
      */
     public void jspParamAttributesTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -116,8 +110,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:166.4
      *
-     * @test_Strategy: Validate that params added to a jsp:forward are properly
-     * aggregated and available to the target resource.
+     * @test_Strategy: Validate that params added to a jsp:forward are properly aggregated and available to the target
+     * resource.
      */
     public void jspParamForwardTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_param_web/JspParamForwardTest.jsp?param1=value1 HTTP/1.1");
@@ -131,9 +125,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:166.5;JSP:SPEC:166.10
      *
-     * @test_Strategy: Validate that params added to a jsp:included are properly
-     * aggregated and available to the target resource, and are not available to
-     * the calling page after the include completes.
+     * @test_Strategy: Validate that params added to a jsp:included are properly aggregated and available to the target
+     * resource, and are not available to the calling page after the include completes.
      */
     public void jspParamIncludeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_param_web/JspParamIncludeTest.jsp?param1=value1 HTTP/1.1");

@@ -40,7 +40,8 @@ public class Client extends PMClientBase {
 
     Properties props = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -100,15 +101,14 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:2517;
      *
-     * @test_Strategy: Create EntityManagerFactory in try with resources block
-     * and verify whether it's open inside and outside of the try block.
+     * @test_Strategy: Create EntityManagerFactory in try with resources block and verify whether it's open inside and
+     * outside of the try block.
      */
     @SetupMethod(name = "setupNoData")
     @CleanupMethod(name = "cleanupNoData")
     public void autoCloseableTest() throws Fault {
         EntityManagerFactory emf = null;
-        try (final EntityManagerFactory emfLocal =
-                Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
+        try (final EntityManagerFactory emfLocal = Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
             emf = emfLocal;
             if (emf == null) {
                 throw new Fault("autoCloseableTest failed: createEntityManagerFactory(String) returned null");
@@ -133,8 +133,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:340;
      *
-     * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory and
-     * make sure it is not null
+     * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory and make sure it is not null
      */
     @SetupMethod(name = "setupNoData")
     @CleanupMethod(name = "cleanupNoData")
@@ -160,16 +159,14 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:341;
      *
-     * @test_Strategy: Get a PersistenceUnitUtil Object from the
-     * EntityManagerFactory an make sure it is not null
+     * @test_Strategy: Get a PersistenceUnitUtil Object from the EntityManagerFactory an make sure it is not null
      */
     @SetupMethod(name = "setupNoData")
     @CleanupMethod(name = "cleanupNoData")
     public void getPersistenceUnitUtil() throws Fault {
         boolean pass = false;
         try {
-            PersistenceUnitUtil puu =
-                    getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+            PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
             if (puu == null) {
                 TestUtil.logErr("getPersistenceUnitUtil() returned a null result");
             } else {
@@ -188,8 +185,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:339; PERSISTENCE:SPEC:1702;
      *
-     * @test_Strategy: access EntityManagerFactory.getCriteriaBuilder and verify
-     * it can be used to create a query
+     * @test_Strategy: access EntityManagerFactory.getCriteriaBuilder and verify it can be used to create a query
      *
      */
     @SetupMethod(name = "setupNoData")
@@ -197,8 +193,7 @@ public class Client extends PMClientBase {
     public void getCriteriaBuilderTest() throws Fault {
         boolean pass = false;
         try {
-            CriteriaBuilder cbuilder =
-                    getEntityManager().getEntityManagerFactory().getCriteriaBuilder();
+            CriteriaBuilder cbuilder = getEntityManager().getEntityManagerFactory().getCriteriaBuilder();
             if (cbuilder != null) {
                 getEntityTransaction().begin();
                 CriteriaQuery<Object> cquery = cbuilder.createQuery();
@@ -224,11 +219,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: addNamedQueryMaxResultTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311;
-     * PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311; PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
      *
-     * @test_Strategy: Test that max result of addNamedQuery is retained or can be
-     * overridden
+     * @test_Strategy: Test that max result of addNamedQuery is retained or can be overridden
      */
     public void addNamedQueryMaxResultTest() throws Fault {
         boolean pass1 = false;
@@ -241,8 +234,7 @@ public class Client extends PMClientBase {
         try {
             CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
             TestUtil.logTrace("Defining queries");
-            Query nativeQuery =
-                    getEntityManager().createNativeQuery("Select o.ID from PURCHASE_ORDER o ORDER BY o.ID ASC");
+            Query nativeQuery = getEntityManager().createNativeQuery("Select o.ID from PURCHASE_ORDER o ORDER BY o.ID ASC");
             nativeQuery.setMaxResults(1);
             getEntityManagerFactory().addNamedQuery("native_query", nativeQuery);
 
@@ -618,11 +610,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: addNamedQueryFlushModeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311;
-     * PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311; PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
      *
-     * @test_Strategy: Test that flush mode of addNamedQuery is retained or can be
-     * overridden
+     * @test_Strategy: Test that flush mode of addNamedQuery is retained or can be overridden
      */
 
     public void addNamedQueryFlushModeTest() throws Fault {
@@ -976,11 +966,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: addNamedQueryLockModeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311;
-     * PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1527; PERSISTENCE:SPEC:1311; PERSISTENCE:SPEC:1514; PERSISTENCE:SPEC:1514.2;
      *
-     * @test_Strategy: Test that lock mode of addNamedQuery is retained or can be
-     * overridden
+     * @test_Strategy: Test that lock mode of addNamedQuery is retained or can be overridden
      */
     @SetupMethod(name = "setupMember")
     public void addNamedQueryLockModeTest() throws Fault {

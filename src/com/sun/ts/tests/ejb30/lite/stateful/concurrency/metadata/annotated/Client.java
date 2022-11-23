@@ -28,18 +28,9 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 
 @EJBs({
-    @EJB(
-            name = containerConcurrencyBeanNoInterface,
-            beanName = "ContainerConcurrencyBean",
-            beanInterface = ContainerConcurrencyBean.class),
-    @EJB(
-            name = defaultConcurrencyBeanNoInterface,
-            beanName = "DefaultConcurrencyBean",
-            beanInterface = DefaultConcurrencyBean.class),
-    @EJB(
-            name = notAllowedConcurrencyBeanNoInterface,
-            beanName = "NotAllowedConcurrencyBean",
-            beanInterface = NotAllowedConcurrencyBean.class)
+        @EJB(name = containerConcurrencyBeanNoInterface, beanName = "ContainerConcurrencyBean", beanInterface = ContainerConcurrencyBean.class),
+        @EJB(name = defaultConcurrencyBeanNoInterface, beanName = "DefaultConcurrencyBean", beanInterface = DefaultConcurrencyBean.class),
+        @EJB(name = notAllowedConcurrencyBeanNoInterface, beanName = "NotAllowedConcurrencyBean", beanInterface = NotAllowedConcurrencyBean.class)
 })
 public class Client extends ClientBase {
     /*

@@ -59,7 +59,8 @@ public class MyJsonReader implements JsonReader {
         calls.append(s);
     }
 
-    public MyJsonReader() {}
+    public MyJsonReader() {
+    }
 
     public MyJsonReader(InputStream in) {
         this.in = in;

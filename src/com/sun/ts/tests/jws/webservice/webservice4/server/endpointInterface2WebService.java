@@ -23,9 +23,7 @@ package com.sun.ts.tests.jws.webservice.webservice4.server;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        endpointInterface = "com.sun.ts.tests.jws.webservice.webservice4.server.endpointInterface2WebServiceEI",
-        wsdlLocation = "WEB-INF/wsdl/EndpointInterface2WebServiceService.wsdl")
+@WebService(endpointInterface = "com.sun.ts.tests.jws.webservice.webservice4.server.endpointInterface2WebServiceEI", wsdlLocation = "WEB-INF/wsdl/EndpointInterface2WebServiceService.wsdl")
 public class endpointInterface2WebService {
 
     public String hello(String name) {

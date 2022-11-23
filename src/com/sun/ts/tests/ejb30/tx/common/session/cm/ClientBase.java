@@ -39,7 +39,8 @@ public abstract class ClientBase extends EETest {
         props = p;
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 
     protected void removeBeans() {
         if (testBean != null) {
@@ -90,16 +91,13 @@ public abstract class ClientBase extends EETest {
     /*
      * testName: supportsTest
      *
-     * @test_Strategy: client -> remote bm slsb -> remote cm slsb 13.6.2.9
-     * Handling of getRollbackOnly Method The container must throw the
-     * java.lang.IllegalStateException if the EJBContext. getRollbackOnly method
-     * is invoked from a business method executing with the SUPPORTS,
-     * NOT_SUPPORTED, or NEVER transaction attribute.
+     * @test_Strategy: client -> remote bm slsb -> remote cm slsb 13.6.2.9 Handling of getRollbackOnly Method The container
+     * must throw the java.lang.IllegalStateException if the EJBContext. getRollbackOnly method is invoked from a business
+     * method executing with the SUPPORTS, NOT_SUPPORTED, or NEVER transaction attribute.
      *
-     * 13.6.2.8 Handling of setRollbackOnly Method The container must throw the
-     * java.lang.IllegalStateException if the EJBContext. setRollbackOnly method
-     * is invoked from a business method executing with the SUPPORTS,
-     * NOT_SUPPORTED, or NEVER transaction attribute.
+     * 13.6.2.8 Handling of setRollbackOnly Method The container must throw the java.lang.IllegalStateException if the
+     * EJBContext. setRollbackOnly method is invoked from a business method executing with the SUPPORTS, NOT_SUPPORTED, or
+     * NEVER transaction attribute.
      */
     public void supportsTest() throws TestFailedException {
         Helper.getLogger().info(testBean.supportsTest());

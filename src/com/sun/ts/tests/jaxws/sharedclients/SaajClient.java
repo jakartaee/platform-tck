@@ -80,8 +80,10 @@ public class SaajClient implements Serializable {
     }
 
     private String getCharsetAsName() {
-        if (cs == null) return DEFAULT_CHARSET;
-        else return cs.name().toUpperCase();
+        if (cs == null)
+            return DEFAULT_CHARSET;
+        else
+            return cs.name().toUpperCase();
     }
 
     public String getUrl() {

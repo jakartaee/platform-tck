@@ -74,8 +74,7 @@ public class Client extends EETest {
      * @assertion_ids: WS4EE:SPEC:110; WS4EE:SPEC:184; WS4EE:SPEC:55;
      *
      *
-     * @test_Strategy: call method on Java War that mirrors the methods of SEI,
-     * but does not implement SEI directly
+     * @test_Strategy: call method on Java War that mirrors the methods of SEI, but does not implement SEI directly
      */
     public void warMirrorSEICall() throws Fault {
         TestUtil.logMsg("WarMirrorSEICall");
@@ -87,7 +86,8 @@ public class Client extends EETest {
             if (!ret.getArgument().equals("'warMirrorSEI' to you too!")) {
                 TestUtil.logMsg("test WarMirrorSEICall failed: return value from server is: " + ret.getArgument());
                 throw new Fault("WarMirrorSEICall failed");
-            } else TestUtil.logMsg("WarMirrorSEICall passed");
+            } else
+                TestUtil.logMsg("WarMirrorSEICall passed");
         } catch (Throwable t) {
             TestUtil.logMsg("test WarMirrorSEICall failed: got exception " + t.toString());
             throw new Fault("WarMirrorSEICall failed");

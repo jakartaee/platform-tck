@@ -47,7 +47,7 @@ public class Client extends ServiceEETest implements Serializable {
     private String tName1 = null;
 
     // Expected resultSet from JDBC and EIS
-    private int expResultstest1ds[] = {1, 2, 3};
+    private int expResultstest1ds[] = { 1, 2, 3 };
 
     /* Run test in standalone mode */
     public static void main(String[] args) {
@@ -106,17 +106,14 @@ public class Client extends ServiceEETest implements Serializable {
     /*
      * @testName: test9
      *
-     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:73; JavaEE:SPEC:82;
-     * JavaEE:SPEC:84
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:73; JavaEE:SPEC:82; JavaEE:SPEC:84
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the Ejb1Test (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a commit to a single table.
      *
-     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-     * Insert, EJB2: Insert, tx_commit
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_commit
      */
     public void test9() throws Fault {
         String testname = "test9";
@@ -166,24 +163,22 @@ public class Client extends ServiceEETest implements Serializable {
             } catch (Exception e) {
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
     /*
      * @testName: test10
      *
-     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:73; JavaEE:SPEC:82;
-     * JavaEE:SPEC:84
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:73; JavaEE:SPEC:82; JavaEE:SPEC:84
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the Ejb1Test (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a rollback to a single table.
      *
-     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-     * Insert, EJB2: Insert, tx_rollback
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_rollback
      */
     public void test10() throws Fault {
         String testname = "test10";
@@ -233,24 +228,22 @@ public class Client extends ServiceEETest implements Serializable {
             } catch (Exception e) {
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
     /*
      * @testName: test11
      *
-     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:73; JavaEE:SPEC:82;
-     * JavaEE:SPEC:84
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:73; JavaEE:SPEC:82; JavaEE:SPEC:84
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the Ejb1Test (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a commit to a single table.
      *
-     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-     * Insert, EJB2: Insert, tx_commit
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_commit
      */
     public void test11() throws Fault {
         String testname = "test11";
@@ -295,24 +288,22 @@ public class Client extends ServiceEETest implements Serializable {
             } catch (Exception e) {
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
     /*
      * @testName: test12
      *
-     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:73; JavaEE:SPEC:82;
-     * JavaEE:SPEC:84
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:73; JavaEE:SPEC:82; JavaEE:SPEC:84
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the Ejb1Test (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a rollback to a single table.
      *
-     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-     * Insert, EJB2: Insert, tx_rollback
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_rollback
      */
     public void test12() throws Fault {
         String testname = "test12";
@@ -357,24 +348,22 @@ public class Client extends ServiceEETest implements Serializable {
             } catch (Exception e) {
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 
     /*
      * @testName: test13
      *
-     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:73; JavaEE:SPEC:82;
-     * JavaEE:SPEC:84
+     * @assertion_ids: JavaEE:SPEC:74; JavaEE:SPEC:73; JavaEE:SPEC:82; JavaEE:SPEC:84
      *
-     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction
-     * interface. Perform global transactions using the Ejb1Test (deployed as
-     * TX_REQUIRED) to a single RDBMS table.
+     * @test_Strategy: Contact a Servlet, EJB or JSP. Obtain the UserTransaction interface. Perform global transactions
+     * using the Ejb1Test (deployed as TX_REQUIRED) to a single RDBMS table.
      *
      * Insert/Delete followed by a commit to a single table.
      *
-     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1:
-     * Insert, EJB2: Insert, tx_commit
+     * Database Access is performed from Ejb1Test EJB. CLIENT: tx_start, EJB1: Insert, EJB2: Insert, tx_commit
      */
     public void test13() throws Fault {
         String testname = "test13";
@@ -424,7 +413,8 @@ public class Client extends ServiceEETest implements Serializable {
             } catch (Exception e) {
             }
             ;
-            if (!testResult) throw new Fault(testname + " failed");
+            if (!testResult)
+                throw new Fault(testname + " failed");
         }
     }
 }

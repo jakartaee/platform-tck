@@ -22,19 +22,16 @@ import com.sun.ts.lib.deliverable.PropertyNotSetException;
 import java.util.Properties;
 
 /**
- * This class serves as a well known place for harness, util, and porting
- * classes to retrieve property values.
+ * This class serves as a well known place for harness, util, and porting classes to retrieve property values.
  */
 public class JSONBPropertyManager extends AbstractPropertyManager {
     private static JSONBPropertyManager jteMgr = new JSONBPropertyManager();
 
     /**
-     * This method returns the singleton instance of JSONBPropertyManager which
-     * provides access to all ts.jte properties. This is only called once by the
-     * test harness.
+     * This method returns the singleton instance of JSONBPropertyManager which provides access to all ts.jte properties.
+     * This is only called once by the test harness.
      *
-     * @param env
-     *          - TestEnvironment object from JavaTest
+     * @param env - TestEnvironment object from JavaTest
      * @return JSONBPropertyManager - singleton property manager object
      */
     public static final JSONBPropertyManager getJSONBPropertyManager(TestEnvironment env) throws Exception {
@@ -43,12 +40,10 @@ public class JSONBPropertyManager extends AbstractPropertyManager {
     }
 
     /**
-     * This method returns the singleton instance of JSONBPropertyManager which
-     * provides access to all ts.jte properties. This is only called by the init()
-     * method in ManualDeployment.java
+     * This method returns the singleton instance of JSONBPropertyManager which provides access to all ts.jte properties.
+     * This is only called by the init() method in ManualDeployment.java
      *
-     * @param p
-     *          - Properties object from JavaTest
+     * @param p - Properties object from JavaTest
      * @return JSONBPropertyManager - singleton property manager object
      */
     public static final JSONBPropertyManager getJSONBPropertyManager(Properties p) throws Exception {
@@ -61,19 +56,19 @@ public class JSONBPropertyManager extends AbstractPropertyManager {
     }
 
     /**
-     * This method is called by the test harness to retrieve all properties needed
-     * by a particular test.
+     * This method is called by the test harness to retrieve all properties needed by a particular test.
      *
-     * @param sPropKeys
-     *          - Properties to retrieve
+     * @param sPropKeys - Properties to retrieve
      * @return Properties - property/value pairs
      */
     public Properties getTestSpecificProperties(String[] sPropKeys) throws PropertyNotSetException {
         Properties pTestProps = super.getTestSpecificProperties(sPropKeys);
         pTestProps.put("porting.ts.url.class.1", getProperty("porting.ts.url.class.1"));
         String tsHome = getProperty("TS_HOME", null);
-        if (tsHome == null) tsHome = getProperty("cts_home", null);
-        if (tsHome != null) pTestProps.put("cts_home", tsHome);
+        if (tsHome == null)
+            tsHome = getProperty("cts_home", null);
+        if (tsHome != null)
+            pTestProps.put("cts_home", tsHome);
 
         return pTestProps;
     }

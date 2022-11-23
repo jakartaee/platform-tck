@@ -62,8 +62,7 @@ public abstract class TopicClientBase extends com.sun.ts.tests.ejb30.common.mess
      *
      * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      */
     public void test1() throws Fault {
         sendReceive();
@@ -74,8 +73,7 @@ public abstract class TopicClientBase extends com.sun.ts.tests.ejb30.common.mess
      *
      * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      */
     public void negativeTest1() throws Fault {
         // the next messages should be filtered out by the ActivationConfigBean
@@ -87,8 +85,7 @@ public abstract class TopicClientBase extends com.sun.ts.tests.ejb30.common.mess
      *
      * @assertion_ids: EJB:SPEC:520; EJB:SPEC:521; EJB:SPEC:524
      *
-     * @test_Strategy: test activation-config related elements in deployment
-     * descriptors, and their annotation counterparts.
+     * @test_Strategy: test activation-config related elements in deployment descriptors, and their annotation counterparts.
      */
     public void negativeTest2() throws Fault {
         // the next messages should be filtered out by the ActivationConfigBean

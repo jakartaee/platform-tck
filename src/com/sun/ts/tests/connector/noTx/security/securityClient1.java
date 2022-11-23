@@ -60,9 +60,8 @@ public class securityClient1 extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: whitebox-notx, JNDI name of TS WhiteBox;
-     * whitebox-notx-param, conn w/ params; rauser1, user name; rapassword1,
-     * password for user name;
+     * @class.setup_props: whitebox-notx, JNDI name of TS WhiteBox; whitebox-notx-param, conn w/ params; rauser1, user name;
+     * rapassword1, password for user name;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -106,14 +105,12 @@ public class securityClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testContainerManaged
      *
-     * @assertion_ids: Connector:SPEC:63; Connector:SPEC:62;
-     * Connector:JAVADOC:333; Connector:JAVADOC:334; Connector:JAVADOC:335;
-     * Connector:JAVADOC:336; Connector:JAVADOC:337;
+     * @assertion_ids: Connector:SPEC:63; Connector:SPEC:62; Connector:JAVADOC:333; Connector:JAVADOC:334;
+     * Connector:JAVADOC:335; Connector:JAVADOC:336; Connector:JAVADOC:337;
      *
-     * @test_Strategy: Call the TSDataSource.getConnection. Providing there are no
-     * unused existing getConnection will call createManagedConnection and
-     * PasswordCredential will be returned. If the PasswordCredential is not null
-     * the test passes.
+     * @test_Strategy: Call the TSDataSource.getConnection. Providing there are no unused existing getConnection will call
+     * createManagedConnection and PasswordCredential will be returned. If the PasswordCredential is not null the test
+     * passes.
      */
     public void testContainerManaged() throws Fault {
 
@@ -153,14 +150,12 @@ public class securityClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testComponentManaged
      *
-     * @assertion_ids: Connector:SPEC:63; Connector:JAVADOC:333;
-     * Connector:JAVADOC:334; Connector:JAVADOC:335; Connector:JAVADOC:337;
-     * Connector:JAVADOC:338;
+     * @assertion_ids: Connector:SPEC:63; Connector:JAVADOC:333; Connector:JAVADOC:334; Connector:JAVADOC:335;
+     * Connector:JAVADOC:337; Connector:JAVADOC:338;
      *
-     * @test_Strategy: Call the TSDataSource.getConnection(uname, password).
-     * Providing there are no unused existing getConnection will call
-     * createManagedConnection and PasswordCredential will be returned. If the
-     * PasswordCredential is not null the test passes.
+     * @test_Strategy: Call the TSDataSource.getConnection(uname, password). Providing there are no unused existing
+     * getConnection will call createManagedConnection and PasswordCredential will be returned. If the PasswordCredential is
+     * not null the test passes.
      */
     public void testComponentManaged() throws Fault {
         try {
@@ -200,8 +195,8 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      * @assertion_ids: Connector:SPEC:65; Connector:JAVADOC:238;
      *
      * @test_Strategy: Call the TSDataSource.getConnection method. Check whether
-     * LocalTxManagedConnectionFactory.createManagedConnection was called. Check
-     * if the connection is valid or not by performing some transactions.
+     * LocalTxManagedConnectionFactory.createManagedConnection was called. Check if the connection is valid or not by
+     * performing some transactions.
      *
      */
     public void testAppEISSignon() throws Fault {
@@ -241,10 +236,9 @@ public class securityClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:64;
      *
-     * @test_Strategy: Call the TSDataSource.getConnection(). TSDataSource
-     * instance calls connectionManger.allocationConnection internally to get the
-     * the connection. If the connection is returned then check the validity of
-     * the connection.
+     * @test_Strategy: Call the TSDataSource.getConnection(). TSDataSource instance calls
+     * connectionManger.allocationConnection internally to get the the connection. If the connection is returned then check
+     * the validity of the connection.
      */
     public void testConnManagerAllocateConnection() throws Fault {
 

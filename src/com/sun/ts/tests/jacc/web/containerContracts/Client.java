@@ -67,10 +67,8 @@ public class Client extends ServiceEETest {
     }
 
     /**
-     * @class.setup_props: log.file.location; webServerHost; webServerPort;
-     *                     authuser; authpassword; user; password;
-     *                     securedWebServicePort; platform.mode;
-     *                     porting.ts.HttpsURLConnection.class.1;
+     * @class.setup_props: log.file.location; webServerHost; webServerPort; authuser; authpassword; user; password;
+     * securedWebServicePort; platform.mode; porting.ts.HttpsURLConnection.class.1;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -109,17 +107,14 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy: 1. Register TS provider with the AppServer.
      *
-     *                 (Note: TSProvider is the delegating policy provider
-     *                 supplied with compatibility test suite. See User guide for
-     *                 Registering TS Provider with your AppServer ).
+     * (Note: TSProvider is the delegating policy provider supplied with compatibility test suite. See User guide for
+     * Registering TS Provider with your AppServer ).
      *
-     *                 2. Deploy a jsp secured.jsp which is accessible by a role
-     *                 Administrator.
+     * 2. Deploy a jsp secured.jsp which is accessible by a role Administrator.
      *
-     *                 3. Assign javajoe to role Administrator and access the jsp
+     * 3. Assign javajoe to role Administrator and access the jsp
      *
-     *                 4. verify the rolename by calling isUserInRole() inside
-     *                 secured.jsp
+     * 4. verify the rolename by calling isUserInRole() inside secured.jsp
      *
      */
     public void IsUserInRole() throws Fault {
@@ -181,18 +176,15 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:SPEC:71; JACC:SPEC:117; JACC:SPEC:104; JACC:SPEC:113
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Deploy a jsp called (sslprotected.jsp) with a security
-     *                 constraint that has a user-data-constraint
-     *                 <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+     * 2. Deploy a jsp called (sslprotected.jsp) with a security constraint that has a user-data-constraint
+     * <transport-guarantee>CONFIDENTIAL</transport-guarantee>
      *
-     *                 3. Send https request to sslprotected.jsp, access the
-     *                 content of sslprotected.jsp
+     * 3. Send https request to sslprotected.jsp, access the content of sslprotected.jsp
      *
-     *                 JSPName URL ---------------------------------
-     *                 sslprotecd.jsp /sslprotected.jsp
+     * JSPName URL --------------------------------- sslprotecd.jsp /sslprotected.jsp
      *
      */
     public void WebUserDataPermission() throws Fault {
@@ -268,19 +260,16 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:SPEC:73; JACC:SPEC:117; JACC:SPEC:76
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Deploy a jsp called (secured.jsp) configure it to be
-     *                 accessible only by Role Administrator
+     * 2. Deploy a jsp called (secured.jsp) configure it to be accessible only by Role Administrator
      *
-     *                 3. Access secured.jsp with a user(j2ee) who is not in role
-     *                 Administrator
+     * 3. Access secured.jsp with a user(j2ee) who is not in role Administrator
      *
-     *                 4. expect proper Http error message.
+     * 4. expect proper Http error message.
      *
-     *                 JSPName URL --------------------------------- secured.jsp
-     *                 /secured.jsp
+     * JSPName URL --------------------------------- secured.jsp /secured.jsp
      *
      */
     public void WebResourcePermission() throws Fault {

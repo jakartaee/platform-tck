@@ -52,22 +52,22 @@ public class WSCServer {
     @OnMessage
     public void echo(String echo, Session session) {
         switch (state) {
-            case INIT:
-                state = State.SECOND;
-                op(echo, session);
-                break;
-            case SECOND:
-                state = State.FINAL;
-                op(echo, session);
-                break;
-            case FINAL:
-                // do not send anything, otherwise it would not ever stop
-                try {
-                    session.close();
-                } catch (IOException e) {
-                    onError(session, e);
-                }
-                break;
+        case INIT:
+            state = State.SECOND;
+            op(echo, session);
+            break;
+        case SECOND:
+            state = State.FINAL;
+            op(echo, session);
+            break;
+        case FINAL:
+            // do not send anything, otherwise it would not ever stop
+            try {
+                session.close();
+            } catch (IOException e) {
+                onError(session, e);
+            }
+            break;
         }
     }
 
@@ -85,7 +85,8 @@ public class WSCServer {
         t.printStackTrace(); // Write to error log, too
         String message = IOUtil.printStackTrace(t);
         try {
-            if (session.isOpen()) session.getBasicRemote().sendText(message);
+            if (session.isOpen())
+                session.getBasicRemote().sendText(message);
         } catch (IOException e) {
             e.printStackTrace();
         }

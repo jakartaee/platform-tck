@@ -46,12 +46,11 @@ public class Debug {
     }
 
     /**
-     * This is used to turn debugging off or on. This is off by default and must
-     * be explicitly set to true in order to turn on debugging.
+     * This is used to turn debugging off or on. This is off by default and must be explicitly set to true in order to turn
+     * on debugging.
      *
      * @exception none.
-     * @param boolean:
-     *          True means turn debugging on.
+     * @param boolean: True means turn debugging on.
      * @return none.
      */
     public static void setDebugStatus(boolean bVal) {
@@ -59,8 +58,8 @@ public class Debug {
     }
 
     /*
-     * This is a convenience method used to test if we are running in debug mode.
-     * If so, we will print the strack trace. If not, we do nothing.
+     * This is a convenience method used to test if we are running in debug mode. If so, we will print the strack trace. If
+     * not, we do nothing.
      *
      * @exception none.
      *
@@ -77,8 +76,8 @@ public class Debug {
     }
 
     /**
-     * This gets the status of the debugging functionality. false means that
-     * debugging is disabled, true means it is enabled.
+     * This gets the status of the debugging functionality. false means that debugging is disabled, true means it is
+     * enabled.
      *
      * @exception none.
      * @param none.
@@ -103,8 +102,7 @@ public class Debug {
      * This sets the current level of debugging we are using.
      *
      * @exception none.
-     * @param int:
-     *          0=none, 1=errors, 2=errors+warnings, 3=all
+     * @param int: 0=none, 1=errors, 2=errors+warnings, 3=all
      * @return none.
      */
     public static void setDebugLevel(int val) {

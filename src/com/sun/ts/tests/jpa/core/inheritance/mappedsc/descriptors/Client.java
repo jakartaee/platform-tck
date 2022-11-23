@@ -52,7 +52,8 @@ public class Client extends PMClientBase {
 
     private final Date d10 = getSQLDate(2003, 1, 25);
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -76,13 +77,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: test1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:593; PERSISTENCE:SPEC:596;
-     * PERSISTENCE:SPEC:597; PERSISTENCE:SPEC:598; PERSISTENCE:SPEC:599;
-     * PERSISTENCE:SPEC:1130; PERSISTENCE:SPEC:1131; PERSISTENCE:SPEC:1132;
-     * PERSISTENCE:SPEC:1133; PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:600
+     * @assertion_ids: PERSISTENCE:SPEC:593; PERSISTENCE:SPEC:596; PERSISTENCE:SPEC:597; PERSISTENCE:SPEC:598;
+     * PERSISTENCE:SPEC:599; PERSISTENCE:SPEC:1130; PERSISTENCE:SPEC:1131; PERSISTENCE:SPEC:1132; PERSISTENCE:SPEC:1133;
+     * PERSISTENCE:SPEC:1144; PERSISTENCE:SPEC:600
      *
-     * @test_Strategy: An entity may have a mapped superclass which provides
-     * persistent entity state and mapping information
+     * @test_Strategy: An entity may have a mapped superclass which provides persistent entity state and mapping information
      */
 
     public void test1() throws Fault {
@@ -101,19 +100,18 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
      * @testName: test2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:593; PERSISTENCE:SPEC:596;
-     * PERSISTENCE:SPEC:597; PERSISTENCE:SPEC:598; PERSISTENCE:SPEC:599;
-     * PERSISTENCE:SPEC:1130; PERSISTENCE:SPEC:1131; PERSISTENCE:SPEC:1132;
-     * PERSISTENCE:SPEC:1133; PERSISTENCE:SPEC:1144
+     * @assertion_ids: PERSISTENCE:SPEC:593; PERSISTENCE:SPEC:596; PERSISTENCE:SPEC:597; PERSISTENCE:SPEC:598;
+     * PERSISTENCE:SPEC:599; PERSISTENCE:SPEC:1130; PERSISTENCE:SPEC:1131; PERSISTENCE:SPEC:1132; PERSISTENCE:SPEC:1133;
+     * PERSISTENCE:SPEC:1144
      *
-     * @test_Strategy: An entity may have a mapped superclass which provides
-     * persistent entity state and mapping information
+     * @test_Strategy: An entity may have a mapped superclass which provides persistent entity state and mapping information
      */
 
     public void test2() throws Fault {
@@ -132,7 +130,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     public void createTestData() {

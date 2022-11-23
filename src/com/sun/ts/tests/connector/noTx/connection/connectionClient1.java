@@ -58,9 +58,8 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: whitebox-notx, JNDI name of TS WhiteBox;
-     * whitebox-notx-param, conn w/ params; rauser1, user name; rapassword1,
-     * password for rauser1;
+     * @class.setup_props: whitebox-notx, JNDI name of TS WhiteBox; whitebox-notx-param, conn w/ params; rauser1, user name;
+     * rapassword1, password for rauser1;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -108,11 +107,10 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
      * @assertion_ids: Connector:SPEC:29; Connector:SPEC:31;
      *
      *
-     * @test_Strategy: Call TSDataSource.getConnection. Check whether the
-     * connection has been correctly allocated from the ConnectionManager.
+     * @test_Strategy: Call TSDataSource.getConnection. Check whether the connection has been correctly allocated from the
+     * ConnectionManager.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the database.
+     * Check for the validity of the connection which is returned by performing some queries to the database.
      *
      */
     public void testGetConnection1() throws Fault {
@@ -155,10 +153,9 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:30; Connector:SPEC:27; Connector:SPEC:18;
      *
-     * @test_Strategy: Call the TSDataSource.getConnection(username,password). See
-     * if ConnectionManager can create the ManagedConnection using
-     * ManagedConnectionFactory. Check for the validity of the connection which is
-     * returned by performing some queries to the database.
+     * @test_Strategy: Call the TSDataSource.getConnection(username,password). See if ConnectionManager can create the
+     * ManagedConnection using ManagedConnectionFactory. Check for the validity of the connection which is returned by
+     * performing some queries to the database.
      *
      *
      */

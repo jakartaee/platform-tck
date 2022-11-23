@@ -115,11 +115,11 @@ public class Client extends ServiceEETest {
 
     private AddressingFeatureTest3 port3b = null;
 
-    private WebServiceFeature[] nonEnabledwsf = {new AddressingFeature(false)};
+    private WebServiceFeature[] nonEnabledwsf = { new AddressingFeature(false) };
 
-    private WebServiceFeature[] enabledRequiredwsf = {new AddressingFeature(true, true)};
+    private WebServiceFeature[] enabledRequiredwsf = { new AddressingFeature(true, true) };
 
-    private WebServiceFeature[] enabledNotRequiredwsf = {new AddressingFeature(true, false)};
+    private WebServiceFeature[] enabledNotRequiredwsf = { new AddressingFeature(true, false) };
 
     static AddressingFeatureTestService service = null;
 
@@ -273,7 +273,7 @@ public class Client extends ServiceEETest {
         }
 
         // debug dumping of ports
-        Object[] portsTodump = new Object[] {port1a, port1b, port1c, port2a, port2b, port2c, port3a, port3b};
+        Object[] portsTodump = new Object[] { port1a, port1b, port1c, port2a, port2b, port2c, port3a, port3b };
         dumpTargetEndpointAddressForPort(portsTodump);
     }
 
@@ -352,15 +352,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientEnabledNotREQServerEnabledNotREQTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.1;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:7020;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2;
+     * JAXWS:SPEC:6012; JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:7020;
      * JAXWS:SPEC:7020.2; JAXWS:SPEC:10025; JAXWS:JAVADOC:190;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server
-     * enabled/NotRequired. Addressing headers MAY be present on SOAPRequest and
-     * SOAPResponse since Addressing is Optional. If addressing headers exist
-     * check them otherwise don't.
+     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server enabled/NotRequired. Addressing headers
+     * MAY be present on SOAPRequest and SOAPResponse since Addressing is Optional. If addressing headers exist check them
+     * otherwise don't.
      */
     public void afClientEnabledNotREQServerEnabledNotREQTest() throws Fault {
         TestUtil.logMsg("afClientEnabledNotREQServerEnabledNotREQTest");
@@ -382,14 +380,12 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientEnabledREQServerEnabledNotREQTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.1;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:7020;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2;
+     * JAXWS:SPEC:6012; JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:7020;
      * JAXWS:SPEC:7020.2; JAXWS:SPEC:10025; JAXWS:SPEC:4031; JAXWS:JAVADOC:190;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/Required, Server
-     * enabled/NotRequired. Addressing headers MUST be present on SOAPRequest and
-     * SOAPResponse.
+     * @test_Strategy: Test Addressing Feature. Client enabled/Required, Server enabled/NotRequired. Addressing headers MUST
+     * be present on SOAPRequest and SOAPResponse.
      */
     public void afClientEnabledREQServerEnabledNotREQTest() throws Fault {
         TestUtil.logMsg("afClientEnabledREQServerEnabledNotREQTest");
@@ -411,14 +407,12 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientNotEnabledServerEnabledNotREQTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.3; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.1;
-     * JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.5; JAXWS:SPEC:7020; JAXWS:SPEC:4031;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.3; WSAMD:SPEC:3001.4; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2;
+     * JAXWS:SPEC:6012; JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.5; JAXWS:SPEC:7020; JAXWS:SPEC:4031;
      * JAXWS:SPEC:7020.2; JAXWS:SPEC:10025; JAXWS:JAVADOC:190;
      *
-     * @test_Strategy: Test Addressing Feature. Client Not Enabled, Server
-     * enabled/NotRequired. Addressing headers MUST not be present on SOAPRequest
-     * and SOAPResponse.
+     * @test_Strategy: Test Addressing Feature. Client Not Enabled, Server enabled/NotRequired. Addressing headers MUST not
+     * be present on SOAPRequest and SOAPResponse.
      */
     public void afClientNotEnabledServerEnabledNotREQTest() throws Fault {
         TestUtil.logMsg("afClientNotEnabledServerEnabledNotREQTest");
@@ -440,16 +434,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientEnabledNotREQServerEnabledREQTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.1;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:3046;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2;
+     * JAXWS:SPEC:6012; JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:3046;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server
-     * enabled/Required. If the Client does not send Addressing headers then the
-     * Server MUST throw back a SOAP Fault with a MessageAddressingHeaderRequired
-     * fault code since the Server mandates Addressing Required. If the Client
-     * does send Addressing headers then they MUST be present on SOAPRequest and
-     * SOAPResponse since the Server mandates requires addressing.
+     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server enabled/Required. If the Client does not
+     * send Addressing headers then the Server MUST throw back a SOAP Fault with a MessageAddressingHeaderRequired fault
+     * code since the Server mandates Addressing Required. If the Client does send Addressing headers then they MUST be
+     * present on SOAPRequest and SOAPResponse since the Server mandates requires addressing.
      */
     public void afClientEnabledNotREQServerEnabledREQTest() throws Fault {
         TestUtil.logMsg("afClientEnabledNotREQServerEnabledREQTest");
@@ -499,13 +490,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientEnabledREQServerEnabledREQTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.1;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:3046;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2;
+     * JAXWS:SPEC:6012; JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:3046;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/Required, Server
-     * enabled/Required. Addressing headers MUST be present on SOAPRequest and
-     * SOAPResponse.
+     * @test_Strategy: Test Addressing Feature. Client enabled/Required, Server enabled/Required. Addressing headers MUST be
+     * present on SOAPRequest and SOAPResponse.
      */
     public void afClientEnabledREQServerEnabledREQTest() throws Fault {
         TestUtil.logMsg("afClientEnabledREQServerEnabledREQTest");
@@ -527,15 +516,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientNotEnabledServerEnabledREQTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.3; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:4031; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012;
-     * JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.5; JAXWS:SPEC:3046;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.3; WSAMD:SPEC:3001.4; JAXWS:SPEC:4031; JAXWS:SPEC:6011;
+     * JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.5; JAXWS:SPEC:3046;
      * WSASB:SPEC:6004.3;
      *
-     * @test_Strategy: Test Addressing Feature. Client Not Enabled, Server
-     * enabled/Required. This scenario MUST throw back a SOAP Fault. Make sure the
-     * SOAP Fault has the correct information in it. The SOAP Fault faultcode must
-     * be: MessageAddressingHeaderRequired.
+     * @test_Strategy: Test Addressing Feature. Client Not Enabled, Server enabled/Required. This scenario MUST throw back a
+     * SOAP Fault. Make sure the SOAP Fault has the correct information in it. The SOAP Fault faultcode must be:
+     * MessageAddressingHeaderRequired.
      */
     public void afClientNotEnabledServerEnabledREQTest() throws Fault {
         TestUtil.logMsg("afClientNotEnabledServerEnabledREQTest");
@@ -586,13 +573,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientEnabledNotREQServerNotEnabledTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.6;
-     * JAXWS:SPEC:6016.1; JAXWS:SPEC:7020; JAXWS:SPEC:7020.1; JAXWS:JAVADOC:191;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.3;
+     * JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.6; JAXWS:SPEC:6016.1; JAXWS:SPEC:7020; JAXWS:SPEC:7020.1; JAXWS:JAVADOC:191;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server
-     * notenabled. Addressing headers MAY be present in the SOAPRequest but MUST
-     * not be present in the SOAPResponse.
+     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server notenabled. Addressing headers MAY be
+     * present in the SOAPRequest but MUST not be present in the SOAPResponse.
      */
     public void afClientEnabledNotREQServerNotEnabledTest() throws Fault {
         TestUtil.logMsg("afClientEnabledNotREQServerEnableNotREQTest");
@@ -614,12 +599,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientEnabledREQServerNotEnabledTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.6;
-     * JAXWS:SPEC:6016.1; JAXWS:SPEC:7020; JAXWS:SPEC:7020.1; JAXWS:JAVADOC:191;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.3;
+     * JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.6; JAXWS:SPEC:6016.1; JAXWS:SPEC:7020; JAXWS:SPEC:7020.1; JAXWS:JAVADOC:191;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/Required, Server
-     * not enabled. This scenario MUST throw back a WebServiceException.
+     * @test_Strategy: Test Addressing Feature. Client enabled/Required, Server not enabled. This scenario MUST throw back a
+     * WebServiceException.
      */
     public void afClientEnabledREQServerNotEnabledTest() throws Fault {
         TestUtil.logMsg("afClientEnabledREQServerNotEnabledTest");

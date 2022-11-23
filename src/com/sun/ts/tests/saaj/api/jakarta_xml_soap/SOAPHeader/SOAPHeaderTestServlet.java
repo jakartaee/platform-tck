@@ -205,8 +205,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -260,8 +262,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -329,8 +333,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -398,8 +404,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -466,8 +474,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -500,8 +510,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -534,8 +546,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -583,14 +597,16 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 1) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 1, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1");
 
             TestUtil.logMsg("Examing all SOAPHeaderElements again ...");
             iterator = hdr.examineAllHeaderElements();
             if (!iterator.hasNext()) {
                 TestUtil.logErr("no elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("elements in iterator - expected");
+            } else
+                TestUtil.logMsg("elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -598,8 +614,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -658,14 +676,16 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 2) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 2, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
 
             TestUtil.logMsg("Examing all SOAPHeaderElements again ...");
             iterator = hdr.examineAllHeaderElements();
             if (!iterator.hasNext()) {
                 TestUtil.logErr("no elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("elements in iterator - expected");
+            } else
+                TestUtil.logMsg("elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -673,8 +693,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -733,14 +755,16 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 2) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 2, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
 
             TestUtil.logMsg("Examing all SOAPHeaderElements again ...");
             iterator = hdr.examineAllHeaderElements();
             if (!iterator.hasNext()) {
                 TestUtil.logErr("no elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("elements in iterator - expected");
+            } else
+                TestUtil.logMsg("elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -749,8 +773,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
         }
 
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -800,7 +826,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 1) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 1, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1");
 
             if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
                 TestUtil.logMsg("Examing SOAPHeaderElements with actor actor-URI again ...");
@@ -812,7 +839,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (!iterator.hasNext()) {
                 TestUtil.logErr("no elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("elements in iterator - expected");
+            } else
+                TestUtil.logMsg("elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -820,8 +848,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -886,7 +916,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 2) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 2, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
 
             if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
                 TestUtil.logMsg("Examing SOAPHeaderElements with actor actor-URI again ...");
@@ -898,7 +929,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (!iterator.hasNext()) {
                 TestUtil.logErr("no elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("elements in iterator - expected");
+            } else
+                TestUtil.logMsg("elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -906,8 +938,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -952,15 +986,18 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 0) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 0, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements");
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1038,8 +1075,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
         }
 
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1074,7 +1113,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             Iterator iterator;
             if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11))
                 iterator = hdr.examineMustUnderstandHeaderElements("actor-URI");
-            else iterator = hdr.examineMustUnderstandHeaderElements("role-URI");
+            else
+                iterator = hdr.examineMustUnderstandHeaderElements("role-URI");
 
             TestUtil.logMsg("Validating SOAPHeaderElements ...");
             int cnt = 0;
@@ -1092,14 +1132,16 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 1) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 1, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1");
 
             TestUtil.logMsg("Examing all SOAPHeaderElements again ...");
             iterator = hdr.examineAllHeaderElements();
             if (!iterator.hasNext()) {
                 TestUtil.logErr("no elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("elements in iterator - expected");
+            } else
+                TestUtil.logMsg("elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -1107,8 +1149,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1143,7 +1187,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             Iterator iterator;
             if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11))
                 iterator = hdr.examineMustUnderstandHeaderElements("actor-URI");
-            else iterator = hdr.examineMustUnderstandHeaderElements("role-URI");
+            else
+                iterator = hdr.examineMustUnderstandHeaderElements("role-URI");
             if (iterator.hasNext()) {
                 TestUtil.logErr("MustUnderstand is false, expected no SOAPHeaderElements");
                 pass = false;
@@ -1157,8 +1202,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1217,7 +1264,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             Iterator iterator;
             if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11))
                 iterator = hdr.examineMustUnderstandHeaderElements("actor-URI1");
-            else iterator = hdr.examineMustUnderstandHeaderElements("role-URI1");
+            else
+                iterator = hdr.examineMustUnderstandHeaderElements("role-URI1");
 
             TestUtil.logMsg("Validating SOAPHeaderElements ...");
             int cnt = 0;
@@ -1225,10 +1273,12 @@ public class SOAPHeaderTestServlet extends HttpServlet {
                 SOAPHeaderElement myShe = (SOAPHeaderElement) iterator.next();
                 if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
                     TestUtil.logMsg("Got this actor: " + myShe.getActor());
-                    if (!(myShe.getActor().equals("actor-URI1"))) pass = false;
+                    if (!(myShe.getActor().equals("actor-URI1")))
+                        pass = false;
                 } else {
                     TestUtil.logMsg("Got this role: " + myShe.getRole());
-                    if (!(myShe.getRole().equals("role-URI1"))) pass = false;
+                    if (!(myShe.getRole().equals("role-URI1")))
+                        pass = false;
                 }
                 cnt++;
             }
@@ -1236,14 +1286,16 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 1) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 1 , received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1 ");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1 ");
 
             TestUtil.logMsg("Examing all SOAPHeaderElements again ...");
             iterator = hdr.examineAllHeaderElements();
             if (!iterator.hasNext()) {
                 TestUtil.logErr("no elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("elements in iterator - expected");
+            } else
+                TestUtil.logMsg("elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -1251,8 +1303,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1300,14 +1354,16 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 1) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 1, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1");
 
             TestUtil.logMsg("Extract all SOAPHeaderElements again ...");
             iterator = hdr.extractAllHeaderElements();
             if (iterator.hasNext()) {
                 TestUtil.logErr("elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("no elements in iterator - expected");
+            } else
+                TestUtil.logMsg("no elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -1315,8 +1371,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1375,14 +1433,16 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 2) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 2, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
 
             TestUtil.logMsg("Extract all SOAPHeaderElements again ...");
             iterator = hdr.extractAllHeaderElements();
             if (iterator.hasNext()) {
                 TestUtil.logErr("elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("no elements in iterator - expected");
+            } else
+                TestUtil.logMsg("no elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -1390,8 +1450,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1450,14 +1512,16 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 2) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 2, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
 
             TestUtil.logMsg("Extract all SOAPHeaderElements again ...");
             iterator = hdr.extractAllHeaderElements();
             if (iterator.hasNext()) {
                 TestUtil.logErr("elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("no elements in iterator - expected");
+            } else
+                TestUtil.logMsg("no elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -1466,8 +1530,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
         }
 
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1519,7 +1585,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 1) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 1, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 1");
 
             if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
                 TestUtil.logMsg("Extract SOAPHeaderElements with actor actor-URI again ...");
@@ -1531,7 +1598,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (iterator.hasNext()) {
                 TestUtil.logErr("elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("no elements in iterator - expected");
+            } else
+                TestUtil.logMsg("no elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -1539,8 +1607,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1605,7 +1675,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 2) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 2, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements 2");
 
             if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
                 TestUtil.logMsg("Extract SOAPHeaderElements with actor actor-URI again ...");
@@ -1618,7 +1689,8 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (iterator.hasNext()) {
                 TestUtil.logErr("elements in iterator - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("no elements in iterator - expected");
+            } else
+                TestUtil.logMsg("no elements in iterator - expected");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
@@ -1626,8 +1698,10 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -1672,15 +1746,18 @@ public class SOAPHeaderTestServlet extends HttpServlet {
             if (cnt != 0) {
                 TestUtil.logErr("SOAPHeaderElement count mismatch: expected 0, received " + cnt);
                 pass = false;
-            } else TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements");
+            } else
+                TestUtil.logMsg("SOAPHeaderElement count matches expected # of elements");
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

@@ -37,20 +37,20 @@ public class MsgBean extends ParentMsgBeanNoTx {
             if (msg.getIntProperty("TestCaseNum") > 0) {
 
                 switch (msg.getIntProperty("TestCaseNum")) {
-                    case 1: // MDB Queue w/CMT
-                    case 2: // MDB Queue w/BMT
-                        runGetCallerPrincipal(msg, qSession, testName);
-                        break;
+                case 1: // MDB Queue w/CMT
+                case 2: // MDB Queue w/BMT
+                    runGetCallerPrincipal(msg, qSession, testName);
+                    break;
 
-                    case 3: // MDB Queue w/CMT
-                    case 4: // MDB Queue w/BMT
-                        runIsCallerInRole(msg, qSession, testName);
-                        break;
+                case 3: // MDB Queue w/CMT
+                case 4: // MDB Queue w/BMT
+                    runIsCallerInRole(msg, qSession, testName);
+                    break;
 
-                    default:
-                        TestUtil.logTrace("Error in mdb - ");
-                        TestUtil.logTrace("No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
-                        break;
+                default:
+                    TestUtil.logTrace("Error in mdb - ");
+                    TestUtil.logTrace("No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
+                    break;
                 }
             }
         } catch (Exception e) {

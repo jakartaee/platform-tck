@@ -45,8 +45,7 @@ public class MDBClient extends Client {
     /*
      * Test setup:
      *
-     * @class.setup_props: jms_timeout, in milliseconds - how long to wait on
-     * synchronous receive; user;password;
+     * @class.setup_props: jms_timeout, in milliseconds - how long to wait on synchronous receive; user;password;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -69,12 +68,10 @@ public class MDBClient extends Client {
     /*
      * @testName: Test1
      *
-     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; EJB:SPEC:823; JavaEE:SPEC:130;
-     * JavaEE:SPEC:10035
+     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; EJB:SPEC:823; JavaEE:SPEC:130; JavaEE:SPEC:10035
      *
-     * @test_Strategy: Invoke an cmt mdb by writing to EJB_SEC_MDB_QUEUE_CMT. The
-     * mdb attempts a EJBContext getCallerPrincipal() method. Return verification
-     * message that a java.lang.IllegalStateException was not thrown and
+     * @test_Strategy: Invoke an cmt mdb by writing to EJB_SEC_MDB_QUEUE_CMT. The mdb attempts a EJBContext
+     * getCallerPrincipal() method. Return verification message that a java.lang.IllegalStateException was not thrown and
      * getCallerPrincipal() does not return null.
      *
      */
@@ -100,12 +97,10 @@ public class MDBClient extends Client {
     /*
      * @testName: Test2
      *
-     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; EJB:SPEC:823; JavaEE:SPEC:130;
-     * JavaEE:SPEC:10035
+     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; EJB:SPEC:823; JavaEE:SPEC:130; JavaEE:SPEC:10035
      *
-     * @test_Strategy: Invoke an bmt mdb by writing to EJB_SEC_MDB_QUEUE_BMT. The
-     * mdb attempts a EJBContext getCallerPrincipal() method. Return verification
-     * message that a java.lang.IllegalStateException was not thrown and
+     * @test_Strategy: Invoke an bmt mdb by writing to EJB_SEC_MDB_QUEUE_BMT. The mdb attempts a EJBContext
+     * getCallerPrincipal() method. Return verification message that a java.lang.IllegalStateException was not thrown and
      * getCallerPrincipal() does not return null.
      *
      */
@@ -132,12 +127,10 @@ public class MDBClient extends Client {
     /*
      * @testName: Test3
      *
-     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; JavaEE:SPEC:130;
-     * JavaEE:SPEC:10035
+     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; JavaEE:SPEC:130; JavaEE:SPEC:10035
      *
-     * @test_Strategy: Invoke an cmt mdb by writing to EJB_SEC_MDB_QUEUE_CMT. The
-     * mdb attempts a EJBContext isCallerInRole() method. Return verification
-     * message that a java.lang.IllegalStateException was thrown.
+     * @test_Strategy: Invoke an cmt mdb by writing to EJB_SEC_MDB_QUEUE_CMT. The mdb attempts a EJBContext isCallerInRole()
+     * method. Return verification message that a java.lang.IllegalStateException was thrown.
      *
      */
     public void Test3() throws Fault {
@@ -162,12 +155,10 @@ public class MDBClient extends Client {
     /*
      * @testName: Test4
      *
-     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; JavaEE:SPEC:130;
-     * JavaEE:SPEC:10035
+     * @assertion_ids: EJB:SPEC:513; EJB:SPEC:528; JavaEE:SPEC:130; JavaEE:SPEC:10035
      *
-     * @test_Strategy: Invoke an bmt mdb by writing to EJB_SEC_MDB_QUEUE_BMT. The
-     * mdb attempts a EJBContext isCallerInRole() method. Return verification
-     * message that a java.lang.IllegalStateException was thrown.
+     * @test_Strategy: Invoke an bmt mdb by writing to EJB_SEC_MDB_QUEUE_BMT. The mdb attempts a EJBContext isCallerInRole()
+     * method. Return verification message that a java.lang.IllegalStateException was thrown.
      *
      */
     public void Test4() throws Fault {

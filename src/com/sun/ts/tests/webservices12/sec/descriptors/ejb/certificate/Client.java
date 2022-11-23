@@ -104,8 +104,7 @@ public class Client extends EETest {
     /*
      * @testName: secEjbCertificate
      *
-     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194;
-     * WS4EE:SPEC:195; WS4EE:SPEC:9002;
+     * @assertion_ids: WS4EE:SPEC:193; WS4EE:SPEC:196; WS4EE:SPEC:194; WS4EE:SPEC:195; WS4EE:SPEC:9002;
      *
      * @test_Strategy: Call EJB with client certificate authentication
      */

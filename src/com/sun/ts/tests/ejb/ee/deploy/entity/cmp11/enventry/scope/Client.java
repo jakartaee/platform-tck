@@ -64,8 +64,7 @@ public class Client extends EETest {
     }
 
     /**
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
     public void setup(String[] args, Properties props) throws Fault {
 
@@ -84,11 +83,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:757.1
      *
-     * @test_Strategy: Deploy two CMP 1.1 Entity beans (part of a same JAR file)
-     *                 using the same env-entry-name but declaring different
-     *                 values. Check that we can lookup this env. entry from both
-     *                 EJB's, that runtime values are distinct, and that they
-     *                 match the ones in the DD.
+     * @test_Strategy: Deploy two CMP 1.1 Entity beans (part of a same JAR file) using the same env-entry-name but declaring
+     * different values. Check that we can lookup this env. entry from both EJB's, that runtime values are distinct, and
+     * that they match the ones in the DD.
      */
     public void testScopeInternal() throws Fault {
         BeanHome home1 = null;
@@ -131,11 +128,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:757.1
      *
-     * @test_Strategy: Deploy two CMP 1.1 Entity beans (in 2 distinct JAR files)
-     *                 using the same env-entry-name but declaring different
-     *                 values. Check that we can lookup this env. entry from both
-     *                 EJB's, that runtime values are distinct, and that they
-     *                 match the ones in the DD.
+     * @test_Strategy: Deploy two CMP 1.1 Entity beans (in 2 distinct JAR files) using the same env-entry-name but declaring
+     * different values. Check that we can lookup this env. entry from both EJB's, that runtime values are distinct, and
+     * that they match the ones in the DD.
      */
     public void testScopeExternal() throws Fault {
         BeanHome home1 = null;

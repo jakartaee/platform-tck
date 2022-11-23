@@ -20,4 +20,5 @@
 
 package com.sun.ts.tests.ejb30.common.sessioncontext;
 
-public interface ThreeLocal2IF extends CommonIF {}
+public interface ThreeLocal2IF extends CommonIF {
+}

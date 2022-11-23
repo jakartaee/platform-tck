@@ -31,12 +31,14 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @Stateless(name = "StatelessTestBean")
-@Remote({RemoteIF.class})
-@Local({LocalIF.class})
+@Remote({ RemoteIF.class })
+@Local({ LocalIF.class })
 public class StatelessTestBean implements RemoteIF {
-    public StatelessTestBean() {}
+    public StatelessTestBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     @Resource(name = "sessionContext")
     private SessionContext sessionContext;
@@ -60,5 +62,6 @@ public class StatelessTestBean implements RemoteIF {
     }
 
     @TransactionAttribute(TransactionAttributeType.NEVER)
-    public void never() {}
+    public void never() {
+    }
 }

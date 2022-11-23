@@ -43,11 +43,10 @@ public abstract class BeanBase {
     }
 
     /**
-     * From an implementation perspective, a singleton bean class may have more
-     * than one instances. So we cannot count instance inside bean class
-     * constructor, which may record more than one instances of the bean class and
-     * some of them may be subclass instances. But PostConstruct is only invoked
-     * for the real singleton bean instance.
+     * From an implementation perspective, a singleton bean class may have more than one instances. So we cannot count
+     * instance inside bean class constructor, which may record more than one instances of the bean class and some of them
+     * may be subclass instances. But PostConstruct is only invoked for the real singleton bean instance.
      */
-    public void ping() {}
+    public void ping() {
+    }
 }

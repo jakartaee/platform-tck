@@ -56,16 +56,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:872
      *
-     * @test_Strategy: Have two session beans whose ejb-name's differ only by case
-     *                 and whose identity is defined by a String environment entry
-     *                 ('myName').
+     * @test_Strategy: Have two session beans whose ejb-name's differ only by case and whose identity is defined by a String
+     * environment entry ('myName').
      *
-     *                 A message driven bean references these two beans using
-     *                 ejb-link elements. Check that the MDB can lookup the two
-     *                 beans and check each bean identity based on their value for
-     *                 the 'myName' environment entry. Check that this identity
-     *                 correspond to the references specified in the DD (validate
-     *                 that the EJB references were resolved correctly).
+     * A message driven bean references these two beans using ejb-link elements. Check that the MDB can lookup the two beans
+     * and check each bean identity based on their value for the 'myName' environment entry. Check that this identity
+     * correspond to the references specified in the DD (validate that the EJB references were resolved correctly).
      *
      */
     public void testEjblinkCaseSensitivity() throws Fault {

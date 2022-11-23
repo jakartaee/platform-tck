@@ -87,8 +87,8 @@ public class URLClient extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * webServerHost, the web server host; webServerPort, the web server port;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; webServerHost, the web server host;
+     * webServerPort, the web server port;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -99,8 +99,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -120,17 +122,14 @@ public class URLClient extends EETest {
     /*
      * @testName: test1
      *
-     * @assertion_ids: JavaEE:SPEC:40; JavaEE:SPEC:40.1; JavaEE:SPEC:40.2;
-     * JavaEE:SPEC:47; JavaEE:SPEC:65; JavaEE:SPEC:68
+     * @assertion_ids: JavaEE:SPEC:40; JavaEE:SPEC:40.1; JavaEE:SPEC:40.2; JavaEE:SPEC:47; JavaEE:SPEC:65; JavaEE:SPEC:68
      *
-     * @test_Strategy: Functional test to demonstrate an N-Tier client which
-     * performs database transactions via accessing web server component, ejb
-     * server component and database server component using the Application
-     * Programming Model as described in the J2EE Platform Specification. The test
-     * is a complete end-to-end tests and is modeled as follows:
+     * @test_Strategy: Functional test to demonstrate an N-Tier client which performs database transactions via accessing
+     * web server component, ejb server component and database server component using the Application Programming Model as
+     * described in the J2EE Platform Specification. The test is a complete end-to-end tests and is modeled as follows:
      *
-     * URLClient -> JSP -> EJB -> DB Create an N-Tier Application Test involving
-     * jsp and ejb. Deploy it on the J2EE server. Verify correct operations.
+     * URLClient -> JSP -> EJB -> DB Create an N-Tier Application Test involving jsp and ejb. Deploy it on the J2EE server.
+     * Verify correct operations.
      *
      */
     public void test1() throws Fault {
@@ -151,21 +150,25 @@ public class URLClient extends EETest {
                 TestUtil.logErr(
                         "Balance of account incorrect: expected: " + EXPECTED_BALANCE + " Received: " + balance);
                 pass = false;
-            } else TestUtil.logMsg("Balance of account is correct: " + balance);
+            } else
+                TestUtil.logMsg("Balance of account is correct: " + balance);
 
             if (!deposit.equals(EXPECTED_DEPOSIT)) {
                 TestUtil.logErr(
                         "Deposit of account incorrect: expected: " + EXPECTED_DEPOSIT + " Received: " + deposit);
                 pass = false;
-            } else TestUtil.logMsg("Deposit of account is correct: " + deposit);
+            } else
+                TestUtil.logMsg("Deposit of account is correct: " + deposit);
 
             if (!withdraw.equals(EXPECTED_WITHDRAW)) {
                 TestUtil.logErr(
                         "Withdraw of account incorrect: expected: " + EXPECTED_WITHDRAW + " Received: " + withdraw);
                 pass = false;
-            } else TestUtil.logMsg("Withdraw of account is correct: " + withdraw);
+            } else
+                TestUtil.logMsg("Withdraw of account is correct: " + withdraw);
 
-            if (!pass) throw new Fault("test1 failed");
+            if (!pass)
+                throw new Fault("test1 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -177,18 +180,14 @@ public class URLClient extends EETest {
     /*
      * @testName: test2
      *
-     * @assertion_ids: JavaEE:SPEC:40; JavaEE:SPEC:40.1; JavaEE:SPEC:40.2;
-     * JavaEE:SPEC:47; JavaEE:SPEC:65; JavaEE:SPEC:68
+     * @assertion_ids: JavaEE:SPEC:40; JavaEE:SPEC:40.1; JavaEE:SPEC:40.2; JavaEE:SPEC:47; JavaEE:SPEC:65; JavaEE:SPEC:68
      *
-     * @test_Strategy: Functional test to demonstrate an N-Tier client which
-     * performs database transactions via accessing web server component, ejb
-     * server component and database server component using the Application
-     * Programming Model as described in the JavaEE Platform Specification. The
-     * test is a complete end-to-end tests and is modeled as follows:
+     * @test_Strategy: Functional test to demonstrate an N-Tier client which performs database transactions via accessing
+     * web server component, ejb server component and database server component using the Application Programming Model as
+     * described in the JavaEE Platform Specification. The test is a complete end-to-end tests and is modeled as follows:
      *
-     * URLClient -> JSP -> JAVABEAN -> EJB -> DB Create an N-Tier Application Test
-     * involving jsp and ejb. Deploy it on the JavaEE server. Verify correct
-     * operations.
+     * URLClient -> JSP -> JAVABEAN -> EJB -> DB Create an N-Tier Application Test involving jsp and ejb. Deploy it on the
+     * JavaEE server. Verify correct operations.
      *
      */
     public void test2() throws Fault {
@@ -209,21 +208,25 @@ public class URLClient extends EETest {
                 TestUtil.logErr(
                         "Balance of account incorrect: expected: " + EXPECTED_BALANCE + " Received: " + balance);
                 pass = false;
-            } else TestUtil.logMsg("Balance of account is correct: " + balance);
+            } else
+                TestUtil.logMsg("Balance of account is correct: " + balance);
 
             if (!deposit.equals(EXPECTED_DEPOSIT)) {
                 TestUtil.logErr(
                         "Deposit of account incorrect: expected: " + EXPECTED_DEPOSIT + " Received: " + deposit);
                 pass = false;
-            } else TestUtil.logMsg("Deposit of account is correct: " + deposit);
+            } else
+                TestUtil.logMsg("Deposit of account is correct: " + deposit);
 
             if (!withdraw.equals(EXPECTED_WITHDRAW)) {
                 TestUtil.logErr(
                         "Withdraw of account incorrect: expected: " + EXPECTED_WITHDRAW + " Received: " + withdraw);
                 pass = false;
-            } else TestUtil.logMsg("Withdraw of account is correct: " + withdraw);
+            } else
+                TestUtil.logMsg("Withdraw of account is correct: " + withdraw);
 
-            if (!pass) throw new Fault("test2 failed");
+            if (!pass)
+                throw new Fault("test2 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

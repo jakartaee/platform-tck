@@ -35,7 +35,8 @@ public class PropertyBigDecimalId implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public PropertyBigDecimalId() {}
+    public PropertyBigDecimalId() {
+    }
 
     public PropertyBigDecimalId(BigDecimal id, BigDecimal bigDecimal) {
 

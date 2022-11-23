@@ -29,8 +29,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 /**
- * All callbacks are defined in entity superclass. The super class of this
- * entity is not an entity.
+ * All callbacks are defined in entity superclass. The super class of this entity is not an entity.
  */
 @Entity
 @Table(name = "PRICED_PRODUCT_TABLE")

@@ -28,7 +28,8 @@ public class LawBook extends Book implements Serializable {
 
     private String category;
 
-    public LawBook() {}
+    public LawBook() {
+    }
 
     public int hashCode() {
         int hash = 0;

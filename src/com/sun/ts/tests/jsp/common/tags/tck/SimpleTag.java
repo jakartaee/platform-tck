@@ -31,8 +31,7 @@ import jakarta.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
 /**
- * Simple tag that accepts a single string attribute. This tag generates no
- * output. All work is done by TEI classes.
+ * Simple tag that accepts a single string attribute. This tag generates no output. All work is done by TEI classes.
  */
 public class SimpleTag extends TagSupport implements DynamicAttributes {
 

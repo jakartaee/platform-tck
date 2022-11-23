@@ -22,7 +22,8 @@ import java.io.IOException;
 
 public final class ACListener1 implements AsyncListener {
 
-    public ACListener1() throws IOException {}
+    public ACListener1() throws IOException {
+    }
 
     public void onError(AsyncEvent event) throws IOException {
         event.getAsyncContext().getResponse().getWriter().println("in onError method of ACListener1");

@@ -34,7 +34,6 @@ public class Client extends com.sun.ts.tests.ejb30.timer.interceptor.business.co
      *
      * @assertion_ids:
      *
-     * @test_Strategy: create a timer in all interceptor methods. Verify they
-     * expire as expected.
+     * @test_Strategy: create a timer in all interceptor methods. Verify they expire as expected.
      */
 }

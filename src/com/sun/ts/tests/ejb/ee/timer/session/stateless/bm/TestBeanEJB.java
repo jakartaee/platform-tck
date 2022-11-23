@@ -47,48 +47,48 @@ public class TestBeanEJB extends StatelessWrapper implements TimedObject {
 
     // Expected results of allowed methods tests
     private static final String expected[] = {
-        "true", // getEJBHome
-        "true", // getCallerPrincipal
-        "false", // getRollbackOnly
-        "true", // isCallerInRole
-        "true", // getEJBObject
-        "true", // JNDI access
-        "true", // getUserTransaction
-        "true", // UserTransaction_Methods_Test1 -ut.begin()
-        "true", // UserTransaction_Methods_Test2 -ut.commit()
-        "true", // UserTransaction_Methods_Test3 -ut.getStatus()
-        "true", // UserTransaction_Methods_Test4 -ut.rollback()
-        "true", // UserTransaction_Methods_Test5 -ut.setRollbackOnly()
-        "true", // UserTransaction_Methods_Test6 -ut.setTransactionTimeout()
-        "false", // setRollbackOnly
-        "true", // getEJBLocalHome
-        "true", // getEJBLocalObject
-        "false", // getPrimaryKey
-        "true", // getTimerService
-        "true" // Timer Service methods
+            "true", // getEJBHome
+            "true", // getCallerPrincipal
+            "false", // getRollbackOnly
+            "true", // isCallerInRole
+            "true", // getEJBObject
+            "true", // JNDI access
+            "true", // getUserTransaction
+            "true", // UserTransaction_Methods_Test1 -ut.begin()
+            "true", // UserTransaction_Methods_Test2 -ut.commit()
+            "true", // UserTransaction_Methods_Test3 -ut.getStatus()
+            "true", // UserTransaction_Methods_Test4 -ut.rollback()
+            "true", // UserTransaction_Methods_Test5 -ut.setRollbackOnly()
+            "true", // UserTransaction_Methods_Test6 -ut.setTransactionTimeout()
+            "false", // setRollbackOnly
+            "true", // getEJBLocalHome
+            "true", // getEJBLocalObject
+            "false", // getPrimaryKey
+            "true", // getTimerService
+            "true" // Timer Service methods
     };
 
     // Allowed methods tests not tested
     private static final boolean skip[] = {
-        false, // getEJBHome
-        false, // getCallerPrincipal
-        false, // getRollbackOnly
-        false, // isCallerInRole
-        false, // getEJBObject
-        false, // JNDI access
-        false, // getUserTransaction
-        false, // UserTransaction_Methods_Test1 -ut.begin()
-        false, // UserTransaction_Methods_Test2 -ut.commit()
-        false, // UserTransaction_Methods_Test3 -ut.getStatus()
-        true, // UserTransaction_Methods_Test4 -ut.rollback()
-        true, // UserTransaction_Methods_Test5 -ut.setRollbackOnly()
-        false, // UserTransaction_Methods_Test6 -ut.setTransactionTimeout()
-        false, // setRollbackOnly
-        false, // getEJBLocalHome
-        false, // getEJBLocalObject
-        true, // getPrimaryKey
-        false, // getTimerService
-        false // Timer Service methods
+            false, // getEJBHome
+            false, // getCallerPrincipal
+            false, // getRollbackOnly
+            false, // isCallerInRole
+            false, // getEJBObject
+            false, // JNDI access
+            false, // getUserTransaction
+            false, // UserTransaction_Methods_Test1 -ut.begin()
+            false, // UserTransaction_Methods_Test2 -ut.commit()
+            false, // UserTransaction_Methods_Test3 -ut.getStatus()
+            true, // UserTransaction_Methods_Test4 -ut.rollback()
+            true, // UserTransaction_Methods_Test5 -ut.setRollbackOnly()
+            false, // UserTransaction_Methods_Test6 -ut.setTransactionTimeout()
+            false, // setRollbackOnly
+            false, // getEJBLocalHome
+            false, // getEJBLocalObject
+            true, // getPrimaryKey
+            false, // getTimerService
+            false // Timer Service methods
     };
 
     public TestBeanEJB() {
@@ -130,70 +130,71 @@ public class TestBeanEJB extends StatelessWrapper implements TimedObject {
         }
 
         switch (timeoutAction) {
-            case TimerImpl.NOMSG:
-                TestUtil.logTrace("EJB_TIMEOUT: No message sent - return");
-                return;
+        case TimerImpl.NOMSG:
+            TestUtil.logTrace("EJB_TIMEOUT: No message sent - return");
+            return;
 
-            case TimerImpl.ACCESS:
-                msg = TimerImpl.ACCESS_OK;
-                TestUtil.logTrace("EJB_TIMEOUT: Access OK, sending JMS message");
-                break;
+        case TimerImpl.ACCESS:
+            msg = TimerImpl.ACCESS_OK;
+            TestUtil.logTrace("EJB_TIMEOUT: Access OK, sending JMS message");
+            break;
 
-            case TimerImpl.CHKMETH:
-                if (TimerImpl.accessCheckedMethod(nctx)) msg = TimerImpl.CHKMETH_OK;
-                else msg = TimerImpl.CHKMETH_FAIL;
-                TestUtil.logTrace("EJB_TIMEOUT: Sending results of attempt " + "to access checked method...");
-                break;
+        case TimerImpl.CHKMETH:
+            if (TimerImpl.accessCheckedMethod(nctx))
+                msg = TimerImpl.CHKMETH_OK;
+            else
+                msg = TimerImpl.CHKMETH_FAIL;
+            TestUtil.logTrace("EJB_TIMEOUT: Sending results of attempt " + "to access checked method...");
+            break;
 
-            case TimerImpl.SERIALIZE:
-                TestUtil.logTrace("EJB_TIMEOUT: Getting timer handle...");
-                try {
-                    ut.begin();
-                    TimerHandle handle =
-                            TimerImpl.getTimerHandleFromEjbTimeout(sctx.getTimerService(), TimerImpl.SERIALIZE);
+        case TimerImpl.SERIALIZE:
+            TestUtil.logTrace("EJB_TIMEOUT: Getting timer handle...");
+            try {
+                ut.begin();
+                TimerHandle handle = TimerImpl.getTimerHandleFromEjbTimeout(sctx.getTimerService(), TimerImpl.SERIALIZE);
 
-                    if (handle == null) {
-                        ut.commit();
-                        TestUtil.logErr("EJB_TIMEOUT: Null handle received from " + "getTimerHandleFromEjbTimeout()");
-
-                        msg = TimerImpl.SERIALIZE_FAIL;
-                        break;
-                    }
-
-                    TestUtil.logTrace("EJB_TIMEOUT: Verifying handle is " + "serializable...");
-                    if (!(TimerImpl.isSerializable(handle))) {
-                        ut.commit();
-                        TestUtil.logErr("EJB_TIMEOUT: Timer handle is not serializable");
-                        msg = TimerImpl.SERIALIZE_FAIL;
-                        break;
-                    }
-
-                    TestUtil.logTrace("EJB_TIMEOUT: Getting deserialized handle...");
-                    TimerHandle deserializedHandle = TimerImpl.getDeserializedHandle(handle);
-
-                    TestUtil.logTrace("EJB_TIMEOUT: Verifying timers are " + "identical...");
-                    if (!(TimerImpl.timersAreIdentical(handle, deserializedHandle))) {
-                        ut.commit();
-                        TestUtil.logErr("EJB_TIMEOUT: Timers are not identical");
-                        msg = TimerImpl.SERIALIZE_FAIL;
-                        break;
-                    }
+                if (handle == null) {
                     ut.commit();
-                    msg = TimerImpl.SERIALIZE_OK;
-                } catch (Exception e) {
-                    TimerImpl.handleException("ejb_timeout serialization", e);
+                    TestUtil.logErr("EJB_TIMEOUT: Null handle received from " + "getTimerHandleFromEjbTimeout()");
+
+                    msg = TimerImpl.SERIALIZE_FAIL;
+                    break;
                 }
-                break;
 
-            case TimerImpl.ALLOWED:
-                Properties props = TimerImpl.doOperationTests(sctx, nctx, timer, skip, role, TimerImpl.SESSION);
-                boolean results = TimerImpl.checkOperationsTestResults(props, expected, skip);
-                msg = (results) ? TimerImpl.ALLOW_OK : TimerImpl.ALLOW_FAIL;
-                break;
+                TestUtil.logTrace("EJB_TIMEOUT: Verifying handle is " + "serializable...");
+                if (!(TimerImpl.isSerializable(handle))) {
+                    ut.commit();
+                    TestUtil.logErr("EJB_TIMEOUT: Timer handle is not serializable");
+                    msg = TimerImpl.SERIALIZE_FAIL;
+                    break;
+                }
 
-            default:
-                msg = TimerImpl.INVALID_ACTION;
-                break;
+                TestUtil.logTrace("EJB_TIMEOUT: Getting deserialized handle...");
+                TimerHandle deserializedHandle = TimerImpl.getDeserializedHandle(handle);
+
+                TestUtil.logTrace("EJB_TIMEOUT: Verifying timers are " + "identical...");
+                if (!(TimerImpl.timersAreIdentical(handle, deserializedHandle))) {
+                    ut.commit();
+                    TestUtil.logErr("EJB_TIMEOUT: Timers are not identical");
+                    msg = TimerImpl.SERIALIZE_FAIL;
+                    break;
+                }
+                ut.commit();
+                msg = TimerImpl.SERIALIZE_OK;
+            } catch (Exception e) {
+                TimerImpl.handleException("ejb_timeout serialization", e);
+            }
+            break;
+
+        case TimerImpl.ALLOWED:
+            Properties props = TimerImpl.doOperationTests(sctx, nctx, timer, skip, role, TimerImpl.SESSION);
+            boolean results = TimerImpl.checkOperationsTestResults(props, expected, skip);
+            msg = (results) ? TimerImpl.ALLOW_OK : TimerImpl.ALLOW_FAIL;
+            break;
+
+        default:
+            msg = TimerImpl.INVALID_ACTION;
+            break;
         }
 
         TestUtil.logTrace("EJB_TIMEOUT: Sending message at " + System.currentTimeMillis());

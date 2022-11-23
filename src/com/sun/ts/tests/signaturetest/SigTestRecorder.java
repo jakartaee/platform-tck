@@ -27,8 +27,7 @@ import java.util.List;
 
 /**
  * <p>
- * This implementation of {@link Recorder} will record signatures using the
- * <code>Signature Test</code> framework.
+ * This implementation of {@link Recorder} will record signatures using the <code>Signature Test</code> framework.
  * </p>
  */
 public class SigTestRecorder extends Recorder {
@@ -80,11 +79,10 @@ public class SigTestRecorder extends Recorder {
 
         Class batchSetup = Class.forName("com.sun.tdk.signaturetest.Setup");
         Object batchSetupInstance = batchSetup.newInstance();
-        Method runMethod =
-                batchSetup.getDeclaredMethod("run", new Class[] {String[].class, PrintWriter.class, PrintWriter.class});
+        Method runMethod = batchSetup.getDeclaredMethod("run", new Class[] { String[].class, PrintWriter.class, PrintWriter.class });
 
         runMethod.invoke(
                 batchSetupInstance,
-                new Object[] {commandLine, new PrintWriter(System.out, true), new PrintWriter(System.err, true)});
+                new Object[] { commandLine, new PrintWriter(System.out, true), new PrintWriter(System.err, true) });
     } // END doRecord
 } // END SigTestRecorder

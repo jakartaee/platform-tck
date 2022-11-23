@@ -30,14 +30,15 @@ import java.io.IOException;
 public class WSCCloseSessionServer {
     static int lastCloseCode = 0;
 
-    static final String MESSAGES[] = {"idle", "lastcode"};
+    static final String MESSAGES[] = { "idle", "lastcode" };
 
     @OnMessage
     public String onMessage(String msg, Session session) {
         if (MESSAGES[0].equals(msg)) {
             setLastCloseCode(0);
             session.setMaxIdleTimeout(1);
-        } else if (MESSAGES[1].equals(msg)) msg = getLastCloseCode();
+        } else if (MESSAGES[1].equals(msg))
+            msg = getLastCloseCode();
         return msg;
     }
 

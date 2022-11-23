@@ -22,8 +22,7 @@ package com.sun.ts.tests.ejb30.lite.async.common.annotated;
 import java.util.concurrent.Future;
 
 /**
- * This interface only contains methods applicable to both remote and local
- * sub-interfaces.
+ * This interface only contains methods applicable to both remote and local sub-interfaces.
  */
 public interface AsyncAnnotatedMethodsCommonIF {
     // @Asynchronous moved to bean class or super class

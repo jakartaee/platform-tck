@@ -42,7 +42,8 @@ public class Department2 implements java.io.Serializable {
     @OrderColumn()
     private List<Employee2> employees;
 
-    public Department2() {}
+    public Department2() {
+    }
 
     public Department2(int id, String name) {
         this.id = id;

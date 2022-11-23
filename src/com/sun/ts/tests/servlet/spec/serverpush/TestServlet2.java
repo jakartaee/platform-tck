@@ -41,8 +41,7 @@ public class TestServlet2 extends HttpServlet {
         pw.println("The headers of PushBuilder: ");
         for (String name : pb.getHeaderNames()) {
             /*
-             * Header names are case insensitive. Force to lower case to make client
-             * side test logic simpler.
+             * Header names are case insensitive. Force to lower case to make client side test logic simpler.
              */
             pw.print(name.toLowerCase(Locale.ENGLISH));
             pw.print("=");

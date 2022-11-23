@@ -37,8 +37,8 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "SessionContextBean")
-@Remote({Three1IF.class, Three2IF.class})
-@Local({ThreeLocal1IF.class, ThreeLocal2IF.class})
+@Remote({ Three1IF.class, Three2IF.class })
+@Local({ ThreeLocal1IF.class, ThreeLocal2IF.class })
 @RemoteHome(TwoRemoteHome.class)
 @LocalHome(TwoLocalHome.class)
 public class SessionContextBean extends SessionContextBeanBase
@@ -53,13 +53,16 @@ public class SessionContextBean extends SessionContextBeanBase
         return sessionContext;
     }
 
-    public SessionContextBean() {}
+    public SessionContextBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
     // optional ejbCreate() method because this bean has RemoteHome
     // it may throw any application exception, and possibly CreateException
     //////////////////////////////////////////////////////////////////////
-    public void ejbCreate() throws TestFailedException {}
+    public void ejbCreate() throws TestFailedException {
+    }
 }

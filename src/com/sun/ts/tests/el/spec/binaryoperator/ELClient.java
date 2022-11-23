@@ -53,8 +53,8 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNullOperandAddTest
      * @assertion_ids: EL:SPEC:17.1
-     * @test_Strategy: Validate that if both of the operands in an EL "+"
-     *                 (addition) operation are null, the result is (Long) 0.
+     * @test_Strategy: Validate that if both of the operands in an EL "+" (addition) operation are null, the result is
+     * (Long) 0.
      */
     public void elNullOperandAddTest() throws Fault {
 
@@ -74,14 +74,15 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: elNullOperandSubtractTest
      * @assertion_ids: EL:SPEC:17.1
-     * @test_Strategy: Validate that if both of the operands in an EL "-"
-     *                 (subtraction) operation are null, the result is (Long) 0.
+     * @test_Strategy: Validate that if both of the operands in an EL "-" (subtraction) operation are null, the result is
+     * (Long) 0.
      */
     public void elNullOperandSubtractTest() throws Fault {
 
@@ -101,15 +102,15 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: elNullOperandMultiplyTest
      * @assertion_ids: EL:SPEC:17.1
-     * @test_Strategy: Validate that if both of the operands in an EL "*"
-     *                 (multiplication) operation are null, the result is (Long)
-     *                 0.
+     * @test_Strategy: Validate that if both of the operands in an EL "*" (multiplication) operation are null, the result is
+     * (Long) 0.
      */
     public void elNullOperandMultiplyTest() throws Fault {
 
@@ -129,14 +130,15 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: elNullOperandDivisionTest
      * @assertion_ids: EL:SPEC:18.1
-     * @test_Strategy: Validate that if both of the operands in an EL "/"
-     *                 (division) operation are null, the result is (Long) 0.
+     * @test_Strategy: Validate that if both of the operands in an EL "/" (division) operation are null, the result is
+     * (Long) 0.
      *
      */
     public void elNullOperandDivisionTest() throws Fault {
@@ -157,14 +159,14 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: elNullOperandModulusTest
      * @assertion_ids: EL:SPEC:19.1
-     * @test_Strategy: Validate that if both of the operands in an EL "%" (mod)
-     *                 operation are null, the result is (Long) 0.
+     * @test_Strategy: Validate that if both of the operands in an EL "%" (mod) operation are null, the result is (Long) 0.
      *
      */
     public void elNullOperandModulusTest() throws Fault {
@@ -185,21 +187,18 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: elBigDecimalAddTest
      * @assertion_ids: EL:SPEC:17.2.1
-     * @test_Strategy: Validate that if one of the operands in an EL "+"
-     *                 (addition) operation is a BigDecimal, the result is coerced
-     *                 to BigDecimal and is the sum of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "+" (addition) operation is a BigDecimal, the result is
+     * coerced to BigDecimal and is the sum of the operands.
      *
-     *                 Equations tested: BigDecimal + BigDecimal BigDecimal +
-     *                 Double BigDecimal + Float BigDecimal + String containing
-     *                 ".", "e", or "E" BigDecimal + BigInteger BigDecimal +
-     *                 Integer BigDecimal + Long BigDecimal + Short BigDecimal +
-     *                 Byte
+     * Equations tested: BigDecimal + BigDecimal BigDecimal + Double BigDecimal + Float BigDecimal + String containing ".",
+     * "e", or "E" BigDecimal + BigInteger BigDecimal + Integer BigDecimal + Long BigDecimal + Short BigDecimal + Byte
      */
     public void elBigDecimalAddTest() throws Fault {
 
@@ -212,16 +211,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigDecimalSubtractTest
      * @assertion_ids: EL:SPEC:17.2.2
-     * @test_Strategy: Validate that if one of the operands in an EL "-"
-     *                 (subtraction) operation is a BigDecimal, the result is
-     *                 coerced to BigDecimal and is the difference of the
-     *                 operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "-" (subtraction) operation is a BigDecimal, the result
+     * is coerced to BigDecimal and is the difference of the operands.
      *
-     *                 Equations tested: BigDecimal - BigDecimal BigDecimal -
-     *                 Double BigDecimal - Float BigDecimal - String containing
-     *                 ".", "e", or "E" BigDecimal - BigInteger BigDecimal -
-     *                 Integer BigDecimal - Long BigDecimal - Short BigDecimal -
-     *                 Byte
+     * Equations tested: BigDecimal - BigDecimal BigDecimal - Double BigDecimal - Float BigDecimal - String containing ".",
+     * "e", or "E" BigDecimal - BigInteger BigDecimal - Integer BigDecimal - Long BigDecimal - Short BigDecimal - Byte
      */
     public void elBigDecimalSubtractTest() throws Fault {
 
@@ -234,15 +228,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigDecimalMultiplyTest
      * @assertion_ids: EL:SPEC:17.2.3
-     * @test_Strategy: Validate that if one of the operands in an EL "*"
-     *                 (multiplication) operation is a BigDecimal, the result is
-     *                 coerced to BigDecimal and is the product of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "*" (multiplication) operation is a BigDecimal, the
+     * result is coerced to BigDecimal and is the product of the operands.
      *
-     *                 Equations tested: BigDecimal * BigDecimal BigDecimal *
-     *                 Double BigDecimal * Float BigDecimal * String containing
-     *                 ".", "e", or "E" BigDecimal * BigInteger BigDecimal *
-     *                 Integer BigDecimal * Long BigDecimal * Short BigDecimal *
-     *                 Byte
+     * Equations tested: BigDecimal * BigDecimal BigDecimal * Double BigDecimal * Float BigDecimal * String containing ".",
+     * "e", or "E" BigDecimal * BigInteger BigDecimal * Integer BigDecimal * Long BigDecimal * Short BigDecimal * Byte
      */
     public void elBigDecimalMultiplyTest() throws Fault {
 
@@ -255,15 +245,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigDecimalDivisionTest
      * @assertion_ids: EL:SPEC:18.2
-     * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
-     *                 operation is a BigDecimal, the result is coerced to
-     *                 BigDecimal and is the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "/" (div) operation is a BigDecimal, the result is
+     * coerced to BigDecimal and is the quotient of the operands.
      *
-     *                 Equations tested: BigDecimal / BigDecimal BigDecimal /
-     *                 Double BigDecimal / Float BigDecimal / String containing
-     *                 ".", "e", or "E" BigDecimal / BigInteger BigDecimal /
-     *                 Integer BigDecimal / Long BigDecimal / Short BigDecimal /
-     *                 Byte
+     * Equations tested: BigDecimal / BigDecimal BigDecimal / Double BigDecimal / Float BigDecimal / String containing ".",
+     * "e", or "E" BigDecimal / BigInteger BigDecimal / Integer BigDecimal / Long BigDecimal / Short BigDecimal / Byte
      */
     public void elBigDecimalDivisionTest() throws Fault {
 
@@ -276,15 +262,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigDecimalModulusTest
      * @assertion_ids: EL:SPEC:19.2
-     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
-     *                 operation is a BigDecimal, the result is coerced to Double
-     *                 and is the remainder of the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod) operation is a BigDecimal, the result is
+     * coerced to Double and is the remainder of the quotient of the operands.
      *
-     *                 Equations tested: BigDecimal % BigDecimal BigDecimal %
-     *                 Double BigDecimal % Float BigDecimal % String containing
-     *                 ".", "e", or "E" BigDecimal % BigInteger BigDecimal %
-     *                 Integer BigDecimal % Long BigDecimal % Short BigDecimal %
-     *                 Byte
+     * Equations tested: BigDecimal % BigDecimal BigDecimal % Double BigDecimal % Float BigDecimal % String containing ".",
+     * "e", or "E" BigDecimal % BigInteger BigDecimal % Integer BigDecimal % Long BigDecimal % Short BigDecimal % Byte
      */
     public void elBigDecimalModulusTest() throws Fault {
 
@@ -297,13 +279,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerAddTest
      * @assertion_ids: EL:SPEC:17.4.1
-     * @test_Strategy: Validate that if one of the operands in an EL "+"
-     *                 (addition) operation is a BigInteger, the result is coerced
-     *                 to BigInteger and is the sum of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "+" (addition) operation is a BigInteger, the result is
+     * coerced to BigInteger and is the sum of the operands.
      *
-     *                 Equations tested: BigInteger + BigInteger BigInteger +
-     *                 Integer BigInteger + Long BigInteger + Short BigInteger +
-     *                 Byte
+     * Equations tested: BigInteger + BigInteger BigInteger + Integer BigInteger + Long BigInteger + Short BigInteger + Byte
      */
     public void elBigIntegerAddTest() throws Fault {
 
@@ -316,14 +295,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerSubtractTest
      * @assertion_ids: EL:SPEC:17.4.2
-     * @test_Strategy: Validate that if one of the operands in an EL "-"
-     *                 (subtraction) operation is a BigInteger, the result is
-     *                 coerced to BigInteger and is the difference of the
-     *                 operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "-" (subtraction) operation is a BigInteger, the result
+     * is coerced to BigInteger and is the difference of the operands.
      *
-     *                 Equations tested: BigInteger - BigInteger BigInteger -
-     *                 Integer BigInteger - Long BigInteger - Short BigInteger -
-     *                 Byte
+     * Equations tested: BigInteger - BigInteger BigInteger - Integer BigInteger - Long BigInteger - Short BigInteger - Byte
      */
     public void elBigIntegerSubtractTest() throws Fault {
 
@@ -336,12 +311,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerMultiplyTest
      * @assertion_ids: EL:SPEC:17.4.3
-     * @test_Strategy: Validate that if one of the operands in an EL "*" operation
-     *                 is a BigInteger, the result is coerced to BigInteger and is
-     *                 the product of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "*" operation is a BigInteger, the result is coerced to
+     * BigInteger and is the product of the operands.
      *
-     *                 BigInteger * BigInteger BigInteger * Integer BigInteger *
-     *                 Long BigInteger * Short BigInteger * Byte
+     * BigInteger * BigInteger BigInteger * Integer BigInteger * Long BigInteger * Short BigInteger * Byte
      */
     public void elBigIntegerMultiplyTest() throws Fault {
 
@@ -354,12 +327,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerDivisionTest
      * @assertion_ids: EL:SPEC:18.2
-     * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
-     *                 operation is a BigInteger, the result is coerced to
-     *                 BigDecimal and is the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "/" (div) operation is a BigInteger, the result is
+     * coerced to BigDecimal and is the quotient of the operands.
      *
-     *                 BigInteger / BigInteger BigInteger / Integer BigInteger /
-     *                 Long BigInteger / Short BigInteger / Byte
+     * BigInteger / BigInteger BigInteger / Integer BigInteger / Long BigInteger / Short BigInteger / Byte
      */
     public void elBigIntegerDivisionTest() throws Fault {
 
@@ -372,13 +343,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerModulusTest
      * @assertion_ids: EL:SPEC:19.3
-     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
-     *                 operation is a BigInteger, the result is coerced to
-     *                 BigInteger and is the remainder of the quotient of the
-     *                 operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod) operation is a BigInteger, the result is
+     * coerced to BigInteger and is the remainder of the quotient of the operands.
      *
-     *                 BigInteger % BigInteger BigInteger % Integer BigInteger %
-     *                 Long BigInteger % Short BigInteger % Byte
+     * BigInteger % BigInteger BigInteger % Integer BigInteger % Long BigInteger % Short BigInteger % Byte
      */
     public void elBigIntegerModulusTest() throws Fault {
 
@@ -391,19 +359,17 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatAddTest
      * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-     * @test_Strategy: Validate that if one of the operands in an EL "+"
-     *                 (addition) operation is a Float, the result is coerced to
-     *                 Double and is the sum of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "+" (addition) operation is a Float, the result is
+     * coerced to Double and is the sum of the operands.
      *
-     *                 Equations tested: Float + Double Float + Float Float +
-     *                 String containing ".", "e", or "E" Float + BigInteger Float
-     *                 + Integer Float + Long Float + Short Float + Byte
+     * Equations tested: Float + Double Float + Float Float + String containing ".", "e", or "E" Float + BigInteger Float +
+     * Integer Float + Long Float + Short Float + Byte
      */
     public void elFloatAddTest() throws Fault {
 
         Float expectedResult;
         // For each float in validate List.
-        for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext(); ) {
+        for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext();) {
             Float testValue = (Float) it.next();
             expectedResult = testValue + Float.valueOf("1.0");
             Validator.testFloat(testValue, expectedResult, "+");
@@ -413,19 +379,17 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatSubtractTest
      * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-     * @test_Strategy: Validate that if one of the operands in an EL "-"
-     *                 (subtraction) operation is a Float, the result is coerced
-     *                 to Double and is the difference of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "-" (subtraction) operation is a Float, the result is
+     * coerced to Double and is the difference of the operands.
      *
-     *                 Equations tested: Float - Double Float - Float Float -
-     *                 String containing ".", "e", or "E" Float - BigInteger Float
-     *                 - Integer Float - Long Float - Short Float - Byte
+     * Equations tested: Float - Double Float - Float Float - String containing ".", "e", or "E" Float - BigInteger Float -
+     * Integer Float - Long Float - Short Float - Byte
      */
     public void elFloatSubtractTest() throws Fault {
 
         Float expectedResult;
         // For each float in validate List.
-        for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext(); ) {
+        for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext();) {
             Float testValue = (Float) it.next();
             expectedResult = testValue - Float.valueOf("1.0");
             Validator.testFloat(testValue, expectedResult, "-");
@@ -435,19 +399,17 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatMultiplyTest
      * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-     * @test_Strategy: Validate that if one of the operands in an EL "*"
-     *                 (multiplication) operation is a Float, the result is
-     *                 coerced to Double and is the product of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "*" (multiplication) operation is a Float, the result
+     * is coerced to Double and is the product of the operands.
      *
-     *                 Equations tested: Float * Double Float * Float Float *
-     *                 String containing ".", "e", or "E" Float * BigInteger Float
-     *                 * Integer Float * Long Float * Short Float * Byte
+     * Equations tested: Float * Double Float * Float Float * String containing ".", "e", or "E" Float * BigInteger Float *
+     * Integer Float * Long Float * Short Float * Byte
      */
     public void elFloatMultiplyTest() throws Fault {
 
         Float expectedResult;
         // For each float in validate List.
-        for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext(); ) {
+        for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext();) {
             Float testValue = (Float) it.next();
             expectedResult = testValue * Float.valueOf("1.0");
             Validator.testFloat(testValue, expectedResult, "*");
@@ -457,19 +419,17 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatDivisionTest
      * @assertion_ids: EL:SPEC:18.2; EL:SPEC:18.3
-     * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
-     *                 operation is a Float, the result is coerced to Double and
-     *                 is the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "/" (div) operation is a Float, the result is coerced
+     * to Double and is the quotient of the operands.
      *
-     *                 Equations tested: Float / Double Float / Float Float /
-     *                 String containing ".", "e", or "E" Float / BigInteger Float
-     *                 / Integer Float / Long Float / Short Float / Byte
+     * Equations tested: Float / Double Float / Float Float / String containing ".", "e", or "E" Float / BigInteger Float /
+     * Integer Float / Long Float / Short Float / Byte
      */
     public void elFloatDivisionTest() throws Fault {
 
         Float expectedResult;
         // For each float in validate List.
-        for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext(); ) {
+        for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext();) {
             Float testValue = (Float) it.next();
             expectedResult = testValue / Float.valueOf("1.0");
             Validator.testFloat(testValue, expectedResult, "/");
@@ -479,19 +439,17 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatModulusTest
      * @assertion_ids: EL:SPEC:19.2
-     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
-     *                 operation is a Float, the result is coerced to Double and
-     *                 is the remainder of the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod) operation is a Float, the result is coerced
+     * to Double and is the remainder of the quotient of the operands.
      *
-     *                 Equations tested: Float % Double Float % Float Float %
-     *                 String containing ".", "e", or "E" Float % BigInteger Float
-     *                 % Integer Float % Long Float % Short Float % Byte
+     * Equations tested: Float % Double Float % Float Float % String containing ".", "e", or "E" Float % BigInteger Float %
+     * Integer Float % Long Float % Short Float % Byte
      */
     public void elFloatModulusTest() throws Fault {
 
         Float expectedResult;
         // For each float in validate List.
-        for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext(); ) {
+        for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext();) {
             Float testValue = (Float) it.next();
             expectedResult = testValue % Float.valueOf("1.0");
             Validator.testFloat(testValue, expectedResult, "%");
@@ -501,13 +459,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleAddTest
      * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-     * @test_Strategy: Validate that if one of the operands in an EL "+"
-     *                 (addition) operation is a Double, the result is coerced to
-     *                 Double and is the sum of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "+" (addition) operation is a Double, the result is
+     * coerced to Double and is the sum of the operands.
      *
-     *                 Equations tested: Double + Double Double + String
-     *                 containing ".", "e", or "E" Double + BigInteger Double +
-     *                 Integer Double + Long Double + Short Double + Byte
+     * Equations tested: Double + Double Double + String containing ".", "e", or "E" Double + BigInteger Double + Integer
+     * Double + Long Double + Short Double + Byte
      */
     public void elDoubleAddTest() throws Fault {
 
@@ -520,13 +476,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleSubtractTest
      * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-     * @test_Strategy: Validate that if one of the operands in an EL "-"
-     *                 (subtraction) operation is a Double, the result is coerced
-     *                 to Double and is the difference of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "-" (subtraction) operation is a Double, the result is
+     * coerced to Double and is the difference of the operands.
      *
-     *                 Equations tested: Double - Double Double - String
-     *                 containing ".", "e", or "E" Double - BigInteger Double -
-     *                 Integer Double - Long Double - Short Double - Byte
+     * Equations tested: Double - Double Double - String containing ".", "e", or "E" Double - BigInteger Double - Integer
+     * Double - Long Double - Short Double - Byte
      */
     public void elDoubleSubtractTest() throws Fault {
 
@@ -539,13 +493,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleMultiplyTest
      * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-     * @test_Strategy: Validate that if one of the operands in an EL "*"
-     *                 (multiplication) operation is a Double, the result is
-     *                 coerced to Double and is the product of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "*" (multiplication) operation is a Double, the result
+     * is coerced to Double and is the product of the operands.
      *
-     *                 Equations tested: Double * Double Double * String
-     *                 containing ".", "e", or "E" Double * BigInteger Double *
-     *                 Integer Double * Long Double * Short Double * Byte
+     * Equations tested: Double * Double Double * String containing ".", "e", or "E" Double * BigInteger Double * Integer
+     * Double * Long Double * Short Double * Byte
      */
     public void elDoubleMultiplyTest() throws Fault {
 
@@ -558,13 +510,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleDivisionTest
      * @assertion_ids: EL:SPEC:18.2; EL:SPEC:18.3
-     * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
-     *                 operation is a Double, the result is coerced to Double and
-     *                 is the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "/" (div) operation is a Double, the result is coerced
+     * to Double and is the quotient of the operands.
      *
-     *                 Equations tested: Double / Double Double / String
-     *                 containing ".", "e", or "E" Double / BigInteger Double /
-     *                 Integer Double / Long Double / Short Double / Byte
+     * Equations tested: Double / Double Double / String containing ".", "e", or "E" Double / BigInteger Double / Integer
+     * Double / Long Double / Short Double / Byte
      */
     public void elDoubleDivisionTest() throws Fault {
 
@@ -577,13 +527,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleModulusTest
      * @assertion_ids: EL:SPEC:19.2
-     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
-     *                 operation is a Double, the result is coerced to Double and
-     *                 is the remainder of the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod) operation is a Double, the result is coerced
+     * to Double and is the remainder of the quotient of the operands.
      *
-     *                 Equations tested: Double % Double Double % String
-     *                 containing ".", "e", or "E" Double % BigInteger Double %
-     *                 Integer Double % Long Double % Short Double % Byte
+     * Equations tested: Double % Double Double % String containing ".", "e", or "E" Double % BigInteger Double % Integer
+     * Double % Long Double % Short Double % Byte
      */
     public void elDoubleModulusTest() throws Fault {
 
@@ -596,14 +544,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumericStringSubtractTest
      * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-     * @test_Strategy: Validate that if one of the operands in an EL "-"
-     *                 (subtraction) operation is a numeric string, the result is
-     *                 coerced to Double and is the difference of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "-" (subtraction) operation is a numeric string, the
+     * result is coerced to Double and is the difference of the operands.
      *
-     *                 Equations tested: Numeric String - String containing ".",
-     *                 "e", or "E" Numeric String - BigInteger Numeric String -
-     *                 Integer Numeric String - Long Numeric String - Short
-     *                 Numeric String - Byte
+     * Equations tested: Numeric String - String containing ".", "e", or "E" Numeric String - BigInteger Numeric String -
+     * Integer Numeric String - Long Numeric String - Short Numeric String - Byte
      */
     public void elNumericStringSubtractTest() throws Fault {
 
@@ -616,14 +561,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumericStringMultiplyTest
      * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-     * @test_Strategy: Validate that if one of the operands in an EL "*"
-     *                 (multiplication) operation is a numeric string, the result
-     *                 is coerced to Double and is the product of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "*" (multiplication) operation is a numeric string, the
+     * result is coerced to Double and is the product of the operands.
      *
-     *                 Equations tested: Numeric String * String containing ".",
-     *                 "e", or "E" Numeric String * BigInteger Numeric String *
-     *                 Integer Numeric String * Long Numeric String * Short
-     *                 Numeric String * Byte
+     * Equations tested: Numeric String * String containing ".", "e", or "E" Numeric String * BigInteger Numeric String *
+     * Integer Numeric String * Long Numeric String * Short Numeric String * Byte
      */
     public void elNumericStringMultiplyTest() throws Fault {
 
@@ -636,14 +578,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumericStringDivisionTest
      * @assertion_ids: EL:SPEC:18.2; EL:SPEC:18.3
-     * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
-     *                 operation is a numeric string, the result is coerced to
-     *                 Double and is the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "/" (div) operation is a numeric string, the result is
+     * coerced to Double and is the quotient of the operands.
      *
-     *                 Equations tested: Numeric String / String containing ".",
-     *                 "e", or "E" Numeric String / BigInteger Numeric String /
-     *                 Integer Numeric String / Long Numeric String / Short
-     *                 Numeric String / Byte
+     * Equations tested: Numeric String / String containing ".", "e", or "E" Numeric String / BigInteger Numeric String /
+     * Integer Numeric String / Long Numeric String / Short Numeric String / Byte
      */
     public void elNumericStringDivisionTest() throws Fault {
 
@@ -656,15 +595,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumericStringModulusTest
      * @assertion_ids: EL:SPEC:19.2
-     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
-     *                 operation is a numeric string, the result is coerced to
-     *                 Double and is the remainder of the quotient of the
-     *                 operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod) operation is a numeric string, the result is
+     * coerced to Double and is the remainder of the quotient of the operands.
      *
-     *                 Equations tested: Numeric String % String containing ".",
-     *                 "e", or "E" Numeric String % BigInteger Numeric String %
-     *                 Integer Numeric String % Long Numeric String % Short
-     *                 Numeric String % Byte
+     * Equations tested: Numeric String % String containing ".", "e", or "E" Numeric String % BigInteger Numeric String %
+     * Integer Numeric String % Long Numeric String % Short Numeric String % Byte
      */
     public void elNumericStringModulusTest() throws Fault {
 
@@ -677,12 +612,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongAddTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if one of the operands in an EL "+"
-     *                 (addition) operation is a Long, the result is coerced to
-     *                 Long and is the sum of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "+" (addition) operation is a Long, the result is
+     * coerced to Long and is the sum of the operands.
      *
-     *                 Equations tested: Long + Integer Long + Long Long + Short
-     *                 Long + Byte
+     * Equations tested: Long + Integer Long + Long Long + Short Long + Byte
      */
     public void elLongAddTest() throws Fault {
 
@@ -695,12 +628,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongSubtractTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if one of the operands in an EL "-"
-     *                 (subtraction) operation is a Long, the result is coerced to
-     *                 Long and is the difference of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "-" (subtraction) operation is a Long, the result is
+     * coerced to Long and is the difference of the operands.
      *
-     *                 Equations tested: Long - Integer Long - Long Long - Short
-     *                 Long - Byte
+     * Equations tested: Long - Integer Long - Long Long - Short Long - Byte
      */
     public void elLongSubtractTest() throws Fault {
 
@@ -713,12 +644,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongMultiplyTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if one of the operands in an EL "*"
-     *                 (multiplication) operation is a Long, the result is coerced
-     *                 to Long and is the product of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "*" (multiplication) operation is a Long, the result is
+     * coerced to Long and is the product of the operands.
      *
-     *                 Equations tested: Long * Integer Long * Long Long * Short
-     *                 Long * Byte
+     * Equations tested: Long * Integer Long * Long Long * Short Long * Byte
      */
     public void elLongMultiplyTest() throws Fault {
 
@@ -731,12 +660,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongDivisionTest
      * @assertion_ids: EL:SPEC:18.3
-     * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
-     *                 operation is a Long, the result is coerced to Double and is
-     *                 the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "/" (div) operation is a Long, the result is coerced to
+     * Double and is the quotient of the operands.
      *
-     *                 Equations tested: Long / Integer Long / Long Long / Short
-     *                 Long / Byte
+     * Equations tested: Long / Integer Long / Long Long / Short Long / Byte
      */
     public void elLongDivisionTest() throws Fault {
 
@@ -749,12 +676,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongModulusTest
      * @assertion_ids: EL:SPEC:19.4
-     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
-     *                 operation is a Long, the result is coerced to Long and is
-     *                 the remainder of the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod) operation is a Long, the result is coerced to
+     * Long and is the remainder of the quotient of the operands.
      *
-     *                 Equations tested: Long % Integer Long % Long Long % Short
-     *                 Long % Byte
+     * Equations tested: Long % Integer Long % Long Long % Short Long % Byte
      */
     public void elLongModulusTest() throws Fault {
 
@@ -767,12 +692,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerAddTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if one of the operands in an EL "+"
-     *                 (addition) operation is a Integer, the result is coerced to
-     *                 Long and is the sum of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "+" (addition) operation is a Integer, the result is
+     * coerced to Long and is the sum of the operands.
      *
-     *                 Equations tested: Integer + Integer Integer + Short Integer
-     *                 + Byte
+     * Equations tested: Integer + Integer Integer + Short Integer + Byte
      */
     public void elIntegerAddTest() throws Fault {
 
@@ -785,11 +708,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerSubtractTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if one of the operands in an EL "-"
-     *                 (subtraction) operation is a Integer, the result is coerced
-     *                 to Long and is the difference of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "-" (subtraction) operation is a Integer, the result is
+     * coerced to Long and is the difference of the operands.
      *
-     *                 Equations tested: Long - Integer Long - Short Long - Byte
+     * Equations tested: Long - Integer Long - Short Long - Byte
      */
     public void elIntegerSubtractTest() throws Fault {
 
@@ -802,12 +724,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerMultiplyTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if one of the operands in an EL "*"
-     *                 (multiplication) operation is a Integer, the result is
-     *                 coerced to Long and is the product of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "*" (multiplication) operation is a Integer, the result
+     * is coerced to Long and is the product of the operands.
      *
-     *                 Equations tested: Integer * Integer Integer * Short Integer
-     *                 * Byte
+     * Equations tested: Integer * Integer Integer * Short Integer * Byte
      */
     public void elIntegerMultiplyTest() throws Fault {
 
@@ -820,12 +740,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerDivisionTest
      * @assertion_ids: EL:SPEC:18.3
-     * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
-     *                 operation is a Integer, the result is coerced to Double and
-     *                 is the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "/" (div) operation is a Integer, the result is coerced
+     * to Double and is the quotient of the operands.
      *
-     *                 Equations tested: Integer / Integer Integer / Short Integer
-     *                 / Byte
+     * Equations tested: Integer / Integer Integer / Short Integer / Byte
      */
     public void elIntegerDivisionTest() throws Fault {
 
@@ -838,12 +756,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerModulusTest
      * @assertion_ids: EL:SPEC:19.4
-     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
-     *                 operation is a Integer, the result is coerced to Long and
-     *                 is the remainder of the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod) operation is a Integer, the result is coerced
+     * to Long and is the remainder of the quotient of the operands.
      *
-     *                 Equations tested: Integer % Integer Integer % Short Integer
-     *                 % Byte
+     * Equations tested: Integer % Integer Integer % Short Integer % Byte
      */
     public void elIntegerModulusTest() throws Fault {
 
@@ -856,11 +772,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortAddTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if one of the operands in an EL "+"
-     *                 (addition) operation is a Short, the result is coerced to
-     *                 Long and is the sum of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "+" (addition) operation is a Short, the result is
+     * coerced to Long and is the sum of the operands.
      *
-     *                 Equations tested: Short + Short Short + Byte
+     * Equations tested: Short + Short Short + Byte
      */
     public void elShortAddTest() throws Fault {
 
@@ -873,11 +788,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortSubtractTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if one of the operands in an EL "-"
-     *                 (subtraction) operation is a Short, the result is coerced
-     *                 to Long and is the difference of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "-" (subtraction) operation is a Short, the result is
+     * coerced to Long and is the difference of the operands.
      *
-     *                 Equations tested: Short - Short Short - Byte
+     * Equations tested: Short - Short Short - Byte
      */
     public void elShortSubtractTest() throws Fault {
 
@@ -890,11 +804,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortMultiplyTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if one of the operands in an EL "*"
-     *                 (multiplication) operation is a Short, the result is
-     *                 coerced to Long and is the product of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "*" (multiplication) operation is a Short, the result
+     * is coerced to Long and is the product of the operands.
      *
-     *                 Equations tested: Short * Short Short * Byte
+     * Equations tested: Short * Short Short * Byte
      */
     public void elShortMultiplyTest() throws Fault {
 
@@ -907,11 +820,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortDivisionTest
      * @assertion_ids: EL:SPEC:18.3
-     * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
-     *                 operation is a Short, the result is coerced to Double and
-     *                 is the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "/" (div) operation is a Short, the result is coerced
+     * to Double and is the quotient of the operands.
      *
-     *                 Equations tested: Short / Short Short / Byte
+     * Equations tested: Short / Short Short / Byte
      */
     public void elShortDivisionTest() throws Fault {
 
@@ -924,11 +836,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortModulusTest
      * @assertion_ids: EL:SPEC:19.4
-     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
-     *                 operation is a Short, the result is coerced to Long and is
-     *                 the remainder of the quotient of the operands.
+     * @test_Strategy: Validate that if one of the operands in an EL "%" (mod) operation is a Short, the result is coerced
+     * to Long and is the remainder of the quotient of the operands.
      *
-     *                 Equations tested: Short % Short Short % Byte
+     * Equations tested: Short % Short Short % Byte
      */
     public void elShortModulusTest() throws Fault {
 
@@ -941,11 +852,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteAddTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if both operands in an EL "+" (addition)
-     *                 operation are Bytes, the result is coerced to Long and is
-     *                 the sum of the operands.
+     * @test_Strategy: Validate that if both operands in an EL "+" (addition) operation are Bytes, the result is coerced to
+     * Long and is the sum of the operands.
      *
-     *                 Equations tested: Byte + Byte
+     * Equations tested: Byte + Byte
      */
     public void elByteAddTest() throws Fault {
 
@@ -958,11 +868,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteSubtractTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if both operands in an EL "-" (subtraction)
-     *                 operation are Bytes, the result is coerced to Long and is
-     *                 the difference of the operands.
+     * @test_Strategy: Validate that if both operands in an EL "-" (subtraction) operation are Bytes, the result is coerced
+     * to Long and is the difference of the operands.
      *
-     *                 Equations tested: Byte - Byte
+     * Equations tested: Byte - Byte
      */
     public void elByteSubtractTest() throws Fault {
 
@@ -975,11 +884,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteMultiplyTest
      * @assertion_ids: EL:SPEC:17.5
-     * @test_Strategy: Validate that if both operands in an EL "*"
-     *                 (multiplication) operation are Bytes, the result is coerced
-     *                 to Long and is the product of the operands.
+     * @test_Strategy: Validate that if both operands in an EL "*" (multiplication) operation are Bytes, the result is
+     * coerced to Long and is the product of the operands.
      *
-     *                 Equations tested: Byte * Byte
+     * Equations tested: Byte * Byte
      */
     public void elByteMultiplyTest() throws Fault {
 
@@ -992,11 +900,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteDivisionTest
      * @assertion_ids: EL:SPEC:18.3
-     * @test_Strategy: Validate that if both operands in an EL "/" (div) operation
-     *                 are Bytes, the result is coerced to Double and is the
-     *                 quotient of the operands.
+     * @test_Strategy: Validate that if both operands in an EL "/" (div) operation are Bytes, the result is coerced to
+     * Double and is the quotient of the operands.
      *
-     *                 Equations tested: Byte / Byte
+     * Equations tested: Byte / Byte
      */
     public void elByteDivisionTest() throws Fault {
 
@@ -1009,11 +916,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteModulusTest
      * @assertion_ids: EL:SPEC:19.4
-     * @test_Strategy: Validate that if both operands in an EL "%" (mod) operation
-     *                 are Bytes, the result is coerced to Long and is the
-     *                 remainder of the quotient of the operands.
+     * @test_Strategy: Validate that if both operands in an EL "%" (mod) operation are Bytes, the result is coerced to Long
+     * and is the remainder of the quotient of the operands.
      *
-     *                 Equations tested: Byte % Byte
+     * Equations tested: Byte % Byte
      */
     public void elByteModulusTest() throws Fault {
 
@@ -1026,11 +932,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBooleanAndTest
      * @assertion_ids: EL:SPEC:23.1; EL:SPEC:24.2.1
-     * @test_Strategy: Validate that if one of the operands in an EL "&&", "and"
-     *                 operation is a Boolean, the result is coerced to Boolean.
+     * @test_Strategy: Validate that if one of the operands in an EL "&&", "and" operation is a Boolean, the result is
+     * coerced to Boolean.
      *
-     *                 Equations tested: Boolean && String Boolean && Boolean
-     *                 Boolean and String Boolean and Boolean
+     * Equations tested: Boolean && String Boolean && Boolean Boolean and String Boolean and Boolean
      *
      */
     public void elBooleanAndTest() throws Fault {
@@ -1045,11 +950,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBooleanOrTest
      * @assertion_ids: EL:SPEC:23.1; EL:SPEC:24.2.1
-     * @test_Strategy: Validate that if one of the operands in an EL "||", "or"
-     *                 operation is a Boolean, the result is coerced to Boolean.
+     * @test_Strategy: Validate that if one of the operands in an EL "||", "or" operation is a Boolean, the result is
+     * coerced to Boolean.
      *
-     *                 Equations tested: Boolean || String Boolean || Boolean
-     *                 Boolean or String Boolean or Boolean
+     * Equations tested: Boolean || String Boolean || Boolean Boolean or String Boolean or Boolean
      *
      */
     public void elBooleanOrTest() throws Fault {

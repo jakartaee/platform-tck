@@ -50,8 +50,7 @@ public class AbstractHelperSingleton implements HelperSingleton, TestConstants {
     public String noAnnotationTest() throws TestFailedException {
 
         try {
-            int result =
-                    noAnnotationNormalInterface1.businessMethod1() + noAnnotationNormalInterface2.businessMethod2();
+            int result = noAnnotationNormalInterface1.businessMethod1() + noAnnotationNormalInterface2.businessMethod2();
 
             if (result == EXPECTED_RESULT1) {
                 return String.format(SUCCESSFULLY_RUN_RESULT, "noAnnotationTest");

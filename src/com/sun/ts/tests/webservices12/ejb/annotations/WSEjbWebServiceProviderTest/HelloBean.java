@@ -28,11 +28,7 @@ import java.io.ByteArrayOutputStream;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-@WebServiceProvider(
-        portName = "HelloPort",
-        serviceName = "HelloService",
-        targetNamespace = "http://hello.org/wsdl",
-        wsdlLocation = "META-INF/wsdl/HelloService.wsdl")
+@WebServiceProvider(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://hello.org/wsdl", wsdlLocation = "META-INF/wsdl/HelloService.wsdl")
 @Stateless(name = "WSEjbWebServiceProviderTest")
 public class HelloBean implements Provider<Source> {
     private static final JAXBContext jaxbContext = createJAXBContext();

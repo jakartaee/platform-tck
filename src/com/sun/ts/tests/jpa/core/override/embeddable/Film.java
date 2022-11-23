@@ -22,7 +22,8 @@ import java.io.Serializable;
 @Embeddable
 public class Film implements Serializable {
 
-    public Film() {}
+    public Film() {
+    }
 
     private String filmName;
 

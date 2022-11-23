@@ -54,8 +54,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -81,8 +80,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:311
      *
-     * @test_Strategy: Call the create method of an Entity Bean and verify the
-     * instance can be retrieved via the Primary Key.
+     * @test_Strategy: Call the create method of an Entity Bean and verify the instance can be retrieved via the Primary
+     * Key.
      */
 
     public void unknownPKTest1() throws Fault {
@@ -131,7 +130,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (!pass) throw new Fault("unknownPKTest1 failed");
+        if (!pass)
+            throw new Fault("unknownPKTest1 failed");
     }
 
     /*
@@ -139,8 +139,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:311
      *
-     * @test_Strategy: Call the createHomeAddress method of an Entity Bean and
-     * verify the instance can be retrieved via the Primary Key.
+     * @test_Strategy: Call the createHomeAddress method of an Entity Bean and verify the instance can be retrieved via the
+     * Primary Key.
      */
 
     public void unknownPKTest2() throws Fault {
@@ -189,7 +189,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (!pass) throw new Fault("unknownPKTest2 failed");
+        if (!pass)
+            throw new Fault("unknownPKTest2 failed");
     }
 
     public void cleanup() throws Fault {

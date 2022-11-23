@@ -75,7 +75,8 @@ public final class SRAttributeListener implements ServletRequestAttributeListene
         savedSC = event.getServletContext();
     }
 
-    public void contextDestroyed(ServletContextEvent event) {}
+    public void contextDestroyed(ServletContextEvent event) {
+    }
 
     public void attributeAdded(ServletRequestAttributeEvent event) {
         StaticLog.add("AttributeAdded:" + event.getName() + "," + event.getValue());

@@ -32,7 +32,8 @@ public class Employee implements Serializable {
 
     private Department department;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Long getId() {
         return id;

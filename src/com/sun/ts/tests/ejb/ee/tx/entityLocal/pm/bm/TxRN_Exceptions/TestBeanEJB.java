@@ -180,11 +180,9 @@ public class TestBeanEJB implements SessionBean {
             }
 
             /*
-             * Entity Note : AppException - - instance not discarded - Allowed to
-             * continue
+             * Entity Note : AppException - - instance not discarded - Allowed to continue
              *
-             * SysException - - instance discarded - dbrow not removed - must
-             * explicitly remove bean via ejb.remove()
+             * SysException - - instance discarded - dbrow not removed - must explicitly remove bean via ejb.remove()
              */
 
             // OK, let's rollback
@@ -192,7 +190,8 @@ public class TestBeanEJB implements SessionBean {
             ut.rollback();
             TestUtil.logTrace("Rollback finished");
 
-            if (t1) testResult = true;
+            if (t1)
+                testResult = true;
 
             return (testResult);
 
@@ -248,11 +247,9 @@ public class TestBeanEJB implements SessionBean {
             }
 
             /*
-             * Entity Note : AppException - - instance not discarded - Allowed to
-             * continue
+             * Entity Note : AppException - - instance not discarded - Allowed to continue
              *
-             * SysException - - instance discarded - dbrow not removed - must
-             * explicitly remove bean via ejb.remove()
+             * SysException - - instance discarded - dbrow not removed - must explicitly remove bean via ejb.remove()
              */
 
             // OK, let's rollback
@@ -260,7 +257,8 @@ public class TestBeanEJB implements SessionBean {
             ut.rollback();
             TestUtil.logTrace("Rollback finished");
 
-            if (t1) testResult = true;
+            if (t1)
+                testResult = true;
 
             return (testResult);
 
@@ -315,11 +313,9 @@ public class TestBeanEJB implements SessionBean {
             }
 
             /*
-             * Entity Note : AppException - - instance not discarded - Allowed to
-             * continue
+             * Entity Note : AppException - - instance not discarded - Allowed to continue
              *
-             * SysException - - instance discarded - dbrow not removed - must
-             * explicitly remove bean via ejb.remove()
+             * SysException - - instance discarded - dbrow not removed - must explicitly remove bean via ejb.remove()
              */
 
             // OK, let's rollback
@@ -327,7 +323,8 @@ public class TestBeanEJB implements SessionBean {
             ut.rollback();
             TestUtil.logTrace("Rollback finished");
 
-            if (t1) testResult = true;
+            if (t1)
+                testResult = true;
 
             return (testResult);
 

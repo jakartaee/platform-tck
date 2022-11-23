@@ -28,12 +28,7 @@ import jakarta.jws.WebService;
 /**
  * @author JAX-WSA Development Team
  */
-@WebService(
-        portName = "AddNumbersPort",
-        serviceName = "AddNumbersService",
-        targetNamespace = "http://example.com",
-        wsdlLocation = "WEB-INF/wsdl/WSAW2JDLOneWayTest.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway.AddNumbersPortType")
+@WebService(portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLOneWayTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.oneway.AddNumbersPortType")
 public class AddNumbersImpl implements AddNumbersPortType {
     public void addNumbers(int number1, int number2) {
         if (number1 < 0 || number2 < 0) {

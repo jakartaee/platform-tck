@@ -39,8 +39,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The dbMetaClient7 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The dbMetaClient7 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -75,14 +74,11 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -95,11 +91,16 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
                 dbUser = p.getProperty("user1", "");
                 sPtable = p.getProperty("ptable", "TSTABLE1");
                 sFtable = p.getProperty("ftable", "TSTABLE2");
-                if (dbName.length() == 0) throw new Fault("Invalid db1  Database Name");
-                if (dbUser.length() == 0) throw new Fault("Invalid Login Id");
-                if (sPtable.length() == 0) throw new Fault("Invalid Primary table");
-                if (sFtable.length() == 0) throw new Fault("Invalid Foreign table");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (dbName.length() == 0)
+                    throw new Fault("Invalid db1  Database Name");
+                if (dbUser.length() == 0)
+                    throw new Fault("Invalid Login Id");
+                if (sPtable.length() == 0)
+                    throw new Fault("Invalid Primary table");
+                if (sFtable.length() == 0)
+                    throw new Fault("Invalid Foreign table");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 int nLocdbname = dbName.indexOf('=');
                 sCatalogName = dbName.substring(nLocdbname + 1);
@@ -131,12 +132,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsUnionAll
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:976; JDBC:JAVADOC:977;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:976; JDBC:JAVADOC:977; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsUnionAll() method on that object. It should
-     * return a boolean value; eithet true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the supportsUnionAll()
+     * method on that object. It should return a boolean value; eithet true or false.
      *
      */
     public void testSupportsUnionAll() throws Fault {
@@ -144,8 +143,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsUnionAll");
             // invoke supportsUnionAll method
             boolean retValue = dbmd.supportsUnionAll();
-            if (retValue) msg.setMsg("supportsUnionAll is supported");
-            else msg.setMsg("supportsUnionAll is not supported");
+            if (retValue)
+                msg.setMsg("supportsUnionAll is supported");
+            else
+                msg.setMsg("supportsUnionAll is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -159,12 +160,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsOpenCursorsAcrossCommit
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:978; JDBC:JAVADOC:979;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:978; JDBC:JAVADOC:979; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsOpenCursorsAcrossCommit() method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsOpenCursorsAcrossCommit() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsOpenCursorsAcrossCommit() throws Fault {
@@ -172,8 +171,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsOpenCursorsAcrossCommit");
             // invoke supportsOpenCursorsAcrossCommit method
             boolean retValue = dbmd.supportsOpenCursorsAcrossCommit();
-            if (retValue) msg.setMsg("supportsOpenCursorsAcrossCommit is supported");
-            else msg.setMsg("supportsOpenCursorsAcrossCommit is not supported");
+            if (retValue)
+                msg.setMsg("supportsOpenCursorsAcrossCommit is supported");
+            else
+                msg.setMsg("supportsOpenCursorsAcrossCommit is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -187,12 +188,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsOpenCursorsAcrossRollback
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:980; JDBC:JAVADOC:981;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:980; JDBC:JAVADOC:981; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsOpenCursorsAcrossRollback() method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsOpenCursorsAcrossRollback() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsOpenCursorsAcrossRollback() throws Fault {
@@ -200,8 +199,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsOpenCursorsAcrossRollback");
             // invoke supportsOpenCursorsAcrossRollback method
             boolean retValue = dbmd.supportsOpenCursorsAcrossRollback();
-            if (retValue) msg.setMsg("supportsOpenCursorsAcrossRollback is supported");
-            else msg.setMsg("supportsOpenCursorsAcrossRollback is not supported");
+            if (retValue)
+                msg.setMsg("supportsOpenCursorsAcrossRollback is supported");
+            else
+                msg.setMsg("supportsOpenCursorsAcrossRollback is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -215,12 +216,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsOpenStatementsAcrossCommit
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:982; JDBC:JAVADOC:983;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:982; JDBC:JAVADOC:983; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsOpenStatementsAcrossCommit() method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsOpenStatementsAcrossCommit() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsOpenStatementsAcrossCommit() throws Fault {
@@ -228,8 +227,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsOpenStatementsAcrossCommit");
             // invoke supportsOpenStatementsAcrossCommit method
             boolean retValue = dbmd.supportsOpenStatementsAcrossCommit();
-            if (retValue) msg.setMsg("supportsOpenStatementsAcrossCommit is supported");
-            else msg.setMsg("supportsOpenStatementsAcrossCommit is not supported");
+            if (retValue)
+                msg.setMsg("supportsOpenStatementsAcrossCommit is supported");
+            else
+                msg.setMsg("supportsOpenStatementsAcrossCommit is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -243,12 +244,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsOpenStatementsAcrossRollback
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:984; JDBC:JAVADOC:985;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:984; JDBC:JAVADOC:985; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the supportsOpenStatementsAcrossRollback() method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * supportsOpenStatementsAcrossRollback() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsOpenStatementsAcrossRollback() throws Fault {
@@ -256,8 +255,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.supportsOpenStatementsAcrossRollback");
             // invoke supportsOpenStatementsAcrossRollback method
             boolean retValue = dbmd.supportsOpenStatementsAcrossRollback();
-            if (retValue) msg.setMsg("supportsOpenStatementsAcrossRollback is supported");
-            else msg.setMsg("supportsOpenStatementsAcrossRollback is not supported");
+            if (retValue)
+                msg.setMsg("supportsOpenStatementsAcrossRollback is supported");
+            else
+                msg.setMsg("supportsOpenStatementsAcrossRollback is not supported");
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -271,12 +272,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxBinaryLiteralLength
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:986; JDBC:JAVADOC:987;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:986; JDBC:JAVADOC:987; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxBinaryLiteralLength() method on that object. It
-     * should return an integer value
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * getMaxBinaryLiteralLength() method on that object. It should return an integer value
      *
      */
     public void testGetMaxBinaryLiteralLength() throws Fault {
@@ -284,8 +283,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxBinaryLiteralLength");
             // invoke getMaxBinaryLiteralLength method
             int nRetval = dbmd.getMaxBinaryLiteralLength();
-            if (nRetval < 0) msg.setMsg("getMaxBinaryLiteralLength returns a negative value");
-            else msg.setMsg("getMaxBinaryLiteralLength returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxBinaryLiteralLength returns a negative value");
+            else
+                msg.setMsg("getMaxBinaryLiteralLength returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -299,12 +300,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxCharLiteralLength
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:988; JDBC:JAVADOC:989;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:988; JDBC:JAVADOC:989; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxCharLiteralLength() method on that object. It
-     * should return an integer value.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * getMaxCharLiteralLength() method on that object. It should return an integer value.
      *
      */
     public void testGetMaxCharLiteralLength() throws Fault {
@@ -312,8 +311,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxCharLiteralLength");
             // invoke getMaxCharLiteralLength method
             int nRetval = dbmd.getMaxCharLiteralLength();
-            if (nRetval < 0) msg.setMsg("getMaxCharLiteralLength returns a negative value");
-            else msg.setMsg("getMaxCharLiteralLength returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxCharLiteralLength returns a negative value");
+            else
+                msg.setMsg("getMaxCharLiteralLength returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -327,12 +328,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxColumnNameLength
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:990; JDBC:JAVADOC:991;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:990; JDBC:JAVADOC:991; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxColumnNameLength() method on that object. It
-     * should return an integer value
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * getMaxColumnNameLength() method on that object. It should return an integer value
      *
      */
     public void testGetMaxColumnNameLength() throws Fault {
@@ -340,8 +339,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxColumnNameLength");
             // invoke getMaxColumnNameLength method
             int nRetval = dbmd.getMaxColumnNameLength();
-            if (nRetval < 0) msg.setMsg("getMaxColumnNameLength returns a negative value");
-            else msg.setMsg("getMaxColumnNameLength returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxColumnNameLength returns a negative value");
+            else
+                msg.setMsg("getMaxColumnNameLength returns " + nRetval);
 
             msg.printTestMsg();
 
@@ -356,12 +357,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxColumnsInGroupBy
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:992; JDBC:JAVADOC:993;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:992; JDBC:JAVADOC:993; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxColumnsInGroupBy() method on that object. It
-     * should return an integer value.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * getMaxColumnsInGroupBy() method on that object. It should return an integer value.
      *
      */
     public void testGetMaxColumnsInGroupBy() throws Fault {
@@ -372,7 +371,8 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             if (nRetval < 0)
                 msg.printTestError(
                         "getMaxColumnsInGroupBy returns a negative value", " testGetMaxColumnsInGroupBy Failed");
-            else msg.setMsg("getMaxColumnsInGroupBy returns " + nRetval);
+            else
+                msg.setMsg("getMaxColumnsInGroupBy returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -386,12 +386,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxColumnsInIndex
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:994; JDBC:JAVADOC:995;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:994; JDBC:JAVADOC:995; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxColumnsInIndex() method on that object. It
-     * should return an integer value.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getMaxColumnsInIndex()
+     * method on that object. It should return an integer value.
      *
      */
     public void testGetMaxColumnsInIndex() throws Fault {
@@ -399,8 +397,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxColumnsInIndex");
             // invoke getMaxColumnsInIndex method
             int nRetval = dbmd.getMaxColumnsInIndex();
-            if (nRetval < 0) msg.setMsg("getMaxColumnsInIndex returns a negative value");
-            else msg.setMsg("getMaxColumnsInIndex returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxColumnsInIndex returns a negative value");
+            else
+                msg.setMsg("getMaxColumnsInIndex returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -414,12 +414,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxColumnsInOrderBy
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:996; JDBC:JAVADOC:997;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:996; JDBC:JAVADOC:997; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxColumnsInOrderBy() method on that object. It
-     * should return an integer value.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * getMaxColumnsInOrderBy() method on that object. It should return an integer value.
      *
      */
     public void testGetMaxColumnsInOrderBy() throws Fault {
@@ -427,8 +425,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxColumnsInOrderBy");
             // invoke getMaxColumnsInOrderBy method
             int nRetval = dbmd.getMaxColumnsInOrderBy();
-            if (nRetval < 0) msg.setMsg("getMaxColumnsInOrderBy returns a negative value");
-            else msg.setMsg("getMaxColumnsInOrderBy returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxColumnsInOrderBy returns a negative value");
+            else
+                msg.setMsg("getMaxColumnsInOrderBy returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -442,12 +442,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxColumnsInSelect
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:998; JDBC:JAVADOC:999;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:998; JDBC:JAVADOC:999; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxColumnsInSelect() method on that object. It
-     * should return an integer value.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * getMaxColumnsInSelect() method on that object. It should return an integer value.
      *
      */
     public void testGetMaxColumnsInSelect() throws Fault {
@@ -455,8 +453,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxColumnsInSelect");
             // invoke getMaxColumnsInSelect method
             int nRetval = dbmd.getMaxColumnsInSelect();
-            if (nRetval < 0) msg.setMsg("getMaxColumnsInSelect returns a negative value");
-            else msg.setMsg("getMaxColumnsInSelect returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxColumnsInSelect returns a negative value");
+            else
+                msg.setMsg("getMaxColumnsInSelect returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -470,12 +470,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxColumnsInTable
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1000; JDBC:JAVADOC:1001;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1000; JDBC:JAVADOC:1001; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxColumnsInTable() method on that object. It
-     * should return an integer value.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getMaxColumnsInTable()
+     * method on that object. It should return an integer value.
      *
      */
     public void testGetMaxColumnsInTable() throws Fault {
@@ -483,8 +481,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxColumnsInTable");
             // invoke getMaxColumnsInTable method
             int nRetval = dbmd.getMaxColumnsInTable();
-            if (nRetval < 0) msg.setMsg("getMaxColumnsInTable returns a negative value");
-            else msg.setMsg("getMaxColumnsInTable returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxColumnsInTable returns a negative value");
+            else
+                msg.setMsg("getMaxColumnsInTable returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -498,12 +498,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxConnections
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1002; JDBC:JAVADOC:1003;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1002; JDBC:JAVADOC:1003; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxConnections() method on that object. It should
-     * return an integer value
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getMaxConnections()
+     * method on that object. It should return an integer value
      *
      */
     public void testGetMaxConnections() throws Fault {
@@ -511,8 +509,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxConnections");
             // invoke getMaxConnections method
             int nRetval = dbmd.getMaxConnections();
-            if (nRetval < 0) msg.setMsg("getMaxConnections returns a negative value");
-            else msg.setMsg("getMaxConnections returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxConnections returns a negative value");
+            else
+                msg.setMsg("getMaxConnections returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -526,12 +526,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxCursorNameLength
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1004; JDBC:JAVADOC:1005;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1004; JDBC:JAVADOC:1005; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxCursorNameLength() method on that object. It
-     * should return an integer value
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * getMaxCursorNameLength() method on that object. It should return an integer value
      *
      */
     public void testGetMaxCursorNameLength() throws Fault {
@@ -539,8 +537,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxCursorNameLength");
             // invoke getMaxCursorNameLength method
             int nRetval = dbmd.getMaxCursorNameLength();
-            if (nRetval < 0) msg.setMsg("getMaxCursorNameLength returns a negative value");
-            else msg.setMsg("getMaxCursorNameLength returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxCursorNameLength returns a negative value");
+            else
+                msg.setMsg("getMaxCursorNameLength returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -554,12 +554,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxIndexLength
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1006; JDBC:JAVADOC:1007;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1006; JDBC:JAVADOC:1007; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxIndexLength() method on that object. It should
-     * return an integer value
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getMaxIndexLength()
+     * method on that object. It should return an integer value
      *
      */
     public void testGetMaxIndexLength() throws Fault {
@@ -567,8 +565,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxIndexLength");
             // invoke getMaxIndexLength method
             int nRetval = dbmd.getMaxIndexLength();
-            if (nRetval < 0) msg.setMsg("getMaxIndexLength returns a negative value");
-            else msg.setMsg("getMaxIndexLength returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxIndexLength returns a negative value");
+            else
+                msg.setMsg("getMaxIndexLength returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -582,12 +582,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxSchemaNameLength
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1008; JDBC:JAVADOC:1009;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1008; JDBC:JAVADOC:1009; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxSchemaNameLength() method on that object. It
-     * should return an integer value.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * getMaxSchemaNameLength() method on that object. It should return an integer value.
      *
      */
     public void testGetMaxSchemaNameLength() throws Fault {
@@ -596,8 +594,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             // invoke getMaxSchemaNameLength method
             int nRetval = dbmd.getMaxSchemaNameLength();
 
-            if (nRetval < 0) msg.setMsg("getMaxSchemaNameLength returns a negative value");
-            else msg.setMsg("getMaxSchemaNameLength returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxSchemaNameLength returns a negative value");
+            else
+                msg.setMsg("getMaxSchemaNameLength returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -611,12 +611,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxProcedureNameLength
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1010; JDBC:JAVADOC:1011;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1010; JDBC:JAVADOC:1011; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxProcedureNameLength() method on that object. It
-     * should return an integer value.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * getMaxProcedureNameLength() method on that object. It should return an integer value.
      *
      */
     public void testGetMaxProcedureNameLength() throws Fault {
@@ -624,8 +622,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxProcedureNameLength");
             // invoke getMaxProcedureNameLength method
             int nRetval = dbmd.getMaxProcedureNameLength();
-            if (nRetval < 0) msg.setMsg("getMaxProcedureNameLength returns a negative value");
-            else msg.setMsg("getMaxProcedureNameLength returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxProcedureNameLength returns a negative value");
+            else
+                msg.setMsg("getMaxProcedureNameLength returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -639,12 +639,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxCatalogNameLength
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1012; JDBC:JAVADOC:1013;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1012; JDBC:JAVADOC:1013; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxCatalogNameLength() method on that object. It
-     * should return an integer value.
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the
+     * getMaxCatalogNameLength() method on that object. It should return an integer value.
      *
      */
     public void testGetMaxCatalogNameLength() throws Fault {
@@ -652,8 +650,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxCatalogNameLength");
             // invoke getMaxCatalogNameLength method
             int nRetval = dbmd.getMaxCatalogNameLength();
-            if (nRetval < 0) msg.setMsg("getMaxCatalogNameLength returns a negative value");
-            else msg.setMsg("getMaxCatalogNameLength returns " + nRetval);
+            if (nRetval < 0)
+                msg.setMsg("getMaxCatalogNameLength returns a negative value");
+            else
+                msg.setMsg("getMaxCatalogNameLength returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {
@@ -667,12 +667,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMaxRowSize
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1014; JDBC:JAVADOC:1015;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:1014; JDBC:JAVADOC:1015; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get a DatabaseMetadata object from the connection to the
-     * database and call the getMaxRowSize() method on that object. It should
-     * return an integer value
+     * @test_Strategy: Get a DatabaseMetadata object from the connection to the database and call the getMaxRowSize() method
+     * on that object. It should return an integer value
      *
      */
     public void testGetMaxRowSize() throws Fault {
@@ -680,8 +678,10 @@ public class dbMetaClient7 extends ServiceEETest implements Serializable {
             msg.setMsg("Calling DatabaseMetaData.getMaxRowSize");
             // invoke getMaxRowSize method
             int nRetval = dbmd.getMaxRowSize();
-            if (nRetval < 0) msg.printTestError("getMaxRowSize returns a negative value", "testGetMaxRowSize Failed!");
-            else msg.setMsg("getMaxRowSize returns " + nRetval);
+            if (nRetval < 0)
+                msg.printTestError("getMaxRowSize returns a negative value", "testGetMaxRowSize Failed!");
+            else
+                msg.setMsg("getMaxRowSize returns " + nRetval);
 
             msg.printTestMsg();
         } catch (SQLException sqle) {

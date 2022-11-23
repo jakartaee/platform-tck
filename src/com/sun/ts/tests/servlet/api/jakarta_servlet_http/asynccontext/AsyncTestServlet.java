@@ -80,8 +80,7 @@ public class AsyncTestServlet extends HttpTCKServlet {
             throws ServletException, IOException {
 
         AsyncContext ac = request.startAsync();
-        AsyncListener acl =
-                ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet_http.asynccontext.ACListener.class);
+        AsyncListener acl = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet_http.asynccontext.ACListener.class);
         ac.addListener(acl);
 
         ac.complete();
@@ -118,8 +117,7 @@ public class AsyncTestServlet extends HttpTCKServlet {
 
         AsyncContext ac = request.startAsync();
         response.getWriter().println("Default timeout: " + ac.getTimeout());
-        AsyncListener acl2 =
-                ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet_http.asynccontext.ACListener2.class);
+        AsyncListener acl2 = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet_http.asynccontext.ACListener2.class);
         ac.addListener(acl2);
 
         ac.setTimeout(timeout_set);
@@ -157,8 +155,7 @@ public class AsyncTestServlet extends HttpTCKServlet {
             throws ServletException, IOException {
 
         AsyncContext ac = request.startAsync();
-        AsyncListener acl =
-                ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet_http.asynccontext.ACListener.class);
+        AsyncListener acl = ac.createListener(com.sun.ts.tests.servlet.api.jakarta_servlet_http.asynccontext.ACListener.class);
         ac.addListener(acl, request, response);
 
         ac.complete();

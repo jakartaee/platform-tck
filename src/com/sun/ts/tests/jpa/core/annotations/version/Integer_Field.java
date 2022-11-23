@@ -38,7 +38,8 @@ public class Integer_Field implements java.io.Serializable {
     @Basic
     protected String name;
 
-    public Integer_Field() {}
+    public Integer_Field() {
+    }
 
     public Integer_Field(String id) {
         this.id = id;

@@ -119,13 +119,11 @@ public class MDCompleteWorkManager {
     }
 
     /*
-     * this method is used to facilitate testing assertion Connector:SPEC:305 the
-     * idea here is to test as follows: - create parent work obj - add valid SIC
-     * to parent work obj - create 2nd work obj to be child and get nested within
-     * parent work obj - assign NO SIC to child work obj - add child work obj into
-     * parent - execute parent work obj - parent has valid SIC so should be okay
-     * but child has NO SIC and should NOT inherit the parents SIC so the child
-     * workobj XXXX: how to verify the workInst with no SIC did not inherit!
+     * this method is used to facilitate testing assertion Connector:SPEC:305 the idea here is to test as follows: - create
+     * parent work obj - add valid SIC to parent work obj - create 2nd work obj to be child and get nested within parent
+     * work obj - assign NO SIC to child work obj - add child work obj into parent - execute parent work obj - parent has
+     * valid SIC so should be okay but child has NO SIC and should NOT inherit the parents SIC so the child workobj XXXX:
+     * how to verify the workInst with no SIC did not inherit!
      */
     public void testNestedContext2() {
 
@@ -161,16 +159,14 @@ public class MDCompleteWorkManager {
     }
 
     /*
-     * This method is used to facilitate testing assertion Connector:SPEC:210 The
-     * following steps are needed to validate assertion 210. - create parent work
-     * obj - add valid SIC to parent work obj - create 2nd work obj to be child
-     * and get nested within parent work obj - assign another valid
-     * (authenticatable) SIC to child work obj - add child work obj into parent
-     * work obj - execute parent work obj (which, in turn, attempts to execute
-     * child ) - parent has valid SIC so should be okay - but child does not
+     * This method is used to facilitate testing assertion Connector:SPEC:210 The following steps are needed to validate
+     * assertion 210. - create parent work obj - add valid SIC to parent work obj - create 2nd work obj to be child and get
+     * nested within parent work obj - assign another valid (authenticatable) SIC to child work obj - add child work obj
+     * into parent work obj - execute parent work obj (which, in turn, attempts to execute child ) - parent has valid SIC so
+     * should be okay - but child does not
      *
-     * The goal here is to show that the AS supports nested contexts by supplying
-     * 2 different SIC contexts (one valid and one invalid).
+     * The goal here is to show that the AS supports nested contexts by supplying 2 different SIC contexts (one valid and
+     * one invalid).
      *
      */
     public void testNestedContext3() {
@@ -191,8 +187,7 @@ public class MDCompleteWorkManager {
             // with teh bogus creds we are passing in...if it fails to authenticate,
             // it should log appropriate msg stating so which menas that our
             // child/nested work context did not inherit security from parent.
-            TSNestedSecurityContext csic =
-                    new TSNestedSecurityContext("phakeUsr", "phakePwd", "phakeEis", false, false);
+            TSNestedSecurityContext csic = new TSNestedSecurityContext("phakeUsr", "phakePwd", "phakeEis", false, false);
             nw.addWorkContext(csic); // add SIC w/ invalid creds
 
             // lets add SIC to our parent work obj only
@@ -217,16 +212,13 @@ public class MDCompleteWorkManager {
     }
 
     /*
-     * This method is used to facilitate testing assertion Connector:SPEC:210 The
-     * following steps are needed to validate assertion 210. - create parent work
-     * obj - add valid SIC to parent work obj - create 2nd work obj to be child
-     * and get nested within parent work obj - assign another valid
-     * (authenticatable) SIC to child work obj - add child work obj into parent
-     * work obj - execute parent work obj (which, in turn, attempts to execute
-     * child ) - parent has valid SIC so should be okay - same with child
+     * This method is used to facilitate testing assertion Connector:SPEC:210 The following steps are needed to validate
+     * assertion 210. - create parent work obj - add valid SIC to parent work obj - create 2nd work obj to be child and get
+     * nested within parent work obj - assign another valid (authenticatable) SIC to child work obj - add child work obj
+     * into parent work obj - execute parent work obj (which, in turn, attempts to execute child ) - parent has valid SIC so
+     * should be okay - same with child
      *
-     * The goal here is to show that the AS supports nested contexts by supplying
-     * 2 different SIC contexts (both valid).
+     * The goal here is to show that the AS supports nested contexts by supplying 2 different SIC contexts (both valid).
      *
      */
     public void testNestedContext() {

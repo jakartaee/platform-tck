@@ -31,8 +31,8 @@ public class JsfClient extends EJBLiteJsfClientBase {
     /*
      * @testName: resolveByEjbLinkInXml
      *
-     * @test_Strategy: @EJB in TestBean is incomplete. But the corresponding
-     * ejb-local-ref in ejb-jar.xml resolves it with ejb-link.
+     * @test_Strategy: @EJB in TestBean is incomplete. But the corresponding ejb-local-ref in ejb-jar.xml resolves it with
+     * ejb-link.
      */
     public void resolveByEjbLinkInXml() {
         assertEquals("Check correct target EJB is resolved. ", 1, getTestBean().getNumber());
@@ -41,8 +41,7 @@ public class JsfClient extends EJBLiteJsfClientBase {
     /*
      * @testName: availableInWebComponent
      *
-     * @test_Strategy: the ejb-local-ref declared in ejb-jar.xml should be
-     * available for lookup in web components.
+     * @test_Strategy: the ejb-local-ref declared in ejb-jar.xml should be available for lookup in web components.
      */
     public void availableInWebComponent() {
         if (getContainer() != null) {

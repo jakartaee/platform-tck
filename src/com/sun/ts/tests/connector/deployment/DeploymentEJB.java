@@ -51,7 +51,8 @@ public class DeploymentEJB implements SessionBean {
 
     private String password = null;
 
-    public DeploymentEJB() {}
+    public DeploymentEJB() {
+    }
 
     public void ejbCreate(Properties props) throws CreateException {
         p = props;
@@ -147,7 +148,9 @@ public class DeploymentEJB implements SessionBean {
         }
     }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 }

@@ -34,7 +34,7 @@ import jakarta.jms.Topic;
 import java.util.Properties;
 
 @Stateful(name = "CDITestsMDBClntBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
     private static final boolean debug = false;
@@ -122,7 +122,8 @@ public class EjbClient implements EjbClientIF {
             for (int i = 1; i < 10; ++i) {
                 TestUtil.logMsg("Try receiving reply message from MDB MsgBeanQ (loop count=" + i + ")");
                 messageRecv = (TextMessage) consumer.receive(timeout);
-                if (messageRecv != null) break;
+                if (messageRecv != null)
+                    break;
             }
             if (messageRecv != null) {
                 String testname = messageRecv.getStringProperty("TESTNAME");
@@ -176,7 +177,8 @@ public class EjbClient implements EjbClientIF {
             for (int i = 1; i < 10; ++i) {
                 TestUtil.logMsg("Try receiving reply message from MDB MsgBeanQ (loop count=" + i + ")");
                 messageRecv = (TextMessage) consumer.receive(timeout);
-                if (messageRecv != null) break;
+                if (messageRecv != null)
+                    break;
             }
             if (messageRecv != null) {
                 String testname = messageRecv.getStringProperty("TESTNAME");

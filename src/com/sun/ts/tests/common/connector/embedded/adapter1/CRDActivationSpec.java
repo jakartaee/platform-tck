@@ -27,7 +27,7 @@ import jakarta.resource.spi.ResourceAdapter;
  * In this ActivationSpec, we set a listener of WorkListener.
  *
  */
-@Activation(messageListeners = {jakarta.resource.spi.work.WorkListener.class})
+@Activation(messageListeners = { jakarta.resource.spi.work.WorkListener.class })
 public class CRDActivationSpec implements ActivationSpec, java.io.Serializable {
 
     private String annoDestinationName;

@@ -63,14 +63,12 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: getUserPrincipalTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:179; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210; WebSocket:SPEC:WSC-8.3-2;
+     * @assertion_ids: WebSocket:JAVADOC:179; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * WebSocket:SPEC:WSC-8.3-2;
      *
-     * @test_Strategy: HandshakeRequest.getUserPrincipal
-     * HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake A transport guarantee of
-     * CONFIDENTIAL
+     * @test_Strategy: HandshakeRequest.getUserPrincipal HandshakeResponse.getHeaders
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake A transport
+     * guarantee of CONFIDENTIAL
      *
      * Return the authenticated user
      */
@@ -86,13 +84,12 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: isUserInRoleTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:180; WebSocket:JAVADOC:77;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:210; WebSocket:SPEC:WSC-8.3-2;
+     * @assertion_ids: WebSocket:JAVADOC:180; WebSocket:JAVADOC:77; WebSocket:JAVADOC:15; WebSocket:JAVADOC:210;
+     * WebSocket:SPEC:WSC-8.3-2;
      *
      * @test_Strategy: HandshakeRequest.isUserInRole HandshakeResponse.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ServerEndpointConfig.Configurator.modifyHandshake A transport guarantee of
-     * CONFIDENTIAL
+     * ClientEndpointConfig.Configurator.afterResponse ServerEndpointConfig.Configurator.modifyHandshake A transport
+     * guarantee of CONFIDENTIAL
      */
     public void isUserInRoleTest() throws Fault {
         // check DIRECTOR role is not known

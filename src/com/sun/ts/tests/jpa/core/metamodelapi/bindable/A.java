@@ -43,7 +43,8 @@ public class A implements java.io.Serializable {
     @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
     protected Set<Address> address = new HashSet();
 
-    public A() {}
+    public A() {
+    }
 
     public A(String id, String name, int value) {
         this.id = id;

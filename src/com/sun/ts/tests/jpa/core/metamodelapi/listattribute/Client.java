@@ -28,7 +28,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -64,8 +65,7 @@ public class Client extends PMClientBase {
                 ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
                 if (mType != null) {
                     TestUtil.logTrace("Obtained Non-null ManagedType");
-                    ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib =
-                            mType.getList("biDirMX1Persons", BiDirMX1Person.class);
+                    ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getList("biDirMX1Persons", BiDirMX1Person.class);
                     Type t = listAttrib.getElementType();
                     if (t != null) {
                         TestUtil.logTrace("element Type  = " + t.getJavaType());
@@ -108,8 +108,7 @@ public class Client extends PMClientBase {
                 ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
                 if (mType != null) {
                     TestUtil.logTrace("Obtained Non-null ManagedType");
-                    ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib =
-                            mType.getList("biDirMX1Persons", BiDirMX1Person.class);
+                    ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getList("biDirMX1Persons", BiDirMX1Person.class);
                     PluralAttribute.CollectionType t = listAttrib.getCollectionType();
                     if (t != null) {
                         String sType = t.name();
@@ -157,8 +156,7 @@ public class Client extends PMClientBase {
                 ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
                 if (mType != null) {
                     TestUtil.logTrace("Obtained Non-null ManagedType");
-                    ListAttribute<BiDirMX1Project, BiDirMX1Person> listAttrib =
-                            mType.getDeclaredList("biDirMX1Persons", BiDirMX1Person.class);
+                    ListAttribute<BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getDeclaredList("biDirMX1Persons", BiDirMX1Person.class);
                     Type t = listAttrib.getElementType();
                     if (t != null) {
                         TestUtil.logTrace("element Type  = " + t.getJavaType());

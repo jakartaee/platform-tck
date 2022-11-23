@@ -93,11 +93,9 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:757.1
      *
-     * @test_Strategy: Deploy two MDB's (part of a same JAR file) using the same
-     *                 env-entry-name but declaring different values. Check that
-     *                 we can lookup this env entry from both EJB's, that runtime
-     *                 values are distinct, and that they correspond to the ones
-     *                 in the DD.
+     * @test_Strategy: Deploy two MDB's (part of a same JAR file) using the same env-entry-name but declaring different
+     * values. Check that we can lookup this env entry from both EJB's, that runtime values are distinct, and that they
+     * correspond to the ones in the DD.
      */
     public void testScopeInternal1() throws Fault {
 
@@ -126,11 +124,9 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:757.1
      *
-     * @test_Strategy: Deploy two MDB's (part of a same JAR file) using the same
-     *                 env-entry-name but declaring different values. Check that
-     *                 we can lookup this env entry from both EJB's, that runtime
-     *                 values are distinct, and that they correspond to the ones
-     *                 in the DD.
+     * @test_Strategy: Deploy two MDB's (part of a same JAR file) using the same env-entry-name but declaring different
+     * values. Check that we can lookup this env entry from both EJB's, that runtime values are distinct, and that they
+     * correspond to the ones in the DD.
      */
     public void testScopeInternal2() throws Fault {
 
@@ -160,11 +156,9 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:757.1
      *
-     * @test_Strategy: Deploy two EJB's (in 2 distinct JAR files) using the same
-     *                 env-entry-name but declaring different values. Check that
-     *                 we can lookup this env entry from both EJB's, that runtime
-     *                 values are distinct, and that they correspond to the ones
-     *                 in the DD.
+     * @test_Strategy: Deploy two EJB's (in 2 distinct JAR files) using the same env-entry-name but declaring different
+     * values. Check that we can lookup this env entry from both EJB's, that runtime values are distinct, and that they
+     * correspond to the ones in the DD.
      */
     public void testScopeExternal1() throws Fault {
 
@@ -193,11 +187,9 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:757.1
      *
-     * @test_Strategy: Deploy two EJB's (in 2 distinct JAR files) using the same
-     *                 env-entry-name but declaring different values. Check that
-     *                 we can lookup this env entry from both EJB's, that runtime
-     *                 values are distinct, and that they correspond to the ones
-     *                 in the DD.
+     * @test_Strategy: Deploy two EJB's (in 2 distinct JAR files) using the same env-entry-name but declaring different
+     * values. Check that we can lookup this env entry from both EJB's, that runtime values are distinct, and that they
+     * correspond to the ones in the DD.
      */
     public void testScopeExternal2() throws Fault {
 

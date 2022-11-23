@@ -41,17 +41,19 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 
 @Stateful(name = "RemoveBean")
-@Remote({RemoveIF.class, Remove2IF.class})
-@Local({RemoveLocalIF.class, RemoveLocal2IF.class})
+@Remote({ RemoveIF.class, Remove2IF.class })
+@Local({ RemoveLocalIF.class, RemoveLocal2IF.class })
 @RemoteHome(TwoRemoteHome.class)
 @LocalHome(TwoLocalHome.class)
 public class RemoveBean implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLocalIF {
     @Resource(name = "sessionContext")
     private SessionContext sessionContext;
 
-    public RemoveBean() {}
+    public RemoveBean() {
+    }
 
-    public void ejbCreate() throws CreateException {}
+    public void ejbCreate() throws CreateException {
+    }
 
     @Init
     public void create() {
@@ -65,14 +67,16 @@ public class RemoveBean implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLo
     }
 
     @Remove(retainIfException = false)
-    public void remove() {}
+    public void remove() {
+    }
 
     public void remove(String s) {
         // this is not a remove-method
     }
 
     @Remove
-    public void remove2() {}
+    public void remove2() {
+    }
 
     @Remove(retainIfException = true)
     public void retain() throws TestFailedException {
@@ -84,7 +88,8 @@ public class RemoveBean implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLo
         throw new AtUncheckedAppException("Not to remove this bean");
     }
 
-    public void hi() {}
+    public void hi() {
+    }
 
     //////////////////////////////////////////////////////////////////////
 
@@ -92,11 +97,13 @@ public class RemoveBean implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLo
         return "from2RemoteClient";
     }
 
-    public void remoteSameTxContext() {}
+    public void remoteSameTxContext() {
+    }
 
     public String from2LocalClient() {
         return "from2LocalClient";
     }
 
-    public void localSameTxContext() {}
+    public void localSameTxContext() {
+    }
 }

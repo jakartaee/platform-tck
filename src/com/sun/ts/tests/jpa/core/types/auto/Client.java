@@ -45,7 +45,8 @@ public class Client extends PMClientBase {
 
     private DataTypes newD6;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -70,20 +71,17 @@ public class Client extends PMClientBase {
     /*
      * @testName: autoTypeTest1
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055; PERSISTENCE:SPEC:1057;
-     * PERSISTENCE:SPEC:1050
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055;
+     * PERSISTENCE:SPEC:1057; PERSISTENCE:SPEC:1050
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.AUTO, indicates the persistence provider should pick an
-     * appropriate strategy for the particular database.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.AUTO, indicates the persistence provider should pick an appropriate strategy for the
+     * particular database.
      *
-     * If no Column annotation is specified, the primary key column name is
-     * assumed to be the name of the identifier property or field.
+     * If no Column annotation is specified, the primary key column name is assumed to be the name of the identifier
+     * property or field.
      *
-     * Using GenerationType.AUTO and defaulting the column name to ID, try to find
-     * the primary key and modify the data.
+     * Using GenerationType.AUTO and defaulting the column name to ID, try to find the primary key and modify the data.
      *
      */
 
@@ -135,26 +133,24 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("autoTypeTest1 failed");
+        if (!pass)
+            throw new Fault("autoTypeTest1 failed");
     }
 
     /*
      * @testName: autoTypeTest2
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055; PERSISTENCE:SPEC:1057;
-     * PERSISTENCE:SPEC:1050
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055;
+     * PERSISTENCE:SPEC:1057; PERSISTENCE:SPEC:1050
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.AUTO, indicates the persistence provider should pick an
-     * appropriate strategy for the particular database.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.AUTO, indicates the persistence provider should pick an appropriate strategy for the
+     * particular database.
      *
-     * If no Column annotation is specified, the primary key column name is
-     * assumed to be the name of the identifier property or field.
+     * If no Column annotation is specified, the primary key column name is assumed to be the name of the identifier
+     * property or field.
      *
-     * Using GenerationType.AUTO and defaulting the column name to ID, try to find
-     * the primary key and modify the data.
+     * Using GenerationType.AUTO and defaulting the column name to ID, try to find the primary key and modify the data.
      */
 
     public void autoTypeTest2() throws Fault {
@@ -195,26 +191,24 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("autoTypeTest2 failed");
+        if (!pass)
+            throw new Fault("autoTypeTest2 failed");
     }
 
     /*
      * @testName: autoTypeTest3
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055; PERSISTENCE:SPEC:1057;
-     * PERSISTENCE:SPEC:1050
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055;
+     * PERSISTENCE:SPEC:1057; PERSISTENCE:SPEC:1050
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.AUTO, indicates the persistence provider should pick an
-     * appropriate strategy for the particular database.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.AUTO, indicates the persistence provider should pick an appropriate strategy for the
+     * particular database.
      *
-     * If no Column annotation is specified, the primary key column name is
-     * assumed to be the name of the identifier property or field.
+     * If no Column annotation is specified, the primary key column name is assumed to be the name of the identifier
+     * property or field.
      *
-     * Using GenerationType.AUTO and defaulting the column name to ID, try to find
-     * the primary key and modify the data.
+     * Using GenerationType.AUTO and defaulting the column name to ID, try to find the primary key and modify the data.
      */
 
     public void autoTypeTest3() throws Fault {
@@ -255,26 +249,24 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("autoTypeTest3 failed");
+        if (!pass)
+            throw new Fault("autoTypeTest3 failed");
     }
 
     /*
      * @testName: autoTypeTest4
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055; PERSISTENCE:SPEC:1057;
-     * PERSISTENCE:SPEC:1050
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055;
+     * PERSISTENCE:SPEC:1057; PERSISTENCE:SPEC:1050
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.AUTO, indicates the persistence provider should pick an
-     * appropriate strategy for the particular database.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.AUTO, indicates the persistence provider should pick an appropriate strategy for the
+     * particular database.
      *
-     * If no Column annotation is specified, the primary key column name is
-     * assumed to be the name of the identifier property or field.
+     * If no Column annotation is specified, the primary key column name is assumed to be the name of the identifier
+     * property or field.
      *
-     * Using GenerationType.AUTO and defaulting the column name to ID, try to find
-     * the primary key and modify the data.
+     * Using GenerationType.AUTO and defaulting the column name to ID, try to find the primary key and modify the data.
      */
 
     public void autoTypeTest4() throws Fault {
@@ -315,26 +307,24 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("autoTypeTest4 failed");
+        if (!pass)
+            throw new Fault("autoTypeTest4 failed");
     }
 
     /*
      * @testName: autoTypeTest5
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055; PERSISTENCE:SPEC:1057;
-     * PERSISTENCE:SPEC:1050
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055;
+     * PERSISTENCE:SPEC:1057; PERSISTENCE:SPEC:1050
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.AUTO, indicates the persistence provider should pick an
-     * appropriate strategy for the particular database.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.AUTO, indicates the persistence provider should pick an appropriate strategy for the
+     * particular database.
      *
-     * If no Column annotation is specified, the primary key column name is
-     * assumed to be the name of the identifier property or field.
+     * If no Column annotation is specified, the primary key column name is assumed to be the name of the identifier
+     * property or field.
      *
-     * Using GenerationType.AUTO and defaulting the column name to ID, try to find
-     * the primary key and modify the data.
+     * Using GenerationType.AUTO and defaulting the column name to ID, try to find the primary key and modify the data.
      */
 
     public void autoTypeTest5() throws Fault {
@@ -375,26 +365,24 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("autoTypeTest5 failed");
+        if (!pass)
+            throw new Fault("autoTypeTest5 failed");
     }
 
     /*
      * @testName: autoTypeTest6
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83;
-     * PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055; PERSISTENCE:SPEC:1057;
-     * PERSISTENCE:SPEC:1050
+     * @assertion_ids: PERSISTENCE:JAVADOC:82; PERSISTENCE:JAVADOC:83; PERSISTENCE:SPEC:1051; PERSISTENCE:SPEC:1055;
+     * PERSISTENCE:SPEC:1057; PERSISTENCE:SPEC:1050
      *
-     * @test_Strategy: The GeneratedValue annotation provides for the
-     * specification of generation strategies for the values of primary keys.
-     * GenerationType.AUTO, indicates the persistence provider should pick an
-     * appropriate strategy for the particular database.
+     * @test_Strategy: The GeneratedValue annotation provides for the specification of generation strategies for the values
+     * of primary keys. GenerationType.AUTO, indicates the persistence provider should pick an appropriate strategy for the
+     * particular database.
      *
-     * If no Column annotation is specified, the primary key column name is
-     * assumed to be the name of the identifier property or field.
+     * If no Column annotation is specified, the primary key column name is assumed to be the name of the identifier
+     * property or field.
      *
-     * Using GenerationType.AUTO and defaulting the column name to ID, try to find
-     * the primary key and modify the data.
+     * Using GenerationType.AUTO and defaulting the column name to ID, try to find the primary key and modify the data.
      */
 
     public void autoTypeTest6() throws Fault {
@@ -435,7 +423,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("autoTypeTest6 failed");
+        if (!pass)
+            throw new Fault("autoTypeTest6 failed");
     }
 
     // Methods used for Tests

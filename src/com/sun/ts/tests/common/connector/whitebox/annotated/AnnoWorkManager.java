@@ -91,8 +91,7 @@ public class AnnoWorkManager {
     }
 
     /*
-     * This will be used to help verify assertion Connector:SPEC:55 from the
-     * annotation point of view.
+     * This will be used to help verify assertion Connector:SPEC:55 from the annotation point of view.
      */
     public void doTCWork() {
         try {
@@ -133,12 +132,10 @@ public class AnnoWorkManager {
     }
 
     /*
-     * This is used to help verify assertion: Connector:SPEC:210 While the spec is
-     * clear to state that nested work contexts are to be supported, it appears
-     * there may be some grey area wrt nested work objects with transaction
-     * contexts. It may be the case that nested transaction contexts may not be
-     * clearly defined in the connector 1.6 spec - so we will test nested work
-     * objs where only 1 of the work objs has transactioncontext.
+     * This is used to help verify assertion: Connector:SPEC:210 While the spec is clear to state that nested work contexts
+     * are to be supported, it appears there may be some grey area wrt nested work objects with transaction contexts. It may
+     * be the case that nested transaction contexts may not be clearly defined in the connector 1.6 spec - so we will test
+     * nested work objs where only 1 of the work objs has transactioncontext.
      */
     public void submitNestedXidWork() {
         try {

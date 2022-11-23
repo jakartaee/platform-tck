@@ -33,7 +33,8 @@ public class XTeam implements java.io.Serializable {
 
     private XCompany xcompany;
 
-    public XTeam() {}
+    public XTeam() {
+    }
 
     public XTeam(int xteamid, String xname) {
         this.xteamid = xteamid;

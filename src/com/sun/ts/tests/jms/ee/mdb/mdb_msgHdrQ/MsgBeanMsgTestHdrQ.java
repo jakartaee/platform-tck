@@ -80,8 +80,7 @@ public class MsgBeanMsgTestHdrQ implements MessageDrivenBean, MessageListener {
 
     public MsgBeanMsgTestHdrQ() {
         TestUtil.logTrace("@MsgBeanMsgTestHdrQ()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("jms.ee.mdb.mdb_msgHdrQ  - @MsgBeanMsgTestHdrQ-ejbCreate() !!");
@@ -240,9 +239,8 @@ public class MsgBeanMsgTestHdrQ implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Send a single Text, map, bytes, stream, and object message
-     * check time of send against time send returns JMSTimeStamp should be between
-     * these two
+     * Description: Send a single Text, map, bytes, stream, and object message check time of send against time send returns
+     * JMSTimeStamp should be between these two
      */
     public void msgHdrTimeStampQTest() {
         boolean pass = true;
@@ -680,7 +678,8 @@ public class MsgBeanMsgTestHdrQ implements MessageDrivenBean, MessageListener {
         try {
             TestUtil.logTrace("JMSDestination:  " + messageReceived.getJMSDestination());
             replyDestination = (Queue) messageReceived.getJMSDestination();
-            if (replyDestination != null) TestUtil.logTrace("Queue name is " + replyDestination.getQueueName());
+            if (replyDestination != null)
+                TestUtil.logTrace("Queue name is " + replyDestination.getQueueName());
 
             if (replyDestination == null) {
                 pass = false;
@@ -768,8 +767,7 @@ public class MsgBeanMsgTestHdrQ implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: send test results to response queue (MDB_QUEUE_REPLY) for
-     * verification
+     * Description: send test results to response queue (MDB_QUEUE_REPLY) for verification
      */
     private void sendTestResults(String testCase, boolean results) {
         TextMessage msg = null;
@@ -781,8 +779,10 @@ public class MsgBeanMsgTestHdrQ implements MessageDrivenBean, MessageListener {
             msg = qSession.createTextMessage();
             msg.setStringProperty("TestCase", testCase);
             msg.setText(testCase);
-            if (results) msg.setStringProperty("Status", "Pass");
-            else msg.setStringProperty("Status", "Fail");
+            if (results)
+                msg.setStringProperty("Status", "Pass");
+            else
+                msg.setStringProperty("Status", "Fail");
 
             mSender.send(msg);
         } catch (JMSException je) {

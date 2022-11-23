@@ -25,4 +25,5 @@ import jakarta.ejb.Singleton;
 @Singleton
 // @Startup Do not use @Startup, and it should be able to inject to A, which
 // uses @Startup
-public class CSingletonBean extends BeanBase implements CSingletonIF, C2SingletonIF {}
+public class CSingletonBean extends BeanBase implements CSingletonIF, C2SingletonIF {
+}

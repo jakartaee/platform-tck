@@ -35,7 +35,7 @@ public class ELClient extends ServiceEETest {
 
     private Properties testProps;
 
-    private static final String[] names = {"doug", "nick", "roger", "ryan", "ed"};
+    private static final String[] names = { "doug", "nick", "roger", "ryan", "ed" };
 
     public static void main(String[] args) {
         ELClient theTests = new ELClient();
@@ -55,18 +55,16 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: arrayELResolverTest
      *
-     * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:3; EL:JAVADOC:4; EL:JAVADOC:5;
-     *                 EL:JAVADOC:6; EL:JAVADOC:7; EL:JAVADOC:8
+     * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:3; EL:JAVADOC:4; EL:JAVADOC:5; EL:JAVADOC:6; EL:JAVADOC:7; EL:JAVADOC:8
      *
-     * @test_Strategy: Verify that API calls work as expected: arrayELResolver()
-     *                 getValue() getType() setValue() isReadOnly()
-     *                 getCommonPropertyType() getFeatureDescriptors()
+     * @test_Strategy: Verify that API calls work as expected: arrayELResolver() getValue() getType() setValue()
+     * isReadOnly() getCommonPropertyType() getFeatureDescriptors()
      */
     public void arrayELResolverTest() throws Fault {
 
         boolean pass;
         StringBuffer buf = new StringBuffer();
-        String[] colors = {"red", "blue", "green"};
+        String[] colors = { "red", "blue", "green" };
 
         try {
             ArrayELResolver arrayResolver = new ArrayELResolver();
@@ -88,14 +86,12 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: arrayELResolverNPETest
      *
-     * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:5; EL:JAVADOC:6; EL:JAVADOC:7;
-     *                 EL:JAVADOC:8; EL:JAVADOC:122; EL:JAVADOC:125;
-     *                 EL:JAVADOC:128; EL:JAVADOC:131
+     * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:5; EL:JAVADOC:6; EL:JAVADOC:7; EL:JAVADOC:8; EL:JAVADOC:122; EL:JAVADOC:125;
+     * EL:JAVADOC:128; EL:JAVADOC:131
      *
-     * @test_Strategy: Verify that the following methods throw a
-     *                 NullPointerException, if context is null:
+     * @test_Strategy: Verify that the following methods throw a NullPointerException, if context is null:
      *
-     *                 getValue() getType() setValue() isReadOnly()
+     * getValue() getType() setValue() isReadOnly()
      */
     public void arrayELResolverNPETest() throws Fault {
 
@@ -119,14 +115,13 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: arrayELResolverPNFETest
      *
-     * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:5; EL:JAVADOC:7; EL:JAVADOC:8;
-     *                 EL:JAVADOC:121; EL:JAVADOC:127; EL:JAVADOC:134
+     * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:5; EL:JAVADOC:7; EL:JAVADOC:8; EL:JAVADOC:121; EL:JAVADOC:127;
+     * EL:JAVADOC:134
      *
-     * @test_Strategy: Verify that the following methods throw a
-     *                 PropertyNotFoundException, if the given index is out of
-     *                 bounds for this array :
+     * @test_Strategy: Verify that the following methods throw a PropertyNotFoundException, if the given index is out of
+     * bounds for this array :
      *
-     *                 getType() isReadOnly() setValue()
+     * getType() isReadOnly() setValue()
      */
     public void arrayELResolverPNFETest() throws Fault {
 
@@ -153,14 +148,12 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: arrayELResolverIAETest
      *
-     * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:6; EL:JAVADOC:8; EL:JAVADOC:124;
-     *                 EL:JAVADOC:132
+     * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:6; EL:JAVADOC:8; EL:JAVADOC:124; EL:JAVADOC:132
      *
-     * @test_Strategy: Verify that the following methods throw an
-     *                 IllegalArgumentException, if the property could not be
-     *                 coerced into an integer:
+     * @test_Strategy: Verify that the following methods throw an IllegalArgumentException, if the property could not be
+     * coerced into an integer:
      *
-     *                 getValue() setValue()
+     * getValue() setValue()
      */
     public void arrayELResolverIAETest() throws Fault {
 
@@ -188,13 +181,11 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:2; EL:JAVADOC:8; EL:JAVADOC:127; EL:JAVADOC:133
      *
-     * @test_Strategy: Verify that the single-parameter constructor for
-     *                 arrayELResolver can be used to construct a read-only
-     *                 resolver, and that the setValue() method throws a
-     *                 PropertyNotWritableException, if the resolver was
-     *                 constructed in read-only mode.
+     * @test_Strategy: Verify that the single-parameter constructor for arrayELResolver can be used to construct a read-only
+     * resolver, and that the setValue() method throws a PropertyNotWritableException, if the resolver was constructed in
+     * read-only mode.
      *
-     *                 ArrayELResolver(boolean) setValue()
+     * ArrayELResolver(boolean) setValue()
      */
     public void arrayELResolverPNWETest() throws Fault {
 
@@ -223,8 +214,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:6
      *
-     * @test_Strategy: Verify that if the index is out of bounds, null is
-     * returned.
+     * @test_Strategy: Verify that if the index is out of bounds, null is returned.
      *
      * getValue()
      */
@@ -263,8 +253,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:8; EL:JAVADOC:130
      *
-     * @test_Strategy: Verify that if the class of a specified object prevents it
-     * from being added to the array, a ClassCastException is thrown.
+     * @test_Strategy: Verify that if the class of a specified object prevents it from being added to the array, a
+     * ClassCastException is thrown.
      *
      * setValue()
      */

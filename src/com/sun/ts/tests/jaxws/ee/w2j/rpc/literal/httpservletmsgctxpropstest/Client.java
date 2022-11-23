@@ -139,8 +139,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -191,7 +193,8 @@ public class Client extends ServiceEETest {
             throw new Fault("TestServletMessageContextProperties failed", e);
         }
 
-        if (!pass) throw new Fault("TestServletMessageContextProperties failed");
+        if (!pass)
+            throw new Fault("TestServletMessageContextProperties failed");
     }
 
     /*
@@ -214,6 +217,7 @@ public class Client extends ServiceEETest {
             throw new Fault("TestHttpMessageContextProperties failed", e);
         }
 
-        if (!pass) throw new Fault("TestHttpMessageContextProperties failed");
+        if (!pass)
+            throw new Fault("TestHttpMessageContextProperties failed");
     }
 }

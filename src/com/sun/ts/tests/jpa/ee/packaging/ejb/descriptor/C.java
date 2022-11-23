@@ -34,7 +34,8 @@ public class C implements java.io.Serializable {
     // ===========================================================
     // constructors
 
-    public C() {}
+    public C() {
+    }
 
     public C(String id, String name, int value) {
         this.id = id;

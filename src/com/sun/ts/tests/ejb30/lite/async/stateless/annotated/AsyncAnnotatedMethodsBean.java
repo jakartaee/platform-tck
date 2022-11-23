@@ -26,5 +26,6 @@ import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 
 @Stateless
-@Local({AsyncAnnotatedMethodsIF.class})
-public class AsyncAnnotatedMethodsBean extends AsyncAnnotatedMethodsBeanBase {}
+@Local({ AsyncAnnotatedMethodsIF.class })
+public class AsyncAnnotatedMethodsBean extends AsyncAnnotatedMethodsBeanBase {
+}

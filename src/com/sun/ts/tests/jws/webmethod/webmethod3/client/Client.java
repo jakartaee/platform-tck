@@ -146,8 +146,7 @@ public class Client extends ServiceEETest {
     }
 
     /*
-     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost;
-     * webServerPort; platform.mode;
+     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost; webServerPort; platform.mode;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -155,8 +154,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -206,7 +207,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testHelloString failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString failed");
+        if (!pass)
+            throw new Fault("testHelloString failed");
     }
 
     /*
@@ -239,7 +241,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testPingWSDL failed", e);
         }
 
-        if (!pass) throw new Fault("testPingWSDL failed");
+        if (!pass)
+            throw new Fault("testPingWSDL failed");
     }
 
     /*
@@ -268,7 +271,8 @@ public class Client extends ServiceEETest {
 
                 soapOperationElement = WsdlUtils.findSoapOperationElement(doc, EXCPECTED_SOAP_ACTION, operationElement);
 
-                if (soapOperationElement != null) pass = true;
+                if (soapOperationElement != null)
+                    pass = true;
             }
 
         } catch (Exception ex) {
@@ -309,7 +313,8 @@ public class Client extends ServiceEETest {
             operationElement = com.sun.ts.tests.jws.common.WsdlUtils.findOperationElement(
                     doc, EXCLUDED_OPERATION_QNAME, SERVICE_QNAME, PORT_QNAME);
 
-            if (operationElement == null) pass = true;
+            if (operationElement == null)
+                pass = true;
 
         } catch (Exception ex) {
             TestUtil.logErr("Exception occurred: " + ex.getMessage());

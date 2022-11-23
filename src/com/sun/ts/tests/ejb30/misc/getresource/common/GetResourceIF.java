@@ -24,19 +24,16 @@ import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public interface GetResourceIF {
     /**
-     * Name of the resource file, and also its content when it is packaged in the
-     * same package of the requesting java class.
+     * Name of the resource file, and also its content when it is packaged in the same package of the requesting java class.
      */
     public static final String RESOURCE_NAME = "cts-ejb3-test-5.1.1-beta.txt";
 
     public static final String RESOURCE_CONTENT = RESOURCE_NAME;
 
     /**
-     * When the resource file <RESOURCE_NAME> is packaged at the root of a
-     * classpath element, e.g., directly under WEB-INF/classes, its content is
-     * <RESOURCE_AT_ROOT_CONTENT>. So it is possible there are two resource files
-     * named <RESOURCE_NAME> within the classpath, but each has different
-     * namespace and content.
+     * When the resource file <RESOURCE_NAME> is packaged at the root of a classpath element, e.g., directly under
+     * WEB-INF/classes, its content is <RESOURCE_AT_ROOT_CONTENT>. So it is possible there are two resource files named
+     * <RESOURCE_NAME> within the classpath, but each has different namespace and content.
      */
     public static final String RESOURCE_NAME_AT_ROOT = "/cts-ejb3-test-5.1.1-beta.txt";
 

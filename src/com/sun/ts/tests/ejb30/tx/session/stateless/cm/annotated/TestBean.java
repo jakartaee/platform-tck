@@ -28,6 +28,7 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless
-@Remote({TestIF.class})
+@Remote({ TestIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
-public class TestBean extends TestBeanBase implements TestIF {}
+public class TestBean extends TestBeanBase implements TestIF {
+}

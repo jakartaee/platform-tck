@@ -29,4 +29,5 @@ import jakarta.ejb.Stateful;
 @Local(StatefulConcurrencyIF.class)
 @Remote(StatefulConcurrencyRemoteIF.class)
 @LocalBean
-public class DefaultConcurrencyBean extends StatefulConcurrencyBeanBase2 {}
+public class DefaultConcurrencyBean extends StatefulConcurrencyBeanBase2 {
+}

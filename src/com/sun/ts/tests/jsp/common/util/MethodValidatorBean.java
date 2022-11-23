@@ -27,8 +27,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * Simple bean to validate a set of values passed in via the PageContext against
- * a user configured set of values.
+ * Simple bean to validate a set of values passed in via the PageContext against a user configured set of values.
  */
 public class MethodValidatorBean {
 
@@ -41,11 +40,11 @@ public class MethodValidatorBean {
     /**
      * Default constructor.
      */
-    public MethodValidatorBean() {}
+    public MethodValidatorBean() {
+    }
 
     /**
-     * Gets the methods used to validated against the methods added to the
-     * PageContext.
+     * Gets the methods used to validated against the methods added to the PageContext.
      *
      * @return - a comma separated list of methods
      */
@@ -54,11 +53,9 @@ public class MethodValidatorBean {
     }
 
     /**
-     * Sets the methods used to validated against the methods added to the
-     * PageContext.
+     * Sets the methods used to validated against the methods added to the PageContext.
      *
-     * @param methods
-     *          - the methods to validate
+     * @param methods - the methods to validate
      */
     public void setMethods(String methods) {
         this._methods = methods;
@@ -76,8 +73,7 @@ public class MethodValidatorBean {
     /**
      * Sets this bean's PageContext.
      *
-     * @param context
-     *          - the PageContext for this bean
+     * @param context - the PageContext for this bean
      */
     public void setContext(PageContext context) {
         this._context = context;
@@ -92,10 +88,8 @@ public class MethodValidatorBean {
     }
 
     /**
-     * Obtains a page scoped List object from the PageContext that obtains a list
-     * of methods that have been called by a particular tag handler. This List
-     * will be compared with the methods passed to this handler via the methods
-     * attribute.
+     * Obtains a page scoped List object from the PageContext that obtains a list of methods that have been called by a
+     * particular tag handler. This List will be compared with the methods passed to this handler via the methods attribute.
      *
      * @return a String representing the result of the check.
      * @throws jakarta.servlet.jsp.JspException
@@ -153,7 +147,7 @@ public class MethodValidatorBean {
             return new String[0];
         }
         List list = new ArrayList();
-        for (StringTokenizer st = new StringTokenizer(_methods, ","); st.hasMoreTokens(); ) {
+        for (StringTokenizer st = new StringTokenizer(_methods, ","); st.hasMoreTokens();) {
             list.add(st.nextToken());
         }
         return getMethodsFromList(list);
@@ -162,8 +156,7 @@ public class MethodValidatorBean {
     /**
      * Returns an array of String values based on values in a List.
      *
-     * @param list
-     *          - List to extract the String values from
+     * @param list - List to extract the String values from
      * @return a String array of values
      */
     private static String[] getMethodsFromList(List list) {

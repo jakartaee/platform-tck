@@ -88,7 +88,7 @@ public class Client extends ServiceEETest {
     ProviderTest port = null;
 
     private WebServiceFeature[] wsf = {
-        new AddressingFeature(true), new MTOMFeature(true), new RespectBindingFeature(true)
+            new AddressingFeature(true), new MTOMFeature(true), new RespectBindingFeature(true)
     };
 
     static ProviderTestService service = null;
@@ -97,11 +97,9 @@ public class Client extends ServiceEETest {
 
     private Dispatch<Object> dispatchJaxb = null;
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ProviderTestService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ProviderTestService.class;
 
-    private static final Class JAXB_OBJECT_FACTORY =
-            com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ObjectFactory.class;
+    private static final Class JAXB_OBJECT_FACTORY = com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ObjectFactory.class;
 
     private JAXBContext createJAXBContext() {
         try {
@@ -163,8 +161,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -205,8 +205,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:6017; JAXWS:SPEC:5025; JAXWS:JAVADOC:189
      *
-     * @test_Strategy: enable the webservice features on the impl then ensure the
-     * endpoint can be reached
+     * @test_Strategy: enable the webservice features on the impl then ensure the endpoint can be reached
      */
     public void WebServiceFeaturesOnProviderTest() throws Fault {
         TestUtil.logMsg("WebServiceFeaturesOnProviderTest");
@@ -227,6 +226,7 @@ public class Client extends ServiceEETest {
             throw new Fault(t.toString());
         }
 
-        if (!pass) throw new Fault("WebServiceFeaturesOnProviderTest failed");
+        if (!pass)
+            throw new Fault("WebServiceFeaturesOnProviderTest failed");
     }
 }

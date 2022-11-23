@@ -90,17 +90,16 @@ public abstract class QueueClientBase extends Client implements Constants {
     }
 
     /**
-     * Sends message and waits for response. The message should reach the target
-     * MDB, and a response should be received by this client. Simplified version
-     * since testname can be retrieved from props in setup().
+     * Sends message and waits for response. The message should reach the target MDB, and a response should be received by
+     * this client. Simplified version since testname can be retrieved from props in setup().
      */
     protected void sendReceive() throws Fault {
         sendReceive(getCurrentTestName(), 0);
     }
 
     /**
-     * Sends message and waits for response. The message should not reach the
-     * target MDB, and no response should be received by this client.
+     * Sends message and waits for response. The message should not reach the target MDB, and no response should be received
+     * by this client.
      */
     protected void sendReceiveNegative(String testname, int testnum) throws Fault {
         sendOnly(testname, testnum);
@@ -112,8 +111,8 @@ public abstract class QueueClientBase extends Client implements Constants {
     }
 
     /**
-     * Sends message and waits for response. The message should reach the target
-     * MDB, and a response should be received by this client.
+     * Sends message and waits for response. The message should reach the target MDB, and a response should be received by
+     * this client.
      */
     protected void sendReceive(String testname, int testnum) throws Fault {
         sendOnly(testname, testnum);
@@ -168,7 +167,8 @@ public abstract class QueueClientBase extends Client implements Constants {
         initSendQueue();
     }
 
-    protected void configureTopic() throws JMSException {}
+    protected void configureTopic() throws JMSException {
+    }
 
     protected void urlTest(URL url) throws Fault {
         urlTest(url, PASSED);

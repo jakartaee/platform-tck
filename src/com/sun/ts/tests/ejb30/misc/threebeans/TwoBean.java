@@ -58,15 +58,23 @@ public class TwoBean extends CommonBeanBase {
 
     @Override
     protected void verifyInjectedEJB() {
-        if (oneRemote == null) throw new IllegalStateException("oneRemote was not injected.");
-        if (oneLocal == null) throw new IllegalStateException("oneLocal was not injected.");
-        if (threeRemote == null) throw new IllegalStateException("threeRemote was not injected.");
-        if (threeLocal == null) throw new IllegalStateException("threeLocal was not injected.");
+        if (oneRemote == null)
+            throw new IllegalStateException("oneRemote was not injected.");
+        if (oneLocal == null)
+            throw new IllegalStateException("oneLocal was not injected.");
+        if (threeRemote == null)
+            throw new IllegalStateException("threeRemote was not injected.");
+        if (threeLocal == null)
+            throw new IllegalStateException("threeLocal was not injected.");
 
-        if (oneRemote2 == null) throw new IllegalStateException("oneRemote2 was not injected.");
-        if (oneLocal2 == null) throw new IllegalStateException("oneLocal2 was not injected.");
-        if (threeRemote2 == null) throw new IllegalStateException("threeRemote2 was not injected.");
-        if (threeLocal2 == null) throw new IllegalStateException("threeLocal2 was not injected.");
+        if (oneRemote2 == null)
+            throw new IllegalStateException("oneRemote2 was not injected.");
+        if (oneLocal2 == null)
+            throw new IllegalStateException("oneLocal2 was not injected.");
+        if (threeRemote2 == null)
+            throw new IllegalStateException("threeRemote2 was not injected.");
+        if (threeLocal2 == null)
+            throw new IllegalStateException("threeLocal2 was not injected.");
 
         Helper.getLogger()
                 .info(String.format(

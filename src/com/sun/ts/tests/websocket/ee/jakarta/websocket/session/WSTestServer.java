@@ -40,9 +40,9 @@ import java.util.concurrent.TimeUnit;
 @ServerEndpoint(value = "/TCKTestServer")
 public class WSTestServer {
 
-    private static final Class<?>[] TEST_ARGS = {String.class, Session.class};
+    private static final Class<?>[] TEST_ARGS = { String.class, Session.class };
 
-    private static final Class<?>[] TEST_ARGS_BYTEBUFFER = {ByteBuffer.class, Session.class};
+    private static final Class<?>[] TEST_ARGS_BYTEBUFFER = { ByteBuffer.class, Session.class };
 
     static String testName;
 
@@ -63,7 +63,7 @@ public class WSTestServer {
             if (message.startsWith("testName=") && message.endsWith("Test")) {
                 testName = message.substring(9);
                 Method method = WSTestServer.class.getMethod(testName, TEST_ARGS);
-                method.invoke(this, new Object[] {message, session});
+                method.invoke(this, new Object[] { message, session });
             } else {
                 session.getBasicRemote().sendText("========TCKTestServer received String:" + message);
                 session.getBasicRemote().sendText("========TCKTestServer responds, please close your session");
@@ -89,7 +89,7 @@ public class WSTestServer {
             if (message_string.startsWith("testName=")) {
                 testName = message_string.substring(9);
                 Method method = WSTestServer.class.getMethod(testName, TEST_ARGS_BYTEBUFFER);
-                method.invoke(this, new Object[] {message, session});
+                method.invoke(this, new Object[] { message, session });
             } else {
                 ByteBuffer data = ByteBuffer.wrap(("========TCKTestServer received ByteBuffer: ").getBytes());
                 ByteBuffer data1 = ByteBuffer.wrap(("========TCKTestServer responds: Message in bytes").getBytes());

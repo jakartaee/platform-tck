@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new URLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,12 +61,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveJSTLURITest
      *
-     * @assertion_ids: JSTL:SPEC:1; JSTL:SPEC:2; JSTL:SPEC:3; JSTL:SPEC:4;
-     * JSTL:SPEC:16; JSTL:SPEC:17; JSTL:SPEC:18; JSTL:SPEC:19
+     * @assertion_ids: JSTL:SPEC:1; JSTL:SPEC:2; JSTL:SPEC:3; JSTL:SPEC:4; JSTL:SPEC:16; JSTL:SPEC:17; JSTL:SPEC:18;
+     * JSTL:SPEC:19
      *
-     * @testStrategy: Import all defined taglib URI definitions for both EL and RT
-     * tags. If defined correctly, a fatal translation error should not occur (
-     * per section 7.3.6.2 of the JavaServer Pages 1.2 Specification.
+     * @testStrategy: Import all defined taglib URI definitions for both EL and RT tags. If defined correctly, a fatal
+     * translation error should not occur ( per section 7.3.6.2 of the JavaServer Pages 1.2 Specification.
      */
     public void positiveJSTLURITest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveJSTLURITest");

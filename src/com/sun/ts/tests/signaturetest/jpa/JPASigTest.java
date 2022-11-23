@@ -37,28 +37,25 @@ public class JPASigTest extends SigTest {
     /***** Abstract Method Implementation *****/
 
     /**
-     * Returns a list of strings where each string represents a package name. Each
-     * package name will have it's signature tested by the signature test
-     * framework.
+     * Returns a list of strings where each string represents a package name. Each package name will have it's signature
+     * tested by the signature test framework.
      *
-     * @return String[] The names of the packages whose signatures should be
-     *         verified.
+     * @return String[] The names of the packages whose signatures should be verified.
      */
     protected String[] getPackages() {
         return new String[] {
-            "jakarta.persistence",
-            "jakarta.persistence.criteria",
-            "jakarta.persistence.metamodel",
-            "jakarta.persistence.spi"
+                "jakarta.persistence",
+                "jakarta.persistence.criteria",
+                "jakarta.persistence.metamodel",
+                "jakarta.persistence.spi"
         };
     }
 
     /***** Boilerplate Code *****/
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JPASigTest theTests = new JPASigTest();
@@ -67,8 +64,7 @@ public class JPASigTest extends SigTest {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -76,10 +72,9 @@ public class JPASigTest extends SigTest {
     }
 
     /*
-     * The following comments are specified in the base class that defines the
-     * signature tests. This is done so the test finders will find the right class
-     * to run. The implementation of these methods is inherited from the super
-     * class which is part of the signature test framework.
+     * The following comments are specified in the base class that defines the signature tests. This is done so the test
+     * finders will find the right class to run. The implementation of these methods is inherited from the super class which
+     * is part of the signature test framework.
      */
 
     // NOTE: If the API under test is not part of your testing runtime
@@ -91,19 +86,17 @@ public class JPASigTest extends SigTest {
     // signature tests need. Please do not use both comments.
 
     /*
-     * @class.setup_props: ts_home, The base path of this TCK; sigTestClasspath,
-     * path required for static checking;
+     * @class.setup_props: ts_home, The base path of this TCK; sigTestClasspath, path required for static checking;
      */
 
     /*
      * @testName: signatureTest
      *
-     * @assertion: An implementation of the Java Persistence API must implement
-     * the required classes and APIs defined in the specification and JavaDoc.
+     * @assertion: An implementation of the Java Persistence API must implement the required classes and APIs defined in the
+     * specification and JavaDoc.
      *
-     * @test_Strategy: Using reflection, gather the implementation specific
-     * classes and APIs. Compare these results with the expected (required)
-     * classes and APIs.
+     * @test_Strategy: Using reflection, gather the implementation specific classes and APIs. Compare these results with the
+     * expected (required) classes and APIs.
      *
      */
 

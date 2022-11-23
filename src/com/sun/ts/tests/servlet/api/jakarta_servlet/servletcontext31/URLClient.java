@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -49,8 +47,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; ts_home;
-     * logical.hostname.servlet;
+     * @class.setup_props: webServerHost; webServerPort; ts_home; logical.hostname.servlet;
      */
     /* Run test */
     /*
@@ -58,12 +55,11 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:954;
      *
-     * @test_Strategy: 1. Create a Servlet Servlet, define it in web.xml; 2.
-     * verify ServletContext.getVirtualServerName() returns correctly;
+     * @test_Strategy: 1. Create a Servlet Servlet, define it in web.xml; 2. verify ServletContext.getVirtualServerName()
+     * returns correctly;
      */
     public void getVirtualServerNameTest() throws Fault {
-        String expected_virtualservername =
-                _props.getProperty("logical.hostname.servlet").trim();
+        String expected_virtualservername = _props.getProperty("logical.hostname.servlet").trim();
         TEST_PROPS.setProperty(
                 REQUEST,
                 "GET " + getContextRoot() + "/" + getServletName()

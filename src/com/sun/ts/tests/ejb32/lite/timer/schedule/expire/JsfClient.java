@@ -37,15 +37,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 /**
- * Some tests use 2100 as a test calendar:
- * January               February
- * Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
- * 1  2      1  2  3  4  5  6
- * 3  4  5  6  7  8  9   7  8  9 10 11 12 13
- * 10 11 12 13 14 15 16  14 15 16 17 18 19 20
- * 17 18 19 20 21 22 23  21 22 23 24 25 26 27
- * 24 25 26 27 28 29 30  28
- * 31
+ * Some tests use 2100 as a test calendar: January February Su Mo Tu We Th Fr Sa Su Mo Tu We Th Fr Sa 1 2 1 2 3 4 5 6 3
+ * 4 5 6 7 8 9 7 8 9 10 11 12 13 10 11 12 13 14 15 16 14 15 16 17 18 19 20 17 18 19 20 21 22 23 21 22 23 24 25 26 27 24
+ * 25 26 27 28 29 30 28 31
  *
  *
  */
@@ -196,11 +190,9 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: startNeverExpires
      *
-     * @test_Strategy: create a timer with year="currentYear - currentYear+1", and
-     * start="currentYear+WAIT_YEARS". The start value is beyond the year values,
-     * and this timer will never expire. Creating this timer will succeed, but any
-     * timer method access in a subsequent business method will result in
-     * NoSuchObjectLocalException.
+     * @test_Strategy: create a timer with year="currentYear - currentYear+1", and start="currentYear+WAIT_YEARS". The start
+     * value is beyond the year values, and this timer will never expire. Creating this timer will succeed, but any timer
+     * method access in a subsequent business method will result in NoSuchObjectLocalException.
      */
     public void startNeverExpires() {
         Calendar cal = Calendar.getInstance();
@@ -219,11 +211,9 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: endNeverExpires
      *
-     * @test_Strategy: create a timer with year="currentYear - currentYear+1", and
-     * end="currentYear-1". The end value is prior to the year values, and this
-     * timer will never expire. Creating this timer will succeed, but any timer
-     * method access in a subsequent business method will result in
-     * NoSuchObjectLocalException.
+     * @test_Strategy: create a timer with year="currentYear - currentYear+1", and end="currentYear-1". The end value is
+     * prior to the year values, and this timer will never expire. Creating this timer will succeed, but any timer method
+     * access in a subsequent business method will result in NoSuchObjectLocalException.
      */
 
     public void endNeverExpires() {
@@ -243,8 +233,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: endBeforeActualValues
      *
-     * @test_Strategy: the end date is before the actual values. So the timer
-     * should be dead.
+     * @test_Strategy: the end date is before the actual values. So the timer should be dead.
      */
     public void endBeforeActualValues() {
         int plusMinutes = 5;
@@ -264,11 +253,9 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: startBeforeActualValues
      *
-     * @test_Strategy: the start attr of the expression represents a time before
-     * the first expiration. Verify that the timer does not expire at the start
-     * date. If the current date is 1/13/2009 17:46:47, then the schedule is
-     * year=2015 - 2021 month=1 dayOfMonth=13 dayOfWeek=* hour=17 minute=46
-     * second=47 start Tue Jan 13 17:46:52 EST 2009 end null
+     * @test_Strategy: the start attr of the expression represents a time before the first expiration. Verify that the timer
+     * does not expire at the start date. If the current date is 1/13/2009 17:46:47, then the schedule is year=2015 - 2021
+     * month=1 dayOfMonth=13 dayOfWeek=* hour=17 minute=46 second=47 start Tue Jan 13 17:46:52 EST 2009 end null
      */
     public void startBeforeActualValues() {
         Date start = TimerUtil.getCurrentDatePlus(Calendar.SECOND, 5);
@@ -287,13 +274,12 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: startInTheFuture
      *
-     * @test_Strategy: the start attr of the expression represents a time in the
-     * future. Other attrs take defaults. If the current year is 2009, then the
-     * schedule is: year=* month=* dayOfMonth=* dayOfWeek=* hour=0 minute=0
-     * second=0 start Thu Jan 01 00:00:00 EST 2015 end null
+     * @test_Strategy: the start attr of the expression represents a time in the future. Other attrs take defaults. If the
+     * current year is 2009, then the schedule is: year=* month=* dayOfMonth=* dayOfWeek=* hour=0 minute=0 second=0 start
+     * Thu Jan 01 00:00:00 EST 2015 end null
      *
-     * ScheduleExpression is mutable but any modification should not affect timers
-     * that were created previously with this schedule.
+     * ScheduleExpression is mutable but any modification should not affect timers that were created previously with this
+     * schedule.
      */
 
     public void startInTheFuture() {
@@ -314,13 +300,11 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: startAfterActualValues
      *
-     * @test_Strategy: the start attr of the expression represents a time after
-     * the first expiration. Verify that the timer does not start at the current
-     * year; it does not start at the start date; it should start at start + 1
-     * year. For example,
+     * @test_Strategy: the start attr of the expression represents a time after the first expiration. Verify that the timer
+     * does not start at the current year; it does not start at the start date; it should start at start + 1 year. For
+     * example,
      *
-     * year=2009 - 2021 month=1 dayOfMonth=14 dayOfWeek=* hour=13 minute=51
-     * second=50 start Wed Jan 14 13:51:51 EST 2015
+     * year=2009 - 2021 month=1 dayOfMonth=14 dayOfWeek=* hour=13 minute=51 second=50 start Wed Jan 14 13:51:51 EST 2015
      */
     public void startAfterActualValues() {
         Calendar cal = Calendar.getInstance();
@@ -343,12 +327,11 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: startAfterActualValues2
      *
-     * @test_Strategy: the start attr of the expression represents a time after
-     * the first expiration. Verify that the timer does not start at the current
-     * year; it should start a little later after the start date. For example,
+     * @test_Strategy: the start attr of the expression represents a time after the first expiration. Verify that the timer
+     * does not start at the current year; it should start a little later after the start date. For example,
      *
-     * year=2009 - 2021 month=1 dayOfMonth=20 dayOfWeek=* hour=10 minute=33
-     * second=19 start Tue Jan 20 10:23:19 EST 2015 end null
+     * year=2009 - 2021 month=1 dayOfMonth=20 dayOfWeek=* hour=10 minute=33 second=19 start Tue Jan 20 10:23:19 EST 2015 end
+     * null
      */
 
     public void startAfterActualValues2() {
@@ -375,8 +358,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: allDefaults
      *
-     * @test_Strategy: create a no-arg ScheduleExpression, which should expire
-     * every year, every month, everyday, at 0:0:0 (midnight)
+     * @test_Strategy: create a no-arg ScheduleExpression, which should expire every year, every month, everyday, at 0:0:0
+     * (midnight)
      */
     public void allDefaults() {
         ScheduleExpression exp = new ScheduleExpression();
@@ -394,8 +377,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: timerAccessInTimeoutMethod
      *
-     * @test_Strategy: create a single-event scheduled timer, access timer methods
-     * in timeout method.
+     * @test_Strategy: create a single-event scheduled timer, access timer methods in timeout method.
      */
     public void timerAccessInTimeoutMethod() {
         scheduleBean.cancelAllTimers();
@@ -413,9 +395,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: cancelInTimeoutMethod
      *
-     * @test_Strategy: create a recurring timer, cancel it in timeout method.
-     * There should be no more timeout event for this timer. There is only one
-     * timeout record.
+     * @test_Strategy: create a recurring timer, cancel it in timeout method. There should be no more timeout event for this
+     * timer. There is only one timeout record.
      */
     public void cancelInTimeoutMethod() {
         Date end = TimerUtil.getCurrentDatePlus(Calendar.MINUTE, 5);
@@ -434,29 +415,25 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: leapYears
      *
-     * @test_Strategy: Test 2/29 in 3 leap years (next next leapYear, 2104/2/29,
-     * 2104/2/last. For example, year=2013-2016 month=2 dayOfMonth=29 dayOfWeek=*
-     * hour=21 minute=15 second=31 start null end null expected nextTimeout Mon
-     * Feb 29 21:15:15 EST 2016
+     * @test_Strategy: Test 2/29 in 3 leap years (next next leapYear, 2104/2/29, 2104/2/last. For example, year=2013-2016
+     * month=2 dayOfMonth=29 dayOfWeek=* hour=21 minute=15 second=31 start null end null expected nextTimeout Mon Feb 29
+     * 21:15:15 EST 2016
      *
-     * UTC timezone is used to create the test timers to avoid the hour difference
-     * between next timeout time and expected next time that may be caused by
-     * daylight time switch. For example, such difference could occur when running
-     * this test in mid March when US switched to daylight saving time, while the
-     * configured timer is set to expire on Feb 29 (in standard time) a few years
-     * later.
-     * See https://github.com/eclipse-ee4j/jakartaee-tck/issues/163
+     * UTC timezone is used to create the test timers to avoid the hour difference between next timeout time and expected
+     * next time that may be caused by daylight time switch. For example, such difference could occur when running this test
+     * in mid March when US switched to daylight saving time, while the configured timer is set to expire on Feb 29 (in
+     * standard time) a few years later. See https://github.com/eclipse-ee4j/jakartaee-tck/issues/163
      */
     public void leapYears() {
         scheduleBean.cancelAllTimers();
         int nextNextLeapYear = TimerUtil.getNextLeapYear(TimerUtil.getNextLeapYear());
-        int[] leapYears = {nextNextLeapYear, 2104, 2104};
+        int[] leapYears = { nextNextLeapYear, 2104, 2104 };
         String[] yearRange = {
-            (leapYears[0] - 3) + "-" + leapYears[0],
-            (leapYears[1] - 6) + "-" + leapYears[1],
-            String.valueOf(leapYears[2])
+                (leapYears[0] - 3) + "-" + leapYears[0],
+                (leapYears[1] - 6) + "-" + leapYears[1],
+                String.valueOf(leapYears[2])
         };
-        String[] dayOfMonths = {"29, 29", "29, 29", "last, last"};
+        String[] dayOfMonths = { "29, 29", "29, 29", "last, last" };
 
         final TimeZone utc = TimeZone.getTimeZone("UTC");
         final Calendar cal = Calendar.getInstance(utc);
@@ -487,8 +464,8 @@ public class JsfClient extends JsfClientBase {
     public void dayOfMonth() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MONTH, 1);
         int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        String[] dayOfMonths = {String.valueOf(1), String.valueOf(lastDayOfMonth), "last, last"};
-        int[] expectedDayOfMonths = {1, lastDayOfMonth, lastDayOfMonth};
+        String[] dayOfMonths = { String.valueOf(1), String.valueOf(lastDayOfMonth), "last, last" };
+        int[] expectedDayOfMonths = { 1, lastDayOfMonth, lastDayOfMonth };
         dayOfMonth0(dayOfMonths, expectedDayOfMonths, cal);
     }
 
@@ -532,16 +509,16 @@ public class JsfClient extends JsfClientBase {
         cal.set(Calendar.MONTH, Calendar.FEBRUARY);
 
         String[] dayOfMonths = {
-            "1st Mon", "1st Tue", "1st Wed", "1st Thu", "1st Fri", "1st Sat", "1st Sun", "2nd Mon", "2nd Tue",
-            "2nd Wed", "2nd Thu", "2nd Fri", "2nd Sat", "2nd Sun", "3rd Mon", "3rd Tue", "3rd Wed", "3rd Thu",
-            "3rd Fri", "3rd Sat", "3rd Sun", "4th Mon", "4th Tue", "4th Wed", "4th Thu", "4th Fri", "4th Sat", "4th Sun"
+                "1st Mon", "1st Tue", "1st Wed", "1st Thu", "1st Fri", "1st Sat", "1st Sun", "2nd Mon", "2nd Tue",
+                "2nd Wed", "2nd Thu", "2nd Fri", "2nd Sat", "2nd Sun", "3rd Mon", "3rd Tue", "3rd Wed", "3rd Thu",
+                "3rd Fri", "3rd Sat", "3rd Sun", "4th Mon", "4th Tue", "4th Wed", "4th Thu", "4th Fri", "4th Sat", "4th Sun"
         };
         int[] expectedDayOfMonths = ScheduleValues.getSequenceIntArray(1, 28);
         dayOfMonth0(dayOfMonths, expectedDayOfMonths, cal);
         dayOfMonths = null;
         expectedDayOfMonths = null;
 
-        String[] dayOfMonths2 = {"Last Mon", "Last Tue", "Last Wed", "Last Thu", "Last Fri", "Last Sat", "Last Sun"};
+        String[] dayOfMonths2 = { "Last Mon", "Last Tue", "Last Wed", "Last Thu", "Last Fri", "Last Sat", "Last Sun" };
         int[] expectedDayOfMonths2 = ScheduleValues.getSequenceIntArray(22, 28);
         dayOfMonth0(dayOfMonths2, expectedDayOfMonths2, cal);
     }
@@ -556,37 +533,37 @@ public class JsfClient extends JsfClientBase {
         cal.set(Calendar.YEAR, 2100);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
         String[] dayOfMonths = {
-            "1st Fri-1st Mon",
-            "1st Sat",
-            "1st Sun",
-            "1st Mon",
-            "1st Tue",
-            "1st Wed",
-            "1st Thu",
-            "2nd Fri",
-            "2nd Sat",
-            "2nd Sun",
-            "2nd Mon",
-            "2nd Tue",
-            "2nd Wed",
-            "2nd Thu",
-            "3rd Fri",
-            "3rd Sat",
-            "3rd Sun",
-            "3rd Mon",
-            "3rd Tue",
-            "3rd Wed",
-            "3rd Thu",
-            "4th Fri",
-            "4th Sat",
-            "4th Sun",
-            "4th Mon",
-            "4th Tue",
-            "4th Wed",
-            "4th Thu",
-            "5th Fri",
-            "5th Sat-5th Sat",
-            "5th Sun-Last Sun"
+                "1st Fri-1st Mon",
+                "1st Sat",
+                "1st Sun",
+                "1st Mon",
+                "1st Tue",
+                "1st Wed",
+                "1st Thu",
+                "2nd Fri",
+                "2nd Sat",
+                "2nd Sun",
+                "2nd Mon",
+                "2nd Tue",
+                "2nd Wed",
+                "2nd Thu",
+                "3rd Fri",
+                "3rd Sat",
+                "3rd Sun",
+                "3rd Mon",
+                "3rd Tue",
+                "3rd Wed",
+                "3rd Thu",
+                "4th Fri",
+                "4th Sat",
+                "4th Sun",
+                "4th Mon",
+                "4th Tue",
+                "4th Wed",
+                "4th Thu",
+                "5th Fri",
+                "5th Sat-5th Sat",
+                "5th Sun-Last Sun"
         };
         int[] expectedDayOfMonths = ScheduleValues.getSequenceIntArray(1, 31);
         dayOfMonth0(dayOfMonths, expectedDayOfMonths, cal);
@@ -594,7 +571,7 @@ public class JsfClient extends JsfClientBase {
         expectedDayOfMonths = null;
 
         String[] dayOfMonths2 = {
-            "Last Mon", "Last Tue", "Last Wed", "Last Thu", "Last Fri", "Last Sat", "Last Sun, 5th Sun"
+                "Last Mon", "Last Tue", "Last Wed", "Last Thu", "Last Fri", "Last Sat", "Last Sun, 5th Sun"
         };
         int[] expectedDayOfMonths2 = ScheduleValues.getSequenceIntArray(25, 31);
         dayOfMonth0(dayOfMonths2, expectedDayOfMonths2, cal);
@@ -603,8 +580,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfWeekAll
      *
-     * @test_Strategy: test dayOfWeek [0, 7], and ["Sun", "Sat"] The timer may
-     * expire once, twice, 3, or 4times. Check the first expiration
+     * @test_Strategy: test dayOfWeek [0, 7], and ["Sun", "Sat"] The timer may expire once, twice, 3, or 4times. Check the
+     * first expiration
      */
     public void dayOfWeekAll() {
         Calendar cal = Calendar.getInstance();
@@ -612,7 +589,7 @@ public class JsfClient extends JsfClientBase {
             cal.add(Calendar.DAY_OF_WEEK, 1);
             int targetDayOfWeek = TimerUtil.getForSchedule(Calendar.DAY_OF_WEEK, cal);
             String[] targetDayOfWeeks = {
-                String.valueOf(targetDayOfWeek), ScheduleValues.dayOfWeekIntToString(targetDayOfWeek)
+                    String.valueOf(targetDayOfWeek), ScheduleValues.dayOfWeekIntToString(targetDayOfWeek)
             };
             Date expectedNextTimeout = cal.getTime();
             dayOfWeek0(TimerUtil.getPreciseScheduleExpression(cal), expectedNextTimeout, targetDayOfWeeks);
@@ -639,8 +616,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfWeekSunday0To7
      *
-     * @test_Strategy: create a schedule timer using dayOfWeek="0-7" to denote all
-     * dayOfWeeks.
+     * @test_Strategy: create a schedule timer using dayOfWeek="0-7" to denote all dayOfWeeks.
      */
     public void dayOfWeekSunday0To7() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.SECOND, 5);
@@ -651,8 +627,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfWeekSunday2
      *
-     * @test_Strategy: test dayOfWeek Sun and start. start is set to the date
-     * after the next Sun. So the first expiration should be the next next Sun.
+     * @test_Strategy: test dayOfWeek Sun and start. start is set to the date after the next Sun. So the first expiration
+     * should be the next next Sun.
      */
     public void dayOfWeekSunday2() {
         Calendar cal = Calendar.getInstance();
@@ -672,8 +648,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfWeekNow
      *
-     * @test_Strategy: test today's dayOfWeek, create a recurring timer that
-     * expires on this year, this month, and this dayOfWeek.
+     * @test_Strategy: test today's dayOfWeek, create a recurring timer that expires on this year, this month, and this
+     * dayOfWeek.
      */
     public void dayOfWeekNow() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.SECOND, 10);
@@ -717,10 +693,9 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfWeekList
      *
-     * @test_Strategy: create a schedule timer using dayOfWeek=
-     * "dayAfter, dayBefore, today". It should expire in a few minutes. The order
-     * of the list elements is insignificant (the implementation needs to sort out
-     * the earliest possible element, rather than the first element).
+     * @test_Strategy: create a schedule timer using dayOfWeek= "dayAfter, dayBefore, today". It should expire in a few
+     * minutes. The order of the list elements is insignificant (the implementation needs to sort out the earliest possible
+     * element, rather than the first element).
      */
     public void dayOfWeekList() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MINUTE, 5);
@@ -732,7 +707,7 @@ public class JsfClient extends JsfClientBase {
         int nextDayOfWeek = TimerUtil.getForSchedule(Calendar.DAY_OF_WEEK, cal);
         cal.add(Calendar.DAY_OF_WEEK, -2);
         int previosDayOfWeek = TimerUtil.getForSchedule(Calendar.DAY_OF_WEEK, cal);
-        int[] dayOfWeeks = {nextDayOfWeek, previosDayOfWeek, currentDayOfWeek};
+        int[] dayOfWeeks = { nextDayOfWeek, previosDayOfWeek, currentDayOfWeek };
         String[] dayOfWeeksAsNumber = ScheduleValues.intArrayToStringArray(dayOfWeeks);
         String[] dayOfWeeksAsText = ScheduleValues.dayOfWeekIntToString(dayOfWeeks);
 
@@ -746,9 +721,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfWeekListComplex
      *
-     * @test_Strategy: create a schedule timer using dayOfWeek=
-     * "nextDay-2DaysLater, 2DaysBack-1DayBack, today". It should expire in a few
-     * minutes.
+     * @test_Strategy: create a schedule timer using dayOfWeek= "nextDay-2DaysLater, 2DaysBack-1DayBack, today". It should
+     * expire in a few minutes.
      */
     public void dayOfWeekListComplex() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MINUTE, 5);
@@ -763,7 +737,7 @@ public class JsfClient extends JsfClientBase {
         }
         String[] dayOfWeeksAsNumber = ScheduleValues.intArrayToStringArray(dayOfWeeks);
         String[] dayOfWeeksAsText = ScheduleValues.dayOfWeekIntToString(dayOfWeeks);
-        String[][] combinedDayOfWeeks = {dayOfWeeksAsNumber, dayOfWeeksAsText};
+        String[][] combinedDayOfWeeks = { dayOfWeeksAsNumber, dayOfWeeksAsText };
 
         for (String[] days : combinedDayOfWeeks) {
             // array index 0 1 2 3 4
@@ -777,9 +751,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfWeekListOverlap
      *
-     * @test_Strategy: create a schedule timer using dayOfWeek=
-     * "2DayBack-1DaysLater, 1DaysBack-2DaysLater". It should expire in a few
-     * minutes. This test is similar to dayOfWeekListComplex
+     * @test_Strategy: create a schedule timer using dayOfWeek= "2DayBack-1DaysLater, 1DaysBack-2DaysLater". It should
+     * expire in a few minutes. This test is similar to dayOfWeekListComplex
      */
     public void dayOfWeekListOverlap() {
         // The following code is the same as in dayOfWeekListComplex
@@ -795,7 +768,7 @@ public class JsfClient extends JsfClientBase {
         }
         String[] dayOfWeeksAsNumber = ScheduleValues.intArrayToStringArray(dayOfWeeks);
         String[] dayOfWeeksAsText = ScheduleValues.dayOfWeekIntToString(dayOfWeeks);
-        String[][] combinedDayOfWeeks = {dayOfWeeksAsNumber, dayOfWeeksAsText};
+        String[][] combinedDayOfWeeks = { dayOfWeeksAsNumber, dayOfWeeksAsText };
 
         // The following code is different than dayOfWeekListComplex
         for (String[] days : combinedDayOfWeeks) {
@@ -810,9 +783,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfWeekRange
      *
-     * @test_Strategy: create a schedule timer using dayOfWeek=
-     * "prevPrevDay-today". It should expire in a few minutes. The range may wrap
-     * around (e.g., Sat-Mon)
+     * @test_Strategy: create a schedule timer using dayOfWeek= "prevPrevDay-today". It should expire in a few minutes. The
+     * range may wrap around (e.g., Sat-Mon)
      */
     public void dayOfWeekRange() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MINUTE, 5);
@@ -833,10 +805,9 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: monthList
      *
-     * @test_Strategy: create a schedule timer using month=
-     * "monthAfter, monthBefore, thisMonth". It should expire in a few minutes.
-     * The order of the list elements is insignificant (the implementation needs
-     * to sort out the earliest possible element, rather than the first element).
+     * @test_Strategy: create a schedule timer using month= "monthAfter, monthBefore, thisMonth". It should expire in a few
+     * minutes. The order of the list elements is insignificant (the implementation needs to sort out the earliest possible
+     * element, rather than the first element).
      */
     public void monthList() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MINUTE, 5);
@@ -848,7 +819,7 @@ public class JsfClient extends JsfClientBase {
         int nextMonth = TimerUtil.getForSchedule(Calendar.MONTH, cal);
         cal.add(Calendar.MONTH, -2);
         int previosMonth = TimerUtil.getForSchedule(Calendar.MONTH, cal);
-        int[] months = {nextMonth, previosMonth, currentMonth};
+        int[] months = { nextMonth, previosMonth, currentMonth };
         String[] monthsAsNumber = ScheduleValues.intArrayToStringArray(months);
         String[] monthsAsText = ScheduleValues.monthIntToString(months);
 
@@ -858,9 +829,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: monthRange
      *
-     * @test_Strategy: create a schedule timer using month=
-     * "prevPrevMonth-thisMonth". It should expire in a few minutes. The range may
-     * wrap around (e.g., Dec-Feb)
+     * @test_Strategy: create a schedule timer using month= "prevPrevMonth-thisMonth". It should expire in a few minutes.
+     * The range may wrap around (e.g., Dec-Feb)
      */
     public void monthRange() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MINUTE, 5);
@@ -872,8 +842,7 @@ public class JsfClient extends JsfClientBase {
         int prevPrevMonth = TimerUtil.getForSchedule(Calendar.MONTH, cal);
 
         String monthsAsNumber = prevPrevMonth + "-" + thisMonth;
-        String monthsAsText =
-                ScheduleValues.monthIntToString(prevPrevMonth) + "-" + ScheduleValues.monthIntToString(thisMonth);
+        String monthsAsText = ScheduleValues.monthIntToString(prevPrevMonth) + "-" + ScheduleValues.monthIntToString(thisMonth);
         month0(exp, expectedTimeout, monthsAsNumber, monthsAsText);
 
         monthsAsNumber = thisMonth + "-" + thisMonth;
@@ -884,9 +853,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: monthListComplex
      *
-     * @test_Strategy: create a schedule timer using month=
-     * "nextMonth-2MonthsLater, 2MonthsBack-1MonthBack, thisMonth". It should
-     * expire in a few minutes.
+     * @test_Strategy: create a schedule timer using month= "nextMonth-2MonthsLater, 2MonthsBack-1MonthBack, thisMonth". It
+     * should expire in a few minutes.
      */
     public void monthListComplex() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MINUTE, 5);
@@ -902,7 +870,7 @@ public class JsfClient extends JsfClientBase {
         String[] monthsAsNumber = ScheduleValues.intArrayToStringArray(months);
         String[] monthsAsText = ScheduleValues.monthIntToString(months);
 
-        String[][] combinedMonths = {monthsAsNumber, monthsAsText};
+        String[][] combinedMonths = { monthsAsNumber, monthsAsText };
         for (String[] m : combinedMonths) {
             // array index 0 1 2 3 4
             // month -2 -1 current +1 +2
@@ -915,9 +883,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: monthListOverlap
      *
-     * @test_Strategy: create a schedule timer using month=
-     * "2MonthsBack-1MonthsLater, 1MonthsBack-2MonthsLater". It should expire in a
-     * few minutes. This test is similar to monthListComplex
+     * @test_Strategy: create a schedule timer using month= "2MonthsBack-1MonthsLater, 1MonthsBack-2MonthsLater". It should
+     * expire in a few minutes. This test is similar to monthListComplex
      */
     public void monthListOverlap() {
         // The following code is the same as in dayOfWeekListComplex
@@ -933,7 +900,7 @@ public class JsfClient extends JsfClientBase {
         }
         String[] monthsAsNumber = ScheduleValues.intArrayToStringArray(months);
         String[] monthsAsText = ScheduleValues.monthIntToString(months);
-        String[][] combinedMonths = {monthsAsNumber, monthsAsText};
+        String[][] combinedMonths = { monthsAsNumber, monthsAsText };
 
         // The following code is different than dayOfWeekListComplex
         for (String[] m : combinedMonths) {
@@ -955,12 +922,11 @@ public class JsfClient extends JsfClientBase {
         for (int i = 0; i < 24; i++) {
             cal.add(Calendar.MONTH, 1);
             int targetMonth = TimerUtil.getForSchedule(Calendar.MONTH, cal);
-            String[] targetMonths = {String.valueOf(targetMonth), ScheduleValues.monthIntToString(targetMonth)};
+            String[] targetMonths = { String.valueOf(targetMonth), ScheduleValues.monthIntToString(targetMonth) };
             cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
             Date expectedNextTimeout = cal.getTime();
             for (String month : targetMonths) {
-                ScheduleExpression exp =
-                        TimerUtil.getPreciseScheduleExpression(cal).month(month).dayOfMonth("last");
+                ScheduleExpression exp = TimerUtil.getPreciseScheduleExpression(cal).month(month).dayOfMonth("last");
                 Timer timer = createTimer(exp);
                 verifyNextTimeout(expectedNextTimeout, timer);
             }
@@ -970,10 +936,9 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: yearList
      *
-     * @test_Strategy: create a schedule timer using year=
-     * "yearAfter, yearBefore, thisYear". It should expire in a few minutes. The
-     * order of the list elements is insignificant (the implementation needs to
-     * sort out the earliest possible element, rather than the first element).
+     * @test_Strategy: create a schedule timer using year= "yearAfter, yearBefore, thisYear". It should expire in a few
+     * minutes. The order of the list elements is insignificant (the implementation needs to sort out the earliest possible
+     * element, rather than the first element).
      */
     public void yearList() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MINUTE, 5);
@@ -985,7 +950,7 @@ public class JsfClient extends JsfClientBase {
         int nextYear = TimerUtil.getForSchedule(Calendar.YEAR, cal);
         cal.add(Calendar.YEAR, -2);
         int previosYear = TimerUtil.getForSchedule(Calendar.YEAR, cal);
-        int[] years = {nextYear, previosYear, currentYear};
+        int[] years = { nextYear, previosYear, currentYear };
         String[] yearsAsNumber = ScheduleValues.intArrayToStringArray(years);
         year0(exp, expectedTimeout, StringUtils.join(yearsAsNumber, ','));
     }
@@ -993,9 +958,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: yearRange
      *
-     * @test_Strategy: create a schedule timer using year=
-     * "prevPrevYear-thisYear". It should expire in a few minutes. The range may
-     * wrap around (e.g., Dec-Feb)
+     * @test_Strategy: create a schedule timer using year= "prevPrevYear-thisYear". It should expire in a few minutes. The
+     * range may wrap around (e.g., Dec-Feb)
      */
     public void yearRange() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MINUTE, 5);
@@ -1016,9 +980,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: yearListComplex
      *
-     * @test_Strategy: create a schedule timer using year=
-     * "nextYear-2YearsLater, 2YearsBack-1YearBack, thisYear". It should expire in
-     * a few minutes.
+     * @test_Strategy: create a schedule timer using year= "nextYear-2YearsLater, 2YearsBack-1YearBack, thisYear". It should
+     * expire in a few minutes.
      */
     public void yearListComplex() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MINUTE, 5);
@@ -1043,9 +1006,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: yearListOverlap
      *
-     * @test_Strategy: create a schedule timer using year=
-     * "2YearsBack-1YearsLater, 1YearsBack-2YearsLater". It should expire in a few
-     * minutes. This test is similar to yearListComplex
+     * @test_Strategy: create a schedule timer using year= "2YearsBack-1YearsLater, 1YearsBack-2YearsLater". It should
+     * expire in a few minutes. This test is similar to yearListComplex
      */
     public void yearListOverlap() {
         Calendar cal = TimerUtil.getCurrentCalendarPlus(Calendar.MINUTE, 5);
@@ -1097,11 +1059,10 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: incrementMinute1
      *
-     * @test_Strategy: start the incremental timer with start set to 1 minute
-     * before {10, 20, 30, etc}.
+     * @test_Strategy: start the incremental timer with start set to 1 minute before {10, 20, 30, etc}.
      */
     public void incrementMinute1() {
-        String[] increments = {"*/10", "0/10"};
+        String[] increments = { "*/10", "0/10" };
         for (String increment : increments) {
             Calendar cal = Calendar.getInstance();
             int currentMinute = cal.get(Calendar.MINUTE);
@@ -1122,9 +1083,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: incrementMinute2
      *
-     * @test_Strategy: start the incremental timer with start set to 1 minute
-     * after 25 minute. Verify the first timeout is about 1 hour later, and minute
-     * 60 is not included (there is no minute 60).
+     * @test_Strategy: start the incremental timer with start set to 1 minute after 25 minute. Verify the first timeout is
+     * about 1 hour later, and minute 60 is not included (there is no minute 60).
      */
     public void incrementMinute2() {
         String increment = "25/35";
@@ -1152,7 +1112,7 @@ public class JsfClient extends JsfClientBase {
      * @test_Strategy:
      */
     public void incrementHour1() {
-        String[] increments = {"*/3", "0/3"};
+        String[] increments = { "*/3", "0/3" };
         for (String increment : increments) {
             Calendar cal = Calendar.getInstance();
             int currentHour = cal.get(Calendar.HOUR);

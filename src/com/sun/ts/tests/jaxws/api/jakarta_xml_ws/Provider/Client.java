@@ -107,11 +107,9 @@ public class Client extends ServiceEETest {
 
     String bindingID = null;
 
-    private static final Class JAXB_OBJECT_FACTORY =
-            com.sun.ts.tests.jaxws.sharedclients.dlhelloproviderclient.ObjectFactory.class;
+    private static final Class JAXB_OBJECT_FACTORY = com.sun.ts.tests.jaxws.sharedclients.dlhelloproviderclient.ObjectFactory.class;
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.dlhelloproviderclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.dlhelloproviderclient.HelloService.class;
 
     static HelloService service = null;
 
@@ -170,8 +168,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -211,12 +211,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: invokeTest1
      *
-     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008;
-     * WS4EE:SPEC:5001; JAXWS:JAVADOC:78; JAXWS:JAVADOC:79; JAXWS:JAVADOC:80;
-     * JAXWS:JAVADOC:81; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
-     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003;
-     * JAXWS:JAVADOC:117; JAXWS:JAVADOC:7; WS4EE:SPEC:5005; JAXWS:SPEC:6001;
-     * JAXWS:SPEC:7012;
+     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008; WS4EE:SPEC:5001; JAXWS:JAVADOC:78;
+     * JAXWS:JAVADOC:79; JAXWS:JAVADOC:80; JAXWS:JAVADOC:81; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
+     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003; JAXWS:JAVADOC:117; JAXWS:JAVADOC:7;
+     * WS4EE:SPEC:5005; JAXWS:SPEC:6001; JAXWS:SPEC:7012;
      *
      * @test_Strategy:
      */
@@ -236,23 +234,23 @@ public class Client extends ServiceEETest {
             helloRes = (HelloResponse) dispatchJaxb.invoke(helloReq);
             TestUtil.logMsg("HelloRequest=" + helloReq.getArgument());
             TestUtil.logMsg("HelloResponse=" + helloRes.getArgument());
-            if (!helloRes.getArgument().equals(helloReq.getArgument())) pass = false;
+            if (!helloRes.getArgument().equals(helloReq.getArgument()))
+                pass = false;
         } catch (Exception e) {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTest1 failed");
+        if (!pass)
+            throw new Fault("invokeTest1 failed");
     }
 
     /*
      * @testName: invokeTest2
      *
-     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008;
-     * WS4EE:SPEC:5001; JAXWS:JAVADOC:78; JAXWS:JAVADOC:79; JAXWS:JAVADOC:80;
-     * JAXWS:JAVADOC:81; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
-     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003;
-     * JAXWS:JAVADOC:117; JAXWS:JAVADOC:7; WS4EE:SPEC:5005; JAXWS:SPEC:6001;
-     * JAXWS:SPEC:7012;
+     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008; WS4EE:SPEC:5001; JAXWS:JAVADOC:78;
+     * JAXWS:JAVADOC:79; JAXWS:JAVADOC:80; JAXWS:JAVADOC:81; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
+     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003; JAXWS:JAVADOC:117; JAXWS:JAVADOC:7;
+     * WS4EE:SPEC:5005; JAXWS:SPEC:6001; JAXWS:SPEC:7012;
      *
      * @test_Strategy:
      */
@@ -275,26 +273,25 @@ public class Client extends ServiceEETest {
             helloRes = (HelloResponse) dispatchJaxb.invoke(helloReq);
             TestUtil.logMsg("HelloRequest=" + helloReq.getArgument());
             TestUtil.logMsg("HelloResponse=" + helloRes.getArgument());
-            if (!helloRes.getArgument().equals(helloReq.getArgument())) pass = false;
+            if (!helloRes.getArgument().equals(helloReq.getArgument()))
+                pass = false;
         } catch (Exception e) {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTest2 failed");
+        if (!pass)
+            throw new Fault("invokeTest2 failed");
     }
 
     /*
      * @testName: invokeTest3
      *
-     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008;
-     * WS4EE:SPEC:5001; JAXWS:JAVADOC:78; JAXWS:JAVADOC:79; JAXWS:JAVADOC:80;
-     * JAXWS:JAVADOC:81; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
-     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003;
-     * JAXWS:JAVADOC:117; JAXWS:JAVADOC:7; WS4EE:SPEC:5005; JAXWS:SPEC:6001;
-     * JAXWS:SPEC:7012;
+     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008; WS4EE:SPEC:5001; JAXWS:JAVADOC:78;
+     * JAXWS:JAVADOC:79; JAXWS:JAVADOC:80; JAXWS:JAVADOC:81; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
+     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003; JAXWS:JAVADOC:117; JAXWS:JAVADOC:7;
+     * WS4EE:SPEC:5005; JAXWS:SPEC:6001; JAXWS:SPEC:7012;
      *
-     * @test_Strategy: do an invoke with the payload set to payload and a source
-     * being sent over the wire
+     * @test_Strategy: do an invoke with the payload set to payload and a source being sent over the wire
      */
     public void invokeTest3() throws Fault {
         TestUtil.logTrace("invokeTest3");
@@ -311,8 +308,7 @@ public class Client extends ServiceEETest {
             // Using generic Service object
             jakarta.xml.ws.Service service = jakarta.xml.ws.Service.create(SERVICE_QNAME);
             service.addPort(PORT_QNAME2, bindingID, url2);
-            dispatchJaxb =
-                    service.createDispatch(PORT_QNAME2, createJAXBContext(), jakarta.xml.ws.Service.Mode.PAYLOAD);
+            dispatchJaxb = service.createDispatch(PORT_QNAME2, createJAXBContext(), jakarta.xml.ws.Service.Mode.PAYLOAD);
             helloRes = (HelloResponse) dispatchJaxb.invoke(helloReq);
             TestUtil.logMsg("HelloRequest=" + helloReq.getArgument());
             TestUtil.logMsg("HelloResponse=" + helloRes.getArgument());
@@ -323,21 +319,19 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTest3 failed");
+        if (!pass)
+            throw new Fault("invokeTest3 failed");
     }
 
     /*
      * @testName: invokeTest4
      *
-     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008;
-     * WS4EE:SPEC:5001; JAXWS:JAVADOC:78; JAXWS:JAVADOC:79; JAXWS:JAVADOC:80;
-     * JAXWS:JAVADOC:81; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
-     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003;
-     * JAXWS:JAVADOC:117; JAXWS:JAVADOC:7; WS4EE:SPEC:5005; JAXWS:SPEC:6001;
-     * JAXWS:SPEC:7012;
+     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008; WS4EE:SPEC:5001; JAXWS:JAVADOC:78;
+     * JAXWS:JAVADOC:79; JAXWS:JAVADOC:80; JAXWS:JAVADOC:81; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
+     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003; JAXWS:JAVADOC:117; JAXWS:JAVADOC:7;
+     * WS4EE:SPEC:5005; JAXWS:SPEC:6001; JAXWS:SPEC:7012;
      *
-     * @test_Strategy: do an invoke with the payload set to message and a
-     * SOAPMessage being sent over the wire
+     * @test_Strategy: do an invoke with the payload set to message and a SOAPMessage being sent over the wire
      */
     public void invokeTest4() throws Fault {
         TestUtil.logTrace("invokeTest4");
@@ -349,8 +343,7 @@ public class Client extends ServiceEETest {
             service.addPort(PORT_QNAME2, bindingID, url2);
             dispatchSM = service.createDispatch(PORT_QNAME2, SOAPMessage.class, jakarta.xml.ws.Service.Mode.MESSAGE);
 
-            String helloReq =
-                    "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloRequest xmlns=\"http://helloservice.org/types\"><argument>sendBean</argument></HelloRequest></soapenv:Body></soapenv:Envelope>";
+            String helloReq = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloRequest xmlns=\"http://helloservice.org/types\"><argument>sendBean</argument></HelloRequest></soapenv:Body></soapenv:Envelope>";
 
             SOAPMessage reqMsg = JAXWS_Util.makeSOAPMessage(helloReq);
             TestUtil.logTrace("sending the following SOAPMessage:");
@@ -368,21 +361,19 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTest4 failed");
+        if (!pass)
+            throw new Fault("invokeTest4 failed");
     }
 
     /*
      * @testName: invokeTest5
      *
-     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008;
-     * WS4EE:SPEC:5001; JAXWS:JAVADOC:78; JAXWS:JAVADOC:79; JAXWS:JAVADOC:80;
-     * JAXWS:JAVADOC:81; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
-     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003;
-     * JAXWS:JAVADOC:117; JAXWS:JAVADOC:7; WS4EE:SPEC:5005; JAXWS:SPEC:6001;
-     * JAXWS:SPEC:7012;
+     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008; WS4EE:SPEC:5001; JAXWS:JAVADOC:78;
+     * JAXWS:JAVADOC:79; JAXWS:JAVADOC:80; JAXWS:JAVADOC:81; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
+     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003; JAXWS:JAVADOC:117; JAXWS:JAVADOC:7;
+     * WS4EE:SPEC:5005; JAXWS:SPEC:6001; JAXWS:SPEC:7012;
      *
-     * @test_Strategy: do an invoke with the payload set to payload and a Source
-     * being sent over the wire
+     * @test_Strategy: do an invoke with the payload set to payload and a Source being sent over the wire
      */
     public void invokeTest5() throws Fault {
         TestUtil.logTrace("invokeTest5");
@@ -394,8 +385,7 @@ public class Client extends ServiceEETest {
             service.addPort(PORT_QNAME3, bindingID, url3);
             dispatchSrc = service.createDispatch(PORT_QNAME3, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD);
 
-            String helloReq =
-                    "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>sendSource</argument></HelloRequest>";
+            String helloReq = "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>sendSource</argument></HelloRequest>";
 
             Source reqMsg = JAXWS_Util.makeSource(helloReq, "StreamSource");
 
@@ -405,21 +395,19 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTest5 failed");
+        if (!pass)
+            throw new Fault("invokeTest5 failed");
     }
 
     /*
      * @testName: invokeTest6
      *
-     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008;
-     * WS4EE:SPEC:6001; JAXWS:JAVADOC:78; JAXWS:JAVADOC:79; JAXWS:JAVADOC:80;
-     * JAXWS:JAVADOC:81; JAXWS:SPEC:6000; JAXWS:SPEC:6001; JAXWS:SPEC:6002;
-     * JAXWS:SPEC:6003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003;
-     * JAXWS:JAVADOC:117; JAXWS:JAVADOC:7; WS4EE:SPEC:6006; JAXWS:SPEC:6001;
-     * JAXWS:SPEC:7012; JAXWS:SPEC:5000;
+     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008; WS4EE:SPEC:6001; JAXWS:JAVADOC:78;
+     * JAXWS:JAVADOC:79; JAXWS:JAVADOC:80; JAXWS:JAVADOC:81; JAXWS:SPEC:6000; JAXWS:SPEC:6001; JAXWS:SPEC:6002;
+     * JAXWS:SPEC:6003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003; JAXWS:JAVADOC:117; JAXWS:JAVADOC:7;
+     * WS4EE:SPEC:6006; JAXWS:SPEC:6001; JAXWS:SPEC:7012; JAXWS:SPEC:5000;
      *
-     * @test_Strategy: Test provider endpoint using JAXB request object which
-     * sends Empty Payload response back
+     * @test_Strategy: Test provider endpoint using JAXB request object which sends Empty Payload response back
      */
     public void invokeTest6() throws Fault {
         TestUtil.logTrace("invokeTest6");
@@ -436,37 +424,36 @@ public class Client extends ServiceEETest {
             dispatchJaxb = createDispatchJAXB();
             o = dispatchJaxb.invoke(helloReq);
             TestUtil.logMsg("o=" + o);
-            if (o != null) pass = false;
+            if (o != null)
+                pass = false;
         } catch (Exception e) {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTest6 failed");
+        if (!pass)
+            throw new Fault("invokeTest6 failed");
     }
 
     /*
      * @testName: invokeTest7
      *
-     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008;
-     * WS4EE:SPEC:6001; JAXWS:JAVADOC:78; JAXWS:JAVADOC:79; JAXWS:JAVADOC:80;
-     * JAXWS:JAVADOC:81; JAXWS:SPEC:6000; JAXWS:SPEC:6001; JAXWS:SPEC:6002;
-     * JAXWS:SPEC:6003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003;
-     * JAXWS:JAVADOC:117; JAXWS:JAVADOC:7; WS4EE:SPEC:6006; JAXWS:SPEC:6001;
-     * JAXWS:SPEC:7012; JAXWS:SPEC:5000;
+     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008; WS4EE:SPEC:6001; JAXWS:JAVADOC:78;
+     * JAXWS:JAVADOC:79; JAXWS:JAVADOC:80; JAXWS:JAVADOC:81; JAXWS:SPEC:6000; JAXWS:SPEC:6001; JAXWS:SPEC:6002;
+     * JAXWS:SPEC:6003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003; JAXWS:JAVADOC:117; JAXWS:JAVADOC:7;
+     * WS4EE:SPEC:6006; JAXWS:SPEC:6001; JAXWS:SPEC:7012; JAXWS:SPEC:5000;
      *
-     * @test_Strategy: Test provider endpoint using Source request object and
-     * sends Empty Payload response back as an Empty StreamSource, DOMSource or
-     * SAXSource.
+     * @test_Strategy: Test provider endpoint using Source request object and sends Empty Payload response back as an Empty
+     * StreamSource, DOMSource or SAXSource.
      */
     public void invokeTest7() throws Fault {
         TestUtil.logTrace("invokeTest7");
         boolean pass = true;
         String[] helloReq = {
-            "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>sendEmptyStreamSource</argument></HelloRequest>",
-            "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>sendEmptyDOMSource</argument></HelloRequest>",
-            "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>sendEmptySAXSource</argument></HelloRequest>"
+                "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>sendEmptyStreamSource</argument></HelloRequest>",
+                "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>sendEmptyDOMSource</argument></HelloRequest>",
+                "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>sendEmptySAXSource</argument></HelloRequest>"
         };
-        String[] streamAs = {"StreamSource", "DOMSource", "SAXSource"};
+        String[] streamAs = { "StreamSource", "DOMSource", "SAXSource" };
         try {
             // Using generic Service object
             jakarta.xml.ws.Service service = jakarta.xml.ws.Service.create(SERVICE_QNAME);
@@ -478,27 +465,26 @@ public class Client extends ServiceEETest {
                 Source reqMsg = JAXWS_Util.makeSource(helloReq[i], streamAs[i]);
                 Source ds = dispatchSrc.invoke(reqMsg);
                 TestUtil.logMsg("ds=" + ds);
-                if (ds != null) pass = false;
+                if (ds != null)
+                    pass = false;
             }
         } catch (Exception e) {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTest7 failed");
+        if (!pass)
+            throw new Fault("invokeTest7 failed");
     }
 
     /*
      * @testName: invokeTest8
      *
-     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008;
-     * WS4EE:SPEC:6001; JAXWS:JAVADOC:78; JAXWS:JAVADOC:79; JAXWS:JAVADOC:80;
-     * JAXWS:JAVADOC:81; JAXWS:SPEC:6000; JAXWS:SPEC:6001; JAXWS:SPEC:6002;
-     * JAXWS:SPEC:6003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003;
-     * JAXWS:JAVADOC:117; JAXWS:JAVADOC:7; WS4EE:SPEC:6006; JAXWS:SPEC:6001;
-     * JAXWS:SPEC:7012; JAXWS:SPEC:5000;
+     * @assertion_ids: JAXWS:SPEC:7002; JAXWS:JAVADOC:38; JAXWS:SPEC:7008; WS4EE:SPEC:6001; JAXWS:JAVADOC:78;
+     * JAXWS:JAVADOC:79; JAXWS:JAVADOC:80; JAXWS:JAVADOC:81; JAXWS:SPEC:6000; JAXWS:SPEC:6001; JAXWS:SPEC:6002;
+     * JAXWS:SPEC:6003; JAXWS:SPEC:7000; JAXWS:SPEC:7009; JAXWS:SPEC:6003; JAXWS:JAVADOC:117; JAXWS:JAVADOC:7;
+     * WS4EE:SPEC:6006; JAXWS:SPEC:6001; JAXWS:SPEC:7012; JAXWS:SPEC:5000;
      *
-     * @test_Strategy: Test provider endpoint using JAXB request object for oneway
-     * op and sends Empty Payload null back
+     * @test_Strategy: Test provider endpoint using JAXB request object for oneway op and sends Empty Payload null back
      */
     public void invokeTest8() throws Fault {
         TestUtil.logTrace("invokeTest8");
@@ -517,6 +503,7 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTest8 failed");
+        if (!pass)
+            throw new Fault("invokeTest8 failed");
     }
 }

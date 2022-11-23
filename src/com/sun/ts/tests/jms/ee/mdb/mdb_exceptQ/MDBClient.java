@@ -43,8 +43,7 @@ public class MDBClient extends Client {
     /*
      * Test setup:
      *
-     * @class.setup_props: jms_timeout, in milliseconds - how long to wait on
-     * synchronous receive; user;password;
+     * @class.setup_props: jms_timeout, in milliseconds - how long to wait on synchronous receive; user;password;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -66,10 +65,9 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:529; EJB:SPEC:530; EJB:SPEC:547; EJB:SPEC:580;
      *
-     * @test_Strategy: Invoke an bmt mdb by writing to MDB_QUEUE_BMT. The mdb
-     * begins a jakarta.transaction.UserTransaction, then attempts a
-     * MessageDrivenContext getRollBackOnly() method. Return verification message
-     * that a java.lang.IllegalStateException was thrown.
+     * @test_Strategy: Invoke an bmt mdb by writing to MDB_QUEUE_BMT. The mdb begins a jakarta.transaction.UserTransaction,
+     * then attempts a MessageDrivenContext getRollBackOnly() method. Return verification message that a
+     * java.lang.IllegalStateException was thrown.
      */
     public void Test1() throws Fault {
         String TestCase = "expTest1";
@@ -95,10 +93,9 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:529; EJB:SPEC:530; EJB:SPEC:547; EJB:SPEC:580;
      *
-     * @test_Strategy: Invoke an bmt mdb by writing to MDB_QUEUE_BMT. The mdb
-     * begins a jakarta.transaction.UserTransaction, then attempts a
-     * MessageDrivenContext setRollBackOnly() method. Return verification message
-     * that a java.lang.IllegalStateException was thrown.
+     * @test_Strategy: Invoke an bmt mdb by writing to MDB_QUEUE_BMT. The mdb begins a jakarta.transaction.UserTransaction,
+     * then attempts a MessageDrivenContext setRollBackOnly() method. Return verification message that a
+     * java.lang.IllegalStateException was thrown.
      *
      */
     public void Test2() throws Fault {
@@ -126,9 +123,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:592; EJB:SPEC:602;
      *
-     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUETXNS_CMT. The mdb
-     * attempts a MessageDrivenContext setRollBackOnly() method. Return
-     * verification message that a java.lang.IllegalStateException was thrown.
+     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUETXNS_CMT. The mdb attempts a MessageDrivenContext
+     * setRollBackOnly() method. Return verification message that a java.lang.IllegalStateException was thrown.
      *
      */
     public void Test3() throws Fault {
@@ -155,9 +151,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:592; EJB:SPEC:602;
      *
-     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUETXNS_CMT. The mdb
-     * attempts a MessageDrivenContext getRollBackOnly() method. Return
-     * verification message that a java.lang.IllegalStateException was thrown.
+     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUETXNS_CMT. The mdb attempts a MessageDrivenContext
+     * getRollBackOnly() method. Return verification message that a java.lang.IllegalStateException was thrown.
      *
      */
     public void Test4() throws Fault {
@@ -185,9 +180,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:593; EJB:SPEC:603;
      *
-     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUETXNS_CMT The mdb
-     * attempts a EJBContext getUserTransaction() method. Return verification
-     * message that a java.lang.IllegalStateException was thrown.
+     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUETXNS_CMT The mdb attempts a EJBContext getUserTransaction()
+     * method. Return verification message that a java.lang.IllegalStateException was thrown.
      *
      */
     public void Test5() throws Fault {
@@ -215,9 +209,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:593; EJB:SPEC:603;
      *
-     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUE_CMT The mdb
-     * attempts a EJBContext getUserTransaction() method. Return verification
-     * message that a java.lang.IllegalStateException was thrown.
+     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUE_CMT The mdb attempts a EJBContext getUserTransaction()
+     * method. Return verification message that a java.lang.IllegalStateException was thrown.
      *
      */
     public void Test6() throws Fault {
@@ -245,8 +238,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:513;
      *
-     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUE_CMT. The mdb
-     * attempts a EJBContext getCallerPrincipal() method.
+     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUE_CMT. The mdb attempts a EJBContext getCallerPrincipal()
+     * method.
      */
     public void Test7() throws Fault {
         String TestCase = "expTest7";
@@ -273,8 +266,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:513;
      *
-     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUETXNS_CMT. The mdb
-     * attempts a EJBContext getCallerPrincipal() method.
+     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUETXNS_CMT. The mdb attempts a EJBContext getCallerPrincipal()
+     * method.
      */
     public void Test8() throws Fault {
         String TestCase = "expTest8";
@@ -301,9 +294,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:515; EJB:SPEC:531;
      *
-     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUE_CMT. The mdb
-     * attempts a EJBContext getEJBHome() method. Return verification message that
-     * a java.lang.IllegalStateException was thrown.
+     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUE_CMT. The mdb attempts a EJBContext getEJBHome() method.
+     * Return verification message that a java.lang.IllegalStateException was thrown.
      *
      */
     public void Test11() throws Fault {
@@ -331,9 +323,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:515; EJB:SPEC:531;
      *
-     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUETXNS_CMT. The mdb
-     * attempts a EJBContext getEJBHome() method. Return verification message that
-     * a java.lang.IllegalStateException was thrown.
+     * @test_Strategy: Invoke an cmt mdb by writing to MDB_QUEUETXNS_CMT. The mdb attempts a EJBContext getEJBHome() method.
+     * Return verification message that a java.lang.IllegalStateException was thrown.
      *
      */
     public void Test12() throws Fault {
@@ -361,9 +352,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:579;
      *
-     * @test_Strategy: Invoke an bmt mdb by writing to MDB_QUEUE_BMT. The mdb
-     * begins a jakarta.transaction.UserTransaction. The mdb begins another
-     * jakarta.transaction.UserTransaction Verify that the container throws a
+     * @test_Strategy: Invoke an bmt mdb by writing to MDB_QUEUE_BMT. The mdb begins a jakarta.transaction.UserTransaction.
+     * The mdb begins another jakarta.transaction.UserTransaction Verify that the container throws a
      * jakarta.transaction.NotSupportedException
      *
      */

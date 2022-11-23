@@ -30,7 +30,8 @@ public class Client extends PMClientBase {
 
     String schemaGenerationDir = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();

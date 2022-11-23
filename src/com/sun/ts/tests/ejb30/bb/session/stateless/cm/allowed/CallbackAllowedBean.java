@@ -38,9 +38,9 @@ import jakarta.interceptor.Interceptors;
 import java.util.Properties;
 
 @Stateless(name = "CallbackAllowedBean")
-@Remote({CallbackAllowedIF.class})
-@Local({CallbackAllowedLocalIF.class})
-@Interceptors({com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class})
+@Remote({ CallbackAllowedIF.class })
+@Local({ CallbackAllowedLocalIF.class })
+@Interceptors({ com.sun.ts.tests.ejb30.common.allowed.CancelInterceptor.class })
 public class CallbackAllowedBean extends CallbackAllowedBeanBase implements CallbackAllowedIF, CallbackAllowedLocalIF {
 
     @PostConstruct

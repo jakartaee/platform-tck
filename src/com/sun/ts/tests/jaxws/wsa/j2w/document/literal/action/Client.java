@@ -82,9 +82,9 @@ public class Client extends ServiceEETest {
 
     private QName PORT_QNAME = new QName(NAMESPACEURI, PORT_NAME);
 
-    private WebServiceFeature[] enabledRequiredwsf = {new AddressingFeature(true, true)};
+    private WebServiceFeature[] enabledRequiredwsf = { new AddressingFeature(true, true) };
 
-    private WebServiceFeature[] disabledNotRequiredwsf = {new AddressingFeature(false, false)};
+    private WebServiceFeature[] disabledNotRequiredwsf = { new AddressingFeature(false, false) };
 
     AddNumbers portEnabled = null;
 
@@ -141,8 +141,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -179,9 +181,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: testNoActionOnInputOutput
      *
-     * @assertion_ids: JAXWS:SPEC:7017; JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2;
-     * JAXWS:SPEC:7017.3; JAXWS:SPEC:10025; JAXWS:SPEC:10026; WSAMD:SPEC:4004;
-     * WSAMD:SPEC:4004.1; WSAMD:SPEC:4004.2; WSAMD:SPEC:4004.4; WSAMD:SPEC:4004.5;
+     * @assertion_ids: JAXWS:SPEC:7017; JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2; JAXWS:SPEC:7017.3; JAXWS:SPEC:10025;
+     * JAXWS:SPEC:10026; WSAMD:SPEC:4004; WSAMD:SPEC:4004.1; WSAMD:SPEC:4004.2; WSAMD:SPEC:4004.4; WSAMD:SPEC:4004.5;
      * JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test no action for input/output elements.
@@ -204,19 +205,18 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testNoActionOnInputOutput  failed", ex);
         }
-        if (!pass) throw new Fault("testNoActionOnInputOutput  failed");
+        if (!pass)
+            throw new Fault("testNoActionOnInputOutput  failed");
     }
 
     /*
      * @testName: testEmptyActionOnInputOutput
      *
-     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.1; WSAMD:SPEC:4004.2;
-     * WSAMD:SPEC:4004.4; WSAMD:SPEC:4004.5; JAXWS:SPEC:3055; JAXWS:SPEC:7017;
-     * JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2; JAXWS:SPEC:7017.3; JAXWS:SPEC:10025;
+     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.1; WSAMD:SPEC:4004.2; WSAMD:SPEC:4004.4; WSAMD:SPEC:4004.5;
+     * JAXWS:SPEC:3055; JAXWS:SPEC:7017; JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2; JAXWS:SPEC:7017.3; JAXWS:SPEC:10025;
      * JAXWS:SPEC:10026;
      *
-     * @test_Strategy: Test default action for WSDL input/output elements and no
-     * explicit message names
+     * @test_Strategy: Test default action for WSDL input/output elements and no explicit message names
      *
      */
     public void testEmptyActionOnInputOutput() throws Fault {
@@ -236,15 +236,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testEmptyActionOnInputOutput failed", ex);
         }
-        if (!pass) throw new Fault("testEmptyActionOnInputOutput failed");
+        if (!pass)
+            throw new Fault("testEmptyActionOnInputOutput failed");
     }
 
     /*
      * @testName: testExplicitInputOutputActions1
      *
-     * @assertion_ids: JAXWS:SPEC:7017; JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2;
-     * JAXWS:SPEC:7017.3; JAXWS:SPEC:10025; JAXWS:SPEC:10026; WSAMD:SPEC:4003;
-     * WSAMD:SPEC:4003.1; WSAMD:SPEC:4003.2; JAXWS:SPEC:3055;
+     * @assertion_ids: JAXWS:SPEC:7017; JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2; JAXWS:SPEC:7017.3; JAXWS:SPEC:10025;
+     * JAXWS:SPEC:10026; WSAMD:SPEC:4003; WSAMD:SPEC:4003.1; WSAMD:SPEC:4003.2; JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test explicit action for input/output elements
      *
@@ -266,15 +266,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testExplicitInputOutputActions1 failed", ex);
         }
-        if (!pass) throw new Fault("testExplicitInputOutputActions1 failed");
+        if (!pass)
+            throw new Fault("testExplicitInputOutputActions1 failed");
     }
 
     /*
      * @testName: testExplicitInputOutputActions2
      *
-     * @assertion_ids: JAXWS:SPEC:7017; JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2;
-     * JAXWS:SPEC:7017.3; JAXWS:SPEC:10025; JAXWS:SPEC:10026; WSAMD:SPEC:4003;
-     * WSAMD:SPEC:4003.1; WSAMD:SPEC:4003.2; JAXWS:SPEC:3055;
+     * @assertion_ids: JAXWS:SPEC:7017; JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2; JAXWS:SPEC:7017.3; JAXWS:SPEC:10025;
+     * JAXWS:SPEC:10026; WSAMD:SPEC:4003; WSAMD:SPEC:4003.1; WSAMD:SPEC:4003.2; JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test explicit action for input/output elements
      *
@@ -296,19 +296,18 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testExplicitInputOutputActions2 failed", ex);
         }
-        if (!pass) throw new Fault("testExplicitInputOutputActions2 failed");
+        if (!pass)
+            throw new Fault("testExplicitInputOutputActions2 failed");
     }
 
     /*
      * @testName: testDefaultOutputActionExplicitInputAction
      *
-     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.2; WSAMD:SPEC:4003;
-     * WSAMD:SPEC:4003.1; WSAMD:SPEC:4004.5; JAXWS:SPEC:3055; JAXWS:SPEC:7017;
-     * JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2; JAXWS:SPEC:7017.3; JAXWS:SPEC:10025;
+     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.2; WSAMD:SPEC:4003; WSAMD:SPEC:4003.1; WSAMD:SPEC:4004.5;
+     * JAXWS:SPEC:3055; JAXWS:SPEC:7017; JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2; JAXWS:SPEC:7017.3; JAXWS:SPEC:10025;
      * JAXWS:SPEC:10026;
      *
-     * @test_Strategy: Test default action for WSDL output element Test explicit
-     * action for WSDL input element
+     * @test_Strategy: Test default action for WSDL output element Test explicit action for WSDL input element
      *
      */
     public void testDefaultOutputActionExplicitInputAction() throws Fault {
@@ -328,18 +327,17 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testDefaultOutputActionExplicitInputAction failed", ex);
         }
-        if (!pass) throw new Fault("testDefaultOutputActionExplicitInputAction failed");
+        if (!pass)
+            throw new Fault("testDefaultOutputActionExplicitInputAction failed");
     }
 
     /*
      * @testName: testSendingWrongSOAPActionHTTPHeaderValue
      *
-     * @assertion_ids: JAXWS:SPEC:7017; JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2;
-     * JAXWS:SPEC:7017.3; JAXWS:SPEC:10025; JAXWS:SPEC:10026; WSAMD:SPEC:4003;
-     * WSAMD:SPEC:4003.1; WSAMD:SPEC:4003.2; JAXWS:SPEC:3055;
+     * @assertion_ids: JAXWS:SPEC:7017; JAXWS:SPEC:7017.1; JAXWS:SPEC:7017.2; JAXWS:SPEC:7017.3; JAXWS:SPEC:10025;
+     * JAXWS:SPEC:10026; WSAMD:SPEC:4003; WSAMD:SPEC:4003.1; WSAMD:SPEC:4003.2; JAXWS:SPEC:3055;
      *
-     * @test_Strategy: Test sedning wrong SOAPAction HTTP Value for operation with
-     * explicit input/output action elements
+     * @test_Strategy: Test sedning wrong SOAPAction HTTP Value for operation with explicit input/output action elements
      *
      */
     public void testSendingWrongSOAPActionHTTPHeaderValue() throws Fault {
@@ -359,20 +357,21 @@ public class Client extends ServiceEETest {
                 detailName = ex.getFault().getDetail().getFirstChild().getLocalName();
             } catch (Exception e) {
             }
-            if (detailName != null) TestUtil.logMsg("DetailName = " + detailName);
+            if (detailName != null)
+                TestUtil.logMsg("DetailName = " + detailName);
         } catch (Exception ex) {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testSendingWrongSOAPActionHTTPHeaderValue failed", ex);
         }
-        if (!pass) throw new Fault("testSendingWrongSOAPActionHTTPHeaderValue failed");
+        if (!pass)
+            throw new Fault("testSendingWrongSOAPActionHTTPHeaderValue failed");
     }
 
     /*
      * @testName: testOneFaultExplicitAction
      *
-     * @assertion_ids: JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2;
-     * JAXWS:SPEC:10025; JAXWS:SPEC:10026; JAXWS:JAVADOC:131; JAXWS:JAVADOC:132;
-     * JAXWS:JAVADOC:143; JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
+     * @assertion_ids: JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026;
+     * JAXWS:JAVADOC:131; JAXWS:JAVADOC:132; JAXWS:JAVADOC:143; JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
      * JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test explicit action for fault element
@@ -389,15 +388,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testOneFaultExplicitAction failed", ex);
         }
-        if (!pass) throw new Fault("testOneFaultExplicitAction failed");
+        if (!pass)
+            throw new Fault("testOneFaultExplicitAction failed");
     }
 
     /*
      * @testName: testTwoFaultsExplicitAction1
      *
-     * @assertion_ids: JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2;
-     * JAXWS:SPEC:10025; JAXWS:SPEC:10026; JAXWS:JAVADOC:131; JAXWS:JAVADOC:132;
-     * JAXWS:JAVADOC:143; JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
+     * @assertion_ids: JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026;
+     * JAXWS:JAVADOC:131; JAXWS:JAVADOC:132; JAXWS:JAVADOC:143; JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
      * JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test explicit action for fault element
@@ -417,15 +416,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testTwoFaultsExplicitAction1 failed", ex);
         }
-        if (!pass) throw new Fault("testTwoFaultsExplicitAction1 failed");
+        if (!pass)
+            throw new Fault("testTwoFaultsExplicitAction1 failed");
     }
 
     /*
      * @testName: testTwoFaultsExplicitAction2
      *
-     * @assertion_ids: JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2;
-     * JAXWS:SPEC:10025; JAXWS:SPEC:10026; JAXWS:JAVADOC:131; JAXWS:JAVADOC:132;
-     * JAXWS:JAVADOC:143; JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
+     * @assertion_ids: JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026;
+     * JAXWS:JAVADOC:131; JAXWS:JAVADOC:132; JAXWS:JAVADOC:143; JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
      * JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test explicit action for fault element
@@ -445,15 +444,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("WSA:Action headers are incorrect");
             throw new Fault("testTwoFaultsExplicitAction2 failed", ex);
         }
-        if (!pass) throw new Fault("testTwoFaultsExplicitAction2 failed");
+        if (!pass)
+            throw new Fault("testTwoFaultsExplicitAction2 failed");
     }
 
     /*
      * @testName: testTwoFaultsExplicitAddNumbersFault3
      *
-     * @assertion_ids: JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2;
-     * JAXWS:SPEC:10025; JAXWS:SPEC:10026; JAXWS:JAVADOC:131; JAXWS:JAVADOC:132;
-     * JAXWS:JAVADOC:143; JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
+     * @assertion_ids: JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026;
+     * JAXWS:JAVADOC:131; JAXWS:JAVADOC:132; JAXWS:JAVADOC:143; JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
      * JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test explicit action for fault element
@@ -473,15 +472,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testTwoFaultsExplicitAddNumbersFault3 failed", ex);
         }
-        if (!pass) throw new Fault("testTwoFaultsExplicitAddNumbersFault3 failed");
+        if (!pass)
+            throw new Fault("testTwoFaultsExplicitAddNumbersFault3 failed");
     }
 
     /*
      * @testName: testTwoFaultsDefaultTooBigNumbersFault3
      *
-     * @assertion_ids: JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2;
-     * JAXWS:SPEC:10025; JAXWS:SPEC:10026; JAXWS:JAVADOC:131; JAXWS:JAVADOC:132;
-     * JAXWS:JAVADOC:143; JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
+     * @assertion_ids: JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026;
+     * JAXWS:JAVADOC:131; JAXWS:JAVADOC:132; JAXWS:JAVADOC:143; JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:4003.3;
      * JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test no action for fault element
@@ -501,15 +500,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testTwoFaultsDefaultTooBigNumbersFault3 failed", ex);
         }
-        if (!pass) throw new Fault("testTwoFaultsDefaultTooBigNumbersFault3 failed");
+        if (!pass)
+            throw new Fault("testTwoFaultsDefaultTooBigNumbersFault3 failed");
     }
 
     /*
      * @testName: testTwoFaultsExplicitAddNumbersFault4
      *
-     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3; JAXWS:SPEC:3055;
-     * JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025;
-     * JAXWS:SPEC:10026;
+     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3; JAXWS:SPEC:3055; JAXWS:SPEC:7018; JAXWS:SPEC:7018.1;
+     * JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026;
      *
      * @test_Strategy: Test explicit action for WSDL fault element
      *
@@ -528,15 +527,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testTwoFaultsExplicitAddNumbersFault4 failed", ex);
         }
-        if (!pass) throw new Fault("testTwoFaultsExplicitAddNumbersFault4 failed");
+        if (!pass)
+            throw new Fault("testTwoFaultsExplicitAddNumbersFault4 failed");
     }
 
     /*
      * @testName: testTwoFaultsDefaultTooBigNumbersFault4
      *
-     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3; JAXWS:SPEC:3055;
-     * JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025;
-     * JAXWS:SPEC:10026;
+     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3; JAXWS:SPEC:3055; JAXWS:SPEC:7018; JAXWS:SPEC:7018.1;
+     * JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026;
      *
      * @test_Strategy: Test default action for WSDL fault element
      *
@@ -555,15 +554,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testTwoFaultsDefaultTooBigNumbersFault4 failed", ex);
         }
-        if (!pass) throw new Fault("testTwoFaultsDefaultTooBigNumbersFault4 failed");
+        if (!pass)
+            throw new Fault("testTwoFaultsDefaultTooBigNumbersFault4 failed");
     }
 
     /*
      * @testName: testTwoFaultsDefaultAddNumbersFault5
      *
-     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3; JAXWS:SPEC:3055;
-     * JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025;
-     * JAXWS:SPEC:10026;
+     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3; JAXWS:SPEC:3055; JAXWS:SPEC:7018; JAXWS:SPEC:7018.1;
+     * JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026;
      *
      * @test_Strategy: Test default action for WSDL fault element
      *
@@ -582,15 +581,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testTwoFaultsDefaultAddNumbersFault5 failed", ex);
         }
-        if (!pass) throw new Fault("testTwoFaultsDefaultAddNumbersFault5 failed");
+        if (!pass)
+            throw new Fault("testTwoFaultsDefaultAddNumbersFault5 failed");
     }
 
     /*
      * @testName: testTwoFaultsExplicitTooBigNumbersFault5
      *
-     * @assertion_ids: WSAMD:SPEC:4003; WSAMD:SPEC:4003.3; JAXWS:JAVADOC:143;
-     * JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025;
-     * JAXWS:SPEC:10026; JAXWS:SPEC:3055;
+     * @assertion_ids: WSAMD:SPEC:4003; WSAMD:SPEC:4003.3; JAXWS:JAVADOC:143; JAXWS:SPEC:7018; JAXWS:SPEC:7018.1;
+     * JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026; JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test explicit action for WSDL fault element
      *
@@ -609,15 +608,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testTwoFaultsExplicitTooBigNumbersFault5 failed", ex);
         }
-        if (!pass) throw new Fault("testTwoFaultsExplicitTooBigNumbersFault5 failed");
+        if (!pass)
+            throw new Fault("testTwoFaultsExplicitTooBigNumbersFault5 failed");
     }
 
     /*
      * @testName: testOnlyFaultActionsBothExplicit1
      *
-     * @assertion_ids: WSAMD:SPEC:4003; WSAMD:SPEC:4003.3; JAXWS:JAVADOC:143;
-     * JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025;
-     * JAXWS:SPEC:10026; JAXWS:SPEC:3055;
+     * @assertion_ids: WSAMD:SPEC:4003; WSAMD:SPEC:4003.3; JAXWS:JAVADOC:143; JAXWS:SPEC:7018; JAXWS:SPEC:7018.1;
+     * JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026; JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test explicit action for WSDL fault element
      *
@@ -636,15 +635,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testOnlyFaultActionsBothExplicit1 failed", ex);
         }
-        if (!pass) throw new Fault("testOnlyFaultActionsBothExplicit1 failed");
+        if (!pass)
+            throw new Fault("testOnlyFaultActionsBothExplicit1 failed");
     }
 
     /*
      * @testName: testOnlyFaultActionsBothExplicit2
      *
-     * @assertion_ids: WSAMD:SPEC:4003; WSAMD:SPEC:4003.3; JAXWS:JAVADOC:143;
-     * JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025;
-     * JAXWS:SPEC:10026; JAXWS:SPEC:3055;
+     * @assertion_ids: WSAMD:SPEC:4003; WSAMD:SPEC:4003.3; JAXWS:JAVADOC:143; JAXWS:SPEC:7018; JAXWS:SPEC:7018.1;
+     * JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026; JAXWS:SPEC:3055;
      *
      * @test_Strategy: Test explicit action for WSDL fault element
      *
@@ -663,15 +662,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testOnlyFaultActionsBothExplicit2 failed", ex);
         }
-        if (!pass) throw new Fault("testOnlyFaultActionsBothExplicit2 failed");
+        if (!pass)
+            throw new Fault("testOnlyFaultActionsBothExplicit2 failed");
     }
 
     /*
      * @testName: testOnlyFaultActionsFault7BothEmpty1
      *
-     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3; JAXWS:SPEC:3055;
-     * JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025;
-     * JAXWS:SPEC:10026;
+     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3; JAXWS:SPEC:3055; JAXWS:SPEC:7018; JAXWS:SPEC:7018.1;
+     * JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026;
      *
      * @test_Strategy: Test default action for WSDL fault element
      *
@@ -690,15 +689,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testOnlyFaultActionsFault7BothEmpty1 failed", ex);
         }
-        if (!pass) throw new Fault("testOnlyFaultActionsFault7BothEmpty1 failed");
+        if (!pass)
+            throw new Fault("testOnlyFaultActionsFault7BothEmpty1 failed");
     }
 
     /*
      * @testName: testOnlyFaultActionsFault7BothEmpty2
      *
-     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3; JAXWS:SPEC:3055;
-     * JAXWS:SPEC:7018; JAXWS:SPEC:7018.1; JAXWS:SPEC:7018.2; JAXWS:SPEC:10025;
-     * JAXWS:SPEC:10026;
+     * @assertion_ids: WSAMD:SPEC:4004; WSAMD:SPEC:4004.3; JAXWS:SPEC:3055; JAXWS:SPEC:7018; JAXWS:SPEC:7018.1;
+     * JAXWS:SPEC:7018.2; JAXWS:SPEC:10025; JAXWS:SPEC:10026;
      *
      * @test_Strategy: Test default action for WSDL fault element
      *
@@ -717,6 +716,7 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected Exception " + ex.getMessage());
             throw new Fault("testOnlyFaultActionsFault7BothEmpty2 failed", ex);
         }
-        if (!pass) throw new Fault("testOnlyFaultActionsFault7BothEmpty2 failed");
+        if (!pass)
+            throw new Fault("testOnlyFaultActionsFault7BothEmpty2 failed");
     }
 }

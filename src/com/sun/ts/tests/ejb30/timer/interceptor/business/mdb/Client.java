@@ -50,8 +50,7 @@ public class Client extends com.sun.ts.tests.ejb30.timer.interceptor.business.co
      *
      * @assertion_ids:
      *
-     * @test_Strategy: create a timer in all interceptor methods. Verify they
-     * expire as expected.
+     * @test_Strategy: create a timer in all interceptor methods. Verify they expire as expected.
      */
     @Override
     public void aroundInvokeMethods() {
@@ -64,8 +63,8 @@ public class Client extends com.sun.ts.tests.ejb30.timer.interceptor.business.co
      *
      * @assertion_ids:
      *
-     * @test_Strategy: This test is not necessarily related to timer. It verifies
-     * that a Singleton bean can send a message to the queue bound to the MDB.
+     * @test_Strategy: This test is not necessarily related to timer. It verifies that a Singleton bean can send a message
+     * to the queue bound to the MDB.
      */
     public void messageFromSingletonBeanToMDB() throws InterruptedException {
         testBean.messageFromSingletonBeanToMDB(getTestName());

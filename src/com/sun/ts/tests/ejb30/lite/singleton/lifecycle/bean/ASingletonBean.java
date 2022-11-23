@@ -24,10 +24,10 @@ import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 
 /**
- * A no-interface singleton. BeanBase implements CommonSingletonIF, but it must
- * not be treated as ASingletonBean's business interface. CommonSingletonIF is
- * used in the client to serve as a common type for A, B, and CSingletonBean.
+ * A no-interface singleton. BeanBase implements CommonSingletonIF, but it must not be treated as ASingletonBean's
+ * business interface. CommonSingletonIF is used in the client to serve as a common type for A, B, and CSingletonBean.
  */
 @Startup
 @Singleton
-public class ASingletonBean extends BeanBase {}
+public class ASingletonBean extends BeanBase {
+}

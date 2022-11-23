@@ -47,8 +47,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -80,12 +79,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:112; EJB:JAVADOC:114
      *
-     * @test_Strategy: Perform the following operations via the EJBContext
-     * interface for an Entity Bean with both a Local and Remote interface: o
-     * context.getEJBObject() o context.getEJBLocalObject() Also you can map
-     * between Local and Remote using primarykey related to interfaces. o
-     * mapLocalToRemote o mapRemoteToLocal Create an Entity Bean Deploy it on the
-     * J2EE server. Verify EJBContext methods work as specified
+     * @test_Strategy: Perform the following operations via the EJBContext interface for an Entity Bean with both a Local
+     * and Remote interface: o context.getEJBObject() o context.getEJBLocalObject() Also you can map between Local and
+     * Remote using primarykey related to interfaces. o mapLocalToRemote o mapRemoteToLocal Create an Entity Bean Deploy it
+     * on the J2EE server. Verify EJBContext methods work as specified
      */
 
     public void test1() throws Fault {
@@ -106,7 +103,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -114,11 +112,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:113
      *
-     * @test_Strategy: An entity bean instance cannot perform the following
-     * operations via the EJBContext interface for an Entity Bean with only has a
-     * Remote interface: o context.getEJBLocalObject() An IllegalStateException
-     * results. Verify EJBContext methods work as specified and throws an
-     * IllegalStateException.
+     * @test_Strategy: An entity bean instance cannot perform the following operations via the EJBContext interface for an
+     * Entity Bean with only has a Remote interface: o context.getEJBLocalObject() An IllegalStateException results. Verify
+     * EJBContext methods work as specified and throws an IllegalStateException.
      */
 
     public void test2() throws Fault {
@@ -139,7 +135,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -147,12 +144,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:115
      *
-     * @test_Strategy: An entity bean instance cannot perform the following
-     * operations via the EJBContext interface for an Entity Bean with only has a
-     * Local interface: o context.getEJBObject() An IllegalStateException results.
-     * Verify EJBContext methods work as specified and throws an
-     * IllegalStateException. Verify EJBContext methods work as specified and
-     * throws an IllegalStateException.
+     * @test_Strategy: An entity bean instance cannot perform the following operations via the EJBContext interface for an
+     * Entity Bean with only has a Local interface: o context.getEJBObject() An IllegalStateException results. Verify
+     * EJBContext methods work as specified and throws an IllegalStateException. Verify EJBContext methods work as specified
+     * and throws an IllegalStateException.
      */
 
     public void test3() throws Fault {
@@ -173,20 +168,18 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
      * @testName: test4
      *
-     * @assertion_ids: EJB:JAVADOC:58; EJB:JAVADOC:55; EJB:SPEC:147.2;
-     * EJB:SPEC:147.5; EJB:SPEC:147.1; EJB:SPEC:146.2; EJB:SPEC:139.1;
-     * EJB:SPEC:139.2; EJB:SPEC:139.3; EJB:SPEC:139.4
+     * @assertion_ids: EJB:JAVADOC:58; EJB:JAVADOC:55; EJB:SPEC:147.2; EJB:SPEC:147.5; EJB:SPEC:147.1; EJB:SPEC:146.2;
+     * EJB:SPEC:139.1; EJB:SPEC:139.2; EJB:SPEC:139.3; EJB:SPEC:139.4
      *
-     * @test_Strategy: An entity bean instance can perform the following
-     * operations from the LocalHome interface: o create o find o remove o execute
-     * a home business method Verify all operations through the LocalHome
-     * interface.
+     * @test_Strategy: An entity bean instance can perform the following operations from the LocalHome interface: o create o
+     * find o remove o execute a home business method Verify all operations through the LocalHome interface.
      */
 
     public void test4() throws Fault {
@@ -207,20 +200,19 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
      * @testName: test5
      *
-     * @assertion_ids: EJB:JAVADOC:60; EJB:JAVADOC:62; EJB:JAVADOC:64;
-     * EJB:SPEC:147; EJB:SPEC:147.1; EJB:SPEC:147.2; EJB:SPEC:147.4;
-     * EJB:SPEC:147.5
+     * @assertion_ids: EJB:JAVADOC:60; EJB:JAVADOC:62; EJB:JAVADOC:64; EJB:SPEC:147; EJB:SPEC:147.1; EJB:SPEC:147.2;
+     * EJB:SPEC:147.4; EJB:SPEC:147.5
      *
-     * @test_Strategy: An entity bean instance can perform the following
-     * operations from the EJBLocalObject interface: o getPrimaryKey() o
-     * isIdentical(EJBLocalObject o) o remove() o getEJBLocalHome() o invoke
-     * business method Verify all operations through the EJBLocalObject interface.
+     * @test_Strategy: An entity bean instance can perform the following operations from the EJBLocalObject interface: o
+     * getPrimaryKey() o isIdentical(EJBLocalObject o) o remove() o getEJBLocalHome() o invoke business method Verify all
+     * operations through the EJBLocalObject interface.
      */
 
     public void test5() throws Fault {
@@ -241,7 +233,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     /*
@@ -249,8 +242,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:147.3
      *
-     * @test_Strategy: Create an Entity Bean. Verify object reference passing of
-     * both local and remote references.
+     * @test_Strategy: Create an Entity Bean. Verify object reference passing of both local and remote references.
      */
 
     public void test6() throws Fault {
@@ -271,7 +263,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test6 failed");
+        if (!pass)
+            throw new Fault("test6 failed");
     }
 
     /*
@@ -279,9 +272,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:147.6; EJB:JAVADOC:143
      *
-     * @test_Strategy: Create an Entity Bean Deploy it on the J2EE server. Remove
-     * local object reference and attempt to call the bean again. Expect the
-     * following exception jakarta.ejb.NoSuchObjectLocalException.
+     * @test_Strategy: Create an Entity Bean Deploy it on the J2EE server. Remove local object reference and attempt to call
+     * the bean again. Expect the following exception jakarta.ejb.NoSuchObjectLocalException.
      */
 
     public void test7() throws Fault {
@@ -302,17 +294,16 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test7 failed");
+        if (!pass)
+            throw new Fault("test7 failed");
     }
 
     /*
      * @testName: test8
      *
-     * @assertion_ids: EJB:SPEC:147.1; EJB:SPEC:147.2; EJB:SPEC:147.5;
-     * EJB:SPEC:146.2
+     * @assertion_ids: EJB:SPEC:147.1; EJB:SPEC:147.2; EJB:SPEC:147.5; EJB:SPEC:146.2
      *
-     * @test_Strategy: Create an Entity BMP bean. Verify all operations through
-     * the LocalHome interface.
+     * @test_Strategy: Create an Entity BMP bean. Verify all operations through the LocalHome interface.
      */
 
     public void test8() throws Fault {
@@ -333,6 +324,7 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test8 failed");
+        if (!pass)
+            throw new Fault("test8 failed");
     }
 }

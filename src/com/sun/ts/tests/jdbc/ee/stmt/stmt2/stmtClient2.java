@@ -45,8 +45,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The stmtClient2 class tests methods of Statement interface using Sun's J2EE
- * Reference Implementation.
+ * The stmtClient2 class tests methods of Statement interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -93,14 +92,11 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -109,10 +105,11 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 /*
-                 * sqlp = new Properties(); String sqlStmt= p.getProperty("rsQuery","");
-                 * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+                 * sqlp = new Properties(); String sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+                 * sqlp.load(istr);
                  */
                 sqlp = p;
 
@@ -146,9 +143,8 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:165; JDBC:JAVADOC:166;
      *
-     * @test_Strategy: Get a Statement object and call execute() method for
-     * updating a row.Then call getResultSet() method It should return a Null
-     * ResultSet object
+     * @test_Strategy: Get a Statement object and call execute() method for updating a row.Then call getResultSet() method
+     * It should return a Null ResultSet object
      */
     public void testGetResultSet02() throws Fault {
         ResultSet retResSet = null;
@@ -179,12 +175,10 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetResultSetConcurrency01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:179; JDBC:JAVADOC:180;
-     * JDBC:JAVADOC:362;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:179; JDBC:JAVADOC:180; JDBC:JAVADOC:362;
      *
-     * @test_Strategy: Get a Statement object and call getResultSetConcurrency()
-     * method It should return an int value either CONCUR_READ_ONLY or
-     * CONCUR_UPDATABLE.
+     * @test_Strategy: Get a Statement object and call getResultSetConcurrency() method It should return an int value either
+     * CONCUR_READ_ONLY or CONCUR_UPDATABLE.
      */
     public void testGetResultSetConcurrency01() throws Fault {
         int rsConcur = 0;
@@ -212,9 +206,8 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:181; JDBC:JAVADOC:182;
      *
-     * @test_Strategy: Get a Statement object and call getResultSetType() method
-     * It should return an int value which should be either TYPE_FORWARD_ONLY or
-     * TYPE_SCROLL_INSENSITIVE or TYPE_SCROLL_SENSITIVE
+     * @test_Strategy: Get a Statement object and call getResultSetType() method It should return an int value which should
+     * be either TYPE_FORWARD_ONLY or TYPE_SCROLL_INSENSITIVE or TYPE_SCROLL_SENSITIVE
      */
     public void testGetResultSetType01() throws Fault {
         int rsType = 0;
@@ -244,12 +237,11 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetResultSetType02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:181; JDBC:JAVADOC:182;
-     * JDBC:JAVADOC:1179; JDBC:JAVADOC:1180; JDBC:JAVADOC:359;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:181; JDBC:JAVADOC:182; JDBC:JAVADOC:1179; JDBC:JAVADOC:1180;
+     * JDBC:JAVADOC:359;
      *
-     * @test_Strategy: Call Connection.createStatement with the Type mode as
-     * TYPE_FORWARD_ONLY and call getResultSetType() method It should return a int
-     * value and the value should be equal to ResultSet.TYPE_FORWARD_ONLY
+     * @test_Strategy: Call Connection.createStatement with the Type mode as TYPE_FORWARD_ONLY and call getResultSetType()
+     * method It should return a int value and the value should be equal to ResultSet.TYPE_FORWARD_ONLY
      */
     public void testGetResultSetType02() throws Fault {
         int rsType = 0;
@@ -282,12 +274,10 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetResultSetType03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:181; JDBC:JAVADOC:182;
-     * JDBC:JAVADOC:1179; JDBC:JAVADOC:1180;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:181; JDBC:JAVADOC:182; JDBC:JAVADOC:1179; JDBC:JAVADOC:1180;
      *
-     * @test_Strategy: Call Connection.createStatement with the Type mode as
-     * TYPE_SCROLL_INSENSITIVE and call getResultSetType() method It should return
-     * a int value and the value should be equal to
+     * @test_Strategy: Call Connection.createStatement with the Type mode as TYPE_SCROLL_INSENSITIVE and call
+     * getResultSetType() method It should return a int value and the value should be equal to
      * ResultSet.TYPE_SCROLL_INSENSITIVE
      */
     public void testGetResultSetType03() throws Fault {
@@ -341,10 +331,9 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:167; JDBC:JAVADOC:168;
      *
-     * @test_Strategy: Get a Statement object and call the execute() method for
-     * updating a row and call getUpdateCount() method It should return a int
-     * value and the value should be equal to number of rows with the specified
-     * condition for update
+     * @test_Strategy: Get a Statement object and call the execute() method for updating a row and call getUpdateCount()
+     * method It should return a int value and the value should be equal to number of rows with the specified condition for
+     * update
      */
     public void testGetUpdateCount01() throws Fault {
         int updCountVal = 0;
@@ -385,9 +374,8 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:167; JDBC:JAVADOC:168;
      *
-     * @test_Strategy: Get a Statement object and call the execute() method for
-     * selecting a non-existent row and call getUpdateCount() method It should
-     * return a int value and the value should be equal to -1
+     * @test_Strategy: Get a Statement object and call the execute() method for selecting a non-existent row and call
+     * getUpdateCount() method It should return a int value and the value should be equal to -1
      */
     public void testGetUpdateCount02() throws Fault {
         int updCountVal = 0;
@@ -420,8 +408,7 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:157; JDBC:JAVADOC:158;
      *
-     * @test_Strategy: Get a Statement object and call getWarnings() method should
-     * return an SQLWarning object
+     * @test_Strategy: Get a Statement object and call getWarnings() method should return an SQLWarning object
      */
     public void testGetWarnings() throws Fault {
         try {
@@ -468,8 +455,8 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:171; JDBC:JAVADOC:172;
      *
-     * @test_Strategy: Get a Statement object and call the setFetchDirection(int
-     * direction) method with an invalid value and it should throw an SQLException
+     * @test_Strategy: Get a Statement object and call the setFetchDirection(int direction) method with an invalid value and
+     * it should throw an SQLException
      */
     public void testSetFetchDirection04() throws Fault {
         boolean sqlExceptFlag = false;
@@ -502,9 +489,8 @@ public class stmtClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:175; JDBC:JAVADOC:176;
      *
-     * @test_Strategy: Get a Statement object and call the setFetchSize(int rows)
-     * method with the value of Statement.getMaxRows and call getFetchSize()
-     * method and it should return a int value that is been set
+     * @test_Strategy: Get a Statement object and call the setFetchSize(int rows) method with the value of
+     * Statement.getMaxRows and call getFetchSize() method and it should return a int value that is been set
      */
     public void testSetFetchSize02() throws Fault {
         int maxFetchSizeVal = 50;

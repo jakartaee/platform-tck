@@ -45,8 +45,7 @@ public class webParam3WebService {
     public String hello2(
             @WebParam(name = "name", partName = "string2") String name,
             String name2,
-            @WebParam(name = "Address", partName = "address", targetNamespace = "helloString2/Address")
-                    Address address) {
+            @WebParam(name = "Address", partName = "address", targetNamespace = "helloString2/Address") Address address) {
         System.out.println(" Address : " + address.toString());
         return "Hello " + name + ", " + name2 + " to Web Service";
     }

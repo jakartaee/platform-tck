@@ -130,7 +130,8 @@ public class MyCompletionListener implements CompletionListener {
             try {
                 if (tMsg.getText().equals("Call close method")) {
                     TestUtil.logMsg("Calling MessageProducer.close() MUST throw IllegalStateException");
-                    if (producer != null) producer.close();
+                    if (producer != null)
+                        producer.close();
                 }
             } catch (jakarta.jms.IllegalStateException e) {
                 TestUtil.logMsg("Caught expected IllegalStateException");

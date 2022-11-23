@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,8 +56,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: spec1Test
      *
-     * @assertion_ids: Servlet:JAVADOC:151; Servlet:JAVADOC:137;
-     * Servlet:JAVADOC:164; Servlet:JAVADOC:139;
+     * @assertion_ids: Servlet:JAVADOC:151; Servlet:JAVADOC:137; Servlet:JAVADOC:164; Servlet:JAVADOC:139;
      *
      * @test_Strategy:
      */
@@ -71,8 +68,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: spec2Test
      *
-     * @assertion_ids: Servlet:JAVADOC:151; Servlet:JAVADOC:137;
-     * Servlet:JAVADOC:164; Servlet:JAVADOC:139;
+     * @assertion_ids: Servlet:JAVADOC:151; Servlet:JAVADOC:137; Servlet:JAVADOC:164; Servlet:JAVADOC:139;
      *
      * @test_Strategy:
      */
@@ -84,8 +80,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: spec3Test
      *
-     * @assertion_ids: Servlet:JAVADOC:151; Servlet:JAVADOC:137;
-     * Servlet:JAVADOC:164; Servlet:JAVADOC:139;
+     * @assertion_ids: Servlet:JAVADOC:151; Servlet:JAVADOC:137; Servlet:JAVADOC:164; Servlet:JAVADOC:139;
      *
      * @test_Strategy:
      */

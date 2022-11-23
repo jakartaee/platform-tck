@@ -69,8 +69,7 @@ public class TSXaTransaction {
     /**
      * Creates a new Global Transaction object.
      *
-     * @param id
-     *          Global Transaction Identifier.
+     * @param id Global Transaction Identifier.
      */
     public TSXaTransaction(Xid id) {
         this.xid = id;
@@ -79,8 +78,7 @@ public class TSXaTransaction {
     /**
      * Adds the connection to this transaction.
      *
-     * @param con
-     *          Connection involved in the transaction branch.
+     * @param con Connection involved in the transaction branch.
      */
     public void addConnection(TSConnection con) {
         connections.put(con, "");
@@ -98,8 +96,7 @@ public class TSXaTransaction {
     /**
      * Sets the Status of the transaction.
      *
-     * @param Status
-     *          of the transaction
+     * @param Status of the transaction
      */
     public void setStatus(int status) {
         this.status = status;
@@ -118,8 +115,7 @@ public class TSXaTransaction {
      * Prepare the transaction.
      *
      * @return The Vote of this branch in this transaction.
-     * @throws XAException
-     *           If prepare fails.
+     * @throws XAException If prepare fails.
      */
     public int prepare() throws XAException {
         System.out.println("TsXaTransaction.prepare");
@@ -186,10 +182,8 @@ public class TSXaTransaction {
     /**
      * Commits this Transaction.
      *
-     * @param Boolean
-     *          indicating, whether it is a single-phase or 2-phase commit.
-     * @throws XAException
-     *           If commit fails.
+     * @param Boolean indicating, whether it is a single-phase or 2-phase commit.
+     * @throws XAException If commit fails.
      */
     public void commit(boolean onePhase) throws XAException {
         System.out.println("TsXaTransaction.commit." + onePhase);
@@ -247,11 +241,9 @@ public class TSXaTransaction {
     /**
      * Check for the key in the transaction. If it is not readable return null.
      *
-     * @param elementkey
-     *          Key to be read.
+     * @param elementkey Key to be read.
      * @return DataElement object.
-     * @throws TSEISException
-     *           In case, read fails.
+     * @throws TSEISException In case, read fails.
      */
     public DataElement read(String elementkey) throws TSEISException {
         Hashtable temptable = new Hashtable();

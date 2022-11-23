@@ -93,11 +93,9 @@ public class CancelInterceptor {
     }
 
     /**
-     * Looks up the EJBContext that is the current EJB's namespace, typically
-     * through injection into the bean class. A better way is to either directly
-     * inject EJBContext into the current interceptor class, or look up by the
-     * well-known name "java:comp/EJBContext" This method was written when the
-     * above 2 mechanisms have not been defined.
+     * Looks up the EJBContext that is the current EJB's namespace, typically through injection into the bean class. A
+     * better way is to either directly inject EJBContext into the current interceptor class, or look up by the well-known
+     * name "java:comp/EJBContext" This method was written when the above 2 mechanisms have not been defined.
      *
      * @return EJBContext
      */

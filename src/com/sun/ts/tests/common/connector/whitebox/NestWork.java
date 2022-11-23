@@ -76,7 +76,8 @@ public class NestWork implements Work, WorkContextProvider {
     }
 
     @Override
-    public void release() {}
+    public void release() {
+    }
 
     public void run() {
         ConnectorStatus.getConnectorStatus().logState("NestWork.run");

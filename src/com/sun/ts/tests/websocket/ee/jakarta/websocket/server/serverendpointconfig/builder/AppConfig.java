@@ -39,9 +39,10 @@ import java.util.List;
 import java.util.Set;
 
 public class AppConfig implements ServerApplicationConfig {
-    static final String[] EXT_NAMES = new String[] {"empty", "secondEmpty"};
+    static final String[] EXT_NAMES = new String[] { "empty", "secondEmpty" };
 
-    public static final ServerEndpointConfig.Configurator CONFIG = new ServerEndpointConfig.Configurator() {};
+    public static final ServerEndpointConfig.Configurator CONFIG = new ServerEndpointConfig.Configurator() {
+    };
 
     ServerEndpointConfig getSubprotocolsConfig() {
         ServerEndpointConfig config = ServerEndpointConfig.Builder.create(WSCommonServer.class, "/builder/subprotocols")

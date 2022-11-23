@@ -30,7 +30,8 @@ import jakarta.ejb.TransactionAttributeType;
 @Stateless()
 public class FuzzyBean extends FuzzyBeanBase implements FuzzyRemoteIF, FuzzyLocalIF {
 
-    public FuzzyBean() {}
+    public FuzzyBean() {
+    }
 
     @Override()
     @TransactionAttribute(TransactionAttributeType.MANDATORY)

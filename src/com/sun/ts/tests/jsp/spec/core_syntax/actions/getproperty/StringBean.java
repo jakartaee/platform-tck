@@ -63,7 +63,7 @@ public class StringBean {
     // Declaring the variables
     private String name = "hello";
 
-    private int[] intAry = {5, 10, 15};
+    private int[] intAry = { 5, 10, 15 };
 
     private String bar = "write-only";
 

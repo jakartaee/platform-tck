@@ -124,8 +124,7 @@ public class Client extends ServiceEETest {
     }
 
     /*
-     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost;
-     * webServerPort; platform.mode;
+     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost; webServerPort; platform.mode;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -134,8 +133,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -191,7 +192,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testHelloRPC_WithHandler failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloRPC_WithHandler failed");
+        if (!pass)
+            throw new Fault("testHelloRPC_WithHandler failed");
     }
 
     /*
@@ -220,6 +222,7 @@ public class Client extends ServiceEETest {
             throw new Fault("testHelloRPC_WithoutHandler failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloRPC_WithoutHandler failed");
+        if (!pass)
+            throw new Fault("testHelloRPC_WithoutHandler failed");
     }
 }

@@ -37,13 +37,13 @@ public class PartAttributeVerifier implements DescriptionConstants, SOAPConstant
     /**
      * The WSDL targets.
      */
-    private static final String[] WSDL_TARGETS = {WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME, WSDL_FAULT_LOCAL_NAME};
+    private static final String[] WSDL_TARGETS = { WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME, WSDL_FAULT_LOCAL_NAME };
 
     /**
      * The SOAP targets.
      */
     private static final String[] SOAP_TARGETS = {
-        SOAP_BODY_LOCAL_NAME, SOAP_HEADER_LOCAL_NAME, SOAP_HEADERFAULT_LOCAL_NAME
+            SOAP_BODY_LOCAL_NAME, SOAP_HEADER_LOCAL_NAME, SOAP_HEADERFAULT_LOCAL_NAME
     };
 
     /**
@@ -94,40 +94,40 @@ public class PartAttributeVerifier implements DescriptionConstants, SOAPConstant
 
     public void verify() throws EETest.Fault {
         switch (requirement) {
-            case 2203:
-                style = SOAP_RPC;
-                attribute = WSDL_TYPE_ATTR;
-                wsdlTargets = new String[] {WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME};
-                soapTargets = new String[] {SOAP_BODY_LOCAL_NAME};
-                reverse = false;
-                break;
+        case 2203:
+            style = SOAP_RPC;
+            attribute = WSDL_TYPE_ATTR;
+            wsdlTargets = new String[] { WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME };
+            soapTargets = new String[] { SOAP_BODY_LOCAL_NAME };
+            reverse = false;
+            break;
 
-            case 2204:
-                style = SOAP_DOCUMENT;
-                attribute = WSDL_ELEMENT_ATTR;
-                wsdlTargets = new String[] {WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME};
-                soapTargets = new String[] {SOAP_BODY_LOCAL_NAME};
-                reverse = false;
-                break;
+        case 2204:
+            style = SOAP_DOCUMENT;
+            attribute = WSDL_ELEMENT_ATTR;
+            wsdlTargets = new String[] { WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME };
+            soapTargets = new String[] { SOAP_BODY_LOCAL_NAME };
+            reverse = false;
+            break;
 
-            case 2205:
-                style = null;
-                attribute = WSDL_ELEMENT_ATTR;
-                wsdlTargets = new String[] {WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME, WSDL_FAULT_LOCAL_NAME};
-                soapTargets = new String[] {SOAP_HEADER_LOCAL_NAME, SOAP_HEADERFAULT_LOCAL_NAME, SOAP_FAULT_LOCAL_NAME};
-                reverse = false;
-                break;
+        case 2205:
+            style = null;
+            attribute = WSDL_ELEMENT_ATTR;
+            wsdlTargets = new String[] { WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME, WSDL_FAULT_LOCAL_NAME };
+            soapTargets = new String[] { SOAP_HEADER_LOCAL_NAME, SOAP_HEADERFAULT_LOCAL_NAME, SOAP_FAULT_LOCAL_NAME };
+            reverse = false;
+            break;
 
-            case 2207:
-                style = SOAP_RPC;
-                attribute = WSDL_ELEMENT_ATTR;
-                wsdlTargets = new String[] {WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME};
-                soapTargets = new String[] {SOAP_BODY_LOCAL_NAME};
-                reverse = true;
-                break;
+        case 2207:
+            style = SOAP_RPC;
+            attribute = WSDL_ELEMENT_ATTR;
+            wsdlTargets = new String[] { WSDL_INPUT_LOCAL_NAME, WSDL_OUTPUT_LOCAL_NAME };
+            soapTargets = new String[] { SOAP_BODY_LOCAL_NAME };
+            reverse = true;
+            break;
 
-            default:
-                throw new EETest.Fault("The requirement 'R" + requirement + "' not supported");
+        default:
+            throw new EETest.Fault("The requirement 'R" + requirement + "' not supported");
         }
         System.out.println("Check for bindings on wsdl ...");
         Element[] bindings = DescriptionUtils.getBindings(document);
@@ -136,7 +136,8 @@ public class PartAttributeVerifier implements DescriptionConstants, SOAPConstant
             Element[] imports = DescriptionUtils.getImports(document);
             for (int i = 0; i < imports.length; i++) {
                 bindings = getBindingFromImport(imports[i]);
-                if (doBindings(bindings)) break;
+                if (doBindings(bindings))
+                    break;
             }
         }
     }
@@ -149,7 +150,8 @@ public class PartAttributeVerifier implements DescriptionConstants, SOAPConstant
                 verifyBinding(bindings[i]);
             }
             done = true;
-        } else done = false;
+        } else
+            done = false;
         return done;
     }
 
@@ -169,8 +171,7 @@ public class PartAttributeVerifier implements DescriptionConstants, SOAPConstant
         if ((this.style != null) && (!this.style.equals(style))) {
             return;
         }
-        Element[] operations =
-                DescriptionUtils.getChildElements(binding, WSDL_NAMESPACE_URI, WSDL_OPERATION_LOCAL_NAME);
+        Element[] operations = DescriptionUtils.getChildElements(binding, WSDL_NAMESPACE_URI, WSDL_OPERATION_LOCAL_NAME);
         for (int i = 0; i < operations.length; i++) {
             verifyOperation(binding, operations[i]);
         }

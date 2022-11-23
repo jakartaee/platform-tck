@@ -32,9 +32,8 @@ public class JAXRSClient extends JAXRSCommonClient {
     }
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         new JAXRSClient().run(args);
@@ -46,8 +45,8 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:49;
      *
-     * @test_Strategy: In a product that also supports Managed Beans,
-     * implementations MUST support use of Managed Beans as root resource classes
+     * @test_Strategy: In a product that also supports Managed Beans, implementations MUST support use of Managed Beans as
+     * root resource classes
      *
      * check postconstruct has been called (managed been property)
      */
@@ -62,8 +61,8 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:49;
      *
-     * @test_Strategy: In a product that also supports Managed Beans,
-     * implementations MUST support use of Managed Beans as provider subclasses
+     * @test_Strategy: In a product that also supports Managed Beans, implementations MUST support use of Managed Beans as
+     * provider subclasses
      *
      * check postconstruct has been called (managed been property)
      */
@@ -78,8 +77,8 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:49;
      *
-     * @test_Strategy: In a product that also supports Managed Beans,
-     * implementations MUST support use of Managed Beans as Application subclasses
+     * @test_Strategy: In a product that also supports Managed Beans, implementations MUST support use of Managed Beans as
+     * Application subclasses
      *
      * check postconstruct has been called (managed been property)
      */
@@ -94,11 +93,10 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:49;
      *
-     * @test_Strategy: In a product that also supports Managed Beans,
-     * implementations MUST support use of Managed Beans as provider subclasses
+     * @test_Strategy: In a product that also supports Managed Beans, implementations MUST support use of Managed Beans as
+     * provider subclasses
      *
-     * increase value on stringbuilderprovider by writing then checked it was
-     * intercepted (managed bean property)
+     * increase value on stringbuilderprovider by writing then checked it was intercepted (managed bean property)
      */
     public void interceptorOnResourceTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "interceptedresourcevalue"));
@@ -111,8 +109,8 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:49;
      *
-     * @test_Strategy: In a product that also supports Managed Beans,
-     * implementations MUST support use of Managed Beans as root resource classes
+     * @test_Strategy: In a product that also supports Managed Beans, implementations MUST support use of Managed Beans as
+     * root resource classes
      *
      * try JNDI lookup
      */
@@ -127,11 +125,9 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.1;
      *
-     * @test_Strategy: The following additional requirements apply when using
-     * Managed Beans as resource classes:
+     * @test_Strategy: The following additional requirements apply when using Managed Beans as resource classes:
      *
-     * Field and property injection of JAX-RS resources MUST be performed prior to
-     * the container invoking any
+     * Field and property injection of JAX-RS resources MUST be performed prior to the container invoking any
      *
      * @PostConstruct annotated method
      */
@@ -146,11 +142,9 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.1;
      *
-     * @test_Strategy: The following additional requirements apply when using
-     * Managed Beans as Application subclasses:
+     * @test_Strategy: The following additional requirements apply when using Managed Beans as Application subclasses:
      *
-     * Field and property injection of JAX-RS resources MUST be performed prior to
-     * the container invoking any
+     * Field and property injection of JAX-RS resources MUST be performed prior to the container invoking any
      *
      * @PostConstruct annotated method
      */
@@ -165,11 +159,9 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.1;
      *
-     * @test_Strategy: The following additional requirements apply when using
-     * Managed Beans as providers:
+     * @test_Strategy: The following additional requirements apply when using Managed Beans as providers:
      *
-     * Field and property injection of JAX-RS resources MUST be performed prior to
-     * the container invoking any
+     * Field and property injection of JAX-RS resources MUST be performed prior to the container invoking any
      *
      * @PostConstruct annotated method
      */
@@ -184,14 +176,12 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.3;
      *
-     * @test_Strategy: The following additional requirements apply when using
-     * Managed Beans as resource classes:
+     * @test_Strategy: The following additional requirements apply when using Managed Beans as resource classes:
      *
      * Implementations MUST NOT require use of @Inject or
      *
-     * @Resource to trigger injection of JAX-RS annotated fields or properties.
-     * Implementations MAY support such usage but SHOULD warn users about
-     * non-portability.
+     * @Resource to trigger injection of JAX-RS annotated fields or properties. Implementations MAY support such usage but
+     * SHOULD warn users about non-portability.
      */
     public void noInjectOrResourceKeywordTest() throws Fault {
         String req = buildRequest(Request.GET, "nokeyword;matrix=", String.valueOf(serialVersionUID));

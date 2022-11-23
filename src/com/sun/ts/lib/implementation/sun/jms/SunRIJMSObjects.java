@@ -24,9 +24,8 @@ import java.util.*;
 import javax.naming.*;
 
 /**
- * This is an implementation of the TSJMSObjectsInterface. An implementation of
- * this class must be supplied by any JMS implementation wishing to get JMS
- * adminsitered objects: ConnectionFactories, queues and topics.
+ * This is an implementation of the TSJMSObjectsInterface. An implementation of this class must be supplied by any JMS
+ * implementation wishing to get JMS adminsitered objects: ConnectionFactories, queues and topics.
  *
  * @author Dianne Jiao
  */
@@ -90,8 +89,7 @@ public class SunRIJMSObjects implements TSJMSObjectsInterface {
     }
 
     /**
-     * This method allows individual implementation to get the
-     * QueueConnectionFactory
+     * This method allows individual implementation to get the QueueConnectionFactory
      */
     public QueueConnectionFactory getQueueConnectionFactory(String name) throws Exception {
         getJNDIContext();
@@ -107,8 +105,7 @@ public class SunRIJMSObjects implements TSJMSObjectsInterface {
     }
 
     /**
-     * This method allows individual implementation to get the
-     * TopicConnectionFactory
+     * This method allows individual implementation to get the TopicConnectionFactory
      */
     public TopicConnectionFactory getTopicConnectionFactory(String name) throws Exception {
         getJNDIContext();

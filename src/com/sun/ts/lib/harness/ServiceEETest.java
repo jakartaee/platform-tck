@@ -26,24 +26,20 @@ import java.net.*;
 import java.util.*;
 
 /**
- * This abstract class must be extended by all clients of tests of J2EE service
- * apis; for example, JDBC, RMI-IIOP, JavaMail, JMS, etc. When a service test is
- * encountered by the JavaTest Client, the instance is passed to a J2EE server
- * component and run from that remote location. Using this model to develop
- * tests allows the same test to be run from different locations within the
- * scope of the J2EE Application Programming Model.
+ * This abstract class must be extended by all clients of tests of J2EE service apis; for example, JDBC, RMI-IIOP,
+ * JavaMail, JMS, etc. When a service test is encountered by the JavaTest Client, the instance is passed to a J2EE
+ * server component and run from that remote location. Using this model to develop tests allows the same test to be run
+ * from different locations within the scope of the J2EE Application Programming Model.
  *
  * @author Kyle Grucci
  */
 public abstract class ServiceEETest extends EETest {
 
     /*
-     * Please do NOT change this class in an incompatible manner with respect to
-     * serialization. Please see the serialization specification to determine what
-     * is a compatible change versus incompatible. If you do need to change this
-     * class in an incompatible manner you will need to rebuild the compat tests.
-     * You should also increment the serialVersionUID field to denote that this
-     * class is incompatible with older versions.
+     * Please do NOT change this class in an incompatible manner with respect to serialization. Please see the serialization
+     * specification to determine what is a compatible change versus incompatible. If you do need to change this class in an
+     * incompatible manner you will need to rebuild the compat tests. You should also increment the serialVersionUID field
+     * to denote that this class is incompatible with older versions.
      */
     // static final long serialVersionUID = -1396452037848185296L;
 
@@ -54,31 +50,25 @@ public abstract class ServiceEETest extends EETest {
     private Object theSharedObjectArray[];
 
     /**
-     * Returns any additional properties that may need to be set by a subclass of
-     * ServiceEETest for use by a specific vehicle. This method was created due to
-     * a need for clients of the JBIVehicle to set the name of the object to
-     * lookup in the rmiregistry. By rule, this value should match the id name for
-     * the component specified in the JBI installation descriptor. This impl
-     * returns an empty properties object by default.
+     * Returns any additional properties that may need to be set by a subclass of ServiceEETest for use by a specific
+     * vehicle. This method was created due to a need for clients of the JBIVehicle to set the name of the object to lookup
+     * in the rmiregistry. By rule, this value should match the id name for the component specified in the JBI installation
+     * descriptor. This impl returns an empty properties object by default.
      *
-     * @param p
-     *          user configured properties used by the test
-     * @return Properties Additional properties that may need to be set by a
-     *         subclass of ServiceEETest for use by a specific vehicle.
+     * @param p user configured properties used by the test
+     * @return Properties Additional properties that may need to be set by a subclass of ServiceEETest for use by a specific
+     * vehicle.
      */
     public Properties getVehicleSpecificClientProps(Properties p) {
         return new Properties();
     }
 
     /**
-     * When called within the harness VM, this method passes an instance of itself
-     * to the appropriate J2EE server component. When called from within that
-     * server component, EETest's run method is called and the test is run.
+     * When called within the harness VM, this method passes an instance of itself to the appropriate J2EE server component.
+     * When called from within that server component, EETest's run method is called and the test is run.
      *
-     * @param argv
-     *          an array of arguments that a test may use
-     * @param p
-     *          user configured properties used by this test
+     * @param argv an array of arguments that a test may use
+     * @param p user configured properties used by this test
      * @return a Javatest Status object (passed or failed)
      */
     public Status run(String[] argv, Properties p) {
@@ -158,7 +148,8 @@ public abstract class ServiceEETest extends EETest {
                 vLeftOverTestArgs.addElement(argItem);
             }
         }
-        if (bRunIndividualTest) p.setProperty("testName", sTestCase);
+        if (bRunIndividualTest)
+            p.setProperty("testName", sTestCase);
         return p;
     }
 
@@ -174,7 +165,8 @@ public abstract class ServiceEETest extends EETest {
             iLogDelaySeconds = 1000;
         }
         if (sVehicles == null) {
-            if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("ServiceEETest.run(): vehicles = null");
+            if (TestUtil.harnessDebug)
+                TestUtil.logHarnessDebug("ServiceEETest.run(): vehicles = null");
             sVehicles = getVehicles(props);
         }
         if (props.isEmpty())
@@ -189,7 +181,8 @@ public abstract class ServiceEETest extends EETest {
                 argv[ii] = (String) vLeftOverTestArgs.elementAt(ii);
             }
         }
-        if (sTestCase == null) return runAllTestCases(argv, props, log, err);
+        if (sTestCase == null)
+            return runAllTestCases(argv, props, log, err);
         else {
             for (int ii = 0; ii < sVehicles.length; ii++) {
                 props.put("vehicle", sVehicles[ii]);
@@ -212,7 +205,8 @@ public abstract class ServiceEETest extends EETest {
     // mode outside of javatest
     protected Status runAllTestCases(String[] argv, Properties p, PrintStream log, PrintStream err) {
         if (sVehicles == null) {
-            if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("ServiceEETest.runAllTestCases(): vehicles = null");
+            if (TestUtil.harnessDebug)
+                TestUtil.logHarnessDebug("ServiceEETest.runAllTestCases(): vehicles = null");
             sVehicles = getVehicles(p);
         }
         Status s = Status.passed("OK");
@@ -239,10 +233,12 @@ public abstract class ServiceEETest extends EETest {
         }
         if (sVal == null || sVal.equals("")) {
             sVehiclesToUse = "ejb servlet jsp";
-            if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("getVehicles:  " + "Using default - all vehicles");
+            if (TestUtil.harnessDebug)
+                TestUtil.logHarnessDebug("getVehicles:  " + "Using default - all vehicles");
         } else {
             sVehiclesToUse = sVal;
-            if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("getVehicles: using vehicle(s) - " + sVehiclesToUse);
+            if (TestUtil.harnessDebug)
+                TestUtil.logHarnessDebug("getVehicles: using vehicle(s) - " + sVehiclesToUse);
         }
         st = new StringTokenizer(sVehiclesToUse);
         int iCount = st.countTokens();

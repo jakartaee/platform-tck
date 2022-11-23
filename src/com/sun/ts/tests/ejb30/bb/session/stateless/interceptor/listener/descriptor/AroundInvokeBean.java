@@ -32,7 +32,7 @@ import jakarta.ejb.TransactionManagementType;
 import jakarta.interceptor.InvocationContext;
 
 @Stateless(name = "AroundInvokeBean")
-@Remote({AroundInvokeIF.class})
+@Remote({ AroundInvokeIF.class })
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)
 // @Interceptors({

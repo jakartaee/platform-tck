@@ -36,7 +36,8 @@ public class Employee implements java.io.Serializable {
 
     private float salary;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(int id, String firstName, String lastName, Date hireDate, float salary) {
         this.id = id;

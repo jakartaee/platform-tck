@@ -81,11 +81,11 @@ public class LocationHandler implements Handler {
     /**
      * Creates new ContentTypeHandler
      */
-    private LocationHandler() {}
+    private LocationHandler() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
@@ -98,10 +98,8 @@ public class LocationHandler implements Handler {
     /**
      * Invokes handler logic.
      *
-     * @param configuredHeader
-     *          the user configured header
-     * @param responseHeader
-     *          the response header from the server
+     * @param configuredHeader the user configured header
+     * @param responseHeader the response header from the server
      * @return True if the passed match, otherwise false
      */
     public boolean invoke(Header configuredHeader, Header responseHeader) {

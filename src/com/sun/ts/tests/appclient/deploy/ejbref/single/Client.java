@@ -44,8 +44,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -72,13 +71,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:10117
      *
-     * @test_Strategy: Deploy an application client referencing a Stateless
-     *                 Session bean. Check at runtime that the application client
-     *                 can do a lookup for the EJB reference and use it to create
-     *                 a bean. Then invoke on that bean instance a business method
-     *                 to be found only in this particular bean: This is to check
-     *                 that the EJB reference was resolved consistently with the
-     *                 DD.
+     * @test_Strategy: Deploy an application client referencing a Stateless Session bean. Check at runtime that the
+     * application client can do a lookup for the EJB reference and use it to create a bean. Then invoke on that bean
+     * instance a business method to be found only in this particular bean: This is to check that the EJB reference was
+     * resolved consistently with the DD.
      */
     public void testStateless() throws Fault {
         boolean pass;
@@ -98,12 +94,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:10117
      *
-     * @test_Strategy: Deploy an application client referencing a Stateful Session
-     *                 bean. Check at runtime that the application client can do a
-     *                 lookup for the EJB reference and use it to create a bean.
-     *                 Then invoke on that bean instance a business method to be
-     *                 found only this particular bean: This is to check that the
-     *                 EJB reference was resolved consistently with the DD.
+     * @test_Strategy: Deploy an application client referencing a Stateful Session bean. Check at runtime that the
+     * application client can do a lookup for the EJB reference and use it to create a bean. Then invoke on that bean
+     * instance a business method to be found only this particular bean: This is to check that the EJB reference was
+     * resolved consistently with the DD.
      */
     public void testStateful() throws Fault {
         boolean pass;
@@ -129,12 +123,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:10117
      *
-     * @test_Strategy: Deploy an application client referencing a BMP Entity bean.
-     *                 Check at runtime that the application client can do a
-     *                 lookup for the EJB reference and use it to create a bean.
-     *                 Then invoke on that bean instance a business method to be
-     *                 found only in this particular bean: This is to check that
-     *                 the EJB reference was resolved consistently with the DD.
+     * @test_Strategy: Deploy an application client referencing a BMP Entity bean. Check at runtime that the application
+     * client can do a lookup for the EJB reference and use it to create a bean. Then invoke on that bean instance a
+     * business method to be found only in this particular bean: This is to check that the EJB reference was resolved
+     * consistently with the DD.
      */
     public void testBMP() throws Fault {
         boolean pass;
@@ -154,12 +146,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:10117
      *
-     * @test_Strategy: Deploy an application client referencing a CMP 1.1 Entity
-     *                 bean. Check at runtime that the application client can do a
-     *                 lookup for the EJB reference and use it to create a bean.
-     *                 Then invoke on that bean instance a business method to be
-     *                 found only in this particular bean: This is to check that
-     *                 the EJB reference was resolved consistently with the DD.
+     * @test_Strategy: Deploy an application client referencing a CMP 1.1 Entity bean. Check at runtime that the application
+     * client can do a lookup for the EJB reference and use it to create a bean. Then invoke on that bean instance a
+     * business method to be found only in this particular bean: This is to check that the EJB reference was resolved
+     * consistently with the DD.
      */
     public void testCMP11() throws Fault {
         boolean pass;
@@ -179,12 +169,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:10117
      *
-     * @test_Strategy: Deploy an application client referencing a CMP 2.0 Entity
-     *                 bean. Check at runtime that the application client can do a
-     *                 lookup for the EJB reference and use it to create a bean.
-     *                 Then invoke on that bean instance a business method to be
-     *                 found only in this particular bean: This is to check that
-     *                 the EJB reference was resolved consistently with the DD.
+     * @test_Strategy: Deploy an application client referencing a CMP 2.0 Entity bean. Check at runtime that the application
+     * client can do a lookup for the EJB reference and use it to create a bean. Then invoke on that bean instance a
+     * business method to be found only in this particular bean: This is to check that the EJB reference was resolved
+     * consistently with the DD.
      */
     public void testCMP20() throws Fault {
         boolean pass;

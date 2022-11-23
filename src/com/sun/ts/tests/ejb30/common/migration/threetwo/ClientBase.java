@@ -37,7 +37,8 @@ public abstract class ClientBase extends EETest {
         threeTestBean = getTestBean();
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     protected void removeBeans() {
         if (threeTestBean != null) {

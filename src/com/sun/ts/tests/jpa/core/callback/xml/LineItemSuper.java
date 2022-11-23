@@ -27,7 +27,8 @@ import jakarta.persistence.Column;
 public class LineItemSuper extends CallbackStatusImpl implements java.io.Serializable, CallbackStatusIF {
     public int quantity;
 
-    public LineItemSuper() {}
+    public LineItemSuper() {
+    }
 
     @Column(name = "QUANTITY")
     public int getQuantity() {

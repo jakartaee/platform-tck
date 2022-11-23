@@ -51,9 +51,8 @@ public class Client extends Util {
     /*
      * @testName: fromClassTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1685; PERSISTENCE:JAVADOC:631;
-     * PERSISTENCE:SPEC:1780; PERSISTENCE:SPEC:1781; PERSISTENCE:SPEC:1782;
-     * PERSISTENCE:SPEC:1794;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1685; PERSISTENCE:JAVADOC:631; PERSISTENCE:SPEC:1780; PERSISTENCE:SPEC:1781;
+     * PERSISTENCE:SPEC:1782; PERSISTENCE:SPEC:1794;
      *
      * @test_Strategy: DELETE FROM Product p
      */
@@ -284,7 +283,7 @@ public class Client extends Util {
         if (root != null) {
             TestUtil.logTrace("Obtained Non-null root");
 
-            Predicate[] predArray = {cbuilder.equal(root.get("id"), "2")};
+            Predicate[] predArray = { cbuilder.equal(root.get("id"), "2") };
 
             cd.where(predArray);
 
@@ -349,8 +348,7 @@ public class Client extends Util {
      *
      * @test_Strategy:
      *
-     * DELETE FROM Product p where product WHERE EXISTS (Select hardProd From
-     * PRODUCT hardprod where hardprod.id = '1').
+     * DELETE FROM Product p where product WHERE EXISTS (Select hardProd From PRODUCT hardprod where hardprod.id = '1').
      *
      */
     public void subquery() throws Fault {
@@ -424,8 +422,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1789; PERSISTENCE:SPEC:1797;
      *
-     * @test_Strategy: DELETE FROM SoftwareProduct WHERE p.quantity < 35) DELETE
-     * FROM SoftwareProduct WHERE p.quantity > 100)
+     * @test_Strategy: DELETE FROM SoftwareProduct WHERE p.quantity < 35) DELETE FROM SoftwareProduct WHERE p.quantity >
+     * 100)
      *
      */
     public void modifiedQueryTest() throws Fault {

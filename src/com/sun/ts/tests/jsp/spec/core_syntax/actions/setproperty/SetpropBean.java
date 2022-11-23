@@ -67,7 +67,7 @@ public class SetpropBean {
 
     private String str;
 
-    private int[] iArray = {15, 20, 35};
+    private int[] iArray = { 15, 20, 35 };
 
     private byte[] bArray = null;
 

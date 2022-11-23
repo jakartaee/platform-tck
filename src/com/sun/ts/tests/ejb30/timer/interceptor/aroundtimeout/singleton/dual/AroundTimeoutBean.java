@@ -30,7 +30,8 @@ import jakarta.interceptor.Interceptors;
 public class AroundTimeoutBean extends TimerBeanBaseWithoutTimeOutMethod {
     @Schedule(year = "9999", info = Interceptor1.asBusiness)
     @Interceptors(Interceptor1.class)
-    public void asBusiness() {}
+    public void asBusiness() {
+    }
 
     @Interceptors(Interceptor1.class)
     @Schedule(hour = "*", minute = "*", second = "*", info = Interceptor1.asTimeout)

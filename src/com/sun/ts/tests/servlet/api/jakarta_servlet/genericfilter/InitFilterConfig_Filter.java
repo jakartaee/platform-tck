@@ -99,7 +99,8 @@ public final class InitFilterConfig_Filter extends GenericFilter {
     }
 
     // remove the filter
-    public void destroy() {}
+    public void destroy() {
+    }
 
     // initialize the filter configuration object for this filter.
 

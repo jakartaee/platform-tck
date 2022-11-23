@@ -54,8 +54,7 @@ public class Client extends com.sun.ts.tests.ejb30.common.interceptor.MDBClientB
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
     public void setup(String[] args, java.util.Properties p) throws com.sun.ts.lib.harness.EETest.Fault {
         super.setup(args, p);
@@ -66,8 +65,8 @@ public class Client extends com.sun.ts.tests.ejb30.common.interceptor.MDBClientB
      *
      * @assertion_ids: EJB:JAVADOC:128; EJB:JAVADOC:131
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -75,8 +74,8 @@ public class Client extends com.sun.ts.tests.ejb30.common.interceptor.MDBClientB
      *
      * @assertion_ids: EJB:JAVADOC:128; EJB:JAVADOC:131
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -84,8 +83,8 @@ public class Client extends com.sun.ts.tests.ejb30.common.interceptor.MDBClientB
      *
      * @assertion_ids: EJB:JAVADOC:128; EJB:JAVADOC:131
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -93,8 +92,8 @@ public class Client extends com.sun.ts.tests.ejb30.common.interceptor.MDBClientB
      *
      * @assertion_ids: EJB:JAVADOC:128; EJB:JAVADOC:131
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -102,8 +101,8 @@ public class Client extends com.sun.ts.tests.ejb30.common.interceptor.MDBClientB
      *
      * @assertion_ids: EJB:JAVADOC:128; EJB:JAVADOC:131
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -111,7 +110,6 @@ public class Client extends com.sun.ts.tests.ejb30.common.interceptor.MDBClientB
      *
      * @assertion_ids: EJB:JAVADOC:128; EJB:JAVADOC:131
      *
-     * @test_Strategy: o interceptor method occurs with the same security context
-     * as the business method
+     * @test_Strategy: o interceptor method occurs with the same security context as the business method
      */
 }

@@ -30,15 +30,13 @@ import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
 
 /**
- * A bean that overrides and thus disables all lifecycle callback methods in its
- * superclasses. Its class-level interceptor, InterceptorH, also overrides and
- * disables its superclasses' lifecycle callback methods. In both cases, one
- * overriding method is still @PostConstruct method, and the other is
- * re-annotated as @PreDestroy method.
+ * A bean that overrides and thus disables all lifecycle callback methods in its superclasses. Its class-level
+ * interceptor, InterceptorH, also overrides and disables its superclasses' lifecycle callback methods. In both cases,
+ * one overriding method is still @PostConstruct method, and the other is re-annotated as @PreDestroy method.
  */
 @Stateless(name = "Callback2Bean")
-@Remote({Callback2IF.class})
-@Interceptors({InterceptorI.class})
+@Remote({ Callback2IF.class })
+@Interceptors({ InterceptorI.class })
 @ExcludeDefaultInterceptors
 public class Callback2Bean extends Callback2BeanSuper {
     public Callback2Bean() {
@@ -53,5 +51,6 @@ public class Callback2Bean extends Callback2BeanSuper {
 
     @Override
     @PreDestroy
-    protected void postConstructMethodInSuper() throws RuntimeException {}
+    protected void postConstructMethodInSuper() throws RuntimeException {
+    }
 }

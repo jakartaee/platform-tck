@@ -42,11 +42,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: onErrorWorksTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:68;WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:66;
+     * @assertion_ids: WebSocket:JAVADOC:68;WebSocket:JAVADOC:69; WebSocket:JAVADOC:66;
      *
-     * @test_Strategy: check @OnError works on Endpoint on Server Side
-     * jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
+     * @test_Strategy: check @OnError works on Endpoint on Server Side jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
      */
     public void onErrorWorksTest() throws Fault {
         invoke("msg", WSCMsgServer.MESSAGES[0], WSCMsgServer.EMPTY);
@@ -58,11 +56,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: onCloseWorksTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:67;WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:66;
+     * @assertion_ids: WebSocket:JAVADOC:67;WebSocket:JAVADOC:69; WebSocket:JAVADOC:66;
      *
-     * @test_Strategy: check @OnClose works on Endpoint on Server side
-     * jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
+     * @test_Strategy: check @OnClose works on Endpoint on Server side jakarta.websocket.Endpoint.onOpen Endpoint.Endpoint
      */
     public void onCloseWorksTest() throws Fault {
         invoke("msg", WSCMsgServer.MESSAGES[0], WSCMsgServer.EMPTY);
@@ -81,9 +77,11 @@ public class WSClient extends WebSocketCommonClient {
         while (!found && count < maxWait) {
             invoke(endpoint, content, "", false);
             response = getLastResponse(String.class);
-            if (response.equals(search)) found = true;
+            if (response.equals(search))
+                found = true;
             cleanup();
-            if (!found) TestUtil.sleepMsec(sleep);
+            if (!found)
+                TestUtil.sleepMsec(sleep);
             count++;
         }
         if (!found) {
@@ -94,7 +92,7 @@ public class WSClient extends WebSocketCommonClient {
     @Override
     protected com.sun.javatest.Status run(String[] args) {
         if (args.length == 0) {
-            args = new String[] {"-p", "install/websocket/bin/ts.jte", "-t", "onCloseWorksTest", "-vehicle", "servlet"};
+            args = new String[] { "-p", "install/websocket/bin/ts.jte", "-t", "onCloseWorksTest", "-vehicle", "servlet" };
         }
         return super.run(args);
     }

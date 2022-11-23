@@ -28,8 +28,7 @@ public class JsonIO {
     /**
      * Reads JSON value from {@code String}.
      *
-     * @param json
-     *          JSON value to be read.
+     * @param json JSON value to be read.
      * @return JSON value from provided {@code String}.
      */
     public static JsonValue read(final String json) {

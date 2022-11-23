@@ -26,12 +26,7 @@ import com.sun.ts.tests.jaxws.common.*;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.*;
 
-@WebService(
-        portName = "Hello3Port",
-        targetNamespace = "http://helloservice.org/wsdl",
-        serviceName = "HelloService",
-        wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello3")
+@WebService(portName = "Hello3Port", targetNamespace = "http://helloservice.org/wsdl", serviceName = "HelloService", wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello3")
 public class Hello3Impl implements Hello3 {
 
     public Hello3Response hello(Hello3Request hreq) {

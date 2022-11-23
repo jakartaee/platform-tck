@@ -53,11 +53,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: RequestWrapperAnnotationTest
      *
-     * @assertion_ids: JAXWS:SPEC:7004; JAXWS:SPEC:7013; JAXWS:JAVADOC:39;
-     * JAXWS:JAVADOC:40; JAXWS:JAVADOC:41;
+     * @assertion_ids: JAXWS:SPEC:7004; JAXWS:SPEC:7013; JAXWS:JAVADOC:39; JAXWS:JAVADOC:40; JAXWS:JAVADOC:41;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void RequestWrapperAnnotationTest() throws Fault {
         TestUtil.logTrace("RequestWrapperAnnotationTest");
@@ -86,17 +84,16 @@ public class Client extends ServiceEETest {
             throw new Fault("RequestWrapperAnnotationTest failed", e);
         }
 
-        if (!pass) throw new Fault("RequestWrapperAnnotationTest failed");
+        if (!pass)
+            throw new Fault("RequestWrapperAnnotationTest failed");
     }
 
     /*
      * @testName: ResponseWrapperAnnotationTest
      *
-     * @assertion_ids: JAXWS:SPEC:7005; JAXWS:SPEC:7013; JAXWS:JAVADOC:43;
-     * JAXWS:JAVADOC:44; JAXWS:JAVADOC:45;
+     * @assertion_ids: JAXWS:SPEC:7005; JAXWS:SPEC:7013; JAXWS:JAVADOC:43; JAXWS:JAVADOC:44; JAXWS:JAVADOC:45;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void ResponseWrapperAnnotationTest() throws Fault {
         TestUtil.logTrace("ResponseWrapperAnnotationTest");
@@ -125,7 +122,8 @@ public class Client extends ServiceEETest {
             throw new Fault("ResponseWrapperAnnotationTest failed", e);
         }
 
-        if (!pass) throw new Fault("ResponseWrapperAnnotationTest failed");
+        if (!pass)
+            throw new Fault("ResponseWrapperAnnotationTest failed");
     }
 
     /*
@@ -133,8 +131,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:2011; JAXWS:SPEC:7011; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void WebServiceAnnotationTest() throws Fault {
         TestUtil.logTrace("WebServiceAnnotationTest");
@@ -166,7 +163,8 @@ public class Client extends ServiceEETest {
             throw new Fault("WebServiceAnnotationTest failed", e);
         }
 
-        if (!pass) throw new Fault("WebServiceAnnotationTest failed");
+        if (!pass)
+            throw new Fault("WebServiceAnnotationTest failed");
     }
 
     /*
@@ -174,8 +172,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:7011; JAXWS:SPEC:2019; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void SOAPBindingAnnotationTest() throws Fault {
         TestUtil.logTrace("SOAPBindingAnnotationTest");
@@ -228,17 +225,16 @@ public class Client extends ServiceEETest {
             throw new Fault("SOAPBindingAnnotationTest failed", e);
         }
 
-        if (!pass) throw new Fault("SOAPBindingAnnotationTest failed");
+        if (!pass)
+            throw new Fault("SOAPBindingAnnotationTest failed");
     }
 
     /*
      * @testName: HelloOperationAnnotationsTest
      *
-     * @assertion_ids: JAXWS:SPEC:7009; JAXWS:SPEC:7011; JAXWS:SPEC:7013;
-     * JAXWS:SPEC:2020; JAXWS:SPEC:2021; JAXWS:SPEC:2015;
+     * @assertion_ids: JAXWS:SPEC:7009; JAXWS:SPEC:7011; JAXWS:SPEC:7013; JAXWS:SPEC:2020; JAXWS:SPEC:2021; JAXWS:SPEC:2015;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void HelloOperationAnnotationsTest() throws Fault {
         TestUtil.logTrace("HelloOperationAnnotationsTest");
@@ -271,17 +267,16 @@ public class Client extends ServiceEETest {
             throw new Fault("HelloOperationAnnotationsTest failed", e);
         }
 
-        if (!pass) throw new Fault("HelloOperationAnnotationsTest failed");
+        if (!pass)
+            throw new Fault("HelloOperationAnnotationsTest failed");
     }
 
     /*
      * @testName: OnewayAnnotationsTest
      *
-     * @assertion_ids: JAXWS:SPEC:7010; JAXWS:SPEC:7011; JAXWS:SPEC:2018;
-     * JAXWS:SPEC:7013; JAXWS:SPEC:2020;
+     * @assertion_ids: JAXWS:SPEC:7010; JAXWS:SPEC:7011; JAXWS:SPEC:2018; JAXWS:SPEC:7013; JAXWS:SPEC:2020;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void OnewayAnnotationsTest() throws Fault {
         TestUtil.logTrace("OnewayAnnotationsTest");
@@ -307,17 +302,16 @@ public class Client extends ServiceEETest {
             throw new Fault("OnewayAnnotationsTest failed", e);
         }
 
-        if (!pass) throw new Fault("OnewayAnnotationsTest failed");
+        if (!pass)
+            throw new Fault("OnewayAnnotationsTest failed");
     }
 
     /*
      * @testName: WebParamModesAnnotationsTest
      *
-     * @assertion_ids: JAXWS:SPEC:7010; JAXWS:SPEC:7011; JAXWS:SPEC:2020;
-     * JAXWS:SPEC:7013; JAXWS:SPEC:2015;
+     * @assertion_ids: JAXWS:SPEC:7010; JAXWS:SPEC:7011; JAXWS:SPEC:2020; JAXWS:SPEC:7013; JAXWS:SPEC:2015;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void WebParamModesAnnotationsTest() throws Fault {
         TestUtil.logTrace("WebParamModesAnnotationsTest");
@@ -372,17 +366,16 @@ public class Client extends ServiceEETest {
             throw new Fault("WebParamModesAnnotationsTest failed", e);
         }
 
-        if (!pass) throw new Fault("WebParamModesAnnotationsTest failed");
+        if (!pass)
+            throw new Fault("WebParamModesAnnotationsTest failed");
     }
 
     /*
      * @testName: WebFaultAnnotationsTest
      *
-     * @assertion_ids: JAXWS:SPEC:7003; JAXWS:SPEC:7013; JAXWS:JAVADOC:63;
-     * JAXWS:JAVADOC:64; JAXWS:JAVADOC:65;
+     * @assertion_ids: JAXWS:SPEC:7003; JAXWS:SPEC:7013; JAXWS:JAVADOC:63; JAXWS:JAVADOC:64; JAXWS:JAVADOC:65;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void WebFaultAnnotationsTest() throws Fault {
         TestUtil.logTrace("WebFaultAnnotationsTest");
@@ -407,17 +400,17 @@ public class Client extends ServiceEETest {
             throw new Fault("WebFaultAnnotationsTest failed", e);
         }
 
-        if (!pass) throw new Fault("WebFaultAnnotationsTest failed");
+        if (!pass)
+            throw new Fault("WebFaultAnnotationsTest failed");
     }
 
     /*
      * @testName: WebServiceClientAnnotationsTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:66; JAXWS:JAVADOC:67; JAXWS:JAVADOC:68;
-     * JAXWS:SPEC:7013; JAXWS:SPEC:7006; JAXWS:SPEC:2063;
+     * @assertion_ids: JAXWS:JAVADOC:66; JAXWS:JAVADOC:67; JAXWS:JAVADOC:68; JAXWS:SPEC:7013; JAXWS:SPEC:7006;
+     * JAXWS:SPEC:2063;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void WebServiceClientAnnotationsTest() throws Fault {
         TestUtil.logTrace("WebServiceClientAnnotationsTest");
@@ -442,17 +435,16 @@ public class Client extends ServiceEETest {
             throw new Fault("WebServiceClientAnnotationsTest failed", e);
         }
 
-        if (!pass) throw new Fault("WebServiceClientAnnotationsTest failed");
+        if (!pass)
+            throw new Fault("WebServiceClientAnnotationsTest failed");
     }
 
     /*
      * @testName: WebEndpointAnnotationsTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:62; JAXWS:SPEC:7007; JAXWS:SPEC:2065;
-     * JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:JAVADOC:62; JAXWS:SPEC:7007; JAXWS:SPEC:2065; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void WebEndpointAnnotationsTest() throws Fault {
         TestUtil.logTrace("WebEndpointAnnotationsTest");
@@ -477,7 +469,8 @@ public class Client extends ServiceEETest {
             throw new Fault("WebEndpointAnnotationsTest failed", e);
         }
 
-        if (!pass) throw new Fault("WebEndpointAnnotationsTest failed");
+        if (!pass)
+            throw new Fault("WebEndpointAnnotationsTest failed");
     }
 
     /*
@@ -485,8 +478,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:9008; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void HandlerChainAnnotationsTest() throws Fault {
         TestUtil.logTrace("HandlerChainAnnotationsTest");
@@ -510,20 +502,19 @@ public class Client extends ServiceEETest {
             throw new Fault("HandlerChainAnnotationsTest failed", e);
         }
 
-        if (!pass) throw new Fault("HandlerChainAnnotationsTest failed");
+        if (!pass)
+            throw new Fault("HandlerChainAnnotationsTest failed");
     }
 
     /*
      * @testName: ActionFaultActionAndAddressingAnnotationsTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:130; JAXWS:JAVADOC:131; JAXWS:JAVADOC:132;
-     * JAXWS:JAVADOC:144; WSAMD:SPEC:4003; WSAMD:SPEC:3000; WSAMD:SPEC:3000.1;
-     * JAXWS:SPEC:2075; JAXWS:SPEC:2077; JAXWS:SPEC:2078; JAXWS:SPEC:2079;
-     * JAXWS:SPEC:2080; JAXWS:SPEC:2081; JAXWS:SPEC:2082; JAXWS:SPEC:2083;
-     * WSAMD:SPEC:3001.5; WSAMD:SPEC:3001.8; JAXWS:SPEC:2089;
+     * @assertion_ids: JAXWS:JAVADOC:130; JAXWS:JAVADOC:131; JAXWS:JAVADOC:132; JAXWS:JAVADOC:144; WSAMD:SPEC:4003;
+     * WSAMD:SPEC:3000; WSAMD:SPEC:3000.1; JAXWS:SPEC:2075; JAXWS:SPEC:2077; JAXWS:SPEC:2078; JAXWS:SPEC:2079;
+     * JAXWS:SPEC:2080; JAXWS:SPEC:2081; JAXWS:SPEC:2082; JAXWS:SPEC:2083; WSAMD:SPEC:3001.5; WSAMD:SPEC:3001.8;
+     * JAXWS:SPEC:2089;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations
      */
     public void ActionFaultActionAndAddressingAnnotationsTest() throws Fault {
         TestUtil.logTrace("ActionFaultActionAndAddressingAnnotationsTest");
@@ -534,8 +525,7 @@ public class Client extends ServiceEETest {
                     false,
                     this.getClass().getClassLoader());
             String[][] faults = {};
-            boolean result =
-                    AnnotationUtils.verifyActionFaultActionAnnotation(c, "address1", true, "input1", null, faults);
+            boolean result = AnnotationUtils.verifyActionFaultActionAnnotation(c, "address1", true, "input1", null, faults);
             if (result == false) {
                 pass = false;
             }
@@ -544,9 +534,9 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
             String faults3[][] = {
-                {"com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations.Myfault3AException", "fault3a"
-                },
-                {"com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations.Myfault3BException", "fault3b"}
+                    { "com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations.Myfault3AException", "fault3a"
+                    },
+                    { "com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations.Myfault3BException", "fault3b" }
             };
             result = AnnotationUtils.verifyActionFaultActionAnnotation(c, "address3", true, null, null, faults3);
             if (result == false) {
@@ -557,14 +547,14 @@ public class Client extends ServiceEETest {
                     false,
                     this.getClass().getClassLoader());
             String faults4[][] = {
-                {"com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations.Myfault4Exception", "fault4"}
+                    { "com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations.Myfault4Exception", "fault4" }
             };
             result = AnnotationUtils.verifyActionFaultActionAnnotation(c, "address4", true, null, "output4", faults4);
             if (result == false) {
                 pass = false;
             }
             String faults5[][] = {
-                {"com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations.Myfault5Exception", "fault5"}
+                    { "com.sun.ts.tests.jaxws.mapping.w2jmapping.document.literal.annotations.Myfault5Exception", "fault5" }
             };
             result = AnnotationUtils.verifyActionFaultActionAnnotation(
                     c, "address5", true, "input5", "output5", faults5);
@@ -609,8 +599,7 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
             String faults11[][] = {};
-            result =
-                    AnnotationUtils.verifyActionFaultActionAnnotation(c, "address11", true, null, "output11", faults11);
+            result = AnnotationUtils.verifyActionFaultActionAnnotation(c, "address11", true, null, "output11", faults11);
             if (result == false) {
                 pass = false;
             }
@@ -620,6 +609,7 @@ public class Client extends ServiceEETest {
             throw new Fault("ActionFaultActionAndAddressingAnnotationsTest failed", e);
         }
 
-        if (!pass) throw new Fault("ActionFaultActionAndAddressingAnnotationsTest failed");
+        if (!pass)
+            throw new Fault("ActionFaultActionAndAddressingAnnotationsTest failed");
     }
 }

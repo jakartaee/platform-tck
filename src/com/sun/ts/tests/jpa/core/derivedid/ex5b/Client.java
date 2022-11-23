@@ -27,7 +27,8 @@ import java.util.Properties;
  */
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -48,14 +49,11 @@ public class Client extends PMClientBase {
 
     /**
      * @testName: DIDTest
-     * @assertion_ids: PERSISTENCE:SPEC:1339; PERSISTENCE:SPEC:1340;
-     *                 PERSISTENCE:SPEC:1341;
+     * @assertion_ids: PERSISTENCE:SPEC:1339; PERSISTENCE:SPEC:1340; PERSISTENCE:SPEC:1341;
      * @test_Strategy: Derived Identifier
-     *                 <p/>
-     *                 Case (b): The dependent entity uses the EmbeddedId and
-     *                 MappedById annotations. The PersonId class either needs to
-     *                 be annotated Embeddable or denoted as an embeddable class
-     *                 in the XML descriptor.
+     * <p/>
+     * Case (b): The dependent entity uses the EmbeddedId and MappedById annotations. The PersonId class either needs to be
+     * annotated Embeddable or denoted as an embeddable class in the XML descriptor.
      */
     public void DIDTest() throws Fault {
         boolean pass = false;
@@ -77,8 +75,7 @@ public class Client extends PMClientBase {
             getEntityManager().flush();
 
             // Refresh MedicalHistory
-            DID5bMedicalHistory newMHistory =
-                    getEntityManager().find(DID5bMedicalHistory.class, new DID5bPersonId("Java", "DUKE"));
+            DID5bMedicalHistory newMHistory = getEntityManager().find(DID5bMedicalHistory.class, new DID5bPersonId("Java", "DUKE"));
             if (newMHistory != null) {
                 getEntityManager().refresh(newMHistory);
             }

@@ -27,8 +27,7 @@ public class ReferencedBeanCode {
     public static final String envEntryName = "java:comp/env/myName";
 
     /**
-     * Method used to identify this bean. Return the value of bean env entry
-     * called 'myName'.
+     * Method used to identify this bean. Return the value of bean env entry called 'myName'.
      */
     public static String whoAreYou(TSNamingContext nctx) throws EJBException {
 

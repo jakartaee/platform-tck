@@ -34,7 +34,7 @@ import jakarta.transaction.UserTransaction;
 import java.util.logging.Level;
 
 @Stateful
-@Remote({TestIF.class})
+@Remote({ TestIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class TestBean extends TestBeanBase implements TestIF {
     @Override
@@ -66,5 +66,6 @@ public class TestBean extends TestBeanBase implements TestIF {
 
     @Override
     @Remove(retainIfException = false)
-    public void remove() {}
+    public void remove() {
+    }
 }

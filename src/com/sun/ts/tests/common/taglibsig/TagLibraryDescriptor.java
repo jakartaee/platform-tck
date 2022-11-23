@@ -49,9 +49,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 /**
- * Represents a TLD from a JAR file allowing access to the tag and function and
- * validator entries as well as TLD level metatdata such as support container
- * version and version of the taglibrary itself.
+ * Represents a TLD from a JAR file allowing access to the tag and function and validator entries as well as TLD level
+ * metatdata such as support container version and version of the taglibrary itself.
  */
 public class TagLibraryDescriptor {
 
@@ -82,23 +81,19 @@ public class TagLibraryDescriptor {
     private List _validatorEntries;
 
     // Private
-    private TagLibraryDescriptor() {}
+    private TagLibraryDescriptor() {
+    }
 
     /**
-     * Returns a TagLibraryDescriptor instance based on the URI the tag library is
-     * known by (i.e. the <uri> element of the TLD). If the TagLibraryDescriptor
-     * is not found in the cache, the this method will use the URL to the jar file
-     * and scan the JAR file for TLDs. Any TLD's found will be processed and added
-     * cache. If, after scanning the JAR file, no TLD's matching the specified
-     * ttaglib uri can be found, this method will return null.
+     * Returns a TagLibraryDescriptor instance based on the URI the tag library is known by (i.e. the <uri> element of the
+     * TLD). If the TagLibraryDescriptor is not found in the cache, the this method will use the URL to the jar file and
+     * scan the JAR file for TLDs. Any TLD's found will be processed and added cache. If, after scanning the JAR file, no
+     * TLD's matching the specified ttaglib uri can be found, this method will return null.
      *
-     * @param jarUrl
-     *          - The file URL of the JAR file to scan for TLDs if the cache
-     *          doesn't contain the requested TagLibraryDescriptor instance
-     * @param taglibUri
-     *          - The uri of the tag library of interest
-     * @return a TagLibraryDescriptor for the provided uri, or null if no tag
-     *         library can be found
+     * @param jarUrl - The file URL of the JAR file to scan for TLDs if the cache doesn't contain the requested
+     * TagLibraryDescriptor instance
+     * @param taglibUri - The uri of the tag library of interest
+     * @return a TagLibraryDescriptor for the provided uri, or null if no tag library can be found
      */
     public static TagLibraryDescriptor getInstance(String jarUrl, String taglibUri) {
         TagLibraryDescriptor tld = (TagLibraryDescriptor) TAGLIB_CACHE.get(taglibUri);
@@ -194,41 +189,40 @@ public class TagLibraryDescriptor {
     /**
      * Adds a TagEntry to the internal list of tags
      *
-     * @param entry
-     *          - a TagEntry
+     * @param entry - a TagEntry
      */
     private void addTagEntry(TagEntry entry) {
-        if (_tagEntries == null) _tagEntries = new ArrayList();
+        if (_tagEntries == null)
+            _tagEntries = new ArrayList();
         _tagEntries.add(entry);
     }
 
     /**
      * Adds a FunctionEntry to the internal list of functions
      *
-     * @param entry
-     *          - a FunctionEntry
+     * @param entry - a FunctionEntry
      */
     private void addFunctionEntry(FunctionEntry entry) {
-        if (_functionEntries == null) _functionEntries = new ArrayList();
+        if (_functionEntries == null)
+            _functionEntries = new ArrayList();
         _functionEntries.add(entry);
     }
 
     /**
      * Adds a ValidatorEntry to the internal list of validators.
      *
-     * @param entry
-     *          - a ValidatorEntry
+     * @param entry - a ValidatorEntry
      */
     private void addValidatorEntry(ValidatorEntry entry) {
-        if (_validatorEntries == null) _validatorEntries = new ArrayList();
+        if (_validatorEntries == null)
+            _validatorEntries = new ArrayList();
         _validatorEntries.add(entry);
     }
 
     /**
      * Sets the required container version for this tag library.
      *
-     * @param version
-     *          - required container version
+     * @param version - required container version
      */
     private void setRequiredContainerVersion(String version) {
         _containerVersion = version;
@@ -237,8 +231,7 @@ public class TagLibraryDescriptor {
     /**
      * Sets the version of this tag library
      *
-     * @param version
-     *          - tag library version
+     * @param version - tag library version
      */
     private void setTaglibraryVersion(String version) {
         _taglibVersion = version;
@@ -247,8 +240,7 @@ public class TagLibraryDescriptor {
     /**
      * Sets the URI of this tag library
      *
-     * @param uri
-     *          - the URI of this tag library
+     * @param uri - the URI of this tag library
      */
     private void setURI(String uri) {
         _uri = uri;
@@ -258,8 +250,7 @@ public class TagLibraryDescriptor {
     // =====================
 
     /**
-     * Utility class to encapsulate all XML related functionality in creating
-     * TagLibraryDescriptor objects.
+     * Utility class to encapsulate all XML related functionality in creating TagLibraryDescriptor objects.
      */
     private static class TldBuilder {
 
@@ -310,19 +301,16 @@ public class TagLibraryDescriptor {
         /**
          * Creates a new TldBuilder instance.
          *
-         * @param locator
-         *          - the TldLocator to get InputStreams from
+         * @param locator - the TldLocator to get InputStreams from
          */
         public TldBuilder(TldLocator locator) {
             _locator = locator;
         }
 
         /**
-         * Builds TagLibraryDescriptor objects based off all TLD's that contain URI
-         * elements.
+         * Builds TagLibraryDescriptor objects based off all TLD's that contain URI elements.
          *
-         * @throws BuildException
-         *           if an error occurs during processing.
+         * @throws BuildException if an error occurs during processing.
          */
         public void build() throws BuildException {
             try {
@@ -352,12 +340,10 @@ public class TagLibraryDescriptor {
         }
 
         /**
-         * Parses the provided Document object (created from a TLD), and constructs
-         * logical TagLibraryDescriptor instances from the information contained
-         * within the Document.
+         * Parses the provided Document object (created from a TLD), and constructs logical TagLibraryDescriptor instances from
+         * the information contained within the Document.
          *
-         * @param doc
-         *          - Document object representing a TLD
+         * @param doc - Document object representing a TLD
          */
         private void processDocument(Document doc) {
             TagLibraryDescriptor tld = new TagLibraryDescriptor();
@@ -446,15 +432,11 @@ public class TagLibraryDescriptor {
         }
 
         /**
-         * Sequentially processes the array of InputStreams, where each input stream
-         * represents a TLD.
+         * Sequentially processes the array of InputStreams, where each input stream represents a TLD.
          *
-         * @param inStreams
-         *          - array of input streams representing one or more TLDs
-         * @throws SAXException
-         *           - if an unexpected parsing error occurs
-         * @throws IOException
-         *           - if an unexpected IO error occurs
+         * @param inStreams - array of input streams representing one or more TLDs
+         * @throws SAXException - if an unexpected parsing error occurs
+         * @throws IOException - if an unexpected IO error occurs
          */
         private void processTlds(InputStream[] inStreams) throws SAXException, IOException {
             DocumentBuilder builder = getDocumentBuilder();
@@ -472,8 +454,8 @@ public class TagLibraryDescriptor {
     }
 
     /**
-     * Processes the JAR file as identified by the provided URL. Create new
-     * TagLibraryDescriptor instances based on the any TLD's found.
+     * Processes the JAR file as identified by the provided URL. Create new TagLibraryDescriptor instances based on the any
+     * TLD's found.
      */
     private static class TldLocator {
 
@@ -495,26 +477,23 @@ public class TagLibraryDescriptor {
         /**
          * Creates a new TldLocator instance.
          *
-         * @param url
-         *          - the JAR url to use in scanning for TLDs
+         * @param url - the JAR url to use in scanning for TLDs
          */
         public TldLocator(URL url) {
             _url = url;
         }
 
         /**
-         * Scans the JAR file idetified by the provided URL. For each TLD found an
-         * InputStream will be created for processing.
+         * Scans the JAR file idetified by the provided URL. For each TLD found an InputStream will be created for processing.
          *
          * @return - array of InputStreams representing TLDs found in the JAR
-         * @throws IOException
-         *           - if an unexpected I/O error occurs
+         * @throws IOException - if an unexpected I/O error occurs
          */
         public InputStream[] getTldsAsStreams() throws IOException {
             JarURLConnection jarCon = (JarURLConnection) _url.openConnection();
             JarFile jar = jarCon.getJarFile();
             List inputStreams = new ArrayList();
-            for (Enumeration e = jar.entries(); e.hasMoreElements(); ) {
+            for (Enumeration e = jar.entries(); e.hasMoreElements();) {
                 JarEntry entry = (JarEntry) e.nextElement();
                 String name = entry.getName();
                 if (!name.startsWith(META_INF) || !name.endsWith(TLD_EXTENSION)) {

@@ -64,7 +64,8 @@ public class ThirdMCF
      *
      * @desc Default conctructor
      */
-    public ThirdMCF() {}
+    public ThirdMCF() {
+    }
 
     public String getUser() {
         return user;
@@ -282,11 +283,14 @@ public class ThirdMCF
             return false;
         }
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.user, that.getUser())) return false;
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
 
-        if (!Util.isEqual(this.userName, that.getUserName())) return false;
+        if (!Util.isEqual(this.userName, that.getUserName()))
+            return false;
 
         return true;
     }

@@ -23,12 +23,7 @@ package com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.embedded;
 import com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.embedded.custom.pkg.HelloException;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HelloPort",
-        serviceName = "myService",
-        targetNamespace = "http://customizationembeddedtest.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLCustomizationEmbeddedTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.embedded.Hello")
+@WebService(portName = "HelloPort", serviceName = "myService", targetNamespace = "http://customizationembeddedtest.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLCustomizationEmbeddedTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.customization.embedded.Hello")
 public class HelloImpl implements Hello {
     public String hello1(String helloArgument) {
         System.out.println("in CustomizationEmbeddedTestService:HelloImpl:hello1");
@@ -60,7 +55,8 @@ public class HelloImpl implements Hello {
         System.out.println("in CustomizationEmbeddedTestService:HelloImpl:echo");
         Name[] names = echoRequest.getName();
         StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < names.length; i++) sb.append(names[i].getFirst() + names[i].getLast());
+        for (int i = 0; i < names.length; i++)
+            sb.append(names[i].getFirst() + names[i].getLast());
         EchoResponse echoResponse = new EchoResponse();
         echoResponse.setReturn(sb.toString());
         return echoResponse;

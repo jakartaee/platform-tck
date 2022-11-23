@@ -28,12 +28,7 @@ import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.SOAPBinding;
 
-@WebService(
-        portName = "AddressingFeatureTest1Port",
-        serviceName = "AddressingFeatureTestService",
-        targetNamespace = "http://addressingfeatureservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/AddressingFeatureTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.addressingfeature.AddressingFeatureTest1")
+@WebService(portName = "AddressingFeatureTest1Port", serviceName = "AddressingFeatureTestService", targetNamespace = "http://addressingfeatureservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/AddressingFeatureTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.addressingfeature.AddressingFeatureTest1")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @Addressing
 public class AddressingFeatureTestImpl1 implements AddressingFeatureTest1 {

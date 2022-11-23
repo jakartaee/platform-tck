@@ -126,58 +126,58 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
     private static final int THREE_INPUT_PART_COUNT = 3;
 
     private static final String[] EXPECTED_OPERATION_NAMES = {
-        "arrayOperationFromClient",
-        "getBean",
-        "arrayOperation",
-        "stringOperation",
-        "oneTwoThree",
-        "holderMethodDefault",
-        "holderMethodInOut",
-        "holderMethodOut",
-        "helloWorld",
-        "helloWorld2",
-        "oneWayOperation",
-        "oneWayOperationWithParams",
-        "operationWithHeaderAndHeaderFaultAndFault",
-        "hello",
-        "bye",
+            "arrayOperationFromClient",
+            "getBean",
+            "arrayOperation",
+            "stringOperation",
+            "oneTwoThree",
+            "holderMethodDefault",
+            "holderMethodInOut",
+            "holderMethodOut",
+            "helloWorld",
+            "helloWorld2",
+            "oneWayOperation",
+            "oneWayOperationWithParams",
+            "operationWithHeaderAndHeaderFaultAndFault",
+            "hello",
+            "bye",
     };
 
     private static final int[][] EXPECTED_PART_COUNTS = {
-        {1, 1, 0}, // arrayOperationFromClient
-        {0, 1, 0}, // getBean
-        {0, 1, 0}, // arrayOperation
-        {1, 1, 0}, // stringOperation
-        {3, 1, 0}, // oneTwoThree
-        {1, 2, 0}, // holderMethodDefault
-        {1, 2, 0}, // holderMethodInOut
-        {0, 2, 0}, // holderMethodOut
-        {0, 1, 0}, // helloWorld
-        {1, 1, 0}, // helloWorld2
-        {0, 0, 0}, // oneWayOperation
-        {3, 0, 0}, // oneWayOperationWithParams
-        {1, 0, 3}, // operationWithHeaderAndHeaderFaultAndFault
-        {1, 1, 0}, // hello
-        {1, 1, 0}, // bye
+            { 1, 1, 0 }, // arrayOperationFromClient
+            { 0, 1, 0 }, // getBean
+            { 0, 1, 0 }, // arrayOperation
+            { 1, 1, 0 }, // stringOperation
+            { 3, 1, 0 }, // oneTwoThree
+            { 1, 2, 0 }, // holderMethodDefault
+            { 1, 2, 0 }, // holderMethodInOut
+            { 0, 2, 0 }, // holderMethodOut
+            { 0, 1, 0 }, // helloWorld
+            { 1, 1, 0 }, // helloWorld2
+            { 0, 0, 0 }, // oneWayOperation
+            { 3, 0, 0 }, // oneWayOperationWithParams
+            { 1, 0, 3 }, // operationWithHeaderAndHeaderFaultAndFault
+            { 1, 1, 0 }, // hello
+            { 1, 1, 0 }, // bye
     };
 
     private static final String[][] EXPECTED_TYPE_ELEMENT_MAPPINGS = {
-        {"stringArray", "string", "", "", ""}, // arrayOperationFromClient
-        {"", "j2WRLSharedBean", "", "", ""}, // getBean
-        {"", "stringArray", "", "", ""}, // arrayOperation
-        {"string", "string", "", "", ""}, // stringOperation
-        {"int", "long", "double", "string", ""}, // oneTwoThree
-        {"string", "string", "string", "", ""}, // holderMethodDefault
-        {"string", "string", "string", "", ""}, // holderMethodInOut
-        {"string", "string", "", "", ""}, // holderMethodOut
-        {"", "string", "", "", ""}, // helloWorld
-        {"string", "string", "", "", ""}, // helloWorld2
-        {"", "", "", "", ""}, // oneWayOperation
-        {"int", "long", "double", "", ""}, // oneWayOperationWithParams
-        {"ConfigHeader", "ConfigHeaderFault", "MyFault", "MyOtherFault", "", ""
-        }, // operationWithHeaderAndHeaderFaultAndFault
-        {"string", "string", "", "", ""}, // hello
-        {"string", "string", "", "", ""}, // bye
+            { "stringArray", "string", "", "", "" }, // arrayOperationFromClient
+            { "", "j2WRLSharedBean", "", "", "" }, // getBean
+            { "", "stringArray", "", "", "" }, // arrayOperation
+            { "string", "string", "", "", "" }, // stringOperation
+            { "int", "long", "double", "string", "" }, // oneTwoThree
+            { "string", "string", "string", "", "" }, // holderMethodDefault
+            { "string", "string", "string", "", "" }, // holderMethodInOut
+            { "string", "string", "", "", "" }, // holderMethodOut
+            { "", "string", "", "", "" }, // helloWorld
+            { "string", "string", "", "", "" }, // helloWorld2
+            { "", "", "", "", "" }, // oneWayOperation
+            { "int", "long", "double", "", "" }, // oneWayOperationWithParams
+            { "ConfigHeader", "ConfigHeaderFault", "MyFault", "MyOtherFault", "", ""
+            }, // operationWithHeaderAndHeaderFaultAndFault
+            { "string", "string", "", "", "" }, // hello
+            { "string", "string", "", "", "" }, // bye
     };
 
     private String testName = null;
@@ -191,8 +191,10 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             throws Fault {
         boolean ok = true;
 
-        if (!PartCountsOk(iparts, oparts, fparts, opname)) ok = false;
-        if (!TypesElementsOk(iparts, oparts, fparts, opname)) ok = false;
+        if (!PartCountsOk(iparts, oparts, fparts, opname))
+            ok = false;
+        if (!TypesElementsOk(iparts, oparts, fparts, opname))
+            ok = false;
 
         return ok;
     }
@@ -245,19 +247,24 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 if (!EXPECTED_TYPE_ELEMENT_MAPPINGS[index][i].equals(""))
                     alist1.add(EXPECTED_TYPE_ELEMENT_MAPPINGS[index][i]);
             }
-            if (alist1.size() > 0) expectedtypes = (String[]) alist1.toArray(new String[alist1.size()]);
+            if (alist1.size() > 0)
+                expectedtypes = (String[]) alist1.toArray(new String[alist1.size()]);
             if (iparts != null) {
                 for (int i = 0; i < iparts.length; i++) {
-                    if (opname.equals(EXPECTED_OPERATION_NAMES[12])) str = iparts[i].getAttribute(XSD_ELEMENT_ATTR);
-                    else str = iparts[i].getAttribute(XSD_TYPE_ATTR);
+                    if (opname.equals(EXPECTED_OPERATION_NAMES[12]))
+                        str = iparts[i].getAttribute(XSD_ELEMENT_ATTR);
+                    else
+                        str = iparts[i].getAttribute(XSD_TYPE_ATTR);
                     TestUtil.logMsg("type=" + str);
                     alist2.add(str.substring(str.indexOf(":") + 1));
                 }
             }
             if (oparts != null) {
                 for (int i = 0; i < oparts.length; i++) {
-                    if (opname.equals(EXPECTED_OPERATION_NAMES[12])) str = oparts[i].getAttribute(XSD_ELEMENT_ATTR);
-                    else str = oparts[i].getAttribute(XSD_TYPE_ATTR);
+                    if (opname.equals(EXPECTED_OPERATION_NAMES[12]))
+                        str = oparts[i].getAttribute(XSD_ELEMENT_ATTR);
+                    else
+                        str = oparts[i].getAttribute(XSD_TYPE_ATTR);
                     TestUtil.logMsg("type=" + str);
                     alist2.add(str.substring(str.indexOf(":") + 1));
                 }
@@ -269,8 +276,10 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                     TestUtil.logMsg("type=" + str);
                 }
             }
-            if (alist2.size() > 0) types = (String[]) alist2.toArray(new String[alist2.size()]);
-            if (!CompareTypesElementsOk(expectedtypes, types, opname)) ok = false;
+            if (alist2.size() > 0)
+                types = (String[]) alist2.toArray(new String[alist2.size()]);
+            if (!CompareTypesElementsOk(expectedtypes, types, opname))
+                ok = false;
         }
 
         return ok;
@@ -278,7 +287,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
 
     private int GetIndex(String opname) {
         for (int i = 0; i < EXPECTED_OPERATION_NAMES.length; i++) {
-            if (opname.equals(EXPECTED_OPERATION_NAMES[i])) return i;
+            if (opname.equals(EXPECTED_OPERATION_NAMES[i]))
+                return i;
         }
         return -1;
     }
@@ -301,10 +311,13 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         } else {
             for (int i = 0; i < types.length; i++) {
                 for (int j = 0; j < types.length; j++) {
-                    if (types[i].equals(expectedtypes[j])) found = true;
+                    if (types[i].equals(expectedtypes[j]))
+                        found = true;
                 }
-                if (!found) ok = false;
-                else found = false;
+                if (!found)
+                    ok = false;
+                else
+                    found = false;
             }
             StringBuilder got = new StringBuilder("[ ");
             StringBuilder exp = new StringBuilder("[ ");
@@ -314,15 +327,18 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             }
             got.append("]");
             exp.append("]");
-            if (!ok) TestUtil.logErr("Incorrect types: got " + got + ", expected " + exp);
-            else TestUtil.logMsg("Types are correct: " + got);
+            if (!ok)
+                TestUtil.logErr("Incorrect types: got " + got + ", expected " + exp);
+            else
+                TestUtil.logMsg("Types are correct: " + got);
         }
         return ok;
     }
 
     private boolean findName(String[] names, String name) {
         for (int i = 0; i < names.length; i++) {
-            if (names[i].equals(name)) return true;
+            if (names[i].equals(name))
+                return true;
         }
         return false;
     }
@@ -335,7 +351,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         String[] ipartNames = DescriptionUtils.getPartNames(document, imessageName);
 
         // If partName is not known take it as first part name
-        if (partName.equals("")) partName = ipartNames[0];
+        if (partName.equals(""))
+            partName = ipartNames[0];
 
         // Get output message name
         String omessageName = DescriptionUtils.getOutputMessageName(operation);
@@ -377,7 +394,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
 
         // Process wsdl <types> element (If none then we are done)
         Element types = DescriptionUtils.getTypes(document);
-        if (types == null) return pass;
+        if (types == null)
+            return pass;
 
         // Verify namespaceURI on wsdl <schema> elements if any
         Element[] schemas = DescriptionUtils.getChildElements(types, null, WSDL_SCHEMA_LOCAL_NAME);
@@ -396,7 +414,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         NodeList list = types.getElementsByTagNameNS(XSD_NAMESPACE_URI, XSD_ELEMENT_LOCAL_NAME);
         TestUtil.logMsg("Verify schema element types defined in wsdl <types> element");
         if (list.getLength() != 0) {
-            if (!VerifyElementTypes(list)) pass = false;
+            if (!VerifyElementTypes(list))
+                pass = false;
         }
 
         // Process schema <import> elements (imported schema's)
@@ -437,7 +456,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             ht2.put(prefix, namespace);
         }
         NodeList list = document.getDocumentElement().getElementsByTagNameNS(XSD_NAMESPACE_URI, XSD_ELEMENT_LOCAL_NAME);
-        if (!VerifyElementTypes(list)) pass = false;
+        if (!VerifyElementTypes(list))
+            pass = false;
 
         return pass;
     }
@@ -462,7 +482,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                     if (aname.startsWith("xmlns:")) {
                         String aprefix = aname.substring(6, aname.length());
                         ht.put(aprefix, avalue);
-                        if (prefix.equals(aprefix)) uri = avalue;
+                        if (prefix.equals(aprefix))
+                            uri = avalue;
                     }
                 }
             }
@@ -584,15 +605,12 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
     /*
      * @testName: VerifyTargetNamespaceWithAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
-     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
+     * JAXWS:SPEC:3035; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify that the targetNamespace in the generated WSDL
-     * matches the targetNamespace as specified in the jakarta.jws.WebService
-     * annotation. (Java to WSDL 1.1 Mapping). Conformance requirement done: -
-     * Package name mapping
+     * @test_Strategy: Verify that the targetNamespace in the generated WSDL matches the targetNamespace as specified in the
+     * jakarta.jws.WebService annotation. (Java to WSDL 1.1 Mapping). Conformance requirement done: - Package name mapping
      *
      */
     public void VerifyTargetNamespaceWithAnnotation() throws Fault {
@@ -606,27 +624,27 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 TestUtil.logErr("TargetNamespace is incorrect, expected: " + EXPECTED_TARGETNAMESPACE + ", got: "
                         + targetNamespace);
                 pass = false;
-            } else TestUtil.logMsg("TargetNamespace is correct: " + targetNamespace);
+            } else
+                TestUtil.logMsg("TargetNamespace is correct: " + targetNamespace);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception:" + e.getMessage());
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyTargetNamespaceWithAnnotation failed");
+        if (!pass)
+            throw new Fault("VerifyTargetNamespaceWithAnnotation failed");
     }
 
     /*
      * @testName: VerifySOAPElementNamespaceUseAttributeWithAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
-     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
+     * JAXWS:SPEC:3035; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify the namespace and use attributes for all SOAP
-     * Elements in the generated WSDL (Java to WSDL 1.1 Mapping and BP1.1).
-     * Conformance requirement done: - verify use attribute of literal for all
-     * SOAP elements - verify namespace attribute on all soap:body elements
+     * @test_Strategy: Verify the namespace and use attributes for all SOAP Elements in the generated WSDL (Java to WSDL 1.1
+     * Mapping and BP1.1). Conformance requirement done: - verify use attribute of literal for all SOAP elements - verify
+     * namespace attribute on all soap:body elements
      *
      *
      */
@@ -642,23 +660,22 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 + "soap:header, soap:headerfault elements");
         verifier = new NamespaceAttributeVerifier(document, 2726);
         verifier.verify();
-        if (!pass) throw new Fault("VerifySOAPElementNamespaceUseAttributeWithAnnotation failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifySOAPElementNamespaceUseAttributeWithAnnotation failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifySOAPBindingTransportStyleAttributeWithAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
-     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:3041; JAXWS:SPEC:3042;
-     * JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
+     * JAXWS:SPEC:3035; JAXWS:SPEC:3041; JAXWS:SPEC:3042; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify the soap:binding transport and style attributes in
-     * the generated WSDL. (Java to WSDL 1.1 Mapping and BP1.1). Conformance
-     * requirement done: - SOAP binding support - SOAP binding style required -
-     * SOAP binding transport required
+     * @test_Strategy: Verify the soap:binding transport and style attributes in the generated WSDL. (Java to WSDL 1.1
+     * Mapping and BP1.1). Conformance requirement done: - SOAP binding support - SOAP binding style required - SOAP binding
+     * transport required
      *
      *
      */
@@ -670,8 +687,7 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         TestUtil.logMsg("Verify soap:binding transport and style attribute");
         Element[] bindings = DescriptionUtils.getBindings(document);
         for (int i = 0; i < bindings.length; i++) {
-            Element soapBinding =
-                    DescriptionUtils.getChildElement(bindings[i], SOAP_NAMESPACE_URI, SOAP_BINDING_LOCAL_NAME);
+            Element soapBinding = DescriptionUtils.getChildElement(bindings[i], SOAP_NAMESPACE_URI, SOAP_BINDING_LOCAL_NAME);
             if (soapBinding == null) {
                 TestUtil.logErr("soap:binding is null unexpected");
                 pass = false;
@@ -681,17 +697,21 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                     TestUtil.logErr(
                             "soap:binding style attribute incorrect, expected: " + SOAP_RPC + ", got: " + style);
                     pass = false;
-                } else TestUtil.logMsg("soap:binding style attribute is correct: " + style);
+                } else
+                    TestUtil.logMsg("soap:binding style attribute is correct: " + style);
                 String transport = soapBinding.getAttribute(SOAP_TRANSPORT_ATTR);
                 if (!transport.equals(SOAP_TRANSPORT)) {
                     TestUtil.logErr("soap:binding transport attribute incorrect, expected: " + SOAP_TRANSPORT
                             + ", got: " + transport);
                     pass = false;
-                } else TestUtil.logMsg("soap:binding transport attribute is correct: " + transport);
+                } else
+                    TestUtil.logMsg("soap:binding transport attribute is correct: " + transport);
             }
         }
-        if (!pass) throw new Fault("VerifySOAPBindingTransportStyleAttributeWithAnnotation failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifySOAPBindingTransportStyleAttributeWithAnnotation failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
@@ -699,8 +719,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
      *
      * @assertion_ids: JAXWS:SPEC:3037; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify the wsdl:service element name is correct in the
-     * generated WSDL. Conformance requirement done: - service naming
+     * @test_Strategy: Verify the wsdl:service element name is correct in the generated WSDL. Conformance requirement done:
+     * - service naming
      *
      *
      */
@@ -710,20 +730,21 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
 
         TestUtil.logMsg("Checking for service name verification of: " + EXPECTED_SERVICE_NAME);
         pass = DescriptionUtils.isServiceNameAttr(client.getDocument(), EXPECTED_SERVICE_NAME);
-        if (!pass) throw new Fault("VerifyServiceNameWithAnnotation failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyServiceNameWithAnnotation failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifyPortTypeNameWithAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
-     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
+     * JAXWS:SPEC:3035; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify the wsdl:portType name is correct in the generated
-     * WSDL. Conformance requirement done: - portType naming
+     * @test_Strategy: Verify the wsdl:portType name is correct in the generated WSDL. Conformance requirement done: -
+     * portType naming
      *
      *
      */
@@ -733,20 +754,21 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
 
         TestUtil.logMsg("Checking for portType name verification of: " + EXPECTED_PORTTYPE_NAME);
         pass = DescriptionUtils.isPortTypeNameAttr(client.getDocument(), EXPECTED_PORTTYPE_NAME);
-        if (!pass) throw new Fault("VerifyPortTypeNameWithAnnotation failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyPortTypeNameWithAnnotation failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifyPortNameWithAnnotation
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3012; JAXWS:SPEC:3019; JAXWS:SPEC:3020; JAXWS:SPEC:3033;
-     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3012; JAXWS:SPEC:3019; JAXWS:SPEC:3020; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
+     * JAXWS:SPEC:3035; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify the wsdl:port name is correct in the generated WSDL.
-     * Conformance requirement done: - port naming
+     * @test_Strategy: Verify the wsdl:port name is correct in the generated WSDL. Conformance requirement done: - port
+     * naming
      *
      *
      */
@@ -756,23 +778,22 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
 
         TestUtil.logMsg("Checking for port name verification of: " + EXPECTED_PORT_NAME);
         pass = DescriptionUtils.isPortNameAttr(client.getDocument(), EXPECTED_PORT_NAME);
-        if (!pass) throw new Fault("VerifyPortNameWithAnnotation failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyPortNameWithAnnotation failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifyOperationNames
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3010; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027;
-     * JAXWS:SPEC:3033; JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:3003;
-     * JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3010; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
+     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:3003; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify wsdl:portType operation names are correct in the
-     * generated WSDL. Verify all public method mapping to wsdl:operation
-     * elements. Conformance requirement done: - Inheritance flattening -
-     * Operation naming - Method name diambiguation
+     * @test_Strategy: Verify wsdl:portType operation names are correct in the generated WSDL. Verify all public method
+     * mapping to wsdl:operation elements. Conformance requirement done: - Inheritance flattening - Operation naming -
+     * Method name diambiguation
      *
      *
      */
@@ -805,24 +826,24 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 pass = false;
             }
         }
-        if (cnt == EXPECTED_OPERATION_NAMES.length) TestUtil.logMsg("All operation names matched expected ...");
+        if (cnt == EXPECTED_OPERATION_NAMES.length)
+            TestUtil.logMsg("All operation names matched expected ...");
 
-        if (!pass) throw new Fault("VerifyOperationNames failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyOperationNames failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifyOneWayAndTwoWayOperations
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3011; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027;
-     * JAXWS:SPEC:3033; JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:3014;
-     * JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3011; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
+     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:3014; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify operations are correctly identifed as OneWay or
-     * TwoWay. Conformance requirement done: - One-way mapping - Two-way mapping -
-     * Two-way mapping with faults - Method and parameters where expected in both
+     * @test_Strategy: Verify operations are correctly identifed as OneWay or TwoWay. Conformance requirement done: -
+     * One-way mapping - Two-way mapping - Two-way mapping with faults - Method and parameters where expected in both
      * wsdl:portType and wsdl:binding
      *
      *
@@ -832,21 +853,22 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         boolean pass = true;
 
         TestUtil.logMsg("Checking for operation names for portType: " + EXPECTED_PORTTYPE_NAME);
-        Element operations[] =
-                DescriptionUtils.getPortTypeOperationNameElements(client.getDocument(), EXPECTED_PORTTYPE_NAME);
+        Element operations[] = DescriptionUtils.getPortTypeOperationNameElements(client.getDocument(), EXPECTED_PORTTYPE_NAME);
         for (int i = 0; i < operations.length; i++) {
             String name = operations[i].getAttribute(WSDL_NAME_ATTR);
             Element e = DescriptionUtils.getBindingOperationNameElement(client.getDocument(), name);
             if (name.equals(ONEWAY_METHOD) || name.equals(ONEWAY_METHOD_PARAMS)) {
                 TestUtil.logMsg("Checking for one way operation for operation: " + name);
                 TestUtil.logMsg("verify in portType operation ...");
-                if (DescriptionUtils.isOneWay(operations[i])) TestUtil.logMsg("is One way");
+                if (DescriptionUtils.isOneWay(operations[i]))
+                    TestUtil.logMsg("is One way");
                 else {
                     TestUtil.logErr("is not One way");
                     pass = false;
                 }
                 TestUtil.logMsg("verify in binding operation ...");
-                if (DescriptionUtils.isOneWay(e)) TestUtil.logMsg("is One way");
+                if (DescriptionUtils.isOneWay(e))
+                    TestUtil.logMsg("is One way");
                 else {
                     TestUtil.logErr("is not One way");
                     pass = false;
@@ -854,13 +876,15 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             } else {
                 TestUtil.logMsg("Checking for two way operation for operation: " + name);
                 TestUtil.logMsg("verify in portType operation ...");
-                if (DescriptionUtils.isTwoWay(operations[i])) TestUtil.logMsg("is Two way");
+                if (DescriptionUtils.isTwoWay(operations[i]))
+                    TestUtil.logMsg("is Two way");
                 else {
                     TestUtil.logErr("is not Two way");
                     pass = false;
                 }
                 TestUtil.logMsg("verify in binding operation ...");
-                if (DescriptionUtils.isTwoWay(e)) TestUtil.logMsg("is Two way");
+                if (DescriptionUtils.isTwoWay(e))
+                    TestUtil.logMsg("is Two way");
                 else {
                     TestUtil.logErr("is not Two way");
                     pass = false;
@@ -870,7 +894,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                     TestUtil.logMsg("Expected faults are: " + FAULT + "," + HEADERFAULT);
                     TestUtil.logMsg("verify in portType operation ...");
                     if (DescriptionUtils.hasFault(operations[i], FAULT)
-                            && DescriptionUtils.hasFault(operations[i], HEADERFAULT)) TestUtil.logMsg("fault match");
+                            && DescriptionUtils.hasFault(operations[i], HEADERFAULT))
+                        TestUtil.logMsg("fault match");
                     else {
                         TestUtil.logErr("fault mismatch, did not get expected faults: " + FAULT + "," + HEADERFAULT);
                         pass = false;
@@ -885,21 +910,21 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 }
             }
         }
-        if (!pass) throw new Fault("VerifyOneWayAndTwoWayOperations failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyOneWayAndTwoWayOperations failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifyParameterAndResultNaming
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
-     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:3017; JAXWS:SPEC:3018;
-     * JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
+     * JAXWS:SPEC:3035; JAXWS:SPEC:3017; JAXWS:SPEC:3018; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify use of annotations to name parameters and results.
-     * Conformance requirement done: - Parameter naming - Result naming
+     * @test_Strategy: Verify use of annotations to name parameters and results. Conformance requirement done: - Parameter
+     * naming - Result naming
      *
      *
      */
@@ -938,22 +963,22 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             pass = false;
         }
 
-        if (!pass) throw new Fault("VerifyParameterAndResultNaming failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyParameterAndResultNaming failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifyWsdlMessagePartAndAttrStyle
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
-     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
+     * JAXWS:SPEC:3035; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify each message has zero or more wsdl:part child
-     * elements that refer via a type attribute to a named type declaration.
-     * Conformance requirement done: - Zero or more wsdl:part child elements with
-     * type attribute, one per method parameter and for a non-void return value.
+     * @test_Strategy: Verify each message has zero or more wsdl:part child elements that refer via a type attribute to a
+     * named type declaration. Conformance requirement done: - Zero or more wsdl:part child elements with type attribute,
+     * one per method parameter and for a non-void return value.
      *
      */
     public void VerifyWsdlMessagePartAndAttrStyle() throws Fault {
@@ -964,26 +989,29 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 + EXPECTED_PORTTYPE_NAME);
         String imessages[] = DescriptionUtils.getInputMessageNames(client.getDocument(), EXPECTED_PORTTYPE_NAME);
         Arrays.sort(imessages);
-        for (int i = 0; i < imessages.length; i++) TestUtil.logMsg("input message: " + imessages[i]);
+        for (int i = 0; i < imessages.length; i++)
+            TestUtil.logMsg("input message: " + imessages[i]);
         String omessages[] = DescriptionUtils.getOutputMessageNames(client.getDocument(), EXPECTED_PORTTYPE_NAME);
         Arrays.sort(omessages);
-        for (int i = 0; i < omessages.length; i++) TestUtil.logMsg("output message: " + omessages[i]);
+        for (int i = 0; i < omessages.length; i++)
+            TestUtil.logMsg("output message: " + omessages[i]);
 
         // Header parts are not checked but filtered out
         String headerParts[] = DescriptionUtils.getSoapHeaderElementsPartAttr(client.getDocument());
-        for (int i = 0; i < headerParts.length; i++) TestUtil.logMsg("part=" + headerParts[i]);
+        for (int i = 0; i < headerParts.length; i++)
+            TestUtil.logMsg("part=" + headerParts[i]);
 
         Element messages[] = DescriptionUtils.getMessages(client.getDocument());
         for (int i = 0; i < messages.length; i++) {
             String messageName = messages[i].getAttribute(WSDL_NAME_ATTR);
             TestUtil.logMsg("Checking message: " + messageName);
             if (Arrays.binarySearch(imessages, messageName) >= 0 || Arrays.binarySearch(omessages, messageName) >= 0) {
-                Element[] parts =
-                        DescriptionUtils.getChildElements(messages[i], WSDL_NAMESPACE_URI, WSDL_PART_LOCAL_NAME);
+                Element[] parts = DescriptionUtils.getChildElements(messages[i], WSDL_NAMESPACE_URI, WSDL_PART_LOCAL_NAME);
                 if (parts.length == 0) {
                     TestUtil.logMsg("    no parts exist for message " + messageName);
                     continue;
-                } else TestUtil.logMsg("    check that type attribute exists for all its message parts ...");
+                } else
+                    TestUtil.logMsg("    check that type attribute exists for all its message parts ...");
                 int partCnt = 0;
                 for (int j = 0; j < parts.length; j++) {
                     String part = parts[j].getAttribute(WSDL_NAME_ATTR);
@@ -996,9 +1024,11 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                             isHeader = true;
                             TestUtil.logMsg("    skipping, this part is a header");
                             break;
-                        } else partCnt++;
+                        } else
+                            partCnt++;
                     }
-                    if (isHeader) continue; // Skip header parts
+                    if (isHeader)
+                        continue; // Skip header parts
                     if (type == null || type.equals("")) {
                         TestUtil.logErr("    no type attribute for this part");
                         pass = false;
@@ -1021,23 +1051,24 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                                 + partCnt);
                     }
                 }
-            } else TestUtil.logMsg("Skipping message parts checking ...");
+            } else
+                TestUtil.logMsg("Skipping message parts checking ...");
         }
 
-        if (!pass) throw new Fault("VerifyWsdlMessagePartAndAttrStyle failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyWsdlMessagePartAndAttrStyle failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifySchemaNamespacesImportsElementsTypes
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
-     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033; JAXWS:SPEC:3034;
+     * JAXWS:SPEC:3035; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify schema namespaces, schema imports, schema elements,
-     * schema types.
+     * @test_Strategy: Verify schema namespaces, schema imports, schema elements, schema types.
      *
      */
     public void VerifySchemaNamespacesImportsElementsTypes() throws Fault {
@@ -1045,17 +1076,18 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         boolean pass = true;
 
         pass = ProcessWsdlDocument(client.getDocument());
-        if (!pass) throw new Fault("VerifySchemaNamespacesImportsElementsTypes failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifySchemaNamespacesImportsElementsTypes failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifyParameterClassificationForHolders
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3013; JAXWS:SPEC:3016; JAXWS:SPEC:3019; JAXWS:SPEC:3027;
-     * JAXWS:SPEC:3033; JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3013; JAXWS:SPEC:3016; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
+     * JAXWS:SPEC:3034; JAXWS:SPEC:3035; JAXWS:SPEC:7013;
      *
      * @test_Strategy: Verify correct classification for holder parameters
      *
@@ -1071,33 +1103,30 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         Element holderMethodDefault = DescriptionUtils.getPortTypeOperationNameElement(
                 document, EXPECTED_PORTTYPE_NAME, "holderMethodDefault");
 
-        Element holderMethodInOut =
-                DescriptionUtils.getPortTypeOperationNameElement(document, EXPECTED_PORTTYPE_NAME, "holderMethodInOut");
+        Element holderMethodInOut = DescriptionUtils.getPortTypeOperationNameElement(document, EXPECTED_PORTTYPE_NAME, "holderMethodInOut");
 
-        Element holderMethodOut =
-                DescriptionUtils.getPortTypeOperationNameElement(document, EXPECTED_PORTTYPE_NAME, "holderMethodOut");
+        Element holderMethodOut = DescriptionUtils.getPortTypeOperationNameElement(document, EXPECTED_PORTTYPE_NAME, "holderMethodOut");
 
         pass = verifyClassification(document, holderMethodDefault, "", PARAM_INOUT)
                 && verifyClassification(document, holderMethodInOut, "varStringInOut", PARAM_INOUT)
                 && verifyClassification(document, holderMethodOut, "varStringOut", PARAM_OUT);
 
-        if (!pass) throw new Fault("VerifyParameterClassificationForHolders failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyParameterClassificationForHolders failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: VerifyInputOutputReturnAndFaultTypeElementMappings
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002;
-     * JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007; JAXWS:SPEC:3008;
-     * JAXWS:SPEC:3035; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027;
-     * JAXWS:SPEC:3033; JAXWS:SPEC:3034; JAXWS:SPEC:3058; JAXWS:SPEC:3028;
-     * JAXWS:SPEC:3029; JAXWS:SPEC:3030; JAXWS:SPEC:7013;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3001; JAXWS:SPEC:3002; JAXWS:SPEC:3004; JAXWS:SPEC:3005; JAXWS:SPEC:3007;
+     * JAXWS:SPEC:3008; JAXWS:SPEC:3035; JAXWS:SPEC:3013; JAXWS:SPEC:3019; JAXWS:SPEC:3027; JAXWS:SPEC:3033;
+     * JAXWS:SPEC:3034; JAXWS:SPEC:3058; JAXWS:SPEC:3028; JAXWS:SPEC:3029; JAXWS:SPEC:3030; JAXWS:SPEC:7013;
      *
-     * @test_Strategy: Verify that the Java types for all in, out, in/out
-     * parameter's and return value's are mapped to named XML Schema types using
-     * the mapping defined in JAXB. Conformance requirement done: - Each method
-     * parameter and return type is mapped to a valid XML schema type
+     * @test_Strategy: Verify that the Java types for all in, out, in/out parameter's and return value's are mapped to named
+     * XML Schema types using the mapping defined in JAXB. Conformance requirement done: - Each method parameter and return
+     * type is mapped to a valid XML schema type
      *
      *
      */
@@ -1106,15 +1135,12 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         boolean pass = true;
 
         TestUtil.logMsg("Get all operation elements for portType: " + EXPECTED_PORTTYPE_NAME);
-        Element operations[] =
-                DescriptionUtils.getPortTypeOperationNameElements(client.getDocument(), EXPECTED_PORTTYPE_NAME);
+        Element operations[] = DescriptionUtils.getPortTypeOperationNameElements(client.getDocument(), EXPECTED_PORTTYPE_NAME);
         for (int i = 0; i < operations.length; i++) {
             String opname = operations[i].getAttribute(WSDL_NAME_ATTR);
             Element input = DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_INPUT_LOCAL_NAME);
-            Element output =
-                    DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_OUTPUT_LOCAL_NAME);
-            Element fault[] =
-                    DescriptionUtils.getChildElements(operations[i], WSDL_NAMESPACE_URI, WSDL_FAULT_LOCAL_NAME);
+            Element output = DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_OUTPUT_LOCAL_NAME);
+            Element fault[] = DescriptionUtils.getChildElements(operations[i], WSDL_NAMESPACE_URI, WSDL_FAULT_LOCAL_NAME);
             String imsg = null;
             String omsg = null;
             String fmsg[] = null;
@@ -1138,15 +1164,19 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                     String str2 = str1.substring(str1.indexOf(":") + 1);
                     alist2.add(str2);
                 }
-                if (alist1.size() > 0) fmsg = (String[]) alist1.toArray(new String[alist1.size()]);
-                if (alist2.size() > 0) fmsgstr = (String[]) alist2.toArray(new String[alist2.size()]);
+                if (alist1.size() > 0)
+                    fmsg = (String[]) alist1.toArray(new String[alist1.size()]);
+                if (alist2.size() > 0)
+                    fmsgstr = (String[]) alist2.toArray(new String[alist2.size()]);
             }
             TestUtil.logMsg("operation name is " + opname);
             TestUtil.logMsg("input message name is " + imsgstr);
             TestUtil.logMsg("output message name is " + omsgstr);
-            if (fmsgstr == null) TestUtil.logMsg("fault message name is null");
+            if (fmsgstr == null)
+                TestUtil.logMsg("fault message name is null");
             else {
-                for (int k = 0; k < fmsgstr.length; k++) TestUtil.logMsg("fault message name is " + fmsgstr[k]);
+                for (int k = 0; k < fmsgstr.length; k++)
+                    TestUtil.logMsg("fault message name is " + fmsgstr[k]);
             }
             Element[] iparts = null;
             Element[] oparts = null;
@@ -1163,30 +1193,32 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 for (int k = 0; k < fmsgstr.length; k++) {
                     parts = DescriptionUtils.getPartElements(client.getDocument(), fmsgstr[k]);
                     if (parts != null) {
-                        for (int l = 0; l < parts.length; l++) alist.add(parts[l]);
+                        for (int l = 0; l < parts.length; l++)
+                            alist.add(parts[l]);
                     }
                 }
-                if (alist.size() > 0) fparts = (Element[]) alist.toArray(new Element[alist.size()]);
+                if (alist.size() > 0)
+                    fparts = (Element[]) alist.toArray(new Element[alist.size()]);
             }
-            if (!VerifyTypeElementMappings(iparts, oparts, fparts, opname)) pass = false;
+            if (!VerifyTypeElementMappings(iparts, oparts, fparts, opname))
+                pass = false;
         }
-        if (!pass) throw new Fault("VerifyInputOutputReturnAndFaultTypeElementMappings failed");
-        else TestUtil.logMsg("Verification passed");
+        if (!pass)
+            throw new Fault("VerifyInputOutputReturnAndFaultTypeElementMappings failed");
+        else
+            TestUtil.logMsg("Verification passed");
     }
 
     /*
      * @testName: ActionFaultActionAndAddressingAnnotationsTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:130; JAXWS:JAVADOC:131; JAXWS:JAVADOC:132;
-     * JAXWS:JAVADOC:144; JAXWS:SPEC:3043; JAXWS:SPEC:3044; JAXWS:SPEC:3045;
-     * JAXWS:SPEC:3049; JAXWS:SPEC:3050; JAXWS:SPEC:3051; JAXWS:SPEC:3055;
+     * @assertion_ids: JAXWS:JAVADOC:130; JAXWS:JAVADOC:131; JAXWS:JAVADOC:132; JAXWS:JAVADOC:144; JAXWS:SPEC:3043;
+     * JAXWS:SPEC:3044; JAXWS:SPEC:3045; JAXWS:SPEC:3049; JAXWS:SPEC:3050; JAXWS:SPEC:3051; JAXWS:SPEC:3055;
      * JAXWS:SPEC:3059;
      *
-     * @test_Strategy: Generate classes from a wsdl and verify existence of
-     * annotations. Verify wsam:Addressing extension element is generated for
-     * Addressing(enabled=true). Verify that wsp:Optional element is not generated
-     * for Addressing(required=true). Verify the Action and FaultAction
-     * annotations are correct in the generated WSDL.
+     * @test_Strategy: Generate classes from a wsdl and verify existence of annotations. Verify wsam:Addressing extension
+     * element is generated for Addressing(enabled=true). Verify that wsp:Optional element is not generated for
+     * Addressing(required=true). Verify the Action and FaultAction annotations are correct in the generated WSDL.
      */
     public void ActionFaultActionAndAddressingAnnotationsTest() throws Fault {
         TestUtil.logTrace("ActionFaultActionAndAddressingAnnotationsTest");
@@ -1205,7 +1237,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             TestUtil.logMsg("VerifyActionFaultAction - PASSED");
         }
 
-        if (!pass) throw new Fault("ActionFaultActionAndAddressingAnnotationsTest failed");
+        if (!pass)
+            throw new Fault("ActionFaultActionAndAddressingAnnotationsTest failed");
     }
 
     /*
@@ -1213,10 +1246,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
      *
      * @assertion_ids: JAXWS:SPEC:3048;
      *
-     * @test_Strategy: Generate wsdl from classes and verify wsam:Addressing
-     * Extension element is not generated for Addressing(enabled=false) annotation
-     * on 3Impl.java Verify the Addressing annotation is correct in the generated
-     * WSDL.
+     * @test_Strategy: Generate wsdl from classes and verify wsam:Addressing Extension element is not generated for
+     * Addressing(enabled=false) annotation on 3Impl.java Verify the Addressing annotation is correct in the generated WSDL.
      */
     public void AddressingNotEnabledAnnotationTest() throws Fault {
         TestUtil.logTrace("AddressingNotEnabledAnnotationTest");
@@ -1236,14 +1267,11 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
     /*
      * @testName: VerifyAnonymousResponsesAddressingElementTest
      *
-     * @assertion_ids: JAXWS:SPEC:3047; JAXWS:SPEC:3059; JAXWS:JAVADOC:228;
-     * JAXWS:SPEC:3055;
+     * @assertion_ids: JAXWS:SPEC:3047; JAXWS:SPEC:3059; JAXWS:JAVADOC:228; JAXWS:SPEC:3055;
      *
-     * @test_Strategy: Generate wsdl from classes and verify
-     * wsam:AnonymousResponses element is generated for
-     * Addressing(enabled=true,required=true,responses=
-     * AddressingFeature.ANONYMOUS). Verify the Addressing annotation is correct
-     * in the generated WSDL.
+     * @test_Strategy: Generate wsdl from classes and verify wsam:AnonymousResponses element is generated for
+     * Addressing(enabled=true,required=true,responses= AddressingFeature.ANONYMOUS). Verify the Addressing annotation is
+     * correct in the generated WSDL.
      */
     public void VerifyAnonymousResponsesAddressingElementTest() throws Fault {
         TestUtil.logTrace("VerifyAnonymousResponsesAddressingElementTest");
@@ -1265,14 +1293,11 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
     /*
      * @testName: VerifyNonAnonymousResponsesAddressingElementTest
      *
-     * @assertion_ids: JAXWS:SPEC:3047; JAXWS:SPEC:3059; JAXWS:JAVADOC:228;
-     * JAXWS:SPEC:3055;
+     * @assertion_ids: JAXWS:SPEC:3047; JAXWS:SPEC:3059; JAXWS:JAVADOC:228; JAXWS:SPEC:3055;
      *
-     * @test_Strategy: Generate wsdl from classes and verify
-     * wsam:NonAnonymousResponses element is generated for
-     * Addressing(enabled=true,required=true,responses=
-     * AddressingFeature.NON_ANONYMOUS). Verify the Addressing annotation is
-     * correct in the generated WSDL.
+     * @test_Strategy: Generate wsdl from classes and verify wsam:NonAnonymousResponses element is generated for
+     * Addressing(enabled=true,required=true,responses= AddressingFeature.NON_ANONYMOUS). Verify the Addressing annotation
+     * is correct in the generated WSDL.
      */
     public void VerifyNonAnonymousResponsesAddressingElementTest() throws Fault {
         TestUtil.logTrace("VerifyNonAnonymousResponsesAddressingElementTest");
@@ -1294,14 +1319,11 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
     /*
      * @testName: VerifyAllResponsesAddressingElementsTest
      *
-     * @assertion_ids: JAXWS:SPEC:3047; JAXWS:SPEC:3059; JAXWS:JAVADOC:228;
-     * JAXWS:SPEC:3055;
+     * @assertion_ids: JAXWS:SPEC:3047; JAXWS:SPEC:3059; JAXWS:JAVADOC:228; JAXWS:SPEC:3055;
      *
-     * @test_Strategy: Generate wsdl from classes and verify
-     * wsam:AnonymousResponses and wsam:NonAnonymousResponses elements are
-     * generated for Addressing(
-     * enabled=true,required=true,responses=AddressingFeature.ALL). Verify the
-     * Addressing annotation is correct in the generated WSDL.
+     * @test_Strategy: Generate wsdl from classes and verify wsam:AnonymousResponses and wsam:NonAnonymousResponses elements
+     * are generated for Addressing( enabled=true,required=true,responses=AddressingFeature.ALL). Verify the Addressing
+     * annotation is correct in the generated WSDL.
      */
     public void VerifyAllResponsesAddressingElementsTest() throws Fault {
         TestUtil.logTrace("VerifyAllResponsesAddressingElementsTest");
@@ -1310,9 +1332,11 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         boolean hasNonAnonymousResponsesElement = false;
 
         testName = "VerifyAllResponsesAddressingElementsTest";
-        if (VerifyBindingHasAnonymousResponses()) hasAnonymousResponsesElement = true;
+        if (VerifyBindingHasAnonymousResponses())
+            hasAnonymousResponsesElement = true;
 
-        if (VerifyBindingHasNonAnonymousResponses()) hasNonAnonymousResponsesElement = true;
+        if (VerifyBindingHasNonAnonymousResponses())
+            hasNonAnonymousResponsesElement = true;
 
         if (hasAnonymousResponsesElement && hasNonAnonymousResponsesElement)
             TestUtil.logMsg("VerifyAllResponsesAddressingElementsTest - PASSED");
@@ -1336,8 +1360,7 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
         Element[] bindings = DescriptionUtils.getBindings(client2.getDocument());
         TestUtil.logMsg("Find wsam:Addressing policys via [wsp:Policy] or [wsp:PolicyReference] tags");
         NodeList policyrefs = bindings[0].getElementsByTagNameNS(WSP_NAMESPACE_URI, WSP_POLICYREFERENCE_LOCAL_NAME);
-        Element[] policys =
-                DescriptionUtils.getChildElements(client2.getDocument(), WSP_NAMESPACE_URI, WSP_POLICY_LOCAL_NAME);
+        Element[] policys = DescriptionUtils.getChildElements(client2.getDocument(), WSP_NAMESPACE_URI, WSP_POLICY_LOCAL_NAME);
         Element[] bpolicys = DescriptionUtils.getChildElements(bindings[0], WSP_NAMESPACE_URI, WSP_POLICY_LOCAL_NAME);
         if (policyrefs.getLength() == 0 && policys.length == 0 && bpolicys.length == 0) {
             TestUtil.logErr("No wsam:Addressing policy element was found on binding");
@@ -1353,12 +1376,12 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                     Node node = map.item(k);
                     String nodeValue = "#" + node.getNodeValue();
                     if (uri.equals(nodeValue)) {
-                        NodeList list =
-                                policys[j].getElementsByTagNameNS(WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
+                        NodeList list = policys[j].getElementsByTagNameNS(WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
                         Element addressing = (Element) list.item(0);
                         if (addressing != null) {
                             TestUtil.logMsg("Found wsa:Addressing policy element");
-                            if (debug) XMLUtils.xmlDumpDOMNodes(addressing);
+                            if (debug)
+                                XMLUtils.xmlDumpDOMNodes(addressing);
                             pass = true;
                             NamedNodeMap map2 = addressing.getAttributes();
                             for (int m = 0; m < map2.getLength(); m++) {
@@ -1376,19 +1399,20 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                         }
                     }
                 }
-                if (!pass) break;
+                if (!pass)
+                    break;
             }
         }
         if (!pass) {
             TestUtil.logMsg("Search for wsa:Addressing policy element via explicit wsp:Policy tag on binding");
-            Element addressing =
-                    DescriptionUtils.getChildElement(bindings[0], WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
+            Element addressing = DescriptionUtils.getChildElement(bindings[0], WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
             if (addressing == null) {
                 TestUtil.logErr("No wsam:Addressing policy element was found on binding");
                 pass = false;
             } else {
                 TestUtil.logMsg("Found wsa:Addressing policy element");
-                if (debug) XMLUtils.xmlDumpDOMNodes(addressing);
+                if (debug)
+                    XMLUtils.xmlDumpDOMNodes(addressing);
                 pass = true;
                 NamedNodeMap map2 = addressing.getAttributes();
                 for (int m = 0; m < map2.getLength(); m++) {
@@ -1425,20 +1449,18 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             bindings = DescriptionUtils.getBindings(client4.getDocument());
         else if (testName.equals("VerifyNonAnonymousResponsesAddressingElementTest"))
             bindings = DescriptionUtils.getBindings(client5.getDocument());
-        else bindings = DescriptionUtils.getBindings(client6.getDocument());
+        else
+            bindings = DescriptionUtils.getBindings(client6.getDocument());
         TestUtil.logMsg("Find wsam:Addressing policys via [wsp:Policy] or [wsp:PolicyReference] tags");
         NodeList policyrefs = bindings[0].getElementsByTagNameNS(WSP_NAMESPACE_URI, WSP_POLICYREFERENCE_LOCAL_NAME);
         Element[] bpolicys = DescriptionUtils.getChildElements(bindings[0], WSP_NAMESPACE_URI, WSP_POLICY_LOCAL_NAME);
         Element[] policys;
         if (testName.equals("VerifyAnonymousResponsesAddressingElementTest"))
-            policys =
-                    DescriptionUtils.getChildElements(client4.getDocument(), WSP_NAMESPACE_URI, WSP_POLICY_LOCAL_NAME);
+            policys = DescriptionUtils.getChildElements(client4.getDocument(), WSP_NAMESPACE_URI, WSP_POLICY_LOCAL_NAME);
         else if (testName.equals("VerifyNonAnonymousResponsesAddressingElementTest"))
-            policys =
-                    DescriptionUtils.getChildElements(client5.getDocument(), WSP_NAMESPACE_URI, WSP_POLICY_LOCAL_NAME);
+            policys = DescriptionUtils.getChildElements(client5.getDocument(), WSP_NAMESPACE_URI, WSP_POLICY_LOCAL_NAME);
         else
-            policys =
-                    DescriptionUtils.getChildElements(client6.getDocument(), WSP_NAMESPACE_URI, WSP_POLICY_LOCAL_NAME);
+            policys = DescriptionUtils.getChildElements(client6.getDocument(), WSP_NAMESPACE_URI, WSP_POLICY_LOCAL_NAME);
         if (policyrefs.getLength() == 0 && policys.length == 0 && bpolicys.length == 0) {
             TestUtil.logErr("No wsam:Addressing policy element was found on binding");
             return false;
@@ -1455,12 +1477,12 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                     node = map.item(k);
                     nodeValue = "#" + node.getNodeValue();
                     if (uri.equals(nodeValue)) {
-                        NodeList list =
-                                policys[j].getElementsByTagNameNS(WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
+                        NodeList list = policys[j].getElementsByTagNameNS(WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
                         Element addressing = (Element) list.item(0);
                         if (addressing != null) {
                             TestUtil.logMsg("Found wsa:Addressing policy element");
-                            if (debug) XMLUtils.xmlDumpDOMNodes(addressing);
+                            if (debug)
+                                XMLUtils.xmlDumpDOMNodes(addressing);
                             NamedNodeMap map2 = addressing.getAttributes();
                             Node node2;
                             for (int m = 0; m < map2.getLength(); m++) {
@@ -1480,7 +1502,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                                 if (anonymousOrNonanonymous != null) {
                                     if (responseType.equals(WSAM_ANONYMOUS_RESPONSES_LOCAL_NAME))
                                         TestUtil.logMsg("Found wsa:Anonymous policy element");
-                                    else TestUtil.logMsg("Found wsa:NonAnonymous policy element");
+                                    else
+                                        TestUtil.logMsg("Found wsa:NonAnonymous policy element");
                                     pass = true;
                                     map2 = anonymousOrNonanonymous.getAttributes();
                                     for (int m = 0; m < map2.getLength(); m++) {
@@ -1495,24 +1518,26 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                                             break;
                                         }
                                     }
-                                } else if (testName.equals("VerifyAllResponsesAddressingElementsTest")) pass = true;
+                                } else if (testName.equals("VerifyAllResponsesAddressingElementsTest"))
+                                    pass = true;
                             }
                         }
                     }
                 }
-                if (!pass) break;
+                if (!pass)
+                    break;
             }
         }
         if (!pass) {
             TestUtil.logMsg("Search for wsa:Addressing policy element via explicit wsp:Policy tag on binding");
-            Element addressing =
-                    DescriptionUtils.getChildElement(bindings[0], WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
+            Element addressing = DescriptionUtils.getChildElement(bindings[0], WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
             if (addressing == null) {
                 TestUtil.logErr("No wsam:Addressing policy element was found on binding");
                 pass = false;
             } else {
                 TestUtil.logMsg("Found wsa:Addressing policy element");
-                if (debug) XMLUtils.xmlDumpDOMNodes(addressing);
+                if (debug)
+                    XMLUtils.xmlDumpDOMNodes(addressing);
                 NamedNodeMap map2 = addressing.getAttributes();
                 Node node2;
                 for (int m = 0; m < map2.getLength(); m++) {
@@ -1538,7 +1563,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                 if (anonymousOrNonanonymous != null) {
                     if (responseType.equals(WSAM_ANONYMOUS_RESPONSES_LOCAL_NAME))
                         TestUtil.logMsg("Found wsa:Anonymous policy element");
-                    else TestUtil.logMsg("Found wsa:NonAnonymous policy element");
+                    else
+                        TestUtil.logMsg("Found wsa:NonAnonymous policy element");
                     pass = true;
                     TestUtil.logMsg("See if wsp:Optional attribute exists");
                     NamedNodeMap map2 = anonymousOrNonanonymous.getAttributes();
@@ -1554,7 +1580,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                             break;
                         }
                     }
-                } else if (testName.equals("VerifyAllResponsesAddressingElementsTest")) pass = true;
+                } else if (testName.equals("VerifyAllResponsesAddressingElementsTest"))
+                    pass = true;
             }
         }
         return pass;
@@ -1580,10 +1607,10 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                     Node node = map.item(k);
                     String nodeValue = "#" + node.getNodeValue();
                     if (uri.equals(nodeValue)) {
-                        NodeList list =
-                                policys[j].getElementsByTagNameNS(WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
+                        NodeList list = policys[j].getElementsByTagNameNS(WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
                         Element addressing = (Element) list.item(0);
-                        if (addressing == null) pass = true;
+                        if (addressing == null)
+                            pass = true;
                         else {
                             TestUtil.logErr("wsam:Addressing Extension Element exists on binding");
                             pass = false;
@@ -1591,13 +1618,14 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
                         }
                     }
                 }
-                if (!pass) break;
+                if (!pass)
+                    break;
             }
         }
         if (!pass) {
-            Element addressing =
-                    DescriptionUtils.getChildElement(bindings[0], WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
-            if (addressing == null) pass = true;
+            Element addressing = DescriptionUtils.getChildElement(bindings[0], WSAM_NAMESPACE_URI, WSAM_ADDRESSING_LOCAL_NAME);
+            if (addressing == null)
+                pass = true;
             else {
                 TestUtil.logErr("wsam:Addressing Extension Element must not exist on binding");
                 pass = false;
@@ -1619,15 +1647,17 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             TestUtil.logMsg("Operation-> " + name);
 
             Element input = DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_INPUT_LOCAL_NAME);
-            Element output =
-                    DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_OUTPUT_LOCAL_NAME);
+            Element output = DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_OUTPUT_LOCAL_NAME);
             Element fault = DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_FAULT_LOCAL_NAME);
 
             String iaction = "", oaction = "", faction = "";
 
-            if (input != null) iaction = input.getAttributeNS(WSAM_NAMESPACE_URI, WSAM_ACTION_LOCAL_NAME);
-            if (output != null) oaction = output.getAttributeNS(WSAM_NAMESPACE_URI, WSAM_ACTION_LOCAL_NAME);
-            if (fault != null) faction = fault.getAttributeNS(WSAM_NAMESPACE_URI, WSAM_ACTION_LOCAL_NAME);
+            if (input != null)
+                iaction = input.getAttributeNS(WSAM_NAMESPACE_URI, WSAM_ACTION_LOCAL_NAME);
+            if (output != null)
+                oaction = output.getAttributeNS(WSAM_NAMESPACE_URI, WSAM_ACTION_LOCAL_NAME);
+            if (fault != null)
+                faction = fault.getAttributeNS(WSAM_NAMESPACE_URI, WSAM_ACTION_LOCAL_NAME);
 
             TestUtil.logMsg("iaction=" + iaction);
             TestUtil.logMsg("oaction=" + oaction);
@@ -1636,7 +1666,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             if (name.equals("address1")) {
                 if (iaction.equals("input1")
                         && oaction.equals("http://rpclitservice.org/wsdl/AddressingEndpoint/address1Response")
-                        && faction.equals("")) TestUtil.logMsg("verification PASSED for " + name);
+                        && faction.equals(""))
+                    TestUtil.logMsg("verification PASSED for " + name);
                 else {
                     TestUtil.logErr("verification FAILED for " + name);
                     pass = false;
@@ -1644,7 +1675,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             } else if (name.equals("address2")) {
                 if (iaction.equals("http://rpclitservice.org/wsdl/AddressingEndpoint/address2Request")
                         && oaction.equals("output2")
-                        && faction.equals("")) TestUtil.logMsg("verification PASSED for " + name);
+                        && faction.equals(""))
+                    TestUtil.logMsg("verification PASSED for " + name);
                 else {
                     TestUtil.logErr("verification FAILED for " + name);
                     pass = false;
@@ -1653,7 +1685,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             } else if (name.equals("address3")) {
                 if (iaction.equals("http://rpclitservice.org/wsdl/AddressingEndpoint/address3Request")
                         && oaction.equals("http://rpclitservice.org/wsdl/AddressingEndpoint/address3Response")
-                        && faction.equals("fault1")) TestUtil.logMsg("verification PASSED for " + name);
+                        && faction.equals("fault1"))
+                    TestUtil.logMsg("verification PASSED for " + name);
                 else {
                     TestUtil.logErr("verification FAILED for " + name);
                     pass = false;
@@ -1662,7 +1695,8 @@ public class Client extends ServiceEETest implements DescriptionConstants, SOAPC
             } else if (name.equals("address4")) {
                 if (iaction.equals("http://rpclitservice.org/wsdl/AddressingEndpoint/address4Request")
                         && oaction.equals("output4")
-                        && faction.equals("fault1")) TestUtil.logMsg("verification PASSED for " + name);
+                        && faction.equals("fault1"))
+                    TestUtil.logMsg("verification PASSED for " + name);
                 else {
                     TestUtil.logErr("verification FAILED for " + name);
                     pass = false;

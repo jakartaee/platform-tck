@@ -69,8 +69,7 @@ public class ClosedTopicSubscriberTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -112,11 +111,9 @@ public class ClosedTopicSubscriberTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /**
-     * Used by tests that need a closed subscriber for testing. Passes any
-     * exceptions up to caller.
+     * Used by tests that need a closed subscriber for testing. Passes any exceptions up to caller.
      *
-     * @param int
-     *          The type of session that needs to be created and closed
+     * @param int The type of session that needs to be created and closed
      */
     private void createAndCloseSubscriber() throws Exception {
         tool = new JmsTool(JmsTool.TOPIC, jmsUser, jmsPassword, mode);
@@ -130,8 +127,8 @@ public class ClosedTopicSubscriberTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -172,8 +169,7 @@ public class ClosedTopicSubscriberTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:326;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicSubscriberGetMessageSelectorTest() throws Fault {
@@ -206,8 +202,7 @@ public class ClosedTopicSubscriberTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:332;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicSubscriberReceiveTest() throws Fault {
@@ -240,8 +235,7 @@ public class ClosedTopicSubscriberTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicSubscriberReceiveTimeoutTest() throws Fault {
@@ -274,8 +268,7 @@ public class ClosedTopicSubscriberTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:336;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicSubscriberReceiveNoWaitTest() throws Fault {
@@ -308,8 +301,7 @@ public class ClosedTopicSubscriberTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:79;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
     public void closedTopicSubscriberGetNoLocalTest() throws Fault {
         boolean passed = false;
@@ -341,8 +333,7 @@ public class ClosedTopicSubscriberTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:77;
      *
-     * @test_Strategy: Close default subscriber and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default subscriber and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicSubscriberGetTopicTest() throws Fault {

@@ -42,16 +42,16 @@ public class WSDirectLongPathParamServer {
     public String param(@PathParam("param1") Long p1, String content) throws IOException {
         OPS op = OPS.valueOf(content);
         switch (op) {
-            case OPEN:
-                content = p;
-                break;
-            case MESSAGE:
-                content = p1.toString();
-                break;
-            case IOEXCEPTION:
-                throw new IOException(ERR);
-            case RUNTIMEEXCEPTION:
-                throw new RuntimeException(ERR);
+        case OPEN:
+            content = p;
+            break;
+        case MESSAGE:
+            content = p1.toString();
+            break;
+        case IOEXCEPTION:
+            throw new IOException(ERR);
+        case RUNTIMEEXCEPTION:
+            throw new RuntimeException(ERR);
         }
         return content;
     }

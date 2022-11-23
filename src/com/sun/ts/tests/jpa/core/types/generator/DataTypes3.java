@@ -33,7 +33,8 @@ public class DataTypes3 implements java.io.Serializable {
 
     private Integer integerData;
 
-    public DataTypes3() {}
+    public DataTypes3() {
+    }
 
     public DataTypes3(Integer integerData) {
         this.integerData = integerData;

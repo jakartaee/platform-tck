@@ -51,9 +51,8 @@ public class send_Test extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
-     * javamail.password ; javamail.mailbox; javamail.root.path; mailuser1;
-     * transport_protocol; smtp.port;
+     * @class.setup_props: javamail.protocol; javamail.server; javamail.username; javamail.password ; javamail.mailbox;
+     * javamail.root.path; mailuser1; transport_protocol; smtp.port;
      */
     public void setup(String[] args, Properties props) throws Fault {
         try {
@@ -67,11 +66,13 @@ public class send_Test extends ServiceEETest implements Serializable {
 
             // mail recipient
             mailTo = TestUtil.getProperty("mailuser1");
-            if (mailTo.length() == 0) throw new Fault("Invalid mailuser1 - the mail to property");
+            if (mailTo.length() == 0)
+                throw new Fault("Invalid mailuser1 - the mail to property");
 
             transport_protocol = TestUtil.getProperty("transport_protocol");
             ;
-            if (transport_protocol.length() == 0) throw new Fault("Invalid transport_protocol");
+            if (transport_protocol.length() == 0)
+                throw new Fault("Invalid transport_protocol");
 
             MailTestUtil mailTestUtil = new MailTestUtil();
 
@@ -89,8 +90,7 @@ public class send_Test extends ServiceEETest implements Serializable {
      *
      * @assertion: Transport.send(MESSAGE) must be supported
      *
-     * @test_Strategy: Send this message. If success return void, else throw
-     * error.
+     * @test_Strategy: Send this message. If success return void, else throw error.
      */
     // derived from javamail suite send_Test class
     public void testSend() throws Fault {
@@ -134,8 +134,7 @@ public class send_Test extends ServiceEETest implements Serializable {
      *
      * @assertion: connect() test transport connect method
      *
-     * @test_Strategy: Send this message. If success return void, else throw
-     * error.
+     * @test_Strategy: Send this message. If success return void, else throw error.
      */
     // derived from javamail suite connect_Test class
     public void testconnect1() throws Fault {

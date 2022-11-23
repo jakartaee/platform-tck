@@ -29,7 +29,7 @@ import jakarta.xml.ws.soap.*;
 import java.util.*;
 
 @Stateful(name = "WSEjbWSRefRespBindAndAddressingCombinedTestClntBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
     private Properties harnessProps = null;
@@ -38,26 +38,17 @@ public class EjbClient implements EjbClientIF {
 
     @Addressing
     @RespectBinding(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefrespbindandaddrcombtestport1",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestport1", type = Echo.class, value = EchoService.class)
     Echo port1 = null;
 
     @Addressing(enabled = true, required = true)
     @RespectBinding(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefrespbindandaddrcombtestport2",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestport2", type = Echo.class, value = EchoService.class)
     Echo port2 = null;
 
     @Addressing(enabled = false)
     @RespectBinding(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefrespbindandaddrcombtestport3",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestport3", type = Echo.class, value = EchoService.class)
     Echo port3 = null;
 
     @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestservice")
@@ -91,7 +82,8 @@ public class EjbClient implements EjbClientIF {
     public boolean echo(String string, String testName) {
         if (testName.equals("VerifyAddrHeadersExistForEnabledRequiredPort"))
             return VerifyAddrHeadersExistForEnabledRequiredPort();
-        else return VerifyFaultConditionOnPort();
+        else
+            return VerifyFaultConditionOnPort();
     }
 
     private String getTargetEndpointAddress(Object stub) throws Exception {

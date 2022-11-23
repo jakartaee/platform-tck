@@ -22,4 +22,5 @@ package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
-public class SimpleNoBodyTag extends SimpleTagSupport {}
+public class SimpleNoBodyTag extends SimpleTagSupport {
+}

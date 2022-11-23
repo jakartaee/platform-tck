@@ -31,8 +31,8 @@ import jakarta.persistence.PreRemove;
 import jakarta.persistence.PreUpdate;
 
 /**
- * None of the callbacks will be called, since subclass entities all have their
- * own callbacks. This listener is intended to be used by Product entity.
+ * None of the callbacks will be called, since subclass entities all have their own callbacks. This listener is intended
+ * to be used by Product entity.
  */
 public class ProductListener {
 

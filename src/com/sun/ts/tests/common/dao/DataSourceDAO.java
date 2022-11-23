@@ -31,8 +31,8 @@ import javax.sql.DataSource;
 /**
  * Provide basic functionalities for Data Access Objects (DAOs)
  *
- * This class is not intended to be used "as is", but rather to be sub-classed
- * by other DAO classes specialized for on a particular DB schema.
+ * This class is not intended to be used "as is", but rather to be sub-classed by other DAO classes specialized for on a
+ * particular DB schema.
  */
 public class DataSourceDAO implements DAO {
 
@@ -58,8 +58,8 @@ public class DataSourceDAO implements DAO {
     private boolean activeSession;
 
     /**
-     * Uses a java.sql.DataSource as a connection provider. Supports container
-     * managed and bean managed authorization semantics.
+     * Uses a java.sql.DataSource as a connection provider. Supports container managed and bean managed authorization
+     * semantics.
      */
     protected static class ConnectionProvider {
 
@@ -141,16 +141,16 @@ public class DataSourceDAO implements DAO {
 
             TestUtil.logTrace("[DataSourceDAO] getDBConnection()");
             switch (authorizationType) {
-                case AUTH_CONTAINER:
-                    TestUtil.logTrace("AuthorizationType:AUTH_CONTAINER");
-                    conn = ds.getConnection();
-                    break;
-                case AUTH_BEAN_MANAGED:
-                    TestUtil.logTrace("AuthorizationType:AUTH_BEAN_MANAGED");
-                    conn = ds.getConnection(user, password);
-                    break;
-                default:
-                    throw new IllegalStateException("Illegal authorization type :" + authorizationType);
+            case AUTH_CONTAINER:
+                TestUtil.logTrace("AuthorizationType:AUTH_CONTAINER");
+                conn = ds.getConnection();
+                break;
+            case AUTH_BEAN_MANAGED:
+                TestUtil.logTrace("AuthorizationType:AUTH_BEAN_MANAGED");
+                conn = ds.getConnection(user, password);
+                break;
+            default:
+                throw new IllegalStateException("Illegal authorization type :" + authorizationType);
             }
 
             return conn;
@@ -160,11 +160,10 @@ public class DataSourceDAO implements DAO {
     /**
      * Create a new DatasourceDAO object using container managed authorization.
      *
-     * This constructor use the DataSource referenced as "java:comp/env/jdbc/DB1"
-     * (in the component naming environment) to get DB connections.
+     * This constructor use the DataSource referenced as "java:comp/env/jdbc/DB1" (in the component naming environment) to
+     * get DB connections.
      *
-     * @param sqlTablePrefix
-     *          Prefix to use for SQL properties lookups.
+     * @param sqlTablePrefix Prefix to use for SQL properties lookups.
      */
     public DataSourceDAO(String sqlTablePrefix) throws DAOException {
         this(sqlTablePrefix, new ConnectionProvider());
@@ -173,17 +172,14 @@ public class DataSourceDAO implements DAO {
     /**
      * Create a new DatasourceDAO object using bean managed authorization.
      *
-     * This constructor use the DataSource referenced as "java:comp/env/jdbc/DB1"
-     * (in the component naming environment) to get DB connections.
+     * This constructor use the DataSource referenced as "java:comp/env/jdbc/DB1" (in the component naming environment) to
+     * get DB connections.
      *
-     * @param sqlTablePrefix
-     *          Prefix to use for SQL properties lookups.
+     * @param sqlTablePrefix Prefix to use for SQL properties lookups.
      *
-     * @param user
-     *          User name used for bean managed connection authorization.
+     * @param user User name used for bean managed connection authorization.
      *
-     * @param password
-     *          Password used for bean managed connection authorization.
+     * @param password Password used for bean managed connection authorization.
      */
     public DataSourceDAO(String sqlTablePrefix, String user, String password) throws DAOException {
 
@@ -193,15 +189,12 @@ public class DataSourceDAO implements DAO {
     /**
      * Create a new DatasourceDAO object using container managed authorization.
      *
-     * This constructor use the DataSource referenced as
-     * "java:comp/env/<dbLookupName>" (in the component naming environment) to get
-     * DB connections.
+     * This constructor use the DataSource referenced as "java:comp/env/<dbLookupName>" (in the component naming
+     * environment) to get DB connections.
      *
-     * @param dbLookupName
-     *          Name used to lookup the DataSource in the component environment.
+     * @param dbLookupName Name used to lookup the DataSource in the component environment.
      *
-     * @param sqlTablePrefix
-     *          Prefix to use for SQL properties lookups.
+     * @param sqlTablePrefix Prefix to use for SQL properties lookups.
      */
     public DataSourceDAO(String dbLookupName, String sqlTablePrefix) throws DAOException {
 
@@ -211,21 +204,16 @@ public class DataSourceDAO implements DAO {
     /**
      * Create a new DatasourceDAO object using bean managed authorization.
      *
-     * This constructor use the DataSource referenced as
-     * "java:comp/env/<dbLookupName>" (in the component naming environment) to get
-     * DB connections.
+     * This constructor use the DataSource referenced as "java:comp/env/<dbLookupName>" (in the component naming
+     * environment) to get DB connections.
      *
-     * @param dbLookupName
-     *          Name used to lookup the DataSource in the component environment.
+     * @param dbLookupName Name used to lookup the DataSource in the component environment.
      *
-     * @param sqlTablePrefix
-     *          Prefix to use for SQL properties lookups.
+     * @param sqlTablePrefix Prefix to use for SQL properties lookups.
      *
-     * @param user
-     *          User name used for bean managed connection authorization.
+     * @param user User name used for bean managed connection authorization.
      *
-     * @param password
-     *          Password used for bean managed connection authorization.
+     * @param password Password used for bean managed connection authorization.
      */
     public DataSourceDAO(String dbLookupName, String sqlTablePrefix, String user, String password) throws DAOException {
 
@@ -233,17 +221,13 @@ public class DataSourceDAO implements DAO {
     }
 
     /**
-     * Create a new DataSourceDAO object. If called from an EJB or a Web
-     * component, you must make sure to call TestUtil.init() before creating a new
-     * DataSourceDAO object (so that you can safely use TestUtil.getProperty).
+     * Create a new DataSourceDAO object. If called from an EJB or a Web component, you must make sure to call
+     * TestUtil.init() before creating a new DataSourceDAO object (so that you can safely use TestUtil.getProperty).
      *
-     * @param dbLookupName
-     *          This class will use the Datasource referenced as
-     *          "java:comp/env/<dbLookupName>" in the component environment to
-     *          connect to the DB.
+     * @param dbLookupName This class will use the Datasource referenced as "java:comp/env/<dbLookupName>" in the component
+     * environment to connect to the DB.
      *
-     * @param sqlTablePrefix
-     *          Prefix to use for SQL properties lookups.
+     * @param sqlTablePrefix Prefix to use for SQL properties lookups.
      */
     protected DataSourceDAO(String sqlTablePrefix, ConnectionProvider provider) throws DAOException {
 
@@ -260,14 +244,12 @@ public class DataSourceDAO implements DAO {
     }
 
     /**
-     * Initialize external resources. Must be called before calling calling any
-     * other non static method on this object.
+     * Initialize external resources. Must be called before calling calling any other non static method on this object.
      */
     public void startSession() throws DAOException {
         if (activeSession || (null != dbConnection)) {
             /*
-             * Pending connection. This should *NOT* happen. Client code did not stop
-             * the session :o(.
+             * Pending connection. This should *NOT* happen. Client code did not stop the session :o(.
              */
             if (strictPolicy) {
                 /* To ease development we inform client code there is a bug */
@@ -288,16 +270,13 @@ public class DataSourceDAO implements DAO {
     }
 
     /**
-     * Release external resources (they can be reinitialized later by calling
-     * startSession()). If the DAO is used from an EJB, the EJB code must make
-     * sure to close the session before any serialization of the EJB occurs.
-     * Typically and EJB will start a new session when entering an EJB callback
-     * and close it before exiting the callback.
+     * Release external resources (they can be reinitialized later by calling startSession()). If the DAO is used from an
+     * EJB, the EJB code must make sure to close the session before any serialization of the EJB occurs. Typically and EJB
+     * will start a new session when entering an EJB callback and close it before exiting the callback.
      */
     public void stopSession() {
         /*
-         * We allow multiple close() even if there is no current session. This is to
-         * simplify client code.
+         * We allow multiple close() even if there is no current session. This is to simplify client code.
          */
 
         activeSession = false;
@@ -323,8 +302,7 @@ public class DataSourceDAO implements DAO {
     }
 
     /**
-     * Convenience method for test setup. Start its own session and delete all
-     * pre-existing entities
+     * Convenience method for test setup. Start its own session and delete all pre-existing entities
      */
     public void cleanup() throws DAOException {
         startSession();
@@ -368,8 +346,7 @@ public class DataSourceDAO implements DAO {
     /**
      * Generic method to get a SQL statement for current table.
      *
-     * We get the SQL code associated with the <sqlTablePrefix>_<suffix> TS
-     * property.
+     * We get the SQL code associated with the <sqlTablePrefix>_<suffix> TS property.
      */
     protected PreparedStatement getStmt(String suffix) throws DAOException, SQLException {
 
@@ -398,10 +375,9 @@ public class DataSourceDAO implements DAO {
     }
 
     /**
-     * Convenience method to close a ResultSet and a PreparedStatement in a safely
-     * manner and ignoring any SQLException that could be thrown. This method is
-     * designed to be called from a finally block to ensure the release of
-     * associated resources.
+     * Convenience method to close a ResultSet and a PreparedStatement in a safely manner and ignoring any SQLException that
+     * could be thrown. This method is designed to be called from a finally block to ensure the release of associated
+     * resources.
      */
     public void closeStmt(PreparedStatement pStmt, ResultSet result) {
         try {
@@ -435,14 +411,13 @@ public class DataSourceDAO implements DAO {
         TestUtil.logTrace("[DataSourceDAO] finalize(): conn=" + dbConnection);
         if (activeSession || (null != dbConnection)) {
             /*
-             * Pending connection. This should *NOT* happen. Client code did not stop
-             * session before getting garbage collected :o(.
+             * Pending connection. This should *NOT* happen. Client code did not stop session before getting garbage collected :o(.
              */
 
             if (strictPolicy) {
                 /*
-                 * We want to try to detect mis-behaving code that would not properly
-                 * close its DAO session (and underlying DB connections).
+                 * We want to try to detect mis-behaving code that would not properly close its DAO session (and underlying DB
+                 * connections).
                  */
                 TestUtil.logErr("CONNECTION LEAK: Openned session on GC " + "for DAO " + this);
                 throw new IllegalStateException("CONNECTION LEAK: Openned " + "session on GC for DAO " + this);

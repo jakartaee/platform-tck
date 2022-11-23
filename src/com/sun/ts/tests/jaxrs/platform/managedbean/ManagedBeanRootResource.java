@@ -150,7 +150,6 @@ public class ManagedBeanRootResource {
     }
 
     private ApplicationHolderSingleton getAppHolderSingleton() {
-        return (ApplicationHolderSingleton)
-                application.getSingletons().iterator().next();
+        return (ApplicationHolderSingleton) application.getSingletons().iterator().next();
     }
 }

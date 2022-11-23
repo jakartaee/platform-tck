@@ -133,8 +133,7 @@ public class Client extends ServiceEETest {
 
     private QName EXPECTED_OPERATION_QNAME_5 = new QName(NAMESPACEURI, EXPECTED_OPERATION_NAME_5);
 
-    private QName EXPECTED_PART_ELEMENT_QNAME_5 =
-            new QName(EXPECTED_ELEMENT_TARGETNAMESPACE_5, EXPECTED_PART_ELEMENT_NAME_5);
+    private QName EXPECTED_PART_ELEMENT_QNAME_5 = new QName(EXPECTED_ELEMENT_TARGETNAMESPACE_5, EXPECTED_PART_ELEMENT_NAME_5);
 
     private QName EXPECTED_PART_QNAME_3 = new QName(NAMESPACEURI, EXPECTED_PART_NAME_3);
 
@@ -204,8 +203,7 @@ public class Client extends ServiceEETest {
     }
 
     /*
-     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost;
-     * webServerPort; platform.mode;
+     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost; webServerPort; platform.mode;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -213,8 +211,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -259,14 +259,16 @@ public class Client extends ServiceEETest {
         try {
             TestUtil.logMsg("Invoke the helloString() method of WebResultWebService");
             result = port.helloString("jsr181");
-            if (!result.equals(EXPECTED_RESULT_1)) pass = false;
+            if (!result.equals(EXPECTED_RESULT_1))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHelloString failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString failed returned value : " + result);
+        if (!pass)
+            throw new Fault("testHelloString failed returned value : " + result);
         TestUtil.logMsg("Invocation of helloString() passed");
     }
 
@@ -287,14 +289,16 @@ public class Client extends ServiceEETest {
             name.setFirstName("jsr181");
             name.setLastName("jaxws");
             result = port.helloString2(name);
-            if (!result.equals(EXPECTED_RESULT_2)) pass = false;
+            if (!result.equals(EXPECTED_RESULT_2))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHelloString2 failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString2 failed, returned value : " + result);
+        if (!pass)
+            throw new Fault("testHelloString2 failed, returned value : " + result);
         TestUtil.logMsg("Invocation of helloString2() passed");
     }
 
@@ -315,7 +319,8 @@ public class Client extends ServiceEETest {
             output = port.helloString3(true);
 
             if ((!output.getFirstName().equals("jsr181"))
-                    && (!output.getLastName().equals("jsr109"))) pass = false;
+                    && (!output.getLastName().equals("jsr109")))
+                pass = false;
 
             TestUtil.logMsg(" First Name : " + output.getFirstName() + "  Last Name : " + output.getLastName());
 
@@ -324,7 +329,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testHelloString3 failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString3 failed, returned value : " + output);
+        if (!pass)
+            throw new Fault("testHelloString3 failed, returned value : " + output);
         TestUtil.logMsg("Invocation of helloString3() passed");
     }
 
@@ -352,7 +358,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg(" First Name : " + output.getFirstName() + "  Last Name : " + output.getLastName());
 
                 if ((!output.getFirstName().equals("jsr181"))
-                        && (!output.getLastName().equals("jaxws"))) pass = false;
+                        && (!output.getLastName().equals("jaxws")))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -360,7 +367,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testHelloString4 failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString4 failed, returned value : " + output);
+        if (!pass)
+            throw new Fault("testHelloString4 failed, returned value : " + output);
         TestUtil.logMsg("Invocation of helloString4() passed");
     }
 
@@ -394,7 +402,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testPingWSDL failed", e);
         }
 
-        if (!pass) throw new Fault("testPingWSDL failed");
+        if (!pass)
+            throw new Fault("testPingWSDL failed");
     }
 
     /*
@@ -402,8 +411,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JWS:SPEC:4003
      *
-     * @test_Strategy: Check for the default name of the part when no WebResult
-     * annotation is present
+     * @test_Strategy: Check for the default name of the part when no WebResult annotation is present
      *
      */
 
@@ -443,8 +451,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JWS:SPEC:4002
      *
-     * @test_Strategy: Check for the default name of the part when WebResult
-     * annotation is present
+     * @test_Strategy: Check for the default name of the part when WebResult annotation is present
      *
      */
 
@@ -502,7 +509,8 @@ public class Client extends ServiceEETest {
                         doc, messageElement, EXPECTED_PART_QNAME_3);
             }
 
-            if (partElement != null) pass = true;
+            if (partElement != null)
+                pass = true;
 
         } catch (Exception ex) {
             TestUtil.logErr("Exception occurred: " + ex.getMessage());
@@ -600,7 +608,8 @@ public class Client extends ServiceEETest {
                         doc, messageElement, EXPECTED_PART_ELEMENT_QNAME_5, true);
             }
 
-            if (soapHeaderElement != null && partElement != null) pass = true;
+            if (soapHeaderElement != null && partElement != null)
+                pass = true;
 
         } catch (Exception ex) {
             TestUtil.logErr("Exception occurred: " + ex.getMessage());

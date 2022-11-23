@@ -40,8 +40,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The dbMetaClient4 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The dbMetaClient4 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -76,14 +75,11 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -96,11 +92,16 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
                 dbUser = p.getProperty("user1", "");
                 sPtable = p.getProperty("ptable", "TSTABLE1");
                 sFtable = p.getProperty("ftable", "TSTABLE2");
-                if (dbName.length() == 0) throw new Fault("Invalid db1  Database Name");
-                if (dbUser.length() == 0) throw new Fault("Invalid Login Id");
-                if (sPtable.length() == 0) throw new Fault("Invalid Primary table");
-                if (sFtable.length() == 0) throw new Fault("Invalid Foreign table");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (dbName.length() == 0)
+                    throw new Fault("Invalid db1  Database Name");
+                if (dbUser.length() == 0)
+                    throw new Fault("Invalid Login Id");
+                if (sPtable.length() == 0)
+                    throw new Fault("Invalid Primary table");
+                if (sFtable.length() == 0)
+                    throw new Fault("Invalid Foreign table");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 int nLocdbname = dbName.indexOf('=');
                 sCatalogName = dbName.substring(nLocdbname + 1);
@@ -132,12 +133,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert23
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(STRUCT, VARCHAR) method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(STRUCT, VARCHAR) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert23() throws Fault {
@@ -162,12 +161,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert24
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(TIME, VARCHAR) method on that object.
-     * It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(TIME, VARCHAR) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert24() throws Fault {
@@ -192,12 +189,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert25
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(TIMESTAMP, VARCHAR) method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(TIMESTAMP, VARCHAR) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert25() throws Fault {
@@ -222,12 +217,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert26
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(TINYINT, VARCHAR) method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(TINYINT, VARCHAR) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert26() throws Fault {
@@ -252,12 +245,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert27
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(VARBINARY, VARCHAR) method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(VARBINARY, VARCHAR) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert27() throws Fault {
@@ -282,12 +273,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert28
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(BIGINT, INTEGER) method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(BIGINT, INTEGER) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert28() throws Fault {
@@ -312,12 +301,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert29
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(BIT, INTEGER) method on that object.
-     * It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the supportsConvert(BIT,
+     * INTEGER) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert29() throws Fault {
@@ -342,12 +329,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert30
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(DATE, INTEGER) method onn that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(DATE, INTEGER) method onn that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert30() throws Fault {
@@ -372,12 +357,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert31
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(DECIMAL, INTEGER) method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(DECIMAL, INTEGER) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert31() throws Fault {
@@ -402,12 +385,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert32
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(DOUBLE, INTEGER) method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(DOUBLE, INTEGER) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert32() throws Fault {
@@ -432,12 +413,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert33
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(FLOAT, INTEGER) method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(FLOAT, INTEGER) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert33() throws Fault {
@@ -462,12 +441,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert34
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(NUMERIC, INTEGER) method on that
-     * object. It should return a boolean value; true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(NUMERIC, INTEGER) method on that object. It should return a boolean value; true or false.
      *
      */
     public void testSupportsConvert34() throws Fault {
@@ -492,12 +469,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert35
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(REAL, INTEGER) method on that object.
-     * It should return a boolean value; either true false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(REAL, INTEGER) method on that object. It should return a boolean value; either true false.
      *
      */
     public void testSupportsConvert35() throws Fault {
@@ -522,12 +497,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert36
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(SMALLINT, INTEGER) method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(SMALLINT, INTEGER) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert36() throws Fault {
@@ -552,12 +525,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert37
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(TINYINT, INTEGER) method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(TINYINT, INTEGER) method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsConvert37() throws Fault {
@@ -582,12 +553,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsTableCorrelationNames
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:884; JDBC:JAVADOC:885;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:884; JDBC:JAVADOC:885; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsTableCorrelationNames() method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsTableCorrelationNames() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsTableCorrelationNames() throws Fault {
@@ -611,12 +580,11 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsDifferentTableCorrelationNames
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:886; JDBC:JAVADOC:887;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:886; JDBC:JAVADOC:887; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsDifferentTableCorrelationNames() method on
-     * that object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsDifferentTableCorrelationNames() method on that object. It should return a boolean value; either true or
+     * false.
      *
      */
     public void testSupportsDifferentTableCorrelationNames() throws Fault {
@@ -641,12 +609,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsExpressionsInOrderBy
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:888; JDBC:JAVADOC:889;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:888; JDBC:JAVADOC:889; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsExpressionsInOrderBy() method on that object.
-     * It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsExpressionsInOrderBy() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsExpressionsInOrderBy() throws Fault {
@@ -671,12 +637,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsOrderByUnrelated
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:890; JDBC:JAVADOC:891;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:890; JDBC:JAVADOC:891; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsOrderByUnrelated() method on that object. It
-     * should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsOrderByUnrelated() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsOrderByUnrelated() throws Fault {
@@ -701,12 +665,10 @@ public class dbMetaClient4 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsGroupBy
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:892; JDBC:JAVADOC:893;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:892; JDBC:JAVADOC:893; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsGroupBy() method on that object. It should
-     * return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the supportsGroupBy()
+     * method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsGroupBy() throws Fault {

@@ -36,16 +36,15 @@ public class ExecutionMode {
 
     public static final int DEFAULT = DEPLOY_RUN_UNDEPLOY;
 
-    private ExecutionMode() {}
+    private ExecutionMode() {
+    }
 
     /**
-     * gets the current execution mode from PropertyManagerInterface or from a
-     * system property if overridden on the commandline. Note that current
-     * execution mode is not cached since harness.executeMode property may change
-     * between test executions.
+     * gets the current execution mode from PropertyManagerInterface or from a system property if overridden on the
+     * commandline. Note that current execution mode is not cached since harness.executeMode property may change between
+     * test executions.
      *
-     * @param propMgr
-     *          an implementation of PropertyManagerInterface.
+     * @param propMgr an implementation of PropertyManagerInterface.
      * @return an int representing one of the 5 modes
      */
     public static int getExecutionMode(PropertyManagerInterface propMgr) {

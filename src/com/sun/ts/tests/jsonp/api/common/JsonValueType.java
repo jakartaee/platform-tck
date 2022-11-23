@@ -54,14 +54,14 @@ public enum JsonValueType {
     private static final Map<String, JsonValueType> VALUES = new HashMap<>(SIZE);
     // Name to value Map initialization.
     static {
-        for (int i = 0; i < SIZE; i++) VALUES.put(JsonValueType.values()[i].name(), JsonValueType.values()[i]);
+        for (int i = 0; i < SIZE; i++)
+            VALUES.put(JsonValueType.values()[i].name(), JsonValueType.values()[i]);
     }
 
     /**
      * Returns JSON value identifier for provided class.
      *
-     * @param c
-     *          JSON value class.
+     * @param c JSON value class.
      * @return JSON value identifier for provided class.
      */
     public static JsonValueType getType(final Class c) {
@@ -91,8 +91,7 @@ public enum JsonValueType {
     /**
      * Returns JSON value identifier for provided value.
      *
-     * @param value
-     *          JSON value.
+     * @param value JSON value.
      * @return JSON value identifier for provided class.
      */
     public static JsonValueType getType(final Object value) {
@@ -102,33 +101,32 @@ public enum JsonValueType {
     /**
      * Convert provided value to {@code String} which is part of JSON document.
      *
-     * @param value
-     *          Value be be converted to {@code String}.
+     * @param value Value be be converted to {@code String}.
      * @return Value converted to {@code String}.
      */
     public static String toStringValue(final Object value) {
         switch (getType(value)) {
-            case String:
-                return '"' + ((String) value) + '"';
-            case Integer:
-                return ((Integer) value).toString();
-            case Long:
-                return ((Long) value).toString();
-            case BigInteger:
-                return ((BigInteger) value).toString();
-            case Double:
-                return ((Double) value).toString();
-            case BigDecimal:
-                return ((BigDecimal) value).toString();
-            case Boolean:
-                return ((Boolean) value).toString();
-            case JsonValue:
-                return JsonAssert.valueToString((JsonValue) value);
-            case Null:
-                return SimpleValues.NULL;
-            default:
-                throw new IllegalArgumentException(
-                        "Unsupported JSON value type: " + value.getClass().getSimpleName());
+        case String:
+            return '"' + ((String) value) + '"';
+        case Integer:
+            return ((Integer) value).toString();
+        case Long:
+            return ((Long) value).toString();
+        case BigInteger:
+            return ((BigInteger) value).toString();
+        case Double:
+            return ((Double) value).toString();
+        case BigDecimal:
+            return ((BigDecimal) value).toString();
+        case Boolean:
+            return ((Boolean) value).toString();
+        case JsonValue:
+            return JsonAssert.valueToString((JsonValue) value);
+        case Null:
+            return SimpleValues.NULL;
+        default:
+            throw new IllegalArgumentException(
+                    "Unsupported JSON value type: " + value.getClass().getSimpleName());
         }
     }
 }

@@ -75,8 +75,7 @@ public class ClientLogicalHandler2 extends LogicalHandlerBase2 {
                     if (Handler_Util.checkForMsg(
                             this, context, "ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest")) {
                         HandlerTracker.reportComment(this, "Throwing an outbound SOAPFaultException");
-                        String faultString =
-                                "ClientLogicalHandler2.handleMessage throwing an outbound SOAPFaultException";
+                        String faultString = "ClientLogicalHandler2.handleMessage throwing an outbound SOAPFaultException";
                         try {
                             name = SOAPFactory.newInstance().createName("somefaultentry");
                             sf = JAXWS_Util.createSOAPFault("soap11", FAULTCODE, FAULTACTOR, faultString, name);

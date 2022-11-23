@@ -131,7 +131,8 @@ public class TestBeanEJB implements SessionBean {
                 b1 = beanRef.updateBrandNameRB(expName, TxECMPBeanEJB.FLAGROLLBACK);
                 if (b1) {
                     TestUtil.logMsg("Tx was rolledback as expected");
-                } else TestUtil.logMsg("Tx was NOT rolledback as expected");
+                } else
+                    TestUtil.logMsg("Tx was NOT rolledback as expected");
             } catch (Exception rb) {
                 TestUtil.logErr("Exception rolling back the transaction" + rb.getMessage(), rb);
             }
@@ -197,7 +198,8 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Verifying the transaction is rolledback on method return");
             tempName1 = beanRef2.getBrandName();
-            if (tempName1.equals(origName)) b2 = true;
+            if (tempName1.equals(origName))
+                b2 = true;
             TestUtil.logMsg("DB Brand Name is " + tempName1);
 
             if (!b2) {
@@ -315,7 +317,8 @@ public class TestBeanEJB implements SessionBean {
                 b1 = beanRef.updateBrandNameRB(expName, TxECMPBeanEJB.FLAGROLLBACK);
                 if (b1) {
                     TestUtil.logMsg("Tx was rolledback as expected");
-                } else TestUtil.logMsg("Tx was NOT rolledback as expected");
+                } else
+                    TestUtil.logMsg("Tx was NOT rolledback as expected");
             } catch (Exception rb) {
                 TestUtil.logErr("Exception rolling back the transaction" + rb.getMessage(), rb);
             }
@@ -381,7 +384,8 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Verifying the transaction is rolledback on method return");
             tempName1 = beanRef2.getBrandName();
-            if (tempName1.equals(origName)) b2 = true;
+            if (tempName1.equals(origName))
+                b2 = true;
             TestUtil.logMsg("DB Brand Name is " + tempName1);
 
             if (!b2) {

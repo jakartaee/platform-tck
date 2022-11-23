@@ -25,12 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "MTOMTestTwoPort",
-        serviceName = "MTOMTestService",
-        targetNamespace = "http://mtomtestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/MTOMTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.servlet.WSMTOMSBFullDDsTest.MTOMTestTwo")
+@WebService(portName = "MTOMTestTwoPort", serviceName = "MTOMTestService", targetNamespace = "http://mtomtestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/MTOMTestService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.servlet.WSMTOMSBFullDDsTest.MTOMTestTwo")
 public class MTOMTestTwoImpl implements MTOMTestTwo {
 
     public String mtomIn2(com.sun.ts.tests.webservices12.servlet.WSMTOMSBFullDDsTest.DataType3 data) {

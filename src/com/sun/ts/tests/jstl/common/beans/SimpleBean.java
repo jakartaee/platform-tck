@@ -26,20 +26,19 @@ package com.sun.ts.tests.jstl.common.beans;
 public class SimpleBean {
 
     /** Creates new NullBean */
-    public SimpleBean() {}
+    public SimpleBean() {
+    }
 
     private String _value = null;
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * Sets a non-descriptive value
      *
-     * @param value
-     *          some value
+     * @param value some value
      */
     public void setValue(String value) {
         _value = value;

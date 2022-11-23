@@ -40,18 +40,15 @@ import java.net.URL;
 import java.util.Vector;
 
 /**
- * This interview collects the "exclude list" test filter parameters. It is
- * normally used as one of a series of sub-interviews that collect the parameter
- * information for a test run.
+ * This interview collects the "exclude list" test filter parameters. It is normally used as one of a series of
+ * sub-interviews that collect the parameter information for a test run.
  */
 public class TSExcludeListInterview extends Interview implements Parameters.MutableExcludeListParameters {
     /**
      * Create an interview.
      *
-     * @param parent
-     *          The parent interview of which this is a child.
-     * @throws Interview.Fault
-     *           if there is a problem while creating the interview.
+     * @param parent The parent interview of which this is a child.
+     * @throws Interview.Fault if there is a problem while creating the interview.
      */
     public TSExcludeListInterview(InterviewParameters parent) throws Interview.Fault {
         super(parent, "excludeList");
@@ -66,21 +63,27 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
             String t = qExcludeListType.getValue();
             if (t == initial) {
                 File f = parent.getTestSuite().getInitialExcludeList();
-                if (f == null) return null;
-                else return new File[] {f};
+                if (f == null)
+                    return null;
+                else
+                    return new File[] { f };
             } else if (t == latest) {
                 URL u = parent.getTestSuite().getLatestExcludeList();
-                if (u == null) return null;
+                if (u == null)
+                    return null;
                 else {
                     WorkDirectory wd = parent.getWorkDirectory();
-                    return new File[] {wd.getSystemFile("latest.jtx")};
+                    return new File[] { wd.getSystemFile("latest.jtx") };
                 }
-            } else return qCustomFiles.getValue();
-        } else return null;
+            } else
+                return qCustomFiles.getValue();
+        } else
+            return null;
     }
 
     public void setExcludeFiles(File[] files) {
-        if (files == null || files.length == 0) setExcludeMode(NO_EXCLUDE_LIST);
+        if (files == null || files.length == 0)
+            setExcludeMode(NO_EXCLUDE_LIST);
         else {
             setExcludeMode(CUSTOM_EXCLUDE_LIST);
             setCustomExcludeFiles(files);
@@ -90,26 +93,31 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
     public int getExcludeMode() {
         if (qNeedExcludeLists.getValue() == YesNoQuestion.YES) {
             String t = qExcludeListType.getValue();
-            if (t == initial) return INITIAL_EXCLUDE_LIST;
-            else if (t == latest) return LATEST_EXCLUDE_LIST;
-            else return CUSTOM_EXCLUDE_LIST;
-        } else return NO_EXCLUDE_LIST;
+            if (t == initial)
+                return INITIAL_EXCLUDE_LIST;
+            else if (t == latest)
+                return LATEST_EXCLUDE_LIST;
+            else
+                return CUSTOM_EXCLUDE_LIST;
+        } else
+            return NO_EXCLUDE_LIST;
     }
 
     public void setExcludeMode(int mode) {
-        if (mode == NO_EXCLUDE_LIST) qNeedExcludeLists.setValue(YesNoQuestion.NO);
+        if (mode == NO_EXCLUDE_LIST)
+            qNeedExcludeLists.setValue(YesNoQuestion.NO);
         else {
             qNeedExcludeLists.setValue(YesNoQuestion.YES);
             switch (mode) {
-                case INITIAL_EXCLUDE_LIST:
-                    qExcludeListType.setValue(initial);
-                    break;
-                case LATEST_EXCLUDE_LIST:
-                    qExcludeListType.setValue(latest);
-                    break;
-                default:
-                    qExcludeListType.setValue(custom);
-                    break;
+            case INITIAL_EXCLUDE_LIST:
+                qExcludeListType.setValue(initial);
+                break;
+            case LATEST_EXCLUDE_LIST:
+                qExcludeListType.setValue(latest);
+                break;
+            default:
+                qExcludeListType.setValue(custom);
+                break;
             }
         }
     }
@@ -135,8 +143,10 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
     }
 
     public void setLatestExcludeAutoCheckMode(int mode) {
-        if (mode == CHECK_EVERY_X_DAYS) qLatestAutoCheckMode.setValue(EVERY_X_DAYS);
-        else qLatestAutoCheckMode.setValue(EVERY_RUN);
+        if (mode == CHECK_EVERY_X_DAYS)
+            qLatestAutoCheckMode.setValue(EVERY_X_DAYS);
+        else
+            qLatestAutoCheckMode.setValue(EVERY_RUN);
     }
 
     public int getLatestExcludeAutoCheckInterval() {
@@ -148,32 +158,31 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
     }
 
     /**
-     * Get the exclude list generated from the exclude list files in the
-     * interview.
+     * Get the exclude list generated from the exclude list files in the interview.
      *
-     * @return the exclude list generated from the exclude list files in the
-     *         interview
+     * @return the exclude list generated from the exclude list files in the interview
      * @see #getExcludeFiles
      */
     public ExcludeList getExcludeList() {
         if (qNeedExcludeLists.getValue() == YesNoQuestion.YES) {
             updateCachedExcludeListData();
             return cachedExcludeList;
-        } else return new ExcludeList();
+        } else
+            return new ExcludeList();
     }
 
     /**
      * Get a test filter generated from the exclude list files in the interview.
      *
-     * @return a test filter generated from the exclude list files in the
-     *         interview
+     * @return a test filter generated from the exclude list files in the interview
      * @see #getExcludeFiles
      */
     public TestFilter getExcludeFilter() {
         if (qNeedExcludeLists.getValue() == YesNoQuestion.YES) {
             updateCachedExcludeListData();
             return cachedExcludeListFilter;
-        } else return null;
+        } else
+            return null;
     }
 
     // ----------------------------------------------------------------------------
@@ -186,9 +195,12 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
         }
 
         protected Question getNext() {
-            if (value == null) return null;
-            else if (value == YES) return qExcludeListType;
-            else return qEnd;
+            if (value == null)
+                return null;
+            else if (value == YES)
+                return qExcludeListType;
+            else
+                return qEnd;
         }
     };
 
@@ -221,12 +233,13 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
                 cnfe.printStackTrace();
             }
 
-            setChoices(new String[] {null, initial, latest, custom}, true);
+            setChoices(new String[] { null, initial, latest, custom }, true);
             setValue(initial); // CF 6/17/02
         }
 
         public String[] getChoices() {
-            if (!initialized && parent.getTestSuite() != null) init(parent.getTestSuite());
+            if (!initialized && parent.getTestSuite() != null)
+                init(parent.getTestSuite());
             return super.getChoices();
         }
 
@@ -241,18 +254,25 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
         }
 
         protected Question getNext() {
-            if (isHidden()) return qCustomFiles;
-            else if (value == null || value.length() == 0) return null;
-            else if (value.equals(initial)) return qEnd;
-            else if (value.equals(latest)) return qLatestAutoCheck;
-            else return qCustomFiles;
+            if (isHidden())
+                return qCustomFiles;
+            else if (value == null || value.length() == 0)
+                return null;
+            else if (value.equals(initial))
+                return qEnd;
+            else if (value.equals(latest))
+                return qLatestAutoCheck;
+            else
+                return qCustomFiles;
         }
 
         private void init(TestSuite ts) {
             Vector v = new Vector(4);
             v.add(null); // always
-            if (ts.getInitialExcludeList() != null) v.add(initial);
-            if (ts.getLatestExcludeList() != null) v.add(latest);
+            if (ts.getInitialExcludeList() != null)
+                v.add(initial);
+            if (ts.getLatestExcludeList() != null)
+                v.add(latest);
             v.add(custom); // always
             String[] choices = new String[v.size()];
             v.copyInto(choices);
@@ -273,9 +293,12 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
         }
 
         protected Question getNext() {
-            if (value == null) return null;
-            else if (value == YES) return qLatestAutoCheckMode;
-            else return qEnd;
+            if (value == null)
+                return null;
+            else if (value == YES)
+                return qLatestAutoCheckMode;
+            else
+                return qEnd;
         }
     };
 
@@ -289,13 +312,16 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
 
     private ChoiceQuestion qLatestAutoCheckMode = new ChoiceQuestion(this, "latestAutoCheckMode") {
         {
-            setChoices(new String[] {EVERY_X_DAYS, EVERY_RUN}, true);
+            setChoices(new String[] { EVERY_X_DAYS, EVERY_RUN }, true);
         }
 
         protected Question getNext() {
-            if (value == null) return null;
-            else if (value.equals(EVERY_X_DAYS)) return qLatestAutoCheckInterval;
-            else return qEnd;
+            if (value == null)
+                return null;
+            else if (value.equals(EVERY_X_DAYS))
+                return qLatestAutoCheckInterval;
+            else
+                return qEnd;
         }
     };
 
@@ -326,8 +352,10 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
 
         protected Question getNext() {
             updateCachedExcludeListData();
-            if (cachedExcludeListError != null) return cachedExcludeListError;
-            else return qEnd;
+            if (cachedExcludeListError != null)
+                return cachedExcludeListError;
+            else
+                return qEnd;
         }
 
         public File getBaseDirectory() {
@@ -342,8 +370,10 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
         if (!equal(cachedExcludeList_files, files) || cachedExcludeList_testSuite != ts) {
             try {
                 ExcludeList t;
-                if (ts == null || files == null || files.length == 0) t = new ExcludeList();
-                else t = new ExcludeList(files);
+                if (ts == null || files == null || files.length == 0)
+                    t = new ExcludeList();
+                else
+                    t = new ExcludeList(files);
                 cachedExcludeList = t;
                 cachedExcludeListFilter = new ExcludeListFilter(t);
                 cachedExcludeListError = null;
@@ -351,17 +381,17 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
                 cachedExcludeList = null;
                 cachedExcludeListFilter = null;
                 cachedExcludeListError = qExcludeListFileNotFound;
-                cachedExcludeListErrorArgs = new String[] {e.getMessage()};
+                cachedExcludeListErrorArgs = new String[] { e.getMessage() };
             } catch (IOException e) {
                 cachedExcludeList = null;
                 cachedExcludeListFilter = null;
                 cachedExcludeListError = qExcludeListIOError;
-                cachedExcludeListErrorArgs = new String[] {e.toString()};
+                cachedExcludeListErrorArgs = new String[] { e.toString() };
             } catch (ExcludeList.Fault e) {
                 cachedExcludeList = null;
                 cachedExcludeListFilter = null;
                 cachedExcludeListError = qExcludeListError;
-                cachedExcludeListErrorArgs = new String[] {e.getMessage()};
+                cachedExcludeListErrorArgs = new String[] { e.getMessage() };
             }
             cachedExcludeList_files = files;
         }
@@ -410,12 +440,15 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
     // ---------------------------------------------------------------------
 
     private static File[] getAbsoluteFiles(File baseDir, File[] files) {
-        if (files == null) return null;
+        if (files == null)
+            return null;
 
         boolean allAbsolute = true;
-        for (int i = 0; i < files.length && allAbsolute; i++) allAbsolute = files[i].isAbsolute();
+        for (int i = 0; i < files.length && allAbsolute; i++)
+            allAbsolute = files[i].isAbsolute();
 
-        if (allAbsolute) return files;
+        if (allAbsolute)
+            return files;
 
         File[] absoluteFiles = new File[files.length];
         for (int i = 0; i < files.length; i++) {
@@ -433,12 +466,15 @@ public class TSExcludeListInterview extends Interview implements Parameters.Muta
     }
 
     private static boolean equal(File[] f1, File[] f2) {
-        if (f1 == null || f2 == null) return (f1 == f2);
+        if (f1 == null || f2 == null)
+            return (f1 == f2);
 
-        if (f1.length != f2.length) return false;
+        if (f1.length != f2.length)
+            return false;
 
         for (int i = 0; i < f1.length; i++) {
-            if (f1[i] != f2[i]) return false;
+            if (f1[i] != f2[i])
+                return false;
         }
 
         return true;

@@ -62,30 +62,25 @@ public class Client extends EJBLiteClientBase {
      *
      * @test_Strategy: verify the correct sequence of SessionSynchronization
      *
-     * callbacks SessionSynchronization methods can be specified by implementing
-     * SessionSynchronization interface, or annotations, or ejb-jar.xml;
+     * callbacks SessionSynchronization methods can be specified by implementing SessionSynchronization interface, or
+     * annotations, or ejb-jar.xml;
      *
-     * SessionSynchronization callback methods can have public, protected, private
-     * or default access;
+     * SessionSynchronization callback methods can have public, protected, private or default access;
      *
-     * Bean class can implement all or some SessionSynchronization methods, and
-     * only those implemented callback can be called;
+     * Bean class can implement all or some SessionSynchronization methods, and only those implemented callback can be
+     * called;
      *
-     * The correct sequence when interceptor is used (see expectedAll variable in
-     * test method)
+     * The correct sequence when interceptor is used (see expectedAll variable in test method)
      *
-     * Such bean classes can only have Required, Requires_New, or Mandatory
-     * attributes
+     * Such bean classes can only have Required, Requires_New, or Mandatory attributes
      */
     public void sessionSynchronizationCallbackSequence() {
-        final List<String> expectedAll =
-                Arrays.asList(afterBegin, aroundInvoke1, getHistory, aroundInvoke2, beforeCompletion, afterCompletion);
+        final List<String> expectedAll = Arrays.asList(afterBegin, aroundInvoke1, getHistory, aroundInvoke2, beforeCompletion, afterCompletion);
         final List<String> historyAll = implementingBean.getHistory();
         assertEquals(null, expectedAll, historyAll);
 
-        final List<String> expectedPartial =
-                Arrays.asList(afterBegin, aroundInvoke1, getHistory, aroundInvoke2, beforeCompletion);
-        for (SessionSyncIF b : new SessionSyncIF[] {annotatedBean, descriptorBean}) {
+        final List<String> expectedPartial = Arrays.asList(afterBegin, aroundInvoke1, getHistory, aroundInvoke2, beforeCompletion);
+        for (SessionSyncIF b : new SessionSyncIF[] { annotatedBean, descriptorBean }) {
             final List<String> history = b.getHistory();
             assertEquals(null, expectedPartial, history);
         }
@@ -94,18 +89,16 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: afterBeginException
      *
-     * @test_Strategy: verify tx rollback caused by system exception and
-     * setRollbackOnly calls inside business method and SessionSynchronization
-     * callback methods.
+     * @test_Strategy: verify tx rollback caused by system exception and setRollbackOnly calls inside business method and
+     * SessionSynchronization callback methods.
      *
-     * The container must handle system exceptions: If the instance is in a
-     * transaction, mark the transaction for rollback.
+     * The container must handle system exceptions: If the instance is in a transaction, mark the transaction for rollback.
      *
-     * Discard the instance (i.e., the container must not invoke any business
-     * methods or container callbacks on the instance).
+     * Discard the instance (i.e., the container must not invoke any business methods or container callbacks on the
+     * instance).
      *
-     * If the instance executed in the client transaction, the container should
-     * throw the jakarta.ejb.EJBTransactionRolledbackException
+     * If the instance executed in the client transaction, the container should throw the
+     * jakarta.ejb.EJBTransactionRolledbackException
      */
     public void afterBeginException() {
         rollback(afterBeginException, true, null);

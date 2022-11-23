@@ -68,21 +68,17 @@ public interface EJBLiteClientIF {
     public void setContext(javax.naming.Context context);
 
     /**
-     * Subclass client can override this method to customize the container
-     * creation. The default implementation returns null in EJBLiteClientBase.
-     * Since the method must be invoked prior to container creation, way ahead of
-     * actual test method, this customization is only possible at test client
-     * level, not at test method level.
+     * Subclass client can override this method to customize the container creation. The default implementation returns null
+     * in EJBLiteClientBase. Since the method must be invoked prior to container creation, way ahead of actual test method,
+     * this customization is only possible at test client level, not at test method level.
      */
     public Map<String, Object> getContainerInitProperties();
 
     /**
-     * This method is called by test client to set context ClassLoader to include
-     * additional classes and ejb modules. This method is called prior to creating
-     * EJBContainer. The default implementation does nothing and makes no change
-     * to the context ClassLoader in the current thread. Subclass client may
-     * choose to override this method to provide for additional ejb modules and
-     * classes.
+     * This method is called by test client to set context ClassLoader to include additional classes and ejb modules. This
+     * method is called prior to creating EJBContainer. The default implementation does nothing and makes no change to the
+     * context ClassLoader in the current thread. Subclass client may choose to override this method to provide for
+     * additional ejb modules and classes.
      */
     public void setContextClassLoader();
 }

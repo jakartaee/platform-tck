@@ -27,10 +27,12 @@ import java.util.List;
 public class ListHashSetTextEncoder implements Encoder.Text<LinkedList<HashSet<String>>> {
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 
     @Override
-    public void init(EndpointConfig arg0) {}
+    public void init(EndpointConfig arg0) {
+    }
 
     @Override
     public String encode(LinkedList<HashSet<String>> arg0) throws EncodeException {

@@ -84,20 +84,17 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     * 1) During webservice invocation, the WebServiceContext injected to the
-     * webservice should have the following.
+     * 1) During webservice invocation, the WebServiceContext injected to the webservice should have the following.
      *
-     * 1) The getMessageContext() on WebServiceContext should return an instance
-     * of JAX-WS Message context. i.e. jakarta.xml.ws.handler.MessageContext
+     * 1) The getMessageContext() on WebServiceContext should return an instance of JAX-WS Message context. i.e.
+     * jakarta.xml.ws.handler.MessageContext
      *
-     * 2) The getUserPrincipal() Returns the Principal that identifies the sender
-     * of the request.
+     * 2) The getUserPrincipal() Returns the Principal that identifies the sender of the request.
      *
-     * 3) The isUserInRole("Administrator") method should return true Note: The
-     * user j2ee is mapped to role Adminstrator
+     * 3) The isUserInRole("Administrator") method should return true Note: The user j2ee is mapped to role Adminstrator
      *
-     * 2) If any of the above values are incorrect, then the sayHelloProtected()
-     * method throws exception and the WebServiceContextTest fails.
+     * 2) If any of the above values are incorrect, then the sayHelloProtected() method throws exception and the
+     * WebServiceContextTest fails.
      *
      */
     public void WebServiceContextTest() throws Fault {

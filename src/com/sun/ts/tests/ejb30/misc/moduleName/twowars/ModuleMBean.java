@@ -24,4 +24,5 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import jakarta.annotation.ManagedBean;
 
 @ManagedBean("ModuleMBean")
-public class ModuleMBean extends AppResBeanBase implements AppResRemoteIF {}
+public class ModuleMBean extends AppResBeanBase implements AppResRemoteIF {
+}

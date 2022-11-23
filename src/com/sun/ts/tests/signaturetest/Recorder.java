@@ -63,13 +63,12 @@ public abstract class Recorder {
 
     /**
      * <p>
-     * Record the signatures for each package listed in the
-     * <code>TS_HOME/bin/sig-test.map</code> file.
+     * Record the signatures for each package listed in the <code>TS_HOME/bin/sig-test.map</code> file.
      * </p>
      */
     public void batchRecord() {
 
-        for (Iterator i = signatureMap.keySet().iterator(); i.hasNext(); ) {
+        for (Iterator i = signatureMap.keySet().iterator(); i.hasNext();) {
             String basePackageName = (String) i.next();
             String version = (String) signatureMap.get(basePackageName);
             String outputFileName = getOutputFileName(basePackageName, version);
@@ -102,45 +101,33 @@ public abstract class Recorder {
     // ------------------------------------------------------- Protected Methods
 
     /**
-     * Write, to a separate file, all of the packages that were recorded. How this
-     * is accomplised will be dependent on the framework.
+     * Write, to a separate file, all of the packages that were recorded. How this is accomplised will be dependent on the
+     * framework.
      *
-     * @param basePackageName
-     *          the base package
-     * @param signatureFile
-     *          the file in which the signatures were recorded to
-     * @param packageListFile
-     *          the name of the package list file (which may or may not exist)
-     * @throws Exception
-     *           if an error occurs writing the file
+     * @param basePackageName the base package
+     * @param signatureFile the file in which the signatures were recorded to
+     * @param packageListFile the name of the package list file (which may or may not exist)
+     * @throws Exception if an error occurs writing the file
      */
     protected abstract void writePackageListFile(String basePackageName, String signatureFile, String packageListFile)
             throws Exception;
 
     /**
-     * Create a array of arguments appropriate for use with different signature
-     * recording frameworks.
+     * Create a array of arguments appropriate for use with different signature recording frameworks.
      *
-     * @param version
-     *          The version of the API
-     * @param classpath
-     *          the classpath containing classes that will be recorded
-     * @param outputFileName
-     *          the file in which to write the recorded signatures to
-     * @param packageName
-     *          the base package name of the signatures that will be recorded
+     * @param version The version of the API
+     * @param classpath the classpath containing classes that will be recorded
+     * @param outputFileName the file in which to write the recorded signatures to
+     * @param packageName the base package name of the signatures that will be recorded
      */
     protected abstract String[] createCommandLine(
             String version, String classpath, String outputFileName, String packageName);
 
     /**
-     * Perform whatever action in necessary to do the actual recording of the
-     * signatures.
+     * Perform whatever action in necessary to do the actual recording of the signatures.
      *
-     * @param commandLine
-     *          the options to invoke the recording facility
-     * @throws Exception
-     *           if an error occurs during the record process
+     * @param commandLine the options to invoke the recording facility
+     * @throws Exception if an error occurs during the record process
      */
     protected abstract void doRecord(String[] commandLine) throws Exception;
 

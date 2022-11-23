@@ -39,16 +39,12 @@ import java.io.PrintWriter;
  *
  */
 
-@DeclareRoles({"Administrator", "Manager", "Employee"})
-@ServletSecurity(
-        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
-        httpMethodConstraints = {
-            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
-        })
-@WebServlet(
-        name = "CRDTestServlet",
-        urlPatterns = {"/CRDTestServlet"})
+@DeclareRoles({ "Administrator", "Manager", "Employee" })
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = { "Administrator" }), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
+})
+@WebServlet(name = "CRDTestServlet", urlPatterns = { "/CRDTestServlet" })
 public class CRDTestServlet extends HttpServlet {
     @EJB
     private ITestStatelessEjb testStatelessEjb;

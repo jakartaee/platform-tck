@@ -44,11 +44,7 @@ import java.util.Set;
 import javax.security.auth.Subject;
 
 @ConnectionDefinitions({
-    @ConnectionDefinition(
-            connectionFactory = com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory.class,
-            connectionFactoryImpl = com.sun.ts.tests.common.connector.whitebox.TSEISDataSource.class,
-            connection = com.sun.ts.tests.common.connector.whitebox.TSConnection.class,
-            connectionImpl = com.sun.ts.tests.common.connector.whitebox.TSEISConnection.class)
+        @ConnectionDefinition(connectionFactory = com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory.class, connectionFactoryImpl = com.sun.ts.tests.common.connector.whitebox.TSEISDataSource.class, connection = com.sun.ts.tests.common.connector.whitebox.TSConnection.class, connectionImpl = com.sun.ts.tests.common.connector.whitebox.TSEISConnection.class)
 })
 public class IBAnnoManagedConnectionFactory
         implements ManagedConnectionFactory, ResourceAdapterAssociation, jakarta.resource.Referenceable, Serializable {
@@ -382,7 +378,8 @@ public class IBAnnoManagedConnectionFactory
      *
      * @exception ResourceException
      */
-    public void setLogWriter(PrintWriter out) throws ResourceException {}
+    public void setLogWriter(PrintWriter out) throws ResourceException {
+    }
 
     /*
      * @name getLogWriter
@@ -438,17 +435,23 @@ public class IBAnnoManagedConnectionFactory
             return false;
         }
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.user, that.getUser())) return false;
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
 
-        if (!Util.isEqual(this.userName, that.getUserName())) return false;
+        if (!Util.isEqual(this.userName, that.getUserName()))
+            return false;
 
-        if (!Util.isEqual(this.TSRValue, that.getTSRValue())) return false;
+        if (!Util.isEqual(this.TSRValue, that.getTSRValue()))
+            return false;
 
-        if (!Util.isEqual(this.setterMethodVal, that.getSetterMethodVal())) return false;
+        if (!Util.isEqual(this.setterMethodVal, that.getSetterMethodVal()))
+            return false;
 
-        if (!Util.isEqual(this.factoryName, that.getFactoryName())) return false;
+        if (!Util.isEqual(this.factoryName, that.getFactoryName()))
+            return false;
 
         return true;
     }

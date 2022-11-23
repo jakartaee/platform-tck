@@ -128,15 +128,18 @@ public class NameTestServlet extends HttpServlet {
             } else if (!localName.equals("namespace")) {
                 TestUtil.logErr("local name mismatch - expected: namespace, received: " + localName);
                 pass = false;
-            } else TestUtil.logMsg("local name matches: " + localName);
+            } else
+                TestUtil.logMsg("local name matches: " + localName);
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -164,15 +167,18 @@ public class NameTestServlet extends HttpServlet {
             } else if (!prefix.equals("ns")) {
                 TestUtil.logErr("prefix mismatch - expected: ns, received: " + prefix);
                 pass = false;
-            } else TestUtil.logMsg("prefix matches: " + prefix);
+            } else
+                TestUtil.logMsg("prefix matches: " + prefix);
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -201,15 +207,18 @@ public class NameTestServlet extends HttpServlet {
             } else if (!qualifiedName.equals("ns:namespace")) {
                 TestUtil.logErr("qualified name mismatch - expected: namespace, received: " + qualifiedName);
                 pass = false;
-            } else TestUtil.logMsg("qualified name matches: " + qualifiedName);
+            } else
+                TestUtil.logMsg("qualified name matches: " + qualifiedName);
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -237,15 +246,18 @@ public class NameTestServlet extends HttpServlet {
             } else if (!uri.equals("namespace-uri")) {
                 TestUtil.logErr("uri mismatch - expected: namespace-uri, received: " + uri);
                 pass = false;
-            } else TestUtil.logMsg("uri matches: " + uri);
+            } else
+                TestUtil.logMsg("uri matches: " + uri);
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

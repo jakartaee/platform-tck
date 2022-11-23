@@ -38,30 +38,12 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 @EJBs({
-    @EJB(
-            name = containerConcurrencyBeanNoInterface,
-            beanName = "ContainerConcurrencyBean",
-            beanInterface = ContainerConcurrencyBean.class),
-    @EJB(
-            name = defaultConcurrencyBeanNoInterface,
-            beanName = "DefaultConcurrencyBean",
-            beanInterface = DefaultConcurrencyBean.class),
-    @EJB(
-            name = notAllowedConcurrencyBeanNoInterface,
-            beanName = "NotAllowedConcurrencyBean",
-            beanInterface = NotAllowedConcurrencyBean.class),
-    @EJB(
-            name = containerConcurrencyBeanRemote,
-            beanName = "ContainerConcurrencyBean",
-            beanInterface = StatefulConcurrencyRemoteIF.class),
-    @EJB(
-            name = defaultConcurrencyBeanRemote,
-            beanName = "DefaultConcurrencyBean",
-            beanInterface = StatefulConcurrencyRemoteIF.class),
-    @EJB(
-            name = notAllowedConcurrencyBeanRemote,
-            beanName = "NotAllowedConcurrencyBean",
-            beanInterface = StatefulConcurrencyRemoteIF.class)
+        @EJB(name = containerConcurrencyBeanNoInterface, beanName = "ContainerConcurrencyBean", beanInterface = ContainerConcurrencyBean.class),
+        @EJB(name = defaultConcurrencyBeanNoInterface, beanName = "DefaultConcurrencyBean", beanInterface = DefaultConcurrencyBean.class),
+        @EJB(name = notAllowedConcurrencyBeanNoInterface, beanName = "NotAllowedConcurrencyBean", beanInterface = NotAllowedConcurrencyBean.class),
+        @EJB(name = containerConcurrencyBeanRemote, beanName = "ContainerConcurrencyBean", beanInterface = StatefulConcurrencyRemoteIF.class),
+        @EJB(name = defaultConcurrencyBeanRemote, beanName = "DefaultConcurrencyBean", beanInterface = StatefulConcurrencyRemoteIF.class),
+        @EJB(name = notAllowedConcurrencyBeanRemote, beanName = "NotAllowedConcurrencyBean", beanInterface = StatefulConcurrencyRemoteIF.class)
 })
 public class Client extends ClientBase {
 
@@ -72,7 +54,7 @@ public class Client extends ClientBase {
      */
     @Override
     public void notAllowed() throws InterruptedException {
-        StatefulConcurrencyIF[] bs = {getNotAllowedConcurrencyBeanNoInterface(), getNotAllowedConcurrencyBeanRemote()};
+        StatefulConcurrencyIF[] bs = { getNotAllowedConcurrencyBeanNoInterface(), getNotAllowedConcurrencyBeanRemote() };
         for (StatefulConcurrencyIF b : bs) {
             checkConcurrentAccessResult(concurrentPing(b), 1, 1);
         }

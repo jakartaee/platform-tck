@@ -74,10 +74,9 @@ public class MessageTopicTest extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -118,8 +117,8 @@ public class MessageTopicTest extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -141,13 +140,12 @@ public class MessageTopicTest extends ServiceEETest {
     /*
      * @testName: msgClearBodyTopicTest
      *
-     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473;
-     * JMS:JAVADOC:449; JMS:SPEC:178; JMS:JAVADOC:291;
+     * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473; JMS:JAVADOC:449; JMS:SPEC:178;
+     * JMS:JAVADOC:291;
      *
-     * @test_Strategy: For each type of message, create and send a message Send
-     * and receive single Text, map, bytes, stream, and object message call
-     * clearBody, verify body is empty after clearBody. verify properties are not
-     * effected by clearBody. Write to the message again 3.11
+     * @test_Strategy: For each type of message, create and send a message Send and receive single Text, map, bytes, stream,
+     * and object message call clearBody, verify body is empty after clearBody. verify properties are not effected by
+     * clearBody. Write to the message again 3.11
      */
 
     public void msgClearBodyTopicTest() throws Fault {
@@ -178,8 +176,7 @@ public class MessageTopicTest extends ServiceEETest {
             messageSentObjectMsg.setObject("Initial message");
             messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME", "msgClearBodyTopicTest");
             tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-            messageReceivedObjectMsg =
-                    (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             try {
                 logTrace("Testing Object message");
                 logTrace("read 1st contents");
@@ -224,8 +221,7 @@ public class MessageTopicTest extends ServiceEETest {
             messageSentMapMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgClearBodyTopicTest");
             messageSentMapMessage.setString("aString", "Initial message");
             tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-            messageReceivedMapMessage =
-                    (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             try {
                 logTrace("Test for MapMessage ");
                 logTrace("read 1st contents");
@@ -270,8 +266,7 @@ public class MessageTopicTest extends ServiceEETest {
             messageSentBytesMessage.setStringProperty("COM_SUN_JMS_TESTNAME", "msgClearBodyTopicTest");
             messageSentBytesMessage.writeByte(bValue);
             tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
-            messageReceivedBytesMessage =
-                    (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedBytesMessage = (BytesMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             try {
                 logTrace("Test BytesMessage ");
                 logTrace("read 1st contents");
@@ -322,8 +317,7 @@ public class MessageTopicTest extends ServiceEETest {
             messageSentStreamMessage.writeString("Testing...");
             logTrace("Sending message");
             tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
-            messageReceivedStreamMessage =
-                    (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
+            messageReceivedStreamMessage = (StreamMessage) tool.getDefaultTopicSubscriber().receive(timeout);
             try {
                 logTrace("Test StreamMessage ");
                 logTrace("read 1st contents");
@@ -420,9 +414,8 @@ public class MessageTopicTest extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:174; JMS:JAVADOC:584;
      *
-     * @test_Strategy: create a stream message and a byte message. write to the
-     * message body, call the reset method, try to write to the body expect a
-     * MessageNotWriteableException to be thrown.
+     * @test_Strategy: create a stream message and a byte message. write to the message body, call the reset method, try to
+     * write to the body expect a MessageNotWriteableException to be thrown.
      */
 
     public void msgResetTopicTest() throws Fault {
@@ -489,9 +482,8 @@ public class MessageTopicTest extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:79; JMS:JAVADOC:134; JMS:JAVADOC:439;
      *
-     * @test_Strategy: Write a null string to a MapMessage and then a
-     * StreamMessage. Attempt to read the null value as a char. Verify that a
-     * NullPointerException is thrown.
+     * @test_Strategy: Write a null string to a MapMessage and then a StreamMessage. Attempt to read the null value as a
+     * char. Verify that a NullPointerException is thrown.
      *
      */
 
@@ -563,13 +555,11 @@ public class MessageTopicTest extends ServiceEETest {
     /*
      * @testName: messageTIllegalarg
      *
-     * @assertion_ids: JMS:JAVADOC:775; JMS:JAVADOC:777; JMS:JAVADOC:779;
-     * JMS:JAVADOC:781; JMS:JAVADOC:783; JMS:JAVADOC:785; JMS:JAVADOC:787;
-     * JMS:JAVADOC:789; JMS:JAVADOC:791;
+     * @assertion_ids: JMS:JAVADOC:775; JMS:JAVADOC:777; JMS:JAVADOC:779; JMS:JAVADOC:781; JMS:JAVADOC:783; JMS:JAVADOC:785;
+     * JMS:JAVADOC:787; JMS:JAVADOC:789; JMS:JAVADOC:791;
      *
-     * @test_Strategy: Create a TextMessage. Write to the message using each type
-     * of setProperty method and as an object with null String as name. Verify
-     * that IllegalArgumentException thrown.
+     * @test_Strategy: Create a TextMessage. Write to the message using each type of setProperty method and as an object
+     * with null String as name. Verify that IllegalArgumentException thrown.
      */
 
     public void messageTIllegalarg() throws Fault {

@@ -23,11 +23,9 @@ import jakarta.ejb.EJBException;
 /**
  * Exception hierarchy used in this test client:
  *
- * RuntimeException AtUncheckedAppException @ApplicationException() Exception1
- * No annotation Exception2 No annotation Exception3
- * <application-exception>(inherited=false) Exception4 a system exception
- * Exception5 a system exception Exception6
- * <application-exception>(inherited=true) Exception7 No annotation
+ * RuntimeException AtUncheckedAppException @ApplicationException() Exception1 No annotation Exception2 No annotation
+ * Exception3 <application-exception>(inherited=false) Exception4 a system exception Exception5 a system exception
+ * Exception6 <application-exception>(inherited=true) Exception7 No annotation
  */
 public abstract class JsfClientBase extends EJBLiteJsfClientBase {
     protected static final String BEAN_LOOKUP_NAME = "ejb/InheritanceBean";
@@ -36,11 +34,9 @@ public abstract class JsfClientBase extends EJBLiteJsfClientBase {
     private InheritanceIF bean;
 
     /**
-     * For stateful and stateless bean, a system exception in previous test method
-     * may cause the bean instance to be discarded, and the next test (if in the
-     * same VM) may get NoSuchObectLocalException. Stateful and Stateless
-     * directory can override this method to always look up to ensure a new
-     * reference is used in each test.
+     * For stateful and stateless bean, a system exception in previous test method may cause the bean instance to be
+     * discarded, and the next test (if in the same VM) may get NoSuchObectLocalException. Stateful and Stateless directory
+     * can override this method to always look up to ensure a new reference is used in each test.
      */
     protected InheritanceIF getBean() {
         return bean;

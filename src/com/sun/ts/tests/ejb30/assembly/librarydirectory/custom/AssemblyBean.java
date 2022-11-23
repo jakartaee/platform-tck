@@ -32,12 +32,13 @@ import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
 
 @Stateless
-@Interceptors({AssemblyInterceptor.class})
+@Interceptors({ AssemblyInterceptor.class })
 public class AssemblyBean extends AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF {
     @EJB(name = "helloBean") // this ejb-ref is resolved in sun-ejb-jar.xml
     private HelloRemoteIF helloBean;
 
-    public AssemblyBean() {}
+    public AssemblyBean() {
+    }
 
     @Override
     protected HelloRemoteIF getHelloBean() {

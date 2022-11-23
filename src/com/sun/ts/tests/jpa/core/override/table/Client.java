@@ -25,7 +25,8 @@ public class Client extends PMClientBase {
 
     private static final Long ID = 1L;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -48,9 +49,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1028; PERSISTENCE:SPEC:1028.1;
      *
-     * @test_Strategy: Table and Entity are defined in orm.xml without using its
-     * annotation. The following test reads the entity and table names from the
-     * orm.xml and persists the entity.
+     * @test_Strategy: Table and Entity are defined in orm.xml without using its annotation. The following test reads the
+     * entity and table names from the orm.xml and persists the entity.
      */
     public void testNoTableAnnotation() throws Fault {
         NoTableAnnotation entity = new NoTableAnnotation();

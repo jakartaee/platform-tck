@@ -30,8 +30,7 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 
 /**
- * SimpleTag instance to validate variable synchronization with SimpleTag's
- * declared in the TLD.
+ * SimpleTag instance to validate variable synchronization with SimpleTag's declared in the TLD.
  */
 public class SimpleSyncTag extends SimpleTagSupport {
 
@@ -45,10 +44,8 @@ public class SimpleSyncTag extends SimpleTagSupport {
     /**
      * Export PageContext variables to be synced with TEI declared variables.
      *
-     * @throws JspException
-     *           if an error occurs
-     * @throws IOException
-     *           if an I/O error occurs
+     * @throws JspException if an error occurs
+     * @throws IOException if an I/O error occurs
      */
     public void doTag() throws JspException, IOException {
         JspContext context = this.getJspContext();

@@ -37,9 +37,9 @@ import jakarta.interceptor.Interceptors;
 import java.util.Properties;
 
 @Stateful(name = "CallbackAllowedBean")
-@Remote({CallbackAllowedIF.class})
-@Local({CallbackAllowedLocalIF.class})
-@Interceptors({com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class})
+@Remote({ CallbackAllowedIF.class })
+@Local({ CallbackAllowedLocalIF.class })
+@Interceptors({ com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class })
 @EJB(name = "ejb/TimerEJB", beanName = "TimerEJB", beanInterface = TimerLocalIF.class)
 public class CallbackAllowedBean extends CallbackAllowedBeanBase
         implements CallbackAllowedIF, CallbackAllowedLocalIF, java.io.Serializable {

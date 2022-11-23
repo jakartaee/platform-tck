@@ -197,7 +197,7 @@ public class Client extends ServiceEETest {
      * @return boolean true if id correctly starts with ID:
      */
     private boolean chkMessageID(String id) {
-        String status[] = {"Pass", "Fail"};
+        String status[] = { "Pass", "Fail" };
         boolean retcode = true;
 
         // message id must start with ID: - unless it is null
@@ -276,15 +276,18 @@ public class Client extends ServiceEETest {
         boolean pass = true;
         try {
             TestUtil.logMsg("Close JMSContext Objects");
-            if (context != null) context.close();
+            if (context != null)
+                context.close();
             context = null;
-            if (contextToSendMsg != null) contextToSendMsg.close();
+            if (contextToSendMsg != null)
+                contextToSendMsg.close();
             contextToSendMsg = null;
             producer = null;
             TestUtil.logMsg("Flush any messages left on Queue");
             tool.flushDestination();
             TestUtil.logMsg("Close JMSConsumer objects");
-            if (consumer != null) consumer.close();
+            if (consumer != null)
+                consumer.close();
             consumer = null;
             tool.closeAllResources();
         } catch (Exception e) {
@@ -292,7 +295,8 @@ public class Client extends ServiceEETest {
             throw new Fault("cleanup failed!", e);
         }
 
-        if (!pass) throw new Fault("cleanup failed!");
+        if (!pass)
+            throw new Fault("cleanup failed!");
     }
 
     /*
@@ -304,8 +308,7 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.createTemporaryQueue()
      *
-     * Send and receive a message to temporary queue. Compare send and recv
-     * message for equality.
+     * Send and receive a message to temporary queue. Compare send and recv message for equality.
      */
     public void createTemporayQueueTest() throws Fault {
         boolean pass = true;
@@ -383,9 +386,8 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.createBrowser(Queue) JMSContext.createBrowser(Queue, String)
      *
-     * 1. Send x text messages to a Queue. 2. Create a QueueBrowser with selector
-     * to browse just the last message in the Queue. 3. Create a QueueBrowser
-     * again to browse all the messages in the queue.
+     * 1. Send x text messages to a Queue. 2. Create a QueueBrowser with selector to browse just the last message in the
+     * Queue. 3. Create a QueueBrowser again to browse all the messages in the queue.
      */
     public void createQueueBrowserTest() throws Fault {
         boolean pass = true;
@@ -489,13 +491,11 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy: Test the following APIs:
      *
-     * JMSContext.createConsumer(Destination)
-     * JMSContext.createConsumer(Destination, String)
+     * JMSContext.createConsumer(Destination) JMSContext.createConsumer(Destination, String)
      * JMSContext.createConsumer(Destination, String, boolean)
      *
-     * 1. Send x text messages to a Queue. 2. Create a JMSConsumer with selector
-     * to consume just the last message in the Queue. 3. Create a JMSConsumer
-     * again to consume the rest of the messages in the Queue.
+     * 1. Send x text messages to a Queue. 2. Create a JMSConsumer with selector to consume just the last message in the
+     * Queue. 3. Create a JMSConsumer again to consume the rest of the messages in the Queue.
      */
     public void createConsumerTest() throws Fault {
         boolean pass = true;
@@ -599,8 +599,10 @@ public class Client extends ServiceEETest {
             throw new Fault("createConsumerTest");
         } finally {
             try {
-                if (consumerSelect != null) consumerSelect.close();
-                if (consumer != null) consumer.close();
+                if (consumerSelect != null)
+                    consumerSelect.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
             }
@@ -616,8 +618,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:982;
      *
-     * @test_Strategy: Call JMSContext.getMetaData() to retrieve the
-     * ConnectionMetaData and then verify the ConnectionMetaData for correctness.
+     * @test_Strategy: Call JMSContext.getMetaData() to retrieve the ConnectionMetaData and then verify the
+     * ConnectionMetaData for correctness.
      *
      */
     public void getMetaDataTest() throws Fault {
@@ -627,7 +629,8 @@ public class Client extends ServiceEETest {
         try {
             data = context.getMetaData();
 
-            if (!verifyMetaData(data)) pass = false;
+            if (!verifyMetaData(data))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logMsg("Caught unexpected exception: " + e);
@@ -648,8 +651,8 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.getSessionMode().
      *
-     * Cycle through all session modes to create each JMSContext with each mode
-     * and verify that each session mode is set correctly.
+     * Cycle through all session modes to create each JMSContext with each mode and verify that each session mode is set
+     * correctly.
      */
     public void getSessionModeTest() throws Fault {
         boolean pass = true;
@@ -670,7 +673,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getSessionModeTest");
         } finally {
             try {
-                if (context != null) context.close();
+                if (context != null)
+                    context.close();
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
             }
@@ -678,17 +682,18 @@ public class Client extends ServiceEETest {
 
         // Test non-default case
         int expSessionMode[] = {
-            JMSContext.SESSION_TRANSACTED,
-            JMSContext.AUTO_ACKNOWLEDGE,
-            JMSContext.CLIENT_ACKNOWLEDGE,
-            JMSContext.DUPS_OK_ACKNOWLEDGE,
+                JMSContext.SESSION_TRANSACTED,
+                JMSContext.AUTO_ACKNOWLEDGE,
+                JMSContext.CLIENT_ACKNOWLEDGE,
+                JMSContext.DUPS_OK_ACKNOWLEDGE,
         };
 
         // Cycle through all session modes
         for (int i = 0; i < expSessionMode.length; i++) {
             if ((vehicle.equals("ejb") || vehicle.equals("jsp") || vehicle.equals("servlet"))) {
                 if (expSessionMode[i] == JMSContext.SESSION_TRANSACTED
-                        || expSessionMode[i] == JMSContext.CLIENT_ACKNOWLEDGE) continue;
+                        || expSessionMode[i] == JMSContext.CLIENT_ACKNOWLEDGE)
+                    continue;
             }
             try {
                 TestUtil.logMsg("Creating context with session mode (" + expSessionMode[i] + ")");
@@ -704,7 +709,8 @@ public class Client extends ServiceEETest {
                 throw new Fault("getSessionModeTest");
             } finally {
                 try {
-                    if (context != null) context.close();
+                    if (context != null)
+                        context.close();
                 } catch (Exception e) {
                     TestUtil.logErr("Caught unexpected exception: " + e);
                 }
@@ -725,11 +731,9 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.getTransacted().
      *
-     * Create a JMSContext with JMSContext.AUTO_ACKNOWLEDGE and verify that
-     * JMSContext.getTransacted() returns false.
+     * Create a JMSContext with JMSContext.AUTO_ACKNOWLEDGE and verify that JMSContext.getTransacted() returns false.
      *
-     * Create a JMSContext with JMSContext.SESSION_TRANSACTED and verify that
-     * JMSContext.getTransacted() returns true.
+     * Create a JMSContext with JMSContext.SESSION_TRANSACTED and verify that JMSContext.getTransacted() returns true.
      */
     public void getTransactedTest() throws Fault {
         boolean pass = true;
@@ -749,7 +753,8 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (context != null) context.close();
+                if (context != null)
+                    context.close();
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
             }
@@ -770,7 +775,8 @@ public class Client extends ServiceEETest {
                 throw new Fault("getTransactedTest");
             } finally {
                 try {
-                    if (context != null) context.close();
+                    if (context != null)
+                        context.close();
                 } catch (Exception e) {
                     TestUtil.logErr("Caught unexpected exception: " + e);
                 }
@@ -857,8 +863,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:912; JMS:SPEC:108;
      *
-     * @test_Strategy: Call close() twice on a JMSContext. This MUST NOT throw an
-     * exception.
+     * @test_Strategy: Call close() twice on a JMSContext. This MUST NOT throw an exception.
      */
     public void multipleCloseContextTest() throws Fault {
         try {
@@ -875,20 +880,16 @@ public class Client extends ServiceEETest {
     /*
      * @testName: invalidDestinationRuntimeExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:944; JMS:JAVADOC:947; JMS:JAVADOC:951;
-     * JMS:JAVADOC:920; JMS:JAVADOC:923; JMS:JAVADOC:1254; JMS:JAVADOC:1237;
-     * JMS:JAVADOC:1242; JMS:JAVADOC:1246; JMS:JAVADOC:1250;
+     * @assertion_ids: JMS:JAVADOC:944; JMS:JAVADOC:947; JMS:JAVADOC:951; JMS:JAVADOC:920; JMS:JAVADOC:923;
+     * JMS:JAVADOC:1254; JMS:JAVADOC:1237; JMS:JAVADOC:1242; JMS:JAVADOC:1246; JMS:JAVADOC:1250;
      *
-     * @test_Strategy: Test InvalidDestinationRuntimeException conditions from
-     * various API methods.
+     * @test_Strategy: Test InvalidDestinationRuntimeException conditions from various API methods.
      *
-     * JMSProducer.send(Destination, Message) JMSProducer.send(Destination,
-     * String) JMSProducer.send(Destination, Serializable)
-     * JMSProducer.send(Destination, byte[]) JMSProducer.send(Destination, Map)
-     * JMSContext.createConsumer(Destination)
-     * JMSContext.createConsumer(Destination, String)
-     * JMSContext.createConsumer(Destination, String, boolean)
-     * JMSContext.createBrowser(Queue, String) JMSContext.createBrowser(Queue)
+     * JMSProducer.send(Destination, Message) JMSProducer.send(Destination, String) JMSProducer.send(Destination,
+     * Serializable) JMSProducer.send(Destination, byte[]) JMSProducer.send(Destination, Map)
+     * JMSContext.createConsumer(Destination) JMSContext.createConsumer(Destination, String)
+     * JMSContext.createConsumer(Destination, String, boolean) JMSContext.createBrowser(Queue, String)
+     * JMSContext.createBrowser(Queue)
      */
     public void invalidDestinationRuntimeExceptionTests() throws Fault {
         boolean pass = true;
@@ -1045,11 +1046,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:948; JMS:JAVADOC:952; JMS:JAVADOC:924;
      *
-     * @test_Strategy: Test InvalidSelectorRuntimeException conditions from
-     * various API methods.
+     * @test_Strategy: Test InvalidSelectorRuntimeException conditions from various API methods.
      *
-     * JMSContext.createConsumer(Destination, String)
-     * JMSContext.createConsumer(Destination, String, boolean)
+     * JMSContext.createConsumer(Destination, String) JMSContext.createConsumer(Destination, String, boolean)
      * JMSContext.createQueue(Queue, String)
      */
     public void invalidSelectorRuntimeExceptionTests() throws Fault {
@@ -1108,22 +1107,16 @@ public class Client extends ServiceEETest {
     /*
      * @testName: illegalStateRuntimeExceptionTest
      *
-     * @assertion_ids: JMS:JAVADOC:917; JMS:JAVADOC:994; JMS:JAVADOC:997;
-     * JMS:JAVADOC:1340;
+     * @assertion_ids: JMS:JAVADOC:917; JMS:JAVADOC:994; JMS:JAVADOC:997; JMS:JAVADOC:1340;
      *
-     * @test_Strategy: 1. Create a TextMessages and send to Queue 2. Then invoke
-     * JMSContext.commit() on a non-transacted session Verify that
-     * IllegalStateRuntimeException is thrown 3. Then test invoke
-     * JMSContext.rollback() on a non-transacted session Verify that
-     * IllegalStateRuntimeException is thrown 3. Then test invoke
-     * JMSContext.recover() on a transacted session Verify that
-     * IllegalStateRuntimeException is thrown 4. Create JMSContext with
-     * CLIENT_ACKNOWLEDGE then close JMSContext. Then test invoke
-     * JMSContext.acknowledge() on the JMSContext. Verify that
+     * @test_Strategy: 1. Create a TextMessages and send to Queue 2. Then invoke JMSContext.commit() on a non-transacted
+     * session Verify that IllegalStateRuntimeException is thrown 3. Then test invoke JMSContext.rollback() on a
+     * non-transacted session Verify that IllegalStateRuntimeException is thrown 3. Then test invoke JMSContext.recover() on
+     * a transacted session Verify that IllegalStateRuntimeException is thrown 4. Create JMSContext with CLIENT_ACKNOWLEDGE
+     * then close JMSContext. Then test invoke JMSContext.acknowledge() on the JMSContext. Verify that
      * IllegalStateRuntimeException is thrown
      *
-     * JMSContext.commit(); JMSContext.rollback(); JMSContext.recover();
-     * JMSContext.acknowledge();
+     * JMSContext.commit(); JMSContext.rollback(); JMSContext.recover(); JMSContext.acknowledge();
      */
     public void illegalStateRuntimeExceptionTest() throws Fault {
         boolean pass = true;

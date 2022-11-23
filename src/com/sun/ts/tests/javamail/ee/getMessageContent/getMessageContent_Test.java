@@ -52,9 +52,8 @@ public class getMessageContent_Test extends ServiceEETest {
 
     /* Test setup: */
     /*
-     * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
-     * javamail.password ; javamail.mailbox; javamail.root.path; smtp.port;
-     * imap.port;
+     * @class.setup_props: javamail.protocol; javamail.server; javamail.username; javamail.password ; javamail.mailbox;
+     * javamail.root.path; smtp.port; imap.port;
      *
      */
     public void setup(String[] args, Properties props) throws Fault {
@@ -89,7 +88,8 @@ public class getMessageContent_Test extends ServiceEETest {
 
             if (msgcount == -1) {
                 msgcount = folder.getMessageCount();
-                if (msgcount < 1) throw new Fault("Mail folder is empty!");
+                if (msgcount < 1)
+                    throw new Fault("Mail folder is empty!");
             }
 
         } catch (Exception e) {
@@ -124,7 +124,8 @@ public class getMessageContent_Test extends ServiceEETest {
                 if (msg != null && (msg instanceof Message)) {
                     size_in_bytes1 = msg.getSize();
                     size_in_bytes2 = cmsg.getSize();
-                    if (size_in_bytes1 == size_in_bytes2) TestUtil.logMsg("UNIT TEST " + i + ": passed\n");
+                    if (size_in_bytes1 == size_in_bytes2)
+                        TestUtil.logMsg("UNIT TEST " + i + ": passed\n");
                 } else {
                     TestUtil.logMsg("UNIT TEST " + i + ": FAILED\n");
                     errors++;
@@ -149,8 +150,10 @@ public class getMessageContent_Test extends ServiceEETest {
     } // end of test1()
 
     public void checkStatus() {
-        if (errors == 0) status = Status.passed("OKAY");
-        else status = Status.failed("");
+        if (errors == 0)
+            status = Status.passed("OKAY");
+        else
+            status = Status.failed("");
     }
 
     /* cleanup */
@@ -185,9 +188,12 @@ public class getMessageContent_Test extends ServiceEETest {
             int portnum = -1;
             // Connect
             if (host != null || user != null || password != null)
-                if (portnum > 0) store.connect(host, portnum, user, password);
-                else store.connect(host, user, password);
-            else store.connect();
+                if (portnum > 0)
+                    store.connect(host, portnum, user, password);
+                else
+                    store.connect(host, user, password);
+            else
+                store.connect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -201,8 +207,10 @@ public class getMessageContent_Test extends ServiceEETest {
     public Folder getRootFolder(Store store) {
         Folder folder = null;
         try {
-            if (rootPath.equals("")) folder = store.getDefaultFolder();
-            else folder = store.getFolder(rootPath);
+            if (rootPath.equals(""))
+                folder = store.getDefaultFolder();
+            else
+                folder = store.getFolder(rootPath);
         } catch (Exception e) {
             e.printStackTrace();
         }

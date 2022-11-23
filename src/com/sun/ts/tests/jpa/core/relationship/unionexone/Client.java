@@ -27,7 +27,8 @@ import java.util.Properties;
  */
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -50,11 +51,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: uni1X1Test1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
-     * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
-     * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
-     * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
-     * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
+     * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135; PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561;
+     * PERSISTENCE:SPEC:562; PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571; PERSISTENCE:SPEC:573;
+     * PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028; PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
      *
      * @test_Strategy: RelationShip OneToOne Mapping
      *

@@ -46,10 +46,9 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: triangleStartUp
      *
-     * @test_Strategy: A->C,B B->C expecting the exact order: C,B,A,S Although C
-     * appears twice, there must be only 1 C, and BeanBase verifies all beans'
-     * postConstruct method is only invoked once. A, B, C beans are annotated with
-     * StartUp, and mixed concurrency management types.
+     * @test_Strategy: A->C,B B->C expecting the exact order: C,B,A,S Although C appears twice, there must be only 1 C, and
+     * BeanBase verifies all beans' postConstruct method is only invoked once. A, B, C beans are annotated with StartUp, and
+     * mixed concurrency management types.
      */
     public void triangleStartUp() {
         stateless.ping();
@@ -65,10 +64,9 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: triangleNoStartUp
      *
-     * @test_Strategy: X->Z,Y Y->Z expecting the exact order: Z, Y, X Although Z
-     * appears twice, there must be only 1 Z, and BeanBase verifies all beans'
-     * postConstruct method is only invoked once. None is annotated with StartUp.
-     * They all use default (container) concurrency management
+     * @test_Strategy: X->Z,Y Y->Z expecting the exact order: Z, Y, X Although Z appears twice, there must be only 1 Z, and
+     * BeanBase verifies all beans' postConstruct method is only invoked once. None is annotated with StartUp. They all use
+     * default (container) concurrency management
      */
     public void triangleNoStartUp() {
         xSingleton.ping();

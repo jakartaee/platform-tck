@@ -111,14 +111,16 @@ public class BeanCEJB implements SessionBean {
 
             tempName = beanRef.getBrandName();
             TestUtil.logTrace("Instance Brand Name is " + tempName);
-            if (tempName.equals(expName)) b1 = true;
+            if (tempName.equals(expName))
+                b1 = true;
 
             if (!b1) {
                 TestUtil.logMsg("Brand Name instance value did not match expected value");
                 TestUtil.logMsg("Expected: " + expName + ", Actual: " + tempName);
             }
 
-            if (b1) testResult = true;
+            if (b1)
+                testResult = true;
             return testResult;
 
         } catch (Exception e) {

@@ -22,8 +22,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class serves as a well known place for harness, util, and porting
- * classes to retrieve property values.
+ * This class serves as a well known place for harness, util, and porting classes to retrieve property values.
  *
  * @created August 22, 2002
  * @author Kyle Grucci
@@ -37,7 +36,8 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
 
     protected static boolean bReversed;
 
-    protected AbstractPropertyManager() {}
+    protected AbstractPropertyManager() {
+    }
 
     /**
      * @exception PropertyNotSetException
@@ -59,11 +59,9 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     }
 
     /**
-     * copies all entries from TestEnvironment and jteProperties to a new
-     * Properties, which is used for remote invocation of porting server.
-     * jteProperties has precedence over TestEnvironment. We set forward/reverse
-     * related properties in jteProperties and the same key in TestEnvironment may
-     * have old value.
+     * copies all entries from TestEnvironment and jteProperties to a new Properties, which is used for remote invocation of
+     * porting server. jteProperties has precedence over TestEnvironment. We set forward/reverse related properties in
+     * jteProperties and the same key in TestEnvironment may have old value.
      *
      * @return a new properties
      */
@@ -72,7 +70,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
         if (this.env != null) {
             String key = null;
             String val = null;
-            for (Iterator it = env.keys().iterator(); it.hasNext(); ) {
+            for (Iterator it = env.keys().iterator(); it.hasNext();) {
                 key = (String) it.next();
                 val = getFromEnv(key);
                 if (key != null && val != null) {
@@ -96,13 +94,11 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     }
 
     /**
-     * Sets a property in property manager. If the key already exists in the
-     * property manager, the old value is overriden by new value.
+     * Sets a property in property manager. If the key already exists in the property manager, the old value is overriden by
+     * new value.
      *
-     * @param key
-     *          key of the property.
-     * @param val
-     *          value of the property.
+     * @param key key of the property.
+     * @param val value of the property.
      */
     public void setProperty(String sKey, String sVal) {
         if (jteProperties == null) {
@@ -114,8 +110,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     }
 
     /**
-     * This method swaps all of the following interop values in
-     * TSPropertyManager...
+     * This method swaps all of the following interop values in TSPropertyManager...
      *
      * @param sDirection
      */
@@ -144,9 +139,8 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     }
 
     /**
-     * gets a new properties containing all entries in the property manager. Any
-     * operation on the returned properties will have no effect on property
-     * manager
+     * gets a new properties containing all entries in the property manager. Any operation on the returned properties will
+     * have no effect on property manager
      *
      * @return The jteProperties value
      */
@@ -155,11 +149,9 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     }
 
     /**
-     * This method is called by the test harness to retrieve all properties needed
-     * by a particular test.
+     * This method is called by the test harness to retrieve all properties needed by a particular test.
      *
-     * @param sPropKeys
-     *          - Properties to retrieve
+     * @param sPropKeys - Properties to retrieve
      * @return Properties - property/value pairs
      * @exception PropertyNotSetException
      */
@@ -195,8 +187,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     /**
      * This method is called to get a property value
      *
-     * @param sKey
-     *          - Property to retrieve
+     * @param sKey - Property to retrieve
      * @return String - property value
      * @exception PropertyNotSetException
      */
@@ -212,8 +203,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     /**
      * gets property value with default
      *
-     * @param sKey
-     *          - Property to retrieve
+     * @param sKey - Property to retrieve
      * @param def
      * @return String - property value
      */
@@ -245,8 +235,8 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     }
 
     /**
-     * retrieves property value from TestEnvironment, and converts it to a single
-     * string. If lookup returns null or empty string array, returns null.
+     * retrieves property value from TestEnvironment, and converts it to a single string. If lookup returns null or empty
+     * string array, returns null.
      *
      * @param key
      * @return The fromEnv value
@@ -261,23 +251,23 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
         }
         if (values != null) {
             switch (values.length) {
-                case 0:
-                    if (key.equals("s1as.admin.passwd")
-                            || key.equals("ri.admin.passwd")
-                            || key.equals("deployManagerpasswd.1")
-                            || key.equals("deployManagerpasswd.2")) {
-                        result = "";
-                    }
-                    break;
-                case 1:
-                    result = values[0].trim();
-                    break;
-                default:
+            case 0:
+                if (key.equals("s1as.admin.passwd")
+                        || key.equals("ri.admin.passwd")
+                        || key.equals("deployManagerpasswd.1")
+                        || key.equals("deployManagerpasswd.2")) {
                     result = "";
-                    for (int i = 0; i < values.length; i++) {
-                        result += values[i] + " ";
-                    }
-                    result = result.trim();
+                }
+                break;
+            case 1:
+                result = values[0].trim();
+                break;
+            default:
+                result = "";
+                for (int i = 0; i < values.length; i++) {
+                    result += values[i] + " ";
+                }
+                result = result.trim();
             }
         }
         return result;
@@ -306,8 +296,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     /**
      * Sets the jteProperties attribute of the AbstractPropertyManager object
      *
-     * @param p
-     *          The new jteProperties value
+     * @param p The new jteProperties value
      * @exception PropertyNotSetException
      */
     protected final void setJteProperties(Properties p) throws PropertyNotSetException {
@@ -320,8 +309,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     /**
      * Sets the testEnvironment attribute of the AbstractPropertyManager object
      *
-     * @param env
-     *          The new testEnvironment value
+     * @param env The new testEnvironment value
      * @exception PropertyNotSetException
      */
     protected final void setTestEnvironment(TestEnvironment env) throws PropertyNotSetException {

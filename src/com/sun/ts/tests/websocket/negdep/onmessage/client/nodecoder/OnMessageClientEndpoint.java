@@ -30,8 +30,7 @@ import jakarta.websocket.Session;
 import java.nio.ByteBuffer;
 
 /**
- * There is no tell whether @OnMessage on this endpoint is accepting binary or
- * text messages, there is not Decoder.
+ * There is no tell whether @OnMessage on this endpoint is accepting binary or text messages, there is not Decoder.
  */
 @ClientEndpoint
 public class OnMessageClientEndpoint extends AnnotatedByteBufferClientEndpoint {

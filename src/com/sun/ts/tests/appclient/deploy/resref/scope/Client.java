@@ -60,21 +60,16 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We package in the same .ear file:
+     * We package in the same .ear file:
      *
-     *                 - Two application clients using the same res-ref-name
-     *                 ('jms/myFactory') to reference two distinct resource
-     *                 manager connection factories (a QueueConnectionFactory and
-     *                 a TopicConnectionFactory).
+     * - Two application clients using the same res-ref-name ('jms/myFactory') to reference two distinct resource manager
+     * connection factories (a QueueConnectionFactory and a TopicConnectionFactory).
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - We can deploy the application. - We can run one of the
-     *                 application clients - This application client can lookup
-     *                 its resource manager connection factory. - We can cast that
-     *                 factory to its expected Java type and use it to create a
-     *                 connection. This validates the resolution of the resource
-     *                 manager connection factories reference.
+     * - We can deploy the application. - We can run one of the application clients - This application client can lookup its
+     * resource manager connection factory. - We can cast that factory to its expected Java type and use it to create a
+     * connection. This validates the resolution of the resource manager connection factories reference.
      *
      */
     public void testScope() throws Fault {

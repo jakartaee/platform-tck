@@ -30,7 +30,7 @@ import jakarta.ejb.Stateless;
 import jakarta.interceptor.ExcludeDefaultInterceptors;
 
 @Stateless(name = "Callback3Bean")
-@Remote({Callback2IF.class})
+@Remote({ Callback2IF.class })
 @ExcludeDefaultInterceptors
 public class Callback3Bean extends Callback2BeanBase implements Callback2IF {
     private boolean postConstructOrPreDestroyCalled;

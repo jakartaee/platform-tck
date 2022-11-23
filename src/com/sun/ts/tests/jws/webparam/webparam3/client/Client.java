@@ -127,8 +127,7 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
     private QName EXPECTED_OPERATION_QNAME_2 = new QName(NAMESPACEURI, EXPECTED_OPERATION_NAME_2);
 
-    private QName EXPECTED_PART_ELEMENT_QNAME_1 =
-            new QName(EXPECTED_ELEMENT_TARGETNAMESPACE_1, EXPECTED_PART_ELEMENT_NAME_1);
+    private QName EXPECTED_PART_ELEMENT_QNAME_1 = new QName(EXPECTED_ELEMENT_TARGETNAMESPACE_1, EXPECTED_PART_ELEMENT_NAME_1);
 
     private QName EXPECTED_PART_QNAME_1 = new QName(NAMESPACEURI, EXPECTED_PART_NAME_1);
 
@@ -189,8 +188,7 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
     }
 
     /*
-     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost;
-     * webServerPort; platform.mode;
+     * @class.testArgs: -ap jws-url-props.dat @class.setup_props: webServerHost; webServerPort; platform.mode;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -198,8 +196,10 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -262,7 +262,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
 
                 output = (Name) nameHolder.value;
                 if ((!output.getFirstName().equals("jsr181"))
-                        && (!output.getLastName().equals("jsr109"))) pass = false;
+                        && (!output.getLastName().equals("jsr109")))
+                    pass = false;
                 TestUtil.logMsg(" First Name : " + output.getFirstName() + "  Last Name : " + output.getLastName());
             }
 
@@ -271,7 +272,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
             throw new Fault("testHello3 failed", e);
         }
 
-        if (!pass) throw new Fault("testHello3 failed, returned value : " + output);
+        if (!pass)
+            throw new Fault("testHello3 failed, returned value : " + output);
         TestUtil.logMsg("Invocation of hello3() passed");
     }
 
@@ -289,14 +291,16 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
         try {
             TestUtil.logMsg("Invoke the helloString() method of WebParam3WebService");
             result = port.helloString("jsr181");
-            if (!result.equals(EXPECTED_RESULT_1)) pass = false;
+            if (!result.equals(EXPECTED_RESULT_1))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHelloString failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString failed, returned value : " + result);
+        if (!pass)
+            throw new Fault("testHelloString failed, returned value : " + result);
         TestUtil.logMsg("Invocation of helloString() passed");
     }
 
@@ -316,14 +320,16 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
             TestUtil.logMsg("Invoke the helloString2() method of WebParam3WebService");
 
             result = port.helloString2("jsr181", "jsr109", address);
-            if (!result.equals(EXPECTED_RESULT_2)) pass = false;
+            if (!result.equals(EXPECTED_RESULT_2))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred: " + e.getMessage());
             throw new Fault("testHelloString2 failed", e);
         }
 
-        if (!pass) throw new Fault("testHelloString2 failed, returned value : " + result);
+        if (!pass)
+            throw new Fault("testHelloString2 failed, returned value : " + result);
         TestUtil.logMsg("Invocation of helloString2() passed");
     }
 
@@ -357,7 +363,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
             throw new Fault("testPingWSDL failed", e);
         }
 
-        if (!pass) throw new Fault("testPingWSDL failed");
+        if (!pass)
+            throw new Fault("testPingWSDL failed");
     }
 
     /*
@@ -386,7 +393,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         doc, messageElement, EXPECTED_PART_QNAME_1);
             }
 
-            if (partElement != null) pass = true;
+            if (partElement != null)
+                pass = true;
 
         } catch (Exception ex) {
             TestUtil.logErr("Exception occurred: " + ex.getMessage());
@@ -529,7 +537,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                 partElement = WsdlUtils.findPartElement(doc, messageElement, EXPECTED_PART_ELEMENT_QNAME_1, true);
             }
 
-            if (soapHeaderElement != null && partElement != null) pass = true;
+            if (soapHeaderElement != null && partElement != null)
+                pass = true;
 
         } catch (Exception ex) {
             TestUtil.logErr("Exception occurred: " + ex.getMessage());
@@ -579,7 +588,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         doc, outputMessageElement, EXPECTED_PART_QNAME_3);
             }
 
-            if (inputPartElement != null && outputPartElement != null) pass = true;
+            if (inputPartElement != null && outputPartElement != null)
+                pass = true;
 
         } catch (Exception ex) {
             TestUtil.logErr("Exception occurred: " + ex.getMessage());
@@ -602,8 +612,7 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Check for the name of the part set using name in the output
-     * message
+     * @test_Strategy: Check for the name of the part set using name in the output message
      *
      */
 
@@ -625,7 +634,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         doc, messageElement, EXPECTED_PART_QNAME_4);
             }
 
-            if (partElement != null) pass = true;
+            if (partElement != null)
+                pass = true;
 
         } catch (Exception ex) {
             TestUtil.logErr("Exception occurred: " + ex.getMessage());
@@ -671,7 +681,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
                         throw new Fault("Input Parameter Order is set to " + inputParameterOrder + " instead of "
                                 + EXPECTED_INPUT_PARAMETER_ORDER);
                     }
-                } else TestUtil.logMsg("No input parameterOrder checking will be done.");
+                } else
+                    TestUtil.logMsg("No input parameterOrder checking will be done.");
             }
             messageElement = WsdlUtils.findMessageElement(doc, PORTTYPE_QNAME, EXPECTED_OPERATION_QNAME_1, "output");
             if (messageElement != null) {
@@ -682,7 +693,8 @@ public class Client extends ServiceEETest implements SchemaConstants, Descriptio
             }
             TestUtil.logTrace("outputParameterOrder=" + outputParameterOrder.toString());
             String resultParameterOrder = outputParameterOrder.toString().trim();
-            if (EXPECTED_OUTPUT_PARAMETER_ORDER.equals(resultParameterOrder)) pass = true;
+            if (EXPECTED_OUTPUT_PARAMETER_ORDER.equals(resultParameterOrder))
+                pass = true;
 
         } catch (Exception ex) {
             TestUtil.logErr("Exception occurred: " + ex.getMessage());

@@ -28,7 +28,7 @@ import jakarta.ejb.Stateful;
 
 // @Stateful(name="StatefulLocalBean")
 @Stateful
-@Local({StatefulLocalIF.class})
+@Local({ StatefulLocalIF.class })
 public class StatefulLocalBean extends CommonBase implements StatefulLocalIF, java.io.Serializable {
 
     @Resource

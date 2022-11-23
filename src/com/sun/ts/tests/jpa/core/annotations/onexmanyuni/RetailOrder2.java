@@ -28,7 +28,8 @@ public class RetailOrder2 implements Serializable {
 
     private double cost;
 
-    public RetailOrder2() {}
+    public RetailOrder2() {
+    }
 
     public Long getId() {
         return id;

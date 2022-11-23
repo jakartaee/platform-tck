@@ -77,10 +77,9 @@ public class QueueConnTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue
-     * Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue Connection, as well as a default Queue and Topic. Tests that require multiple Destinations create
+     * the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -124,8 +123,8 @@ public class QueueConnTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -149,12 +148,10 @@ public class QueueConnTests extends ServiceEETest {
     /*
      * @testName: connStoppedQueueTest
      *
-     * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:100; JMS:SPEC:98; JMS:SPEC:99;
-     * JMS:JAVADOC:522; JMS:JAVADOC:524; JMS:JAVADOC:120; JMS:JAVADOC:221;
-     * JMS:JAVADOC:198; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:100; JMS:SPEC:98; JMS:SPEC:99; JMS:JAVADOC:522; JMS:JAVADOC:524;
+     * JMS:JAVADOC:120; JMS:JAVADOC:221; JMS:JAVADOC:198; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Stop the connection. Send a msg; start the connection and
-     * receive the msg. Should get the message
+     * @test_Strategy: Stop the connection. Send a msg; start the connection and receive the msg. Should get the message
      */
 
     public void connStoppedQueueTest() throws Fault {
@@ -195,11 +192,10 @@ public class QueueConnTests extends ServiceEETest {
     /*
      * @testName: closedQueueConnectionNoForcedAckTest
      *
-     * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:105; JMS:JAVADOC:429;
-     * JMS:SPEC:115;
+     * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:105; JMS:JAVADOC:429; JMS:SPEC:115;
      *
-     * @test_Strategy: Send and receive single message, don't acknowledge it.
-     * close the queue connection, get the message with a second connection.
+     * @test_Strategy: Send and receive single message, don't acknowledge it. close the queue connection, get the message
+     * with a second connection.
      */
 
     public void closedQueueConnectionNoForcedAckTest() throws Fault {

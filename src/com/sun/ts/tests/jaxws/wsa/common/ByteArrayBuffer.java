@@ -37,24 +37,22 @@ public class ByteArrayBuffer extends OutputStream {
     private int count;
 
     /**
-     * Creates a new byte array output stream. The buffer capacity is initially 32
-     * bytes, though its size increases if necessary.
+     * Creates a new byte array output stream. The buffer capacity is initially 32 bytes, though its size increases if
+     * necessary.
      */
     public ByteArrayBuffer() {
         this(32);
     }
 
     /**
-     * Creates a new byte array output stream, with a buffer capacity of the
-     * specified size, in bytes.
+     * Creates a new byte array output stream, with a buffer capacity of the specified size, in bytes.
      *
-     * @param size
-     *          the initial size.
-     * @throws IllegalArgumentException
-     *           if size is negative.
+     * @param size the initial size.
+     * @throws IllegalArgumentException if size is negative.
      */
     public ByteArrayBuffer(int size) {
-        if (size <= 0) throw new IllegalArgumentException();
+        if (size <= 0)
+            throw new IllegalArgumentException();
         buf = new byte[size];
     }
 
@@ -63,20 +61,20 @@ public class ByteArrayBuffer extends OutputStream {
     }
 
     /**
-     * Reads all the data of the given {@link InputStream} and appends them into
-     * this buffer.
+     * Reads all the data of the given {@link InputStream} and appends them into this buffer.
      *
-     * @throws IOException
-     *           if the read operation fails with an {@link IOException}.
+     * @throws IOException if the read operation fails with an {@link IOException}.
      */
     public final void write(InputStream in) throws IOException {
         while (true) {
             int cap = buf.length - count; // the remaining buffer space
             int sz = in.read(buf, count, cap);
-            if (sz < 0) return; // hit EOS
+            if (sz < 0)
+                return; // hit EOS
             count += sz;
 
-            if (cap == sz) ensureCapacity(buf.length * 2); // buffer filled up.
+            if (cap == sz)
+                ensureCapacity(buf.length * 2); // buffer filled up.
         }
     }
 
@@ -114,11 +112,9 @@ public class ByteArrayBuffer extends OutputStream {
      * Gets the <b>copy</b> of exact-size byte[] that represents the written data.
      *
      * <p>
-     * Since this method needs to allocate a new byte[], this method will be
-     * costly.
+     * Since this method needs to allocate a new byte[], this method will be costly.
      *
-     * @deprecated this method causes a buffer reallocation. Use it only when you
-     *             have to.
+     * @deprecated this method causes a buffer reallocation. Use it only when you have to.
      */
     public final byte[] toByteArray() {
         byte newbuf[] = new byte[count];
@@ -131,8 +127,7 @@ public class ByteArrayBuffer extends OutputStream {
     }
 
     /**
-     * Gets the underlying buffer that this {@link ByteArrayBuffer} uses. It's
-     * never small than its {@link #size()}.
+     * Gets the underlying buffer that this {@link ByteArrayBuffer} uses. It's never small than its {@link #size()}.
      *
      * Use with caution.
      */
@@ -140,7 +135,8 @@ public class ByteArrayBuffer extends OutputStream {
         return buf;
     }
 
-    public void close() throws IOException {}
+    public void close() throws IOException {
+    }
 
     /**
      * Creates a new {@link InputStream} that reads from this buffer.
@@ -157,8 +153,7 @@ public class ByteArrayBuffer extends OutputStream {
     }
 
     /**
-     * Decodes the contents of this buffer by the default encoding and returns it
-     * as a string.
+     * Decodes the contents of this buffer by the default encoding and returns it as a string.
      *
      * <p>
      * Meant to aid debugging, but no more.

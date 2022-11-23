@@ -30,36 +30,39 @@ import java.util.logging.Logger;
 
 @Stateless(name = "TargetBean")
 // @Remote({Target.class})
-@DeclareRoles({"Administrator", "Manager", "Employee"})
+@DeclareRoles({ "Administrator", "Manager", "Employee" })
 public class TargetBean implements Target {
 
     private SessionContext sctx;
 
     private Logger logger = Helper.getLogger();
 
-    @RolesAllowed({"Administrator", "Manager", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void initLogging(java.util.Properties p) {}
+    public void initLogging(java.util.Properties p) {
+    }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean IsCaller(String caller) {
-        if (sctx.getCallerPrincipal().getName().indexOf(caller) < 0) return false;
-        else return true;
+        if (sctx.getCallerPrincipal().getName().indexOf(caller) < 0)
+            return false;
+        else
+            return true;
     }
 
-    @RolesAllowed({"Administrator"})
+    @RolesAllowed({ "Administrator" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean EjbNotAuthz() {
         return true;
     }
 
-    @RolesAllowed({"Administrator", "Manager", "Employee"})
+    @RolesAllowed({ "Administrator", "Manager", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean EjbIsAuthz() {
         return true;
     }
 
-    @RolesAllowed({"Manager", "Employee"})
+    @RolesAllowed({ "Manager", "Employee" })
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public boolean EjbSecRoleRef(String role) {
         return sctx.isCallerInRole(role);

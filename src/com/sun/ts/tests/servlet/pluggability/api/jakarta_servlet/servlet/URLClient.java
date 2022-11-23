@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -57,8 +55,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:5; Servlet:SPEC:6;
      *
-     * @test_Strategy: Testing that destroy method is not called during service
-     * method execution
+     * @test_Strategy: Testing that destroy method is not called during service method execution
      */
     public void DoDestroyedTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "DoDestroyedTest");
@@ -68,11 +65,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: DoInit1Test
      *
-     * @assertion_ids: Servlet:SPEC:5; Servlet:SPEC:6; Servlet:SPEC:8;
-     * Servlet:JAVADOC:265; Servlet:SPEC:11; Servlet:SPEC:11.1;
+     * @assertion_ids: Servlet:SPEC:5; Servlet:SPEC:6; Servlet:SPEC:8; Servlet:JAVADOC:265; Servlet:SPEC:11;
+     * Servlet:SPEC:11.1;
      *
-     * @test_Strategy: Validate a 404 is returned to the client if a permanent
-     * UnavailableException is thrown during servlet initialization.
+     * @test_Strategy: Validate a 404 is returned to the client if a permanent UnavailableException is thrown during servlet
+     * initialization.
      */
     public void DoInit1Test() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "DoInit1Test");
@@ -86,9 +83,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:5; Servlet:SPEC:6; Servlet:JAVADOC:263;
      *
-     * @test_Strategy: Inside CoreServletTest, which is the parent servlet, we are
-     * implementing init() and setting a boolean variable to true. We'll check for
-     * the variables here in the DoInit2Test
+     * @test_Strategy: Inside CoreServletTest, which is the parent servlet, we are implementing init() and setting a boolean
+     * variable to true. We'll check for the variables here in the DoInit2Test
      */
     public void DoInit2Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "DoInit2Test");
@@ -100,8 +96,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:5; Servlet:SPEC:6; Servlet:JAVADOC:266;
      *
-     * @test_Strategy: Create a servlet and test for the getServletConfig() method
-     * to be a non-null value and an initial paramter can be retrieved
+     * @test_Strategy: Create a servlet and test for the getServletConfig() method to be a non-null value and an initial
+     * paramter can be retrieved
      */
     public void DoServletConfigTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "DoServletConfigTest");
@@ -125,8 +121,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:5; Servlet:SPEC:6; Servlet:JAVADOC:5;
      *
-     * @test_Strategy: Create a servlet, throw UnavailableException and test if
-     * isPermanent() method is true
+     * @test_Strategy: Create a servlet, throw UnavailableException and test if isPermanent() method is true
      */
     public void PUTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "PUTest");
@@ -136,12 +131,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: DoServiceTest
      *
-     * @assertion_ids: Servlet:SPEC:5; Servlet:SPEC:6; Servlet:JAVADOC:263;
-     * Servlet:JAVADOC:267;
+     * @assertion_ids: Servlet:SPEC:5; Servlet:SPEC:6; Servlet:JAVADOC:263; Servlet:JAVADOC:267;
      *
-     * @test_Strategy: Inside CoreServletTest, which is the parent servlet, we
-     * will override init method and assign some value to the String. We'll check
-     * for that value in the service method
+     * @test_Strategy: Inside CoreServletTest, which is the parent servlet, we will override init method and assign some
+     * value to the String. We'll check for that value in the service method
      */
     public void DoServiceTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "DoServiceTest");

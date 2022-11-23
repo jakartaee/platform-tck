@@ -73,8 +73,10 @@ public abstract class SecTestEJB implements EntityBean {
     }
 
     public boolean IsCaller(String caller) {
-        if (ectx.getCallerPrincipal().getName().indexOf(caller) < 0) return false;
-        else return true;
+        if (ectx.getCallerPrincipal().getName().indexOf(caller) < 0)
+            return false;
+        else
+            return true;
     }
 
     public boolean EjbNotAuthz() {
@@ -120,7 +122,9 @@ public abstract class SecTestEJB implements EntityBean {
         TestUtil.logTrace("ejbLoad");
     }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 }

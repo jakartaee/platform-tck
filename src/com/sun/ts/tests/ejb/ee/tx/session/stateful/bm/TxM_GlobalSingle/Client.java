@@ -80,12 +80,10 @@ public class Client extends EETest {
     /*
      * @testName: test1
      *
-     * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:587.1;
-     * EJB:SPEC:587.2
+     * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:587.1; EJB:SPEC:587.2
      *
-     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the
-     * UserTransaction interface. Perform a global transactions using the TxBean
-     * (deployed as TX_MANDATORY) to a single RDBMS table.
+     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the UserTransaction interface. Perform a
+     * global transactions using the TxBean (deployed as TX_MANDATORY) to a single RDBMS table.
      *
      * Insert/Delete followed by a commit to a single table.
      *
@@ -103,8 +101,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -119,12 +119,10 @@ public class Client extends EETest {
     /*
      * @testName: test2
      *
-     * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:587.1;
-     * EJB:SPEC:587.2
+     * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:587.1; EJB:SPEC:587.2
      *
-     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the
-     * UserTransaction interface. Perform a global transactions using the TxBean
-     * (deployed as TX_MANDATORY) to a single RDBMS table.
+     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the UserTransaction interface. Perform a
+     * global transactions using the TxBean (deployed as TX_MANDATORY) to a single RDBMS table.
      *
      * Insert/Delete followed by a rollback to a single table.
      *
@@ -143,8 +141,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test2");
             testResult = beanRef.test2();
 
-            if (!testResult) throw new Fault("test2 failed");
-            else logMsg("test2 passed");
+            if (!testResult)
+                throw new Fault("test2 failed");
+            else
+                logMsg("test2 passed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {
@@ -159,12 +159,10 @@ public class Client extends EETest {
     /*
      * @testName: test3
      *
-     * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:587.1;
-     * EJB:SPEC:587.2
+     * @assertion_ids: EJB:SPEC:543.1; EJB:SPEC:543.2; EJB:SPEC:587.1; EJB:SPEC:587.2
      *
-     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the
-     * UserTransaction interface. Perform a global transactions using the TxBean
-     * (deployed as TX_MANDATORY) to a single RDBMS table.
+     * @test_Strategy: Create a stateful session TX_BEAN_MANAGED bean. Obtain the UserTransaction interface. Perform a
+     * global transactions using the TxBean (deployed as TX_MANDATORY) to a single RDBMS table.
      *
      * Insert/Delete followed by a commit, and checking TxStatus.
      *
@@ -183,8 +181,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test3");
             testResult = beanRef.test3();
 
-            if (!testResult) throw new Fault("test3 failed");
-            else logMsg("test3 passed");
+            if (!testResult)
+                throw new Fault("test3 failed");
+            else
+                logMsg("test3 passed");
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         } finally {

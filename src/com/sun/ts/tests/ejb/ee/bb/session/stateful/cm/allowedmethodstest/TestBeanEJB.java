@@ -60,28 +60,28 @@ public class TestBeanEJB implements SessionBean, SessionSynchronization {
 
     // These are the method tests
     private static final String tests[] = {
-        "ejbCreate",
-        "ejbRemove",
-        "ejbActivate",
-        "ejbPassivate",
-        "afterBegin",
-        "beforeCompletion",
-        "afterCompletion",
-        "setSessionContext",
-        "businessMethod"
+            "ejbCreate",
+            "ejbRemove",
+            "ejbActivate",
+            "ejbPassivate",
+            "afterBegin",
+            "beforeCompletion",
+            "afterCompletion",
+            "setSessionContext",
+            "businessMethod"
     };
 
     // This is the results of the operation tests
     private static final Properties methodList[] = {
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties()
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties()
     };
 
     private int doTest = 0;
@@ -115,7 +115,8 @@ public class TestBeanEJB implements SessionBean, SessionSynchronization {
         if (doTest == 0) {
             doOperationTests("ejbCreate");
         } else {
-            if (doTest == 5) doSetRollbackOnlyTest("ejbCreate");
+            if (doTest == 5)
+                doSetRollbackOnlyTest("ejbCreate");
         }
     }
 
@@ -228,7 +229,9 @@ public class TestBeanEJB implements SessionBean, SessionSynchronization {
 
     private int testIndex(String s) {
         TestUtil.logTrace("testIndex");
-        for (int i = 0; i < tests.length; i++) if (s.equals(tests[i])) return i;
+        for (int i = 0; i < tests.length; i++)
+            if (s.equals(tests[i]))
+                return i;
         return -1;
     }
 

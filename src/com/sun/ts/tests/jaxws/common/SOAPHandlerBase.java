@@ -100,11 +100,9 @@ public class SOAPHandlerBase implements jakarta.xml.ws.handler.soap.SOAPHandler<
         return new HashSet<QName>();
     }
 
-    private static final String JAXB_OBJECT_CLIENT_FACTORY =
-            "com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.ObjectFactory";
+    private static final String JAXB_OBJECT_CLIENT_FACTORY = "com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.ObjectFactory";
 
-    private static final String JAXB_OBJECT_SERVER_FACTORY =
-            "com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.ObjectFactory";
+    private static final String JAXB_OBJECT_SERVER_FACTORY = "com.sun.ts.tests.jaxws.sharedwebservices.dlhandlerservice.ObjectFactory";
 
     private JAXBContext createJAXBContext() {
         Class c = null;
@@ -284,8 +282,7 @@ public class SOAPHandlerBase implements jakarta.xml.ws.handler.soap.SOAPHandler<
                 HandlerTracker.reportProperties(this, direction, "MessageContext.HTTP_RESPONSE_CODE", "null");
             }
 
-            Map<String, List<String>> m2 =
-                    (Map<String, List<String>>) context.get(SOAPMessageContext.HTTP_REQUEST_HEADERS);
+            Map<String, List<String>> m2 = (Map<String, List<String>>) context.get(SOAPMessageContext.HTTP_REQUEST_HEADERS);
             StringBuffer sb = new StringBuffer();
             cnt = 0;
             iterator = null;
@@ -472,8 +469,8 @@ public class SOAPHandlerBase implements jakarta.xml.ws.handler.soap.SOAPHandler<
             // set a property that the everyone will add to.
 
             if (whichHandlerType.equals("Client")) {
-                HandlerTracker.reportGet(this, whichHandlerType + "To" + whichHandlerType + "Prop", (String)
-                        context.get(whichHandlerType + "To" + whichHandlerType + "Prop"));
+                HandlerTracker.reportGet(this, whichHandlerType + "To" + whichHandlerType + "Prop",
+                        (String) context.get(whichHandlerType + "To" + whichHandlerType + "Prop"));
 
                 String tmp = (String) context.get(whichHandlerType + "To" + whichHandlerType + "Prop");
                 tmp = tmp + whichDirection + handlerName;
@@ -490,8 +487,8 @@ public class SOAPHandlerBase implements jakarta.xml.ws.handler.soap.SOAPHandler<
                 // server
                 String tmp = "";
                 if (direction.equals(Constants.OUTBOUND)) {
-                    HandlerTracker.reportGet(this, "Handler" + whichHandlerType + "HandlerProp", (String)
-                            context.get("Handler" + whichHandlerType + "HandlerProp"));
+                    HandlerTracker.reportGet(this, "Handler" + whichHandlerType + "HandlerProp",
+                            (String) context.get("Handler" + whichHandlerType + "HandlerProp"));
 
                     tmp = (String) context.get("Handler" + whichHandlerType + "HandlerProp");
                 }
@@ -550,16 +547,15 @@ public class SOAPHandlerBase implements jakarta.xml.ws.handler.soap.SOAPHandler<
 
             } else if (direction.equals(Constants.INBOUND)) {
                 HandlerTracker.reportGet(
-                        this, whichDirection + whichHandlerType + "SOAPCrossHandlerPropSetByHandler3", (String)
-                                context.get(whichDirection + whichHandlerType + "SOAPCrossHandlerPropSetByHandler3"));
+                        this, whichDirection + whichHandlerType + "SOAPCrossHandlerPropSetByHandler3",
+                        (String) context.get(whichDirection + whichHandlerType + "SOAPCrossHandlerPropSetByHandler3"));
                 HandlerTracker.reportGet(
-                        this, whichDirection + whichHandlerType + "SOAPMessageScopeAppPropSetByHandler3", (String)
-                                context.get(
-                                        whichDirection + whichHandlerType + "SOAPMessageScopeAppPropSetByHandler3"));
+                        this, whichDirection + whichHandlerType + "SOAPMessageScopeAppPropSetByHandler3", (String) context.get(
+                                whichDirection + whichHandlerType + "SOAPMessageScopeAppPropSetByHandler3"));
                 HandlerTracker.reportGet(
-                        this, whichDirection + whichHandlerType + "SOAPMessageScopeHandlerPropSetByHandler3", (String)
-                                context.get(whichDirection + whichHandlerType
-                                        + "SOAPMessageScopeHandlerPropSetByHandler3"));
+                        this, whichDirection + whichHandlerType + "SOAPMessageScopeHandlerPropSetByHandler3",
+                        (String) context.get(whichDirection + whichHandlerType
+                                + "SOAPMessageScopeHandlerPropSetByHandler3"));
                 HandlerTracker.reportGetScope(
                         this,
                         whichDirection + whichHandlerType + "SOAPCrossHandlerPropSetByHandler3",
@@ -584,16 +580,15 @@ public class SOAPHandlerBase implements jakarta.xml.ws.handler.soap.SOAPHandler<
                 TestUtil.logTrace("whichHandlerType=" + whichHandlerType);
                 // get a property that was set by the endpoint
                 HandlerTracker.reportGet(
-                        this, whichDirection + whichHandlerType + "SOAPCrossHandlerPropSetByHandler1", (String)
-                                context.get(whichDirection + whichHandlerType + "SOAPCrossHandlerPropSetByHandler1"));
+                        this, whichDirection + whichHandlerType + "SOAPCrossHandlerPropSetByHandler1",
+                        (String) context.get(whichDirection + whichHandlerType + "SOAPCrossHandlerPropSetByHandler1"));
                 HandlerTracker.reportGet(
-                        this, whichDirection + whichHandlerType + "SOAPMessageScopeAppPropSetByHandler1", (String)
-                                context.get(
-                                        whichDirection + whichHandlerType + "SOAPMessageScopeAppPropSetByHandler1"));
+                        this, whichDirection + whichHandlerType + "SOAPMessageScopeAppPropSetByHandler1", (String) context.get(
+                                whichDirection + whichHandlerType + "SOAPMessageScopeAppPropSetByHandler1"));
                 HandlerTracker.reportGet(
-                        this, whichDirection + whichHandlerType + "SOAPMessageScopeHandlerPropSetByHandler1", (String)
-                                context.get(whichDirection + whichHandlerType
-                                        + "SOAPMessageScopeHandlerPropSetByHandler1"));
+                        this, whichDirection + whichHandlerType + "SOAPMessageScopeHandlerPropSetByHandler1",
+                        (String) context.get(whichDirection + whichHandlerType
+                                + "SOAPMessageScopeHandlerPropSetByHandler1"));
 
                 HandlerTracker.reportGetScope(
                         this,

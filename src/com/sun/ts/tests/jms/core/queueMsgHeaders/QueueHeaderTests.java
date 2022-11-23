@@ -80,10 +80,9 @@ public class QueueHeaderTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -126,8 +125,8 @@ public class QueueHeaderTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -149,8 +148,7 @@ public class QueueHeaderTests extends ServiceEETest {
     /* Tests */
 
     /*
-     * helper method for msgHdrIDQTest and msgHdrIDTopicTest verifies that the
-     * JMSMessageID starts with ID:
+     * helper method for msgHdrIDQTest and msgHdrIDTopicTest verifies that the JMSMessageID starts with ID:
      *
      *
      * @param String returned from getJMSMessageID
@@ -159,7 +157,7 @@ public class QueueHeaderTests extends ServiceEETest {
      */
 
     private boolean chkMessageID(String id) {
-        String status[] = {"Pass", "Fail"};
+        String status[] = { "Pass", "Fail" };
         boolean retcode = true;
 
         // message id must start with ID: - unless it is null
@@ -182,8 +180,8 @@ public class QueueHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:4; JMS:JAVADOC:343;
      *
-     * @test_Strategy: Send to a Queue and receive Text, Map, Bytes, Stream, and
-     * object message. call getJMSMessageID and verify that it starts with ID:
+     * @test_Strategy: Send to a Queue and receive Text, Map, Bytes, Stream, and object message. call getJMSMessageID and
+     * verify that it starts with ID:
      */
 
     public void msgHdrIDQTest() throws Fault {
@@ -295,9 +293,8 @@ public class QueueHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:7; JMS:JAVADOC:347;
      *
-     * @test_Strategy: With a queue destination Send a single Text, map, bytes,
-     * stream, and object message check time of send against time send returns
-     * JMSTimeStamp should be between these two
+     * @test_Strategy: With a queue destination Send a single Text, map, bytes, stream, and object message check time of
+     * send against time send returns JMSTimeStamp should be between these two
      */
 
     public void msgHdrTimeStampQTest() throws Fault {
@@ -448,8 +445,8 @@ public class QueueHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:246.7; JMS:JAVADOC:355; JMS:JAVADOC:357;
      *
-     * @test_Strategy: Send a message to a Queue with CorrelationID set. Receive
-     * msg and verify the correlationid is as set by client
+     * @test_Strategy: Send a message to a Queue with CorrelationID set. Receive msg and verify the correlationid is as set
+     * by client
      */
 
     public void msgHdrCorlIdQTest() throws Fault {
@@ -556,8 +553,7 @@ public class QueueHeaderTests extends ServiceEETest {
             messageSentO.setJMSCorrelationID(jmsCorrelationID);
             tool.getDefaultQueueSender().send(messageSentO);
 
-            messageReceivedO =
-                    (ObjectMessage) (Message) tool.getDefaultQueueReceiver().receive(timeout);
+            messageReceivedO = (ObjectMessage) (Message) tool.getDefaultQueueReceiver().receive(timeout);
             if (messageReceivedO.getJMSCorrelationID() == null) {
                 pass = false;
                 logMsg("ObjectMessage Error: JMSCorrelationID returned a  null");
@@ -578,13 +574,11 @@ public class QueueHeaderTests extends ServiceEETest {
     /*
      * @testName: msgHdrReplyToQTest
      *
-     * @assertion_ids: JMS:SPEC:12; JMS:SPEC:246.8; JMS:JAVADOC:359;
-     * JMS:JAVADOC:361; JMS:JAVADOC:286; JMS:JAVADOC:289; JMS:JAVADOC:562;
-     * JMS:JAVADOC:166;
+     * @assertion_ids: JMS:SPEC:12; JMS:SPEC:246.8; JMS:JAVADOC:359; JMS:JAVADOC:361; JMS:JAVADOC:286; JMS:JAVADOC:289;
+     * JMS:JAVADOC:562; JMS:JAVADOC:166;
      *
-     * @test_Strategy: Send a message to a Queue with ReplyTo set to null and then
-     * set to a destination test with Text, map, object, byte, and stream messages
-     * verify on receive.
+     * @test_Strategy: Send a message to a Queue with ReplyTo set to null and then set to a destination test with Text, map,
+     * object, byte, and stream messages verify on receive.
      *
      */
 
@@ -758,8 +752,8 @@ public class QueueHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:246.9; JMS:JAVADOC:375; JMS:JAVADOC:377;
      *
-     * @test_Strategy: Send a message to a Queue with JMSType set to TESTMSG test
-     * with Text, map, object, byte, and stream messages verify on receive.
+     * @test_Strategy: Send a message to a Queue with JMSType set to TESTMSG test with Text, map, object, byte, and stream
+     * messages verify on receive.
      *
      */
 
@@ -873,11 +867,10 @@ public class QueueHeaderTests extends ServiceEETest {
     /*
      * @testName: msgHdrJMSPriorityQTest
      *
-     * @assertion_ids: JMS:SPEC:16; JMS:SPEC:18; JMS:SPEC:140; JMS:JAVADOC:305;
-     * JMS:JAVADOC:383;
+     * @assertion_ids: JMS:SPEC:16; JMS:SPEC:18; JMS:SPEC:140; JMS:JAVADOC:305; JMS:JAVADOC:383;
      *
-     * @test_Strategy: Send a message to a Queue with JMSPriority set to 2 test
-     * with Text, map, object, byte, and stream messages verify on receive.
+     * @test_Strategy: Send a message to a Queue with JMSPriority set to 2 test with Text, map, object, byte, and stream
+     * messages verify on receive.
      *
      */
 
@@ -991,14 +984,11 @@ public class QueueHeaderTests extends ServiceEETest {
     /*
      * @testName: msgHdrJMSExpirationQueueTest
      *
-     * @assertion_ids: JMS:SPEC:15.1; JMS:SPEC:15.2; JMS:SPEC:15.3; JMS:SPEC:140;
-     * JMS:JAVADOC:309; JMS:JAVADOC:379;
+     * @assertion_ids: JMS:SPEC:15.1; JMS:SPEC:15.2; JMS:SPEC:15.3; JMS:SPEC:140; JMS:JAVADOC:309; JMS:JAVADOC:379;
      *
-     * @test_Strategy: 1. Send a message to a Queue with time to live set to 0.
-     * Verify on receive that JMSExpiration gets set to 0. Test with Text, Map,
-     * Object, Bytes, and Stream messages. 2. Send a message to a Queue with time
-     * to live set to non-0; Verify on receive that JMSExpiration gets set
-     * correctly.
+     * @test_Strategy: 1. Send a message to a Queue with time to live set to 0. Verify on receive that JMSExpiration gets
+     * set to 0. Test with Text, Map, Object, Bytes, and Stream messages. 2. Send a message to a Queue with time to live set
+     * to non-0; Verify on receive that JMSExpiration gets set correctly.
      */
 
     public void msgHdrJMSExpirationQueueTest() throws Fault {
@@ -1205,9 +1195,8 @@ public class QueueHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:2; JMS:JAVADOC:363; JMS:JAVADOC:286;
      *
-     * @test_Strategy: Create and send a message to the default Queue. Receive msg
-     * and verify that JMSDestination is set to the default Queue test with Text,
-     * map, object, byte, and stream messages
+     * @test_Strategy: Create and send a message to the default Queue. Receive msg and verify that JMSDestination is set to
+     * the default Queue test with Text, map, object, byte, and stream messages
      */
 
     public void msgHdrJMSDestinationQTest() throws Fault {
@@ -1361,15 +1350,12 @@ public class QueueHeaderTests extends ServiceEETest {
     /*
      * @testName: msgHdrJMSDeliveryModeQTest
      *
-     * @assertion_ids: JMS:SPEC:3; JMS:SPEC:140; JMS:SPEC:246.2; JMS:JAVADOC:301;
-     * JMS:JAVADOC:367; JMS:JAVADOC:369;
+     * @assertion_ids: JMS:SPEC:3; JMS:SPEC:140; JMS:SPEC:246.2; JMS:JAVADOC:301; JMS:JAVADOC:367; JMS:JAVADOC:369;
      *
-     * @test_Strategy: 1. Create and send a message to the default Queue. Receive
-     * the msg and verify that JMSDeliveryMode is set the default delivery mode of
-     * persistent. 2. Create and test another message with a nonpersistent
-     * delivery mode. Test with Text, map, object, byte, and stream messages 3.
-     * Set JMSDeliveryMode to Message after receive. Verify that JMSDeliveryMode
-     * is set correctly.
+     * @test_Strategy: 1. Create and send a message to the default Queue. Receive the msg and verify that JMSDeliveryMode is
+     * set the default delivery mode of persistent. 2. Create and test another message with a nonpersistent delivery mode.
+     * Test with Text, map, object, byte, and stream messages 3. Set JMSDeliveryMode to Message after receive. Verify that
+     * JMSDeliveryMode is set correctly.
      */
 
     public void msgHdrJMSDeliveryModeQTest() throws Fault {
@@ -1596,10 +1582,9 @@ public class QueueHeaderTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:371; JMS:JAVADOC:373;
      *
-     * @test_Strategy: 1. Create and send a message to the default Queue. Verify
-     * at the receive that JMSRedelivered is false; 3. Set JMSRedelivered to true
-     * after receive. Verify that JMSRedelivered is set correctly. Test with Text,
-     * Map, Object, Bytes, and Stream messages
+     * @test_Strategy: 1. Create and send a message to the default Queue. Verify at the receive that JMSRedelivered is
+     * false; 3. Set JMSRedelivered to true after receive. Verify that JMSRedelivered is set correctly. Test with Text, Map,
+     * Object, Bytes, and Stream messages
      */
 
     public void msgHdrJMSRedeliveredTest() throws Fault {

@@ -29,7 +29,8 @@ import javax.naming.NamingException;
 public abstract class AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF {
     private int postConstructCalls;
 
-    public AssemblyBeanBase() {}
+    public AssemblyBeanBase() {
+    }
 
     // helloBean is deployed in a separate ejb module. Therefore, it can only
     // be accessed via its remote business intf.

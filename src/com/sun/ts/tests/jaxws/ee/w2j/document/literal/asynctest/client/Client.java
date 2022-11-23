@@ -152,8 +152,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -189,12 +191,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: invokeSynchronousTest
      *
-     * @assertion_ids: JAXWS:SPEC:2032; JAXWS:SPEC:2033; JAXWS:SPEC:2034;
-     * JAXWS:SPEC:2034; JAXWS:SPEC:2035; JAXWS:SPEC:2038; JAXWS:SPEC:2039;
+     * @assertion_ids: JAXWS:SPEC:2032; JAXWS:SPEC:2033; JAXWS:SPEC:2034; JAXWS:SPEC:2034; JAXWS:SPEC:2035; JAXWS:SPEC:2038;
+     * JAXWS:SPEC:2039;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke an RPC method using
-     * synchronous method.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke an RPC method using synchronous method.
      *
      * Description A client can invoke an RPC method via generated stub.
      */
@@ -218,19 +219,18 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
         }
 
-        if (!pass) throw new Fault("invokeSynchronousTest failed");
+        if (!pass)
+            throw new Fault("invokeSynchronousTest failed");
     }
 
     /*
      * @testName: invokeAsyncPollTest
      *
-     * @assertion_ids: JAXWS:SPEC:2032; JAXWS:SPEC:2033; JAXWS:SPEC:2034;
-     * JAXWS:SPEC:2034; JAXWS:SPEC:2035; JAXWS:SPEC:2038; JAXWS:SPEC:2039;
-     * WS4EE:SPEC:4006; WS4EE:SPEC:4007; WS4EE:SPEC:4008;
+     * @assertion_ids: JAXWS:SPEC:2032; JAXWS:SPEC:2033; JAXWS:SPEC:2034; JAXWS:SPEC:2034; JAXWS:SPEC:2035; JAXWS:SPEC:2038;
+     * JAXWS:SPEC:2039; WS4EE:SPEC:4006; WS4EE:SPEC:4007; WS4EE:SPEC:4008;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke an RPC method using
-     * AsyncPoll method.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke an RPC method using AsyncPoll method.
      *
      * Description A client can invoke an RPC method via generated stub.
      */
@@ -266,19 +266,18 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
         }
 
-        if (!pass) throw new Fault("invokeAsyncPollTest failed");
+        if (!pass)
+            throw new Fault("invokeAsyncPollTest failed");
     }
 
     /*
      * @testName: invokeAsyncCallbackTest
      *
-     * @assertion_ids: JAXWS:SPEC:2032; JAXWS:SPEC:2033; JAXWS:SPEC:2034;
-     * JAXWS:SPEC:2034; JAXWS:SPEC:2035; JAXWS:SPEC:2038; JAXWS:SPEC:2039;
-     * WS4EE:SPEC:4006; WS4EE:SPEC:4007; WS4EE:SPEC:4008;
+     * @assertion_ids: JAXWS:SPEC:2032; JAXWS:SPEC:2033; JAXWS:SPEC:2034; JAXWS:SPEC:2034; JAXWS:SPEC:2035; JAXWS:SPEC:2038;
+     * JAXWS:SPEC:2039; WS4EE:SPEC:4006; WS4EE:SPEC:4007; WS4EE:SPEC:4008;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke an RPC method using
-     * AsyncCallback method.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke an RPC method using AsyncCallback method.
      *
      * Description A client can invoke an RPC method via generated stub.
      */
@@ -315,6 +314,7 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
         }
 
-        if (!pass) throw new Fault("invokeAsyncCallbackTest failed");
+        if (!pass)
+            throw new Fault("invokeAsyncCallbackTest failed");
     }
 }

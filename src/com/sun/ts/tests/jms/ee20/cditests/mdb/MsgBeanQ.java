@@ -59,7 +59,8 @@ public class MsgBeanQ implements MessageDrivenBean, MessageListener {
     @Resource(name = "jms/mdbReplyTopic")
     private transient Topic replyTopic;
 
-    public MsgBeanQ() {}
+    public MsgBeanQ() {
+    }
 
     public void ejbCreate() {
         System.out.println("MsgBeanQ.ejbCreate()!");
@@ -90,7 +91,8 @@ public class MsgBeanQ implements MessageDrivenBean, MessageListener {
             testname = msg.getStringProperty("TESTNAME");
         } catch (JMSException e) {
             reason = "MsgBeanQ.onMessage(): failed to get TESTNAME from message";
-            if (context1 == null || context2 == null) reason = reason + ", failed CDI injection of JMSContext";
+            if (context1 == null || context2 == null)
+                reason = reason + ", failed CDI injection of JMSContext";
             System.out.println(reason);
             return;
         }
@@ -99,7 +101,8 @@ public class MsgBeanQ implements MessageDrivenBean, MessageListener {
             System.out.println(reason);
             if (testname.equals("testCDIInjectionOfMDBWithQueueReplyFromEjb"))
                 sendReplyToQ(testname, status, reason, context1, replyQueue);
-            else sendReplyToT(testname, status, reason, context2, replyTopic);
+            else
+                sendReplyToT(testname, status, reason, context2, replyTopic);
         }
 
         // reply to all messages that have a testname.
@@ -108,7 +111,8 @@ public class MsgBeanQ implements MessageDrivenBean, MessageListener {
         System.out.println(reason);
         if (testname.equals("testCDIInjectionOfMDBWithQueueReplyFromEjb"))
             sendReplyToQ(testname, status, reason, context1, replyQueue);
-        else sendReplyToT(testname, status, reason, context2, replyTopic);
+        else
+            sendReplyToT(testname, status, reason, context2, replyTopic);
         System.out.println("MsgBeanQ.onMessage(): leaving MDB");
     }
 

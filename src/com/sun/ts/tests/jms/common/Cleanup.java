@@ -52,8 +52,7 @@ public final class Cleanup {
     /**
      * Second constructor
      *
-     * @param ConnectionFactory
-     *          connfactory the connection factory object
+     * @param ConnectionFactory connfactory the connection factory object
      */
     public Cleanup(ConnectionFactory cf) {
         this(JMSDEFAULT, JMSDEFAULT, cf);
@@ -62,12 +61,9 @@ public final class Cleanup {
     /**
      * Third constructor
      *
-     * @param String
-     *          user the username credentials
-     * @param String
-     *          pass the password credentials
-     * @param ConnectionFactory
-     *          connfactory the connection factory object
+     * @param String user the username credentials
+     * @param String pass the password credentials
+     * @param ConnectionFactory connfactory the connection factory object
      */
     public Cleanup(String user, String pass, ConnectionFactory cf) {
         this.user = user;
@@ -76,13 +72,10 @@ public final class Cleanup {
     }
 
     /**
-     * Use this method at cleanup time to remove any connections and messages that
-     * have remained on the queue.
+     * Use this method at cleanup time to remove any connections and messages that have remained on the queue.
      *
-     * @param ArrayList
-     *          connections list of open connections
-     * @param ArrayList
-     *          queues list of queues to flush
+     * @param ArrayList connections list of open connections
+     * @param ArrayList queues list of queues to flush
      */
     public void doClientQueueTestCleanup(ArrayList connections, ArrayList queues) {
         TestUtil.logTrace("Entering doClientQueueTestCleanup()");
@@ -105,8 +98,7 @@ public final class Cleanup {
     /**
      * Close any connections opened by the tests
      *
-     * @param ArrayList
-     *          connections list of connections to close
+     * @param ArrayList connections list of connections to close
      */
     public void closeAllConnections(ArrayList connections) {
         TestUtil.logTrace("Entering closeAllConnections()");
@@ -126,8 +118,7 @@ public final class Cleanup {
     /**********************************************************************************
      * flushDestination(Destination)
      *
-     * Use this method at cleanup time to remove any messages that have remained
-     * on the queue.
+     * Use this method at cleanup time to remove any messages that have remained on the queue.
      **********************************************************************************/
     public void flushDestination(Destination destination) throws Exception {
         Connection conn = null;
@@ -193,11 +184,9 @@ public final class Cleanup {
     /**********************************************************************************
      * flushQueue(ArrayList)
      *
-     * Use this method at cleanup time to remove any messages that have remained
-     * on the queue.
+     * Use this method at cleanup time to remove any messages that have remained on the queue.
      *
-     * @param Queue
-     *          qToFlush[] QUEUES
+     * @param Queue qToFlush[] QUEUES
      **********************************************************************************/
     public void flushQueue(ArrayList queues) throws Exception {
         Connection qc = null;
@@ -267,13 +256,10 @@ public final class Cleanup {
     /**********************************************************************************
      * flushQueue(Queue, Session)
      *
-     * Use this method at cleanup time to remove any messages that have remained
-     * on the queue.
+     * Use this method at cleanup time to remove any messages that have remained on the queue.
      *
-     * @param Queue
-     *          queue the queue to flush
-     * @param Session
-     *          session the session
+     * @param Queue queue the queue to flush
+     * @param Session session the session
      **********************************************************************************/
     public void flushQueue(Queue queue, Session session) throws Exception {
         int numMsgsFlushed = 0;

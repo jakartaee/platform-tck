@@ -48,7 +48,8 @@ public class BiDir1XMProject implements Serializable {
         this.biDir1XMPerson = biDir1XMPerson;
     }
 
-    public BiDir1XMProject() {}
+    public BiDir1XMProject() {
+    }
 
     public Float getBudget() {
         return budget;

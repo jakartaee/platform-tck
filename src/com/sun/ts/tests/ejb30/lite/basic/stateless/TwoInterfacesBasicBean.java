@@ -27,5 +27,6 @@ import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 
 @Stateless
-@Local({Basic1IF.class, Basic2IF.class})
-public class TwoInterfacesBasicBean extends BasicBeanBase implements Basic1IF, Basic2IF {}
+@Local({ Basic1IF.class, Basic2IF.class })
+public class TwoInterfacesBasicBean extends BasicBeanBase implements Basic1IF, Basic2IF {
+}

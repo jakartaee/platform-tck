@@ -23,9 +23,8 @@ package com.sun.ts.lib.porting;
 import jakarta.jms.*;
 
 /**
- * This is the TSJMSObjectsInterface. An implementation of this interface must
- * be provided by each JMS implementation to support their own implementation of
- * getting administered objects.
+ * This is the TSJMSObjectsInterface. An implementation of this interface must be provided by each JMS implementation to
+ * support their own implementation of getting administered objects.
  *
  */
 public interface TSJMSObjectsInterface {

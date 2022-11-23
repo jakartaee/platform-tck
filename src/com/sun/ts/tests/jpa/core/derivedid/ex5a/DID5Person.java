@@ -65,7 +65,8 @@ public class DID5Person implements Serializable {
         this.lastName = lastName;
     }
 
-    public DID5Person() {}
+    public DID5Person() {
+    }
 
     public String getSsn() {
         return ssn;

@@ -25,9 +25,8 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * A callback listerner for stateful session beans. It uses ejb* for method
- * names. Callback methods may throw RuntimeException. They are declared in the
- * throws list, though not necessary.
+ * A callback listerner for stateful session beans. It uses ejb* for method names. Callback methods may throw
+ * RuntimeException. They are declared in the throws list, though not necessary.
  */
 public class StatefulCallbackListener {
 

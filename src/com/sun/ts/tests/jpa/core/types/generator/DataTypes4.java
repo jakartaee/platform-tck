@@ -35,7 +35,8 @@ public class DataTypes4 implements java.io.Serializable {
 
     private Integer integerData;
 
-    public DataTypes4() {}
+    public DataTypes4() {
+    }
 
     public DataTypes4(Integer integerData) {
         this.integerData = integerData;

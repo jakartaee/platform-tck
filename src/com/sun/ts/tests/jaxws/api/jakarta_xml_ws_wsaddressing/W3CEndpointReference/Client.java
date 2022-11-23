@@ -36,8 +36,7 @@ import javax.xml.transform.stream.StreamResult;
 
 public class Client extends ServiceEETest {
 
-    private static String xmlSource =
-            "<EndpointReference xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>http://localhost:8080/WSDLHelloService_web/jaxws/Hello</Address><Metadata><wsam:InterfaceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wsns=\"http://helloservice.org/wsdl\">wsns:Hello</wsam:InterfaceName><wsam:ServiceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:ns3=\"http://www.w3.org/2005/08/addressing\" xmlns=\"\" xmlns:wsns=\"http://helloservice.org/wsdl\" EndpointName=\"HelloPort\">wsns:HelloService</wsam:ServiceName><wsdl:definitions xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\"><wsdl:import xmlns:ns5=\"http://www.w3.org/2005/08/addressing\" xmlns=\"\" location=\"http://localhost:8080/WSDLHelloService_web/jaxws/Hello?wsdl\" namespace=\"http://helloservice.org/wsdl\"/></wsdl:definitions></Metadata></EndpointReference>";
+    private static String xmlSource = "<EndpointReference xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>http://localhost:8080/WSDLHelloService_web/jaxws/Hello</Address><Metadata><wsam:InterfaceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wsns=\"http://helloservice.org/wsdl\">wsns:Hello</wsam:InterfaceName><wsam:ServiceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:ns3=\"http://www.w3.org/2005/08/addressing\" xmlns=\"\" xmlns:wsns=\"http://helloservice.org/wsdl\" EndpointName=\"HelloPort\">wsns:HelloService</wsam:ServiceName><wsdl:definitions xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\"><wsdl:import xmlns:ns5=\"http://www.w3.org/2005/08/addressing\" xmlns=\"\" location=\"http://localhost:8080/WSDLHelloService_web/jaxws/Hello?wsdl\" namespace=\"http://helloservice.org/wsdl\"/></wsdl:definitions></Metadata></EndpointReference>";
 
     private static final String URLENDPOINT = "http://localhost:8080/WSDLHelloService_web/jaxws/Hello";
 
@@ -100,7 +99,8 @@ public class Client extends ServiceEETest {
             throw new Fault("W3CEndpointReferenceConstructorTest failed", e);
         }
 
-        if (!pass) throw new Fault("W3CEndpointReferenceConstructorTest failed");
+        if (!pass)
+            throw new Fault("W3CEndpointReferenceConstructorTest failed");
     }
 
     /*
@@ -131,13 +131,15 @@ public class Client extends ServiceEETest {
             if (!EprUtil.validateEPR(epr, URLENDPOINT, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.TRUE)) {
                 pass = false;
                 TestUtil.logErr("writeTo failed to write out xml source as expected");
-            } else TestUtil.logMsg("writeTo passed to write out xml source as expected");
+            } else
+                TestUtil.logMsg("writeTo passed to write out xml source as expected");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("writeToTest failed", e);
         }
 
-        if (!pass) throw new Fault("writeToTest failed");
+        if (!pass)
+            throw new Fault("writeToTest failed");
     }
 }

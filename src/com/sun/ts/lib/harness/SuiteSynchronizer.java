@@ -117,7 +117,8 @@ public class SuiteSynchronizer {
     }
 
     public static final SuiteSynchronizer getSuiteSynchronizer(PrintWriter writer) {
-        if (ss == null) ss = new SuiteSynchronizer(writer);
+        if (ss == null)
+            ss = new SuiteSynchronizer(writer);
         return ss;
     }
 
@@ -243,17 +244,18 @@ public class SuiteSynchronizer {
         vCurrentDeploymentInfos.clear();
         vCurrentDeploymentInfos.addAll(vCommonDeploymentInfos);
         String sDeployCommon = jteMgr.getProperty("deploy_undeploy_common_apps", "true");
-        if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("deploy_undeploy_common_apps = " + sDeployCommon);
+        if (TestUtil.harnessDebug)
+            TestUtil.logHarnessDebug("deploy_undeploy_common_apps = " + sDeployCommon);
         if (sDeployCommon.equalsIgnoreCase("true")) {
             // check to see if any common apps are required by this test
-            String[] sCommonApps =
-                    CommonAppVerifier.getInstance(new File(testDir)).getCommonApps();
+            String[] sCommonApps = CommonAppVerifier.getInstance(new File(testDir)).getCommonApps();
             // set the state so we can tell later if we are deploying common apps
             bDeployingCommonApps = true;
             // if there are, then see if any are already deployed
             for (int ii = 0; sCommonApps != null && ii < sCommonApps.length; ii++) {
                 sCommonTestDir = sCommonApps[ii];
-                if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("sCommonTestDir = " + sCommonTestDir);
+                if (TestUtil.harnessDebug)
+                    TestUtil.logHarnessDebug("sCommonTestDir = " + sCommonTestDir);
                 // if this app has not been deployed yet in this JVM, and it is
                 // already deployed, undeploy it and redeploy it
                 if (!vCommonAppsDeployedThisJVM.contains(sCommonTestDir)) {
@@ -307,7 +309,8 @@ public class SuiteSynchronizer {
                 }
             }
         } else {
-            if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("Skipping common app deployment " + sDeployCommon);
+            if (TestUtil.harnessDebug)
+                TestUtil.logHarnessDebug("Skipping common app deployment " + sDeployCommon);
         }
         // Now take care of the apps in the current test dir
         if (!Boolean.getBoolean("common.apps.only") && !sLastTestDirectory.equals(testDir)) {
@@ -425,34 +428,23 @@ public class SuiteSynchronizer {
     }
 
     /**
-     * Uses different approaches to search for runtime files for j2sdkee RI and
-     * for s1as. For j2sdkee RI, iterates through *.runtime.xml, and for each
-     * runtime.xml file, checks if it matches a jar entry. For s1as, search for a
-     * list of required runtime files for the current deployable component, and
-     * tries to find it in the collection of all runtime files in the current dist
-     * dir. If not found, tries to get the generic forms from
-     * $TS_HOME/src/com/sun/ts/tests/common/sunxml. Available generic forms of
-     * s1as runtime files: sun-application.xml sun-web.xml
-     * sun-application-client.xml
+     * Uses different approaches to search for runtime files for j2sdkee RI and for s1as. For j2sdkee RI, iterates through
+     * *.runtime.xml, and for each runtime.xml file, checks if it matches a jar entry. For s1as, search for a list of
+     * required runtime files for the current deployable component, and tries to find it in the collection of all runtime
+     * files in the current dist dir. If not found, tries to get the generic forms from
+     * $TS_HOME/src/com/sun/ts/tests/common/sunxml. Available generic forms of s1as runtime files: sun-application.xml
+     * sun-web.xml sun-application-client.xml
      *
-     * @param sAppEar
-     *          full path of a deployable component, e.g., ear, standalone war/jar
-     * @param sRuntimeInfoArray
-     *          a collection of runtime files, equals or greater than the valid
-     *          runtime files
-     * @param sDir
-     *          dist dir for the current leaf dir
+     * @param sAppEar full path of a deployable component, e.g., ear, standalone war/jar
+     * @param sRuntimeInfoArray a collection of runtime files, equals or greater than the valid runtime files
+     * @param sDir dist dir for the current leaf dir
      * @param oppositeServerJNDITable
      * @param bSweep
      * @return String[] array of file names of valid runtime files
-     * @throws TSDeploymentException
-     *           TODO: use File/File[] to represent a file or files, instead of
-     *           strings. With strings we don't know if they are file name or full
-     *           path. TODO: use collection instead of arrays. TODO: remove
-     *           sRuntimeInfoArray from param list. Since we already have sDir
-     *           (dist dir) in param list, we can include runtime files as needed,
-     *           instead of calling File.list() before every invocation of
-     *           getValidRuntimeInfoFiles.
+     * @throws TSDeploymentException TODO: use File/File[] to represent a file or files, instead of strings. With strings we
+     * don't know if they are file name or full path. TODO: use collection instead of arrays. TODO: remove sRuntimeInfoArray
+     * from param list. Since we already have sDir (dist dir) in param list, we can include runtime files as needed, instead
+     * of calling File.list() before every invocation of getValidRuntimeInfoFiles.
      */
     private String[] getValidRuntimeInfoFiles(
             String sAppEar, String[] sRuntimeInfoArray, String sDir, Hashtable oppositeServerJNDITable, boolean bSweep)
@@ -492,9 +484,8 @@ public class SuiteSynchronizer {
     }
 
     /**
-     * Gets the basename from a path. For example, c:\foo\foo.ear would return
-     * foo.ear, c:\foo\foo.bar.ear would return foo.ear, foo.ear returns foo.ear.
-     * We could have used File.getName if we have a file instead of a string path.
+     * Gets the basename from a path. For example, c:\foo\foo.ear would return foo.ear, c:\foo\foo.bar.ear would return
+     * foo.ear, foo.ear returns foo.ear. We could have used File.getName if we have a file instead of a string path.
      *
      * @param fullPath
      * @return String
@@ -506,19 +497,13 @@ public class SuiteSynchronizer {
     }
 
     /**
-     * gets the valid s1as runtime files from the list of all available runtime
-     * files in the current test dir. If it uses generic forms of runtime files,
-     * like sun-application.xml, sun-web.xml, they will NOT appear in the result.
+     * gets the valid s1as runtime files from the list of all available runtime files in the current test dir. If it uses
+     * generic forms of runtime files, like sun-application.xml, sun-web.xml, they will NOT appear in the result.
      *
-     * @param sAppEar
-     *          full path of a deployable component, e.g., ear, standalone war/jar
-     * @param sRuntimeInfoArray
-     *          a collection of runtime files, equals or greater than the valid
-     *          runtime files
-     * @param sDir
-     *          dist dir for the current leaf dir
-     * @return String[] a collection of valid s1as runtime files that are really
-     *         needed
+     * @param sAppEar full path of a deployable component, e.g., ear, standalone war/jar
+     * @param sRuntimeInfoArray a collection of runtime files, equals or greater than the valid runtime files
+     * @param sDir dist dir for the current leaf dir
+     * @return String[] a collection of valid s1as runtime files that are really needed
      */
     private String[] getS1ASRuntimeInfoFiles(String sAppEar, String[] sRuntimeInfoArray, String sDir) {
         List al = new ArrayList(7);
@@ -535,7 +520,7 @@ public class SuiteSynchronizer {
                 JarFile earFile = null;
                 try {
                     earFile = new JarFile(sAppEar);
-                    for (Enumeration enum1 = earFile.entries(); enum1.hasMoreElements(); ) {
+                    for (Enumeration enum1 = earFile.entries(); enum1.hasMoreElements();) {
                         ZipEntry infile = (ZipEntry) enum1.nextElement();
                         if (!infile.isDirectory()) {
                             String name = infile.getName();
@@ -549,7 +534,8 @@ public class SuiteSynchronizer {
                             "Exception in checking entries in ear file, use all available s1as runtime files.");
                     ioe.printStackTrace();
                 } finally {
-                    if (earFile != null) earFile.close();
+                    if (earFile != null)
+                        earFile.close();
                 }
             } else if (sAppEar.endsWith(".jar") || sAppEar.endsWith(".war")) {
                 addIfPresent(baseName, al, sRuntimeInfoArray, false);
@@ -572,8 +558,7 @@ public class SuiteSynchronizer {
     /**
      * adds fileName to list if the runtimeFileNames[i] stats with moduleName
      *
-     * @param string
-     *          moduleName
+     * @param string moduleName
      * @param al
      * @param runtimeFileNames
      */
@@ -727,7 +712,8 @@ public class SuiteSynchronizer {
         DeploymentInfo[] infoArray = new DeploymentInfo[sAppJarsArray.length];
         for (int ii = 0; ii < sAppJarsArray.length; ii++) {
             earFile = sDir + File.separator + sAppJarsArray[ii];
-            if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("earFile = " + earFile);
+            if (TestUtil.harnessDebug)
+                TestUtil.logHarnessDebug("earFile = " + earFile);
             sFileNameMinusExtension = sAppJarsArray[ii].substring(0, sAppJarsArray[ii].lastIndexOf("."));
             // sClientClassPaths = "";
             // get only those runtime files which go with this
@@ -735,15 +721,16 @@ public class SuiteSynchronizer {
             // also rewrites runtime.xml
             sValidRuntimeInfoFilesArray = getValidRuntimeInfoFiles(
                     sDir + File.separator + sAppJarsArray[ii], sRuntimeInfoFilesArray, sDir, null, false);
-            infoArray[ii] =
-                    getDeploymentInfo(earFile, sAppJarsArray[ii], sFileNameMinusExtension, sValidRuntimeInfoFilesArray);
+            infoArray[ii] = getDeploymentInfo(earFile, sAppJarsArray[ii], sFileNameMinusExtension, sValidRuntimeInfoFilesArray);
         }
         TSDeploymentInterface ctsDeploy1 = (TSDeploymentInterface) htTSDeployers.get("cts1");
 
         // if this is not an interop test, don't use cts2
         TSDeploymentInterface ctsDeploy2;
-        if (isInteropDir(sDir)) ctsDeploy2 = (TSDeploymentInterface) htTSDeployers.get("cts2");
-        else ctsDeploy2 = ctsDeploy1;
+        if (isInteropDir(sDir))
+            ctsDeploy2 = (TSDeploymentInterface) htTSDeployers.get("cts2");
+        else
+            ctsDeploy2 = ctsDeploy1;
 
         // never reset these in case we have common apps in a diff dir
         // should we tack on "notcommon" to the beginning of each entry that
@@ -765,7 +752,8 @@ public class SuiteSynchronizer {
             sInteropDirectionWhenTablesWerePopulated = "forward";
         }
 
-        if (TestUtil.harnessDebug) printAllMappings();
+        if (TestUtil.harnessDebug)
+            printAllMappings();
     }
 
     private void printAllMappings() {
@@ -774,7 +762,7 @@ public class SuiteSynchronizer {
         TestUtil.logHarness("RuntimeInfo mappings from Porting impl 1");
 
         // dump all mappings from the hashtables
-        for (Enumeration e = htJNDIMapsFromServer1.keys(); e.hasMoreElements(); ) {
+        for (Enumeration e = htJNDIMapsFromServer1.keys(); e.hasMoreElements();) {
             sKey = (String) e.nextElement();
 
             TestUtil.logHarness("----------------------------------------");
@@ -785,7 +773,7 @@ public class SuiteSynchronizer {
 
         TestUtil.logHarness("RuntimeInfo mappings from Porting impl 2");
 
-        for (Enumeration e = htJNDIMapsFromServer2.keys(); e.hasMoreElements(); ) {
+        for (Enumeration e = htJNDIMapsFromServer2.keys(); e.hasMoreElements();) {
             sKey = (String) e.nextElement();
 
             TestUtil.logHarness("----------------------------------------");
@@ -821,7 +809,8 @@ public class SuiteSynchronizer {
         // need to figure out the exact build rules for this
         for (int ii = 0; ii < sAppJarsArray.length; ii++) {
             earFile = sDir + File.separator + sAppJarsArray[ii];
-            if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("earFile = " + earFile);
+            if (TestUtil.harnessDebug)
+                TestUtil.logHarnessDebug("earFile = " + earFile);
             sFileNameMinusExtension = sAppJarsArray[ii].substring(0, sAppJarsArray[ii].lastIndexOf("."));
             // sClientClassPaths = "";
             // if (isInteropDir(sDir)) {
@@ -829,12 +818,14 @@ public class SuiteSynchronizer {
             if (sInteropDirectionWhenTablesWerePopulated.equals("forward")) {
                 if (sFileNameMinusExtension.indexOf("_j2ee2") != -1 || sFileNameMinusExtension.startsWith("vi_built_"))
                     oppositeServerJNDITable = htJNDIMapsFromServer1;
-                else oppositeServerJNDITable = htJNDIMapsFromServer2;
+                else
+                    oppositeServerJNDITable = htJNDIMapsFromServer2;
             } else // reverse
             {
                 if (sFileNameMinusExtension.indexOf("_j2ee2") != -1 || sFileNameMinusExtension.startsWith("vi_built_"))
                     oppositeServerJNDITable = htJNDIMapsFromServer2;
-                else oppositeServerJNDITable = htJNDIMapsFromServer1;
+                else
+                    oppositeServerJNDITable = htJNDIMapsFromServer1;
             }
 
             if (bSweepRebuildableReverseRuntimeFiles) {
@@ -854,24 +845,22 @@ public class SuiteSynchronizer {
             }
 
             /*
-             * } else { // get only those runtime files which go with this // .ear
-             * file sValidRuntimeInfoFilesArray = getValidRuntimeInfoFiles(sDir +
-             * File.separator + sAppJarsArray[ii], sRuntimeInfoFilesArray, sDir, null,
-             * true); }
+             * } else { // get only those runtime files which go with this // .ear file sValidRuntimeInfoFilesArray =
+             * getValidRuntimeInfoFiles(sDir + File.separator + sAppJarsArray[ii], sRuntimeInfoFilesArray, sDir, null, true); }
              */
-            deploymentInfo =
-                    getDeploymentInfo(earFile, sAppJarsArray[ii], sFileNameMinusExtension, sValidRuntimeInfoFilesArray);
+            deploymentInfo = getDeploymentInfo(earFile, sAppJarsArray[ii], sFileNameMinusExtension, sValidRuntimeInfoFilesArray);
             // save off all common app infos so that they can be passed to new test
             // directory deployments
-            if (bDeployingCommonApps) vCommonDeploymentInfos.addElement(deploymentInfo);
+            if (bDeployingCommonApps)
+                vCommonDeploymentInfos.addElement(deploymentInfo);
             // always add to the current deploymentinfos
             vCurrentDeploymentInfos.addElement(deploymentInfo);
             // give the current ear's deployment info access to previosly deployed
             // info objects
-            deploymentInfo.setPreviousInfos((DeploymentInfo[])
-                    vCurrentDeploymentInfos.toArray(new DeploymentInfo[vCurrentDeploymentInfos.size()]));
+            deploymentInfo.setPreviousInfos((DeploymentInfo[]) vCurrentDeploymentInfos.toArray(new DeploymentInfo[vCurrentDeploymentInfos.size()]));
             // deploy
-            if (!sClientClassPaths.equals("")) sClientClassPaths += File.pathSeparator;
+            if (!sClientClassPaths.equals(""))
+                sClientClassPaths += File.pathSeparator;
             if (TestUtil.harnessDebug)
                 TestUtil.logHarnessDebug("generateSQL is set to:  " + deploymentInfo.getProperty("generateSQL"));
             try {
@@ -893,7 +882,7 @@ public class SuiteSynchronizer {
                             sTopicFactories2 = new String[iSize];
                             String[] sTopicFactoryProps = new String[iSize];
                             int jj = 0;
-                            for (Enumeration e = htTopicFactories.keys(); e.hasMoreElements(); ) {
+                            for (Enumeration e = htTopicFactories.keys(); e.hasMoreElements();) {
                                 String sElement = (String) e.nextElement();
                                 sTopicFactories2[jj] = sElement;
                                 sTopicFactoryProps[jj] = (String) htTopicFactories.get(sElement);
@@ -905,7 +894,7 @@ public class SuiteSynchronizer {
                             sQueueFactories2 = new String[iSize];
                             String[] sQueueFactoryProps = new String[iSize];
                             jj = 0;
-                            for (Enumeration e = htQueueFactories.keys(); e.hasMoreElements(); ) {
+                            for (Enumeration e = htQueueFactories.keys(); e.hasMoreElements();) {
                                 String sElement = (String) e.nextElement();
                                 sQueueFactories2[jj] = sElement;
                                 sQueueFactoryProps[jj] = (String) htQueueFactories.get(sElement);
@@ -932,7 +921,7 @@ public class SuiteSynchronizer {
                             sTopicFactories1 = new String[iSize];
                             String[] sTopicFactoryProps = new String[iSize];
                             int jj = 0;
-                            for (Enumeration e = htTopicFactories.keys(); e.hasMoreElements(); ) {
+                            for (Enumeration e = htTopicFactories.keys(); e.hasMoreElements();) {
                                 String sElement = (String) e.nextElement();
                                 sTopicFactories1[jj] = sElement;
                                 sTopicFactoryProps[jj] = (String) htTopicFactories.get(sElement);
@@ -944,7 +933,7 @@ public class SuiteSynchronizer {
                             sQueueFactories1 = new String[iSize];
                             String[] sQueueFactoryProps = new String[iSize];
                             jj = 0;
-                            for (Enumeration e = htQueueFactories.keys(); e.hasMoreElements(); ) {
+                            for (Enumeration e = htQueueFactories.keys(); e.hasMoreElements();) {
                                 String sElement = (String) e.nextElement();
                                 sQueueFactories1[jj] = sElement;
                                 sQueueFactoryProps[jj] = (String) htQueueFactories.get(sElement);
@@ -986,7 +975,8 @@ public class SuiteSynchronizer {
                 }
             } else {
                 sClientClassPaths += ctsDeploy.deploy(deploymentInfo);
-                if (!sClientClassPaths.endsWith(File.pathSeparator)) sClientClassPaths += File.pathSeparator;
+                if (!sClientClassPaths.endsWith(File.pathSeparator))
+                    sClientClassPaths += File.pathSeparator;
             }
         }
         return sClientClassPaths;
@@ -1155,7 +1145,8 @@ public class SuiteSynchronizer {
         TestUtil.logHarnessDebug("*******swapSettings CALLED with direction:  " + sDirection);
 
         if (sDirection.equals("reverse")) {
-            if (bReversed) return;
+            if (bReversed)
+                return;
             else {
                 try {
                     jteMgr = deliv.getPropertyManager();
@@ -1168,7 +1159,8 @@ public class SuiteSynchronizer {
                 swap();
             }
         } else {
-            if (!bReversed) return;
+            if (!bReversed)
+                return;
             else {
                 try {
                     jteMgr = deliv.getPropertyManager();
@@ -1186,7 +1178,8 @@ public class SuiteSynchronizer {
     public static class RuntimeInfoFilter implements FilenameFilter {
         private static RuntimeInfoFilter instance = new RuntimeInfoFilter();
 
-        private RuntimeInfoFilter() {}
+        private RuntimeInfoFilter() {
+        }
 
         public static RuntimeInfoFilter getInstance() {
             return instance;

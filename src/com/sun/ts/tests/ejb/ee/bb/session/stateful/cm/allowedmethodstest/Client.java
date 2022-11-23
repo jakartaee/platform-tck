@@ -177,8 +177,10 @@ public class Client extends EETest {
             logErr("setRollbackOnly operations test failed");
             pass = false;
         }
-        if (pass) logMsg("All operation tests passed as expected ...");
-        else logErr("Not All operation tests passed - unexpected ...");
+        if (pass)
+            logMsg("All operation tests passed as expected ...");
+        else
+            logErr("Not All operation tests passed - unexpected ...");
         logMsg("-----------------------------------------------------");
         return pass;
     }
@@ -194,8 +196,10 @@ public class Client extends EETest {
             logErr("setRollbackOnly operations test failed");
             pass = false;
         }
-        if (pass) logMsg("All operation tests passed as expected ...");
-        else logErr("Not All operation tests passed - unexpected ...");
+        if (pass)
+            logMsg("All operation tests passed as expected ...");
+        else
+            logErr("Not All operation tests passed - unexpected ...");
         logMsg("-----------------------------------------------------");
         return pass;
     }
@@ -203,8 +207,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * user; password;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; user; password;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -244,24 +247,19 @@ public class Client extends EETest {
     /*
      * @testName: sfcmAllowedMethodsTest1
      *
-     * @assertion_ids: EJB:SPEC:81; EJB:SPEC:81.1; EJB:SPEC:81.2; EJB:SPEC:81.3;
-     * EJB:SPEC:81.4; EJB:SPEC:81.6; EJB:SPEC:81.7; EJB:SPEC:81.10;
-     * EJB:SPEC:81.11; EJB:SPEC:81.12; EJB:SPEC:81.13; EJB:SPEC:81.14;
-     * EJB:SPEC:81.15; EJB:JAVADOC:195
+     * @assertion_ids: EJB:SPEC:81; EJB:SPEC:81.1; EJB:SPEC:81.2; EJB:SPEC:81.3; EJB:SPEC:81.4; EJB:SPEC:81.6;
+     * EJB:SPEC:81.7; EJB:SPEC:81.10; EJB:SPEC:81.11; EJB:SPEC:81.12; EJB:SPEC:81.13; EJB:SPEC:81.14; EJB:SPEC:81.15;
+     * EJB:JAVADOC:195
      *
-     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method
-     * of a stateful session bean with container-managed transaction demarcation
-     * are:
+     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
-     * o getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly -
-     * not allowed o isCallerInRole - allowed o getEJBObject - allowed o
-     * JNDI_Access - allowed o UserTransaction_Access- not allowed o
-     * UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2
-     * - not allowed o UserTransaction_Methods_Test3 - not allowed o
-     * UserTransaction_Methods_Test4 - not allowed o UserTransaction_Methods_Test5
-     * - not allowed o UserTransaction_Methods_Test6 - not allowed o
-     * getEJBLocalHome - allowed o getEJBLocalObject - allowed o Timer Methods -
-     * not allowed
+     * o getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly - not allowed o isCallerInRole - allowed o
+     * getEJBObject - allowed o JNDI_Access - allowed o UserTransaction_Access- not allowed o UserTransaction_Methods_Test1
+     * - not allowed o UserTransaction_Methods_Test2 - not allowed o UserTransaction_Methods_Test3 - not allowed o
+     * UserTransaction_Methods_Test4 - not allowed o UserTransaction_Methods_Test5 - not allowed o
+     * UserTransaction_Methods_Test6 - not allowed o getEJBLocalHome - allowed o getEJBLocalObject - allowed o Timer Methods
+     * - not allowed
      *
      * Verify correct operations.
      *
@@ -271,8 +269,8 @@ public class Client extends EETest {
         logTrace("Operation Tests for ejbCreate");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "false", "true", "true", "true", "false", "false", "false", "false", "false", "false",
-            "false", "true", "true", "false"
+                "true", "true", "false", "true", "true", "true", "false", "false", "false", "false", "false", "false",
+                "false", "true", "true", "false"
         };
         try {
             // create EJB instance
@@ -302,28 +300,23 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest1 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest1 failed");
     }
 
     /*
      * @testName: sfcmAllowedMethodsTest2
      *
-     * @assertion_ids: EJB:SPEC:82; EJB:SPEC:82.1; EJB:SPEC:82.2; EJB:SPEC:82.3;
-     * EJB:SPEC:82.4; EJB:SPEC:82.6; EJB:SPEC:82.7; EJB:SPEC:82.10;
-     * EJB:SPEC:82.11; EJB:SPEC:82.12; EJB:SPEC:82.14; EJB:JAVADOC:195;
-     * EJB:JAVADOC:161
+     * @assertion_ids: EJB:SPEC:82; EJB:SPEC:82.1; EJB:SPEC:82.2; EJB:SPEC:82.3; EJB:SPEC:82.4; EJB:SPEC:82.6;
+     * EJB:SPEC:82.7; EJB:SPEC:82.10; EJB:SPEC:82.11; EJB:SPEC:82.12; EJB:SPEC:82.14; EJB:JAVADOC:195; EJB:JAVADOC:161
      *
-     * @test_Strategy: Operations allowed and not allowed in the setSessionContext
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are: o getEJBHome - allowed o getCallerPrincipal - not allowed
-     * o getRollbackOnly - not allowed o isCallerInRole - not allowed o
-     * getEJBObject - not allowed o JNDI_Access - allowed o
-     * UserTransaction_Access- not allowed o UserTransaction_Methods_Test1 - not
-     * allowed o UserTransaction_Methods_Test2 - not allowed o
-     * UserTransaction_Methods_Test3 - not allowed o UserTransaction_Methods_Test4
-     * - not allowed o UserTransaction_Methods_Test5 - not allowed o
-     * UserTransaction_Methods_Test6 - not allowed o getEJBLocalHome - allowed o
-     * getEJBLocalObject - not allowed o Timer Methods - not allowed (not tested)
+     * @test_Strategy: Operations allowed and not allowed in the setSessionContext method of a stateful session bean with
+     * container-managed transaction demarcation are: o getEJBHome - allowed o getCallerPrincipal - not allowed o
+     * getRollbackOnly - not allowed o isCallerInRole - not allowed o getEJBObject - not allowed o JNDI_Access - allowed o
+     * UserTransaction_Access- not allowed o UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2 -
+     * not allowed o UserTransaction_Methods_Test3 - not allowed o UserTransaction_Methods_Test4 - not allowed o
+     * UserTransaction_Methods_Test5 - not allowed o UserTransaction_Methods_Test6 - not allowed o getEJBLocalHome - allowed
+     * o getEJBLocalObject - not allowed o Timer Methods - not allowed (not tested)
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -333,8 +326,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for setSessionContext");
         boolean pass = true;
         String expected[] = {
-            "true", "false", "false", "false", "false", "true", "false", "false", "false", "false", "false", "false",
-            "false", "true", "false", "false"
+                "true", "false", "false", "false", "false", "true", "false", "false", "false", "false", "false", "false",
+                "false", "true", "false", "false"
         };
         try {
             // create EJB instance
@@ -360,29 +353,24 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest2 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest2 failed");
     }
 
     /*
      * @testName: sfcmAllowedMethodsTest3
      *
-     * @assertion_ids: EJB:SPEC:83; EJB:SPEC:83.1; EJB:SPEC:83.2; EJB:SPEC:83.3;
-     * EJB:SPEC:83.4; EJB:SPEC:83.6; EJB:SPEC:83.7; EJB:SPEC:83.10;
-     * EJB:SPEC:83.11; EJB:SPEC:83.12; EJB:SPEC:83.13; EJB:SPEC:83.14;
-     * EJB:SPEC:83.15; EJB:JAVADOC:210; EJB:JAVADOC:206; EJB:JAVADOC:202;
-     * EJB:JAVADOC:198; EJB:JAVADOC:194
+     * @assertion_ids: EJB:SPEC:83; EJB:SPEC:83.1; EJB:SPEC:83.2; EJB:SPEC:83.3; EJB:SPEC:83.4; EJB:SPEC:83.6;
+     * EJB:SPEC:83.7; EJB:SPEC:83.10; EJB:SPEC:83.11; EJB:SPEC:83.12; EJB:SPEC:83.13; EJB:SPEC:83.14; EJB:SPEC:83.15;
+     * EJB:JAVADOC:210; EJB:JAVADOC:206; EJB:JAVADOC:202; EJB:JAVADOC:198; EJB:JAVADOC:194
      *
-     * @test_Strategy: Operations allowed and not allowed in a business method of
-     * a stateful session bean with container-managed transaction demarcation are:
-     * o getEJBHome - allowed o getCallerPrincipal - allowed o getRollbackOnly -
-     * allowed o isCallerInRole - allowed o getEJBObject - allowed o JNDI_Access -
-     * allowed o UserTransaction_Access- not allowed o
-     * UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2
-     * - not allowed o UserTransaction_Methods_Test3 - not allowed o
-     * UserTransaction_Methods_Test4 - not allowed o UserTransaction_Methods_Test5
-     * - not allowed o UserTransaction_Methods_Test6 - not allowed o
-     * getEJBLocalHome - allowed o getEJBLocalObject - allowed o Timer Methods -
-     * allowed
+     * @test_Strategy: Operations allowed and not allowed in a business method of a stateful session bean with
+     * container-managed transaction demarcation are: o getEJBHome - allowed o getCallerPrincipal - allowed o
+     * getRollbackOnly - allowed o isCallerInRole - allowed o getEJBObject - allowed o JNDI_Access - allowed o
+     * UserTransaction_Access- not allowed o UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2 -
+     * not allowed o UserTransaction_Methods_Test3 - not allowed o UserTransaction_Methods_Test4 - not allowed o
+     * UserTransaction_Methods_Test5 - not allowed o UserTransaction_Methods_Test6 - not allowed o getEJBLocalHome - allowed
+     * o getEJBLocalObject - allowed o Timer Methods - allowed
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -392,8 +380,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for businessMethod");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "true", "true", "true", "true", "false", "false", "false", "false", "false", "false",
-            "false", "true", "true", "true"
+                "true", "true", "true", "true", "true", "true", "false", "false", "false", "false", "false", "false",
+                "false", "true", "true", "true"
         };
         try {
             // create EJB instance
@@ -421,29 +409,24 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest3 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest3 failed");
     }
 
     /*
      * @testName: sfcmAllowedMethodsTest4
      *
-     * @assertion_ids: EJB:SPEC:85; EJB:SPEC:85.1; EJB:SPEC:85.2; EJB:SPEC:85.3;
-     * EJB:SPEC:85.4; EJB:SPEC:85.6; EJB:SPEC:85.7; EJB:SPEC:85.10;
-     * EJB:SPEC:85.11; EJB:SPEC:85.12; EJB:SPEC:85.13; EJB:SPEC:85.14;
-     * EJB:SPEC:85.15; EJB:JAVADOC:210; EJB:JAVADOC:206; EJB:JAVADOC:202;
-     * EJB:JAVADOC:198; EJB:JAVADOC:194; EJB:SPEC:80
+     * @assertion_ids: EJB:SPEC:85; EJB:SPEC:85.1; EJB:SPEC:85.2; EJB:SPEC:85.3; EJB:SPEC:85.4; EJB:SPEC:85.6;
+     * EJB:SPEC:85.7; EJB:SPEC:85.10; EJB:SPEC:85.11; EJB:SPEC:85.12; EJB:SPEC:85.13; EJB:SPEC:85.14; EJB:SPEC:85.15;
+     * EJB:JAVADOC:210; EJB:JAVADOC:206; EJB:JAVADOC:202; EJB:JAVADOC:198; EJB:JAVADOC:194; EJB:SPEC:80
      *
-     * @test_Strategy: Operations allowed and not allowed in the afterBegin method
-     * of a stateful session bean with container-managed transaction demarcation
-     * are: o getEJBHome - allowed o getCallerPrincipal - allowed o
-     * getRollbackOnly - allowed o isCallerInRole - allowed o getEJBObject -
-     * allowed o JNDI_Access - allowed o UserTransaction_Access- not allowed o
-     * UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2
-     * - not allowed o UserTransaction_Methods_Test3 - not allowed o
-     * UserTransaction_Methods_Test4 - not allowed o UserTransaction_Methods_Test5
-     * - not allowed o UserTransaction_Methods_Test6 - not allowed o
-     * getEJBLocalHome - allowed o getEJBLocalObject - allowed o Timer Methods -
-     * allowed
+     * @test_Strategy: Operations allowed and not allowed in the afterBegin method of a stateful session bean with
+     * container-managed transaction demarcation are: o getEJBHome - allowed o getCallerPrincipal - allowed o
+     * getRollbackOnly - allowed o isCallerInRole - allowed o getEJBObject - allowed o JNDI_Access - allowed o
+     * UserTransaction_Access- not allowed o UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2 -
+     * not allowed o UserTransaction_Methods_Test3 - not allowed o UserTransaction_Methods_Test4 - not allowed o
+     * UserTransaction_Methods_Test5 - not allowed o UserTransaction_Methods_Test6 - not allowed o getEJBLocalHome - allowed
+     * o getEJBLocalObject - allowed o Timer Methods - allowed
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -453,8 +436,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for afterBegin");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "true", "true", "true", "true", "false", "false", "false", "false", "false", "false",
-            "false", "true", "true", "true"
+                "true", "true", "true", "true", "true", "true", "false", "false", "false", "false", "false", "false",
+                "false", "true", "true", "true"
         };
         try {
             // create EJB instance
@@ -487,29 +470,24 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest4 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest4 failed");
     }
 
     /*
      * @testName: sfcmAllowedMethodsTest5
      *
-     * @assertion_ids: EJB:SPEC:86; EJB:SPEC:86.1; EJB:SPEC:86.2; EJB:SPEC:86.3;
-     * EJB:SPEC:86.4; EJB:SPEC:86.6; EJB:SPEC:86.7; EJB:SPEC:86.10;
-     * EJB:SPEC:86.11; EJB:SPEC:86.12; EJB:SPEC:86.13; EJB:SPEC:86.14;
-     * EJB:SPEC:86.15; EJB:JAVADOC:210; EJB:JAVADOC:206; EJB:JAVADOC:202;
-     * EJB:JAVADOC:198; EJB:JAVADOC:194
+     * @assertion_ids: EJB:SPEC:86; EJB:SPEC:86.1; EJB:SPEC:86.2; EJB:SPEC:86.3; EJB:SPEC:86.4; EJB:SPEC:86.6;
+     * EJB:SPEC:86.7; EJB:SPEC:86.10; EJB:SPEC:86.11; EJB:SPEC:86.12; EJB:SPEC:86.13; EJB:SPEC:86.14; EJB:SPEC:86.15;
+     * EJB:JAVADOC:210; EJB:JAVADOC:206; EJB:JAVADOC:202; EJB:JAVADOC:198; EJB:JAVADOC:194
      *
-     * @test_Strategy: Operations allowed and not allowed in the beforeCompletion
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are: o getEJBHome - allowed o getCallerPrincipal - allowed o
-     * getRollbackOnly - allowed o isCallerInRole - allowed o getEJBObject -
-     * allowed o JNDI_Access - allowed o UserTransaction_Access- not allowed o
-     * UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2
-     * - not allowed o UserTransaction_Methods_Test3 - not allowed o
-     * UserTransaction_Methods_Test4 - not allowed o UserTransaction_Methods_Test5
-     * - not allowed o UserTransaction_Methods_Test6 - not allowed o
-     * getEJBLocalHome - allowed o getEJBLocalObject - allowed o Timer Methods -
-     * allowed
+     * @test_Strategy: Operations allowed and not allowed in the beforeCompletion method of a stateful session bean with
+     * container-managed transaction demarcation are: o getEJBHome - allowed o getCallerPrincipal - allowed o
+     * getRollbackOnly - allowed o isCallerInRole - allowed o getEJBObject - allowed o JNDI_Access - allowed o
+     * UserTransaction_Access- not allowed o UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2 -
+     * not allowed o UserTransaction_Methods_Test3 - not allowed o UserTransaction_Methods_Test4 - not allowed o
+     * UserTransaction_Methods_Test5 - not allowed o UserTransaction_Methods_Test6 - not allowed o getEJBLocalHome - allowed
+     * o getEJBLocalObject - allowed o Timer Methods - allowed
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -519,8 +497,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for beforeCompletion");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "true", "true", "true", "true", "false", "false", "false", "false", "false", "false",
-            "false", "true", "true", "true"
+                "true", "true", "true", "true", "true", "true", "false", "false", "false", "false", "false", "false",
+                "false", "true", "true", "true"
         };
         try {
             // create EJB instance
@@ -551,28 +529,24 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest5 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest5 failed");
     }
 
     /*
      * @testName: sfcmAllowedMethodsTest6
      *
-     * @assertion_ids: EJB:SPEC:87; EJB:SPEC:87.1; EJB:SPEC:87.2; EJB:SPEC:87.3;
-     * EJB:SPEC:87.4; EJB:SPEC:87.6; EJB:SPEC:87.7; EJB:SPEC:87.10;
-     * EJB:SPEC:87.11; EJB:SPEC:87.12; EJB:SPEC:87.13; EJB:SPEC:87.14;
-     * EJB:SPEC:87.15; EJB:JAVADOC:195
+     * @assertion_ids: EJB:SPEC:87; EJB:SPEC:87.1; EJB:SPEC:87.2; EJB:SPEC:87.3; EJB:SPEC:87.4; EJB:SPEC:87.6;
+     * EJB:SPEC:87.7; EJB:SPEC:87.10; EJB:SPEC:87.11; EJB:SPEC:87.12; EJB:SPEC:87.13; EJB:SPEC:87.14; EJB:SPEC:87.15;
+     * EJB:JAVADOC:195
      *
-     * @test_Strategy: Operations allowed and not allowed in the afterCompletion
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are: o getEJBHome - allowed o getCallerPrincipal - allowed o
-     * getRollbackOnly - not allowed o isCallerInRole - allowed o getEJBObject -
-     * allowed o JNDI_Access - allowed o UserTransaction_Access- not allowed o
-     * UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2
-     * - not allowed o UserTransaction_Methods_Test3 - not allowed o
-     * UserTransaction_Methods_Test4 - not allowed o UserTransaction_Methods_Test5
-     * - not allowed o UserTransaction_Methods_Test6 - not allowed o
-     * getEJBLocalHome - allowed o getEJBLocalObject - allowed o Timer Methods -
-     * not allowed
+     * @test_Strategy: Operations allowed and not allowed in the afterCompletion method of a stateful session bean with
+     * container-managed transaction demarcation are: o getEJBHome - allowed o getCallerPrincipal - allowed o
+     * getRollbackOnly - not allowed o isCallerInRole - allowed o getEJBObject - allowed o JNDI_Access - allowed o
+     * UserTransaction_Access- not allowed o UserTransaction_Methods_Test1 - not allowed o UserTransaction_Methods_Test2 -
+     * not allowed o UserTransaction_Methods_Test3 - not allowed o UserTransaction_Methods_Test4 - not allowed o
+     * UserTransaction_Methods_Test5 - not allowed o UserTransaction_Methods_Test6 - not allowed o getEJBLocalHome - allowed
+     * o getEJBLocalObject - allowed o Timer Methods - not allowed
      *
      * Deploy it on the J2EE server. Verify correct operations.
      *
@@ -582,8 +556,8 @@ public class Client extends EETest {
         TestUtil.logTrace("Operation Tests for afterCompletion");
         boolean pass = true;
         String expected[] = {
-            "true", "true", "false", "true", "true", "true", "false", "false", "false", "false", "false", "false",
-            "false", "true", "true", "false"
+                "true", "true", "false", "true", "true", "true", "false", "false", "false", "false", "false", "false",
+                "false", "true", "true", "false"
         };
         try {
             // create EJB instance
@@ -614,7 +588,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest6 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest6 failed");
     }
 
     /*
@@ -622,13 +597,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:90; EJB:SPEC:91; EJB:JAVADOC:26; EJB:JAVADOC:35
      *
-     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the
-     * SessionContext interface should be used only in the session bean methods
-     * that execute in the context of a transaction. The container must throw the
-     * java.lang.IllegalStateException if the methods are invoked while the
-     * instance is not associated with a transaction. The following operations are
-     * executed in a business method with transaction attribute NotSupported. o
-     * getRollbackOnly - not allowed o setRollbackOnly - not allowed
+     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the SessionContext interface should be used only
+     * in the session bean methods that execute in the context of a transaction. The container must throw the
+     * java.lang.IllegalStateException if the methods are invoked while the instance is not associated with a transaction.
+     * The following operations are executed in a business method with transaction attribute NotSupported. o getRollbackOnly
+     * - not allowed o setRollbackOnly - not allowed
      *
      *
      */
@@ -655,7 +628,8 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean", e);
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest7 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest7 failed");
     }
 
     /*
@@ -663,13 +637,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:90; EJB:SPEC:91; EJB:JAVADOC:26; EJB:JAVADOC:35
      *
-     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the
-     * SessionContext interface should be used only in the session bean methods
-     * that execute in the context of a transaction. The container must throw the
-     * java.lang.IllegalStateException if the methods are invoked while the
-     * instance is not associated with a transaction. The following operations are
-     * executed in a business method with transaction attribute Supports. o
-     * getRollbackOnly - not allowed o setRollbackOnly - not allowed
+     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the SessionContext interface should be used only
+     * in the session bean methods that execute in the context of a transaction. The container must throw the
+     * java.lang.IllegalStateException if the methods are invoked while the instance is not associated with a transaction.
+     * The following operations are executed in a business method with transaction attribute Supports. o getRollbackOnly -
+     * not allowed o setRollbackOnly - not allowed
      *
      */
 
@@ -695,7 +667,8 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean", e);
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest8 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest8 failed");
     }
 
     /*
@@ -703,13 +676,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:90; EJB:SPEC:91; EJB:JAVADOC:26; EJB:JAVADOC:35
      *
-     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the
-     * SessionContext interface should be used only in the session bean methods
-     * that execute in the context of a transaction. The container must throw the
-     * java.lang.IllegalStateException if the methods are invoked while the
-     * instance is not associated with a transaction. The following operations are
-     * executed in a business method with transaction attribute Never. o
-     * getRollbackOnly - not allowed o setRollbackOnly - not allowed
+     * @test_Strategy: The getRollbackOnly and setRollBackOnly methods of the SessionContext interface should be used only
+     * in the session bean methods that execute in the context of a transaction. The container must throw the
+     * java.lang.IllegalStateException if the methods are invoked while the instance is not associated with a transaction.
+     * The following operations are executed in a business method with transaction attribute Never. o getRollbackOnly - not
+     * allowed o setRollbackOnly - not allowed
      *
      */
 
@@ -735,7 +706,8 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean", e);
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest9 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest9 failed");
     }
 
     /*
@@ -743,9 +715,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:81.5; EJB:JAVADOC:35
      *
-     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method
-     * of a stateful session bean with container-managed transaction demarcation
-     * are:
+     * @test_Strategy: Operations allowed and not allowed in the ejbCreate method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      * o setRollbackOnly - not allowed
      *
@@ -772,7 +743,8 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean", e);
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest10 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest10 failed");
     }
 
     /*
@@ -780,9 +752,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:82.5; EJB:JAVADOC:35
      *
-     * @test_Strategy: Operations allowed and not allowed in the setSessionContext
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in the setSessionContext method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      * o setRollbackOnly - not allowed
      *
@@ -809,7 +780,8 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean", e);
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest11 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest11 failed");
     }
 
     /*
@@ -817,8 +789,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:83.5; EJB:JAVADOC:35
      *
-     * @test_Strategy: Operations allowed and not allowed in a business method of
-     * a stateful session bean with container-managed transaction demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in a business method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      * o setRollbackOnly - allowed
      *
@@ -846,7 +818,8 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean", e);
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest12 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest12 failed");
     }
 
     /*
@@ -854,9 +827,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:85.5; EJB:JAVADOC:34
      *
-     * @test_Strategy: Operations allowed and not allowed in the afterBegin method
-     * of a stateful session bean with container-managed transaction demarcation
-     * are:
+     * @test_Strategy: Operations allowed and not allowed in the afterBegin method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      * o setRollbackOnly - allowed
      *
@@ -884,7 +856,8 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean", e);
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest13 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest13 failed");
     }
 
     /*
@@ -892,9 +865,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:86.5; EJB:JAVADOC:34
      *
-     * @test_Strategy: Operations allowed and not allowed in the beforeCompletion
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in the beforeCompletion method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      * o setRollbackOnly - allowed
      *
@@ -932,7 +904,8 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean", e);
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest14 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest14 failed");
     }
 
     /*
@@ -940,9 +913,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:87.5; EJB:JAVADOC:35
      *
-     * @test_Strategy: Operations allowed and not allowed in the afterCompletion
-     * method of a stateful session bean with container-managed transaction
-     * demarcation are:
+     * @test_Strategy: Operations allowed and not allowed in the afterCompletion method of a stateful session bean with
+     * container-managed transaction demarcation are:
      *
      * o setRollbackOnly - not allowed
      *
@@ -970,7 +942,8 @@ public class Client extends EETest {
             TestUtil.logErr("Exception caught removing bean", e);
         }
 
-        if (!pass) throw new Fault("sfcmAllowedMethodsTest15 failed");
+        if (!pass)
+            throw new Fault("sfcmAllowedMethodsTest15 failed");
     }
 
     public void cleanup() throws Fault {

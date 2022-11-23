@@ -27,17 +27,11 @@ import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
     // this ejb-ref is overridden in application-client.xml
-    @EJB(
-            name = "ejb/EjbLink1Bean",
-            beanName = "EjbLink2Bean",
-            description = "should be overridden by application-client.xml")
+    @EJB(name = "ejb/EjbLink1Bean", beanName = "EjbLink2Bean", description = "should be overridden by application-client.xml")
     private static EjbLinkIF bean1;
 
     // this ejb-ref is overridden in application-client.xml
-    @EJB(
-            name = "ejb/EjbLink2Bean",
-            beanName = "EjbLink1Bean",
-            description = "should be overridden by application-client.xml")
+    @EJB(name = "ejb/EjbLink2Bean", beanName = "EjbLink1Bean", description = "should be overridden by application-client.xml")
     private static EjbLinkIF bean2;
 
     public static void main(String[] args) {
@@ -93,16 +87,14 @@ public class Client extends ClientBase {
     /*
      * @testName: callBean2Bean1Local
      *
-     * @test_Strategy: bean1 packaged in jar1, bean2 and bean3 packaged in jar2.
-     * Bean2 should be able to locally access bean1. <ejb-local-ref> is declared
-     * in two_ejb.xml
+     * @test_Strategy: bean1 packaged in jar1, bean2 and bean3 packaged in jar2. Bean2 should be able to locally access
+     * bean1. <ejb-local-ref> is declared in two_ejb.xml
      *
      */
     /*
      * @testName: callInjectedBean1
      *
-     * @test_Strategy: inject bean1, using fully qualified bean name
-     * (<ejb-jar-name>#<bean-name>)
+     * @test_Strategy: inject bean1, using fully qualified bean name (<ejb-jar-name>#<bean-name>)
      *
      */
 }

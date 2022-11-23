@@ -34,7 +34,8 @@ public class HelloEJB implements SessionBean {
 
     private java.util.Properties p = null;
 
-    public HelloEJB() {}
+    public HelloEJB() {
+    }
 
     public void ejbCreate(String str, java.util.Properties props) throws CreateException {
         p = props;
@@ -89,7 +90,9 @@ public class HelloEJB implements SessionBean {
         TestUtil.logTrace("ejbRemove");
     }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 }

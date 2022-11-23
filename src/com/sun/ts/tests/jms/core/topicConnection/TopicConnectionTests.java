@@ -73,8 +73,7 @@ public class TopicConnectionTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -119,8 +118,8 @@ public class TopicConnectionTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -144,15 +143,12 @@ public class TopicConnectionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:97; JMS:JAVADOC:522;
      *
-     * @test_Strategy: Make certain that one can not receive a message on a
-     * non-started connection. Setup to test assertion involves a best effort
-     * attempt to ensure that subscriber has a message to deliver but can not
-     * because the connection has never been started. Create two subscribers to
-     * the same topic on different connections. Only start one of the connections.
-     * Publish messages to the topic. Receive the messages on the started
-     * connection. Make sure the message is not available to be received on the
-     * non-started connection. Start the previously non-started connection and
-     * make sure that the message are now received.
+     * @test_Strategy: Make certain that one can not receive a message on a non-started connection. Setup to test assertion
+     * involves a best effort attempt to ensure that subscriber has a message to deliver but can not because the connection
+     * has never been started. Create two subscribers to the same topic on different connections. Only start one of the
+     * connections. Publish messages to the topic. Receive the messages on the started connection. Make sure the message is
+     * not available to be received on the non-started connection. Start the previously non-started connection and make sure
+     * that the message are now received.
      *
      */
     public void connNotStartedTopicTest() throws Fault {
@@ -234,12 +230,11 @@ public class TopicConnectionTests extends ServiceEETest {
     /*
      * @testName: metaDataTests
      *
-     * @assertion_ids: JMS:JAVADOC:486; JMS:JAVADOC:488; JMS:JAVADOC:490;
-     * JMS:JAVADOC:492; JMS:JAVADOC:494; JMS:JAVADOC:496; JMS:JAVADOC:498;
+     * @assertion_ids: JMS:JAVADOC:486; JMS:JAVADOC:488; JMS:JAVADOC:490; JMS:JAVADOC:492; JMS:JAVADOC:494; JMS:JAVADOC:496;
+     * JMS:JAVADOC:498;
      *
-     * @test_Strategy: Create a TopicConnection to get ConnectionMetaData. Verify
-     * that all Content of the ConnectionMetaData matches the type defined in API
-     * and JMS API version is correct.
+     * @test_Strategy: Create a TopicConnection to get ConnectionMetaData. Verify that all Content of the ConnectionMetaData
+     * matches the type defined in API and JMS API version is correct.
      */
 
     public void metaDataTests() throws Fault {
@@ -250,7 +245,8 @@ public class TopicConnectionTests extends ServiceEETest {
             tool = new JmsTool(JmsTool.TOPIC, jmsUser, jmsPassword, mode);
             data = tool.getDefaultTopicConnection().getMetaData();
 
-            if (!verifyMetaData(data)) pass = false;
+            if (!verifyMetaData(data))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -267,7 +263,8 @@ public class TopicConnectionTests extends ServiceEETest {
             tool = new JmsTool(JmsTool.COMMON_T, jmsUser, jmsPassword, mode);
             data = tool.getDefaultConnection().getMetaData();
 
-            if (!verifyMetaData(data)) pass = false;
+            if (!verifyMetaData(data))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);

@@ -67,13 +67,13 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * nnName: passByValueTest
      *
-     * @test_Strategy: the (remote) test bean modifies the value of String array.
-     * This change should not affect the value in Client.
+     * @test_Strategy: the (remote) test bean modifies the value of String array. This change should not affect the value in
+     * Client.
      */
     public void passByValueTest() throws Fault {
         String expected = CLIENT_MSG;
         String actual = null;
-        String[] args = new String[] {CLIENT_MSG};
+        String[] args = new String[] { CLIENT_MSG };
         try {
             getBean().passByValueTest(args);
         } catch (Exception e) {
@@ -97,7 +97,7 @@ public abstract class ClientBase extends EETest implements Constants {
      */
     public void passByReferenceTest1() throws Fault {
         try {
-            getBean().passByReferenceTest(new String[] {CLIENT_MSG}, localStatelessRefName, localStatelessClass);
+            getBean().passByReferenceTest(new String[] { CLIENT_MSG }, localStatelessRefName, localStatelessClass);
         } catch (Exception e) {
             throw new Fault("Test Failed!", e);
         }
@@ -141,7 +141,7 @@ public abstract class ClientBase extends EETest implements Constants {
         try {
             getBean()
                     .passByReferenceTest(
-                            new String[] {CLIENT_MSG}, defaultLocalStatelessRefName, defaultLocalStatelessClass);
+                            new String[] { CLIENT_MSG }, defaultLocalStatelessRefName, defaultLocalStatelessClass);
         } catch (Exception e) {
             throw new Fault("Test Failed!", e);
         }
@@ -183,7 +183,7 @@ public abstract class ClientBase extends EETest implements Constants {
      */
     public void passByReferenceTest3() throws Fault {
         try {
-            getBean().passByReferenceTest(new String[] {CLIENT_MSG}, localStatefulRefName, localStatefulClass);
+            getBean().passByReferenceTest(new String[] { CLIENT_MSG }, localStatefulRefName, localStatefulClass);
         } catch (Exception e) {
             throw new Fault("Test Failed!", e);
         }
@@ -227,7 +227,7 @@ public abstract class ClientBase extends EETest implements Constants {
         try {
             getBean()
                     .passByReferenceTest(
-                            new String[] {CLIENT_MSG}, defaultLocalStatefulRefName, defaultLocalStatefulClass);
+                            new String[] { CLIENT_MSG }, defaultLocalStatefulRefName, defaultLocalStatefulClass);
         } catch (Exception e) {
             throw new Fault("Test Failed!", e);
         }
@@ -269,7 +269,7 @@ public abstract class ClientBase extends EETest implements Constants {
      */
     public void passByReferenceTest5() throws Fault {
         try {
-            getBean().passByReferenceTest(new String[] {CLIENT_MSG}, localStateless2RefName, localStateless2Class);
+            getBean().passByReferenceTest(new String[] { CLIENT_MSG }, localStateless2RefName, localStateless2Class);
         } catch (Exception e) {
             throw new Fault("Test Failed!", e);
         }

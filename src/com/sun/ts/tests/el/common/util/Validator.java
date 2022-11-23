@@ -42,17 +42,12 @@ public class Validator {
     }
 
     /**
-     * This method is used to validate an expression that have at least one
-     * BigDecimal in it. We pass in one of the operands(testVal), the other
-     * operand is automatically picked up from the NumberList.
+     * This method is used to validate an expression that have at least one BigDecimal in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the NumberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - The expected value returned from the Expression evaluation.
-     * @param operator
-     *          - The operator in which the operands are compared. (i.e. "+", "-",
-     *          etc...)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - The expected value returned from the Expression evaluation.
+     * @param operator - The operator in which the operands are compared. (i.e. "+", "-", etc...)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public static void testBigDecimal(BigDecimal testVal, Object expectedVal, String operator) throws Fault {
@@ -76,8 +71,7 @@ public class Validator {
                 TestUtil.logMsg("result is " + result.toString());
 
                 /*
-                 * If operator is "+=" (concatenation) then coerce both operands to
-                 * String and concatenate them. (NEW to EL 3.0)
+                 * If operator is "+=" (concatenation) then coerce both operands to String and concatenate them. (NEW to EL 3.0)
                  */
                 if ("+=".equals(operator)) {
 
@@ -113,22 +107,18 @@ public class Validator {
                 TestUtil.logMsg("*** End " + "\"" + "BigDecimal" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that have at least one Float
-     * in it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the NumberList.
+     * This method is used to validate an expression that have at least one Float in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the NumberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - The expected value returned from the Expression evaluation.
-     * @param operator
-     *          - The operator in which the operands are compared. (i.e. "+", "-",
-     *          etc...)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - The expected value returned from the Expression evaluation.
+     * @param operator - The operator in which the operands are compared. (i.e. "+", "-", etc...)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public static void testFloat(Float testVal, Object expectedVal, String operator) throws Fault {
@@ -162,8 +152,7 @@ public class Validator {
                 TestUtil.logMsg("result is " + result.toString());
 
                 /*
-                 * If operator is "+="concatenation then coerce both operands to String
-                 * and concatenate them. (NEW to EL 3.0)
+                 * If operator is "+="concatenation then coerce both operands to String and concatenate them. (NEW to EL 3.0)
                  */
                 if ("+=".equals(operator)) {
                     pass = Validator.runConcatenationTest(testVal, result, testNum);
@@ -204,22 +193,18 @@ public class Validator {
                 TestUtil.logMsg("*** End " + "\"" + "Float" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that have at least one Double
-     * in it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the NumberList.
+     * This method is used to validate an expression that have at least one Double in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the NumberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - The expected value returned from the Expression evaluation.
-     * @param operator
-     *          - The operator in which the operands are compared. (i.e. "+", "-",
-     *          etc...)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - The expected value returned from the Expression evaluation.
+     * @param operator - The operator in which the operands are compared. (i.e. "+", "-", etc...)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public static void testDouble(Double testVal, Object expectedVal, String operator) throws Fault {
@@ -253,8 +238,7 @@ public class Validator {
                 TestUtil.logMsg("result is " + result.toString());
 
                 /*
-                 * If operator is "+=" (concatenation) then coerce both operands to
-                 * String and concatenate them. (NEW to EL 3.0)
+                 * If operator is "+=" (concatenation) then coerce both operands to String and concatenate them. (NEW to EL 3.0)
                  */
                 if ("+=".equals(operator)) {
                     pass = Validator.runConcatenationTest(testVal, result, testNum);
@@ -295,23 +279,19 @@ public class Validator {
                 TestUtil.logMsg("*** End " + "\"" + "Double" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that have at least one
-     * NumericString in it (numeric String containing ".", "e", or "E". We pass in
-     * one of the operands(testVal), the other operand is automatically picked up
-     * from the NumberList.
+     * This method is used to validate an expression that have at least one NumericString in it (numeric String containing
+     * ".", "e", or "E". We pass in one of the operands(testVal), the other operand is automatically picked up from the
+     * NumberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - The expected value returned from the Expression evaluation.
-     * @param operator
-     *          - The operator in which the operands are compared. (i.e. "+", "-",
-     *          etc...)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - The expected value returned from the Expression evaluation.
+     * @param operator - The operator in which the operands are compared. (i.e. "+", "-", etc...)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public static void testNumericString(String testVal, Double expectedVal, String operator) throws Fault {
@@ -380,22 +360,18 @@ public class Validator {
                 TestUtil.logMsg("*** End " + "\"" + "NumericString" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that have at least one
-     * BigInteger in it. We pass in one of the operands(testVal), the other
-     * operand is automatically picked up from the numberList.
+     * This method is used to validate an expression that have at least one BigInteger in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - The expected value returned from the Expression evaluation.
-     * @param operator
-     *          - The operator in which the operands are compared. (i.e. "+", "-",
-     *          etc...)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - The expected value returned from the Expression evaluation.
+     * @param operator - The operator in which the operands are compared. (i.e. "+", "-", etc...)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public static void testBigInteger(BigInteger testVal, Object expectedVal, String operator) throws Fault {
@@ -433,8 +409,7 @@ public class Validator {
                 TestUtil.logMsg("result is " + result.toString());
 
                 /*
-                 * If operator is "+=" then coerce both operands to String and
-                 * concatenate them. (NEW to EL 3.0)
+                 * If operator is "+=" then coerce both operands to String and concatenate them. (NEW to EL 3.0)
                  */
                 if ("+=".equals(operator)) {
                     pass = Validator.runConcatenationTest(testVal, result, testNum);
@@ -471,22 +446,18 @@ public class Validator {
                 TestUtil.logMsg("*** End " + "\"" + "BigInteger" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that have at least one Long
-     * in it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the numberList.
+     * This method is used to validate an expression that have at least one Long in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - The expected value returned from the Expression evaluation.
-     * @param operator
-     *          - The operator in which the operands are compared. (i.e. "+", "-",
-     *          etc...)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - The expected value returned from the Expression evaluation.
+     * @param operator - The operator in which the operands are compared. (i.e. "+", "-", etc...)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public static void testLong(Long testVal, Object expectedVal, String operator) throws Fault {
@@ -525,8 +496,7 @@ public class Validator {
                 TestUtil.logMsg("result is " + result.toString());
 
                 /*
-                 * If operator is "+=" then coerce both operands to String and
-                 * concatenate them. (NEW to EL 3.0)
+                 * If operator is "+=" then coerce both operands to String and concatenate them. (NEW to EL 3.0)
                  */
                 if ("+=".equals(operator)) {
                     pass = Validator.runConcatenationTest(testVal, result, testNum);
@@ -559,22 +529,18 @@ public class Validator {
                 TestUtil.logMsg("*** End " + "\"" + "Long" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that have at least one
-     * Integer in it. We pass in one of the operands(testVal), the other operand
-     * is automatically picked up from the numberList.
+     * This method is used to validate an expression that have at least one Integer in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - The expected value returned from the Expression evaluation.
-     * @param operator
-     *          - The operator in which the operands are compared. (i.e. "+", "-",
-     *          etc...)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - The expected value returned from the Expression evaluation.
+     * @param operator - The operator in which the operands are compared. (i.e. "+", "-", etc...)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public static void testInteger(Integer testVal, Object expectedVal, String operator) throws Fault {
@@ -614,8 +580,7 @@ public class Validator {
                 TestUtil.logMsg("result is " + result.toString());
 
                 /*
-                 * If operator is "+=" then coerce both operands to String and
-                 * concatenate them. (NEW to EL 3.0)
+                 * If operator is "+=" then coerce both operands to String and concatenate them. (NEW to EL 3.0)
                  */
                 if ("+=".equals(operator)) {
                     pass = Validator.runConcatenationTest(testVal, result, testNum);
@@ -648,22 +613,18 @@ public class Validator {
                 TestUtil.logMsg("*** End " + "\"" + "Integer" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that have at least one Short
-     * in it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the numberList.
+     * This method is used to validate an expression that have at least one Short in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - The expected value returned from the Expression evaluation.
-     * @param operator
-     *          - The operator in which the operands are compared. (i.e. "+", "-",
-     *          etc...)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - The expected value returned from the Expression evaluation.
+     * @param operator - The operator in which the operands are compared. (i.e. "+", "-", etc...)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public static void testShort(Short testVal, Object expectedVal, String operator) throws Fault {
@@ -698,8 +659,7 @@ public class Validator {
                 TestUtil.logMsg("result is " + result.toString());
 
                 /*
-                 * If operator is "+=" then coerce both operands to String and
-                 * concatenate them. (NEW to EL 3.0)
+                 * If operator is "+=" then coerce both operands to String and concatenate them. (NEW to EL 3.0)
                  */
                 if ("+=".equals(operator)) {
                     pass = Validator.runConcatenationTest(testVal, result, testNum);
@@ -732,22 +692,18 @@ public class Validator {
                 TestUtil.logMsg("*** End " + "\"" + "Short" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that have at least one Byte
-     * in it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the numberList.
+     * This method is used to validate an expression that have at least one Byte in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - The expected value returned from the Expression evaluation.
-     * @param operator
-     *          - The operator in which the operands are compared. (i.e. "+", "-",
-     *          etc...)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - The expected value returned from the Expression evaluation.
+     * @param operator - The operator in which the operands are compared. (i.e. "+", "-", etc...)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public static void testByte(Byte testVal, Object expectedVal, String operator) throws Fault {
@@ -782,8 +738,7 @@ public class Validator {
                 TestUtil.logMsg("result is " + result.toString());
 
                 /*
-                 * If operator is "+=" then coerce both operands to String and
-                 * concatenate them. (NEW to EL 3.0)
+                 * If operator is "+=" then coerce both operands to String and concatenate them. (NEW to EL 3.0)
                  */
                 if ("+=".equals(operator)) {
                     pass = Validator.runConcatenationTest(testVal, result, testNum);
@@ -816,23 +771,18 @@ public class Validator {
                 TestUtil.logMsg("*** End " + "\"" + "Byte" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that has at least one boolean
-     * in it.
+     * This method is used to validate an expression that has at least one boolean in it.
      *
-     * @param testValOne
-     *          - The boolean operand.
-     * @param testValTwo
-     *          - The second operand that will be coerced to a boolean.
-     * @param expectedVal
-     *          - The expected value returned from the Expression evaluation.
-     * @param operator
-     *          - The operator in which the operands are compared. (i.e. "+", "-",
-     *          etc...)
+     * @param testValOne - The boolean operand.
+     * @param testValTwo - The second operand that will be coerced to a boolean.
+     * @param expectedVal - The expected value returned from the Expression evaluation.
+     * @param operator - The operator in which the operands are compared. (i.e. "+", "-", etc...)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     public static void testBoolean(boolean testValOne, Object testValTwo, Object expectedVal, String operator)
@@ -851,8 +801,7 @@ public class Validator {
             Object result = ExprEval.evaluateValueExpression(expr, values, Object.class);
 
             /*
-             * If operator is "+=" then coerce both operands to String and concatenate
-             * them. (NEW to EL 3.0)
+             * If operator is "+=" then coerce both operands to String and concatenate them. (NEW to EL 3.0)
              */
             if ("+=".equals(operator)) {
                 pass = Validator.runConcatenationTest(testValOne, result, testValTwo);
@@ -876,7 +825,8 @@ public class Validator {
             TestUtil.logMsg("*** End " + "\"" + "Boolean" + "\"" + " Test Sequence ***");
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     public static void testExpression(ELProcessor elp, String expr, Object expected, String testName) throws Fault {
@@ -889,7 +839,8 @@ public class Validator {
 
             pass = ExprEval.compareClass(result, expected.getClass()) && ExprEval.compareValue(result, expected);
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
         } catch (RuntimeException re) {
             TestUtil.printStackTrace(re);

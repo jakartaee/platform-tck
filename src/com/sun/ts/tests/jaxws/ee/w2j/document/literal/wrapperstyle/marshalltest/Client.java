@@ -98,8 +98,7 @@ public class Client extends ServiceEETest {
     }
 
     private void getPortStandalone() throws Exception {
-        port = (MarshallTest)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME, MarshallTest.class);
+        port = (MarshallTest) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MarshallTestService.class, PORT_QNAME, MarshallTest.class);
         JAXWS_Util.setTargetEndpointAddress(port, url);
     }
 
@@ -134,8 +133,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -179,100 +180,127 @@ public class Client extends ServiceEETest {
     /*
      * @testName: MarshallSimpleTypesTest
      *
-     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2017; JAXWS:SPEC:2040;
-     * JAXWS:SPEC:10011; JAXWS:SPEC:2024; JAXWS:SPEC:2027;
+     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011; JAXWS:SPEC:2024;
+     * JAXWS:SPEC:2027;
      *
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each type pass its value as input to the corresponding
-     * RPC method and receive it back as the return value. Compare results of each
-     * value/type of what was sent and what was returned. Verify they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each type pass its value as input to the corresponding RPC
+     * method and receive it back as the return value. Compare results of each value/type of what was sent and what was
+     * returned. Verify they are equal.
      */
     public void MarshallSimpleTypesTest() throws Fault {
         TestUtil.logMsg("MarshallSimpleTypesTest");
         boolean pass = true;
 
-        if (!StringTest()) pass = false;
+        if (!StringTest())
+            pass = false;
         printSeperationLine();
-        if (!IntegerTest()) pass = false;
+        if (!IntegerTest())
+            pass = false;
         printSeperationLine();
-        if (!IntTest()) pass = false;
+        if (!IntTest())
+            pass = false;
         printSeperationLine();
-        if (!LongTest()) pass = false;
+        if (!LongTest())
+            pass = false;
         printSeperationLine();
-        if (!ShortTest()) pass = false;
+        if (!ShortTest())
+            pass = false;
         printSeperationLine();
-        if (!DecimalTest()) pass = false;
+        if (!DecimalTest())
+            pass = false;
         printSeperationLine();
-        if (!FloatTest()) pass = false;
+        if (!FloatTest())
+            pass = false;
         printSeperationLine();
-        if (!DoubleTest()) pass = false;
+        if (!DoubleTest())
+            pass = false;
         printSeperationLine();
-        if (!BooleanTest()) pass = false;
+        if (!BooleanTest())
+            pass = false;
         printSeperationLine();
-        if (!ByteTest()) pass = false;
+        if (!ByteTest())
+            pass = false;
         printSeperationLine();
-        if (!QNameTest()) pass = false;
+        if (!QNameTest())
+            pass = false;
         printSeperationLine();
-        if (!DateTimeTest()) pass = false;
+        if (!DateTimeTest())
+            pass = false;
         printSeperationLine();
-        if (!Base64BinaryTest()) pass = false;
+        if (!Base64BinaryTest())
+            pass = false;
         printSeperationLine();
-        if (!HexBinaryTest()) pass = false;
+        if (!HexBinaryTest())
+            pass = false;
         printSeperationLine();
 
-        if (!pass) throw new Fault("MarshallSimpleTypesTest failed");
+        if (!pass)
+            throw new Fault("MarshallSimpleTypesTest failed");
     }
 
     /*
      * @testName: MarshallArraysOfSimpleTypesTest
      *
-     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2017; JAXWS:SPEC:2040;
-     * JAXWS:SPEC:10011; JAXWS:SPEC:2024; JAXWS:SPEC:2027;
+     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2017; JAXWS:SPEC:2040; JAXWS:SPEC:10011; JAXWS:SPEC:2024;
+     * JAXWS:SPEC:2027;
      *
-     * @test_Strategy: Create a stub instance to our service definition interface,
-     * set the target endpoint to the servlet, and invoke the RPC methods for each
-     * primitive type. For each primitive type pass its value as input to the
-     * corresponding RPC method and receive it back as the return value. Compare
-     * results of each value/type of what was sent and what was returned. Verify
-     * they are equal.
+     * @test_Strategy: Create a stub instance to our service definition interface, set the target endpoint to the servlet,
+     * and invoke the RPC methods for each primitive type. For each primitive type pass its value as input to the
+     * corresponding RPC method and receive it back as the return value. Compare results of each value/type of what was sent
+     * and what was returned. Verify they are equal.
      */
     public void MarshallArraysOfSimpleTypesTest() throws Fault {
         TestUtil.logMsg("MarshallArraysOfSimpleTypesTest");
         boolean pass = true;
 
-        if (!StringArrayTest()) pass = false;
+        if (!StringArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!IntegerArrayTest()) pass = false;
+        if (!IntegerArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!IntArrayTest()) pass = false;
+        if (!IntArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!LongArrayTest()) pass = false;
+        if (!LongArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!ShortArrayTest()) pass = false;
+        if (!ShortArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!DecimalArrayTest()) pass = false;
+        if (!DecimalArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!FloatArrayTest()) pass = false;
+        if (!FloatArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!DoubleArrayTest()) pass = false;
+        if (!DoubleArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!BooleanArrayTest()) pass = false;
+        if (!BooleanArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!ByteArrayTest()) pass = false;
+        if (!ByteArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!QNameArrayTest()) pass = false;
+        if (!QNameArrayTest())
+            pass = false;
         printSeperationLine();
-        if (!DateTimeArrayTest()) pass = false;
+        if (!DateTimeArrayTest())
+            pass = false;
         printSeperationLine();
 
-        if (!pass) throw new Fault("MarshallArraysOfSimpleTypesTest failed");
+        if (!pass)
+            throw new Fault("MarshallArraysOfSimpleTypesTest failed");
     }
 
     private boolean printTestStatus(boolean pass, String test) {
-        if (pass) TestUtil.logMsg("" + test + " ... PASSED");
-        else TestUtil.logErr("" + test + " ... FAILED");
+        if (pass)
+            TestUtil.logMsg("" + test + " ... PASSED");
+        else
+            TestUtil.logErr("" + test + " ... FAILED");
 
         return pass;
     }
@@ -581,7 +609,8 @@ public class Client extends ServiceEETest {
         try {
             for (int i = 0; i < values.length; i++) {
                 response = port.echoDateTime(values[i]);
-                if (!JAXWS_Data.compareValues(values[i], response, "XMLGregorianCalendar")) pass = false;
+                if (!JAXWS_Data.compareValues(values[i], response, "XMLGregorianCalendar"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

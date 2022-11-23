@@ -32,8 +32,8 @@ import java.io.Serializable;
 import java.util.Properties;
 
 /**
- * The UserGetStatusClient class tests getStatus() method of UserTransaction
- * interface using Sun's J2EE Reference Implementation.
+ * The UserGetStatusClient class tests getStatus() method of UserTransaction interface using Sun's J2EE Reference
+ * Implementation.
  *
  * @author P.Sandani Basha
  * @version 1.0.1, 09/17/99
@@ -80,8 +80,7 @@ public class UserGetStatusClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserGetStatus001
      * @assertion_ids: JTA:JAVADOC:38
-     * @test_Strategy: Without starting the User Transaction check the status of
-     *                 User Transaction.
+     * @test_Strategy: Without starting the User Transaction check the status of User Transaction.
      */
     public void testUserGetStatus001() throws Fault {
         // TestCase id :- 4.3.1
@@ -107,8 +106,7 @@ public class UserGetStatusClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserGetStatus002
      * @assertion_ids: JTA:JAVADOC:38
-     * @test_Strategy: Start the User Transaction and then check the status of
-     *                 UserTransaction.
+     * @test_Strategy: Start the User Transaction and then check the status of UserTransaction.
      */
     public void testUserGetStatus002() throws Fault {
         // TestCase id :- 4.3.2
@@ -138,8 +136,7 @@ public class UserGetStatusClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserGetStatus003
      * @assertion_ids: JTA:JAVADOC:38
-     * @test_Strategy: Start the UserTransaction.Call commit() on User
-     *                 Transaction.Check the status of the User Transaction.
+     * @test_Strategy: Start the UserTransaction.Call commit() on User Transaction.Check the status of the User Transaction.
      */
     public void testUserGetStatus003() throws Fault {
         // TestCase id :- 4.3.3
@@ -177,8 +174,8 @@ public class UserGetStatusClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserGetStatus004
      * @assertion_ids: JTA:JAVADOC:38
-     * @test_Strategy: Start the UserTransaction.Call rollback() on User
-     *                 Transaction.Check the status of the User Transaction.
+     * @test_Strategy: Start the UserTransaction.Call rollback() on User Transaction.Check the status of the User
+     * Transaction.
      */
     public void testUserGetStatus004() throws Fault {
         // TestCase id :- 4.3.4
@@ -216,9 +213,8 @@ public class UserGetStatusClient extends ServiceEETest implements Serializable {
     /**
      * @testName: testUserGetStatus005
      * @assertion_ids: JTA:JAVADOC:38
-     * @test_Strategy: Start the User Transaction.Call setRollbackOnly() on User
-     *                 Transaction to mark the transaction for rollback only.Check
-     *                 the status of the User Transaction.
+     * @test_Strategy: Start the User Transaction.Call setRollbackOnly() on User Transaction to mark the transaction for
+     * rollback only.Check the status of the User Transaction.
      */
     public void testUserGetStatus005() throws Fault {
         // TestCase id :- 4.3.5

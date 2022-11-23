@@ -246,8 +246,7 @@ public class Util extends PMClientBase {
             productRef[1].setWareHouse("WH1");
             productRef[2] = new Product("3", "CORBA Programming", (double) 44.95, 55, (long) 765432198);
             productRef[2].setWareHouse("WH1");
-            productRef[3] =
-                    new Product("4", "WEB Programming with JSP's & Servlet's", (double) 33.95, 25, (long) 654321987);
+            productRef[3] = new Product("4", "WEB Programming with JSP's & Servlet's", (double) 33.95, 25, (long) 654321987);
             productRef[3].setWareHouse("WH1");
             productRef[4] = new Product("5", "Dell Laptop PC", (double) 1095.95, 50, (long) 543219876);
             productRef[4].setWareHouse("WH2");
@@ -259,8 +258,7 @@ public class Util extends PMClientBase {
             productRef[7].setWareHouse("WH2");
             productRef[8] = new Product("9", "Free Samples", (double) 0.00, 10, (long) 000000000);
             productRef[8].setWareHouse("WH3");
-            productRef[9] =
-                    new Product("10", "Designing Enterprise Applications", (double) 39.95, 500, (long) 123456789);
+            productRef[9] = new Product("10", "Designing Enterprise Applications", (double) 39.95, 500, (long) 123456789);
             productRef[9].setWareHouse("WH3");
             productRef[10] = new Product("11", "Complete Guide to XML", (double) 38.85, 300, (long) 234567891);
             productRef[10].setWareHouse("WH3");

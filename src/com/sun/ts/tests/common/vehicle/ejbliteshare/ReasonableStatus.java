@@ -22,9 +22,8 @@ package com.sun.ts.tests.common.vehicle.ejbliteshare;
 import com.sun.javatest.Status;
 
 /**
- * This class is used to work around javatest bugs/features: javatest Status
- * constructor replaces all unprintable chars with one single space, making any
- * multi-line reason unreadable; javatest Status does not have an overrideable
+ * This class is used to work around javatest bugs/features: javatest Status constructor replaces all unprintable chars
+ * with one single space, making any multi-line reason unreadable; javatest Status does not have an overrideable
  * setReason method.
  */
 public class ReasonableStatus extends Status {

@@ -58,14 +58,11 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: positiveValueExpressionTest
-     * @assertion_ids: EL:JAVADOC:110; EL:JAVADOC:111; EL:JAVADOC:112;
-     *                 EL:JAVADOC:113; EL:JAVADOC:114; EL:JAVADOC:60;
-     *                 EL:JAVADOC:58
-     * @test_Strategy: Validate the behavior of ValueExpression API
-     *                 ValueExpression.getValue() ValueExpression.setValue()
-     *                 ValueExpression.getType() ValueExpression.getExpectedType()
-     *                 ValueExpression.isReadOTestUtil.NEW_LINEy()
-     *                 Expression.isLiteralText() Expression.getExpressionString()
+     * @assertion_ids: EL:JAVADOC:110; EL:JAVADOC:111; EL:JAVADOC:112; EL:JAVADOC:113; EL:JAVADOC:114; EL:JAVADOC:60;
+     * EL:JAVADOC:58
+     * @test_Strategy: Validate the behavior of ValueExpression API ValueExpression.getValue() ValueExpression.setValue()
+     * ValueExpression.getType() ValueExpression.getExpectedType() ValueExpression.isReadOTestUtil.NEW_LINEy()
+     * Expression.isLiteralText() Expression.getExpressionString()
      */
     public void positiveValueExpressionTest() throws Fault {
 
@@ -146,20 +143,14 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: negativeValueExpressionTest
-     * @assertion_ids: EL:JAVADOC:111; EL:JAVADOC:112; EL:JAVADOC:113;
-     *                 EL:JAVADOC:114; EL:JAVADOC:368; EL:JAVADOC:371;
-     *                 EL:JAVADOC:372; EL:JAVADOC:375; EL:JAVADOC:376;
-     *                 EL:JAVADOC:378; EL:JAVADOC:379; EL:JAVADOC:380
+     * @assertion_ids: EL:JAVADOC:111; EL:JAVADOC:112; EL:JAVADOC:113; EL:JAVADOC:114; EL:JAVADOC:368; EL:JAVADOC:371;
+     * EL:JAVADOC:372; EL:JAVADOC:375; EL:JAVADOC:376; EL:JAVADOC:378; EL:JAVADOC:379; EL:JAVADOC:380
      *
-     * @test_Strategy: Validate the behavior of ValueExpression API
-     *                 ValueExpression.getValue() ValueExpression.setValue()
-     *                 ValueExpression.getType()
-     *                 ValueExpression.isReadOTestUtil.NEW_LINEy()
+     * @test_Strategy: Validate the behavior of ValueExpression API ValueExpression.getValue() ValueExpression.setValue()
+     * ValueExpression.getType() ValueExpression.isReadOTestUtil.NEW_LINEy()
      *
-     *                 If the ELContext parameter for these methods is null, a
-     *                 NullPointerException is thrown. If the ELContext parameter
-     *                 is not the same as the one with which the ValueExpression
-     *                 was created, a PropertyNotFoundException is thrown.
+     * If the ELContext parameter for these methods is null, a NullPointerException is thrown. If the ELContext parameter is
+     * not the same as the one with which the ValueExpression was created, a PropertyNotFoundException is thrown.
      */
     public void negativeValueExpressionTest() throws Fault {
 
@@ -333,9 +324,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:44
      *
-     * @test_Strategy: Validate that ValueExpression implements Serializable and
-     *                 that a ValueExpression can be manually serialized and
-     *                 deserialized.
+     * @test_Strategy: Validate that ValueExpression implements Serializable and that a ValueExpression can be manually
+     * serialized and deserialized.
      */
     public void valueExpressionSerializableTest() throws Fault {
 
@@ -360,14 +350,12 @@ public class ELClient extends ServiceEETest {
                 TestUtil.logTrace("Eval Value Expression For Testing: " + evalvexp.toString() + TestUtil.NEW_LINE);
 
                 // Set literal-expression
-                ValueExpression literalvexp =
-                        expFactory.createValueExpression(context, "\"" + testValue + "\"", testClass);
+                ValueExpression literalvexp = expFactory.createValueExpression(context, "\"" + testValue + "\"", testClass);
                 TestUtil.logTrace(
                         "Literal Value Expression For Testing: " + literalvexp.toString() + TestUtil.NEW_LINE);
 
                 // Set Composite Expression
-                ValueExpression compositevexp =
-                        expFactory.createValueExpression(context, "#{" + testValue + "}" + " " + testValue, testClass);
+                ValueExpression compositevexp = expFactory.createValueExpression(context, "#{" + testValue + "}" + " " + testValue, testClass);
                 TestUtil.logTrace(
                         "Composite Value Expression For Testing: " + compositevexp.toString() + TestUtil.NEW_LINE);
 
@@ -409,8 +397,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:56
      *
-     * @test_Strategy: Validate that ValueExpression implements equals() and that
-     *                 the behavior is as expected
+     * @test_Strategy: Validate that ValueExpression implements equals() and that the behavior is as expected
      */
     public void valueExpressionEqualsTest() throws Fault {
 

@@ -25,9 +25,8 @@ import jakarta.transaction.UserTransaction;
 import java.util.List;
 
 /**
- * These tests make use of UserTransaction, and therefore all the hosting
- * vehicles must support UserTransaction. OK with jsf bean, jsp, and servlet,
- * but servlet filter and webapp listeners do not.
+ * These tests make use of UserTransaction, and therefore all the hosting vehicles must support UserTransaction. OK with
+ * jsf bean, jsp, and servlet, but servlet filter and webapp listeners do not.
  */
 public abstract class JsfClientBase extends com.sun.ts.tests.ejb30.timer.common.JsfClientBase {
 
@@ -48,9 +47,8 @@ public abstract class JsfClientBase extends com.sun.ts.tests.ejb30.timer.common.
     /*
      * testName: createRollback
      *
-     * @test_Strategy: create a timer that is to expire in 1 second, and 1.5
-     * seconds later, set the transaction to rollback only. The timer must not be
-     * present, and no timeout event for this timer.
+     * @test_Strategy: create a timer that is to expire in 1 second, and 1.5 seconds later, set the transaction to rollback
+     * only. The timer must not be present, and no timeout event for this timer.
      */
     public void createRollback() {
         createRollback(scheduleBean);
@@ -68,9 +66,8 @@ public abstract class JsfClientBase extends com.sun.ts.tests.ejb30.timer.common.
     /*
      * testName: createRollbackTxPropagation
      *
-     * @test_Strategy: Inside propagated transaction, create a timer that is to
-     * expire in 2 seconds. The client transaction is rolled back. The timer must
-     * not be present, and no timeout event for this timer.
+     * @test_Strategy: Inside propagated transaction, create a timer that is to expire in 2 seconds. The client transaction
+     * is rolled back. The timer must not be present, and no timeout event for this timer.
      */
 
     public void createRollbackTxPropagation() throws Exception {
@@ -100,10 +97,9 @@ public abstract class JsfClientBase extends com.sun.ts.tests.ejb30.timer.common.
     /*
      * testName: cancelRollback
      *
-     * @test_Strategy: create a timer that is to expire in the far future. The
-     * subsequent business method cancels the timer, and then set the tx to
-     * rollback. This timer must still be present, and has not yet expired. These
-     * business methods have default transaction attribute type (REQUIRED)
+     * @test_Strategy: create a timer that is to expire in the far future. The subsequent business method cancels the timer,
+     * and then set the tx to rollback. This timer must still be present, and has not yet expired. These business methods
+     * have default transaction attribute type (REQUIRED)
      */
     public void cancelRollback() {
         cancelRollback(scheduleBean);
@@ -121,11 +117,9 @@ public abstract class JsfClientBase extends com.sun.ts.tests.ejb30.timer.common.
     /*
      * testName: cancelRollbackPropagation
      *
-     * @test_Strategy: create a timer that is to expire in the far future. The
-     * subsequent business method cancels the timer within a client-initiated tx.
-     * The client tx is rolled back. This timer must still be present, and has not
-     * yet expired. These business methods have default transaction attribute type
-     * (REQUIRED)
+     * @test_Strategy: create a timer that is to expire in the far future. The subsequent business method cancels the timer
+     * within a client-initiated tx. The client tx is rolled back. This timer must still be present, and has not yet
+     * expired. These business methods have default transaction attribute type (REQUIRED)
      */
     public void cancelRollbackPropagation() throws Exception {
         Timer timer = scheduleBean.createFarFutureTimer(getTimerConfig());
@@ -157,10 +151,9 @@ public abstract class JsfClientBase extends com.sun.ts.tests.ejb30.timer.common.
     /*
      * testName: timeoutRollback
      *
-     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
-     * method sets rollback for this timeout event. This event must be retried at
-     * least once. This only applies to CMT, not BMT. The timeout method has
-     * default transaction attribute type (REQUIRED)
+     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout method sets rollback for this timeout
+     * event. This event must be retried at least once. This only applies to CMT, not BMT. The timeout method has default
+     * transaction attribute type (REQUIRED)
      */
     public void timeoutRollback() {
         timeoutRollback(scheduleBean);
@@ -169,9 +162,8 @@ public abstract class JsfClientBase extends com.sun.ts.tests.ejb30.timer.common.
     /*
      * testName: timeoutSystemException
      *
-     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
-     * throws system exception. This event must be retried at least once. The
-     * timeout method has default transaction attribute type (REQUIRED)
+     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout throws system exception. This event must
+     * be retried at least once. The timeout method has default transaction attribute type (REQUIRED)
      */
     public void timeoutSystemException() {
         timeoutRollback();
@@ -180,8 +172,8 @@ public abstract class JsfClientBase extends com.sun.ts.tests.ejb30.timer.common.
     /*
      * testName: timeoutSystemExceptionBMT
      *
-     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout
-     * throws system exception. This event must be retried at least once.
+     * @test_Strategy: create a timer that is to expire in 2 seconds. The timeout throws system exception. This event must
+     * be retried at least once.
      */
     public void timeoutSystemExceptionBMT() {
         timeoutRollback(scheduleBMTBean);
@@ -200,8 +192,8 @@ public abstract class JsfClientBase extends com.sun.ts.tests.ejb30.timer.common.
     /*
      * testName: createTimerWithoutTxHavingClientTx
      *
-     * @test_Strategy: invoke the BMT bean to create a timer without tx. The
-     * client does have a UserTransaction but it is not propagated.
+     * @test_Strategy: invoke the BMT bean to create a timer without tx. The client does have a UserTransaction but it is
+     * not propagated.
      */
     public void createTimerWithoutTxHavingClientTx() throws Exception {
         ut.begin();

@@ -26,7 +26,8 @@ public class J2WRLSharedBean {
 
     private String myString;
 
-    public J2WRLSharedBean() {}
+    public J2WRLSharedBean() {
+    }
 
     public J2WRLSharedBean(int i, String s) {
         setMyInt(i);

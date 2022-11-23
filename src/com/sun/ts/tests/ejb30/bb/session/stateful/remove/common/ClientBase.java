@@ -156,8 +156,7 @@ public abstract class ClientBase extends EETest {
     /*
      * testName: testBeanremoveBeanRemote
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF.
      *
      */
     public void testBeanremoveBeanRemote() throws Fault {
@@ -185,8 +184,7 @@ public abstract class ClientBase extends EETest {
     /*
      * testName: testBeanremoveBean2Remote
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF2.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF2.
      *
      */
     public void testBeanremoveBean2Remote() throws Fault {
@@ -313,8 +311,7 @@ public abstract class ClientBase extends EETest {
     /*
      * testName: testBeanretainBeanRemote
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF.
      *
      */
     public void testBeanretainBeanRemote() throws Fault {
@@ -342,8 +339,7 @@ public abstract class ClientBase extends EETest {
     /*
      * testName: testBeanretainBean2Remote
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF2.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF2.
      *
      */
     public void testBeanretainBean2Remote() throws Fault {
@@ -409,8 +405,8 @@ public abstract class ClientBase extends EETest {
     /*
      * testName: alwaysRemoveAfterSystemException
      *
-     * @test_Strategy: a bean must always be removed after a system exception,
-     * even though the remove method is retainIfException true.
+     * @test_Strategy: a bean must always be removed after a system exception, even though the remove method is
+     * retainIfException true.
      *
      */
     public void alwaysRemoveAfterSystemException() throws Fault {

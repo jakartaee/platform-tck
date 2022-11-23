@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -94,8 +96,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:SPEC:22;
      *
-     * @test_Strategy: Test to verify encodingStyle attribute can be set on
-     * Envelope. This is allowed for SOAP1.1 protocol.
+     * @test_Strategy: Test to verify encodingStyle attribute can be set on Envelope. This is allowed for SOAP1.1 protocol.
      *
      */
     public void encodingStyleAttrSOAP11Test1() throws Fault {
@@ -112,9 +113,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("encodingStyleAttrSOAP11Test1 failed");
+            if (!pass)
+                throw new Fault("encodingStyleAttrSOAP11Test1 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -128,8 +131,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:SPEC:22;
      *
-     * @test_Strategy: Test to verify encodingStyle attribute can be set on
-     * Envelope. This is allowed for SOAP1.1 protocol.
+     * @test_Strategy: Test to verify encodingStyle attribute can be set on Envelope. This is allowed for SOAP1.1 protocol.
      *
      */
     public void encodingStyleAttrSOAP11Test2() throws Fault {
@@ -146,9 +148,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("encodingStyleAttrSOAP11Test2 failed");
+            if (!pass)
+                throw new Fault("encodingStyleAttrSOAP11Test2 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -162,8 +166,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:SPEC:22;
      *
-     * @test_Strategy: Test to verify trailing blocks are allowed after Body. This
-     * is allowed for SOAP1.1 protocol.
+     * @test_Strategy: Test to verify trailing blocks are allowed after Body. This is allowed for SOAP1.1 protocol.
      *
      */
     public void noTrailingBlockBodySOAP11Test() throws Fault {
@@ -180,9 +183,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("noTrailingBlockBodySOAP11Test failed");
+            if (!pass)
+                throw new Fault("noTrailingBlockBodySOAP11Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -196,8 +201,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:SPEC:22;
      *
-     * @test_Strategy: Test to verify non qualified QNames are not enforced on
-     * BodyElements. This is allowed for SOAP1.1 protocol.
+     * @test_Strategy: Test to verify non qualified QNames are not enforced on BodyElements. This is allowed for SOAP1.1
+     * protocol.
      *
      */
     public void enforcedQNameBodyElemSOAP11Test() throws Fault {
@@ -214,9 +219,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("enforcedQNameBodyElemSOAP11Test failed");
+            if (!pass)
+                throw new Fault("enforcedQNameBodyElemSOAP11Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -230,8 +237,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:SPEC:22;
      *
-     * @test_Strategy: Test to verify encodingStyle attribute cannot be set on
-     * Envelope. This is restricted for SOAP1.2 protocol.
+     * @test_Strategy: Test to verify encodingStyle attribute cannot be set on Envelope. This is restricted for SOAP1.2
+     * protocol.
      *
      */
     public void encodingStyleAttrSOAP12Test1() throws Fault {
@@ -248,9 +255,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("encodingStyleAttrSOAP12Test1 failed");
+            if (!pass)
+                throw new Fault("encodingStyleAttrSOAP12Test1 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -264,8 +273,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:SPEC:22;
      *
-     * @test_Strategy: Test to verify encodingStyle attribute cannot be set on
-     * Envelope. This is restricted for SOAP1.2 protocol.
+     * @test_Strategy: Test to verify encodingStyle attribute cannot be set on Envelope. This is restricted for SOAP1.2
+     * protocol.
      *
      */
     public void encodingStyleAttrSOAP12Test2() throws Fault {
@@ -282,9 +291,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("encodingStyleAttrSOAP12Test2 failed");
+            if (!pass)
+                throw new Fault("encodingStyleAttrSOAP12Test2 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -298,8 +309,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:SPEC:22;
      *
-     * @test_Strategy: Test to verify no trailing blocks allowed after Body. This
-     * is restricted for SOAP1.2 protocol.
+     * @test_Strategy: Test to verify no trailing blocks allowed after Body. This is restricted for SOAP1.2 protocol.
      *
      */
     public void noTrailingBlockBodySOAP12Test() throws Fault {
@@ -316,9 +326,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("noTrailingBlockBodySOAP12Test failed");
+            if (!pass)
+                throw new Fault("noTrailingBlockBodySOAP12Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -332,9 +344,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:SPEC:22;
      *
-     * @test_Strategy: Test to verify that unqualified QNames are enforced on
-     * HeaderElements. This is restricted for for both SOAP1.1 and SOAP1.2
-     * protocol.
+     * @test_Strategy: Test to verify that unqualified QNames are enforced on HeaderElements. This is restricted for for
+     * both SOAP1.1 and SOAP1.2 protocol.
      *
      */
     public void enforcedQNameHdrElemTest1() throws Fault {
@@ -348,14 +359,18 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "enforcedQNameHdrElemTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
-            if (!pass) throw new Fault("enforcedQNameHdrElemTest1 failed");
+            if (!pass)
+                throw new Fault("enforcedQNameHdrElemTest1 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -369,9 +384,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:SPEC:22;
      *
-     * @test_Strategy: Test to verify that unqualified QNames are enforced on
-     * ChildElements of Headers. This is restricted for both SOAP1.1 and SOAP1.2
-     * protocol.
+     * @test_Strategy: Test to verify that unqualified QNames are enforced on ChildElements of Headers. This is restricted
+     * for both SOAP1.1 and SOAP1.2 protocol.
      */
     public void enforcedQNameHdrElemTest2() throws Fault {
         try {
@@ -384,15 +398,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "enforcedQNameHdrElemTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("enforcedQNameHdrElemTest2 failed");
+            if (!pass)
+                throw new Fault("enforcedQNameHdrElemTest2 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -406,8 +424,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:SPEC:22;
      *
-     * @test_Strategy: Test to verify non qualified QNames are not enforced on
-     * BodyElements. This is restricted for SOAP1.2 protocol.
+     * @test_Strategy: Test to verify non qualified QNames are not enforced on BodyElements. This is restricted for SOAP1.2
+     * protocol.
      *
      */
     public void enforcedQNameBodyElemSOAP12Test() throws Fault {
@@ -424,9 +442,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("enforcedQNameBodyElemSOAP12Test failed");
+            if (!pass)
+                throw new Fault("enforcedQNameBodyElemSOAP12Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

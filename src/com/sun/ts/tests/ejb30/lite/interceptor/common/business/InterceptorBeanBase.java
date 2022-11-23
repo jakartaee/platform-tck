@@ -50,40 +50,48 @@ public class InterceptorBeanBase implements InterceptorIF {
     // Method-level interceptors can be specified in bean superclasses, whereas
     // class-level interceptors cannot.
 
-    @Interceptors({Interceptor7.class, Interceptor6.class})
-    public void allInterceptors(List<String> history) {}
+    @Interceptors({ Interceptor7.class, Interceptor6.class })
+    public void allInterceptors(List<String> history) {
+    }
 
-    @Interceptors({Interceptor6.class, Interceptor7.class})
+    @Interceptors({ Interceptor6.class, Interceptor7.class })
     @ExcludeDefaultInterceptors
-    public void excludeDefaultInterceptors(List<String> history) {}
+    public void excludeDefaultInterceptors(List<String> history) {
+    }
 
-    @Interceptors({Interceptor6.class, Interceptor7.class})
+    @Interceptors({ Interceptor6.class, Interceptor7.class })
     @ExcludeClassInterceptors
-    public void excludeClassInterceptors(List<String> history) {}
+    public void excludeClassInterceptors(List<String> history) {
+    }
 
     @ExcludeDefaultInterceptors
-    @Interceptors({Interceptor8.class, Interceptor6.class, Interceptor7.class})
+    @Interceptors({ Interceptor8.class, Interceptor6.class, Interceptor7.class })
     @ExcludeClassInterceptors
-    public void overrideInterceptorMethod(List<String> history) {}
+    public void overrideInterceptorMethod(List<String> history) {
+    }
 
-    public void overrideBeanInterceptorMethod(List<String> history) {}
+    public void overrideBeanInterceptorMethod(List<String> history) {
+    }
 
-    public void overrideBeanInterceptorMethod2(List<String> history) {}
+    public void overrideBeanInterceptorMethod2(List<String> history) {
+    }
 
-    @Interceptors({Interceptor1.class})
+    @Interceptors({ Interceptor1.class })
     // Interceptor1 is declared as a default interceptor in ejb-jar.xml, excluded
     // at class-level, and then reinstated as a method-level interceptor
-    public void overrideBeanInterceptorMethod3(List<String> history) {}
+    public void overrideBeanInterceptorMethod3(List<String> history) {
+    }
 
     @ExcludeClassInterceptors
     @ExcludeDefaultInterceptors
     // ok to exclude class interceptors, though there is no class interceptors
     // ok to exclude default interceptors again on method-level
-    public void overrideBeanInterceptorMethod4(List<String> history) {}
+    public void overrideBeanInterceptorMethod4(List<String> history) {
+    }
 
     @ExcludeClassInterceptors
     @ExcludeDefaultInterceptors
-    @Interceptors({Interceptor1.class, Interceptor2.class})
+    @Interceptors({ Interceptor1.class, Interceptor2.class })
     public void skipProceed(List<String> history) {
         throw new RuntimeException("Should not reach here.  Invocation should have been intercepted.");
     }

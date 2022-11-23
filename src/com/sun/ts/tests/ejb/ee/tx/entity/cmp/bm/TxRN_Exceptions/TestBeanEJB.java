@@ -200,9 +200,11 @@ public class TestBeanEJB implements SessionBean {
                 TestUtil.logTrace("Starting rollback");
                 ut.rollback();
                 TestUtil.logTrace("Rollback finished");
-            } else TestUtil.logTrace("No transaction to rollback");
+            } else
+                TestUtil.logTrace("No transaction to rollback");
 
-            if (t1 && t2) testResult = true;
+            if (t1 && t2)
+                testResult = true;
 
             return (testResult);
 
@@ -280,9 +282,11 @@ public class TestBeanEJB implements SessionBean {
                 TestUtil.logTrace("Starting rollback");
                 ut.rollback();
                 TestUtil.logTrace("Rollback finished");
-            } else TestUtil.logTrace("No transaction to rollback");
+            } else
+                TestUtil.logTrace("No transaction to rollback");
 
-            if (t1 && t2) testResult = true;
+            if (t1 && t2)
+                testResult = true;
 
             return (testResult);
 
@@ -360,9 +364,11 @@ public class TestBeanEJB implements SessionBean {
                 TestUtil.logTrace("Starting rollback");
                 ut.rollback();
                 TestUtil.logTrace("Rollback finished");
-            } else TestUtil.logTrace("No transaction to rollback");
+            } else
+                TestUtil.logTrace("No transaction to rollback");
 
-            if (t1 && t2) testResult = true;
+            if (t1 && t2)
+                testResult = true;
 
             return (testResult);
 

@@ -89,10 +89,9 @@ public class ExceptionQueueTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -134,8 +133,8 @@ public class ExceptionQueueTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -159,12 +158,10 @@ public class ExceptionQueueTests extends ServiceEETest {
     /*
      * @testName: xInvalidDestinationExceptionQTest
      *
-     * @assertion_ids: JMS:SPEC:174; JMS:JAVADOC:190; JMS:JAVADOC:192;
-     * JMS:JAVADOC:184; JMS:JAVADOC:186; JMS:JAVADOC:188; JMS:JAVADOC:622;
-     * JMS:JAVADOC:623; JMS:JAVADOC:618; JMS:JAVADOC:619; JMS:JAVADOC:621;
+     * @assertion_ids: JMS:SPEC:174; JMS:JAVADOC:190; JMS:JAVADOC:192; JMS:JAVADOC:184; JMS:JAVADOC:186; JMS:JAVADOC:188;
+     * JMS:JAVADOC:622; JMS:JAVADOC:623; JMS:JAVADOC:618; JMS:JAVADOC:619; JMS:JAVADOC:621;
      *
-     * @test_Strategy: pass an invalid Queue object to createBrowser(null)
-     * createBrowser(null,selector) createReceiver(null)
+     * @test_Strategy: pass an invalid Queue object to createBrowser(null) createBrowser(null,selector) createReceiver(null)
      * createReceiver(null,selector) createSender(null)This null is valid
      *
      */
@@ -189,7 +186,8 @@ public class ExceptionQueueTests extends ServiceEETest {
 
             try {
                 qBrowser = tool.getDefaultQueueSession().createBrowser(dummy);
-                if (qBrowser != null) TestUtil.logTrace("qBrowser=" + qBrowser);
+                if (qBrowser != null)
+                    TestUtil.logTrace("qBrowser=" + qBrowser);
                 TestUtil.logTrace("FAIL: expected InvalidDestinationException!");
                 pass = false;
             } catch (Exception ee) {
@@ -203,7 +201,8 @@ public class ExceptionQueueTests extends ServiceEETest {
             TestUtil.logMsg("Test createBrowser(null),selector");
             try {
                 qBrowser = tool.getDefaultQueueSession().createBrowser(dummy, "TEST");
-                if (qBrowser != null) TestUtil.logTrace("qBrowser=" + qBrowser);
+                if (qBrowser != null)
+                    TestUtil.logTrace("qBrowser=" + qBrowser);
                 TestUtil.logTrace("FAIL: expected InvalidDestinationException!");
                 pass = false;
             } catch (Exception ee) {
@@ -217,7 +216,8 @@ public class ExceptionQueueTests extends ServiceEETest {
             TestUtil.logMsg("Test createReceiver(null)");
             try {
                 qReceiver = tool.getDefaultQueueSession().createReceiver(dummy);
-                if (qReceiver != null) TestUtil.logTrace("qReceiver=" + qReceiver);
+                if (qReceiver != null)
+                    TestUtil.logTrace("qReceiver=" + qReceiver);
                 TestUtil.logTrace("FAIL: expected InvalidDestinationException!");
                 pass = false;
             } catch (Exception ee) {
@@ -231,7 +231,8 @@ public class ExceptionQueueTests extends ServiceEETest {
             TestUtil.logMsg("Test createReceiver(null,selector)");
             try {
                 qReceiver = tool.getDefaultQueueSession().createReceiver(dummy, "TEST");
-                if (qReceiver != null) TestUtil.logTrace("qReceiver=" + qReceiver);
+                if (qReceiver != null)
+                    TestUtil.logTrace("qReceiver=" + qReceiver);
                 TestUtil.logTrace("FAIL: expected InvalidDestinationException!");
                 pass = false;
             } catch (Exception ee) {
@@ -245,7 +246,8 @@ public class ExceptionQueueTests extends ServiceEETest {
             TestUtil.logMsg("Test createSender(null) - null is valid here ");
             try {
                 qSender = tool.getDefaultQueueSession().createSender(dummy);
-                if (qSender != null) TestUtil.logTrace("qSender=" + qSender);
+                if (qSender != null)
+                    TestUtil.logTrace("qSender=" + qSender);
                 TestUtil.logTrace("PASS: ");
             } catch (Exception ee) {
                 TestUtil.printStackTrace(ee);
@@ -301,8 +303,8 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:179; JMS:SPEC:70; JMS:JAVADOC:766;
      *
-     * @test_Strategy: When a client receives a text message it is in read-only
-     * mode. Send a message and have the client attempt to write to it.
+     * @test_Strategy: When a client receives a text message it is in read-only mode. Send a message and have the client
+     * attempt to write to it.
      */
 
     public void xMessageNotWriteableExceptionQTestforTextMessage() throws Fault {
@@ -349,8 +351,8 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:73; JMS:SPEC:179; JMS:SPEC:70; JMS:JAVADOC:702;
      *
-     * @test_Strategy: When a client receives a Bytes message it is in read-only
-     * mode. Send a message and have the client attempt to write to it.
+     * @test_Strategy: When a client receives a Bytes message it is in read-only mode. Send a message and have the client
+     * attempt to write to it.
      */
 
     public void xMessageNotWriteableExceptionQTestforBytesMessage() throws Fault {
@@ -397,8 +399,8 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:73; JMS:SPEC:179; JMS:JAVADOC:760;
      *
-     * @test_Strategy: When a client receives a Stream message it is in read-only
-     * mode. Send a message and have the client attempt to write to it.
+     * @test_Strategy: When a client receives a Stream message it is in read-only mode. Send a message and have the client
+     * attempt to write to it.
      */
 
     public void xMessageNotWriteableExceptionQTestforStreamMessage() throws Fault {
@@ -448,8 +450,8 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:73; JMS:SPEC:179; JMS:JAVADOC:822;
      *
-     * @test_Strategy: When a client receives a Map message it is in read-only
-     * mode. Send a message and have the client attempt to write to it.
+     * @test_Strategy: When a client receives a Map message it is in read-only mode. Send a message and have the client
+     * attempt to write to it.
      */
 
     public void xMessageNotWriteableExceptionQTestforMapMessage() throws Fault {
@@ -500,8 +502,7 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:86.1;
      *
-     * @test_Strategy: Create a bytes message. Attempt to write null to it. Verify
-     * that a NullPointerException is thrown.
+     * @test_Strategy: Create a bytes message. Attempt to write null to it. Verify that a NullPointerException is thrown.
      *
      */
 
@@ -533,8 +534,7 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:176; JMS:JAVADOC:679;
      *
-     * @test_Strategy: Send a message to the queue with one byte. Retreive message
-     * from queue and read two bytes.
+     * @test_Strategy: Send a message to the queue with one byte. Retreive message from queue and read two bytes.
      *
      *
      */
@@ -587,8 +587,7 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:176; JMS:JAVADOC:722;
      *
-     * @test_Strategy: Send a message to the queue with one byte. Retreive message
-     * from queue and read two bytes.
+     * @test_Strategy: Send a message to the queue with one byte. Retreive message from queue and read two bytes.
      *
      *
      */
@@ -686,7 +685,7 @@ public class ExceptionQueueTests extends ServiceEETest {
         try {
             StreamMessage messageSent = null;
             StreamMessage messageReceived = null;
-            byte[] bValues = {127, 0, 3};
+            byte[] bValues = { 127, 0, 3 };
 
             // set up test tool for Queue
             tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
@@ -725,11 +724,10 @@ public class ExceptionQueueTests extends ServiceEETest {
     /*
      * @testName: xInvalidSelectorExceptionQueueTest
      *
-     * @assertion_ids: JMS:SPEC:69; JMS:SPEC:175; JMS:JAVADOC:624;
-     * JMS:JAVADOC:620;
+     * @assertion_ids: JMS:SPEC:69; JMS:SPEC:175; JMS:JAVADOC:624; JMS:JAVADOC:620;
      *
-     * @test_Strategy: call createBrowser with an invalid selector string call
-     * createReceiver with an invalid selector string
+     * @test_Strategy: call createBrowser with an invalid selector string call createReceiver with an invalid selector
+     * string
      */
 
     public void xInvalidSelectorExceptionQueueTest() throws Fault {
@@ -777,7 +775,8 @@ public class ExceptionQueueTests extends ServiceEETest {
                 // create QueueReceiver
                 TestUtil.logTrace("call createReceiver with incorrect selector.");
                 qReceiver = tool.getDefaultQueueSession().createReceiver(tool.getDefaultQueue(), "=TEST 'test'");
-                if (qReceiver != null) TestUtil.logTrace("qReceiver=" + qReceiver);
+                if (qReceiver != null)
+                    TestUtil.logTrace("qReceiver=" + qReceiver);
                 TestUtil.logErr("Error --- createReceiver didn't throw expected InvalidSelectorException!");
                 pass = false;
             } catch (InvalidSelectorException es) {
@@ -795,7 +794,8 @@ public class ExceptionQueueTests extends ServiceEETest {
                 }
             }
 
-            if (pass != true) throw new Fault("xInvalidSelectorExceptionQueueTest failed!!");
+            if (pass != true)
+                throw new Fault("xInvalidSelectorExceptionQueueTest failed!!");
 
         } catch (Exception e) {
             throw new Fault("xInvalidSelectorExceptionQueueTest: ", e);
@@ -807,8 +807,8 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:171; JMS:JAVADOC:634;
      *
-     * @test_Strategy: Call session.commit() when there is no transaction to be
-     * committed. Verify that the proper exception is thrown.
+     * @test_Strategy: Call session.commit() when there is no transaction to be committed. Verify that the proper exception
+     * is thrown.
      */
 
     public void xIllegalStateExceptionQueueTest() throws Fault {
@@ -841,9 +841,8 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:668; JMS:JAVADOC:671;
      *
-     * @test_Strategy: Create a QueueSender with a null Queue. Verify that
-     * UnsupportedOperationException is thrown when send is called without a valid
-     * Queue.
+     * @test_Strategy: Create a QueueSender with a null Queue. Verify that UnsupportedOperationException is thrown when send
+     * is called without a valid Queue.
      */
 
     public void xUnsupportedOperationExceptionQTest1() throws Fault {
@@ -901,7 +900,8 @@ public class ExceptionQueueTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("xUnsupportedOperationExceptionQTest1 Failed!");
+            if (pass != true)
+                throw new Fault("xUnsupportedOperationExceptionQTest1 Failed!");
         } catch (Exception e) {
             logErr("xUnsupportedOperationExceptionQTest1 Failed!", e);
             throw new Fault("xUnsupportedOperationExceptionQTest1 Failed!", e);
@@ -922,9 +922,8 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:599; JMS:JAVADOC:602;
      *
-     * @test_Strategy: Create a MessageProducer with a null Destination. Verify
-     * that UnsupportedOperationException is thrown when send is called without a
-     * valid Destination.
+     * @test_Strategy: Create a MessageProducer with a null Destination. Verify that UnsupportedOperationException is thrown
+     * when send is called without a valid Destination.
      */
 
     public void xUnsupportedOperationExceptionQTest2() throws Fault {
@@ -983,7 +982,8 @@ public class ExceptionQueueTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("xUnsupportedOperationExceptionQTest2 Failed!");
+            if (pass != true)
+                throw new Fault("xUnsupportedOperationExceptionQTest2 Failed!");
 
         } catch (Exception e) {
             logErr("xUnsupportedOperationExceptionQTest2 Failed!", e);
@@ -1005,9 +1005,8 @@ public class ExceptionQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:605;
      *
-     * @test_Strategy: Create a MessageProducer with a valid Destination. Verify
-     * that UnsupportedOperationException is thrown when send is called with
-     * another valid Destination.
+     * @test_Strategy: Create a MessageProducer with a valid Destination. Verify that UnsupportedOperationException is
+     * thrown when send is called with another valid Destination.
      */
 
     public void xUnsupportedOperationExceptionQTest3() throws Fault {
@@ -1041,7 +1040,8 @@ public class ExceptionQueueTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("xUnsupportedOperationExceptionQTest3 Failed!");
+            if (pass != true)
+                throw new Fault("xUnsupportedOperationExceptionQTest3 Failed!");
 
         } catch (Exception e) {
             logErr("xUnsupportedOperationExceptionQTest3 Failed!", e);
@@ -1061,13 +1061,11 @@ public class ExceptionQueueTests extends ServiceEETest {
     /*
      * @testName: xInvalidDestinationExceptionQTests
      *
-     * @assertion_ids: JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510;
-     * JMS:JAVADOC:638; JMS:JAVADOC:639; JMS:JAVADOC:641; JMS:JAVADOC:643;
-     * JMS:JAVADOC:644; JMS:JAVADOC:646; JMS:JAVADOC:647; JMS:JAVADOC:649;
+     * @assertion_ids: JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:638; JMS:JAVADOC:639; JMS:JAVADOC:641;
+     * JMS:JAVADOC:643; JMS:JAVADOC:644; JMS:JAVADOC:646; JMS:JAVADOC:647; JMS:JAVADOC:649;
      *
-     * @test_Strategy: Create a Session with Queue Configuration, using a null
-     * Destination/Queue to verify InvalidDestinationException is thrown with
-     * various methods
+     * @test_Strategy: Create a Session with Queue Configuration, using a null Destination/Queue to verify
+     * InvalidDestinationException is thrown with various methods
      */
 
     public void xInvalidDestinationExceptionQTests() throws Fault {
@@ -1143,7 +1141,8 @@ public class ExceptionQueueTests extends ServiceEETest {
                 logErr("Error closing the default Connection", ex);
             }
 
-            if (pass != true) throw new Fault("xInvalidDestinationExceptionQTests");
+            if (pass != true)
+                throw new Fault("xInvalidDestinationExceptionQTests");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -1160,14 +1159,12 @@ public class ExceptionQueueTests extends ServiceEETest {
     /*
      * @testName: xMessageNotReadableExceptionQBytesMsgTest
      *
-     * @assertion_ids: JMS:JAVADOC:676; JMS:JAVADOC:678; JMS:JAVADOC:682;
-     * JMS:JAVADOC:684; JMS:JAVADOC:686; JMS:JAVADOC:688; JMS:JAVADOC:690;
-     * JMS:JAVADOC:692; JMS:JAVADOC:694; JMS:JAVADOC:696; JMS:JAVADOC:698;
-     * JMS:JAVADOC:699; JMS:JAVADOC:700;
+     * @assertion_ids: JMS:JAVADOC:676; JMS:JAVADOC:678; JMS:JAVADOC:682; JMS:JAVADOC:684; JMS:JAVADOC:686; JMS:JAVADOC:688;
+     * JMS:JAVADOC:690; JMS:JAVADOC:692; JMS:JAVADOC:694; JMS:JAVADOC:696; JMS:JAVADOC:698; JMS:JAVADOC:699;
+     * JMS:JAVADOC:700;
      *
-     * @test_Strategy: Create a BytesMessage, call various read methods on it
-     * before sending. Verify that jakarta.jms.MessageNotReadableException is
-     * thrown.
+     * @test_Strategy: Create a BytesMessage, call various read methods on it before sending. Verify that
+     * jakarta.jms.MessageNotReadableException is thrown.
      */
 
     public void xMessageNotReadableExceptionQBytesMsgTest() throws Fault {
@@ -1176,8 +1173,8 @@ public class ExceptionQueueTests extends ServiceEETest {
             boolean pass = true;
             boolean booleanValue = false;
             byte byteValue = 127;
-            byte[] bytesValue = {127, -127, 1, 0};
-            byte[] bytesValueRecvd = {0, 0, 0, 0};
+            byte[] bytesValue = { 127, -127, 1, 0 };
+            byte[] bytesValueRecvd = { 0, 0, 0, 0 };
             char charValue = 'Z';
             double doubleValue = 6.02e23;
             float floatValue = 6.02e23f;
@@ -1367,7 +1364,8 @@ public class ExceptionQueueTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("xMessageNotReadableExceptionQBytesMsgTest Failed!");
+            if (pass != true)
+                throw new Fault("xMessageNotReadableExceptionQBytesMsgTest Failed!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -1384,14 +1382,12 @@ public class ExceptionQueueTests extends ServiceEETest {
     /*
      * @testName: xMessageNotReadableExceptionQStreamMsgTest
      *
-     * @assertion_ids: JMS:SPEC:73.1; JMS:JAVADOC:431; JMS:JAVADOC:721;
-     * JMS:JAVADOC:724; JMS:JAVADOC:727; JMS:JAVADOC:730; JMS:JAVADOC:733;
-     * JMS:JAVADOC:736; JMS:JAVADOC:739; JMS:JAVADOC:742; JMS:JAVADOC:745;
-     * JMS:JAVADOC:748; JMS:JAVADOC:751;
+     * @assertion_ids: JMS:SPEC:73.1; JMS:JAVADOC:431; JMS:JAVADOC:721; JMS:JAVADOC:724; JMS:JAVADOC:727; JMS:JAVADOC:730;
+     * JMS:JAVADOC:733; JMS:JAVADOC:736; JMS:JAVADOC:739; JMS:JAVADOC:742; JMS:JAVADOC:745; JMS:JAVADOC:748;
+     * JMS:JAVADOC:751;
      *
-     * @test_Strategy: Create a StreamMessage, send and receive via a Topic; Call
-     * clearBoldy right after receiving the message; Call various read methods on
-     * received message; Verify jakarta.jms.MessageNotReadableException is thrown.
+     * @test_Strategy: Create a StreamMessage, send and receive via a Topic; Call clearBoldy right after receiving the
+     * message; Call various read methods on received message; Verify jakarta.jms.MessageNotReadableException is thrown.
      */
 
     public void xMessageNotReadableExceptionQStreamMsgTest() throws Fault {
@@ -1401,9 +1397,9 @@ public class ExceptionQueueTests extends ServiceEETest {
             boolean pass = true;
             byte bValue = 127;
             boolean abool = false;
-            byte[] bValues = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-            byte[] bValues2 = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-            byte[] bValuesReturned = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            byte[] bValues = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            byte[] bValues2 = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+            byte[] bValuesReturned = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             char charValue = 'Z';
             short sValue = 32767;
             long lValue = 9223372036854775807L;
@@ -1569,7 +1565,8 @@ public class ExceptionQueueTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("xMessageNotReadableExceptionQStreamMsgTest Failed!");
+            if (pass != true)
+                throw new Fault("xMessageNotReadableExceptionQStreamMsgTest Failed!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -1586,12 +1583,10 @@ public class ExceptionQueueTests extends ServiceEETest {
     /*
      * @testName: xIllegalStateExceptionTestTopicMethodsQ
      *
-     * @assertion_ids: JMS:SPEC:185.2; JMS:SPEC:185.3; JMS:SPEC:185.4;
-     * JMS:SPEC:185.5; JMS:SPEC:185;
+     * @assertion_ids: JMS:SPEC:185.2; JMS:SPEC:185.3; JMS:SPEC:185.4; JMS:SPEC:185.5; JMS:SPEC:185;
      *
-     * @test_Strategy: Create a QueueSession and call Topic specific methods
-     * inherited from Session, and verify that jakarta.jms.IllegalStateException is
-     * thrown.
+     * @test_Strategy: Create a QueueSession and call Topic specific methods inherited from Session, and verify that
+     * jakarta.jms.IllegalStateException is thrown.
      */
 
     public void xIllegalStateExceptionTestTopicMethodsQ() throws Fault {
@@ -1668,7 +1663,8 @@ public class ExceptionQueueTests extends ServiceEETest {
                 pass = false;
             }
 
-            if (pass != true) throw new Fault("xIllegalStateExceptionTestTopicMethodsQ Failed!");
+            if (pass != true)
+                throw new Fault("xIllegalStateExceptionTestTopicMethodsQ Failed!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -1685,12 +1681,10 @@ public class ExceptionQueueTests extends ServiceEETest {
     /*
      * @testName: xIllegalStateExceptionTestRollbackQ
      *
-     * @assertion_ids: JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510;
-     * JMS:JAVADOC:242; JMS:JAVADOC:635; JMS:JAVADOC:317;
+     * @assertion_ids: JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:242; JMS:JAVADOC:635; JMS:JAVADOC:317;
      *
-     * @test_Strategy: 1. Create a TextMessages, send use a MessageProducer 2.
-     * Then rollback on the non-transacted session Verify that
-     * IllegalStateException is thrown
+     * @test_Strategy: 1. Create a TextMessages, send use a MessageProducer 2. Then rollback on the non-transacted session
+     * Verify that IllegalStateException is thrown
      */
 
     public void xIllegalStateExceptionTestRollbackQ() throws Fault {
@@ -1720,7 +1714,8 @@ public class ExceptionQueueTests extends ServiceEETest {
                 TestUtil.logMsg("Got expected IllegalStateException from QueueSession.rollback()");
             }
 
-            if (pass != true) throw new Fault("xIllegalStateExceptionTestRollbackQ");
+            if (pass != true)
+                throw new Fault("xIllegalStateExceptionTestRollbackQ");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);

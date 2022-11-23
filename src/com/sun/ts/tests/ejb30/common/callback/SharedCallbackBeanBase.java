@@ -34,9 +34,8 @@ public abstract class SharedCallbackBeanBase {
     protected boolean injectionDone;
 
     /**
-     * If InvocationContext.getParameters(), or setParameters() is called for a
-     * lifecycle callback method, IllegalStateException should be thrown. Use this
-     * field to record such an exception has been thrown from PostConstruct
+     * If InvocationContext.getParameters(), or setParameters() is called for a lifecycle callback method,
+     * IllegalStateException should be thrown. Use this field to record such an exception has been thrown from PostConstruct
      * method.
      */
     private boolean getParametersIllegalStateExceptionThrown;
@@ -44,32 +43,28 @@ public abstract class SharedCallbackBeanBase {
     private boolean setParametersIllegalStateExceptionThrown;
 
     /**
-     * To record PostConstruct calls, in order, by multiple life event interceptor
-     * methods. Its value can be ["A", "B", "C"].
+     * To record PostConstruct calls, in order, by multiple life event interceptor methods. Its value can be ["A", "B",
+     * "C"].
      */
     protected List postConstructCalls = new ArrayList();
 
     /**
-     * To record where injections were performed for interceptor classes. Its
-     * value can be ["BASE", "A", "BASE", "B"].
+     * To record where injections were performed for interceptor classes. Its value can be ["BASE", "A", "BASE", "B"].
      */
     protected List injectionLocations = new ArrayList();
 
     /**
-     * Records PostConstruct calls and this List is stored in ContextData. Usually
-     * this List should contain the same value in the same order as
-     * postConstructCalls, except this List contains no "BEAN". It is because
-     * interceptor methods inside the bean class does not take InvocationContext.
+     * Records PostConstruct calls and this List is stored in ContextData. Usually this List should contain the same value
+     * in the same order as postConstructCalls, except this List contains no "BEAN". It is because interceptor methods
+     * inside the bean class does not take InvocationContext.
      */
     protected List postConstructCallsInContextData = new ArrayList();
 
     /**
-     * Gets EJBContext that is the current EJB's namespace, typically through
-     * injection into the bean class. A better way is to either directly inject
-     * EJBContext into the current class, or look up by the well-known name
-     * "java:comp/EJBContext" This method was written when the above 2 mechanisms
-     * have not been defined. Note that the concrete subclass may be session bean,
-     * or message-driven bean.
+     * Gets EJBContext that is the current EJB's namespace, typically through injection into the bean class. A better way is
+     * to either directly inject EJBContext into the current class, or look up by the well-known name "java:comp/EJBContext"
+     * This method was written when the above 2 mechanisms have not been defined. Note that the concrete subclass may be
+     * session bean, or message-driven bean.
      *
      * @return EJBContext
      */
@@ -90,26 +85,23 @@ public abstract class SharedCallbackBeanBase {
     }
 
     /**
-     * Returns a list of short name of classes where PostConstruct methods were
-     * invoked. This is a business method of subclassing beans, and can be queried
-     * by application clients.
+     * Returns a list of short name of classes where PostConstruct methods were invoked. This is a business method of
+     * subclassing beans, and can be queried by application clients.
      */
     public List getPostConstructCalls() {
         return postConstructCalls;
     }
 
     /**
-     * Records where PostConstruct methods were invoked. Used by interceptor
-     * classes.
+     * Records where PostConstruct methods were invoked. Used by interceptor classes.
      */
     public void addPostConstructCall(String shortName) {
         postConstructCalls.add(shortName);
     }
 
     /**
-     * Returns a list of short name of interceptor classes where injections were
-     * performed. This is a business method of subclassing beans, and can be
-     * queried by application clients.
+     * Returns a list of short name of interceptor classes where injections were performed. This is a business method of
+     * subclassing beans, and can be queried by application clients.
      */
     public List getInjectionLocations() {
         return injectionLocations;
@@ -120,9 +112,8 @@ public abstract class SharedCallbackBeanBase {
     }
 
     /**
-     * Called by interceptors to copy their ContextData. Clients call the beans'
-     * business method getPostConstructCallsInContextData() to retrieve and
-     * compare with expected results.
+     * Called by interceptors to copy their ContextData. Clients call the beans' business method
+     * getPostConstructCallsInContextData() to retrieve and compare with expected results.
      */
     public void setPostConstructCallsInContextData(List contextData) {
         this.postConstructCallsInContextData = contextData;
@@ -167,8 +158,8 @@ public abstract class SharedCallbackBeanBase {
     }
 
     /**
-     * Non-business method, used by interceptors to record such an exception has
-     * been thrown from within the PostConstruct method.
+     * Non-business method, used by interceptors to record such an exception has been thrown from within the PostConstruct
+     * method.
      */
     public void setGetParametersIllegalStateExceptionThrown(boolean b) {
         this.getParametersIllegalStateExceptionThrown = b;
@@ -182,8 +173,8 @@ public abstract class SharedCallbackBeanBase {
     }
 
     /**
-     * Non-business method, used by interceptors to record such an exception has
-     * been thrown from within the PostConstruct method.
+     * Non-business method, used by interceptors to record such an exception has been thrown from within the PostConstruct
+     * method.
      */
     public void setSetParametersIllegalStateExceptionThrown(boolean b) {
         this.setParametersIllegalStateExceptionThrown = b;

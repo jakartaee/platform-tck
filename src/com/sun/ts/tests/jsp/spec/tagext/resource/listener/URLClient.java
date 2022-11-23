@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,16 +58,14 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:304; JSP:SPEC:305
      *
-     * @test_Strategy: [EventListenerResourceInjection]
-     * [EventListenerResourceInjectionTiming] Create a ServletContextListener,
-     * Package all above in a WAR file without declaring several resource
-     * references in the deployment descriptor - javax.sql.DataSource -
-     * jakarta.jms.QueueConnectionFactory - jakarta.jms.TopicConnectionFactory -
-     * jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
+     * @test_Strategy: [EventListenerResourceInjection] [EventListenerResourceInjectionTiming] Create a
+     * ServletContextListener, Package all above in a WAR file without declaring several resource references in the
+     * deployment descriptor - javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
+     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
      * jakarta.mail.Session - java.net.URL
      *
-     * Check that: - We can deploy the application. - We can lookup the all the
-     * above resource using annotations inside the ServletContextListener
+     * Check that: - We can deploy the application. - We can lookup the all the above resource using annotations inside the
+     * ServletContextListener
      */
 
     public void ContextListenerTest() throws Fault {
@@ -82,16 +78,14 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:304; JSP:SPEC:305
      *
-     * @test_Strategy: [EventListenerResourceInjection]
-     * [EventListenerResourceInjectionTiming] Create a
-     * ServletContextAttributeListener, Package all above in a WAR file without
-     * declaring several resource reference in the deployment descriptor -
-     * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
-     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
-     * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
+     * @test_Strategy: [EventListenerResourceInjection] [EventListenerResourceInjectionTiming] Create a
+     * ServletContextAttributeListener, Package all above in a WAR file without declaring several resource reference in the
+     * deployment descriptor - javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
+     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
+     * jakarta.mail.Session - java.net.URL
      *
-     * Check that: - We can deploy the application. - We can lookup the all the
-     * above resource using annotations inside the ServletContextAttributeListener
+     * Check that: - We can deploy the application. - We can lookup the all the above resource using annotations inside the
+     * ServletContextAttributeListener
      */
 
     public void ContextAttributeListenerTest() throws Fault {
@@ -104,16 +98,14 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:304; JSP:SPEC:305
      *
-     * @test_Strategy: [EventListenerResourceInjection]
-     * [EventListenerResourceInjectionTiming] Create a ServletRequestListener,
-     * Package all above in a WAR file without declaring several resource
-     * reference in the deployment descriptor - javax.sql.DataSource -
-     * jakarta.jms.QueueConnectionFactory - jakarta.jms.TopicConnectionFactory -
-     * jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
+     * @test_Strategy: [EventListenerResourceInjection] [EventListenerResourceInjectionTiming] Create a
+     * ServletRequestListener, Package all above in a WAR file without declaring several resource reference in the
+     * deployment descriptor - javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
+     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
      * jakarta.mail.Session - java.net.URL
      *
-     * Check that: - We can deploy the application. - We can lookup the all the
-     * above resource using annotations inside the ServletRequestListener
+     * Check that: - We can deploy the application. - We can lookup the all the above resource using annotations inside the
+     * ServletRequestListener
      */
 
     public void RequestListenerTest() throws Fault {
@@ -126,16 +118,14 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:304; JSP:SPEC:305
      *
-     * @test_Strategy: [EventListenerResourceInjection]
-     * [EventListenerResourceInjectionTiming] Create a
-     * ServletRequestAttributeListener, Package all above in a WAR file without
-     * declaring several resource reference in the deployment descriptor -
-     * javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
-     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory -
-     * jakarta.jms.Queue - jakarta.jms.Topic - jakarta.mail.Session - java.net.URL
+     * @test_Strategy: [EventListenerResourceInjection] [EventListenerResourceInjectionTiming] Create a
+     * ServletRequestAttributeListener, Package all above in a WAR file without declaring several resource reference in the
+     * deployment descriptor - javax.sql.DataSource - jakarta.jms.QueueConnectionFactory -
+     * jakarta.jms.TopicConnectionFactory - jakarta.jms.ConnectionFactory - jakarta.jms.Queue - jakarta.jms.Topic -
+     * jakarta.mail.Session - java.net.URL
      *
-     * Check that: - We can deploy the application. - We can lookup the all the
-     * above resource using annotations inside the ServletRequestAttributeListener
+     * Check that: - We can deploy the application. - We can lookup the all the above resource using annotations inside the
+     * ServletRequestAttributeListener
      */
 
     public void RequestAttributeListenerTest() throws Fault {

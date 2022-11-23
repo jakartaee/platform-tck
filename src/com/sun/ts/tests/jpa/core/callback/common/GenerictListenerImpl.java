@@ -23,9 +23,8 @@ package com.sun.ts.tests.jpa.core.callback.common;
 import com.sun.ts.lib.util.TestUtil;
 
 /**
- * An annotation-free class that holds the logics for recording entity lifecycle
- * calls. This class is used by entities as a generic helper class, and also
- * extended with annotations to form a callback listener class.
+ * An annotation-free class that holds the logics for recording entity lifecycle calls. This class is used by entities
+ * as a generic helper class, and also extended with annotations to form a callback listener class.
  */
 public class GenerictListenerImpl {
 

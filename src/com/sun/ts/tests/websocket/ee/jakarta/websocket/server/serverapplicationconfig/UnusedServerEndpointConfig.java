@@ -64,6 +64,7 @@ public class UnusedServerEndpointConfig implements ServerEndpointConfig {
 
     @Override
     public Configurator getConfigurator() {
-        return new ServerEndpointConfig.Configurator() {};
+        return new ServerEndpointConfig.Configurator() {
+        };
     }
 }

@@ -82,11 +82,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.2; EJB:SPEC:613
      *
-     * @test_Strategy: Bean managed Tx commit - Required Entity EJBs. Create
-     * Session EJBs A (bean managed), B (Required), C (Required). Create Entity
-     * EJB D (Required). Begin a transaction in Bean A, involving Beans B & C.
-     * Beans B & C update data in Bean D. Bean A commits the transaction. Verify
-     * the transaction occured in the DB from Bean A.
+     * @test_Strategy: Bean managed Tx commit - Required Entity EJBs. Create Session EJBs A (bean managed), B (Required), C
+     * (Required). Create Entity EJB D (Required). Begin a transaction in Bean A, involving Beans B & C. Beans B & C update
+     * data in Bean D. Bean A commits the transaction. Verify the transaction occured in the DB from Bean A.
      */
     public void test1() throws Fault {
         try {
@@ -98,8 +96,10 @@ public class Client extends EETest {
             logMsg("Execute BeanA:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -117,11 +117,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.2; EJB:SPEC:613
      *
-     * @test_Strategy: Bean managed Tx rollback - Required Entity EJBs. Create
-     * Session EJBs A (bean managed), B (Required), C (Required). Create Entity
-     * EJB D (Required). Begin a transaction in Bean A, involving Beans B & C.
-     * Beans B & C update data in Bean D. Bean A rollsback the transaction. Verify
-     * the transaction did not occur in the DB from Bean A.
+     * @test_Strategy: Bean managed Tx rollback - Required Entity EJBs. Create Session EJBs A (bean managed), B (Required),
+     * C (Required). Create Entity EJB D (Required). Begin a transaction in Bean A, involving Beans B & C. Beans B & C
+     * update data in Bean D. Bean A rollsback the transaction. Verify the transaction did not occur in the DB from Bean A.
      */
     public void test2() throws Fault {
         try {
@@ -133,8 +131,10 @@ public class Client extends EETest {
             logMsg("Execute BeanA:test2");
             testResult = beanRef.test2();
 
-            if (!testResult) throw new Fault("test2 failed");
-            else logMsg("test2 passed");
+            if (!testResult)
+                throw new Fault("test2 failed");
+            else
+                logMsg("test2 passed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {

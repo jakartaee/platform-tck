@@ -36,7 +36,8 @@ public abstract class IOUtil {
         StringBuilder sb = new StringBuilder();
         String line = null;
         while ((line = br.readLine()) != null) {
-            if (sb.length() != 0) sb.append("\n");
+            if (sb.length() != 0)
+                sb.append("\n");
             sb.append(line);
         }
         br.close();

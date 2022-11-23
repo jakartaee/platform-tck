@@ -35,9 +35,8 @@ import java.net.URL;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -46,8 +45,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,8 +56,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; ts_home;
-     * servlet_async_wait;
+     * @class.setup_props: webServerHost; webServerPort; ts_home; servlet_async_wait;
      */
     /* Run test */
     /*
@@ -67,13 +64,12 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:942;
      *
-     * @test_Strategy: Create a Servlet TestServlet which supports async; Verify
-     * ServletInputStream.setReadListener(null) works accordingly
+     * @test_Strategy: Create a Servlet TestServlet which supports async; Verify ServletInputStream.setReadListener(null)
+     * works accordingly
      */
     public void nioInputTest1() throws Fault {
         Boolean passed = true;
-        int sleepInSeconds =
-                Integer.parseInt(_props.getProperty("servlet_async_wait").trim());
+        int sleepInSeconds = Integer.parseInt(_props.getProperty("servlet_async_wait").trim());
         String testName = "nioInputTest1";
         String EXPECTED_RESPONSE = "Test PASSED|NullPointerException";
 
@@ -159,14 +155,12 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:941;
      *
-     * @test_Strategy: Create a Servlet TestServlet which supports async; Create a
-     * ReadListener; Verify ServletInputStream.setReadListener(ReadListener)
-     * throws IllegalStateException without Async or upgrade
+     * @test_Strategy: Create a Servlet TestServlet which supports async; Create a ReadListener; Verify
+     * ServletInputStream.setReadListener(ReadListener) throws IllegalStateException without Async or upgrade
      */
     public void nioInputTest2() throws Fault {
         Boolean passed = true;
-        int sleepInSeconds =
-                Integer.parseInt(_props.getProperty("servlet_async_wait").trim());
+        int sleepInSeconds = Integer.parseInt(_props.getProperty("servlet_async_wait").trim());
         String testName = "nioInputTest2";
         String EXPECTED_RESPONSE = "Test PASSED|IllegalStateException";
 

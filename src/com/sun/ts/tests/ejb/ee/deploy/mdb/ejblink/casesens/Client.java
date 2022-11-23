@@ -38,7 +38,7 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
     /**
      * @class.setup_props:
      *
-     *                     jms_timeout; user; password;
+     * jms_timeout; user; password;
      *
      */
     public void setup(String[] args, Properties props) throws Fault {
@@ -58,16 +58,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:872
      *
-     * @test_Strategy: Have two Stateless Beans whose ejb-name's differ only by
-     *                 case and whose identity is defined by a String environment
-     *                 entry ('myName').
+     * @test_Strategy: Have two Stateless Beans whose ejb-name's differ only by case and whose identity is defined by a
+     * String environment entry ('myName').
      *
-     *                 A message-driven queue bean references these two beans
-     *                 using ejb-link elements. Check that MDB can lookup the two
-     *                 beans and check each bean identity based on their value for
-     *                 the 'myName' environment entry. Check that this identity
-     *                 correspond to the references specified in the DD (validate
-     *                 that the EJB references were resolved correctly).
+     * A message-driven queue bean references these two beans using ejb-link elements. Check that MDB can lookup the two
+     * beans and check each bean identity based on their value for the 'myName' environment entry. Check that this identity
+     * correspond to the references specified in the DD (validate that the EJB references were resolved correctly).
      *
      */
     public void testEjblinkCaseSensitivity() throws Fault {

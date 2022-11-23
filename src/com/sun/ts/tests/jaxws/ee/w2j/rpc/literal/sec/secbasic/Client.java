@@ -251,8 +251,7 @@ public class Client extends ServiceEETest {
 
     private void getUnprotectedServiceStub() throws Exception {
         try {
-            BasicAuthServiceTestService service =
-                    (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/unprotected");
+            BasicAuthServiceTestService service = (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/unprotected");
             port1 = (HelloUnprotected) service.getPort(HelloUnprotected.class);
             JAXWS_Util.dumpTargetEndpointAddress(port1);
             JAXWS_Util.setSOAPLogging(port1);
@@ -264,8 +263,7 @@ public class Client extends ServiceEETest {
 
     private void getProtectedNoIdServiceStub() throws Exception {
         try {
-            BasicAuthServiceTestService service =
-                    (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/protectednoid");
+            BasicAuthServiceTestService service = (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/protectednoid");
             port2noid = (HelloProtected) service.getPort(HelloProtected.class);
             JAXWS_Util.dumpTargetEndpointAddress(port2noid);
             JAXWS_Util.setSOAPLogging(port2noid);
@@ -277,8 +275,7 @@ public class Client extends ServiceEETest {
 
     private void getProtectedValidIdServiceStub() throws Exception {
         try {
-            BasicAuthServiceTestService service =
-                    (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/protectedvalidid");
+            BasicAuthServiceTestService service = (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/protectedvalidid");
             port2validid = (HelloProtected1) service.getPort(HelloProtected1.class);
             JAXWS_Util.dumpTargetEndpointAddress(port2validid);
             JAXWS_Util.setSOAPLogging(port2validid);
@@ -290,8 +287,7 @@ public class Client extends ServiceEETest {
 
     private void getProtectedInvalidIdServiceStub() throws Exception {
         try {
-            BasicAuthServiceTestService service =
-                    (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/protectedinvalidid");
+            BasicAuthServiceTestService service = (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/protectedinvalidid");
             port2invalidid = (HelloProtected2) service.getPort(HelloProtected2.class);
             JAXWS_Util.dumpTargetEndpointAddress(port2invalidid);
             JAXWS_Util.setSOAPLogging(port2invalidid);
@@ -303,8 +299,7 @@ public class Client extends ServiceEETest {
 
     private void getProtectedUnauthIdServiceStub() throws Exception {
         try {
-            BasicAuthServiceTestService service =
-                    (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/protectedunauthid");
+            BasicAuthServiceTestService service = (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/protectedunauthid");
             port2unauthid = (HelloProtected3) service.getPort(HelloProtected3.class);
             JAXWS_Util.dumpTargetEndpointAddress(port2unauthid);
             JAXWS_Util.setSOAPLogging(port2unauthid);
@@ -316,8 +311,7 @@ public class Client extends ServiceEETest {
 
     private void getGuestServiceStub() throws Exception {
         try {
-            BasicAuthServiceTestService service =
-                    (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/guest");
+            BasicAuthServiceTestService service = (BasicAuthServiceTestService) ic.lookup("java:comp/env/service/guest");
             port3 = (HelloGuest) service.getPort(HelloGuest.class);
             JAXWS_Util.dumpTargetEndpointAddress(port3);
             JAXWS_Util.setSOAPLogging(port3);
@@ -336,8 +330,7 @@ public class Client extends ServiceEETest {
     /*
      * @class.testArgs: -ap jaxws-url-props.dat
      *
-     * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
-     * authpassword; platform.mode;
+     * @class.setup_props: webServerHost; webServerPort; user; password; authuser; authpassword; platform.mode;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -366,25 +359,19 @@ public class Client extends ServiceEETest {
     /*
      * @testName: BasicAuthTest1
      *
-     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017;
-     * JAXWS:SPEC:10018; WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:115;
-     * WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221;
-     * WS4EE:SPEC:223; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
-     * WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32; WS4EE:SPEC:4011;
-     * WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
+     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017; JAXWS:SPEC:10018; WS4EE:SPEC:113;
+     * WS4EE:SPEC:114; WS4EE:SPEC:115; WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221; WS4EE:SPEC:223;
+     * WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
+     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32;
+     * WS4EE:SPEC:4011; WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
      *
-     * @test_Strategy: 1. Invoke RPC on a protected JAXWS service definition
-     * without authenticating. 2. The JAXWS runtime must deny access and throw a
-     * WebServiceException (UnAuthorized).
+     * @test_Strategy: 1. Invoke RPC on a protected JAXWS service definition without authenticating. 2. The JAXWS runtime
+     * must deny access and throw a WebServiceException (UnAuthorized).
      *
-     * Description Test BASIC authentication as specified in the JAXWS
-     * Specification.
+     * Description Test BASIC authentication as specified in the JAXWS Specification.
      *
-     * 1. If user has not been authenticated and user attempts to access a
-     * protected JAXWS service definition, the JAXWS runtime must deny access and
-     * throw a WebService- Exception (UnAuthorized).
+     * 1. If user has not been authenticated and user attempts to access a protected JAXWS service definition, the JAXWS
+     * runtime must deny access and throw a WebService- Exception (UnAuthorized).
      */
 
     public void BasicAuthTest1() throws Fault {
@@ -397,8 +384,10 @@ public class Client extends ServiceEETest {
                 return;
             }
             TestUtil.logMsg("Get stub for Protected Service Definition");
-            if (modeProperty.equals("standalone")) getProtectedNoIdServiceStubStandalone();
-            else getProtectedNoIdServiceStub();
+            if (modeProperty.equals("standalone"))
+                getProtectedNoIdServiceStubStandalone();
+            else
+                getProtectedNoIdServiceStub();
             TestUtil.logMsg("Invoke RPC method without authenticating");
             TestUtil.logMsg("JAXWS runtime must throw a WebServiceException");
             try {
@@ -417,31 +406,26 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("BasicAuthTest1 failed: ", e);
         }
-        if (!pass) throw new Fault("BasicAuthTest1 failed");
+        if (!pass)
+            throw new Fault("BasicAuthTest1 failed");
     }
 
     /*
      * @testName: BasicAuthTest2
      *
-     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017;
-     * JAXWS:SPEC:10018; WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:115;
-     * WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221;
-     * WS4EE:SPEC:223; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
-     * WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32; WS4EE:SPEC:4011;
-     * WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
+     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017; JAXWS:SPEC:10018; WS4EE:SPEC:113;
+     * WS4EE:SPEC:114; WS4EE:SPEC:115; WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221; WS4EE:SPEC:223;
+     * WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
+     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32;
+     * WS4EE:SPEC:4011; WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
      *
-     * @test_Strategy: 1. Invoke RPC on a protected JAXWS service definition
-     * authenticating with a valid username and password. 2. The JAXWS runtime
-     * must allow access.
+     * @test_Strategy: 1. Invoke RPC on a protected JAXWS service definition authenticating with a valid username and
+     * password. 2. The JAXWS runtime must allow access.
      *
-     * Description Test BASIC authentication as specified in the JAXWS
-     * Specification.
+     * Description Test BASIC authentication as specified in the JAXWS Specification.
      *
-     * 1. If user has not been authenticated and user attempts to access a
-     * protected JAXWS service definition, and user enters a valid username and
-     * password, then the JAXWS runtime must allow access.
+     * 1. If user has not been authenticated and user attempts to access a protected JAXWS service definition, and user
+     * enters a valid username and password, then the JAXWS runtime must allow access.
      */
 
     public void BasicAuthTest2() throws Fault {
@@ -453,7 +437,8 @@ public class Client extends ServiceEETest {
             if (modeProperty.equals("standalone")) {
                 getProtectedValidIdServiceStubStandalone();
                 JAXWS_Util.setUserNameAndPassword(port2validid, username, password);
-            } else getProtectedValidIdServiceStub();
+            } else
+                getProtectedValidIdServiceStub();
             TestUtil.logMsg("Invoke RPC method authenticating with a valid" + " username/password");
             TestUtil.logMsg("User is in the required security role to access" + " the resource");
             TestUtil.logMsg("JAXWS runtime must allow access");
@@ -480,32 +465,27 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("BasicAuthTest2 failed: ", e);
         }
-        if (!pass) throw new Fault("BasicAuthTest2 failed");
+        if (!pass)
+            throw new Fault("BasicAuthTest2 failed");
     }
 
     /*
      * @testName: BasicAuthTest3
      *
-     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017;
-     * JAXWS:SPEC:10018; WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:115;
-     * WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221;
-     * WS4EE:SPEC:223; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
-     * WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32; WS4EE:SPEC:4011;
-     * WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
+     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017; JAXWS:SPEC:10018; WS4EE:SPEC:113;
+     * WS4EE:SPEC:114; WS4EE:SPEC:115; WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221; WS4EE:SPEC:223;
+     * WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
+     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32;
+     * WS4EE:SPEC:4011; WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
      *
-     * @test_Strategy: 1. Invoke RPC on a protected JAXWS service definition
-     * authenticating with invalid username and password. 2. The JAXWS runtime
-     * must deny access and throw a WebServiceException (UnAuthorized).
+     * @test_Strategy: 1. Invoke RPC on a protected JAXWS service definition authenticating with invalid username and
+     * password. 2. The JAXWS runtime must deny access and throw a WebServiceException (UnAuthorized).
      *
-     * Description Test BASIC authentication as specified in the JAXWS
-     * Specification.
+     * Description Test BASIC authentication as specified in the JAXWS Specification.
      *
-     * 1. If user has not been authenticated and user attempts to access a
-     * protected JAXWS service definition, and user enters an invalid username and
-     * password, then the JAXWS runtime must deny access and throw a WebService-
-     * Exception (UnAuthorized).
+     * 1. If user has not been authenticated and user attempts to access a protected JAXWS service definition, and user
+     * enters an invalid username and password, then the JAXWS runtime must deny access and throw a WebService- Exception
+     * (UnAuthorized).
      */
 
     public void BasicAuthTest3() throws Fault {
@@ -521,7 +501,8 @@ public class Client extends ServiceEETest {
             if (modeProperty.equals("standalone")) {
                 getProtectedInvalidIdServiceStubStandalone();
                 JAXWS_Util.setUserNameAndPassword(port2invalidid, "invalid", "invalid");
-            } else getProtectedInvalidIdServiceStub();
+            } else
+                getProtectedInvalidIdServiceStub();
             TestUtil.logMsg("Invoke RPC method authenticating with an" + " invalid username/password");
             TestUtil.logMsg("Username=invalid, Password=invalid");
             TestUtil.logMsg("Username=invalid, Password=invalid");
@@ -543,35 +524,28 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("BasicAuthTest3 failed: ", e);
         }
-        if (!pass) throw new Fault("BasicAuthTest3 failed");
+        if (!pass)
+            throw new Fault("BasicAuthTest3 failed");
     }
 
     /*
      * @testName: BasicAuthTest4
      *
-     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017;
-     * JAXWS:SPEC:10018; WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:115;
-     * WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221;
-     * WS4EE:SPEC:223; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
-     * WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32; WS4EE:SPEC:4011;
-     * WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
+     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017; JAXWS:SPEC:10018; WS4EE:SPEC:113;
+     * WS4EE:SPEC:114; WS4EE:SPEC:115; WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221; WS4EE:SPEC:223;
+     * WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
+     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32;
+     * WS4EE:SPEC:4011; WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
      *
-     * @test_Strategy: 1. Invoke RPC on a protected JAXWS service definition
-     * authenticating with valid username and password but user is not in the
-     * required secuirty role allowed by the JAXWS service definition. 2. The
-     * JAXWS runtime must deny access and throw a WebServiceException
-     * (UnAuthorized).
+     * @test_Strategy: 1. Invoke RPC on a protected JAXWS service definition authenticating with valid username and password
+     * but user is not in the required secuirty role allowed by the JAXWS service definition. 2. The JAXWS runtime must deny
+     * access and throw a WebServiceException (UnAuthorized).
      *
-     * Description Test BASIC authentication as specified in the JAXWS
-     * Specification.
+     * Description Test BASIC authentication as specified in the JAXWS Specification.
      *
-     * 1. If user has not been authenticated and user attempts to access a
-     * protected JAXWS service definition, and user enters a valid username and
-     * password, but user is not in the required security role allowed by the
-     * JAXWS service definition then the JAXWS runtime must deny access and throw
-     * a WebServiceException (UnAuthorized).
+     * 1. If user has not been authenticated and user attempts to access a protected JAXWS service definition, and user
+     * enters a valid username and password, but user is not in the required security role allowed by the JAXWS service
+     * definition then the JAXWS runtime must deny access and throw a WebServiceException (UnAuthorized).
      */
 
     public void BasicAuthTest4() throws Fault {
@@ -583,7 +557,8 @@ public class Client extends ServiceEETest {
             if (modeProperty.equals("standalone")) {
                 getProtectedUnauthIdServiceStubStandalone();
                 JAXWS_Util.setUserNameAndPassword(port2unauthid, unauthUsername, unauthPassword);
-            } else getProtectedUnauthIdServiceStub();
+            } else
+                getProtectedUnauthIdServiceStub();
             TestUtil.logMsg("Invoke RPC method authenticating with a valid" + " username/password");
             TestUtil.logMsg("User is not in the required security role to" + " access the resource");
             TestUtil.logMsg("Username=" + unauthUsername + ", Password=" + unauthPassword);
@@ -605,30 +580,26 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("BasicAuthTest4 failed: ", e);
         }
-        if (!pass) throw new Fault("BasicAuthTest4 failed");
+        if (!pass)
+            throw new Fault("BasicAuthTest4 failed");
     }
 
     /*
      * @testName: BasicAuthTest5
      *
-     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017;
-     * JAXWS:SPEC:10018; WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:115;
-     * WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221;
-     * WS4EE:SPEC:223; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
-     * WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32; WS4EE:SPEC:4011;
-     * WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
+     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017; JAXWS:SPEC:10018; WS4EE:SPEC:113;
+     * WS4EE:SPEC:114; WS4EE:SPEC:115; WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221; WS4EE:SPEC:223;
+     * WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
+     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32;
+     * WS4EE:SPEC:4011; WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
      *
-     * @test_Strategy: 1. Invoke RPC on a unprotected JAXWS service definition. 2.
-     * The JAXWS runtime must allow access without the need to authenticate.
+     * @test_Strategy: 1. Invoke RPC on a unprotected JAXWS service definition. 2. The JAXWS runtime must allow access
+     * without the need to authenticate.
      *
-     * Description Test BASIC authentication as specified in the JAXWS
-     * Specification.
+     * Description Test BASIC authentication as specified in the JAXWS Specification.
      *
-     * 1. If user has not been authenticated and user attempts to access an
-     * unprotected JAXWS service definition, then the JAXWS runtime must allow
-     * access without the need to authenticate.
+     * 1. If user has not been authenticated and user attempts to access an unprotected JAXWS service definition, then the
+     * JAXWS runtime must allow access without the need to authenticate.
      */
 
     public void BasicAuthTest5() throws Fault {
@@ -637,8 +608,10 @@ public class Client extends ServiceEETest {
         String expected = "Hello, foo!";
         try {
             TestUtil.logMsg("Get stub for Unprotected Service Definition");
-            if (modeProperty.equals("standalone")) getUnprotectedServiceStubStandalone();
-            else getUnprotectedServiceStub();
+            if (modeProperty.equals("standalone"))
+                getUnprotectedServiceStubStandalone();
+            else
+                getUnprotectedServiceStub();
             TestUtil.logMsg("Invoke RPC method without authenticating");
             TestUtil.logMsg("JAXWS runtime must allow access without the" + " need to authenticate user");
             try {
@@ -663,32 +636,27 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("BasicAuthTest5 failed: ", e);
         }
-        if (!pass) throw new Fault("BasicAuthTest5 failed");
+        if (!pass)
+            throw new Fault("BasicAuthTest5 failed");
     }
 
     /*
      * @testName: BasicAuthTest6
      *
-     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017;
-     * JAXWS:SPEC:10018; WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:115;
-     * WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221;
-     * WS4EE:SPEC:223; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
-     * WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32; WS4EE:SPEC:4011;
-     * WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
+     * @assertion_ids: JAXWS:SPEC:11006; JAXWS:SPEC:11007; JAXWS:SPEC:10017; JAXWS:SPEC:10018; WS4EE:SPEC:113;
+     * WS4EE:SPEC:114; WS4EE:SPEC:115; WS4EE:SPEC:117; WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:221; WS4EE:SPEC:223;
+     * WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
+     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002; WS4EE:SPEC:32;
+     * WS4EE:SPEC:4011; WS4EE:SPEC:9000; WS4EE:SPEC:9001; JAXWS:SPEC:129;
      *
-     * @test_Strategy: 1. Invoke RPC on a guest JAXWS service definition. 2. The
-     * JAXWS runtime must allow access since all users have access to the guest
+     * @test_Strategy: 1. Invoke RPC on a guest JAXWS service definition. 2. The JAXWS runtime must allow access since all
+     * users have access to the guest JAXWS service definition.
+     *
+     * Description Test BASIC authentication as specified in the JAXWS Specification.
+     *
+     * 1. If user has not been authenticated and user attempts to access a guest JAXWS service definition, and a user enters
+     * a valid username and password, then the JAXWS runtime must allow access since all users have access to the guest
      * JAXWS service definition.
-     *
-     * Description Test BASIC authentication as specified in the JAXWS
-     * Specification.
-     *
-     * 1. If user has not been authenticated and user attempts to access a guest
-     * JAXWS service definition, and a user enters a valid username and password,
-     * then the JAXWS runtime must allow access since all users have access to the
-     * guest JAXWS service definition.
      */
 
     public void BasicAuthTest6() throws Fault {
@@ -700,7 +668,8 @@ public class Client extends ServiceEETest {
             if (modeProperty.equals("standalone")) {
                 getGuestServiceStubStandalone();
                 JAXWS_Util.setUserNameAndPassword(port3, unauthUsername, unauthPassword);
-            } else getGuestServiceStub();
+            } else
+                getGuestServiceStub();
             TestUtil.logMsg("Invoke RPC method authenticating with a" + " valid username/password");
             TestUtil.logMsg("Username=" + unauthUsername + ", Password=" + unauthPassword);
             TestUtil.logMsg("JAXWS runtime must allow access since all" + " users have guest access");
@@ -718,7 +687,8 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("BasicAuthTest6 failed: ", e);
         }
-        if (!pass) throw new Fault("BasicAuthTest6 failed");
+        if (!pass)
+            throw new Fault("BasicAuthTest6 failed");
     }
 
     public void cleanup() throws Fault {

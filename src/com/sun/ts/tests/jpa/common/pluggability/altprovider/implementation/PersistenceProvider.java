@@ -169,14 +169,12 @@ public class PersistenceProvider
     }
 
     /**
-     * Builds static PersistenceUnitInfo instead searching for and parsing the
-     * persistence.xml to build them It might be better to make this generic and
-     * pull values from a property file so that it an be changed through
-     * configuration. For now, it builds 3 PersistenceUnitInfo's based on what was
-     * provided in the persistence.xml and persistence_ee.xml files.
+     * Builds static PersistenceUnitInfo instead searching for and parsing the persistence.xml to build them It might be
+     * better to make this generic and pull values from a property file so that it an be changed through configuration. For
+     * now, it builds 3 PersistenceUnitInfo's based on what was provided in the persistence.xml and persistence_ee.xml
+     * files.
      *
-     * @return a Map of PersistenceUnitInfo objects keyed on the name of the
-     *         persistence unit
+     * @return a Map of PersistenceUnitInfo objects keyed on the name of the persistence unit
      */
     private static Map<String, PersistenceUnitInfoImpl> getPersistenceUnitInfoMap() {
         if (puInfoMap == null) {

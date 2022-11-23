@@ -21,8 +21,7 @@ import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 
 /**
- * This tag is a simplified version of the jstl c:set tag. It assigns a String
- * value to a variable.
+ * This tag is a simplified version of the jstl c:set tag. It assigns a String value to a variable.
  */
 public class SetTag extends SimpleTagSupport {
 

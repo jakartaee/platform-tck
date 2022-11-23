@@ -25,5 +25,6 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Stateless;
 
 @Stateless()
-@Remote({CallbackIF.class})
-public class EjbCreateCallbackBean extends EjbCreateCallbackBeanBase implements CallbackIF {}
+@Remote({ CallbackIF.class })
+public class EjbCreateCallbackBean extends EjbCreateCallbackBeanBase implements CallbackIF {
+}

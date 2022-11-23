@@ -31,9 +31,12 @@ public class TimedObjectLocalBean extends BusinessLocal1Base implements Business
     @Resource
     private SessionContext sessionContext;
 
-    public TimedObjectLocalBean() {}
+    public TimedObjectLocalBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
-    public void ejbTimeout(jakarta.ejb.Timer timer) {}
+    public void ejbTimeout(jakarta.ejb.Timer timer) {
+    }
 }

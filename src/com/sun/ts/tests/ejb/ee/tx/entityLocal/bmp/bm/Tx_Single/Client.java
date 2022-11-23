@@ -82,9 +82,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.1; EJB:SPEC:583.2
      *
-     * @test_Strategy: Bean managed Tx commit - Required Entity EJBs. Start a user
-     * Transaction Create an instance of an Entity EJB (TxEBean) bean. Commit the
-     * transaction and Ensure that the instance data is updated. Ensure that the
+     * @test_Strategy: Bean managed Tx commit - Required Entity EJBs. Start a user Transaction Create an instance of an
+     * Entity EJB (TxEBean) bean. Commit the transaction and Ensure that the instance data is updated. Ensure that the
      * database fields are updated.
      *
      */
@@ -98,8 +97,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -116,10 +117,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.1; EJB:SPEC:583.2
      *
-     * @test_Strategy: Bean managed Tx rollback - Required Entity EJBs. Start a
-     * user Transaction Create an instance of an Entity EJB (TxEBean) bean.
-     * Rollback the transaction. Attempt to update the DB data Verify that a
-     * EJBException gets thrown
+     * @test_Strategy: Bean managed Tx rollback - Required Entity EJBs. Start a user Transaction Create an instance of an
+     * Entity EJB (TxEBean) bean. Rollback the transaction. Attempt to update the DB data Verify that a EJBException gets
+     * thrown
      *
      */
     public void test2() throws Fault {
@@ -132,8 +132,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test2");
             testResult = beanRef.test2();
 
-            if (!testResult) throw new Fault("test2 failed");
-            else logMsg("test2 passed");
+            if (!testResult)
+                throw new Fault("test2 failed");
+            else
+                logMsg("test2 passed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {
@@ -150,12 +152,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.1; EJB:SPEC:583.2
      *
-     * @test_Strategy: Bean managed Tx commit - Required Entity EJBs. Create an
-     * instance of the Entity EJB (TxEBean) bean. Then create another instance of
-     * that bean using FindByPrimaryKey().. Perform updates to the found Entity
-     * EJB's instance data. Commit the transaction and Ensure that the instance
-     * data is updated on method return. Ensure that the database fields are
-     * updated.
+     * @test_Strategy: Bean managed Tx commit - Required Entity EJBs. Create an instance of the Entity EJB (TxEBean) bean.
+     * Then create another instance of that bean using FindByPrimaryKey().. Perform updates to the found Entity EJB's
+     * instance data. Commit the transaction and Ensure that the instance data is updated on method return. Ensure that the
+     * database fields are updated.
      *
      */
     public void test3() throws Fault {
@@ -168,8 +168,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test3");
             testResult = beanRef.test3();
 
-            if (!testResult) throw new Fault("test3 failed");
-            else logMsg("test3 passed");
+            if (!testResult)
+                throw new Fault("test3 failed");
+            else
+                logMsg("test3 passed");
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         } finally {
@@ -186,11 +188,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.1; EJB:SPEC:583.2
      *
-     * @test_Strategy: Bean managed Tx rollback - Required Entity EJBs. Create an
-     * instances of an Entity EJB (TxEBean) bean. Then find another instance of
-     * that bean using FindByPrimaryKey().. Perform updates to the found Entity
-     * EJB's instance data. rollback the transaction and Ensure that the database
-     * fields are not updated.
+     * @test_Strategy: Bean managed Tx rollback - Required Entity EJBs. Create an instances of an Entity EJB (TxEBean) bean.
+     * Then find another instance of that bean using FindByPrimaryKey().. Perform updates to the found Entity EJB's instance
+     * data. rollback the transaction and Ensure that the database fields are not updated.
      *
      */
 
@@ -204,8 +204,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test4");
             testResult = beanRef.test4();
 
-            if (!testResult) throw new Fault("test4 failed");
-            else logMsg("test4 passed");
+            if (!testResult)
+                throw new Fault("test4 failed");
+            else
+                logMsg("test4 passed");
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         } finally {
@@ -222,10 +224,9 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Bean managed Tx commit - RequiresNew Entity EJBs. Create an
-     * instance of an Entity EJB (TxEBean) bean. Perform an update to the Entity
-     * EJB's instance data. Commit the transaction and Verify the instance data
-     * updates as well as the Database data is updated
+     * @test_Strategy: Bean managed Tx commit - RequiresNew Entity EJBs. Create an instance of an Entity EJB (TxEBean) bean.
+     * Perform an update to the Entity EJB's instance data. Commit the transaction and Verify the instance data updates as
+     * well as the Database data is updated
      *
      */
     public void test7() throws Fault {
@@ -238,8 +239,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test7");
             testResult = beanRef.test7();
 
-            if (!testResult) throw new Fault("test7 failed");
-            else logMsg("test7 passed");
+            if (!testResult)
+                throw new Fault("test7 failed");
+            else
+                logMsg("test7 passed");
         } catch (Exception e) {
             throw new Fault("test7 failed", e);
         } finally {
@@ -256,10 +259,9 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Bean managed Tx rollback - RequiresNew Entity EJBs. Create
-     * an instance of an Entity EJB (TxEBean) bean. Perform an update to the
-     * Entity EJB's instance data. Rollback the transaction and Verify the
-     * instance data updates as well as the Database data is updated
+     * @test_Strategy: Bean managed Tx rollback - RequiresNew Entity EJBs. Create an instance of an Entity EJB (TxEBean)
+     * bean. Perform an update to the Entity EJB's instance data. Rollback the transaction and Verify the instance data
+     * updates as well as the Database data is updated
      *
      */
     public void test8() throws Fault {
@@ -272,8 +274,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test8");
             testResult = beanRef.test8();
 
-            if (!testResult) throw new Fault("test8 failed");
-            else logMsg("test8 passed");
+            if (!testResult)
+                throw new Fault("test8 failed");
+            else
+                logMsg("test8 passed");
         } catch (Exception e) {
             throw new Fault("test8 failed", e);
         } finally {

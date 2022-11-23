@@ -77,8 +77,7 @@ public class StringBuilderProvider implements MessageBodyWriter<StringBuilder> {
 
     public boolean isApplicationInjectedBeforePostConstruct() {
         return /*
-                * Postconstruct has not been called yet, because this provider is a
-                * singleton
+                * Postconstruct has not been called yet, because this provider is a singleton
                 */ (value == 0 && application != null)
                 /* Or it has been called */
                 || isApplicationInjectedBeforePostConstruct;

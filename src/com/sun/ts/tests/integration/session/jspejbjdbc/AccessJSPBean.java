@@ -46,7 +46,8 @@ public class AccessJSPBean {
     public void setup(Properties p) {
         TestUtil.logTrace("setup");
         try {
-            if (p != null) TestUtil.init(p);
+            if (p != null)
+                TestUtil.init(p);
             beanRef = beanHome.create(TELLERNAME, p);
         } catch (Exception e) {
             TestUtil.logErr("AccessJSPBean: Exception occurred - " + e, e);

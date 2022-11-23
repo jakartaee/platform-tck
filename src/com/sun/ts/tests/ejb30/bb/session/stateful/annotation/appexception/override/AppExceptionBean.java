@@ -28,10 +28,11 @@ import jakarta.ejb.Stateful;
 @Stateful(name = "AppExceptionBean")
 // @Local used in AppExceptionLocalIF
 // @Local({AppExceptionLocalIF.class})
-@Remote({AppExceptionIF.class})
+@Remote({ AppExceptionIF.class })
 // this bean must be CMT. Otherwise, tx would not be propogated from
 // RollbackBean.
 // Stateless BMT and MDB BMT beans cannot have an active transaction when their
 // business method completes.
 // @TransactionManagement(TransactionManagementType.BEAN)
-public class AppExceptionBean extends AppExceptionBeanBase implements AppExceptionIF, AppExceptionLocalIF {}
+public class AppExceptionBean extends AppExceptionBeanBase implements AppExceptionIF, AppExceptionLocalIF {
+}

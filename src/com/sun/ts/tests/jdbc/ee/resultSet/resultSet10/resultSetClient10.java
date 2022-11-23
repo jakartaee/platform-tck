@@ -44,8 +44,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The resultSetClient10 class tests methods of resultSet interface using Sun's
- * J2EE Reference Implementation.
+ * The resultSetClient10 class tests methods of resultSet interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 99/10/12
@@ -91,14 +90,11 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -107,10 +103,11 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 /*
-                 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery","");
-                 * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+                 * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+                 * sqlp.load(istr);
                  */
                 sqlp = p;
 
@@ -126,9 +123,8 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
                 dbSch = new dbSchema();
                 rsSch = new rsSchema();
                 stmt = conn.createStatement(/*
-                                     * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                     * ResultSet.CONCUR_READ_ONLY
-                                     */ );
+                                             * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+                                             */ );
                 dbmd = conn.getMetaData();
                 msg = new JDBCTestMsg();
             } catch (SQLException ex) {
@@ -143,14 +139,11 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that gets the
-     * maximum value of table Tinyint_Tab.Call the getByte(int columnIndex)
-     * method. Compare the returned result with the value extracted from
-     * tssql.stmt file.Both of them should be equal and the returned result must
-     * be equal to the Maximum Value of JDBC Tinyint datatype.
+     * @test_Strategy: Get a ResultSet object by executing the query that gets the maximum value of table Tinyint_Tab.Call
+     * the getByte(int columnIndex) method. Compare the returned result with the value extracted from tssql.stmt file.Both
+     * of them should be equal and the returned result must be equal to the Maximum Value of JDBC Tinyint datatype.
      */
     public void testGetByte01() throws Fault {
         byte retValue;
@@ -197,14 +190,11 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that gets the
-     * minimum value of table Tinyint_Tab.Call the getByte(int columnIndex)
-     * method. Compare the returned result with the value extracted from
-     * tssql.stmt file.Both of them should be equal and the returned result must
-     * be equal to the minimum Value of JDBC Tinyint datatype.
+     * @test_Strategy: Get a ResultSet object by executing the query that gets the minimum value of table Tinyint_Tab.Call
+     * the getByte(int columnIndex) method. Compare the returned result with the value extracted from tssql.stmt file.Both
+     * of them should be equal and the returned result must be equal to the minimum Value of JDBC Tinyint datatype.
      */
     public void testGetByte02() throws Fault {
         byte retValue;
@@ -251,12 +241,10 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Tinyint_Tab.Call the getByte(int columnIndex)
-     * method.Check if it returns the value zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Tinyint_Tab.Call the
+     * getByte(int columnIndex) method.Check if it returns the value zero.
      */
     public void testGetByte03() throws Fault {
         byte retValue;
@@ -298,14 +286,12 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte76
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408;
-     * JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408; JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that gets the
-     * maximum value of table Tinyint_Tab.Call the getByte(String columnName)
-     * method. Compare the returned result with the value extracted from
-     * tssql.stmt file.Both of them should be equal and the returned result must
-     * be equal to the Maximum Value of JDBC Tinyint datatype.
+     * @test_Strategy: Get a ResultSet object by executing the query that gets the maximum value of table Tinyint_Tab.Call
+     * the getByte(String columnName) method. Compare the returned result with the value extracted from tssql.stmt file.Both
+     * of them should be equal and the returned result must be equal to the Maximum Value of JDBC Tinyint datatype.
      */
     public void testGetByte76() throws Fault {
         byte retValue;
@@ -355,14 +341,12 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte77
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408;
-     * JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408; JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that gets the
-     * minimum value of table Tinyint_Tab.Call the getByte(String columnName)
-     * method. Compare the returned result with the value extracted from
-     * tssql.stmt file.Both of them should be equal and the returned result must
-     * be equal to the minimum Value of JDBC Tinyint datatype.
+     * @test_Strategy: Get a ResultSet object by executing the query that gets the minimum value of table Tinyint_Tab.Call
+     * the getByte(String columnName) method. Compare the returned result with the value extracted from tssql.stmt file.Both
+     * of them should be equal and the returned result must be equal to the minimum Value of JDBC Tinyint datatype.
      */
     public void testGetByte77() throws Fault {
         byte retValue;
@@ -413,12 +397,11 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte78
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408;
-     * JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:408; JDBC:JAVADOC:409; JDBC:JAVADOC:442; JDBC:JAVADOC:443;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Tinyint_Tab.Call the getByte(String columnName)
-     * method.Check if it returns the value zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Tinyint_Tab.Call the
+     * getByte(String columnName) method.Check if it returns the value zero.
      */
     public void testGetByte78() throws Fault {
         byte retValue;
@@ -464,16 +447,13 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the maximum value of table Smallint_Tab with
-     * the maximum value of table Tinyint_Tab.Now execute a query to get the
-     * maximum value of Smallint_Tab table and retrieve the result of the query
-     * using the getByte(int columnIndex) method.Compare the returned value, with
-     * the maximum value of table Tinyint_Tab extracted from the tssql.stmt file.
-     * Both of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the maximum
+     * value of table Smallint_Tab with the maximum value of table Tinyint_Tab.Now execute a query to get the maximum value
+     * of Smallint_Tab table and retrieve the result of the query using the getByte(int columnIndex) method.Compare the
+     * returned value, with the maximum value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them should
+     * be equal.
      */
     public void testGetByte04() throws Fault {
         byte retValue;
@@ -525,16 +505,13 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte05
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the minimum value of table Smallint_Tab with
-     * the minimum value of table Tinyint_Tab.Now execute a query to get the
-     * minimum value of Smallint_Tab table and retrieve the result of the query
-     * using the getByte(int columnIndex) method.Compare the returned value, with
-     * the minimum value of table Tinyint_Tab extracted from the tssql.stmt file.
-     * Both of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the minimum
+     * value of table Smallint_Tab with the minimum value of table Tinyint_Tab.Now execute a query to get the minimum value
+     * of Smallint_Tab table and retrieve the result of the query using the getByte(int columnIndex) method.Compare the
+     * returned value, with the minimum value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them should
+     * be equal.
      */
 
     public void testGetByte05() throws Fault {
@@ -587,12 +564,10 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte06
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Smallint_Tab.Call the getByte(int columnIndex)
-     * method.Check if it returns the value zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Smallint_Tab.Call
+     * the getByte(int columnIndex) method.Check if it returns the value zero.
      */
     public void testGetByte06() throws Fault {
         byte retValue;
@@ -633,16 +608,13 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte07
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the maximum value of table Integer_Tab with the
-     * maximum value of table Tinyint_Tab.Now execute a query to get the maximum
-     * value of Integer_Tab table and retrieve the result of the query using the
-     * getByte(int columnIndex) method.Compare the returned value, with the
-     * maximum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-     * of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the maximum
+     * value of table Integer_Tab with the maximum value of table Tinyint_Tab.Now execute a query to get the maximum value
+     * of Integer_Tab table and retrieve the result of the query using the getByte(int columnIndex) method.Compare the
+     * returned value, with the maximum value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them should
+     * be equal.
      */
 
     public void testGetByte07() throws Fault {
@@ -695,16 +667,13 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte08
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the minimum value of table Integer_Tab with the
-     * minimum value of table Tinyint_Tab.Now execute a query to get the minimum
-     * value of Integer_Tab table and retrieve the result of the query using the
-     * getByte(int columnIndex) method.Compare the returned value, with the
-     * minimum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-     * of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the minimum
+     * value of table Integer_Tab with the minimum value of table Tinyint_Tab.Now execute a query to get the minimum value
+     * of Integer_Tab table and retrieve the result of the query using the getByte(int columnIndex) method.Compare the
+     * returned value, with the minimum value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them should
+     * be equal.
      */
     public void testGetByte08() throws Fault {
         byte retValue;
@@ -756,12 +725,10 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte09
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Integer_Tab.Call the getByte(int columnIndex)
-     * method.Check if it returns the value zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Integer_Tab.Call the
+     * getByte(int columnIndex) method.Check if it returns the value zero.
      */
     public void testGetByte09() throws Fault {
         byte retValue;
@@ -803,16 +770,12 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte13
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the maximum value of table Real_Tab with the
-     * maximum value of table Tinyint_Tab.Now execute a query to get the maximum
-     * value of Real_Tab table and retrieve the result of the query using the
-     * getByte(int columnIndex) method.Compare the returned value, with the
-     * maximum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-     * of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the maximum
+     * value of table Real_Tab with the maximum value of table Tinyint_Tab.Now execute a query to get the maximum value of
+     * Real_Tab table and retrieve the result of the query using the getByte(int columnIndex) method.Compare the returned
+     * value, with the maximum value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them should be equal.
      */
 
     public void testGetByte13() throws Fault {
@@ -865,16 +828,12 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte14
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the minimum value of table Real_Tab with the
-     * minimum value of table Tinyint_Tab.Now execute a query to get the minimum
-     * value of Real_Tab table and retrieve the result of the query using the
-     * getByte(int columnIndex) method.Compare the returned value, with the
-     * minimum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-     * of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the minimum
+     * value of table Real_Tab with the minimum value of table Tinyint_Tab.Now execute a query to get the minimum value of
+     * Real_Tab table and retrieve the result of the query using the getByte(int columnIndex) method.Compare the returned
+     * value, with the minimum value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testGetByte14() throws Fault {
         byte retValue;
@@ -926,12 +885,10 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte15
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Real_Tab.Call the getByte(int columnIndex)
-     * method.Check if it returns the value zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Real_Tab.Call the
+     * getByte(int columnIndex) method.Check if it returns the value zero.
      */
     public void testGetByte15() throws Fault {
         byte retValue;
@@ -973,16 +930,12 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte16
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the maximum value of table Float_Tab with the
-     * maximum value of table Tinyint_Tab.Now execute a query to get the maximum
-     * value of Float_Tab table and retrieve the result of the query using the
-     * getByte(int columnIndex) method.Compare the returned value, with the
-     * maximum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-     * of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the maximum
+     * value of table Float_Tab with the maximum value of table Tinyint_Tab.Now execute a query to get the maximum value of
+     * Float_Tab table and retrieve the result of the query using the getByte(int columnIndex) method.Compare the returned
+     * value, with the maximum value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testGetByte16() throws Fault {
         byte retValue;
@@ -1034,16 +987,12 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte17
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using this,update the minimum value of table Float_Tab with the
-     * minimum value of table Tinyint_Tab.Now execute a query to get the minimum
-     * value of Float_Tab table and retrieve the result of the query using the
-     * getByte(int columnIndex) method.Compare the returned value, with the
-     * minimum value of table Tinyint_Tab extracted from the tssql.stmt file. Both
-     * of them should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using this,update the minimum
+     * value of table Float_Tab with the minimum value of table Tinyint_Tab.Now execute a query to get the minimum value of
+     * Float_Tab table and retrieve the result of the query using the getByte(int columnIndex) method.Compare the returned
+     * value, with the minimum value of table Tinyint_Tab extracted from the tssql.stmt file. Both of them should be equal.
      */
     public void testGetByte17() throws Fault {
         byte retValue;
@@ -1095,12 +1044,10 @@ public class resultSetClient10 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte18
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376;
-     * JDBC:JAVADOC:377; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:376; JDBC:JAVADOC:377; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object by executing the query that returns
-     * null value from table Float_Tab.Call the getByte(int columnIndex)
-     * method.Check if it returns the value zero.
+     * @test_Strategy: Get a ResultSet object by executing the query that returns null value from table Float_Tab.Call the
+     * getByte(int columnIndex) method.Check if it returns the value zero.
      */
     public void testGetByte18() throws Fault {
         byte retValue;

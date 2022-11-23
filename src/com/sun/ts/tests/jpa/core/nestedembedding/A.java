@@ -59,12 +59,9 @@ public class A implements java.io.Serializable {
         this.value = value;
         this.bCol = bCol;
     } // ===========================================================
-    // relationship fields
+      // relationship fields
 
-    @OneToMany(
-            targetEntity = com.sun.ts.tests.jpa.core.nestedembedding.B.class,
-            cascade = CascadeType.ALL,
-            mappedBy = "a1")
+    @OneToMany(targetEntity = com.sun.ts.tests.jpa.core.nestedembedding.B.class, cascade = CascadeType.ALL, mappedBy = "a1")
     protected Collection bCol = new java.util.ArrayList();
 
     // =======================================================================

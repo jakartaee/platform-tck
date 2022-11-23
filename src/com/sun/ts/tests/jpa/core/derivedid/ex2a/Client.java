@@ -27,7 +27,8 @@ import java.util.Properties;
  */
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -51,8 +52,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1340; PERSISTENCE:SPEC:1341;
      *
-     * @test_Strategy: Derived Identifier The parent entity uses IdClass Case (a):
-     * The dependent entity uses IdClass
+     * @test_Strategy: Derived Identifier The parent entity uses IdClass Case (a): The dependent entity uses IdClass
      */
     public void DIDTest() throws Fault {
         boolean pass = false;

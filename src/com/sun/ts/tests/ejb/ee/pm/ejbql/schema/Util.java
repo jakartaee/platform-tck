@@ -39,11 +39,15 @@ public class Util {
         String epks = "(";
         TestUtil.logTrace("Util.checkEJBs");
         try {
-            if (pks.length == 0) epks = "()";
-            if (c.size() == 0) cpks = "()";
+            if (pks.length == 0)
+                epks = "()";
+            if (c.size() == 0)
+                cpks = "()";
             for (int i = 0; i < pks.length; i++) {
-                if (i + 1 != pks.length) epks = epks + pks[i] + ", ";
-                else epks = epks + pks[i] + ")";
+                if (i + 1 != pks.length)
+                    epks = epks + pks[i] + ", ";
+                else
+                    epks = epks + pks[i] + ")";
             }
             int k = 0;
             Iterator iterator = c.iterator();
@@ -65,8 +69,10 @@ public class Util {
                     cpks = cpks + pref.getId();
                     cpks2[k] = pref.getId();
                 }
-                if (++k != c.size()) cpks = cpks + ", ";
-                else cpks = cpks + ")";
+                if (++k != c.size())
+                    cpks = cpks + ", ";
+                else
+                    cpks = cpks + ")";
             }
             if (checkWrongSize(c, pks.length)) {
                 TestUtil.logErr("Wrong ejb's returned, expected " + "PKs of " + epks + ", got PKs of " + cpks);
@@ -84,7 +90,8 @@ public class Util {
                     oref = (Order) PortableRemoteObject.narrow(iterator.next(), Order.class);
                 else if (refType == Schema.ALIASREF)
                     aref = (Alias) PortableRemoteObject.narrow(iterator.next(), Alias.class);
-                else pref = (Product) PortableRemoteObject.narrow(iterator.next(), Product.class);
+                else
+                    pref = (Product) PortableRemoteObject.narrow(iterator.next(), Product.class);
                 foundPK = false;
                 for (int j = 0; j < pks.length; j++) {
                     if (refType == Schema.CUSTOMERREF) {
@@ -116,7 +123,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkEJBs: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -128,11 +136,15 @@ public class Util {
             boolean foundPK = false;
             String cpks = "(";
             String epks = "(";
-            if (a.length == 0) epks = "()";
-            if (c.size() == 0) cpks = "()";
+            if (a.length == 0)
+                epks = "()";
+            if (c.size() == 0)
+                cpks = "()";
             for (int i = 0; i < a.length; i++) {
-                if (i + 1 != a.length) epks = epks + a[i].getId() + ", ";
-                else epks = epks + a[i].getId() + ")";
+                if (i + 1 != a.length)
+                    epks = epks + a[i].getId() + ", ";
+                else
+                    epks = epks + a[i].getId() + ")";
             }
             int k = 0;
             Iterator iterator = c.iterator();
@@ -141,8 +153,10 @@ public class Util {
                 AddressDVC advc = (AddressDVC) iterator.next();
                 cpks = cpks + advc.getId();
                 pks[k] = advc.getId();
-                if (++k != c.size()) cpks = cpks + ", ";
-                else cpks = cpks + ")";
+                if (++k != c.size())
+                    cpks = cpks + ", ";
+                else
+                    cpks = cpks + ")";
             }
             if (checkWrongSize(c, a.length)) {
                 TestUtil.logErr("Wrong AddressDVC's returned, expected " + "PKs of " + epks + ", got PKs of " + cpks);
@@ -172,7 +186,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkAddressDVCs: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -184,11 +199,15 @@ public class Util {
             boolean foundPK = false;
             String cpks = "(";
             String epks = "(";
-            if (a.length == 0) epks = "()";
-            if (c.size() == 0) cpks = "()";
+            if (a.length == 0)
+                epks = "()";
+            if (c.size() == 0)
+                cpks = "()";
             for (int i = 0; i < a.length; i++) {
-                if (i + 1 != a.length) epks = epks + a[i].getId() + ", ";
-                else epks = epks + a[i].getId() + ")";
+                if (i + 1 != a.length)
+                    epks = epks + a[i].getId() + ", ";
+                else
+                    epks = epks + a[i].getId() + ")";
             }
             int k = 0;
             Iterator iterator = c.iterator();
@@ -197,8 +216,10 @@ public class Util {
                 LineItemDVC ldvc = (LineItemDVC) iterator.next();
                 cpks = cpks + ldvc.getId();
                 pks[k] = ldvc.getId();
-                if (++k != c.size()) cpks = cpks + ", ";
-                else cpks = cpks + ")";
+                if (++k != c.size())
+                    cpks = cpks + ", ";
+                else
+                    cpks = cpks + ")";
             }
             if (checkWrongSize(c, a.length)) {
                 TestUtil.logErr("Wrong LineItemDVC's returned, expected " + "PKs of " + epks + ", got PKs of " + cpks);
@@ -228,7 +249,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkLineItemDVCs: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -240,11 +262,15 @@ public class Util {
             boolean foundPK = false;
             String cpks = "(";
             String epks = "(";
-            if (a.length == 0) epks = "()";
-            if (c.size() == 0) cpks = "()";
+            if (a.length == 0)
+                epks = "()";
+            if (c.size() == 0)
+                cpks = "()";
             for (int i = 0; i < a.length; i++) {
-                if (i + 1 != a.length) epks = epks + a[i].getId() + ", ";
-                else epks = epks + a[i].getId() + ")";
+                if (i + 1 != a.length)
+                    epks = epks + a[i].getId() + ", ";
+                else
+                    epks = epks + a[i].getId() + ")";
             }
             int k = 0;
             Iterator iterator = c.iterator();
@@ -253,8 +279,10 @@ public class Util {
                 CreditCardDVC advc = (CreditCardDVC) iterator.next();
                 cpks = cpks + advc.getId();
                 pks[k] = advc.getId();
-                if (++k != c.size()) cpks = cpks + ", ";
-                else cpks = cpks + ")";
+                if (++k != c.size())
+                    cpks = cpks + ", ";
+                else
+                    cpks = cpks + ")";
             }
             if (checkWrongSize(c, a.length)) {
                 TestUtil.logErr(
@@ -285,7 +313,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkCreditCardDVCs: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -297,11 +326,15 @@ public class Util {
             boolean foundPK = false;
             String cpks = "(";
             String epks = "(";
-            if (a.length == 0) epks = "()";
-            if (c.size() == 0) cpks = "()";
+            if (a.length == 0)
+                epks = "()";
+            if (c.size() == 0)
+                cpks = "()";
             for (int i = 0; i < a.length; i++) {
-                if (i + 1 != a.length) epks = epks + a[i].getId() + ", ";
-                else epks = epks + a[i].getId() + ")";
+                if (i + 1 != a.length)
+                    epks = epks + a[i].getId() + ", ";
+                else
+                    epks = epks + a[i].getId() + ")";
             }
             int k = 0;
             Iterator iterator = c.iterator();
@@ -310,8 +343,10 @@ public class Util {
                 PhoneDVC advc = (PhoneDVC) iterator.next();
                 cpks = cpks + advc.getId();
                 pks[k] = advc.getId();
-                if (++k != c.size()) cpks = cpks + ", ";
-                else cpks = cpks + ")";
+                if (++k != c.size())
+                    cpks = cpks + ", ";
+                else
+                    cpks = cpks + ")";
             }
             if (checkWrongSize(c, a.length)) {
                 TestUtil.logErr("Wrong PhoneDVC's returned, expected " + "PKs of " + epks + ", got PKs of " + cpks);
@@ -339,7 +374,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkPhoneDVCs: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -354,7 +390,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkEJB: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -369,7 +406,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkEJB: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -384,7 +422,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkEJB: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -399,7 +438,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkEJB: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -415,7 +455,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkAddressDVC: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -431,7 +472,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkLineItemDVC: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -447,7 +489,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkCreditCardDVC: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -463,7 +506,8 @@ public class Util {
             }
         } catch (Exception e) {
             TestUtil.logErr("Exception in Util.checkPhoneDVC: " + e);
-            if (debug) TestUtil.printStackTrace(e);
+            if (debug)
+                TestUtil.printStackTrace(e);
             return false;
         }
         return true;
@@ -483,7 +527,8 @@ public class Util {
         boolean duplicates = false;
         for (int i = 0; i < s.length; i++) {
             for (int j = 0; j < s.length; j++) {
-                if (i == j) continue;
+                if (i == j)
+                    continue;
                 if (s[i].equals(s[j])) {
                     duplicates = true;
                     break;

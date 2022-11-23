@@ -37,7 +37,8 @@ public class DID6Person implements Serializable {
         this.ssn = ssn;
     }
 
-    public DID6Person() {}
+    public DID6Person() {
+    }
 
     public String getSsn() {
         return ssn;

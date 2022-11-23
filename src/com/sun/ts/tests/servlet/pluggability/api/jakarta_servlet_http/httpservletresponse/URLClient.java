@@ -28,9 +28,8 @@ public class URLClient extends HttpResponseClient {
     private static final String CONTEXT_ROOT = "/servlet_pluh_httpservletresponse_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends HttpResponseClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -78,8 +76,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:625;
      *
-     * @test_Strategy: Validate that getLocale() will return the default locale of
-     * the VM that the container is running in when setLocale() is not called.
+     * @test_Strategy: Validate that getLocale() will return the default locale of the VM that the container is running in
+     * when setLocale() is not called.
      */
 
     /*
@@ -104,18 +102,15 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:611
      *
-     * @test_Strategy: Servlet tries to get an stream object after calling
-     * getWriter
+     * @test_Strategy: Servlet tries to get an stream object after calling getWriter
      */
     /*
      * @testName: getWriterTest
      *
-     * @assertion_ids: Servlet:JAVADOC:612; Servlet:JAVADOC:151.2;
-     * Servlet:JAVADOC:151.3;
+     * @assertion_ids: Servlet:JAVADOC:612; Servlet:JAVADOC:151.2; Servlet:JAVADOC:151.3;
      *
-     * @test_Strategy: Servlet gets a Writer object and writes data; sets content
-     * type by calling ServletResponse.setContentType; Verify that content type
-     * gets set, not encoding
+     * @test_Strategy: Servlet gets a Writer object and writes data; sets content type by calling
+     * ServletResponse.setContentType; Verify that content type gets set, not encoding
      */
 
     /*
@@ -123,8 +118,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:615
      *
-     * @test_Strategy: Servlet tries to get a Writer object after calling
-     * getOutputStream
+     * @test_Strategy: Servlet tries to get a Writer object after calling getOutputStream
      */
 
     /*
@@ -141,8 +135,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:619; Servlet:SPEC:31;
      *
-     * @test_Strategy: Servlet writes data to the response, resets the buffer and
-     * then writes new data
+     * @test_Strategy: Servlet writes data to the response, resets the buffer and then writes new data
      */
 
     /*
@@ -150,8 +143,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:617; Servlet:SPEC:31;
      *
-     * @test_Strategy: Servlet writes data to the response, does a reset, then
-     * writes new data
+     * @test_Strategy: Servlet writes data to the response, does a reset, then writes new data
      */
 
     /*
@@ -159,8 +151,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:617; Servlet:SPEC:31;
      *
-     * @test_Strategy: Servlet writes data to the response, set the Headers, does
-     * a reset, then writes new data, set the new Header
+     * @test_Strategy: Servlet writes data to the response, set the Headers, does a reset, then writes new data, set the new
+     * Header
      */
 
     /*
@@ -168,8 +160,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:618; Servlet:SPEC:31;
      *
-     * @test_Strategy: Servlet writes data, flushes the buffer then tries to do a
-     * reset
+     * @test_Strategy: Servlet writes data, flushes the buffer then tries to do a reset
      */
 
     /*
@@ -193,8 +184,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:622; Servlet:JAVADOC:151.3;
      *
-     * @test_Strategy: Servlet set encoding by calling
-     * ServletResponse.setCharcaterEncoding; client verifies it is set
+     * @test_Strategy: Servlet set encoding by calling ServletResponse.setCharcaterEncoding; client verifies it is set
      */
     /*
      * @testName: setBufferSizeTest
@@ -208,8 +198,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:621
      *
-     * @test_Strategy: Servlet writes data and flushes buffer then tries to get
-     * the buffer size
+     * @test_Strategy: Servlet writes data and flushes buffer then tries to get the buffer size
      */
     /*
      * @testName: setContentLengthTest
@@ -238,30 +227,25 @@ public class URLClient extends HttpResponseClient {
     /*
      * @testName: setContentTypeTest
      *
-     * @assertion_ids: Servlet:JAVADOC:624; Servlet:JAVADOC:151.3;
-     * Servlet:SPEC:34;
+     * @assertion_ids: Servlet:JAVADOC:624; Servlet:JAVADOC:151.3; Servlet:SPEC:34;
      *
-     * @test_Strategy: Servlet sets the content type; Verify Content-Type is set
-     * in Client
+     * @test_Strategy: Servlet sets the content type; Verify Content-Type is set in Client
      */
     /*
      * @testName: setContentType1Test
      *
      * @assertion_ids: Servlet:JAVADOC:151; Servlet:SPEC:34;
      *
-     * @test_Strategy: Servlet sets the content-type, and verifies it with
-     * getContentType()
+     * @test_Strategy: Servlet sets the content-type, and verifies it with getContentType()
      */
 
     /*
      * @testName: setContentType2Test
      *
-     * @assertion_ids: Servlet:JAVADOC:151.2; Servlet:JAVADOC:151.3;
-     * Servlet:SPEC:34;
+     * @assertion_ids: Servlet:JAVADOC:151.2; Servlet:JAVADOC:151.3; Servlet:SPEC:34;
      *
-     * @test_Strategy: Servlet sets the content-type, Commit the response; Set the
-     * content-type again Verifies that content-type is set the first time The
-     * second setting is ignored.
+     * @test_Strategy: Servlet sets the content-type, Commit the response; Set the content-type again Verifies that
+     * content-type is set the first time The second setting is ignored.
      */
 
     /*
@@ -298,8 +282,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:525
      *
-     * @test_Strategy: Servlet adds 2 headers with 3 values and client verifies
-     * them
+     * @test_Strategy: Servlet adds 2 headers with 3 values and client verifies them
      */
 
     /*
@@ -307,8 +290,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:527
      *
-     * @test_Strategy: Servlet adds 2 int headers with 3 values and client
-     * verifies them
+     * @test_Strategy: Servlet adds 2 int headers with 3 values and client verifies them
      */
 
     /*
@@ -316,8 +298,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:503
      *
-     * @test_Strategy: Servlet sets a header and verifies it exists, then the
-     * servlet tries to verify that a header does not exist.
+     * @test_Strategy: Servlet sets a header and verifies it exists, then the servlet tries to verify that a header does not
+     * exist.
      */
 
     /*
@@ -325,8 +307,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:514
      *
-     * @test_Strategy: Servlet adds a header, a cookie, and content, then flushes
-     * the buffer. Servlet verifies exception is generated
+     * @test_Strategy: Servlet adds a header, a cookie, and content, then flushes the buffer. Servlet verifies exception is
+     * generated
      */
 
     /*
@@ -334,8 +316,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:511
      *
-     * @test_Strategy: Servlet adds a header, a cookie, and content, then flushes
-     * the buffer. Servlet verifies exception is generated
+     * @test_Strategy: Servlet adds a header, a cookie, and content, then flushes the buffer. Servlet verifies exception is
+     * generated
      */
 
     /*
@@ -343,8 +325,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:512; Servlet:SPEC:39;
      *
-     * @test_Strategy: Servlet adds content and an error, client verifies the
-     * error and that the content was cleared
+     * @test_Strategy: Servlet adds content and an error, client verifies the error and that the content was cleared
      */
 
     /*
@@ -352,8 +333,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:508
      *
-     * @test_Strategy: Servlet adds a header, a cookie and an error, client
-     * verifies the error and that the header still exists
+     * @test_Strategy: Servlet adds a header, a cookie and an error, client verifies the error and that the header still
+     * exists
      */
 
     /*
@@ -361,9 +342,8 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:509
      *
-     * @test_Strategy: Servlet adds a header, a cookie and content and an error.
-     * There also is an error page configured to catch error. Client verifies the
-     * error.
+     * @test_Strategy: Servlet adds a header, a cookie and content and an error. There also is an error page configured to
+     * catch error. Client verifies the error.
      */
 
     /*
@@ -403,8 +383,7 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:521
      *
-     * @test_Strategy: Servlet sets the same date header twice and client verifies
-     * it
+     * @test_Strategy: Servlet sets the same date header twice and client verifies it
      */
 
     /*
@@ -426,11 +405,9 @@ public class URLClient extends HttpResponseClient {
     /*
      * @testName: setMultiHeaderTest
      *
-     * @assertion_ids: Servlet:SPEC:183; Servlet:JAVADOC:523; Servlet:JAVADOC:525;
-     * Servlet:JAVADOC:524
+     * @assertion_ids: Servlet:SPEC:183; Servlet:JAVADOC:523; Servlet:JAVADOC:525; Servlet:JAVADOC:524
      *
-     * @test_Strategy: Servlet sets the multivalues for the same header; verify
-     * that setHeader clear all with new value
+     * @test_Strategy: Servlet sets the multivalues for the same header; verify that setHeader clear all with new value
      */
 
     /*

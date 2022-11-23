@@ -39,20 +39,25 @@ public class TimerBeanEJB implements SessionBean, TimedObject {
 
     private TSNamingContext nctx = null;
 
-    public void ejbCreate() throws CreateException {}
+    public void ejbCreate() throws CreateException {
+    }
 
     public void setSessionContext(SessionContext sc) {
         TestUtil.logTrace("setSessionContext");
         this.sctx = sc;
     }
 
-    public void ejbRemove() {}
+    public void ejbRemove() {
+    }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 
-    public void ejbTimeout(jakarta.ejb.Timer timer) {}
+    public void ejbTimeout(jakarta.ejb.Timer timer) {
+    }
 
     /*
      * ====================== Test Methods ======================

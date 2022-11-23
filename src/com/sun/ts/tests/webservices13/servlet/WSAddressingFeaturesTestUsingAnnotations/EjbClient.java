@@ -28,7 +28,7 @@ import jakarta.xml.ws.soap.*;
 import java.util.*;
 
 @Stateless(name = "WSAddressingFeaturesTestUsingAnnotationsClntBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
     private Properties harnessProps = null;
@@ -119,7 +119,8 @@ public class EjbClient implements EjbClientIF {
             return VerifyExceptionThrownForRequiredEcho2Port();
         else if (testName.equals("VerifyAddrHeadersDoNotExistForDisabledEcho2Port"))
             return VerifyAddrHeadersDoNotExistForDisabledEcho2Port();
-        else return VerifyAddrHeadersMayExistForEnabledEcho2Port();
+        else
+            return VerifyAddrHeadersMayExistForEnabledEcho2Port();
     }
 
     private boolean VerifyAddrHeadersExistForRequiredEchoPort() {

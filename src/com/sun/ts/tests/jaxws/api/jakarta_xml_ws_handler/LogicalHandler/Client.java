@@ -107,8 +107,7 @@ public class Client extends ServiceEETest {
 
     private QName PORT_QNAME2 = new QName(NAMESPACEURI, PORT_NAME2);
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.DLHandlerService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.DLHandlerService.class;
 
     private static final String THEBINDINGPROTOCOL = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING;
 
@@ -272,8 +271,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -327,13 +328,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: ClientLogicalHandlerTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9012;
-     * JAXWS:SPEC:9014; JAXWS:SPEC:9015.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
-     * WS4EE:SPEC:6010; WS4EE:SPEC:6015.1; WS4EE:SPEC:6015.2; WS4EE:SPEC:6015.3;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9012; JAXWS:SPEC:9014; JAXWS:SPEC:9015.1;
+     * JAXWS:SPEC:9017; JAXWS:SPEC:9018; WS4EE:SPEC:6010; WS4EE:SPEC:6015.1; WS4EE:SPEC:6015.2; WS4EE:SPEC:6015.3;
      * WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005; WS4EE:SPEC:6051;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the client-side
-     * logical message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the client-side logical message handler callbacks are called.
      */
     public void ClientLogicalHandlerTest() throws Fault {
         TestUtil.logTrace("ClientLogicalHandlerTest");
@@ -480,18 +479,17 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalHandlerTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalHandlerTest failed");
     }
 
     /*
      * @testName: ServerLogicalHandlerTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018; WS4EE:SPEC:6010;
-     * WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005; WS4EE:SPEC:6051;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.1; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018; WS4EE:SPEC:6010; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005; WS4EE:SPEC:6051;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ServerLogicalHandlerTest() throws Fault {
         TestUtil.logTrace("ServerLogicalHandlerTest");
@@ -585,26 +583,23 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerLogicalHandlerTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalHandlerTest failed");
     }
 
     /*
      * @testName: ClientLogicalInboundHandleMessageThrowsRuntimeExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.4.2; JAXWS:SPEC:9016.1; JAXWS:SPEC:9017;
-     * JAXWS:SPEC:9018; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.4.2; JAXWS:SPEC:9016.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018; WS4EE:SPEC:6008;
+     * WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler4 throws a RuntimeException in handleMessage method
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doInbound()
-     * ClientLogicalHandler4.handleMessage().doInbound() ClientLogicalHandler4
-     * Throwing an inbound RuntimeException ClientLogicalHandler6.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler4 throws a RuntimeException in handleMessage method
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler6.handleMessage().doOutbound()
+     * ClientLogicalHandler6.handleMessage().doInbound() ClientLogicalHandler4.handleMessage().doInbound()
+     * ClientLogicalHandler4 Throwing an inbound RuntimeException ClientLogicalHandler6.close()
      * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalInboundHandleMessageThrowsRuntimeExceptionTest() throws Fault {
@@ -691,7 +686,8 @@ public class Client extends ServiceEETest {
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
                     String tmp = "ClientLogicalHandler4.handleMessage throwing an inbound RuntimeException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected RuntimeException text");
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected RuntimeException text");
                     else {
                         TestUtil.logErr("Did not get expected RuntimeException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -736,26 +732,22 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalInboundHandleMessageThrowsRuntimeExceptionTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalInboundHandleMessageThrowsRuntimeExceptionTest failed");
     }
 
     /*
      * @testName: ClientLogicalInboundHandleMessageThrowsSOAPFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.3.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.3.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler4 throws a SOAPFaultException in handleMessage method
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doInbound()
-     * ClientLogicalHandler4.handleMessage().doInbound() ClientLogicalHandler4
-     * Throwing an inbound SOAPFaultException ClientLogicalHandler6.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler4 throws a SOAPFaultException in handleMessage method
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler6.handleMessage().doOutbound()
+     * ClientLogicalHandler6.handleMessage().doInbound() ClientLogicalHandler4.handleMessage().doInbound()
+     * ClientLogicalHandler4 Throwing an inbound SOAPFaultException ClientLogicalHandler6.close()
      * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalInboundHandleMessageThrowsSOAPFaultTest() throws Fault {
@@ -841,9 +833,9 @@ public class Client extends ServiceEETest {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
-                    String tmp =
-                            "SOAPFaultException: ClientLogicalHandler4.handleMessage throwing an inbound SOAPFaultException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected WebServiceException text");
+                    String tmp = "SOAPFaultException: ClientLogicalHandler4.handleMessage throwing an inbound SOAPFaultException";
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected WebServiceException text");
                     else {
                         TestUtil.logErr("Did not get expected WebServiceException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -888,24 +880,21 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalInboundHandleMessageThrowsSOAPFaultTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalInboundHandleMessageThrowsSOAPFaultTest failed");
     }
 
     /*
      * @testName: ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.3.1; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.3.1; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler4 throws a SOAPFaultException in handleMessage method
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler4
-     * Throwing an inbound SOAPFaultException ClientLogicalHandler4.close()
-     * ClientLogicalHandler5.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler4 throws a SOAPFaultException in handleMessage method
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler4 Throwing an inbound SOAPFaultException
+     * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest() throws Fault {
         TestUtil.logTrace("ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest");
@@ -991,7 +980,8 @@ public class Client extends ServiceEETest {
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
                     String tmp = "ClientLogicalHandler4.handleMessage throwing an outbound SOAPFaultException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected SOAPFaultException text");
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected SOAPFaultException text");
                     else {
                         TestUtil.logErr("Did not get expected SOAPFaultException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -1036,24 +1026,22 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalOutboundHandleMessageThrowsSOAPFaultTest failed");
     }
 
     /*
      * @testName: ServerLogicalInboundHandleMessageThrowsRuntimeExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.4.1; JAXWS:SPEC:9016.1; JAXWS:SPEC:9017;
-     * JAXWS:SPEC:9018; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.4.1; JAXWS:SPEC:9016.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018; WS4EE:SPEC:6008;
+     * WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the server-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ServerLogicalHandler4 throws a RuntimeException in handleMessage method
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound() ServerLogicalHandler4
-     * Throwing an inbound RuntimeException ServerLogicalHandler4.close()
-     * ServerLogicalHandler6.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the server-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ServerLogicalHandler4 throws a RuntimeException in handleMessage method
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ServerLogicalHandler6.handleMessage().doInbound()
+     * ServerLogicalHandler4.handleMessage().doInbound() ServerLogicalHandler4 Throwing an inbound RuntimeException
+     * ServerLogicalHandler4.close() ServerLogicalHandler6.close()
      */
     public void ServerLogicalInboundHandleMessageThrowsRuntimeExceptionTest() throws Fault {
         TestUtil.logTrace("ServerLogicalInboundHandleMessageThrowsRuntimeExceptionTest");
@@ -1150,25 +1138,21 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("ServerLogicalInboundHandleMessageThrowsRuntimeExceptionTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalInboundHandleMessageThrowsRuntimeExceptionTest failed");
     }
 
     /*
      * @testName: ServerLogicalInboundHandleMessageThrowsSOAPFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.3.1; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.3.1; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the server-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ServerLogicalHandler4 throws a RuntimeException in handleMessage method
-     * while processing an inbound message.
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound() ServerLogicalHandler4
-     * Throwing an inbound SOAPFaultException ServerLogicalHandler6.handleFault()
-     * ServerLogicalHandler4.close() ServerLogicalHandler6.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the server-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ServerLogicalHandler4 throws a RuntimeException in handleMessage method while processing an inbound message.
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ServerLogicalHandler6.handleMessage().doInbound()
+     * ServerLogicalHandler4.handleMessage().doInbound() ServerLogicalHandler4 Throwing an inbound SOAPFaultException
+     * ServerLogicalHandler6.handleFault() ServerLogicalHandler4.close() ServerLogicalHandler6.close()
      */
     public void ServerLogicalInboundHandleMessageThrowsSOAPFaultTest() throws Fault {
         TestUtil.logTrace("ServerLogicalInboundHandleMessageThrowsSOAPFaultTest");
@@ -1265,27 +1249,22 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("ServerLogicalInboundHandleMessageThrowsSOAPFaultTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalInboundHandleMessageThrowsSOAPFaultTest failed");
     }
 
     /*
      * @testName: ServerLogicalOutboundHandleMessageThrowsSOAPFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.3.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.3.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the server-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ServerLogicalHandler4 throws a SOAPFaultException in handleMessage method
-     * while processing an outbound message.
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doOutbound()
-     * ServerLogicalHandler4.handleMessage().doOutbound() ServerLogicalHandler4
-     * Throwing an outbound SOAPFaultException ServerLogicalHandler5.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the server-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ServerLogicalHandler4 throws a SOAPFaultException in handleMessage method while processing an outbound
+     * message. ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ServerLogicalHandler6.handleMessage().doInbound()
+     * ServerLogicalHandler4.handleMessage().doInbound() ServerLogicalHandler5.handleMessage().doInbound()
+     * ServerLogicalHandler5.handleMessage().doOutbound() ServerLogicalHandler4.handleMessage().doOutbound()
+     * ServerLogicalHandler4 Throwing an outbound SOAPFaultException ServerLogicalHandler5.close()
      * ServerLogicalHandler4.close() ServerLogicalHandler6.close()
      */
     public void ServerLogicalOutboundHandleMessageThrowsSOAPFaultTest() throws Fault {
@@ -1383,26 +1362,23 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("ServerLogicalOutboundHandleMessageThrowsSOAPFaultTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalOutboundHandleMessageThrowsSOAPFaultTest failed");
     }
 
     /*
      * @testName: ClientLogicalOutboundHandleMessageThrowsRuntimeExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.4.1; JAXWS:SPEC:9016.1; JAXWS:SPEC:9017;
-     * JAXWS:SPEC:9018; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.4.1; JAXWS:SPEC:9016.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018; WS4EE:SPEC:6008;
+     * WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler4 throws a RuntimeException in handleMessage method
-     * while processing an outbound message.
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler4
-     * Throwing an inbound RuntimeException ClientLogicalHandler4.close()
-     * ClientLogicalHandler5.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler4 throws a RuntimeException in handleMessage method while processing an outbound
+     * message. ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler4 Throwing an inbound RuntimeException
+     * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalOutboundHandleMessageThrowsRuntimeExceptionTest() throws Fault {
         TestUtil.logTrace("ClientLogicalOutboundHandleMessageThrowsRuntimeExceptionTest");
@@ -1488,7 +1464,8 @@ public class Client extends ServiceEETest {
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
                     String tmp = "ClientLogicalHandler4.handleMessage throwing an outbound RuntimeException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected RuntimeException text");
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected RuntimeException text");
                     else {
                         TestUtil.logErr("Did not get expected RuntimeException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -1534,28 +1511,24 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalOutboundHandleMessageThrowsRuntimeExceptionTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalOutboundHandleMessageThrowsRuntimeExceptionTest failed");
     }
 
     /*
      * @testName: ServerLogicalOutboundHandleMessageThrowsRuntimeExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.4.2; JAXWS:SPEC:9016.1; JAXWS:SPEC:9017;
-     * JAXWS:SPEC:9018; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.4.2; JAXWS:SPEC:9016.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018; WS4EE:SPEC:6008;
+     * WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the server-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ServerLogicalHandler4 throws a RuntimeException in handleMessage method
-     * while processing an outbound message.
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doOutbound()
-     * ServerLogicalHandler4.handleMessage().doOutbound() ServerLogicalHandler4
-     * Throwing an outbound RuntimeException ServerLogicalHandler5.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the server-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ServerLogicalHandler4 throws a RuntimeException in handleMessage method while processing an outbound
+     * message. ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ServerLogicalHandler6.handleMessage().doInbound()
+     * ServerLogicalHandler4.handleMessage().doInbound() ServerLogicalHandler5.handleMessage().doInbound()
+     * ServerLogicalHandler5.handleMessage().doOutbound() ServerLogicalHandler4.handleMessage().doOutbound()
+     * ServerLogicalHandler4 Throwing an outbound RuntimeException ServerLogicalHandler5.close()
      * ServerLogicalHandler4.close() ServerLogicalHandler6.close()
      */
     public void ServerLogicalOutboundHandleMessageThrowsRuntimeExceptionTest() throws Fault {
@@ -1653,27 +1626,24 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerLogicalOutboundHandleMessageThrowsRuntimeExceptionTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalOutboundHandleMessageThrowsRuntimeExceptionTest failed");
     }
 
     /*
      * @testName: ServerEndpointRemoteRuntimeExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:9016.4; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
-     * WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9016.4; JAXWS:SPEC:9017; JAXWS:SPEC:9018; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
+     * WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side
-     * handlers callbacks are called. Endpoint throws a RuntimeException that is
-     * wrapped by a WebServiceException
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side handlers callbacks are called. Endpoint throws a
+     * RuntimeException that is wrapped by a WebServiceException
      *
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleFault() ServerLogicalHandler4.handleFault()
-     * ServerLogicalHandler6.handleFault() ServerLogicalHandler5.close()
-     * ServerLogicalHandler4.close() ServerLogicalHandler6.close()
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ServerLogicalHandler6.handleMessage().doInbound()
+     * ServerLogicalHandler4.handleMessage().doInbound() ServerLogicalHandler5.handleMessage().doInbound()
+     * ServerLogicalHandler5.handleFault() ServerLogicalHandler4.handleFault() ServerLogicalHandler6.handleFault()
+     * ServerLogicalHandler5.close() ServerLogicalHandler4.close() ServerLogicalHandler6.close()
      *
      */
     public void ServerEndpointRemoteRuntimeExceptionTest() throws Fault {
@@ -1760,27 +1730,24 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerEndpointRemoteRuntimeExceptionTest failed");
+        if (!pass)
+            throw new Fault("ServerEndpointRemoteRuntimeExceptionTest failed");
     }
 
     /*
      * @testName: ServerEndpointRemoteSOAPFaultExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:9016.3; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
-     * WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9016.3; JAXWS:SPEC:9017; JAXWS:SPEC:9018; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
+     * WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side
-     * handler callbacks are called. Endpoint throws a SOAPFaultException that is
-     * wrapped by a WebServiceException
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side handler callbacks are called. Endpoint throws a
+     * SOAPFaultException that is wrapped by a WebServiceException
      *
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleFault() ServerLogicalHandler4.handleFault()
-     * ServerLogicalHandler6.handleFault() ServerLogicalHandler5.close()
-     * ServerLogicalHandler4.close() ServerLogicalHandler6.close()
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ServerLogicalHandler6.handleMessage().doInbound()
+     * ServerLogicalHandler4.handleMessage().doInbound() ServerLogicalHandler5.handleMessage().doInbound()
+     * ServerLogicalHandler5.handleFault() ServerLogicalHandler4.handleFault() ServerLogicalHandler6.handleFault()
+     * ServerLogicalHandler5.close() ServerLogicalHandler4.close() ServerLogicalHandler6.close()
      *
      */
     public void ServerEndpointRemoteSOAPFaultExceptionTest() throws Fault {
@@ -1867,24 +1834,21 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerEndpointRemoteSOAPFaultExceptionTest failed");
+        if (!pass)
+            throw new Fault("ServerEndpointRemoteSOAPFaultExceptionTest failed");
     }
 
     /*
      * @testName: ServerLogicalInboundHandleMessageFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.2.1; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005; JAXWS:SPEC:11003; JAXWS:SPEC:10007
+     * @assertion_ids: JAXWS:SPEC:9015.2.1; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005; JAXWS:SPEC:11003;
+     * JAXWS:SPEC:10007
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the server-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ServerLogicalHandler4 returns false in the handleMessage method while
-     * processing an inbound message.
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound()
-     * ServerLogicalHandler6.handleMessage().doOutbound()
+     * @test_Strategy: Invoke an RPC method. Verify that the server-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ServerLogicalHandler4 returns false in the handleMessage method while processing an inbound message.
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ServerLogicalHandler6.handleMessage().doInbound()
+     * ServerLogicalHandler4.handleMessage().doInbound() ServerLogicalHandler6.handleMessage().doOutbound()
      * ServerLogicalHandler4.close() ServerLogicalHandler6.close()
      */
     public void ServerLogicalInboundHandleMessageFalseTest() throws Fault {
@@ -1943,28 +1907,22 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("ServerLogicalInboundHandleMessageFalseTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalInboundHandleMessageFalseTest failed");
     }
 
     /*
      * @testName: ServerLogicalOutboundHandleMessageFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.2.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.2.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the server-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ServerLogicalHandler4 returns false in the handleMessage method while
-     * processing an outbound message.
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doOutbound()
-     * ServerLogicalHandler4.handleMessage().doOutbound()
-     * ServerLogicalHandler5.close() ServerLogicalHandler4.close()
-     * ServerLogicalHandler6.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the server-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ServerLogicalHandler4 returns false in the handleMessage method while processing an outbound message.
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ServerLogicalHandler6.handleMessage().doInbound()
+     * ServerLogicalHandler4.handleMessage().doInbound() ServerLogicalHandler5.handleMessage().doInbound()
+     * ServerLogicalHandler5.handleMessage().doOutbound() ServerLogicalHandler4.handleMessage().doOutbound()
+     * ServerLogicalHandler5.close() ServerLogicalHandler4.close() ServerLogicalHandler6.close()
      */
     public void ServerLogicalOutboundHandleMessageFalseTest() throws Fault {
         TestUtil.logTrace("ServerLogicalOutboundHandleMessageFalseTest");
@@ -2022,28 +1980,22 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("ServerLogicalOutboundHandleMessageFalseTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalOutboundHandleMessageFalseTest failed");
     }
 
     /*
      * @testName: ClientLogicalInboundHandleMessageFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.2.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.2.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler4 returns false in the handleMessage method while
-     * processing an inbound message.
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doInbound()
-     * ClientLogicalHandler4.handleMessage().doInbound()
-     * ClientLogicalHandler6.close() ClientLogicalHandler4.close()
-     * ClientLogicalHandler5.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler4 returns false in the handleMessage method while processing an inbound message.
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler6.handleMessage().doOutbound()
+     * ClientLogicalHandler6.handleMessage().doInbound() ClientLogicalHandler4.handleMessage().doInbound()
+     * ClientLogicalHandler6.close() ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalInboundHandleMessageFalseTest() throws Fault {
         TestUtil.logTrace("ClientLogicalInboundHandleMessageFalseTest");
@@ -2158,24 +2110,20 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalInboundHandleMessageFalseTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalInboundHandleMessageFalseTest failed");
     }
 
     /*
      * @testName: ClientLogicalOutboundHandleMessageFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:9015.2.1; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9015.2.1; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler4 returns false in the handleMessage method while
-     * processing an outbound message.
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler5.handleMessage().doInbound()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler4 returns false in the handleMessage method while processing an outbound message.
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler5.handleMessage().doInbound()
      * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalOutboundHandleMessageFalseTest() throws Fault {
@@ -2291,26 +2239,22 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalOutboundHandleMessageFalseTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalOutboundHandleMessageFalseTest failed");
     }
 
     /*
      * @testName: ClientLogicalOutboundHandleFaultFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:9016.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9016.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleFault callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler6 throws a SOAPFaultException ClientLogicalHandler4
-     * returns a false for handleFault method while processing an outbound
-     * message. ------------------------------------------------------- This is
-     * the expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doOutbound() ClientLogicalHandler6
-     * Throwing an outbound SOAPFaultException ClientLogicalHandler4.handleFault()
-     * ClientLogicalHandler6.close() ClientLogicalHandler4.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleFault callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler6 throws a SOAPFaultException ClientLogicalHandler4 returns a false for handleFault
+     * method while processing an outbound message. ------------------------------------------------------- This is the
+     * expected order -------------------------------------------------------
+     * ClientLogicalHandler5.handleMessage().doOutbound() ClientLogicalHandler4.handleMessage().doOutbound()
+     * ClientLogicalHandler6.handleMessage().doOutbound() ClientLogicalHandler6 Throwing an outbound SOAPFaultException
+     * ClientLogicalHandler4.handleFault() ClientLogicalHandler6.close() ClientLogicalHandler4.close()
      * ClientLogicalHandler5.close()
      *
      */
@@ -2397,9 +2341,9 @@ public class Client extends ServiceEETest {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
-                    String tmp =
-                            "ClientLogicalHandler6.handleMessage throws SOAPFaultException for ClientLogicalOutboundHandleFaultFalseTest";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected RuntimeException text");
+                    String tmp = "ClientLogicalHandler6.handleMessage throws SOAPFaultException for ClientLogicalOutboundHandleFaultFalseTest";
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected RuntimeException text");
                     else {
                         TestUtil.logErr("Did not get expected RuntimeException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -2444,26 +2388,22 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalOutboundHandleFaultFalseTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalOutboundHandleFaultFalseTest failed");
     }
 
     /*
      * @testName: ServerLogicalInboundHandleFaultFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:9016.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9016.2; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the server-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ServerLogicalHandler5 throws a SOAPFaultException ServerLogicalHandler4
-     * returns a false for handleFault method while processing an outbound
-     * message. ------------------------------------------------------- This is
-     * the expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doInbound() ServerLogicalHandler5
-     * Throwing an inbound SOAPFaultException ServerLogicalHandler4.handleFault()
-     * ServerLogicalHandler5.close() ServerLogicalHandler4.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the server-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ServerLogicalHandler5 throws a SOAPFaultException ServerLogicalHandler4 returns a false for handleFault
+     * method while processing an outbound message. ------------------------------------------------------- This is the
+     * expected order -------------------------------------------------------
+     * ServerLogicalHandler6.handleMessage().doInbound() ServerLogicalHandler4.handleMessage().doInbound()
+     * ServerLogicalHandler5.handleMessage().doInbound() ServerLogicalHandler5 Throwing an inbound SOAPFaultException
+     * ServerLogicalHandler4.handleFault() ServerLogicalHandler5.close() ServerLogicalHandler4.close()
      * ServerLogicalHandler6.close()
      */
     public void ServerLogicalInboundHandleFaultFalseTest() throws Fault {
@@ -2494,9 +2434,9 @@ public class Client extends ServiceEETest {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
-                    String tmp =
-                            "ServerLogicalHandler5.handleMessage throws SOAPFaultException for ServerLogicalInboundHandleFaultFalseTest";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected RuntimeException text");
+                    String tmp = "ServerLogicalHandler5.handleMessage throws SOAPFaultException for ServerLogicalInboundHandleFaultFalseTest";
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected RuntimeException text");
                     else {
                         TestUtil.logErr("Did not get expected RuntimeException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -2539,28 +2479,23 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("ServerLogicalInboundHandleFaultFalseTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalInboundHandleFaultFalseTest failed");
     }
 
     /*
      * @testName: ClientLogicalOutboundHandleFaultThrowsRuntimeExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:9016.4; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9016.4; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler6 throws a SOAPFaultException ClientLogicalHandler4
-     * throws a RuntimeException in handleFault method processing an inbound
-     * message. ------------------------------------------------------- This is
-     * the expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doOutbound() ClientLogicalHandler6
-     * Throwing an outbound SOAPFaultException ClientLogicalHandler4.handleFault()
-     * ClientLogicalHandler4 Throwing an inbound RuntimeException
-     * ClientLogicalHandler6.close() ClientLogicalHandler4.close()
-     * ClientLogicalHandler5.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler6 throws a SOAPFaultException ClientLogicalHandler4 throws a RuntimeException in
+     * handleFault method processing an inbound message. ------------------------------------------------------- This is the
+     * expected order -------------------------------------------------------
+     * ClientLogicalHandler5.handleMessage().doOutbound() ClientLogicalHandler4.handleMessage().doOutbound()
+     * ClientLogicalHandler6.handleMessage().doOutbound() ClientLogicalHandler6 Throwing an outbound SOAPFaultException
+     * ClientLogicalHandler4.handleFault() ClientLogicalHandler4 Throwing an inbound RuntimeException
+     * ClientLogicalHandler6.close() ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalOutboundHandleFaultThrowsRuntimeExceptionTest() throws Fault {
         TestUtil.logTrace("ClientLogicalOutboundHandleFaultThrowsRuntimeExceptionTest");
@@ -2647,7 +2582,8 @@ public class Client extends ServiceEETest {
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
                     String tmp = "ClientLogicalHandler4.handleFault throwing an inbound RuntimeException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected RuntimeException text");
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected RuntimeException text");
                     else {
                         TestUtil.logErr("Did not get expected RuntimeException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -2692,28 +2628,23 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalOutboundHandleFaultThrowsRuntimeExceptionTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalOutboundHandleFaultThrowsRuntimeExceptionTest failed");
     }
 
     /*
      * @testName: ServerLogicalInboundHandleFaultThrowsRuntimeExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:9016.4; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9016.4; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the server-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ServerLogicalHandler5 throws a SOAPFaultException ServerLogicalHandler4
-     * throws a RuntimeException in the handleFault method processing an outbound
-     * message. ------------------------------------------------------- This is
+     * @test_Strategy: Invoke an RPC method. Verify that the server-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ServerLogicalHandler5 throws a SOAPFaultException ServerLogicalHandler4 throws a RuntimeException in the
+     * handleFault method processing an outbound message. ------------------------------------------------------- This is
      * the expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doInbound() ServerLogicalHandler5
-     * Throwing an inbound SOAPFaultException ServerLogicalHandler4.handleFault()
-     * ServerLogicalHandler4 Throwing an outbound RuntimeException
-     * ServerLogicalHandler5.close() ServerLogicalHandler4.close()
-     * ServerLogicalHandler6.close()
+     * ServerLogicalHandler6.handleMessage().doInbound() ServerLogicalHandler4.handleMessage().doInbound()
+     * ServerLogicalHandler5.handleMessage().doInbound() ServerLogicalHandler5 Throwing an inbound SOAPFaultException
+     * ServerLogicalHandler4.handleFault() ServerLogicalHandler4 Throwing an outbound RuntimeException
+     * ServerLogicalHandler5.close() ServerLogicalHandler4.close() ServerLogicalHandler6.close()
      */
     public void ServerLogicalInboundHandleFaultThrowsRuntimeExceptionTest() throws Fault {
         TestUtil.logTrace("ServerLogicalInboundHandleFaultThrowsRuntimeExceptionTest");
@@ -2744,7 +2675,8 @@ public class Client extends ServiceEETest {
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
                     String tmp = "ServerLogicalHandler4.handleFault throwing an outbound RuntimeException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected RuntimeException text");
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected RuntimeException text");
                     else {
                         TestUtil.logErr("Did not get expected RuntimeException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -2787,28 +2719,23 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("ServerLogicalInboundHandleFaultThrowsRuntimeExceptionTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalInboundHandleFaultThrowsRuntimeExceptionTest failed");
     }
 
     /*
      * @testName: ClientLogicalOutboundHandleFaultThrowsSOAPFaultExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:9016.3; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9016.3; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler6 throws a SOAPFaultException ClientLogicalHandler4
-     * throws a SOAPFaultException in the handleFault method processing an inbound
-     * message. ------------------------------------------------------- This is
-     * the expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doOutbound() ClientLogicalHandler6
-     * Throwing an outbound SOAPFaultException ClientLogicalHandler4.handleFault()
-     * ClientLogicalHandler4 Throwing an inbound SOAPFaultException
-     * ClientLogicalHandler6.close() ClientLogicalHandler4.close()
-     * ClientLogicalHandler5.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler6 throws a SOAPFaultException ClientLogicalHandler4 throws a SOAPFaultException in the
+     * handleFault method processing an inbound message. ------------------------------------------------------- This is the
+     * expected order -------------------------------------------------------
+     * ClientLogicalHandler5.handleMessage().doOutbound() ClientLogicalHandler4.handleMessage().doOutbound()
+     * ClientLogicalHandler6.handleMessage().doOutbound() ClientLogicalHandler6 Throwing an outbound SOAPFaultException
+     * ClientLogicalHandler4.handleFault() ClientLogicalHandler4 Throwing an inbound SOAPFaultException
+     * ClientLogicalHandler6.close() ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalOutboundHandleFaultThrowsSOAPFaultExceptionTest() throws Fault {
         TestUtil.logTrace("ClientLogicalOutboundHandleFaultThrowsSOAPFaultExceptionTest");
@@ -2894,9 +2821,9 @@ public class Client extends ServiceEETest {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
-                    String tmp =
-                            "SOAPFaultException: ClientLogicalHandler4.handleFault throwing an inbound SOAPFaultException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected WebServiceException text");
+                    String tmp = "SOAPFaultException: ClientLogicalHandler4.handleFault throwing an inbound SOAPFaultException";
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected WebServiceException text");
                     else {
                         TestUtil.logErr("Did not get expected WebServiceException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -2941,28 +2868,23 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalOutboundHandleFaultThrowsSOAPFaultExceptionTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalOutboundHandleFaultThrowsSOAPFaultExceptionTest failed");
     }
 
     /*
      * @testName: ServerLogicalInboundHandleFaultThrowsSOAPFaultExceptionTest
      *
-     * @assertion_ids: JAXWS:SPEC:9016.3; WS4EE:SPEC:6008; WS4EE:SPEC:6028;
-     * WS4EE:SPEC:6005;
+     * @assertion_ids: JAXWS:SPEC:9016.3; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the server-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ServerLogicalHandler5 throws a SOAPFaultException ServerLogicalHandler4
-     * throws a SOAPFaultException in handleFailt method processing an outbound
-     * message. ------------------------------------------------------- This is
+     * @test_Strategy: Invoke an RPC method. Verify that the server-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ServerLogicalHandler5 throws a SOAPFaultException ServerLogicalHandler4 throws a SOAPFaultException in
+     * handleFailt method processing an outbound message. ------------------------------------------------------- This is
      * the expected order -------------------------------------------------------
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doInbound() ServerLogicalHandler5
-     * Throwing an inbound SOAPFaultException ServerLogicalHandler4.handleFault()
-     * ServerLogicalHandler4 Throwing an outbound SOAPFaultException
-     * ServerLogicalHandler5.close() ServerLogicalHandler4.close()
-     * ServerLogicalHandler6.close()
+     * ServerLogicalHandler6.handleMessage().doInbound() ServerLogicalHandler4.handleMessage().doInbound()
+     * ServerLogicalHandler5.handleMessage().doInbound() ServerLogicalHandler5 Throwing an inbound SOAPFaultException
+     * ServerLogicalHandler4.handleFault() ServerLogicalHandler4 Throwing an outbound SOAPFaultException
+     * ServerLogicalHandler5.close() ServerLogicalHandler4.close() ServerLogicalHandler6.close()
      */
     public void ServerLogicalInboundHandleFaultThrowsSOAPFaultExceptionTest() throws Fault {
         TestUtil.logTrace("ServerLogicalInboundHandleFaultThrowsSOAPFaultExceptionTest");
@@ -2993,7 +2915,8 @@ public class Client extends ServiceEETest {
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
                     String tmp = "ServerLogicalHandler4.handleFault throwing an outbound SOAPFaultException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected SOAPFaultException text");
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected SOAPFaultException text");
                     else {
                         TestUtil.logErr("Did not get expected SOAPFaultException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -3036,7 +2959,8 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("ServerLogicalInboundHandleFaultThrowsSOAPFaultExceptionTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalInboundHandleFaultThrowsSOAPFaultExceptionTest failed");
     }
 
     /*
@@ -3044,22 +2968,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:9016; JAXWS:SPEC:9016.2;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side handler
-     * callbacks are called by the JAXWS RUNTIME. Server handler throws a
-     * SOAPFaultException while processing an inbound message and Client should
-     * properly process exception.
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handler callbacks are called by the JAXWS RUNTIME.
+     * Server handler throws a SOAPFaultException while processing an inbound message and Client should properly process
+     * exception.
      *
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleFault() ClientLogicalHandler6 received
-     * SOAPFault from Inbound ServerLogicalHandler6 ClientLogicalHandler6.close()
-     * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler6.handleMessage().doOutbound()
+     * ClientLogicalHandler6.handleFault() ClientLogicalHandler6 received SOAPFault from Inbound ServerLogicalHandler6
+     * ClientLogicalHandler6.close() ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      *
-     * ServerLogicalHandler6.handleMessage().doInbound() ServerLogicalHandler6
-     * Throwing an inbound SOAPFaultException ServerLogicalHandler6.close()
+     * ServerLogicalHandler6.handleMessage().doInbound() ServerLogicalHandler6 Throwing an inbound SOAPFaultException
+     * ServerLogicalHandler6.close()
      *
      */
     public void ServerLogicalInboundHandlerThrowsSOAPFaultToClientHandlersTest() throws Fault {
@@ -3145,9 +3065,9 @@ public class Client extends ServiceEETest {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
-                    String tmp =
-                            "ServerLogicalHandler6.handleMessage throws SOAPFaultException for ServerLogicalInboundHandlerThrowsSOAPFaultToClientHandlersTest";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected RuntimeException text");
+                    String tmp = "ServerLogicalHandler6.handleMessage throws SOAPFaultException for ServerLogicalInboundHandlerThrowsSOAPFaultToClientHandlersTest";
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected RuntimeException text");
                     else {
                         TestUtil.logErr("Did not get expected RuntimeException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -3217,7 +3137,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ServerLogicalInboundHandlerThrowsSOAPFaultToClientHandlersTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalInboundHandlerThrowsSOAPFaultToClientHandlersTest failed");
     }
 
     /*
@@ -3225,27 +3146,20 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:9016; JAXWS:SPEC:9016.2;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side handler
-     * callbacks are called by the JAXWS RUNTIME. Server handler throws a
-     * SOAPFaultException while processing an inbound message and Client should
-     * properly process exception.
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handler callbacks are called by the JAXWS RUNTIME.
+     * Server handler throws a SOAPFaultException while processing an inbound message and Client should properly process
+     * exception.
      *
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleFault() ClientLogicalHandler6 received
-     * SOAPFault from Outbound ServerLogicalHandler6 ClientLogicalHandler6.close()
-     * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler6.handleMessage().doOutbound()
+     * ClientLogicalHandler6.handleFault() ClientLogicalHandler6 received SOAPFault from Outbound ServerLogicalHandler6
+     * ClientLogicalHandler6.close() ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      *
-     * ServerLogicalHandler6.handleMessage().doInbound()
-     * ServerLogicalHandler4.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doInbound()
-     * ServerLogicalHandler5.handleMessage().doOutbound()
-     * ServerLogicalHandler4.handleMessage().doOutbound()
-     * ServerLogicalHandler6.handleMessage().doOutbound() ServerLogicalHandler6
-     * Throwing an inbound SOAPFaultException ServerLogicalHandler6.close()
+     * ServerLogicalHandler6.handleMessage().doInbound() ServerLogicalHandler4.handleMessage().doInbound()
+     * ServerLogicalHandler5.handleMessage().doInbound() ServerLogicalHandler5.handleMessage().doOutbound()
+     * ServerLogicalHandler4.handleMessage().doOutbound() ServerLogicalHandler6.handleMessage().doOutbound()
+     * ServerLogicalHandler6 Throwing an inbound SOAPFaultException ServerLogicalHandler6.close()
      *
      */
     public void ServerLogicalOutboundHandlerThrowsSOAPFaultToClientHandlersTest() throws Fault {
@@ -3331,9 +3245,9 @@ public class Client extends ServiceEETest {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
-                    String tmp =
-                            "ServerLogicalHandler6.handleMessage throws SOAPFaultException for ServerLogicalOutboundHandlerThrowsSOAPFaultToClientHandlersTest";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected RuntimeException text");
+                    String tmp = "ServerLogicalHandler6.handleMessage throws SOAPFaultException for ServerLogicalOutboundHandlerThrowsSOAPFaultToClientHandlersTest";
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected RuntimeException text");
                     else {
                         TestUtil.logErr("Did not get expected RuntimeException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -3403,7 +3317,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ServerLogicalOutboundHandlerThrowsSOAPFaultToClientHandlersTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalOutboundHandlerThrowsSOAPFaultToClientHandlersTest failed");
     }
 
     /*
@@ -3411,17 +3326,13 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:4021;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler4 throws a WebServiceException in handleMessage method
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doInbound()
-     * ClientLogicalHandler4.handleMessage().doInbound() ClientLogicalHandler4
-     * Throwing an inbound WebServiceException ClientLogicalHandler6.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler4 throws a WebServiceException in handleMessage method
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler6.handleMessage().doOutbound()
+     * ClientLogicalHandler6.handleMessage().doInbound() ClientLogicalHandler4.handleMessage().doInbound()
+     * ClientLogicalHandler4 Throwing an inbound WebServiceException ClientLogicalHandler6.close()
      * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalInboundHandleMessageThrowsWebServiceExceptionTest() throws Fault {
@@ -3508,7 +3419,8 @@ public class Client extends ServiceEETest {
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
                     String tmp = "ClientLogicalHandler4.handleMessage throwing an inbound WebServiceException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected WebServiceException text");
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected WebServiceException text");
                     else {
                         TestUtil.logErr("Did not get expected WebServiceException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -3553,7 +3465,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalInboundHandleMessageThrowsWebServiceExceptionTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalInboundHandleMessageThrowsWebServiceExceptionTest failed");
     }
 
     /*
@@ -3561,15 +3474,12 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:4021;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler4 throws a WebServiceException in handleMessage method
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler4
-     * Throwing an outbound WebServiceException ClientLogicalHandler4.close()
-     * ClientLogicalHandler5.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler4 throws a WebServiceException in handleMessage method
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler4 Throwing an outbound WebServiceException
+     * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalOutboundHandleMessageThrowsWebServiceExceptionTest() throws Fault {
         TestUtil.logTrace("ClientLogicalOutboundHandleMessageThrowsWebServiceExceptionTest");
@@ -3655,7 +3565,8 @@ public class Client extends ServiceEETest {
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
                     String tmp = "ClientLogicalHandler4.handleMessage throwing an outbound WebServiceException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected WebServiceException text");
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected WebServiceException text");
                     else {
                         TestUtil.logErr("Did not get expected WebServiceException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -3700,7 +3611,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalOutboundHandleMessageThrowsWebServiceExceptionTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalOutboundHandleMessageThrowsWebServiceExceptionTest failed");
     }
 
     /*
@@ -3708,17 +3620,13 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:4021;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler4 throws a ProtocolException in handleMessage method
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doOutbound()
-     * ClientLogicalHandler6.handleMessage().doInbound()
-     * ClientLogicalHandler4.handleMessage().doInbound() ClientLogicalHandler4
-     * Throwing an inbound ProtocolException ClientLogicalHandler6.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler4 throws a ProtocolException in handleMessage method
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler6.handleMessage().doOutbound()
+     * ClientLogicalHandler6.handleMessage().doInbound() ClientLogicalHandler4.handleMessage().doInbound()
+     * ClientLogicalHandler4 Throwing an inbound ProtocolException ClientLogicalHandler6.close()
      * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalInboundHandleMessageThrowsProtocolExceptionTest() throws Fault {
@@ -3805,7 +3713,8 @@ public class Client extends ServiceEETest {
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
                     String tmp = "ClientLogicalHandler4.handleMessage throwing an inbound ProtocolException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected ProtocolException text");
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected ProtocolException text");
                     else {
                         TestUtil.logErr("Did not get expected ProtocolException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -3850,7 +3759,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalInboundHandleMessageThrowsProtocolExceptionTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalInboundHandleMessageThrowsProtocolExceptionTest failed");
     }
 
     /*
@@ -3858,15 +3768,12 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:4021;
      *
-     * @test_Strategy: Invoke an RPC method. Verify that the client-side
-     * handleMessage callbacks are called by the JAXWS RUNTIME.
-     * ClientLogicalHandler4 throws a ProtocolException in handleMessage method
-     * ------------------------------------------------------- This is the
-     * expected order -------------------------------------------------------
-     * ClientLogicalHandler5.handleMessage().doOutbound()
-     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler4
-     * Throwing an outbound ProtocolException ClientLogicalHandler4.close()
-     * ClientLogicalHandler5.close()
+     * @test_Strategy: Invoke an RPC method. Verify that the client-side handleMessage callbacks are called by the JAXWS
+     * RUNTIME. ClientLogicalHandler4 throws a ProtocolException in handleMessage method
+     * ------------------------------------------------------- This is the expected order
+     * ------------------------------------------------------- ClientLogicalHandler5.handleMessage().doOutbound()
+     * ClientLogicalHandler4.handleMessage().doOutbound() ClientLogicalHandler4 Throwing an outbound ProtocolException
+     * ClientLogicalHandler4.close() ClientLogicalHandler5.close()
      */
     public void ClientLogicalOutboundHandleMessageThrowsProtocolExceptionTest() throws Fault {
         TestUtil.logTrace("ClientLogicalOutboundHandleMessageThrowsProtocolExceptionTest");
@@ -3952,7 +3859,8 @@ public class Client extends ServiceEETest {
                     PrintStream ps = new PrintStream(baos, true);
                     e.printStackTrace(ps);
                     String tmp = "ClientLogicalHandler4.handleMessage throwing an outbound ProtocolException";
-                    if (baos.toString().indexOf(tmp) > -1) TestUtil.logMsg("Did get expected ProtocolException text");
+                    if (baos.toString().indexOf(tmp) > -1)
+                        TestUtil.logMsg("Did get expected ProtocolException text");
                     else {
                         TestUtil.logErr("Did not get expected ProtocolException text");
                         TestUtil.logErr("expected:" + tmp);
@@ -3997,7 +3905,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalOutboundHandleMessageThrowsProtocolExceptionTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalOutboundHandleMessageThrowsProtocolExceptionTest failed");
     }
 
     private void purgeServerSideTrackerData() {

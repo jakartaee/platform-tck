@@ -38,7 +38,7 @@ import java.net.URL;
 import javax.sql.DataSource;
 
 @Stateless(name = "ResourceSetterBean")
-@Remote({ResourceIF.class})
+@Remote({ ResourceIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
@@ -66,9 +66,11 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
     private Queue queue;
 
-    public ResourceSetterBean() {}
+    public ResourceSetterBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
 

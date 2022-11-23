@@ -99,8 +99,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: PortTypeTest
      *
-     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003;
-     * JAXWS:SPEC:2004; JAXWS:SPEC:2005; JAXWS:SPEC:2010; JAXWS:SPEC:2041;
+     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003; JAXWS:SPEC:2004; JAXWS:SPEC:2005; JAXWS:SPEC:2010;
+     * JAXWS:SPEC:2041;
      *
      * @test_Strategy: Verify wsdl:definitions and wsdl:portType mapping
      */
@@ -116,15 +116,15 @@ public class Client extends ServiceEETest {
             throw new Fault("PortTypeTest failed", e);
         }
 
-        if (!pass) throw new Fault("PortTypeTest failed");
+        if (!pass)
+            throw new Fault("PortTypeTest failed");
     }
 
     /*
      * @testName: OperationTest
      *
-     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003;
-     * JAXWS:SPEC:2004; JAXWS:SPEC:2013; JAXWS:SPEC:2014; JAXWS:SPEC:2018;
-     * JAXWS:SPEC:2017; JAXWS:SPEC:2041;
+     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003; JAXWS:SPEC:2004; JAXWS:SPEC:2013; JAXWS:SPEC:2014;
+     * JAXWS:SPEC:2018; JAXWS:SPEC:2017; JAXWS:SPEC:2041;
      *
      * @test_Strategy: Verify mapping of wsdl:operation
      */
@@ -168,15 +168,15 @@ public class Client extends ServiceEETest {
             throw new Fault("OperationTest failed", e);
         }
 
-        if (!pass) throw new Fault("OperationTest failed");
+        if (!pass)
+            throw new Fault("OperationTest failed");
     }
 
     /*
      * @testName: FaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003;
-     * JAXWS:SPEC:2004; JAXWS:SPEC:2043; JAXWS:SPEC:2044; JAXWS:SPEC:2041;
-     * JAXWS:SPEC:2061;
+     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003; JAXWS:SPEC:2004; JAXWS:SPEC:2043; JAXWS:SPEC:2044;
+     * JAXWS:SPEC:2041; JAXWS:SPEC:2061;
      *
      * @test_Strategy: Verify wsdl:fault element mapping
      */
@@ -215,15 +215,14 @@ public class Client extends ServiceEETest {
         }
 
         TestUtil.logMsg("Instantiate fault bean and call its methods ... " + EXPECTED_FAULT_BEAN);
-        com.sun.ts.tests.jaxws.mapping.w2jmapping.rpc.literal.customization.MyFaultReason mfr =
-                new com.sun.ts.tests.jaxws.mapping.w2jmapping.rpc.literal.customization.MyFaultReason();
+        com.sun.ts.tests.jaxws.mapping.w2jmapping.rpc.literal.customization.MyFaultReason mfr = new com.sun.ts.tests.jaxws.mapping.w2jmapping.rpc.literal.customization.MyFaultReason();
         TestUtil.logMsg("setMessage to foo");
         mfr.setMessage("foo");
         TestUtil.logMsg("getMessage=" + mfr.getMessage());
 
         TestUtil.logMsg("Instantiate fault wrapper exception constructor 1 ... " + EXPECTED_FAULT_WRAPPER);
-        com.sun.ts.tests.jaxws.mapping.w2jmapping.rpc.literal.customization.W2JRLFault mf =
-                new com.sun.ts.tests.jaxws.mapping.w2jmapping.rpc.literal.customization.W2JRLFault("myfault", mfr);
+        com.sun.ts.tests.jaxws.mapping.w2jmapping.rpc.literal.customization.W2JRLFault mf = new com.sun.ts.tests.jaxws.mapping.w2jmapping.rpc.literal.customization.W2JRLFault(
+                "myfault", mfr);
 
         TestUtil.logMsg("getFaultInfo from wrapper exception ... ");
         mfr = mf.getFaultInfo();
@@ -250,8 +249,10 @@ public class Client extends ServiceEETest {
             Method helloOp = null;
             Method helloOp2 = null;
             for (int i = 0; i < methods.length; i++) {
-                if (methods[i].getName().equals("helloOperation")) helloOp = methods[i];
-                if (methods[i].getName().equals("helloOperation2")) helloOp2 = methods[i];
+                if (methods[i].getName().equals("helloOperation"))
+                    helloOp = methods[i];
+                if (methods[i].getName().equals("helloOperation2"))
+                    helloOp2 = methods[i];
             }
 
             found = false;
@@ -259,37 +260,41 @@ public class Client extends ServiceEETest {
             for (int i = 0; i < exceptions.length; i++) {
                 String name = exceptions[i].getName();
                 TestUtil.logMsg("exceptions[" + i + "]=" + name);
-                if (name.equals(EXPECTED_FAULT_WRAPPER)) found = true;
+                if (name.equals(EXPECTED_FAULT_WRAPPER))
+                    found = true;
             }
             if (!found) {
                 TestUtil.logErr("helloOperation does not declare throws of exception " + EXPECTED_FAULT_WRAPPER);
                 pass = false;
-            } else TestUtil.logMsg("helloOperation does declare throws of exception " + EXPECTED_FAULT_WRAPPER);
+            } else
+                TestUtil.logMsg("helloOperation does declare throws of exception " + EXPECTED_FAULT_WRAPPER);
 
             found = false;
             exceptions = helloOp2.getExceptionTypes();
             for (int i = 0; i < exceptions.length; i++) {
                 String name = exceptions[i].getName();
                 TestUtil.logMsg("exceptions[" + i + "]=" + name);
-                if (name.equals(EXPECTED_FAULT_WRAPPER2)) found = true;
+                if (name.equals(EXPECTED_FAULT_WRAPPER2))
+                    found = true;
             }
             if (!found) {
                 TestUtil.logErr("helloOperation2 does not declare throws of exception " + EXPECTED_FAULT_WRAPPER2);
                 pass = false;
-            } else TestUtil.logMsg("helloOperation2 does declare throws of exception " + EXPECTED_FAULT_WRAPPER2);
+            } else
+                TestUtil.logMsg("helloOperation2 does declare throws of exception " + EXPECTED_FAULT_WRAPPER2);
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
         }
 
-        if (!pass) throw new Fault("FaultTest failed");
+        if (!pass)
+            throw new Fault("FaultTest failed");
     }
 
     /*
      * @testName: ServiceAndPortTest
      *
-     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003;
-     * JAXWS:SPEC:2004; JAXWS:SPEC:2054; JAXWS:SPEC:2055; JAXWS:SPEC:2056;
-     * JAXWS:SPEC:2041; JAXWS:SPEC:2045;
+     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003; JAXWS:SPEC:2004; JAXWS:SPEC:2054; JAXWS:SPEC:2055;
+     * JAXWS:SPEC:2056; JAXWS:SPEC:2041; JAXWS:SPEC:2045;
      *
      * @test_Strategy: Verify wsdl:service and wsdl:port element mapping
      */
@@ -327,7 +332,8 @@ public class Client extends ServiceEETest {
             if (!found) {
                 TestUtil.logErr("Service Class Interface " + name + " does not extend " + EXPECTED_SERVICE_INTERFACE);
                 pass = false;
-            } else TestUtil.logMsg("Service Class Interface " + name + " does extend " + EXPECTED_SERVICE_INTERFACE);
+            } else
+                TestUtil.logMsg("Service Class Interface " + name + " does extend " + EXPECTED_SERVICE_INTERFACE);
         }
 
         // Service Class Interface MUST have a getPortName() method based on
@@ -351,7 +357,8 @@ public class Client extends ServiceEETest {
                 if (returnType != null) {
                     String name = returnType.getName();
                     TestUtil.logMsg("returnType=" + name);
-                    if (name.equals(EXPECTED_ENDPOINT)) found = true;
+                    if (name.equals(EXPECTED_ENDPOINT))
+                        found = true;
                 }
                 if (!found) {
                     TestUtil.logErr("Service Port Method " + EXPECTED_GET_PORTNAME_METHOD + " does not return type as "
@@ -367,14 +374,14 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("ServiceAndPortTest failed");
+        if (!pass)
+            throw new Fault("ServiceAndPortTest failed");
     }
 
     /*
      * @testName: HeaderTest
      *
-     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003;
-     * JAXWS:SPEC:2004; JAXWS:SPEC:2041;
+     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003; JAXWS:SPEC:2004; JAXWS:SPEC:2041;
      *
      * @test_Strategy: Verify soap:header (Header Binding Extension)
      */
@@ -403,14 +410,14 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("HeaderTest failed");
+        if (!pass)
+            throw new Fault("HeaderTest failed");
     }
 
     /*
      * @testName: SoapHeaderAndFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003;
-     * JAXWS:SPEC:2004; JAXWS:SPEC:2041;
+     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003; JAXWS:SPEC:2004; JAXWS:SPEC:2041;
      *
      * @test_Strategy: Verify soap:fault/soap:header mappings
      */
@@ -463,7 +470,8 @@ public class Client extends ServiceEETest {
                 for (int i = 0; i < parameters.length; i++) {
                     String name = parameters[i].getName();
                     TestUtil.logMsg("parameters[" + i + "]=" + name);
-                    if (name.equals(EXPECTED_HEADER2_TYPE)) found = true;
+                    if (name.equals(EXPECTED_HEADER2_TYPE))
+                        found = true;
                 }
                 if (!found) {
                     TestUtil.logErr("operationWithHeaderAndFaults does not declare a header as parameter for type "
@@ -505,14 +513,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Exception: " + e);
         }
 
-        if (!pass) throw new Fault("SoapHeaderAndFaultTest failed");
+        if (!pass)
+            throw new Fault("SoapHeaderAndFaultTest failed");
     }
 
     /*
      * @testName: EnableWrapperStyleTrueTest
      *
-     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003;
-     * JAXWS:SPEC:2024; JAXWS:SPEC:2025; JAXWS:SPEC:2027; JAXWS:SPEC:2041;
+     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003; JAXWS:SPEC:2024; JAXWS:SPEC:2025; JAXWS:SPEC:2027;
+     * JAXWS:SPEC:2041;
      *
      * @test_Strategy: Verify that each message results in a parameter
      */
@@ -556,14 +565,15 @@ public class Client extends ServiceEETest {
             throw new Fault("EnableWrapperStyleTrueTest failed", e);
         }
 
-        if (!pass) throw new Fault("EnableWrapperStyleTrueTest failed");
+        if (!pass)
+            throw new Fault("EnableWrapperStyleTrueTest failed");
     }
 
     /*
      * @testName: EnableWrapperStyleFalseTest
      *
-     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003;
-     * JAXWS:SPEC:2024; JAXWS:SPEC:2025; JAXWS:SPEC:2027; JAXWS:SPEC:2041;
+     * @assertion_ids: JAXWS:SPEC:2001; JAXWS:SPEC:2002; JAXWS:SPEC:2003; JAXWS:SPEC:2024; JAXWS:SPEC:2025; JAXWS:SPEC:2027;
+     * JAXWS:SPEC:2041;
      *
      * @test_Strategy: Verify that each message results in a paramenter
      */
@@ -607,6 +617,7 @@ public class Client extends ServiceEETest {
             throw new Fault("EnableWrapperStyleFalseTest failed", e);
         }
 
-        if (!pass) throw new Fault("EnableWrapperStyleFalseTest failed");
+        if (!pass)
+            throw new Fault("EnableWrapperStyleFalseTest failed");
     }
 }

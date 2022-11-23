@@ -35,14 +35,17 @@ public class WSCModifyHandshakeServer {
     @OnMessage
     public String onMessage(String msg) {
         boolean ret = false;
-        if (msg.equals("origin")) ret = ModifyHandshakeConfigurator.isCheckedOriginBeforeModifyHandshake();
+        if (msg.equals("origin"))
+            ret = ModifyHandshakeConfigurator.isCheckedOriginBeforeModifyHandshake();
         else if (msg.equals("config"))
             ret = ModifyHandshakeConfigurator.getConfig()
                     .getClass()
                     .getName()
                     .equals(config.getClass().getName());
-        else if (msg.equals("request")) ret = ModifyHandshakeConfigurator.getRequest() != null;
-        else if (msg.equals("response")) ret = ModifyHandshakeConfigurator.getResponse() != null;
+        else if (msg.equals("request"))
+            ret = ModifyHandshakeConfigurator.getRequest() != null;
+        else if (msg.equals("response"))
+            ret = ModifyHandshakeConfigurator.getResponse() != null;
         return String.valueOf(ret);
     }
 

@@ -32,15 +32,15 @@ public class TckTimeoutHandler implements TimeoutHandler {
     @Override
     public void handleTimeout(AsyncResponse asyncResponse) {
         switch (function) {
-            case 1:
-                asyncResponse.setTimeout(200, TimeUnit.MILLISECONDS);
-                break;
-            case 2:
-                asyncResponse.cancel();
-                break;
-            case 3:
-                asyncResponse.resume(Resource.RESUMED);
-                break;
+        case 1:
+            asyncResponse.setTimeout(200, TimeUnit.MILLISECONDS);
+            break;
+        case 2:
+            asyncResponse.cancel();
+            break;
+        case 3:
+            asyncResponse.resume(Resource.RESUMED);
+            break;
         }
     }
 }

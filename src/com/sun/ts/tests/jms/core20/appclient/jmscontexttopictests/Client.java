@@ -114,16 +114,16 @@ public class Client extends ServiceEETest {
      */
     private String printSessionMode(int sessionMode) {
         switch (sessionMode) {
-            case JMSContext.SESSION_TRANSACTED:
-                return "SESSION_TRANSACTED";
-            case JMSContext.AUTO_ACKNOWLEDGE:
-                return "AUTO_ACKNOWLEDGE";
-            case JMSContext.CLIENT_ACKNOWLEDGE:
-                return "CLIENT_ACKNOWLEDGE";
-            case JMSContext.DUPS_OK_ACKNOWLEDGE:
-                return "DUPS_OK_ACKNOWLEDGE";
-            default:
-                return "UNEXPECTED_SESSIONMODE";
+        case JMSContext.SESSION_TRANSACTED:
+            return "SESSION_TRANSACTED";
+        case JMSContext.AUTO_ACKNOWLEDGE:
+            return "AUTO_ACKNOWLEDGE";
+        case JMSContext.CLIENT_ACKNOWLEDGE:
+            return "CLIENT_ACKNOWLEDGE";
+        case JMSContext.DUPS_OK_ACKNOWLEDGE:
+            return "DUPS_OK_ACKNOWLEDGE";
+        default:
+            return "UNEXPECTED_SESSIONMODE";
         }
     }
 
@@ -218,8 +218,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: setGetClientIDTest
      *
-     * @assertion_ids: JMS:JAVADOC:970; JMS:JAVADOC:1040; JMS:SPEC:264.5;
-     * JMS:SPEC:173; JMS:SPEC:198; JMS:SPEC:91;
+     * @assertion_ids: JMS:JAVADOC:970; JMS:JAVADOC:1040; JMS:SPEC:264.5; JMS:SPEC:173; JMS:SPEC:198; JMS:SPEC:91;
      *
      * @test_Strategy: Test the following APIs:
      *
@@ -250,11 +249,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: setClientIDLateTest
      *
-     * @assertion_ids: JMS:SPEC:173; JMS:SPEC:198; JMS:SPEC:94; JMS:SPEC:91;
-     * JMS:JAVADOC:1040; JMS:JAVADOC:1043; JMS:SPEC:264.5;
+     * @assertion_ids: JMS:SPEC:173; JMS:SPEC:198; JMS:SPEC:94; JMS:SPEC:91; JMS:JAVADOC:1040; JMS:JAVADOC:1043;
+     * JMS:SPEC:264.5;
      *
-     * @test_Strategy: Create a JMSContext, send and receive a message, then try
-     * to set the ClientID. Verify that IllegalStateRuntimeException is thrown.
+     * @test_Strategy: Create a JMSContext, send and receive a message, then try to set the ClientID. Verify that
+     * IllegalStateRuntimeException is thrown.
      *
      * JMSContext.setClientID(String clientID)
      */
@@ -310,8 +309,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: setClientIDOnAdminConfiguredIDTest
      *
-     * @assertion_ids: JMS:JAVADOC:970; JMS:JAVADOC:1040; JMS:SPEC:264.5;
-     * JMS:SPEC:173; JMS:SPEC:198; JMS:SPEC:91;
+     * @assertion_ids: JMS:JAVADOC:970; JMS:JAVADOC:1040; JMS:SPEC:264.5; JMS:SPEC:173; JMS:SPEC:198; JMS:SPEC:91;
      *
      * @test_Strategy: Test the following APIs:
      *
@@ -353,16 +351,14 @@ public class Client extends ServiceEETest {
     /*
      * @testName: setGetChangeClientIDTest
      *
-     * @assertion_ids: JMS:SPEC:93; JMS:SPEC:95; JMS:SPEC:198; JMS:JAVADOC:1040;
-     * JMS:JAVADOC:970; JMS:JAVADOC:1042; JMS:JAVADOC:1043; JMS:SPEC:264.5;
+     * @assertion_ids: JMS:SPEC:93; JMS:SPEC:95; JMS:SPEC:198; JMS:JAVADOC:1040; JMS:JAVADOC:970; JMS:JAVADOC:1042;
+     * JMS:JAVADOC:1043; JMS:SPEC:264.5;
      *
      *
-     * @test_Strategy: Test setClientID()/getClientID(). Make sure that the
-     * clientID set is the clientID returned. Then try and reset the clientID.
-     * Verify that the IllegalStateRuntimeException is thrown. 1) Use a JMSContext
-     * that has no ClientID set, then call setClientID twice. 2) Try and set the
-     * clientID on a second JMSContext to the clientID value of the first
-     * JMSContext. Verify that InvalidClientIDRuntimeException is thrown.
+     * @test_Strategy: Test setClientID()/getClientID(). Make sure that the clientID set is the clientID returned. Then try
+     * and reset the clientID. Verify that the IllegalStateRuntimeException is thrown. 1) Use a JMSContext that has no
+     * ClientID set, then call setClientID twice. 2) Try and set the clientID on a second JMSContext to the clientID value
+     * of the first JMSContext. Verify that InvalidClientIDRuntimeException is thrown.
      *
      * JMSContext.setClientID(String clientID) JMSContext.getClientID()
      */
@@ -433,8 +429,7 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy: Test the following APIs:
      *
-     * JMSContext.setExceptionListener(ExceptionListener).
-     * JMSContext.getExceptionListener().
+     * JMSContext.setExceptionListener(ExceptionListener). JMSContext.getExceptionListener().
      */
     public void setGetExceptionListenerTest() throws Fault {
         boolean pass = true;
@@ -516,23 +511,19 @@ public class Client extends ServiceEETest {
     /*
      * @testName: startStopTest
      *
-     * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:1076; JMS:JAVADOC:1078;
-     * JMS:JAVADOC:942; JMS:JAVADOC:1102; JMS:SPEC:264; JMS:SPEC:264.5;
+     * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:1076; JMS:JAVADOC:1078; JMS:JAVADOC:942; JMS:JAVADOC:1102;
+     * JMS:SPEC:264; JMS:SPEC:264.5;
      *
      * @test_Strategy: Test the following APIs:
      *
-     * ConnectionFactory.createContext(String, String, int) JMSContext.start()
-     * JMSContext.stop() JMSContext.createConsumer(Destination)
-     * JMSContext.createProducer() JMSProducer.send(Destination, Message)
+     * ConnectionFactory.createContext(String, String, int) JMSContext.start() JMSContext.stop()
+     * JMSContext.createConsumer(Destination) JMSContext.createProducer() JMSProducer.send(Destination, Message)
      * JMSConsumer.receive(long timeout)
      *
-     * 1. Create JMSContext with AUTO_ACKNOWLEDGE. This is done in the setup()
-     * routine. 2. Call stop. 3. Send x messages to a Topic. 4. Create a
-     * JMSConsumer to consume the messages in the Topic. 5. Try consuming messages
-     * from the Topic. Should not receive any messages since the connection has
-     * been stopped. 6. Call start. 7. Try consuming messages from the Topic.
-     * Should receive all messages from the Topic since the connection has been
-     * started.
+     * 1. Create JMSContext with AUTO_ACKNOWLEDGE. This is done in the setup() routine. 2. Call stop. 3. Send x messages to
+     * a Topic. 4. Create a JMSConsumer to consume the messages in the Topic. 5. Try consuming messages from the Topic.
+     * Should not receive any messages since the connection has been stopped. 6. Call start. 7. Try consuming messages from
+     * the Topic. Should receive all messages from the Topic since the connection has been started.
      *
      */
     public void startStopTest() throws Fault {
@@ -615,8 +606,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:931; JMS:SPEC:265.3;
      *
-     * @test_Strategy: Creates a JMSContext with the default user identity and the
-     * specified sessionMode. Tests API:
+     * @test_Strategy: Creates a JMSContext with the default user identity and the specified sessionMode. Tests API:
      *
      * JMSContext.createContext(int)
      */
@@ -628,10 +618,10 @@ public class Client extends ServiceEETest {
 
             // Test all possible session modes
             int expSessionMode[] = {
-                JMSContext.SESSION_TRANSACTED,
-                JMSContext.AUTO_ACKNOWLEDGE,
-                JMSContext.CLIENT_ACKNOWLEDGE,
-                JMSContext.DUPS_OK_ACKNOWLEDGE,
+                    JMSContext.SESSION_TRANSACTED,
+                    JMSContext.AUTO_ACKNOWLEDGE,
+                    JMSContext.CLIENT_ACKNOWLEDGE,
+                    JMSContext.DUPS_OK_ACKNOWLEDGE,
             };
 
             // Cycle through all session modes
@@ -664,17 +654,14 @@ public class Client extends ServiceEETest {
     /*
      * @testName: sendAndRecvCLTest1
      *
-     * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:835; JMS:JAVADOC:1177;
-     * JMS:JAVADOC:1255; JMS:SPEC:275.1; JMS:SPEC:275.5; JMS:SPEC:275.8;
+     * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:835; JMS:JAVADOC:1177; JMS:JAVADOC:1255; JMS:SPEC:275.1;
+     * JMS:SPEC:275.5; JMS:SPEC:275.8;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data as well as onCompletion() being called. Set some
-     * properties on JMSProducer and check that these properties exist on the
-     * returned message after the CompletionListener's onCompletion() method has
-     * been called.
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data as well as
+     * onCompletion() being called. Set some properties on JMSProducer and check that these properties exist on the returned
+     * message after the CompletionListener's onCompletion() method has been called.
      *
-     * JMSContext.createProducer() JMSProducer.setAsync(CompletionListener)
-     * JMSProducer.send(Destination, Message)
+     * JMSContext.createProducer() JMSProducer.setAsync(CompletionListener) JMSProducer.send(Destination, Message)
      */
     public void sendAndRecvCLTest1() throws Fault {
         boolean pass = true;
@@ -742,7 +729,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -880,16 +868,14 @@ public class Client extends ServiceEETest {
     /*
      * @testName: sendAndRecvCLTest2
      *
-     * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:835; JMS:JAVADOC:1177;
-     * JMS:JAVADOC:1255; JMS:JAVADOC:1259; JMS:JAVADOC:1303;
+     * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:835; JMS:JAVADOC:1177; JMS:JAVADOC:1255; JMS:JAVADOC:1259;
+     * JMS:JAVADOC:1303;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data as well as onCompletion() being called.
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data as well as
+     * onCompletion() being called.
      *
-     * JMSContext.createProducer() JMSProducer.setDeliveryMode(int)
-     * JMSProducer.setPriority(int) JMSProducer.setTimeToLive(long)
-     * JMSProducer.setAsync(CompletionListener) JMSProducer.send(Destination,
-     * Message)
+     * JMSContext.createProducer() JMSProducer.setDeliveryMode(int) JMSProducer.setPriority(int)
+     * JMSProducer.setTimeToLive(long) JMSProducer.setAsync(CompletionListener) JMSProducer.send(Destination, Message)
      */
     public void sendAndRecvCLTest2() throws Fault {
         boolean pass = true;
@@ -922,7 +908,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -958,19 +945,16 @@ public class Client extends ServiceEETest {
     /*
      * @testName: sendAndRecvMsgOfEachTypeCLTest
      *
-     * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:835; JMS:JAVADOC:1177;
-     * JMS:JAVADOC:1255; JMS:JAVADOC:1259; JMS:JAVADOC:1303;
+     * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:835; JMS:JAVADOC:1177; JMS:JAVADOC:1255; JMS:JAVADOC:1259;
+     * JMS:JAVADOC:1303;
      *
-     * @test_Strategy: Send and receive messages of each message type: Message,
-     * BytesMessage, MapMessage, ObjectMessage, StreamMessage, TextMessage. Verify
-     * the send and recv of data as well as onCompletion() being called in
+     * @test_Strategy: Send and receive messages of each message type: Message, BytesMessage, MapMessage, ObjectMessage,
+     * StreamMessage, TextMessage. Verify the send and recv of data as well as onCompletion() being called in
      * CompletionListener.
      *
-     * JMSContext.createProducer() JMSProducer.setAsync(CompletionListener)
-     * JMSContext.createMessage() JMSContext.createBytesMessage()
-     * JMSContext.createMapMessage() JMSContext.createObjectMessage()
-     * JMSContext.createStreamMessage() JMSContext.createTextMessage(String)
-     * JMSProducer.send(Destination, Message)
+     * JMSContext.createProducer() JMSProducer.setAsync(CompletionListener) JMSContext.createMessage()
+     * JMSContext.createBytesMessage() JMSContext.createMapMessage() JMSContext.createObjectMessage()
+     * JMSContext.createStreamMessage() JMSContext.createTextMessage(String) JMSProducer.send(Destination, Message)
      */
     public void sendAndRecvMsgOfEachTypeCLTest() throws Fault {
         boolean pass = true;
@@ -993,7 +977,8 @@ public class Client extends ServiceEETest {
                 TestUtil.sleepSec(2);
             }
             Message actMessage = null;
-            if (listener.isComplete()) actMessage = (Message) listener.getMessage();
+            if (listener.isComplete())
+                actMessage = (Message) listener.getMessage();
 
             if (actMessage == null) {
                 TestUtil.logErr("Did not receive Message");
@@ -1026,7 +1011,8 @@ public class Client extends ServiceEETest {
                 TestUtil.sleepSec(2);
             }
             BytesMessage bMsgRecv = null;
-            if (listener.isComplete()) bMsgRecv = (BytesMessage) listener.getMessage();
+            if (listener.isComplete())
+                bMsgRecv = (BytesMessage) listener.getMessage();
             if (bMsgRecv == null) {
                 TestUtil.logErr("Did not receive BytesMessage");
                 pass = false;
@@ -1063,7 +1049,8 @@ public class Client extends ServiceEETest {
                 TestUtil.sleepSec(2);
             }
             MapMessage mMsgRecv = null;
-            if (listener.isComplete()) mMsgRecv = (MapMessage) listener.getMessage();
+            if (listener.isComplete())
+                mMsgRecv = (MapMessage) listener.getMessage();
             if (mMsgRecv == null) {
                 TestUtil.logErr("Did not receive MapMessage");
                 pass = false;
@@ -1111,7 +1098,8 @@ public class Client extends ServiceEETest {
                 TestUtil.sleepSec(2);
             }
             ObjectMessage oMsgRecv = null;
-            if (listener.isComplete()) oMsgRecv = (ObjectMessage) listener.getMessage();
+            if (listener.isComplete())
+                oMsgRecv = (ObjectMessage) listener.getMessage();
             if (oMsgRecv == null) {
                 TestUtil.logErr("Did not receive ObjectMessage");
                 pass = false;
@@ -1144,7 +1132,8 @@ public class Client extends ServiceEETest {
                 TestUtil.sleepSec(2);
             }
             StreamMessage sMsgRecv = null;
-            if (listener.isComplete()) sMsgRecv = (StreamMessage) listener.getMessage();
+            if (listener.isComplete())
+                sMsgRecv = (StreamMessage) listener.getMessage();
             if (sMsgRecv == null) {
                 TestUtil.logErr("Did not receive StreamMessage");
                 pass = false;
@@ -1180,7 +1169,8 @@ public class Client extends ServiceEETest {
                 TestUtil.sleepSec(2);
             }
             TextMessage actTextMessage = null;
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -1209,8 +1199,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:275.2; JMS:SPEC:275.7;
      *
-     * @test_Strategy: Send async messages to a topic and receive them. Verify
-     * that the text of each matches the order of the text in the sent messages.
+     * @test_Strategy: Send async messages to a topic and receive them. Verify that the text of each matches the order of
+     * the text in the sent messages.
      */
     public void messageOrderCLTopicTest() throws Fault {
         boolean pass = true;
@@ -1248,7 +1238,8 @@ public class Client extends ServiceEETest {
 
             for (int i = 0; i < numMessages; i++) {
                 TextMessage actTextMessage = null;
-                if (listener.haveMsg(i)) actTextMessage = (TextMessage) listener.getMessage(i);
+                if (listener.haveMsg(i))
+                    actTextMessage = (TextMessage) listener.getMessage(i);
                 if (actTextMessage == null) {
                     TestUtil.logMsg("Did not receive TextMessage " + i + " (unexpected)");
                     pass = false;
@@ -1268,7 +1259,8 @@ public class Client extends ServiceEETest {
             throw new Fault("messageOrderCLTopicTest", e);
         }
 
-        if (!pass) throw new Fault("messageOrderCLTopicTest failed");
+        if (!pass)
+            throw new Fault("messageOrderCLTopicTest failed");
     }
 
     /*
@@ -1276,9 +1268,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:909;
      *
-     * @test_Strategy: Send and receive a message from JMSContext with
-     * CLIENT_ACKNOWLEDGE and call the acknowlege method to acknowledge the
-     * message consumed.
+     * @test_Strategy: Send and receive a message from JMSContext with CLIENT_ACKNOWLEDGE and call the acknowlege method to
+     * acknowledge the message consumed.
      *
      */
     public void acknowledgeTest() throws Fault {
@@ -1310,8 +1301,10 @@ public class Client extends ServiceEETest {
             throw new Fault("acknowledgeTest", e);
         } finally {
             try {
-                if (msgconsumer != null) msgconsumer.close();
-                if (msgcontext != null) msgcontext.close();
+                if (msgconsumer != null)
+                    msgconsumer.close();
+                if (msgcontext != null)
+                    msgcontext.close();
                 msgproducer = null;
             } catch (Exception e) {
             }
@@ -1325,24 +1318,20 @@ public class Client extends ServiceEETest {
     /*
      * @testName: commitRollbackTest
      *
-     * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:914; JMS:JAVADOC:995;
-     * JMS:JAVADOC:942; JMS:JAVADOC:1102; JMS:JAVADOC:847; JMS:SPEC:275.3;
+     * @assertion_ids: JMS:JAVADOC:1234; JMS:JAVADOC:914; JMS:JAVADOC:995; JMS:JAVADOC:942; JMS:JAVADOC:1102;
+     * JMS:JAVADOC:847; JMS:SPEC:275.3;
      *
      * @test_Strategy: Test the following APIs:
      *
-     * ConnectionFactory.createContext(String, String, int)
-     * JMSProducer.send(Destination, Message) JMSContext.commit()
-     * JMSContext.rollback() JMSContext.createConsumer(Destination)
-     * JMSContext.receive(long timeout)
+     * ConnectionFactory.createContext(String, String, int) JMSProducer.send(Destination, Message) JMSContext.commit()
+     * JMSContext.rollback() JMSContext.createConsumer(Destination) JMSContext.receive(long timeout)
      *
-     * 1. Create JMSContext with SESSION_TRANSACTED. This is done in the setup()
-     * routine. 2. Send x messages to a Topic. 3. Call rollback() to rollback the
-     * sent messages. 4. Create a JMSConsumer to consume the messages in the
-     * Topic. Should not receive any messages since the sent messages were rolled
-     * back. Verify that no messages are received. 5. Send x messages to a Topic.
-     * 6. Call commit() to commit the sent messages. 7. Create a JMSConsumer to
-     * consume the messages in the Topic. Should receive all the messages since
-     * the sent messages were committed. Verify that all messages are received.
+     * 1. Create JMSContext with SESSION_TRANSACTED. This is done in the setup() routine. 2. Send x messages to a Topic. 3.
+     * Call rollback() to rollback the sent messages. 4. Create a JMSConsumer to consume the messages in the Topic. Should
+     * not receive any messages since the sent messages were rolled back. Verify that no messages are received. 5. Send x
+     * messages to a Topic. 6. Call commit() to commit the sent messages. 7. Create a JMSConsumer to consume the messages in
+     * the Topic. Should receive all the messages since the sent messages were committed. Verify that all messages are
+     * received.
      */
     public void commitRollbackTest() throws Fault {
         boolean pass = true;
@@ -1421,8 +1410,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1237;
      *
-     * @test_Strategy: Test InvalidDestinationRuntimeException conditions from API
-     * methods with CompletionListener.
+     * @test_Strategy: Test InvalidDestinationRuntimeException conditions from API methods with CompletionListener.
      *
      * Tests the following exception conditions:
      *
@@ -1509,8 +1497,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1236;
      *
-     * @test_Strategy: Test MessageFormatRuntimeException conditions from API
-     * methods with CompletionListener.
+     * @test_Strategy: Test MessageFormatRuntimeException conditions from API methods with CompletionListener.
      *
      * Tests the following exception conditions:
      *
@@ -1582,17 +1569,15 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1235;
      *
-     * @test_Strategy: Test JMSRuntimeException conditions from API methods with
-     * CompletionListener.
+     * @test_Strategy: Test JMSRuntimeException conditions from API methods with CompletionListener.
      *
      * Tests the following exception conditions:
      *
-     * Set delivery mode to -1 on JMSProducer and then try and send async message
-     * to CompletionListener. The CompletionListener MUST throw
-     * JMSRuntimeException.
+     * Set delivery mode to -1 on JMSProducer and then try and send async message to CompletionListener. The
+     * CompletionListener MUST throw JMSRuntimeException.
      *
-     * Set priority to -1 on JMSProducer and then try and send async message to
-     * CompletionListener. The CompletionListener MUST throw JMSRuntimeException.
+     * Set priority to -1 on JMSProducer and then try and send async message to CompletionListener. The CompletionListener
+     * MUST throw JMSRuntimeException.
      */
     public void jMSRuntimeExceptionTests() throws Fault {
         boolean pass = true;

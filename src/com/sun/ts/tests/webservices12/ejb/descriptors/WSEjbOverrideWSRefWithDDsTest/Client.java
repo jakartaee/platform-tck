@@ -29,10 +29,7 @@ public class Client extends EETest {
 
     private Tx port;
 
-    @WebServiceRef(
-            name = "service/wsejboverridewsrefwithddstest",
-            type = java.lang.Object.class,
-            value = jakarta.xml.ws.Service.class)
+    @WebServiceRef(name = "service/wsejboverridewsrefwithddstest", type = java.lang.Object.class, value = jakarta.xml.ws.Service.class)
     static TxService service;
 
     private void getStub() throws Exception {
@@ -77,17 +74,13 @@ public class Client extends EETest {
     /*
      * @testName: call_txRequired
      *
-     * @assertion_ids: WS4EE:SPEC:39; WS4EE:SPEC:69; WS4EE:SPEC:109;
-     * WS4EE:SPEC:112; WS4EE:SPEC:43; WS4EE:SPEC:115; WS4EE:SPEC:213;
-     * WS4EE:SPEC:219; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:113; WS4EE:SPEC:114;
-     * WS4EE:SPEC:117; WS4EE:SPEC:221; WS4EE:SPEC:224; WS4EE:SPEC:228;
-     * WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:5000;
+     * @assertion_ids: WS4EE:SPEC:39; WS4EE:SPEC:69; WS4EE:SPEC:109; WS4EE:SPEC:112; WS4EE:SPEC:43; WS4EE:SPEC:115;
+     * WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185; WS4EE:SPEC:186; WS4EE:SPEC:187;
+     * WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:117; WS4EE:SPEC:221; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
+     * WS4EE:SPEC:249; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:5000;
      *
-     * @test_Strategy: Deploy via full 109 deployment descriptors.
-     * The @WebserviceRef annotation on the client must be overridden by the
-     * deployment descriptors.
+     * @test_Strategy: Deploy via full 109 deployment descriptors. The @WebserviceRef annotation on the client must be
+     * overridden by the deployment descriptors.
      */
     public void call_txRequired() throws Fault {
         TestUtil.logMsg("call_txRequired");
@@ -104,17 +97,13 @@ public class Client extends EETest {
     /*
      * @testName: call_txSupports
      *
-     * @assertion_ids: WS4EE:SPEC:39; WS4EE:SPEC:69; WS4EE:SPEC:109;
-     * WS4EE:SPEC:112; WS4EE:SPEC:43; WS4EE:SPEC:115; WS4EE:SPEC:213;
-     * WS4EE:SPEC:219; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:113; WS4EE:SPEC:114;
-     * WS4EE:SPEC:117; WS4EE:SPEC:221; WS4EE:SPEC:224; WS4EE:SPEC:228;
-     * WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:5000;
+     * @assertion_ids: WS4EE:SPEC:39; WS4EE:SPEC:69; WS4EE:SPEC:109; WS4EE:SPEC:112; WS4EE:SPEC:43; WS4EE:SPEC:115;
+     * WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185; WS4EE:SPEC:186; WS4EE:SPEC:187;
+     * WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:117; WS4EE:SPEC:221; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
+     * WS4EE:SPEC:249; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:5000;
      *
-     * @test_Strategy: Deploy via full 109 deployment descriptors.
-     * The @WebserviceRef annotation on the client must be overridden by the
-     * deployment descriptors.
+     * @test_Strategy: Deploy via full 109 deployment descriptors. The @WebserviceRef annotation on the client must be
+     * overridden by the deployment descriptors.
      */
     public void call_txSupports() throws Fault {
         TestUtil.logMsg("call_txSupports");
@@ -131,17 +120,13 @@ public class Client extends EETest {
     /*
      * @testName: call_txRequiresNew
      *
-     * @assertion_ids: WS4EE:SPEC:39; WS4EE:SPEC:69; WS4EE:SPEC:109;
-     * WS4EE:SPEC:112; WS4EE:SPEC:43; WS4EE:SPEC:115; WS4EE:SPEC:213;
-     * WS4EE:SPEC:219; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:113; WS4EE:SPEC:114;
-     * WS4EE:SPEC:117; WS4EE:SPEC:221; WS4EE:SPEC:224; WS4EE:SPEC:228;
-     * WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:5000;
+     * @assertion_ids: WS4EE:SPEC:39; WS4EE:SPEC:69; WS4EE:SPEC:109; WS4EE:SPEC:112; WS4EE:SPEC:43; WS4EE:SPEC:115;
+     * WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185; WS4EE:SPEC:186; WS4EE:SPEC:187;
+     * WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:117; WS4EE:SPEC:221; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
+     * WS4EE:SPEC:249; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:5000;
      *
-     * @test_Strategy: Deploy via full 109 deployment descriptors.
-     * The @WebserviceRef annotation on the client must be overridden by the
-     * deployment descriptors.
+     * @test_Strategy: Deploy via full 109 deployment descriptors. The @WebserviceRef annotation on the client must be
+     * overridden by the deployment descriptors.
      */
     public void call_txRequiresNew() throws Fault {
         TestUtil.logMsg("call_txRequiresNew");
@@ -158,17 +143,13 @@ public class Client extends EETest {
     /*
      * @testName: call_txNotSupported
      *
-     * @assertion_ids: WS4EE:SPEC:39; WS4EE:SPEC:69; WS4EE:SPEC:109;
-     * WS4EE:SPEC:112; WS4EE:SPEC:43; WS4EE:SPEC:115; WS4EE:SPEC:213;
-     * WS4EE:SPEC:219; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:113; WS4EE:SPEC:114;
-     * WS4EE:SPEC:117; WS4EE:SPEC:221; WS4EE:SPEC:224; WS4EE:SPEC:228;
-     * WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:5000;
+     * @assertion_ids: WS4EE:SPEC:39; WS4EE:SPEC:69; WS4EE:SPEC:109; WS4EE:SPEC:112; WS4EE:SPEC:43; WS4EE:SPEC:115;
+     * WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185; WS4EE:SPEC:186; WS4EE:SPEC:187;
+     * WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:117; WS4EE:SPEC:221; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
+     * WS4EE:SPEC:249; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:5000;
      *
-     * @test_Strategy: Deploy via full 109 deployment descriptors.
-     * The @WebserviceRef annotation on the client must be overridden by the
-     * deployment descriptors.
+     * @test_Strategy: Deploy via full 109 deployment descriptors. The @WebserviceRef annotation on the client must be
+     * overridden by the deployment descriptors.
      */
     public void call_txNotSupported() throws Fault {
         TestUtil.logMsg("call_txNotSupported");
@@ -185,17 +166,13 @@ public class Client extends EETest {
     /*
      * @testName: call_txNever
      *
-     * @assertion_ids: WS4EE:SPEC:39; WS4EE:SPEC:69; WS4EE:SPEC:109;
-     * WS4EE:SPEC:112; WS4EE:SPEC:43; WS4EE:SPEC:115; WS4EE:SPEC:213;
-     * WS4EE:SPEC:219; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185;
-     * WS4EE:SPEC:186; WS4EE:SPEC:187; WS4EE:SPEC:113; WS4EE:SPEC:114;
-     * WS4EE:SPEC:117; WS4EE:SPEC:221; WS4EE:SPEC:224; WS4EE:SPEC:228;
-     * WS4EE:SPEC:248; WS4EE:SPEC:249; WS4EE:SPEC:4000; WS4EE:SPEC:4001;
-     * WS4EE:SPEC:5000;
+     * @assertion_ids: WS4EE:SPEC:39; WS4EE:SPEC:69; WS4EE:SPEC:109; WS4EE:SPEC:112; WS4EE:SPEC:43; WS4EE:SPEC:115;
+     * WS4EE:SPEC:213; WS4EE:SPEC:219; WS4EE:SPEC:183; WS4EE:SPEC:184; WS4EE:SPEC:185; WS4EE:SPEC:186; WS4EE:SPEC:187;
+     * WS4EE:SPEC:113; WS4EE:SPEC:114; WS4EE:SPEC:117; WS4EE:SPEC:221; WS4EE:SPEC:224; WS4EE:SPEC:228; WS4EE:SPEC:248;
+     * WS4EE:SPEC:249; WS4EE:SPEC:4000; WS4EE:SPEC:4001; WS4EE:SPEC:5000;
      *
-     * @test_Strategy: Deploy via full 109 deployment descriptors.
-     * The @WebserviceRef annotation on the client must be overridden by the
-     * deployment descriptors.
+     * @test_Strategy: Deploy via full 109 deployment descriptors. The @WebserviceRef annotation on the client must be
+     * overridden by the deployment descriptors.
      */
     public void call_txNever() throws Fault {
         TestUtil.logMsg("call_txNever");

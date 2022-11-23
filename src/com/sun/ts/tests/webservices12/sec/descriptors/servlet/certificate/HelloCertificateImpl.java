@@ -21,12 +21,7 @@ package com.sun.ts.tests.webservices12.sec.descriptors.servlet.certificate;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HelloCertificatePort",
-        serviceName = "HelloCertificateService",
-        targetNamespace = "http://HelloCertificate.org",
-        wsdlLocation = "WEB-INF/wsdl/HelloCertificate.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.sec.descriptors.servlet.certificate.HelloCertificate")
+@WebService(portName = "HelloCertificatePort", serviceName = "HelloCertificateService", targetNamespace = "http://HelloCertificate.org", wsdlLocation = "WEB-INF/wsdl/HelloCertificate.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.sec.descriptors.servlet.certificate.HelloCertificate")
 public class HelloCertificateImpl implements HelloCertificate {
 
     public String sayHelloCertificate(String input) {

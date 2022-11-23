@@ -30,12 +30,7 @@ import java.math.BigInteger;
 import javax.xml.datatype.*;
 import javax.xml.namespace.QName;
 
-@WebService(
-        portName = "HolderTestPort",
-        serviceName = "HolderTestService",
-        targetNamespace = "http://holdertest.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLHolderTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.HolderTest")
+@WebService(portName = "HolderTestPort", serviceName = "HolderTestService", targetNamespace = "http://holdertest.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLHolderTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.holdertest.HolderTest")
 public class HolderTestImpl implements HolderTest {
     private static DatatypeFactory dtfactory = null;
 

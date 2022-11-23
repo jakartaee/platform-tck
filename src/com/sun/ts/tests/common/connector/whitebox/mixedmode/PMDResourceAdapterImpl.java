@@ -38,24 +38,12 @@ import jakarta.resource.spi.work.WorkManager;
 import javax.transaction.xa.XAResource;
 
 /**
- * This is a sample resource adapter that will use some ra.xml info. This RA is
- * used to assist with verifying the server supports annotations when there is
- * no ra.xml (Assertion 268) and the transaction support is Local.
+ * This is a sample resource adapter that will use some ra.xml info. This RA is used to assist with verifying the server
+ * supports annotations when there is no ra.xml (Assertion 268) and the transaction support is Local.
  *
  */
-@Connector(
-        description = "CTS Test Resource Adapter with No DD",
-        licenseDescription = "CTS License Required",
-        licenseRequired = true,
-        authMechanisms =
-                @AuthenticationMechanism(
-                        credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential,
-                        authMechanism = "BasicPassword",
-                        description = "Basic Password Authentication"),
-        reauthenticationSupport = false,
-        securityPermissions = @SecurityPermission(),
-        transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction,
-        requiredWorkContexts = {HintsContext.class, SecurityContext.class})
+@Connector(description = "CTS Test Resource Adapter with No DD", licenseDescription = "CTS License Required", licenseRequired = true, authMechanisms = @AuthenticationMechanism(credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential, authMechanism = "BasicPassword", description = "Basic Password Authentication"), reauthenticationSupport = false, securityPermissions = @SecurityPermission(), transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction, requiredWorkContexts = {
+        HintsContext.class, SecurityContext.class })
 public class PMDResourceAdapterImpl implements ResourceAdapter, java.io.Serializable {
 
     private transient BootstrapContext bsc;
@@ -135,9 +123,8 @@ public class PMDResourceAdapterImpl implements ResourceAdapter, java.io.Serializ
     //
 
     /*
-     * this is the setter for the ConfigProperty annotation = raName. According to
-     * onnector 1.6 spec, section 18.5, this setter must be invoked since it
-     * belongs to a ConfigProperty annotation for the ResourceAdapter JavaBean.
+     * this is the setter for the ConfigProperty annotation = raName. According to onnector 1.6 spec, section 18.5, this
+     * setter must be invoked since it belongs to a ConfigProperty annotation for the ResourceAdapter JavaBean.
      */
     public void setRaName(String name) {
         this.raName = name;
@@ -202,11 +189,14 @@ public class PMDResourceAdapterImpl implements ResourceAdapter, java.io.Serializ
 
         PMDResourceAdapterImpl that = (PMDResourceAdapterImpl) obj;
 
-        if (!Util.isEqual(this.mdPropOnly, that.getMdPropOnly())) return false;
+        if (!Util.isEqual(this.mdPropOnly, that.getMdPropOnly()))
+            return false;
 
-        if (!Util.isEqual(this.overRide, that.getOverRide())) return false;
+        if (!Util.isEqual(this.overRide, that.getOverRide()))
+            return false;
 
-        if (!Util.isEqual(this.raName, that.getRaName())) return false;
+        if (!Util.isEqual(this.raName, that.getRaName()))
+            return false;
 
         return true;
     }

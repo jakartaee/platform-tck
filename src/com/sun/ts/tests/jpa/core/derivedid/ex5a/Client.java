@@ -27,7 +27,8 @@ import java.util.Properties;
  */
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -48,14 +49,11 @@ public class Client extends PMClientBase {
 
     /**
      * @testName: DIDTest
-     * @assertion_ids: PERSISTENCE:SPEC:1182; PERSISTENCE:SPEC:1183;
-     *                 PERSISTENCE:SPEC:1184; PERSISTENCE:SPEC:1185;
+     * @assertion_ids: PERSISTENCE:SPEC:1182; PERSISTENCE:SPEC:1183; PERSISTENCE:SPEC:1184; PERSISTENCE:SPEC:1185;
      * @test_Strategy: Derived Identifier
-     *                 <p/>
-     *                 The parent entity has a simple primary key Case (a): The
-     *                 dependent entity has a single relationship attribute
-     *                 corresponding to the parents primary key. The primary key
-     *                 of MedicalHistory is of type String.
+     * <p/>
+     * The parent entity has a simple primary key Case (a): The dependent entity has a single relationship attribute
+     * corresponding to the parents primary key. The primary key of MedicalHistory is of type String.
      */
     public void DIDTest() throws Fault {
         boolean pass = false;

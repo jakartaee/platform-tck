@@ -102,9 +102,12 @@ public abstract class BeanEJB implements EntityBean {
 
     private boolean isA(int i) {
         TestUtil.logTrace("isA");
-        if (i == 1) return getB1().getA() != null;
-        else if (i == 2) return getB2().getA() != null;
-        else return false;
+        if (i == 1)
+            return getB1().getA() != null;
+        else if (i == 2)
+            return getB2().getA() != null;
+        else
+            return false;
     }
 
     // ===========================================================
@@ -130,13 +133,14 @@ public abstract class BeanEJB implements EntityBean {
         if (isA(i)) {
             ALocal a = null;
             switch (i) {
-                case 1:
-                    a = getB1().getA();
-                    break;
-                case 2:
-                    a = getB2().getA();
+            case 1:
+                a = getB1().getA();
+                break;
+            case 2:
+                a = getB2().getA();
             }
-            if (a != null) return new ADVC(a.getId(), a.getName(), a.getValue());
+            if (a != null)
+                return new ADVC(a.getId(), a.getName(), a.getValue());
         }
         return null;
     }
@@ -151,8 +155,10 @@ public abstract class BeanEJB implements EntityBean {
         if (getB1().getA().isIdentical(a1)
                 && getB2().getA().isIdentical(a2)
                 && getB3().getA().isIdentical(a2)
-                && getB4().getA().isIdentical(a2)) return true;
-        else return false;
+                && getB4().getA().isIdentical(a2))
+            return true;
+        else
+            return false;
     }
 
     private ALocal createALocal(String id, String name, int value) throws Exception {
@@ -193,20 +199,20 @@ public abstract class BeanEJB implements EntityBean {
             ALocal a1 = null;
             BLocal b1 = null;
             switch (flag) {
-                case NO_RELATION_SET:
-                    a1 = createALocal(a.getId(), a.getName(), a.getValue());
-                    b1 = createBLocal(b.getId(), b.getName(), b.getValue());
-                    break;
-                case NULL_RELATION_SET:
-                    a1 = createALocal(a.getId(), a.getName(), a.getValue());
-                    b1 = createBLocal(b.getId(), b.getName(), b.getValue());
-                    b1.setA(null);
-                    break;
-                case RELATION_SET:
-                    a1 = createALocal(a.getId(), a.getName(), a.getValue());
-                    b1 = createBLocal(b.getId(), b.getName(), b.getValue());
-                    b1.setA(a1);
-                    break;
+            case NO_RELATION_SET:
+                a1 = createALocal(a.getId(), a.getName(), a.getValue());
+                b1 = createBLocal(b.getId(), b.getName(), b.getValue());
+                break;
+            case NULL_RELATION_SET:
+                a1 = createALocal(a.getId(), a.getName(), a.getValue());
+                b1 = createBLocal(b.getId(), b.getName(), b.getValue());
+                b1.setA(null);
+                break;
+            case RELATION_SET:
+                a1 = createALocal(a.getId(), a.getName(), a.getValue());
+                b1 = createBLocal(b.getId(), b.getName(), b.getValue());
+                b1.setA(a1);
+                break;
             }
             setA1(a1);
             setB1(b1);
@@ -250,7 +256,8 @@ public abstract class BeanEJB implements EntityBean {
             setB1(b1);
             setB2(b2);
 
-            if (aTwo == null) return;
+            if (aTwo == null)
+                return;
 
             a2 = createALocal(aTwo.getId(), aTwo.getName(), aTwo.getValue());
             b3 = createBLocal(bThree.getId(), bThree.getName(), bThree.getValue());

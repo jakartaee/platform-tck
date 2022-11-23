@@ -95,16 +95,20 @@ public class TestBeanTxEJB implements SessionBean, SessionSynchronization {
 
     public void afterBegin() {
         TestUtil.logTrace("afterBegin");
-        if (afterBeginFlag || syncTestComplete) return;
+        if (afterBeginFlag || syncTestComplete)
+            return;
         afterBeginFlag = true;
-        if (beforeCompletionFlag || afterCompletionFlag) syncLifeCycleFlag = false;
+        if (beforeCompletionFlag || afterCompletionFlag)
+            syncLifeCycleFlag = false;
     }
 
     public void beforeCompletion() {
         TestUtil.logTrace("beforeCompletion");
-        if (beforeCompletionFlag || syncTestComplete) return;
+        if (beforeCompletionFlag || syncTestComplete)
+            return;
         beforeCompletionFlag = true;
-        if (!afterBeginFlag || afterCompletionFlag) syncLifeCycleFlag = false;
+        if (!afterBeginFlag || afterCompletionFlag)
+            syncLifeCycleFlag = false;
         if (rollBack) {
             TestUtil.logMsg("Marking transaction for rollback only.");
             sctx.setRollbackOnly();
@@ -114,9 +118,11 @@ public class TestBeanTxEJB implements SessionBean, SessionSynchronization {
 
     public void afterCompletion(boolean committed) {
         TestUtil.logTrace("afterCompletion");
-        if (afterCompletionFlag || syncTestComplete) return;
+        if (afterCompletionFlag || syncTestComplete)
+            return;
         afterCompletionFlag = true;
-        if (!afterBeginFlag || !beforeCompletionFlag) syncLifeCycleFlag = false;
+        if (!afterBeginFlag || !beforeCompletionFlag)
+            syncLifeCycleFlag = false;
         commitFlag = committed;
         TestUtil.logMsg("committed=" + committed);
     }
@@ -150,9 +156,9 @@ public class TestBeanTxEJB implements SessionBean, SessionSynchronization {
         syncTestComplete = true;
         boolean result;
         if (!b) // Container-Managed, the transaction should be committed
-        return syncLifeCycleFlag && commitFlag;
+            return syncLifeCycleFlag && commitFlag;
         else // Bean-Managed, the transaction should not be committed
-        return syncLifeCycleFlag && !commitFlag;
+            return syncLifeCycleFlag && !commitFlag;
     }
 
     public boolean isSyncLifeCycle2() {
@@ -173,8 +179,10 @@ public class TestBeanTxEJB implements SessionBean, SessionSynchronization {
 
     public boolean noSyncLifeCycle() {
         TestUtil.logTrace("noSyncLifeCycle");
-        if (!afterBeginFlag && !beforeCompletionFlag && !afterCompletionFlag) return true;
-        else return false;
+        if (!afterBeginFlag && !beforeCompletionFlag && !afterCompletionFlag)
+            return true;
+        else
+            return false;
     }
 
     public void dbUnConnect() {

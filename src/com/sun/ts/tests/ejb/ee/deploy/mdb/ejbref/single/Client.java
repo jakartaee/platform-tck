@@ -63,16 +63,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a message-driven bean referencing a stateless
-     *                 session bean (StatelessInternal) part of the same JAR file.
-     *                 The EJB reference is declared without using the optional
-     *                 ejb-link element in the DD.
+     * @test_Strategy: Deploy a message-driven bean referencing a stateless session bean (StatelessInternal) part of the
+     * same JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that the MDB can do a lookup for the ejb
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 StatelessInternal beans in an attempt to check that the EJB
-     *                 reference was resolved consistently with the DD.
+     * Check at runtime that the MDB can do a lookup for the ejb reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in StatelessInternal beans in an attempt to check that the EJB reference
+     * was resolved consistently with the DD.
      */
     public void testStatelessInternal() throws Fault {
 
@@ -99,16 +95,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a message-driven Queue bean referencing a stateless
-     *                 session bean (StatelessExternal) part of another JAR file.
-     *                 The EJB reference is declared without using the optional
-     *                 ejb-link element in the DD.
+     * @test_Strategy: Deploy a message-driven Queue bean referencing a stateless session bean (StatelessExternal) part of
+     * another JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that MDB can do a lookup for the ejb
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 StatelessExternal beans in an attempt to check that the EJB
-     *                 reference was resolved consistently with the DD.
+     * Check at runtime that MDB can do a lookup for the ejb reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in StatelessExternal beans in an attempt to check that the EJB reference
+     * was resolved consistently with the DD.
      */
     public void testStatelessExternal() throws Fault {
 
@@ -135,16 +127,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a message-driven queue bean referencing a stateful
-     *                 session bean (StatefulInternal) part of the same JAR file.
-     *                 The EJB reference is declared without using the optional
-     *                 ejb-link element in the DD.
+     * @test_Strategy: Deploy a message-driven queue bean referencing a stateful session bean (StatefulInternal) part of the
+     * same JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that a MDB can do a lookup for the ejb
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 StatefulInternal beans in an attempt to check that the EJB
-     *                 reference was resolved consistently with the DD.
+     * Check at runtime that a MDB can do a lookup for the ejb reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in StatefulInternal beans in an attempt to check that the EJB reference
+     * was resolved consistently with the DD.
      */
     public void testStatefulInternal() throws Fault {
 
@@ -178,16 +166,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a message-driven queue bean referencing a stateful
-     *                 session bean (StatefulExternal) part of another JAR file.
-     *                 The EJB reference is declared without using the optional
-     *                 ejb-link element in the DD.
+     * @test_Strategy: Deploy a message-driven queue bean referencing a stateful session bean (StatefulExternal) part of
+     * another JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that message-driven can do a lookup for
-     *                 the ejb reference and use it to create a bean. Then invoke
-     *                 on that instance a business method to be found only in
-     *                 StatefulExternal beans in an attempt to check that the EJB
-     *                 reference was resolved consistently with the DD.
+     * Check at runtime that message-driven can do a lookup for the ejb reference and use it to create a bean. Then invoke
+     * on that instance a business method to be found only in StatefulExternal beans in an attempt to check that the EJB
+     * reference was resolved consistently with the DD.
      */
     public void testStatefulExternal() throws Fault {
 
@@ -221,16 +205,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a message-driven queue bean referencing a BMP Entity
-     *                 bean (BMPInternal) part of the same JAR file. The EJB
-     *                 reference is declared without using the optional ejb-link
-     *                 element in the DD.
+     * @test_Strategy: Deploy a message-driven queue bean referencing a BMP Entity bean (BMPInternal) part of the same JAR
+     * file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that message-driven bean can do a lookup
-     *                 for the ejb reference and use it to create a bean. Then
-     *                 invoke on that instance a business method to be found only
-     *                 in BMPInternal beans in an attempt to check that the EJB
-     *                 reference was resolved consistently with the DD.
+     * Check at runtime that message-driven bean can do a lookup for the ejb reference and use it to create a bean. Then
+     * invoke on that instance a business method to be found only in BMPInternal beans in an attempt to check that the EJB
+     * reference was resolved consistently with the DD.
      */
     public void testBMPInternal() throws Fault {
 
@@ -257,16 +237,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a message-driven bean queue referencing a BMP emtity
-     *                 bean (BMPExternal) part of another JAR file. The EJB
-     *                 reference is declared without using the optional ejb-link
-     *                 element in the DD.
+     * @test_Strategy: Deploy a message-driven bean queue referencing a BMP emtity bean (BMPExternal) part of another JAR
+     * file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that MDB can do a lookup for the ejb
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in BMPExternal
-     *                 beans in an attempt to check that the EJB reference was
-     *                 resolved consistently with the DD.
+     * Check at runtime that MDB can do a lookup for the ejb reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in BMPExternal beans in an attempt to check that the EJB reference was
+     * resolved consistently with the DD.
      */
     public void testBMPExternal() throws Fault {
 
@@ -293,16 +269,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 1.1
-     *                 Entity bean (CMP11Internal) part of the same JAR file. The
-     *                 EJB reference is declared without using the optional
-     *                 ejb-link element in the DD.
+     * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 1.1 Entity bean (CMP11Internal) part of the same
+     * JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the ejb
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 CMP20Internal beans in an attempt to check that the EJB
-     *                 reference was resolved consistently with the DD.
+     * Check at runtime that TestBean can do a lookup for the ejb reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in CMP20Internal beans in an attempt to check that the EJB reference was
+     * resolved consistently with the DD.
      */
     public void testCMP11Internal() throws Fault {
 
@@ -329,16 +301,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 1.1
-     *                 entity bean (CMP11External) part of another JAR file. The
-     *                 EJB reference is declared without using the optional
-     *                 ejb-link element in the DD.
+     * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 1.1 entity bean (CMP11External) part of another
+     * JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that MDB can do a lookup for the ejb
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 CMP11External beans in an attempt to check that the EJB
-     *                 reference was resolved consistently with the DD.
+     * Check at runtime that MDB can do a lookup for the ejb reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in CMP11External beans in an attempt to check that the EJB reference was
+     * resolved consistently with the DD.
      */
     public void testCMP11External() throws Fault {
 
@@ -365,16 +333,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 2.0
-     *                 Entity bean (CMP20Internal) part of the same JAR file. The
-     *                 EJB reference is declared without using the optional
-     *                 ejb-link element in the DD.
+     * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 2.0 Entity bean (CMP20Internal) part of the same
+     * JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that MDB can do a lookup for the ejb
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 CMP20Internal beans in an attempt to check that the EJB
-     *                 reference was resolved consistently with the DD.
+     * Check at runtime that MDB can do a lookup for the ejb reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in CMP20Internal beans in an attempt to check that the EJB reference was
+     * resolved consistently with the DD.
      */
     public void testCMP20Internal() throws Fault {
 
@@ -401,16 +365,12 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 2.0
-     *                 entity bean (CMP20External) part of another JAR file. The
-     *                 EJB reference is declared without using the optional
-     *                 ejb-link element in the DD.
+     * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 2.0 entity bean (CMP20External) part of another
+     * JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that MDB can do a lookup for the ejb
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 CMP20External beans in an attempt to check that the EJB
-     *                 reference was resolved consistently with the DD.
+     * Check at runtime that MDB can do a lookup for the ejb reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in CMP20External beans in an attempt to check that the EJB reference was
+     * resolved consistently with the DD.
      */
     public void testCMP20External() throws Fault {
 

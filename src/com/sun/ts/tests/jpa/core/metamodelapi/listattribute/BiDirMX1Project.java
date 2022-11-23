@@ -41,7 +41,8 @@ public class BiDirMX1Project implements Serializable {
 
     private Float budget;
 
-    public BiDirMX1Project() {}
+    public BiDirMX1Project() {
+    }
 
     public BiDirMX1Project(Long id, String name) {
         this.id = id;

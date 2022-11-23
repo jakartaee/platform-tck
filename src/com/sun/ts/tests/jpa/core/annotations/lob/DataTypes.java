@@ -35,7 +35,8 @@ public class DataTypes implements java.io.Serializable {
     @Column(name = "BYTEARRAYDATA")
     protected Byte[] byteArrayData;
 
-    public DataTypes() {}
+    public DataTypes() {
+    }
 
     public DataTypes(int id) {
         this.id = id;

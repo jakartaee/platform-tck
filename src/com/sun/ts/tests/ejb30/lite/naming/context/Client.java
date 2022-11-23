@@ -38,9 +38,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: getEnvironment
      *
-     * @test_Strategy: Verifies java url context by invoking its methods.
-     * Application component instances are not allowed to modify the environment
-     * at runtime.
+     * @test_Strategy: Verifies java url context by invoking its methods. Application component instances are not allowed to
+     * modify the environment at runtime.
      */
     public void getEnvironment() throws NamingException, TestFailedException {
         appendReason("About to run tests in EJB.");
@@ -54,9 +53,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: bind
      *
-     * @test_Strategy: Verifies java url context by invoking its methods.
-     * Application component instances are not allowed to modify the environment
-     * at runtime.
+     * @test_Strategy: Verifies java url context by invoking its methods. Application component instances are not allowed to
+     * modify the environment at runtime.
      */
     public void bind() throws NamingException, TestFailedException {
 
@@ -71,9 +69,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: rebind
      *
-     * @test_Strategy: Verifies java url context by invoking its methods.
-     * Application component instances are not allowed to modify the environment
-     * at runtime.
+     * @test_Strategy: Verifies java url context by invoking its methods. Application component instances are not allowed to
+     * modify the environment at runtime.
      */
     public void rebind() throws NamingException, TestFailedException {
         appendReason("About to run tests in EJB.");
@@ -87,9 +84,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: unbind
      *
-     * @test_Strategy: Verifies java url context by invoking its methods.
-     * Application component instances are not allowed to modify the environment
-     * at runtime.
+     * @test_Strategy: Verifies java url context by invoking its methods. Application component instances are not allowed to
+     * modify the environment at runtime.
      */
     public void unbind() throws NamingException, TestFailedException {
         appendReason("About to run tests in EJB.");
@@ -103,9 +99,8 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: rename
      *
-     * @test_Strategy: Verifies java url context by invoking its methods.
-     * Application component instances are not allowed to modify the environment
-     * at runtime.
+     * @test_Strategy: Verifies java url context by invoking its methods. Application component instances are not allowed to
+     * modify the environment at runtime.
      */
     public void rename() throws NamingException, TestFailedException {
         appendReason("About to run tests in EJB.");

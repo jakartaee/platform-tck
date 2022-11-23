@@ -25,21 +25,17 @@ import java.util.Map;
 /**
  * A business method interceptor for EJB based WebService.
  *
- * Test_Strategy: 1) Use WebServiceInterceptor to intercept all webservice
- * method invocations.
+ * Test_Strategy: 1) Use WebServiceInterceptor to intercept all webservice method invocations.
  *
- * 2) During such invocation, the InvocationContext supplied to the interceptors
- * should contain the following details.
+ * 2) During such invocation, the InvocationContext supplied to the interceptors should contain the following details.
  *
- * 1) The getTarget() of Invocation Context should return the bean instance 2)
- * The getMethod() should return the method of bean class for which the
- * interceptor is invoked. 3) The getParameters() method should return the
- * parameters of the business method invocation. 4) The Map returned by the
- * getContextData() method must be an instance of JAX-WS Message context. i.e.
- * jakarta.xml.ws.handler.MessageContext
+ * 1) The getTarget() of Invocation Context should return the bean instance 2) The getMethod() should return the method
+ * of bean class for which the interceptor is invoked. 3) The getParameters() method should return the parameters of the
+ * business method invocation. 4) The Map returned by the getContextData() method must be an instance of JAX-WS Message
+ * context. i.e. jakarta.xml.ws.handler.MessageContext
  *
- * 3) If any of the above values are incorrect, then the interceptor throws
- * exception and the webservice invocation context test fails.
+ * 3) If any of the above values are incorrect, then the interceptor throws exception and the webservice invocation
+ * context test fails.
  *
  */
 public class WebServiceInterceptor {
@@ -89,11 +85,9 @@ public class WebServiceInterceptor {
         /*
          * if(contextDataMap!=null){
          *
-         * // Iterate through the map Set entries = contextDataMap.entrySet();
-         * Iterator iterator = entries.iterator(); while (iterator.hasNext()) {
-         * Map.Entry entry = (Map.Entry)iterator.next(); String KeyName =
-         * entry.getKey().toString(); TLogger.log(KeyName + " : " +
-         * entry.getValue()); } }
+         * // Iterate through the map Set entries = contextDataMap.entrySet(); Iterator iterator = entries.iterator(); while
+         * (iterator.hasNext()) { Map.Entry entry = (Map.Entry)iterator.next(); String KeyName = entry.getKey().toString();
+         * TLogger.log(KeyName + " : " + entry.getValue()); } }
          */
 
     }

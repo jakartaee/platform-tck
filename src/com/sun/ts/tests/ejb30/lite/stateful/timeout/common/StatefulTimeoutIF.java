@@ -36,18 +36,14 @@ public interface StatefulTimeoutIF {
     public static final long TIMEOUT_NANOSECONDS = 1000 * 1000 * 1000 * 5L;
 
     /**
-     * The number of seconds the test will at least wait before verifying the
-     * stateful bean's timeout and removal. The default value, 480 seconds (8
-     * minutes), should accommodate most cases. This value can be customized by
-     * setting the system property test.ejb.stateful.timeout.wait.seconds on the
-     * application server. For embed ejb tests, include this system property in
-     * testExecuteEjbEmbed in ts.jte.
+     * The number of seconds the test will at least wait before verifying the stateful bean's timeout and removal. The
+     * default value, 480 seconds (8 minutes), should accommodate most cases. This value can be customized by setting the
+     * system property test.ejb.stateful.timeout.wait.seconds on the application server. For embed ejb tests, include this
+     * system property in testExecuteEjbEmbed in ts.jte.
      *
-     * Also ensure that test harness timeout is set to a great value. See
-     * javatest.timeout.factor property in ts.jte.
+     * Also ensure that test harness timeout is set to a great value. See javatest.timeout.factor property in ts.jte.
      */
-    public static final long EXTRA_WAIT_SECONDS =
-            Long.valueOf(System.getProperty("test.ejb.stateful.timeout.wait.seconds", "480"));
+    public static final long EXTRA_WAIT_SECONDS = Long.valueOf(System.getProperty("test.ejb.stateful.timeout.wait.seconds", "480"));
 
     void ping();
 }

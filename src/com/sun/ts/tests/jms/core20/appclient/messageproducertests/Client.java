@@ -98,8 +98,7 @@ public class Client extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -182,8 +181,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:898;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * MessageProducer.send(Destination, Message, CompletionListener)
      */
@@ -219,7 +217,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -253,11 +252,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:903;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
-     * MessageProducer.send(Destination, Message, int, int, long,
-     * CompletionListener)
+     * MessageProducer.send(Destination, Message, int, int, long, CompletionListener)
      */
     public void queueSendRecvCompletionListenerTest2() throws Fault {
         boolean pass = true;
@@ -292,7 +289,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -335,8 +333,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:888;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * MessageProducer.send(Message, CompletionListener)
      */
@@ -371,7 +368,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -400,8 +398,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:893;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * MessageProducer.send(Message, int, int, long, CompletionListener)
      */
@@ -436,7 +433,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -584,11 +582,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: queueInvalidDestinationExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:891; JMS:JAVADOC:896; JMS:JAVADOC:901;
-     * JMS:JAVADOC:906;
+     * @assertion_ids: JMS:JAVADOC:891; JMS:JAVADOC:896; JMS:JAVADOC:901; JMS:JAVADOC:906;
      *
-     * @test_Strategy: Test for InvalidDestinationException from MessageProducer
-     * API's.
+     * @test_Strategy: Test for InvalidDestinationException from MessageProducer API's.
      */
     public void queueInvalidDestinationExceptionTests() throws Fault {
         boolean pass = true;
@@ -711,11 +707,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: queueUnsupportedOperationExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:892; JMS:JAVADOC:897; JMS:JAVADOC:902;
-     * JMS:JAVADOC:1323;
+     * @assertion_ids: JMS:JAVADOC:892; JMS:JAVADOC:897; JMS:JAVADOC:902; JMS:JAVADOC:1323;
      *
-     * @test_Strategy: Test for UnsupportedOperationException from MessageProducer
-     * API's.
+     * @test_Strategy: Test for UnsupportedOperationException from MessageProducer API's.
      */
     public void queueUnsupportedOperationExceptionTests() throws Fault {
         boolean pass = true;
@@ -907,11 +901,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: queueIllegalArgumentExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:1319; JMS:JAVADOC:1320; JMS:JAVADOC:1321;
-     * JMS:JAVADOC:1322;
+     * @assertion_ids: JMS:JAVADOC:1319; JMS:JAVADOC:1320; JMS:JAVADOC:1321; JMS:JAVADOC:1322;
      *
-     * @test_Strategy: Test for IllegalArgumentException from MessageProducer
-     * API's.
+     * @test_Strategy: Test for IllegalArgumentException from MessageProducer API's.
      */
     public void queueIllegalArgumentExceptionTests() throws Fault {
         boolean pass = true;
@@ -1099,17 +1091,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: queueMessageFormatExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:890; JMS:JAVADOC:895; JMS:JAVADOC:900;
-     * JMS:JAVADOC:905;
+     * @assertion_ids: JMS:JAVADOC:890; JMS:JAVADOC:895; JMS:JAVADOC:900; JMS:JAVADOC:905;
      *
-     * @test_Strategy: Test MessageFormatException conditions from API methods
-     * with CompletionListener.
+     * @test_Strategy: Test MessageFormatException conditions from API methods with CompletionListener.
      *
-     * MessageProducer.send(Message, CompletionListener)
-     * MessageProducer.send(Message, int, int, long, CompletionListener)
-     * MessageProducer.send(Destination, Message, CompletionListener)
-     * MessageProducer.send(Destination, Message, int, int, long,
-     * CompletionListener)
+     * MessageProducer.send(Message, CompletionListener) MessageProducer.send(Message, int, int, long, CompletionListener)
+     * MessageProducer.send(Destination, Message, CompletionListener) MessageProducer.send(Destination, Message, int, int,
+     * long, CompletionListener)
      *
      * Tests the following exception conditions:
      *
@@ -1308,9 +1296,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1355;
      *
-     * @test_Strategy: Test IllegalStateException conditions. Calling
-     * MessageProducer.close() in CompletionListener MUST throw
-     * IllegalStateException.
+     * @test_Strategy: Test IllegalStateException conditions. Calling MessageProducer.close() in CompletionListener MUST
+     * throw IllegalStateException.
      */
     public void queueIllegalStateExceptionTests() throws Fault {
         boolean pass = true;
@@ -1380,8 +1367,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:898;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * MessageProducer.send(Destination, Message, CompletionListener)
      */
@@ -1417,7 +1403,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -1451,11 +1438,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:903;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
-     * MessageProducer.send(Destination, Message, int, int, long,
-     * CompletionListener)
+     * MessageProducer.send(Destination, Message, int, int, long, CompletionListener)
      */
     public void topicSendRecvCompletionListenerTest2() throws Fault {
         boolean pass = true;
@@ -1490,7 +1475,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -1533,8 +1519,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:888;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * MessageProducer.send(Message, CompletionListener)
      */
@@ -1569,7 +1554,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -1598,8 +1584,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:893;
      *
-     * @test_Strategy: Send a message using the following API method and verify
-     * the send and recv of data:
+     * @test_Strategy: Send a message using the following API method and verify the send and recv of data:
      *
      * MessageProducer.send(Message, int, int, long, CompletionListener)
      */
@@ -1634,7 +1619,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("Loop " + i + ": sleep 2 seconds waiting for messages to arrive at listener");
                 TestUtil.sleepSec(2);
             }
-            if (listener.isComplete()) actTextMessage = (TextMessage) listener.getMessage();
+            if (listener.isComplete())
+                actTextMessage = (TextMessage) listener.getMessage();
 
             if (actTextMessage == null) {
                 throw new Fault("Did not receive TextMessage");
@@ -1782,11 +1768,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: topicInvalidDestinationExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:891; JMS:JAVADOC:896; JMS:JAVADOC:901;
-     * JMS:JAVADOC:906;
+     * @assertion_ids: JMS:JAVADOC:891; JMS:JAVADOC:896; JMS:JAVADOC:901; JMS:JAVADOC:906;
      *
-     * @test_Strategy: Test for InvalidDestinationException from MessageProducer
-     * API's.
+     * @test_Strategy: Test for InvalidDestinationException from MessageProducer API's.
      */
     public void topicInvalidDestinationExceptionTests() throws Fault {
         boolean pass = true;
@@ -1909,11 +1893,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: topicUnsupportedOperationExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:892; JMS:JAVADOC:897; JMS:JAVADOC:902;
-     * JMS:JAVADOC:1323;
+     * @assertion_ids: JMS:JAVADOC:892; JMS:JAVADOC:897; JMS:JAVADOC:902; JMS:JAVADOC:1323;
      *
-     * @test_Strategy: Test for UnsupportedOperationException from MessageProducer
-     * API's.
+     * @test_Strategy: Test for UnsupportedOperationException from MessageProducer API's.
      */
     public void topicUnsupportedOperationExceptionTests() throws Fault {
         boolean pass = true;
@@ -2105,11 +2087,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: topicIllegalArgumentExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:1319; JMS:JAVADOC:1320; JMS:JAVADOC:1321;
-     * JMS:JAVADOC:1322;
+     * @assertion_ids: JMS:JAVADOC:1319; JMS:JAVADOC:1320; JMS:JAVADOC:1321; JMS:JAVADOC:1322;
      *
-     * @test_Strategy: Test for IllegalArgumentException from MessageProducer
-     * API's.
+     * @test_Strategy: Test for IllegalArgumentException from MessageProducer API's.
      */
     public void topicIllegalArgumentExceptionTests() throws Fault {
         boolean pass = true;
@@ -2297,17 +2277,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: topicMessageFormatExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:890; JMS:JAVADOC:895; JMS:JAVADOC:900;
-     * JMS:JAVADOC:905;
+     * @assertion_ids: JMS:JAVADOC:890; JMS:JAVADOC:895; JMS:JAVADOC:900; JMS:JAVADOC:905;
      *
-     * @test_Strategy: Test MessageFormatException conditions from API methods
-     * with CompletionListener.
+     * @test_Strategy: Test MessageFormatException conditions from API methods with CompletionListener.
      *
-     * MessageProducer.send(Message, CompletionListener)
-     * MessageProducer.send(Message, int, int, long, CompletionListener)
-     * MessageProducer.send(Destination, Message, CompletionListener)
-     * MessageProducer.send(Destination, Message, int, int, long,
-     * CompletionListener)
+     * MessageProducer.send(Message, CompletionListener) MessageProducer.send(Message, int, int, long, CompletionListener)
+     * MessageProducer.send(Destination, Message, CompletionListener) MessageProducer.send(Destination, Message, int, int,
+     * long, CompletionListener)
      *
      * Tests the following exception conditions:
      *
@@ -2486,9 +2462,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1355;
      *
-     * @test_Strategy: Test IllegalStateException conditions. Calling
-     * MessageProducer.close() in CompletionListener MUST throw
-     * IllegalStateException.
+     * @test_Strategy: Test IllegalStateException conditions. Calling MessageProducer.close() in CompletionListener MUST
+     * throw IllegalStateException.
      */
     public void topicIllegalStateExceptionTests() throws Fault {
         boolean pass = true;

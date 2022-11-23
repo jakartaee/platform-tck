@@ -39,19 +39,17 @@ public class TSFunctionMapper implements FunctionMapper {
     /**
      * Creates a new FuntionMapper instance.
      */
-    public TSFunctionMapper() {}
+    public TSFunctionMapper() {
+    }
 
     /**
-     * Resolves the specified local name and prefix into a java.lang.Method.
-     * Returns null if the prefix and local name are not found.
+     * Resolves the specified local name and prefix into a java.lang.Method. Returns null if the prefix and local name are
+     * not found.
      *
-     * This class does nothing more than perform refection against the
-     * JspFunctions class and return the methods.
+     * This class does nothing more than perform refection against the JspFunctions class and return the methods.
      *
-     * @param prefix
-     *          - method refernce prefix
-     * @param localName
-     *          - local name to identify the method
+     * @param prefix - method refernce prefix
+     * @param localName - local name to identify the method
      * @return - Resolve function as a java.lang.Method or null if unresolvable.
      */
     public Method resolveFunction(String prefix, String localName) {
@@ -62,7 +60,7 @@ public class TSFunctionMapper implements FunctionMapper {
         if (prefix != null || localName != null) {
             try {
                 System.out.println("RETURNING METHOD");
-                Method meth = FUNCTIONS.getMethod(localName, new Class[] {java.lang.String.class});
+                Method meth = FUNCTIONS.getMethod(localName, new Class[] { java.lang.String.class });
                 return meth;
             } catch (Throwable t) {
                 return null;

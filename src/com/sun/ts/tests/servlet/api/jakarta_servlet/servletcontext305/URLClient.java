@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -53,26 +51,20 @@ public class URLClient extends AbstractUrlClient {
      */
     /* Run test */
     /*
-     * Test setup; In Deployment Descriptor, define a Servlet TestServlet; Create
-     * a SevletContextInitializer,
+     * Test setup; In Deployment Descriptor, define a Servlet TestServlet; Create a SevletContextInitializer,
      *
-     * In SevletContextInitializer, three Servlets are added using the following
-     * methods: - ServletContext.addServlet(String, String); -
-     * ServletContext.addServlet(String, Class); -
+     * In SevletContextInitializer, three Servlets are added using the following methods: -
+     * ServletContext.addServlet(String, String); - ServletContext.addServlet(String, Class); -
      * ServletContext.createServlet(Class);
      *
-     * In SevletContextInitializer, three Filters are added using the following
-     * methods: - ServletContext.addFilter(String, String); -
-     * ServletContext.addFilter(String, Class); -
-     * ServletContext.createServlet(Class);
+     * In SevletContextInitializer, three Filters are added using the following methods: - ServletContext.addFilter(String,
+     * String); - ServletContext.addFilter(String, Class); - ServletContext.createServlet(Class);
      *
-     * In SevletContextInitializer, four Listeners are added using the following
-     * methods: - ServletContext.addListener(Listener Class) -
-     * ServletContext.addListener(Listener name) - EventListener listener =
-     * ServletContext.createListener(class); ServletContext.addListener(listener);
-     * Test Listeners implements one of all following liseners: -
-     * ServletContextAttributeListener - ServletRequestListener -
-     * ServletRequestAttributesListener - ServletContextListener
+     * In SevletContextInitializer, four Listeners are added using the following methods: -
+     * ServletContext.addListener(Listener Class) - ServletContext.addListener(Listener name) - EventListener listener =
+     * ServletContext.createListener(class); ServletContext.addListener(listener); Test Listeners implements one of all
+     * following liseners: - ServletContextAttributeListener - ServletRequestListener - ServletRequestAttributesListener -
+     * ServletContextListener
      *
      * Package jakarta.servlet.ServletContextInitializer appropriately
      */
@@ -80,26 +72,19 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: testAddServletString
      *
-     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:668;
-     * Servlet:JAVADOC:668.3; Servlet:JAVADOC:671.1; Servlet:JAVADOC:671.2;
-     * Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7;
-     * Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2;
-     * Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6; Servlet:JAVADOC:672.7;
-     * Servlet:JAVADOC:672.9; Servlet:JAVADOC:673.1; Servlet:JAVADOC:673.2;
-     * Servlet:JAVADOC:673.3; Servlet:JAVADOC:673.6; Servlet:JAVADOC:673.7;
-     * Servlet:JAVADOC:673.9; Servlet:JAVADOC:674; Servlet:JAVADOC:674.4;
-     * Servlet:JAVADOC:679; Servlet:JAVADOC:679.4; Servlet:JAVADOC:696;
-     * Servlet:SPEC:259; Servlet:SPEC:259.1; Servlet:SPEC:259.3;
+     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:668; Servlet:JAVADOC:668.3; Servlet:JAVADOC:671.1;
+     * Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7; Servlet:JAVADOC:671.9;
+     * Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6; Servlet:JAVADOC:672.7;
+     * Servlet:JAVADOC:672.9; Servlet:JAVADOC:673.1; Servlet:JAVADOC:673.2; Servlet:JAVADOC:673.3; Servlet:JAVADOC:673.6;
+     * Servlet:JAVADOC:673.7; Servlet:JAVADOC:673.9; Servlet:JAVADOC:674; Servlet:JAVADOC:674.4; Servlet:JAVADOC:679;
+     * Servlet:JAVADOC:679.4; Servlet:JAVADOC:696; Servlet:SPEC:259; Servlet:SPEC:259.1; Servlet:SPEC:259.3;
      * Servlet:SPEC:259.4; Servlet:SPEC:259.6; Servlet:SPEC:259.7;
      *
-     * @test_Strategy: Create a ServletContextInitializer, in which, 1. create a
-     * Servlet by calling ServletContext.addServlet(String, String), 2. mapping
-     * the new Servlet programmatically. 3. create a Filter by
-     * ServletContext.addFilter(String, String) 4. map the filter to the new
-     * Servlet programmatically for FORWARD only 5. client send a request to the
-     * new servlet, Verify in client that request goes through and Filter is NOT
-     * invoked. Verify in client that all Listeners are added correctly and
-     * invoked in the order added.
+     * @test_Strategy: Create a ServletContextInitializer, in which, 1. create a Servlet by calling
+     * ServletContext.addServlet(String, String), 2. mapping the new Servlet programmatically. 3. create a Filter by
+     * ServletContext.addFilter(String, String) 4. map the filter to the new Servlet programmatically for FORWARD only 5.
+     * client send a request to the new servlet, Verify in client that request goes through and Filter is NOT invoked.
+     * Verify in client that all Listeners are added correctly and invoked in the order added.
      */
     public void testAddServletString() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/addServletString HTTP/1.1");
@@ -116,28 +101,21 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: testAddFilterString
      *
-     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:668;
-     * Servlet:JAVADOC:668.3; Servlet:JAVADOC:671.1; Servlet:JAVADOC:671.2;
-     * Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7;
-     * Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2;
-     * Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6; Servlet:JAVADOC:672.7;
-     * Servlet:JAVADOC:672.9; Servlet:JAVADOC:673.1; Servlet:JAVADOC:673.2;
-     * Servlet:JAVADOC:673.3; Servlet:JAVADOC:673.6; Servlet:JAVADOC:673.7;
-     * Servlet:JAVADOC:673.9; Servlet:JAVADOC:674; Servlet:JAVADOC:674.4;
-     * Servlet:JAVADOC:675; Servlet:JAVADOC:675.4; Servlet:JAVADOC:676;
-     * Servlet:JAVADOC:676.4; Servlet:JAVADOC:679; Servlet:JAVADOC:679.1;
-     * Servlet:JAVADOC:679.4; Servlet:JAVADOC:696; Servlet:SPEC:259;
-     * Servlet:SPEC:259.1; Servlet:SPEC:259.3; Servlet:SPEC:259.4;
-     * Servlet:SPEC:259.6; Servlet:SPEC:259.7;
+     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:668; Servlet:JAVADOC:668.3; Servlet:JAVADOC:671.1;
+     * Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7; Servlet:JAVADOC:671.9;
+     * Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6; Servlet:JAVADOC:672.7;
+     * Servlet:JAVADOC:672.9; Servlet:JAVADOC:673.1; Servlet:JAVADOC:673.2; Servlet:JAVADOC:673.3; Servlet:JAVADOC:673.6;
+     * Servlet:JAVADOC:673.7; Servlet:JAVADOC:673.9; Servlet:JAVADOC:674; Servlet:JAVADOC:674.4; Servlet:JAVADOC:675;
+     * Servlet:JAVADOC:675.4; Servlet:JAVADOC:676; Servlet:JAVADOC:676.4; Servlet:JAVADOC:679; Servlet:JAVADOC:679.1;
+     * Servlet:JAVADOC:679.4; Servlet:JAVADOC:696; Servlet:SPEC:259; Servlet:SPEC:259.1; Servlet:SPEC:259.3;
+     * Servlet:SPEC:259.4; Servlet:SPEC:259.6; Servlet:SPEC:259.7;
      *
-     * @test_Strategy: Create a ServletContextInitializer, in which, 1. create a
-     * Servlet by calling ServletContext.addServlet(String, String), 2. mapping
-     * the new Servlet programmatically. 3. create a Filter by
-     * ServletContext.addFilter(String, String) 4. map the filter to the new
-     * Servlet programmatically for FORWARD only 5. client send a request to
-     * another servlet, 6. which then forward to the newly created Servlet Verify
-     * in client that request goes through and Filter IS invoked. Verify in client
-     * that all Listeners are added correctly and invoked in the order added.
+     * @test_Strategy: Create a ServletContextInitializer, in which, 1. create a Servlet by calling
+     * ServletContext.addServlet(String, String), 2. mapping the new Servlet programmatically. 3. create a Filter by
+     * ServletContext.addFilter(String, String) 4. map the filter to the new Servlet programmatically for FORWARD only 5.
+     * client send a request to another servlet, 6. which then forward to the newly created Servlet Verify in client that
+     * request goes through and Filter IS invoked. Verify in client that all Listeners are added correctly and invoked in
+     * the order added.
      */
     public void testAddFilterString() throws Fault {
         TEST_PROPS.setProperty(APITEST, "testAddFilterString");
@@ -153,24 +131,17 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: testAddServletClass
      *
-     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:670;
-     * Servlet:JAVADOC:670.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7;
-     * Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2;
-     * Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6; Servlet:JAVADOC:672.7;
-     * Servlet:JAVADOC:672.9; Servlet:JAVADOC:676; Servlet:JAVADOC:676.4;
-     * Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4;
-     * Servlet:JAVADOC:696; Servlet:SPEC:259; Servlet:SPEC:259.1;
-     * Servlet:SPEC:259.3; Servlet:SPEC:259.4; Servlet:SPEC:259.6;
-     * Servlet:SPEC:259.7;
+     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:670; Servlet:JAVADOC:670.3; Servlet:JAVADOC:671.6;
+     * Servlet:JAVADOC:671.7; Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3;
+     * Servlet:JAVADOC:672.6; Servlet:JAVADOC:672.7; Servlet:JAVADOC:672.9; Servlet:JAVADOC:676; Servlet:JAVADOC:676.4;
+     * Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4; Servlet:JAVADOC:696; Servlet:SPEC:259;
+     * Servlet:SPEC:259.1; Servlet:SPEC:259.3; Servlet:SPEC:259.4; Servlet:SPEC:259.6; Servlet:SPEC:259.7;
      *
-     * @test_Strategy: Create a ServletContextInitializer, in which, 1. create a
-     * Servlet by calling ServletContext.addServlet(String, Class), 2. mapping the
-     * new Servlet programmatically. 3. create a Filter by
-     * ServletContext.addFilter(String, Class) 4. map the filter to the new
-     * Servlet programmatically for REQUEST only 5. client send a request to the
-     * new servlet, Verify in client that request goes through and Filter is
-     * invoked. Verify in client that all Listeners are added correctly and
-     * invoked in the order added.
+     * @test_Strategy: Create a ServletContextInitializer, in which, 1. create a Servlet by calling
+     * ServletContext.addServlet(String, Class), 2. mapping the new Servlet programmatically. 3. create a Filter by
+     * ServletContext.addFilter(String, Class) 4. map the filter to the new Servlet programmatically for REQUEST only 5.
+     * client send a request to the new servlet, Verify in client that request goes through and Filter is invoked. Verify in
+     * client that all Listeners are added correctly and invoked in the order added.
      */
     public void testAddServletClass() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/addServletClass HTTP/1.1");
@@ -187,25 +158,18 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: testAddFilterClass
      *
-     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:670;
-     * Servlet:JAVADOC:670.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7;
-     * Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2;
-     * Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6; Servlet:JAVADOC:672.7;
-     * Servlet:JAVADOC:672.9; Servlet:JAVADOC:676; Servlet:JAVADOC:676.4;
-     * Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4;
-     * Servlet:JAVADOC:696; Servlet:SPEC:259; Servlet:SPEC:259.1;
-     * Servlet:SPEC:259.3; Servlet:SPEC:259.4; Servlet:SPEC:259.6;
-     * Servlet:SPEC:259.7;
+     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:670; Servlet:JAVADOC:670.3; Servlet:JAVADOC:671.6;
+     * Servlet:JAVADOC:671.7; Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3;
+     * Servlet:JAVADOC:672.6; Servlet:JAVADOC:672.7; Servlet:JAVADOC:672.9; Servlet:JAVADOC:676; Servlet:JAVADOC:676.4;
+     * Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4; Servlet:JAVADOC:696; Servlet:SPEC:259;
+     * Servlet:SPEC:259.1; Servlet:SPEC:259.3; Servlet:SPEC:259.4; Servlet:SPEC:259.6; Servlet:SPEC:259.7;
      *
-     * @test_Strategy: Create a ServletContextInitializer, in which, 1. create a
-     * Servlet by calling ServletContext.addServlet(String, Class), 2. mapping the
-     * new Servlet programmatically. 3. create a Filter by
-     * ServletContext.addFilter(String, Class) 4. map the filter to the new
-     * Servlet programmatically for REQUEST only 5. client send a request to
-     * another servlet, 6. which then dispatch by include to the newly created
-     * Servlet Verify in client that request goes through and Filter IS NOT
-     * invoked. Verify in client that all Listeners are added correctly and
-     * invoked in the order added.
+     * @test_Strategy: Create a ServletContextInitializer, in which, 1. create a Servlet by calling
+     * ServletContext.addServlet(String, Class), 2. mapping the new Servlet programmatically. 3. create a Filter by
+     * ServletContext.addFilter(String, Class) 4. map the filter to the new Servlet programmatically for REQUEST only 5.
+     * client send a request to another servlet, 6. which then dispatch by include to the newly created Servlet Verify in
+     * client that request goes through and Filter IS NOT invoked. Verify in client that all Listeners are added correctly
+     * and invoked in the order added.
      */
     public void testAddFilterClass() throws Fault {
         TEST_PROPS.setProperty(APITEST, "testAddFilterClass");
@@ -221,28 +185,20 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: testAddServlet
      *
-     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:669;
-     * Servlet:JAVADOC:670; Servlet:JAVADOC:670.3; Servlet:JAVADOC:671.1;
-     * Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6;
-     * Servlet:JAVADOC:671.7; Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1;
-     * Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6;
-     * Servlet:JAVADOC:672.7; Servlet:JAVADOC:672.9; Servlet:JAVADOC:675;
-     * Servlet:JAVADOC:675.4; Servlet:JAVADOC:677; Servlet:JAVADOC:677.1;
-     * Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4;
-     * Servlet:JAVADOC:681; Servlet:JAVADOC:696; Servlet:SPEC:259;
-     * Servlet:SPEC:259.1; Servlet:SPEC:259.3; Servlet:SPEC:259.4;
+     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:669; Servlet:JAVADOC:670; Servlet:JAVADOC:670.3;
+     * Servlet:JAVADOC:671.1; Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7;
+     * Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6;
+     * Servlet:JAVADOC:672.7; Servlet:JAVADOC:672.9; Servlet:JAVADOC:675; Servlet:JAVADOC:675.4; Servlet:JAVADOC:677;
+     * Servlet:JAVADOC:677.1; Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4; Servlet:JAVADOC:681;
+     * Servlet:JAVADOC:696; Servlet:SPEC:259; Servlet:SPEC:259.1; Servlet:SPEC:259.3; Servlet:SPEC:259.4;
      * Servlet:SPEC:259.6; Servlet:SPEC:259.7;
      *
-     * @test_Strategy: Create a ServletContextInitializer, in which, 1. Create a
-     * Servlet instance using ServletContext.createServlet; 2. Add the Servlet
-     * instance: ServletContext.addServlet(String, Servlet), 3. mapping the new
-     * Servlet programmatically. 4. create a Filter instance by
-     * ServletContext.createFilter; 5 Add the Filter instance:
-     * ServletContext.addFilter(String, Filter) 6. map the filter to the new
-     * Servlet programmatically for REQUEST only 7. client send a request to the
-     * new servlet, Verify in client that request goes through and Filter is
-     * invoked. Verify in client that all Listeners are added correctly and
-     * invoked in the order added.
+     * @test_Strategy: Create a ServletContextInitializer, in which, 1. Create a Servlet instance using
+     * ServletContext.createServlet; 2. Add the Servlet instance: ServletContext.addServlet(String, Servlet), 3. mapping the
+     * new Servlet programmatically. 4. create a Filter instance by ServletContext.createFilter; 5 Add the Filter instance:
+     * ServletContext.addFilter(String, Filter) 6. map the filter to the new Servlet programmatically for REQUEST only 7.
+     * client send a request to the new servlet, Verify in client that request goes through and Filter is invoked. Verify in
+     * client that all Listeners are added correctly and invoked in the order added.
      */
     public void testAddServlet() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/createServlet HTTP/1.1");
@@ -259,31 +215,22 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: testAddFilterForward
      *
-     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:669;
-     * Servlet:JAVADOC:670; Servlet:JAVADOC:670.3; Servlet:JAVADOC:671.1;
-     * Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6;
-     * Servlet:JAVADOC:671.7; Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1;
-     * Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6;
-     * Servlet:JAVADOC:672.7; Servlet:JAVADOC:672.9; Servlet:JAVADOC:673.1;
-     * Servlet:JAVADOC:673.2; Servlet:JAVADOC:673.3; Servlet:JAVADOC:673.6;
-     * Servlet:JAVADOC:673.7; Servlet:JAVADOC:673.9; Servlet:JAVADOC:675;
-     * Servlet:JAVADOC:675.4; Servlet:JAVADOC:677; Servlet:JAVADOC:677.1;
-     * Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4;
+     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:669; Servlet:JAVADOC:670; Servlet:JAVADOC:670.3;
+     * Servlet:JAVADOC:671.1; Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7;
+     * Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6;
+     * Servlet:JAVADOC:672.7; Servlet:JAVADOC:672.9; Servlet:JAVADOC:673.1; Servlet:JAVADOC:673.2; Servlet:JAVADOC:673.3;
+     * Servlet:JAVADOC:673.6; Servlet:JAVADOC:673.7; Servlet:JAVADOC:673.9; Servlet:JAVADOC:675; Servlet:JAVADOC:675.4;
+     * Servlet:JAVADOC:677; Servlet:JAVADOC:677.1; Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4;
      *
-     * Servlet:JAVADOC:681; Servlet:JAVADOC:696; Servlet:SPEC:259;
-     * Servlet:SPEC:259.1; Servlet:SPEC:259.3; Servlet:SPEC:259.4;
-     * Servlet:SPEC:259.6; Servlet:SPEC:259.7;
+     * Servlet:JAVADOC:681; Servlet:JAVADOC:696; Servlet:SPEC:259; Servlet:SPEC:259.1; Servlet:SPEC:259.3;
+     * Servlet:SPEC:259.4; Servlet:SPEC:259.6; Servlet:SPEC:259.7;
      *
-     * @test_Strategy: Create a ServletContextInitializer, in which, 1. Create a
-     * Servlet instance using ServletContext.createServlet; 2. Add the Servlet
-     * instance: ServletContext.addServlet(String, Servlet), 3. mapping the new
-     * Servlet programmatically. 4. create a Filter instance by
-     * ServletContext.createFilter; 5 Add the Filter instance:
-     * ServletContext.addFilter(String, Filter) 6. map the filter to the new
-     * Servlet programmatically for REQUEST only 7. client send a request to the
-     * new servlet via FORWARD, Verify in client that request does go through and
-     * Filter is NOT invoked. Verify in client that all Listeners are added
-     * correctly and invoked in the order added.
+     * @test_Strategy: Create a ServletContextInitializer, in which, 1. Create a Servlet instance using
+     * ServletContext.createServlet; 2. Add the Servlet instance: ServletContext.addServlet(String, Servlet), 3. mapping the
+     * new Servlet programmatically. 4. create a Filter instance by ServletContext.createFilter; 5 Add the Filter instance:
+     * ServletContext.addFilter(String, Filter) 6. map the filter to the new Servlet programmatically for REQUEST only 7.
+     * client send a request to the new servlet via FORWARD, Verify in client that request does go through and Filter is NOT
+     * invoked. Verify in client that all Listeners are added correctly and invoked in the order added.
      */
     public void testAddFilterForward() throws Fault {
         TEST_PROPS.setProperty(APITEST, "testCreateFilterForward");
@@ -300,30 +247,21 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: testAddFilterInclude
      *
-     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:669;
-     * Servlet:JAVADOC:670; Servlet:JAVADOC:670.3; Servlet:JAVADOC:671.1;
-     * Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6;
-     * Servlet:JAVADOC:671.7; Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1;
-     * Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6;
-     * Servlet:JAVADOC:672.7; Servlet:JAVADOC:672.9; Servlet:JAVADOC:673.1;
-     * Servlet:JAVADOC:673.2; Servlet:JAVADOC:673.3; Servlet:JAVADOC:673.6;
-     * Servlet:JAVADOC:673.7; Servlet:JAVADOC:673.9; Servlet:JAVADOC:675;
-     * Servlet:JAVADOC:675.4; Servlet:JAVADOC:677; Servlet:JAVADOC:677.1;
-     * Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4;
-     * Servlet:JAVADOC:681; Servlet:JAVADOC:696; Servlet:SPEC:259;
-     * Servlet:SPEC:259.1; Servlet:SPEC:259.3; Servlet:SPEC:259.4;
-     * Servlet:SPEC:259.6; Servlet:SPEC:259.7;
+     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:669; Servlet:JAVADOC:670; Servlet:JAVADOC:670.3;
+     * Servlet:JAVADOC:671.1; Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7;
+     * Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6;
+     * Servlet:JAVADOC:672.7; Servlet:JAVADOC:672.9; Servlet:JAVADOC:673.1; Servlet:JAVADOC:673.2; Servlet:JAVADOC:673.3;
+     * Servlet:JAVADOC:673.6; Servlet:JAVADOC:673.7; Servlet:JAVADOC:673.9; Servlet:JAVADOC:675; Servlet:JAVADOC:675.4;
+     * Servlet:JAVADOC:677; Servlet:JAVADOC:677.1; Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4;
+     * Servlet:JAVADOC:681; Servlet:JAVADOC:696; Servlet:SPEC:259; Servlet:SPEC:259.1; Servlet:SPEC:259.3;
+     * Servlet:SPEC:259.4; Servlet:SPEC:259.6; Servlet:SPEC:259.7;
      *
-     * @test_Strategy: Create a ServletContextInitializer, in which, 1. Create a
-     * Servlet instance using ServletContext.createServlet; 2. Add the Servlet
-     * instance: ServletContext.addServlet(String, Servlet), 3. mapping the new
-     * Servlet programmatically. 4. create a Filter instance by
-     * ServletContext.createFilter; 5 Add the Filter instance:
-     * ServletContext.addFilter(String, Filter) 6. map the filter to the new
-     * Servlet programmatically for REQUEST only 7. client send a request to the
-     * new servlet via INCLUDE, Verify in client that request does go through and
-     * Filter is NOT invoked. Verify in client that all Listeners are added
-     * correctly and invoked in the order added.
+     * @test_Strategy: Create a ServletContextInitializer, in which, 1. Create a Servlet instance using
+     * ServletContext.createServlet; 2. Add the Servlet instance: ServletContext.addServlet(String, Servlet), 3. mapping the
+     * new Servlet programmatically. 4. create a Filter instance by ServletContext.createFilter; 5 Add the Filter instance:
+     * ServletContext.addFilter(String, Filter) 6. map the filter to the new Servlet programmatically for REQUEST only 7.
+     * client send a request to the new servlet via INCLUDE, Verify in client that request does go through and Filter is NOT
+     * invoked. Verify in client that all Listeners are added correctly and invoked in the order added.
      */
     public void testAddFilterInclude() throws Fault {
         TEST_PROPS.setProperty(APITEST, "testCreateFilterInclude");
@@ -340,27 +278,19 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: testAddServletNotFound
      *
-     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:670;
-     * Servlet:JAVADOC:670.3; Servlet:JAVADOC:671.1; Servlet:JAVADOC:671.2;
-     * Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7;
-     * Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2;
-     * Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6; Servlet:JAVADOC:672.7;
-     * Servlet:JAVADOC:6712.9; Servlet:JAVADOC:673.1; Servlet:JAVADOC:673.2;
-     * Servlet:JAVADOC:673.3; Servlet:JAVADOC:673.6; Servlet:JAVADOC:673.7;
-     * Servlet:JAVADOC:673.9; Servlet:JAVADOC:676; Servlet:JAVADOC:676.4;
-     * Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4;
-     * Servlet:JAVADOC:696; Servlet:SPEC:259; Servlet:SPEC:259.1;
-     * Servlet:SPEC:259.3; Servlet:SPEC:259.4; Servlet:SPEC:259.6;
-     * Servlet:SPEC:259.7;
+     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:670; Servlet:JAVADOC:670.3; Servlet:JAVADOC:671.1;
+     * Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7; Servlet:JAVADOC:671.9;
+     * Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6; Servlet:JAVADOC:672.7;
+     * Servlet:JAVADOC:6712.9; Servlet:JAVADOC:673.1; Servlet:JAVADOC:673.2; Servlet:JAVADOC:673.3; Servlet:JAVADOC:673.6;
+     * Servlet:JAVADOC:673.7; Servlet:JAVADOC:673.9; Servlet:JAVADOC:676; Servlet:JAVADOC:676.4; Servlet:JAVADOC:679;
+     * Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4; Servlet:JAVADOC:696; Servlet:SPEC:259; Servlet:SPEC:259.1;
+     * Servlet:SPEC:259.3; Servlet:SPEC:259.4; Servlet:SPEC:259.6; Servlet:SPEC:259.7;
      *
-     * @test_Strategy: Create a ServletContextInitializer, in which, 1. create a
-     * Servlet by calling ServletContext.addServlet(String, Class), 2. mapping the
-     * new Servlet programmatically to multiple URLs, one of them is used by
-     * another Servlet already. 3. create a Filter by
-     * ServletContext.addFilter(String, Class) 4. map the filter to the new
-     * Servlet programmatically for all DispatcherType 5. client send a request to
-     * the new servlet, Verify in client that request does NOT go through and
-     * Filter is NOT invoked.
+     * @test_Strategy: Create a ServletContextInitializer, in which, 1. create a Servlet by calling
+     * ServletContext.addServlet(String, Class), 2. mapping the new Servlet programmatically to multiple URLs, one of them
+     * is used by another Servlet already. 3. create a Filter by ServletContext.addFilter(String, Class) 4. map the filter
+     * to the new Servlet programmatically for all DispatcherType 5. client send a request to the new servlet, Verify in
+     * client that request does NOT go through and Filter is NOT invoked.
      */
     public void testAddServletNotFound() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/addServletNotFound HTTP/1.1");
@@ -372,33 +302,23 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: testCreateSRAListener
      *
-     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:669;
-     * Servlet:JAVADOC:670; Servlet:JAVADOC:670.3; Servlet:JAVADOC:671.1;
-     * Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6;
-     * Servlet:JAVADOC:671.7; Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1;
-     * Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6;
-     * Servlet:JAVADOC:672.7; Servlet:JAVADOC:6712.9; Servlet:JAVADOC:673.1;
-     * Servlet:JAVADOC:673.2; Servlet:JAVADOC:673.3; Servlet:JAVADOC:673.6;
-     * Servlet:JAVADOC:673.7; Servlet:JAVADOC:673.9; Servlet:JAVADOC:675;
-     * Servlet:JAVADOC:675.4; Servlet:JAVADOC:677; Servlet:JAVADOC:677.1;
-     * Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4;
-     * Servlet:JAVADOC:681; Servlet:JAVADOC:696; Servlet:SPEC:259;
-     * Servlet:SPEC:259.1; Servlet:SPEC:259.3; Servlet:SPEC:259.4;
-     * Servlet:SPEC:259.6; Servlet:SPEC:259.7;
+     * @assertion_ids: Servlet:JAVADOC:655; Servlet:JAVADOC:669; Servlet:JAVADOC:670; Servlet:JAVADOC:670.3;
+     * Servlet:JAVADOC:671.1; Servlet:JAVADOC:671.2; Servlet:JAVADOC:671.3; Servlet:JAVADOC:671.6; Servlet:JAVADOC:671.7;
+     * Servlet:JAVADOC:671.9; Servlet:JAVADOC:672.1; Servlet:JAVADOC:672.2; Servlet:JAVADOC:672.3; Servlet:JAVADOC:672.6;
+     * Servlet:JAVADOC:672.7; Servlet:JAVADOC:6712.9; Servlet:JAVADOC:673.1; Servlet:JAVADOC:673.2; Servlet:JAVADOC:673.3;
+     * Servlet:JAVADOC:673.6; Servlet:JAVADOC:673.7; Servlet:JAVADOC:673.9; Servlet:JAVADOC:675; Servlet:JAVADOC:675.4;
+     * Servlet:JAVADOC:677; Servlet:JAVADOC:677.1; Servlet:JAVADOC:679; Servlet:JAVADOC:679.1; Servlet:JAVADOC:679.4;
+     * Servlet:JAVADOC:681; Servlet:JAVADOC:696; Servlet:SPEC:259; Servlet:SPEC:259.1; Servlet:SPEC:259.3;
+     * Servlet:SPEC:259.4; Servlet:SPEC:259.6; Servlet:SPEC:259.7;
      *
-     * @test_Strategy: Create a ServletContextInitializer, in which, one
-     * ServletContextAttributeListener, one ServletRequestListener one
-     * ServletRequestAttributeListener are added: 1. Create a Servlet instance
-     * using ServletContext.createServlet; 2. Add the Servlet instance:
-     * ServletContext.addServlet(String, Servlet), 3. mapping the new Servlet
-     * programmatically. 4. create a Filter instance by
-     * ServletContext.createFilter; 5 Add the Filter instance:
-     * ServletContext.addFilter(String, Filter) 6. map the filter to the new
-     * Servlet programmatically for REQUEST only 7. client send a request to
-     * another servlet, in which, ServletRequestAttributes are added, then
-     * dispatch to the new servlet via FORWARD Verify in client that - create
-     * Listener works - request does NOT through and Filter is NOT invoked. - all
-     * Listeners are added correctly and invoked in the order added.
+     * @test_Strategy: Create a ServletContextInitializer, in which, one ServletContextAttributeListener, one
+     * ServletRequestListener one ServletRequestAttributeListener are added: 1. Create a Servlet instance using
+     * ServletContext.createServlet; 2. Add the Servlet instance: ServletContext.addServlet(String, Servlet), 3. mapping the
+     * new Servlet programmatically. 4. create a Filter instance by ServletContext.createFilter; 5 Add the Filter instance:
+     * ServletContext.addFilter(String, Filter) 6. map the filter to the new Servlet programmatically for REQUEST only 7.
+     * client send a request to another servlet, in which, ServletRequestAttributes are added, then dispatch to the new
+     * servlet via FORWARD Verify in client that - create Listener works - request does NOT through and Filter is NOT
+     * invoked. - all Listeners are added correctly and invoked in the order added.
      */
     public void testCreateSRAListener() throws Fault {
         TEST_PROPS.setProperty(APITEST, "testCreateSRAListener");
@@ -416,32 +336,24 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: negativeCreateTests
      *
-     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:678;
-     * Servlet:JAVADOC:679.4; Servlet:JAVADOC:680; Servlet:JAVADOC:682;
-     * Servlet:JAVADOC:694; Servlet:SPEC:259; Servlet:SPEC:259.1;
-     * Servlet:SPEC:259.3; Servlet:SPEC:259.4; Servlet:SPEC:259.6;
-     * Servlet:SPEC:259.7;
+     * @assertion_ids: Servlet:JAVADOC:243; Servlet:JAVADOC:678; Servlet:JAVADOC:679.4; Servlet:JAVADOC:680;
+     * Servlet:JAVADOC:682; Servlet:JAVADOC:694; Servlet:SPEC:259; Servlet:SPEC:259.1; Servlet:SPEC:259.3;
+     * Servlet:SPEC:259.4; Servlet:SPEC:259.6; Servlet:SPEC:259.7;
      *
-     * @test_Strategy: 1. Create a Servlet which throws ServletException at init;
-     * 2. Create a Filter which throws ServletException at init 3. Create a
-     * EventListener which throws NullPointerException at init 4. Create a
-     * EventListener that does not implement any of the following: -
-     * ServletContextAttributeListener - ServletRequestListener -
-     * ServletRequestAttributesListener - ServletContextListener -
-     * HttpSessionListener - HttpSessionAttributeListener
+     * @test_Strategy: 1. Create a Servlet which throws ServletException at init; 2. Create a Filter which throws
+     * ServletException at init 3. Create a EventListener which throws NullPointerException at init 4. Create a
+     * EventListener that does not implement any of the following: - ServletContextAttributeListener -
+     * ServletRequestListener - ServletRequestAttributesListener - ServletContextListener - HttpSessionListener -
+     * HttpSessionAttributeListener
      *
-     * Create a ServletContextInitializer, in which: 5. Call
-     * ServletContext.createFilter(BadFilter) which should fail; 6. Call
-     * ServletContext.createServlet(BadServlet) which fails 7. Call
-     * ServletContext.createListener(BadEventListener) which fails 8. Call
-     * ServletContext.setInitParameter to pass information about status on 4-6 9.
-     * Call ServletContext.addListener(GenericEventListener) which fails 10. Call
-     * ServletContext.createListener(GenericEventListener) which fails 11. In
-     * another Servlet, get all information stored in ServletContext InitParameter
-     * 12. Send a request to the new Servlet Verify that - createServlet failed
-     * accordingly; - createFilter failed accordingly; - createListener failed
-     * accordingly; - addListener failed accordingly; - setInitParameter works
-     * properly
+     * Create a ServletContextInitializer, in which: 5. Call ServletContext.createFilter(BadFilter) which should fail; 6.
+     * Call ServletContext.createServlet(BadServlet) which fails 7. Call ServletContext.createListener(BadEventListener)
+     * which fails 8. Call ServletContext.setInitParameter to pass information about status on 4-6 9. Call
+     * ServletContext.addListener(GenericEventListener) which fails 10. Call
+     * ServletContext.createListener(GenericEventListener) which fails 11. In another Servlet, get all information stored in
+     * ServletContext InitParameter 12. Send a request to the new Servlet Verify that - createServlet failed accordingly; -
+     * createFilter failed accordingly; - createListener failed accordingly; - addListener failed accordingly; -
+     * setInitParameter works properly
      */
     public void negativeCreateTests() throws Fault {
         TEST_PROPS.setProperty(APITEST, "negativeCreateTests");

@@ -66,8 +66,7 @@ public class WorkImpl implements Work {
     }
 
     /*
-     * this sets the name of the calling class so that we can be sure proper
-     * logging info is dumped out.
+     * this sets the name of the calling class so that we can be sure proper logging info is dumped out.
      *
      */
     public void setCallingClassName(String str) {

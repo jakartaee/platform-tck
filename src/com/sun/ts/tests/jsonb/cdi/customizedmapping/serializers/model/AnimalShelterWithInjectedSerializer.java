@@ -46,8 +46,10 @@ public class AnimalShelterWithInjectedSerializer {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AnimalShelterWithInjectedSerializer)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof AnimalShelterWithInjectedSerializer))
+            return false;
 
         AnimalShelterWithInjectedSerializer that = (AnimalShelterWithInjectedSerializer) o;
 

@@ -47,7 +47,7 @@ public class WSClient extends WebSocketCommonClient {
     }
 
     static String[] endpoints = new String[] {
-        "builder/configurator", "builder/decoders", "builder/encoders", "builder/extensions", "builder/subprotocols"
+            "builder/configurator", "builder/decoders", "builder/encoders", "builder/extensions", "builder/subprotocols"
     };
 
     /* Run test */
@@ -55,21 +55,18 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getConfiguratorTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:199; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:200; WebSocket:JAVADOC:193; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:199; WebSocket:JAVADOC:198; WebSocket:JAVADOC:200; WebSocket:JAVADOC:193;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy:
-     * jakarta.websocket.server.ServerEndpointConfig.Builder.configurator
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.Builder.configurator
      * jakarta.websocket.server.ServerEndpointConfig.Builder.build
      * jakarta.websocket.server.ServerEndpointConfig.Builder.create
-     * jakarta.websocket.server.ServerEndpointConfig.getConfigurator
-     * jakarta.websocket.Endpoint.onOpen;
+     * jakarta.websocket.server.ServerEndpointConfig.getConfigurator jakarta.websocket.Endpoint.onOpen;
      * jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getConfiguratorTest() throws Fault {
         String name = AppConfig.CONFIG.getClass().getName();
-        String[] responses = new String[] {ServerEndpointConfigConfigurator.class.getName(), name, name, name, name};
+        String[] responses = new String[] { ServerEndpointConfigConfigurator.class.getName(), name, name, name, name };
         for (int i = 0; i != endpoints.length; i++) {
             setProperty(Property.REQUEST, buildRequest(endpoints[i]));
             setProperty(Property.CONTENT, "configurator");
@@ -81,21 +78,17 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getExtensionsTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:203; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:200; WebSocket:JAVADOC:195; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:203; WebSocket:JAVADOC:198; WebSocket:JAVADOC:200; WebSocket:JAVADOC:195;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy:
-     * jakarta.websocket.server.ServerEndpointConfig.Builder.extensions
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.Builder.extensions
      * jakarta.websocket.server.ServerEndpointConfig.Builder.build
      * jakarta.websocket.server.ServerEndpointConfig.Builder.create
-     * jakarta.websocket.server.ServerEndpointConfig.getExtensions
-     * jakarta.websocket.Endpoint.onOpen;
+     * jakarta.websocket.server.ServerEndpointConfig.getExtensions jakarta.websocket.Endpoint.onOpen;
      * jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getExtensionsTest() throws Fault {
-        String[] responses =
-                new String[] {"[]", "[]", "[]", AppConfig.EXT_NAMES[0] + "|" + AppConfig.EXT_NAMES[1], "[]"};
+        String[] responses = new String[] { "[]", "[]", "[]", AppConfig.EXT_NAMES[0] + "|" + AppConfig.EXT_NAMES[1], "[]" };
         for (int i = 0; i != endpoints.length; i++) {
             setProperty(Property.REQUEST, buildRequest(endpoints[i]));
             setProperty(Property.CONTENT, "extensions");
@@ -107,11 +100,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getPathTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:196; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:196; WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getPath
-     * jakarta.websocket.Endpoint.onOpen;
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getPath jakarta.websocket.Endpoint.onOpen;
      * jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getPathTest() throws Fault {
@@ -126,17 +117,14 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getSubprotocolsTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:204; WebSocket:JAVADOC:198;
-     * WebSocket:JAVADOC:200; WebSocket:JAVADOC:197; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:204; WebSocket:JAVADOC:198; WebSocket:JAVADOC:200; WebSocket:JAVADOC:197;
+     * WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy:
-     * jakarta.websocket.server.ServerEndpointConfig.Builder.subprotocols
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.Builder.subprotocols
      * jakarta.websocket.server.ServerEndpointConfig.Builder.build
      * jakarta.websocket.server.ServerEndpointConfig.Builder.create
-     * jakarta.websocket.server.ServerEndpointConfig.getSubprotocols Return the
-     * websocket subprotocols configured. jakarta.websocket.Endpoint.onOpen;
-     * jakarta.websocket.MessageHandler.Whole.onMessage
+     * jakarta.websocket.server.ServerEndpointConfig.getSubprotocols Return the websocket subprotocols configured.
+     * jakarta.websocket.Endpoint.onOpen; jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getSubprotocolsTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(endpoints[endpoints.length - 1]));
@@ -149,13 +137,10 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getEmptySubprotocolsTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:197; WebSocket:JAVADOC:69;
-     * WebSocket:JAVADOC:79;
+     * @assertion_ids: WebSocket:JAVADOC:197; WebSocket:JAVADOC:69; WebSocket:JAVADOC:79;
      *
-     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getSubprotocols
-     * Return the websocket subprotocols configured.
-     * jakarta.websocket.Endpoint.onOpen;
-     * jakarta.websocket.MessageHandler.Whole.onMessage
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.getSubprotocols Return the websocket subprotocols
+     * configured. jakarta.websocket.Endpoint.onOpen; jakarta.websocket.MessageHandler.Whole.onMessage
      */
     public void getEmptySubprotocolsTest() throws Fault {
         for (int i = 0; i != endpoints.length - 1; i++) {
@@ -175,11 +160,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getEncodersTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:202; WebSocket:JAVADOC:200;
-     * WebSocket:JAVADOC:198;
+     * @assertion_ids: WebSocket:JAVADOC:202; WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
      *
-     * @test_Strategy:
-     * jakarta.websocket.server.ServerEndpointConfig.Builder.encoders
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.Builder.encoders
      * jakarta.websocket.server.ServerEndpointConfig.Builder.create
      * jakarta.websocket.server.ServerEndpointConfig.Builder.build
      */
@@ -196,11 +179,9 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: getDecodersTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:201; WebSocket:JAVADOC:200;
-     * WebSocket:JAVADOC:198;
+     * @assertion_ids: WebSocket:JAVADOC:201; WebSocket:JAVADOC:200; WebSocket:JAVADOC:198;
      *
-     * @test_Strategy:
-     * jakarta.websocket.server.ServerEndpointConfig.Builder.decoders
+     * @test_Strategy: jakarta.websocket.server.ServerEndpointConfig.Builder.decoders
      * jakarta.websocket.server.ServerEndpointConfig.Builder.create
      * jakarta.websocket.server.ServerEndpointConfig.Builder.build
      */
@@ -219,8 +200,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:202;
      *
-     * @test_Strategy: Default: {}
-     * jakarta.websocket.server.ServerEndpointConfig.Builder.encoders
+     * @test_Strategy: Default: {} jakarta.websocket.server.ServerEndpointConfig.Builder.encoders
      */
     public void getDefaultEncodersTest() throws Fault {
         for (int i = 0; i != endpoints.length; i++)
@@ -237,8 +217,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:201;
      *
-     * @test_Strategy: Default: {}
-     * jakarta.websocket.server.ServerEndpointConfig.Builder.decoders
+     * @test_Strategy: Default: {} jakarta.websocket.server.ServerEndpointConfig.Builder.decoders
      */
     public void getDefaultDecodersTest() throws Fault {
         for (int i = 0; i != endpoints.length; i++)

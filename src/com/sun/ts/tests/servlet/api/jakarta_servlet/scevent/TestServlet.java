@@ -74,8 +74,7 @@ public class TestServlet extends GenericTCKServlet {
     public void constructorTest(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
         PrintWriter pw = response.getWriter();
-        ServletContextEvent sce =
-                new ServletContextEvent(this.getServletConfig().getServletContext());
+        ServletContextEvent sce = new ServletContextEvent(this.getServletConfig().getServletContext());
         if (sce != null) {
             ServletTestUtil.printResult(pw, true);
         } else {
@@ -88,7 +87,7 @@ public class TestServlet extends GenericTCKServlet {
 
         PrintWriter pw = response.getWriter();
 
-        String[] expected = {"ServletContextEvent.getServletContext() returned instanceof ServletContext"};
+        String[] expected = { "ServletContextEvent.getServletContext() returned instanceof ServletContext" };
 
         // verify results
         ArrayList result = StaticLog.getClear();

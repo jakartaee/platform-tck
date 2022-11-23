@@ -34,7 +34,8 @@ public class Trim implements java.io.Serializable {
 
     private String name;
 
-    public Trim() {}
+    public Trim() {
+    }
 
     public Trim(String id, String name) {
         this.id = id;

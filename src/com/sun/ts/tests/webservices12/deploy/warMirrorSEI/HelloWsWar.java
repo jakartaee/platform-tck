@@ -18,12 +18,7 @@ package com.sun.ts.tests.webservices12.deploy.warMirrorSEI;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HelloWsPort",
-        serviceName = "HelloWsService",
-        targetNamespace = "http://WarMirrorSEI.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WarMirrorSEI.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.deploy.warMirrorSEI.HelloWs")
+@WebService(portName = "HelloWsPort", serviceName = "HelloWsService", targetNamespace = "http://WarMirrorSEI.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WarMirrorSEI.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.deploy.warMirrorSEI.HelloWs")
 public class HelloWsWar {
 
     public HelloResponse sayHello(HelloRequest input) {

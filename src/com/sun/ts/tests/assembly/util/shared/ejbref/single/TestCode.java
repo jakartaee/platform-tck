@@ -69,8 +69,7 @@ public class TestCode {
     protected static final String CMP20ExternalName = prefix + "CMP20Bean_ExternalJAR";
 
     /**
-     * Primary key to use for Entity beans - Careful about conflicts, we can be
-     * called from another bean of the same type).
+     * Primary key to use for Entity beans - Careful about conflicts, we can be called from another bean of the same type).
      */
     protected static final int safePK = 10;
 

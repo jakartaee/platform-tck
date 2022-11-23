@@ -26,7 +26,8 @@ public class Client extends PMClientBase {
 
     Properties props = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -96,8 +97,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:540; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call commit without an active transaction verify
-     * IllegalStateException is thrown
+     * @test_Strategy: Call commit without an active transaction verify IllegalStateException is thrown
      */
     public void commitIllegalStateExceptionTest() throws Fault {
         boolean pass = false;
@@ -136,8 +136,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:542; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call getRollbackOnly without an active transaction verify
-     * IllegalStateException is thrown
+     * @test_Strategy: Call getRollbackOnly without an active transaction verify IllegalStateException is thrown
      */
     public void getRollbackOnlyIllegalStateExceptionTest() throws Fault {
         boolean pass = false;
@@ -176,8 +175,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:544; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call rollback without an active transaction verify
-     * IllegalStateException is thrown
+     * @test_Strategy: Call rollback without an active transaction verify IllegalStateException is thrown
      */
     public void rollbackIllegalStateExceptionTest() throws Fault {
         boolean pass = false;
@@ -216,8 +214,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:546; PERSISTENCE:SPEC:608;
      *
-     * @test_Strategy: Call setRollbackOnly without an active transaction verify
-     * IllegalStateException is thrown
+     * @test_Strategy: Call setRollbackOnly without an active transaction verify IllegalStateException is thrown
      */
     public void setRollbackOnlyIllegalStateExceptionTest() throws Fault {
         boolean pass = false;

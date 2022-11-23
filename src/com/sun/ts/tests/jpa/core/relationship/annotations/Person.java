@@ -54,7 +54,8 @@ public class Person implements java.io.Serializable {
 
     private Collection<Project> projects = new java.util.ArrayList<Project>();
 
-    public Person() {}
+    public Person() {
+    }
 
     public Person(int personid, String firstName, String lastName) {
         this.personid = personid;
@@ -105,7 +106,7 @@ public class Person implements java.io.Serializable {
     }
 
     /* Bi-Directional OneProjectLead(Person)ToOneProject */
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
     @JoinColumn(name = "PROJECT_PROJID")
     public Project getProject() {
         return project;
@@ -127,10 +128,7 @@ public class Person implements java.io.Serializable {
 
     /* Uni-Directional Single-Valued OnePersonsToManyReviews */
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "PERSON_ANNUALREVIEW",
-            joinColumns = @JoinColumn(name = "Person_PERSONID", referencedColumnName = "PERSONID"),
-            inverseJoinColumns = @JoinColumn(name = "annualReviews_AID", referencedColumnName = "AID"))
+    @JoinTable(name = "PERSON_ANNUALREVIEW", joinColumns = @JoinColumn(name = "Person_PERSONID", referencedColumnName = "PERSONID"), inverseJoinColumns = @JoinColumn(name = "annualReviews_AID", referencedColumnName = "AID"))
     public Collection<AnnualReview> getAnnualReviews() {
         return annualReviews;
     }
@@ -141,10 +139,7 @@ public class Person implements java.io.Serializable {
 
     /* Uni-Directional Multi-Valued Relationship ManyInsuranceToManyPersons */
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "PERSON_INSURANCE",
-            joinColumns = @JoinColumn(name = "Person_PERSONID", referencedColumnName = "PERSONID"),
-            inverseJoinColumns = @JoinColumn(name = "insurance_INSID", referencedColumnName = "INSID"))
+    @JoinTable(name = "PERSON_INSURANCE", joinColumns = @JoinColumn(name = "Person_PERSONID", referencedColumnName = "PERSONID"), inverseJoinColumns = @JoinColumn(name = "insurance_INSID", referencedColumnName = "INSID"))
     public Collection<Insurance> getInsurance() {
         return carriers;
     }

@@ -23,9 +23,7 @@ import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
 public abstract class AppExceptionBeanBase implements AppExceptionIF, AppExceptionLocalIF {
-    @Resource(
-            description =
-                    "just to see if descripton field works or not.  It should map to <resource-env-ref>/<description> xml element.")
+    @Resource(description = "just to see if descripton field works or not.  It should map to <resource-env-ref>/<description> xml element.")
     private SessionContext sessionContext;
 
     public void checkedAppException() throws CheckedAppException {

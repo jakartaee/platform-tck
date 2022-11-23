@@ -34,7 +34,8 @@ public class DID1Employee implements Serializable {
 
     private String name;
 
-    public DID1Employee() {}
+    public DID1Employee() {
+    }
 
     public DID1Employee(long id, String name) {
         this.id = id;

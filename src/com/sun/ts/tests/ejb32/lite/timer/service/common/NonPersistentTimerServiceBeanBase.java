@@ -24,11 +24,13 @@ import jakarta.ejb.Schedules;
 public class NonPersistentTimerServiceBeanBase extends TimerBeanBase implements TimerIF {
 
     @Schedule(hour = "1", dayOfMonth = "1", persistent = false, info = "a0")
-    void singleAutoTimerCallbackNonPersistent() {}
+    void singleAutoTimerCallbackNonPersistent() {
+    }
 
     @Schedules({
-        @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = false, info = "a1"),
-        @Schedule(hour = "11", dayOfWeek = "Fri", persistent = false, info = "a2")
+            @Schedule(hour = "12", dayOfWeek = "Mon-Thu", persistent = false, info = "a1"),
+            @Schedule(hour = "11", dayOfWeek = "Fri", persistent = false, info = "a2")
     })
-    void doubleAutoTimersCallbackNonPersistent() {}
+    void doubleAutoTimersCallbackNonPersistent() {
+    }
 }

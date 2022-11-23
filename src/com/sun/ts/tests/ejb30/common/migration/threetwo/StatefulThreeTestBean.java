@@ -41,9 +41,11 @@ public class StatefulThreeTestBean extends ThreeTestBeanBase implements ThreeTes
     @Resource(name = "sctx")
     private SessionContext sctx;
 
-    public StatefulThreeTestBean() {}
+    public StatefulThreeTestBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected TwoRemoteHome getTwoRemoteHome() {
         return (TwoRemoteHome) (sctx.lookup("twoRemoteHome"));

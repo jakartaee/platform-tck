@@ -20,12 +20,7 @@ import jakarta.jws.WebService;
 import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.soap.Addressing;
 
-@WebService(
-        portName = "Echo2Port",
-        serviceName = "EchoService",
-        targetNamespace = "http://Echo.org",
-        wsdlLocation = "WEB-INF/wsdl/EchoService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo2")
+@WebService(portName = "Echo2Port", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "WEB-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo2")
 @Addressing(enabled = false)
 public class Echo2Impl {
 

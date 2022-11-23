@@ -24,8 +24,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Asynchronous cannot be specified in interface. Move them to bean class or
- *               superclass
+ * @Asynchronous cannot be specified in interface. Move them to bean class or superclass
  */
 public interface PlainInterfaceTypeLevelIF {
     public void voidRuntimeException();

@@ -31,4 +31,5 @@ import jakarta.ejb.Stateful;
 @Local(StatefulConcurrencyIF.class)
 @LocalBean
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
-public class ContainerConcurrencyBean extends StatefulConcurrencyBeanBase {}
+public class ContainerConcurrencyBean extends StatefulConcurrencyBeanBase {
+}

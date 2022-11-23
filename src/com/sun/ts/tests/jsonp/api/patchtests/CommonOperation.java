@@ -46,81 +46,63 @@ public abstract class CommonOperation {
     private static final String TEST_FAIL_FAI = " failed";
 
     /**
-     * Message content template for test failure log message: on target type
-     * prefix.
+     * Message content template for test failure log message: on target type prefix.
      */
     private static final String TEST_FAIL_ON1 = " on JSON ";
 
     /**
-     * Message content template for test failure log message: on target type
-     * suffix.
+     * Message content template for test failure log message: on target type suffix.
      */
     private static final String TEST_FAIL_ON2 = " value";
 
     /**
-     * Message content template for test failure log message: patching execution
-     * method.
+     * Message content template for test failure log message: patching execution method.
      */
     private static final String TEST_FAIL_MET = " using ";
 
     /**
-     * Creates an instance of JavaScript Object Notation (JSON) compatibility
-     * tests.
+     * Creates an instance of JavaScript Object Notation (JSON) compatibility tests.
      */
     protected CommonOperation() {
         super();
     }
 
     /**
-     * Tested operation name, e.g. {@code "ADD"}, {@code "REPLACE"},
-     * {@code "MOVE"}. Child class callback.
+     * Tested operation name, e.g. {@code "ADD"}, {@code "REPLACE"}, {@code "MOVE"}. Child class callback.
      *
      * @return Operation name to be used in logs.
      */
     protected abstract String operationName();
 
     /**
-     * Create and initialize patch builder to contain patch operation to be
-     * applied. Child class callback.
+     * Create and initialize patch builder to contain patch operation to be applied. Child class callback.
      *
-     * @param path
-     *          JSON path of operation.
-     * @param value
-     *          JSON value used in patch operation.
+     * @param path JSON path of operation.
+     * @param value JSON value used in patch operation.
      * @return Patch builder containing operation to be applied.
      */
     protected abstract JsonPatchBuilder createOperationBuilder(final String path, final Object value);
 
     /**
-     * Update patch builder to contain next patch operation to be applied. Child
-     * class callback.
+     * Update patch builder to contain next patch operation to be applied. Child class callback.
      *
-     * @param builder
-     *          JSON patch builder to update.
-     * @param path
-     *          JSON path of operation.
-     * @param value
-     *          JSON value used in patch operation.
+     * @param builder JSON patch builder to update.
+     * @param path JSON path of operation.
+     * @param value JSON value used in patch operation.
      * @return Patch builder containing operation to be applied.
      */
     protected abstract JsonPatchBuilder updateOperationBuilder(
             final JsonPatchBuilder builder, final String path, final Object value);
 
     /**
-     * Test helper: Verify simple operation on provided JSON value and verify
-     * result using provided expected JSON value. Operation execution is done
-     * using all known methods to build and apply JSON patch.
+     * Test helper: Verify simple operation on provided JSON value and verify result using provided expected JSON value.
+     * Operation execution is done using all known methods to build and apply JSON patch.
      *
-     * @param result
-     *          Test suite result.
-     * @param in
-     *          JSON value to be modified.
-     * @param check
-     *          Expected modified JSON object (used for operation check).
-     * @param path
-     *          JSON path of operation.
-     * @param value
-     *          JSON value used in patch operation.
+     * @param result Test suite result.
+     * @param in JSON value to be modified.
+     * @param check Expected modified JSON object (used for operation check).
+     * @param path JSON path of operation.
+     * @param value JSON value used in patch operation.
      */
     protected void simpleOperation(
             final TestResult result, final JsonValue in, final JsonValue check, final String path, final Object value) {
@@ -143,20 +125,15 @@ public abstract class CommonOperation {
     }
 
     /**
-     * Test helper: Verify set of operations on provided JSON value and verify
-     * result using provided expected JSON value. Verification is done using all
-     * known methods to build and apply JSON patch. This method allows custom
-     * patching of JSON array. Used for operations without value operand, e.g.
-     * REMOVE. Operation builder callback will receive {@code null} as value.
+     * Test helper: Verify set of operations on provided JSON value and verify result using provided expected JSON value.
+     * Verification is done using all known methods to build and apply JSON patch. This method allows custom patching of
+     * JSON array. Used for operations without value operand, e.g. REMOVE. Operation builder callback will receive
+     * {@code null} as value.
      *
-     * @param result
-     *          Test suite result.
-     * @param in
-     *          JSON array to be modified.
-     * @param check
-     *          Expected modified JSON array (used for operation check).
-     * @param paths
-     *          JSON paths array of operations.
+     * @param result Test suite result.
+     * @param in JSON array to be modified.
+     * @param check Expected modified JSON array (used for operation check).
+     * @param paths JSON paths array of operations.
      */
     protected void complexOperation(
             final TestResult result, final JsonArray in, final JsonArray check, final String[] paths) {
@@ -168,22 +145,16 @@ public abstract class CommonOperation {
     }
 
     /**
-     * Test helper: Verify set of operations on provided JSON value and verify
-     * result using provided expected JSON value. Verification is done using all
-     * known methods to build and apply JSON patch. This method allows custom
-     * patching of JSON array.
+     * Test helper: Verify set of operations on provided JSON value and verify result using provided expected JSON value.
+     * Verification is done using all known methods to build and apply JSON patch. This method allows custom patching of
+     * JSON array.
      *
-     * @param result
-     *          Test suite result.
-     * @param in
-     *          JSON array to be modified.
-     * @param check
-     *          Expected modified JSON array (used for operation check).
-     * @param paths
-     *          JSON paths array of operations. Pairs of {@code paths[i]} and
-     *          {@code values[i]} are used for individual operations.
-     * @param values
-     *          JSON values array used in patch operations.
+     * @param result Test suite result.
+     * @param in JSON array to be modified.
+     * @param check Expected modified JSON array (used for operation check).
+     * @param paths JSON paths array of operations. Pairs of {@code paths[i]} and {@code values[i]} are used for individual
+     * operations.
+     * @param values JSON values array used in patch operations.
      */
     protected void complexOperation(
             final TestResult result,
@@ -208,26 +179,20 @@ public abstract class CommonOperation {
     /**
      * Operation result check.
      *
-     * @param check
-     *          Expected modified JSON value.
-     * @param out
-     *          Operation output.
-     * @return Value of {@code true} if operation passed or {@code false}
-     *         otherwise.
+     * @param check Expected modified JSON value.
+     * @param out Operation output.
+     * @return Value of {@code true} if operation passed or {@code false} otherwise.
      */
     protected boolean operationFailed(final JsonValue check, final JsonValue out) {
         return out == null || !assertEquals(check, out);
     }
 
     /**
-     * Builds JSON patch builder with set of operations stored in {@code paths}
-     * and {@code values}.
+     * Builds JSON patch builder with set of operations stored in {@code paths} and {@code values}.
      *
-     * @param paths
-     *          JSON paths array of operations. Pairs of {@code paths[i]} and
-     *          {@code values[i]} are used for individual operations.
-     * @param values
-     *          JSON values array used in patch operations.
+     * @param paths JSON paths array of operations. Pairs of {@code paths[i]} and {@code values[i]} are used for individual
+     * operations.
+     * @param values JSON values array used in patch operations.
      */
     private JsonPatchBuilder prepareComplexBuilder(final String[] paths, final Object[] values) {
         JsonPatchBuilder builder = Json.createPatchBuilder();
@@ -238,17 +203,13 @@ public abstract class CommonOperation {
     }
 
     /**
-     * Test helper: Verify that operation on provided JSON value fails. Operation
-     * execution is done using all known methods to build and apply JSON patch.
+     * Test helper: Verify that operation on provided JSON value fails. Operation execution is done using all known methods
+     * to build and apply JSON patch.
      *
-     * @param result
-     *          Test suite result.
-     * @param in
-     *          JSON value to be modified.
-     * @param path
-     *          JSON path of operation.
-     * @param value
-     *          JSON value used in patch operation.
+     * @param result Test suite result.
+     * @param in JSON value to be modified.
+     * @param path JSON path of operation.
+     * @param value JSON value used in patch operation.
      */
     protected void simpleOperationFail(
             final TestResult result, final JsonValue in, final String path, final Object value) {
@@ -269,10 +230,8 @@ public abstract class CommonOperation {
     /**
      * Get source class name.
      *
-     * @param value
-     *          JSON value to search for class name.
-     * @return Class name of provided JSON value or {@code null} when this value
-     *         has been {@code null}.
+     * @param value JSON value to search for class name.
+     * @return Class name of provided JSON value or {@code null} when this value has been {@code null}.
      */
     protected String getSrcName(final Object value) {
         return value != null ? value.getClass().getSimpleName() : null;
@@ -281,10 +240,8 @@ public abstract class CommonOperation {
     /**
      * Get source classes names.
      *
-     * @param values
-     *          JSON values to search for class name.
-     * @return Class name of provided JSON value or {@code null} when this value
-     *         has been {@code null}.
+     * @param values JSON values to search for class name.
+     * @return Class name of provided JSON value or {@code null} when this value has been {@code null}.
      */
     protected String[] getSrcNames(final Object[] values) {
         if (values == null) {
@@ -300,10 +257,8 @@ public abstract class CommonOperation {
     /**
      * Build test name for test failure log message.
      *
-     * @param path
-     *          JSON patch operation source path.
-     * @param targetType
-     *          Name of target (JSON value being modified) value type.
+     * @param path JSON patch operation source path.
+     * @param targetType Name of target (JSON value being modified) value type.
      * @return Test name for test failure log message.
      */
     protected String testName(final String path, final String targetType) {
@@ -323,10 +278,8 @@ public abstract class CommonOperation {
     /**
      * Build test name for test failure log message.
      *
-     * @param paths
-     *          JSON patch operation source paths.
-     * @param targetType
-     *          Name of target (JSON value being modified) value type.
+     * @param paths JSON patch operation source paths.
+     * @param targetType Name of target (JSON value being modified) value type.
      * @return Test name for test failure log message.
      */
     protected String testName(final String[] paths, final String targetType) {
@@ -365,12 +318,9 @@ public abstract class CommonOperation {
     /**
      * Build message content for test failure log message.
      *
-     * @param operation
-     *          JSON patch operation being executed.
-     * @param path
-     *          JSON patch operation source path.
-     * @param value
-     *          Target value being modified.
+     * @param operation JSON patch operation being executed.
+     * @param path JSON patch operation source path.
+     * @param value Target value being modified.
      * @return Log message content.
      */
     protected String testMessage(final String operation, final String path, final String value) {
@@ -397,12 +347,9 @@ public abstract class CommonOperation {
     /**
      * Build message content for test failure log message.
      *
-     * @param operation
-     *          JSON patch operation being executed.
-     * @param paths
-     *          JSON patch operation source paths.
-     * @param value
-     *          Target value being modified.
+     * @param operation JSON patch operation being executed.
+     * @param paths JSON patch operation source paths.
+     * @param value Target value being modified.
      * @return Log message content.
      */
     protected String testMessage(final String operation, final String[] paths, final String value) {
@@ -451,16 +398,13 @@ public abstract class CommonOperation {
     /**
      * Build message content for test failure log message.
      *
-     * @param paths
-     *          JSON patch operation source path.
-     * @param targetType
-     *          Name of target (JSON value being modified) value type.
+     * @param paths JSON patch operation source path.
+     * @param targetType Name of target (JSON value being modified) value type.
      * @return Log message content.
      */
     protected String testMessage(final String[] paths, final String targetType) {
         final String operationName = operationName();
-        final int tarLen =
-                targetType != null ? TEST_FAIL_ON1.length() + TEST_FAIL_ON2.length() + targetType.length() : 0;
+        final int tarLen = targetType != null ? TEST_FAIL_ON1.length() + TEST_FAIL_ON2.length() + targetType.length() : 0;
         int pathsLen = 0;
         for (int i = 0; i < paths.length; i++) {
             pathsLen += paths[i] != null ? paths[i].length() : NULL.length();

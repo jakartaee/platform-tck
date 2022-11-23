@@ -38,8 +38,8 @@ public class TestBeanEJB extends StatelessWrapper {
     private static final String bean2RefName = "Rio";
 
     /**
-     * Check that two ejblink entries whose names differ only by case are
-     * associated with different runtime values (as specified in DD).
+     * Check that two ejblink entries whose names differ only by case are associated with different runtime values (as
+     * specified in DD).
      */
     public boolean testCaseSensitivity(Properties p) {
         CaseBeanHome home1 = null;

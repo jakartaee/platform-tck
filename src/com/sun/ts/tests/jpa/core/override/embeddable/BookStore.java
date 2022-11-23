@@ -30,7 +30,8 @@ public class BookStore implements Serializable {
     @Embedded
     private Publisher publisher;
 
-    public BookStore() {}
+    public BookStore() {
+    }
 
     @Override
     public int hashCode() {

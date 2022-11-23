@@ -35,10 +35,10 @@ public class ScopedAttrELResolverTag extends SimpleTagSupport {
         ScopedAttributeELResolver scopedattrResolver = new ScopedAttributeELResolver();
 
         try {
-            boolean pass =
-                    JspResolverTest.testScopedAttrELResolver(context, scopedattrResolver, null, "foo", "bar", buf);
+            boolean pass = JspResolverTest.testScopedAttrELResolver(context, scopedattrResolver, null, "foo", "bar", buf);
             out.println(buf.toString());
-            if (pass == true) out.println("Test PASSED");
+            if (pass == true)
+                out.println("Test PASSED");
         } catch (Throwable t) {
             out.println("contents of buffer:\n" + buf.toString());
             JspTestUtil.handleThrowable(t, out, "ScopedAttrELResolverTag");

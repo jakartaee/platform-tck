@@ -74,8 +74,7 @@ import java.io.PrintWriter;
 public class DoServletConfigTestServlet extends CoreServletTest {
 
     /**
-     * getServletConfig gives the ServletConfig object that is passed to the init
-     * method by the engine
+     * getServletConfig gives the ServletConfig object that is passed to the init method by the engine
      */
     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 

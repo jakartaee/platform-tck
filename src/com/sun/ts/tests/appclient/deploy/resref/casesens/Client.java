@@ -40,8 +40,7 @@ public class Client extends EETest {
     }
 
     /**
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     webServerHost; webServerPort; mailuser1;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; webServerHost; webServerPort; mailuser1;
      */
     public void setup(String[] args, Properties props) throws Fault {
         this.props = props;
@@ -58,17 +57,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:279
      *
-     * @test_Strategy: Deploy an application client declaring two resource
-     *                 references whose names differ only by case and are assigned
-     *                 to two distinct factory types: a
-     *                 jakarta.jms.QueueConnectionFactory and a
-     *                 jakarta.jms.TopicConnectionFactory.
+     * @test_Strategy: Deploy an application client declaring two resource references whose names differ only by case and
+     * are assigned to two distinct factory types: a jakarta.jms.QueueConnectionFactory and a
+     * jakarta.jms.TopicConnectionFactory.
      *
-     *                 Check that the application client can lookup the two
-     *                 factories, cast them to their respective Java types, and
-     *                 create a connection (corresponding to the factory type).
-     *                 This validates that the resource references were resolved
-     *                 correctly.
+     * Check that the application client can lookup the two factories, cast them to their respective Java types, and create
+     * a connection (corresponding to the factory type). This validates that the resource references were resolved
+     * correctly.
      */
     public void testCaseSensitivity() throws Fault {
         boolean pass;

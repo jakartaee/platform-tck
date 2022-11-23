@@ -28,7 +28,9 @@ import jakarta.ejb.Stateful;
 @Stateful
 public class AnnotatedInterfaceBean extends BusinessBeanBase
         implements java.io.Serializable, AnnotatedLocalBusinessInterface1, AnnotatedLocalBusinessInterface2 {
-    public void remove() {}
+    public void remove() {
+    }
 
-    public void remove2() {}
+    public void remove2() {
+    }
 }

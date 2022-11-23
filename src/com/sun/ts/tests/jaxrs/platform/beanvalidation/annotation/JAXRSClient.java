@@ -36,9 +36,8 @@ public class JAXRSClient extends JaxrsCommonClient {
     }
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         new JAXRSClient().run(args);
@@ -51,8 +50,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void beanIsValidTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "notshortnorfive"));
@@ -67,8 +66,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.3;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void beanIsInvalidForBeingFiveCharsLongTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "notshortnorfive"));
@@ -83,8 +82,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.3;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void beanIsInvalidForBeingOneCharLongTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "notshortnorfive"));
@@ -99,8 +98,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void returnIsValidTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "notshortnorfive"));
@@ -115,8 +114,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.2;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void returnIsInvalidForBeingFiveCharsLongTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "returnnotshortnorfive"));
@@ -131,8 +130,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.2;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void returnIsInvalidForBeingOneCharLongTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "returnnotshortnorfive"));
@@ -147,8 +146,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.2;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void returnIsInvalidForBeingNullTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "returnnull"));
@@ -162,8 +161,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void beanAnnotatedIsValidTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "directannotatedarg"));
@@ -178,8 +177,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.3;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void beanAnnotatedIsInvalidForBeingFiveCharsLongTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "directannotatedarg"));
@@ -194,8 +193,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void beanAnnotatedIsValidEvenBeingOneCharLongTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "directannotatedarg"));
@@ -210,8 +209,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void beanAnnotatedReturnIsValidTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "directannotatedreturn"));
@@ -226,8 +225,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.2;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void beanAnnotatedReturnIsInvalidForBeingFiveCharsLongTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "directannotatedreturn"));
@@ -242,8 +241,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void beanAnnotatedReturnIsValidEvenBeingOneCharLongTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "directannotatedreturn"));
@@ -258,8 +257,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.2;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void beanAnnotatedReturnIsInvalidForBeingNullTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "directannotatedreturnnull"));
@@ -273,8 +272,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.1;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void constraintDeclarationExceptionThrownTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "declaration/constraintdeclarationexception"));
@@ -289,8 +288,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.1;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      */
     public void constraintDefinitionExceptionThrownTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.POST, "definition/constraintdefinitionexception"));
@@ -305,8 +304,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.3;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      *
      * Due to validation of whole bean status 400 is returned
      */
@@ -322,13 +321,12 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:101; JAXRS:SPEC:102; JAXRS:SPEC:102.1;
      *
-     * @test_Strategy: JAX-RS implementations MUST follow the constraint
-     * annotation rules defined in Bean Validation 1.1. JSR
+     * @test_Strategy: JAX-RS implementations MUST follow the constraint annotation rules defined in Bean Validation 1.1.
+     * JSR
      *
-     * Due to validation of whole bean status 400 is returned Make sure the
-     * resource is not validated in Step 4, i.e. it would return status 500 then
-     * (the exception was thrown while validating a method return type) or is not
-     * forgotten to be validated at all.
+     * Due to validation of whole bean status 400 is returned Make sure the resource is not validated in Step 4, i.e. it
+     * would return status 500 then (the exception was thrown while validating a method return type) or is not forgotten to
+     * be validated at all.
      */
     public void validateExecutableIsNotValidatedTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "executable/getter"));

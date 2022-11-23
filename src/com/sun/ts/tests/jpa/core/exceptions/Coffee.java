@@ -35,7 +35,8 @@ public class Coffee implements java.io.Serializable {
 
     private float price;
 
-    public Coffee() {}
+    public Coffee() {
+    }
 
     public Coffee(Integer id, String brandName, float price) {
         this.id = id;
@@ -78,8 +79,10 @@ public class Coffee implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Coffee)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Coffee))
+            return false;
 
         Coffee c = (Coffee) o;
 

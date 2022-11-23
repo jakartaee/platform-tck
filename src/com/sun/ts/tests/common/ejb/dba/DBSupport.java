@@ -31,12 +31,11 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 /**
- * Provide basic DB support for TS deployment tests, using The Datasource
- * referenced as 'jdbc/DB1' in the component environment.
+ * Provide basic DB support for TS deployment tests, using The Datasource referenced as 'jdbc/DB1' in the component
+ * environment.
  *
- * This class is not intended to be used "as is", but rather to be sub-classed
- * by other DB support classes focusing on a particular DB schema (and in
- * particular on a type of primary key).
+ * This class is not intended to be used "as is", but rather to be sub-classed by other DB support classes focusing on a
+ * particular DB schema (and in particular on a type of primary key).
  */
 public class DBSupport implements java.io.Serializable {
 
@@ -65,12 +64,10 @@ public class DBSupport implements java.io.Serializable {
     protected float cofPrice = 0; // Coffee Price
 
     /**
-     * Create a new DBSupport object. If called from an EJB or a Web component,
-     * you must make sure to call TestUtil.init() before creating a new DBSupport
-     * object (so that you can safely use TestUtil.getProperty).
+     * Create a new DBSupport object. If called from an EJB or a Web component, you must make sure to call TestUtil.init()
+     * before creating a new DBSupport object (so that you can safely use TestUtil.getProperty).
      *
-     * @param tablePrefix
-     *          Prefix to use for SQL properties lookups.
+     * @param tablePrefix Prefix to use for SQL properties lookups.
      */
     public DBSupport(String tablePrefix) throws Exception {
 
@@ -85,8 +82,7 @@ public class DBSupport implements java.io.Serializable {
     /**
      * Initialize DB table (remove all existing rows).
      *
-     * Method is static so that it can be easily called from the Application
-     * Client setup method.
+     * Method is static so that it can be easily called from the Application Client setup method.
      */
     public static void initTable(String tablePrefix, Properties props) throws Exception {
 
@@ -158,8 +154,7 @@ public class DBSupport implements java.io.Serializable {
     /**
      * Generic method to get a SQL statement for current table.
      *
-     * We get the SQL code associated with the DEPLOY_<tablePrefix>_<suffix> TS
-     * property.
+     * We get the SQL code associated with the DEPLOY_<tablePrefix>_<suffix> TS property.
      */
     public PreparedStatement getStmt(String suffix) throws SQLException {
         PreparedStatement pStmt;
@@ -180,10 +175,8 @@ public class DBSupport implements java.io.Serializable {
     }
 
     /**
-     * Close the ResultSet and the PreparedStatement in a safely manner and
-     * ignoring any SQLException that could be thrown. This method is designed to
-     * be called from a finally block to ensure the release of associated
-     * resources.
+     * Close the ResultSet and the PreparedStatement in a safely manner and ignoring any SQLException that could be thrown.
+     * This method is designed to be called from a finally block to ensure the release of associated resources.
      */
     public void closeStmt(PreparedStatement pStmt, ResultSet result) {
         try {

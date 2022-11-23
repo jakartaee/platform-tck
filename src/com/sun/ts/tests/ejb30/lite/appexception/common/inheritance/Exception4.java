@@ -21,8 +21,7 @@
 package com.sun.ts.tests.ejb30.lite.appexception.common.inheritance;
 
 /**
- * A runtime exception, not ApplicationException, as its superclass Exception3
- * disabled inheritance.
+ * A runtime exception, not ApplicationException, as its superclass Exception3 disabled inheritance.
  */
 public class Exception4 extends Exception3 {
     public Exception4(String message) {

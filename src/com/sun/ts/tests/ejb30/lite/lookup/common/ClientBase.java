@@ -100,8 +100,7 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: ejbPostConstructRecords
      *
-     * @test_Strategy: verify all ejbs are injected properly by the time
-     * post-construct method is invoked.
+     * @test_Strategy: verify all ejbs are injected properly by the time post-construct method is invoked.
      */
     public void ejbPostConstructRecords() {
         appendReason(lookupBean.getPostConstructRecords());
@@ -110,8 +109,7 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: ejb2PostConstructRecords
      *
-     * @test_Strategy: verify all ejbs are injected properly by the time
-     * post-construct method is invoked.
+     * @test_Strategy: verify all ejbs are injected properly by the time post-construct method is invoked.
      */
     public void ejb2PostConstructRecords() {
         appendReason(lookup2Bean.getPostConstructRecords());
@@ -120,8 +118,7 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: clientPostConstructRecords
      *
-     * @test_Strategy: verify all ejbs injected into web client. In embeddable
-     * usage, this test is noop.
+     * @test_Strategy: verify all ejbs injected into web client. In embeddable usage, this test is noop.
      */
     public void clientPostConstructRecords() {
         nonPostConstruct();

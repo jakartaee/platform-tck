@@ -85,8 +85,7 @@ public class TestServlet extends GenericTCKServlet {
 
     private static final String EXPECTED_MIME_TYPE = "application/x-java-class";
 
-    private static final String MIME_OBJECT =
-            "/WEB-INF/classes/tests/jakarta_servlet/ServletContext/GetMimeTypeTestServlet.class";
+    private static final String MIME_OBJECT = "/WEB-INF/classes/tests/jakarta_servlet/ServletContext/GetMimeTypeTestServlet.class";
 
     public void getMimeType(ServletRequest request, ServletResponse response) throws ServletException, IOException {
         boolean passed = false;
@@ -330,8 +329,7 @@ public class TestServlet extends GenericTCKServlet {
     }
 
     /**
-     * A Negative Test for ServletContext.getResourse(String) method We will give
-     * a fake URL we should get null
+     * A Negative Test for ServletContext.getResourse(String) method We will give a fake URL we should get null
      */
     public void getResource_1(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
@@ -356,8 +354,8 @@ public class TestServlet extends GenericTCKServlet {
     }
 
     /**
-     * A Negative Test for ServletContext.getResource(String path) We get
-     * MalformedURLException if path does not start with /.
+     * A Negative Test for ServletContext.getResource(String path) We get MalformedURLException if path does not start with
+     * /.
      */
     public void getResource_2(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 
@@ -432,8 +430,7 @@ public class TestServlet extends GenericTCKServlet {
      * A Negative Test for ServletContext.getAttribute(String) method
      */
     /**
-     * We'll try to get the associated value for a non existent attribute name. We
-     * should get null as the result
+     * We'll try to get the associated value for a non existent attribute name. We should get null as the result
      */
     public void servletContextGetAttribute_1(ServletRequest request, ServletResponse response)
             throws ServletException, IOException {
@@ -852,8 +849,7 @@ public class TestServlet extends GenericTCKServlet {
      * Test for ServletContext.getNamedDispatcher(String) method
      */
     /**
-     * We will try to get the RequestDispatcher for the servlet Registered as
-     * config
+     * We will try to get the RequestDispatcher for the servlet Registered as config
      */
     public void getNamedDispatcher(ServletRequest request, ServletResponse response)
             throws ServletException, IOException {

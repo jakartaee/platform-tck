@@ -22,4 +22,5 @@ import com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2;
 import jakarta.ejb.Singleton;
 
 @Singleton
-public class NoAnnotationBean extends BaseBean implements NormalInterface1, NormalInterface2 {}
+public class NoAnnotationBean extends BaseBean implements NormalInterface1, NormalInterface2 {
+}

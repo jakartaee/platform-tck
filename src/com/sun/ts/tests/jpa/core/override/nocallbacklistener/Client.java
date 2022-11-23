@@ -27,7 +27,8 @@ public class Client extends PMClientBase {
 
     private static final Long ID = 1L;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -49,18 +50,14 @@ public class Client extends PMClientBase {
     /*
      * @testName: testNoCallBackListener
      *
-     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:695;
-     * PERSISTENCE:SPEC:696; PERSISTENCE:SPEC:697; PERSISTENCE:SPEC:698;
-     * PERSISTENCE:SPEC:698; PERSISTENCE:SPEC:699; PERSISTENCE:SPEC:700;
-     * PERSISTENCE:SPEC:701; PERSISTENCE:SPEC:702; PERSISTENCE:SPEC:703;
-     * PERSISTENCE:SPEC:704; PERSISTENCE:SPEC:707; PERSISTENCE:SPEC:708;
-     * PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:710; PERSISTENCE:SPEC:711;
-     * PERSISTENCE:SPEC:712; PERSISTENCE:SPEC:713; PERSISTENCE:SPEC:716;
-     * PERSISTENCE:SPEC:719; PERSISTENCE:SPEC:720; PERSISTENCE:SPEC:722;
-     * PERSISTENCE:SPEC:723; PERSISTENCE:SPEC:724
+     * @assertion_ids: PERSISTENCE:SPEC:694; PERSISTENCE:SPEC:695; PERSISTENCE:SPEC:696; PERSISTENCE:SPEC:697;
+     * PERSISTENCE:SPEC:698; PERSISTENCE:SPEC:698; PERSISTENCE:SPEC:699; PERSISTENCE:SPEC:700; PERSISTENCE:SPEC:701;
+     * PERSISTENCE:SPEC:702; PERSISTENCE:SPEC:703; PERSISTENCE:SPEC:704; PERSISTENCE:SPEC:707; PERSISTENCE:SPEC:708;
+     * PERSISTENCE:SPEC:709; PERSISTENCE:SPEC:710; PERSISTENCE:SPEC:711; PERSISTENCE:SPEC:712; PERSISTENCE:SPEC:713;
+     * PERSISTENCE:SPEC:716; PERSISTENCE:SPEC:719; PERSISTENCE:SPEC:720; PERSISTENCE:SPEC:722; PERSISTENCE:SPEC:723;
+     * PERSISTENCE:SPEC:724
      *
-     * @test_Strategy: CallBack methods are tested without using callback method's
-     * annotations.
+     * @test_Strategy: CallBack methods are tested without using callback method's annotations.
      *
      */
     public void testNoCallBackListener() throws Fault {

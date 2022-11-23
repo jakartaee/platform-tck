@@ -67,8 +67,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -95,8 +94,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:125
      *
-     * @test_Strategy: Create an CMP 1.1 Entity Bean. Deploy it on the J2EE
-     * server. Ensure the client can access EJBHome interface for EJB via JNDI
+     * @test_Strategy: Create an CMP 1.1 Entity Bean. Deploy it on the J2EE server. Ensure the client can access EJBHome
+     * interface for EJB via JNDI
      *
      */
 
@@ -107,14 +106,16 @@ public class Client extends EETest {
             logMsg("Looking up home in test1");
             beanHome = (TestBeanHome) nctx.lookup(testBean, TestBeanHome.class);
 
-            if (beanHome == null) pass = false;
+            if (beanHome == null)
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test1: " + e);
             TestUtil.printStackTrace(e);
             throw new Fault("test1 failed : " + e);
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -122,8 +123,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.1
      *
-     * @test_Strategy: Create an CMP 1.1 Entity EJB via the EJBHome interface.
-     * Deploy it on the J2EE server.
+     * @test_Strategy: Create an CMP 1.1 Entity EJB via the EJBHome interface. Deploy it on the J2EE server.
      */
 
     public void test2() throws Fault {
@@ -148,7 +148,8 @@ public class Client extends EETest {
             ;
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -156,9 +157,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.3
      *
-     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE
-     * server. Obtain handle, then remove object, attempt make call to the removed
-     * object
+     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE server. Obtain handle, then remove object,
+     * attempt make call to the removed object
      *
      */
     public void test3() throws Fault {
@@ -196,7 +196,8 @@ public class Client extends EETest {
                 }
             }
 
-            if (!pass) throw new Fault("test3 failed");
+            if (!pass)
+                throw new Fault("test3 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test3: " + e);
@@ -217,8 +218,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:148
      *
-     * @test_Strategy: Create an CMP 1.1 Entity Bean. Deploy it on the J2EE
-     * server. Try to Obtain primaryKey.
+     * @test_Strategy: Create an CMP 1.1 Entity Bean. Deploy it on the J2EE server. Try to Obtain primaryKey.
      *
      */
 
@@ -259,7 +259,8 @@ public class Client extends EETest {
                 }
             }
 
-            if (!pass) throw new Fault("test4 failed");
+            if (!pass)
+                throw new Fault("test4 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test4: " + e);
@@ -280,9 +281,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.3
      *
-     * @test_Strategy: Create an CMP 1.1 Entity Bean. Deploy it on the J2EE
-     * server. Try to Obtain primary Key. Try to remove the object via the primary
-     * key. Check to see if object still exists.
+     * @test_Strategy: Create an CMP 1.1 Entity Bean. Deploy it on the J2EE server. Try to Obtain primary Key. Try to remove
+     * the object via the primary key. Check to see if object still exists.
      *
      */
 
@@ -321,7 +321,8 @@ public class Client extends EETest {
                 throw new Fault("test5 failed : " + e);
             }
 
-            if (!pass) throw new Fault("test5 failed");
+            if (!pass)
+                throw new Fault("test5 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test5: " + e);
@@ -342,8 +343,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.4
      *
-     * @test_Strategy: Obtain EJBMetaData via the EJBHome interface Verify
-     * EJBMetaData was obtained.
+     * @test_Strategy: Obtain EJBMetaData via the EJBHome interface Verify EJBMetaData was obtained.
      *
      */
     public void test6() throws Fault {
@@ -356,13 +356,15 @@ public class Client extends EETest {
             TestUtil.logMsg("Get EJBMetaData interface");
             EJBMetaData metaData = beanHome.getEJBMetaData();
             TestUtil.logMsg("metaData=" + metaData);
-            if (metaData != null) pass = true;
+            if (metaData != null)
+                pass = true;
             else {
                 TestUtil.logErr("EJBMetaData interface is null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test6 failed");
+            if (!pass)
+                throw new Fault("test6 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test6: " + e);
@@ -383,8 +385,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.5; EJB:JAVADOC:47
      *
-     * @test_Strategy: Obtain HomeHandle via the EJBHome interface Verify
-     * HomeHandle was obtained.
+     * @test_Strategy: Obtain HomeHandle via the EJBHome interface Verify HomeHandle was obtained.
      *
      */
     public void test6a() throws Fault {
@@ -394,13 +395,15 @@ public class Client extends EETest {
         try {
             TestUtil.logMsg("Get HomeHandle");
             HomeHandle homeHandle = beanHome.getHomeHandle();
-            if (homeHandle != null) pass = true;
+            if (homeHandle != null)
+                pass = true;
             else {
                 TestUtil.logErr("homeHandle is null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test6a failed");
+            if (!pass)
+                throw new Fault("test6a failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test6a: " + e);
@@ -414,9 +417,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:152.1; EJB:JAVADOC:22
      *
-     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE
-     * server. Obtain the EJBHome Interface. Varify the EJBHome Interface was
-     * created.
+     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE server. Obtain the EJBHome Interface. Varify
+     * the EJBHome Interface was created.
      */
     public void test7() throws Fault {
         boolean pass = false;
@@ -435,13 +437,15 @@ public class Client extends EETest {
 
             TestUtil.logMsg("This is after the beanRef.getEJBHome() ");
 
-            if (beanHome2 != null) pass = true;
+            if (beanHome2 != null)
+                pass = true;
             else {
                 TestUtil.logErr("Home Interface is null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test7 failed");
+            if (!pass)
+                throw new Fault("test7 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test7: " + e);
@@ -462,8 +466,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:152.3; EJB:JAVADOC:75
      *
-     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE
-     * server. Obtain handle via the EJBObject, Verify the handle was obtained.
+     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE server. Obtain handle via the EJBObject,
+     * Verify the handle was obtained.
      */
 
     public void test8() throws Fault {
@@ -484,13 +488,15 @@ public class Client extends EETest {
 
             TestUtil.logMsg("handle= " + handle);
 
-            if (handle != null) pass = true;
+            if (handle != null)
+                pass = true;
             else {
                 TestUtil.logErr("handle is null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test8 failed");
+            if (!pass)
+                throw new Fault("test8 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test8: " + e);
@@ -511,9 +517,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:152.2
      *
-     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE
-     * server. Remove the Object via the EJBObject. Varify the object no longer
-     * exists.
+     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE server. Remove the Object via the EJBObject.
+     * Varify the object no longer exists.
      */
 
     public void test9() throws Fault {
@@ -544,7 +549,8 @@ public class Client extends EETest {
         } finally {
             try {
                 beanRef.remove();
-                if (!pass) throw new Fault("test9 failed");
+                if (!pass)
+                    throw new Fault("test9 failed");
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
@@ -557,8 +563,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:150; EJB:JAVADOC:79
      *
-     * @test_Strategy: Create a CMP 1.1 Entity EJBean. Deploy it on the J2EE
-     * server. Call the isIdentical(SameObject). verify that the result is true.
+     * @test_Strategy: Create a CMP 1.1 Entity EJBean. Deploy it on the J2EE server. Call the isIdentical(SameObject).
+     * verify that the result is true.
      */
 
     public void test10() throws Fault {
@@ -581,7 +587,8 @@ public class Client extends EETest {
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test10 failed");
+            if (!pass)
+                throw new Fault("test10 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test10: " + e);
@@ -602,8 +609,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:150; EJB:JAVADOC:79
      *
-     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE
-     * server. Call the isIdentical(newObject). verify that the result is false.
+     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE server. Call the isIdentical(newObject).
+     * verify that the result is false.
      */
 
     public void test11() throws Fault {
@@ -632,7 +639,8 @@ public class Client extends EETest {
                 pass = true;
             }
 
-            if (!pass) throw new Fault("test11 failed");
+            if (!pass)
+                throw new Fault("test11 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test11: " + e);
@@ -654,8 +662,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:144.1
      *
-     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE
-     * server. Call objects Business Method. verify that a exception isn't raised
+     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE server. Call objects Business Method. verify
+     * that a exception isn't raised
      */
 
     public void test12() throws Fault {
@@ -705,9 +713,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:144.3
      *
-     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE
-     * server. Call the objects business method with and instance of itself as the
-     * parameter.
+     * @test_Strategy: Create an CMP 1.1 Entity EJBean. Deploy it on the J2EE server. Call the objects business method with
+     * and instance of itself as the parameter.
      *
      */
 
@@ -744,8 +751,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.4; EJB:JAVADOC:67
      *
-     * @test_Strategy: Obtain EJBMetaData Obtain EJBHome interface Verify EJBHome
-     * interface was obtained
+     * @test_Strategy: Obtain EJBMetaData Obtain EJBHome interface Verify EJBHome interface was obtained
      */
 
     public void test14() throws Fault {
@@ -769,13 +775,15 @@ public class Client extends EETest {
             EJBHome home = metaData.getEJBHome();
             TestUtil.logMsg("This is after the metaData.getEJBHome() ");
 
-            if (home != null) pass = true;
+            if (home != null)
+                pass = true;
             else {
                 TestUtil.logErr("Home is = null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test14 failed");
+            if (!pass)
+                throw new Fault("test14 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test14: " + e);
@@ -796,8 +804,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.4; EJB:JAVADOC:68
      *
-     * @test_Strategy: Obtain metaData from beanHome Obtain EJB home Interface
-     * Verify that EJB home Interface was obtained
+     * @test_Strategy: Obtain metaData from beanHome Obtain EJB home Interface Verify that EJB home Interface was obtained
      */
 
     public void test15() throws Fault {
@@ -821,13 +828,15 @@ public class Client extends EETest {
 
             TestUtil.logMsg("class=" + cls);
 
-            if (cls.isInstance(beanHome)) pass = true;
+            if (cls.isInstance(beanHome))
+                pass = true;
             else {
                 TestUtil.logErr("The getHomeInterfaceClass returned null");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test15 failed");
+            if (!pass)
+                throw new Fault("test15 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test15: " + e);
@@ -848,8 +857,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.4; EJB:JAVADOC:69
      *
-     * @test_Strategy: Obtain EJBMetaData Obtain PrimaryKeyClass via EJBMetaData.
-     * Varify that PrimaryKeyClass was obtained.
+     * @test_Strategy: Obtain EJBMetaData Obtain PrimaryKeyClass via EJBMetaData. Varify that PrimaryKeyClass was obtained.
      */
 
     public void test16() throws Fault {
@@ -876,7 +884,8 @@ public class Client extends EETest {
 
                 TestUtil.logMsg("class=" + cls);
 
-                if (cls.isInstance(new Integer(1))) pass = true;
+                if (cls.isInstance(new Integer(1)))
+                    pass = true;
 
             } catch (RuntimeException e) {
                 TestUtil.logErr("Caught RuntimeException in test16 unexpected: " + e, e);
@@ -898,7 +907,8 @@ public class Client extends EETest {
             }
             ;
         }
-        if (!pass) throw new Fault("test16 failed");
+        if (!pass)
+            throw new Fault("test16 failed");
     }
 
     /*
@@ -906,8 +916,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.4; EJB:JAVADOC:70
      *
-     * @test_Strategy: Get MetaData from EJBHome Use MetaData to get ClassObject
-     * Verify that the ClassObject was obtained.
+     * @test_Strategy: Get MetaData from EJBHome Use MetaData to get ClassObject Verify that the ClassObject was obtained.
      */
 
     public void test17() throws Fault {
@@ -930,13 +939,15 @@ public class Client extends EETest {
             TestUtil.logMsg("After the metaData.getRemoteInterfaceClass() ");
 
             TestUtil.logMsg("class=" + cls);
-            if (cls.isInstance(beanRef)) pass = true;
+            if (cls.isInstance(beanRef))
+                pass = true;
             else {
                 TestUtil.logErr("getRemoteInterfaceClass Returned a null value test17");
                 pass = false;
             }
 
-            if (!pass) throw new Fault("test17 failed");
+            if (!pass)
+                throw new Fault("test17 failed");
 
         } catch (RemoteException e) {
             TestUtil.logErr("Caught exception test17: " + e);
@@ -961,8 +972,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.4; EJB:JAVADOC:71
      *
-     * @test_Strategy: Obtain EJBMetaData Call isSession on the CMP 1.1 Entity
-     * Bean Varify that the result is false
+     * @test_Strategy: Obtain EJBMetaData Call isSession on the CMP 1.1 Entity Bean Varify that the result is false
      */
 
     public void test18() throws Fault {
@@ -988,7 +998,8 @@ public class Client extends EETest {
             TestUtil.logMsg("isSession =" + isSession);
             pass = isSession;
 
-            if (pass) throw new Fault("test18 failed");
+            if (pass)
+                throw new Fault("test18 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception test18: " + e);
@@ -1009,10 +1020,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:133; EJB:SPEC:132
      *
-     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome
-     * interface. Deploy them on the J2EE server. Perform a find of one of the CMP
-     * 1.1 Entity EJB's via findByPrimaryKey. Verify that the correct CMP 1.1
-     * Entity EJB was found.
+     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome interface. Deploy them on the J2EE server.
+     * Perform a find of one of the CMP 1.1 Entity EJB's via findByPrimaryKey. Verify that the correct CMP 1.1 Entity EJB
+     * was found.
      */
 
     public void test19() throws Fault {
@@ -1044,14 +1054,16 @@ public class Client extends EETest {
             throw new Fault("test19 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test19 failed");
+        if (!pass)
+            throw new Fault("test19 failed");
     }
 
     /*
@@ -1059,9 +1071,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:470; EJB:SPEC:471
      *
-     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome
-     * interface. Deploy them on the J2EE server. Perform a find of one of the CMP
-     * 1.1 Entity EJB's and verify that the correct CMP 1.1 Entity EJB was found.
+     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome interface. Deploy them on the J2EE server.
+     * Perform a find of one of the CMP 1.1 Entity EJB's and verify that the correct CMP 1.1 Entity EJB was found.
      */
 
     public void test20() throws Fault {
@@ -1101,14 +1112,16 @@ public class Client extends EETest {
             throw new Fault("test20 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test20 failed");
+        if (!pass)
+            throw new Fault("test20 failed");
     }
 
     /*
@@ -1116,9 +1129,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:470; EJB:SPEC:471
      *
-     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome
-     * interface. Deploy them on the J2EE server. Perform a find of one of the CMP
-     * 1.1 Entity EJB's and verify that the correct CMP 1.1 Entity EJB was found.
+     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome interface. Deploy them on the J2EE server.
+     * Perform a find of one of the CMP 1.1 Entity EJB's and verify that the correct CMP 1.1 Entity EJB was found.
      */
 
     public void test21() throws Fault {
@@ -1158,14 +1170,16 @@ public class Client extends EETest {
             throw new Fault("test21 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test21 failed");
+        if (!pass)
+            throw new Fault("test21 failed");
     }
 
     /*
@@ -1173,10 +1187,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:470; EJB:SPEC:471
      *
-     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome
-     * interface. Deploy them on the J2EE server. Perform a find of a range of CMP
-     * 1.1 Entity EJB's and Verify that the correct CMP 1.1 Entity EJB's were
-     * found.
+     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome interface. Deploy them on the J2EE server.
+     * Perform a find of a range of CMP 1.1 Entity EJB's and Verify that the correct CMP 1.1 Entity EJB's were found.
      */
 
     public void test22() throws Fault {
@@ -1198,7 +1210,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Number of EJB references returned = " + c.size());
             Iterator i = c.iterator();
             int j = 0;
-            while (i.hasNext()) beanRef2[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
+            while (i.hasNext())
+                beanRef2[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
             if (c.size() != 3) {
                 TestUtil.logErr("findWithinPriceRange returned " + c.size() + " references, expected 3 references");
                 pass = false;
@@ -1233,14 +1246,16 @@ public class Client extends EETest {
             throw new Fault("test22 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test22 failed");
+        if (!pass)
+            throw new Fault("test22 failed");
     }
 
     /*
@@ -1248,10 +1263,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:470; EJB:SPEC:471
      *
-     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome
-     * interface. Deploy them on the J2EE server. Perform a find of a range of CMP
-     * 1.1 Entity EJB's and verify that the correct CMP 1.1 Entity EJB's were
-     * found.
+     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome interface. Deploy them on the J2EE server.
+     * Perform a find of a range of CMP 1.1 Entity EJB's and verify that the correct CMP 1.1 Entity EJB's were found.
      */
 
     public void test23() throws Fault {
@@ -1275,7 +1288,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Number of EJB references returned = " + c.size());
             Iterator i = c.iterator();
             int j = 0;
-            while (i.hasNext()) beanRef2[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
+            while (i.hasNext())
+                beanRef2[j++] = (TestBean) PortableRemoteObject.narrow(i.next(), TestBean.class);
             if (c.size() != 3) {
                 TestUtil.logErr(
                         "findWithinPrimaryKeyRange returned " + c.size() + " references, expected 3 references");
@@ -1311,14 +1325,16 @@ public class Client extends EETest {
             throw new Fault("test23 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test23 failed");
+        if (!pass)
+            throw new Fault("test23 failed");
     }
 
     /*
@@ -1326,9 +1342,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:470; EJB:SPEC:471
      *
-     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome
-     * interface. Deploy them on the J2EE server. Perform a find of a non-existant
-     * CMP 1.1 Entity EJB and verify that an EMPTY collection is returned.
+     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome interface. Deploy them on the J2EE server.
+     * Perform a find of a non-existant CMP 1.1 Entity EJB and verify that an EMPTY collection is returned.
      */
 
     public void test24() throws Fault {
@@ -1359,14 +1374,16 @@ public class Client extends EETest {
             throw new Fault("test24 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test24 failed");
+        if (!pass)
+            throw new Fault("test24 failed");
     }
 
     /*
@@ -1374,9 +1391,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:468; EJB:JAVADOC:146
      *
-     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome
-     * interface. Deploy them on the J2EE server. Perform a find of a non-existant
-     * CMP 1.1 Entity EJB and verify that the ObjectNotFoundException is returned.
+     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome interface. Deploy them on the J2EE server.
+     * Perform a find of a non-existant CMP 1.1 Entity EJB and verify that the ObjectNotFoundException is returned.
      */
 
     public void test25() throws Fault {
@@ -1406,14 +1422,16 @@ public class Client extends EETest {
             throw new Fault("test25 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test25 failed");
+        if (!pass)
+            throw new Fault("test25 failed");
     }
 
     /*
@@ -1421,9 +1439,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:468; EJB:JAVADOC:119
      *
-     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome
-     * interface. Deploy them on the J2EE server. Perform a find by name where 2
-     * entites have the same name and verify that FinderException is returned.
+     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome interface. Deploy them on the J2EE server.
+     * Perform a find by name where 2 entites have the same name and verify that FinderException is returned.
      */
 
     public void test26() throws Fault {
@@ -1453,14 +1470,16 @@ public class Client extends EETest {
             throw new Fault("test26 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test26 failed");
+        if (!pass)
+            throw new Fault("test26 failed");
     }
 
     /*
@@ -1468,9 +1487,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:503
      *
-     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome
-     * interface. Deploy them on the J2EE server. Perform a no-arg finder Entity
-     * EJB to return all EJB's in table. Verify collection size returned matches.
+     * @test_Strategy: Create several CMP 1.1 Entity EJB's via the EJBHome interface. Deploy them on the J2EE server.
+     * Perform a no-arg finder Entity EJB to return all EJB's in table. Verify collection size returned matches.
      */
 
     public void test27() throws Fault {
@@ -1500,14 +1518,16 @@ public class Client extends EETest {
             throw new Fault("test27 failed", e);
         } finally {
             try {
-                for (int i = 0; i < NUMEJBS; i++) beanRef[i].remove();
+                for (int i = 0; i < NUMEJBS; i++)
+                    beanRef[i].remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
             ;
         }
 
-        if (!pass) throw new Fault("test27 failed");
+        if (!pass)
+            throw new Fault("test27 failed");
     }
 
     public void cleanup() throws Fault {

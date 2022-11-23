@@ -44,14 +44,7 @@ public class ScheduleBeanBase2 extends TimerBeanBase {
 
     private static final int MAX_NUM_OF_EXPIRATIONS = 50;
 
-    @Schedule(
-            hour = "*",
-            minute = "*",
-            second = ODD_SECONDS,
-            dayOfWeek = ALL_DAY_OF_WEEK,
-            dayOfMonth = "Last",
-            persistent = false,
-            info = "autoTimerInSuperClassNoParam")
+    @Schedule(hour = "*", minute = "*", second = ODD_SECONDS, dayOfWeek = ALL_DAY_OF_WEEK, dayOfMonth = "Last", persistent = false, info = "autoTimerInSuperClassNoParam")
     public void autoTimerInSuperClassNoParam() {
         Timer t = TimerUtil.findTimer(timerService, "autoTimerInSuperClassNoParam");
         timeout(t);

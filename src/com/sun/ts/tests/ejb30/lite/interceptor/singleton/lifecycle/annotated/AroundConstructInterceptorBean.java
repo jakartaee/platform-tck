@@ -27,7 +27,7 @@ import jakarta.interceptor.Interceptors;
 
 @Singleton
 @ExcludeDefaultInterceptors
-@Interceptors({Interceptor9.class, InterceptorA.class})
+@Interceptors({ Interceptor9.class, InterceptorA.class })
 @SuppressWarnings("unused")
 public class AroundConstructInterceptorBean extends InterceptorBeanBase implements InterceptorIF {
 

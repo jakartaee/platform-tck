@@ -37,7 +37,8 @@ public class LocalTxActivationSpec implements ActivationSpec, java.io.Serializab
     /**
      * Default constructor.
      */
-    public LocalTxActivationSpec() {}
+    public LocalTxActivationSpec() {
+    }
 
     public String getDestinationName() {
         System.out.println("LocalTxActivationSpec.getDestinationName :" + this.destinationName);

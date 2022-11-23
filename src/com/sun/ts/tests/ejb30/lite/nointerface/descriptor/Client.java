@@ -62,37 +62,33 @@ public class Client extends com.sun.ts.tests.ejb30.lite.nointerface.annotated.Cl
     /*
      * @testName: invokeRemovedStateful
      *
-     * @test_Strategy: Invoking a removed stateful no-interface bean results in
-     * jakarta.ejb.NoSuchEJBException.
+     * @test_Strategy: Invoking a removed stateful no-interface bean results in jakarta.ejb.NoSuchEJBException.
      */
 
     /*
      * @testName: passAsParam
      *
-     * @test_Strategy: no-interface view bean reference can be passed by param of
-     * any local business interface or no-interface method. Using varargs...
+     * @test_Strategy: no-interface view bean reference can be passed by param of any local business interface or
+     * no-interface method. Using varargs...
      */
 
     /*
      * @testName: passAsReturn
      *
-     * @test_Strategy: no-interface view bean reference can be passed by param of
-     * any local business interface or no-interface method. Using covariant return
-     * types. Also tests that injected no-interface beans can be looked up via
+     * @test_Strategy: no-interface view bean reference can be passed by param of any local business interface or
+     * no-interface method. Using covariant return types. Also tests that injected no-interface beans can be looked up via
      * jndi.
      */
 
     /*
      * @testName: passEnumAsParams
      *
-     * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the
-     * sum.
+     * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the sum.
      */
 
     /*
      * @testName: passEnumAsReturn
      *
-     * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the
-     * sum.
+     * @test_Strategy: pass (NumberEnum, NumberIF) to each bean, which returns the sum.
      */
 }

@@ -23,26 +23,20 @@ package com.sun.ts.tests.jsp.spec.core_syntax.scripting.el;
 import jakarta.servlet.jsp.JspException;
 
 /**
- * Tag implementation to perform validation of JSP 2.0 expression language
- * literals.
+ * Tag implementation to perform validation of JSP 2.0 expression language literals.
  */
 public class CheckLiteralTag extends BaseCheckTag {
 
     /**
-     * Performs validation of expression language literals using the following
-     * algorithm:
+     * Performs validation of expression language literals using the following algorithm:
      * <ul>
-     * <li>If the control object is null, and the expression yields a non null
-     * object, FAIL</li>
-     * <li>If the control object is an instance of <tt>java.lang.Number</tt>,
-     * convert both the control and test objects to Strings. If they are not
-     * equal, FAIL.</li>
-     * <li>Otherwise, if both the control and test objects are not equal,
-     * FAIL.</li>
+     * <li>If the control object is null, and the expression yields a non null object, FAIL</li>
+     * <li>If the control object is an instance of <tt>java.lang.Number</tt>, convert both the control and test objects to
+     * Strings. If they are not equal, FAIL.</li>
+     * <li>Otherwise, if both the control and test objects are not equal, FAIL.</li>
      * </ul>
      *
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     protected void performCheck() throws JspException {
         String message = null;

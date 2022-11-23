@@ -124,8 +124,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF.
      *
      */
     /*
@@ -133,8 +132,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF2.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF2.
      *
      */
 

@@ -36,7 +36,8 @@ public class FieldUtilDateId implements java.io.Serializable {
     @Temporal(TemporalType.DATE)
     private java.util.Date date;
 
-    public FieldUtilDateId() {}
+    public FieldUtilDateId() {
+    }
 
     public FieldUtilDateId(java.util.Date id, java.util.Date date) {
         this.id = id;

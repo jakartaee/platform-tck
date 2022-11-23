@@ -93,17 +93,25 @@ public class ServletClient extends HttpServlet {
             String test = harnessProps.getProperty("TEST");
             System.out.println("doGet: test to execute is: " + test);
             if (test.equals("afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest")) {
-                if (afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest")) {
-                if (afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest")) {
-                if (afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest")) {
-                if (afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             }
             p.list(out);
         } catch (Exception e) {

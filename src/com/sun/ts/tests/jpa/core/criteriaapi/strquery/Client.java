@@ -68,12 +68,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:312; PERSISTENCE:SPEC:322;
-     * PERSISTENCE:SPEC:602; PERSISTENCE:SPEC:603; PERSISTENCE:JAVADOC:91;
-     * PERSISTENCE:SPEC:785; PERSISTENCE:JAVADOC:689;
+     * @assertion_ids: PERSISTENCE:SPEC:312; PERSISTENCE:SPEC:322; PERSISTENCE:SPEC:602; PERSISTENCE:SPEC:603;
+     * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:785; PERSISTENCE:JAVADOC:689;
      *
-     * @test_Strategy: This query is defined on a many-one relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a many-one relationship. Verify the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -117,11 +115,9 @@ public class Client extends Util {
     /*
      * @testName: queryTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:317.1; PERSISTENCE:SPEC:750;
-     * PERSISTENCE:SPEC:764; PERSISTENCE:SPEC:746.1
+     * @assertion_ids: PERSISTENCE:SPEC:317.1; PERSISTENCE:SPEC:750; PERSISTENCE:SPEC:764; PERSISTENCE:SPEC:746.1
      *
-     * @test_Strategy: Find All Customers. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Find All Customers. Verify the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -165,13 +161,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest3
      *
-     * @assertion_ids: PERSISTENCE:SPEC:321; PERSISTENCE:SPEC:317.2;
-     * PERSISTENCE:SPEC:332; PERSISTENCE:SPEC:323; PERSISTENCE:SPEC:517;
-     * PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519; PERSISTENCE:JAVADOC:93;
-     * PERSISTENCE:JAVADOC:94;
+     * @assertion_ids: PERSISTENCE:SPEC:321; PERSISTENCE:SPEC:317.2; PERSISTENCE:SPEC:332; PERSISTENCE:SPEC:323;
+     * PERSISTENCE:SPEC:517; PERSISTENCE:SPEC:518; PERSISTENCE:SPEC:519; PERSISTENCE:JAVADOC:93; PERSISTENCE:JAVADOC:94;
      *
-     * @test_Strategy: This query is defined on a many-many relationship. Verify
-     * the results were accurately returned.
+     * @test_Strategy: This query is defined on a many-many relationship. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest3() throws Fault {
@@ -213,12 +206,11 @@ public class Client extends Util {
     /*
      * @testName: queryTest4
      *
-     * @assertion_ids: PERSISTENCE:SPEC:322; PERSISTENCE:SPEC:394;
-     * PERSISTENCE:SPEC:751; PERSISTENCE:SPEC:753; PERSISTENCE:SPEC:754;
-     * PERSISTENCE:SPEC:755
+     * @assertion_ids: PERSISTENCE:SPEC:322; PERSISTENCE:SPEC:394; PERSISTENCE:SPEC:751; PERSISTENCE:SPEC:753;
+     * PERSISTENCE:SPEC:754; PERSISTENCE:SPEC:755
      *
-     * @test_Strategy: This query is defined on a one-one relationship and used
-     * conditional AND in query. Verify the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-one relationship and used conditional AND in query. Verify the results
+     * were accurately returned.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -235,12 +227,12 @@ public class Client extends Util {
             CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
             Root<Customer> customer = cquery.from(Customer.class);
             cquery.where(
-                            cbuilder.equal(
-                                    customer.get("home").get("street"), cbuilder.parameter(String.class, "street")),
-                            cbuilder.equal(customer.get("home").get("city"), cbuilder.parameter(String.class, "city")),
-                            cbuilder.equal(
-                                    customer.get("home").get("state"), cbuilder.parameter(String.class, "state")),
-                            cbuilder.equal(customer.get("home").get("zip"), cbuilder.parameter(String.class, "zip")))
+                    cbuilder.equal(
+                            customer.get("home").get("street"), cbuilder.parameter(String.class, "street")),
+                    cbuilder.equal(customer.get("home").get("city"), cbuilder.parameter(String.class, "city")),
+                    cbuilder.equal(
+                            customer.get("home").get("state"), cbuilder.parameter(String.class, "state")),
+                    cbuilder.equal(customer.get("home").get("zip"), cbuilder.parameter(String.class, "zip")))
                     .select(customer);
             TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
             tquery.setParameter("street", "125 Moxy Lane")
@@ -269,12 +261,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest5
      *
-     * @assertion_ids: PERSISTENCE:SPEC:323; PERSISTENCE:SPEC:760;
-     * PERSISTENCE:SPEC:761
+     * @assertion_ids: PERSISTENCE:SPEC:323; PERSISTENCE:SPEC:760; PERSISTENCE:SPEC:761
      *
-     * @test_Strategy: Execute a query to find customers with a certain credit
-     * card type. This query is defined on a one-many relationship. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute a query to find customers with a certain credit card type. This query is defined on a
+     * one-many relationship. Verify the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -326,8 +316,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:348.4; PERSISTENCE:SPEC:338;
      *
-     * @test_Strategy: This query is defined on a one-one relationship using
-     * conditional OR in query. Verify the results were accurately returned.
+     * @test_Strategy: This query is defined on a one-one relationship using conditional OR in query. Verify the results
+     * were accurately returned.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -428,9 +418,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:348.4; PERSISTENCE:SPEC:345
      *
-     * @test_Strategy: Execute a query containing a conditional expression
-     * composed with logical operator NOT. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query containing a conditional expression composed with logical operator NOT. Verify the
+     * results were accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -476,9 +465,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:348.4; PERSISTENCE:SPEC:345
      *
-     * @test_Strategy: Execute a query containing a a conditional expression
-     * composed with logical operator OR. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query containing a a conditional expression composed with logical operator OR. Verify the
+     * results were accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -526,13 +514,11 @@ public class Client extends Util {
     /*
      * @testName: queryTest10
      *
-     * @assertion_ids: PERSISTENCE:SPEC:346; PERSISTENCE:SPEC:347;
-     * PERSISTENCE:SPEC:348.2; PERSISTENCE:SPEC:344
+     * @assertion_ids: PERSISTENCE:SPEC:346; PERSISTENCE:SPEC:347; PERSISTENCE:SPEC:348.2; PERSISTENCE:SPEC:344
      *
-     * @test_Strategy: Execute a query containing a conditional expression
-     * composed with AND and OR and using standard bracketing () for ordering. The
-     * comparison operator < and arithmetic operations are also used in the query.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute a query containing a conditional expression composed with AND and OR and using standard
+     * bracketing () for ordering. The comparison operator < and arithmetic operations are also used in the query. Verify
+     * the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -588,10 +574,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:338; PERSISTENCE:JAVADOC:736
      *
-     * @test_Strategy: Execute the findOrdersByQuery9 method using conditional
-     * expression composed with AND with an input parameter as a conditional
-     * factor. The comparison operator < is also used in the query. Verify the
-     * results were accurately returned. //CHANGE THIS TO INPUT/NAMED PARAMETER
+     * @test_Strategy: Execute the findOrdersByQuery9 method using conditional expression composed with AND with an input
+     * parameter as a conditional factor. The comparison operator < is also used in the query. Verify the results were
+     * accurately returned. //CHANGE THIS TO INPUT/NAMED PARAMETER
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -638,8 +623,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:349; PERSISTENCE:SPEC:348.3
      *
-     * @test_Strategy: Execute a query containing the comparison operator BETWEEN.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute a query containing the comparison operator BETWEEN. Verify the results were accurately
+     * returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -686,8 +671,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:349
      *
-     * @test_Strategy: Execute a query containing NOT BETWEEN. Verify the results
-     * were accurately returned.
+     * @test_Strategy: Execute a query containing NOT BETWEEN. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest13() throws Fault {
@@ -702,7 +686,7 @@ public class Client extends Util {
             CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
             Root<Order> order = cquery.from(Order.class);
             cquery.where(cbuilder.between(order.<Double>get("totalPrice"), 1000D, 1200D)
-                            .not())
+                    .not())
                     .select(order);
             TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
             List<Order> olist = tquery.getResultList();
@@ -744,13 +728,11 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:345; PERSISTENCE:SPEC:334
      *
-     * @test_Strategy: Conditional expressions are composed of other conditional
-     * expressions, comparison operators, logical operations, path expressions
-     * that evaluate to boolean values and boolean literals.
+     * @test_Strategy: Conditional expressions are composed of other conditional expressions, comparison operators, logical
+     * operations, path expressions that evaluate to boolean values and boolean literals.
      *
-     * Execute a query method that contains a conditional expression with a path
-     * expression that evaluates to a boolean literal. Verify the results were
-     * accurately returned.
+     * Execute a query method that contains a conditional expression with a path expression that evaluates to a boolean
+     * literal. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest14() throws Fault {
@@ -797,10 +779,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:330;
      *
-     * @test_Strategy: Execute a query method with a string literal enclosed in
-     * single quotes (the string includes a single quote) in the conditional
-     * expression of the WHERE clause. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query method with a string literal enclosed in single quotes (the string includes a single
+     * quote) in the conditional expression of the WHERE clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest15() throws Fault {
@@ -843,9 +823,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:352; PERSISTENCE:SPEC:348.3
      *
-     * @test_Strategy: Execute a query method using comparison operator IN in a
-     * comparison expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query method using comparison operator IN in a comparison expression within the WHERE
+     * clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest16() throws Fault {
@@ -887,9 +866,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:352; PERSISTENCE:SPEC:353;
      *
-     * @test_Strategy: Execute a query using comparison operator NOT IN in a
-     * comparison expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query using comparison operator NOT IN in a comparison expression within the WHERE clause.
+     * Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest17() throws Fault {
@@ -947,9 +925,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:358; PERSISTENCE:SPEC:348.3
      *
-     * @test_Strategy: Execute a query using the comparison operator LIKE in a
-     * comparison expression within the WHERE clause. The pattern-value includes a
-     * percent character. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator LIKE in a comparison expression within the WHERE
+     * clause. The pattern-value includes a percent character. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest18() throws Fault {
@@ -991,9 +968,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:358; PERSISTENCE:SPEC:348.3
      *
-     * @test_Strategy: Execute a query using the comparison operator NOT LIKE in a
-     * comparison expression within the WHERE clause. The pattern-value includes a
-     * percent character and an underscore. Verify the results were accurately
+     * @test_Strategy: Execute a query using the comparison operator NOT LIKE in a comparison expression within the WHERE
+     * clause. The pattern-value includes a percent character and an underscore. Verify the results were accurately
      * returned.
      *
      */
@@ -1052,8 +1028,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:361; PERSISTENCE:SPEC:348.3;
      *
-     * @test_Strategy: Execute a query using the comparison operator IS EMPTY.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator IS EMPTY. Verify the results were accurately returned.
      *
      *
      */
@@ -1104,8 +1079,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:361; PERSISTENCE:SPEC:348.3
      *
-     * @test_Strategy: Execute a query using the comparison operator IS NOT EMPTY.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator IS NOT EMPTY. Verify the results were accurately
+     * returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest21() throws Fault {
@@ -1160,8 +1135,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:359;
      *
-     * @test_Strategy: Execute a query using the IS NULL comparison operator in
-     * the WHERE clause. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the IS NULL comparison operator in the WHERE clause. Verify the results were
+     * accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest22() throws Fault {
@@ -1203,10 +1178,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:359
      *
-     * @test_Strategy: Execute a query using the IS NOT NULL comparison operator
-     * within the WHERE clause. Verify the results were accurately returned. (This
-     * query is executed against non-NULL data. For NULL data, see test
-     * queryTest47)
+     * @test_Strategy: Execute a query using the IS NOT NULL comparison operator within the WHERE clause. Verify the results
+     * were accurately returned. (This query is executed against non-NULL data. For NULL data, see test queryTest47)
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest23() throws Fault {
@@ -1265,9 +1238,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.1
      *
-     * @test_Strategy: Execute a query which includes the string function CONCAT
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the string function CONCAT in a functional expression within the WHERE
+     * clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest24() throws Fault {
@@ -1309,9 +1281,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.2
      *
-     * @test_Strategy: Execute a query which includes the string function
-     * SUBSTRING in a functional expression within the WHERE clause. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute a query which includes the string function SUBSTRING in a functional expression within the
+     * WHERE clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest25() throws Fault {
@@ -1361,9 +1332,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.4
      *
-     * @test_Strategy: Execute a query which includes the string function LENGTH
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the string function LENGTH in a functional expression within the WHERE
+     * clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest26() throws Fault {
@@ -1411,9 +1381,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.5
      *
-     * @test_Strategy: Execute a query which includes the arithmetic function ABS
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the arithmetic function ABS in a functional expression within the
+     * WHERE clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest27() throws Fault {
@@ -1465,9 +1434,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.3
      *
-     * @test_Strategy: Execute a query which includes the string function LOCATE
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the string function LOCATE in a functional expression within the WHERE
+     * clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest28() throws Fault {
@@ -1511,9 +1479,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:363.1; PERSISTENCE:SPEC:365
      *
-     * @test_Strategy: Execute a query using the comparison operator MEMBER OF in
-     * a collection member expression. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query using the comparison operator MEMBER OF in a collection member expression. Verify the
+     * results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest29() throws Fault {
@@ -1557,9 +1524,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:363; PERSISTENCE:SPEC:365
      *
-     * @test_Strategy: Execute a query using the comparison operator NOT MEMBER in
-     * a collection member expression. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query using the comparison operator NOT MEMBER in a collection member expression. Verify
+     * the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest30() throws Fault {
@@ -1606,10 +1572,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:358
      *
-     * @test_Strategy: Execute a query using the comparison operator LIKE in a
-     * comparison expression within the WHERE clause. The optional ESCAPE syntax
-     * is used to escape the underscore. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query using the comparison operator LIKE in a comparison expression within the WHERE
+     * clause. The optional ESCAPE syntax is used to escape the underscore. Verify the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -1654,9 +1618,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:363
      *
-     * @test_Strategy: Execute a query using the comparison operator MEMBER in a
-     * collection member expression with an identification variable and omitting
-     * the optional reserved word OF. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator MEMBER in a collection member expression with an
+     * identification variable and omitting the optional reserved word OF. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest32() throws Fault {
@@ -1703,9 +1666,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:352.1; PERSISTENCE:JAVADOC:787
      *
-     * @test_Strategy: Execute a query using the comparison operator NOT MEMBER in
-     * a collection member expression with input parameter omitting the optional
-     * use of 'OF'. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator NOT MEMBER in a collection member expression with input
+     * parameter omitting the optional use of 'OF'. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest33() throws Fault {
@@ -1771,10 +1733,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:363.1
      *
-     * @test_Strategy: Execute a query using the comparison operator MEMBER OF in
-     * a collection member expression using
-     * single_valued_association_path_expression. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator MEMBER OF in a collection member expression using
+     * single_valued_association_path_expression. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest34() throws Fault {
@@ -1818,10 +1778,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:352
      *
-     * @test_Strategy: Execute a query using comparison operator NOT IN in a
-     * comparison expression within the WHERE clause where the value for the
-     * state_field_path_expression contains numeric values. Verify the results
-     * were accurately returned.
+     * @test_Strategy: Execute a query using comparison operator NOT IN in a comparison expression within the WHERE clause
+     * where the value for the state_field_path_expression contains numeric values. Verify the results were accurately
+     * returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest35() throws Fault {
@@ -1872,10 +1831,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:352
      *
-     * @test_Strategy: Execute a query using comparison operator IN in a
-     * conditional expression within the WHERE clause where the value for the IN
-     * expression is an input parameter. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Execute a query using comparison operator IN in a conditional expression within the WHERE clause
+     * where the value for the IN expression is an input parameter. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest36() throws Fault {
@@ -1918,10 +1875,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:354
      *
-     * @test_Strategy: Execute two methods using the comparison operator IN in a
-     * comparison expression within the WHERE clause and verify the results of the
-     * two queries are equivalent regardless of the way the expression is
-     * composed.
+     * @test_Strategy: Execute two methods using the comparison operator IN in a comparison expression within the WHERE
+     * clause and verify the results of the two queries are equivalent regardless of the way the expression is composed.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest37() throws Fault {
@@ -1951,8 +1906,8 @@ public class Client extends Util {
             CriteriaQuery<Customer> cquery2 = cbuilder.createQuery(Customer.class);
             Root<Customer> customer2 = cquery2.from(Customer.class);
             cquery2.where(cbuilder.or(
-                            cbuilder.equal(customer2.get("home").get("state"), "NH"),
-                            cbuilder.equal(customer2.get("home").get("state"), "RI")))
+                    cbuilder.equal(customer2.get("home").get("state"), "NH"),
+                    cbuilder.equal(customer2.get("home").get("state"), "RI")))
                     .select(customer2);
             TypedQuery<Customer> tquery2 = getEntityManager().createQuery(cquery2);
             List<Customer> clist2 = tquery2.getResultList();
@@ -1995,9 +1950,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.7
      *
-     * @test_Strategy: Execute a query which includes the arithmetic function MOD
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the arithmetic function MOD in a functional expression within the
+     * WHERE clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupProductData")
     public void queryTest38() throws Fault {
@@ -2038,12 +1992,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest39
      *
-     * @assertion_ids: PERSISTENCE:SPEC:369.6; PERSISTENCE:SPEC:814;
-     * PERSISTENCE:SPEC:816
+     * @assertion_ids: PERSISTENCE:SPEC:369.6; PERSISTENCE:SPEC:814; PERSISTENCE:SPEC:816
      *
-     * @test_Strategy: Execute a query which includes the arithmetic function SQRT
-     * in a functional expression within the WHERE clause. Verify the results were
-     * accurately returned.
+     * @test_Strategy: Execute a query which includes the arithmetic function SQRT in a functional expression within the
+     * WHERE clause. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest39() throws Fault {
@@ -2091,10 +2043,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:350
      *
-     * @test_Strategy: Execute two methods using the comparison operator BETWEEN
-     * in a comparison expression within the WHERE clause and verify the results
-     * of the two queries are equivalent regardless of the way the expression is
-     * composed.
+     * @test_Strategy: Execute two methods using the comparison operator BETWEEN in a comparison expression within the WHERE
+     * clause and verify the results of the two queries are equivalent regardless of the way the expression is composed.
      */
     @SetupMethod(name = "setupProductData")
     public void queryTest40() throws Fault {
@@ -2128,8 +2078,8 @@ public class Client extends Util {
             CriteriaQuery<Product> cquery2 = cbuilder.createQuery(Product.class);
             Root<Product> product2 = cquery2.from(Product.class);
             cquery2.where(cbuilder.and(
-                            cbuilder.ge(product2.<Integer>get("quantity"), 10),
-                            cbuilder.le(product2.<Integer>get("quantity"), 20)))
+                    cbuilder.ge(product2.<Integer>get("quantity"), 10),
+                    cbuilder.le(product2.<Integer>get("quantity"), 20)))
                     .select(product2);
             TypedQuery<Product> tquery2 = getEntityManager().createQuery(cquery2);
             List<Product> plist2 = tquery2.getResultList();
@@ -2174,10 +2124,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:350
      *
-     * @test_Strategy: Execute two methods using the comparison operator NOT
-     * BETWEEN in a comparison expression within the WHERE clause and verify the
-     * results of the two queries are equivalent regardless of the way the
-     * expression is composed.
+     * @test_Strategy: Execute two methods using the comparison operator NOT BETWEEN in a comparison expression within the
+     * WHERE clause and verify the results of the two queries are equivalent regardless of the way the expression is
+     * composed.
      */
     @SetupMethod(name = "setupProductData")
     public void queryTest41() throws Fault {
@@ -2236,8 +2185,8 @@ public class Client extends Util {
             CriteriaQuery<Product> cquery2 = cbuilder.createQuery(Product.class);
             Root<Product> product2 = cquery2.from(Product.class);
             cquery2.where(cbuilder.or(
-                            cbuilder.lt(product2.<Integer>get("quantity"), 10),
-                            cbuilder.gt(product2.<Integer>get("quantity"), 20)))
+                    cbuilder.lt(product2.<Integer>get("quantity"), 10),
+                    cbuilder.gt(product2.<Integer>get("quantity"), 20)))
                     .select(product2);
             TypedQuery<Product> tquery2 = getEntityManager().createQuery(cquery2);
             List<Product> plist2 = tquery2.getResultList();
@@ -2305,9 +2254,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:423
      *
-     * @test_Strategy: This tests that nulls are eliminated using a
-     * single-valued_association_field with IS NOT NULL. Verify results are
-     * accurately returned.
+     * @test_Strategy: This tests that nulls are eliminated using a single-valued_association_field with IS NOT NULL. Verify
+     * results are accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -2369,8 +2317,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: Execute a query using Boolean operator AND in a conditional
-     * test ( False AND False = False) where the second condition is not NULL.
+     * @test_Strategy: Execute a query using Boolean operator AND in a conditional test ( False AND False = False) where the
+     * second condition is not NULL.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -2417,8 +2365,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:416
      *
-     * @test_Strategy: If an input parameter is NULL, comparison operations
-     * involving the input parameter will return an unknown value.
+     * @test_Strategy: If an input parameter is NULL, comparison operations involving the input parameter will return an
+     * unknown value.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -2462,8 +2410,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:361
      *
-     * @test_Strategy: Execute a query using IS NOT EMPTY in a
-     * collection_valued_association_field where the field is EMPTY.
+     * @test_Strategy: Execute a query using IS NOT EMPTY in a collection_valued_association_field where the field is EMPTY.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest45() throws Fault {
@@ -2523,13 +2470,11 @@ public class Client extends Util {
     /*
      * @testName: queryTest47
      *
-     * @assertion_ids: PERSISTENCE:SPEC:376; PERSISTENCE:SPEC:401;
-     * PERSISTENCE:SPEC:399.3; PERSISTENCE:SPEC:422; PERSISTENCE:SPEC:752;
-     * PERSISTENCE:SPEC:753
+     * @assertion_ids: PERSISTENCE:SPEC:376; PERSISTENCE:SPEC:401; PERSISTENCE:SPEC:399.3; PERSISTENCE:SPEC:422;
+     * PERSISTENCE:SPEC:752; PERSISTENCE:SPEC:753
      *
-     * @test_Strategy: The IS NOT NULL construct can be used to eliminate the null
-     * values from the result set of the query. Verify the results are accurately
-     * returned.
+     * @test_Strategy: The IS NOT NULL construct can be used to eliminate the null values from the result set of the query.
+     * Verify the results are accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest47() throws Fault {
@@ -2538,8 +2483,8 @@ public class Client extends Util {
         CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
         final String[] expectedZips = new String[] {
-            "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
-            "00252", "00252", "00252", "00252", "11345"
+                "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
+                "00252", "00252", "00252", "00252", "11345"
         };
         try {
             getEntityTransaction().begin();
@@ -2568,11 +2513,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest48
      *
-     * @assertion_ids: PERSISTENCE:SPEC:329; PERSISTENCE:SPEC:348.1;
-     * PERSISTENCE:SPEC:399.1;
+     * @assertion_ids: PERSISTENCE:SPEC:329; PERSISTENCE:SPEC:348.1; PERSISTENCE:SPEC:399.1;
      *
-     * @test_Strategy: This query, which includes a null non-terminal
-     * association-field, verifies the null is not included in the result set.
+     * @test_Strategy: This query, which includes a null non-terminal association-field, verifies the null is not included
+     * in the result set.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest48() throws Fault {
@@ -2581,8 +2525,8 @@ public class Client extends Util {
         CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
         final Double[] expectedBalances = new Double[] {
-            400D, 500D, 750D, 1000D, 1400D, 1500D, 2000D, 2500D, 4400D, 5000D, 5500D, 7000D, 7400D, 8000D, 9500D,
-            13000D, 15000D, 23000D
+                400D, 500D, 750D, 1000D, 1400D, 1500D, 2000D, 2500D, 4400D, 5000D, 5500D, 7000D, 7400D, 8000D, 9500D,
+                13000D, 15000D, 23000D
         };
         try {
             getEntityTransaction().begin();
@@ -2617,9 +2561,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:359
      *
-     * @test_Strategy: Use the operator IS NULL in a null comparison expression
-     * using a single_valued_path_expression. Verify the results were accurately
-     * returned.
+     * @test_Strategy: Use the operator IS NULL in a null comparison expression using a single_valued_path_expression.
+     * Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest49() throws Fault {
@@ -2676,10 +2619,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:358
      *
-     * @test_Strategy: Execute a query using the comparison operator LIKE in a
-     * comparison expression within the WHERE clause using percent (%) to wild
-     * card any expression including the optional ESCAPE syntax. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Execute a query using the comparison operator LIKE in a comparison expression within the WHERE clause
+     * using percent (%) to wild card any expression including the optional ESCAPE syntax. Verify the results were
+     * accurately returned.
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -2723,9 +2665,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:359
      *
-     * @test_Strategy: Use the operator IS NOT NULL in a null comparision
-     * expression within the WHERE clause where the single_valued_path_expression
-     * is NULL. Verify the results were accurately returned.
+     * @test_Strategy: Use the operator IS NOT NULL in a null comparision expression within the WHERE clause where the
+     * single_valued_path_expression is NULL. Verify the results were accurately returned.
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -2766,9 +2707,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:424; PERSISTENCE:SPEC:789
      *
-     * @test_Strategy: Define a query using Boolean operator AND in a conditional
-     * test ( True AND True = True) where the second condition is NULL. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Define a query using Boolean operator AND in a conditional test ( True AND True = True) where the
+     * second condition is NULL. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest52() throws Fault {
@@ -2812,9 +2752,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: Define a query using Boolean operator OR in a conditional
-     * test (True OR True = True) where the second condition is NULL. Verify the
-     * results were accurately returned.
+     * @test_Strategy: Define a query using Boolean operator OR in a conditional test (True OR True = True) where the second
+     * condition is NULL. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest53() throws Fault {
@@ -2873,9 +2812,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:426
      *
-     * @test_Strategy: Define a query using Boolean operator NOT in a conditional
-     * test (NOT True = False) where the relationship is NULL. Verify the results
-     * were accurately returned.
+     * @test_Strategy: Define a query using Boolean operator NOT in a conditional test (NOT True = False) where the
+     * relationship is NULL. Verify the results were accurately returned.
      */
     @SetupMethod(name = "setupAliasData")
     public void queryTest54() throws Fault {
@@ -2915,8 +2853,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:358; PERSISTENCE:SPEC:1712;
      *
-     * @test_Strategy: The LIKE expression uses an input parameter for the
-     * condition. Verify the results were accurately returned.
+     * @test_Strategy: The LIKE expression uses an input parameter for the condition. Verify the results were accurately
+     * returned.
      *
      */
     @SetupMethod(name = "setupPhoneData")
@@ -2962,11 +2900,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest56
      *
-     * @assertion_ids: PERSISTENCE:SPEC:375; PERSISTENCE:SPEC:410;
-     * PERSISTENCE:SPEC:403; PERSISTENCE:SPEC:814; PERSISTENCE:SPEC:816
+     * @assertion_ids: PERSISTENCE:SPEC:375; PERSISTENCE:SPEC:410; PERSISTENCE:SPEC:403; PERSISTENCE:SPEC:814;
+     * PERSISTENCE:SPEC:816
      *
-     * @test_Strategy: This query returns a null
-     * single_valued_association_path_expression. Verify the results were
+     * @test_Strategy: This query returns a null single_valued_association_path_expression. Verify the results were
      * accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
@@ -2978,8 +2915,8 @@ public class Client extends Util {
         CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
         final String[] expectedZips = new String[] {
-            "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
-            "00252", "00252", "00252", "00252", "11345"
+                "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252",
+                "00252", "00252", "00252", "00252", "11345"
         };
 
         try {
@@ -3037,8 +2974,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:410;
      *
-     * @test_Strategy: This query returns a null
-     * single_valued_association_path_expression. Verify the results are
+     * @test_Strategy: This query returns a null single_valued_association_path_expression. Verify the results are
      * accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
@@ -3078,8 +3014,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:408
      *
-     * @test_Strategy: This tests a null single_valued_association_path_expression
-     * is returned using IS NULL. Verify the results are accurately returned.
+     * @test_Strategy: This tests a null single_valued_association_path_expression is returned using IS NULL. Verify the
+     * results are accurately returned.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -3123,10 +3059,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:775; PERSISTENCE:SPEC:773
      *
-     * @test_Strategy: This query contains an identification variable defined in a
-     * collection member declaration which is not used in the rest of the query
-     * however, a JOIN operation needs to be performed for the correct result set.
-     * Verify the results are accurately returned.
+     * @test_Strategy: This query contains an identification variable defined in a collection member declaration which is
+     * not used in the rest of the query however, a JOIN operation needs to be performed for the correct result set. Verify
+     * the results are accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3185,12 +3120,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest61
      *
-     * @assertion_ids: PERSISTENCE:SPEC:778;PERSISTENCE:SPEC:780;
-     * PERSISTENCE:SPEC:1714; PERSISTENCE:SPEC:1715;
+     * @assertion_ids: PERSISTENCE:SPEC:778;PERSISTENCE:SPEC:780; PERSISTENCE:SPEC:1714; PERSISTENCE:SPEC:1715;
      *
-     * @test_Strategy: Execute a query defining an identification variable for
-     * c.work in an OUTER JOIN clause. The JOIN operation will include customers
-     * without addresses. Verify the results are accurately returned.
+     * @test_Strategy: Execute a query defining an identification variable for c.work in an OUTER JOIN clause. The JOIN
+     * operation will include customers without addresses. Verify the results are accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest61() throws Fault {
@@ -3237,10 +3170,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.8
      *
-     * @test_Strategy: Execute a query which includes the arithmetic function SIZE
-     * in a functional expression within the WHERE clause. The SIZE function
-     * returns an integer value the number of elements of the Collection. Verify
-     * the results were accurately returned.
+     * @test_Strategy: Execute a query which includes the arithmetic function SIZE in a functional expression within the
+     * WHERE clause. The SIZE function returns an integer value the number of elements of the Collection. Verify the results
+     * were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void queryTest62() throws Fault {
@@ -3284,9 +3216,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.8
      *
-     * @test_Strategy: Execute a query which includes the arithmetic function SIZE
-     * in a functional expression within the WHERE clause. The SIZE function
-     * returns an integer value the number of elements of the Collection.
+     * @test_Strategy: Execute a query which includes the arithmetic function SIZE in a functional expression within the
+     * WHERE clause. The SIZE function returns an integer value the number of elements of the Collection.
      *
      * If the Collection is empty, the SIZE function evaluates to zero.
      *
@@ -3330,13 +3261,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest64
      *
-     * @assertion_ids: PERSISTENCE:SPEC:372.5;PERSISTENCE:SPEC:817;
-     * PERSISTENCE:SPEC:395
+     * @assertion_ids: PERSISTENCE:SPEC:372.5;PERSISTENCE:SPEC:817; PERSISTENCE:SPEC:395
      *
-     * @test_Strategy: A constructor may be used in the SELECT list to return a
-     * collection of Java instances. The specified class is not required to be an
-     * entity or mapped to the database. The constructor name must be fully
-     * qualified.
+     * @test_Strategy: A constructor may be used in the SELECT list to return a collection of Java instances. The specified
+     * class is not required to be an entity or mapped to the database. The constructor name must be fully qualified.
      *
      * Verify the results were accurately returned.
      */
@@ -3398,11 +3326,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest65
      *
-     * @assertion_ids: PERSISTENCE:SPEC:381; PERSISTENCE:SPEC:406;
-     * PERSISTENCE:SPEC:825; PERSISTENCE:SPEC:822
+     * @assertion_ids: PERSISTENCE:SPEC:381; PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:825; PERSISTENCE:SPEC:822
      *
-     * @test_Strategy: Execute a query which contains the aggregate function MIN.
-     * Verify the results are accurately returned.
+     * @test_Strategy: Execute a query which contains the aggregate function MIN. Verify the results are accurately
+     * returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3439,11 +3366,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest66
      *
-     * @assertion_ids: PERSISTENCE:SPEC:382; PERSISTENCE:SPEC:406;
-     * PERSISTENCE:SPEC:825; PERSISTENCE:SPEC:822
+     * @assertion_ids: PERSISTENCE:SPEC:382; PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:825; PERSISTENCE:SPEC:822
      *
-     * @test_Strategy: Execute a query which contains the aggregate function MAX.
-     * Verify the results are accurately returned.
+     * @test_Strategy: Execute a query which contains the aggregate function MAX. Verify the results are accurately
+     * returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3479,12 +3405,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest67
      *
-     * @assertion_ids: PERSISTENCE:SPEC:380; PERSISTENCE:SPEC:406;
-     * PERSISTENCE:SPEC:826; PERSISTENCE:SPEC:821; PERSISTENCE:SPEC:814;
-     * PERSISTENCE:SPEC:818
+     * @assertion_ids: PERSISTENCE:SPEC:380; PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:826; PERSISTENCE:SPEC:821;
+     * PERSISTENCE:SPEC:814; PERSISTENCE:SPEC:818
      *
-     * @test_Strategy: Execute a query using the aggregate function AVG. Verify
-     * the results are accurately returned.
+     * @test_Strategy: Execute a query using the aggregate function AVG. Verify the results are accurately returned.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3523,9 +3447,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:383; PERSISTENCE:SPEC:406;
      *
-     * @test_Strategy: Execute a query which contains the aggregate function SUM.
-     * SUM returns Double when applied to state-fields of floating types. Verify
-     * the results are accurately returned.
+     * @test_Strategy: Execute a query which contains the aggregate function SUM. SUM returns Double when applied to
+     * state-fields of floating types. Verify the results are accurately returned.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -3562,13 +3485,12 @@ public class Client extends Util {
     /*
      * @testName: queryTest69
      *
-     * @assertion_ids: PERSISTENCE:SPEC:384; PERSISTENCE:SPEC:389;
-     * PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:824; PERSISTENCE:SPEC:392;
+     * @assertion_ids: PERSISTENCE:SPEC:384; PERSISTENCE:SPEC:389; PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:824;
+     * PERSISTENCE:SPEC:392;
      *
-     * @test_Strategy: This test verifies the same results of two queries using
-     * the keyword DISTINCT or not using DISTINCT in the query with the aggregate
-     * keyword COUNT to verity the NULL values are eliminated before the aggregate
-     * is applied.
+     * @test_Strategy: This test verifies the same results of two queries using the keyword DISTINCT or not using DISTINCT
+     * in the query with the aggregate keyword COUNT to verity the NULL values are eliminated before the aggregate is
+     * applied.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -3618,12 +3540,10 @@ public class Client extends Util {
     /*
      * @testName: queryTest70
      *
-     * @assertion_ids: PERSISTENCE:SPEC:383; PERSISTENCE:SPEC:406;
-     * PERSISTENCE:SPEC:827; PERSISTENCE:SPEC:821
+     * @assertion_ids: PERSISTENCE:SPEC:383; PERSISTENCE:SPEC:406; PERSISTENCE:SPEC:827; PERSISTENCE:SPEC:821
      *
-     * @test_Strategy: Execute a query which contains the aggregate function SUM.
-     * SUM returns Long when applied to state-fields of integral types. Verify the
-     * results are accurately returned.
+     * @test_Strategy: Execute a query which contains the aggregate function SUM. SUM returns Long when applied to
+     * state-fields of integral types. Verify the results are accurately returned.
      *
      */
     @SetupMethod(name = "setupProductData")
@@ -3660,9 +3580,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:744;PERSISTENCE:JAVADOC:128
      *
-     * @test_Strategy: The NoResultException is thrown by the persistence provider
-     * when Query.getSingleResult is invoked and there are not results to return.
-     * Verify the results are accurately returned.
+     * @test_Strategy: The NoResultException is thrown by the persistence provider when Query.getSingleResult is invoked and
+     * there are not results to return. Verify the results are accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void queryTest71() throws Fault {
@@ -3696,8 +3615,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:780
      *
-     * @test_Strategy: LEFT OUTER JOIN for 1-M relationship. Retrieve credit card
-     * information for a customer with name like Caruso.
+     * @test_Strategy: LEFT OUTER JOIN for 1-M relationship. Retrieve credit card information for a customer with name like
+     * Caruso.
      *
      */
     @SetupMethod(name = "setupOrderData")
@@ -3742,18 +3661,16 @@ public class Client extends Util {
     /*
      * @testName: test_leftouterjoin_Mx1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:780; PERSISTENCE:SPEC:399.1;
-     * PERSISTENCE:SPEC:399
+     * @assertion_ids: PERSISTENCE:SPEC:780; PERSISTENCE:SPEC:399.1; PERSISTENCE:SPEC:399
      *
-     * @test_Strategy: Left Outer Join for M-1 relationship. Retrieve customer
-     * information from Order.
+     * @test_Strategy: Left Outer Join for M-1 relationship. Retrieve customer information from Order.
      *
      */
     @SetupMethod(name = "setupOrderData")
     public void test_leftouterjoin_Mx1() throws Fault {
         boolean pass1 = false;
         boolean pass2 = true;
-        final Object[][] expectedResultSet = new Object[][] {new Object[] {"15", "14"}, new Object[] {"16", "14"}};
+        final Object[][] expectedResultSet = new Object[][] { new Object[] { "15", "14" }, new Object[] { "16", "14" } };
 
         CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -3816,11 +3733,10 @@ public class Client extends Util {
     /*
      * @testName: test_leftouterjoin_MxM
      *
-     * @assertion_ids: PERSISTENCE:SPEC:780; PERSISTENCE:SPEC:317;
-     * PERSISTENCE:SPEC:317.3; PERSISTENCE:SPEC:320; PERSISTENCE:SPEC:811
+     * @assertion_ids: PERSISTENCE:SPEC:780; PERSISTENCE:SPEC:317; PERSISTENCE:SPEC:317.3; PERSISTENCE:SPEC:320;
+     * PERSISTENCE:SPEC:811
      *
-     * @test_Strategy: Left Outer Join for M-M relationship. Retrieve all aliases
-     * where customer name like Ste.
+     * @test_Strategy: Left Outer Join for M-M relationship. Retrieve all aliases where customer name like Ste.
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -3829,9 +3745,9 @@ public class Client extends Util {
         boolean pass1 = false;
         boolean pass2 = true;
         final Object[][] expectedResultSet = new Object[][] {
-            new Object[] {"7", "sjc"}, new Object[] {"5", "ssd"},
-            new Object[] {"7", "stevec"}, new Object[] {"5", "steved"},
-            new Object[] {"5", "stevie"}, new Object[] {"7", "stevie"}
+                new Object[] { "7", "sjc" }, new Object[] { "5", "ssd" },
+                new Object[] { "7", "stevec" }, new Object[] { "5", "steved" },
+                new Object[] { "5", "stevie" }, new Object[] { "7", "stevie" }
         };
 
         CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -3893,8 +3809,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.11
      *
-     * @test_Strategy: Test for Upper expression in the Where Clause Select the
-     * customer with alias name = UPPER(SJC)
+     * @test_Strategy: Test for Upper expression in the Where Clause Select the customer with alias name = UPPER(SJC)
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -3939,8 +3854,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:369.10
      *
-     * @test_Strategy: Test for Lower expression in the Where Clause Select the
-     * customer with alias name = LOWER(sjc)
+     * @test_Strategy: Test for Lower expression in the Where Clause Select the customer with alias name = LOWER(sjc)
      *
      */
     @SetupMethod(name = "setupAliasData")
@@ -3985,14 +3899,13 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:810; PERSISTENCE:SPEC:756;
      *
-     * @test_Strategy: Test for Only Group By in a simple select statement.
-     * Country is an Embeddable entity.
+     * @test_Strategy: Test for Only Group By in a simple select statement. Country is an Embeddable entity.
      *
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_groupBy() throws Fault {
         boolean pass = false;
-        final String expectedCodes[] = new String[] {"CHA", "GBR", "IRE", "JPN", "USA"};
+        final String expectedCodes[] = new String[] { "CHA", "GBR", "IRE", "JPN", "USA" };
 
         CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -4033,14 +3946,13 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:810
      *
-     * @test_Strategy: Test for Only Group By in a simple select statement without
-     * using an Embeddable Entity in the query.
+     * @test_Strategy: Test for Only Group By in a simple select statement without using an Embeddable Entity in the query.
      *
      */
     @SetupMethod(name = "setupOrderData")
     public void test_groupBy_1() throws Fault {
         boolean pass = false;
-        final String expectedTypes[] = new String[] {"AXP", "MCARD", "VISA"};
+        final String expectedTypes[] = new String[] { "AXP", "MCARD", "VISA" };
 
         CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -4078,11 +3990,9 @@ public class Client extends Util {
     /*
      * @testName: test_innerjoin_1x1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:779; PERSISTENCE:SPEC:372;
-     * PERSISTENCE:SPEC:372.2
+     * @assertion_ids: PERSISTENCE:SPEC:779; PERSISTENCE:SPEC:372; PERSISTENCE:SPEC:372.2
      *
-     * @test_Strategy: Inner Join for 1-1 relationship. Select all customers with
-     * spouses.
+     * @test_Strategy: Inner Join for 1-1 relationship. Select all customers with spouses.
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_innerjoin_1x1() throws Fault {
@@ -4127,8 +4037,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:779
      *
-     * @test_Strategy: Inner Join for 1-M relationship. Retrieve credit card
-     * information for all customers.
+     * @test_Strategy: Inner Join for 1-M relationship. Retrieve credit card information for all customers.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_innerjoin_1xM() throws Fault {
@@ -4178,8 +4087,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:779; PERSISTENCE:SPEC:373
      *
-     * @test_Strategy: Inner Join for M-1 relationship. Retrieve customer
-     * information from Order. customer name = Kellie A. Sanborn
+     * @test_Strategy: Inner Join for M-1 relationship. Retrieve customer information from Order. customer name = Kellie A.
+     * Sanborn
      */
     @SetupMethod(name = "setupOrderData")
     public void test_innerjoin_Mx1() throws Fault {
@@ -4226,8 +4135,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:779
      *
-     * @test_Strategy: Inner Join for M-M relationship. Retrieve aliases for alias
-     * name=fish.
+     * @test_Strategy: Inner Join for M-M relationship. Retrieve aliases for alias name=fish.
      */
     @SetupMethod(name = "setupAliasData")
     public void test_innerjoin_MxM() throws Fault {
@@ -4270,11 +4178,9 @@ public class Client extends Util {
     /*
      * @testName: test_fetchjoin_1x1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:781; PERSISTENCE:SPEC:774;
-     * PERSISTENCE:SPEC:776; PERSISTENCE:JAVADOC:978;
+     * @assertion_ids: PERSISTENCE:SPEC:781; PERSISTENCE:SPEC:774; PERSISTENCE:SPEC:776; PERSISTENCE:JAVADOC:978;
      *
-     * @test_Strategy: JOIN FETCH for 1-1 relationship. Prefetch the spouses for
-     * all Customers.
+     * @test_Strategy: JOIN FETCH for 1-1 relationship. Prefetch the spouses for all Customers.
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_fetchjoin_1x1() throws Fault {
@@ -4318,11 +4224,9 @@ public class Client extends Util {
     /*
      * @testName: test_fetchjoin_1xM
      *
-     * @assertion_ids: PERSISTENCE:SPEC:782; PERSISTENCE:SPEC:374;
-     * PERSISTENCE:SPEC:777; PERSISTENCE:SPEC:783
+     * @assertion_ids: PERSISTENCE:SPEC:782; PERSISTENCE:SPEC:374; PERSISTENCE:SPEC:777; PERSISTENCE:SPEC:783
      *
-     * @test_Strategy: Fetch Join for 1-M relationship. Retrieve customers from NY
-     * or RI who have orders.
+     * @test_Strategy: Fetch Join for 1-M relationship. Retrieve customers from NY or RI who have orders.
      *
      */
     @SetupMethod(name = "setupCustomerData")
@@ -4455,8 +4359,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:781
      *
-     * @test_Strategy: Left Join Fetch for M-M relationship. Retrieve customers
-     * with orders that live in NH.
+     * @test_Strategy: Left Join Fetch for M-M relationship. Retrieve customers with orders that live in NH.
      */
     @SetupMethod(name = "setupAliasData")
     public void test_fetchjoin_MxM() throws Fault {
@@ -4499,13 +4402,11 @@ public class Client extends Util {
     /*
      * @testName: test_betweenDates
      *
-     * @assertion_ids: PERSISTENCE:SPEC:349.2; PERSISTENCE:SPEC:553;
-     * PERSISTENCE:JAVADOC:15; PERSISTENCE:JAVADOC:166; PERSISTENCE:JAVADOC:189;
-     * PERSISTENCE:SPEC:1049; PERSISTENCE:SPEC:1059; PERSISTENCE:SPEC:1060;
-     * PERSISTENCE:JAVADOC:743
+     * @assertion_ids: PERSISTENCE:SPEC:349.2; PERSISTENCE:SPEC:553; PERSISTENCE:JAVADOC:15; PERSISTENCE:JAVADOC:166;
+     * PERSISTENCE:JAVADOC:189; PERSISTENCE:SPEC:1049; PERSISTENCE:SPEC:1059; PERSISTENCE:SPEC:1060; PERSISTENCE:JAVADOC:743
      *
-     * @test_Strategy: Execute a query containing using the operator BETWEEN with
-     * datetime_expression. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query containing using the operator BETWEEN with datetime_expression. Verify the results
+     * were accurately returned.
      *
      */
 
@@ -4551,7 +4452,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught unexpected exception", e);
         }
 
-        if (!pass) throw new Fault("test_betweenDates failed");
+        if (!pass)
+            throw new Fault("test_betweenDates failed");
     }
 
     /*
@@ -4559,8 +4461,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:349
      *
-     * @test_Strategy: Execute a query containing using the operator BETWEEN and
-     * NOT BETWEEN. Verify the results were accurately returned.
+     * @test_Strategy: Execute a query containing using the operator BETWEEN and NOT BETWEEN. Verify the results were
+     * accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_notBetweenArithmetic() throws Fault {
@@ -4616,8 +4518,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:349.2; PERSISTENCE:SPEC:600
      *
-     * @test_Strategy: Execute a query containing using the operator NOT BETWEEN.
-     * Verify the results were accurately returned.
+     * @test_Strategy: Execute a query containing using the operator NOT BETWEEN. Verify the results were accurately
+     * returned.
      */
 
     @SetupMethod(name = "setupProductData")
@@ -4657,7 +4559,8 @@ public class Client extends Util {
             TestUtil.logErr("Caught unexpected exception", e);
         }
 
-        if (!pass) throw new Fault("test_notBetweenDates failed");
+        if (!pass)
+            throw new Fault("test_notBetweenDates failed");
     }
 
     /*
@@ -4665,8 +4568,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:424;
      *
-     * @test_Strategy: Both the conditions in the WHERE Clause are True and hence
-     * the result is also TRUE Verify the results were accurately returned.
+     * @test_Strategy: Both the conditions in the WHERE Clause are True and hence the result is also TRUE Verify the results
+     * were accurately returned.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ANDconditionTT() throws Fault {
@@ -4710,8 +4613,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:424
      *
-     * @test_Strategy: First condition is True and Second is False and hence the
-     * result is also False
+     * @test_Strategy: First condition is True and Second is False and hence the result is also False
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ANDconditionTF() throws Fault {
@@ -4752,8 +4654,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:424
      *
-     * @test_Strategy: First condition is FALSE and Second is TRUE and hence the
-     * result is also False
+     * @test_Strategy: First condition is FALSE and Second is TRUE and hence the result is also False
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ANDconditionFT() throws Fault {
@@ -4766,8 +4667,8 @@ public class Client extends Util {
             CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
             Root<Order> order = cquery.from(Order.class);
             cquery.where(
-                            cbuilder.equal(order.get("customer").get("id"), "1001"),
-                            cbuilder.lt(order.<Double>get("totalPrice"), 1000))
+                    cbuilder.equal(order.get("customer").get("id"), "1001"),
+                    cbuilder.lt(order.<Double>get("totalPrice"), 1000))
                     .select(order);
             TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
             List<Order> result = tquery.getResultList();
@@ -4794,8 +4695,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:424
      *
-     * @test_Strategy: First condition is FALSE and Second is FALSE and hence the
-     * result is also False
+     * @test_Strategy: First condition is FALSE and Second is FALSE and hence the result is also False
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ANDconditionFF() throws Fault {
@@ -4808,8 +4708,8 @@ public class Client extends Util {
             CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
             Root<Order> order = cquery.from(Order.class);
             cquery.where(cbuilder.and(
-                            cbuilder.equal(order.get("customer").get("id"), "1001"),
-                            cbuilder.gt(order.<Double>get("totalPrice"), 10000)))
+                    cbuilder.equal(order.get("customer").get("id"), "1001"),
+                    cbuilder.gt(order.<Double>get("totalPrice"), 10000)))
                     .select(order);
             TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
             List<Order> result = tquery.getResultList();
@@ -4836,8 +4736,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: First condition is TRUE OR Second is TRUE and hence the
-     * result is also TRUE
+     * @test_Strategy: First condition is TRUE OR Second is TRUE and hence the result is also TRUE
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ORconditionTT() throws Fault {
@@ -4851,8 +4750,8 @@ public class Client extends Util {
             CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
             Root<Order> order = cquery.from(Order.class);
             cquery.where(cbuilder.or(
-                            cbuilder.equal(order.get("customer").get("name"), "Karen R. Tegan"),
-                            cbuilder.gt(order.<Double>get("totalPrice"), 5000)))
+                    cbuilder.equal(order.get("customer").get("name"), "Karen R. Tegan"),
+                    cbuilder.gt(order.<Double>get("totalPrice"), 5000)))
                     .select(order);
             TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
             List<Order> result = tquery.getResultList();
@@ -4883,8 +4782,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: First condition is TRUE OR Second is FALSE and hence the
-     * result is also TRUE
+     * @test_Strategy: First condition is TRUE OR Second is FALSE and hence the result is also TRUE
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ORconditionTF() throws Fault {
@@ -4898,8 +4796,8 @@ public class Client extends Util {
             CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
             Root<Order> order = cquery.from(Order.class);
             cquery.where(cbuilder.or(
-                            cbuilder.equal(order.get("customer").get("name"), "Karen R. Tegan"),
-                            cbuilder.gt(order.<Double>get("totalPrice"), 10000)))
+                    cbuilder.equal(order.get("customer").get("name"), "Karen R. Tegan"),
+                    cbuilder.gt(order.<Double>get("totalPrice"), 10000)))
                     .select(order);
             TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
             List<Order> result = tquery.getResultList();
@@ -4928,8 +4826,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: First condition is FALSE OR Second is TRUE and hence the
-     * result is also TRUE
+     * @test_Strategy: First condition is FALSE OR Second is TRUE and hence the result is also TRUE
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ORconditionFT() throws Fault {
@@ -4943,8 +4840,8 @@ public class Client extends Util {
             CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
             Root<Order> order = cquery.from(Order.class);
             cquery.where(cbuilder.or(
-                            cbuilder.equal(order.get("customer").get("id"), "1001"),
-                            cbuilder.lt(order.<Double>get("totalPrice"), 1000)))
+                    cbuilder.equal(order.get("customer").get("id"), "1001"),
+                    cbuilder.lt(order.<Double>get("totalPrice"), 1000)))
                     .select(order);
             TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
             List<Order> result = tquery.getResultList();
@@ -4979,8 +4876,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:425
      *
-     * @test_Strategy: First condition is FALSE OR Second is FALSE and hence the
-     * result is also FALSE
+     * @test_Strategy: First condition is FALSE OR Second is FALSE and hence the result is also FALSE
      */
     @SetupMethod(name = "setupOrderData")
     public void test_ORconditionFF() throws Fault {
@@ -4993,8 +4889,8 @@ public class Client extends Util {
             CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
             Root<Order> order = cquery.from(Order.class);
             cquery.where(cbuilder.or(
-                            cbuilder.equal(order.get("customer").get("id"), "1001"),
-                            cbuilder.gt(order.<Double>get("totalPrice"), 10000)))
+                    cbuilder.equal(order.get("customer").get("id"), "1001"),
+                    cbuilder.gt(order.<Double>get("totalPrice"), 10000)))
                     .select(order);
             TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
             List<Order> result = tquery.getResultList();
@@ -5026,7 +4922,7 @@ public class Client extends Util {
     @SetupMethod(name = "setupOrderData")
     public void test_groupByWhereClause() throws Fault {
         boolean pass = false;
-        final String[] expectedCusts = new String[] {"Jonathan K. Smith", "Kellie A. Sanborn", "Robert E. Bissett"};
+        final String[] expectedCusts = new String[] { "Jonathan K. Smith", "Kellie A. Sanborn", "Robert E. Bissett" };
 
         CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -5068,11 +4964,10 @@ public class Client extends Util {
     /*
      * @testName: test_groupByHaving
      *
-     * @assertion_ids: PERSISTENCE:SPEC:808; PERSISTENCE:SPEC:353;
-     * PERSISTENCE:SPEC:757; PERSISTENCE:SPEC:391
+     * @assertion_ids: PERSISTENCE:SPEC:808; PERSISTENCE:SPEC:353; PERSISTENCE:SPEC:757; PERSISTENCE:SPEC:391
      *
-     * @test_Strategy: Test for Group By and Having in a select statement Select
-     * the count of customers in each country where Country is China, England
+     * @test_Strategy: Test for Group By and Having in a select statement Select the count of customers in each country
+     * where Country is China, England
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_groupByHaving() throws Fault {
@@ -5127,8 +5022,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:807
      *
-     * @test_Strategy:Test for Functional Expression: substring in Having Clause
-     * Select all customers with alias = fish
+     * @test_Strategy:Test for Functional Expression: substring in Having Clause Select all customers with alias = fish
      */
     @SetupMethod(name = "setupAliasData")
     public void test_substringHavingClause() throws Fault {
@@ -5179,12 +5073,11 @@ public class Client extends Util {
     /*
      * @testName: test_concatHavingClause
      *
-     * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:803;
-     * PERSISTENCE:SPEC:804; PERSISTENCE:SPEC:805; PERSISTENCE:SPEC:806;
-     * PERSISTENCE:SPEC:734
+     * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:803; PERSISTENCE:SPEC:804; PERSISTENCE:SPEC:805;
+     * PERSISTENCE:SPEC:806; PERSISTENCE:SPEC:734
      *
-     * @test_Strategy:Test for Functional Expression: concat in Having Clause Find
-     * customer Margaret Mills by firstname-lastname concatenation.
+     * @test_Strategy:Test for Functional Expression: concat in Having Clause Find customer Margaret Mills by
+     * firstname-lastname concatenation.
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_concatHavingClause() throws Fault {
@@ -5230,8 +5123,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:369.10
      *
-     * @test_Strategy:Test for Functional Expression: lower in Having Clause
-     * Select all customers in country with code GBR
+     * @test_Strategy:Test for Functional Expression: lower in Having Clause Select all customers in country with code GBR
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_lowerHavingClause() throws Fault {
@@ -5276,8 +5168,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:369.11
      *
-     * @test_Strategy:Test for Functional Expression: upper in Having Clause
-     * Select all customers in country ENGLAND
+     * @test_Strategy:Test for Functional Expression: upper in Having Clause Select all customers in country ENGLAND
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_upperHavingClause() throws Fault {
@@ -5322,14 +5213,13 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:369.4
      *
-     * @test_Strategy:Test for Functional Expression: length in Having Clause
-     * Select all customer names having the length of the city of the home address
-     * = 10
+     * @test_Strategy:Test for Functional Expression: length in Having Clause Select all customer names having the length of
+     * the city of the home address = 10
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_lengthHavingClause() throws Fault {
         boolean pass = false;
-        final String[] expectedCities = new String[] {"Burlington", "Chelmsford", "Roslindale"};
+        final String[] expectedCities = new String[] { "Burlington", "Chelmsford", "Roslindale" };
 
         CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -5374,14 +5264,13 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:807; PERSISTENCE:SPEC:369.3
      *
-     * @test_Strategy: Test for LOCATE expression in the Having Clause Select
-     * customer names if there the string "Frechette" is located in the customer
-     * name.
+     * @test_Strategy: Test for LOCATE expression in the Having Clause Select customer names if there the string "Frechette"
+     * is located in the customer name.
      */
     @SetupMethod(name = "setupCustomerData")
     public void test_locateHavingClause() throws Fault {
         boolean pass = false;
-        final String[] expectedCusts = new String[] {"Alan E. Frechette", "Arthur D. Frechette"};
+        final String[] expectedCusts = new String[] { "Alan E. Frechette", "Arthur D. Frechette" };
 
         CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -5415,15 +5304,14 @@ public class Client extends Util {
     }
 
     /*
-     * testName: test_trimHavingClause_01 assertion_ids: PERSISTENCE:SPEC:369.9
-     * test_Strategy: Test for TRIM BOTH characters (blank) in the Having Clause
+     * testName: test_trimHavingClause_01 assertion_ids: PERSISTENCE:SPEC:369.9 test_Strategy: Test for TRIM BOTH characters
+     * (blank) in the Having Clause
      *
      * DISABLE THIS TEST FOR NOW
      *
      *
-     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_01()
-     * throws Fault { boolean pass = false; String result; final String expected =
-     * " David R. Vincent             "; final String expected2 =
+     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_01() throws Fault { boolean pass = false;
+     * String result; final String expected = " David R. Vincent             "; final String expected2 =
      * "'David R. Vincent'";
      *
      * CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -5431,42 +5319,32 @@ public class Client extends Util {
      *
      * try { getEntityTransaction().begin();
      *
-     * Trim tTrim = getEntityManager().find(Trim.class, "19");
-     * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-     * (!tTrim.getName().equals(expected)) {
-     * TestUtil.logErr("Name returned by find does not match expected");
-     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
-     * "|"); }
+     * Trim tTrim = getEntityManager().find(Trim.class, "19"); TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+     * (!tTrim.getName().equals(expected)) { TestUtil.logErr("Name returned by find does not match expected");
+     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() + "|"); }
      *
      *
-     * CriteriaQuery<String> cquery = cbuilder.createQuery(String.class);
-     * Root<Trim> trim = cquery.from(Trim.class);
+     * CriteriaQuery<String> cquery = cbuilder.createQuery(String.class); Root<Trim> trim = cquery.from(Trim.class);
      * cquery.select(trim.<String>get("name")).groupBy(trim.get("name")).having(
-     * cbuilder.equal(cbuilder.trim(CriteriaBuilder.Trimspec.BOTH,
-     * trim.<String>get("name")), expected2)); TypedQuery<String> tquery =
-     * getEntityManager().createQuery(cquery); result = tquery.getSingleResult();
+     * cbuilder.equal(cbuilder.trim(CriteriaBuilder.Trimspec.BOTH, trim.<String>get("name")), expected2));
+     * TypedQuery<String> tquery = getEntityManager().createQuery(cquery); result = tquery.getSingleResult();
      *
-     * if (expected.equals(result)) { pass = true;
-     * TestUtil.logTrace("Expected results received"); } else {
-     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected +
-     * "|, got: |" + result + "|"); }
+     * if (expected.equals(result)) { pass = true; TestUtil.logTrace("Expected results received"); } else {
+     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected + "|, got: |" + result + "|"); }
      *
-     * getEntityTransaction().commit(); } catch (Exception e) {
-     * TestUtil.logErr("Caught unexpected exception", e); }
+     * getEntityTransaction().commit(); } catch (Exception e) { TestUtil.logErr("Caught unexpected exception", e); }
      *
      * if (!pass) { throw new Fault(" test_trimHavingClause_01 failed"); } }
      */
 
     /*
-     * testName: test_trimHavingClause_02 assertion_ids: PERSISTENCE:SPEC:369.9
-     * test_Strategy: Test for TRIM LEADING characters (blank) in the Having
-     * Clause
+     * testName: test_trimHavingClause_02 assertion_ids: PERSISTENCE:SPEC:369.9 test_Strategy: Test for TRIM LEADING
+     * characters (blank) in the Having Clause
      *
      * DISABLE THIS TEST FOR NOW
      *
-     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_02()
-     * throws Fault { boolean pass = false; String result; final String expected =
-     * " David R. Vincent             "; final String expected2 =
+     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_02() throws Fault { boolean pass = false;
+     * String result; final String expected = " David R. Vincent             "; final String expected2 =
      * "'David R. Vincent             '";
      *
      * CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -5474,76 +5352,55 @@ public class Client extends Util {
      *
      * try { getEntityTransaction().begin();
      *
-     * Trim tTrim = getEntityManager().find(Trim.class, "19");
-     * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-     * (!tTrim.getName().equals(expected)) {
-     * TestUtil.logErr("Name returned by find does not match expected");
-     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
-     * "|"); }
+     * Trim tTrim = getEntityManager().find(Trim.class, "19"); TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+     * (!tTrim.getName().equals(expected)) { TestUtil.logErr("Name returned by find does not match expected");
+     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() + "|"); }
      *
      *
      * CriteriaQuery<String> cquery = cbuilder.createQuery(String.class);
      *
-     * Root<Trim> trim = cquery.from(Trim.class);
-     * cquery.select(trim.<String>get("name")).groupBy(trim.get("name")).having(
-     * cbuilder.equal(cbuilder.trim(CriteriaBuilder.Trimspec.LEADING,
-     * trim.<String>get("name")), expected2)); TypedQuery<String> tquery =
-     * getEntityManager().createQuery(cquery); result = tquery.getSingleResult();
+     * Root<Trim> trim = cquery.from(Trim.class); cquery.select(trim.<String>get("name")).groupBy(trim.get("name")).having(
+     * cbuilder.equal(cbuilder.trim(CriteriaBuilder.Trimspec.LEADING, trim.<String>get("name")), expected2));
+     * TypedQuery<String> tquery = getEntityManager().createQuery(cquery); result = tquery.getSingleResult();
      *
-     * if (expected.equals(result)) { pass = true;
-     * TestUtil.logTrace("Expected results received"); } else {
-     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected +
-     * "|, got: |" + result + "|"); }
+     * if (expected.equals(result)) { pass = true; TestUtil.logTrace("Expected results received"); } else {
+     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected + "|, got: |" + result + "|"); }
      *
-     * getEntityTransaction().commit(); } catch (Exception e) {
-     * TestUtil.logErr("Caught unexpected exception", e); }
+     * getEntityTransaction().commit(); } catch (Exception e) { TestUtil.logErr("Caught unexpected exception", e); }
      *
      * if (!pass) { throw new Fault("test_trimHavingClause_02 failed"); } }
      */
 
     /*
-     * testName: test_trimHavingClause_03 assertion_ids: PERSISTENCE:SPEC:369.9
-     * test_Strategy: Test for TRIM TRAILING characters (blank) in the Having
-     * Clause
+     * testName: test_trimHavingClause_03 assertion_ids: PERSISTENCE:SPEC:369.9 test_Strategy: Test for TRIM TRAILING
+     * characters (blank) in the Having Clause
      *
      * DISABLE THIS TEST FOR NOW
      *
-     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_03()
-     * throws Fault {
+     * @SetupMethod(name = "setupTrimData") public void test_trimHavingClause_03() throws Fault {
      *
-     * boolean pass = false; String result; final String expected =
-     * " David R. Vincent             "; final String expected2 =
-     * "' David R. Vincent'"; CriteriaBuilder cbuilder =
-     * getEntityManager().getCriteriaBuilder();
+     * boolean pass = false; String result; final String expected = " David R. Vincent             "; final String expected2
+     * = "' David R. Vincent'"; CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
      *
      *
      * try { getEntityTransaction().begin();
      *
-     * Trim tTrim = getEntityManager().find(Trim.class, "19");
-     * TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
-     * (!tTrim.getName().equals(expected)) {
-     * TestUtil.logErr("Name returned by find does not match expected");
-     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() +
-     * "|"); }
+     * Trim tTrim = getEntityManager().find(Trim.class, "19"); TestUtil.logTrace("Trim(19):" + tTrim.toString()); if
+     * (!tTrim.getName().equals(expected)) { TestUtil.logErr("Name returned by find does not match expected");
+     * TestUtil.logErr("Expected:|" + expected + "|, actual:|" + tTrim.getName() + "|"); }
      *
      *
      * CriteriaQuery<String> cquery = cbuilder.createQuery(String.class);
      *
-     * Root<Trim> trim = cquery.from(Trim.class);
-     * cquery.select(trim.<String>get("name")).groupBy(trim.get("name")).having(
-     * cbuilder.equal(cbuilder.trim(CriteriaBuilder.Trimspec.TRAILING,
-     * trim.<String>get("name")), expected2));
+     * Root<Trim> trim = cquery.from(Trim.class); cquery.select(trim.<String>get("name")).groupBy(trim.get("name")).having(
+     * cbuilder.equal(cbuilder.trim(CriteriaBuilder.Trimspec.TRAILING, trim.<String>get("name")), expected2));
      *
-     * TypedQuery<String> tquery = getEntityManager().createQuery(cquery); result
-     * = tquery.getSingleResult();
+     * TypedQuery<String> tquery = getEntityManager().createQuery(cquery); result = tquery.getSingleResult();
      *
-     * if (expected.equals(result)) { pass = true;
-     * TestUtil.logTrace("Expected results received"); } else {
-     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected +
-     * "|, got: |" + result + "|"); }
+     * if (expected.equals(result)) { pass = true; TestUtil.logTrace("Expected results received"); } else {
+     * TestUtil.logErr("Did not get expected results," + "Expected:|" + expected + "|, got: |" + result + "|"); }
      *
-     * getEntityTransaction().commit(); } catch (Exception e) {
-     * TestUtil.logErr("Caught unexpected exception", e); }
+     * getEntityTransaction().commit(); } catch (Exception e) { TestUtil.logErr("Caught unexpected exception", e); }
      *
      * if (!pass) { throw new Fault("test_trimHavingClause_03 failed"); } }
      */
@@ -5613,8 +5470,8 @@ public class Client extends Util {
             CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
             Root<Order> order = cquery.from(Order.class);
             cquery.where(cbuilder.gt(
-                            cbuilder.sqrt(order.<Double>get("totalPrice")),
-                            cbuilder.parameter(Double.class, "doubleValue")))
+                    cbuilder.sqrt(order.<Double>get("totalPrice")),
+                    cbuilder.parameter(Double.class, "doubleValue")))
                     .select(order);
             TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
             tquery.setParameter("doubleValue", 70D);
@@ -5646,8 +5503,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:791;PERSISTENCE:SPEC:792
      *
-     * @test_Strategy: Test NOT EXISTS in the Where Clause for a correlated query.
-     * Select the customers without orders.
+     * @test_Strategy: Test NOT EXISTS in the Where Clause for a correlated query. Select the customers without orders.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_exists_01() throws Fault {
@@ -5696,8 +5552,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:791;PERSISTENCE:SPEC:792
      *
-     * @test_Strategy: Test for EXISTS in the Where Clause for a correlated query.
-     * Select the customers with orders where total order > 1500.
+     * @test_Strategy: Test for EXISTS in the Where Clause for a correlated query. Select the customers with orders where
+     * total order > 1500.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_exists_02() throws Fault {
@@ -5747,11 +5603,11 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_like
      *
-     * @assertion_ids: PERSISTENCE:SPEC:791;PERSISTENCE:SPEC:792;
-     * PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801; PERSISTENCE:SPEC:802
+     * @assertion_ids: PERSISTENCE:SPEC:791;PERSISTENCE:SPEC:792; PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801;
+     * PERSISTENCE:SPEC:802
      *
-     * @test_Strategy: Use LIKE expression in a sub query. Select the customers
-     * with name like Caruso. The name Caruso is derived in the subquery.
+     * @test_Strategy: Use LIKE expression in a sub query. Select the customers with name like Caruso. The name Caruso is
+     * derived in the subquery.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_like() throws Fault {
@@ -5798,9 +5654,8 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_in
      *
-     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801;
-     * PERSISTENCE:SPEC:802; PERSISTENCE:SPEC:352.2; PERSISTENCE:JAVADOC:1133;
-     * PERSISTENCE:JAVADOC:1130;
+     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801; PERSISTENCE:SPEC:802; PERSISTENCE:SPEC:352.2;
+     * PERSISTENCE:JAVADOC:1133; PERSISTENCE:JAVADOC:1130;
      *
      * @test_Strategy: Use IN expression in a sub query.
      */
@@ -5949,11 +5804,10 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_between
      *
-     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801;
-     * PERSISTENCE:SPEC:802
+     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801; PERSISTENCE:SPEC:802
      *
-     * @test_Strategy: Use BETWEEN expression in a sub query. Select the customers
-     * whose orders total price is between 1000 and 2000.
+     * @test_Strategy: Use BETWEEN expression in a sub query. Select the customers whose orders total price is between 1000
+     * and 2000.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_between() throws Fault {
@@ -6003,11 +5857,9 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_join
      *
-     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801;
-     * PERSISTENCE:SPEC:802; PERSISTENCE:SPEC:765
+     * @assertion_ids: PERSISTENCE:SPEC:800;PERSISTENCE:SPEC:801; PERSISTENCE:SPEC:802; PERSISTENCE:SPEC:765
      *
-     * @test_Strategy: Use JOIN in a sub query. Select the customers whose orders
-     * have line items of quantity > 2.
+     * @test_Strategy: Use JOIN in a sub query. Select the customers whose orders have line items of quantity > 2.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_join() throws Fault {
@@ -6058,12 +5910,11 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_ALL_GT
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797;
-     * PERSISTENCE:SPEC:766; PERSISTENCE:SPEC:793; PERSISTENCE:SPEC:799
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:766; PERSISTENCE:SPEC:793;
+     * PERSISTENCE:SPEC:799
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * ">". Select all customers where total price of orders is greater than ALL
-     * the values in the result set.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator ">". Select all customers where total price
+     * of orders is greater than ALL the values in the result set.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_GT() throws Fault {
@@ -6115,9 +5966,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * "<". Select all customers where total price of orders is less than ALL the
-     * values in the result set.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator "<". Select all customers where total price
+     * of orders is less than ALL the values in the result set.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_LT() throws Fault {
@@ -6166,10 +6016,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * "=". Select all customers where total price of orders is = ALL the values
-     * in the result set. The result set contains the min of total price of
-     * orders.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator "=". Select all customers where total price
+     * of orders is = ALL the values in the result set. The result set contains the min of total price of orders.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_EQ() throws Fault {
@@ -6217,10 +6065,9 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * "<=". Select all customers where total price of orders is <= ALL the values
-     * in the result set. The result set contains the total price of orders where
-     * count of lineItems > 3.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator "<=". Select all customers where total price
+     * of orders is <= ALL the values in the result set. The result set contains the total price of orders where count of
+     * lineItems > 3.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_LTEQ() throws Fault {
@@ -6270,9 +6117,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * ">=". Select all customers where total price of orders is >= ALL the values
-     * in the result set.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator ">=". Select all customers where total price
+     * of orders is >= ALL the values in the result set.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_GTEQ() throws Fault {
@@ -6320,12 +6166,10 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_ALL_NOTEQ
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797;
-     * PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: Test for ALL in a subquery with the relational operator
-     * "<>". Select all customers where total price of orders is <> ALL the values
-     * in the result set.
+     * @test_Strategy: Test for ALL in a subquery with the relational operator "<>". Select all customers where total price
+     * of orders is <> ALL the values in the result set.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ALL_NOTEQ() throws Fault {
@@ -6387,13 +6231,11 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_ANY_GT
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797;
-     * PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: Test for ANY in a subquery with the relational operator
-     * ">". Select all customers where total price of orders is greater than ANY
-     * of the values in the result. The result set contains the total price of
-     * orders where count of lineItems = 3.
+     * @test_Strategy: Test for ANY in a subquery with the relational operator ">". Select all customers where total price
+     * of orders is greater than ANY of the values in the result. The result set contains the total price of orders where
+     * count of lineItems = 3.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ANY_GT() throws Fault {
@@ -6455,13 +6297,11 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_ANY_LT
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797;
-     * PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: Test for ANY in a subquery with the relational operator
-     * "<". Select all customers where total price of orders is less than ANY of
-     * the values in the result set. The result set contains the total price of
-     * orders where count of lineItems = 3.
+     * @test_Strategy: Test for ANY in a subquery with the relational operator "<". Select all customers where total price
+     * of orders is less than ANY of the values in the result set. The result set contains the total price of orders where
+     * count of lineItems = 3.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ANY_LT() throws Fault {
@@ -6525,13 +6365,10 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_ANY_EQ
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797;
-     * PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: Test for ANY in a subquery with the relational operator
-     * "=". Select all customers where total price of orders is = ANY the values
-     * in the result set. The result set contains the min and avg of total price
-     * of orders.
+     * @test_Strategy: Test for ANY in a subquery with the relational operator "=". Select all customers where total price
+     * of orders is = ANY the values in the result set. The result set contains the min and avg of total price of orders.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_ANY_EQ() throws Fault {
@@ -6576,11 +6413,10 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_SOME_LTEQ
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:795;
-     * PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:795; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: SOME with less than or equal to The result set contains the
-     * total price of orders where count of lineItems = 3.
+     * @test_Strategy: SOME with less than or equal to The result set contains the total price of orders where count of
+     * lineItems = 3.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_SOME_LTEQ() throws Fault {
@@ -6646,13 +6482,11 @@ public class Client extends Util {
     /*
      * @testName: test_subquery_SOME_GTEQ
      *
-     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:795;
-     * PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
+     * @assertion_ids: PERSISTENCE:SPEC:794; PERSISTENCE:SPEC:795; PERSISTENCE:SPEC:797; PERSISTENCE:SPEC:798
      *
-     * @test_Strategy: Test for SOME in a subquery with the relational operator
-     * ">=". Select all customers where total price of orders is >= SOME the
-     * values in the result set. The result set contains the total price of orders
-     * where count of lineItems = 3.
+     * @test_Strategy: Test for SOME in a subquery with the relational operator ">=". Select all customers where total price
+     * of orders is >= SOME the values in the result set. The result set contains the total price of orders where count of
+     * lineItems = 3.
      */
     @SetupMethod(name = "setupOrderData")
     public void test_subquery_SOME_GTEQ() throws Fault {
@@ -6717,8 +6551,7 @@ public class Client extends Util {
     /*
      * @testName: joinTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1035; PERSISTENCE:JAVADOC:1036;
-     * PERSISTENCE:JAVADOC:1037
+     * @assertion_ids: PERSISTENCE:JAVADOC:1035; PERSISTENCE:JAVADOC:1036; PERSISTENCE:JAVADOC:1037
      *
      * @test_Strategy:
      */
@@ -6804,8 +6637,7 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1021;
      *
-     * @test_Strategy: JOIN FETCH for 1-1 relationship. SELECT c FROM Customer c
-     * JOIN fetch c.spouse
+     * @test_Strategy: JOIN FETCH for 1-1 relationship. SELECT c FROM Customer c JOIN fetch c.spouse
      */
     @SetupMethod(name = "setupCustomerData")
     public void fetchStringTest() throws Fault {
@@ -6849,8 +6681,7 @@ public class Client extends Util {
     /*
      * @testName: fetchStringJoinTypeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:980; PERSISTENCE:JAVADOC:1023;
-     * PERSISTENCE:JAVADOC:1025; PERSISTENCE:JAVADOC:973;
+     * @assertion_ids: PERSISTENCE:JAVADOC:980; PERSISTENCE:JAVADOC:1023; PERSISTENCE:JAVADOC:1025; PERSISTENCE:JAVADOC:973;
      *
      * @test_Strategy: JOIN FETCH for 1-1 relationship.
      *
@@ -6920,11 +6751,9 @@ public class Client extends Util {
     /*
      * @testName: fetchStringAndStringJoinTypeIllegalArgumentException
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:979; PERSISTENCE:JAVADOC:1022;
-     * PERSISTENCE:JAVADOC:981; PERSISTENCE:JAVADOC:1024;
+     * @assertion_ids: PERSISTENCE:JAVADOC:979; PERSISTENCE:JAVADOC:1022; PERSISTENCE:JAVADOC:981; PERSISTENCE:JAVADOC:1024;
      *
-     * @test_Strategy: JOIN FETCH for 1-1 relationship. Prefetch an attribute that
-     * does not exist .
+     * @test_Strategy: JOIN FETCH for 1-1 relationship. Prefetch an attribute that does not exist .
      */
     public void fetchStringAndStringJoinTypeIllegalArgumentException() throws Fault {
         boolean pass1 = false;
@@ -6968,8 +6797,8 @@ public class Client extends Util {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1684
      *
-     * @test_Strategy: Execute a query using the IS NULL comparison operator for a
-     * single-valued object field Verify the results were accurately returned.
+     * @test_Strategy: Execute a query using the IS NULL comparison operator for a single-valued object field Verify the
+     * results were accurately returned.
      */
     @SetupMethod(name = "setupCustomerData")
     public void isNullOneToOneTest() throws Fault {

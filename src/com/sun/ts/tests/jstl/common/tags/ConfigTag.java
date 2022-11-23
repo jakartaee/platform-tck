@@ -123,8 +123,7 @@ public class ConfigTag extends TagSupport {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
@@ -164,8 +163,8 @@ public class ConfigTag extends TagSupport {
 
     /**
      * <pre>
-     * Sets or gets one of the configuration variables as defined by the
-     * jakarta.servlet.jsp.jstl.Config class, to the scope specified by the action.
+     * Sets or gets one of the configuration variables as defined by the jakarta.servlet.jsp.jstl.Config class, to the scope
+     * specified by the action.
      *
      * @return EVAL_PATH
      */
@@ -214,8 +213,7 @@ public class ConfigTag extends TagSupport {
     }
 
     /*
-     * private methods
-     * ========================================================================
+     * private methods ========================================================================
      */
 
     /**

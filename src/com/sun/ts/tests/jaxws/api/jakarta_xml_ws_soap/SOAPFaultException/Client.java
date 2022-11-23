@@ -98,8 +98,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:113;
      *
-     * @test_Strategy: Create instance via SOAPFaultException constructor. Verify
-     * SOAPFaultException object created successfully.
+     * @test_Strategy: Create instance via SOAPFaultException constructor. Verify SOAPFaultException object created
+     * successfully.
      */
     public void SOAPFaultExceptionConstructorTest() throws Fault {
         TestUtil.logTrace("SOAPFaultExceptionConstructorTest");
@@ -113,7 +113,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("SOAPFaultExceptionConstructorTest failed");
+        if (!pass)
+            throw new Fault("SOAPFaultExceptionConstructorTest failed");
     }
 
     /*
@@ -121,8 +122,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:112;
      *
-     * @test_Strategy: Create instance via SOAPFaultException constructor. Get the
-     * embedded SOAPFault instance and verify it is what was set.
+     * @test_Strategy: Create instance via SOAPFaultException constructor. Get the embedded SOAPFault instance and verify it
+     * is what was set.
      */
     public void getFaultTest() throws Fault {
         TestUtil.logTrace("getFaultTest");
@@ -144,6 +145,7 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("getFaultTest failed");
+        if (!pass)
+            throw new Fault("getFaultTest failed");
     }
 }

@@ -40,11 +40,7 @@ import java.util.Iterator;
 import java.util.Set;
 import javax.security.auth.Subject;
 
-@ConnectionDefinition(
-        connectionFactory = com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory.class,
-        connectionFactoryImpl = com.sun.ts.tests.common.connector.whitebox.TSEISDataSource.class,
-        connection = com.sun.ts.tests.common.connector.whitebox.TSConnection.class,
-        connectionImpl = com.sun.ts.tests.common.connector.whitebox.TSEISConnection.class)
+@ConnectionDefinition(connectionFactory = com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory.class, connectionFactoryImpl = com.sun.ts.tests.common.connector.whitebox.TSEISDataSource.class, connection = com.sun.ts.tests.common.connector.whitebox.TSConnection.class, connectionImpl = com.sun.ts.tests.common.connector.whitebox.TSEISConnection.class)
 public class PMDManagedConnectionFactory
         implements ManagedConnectionFactory, ResourceAdapterAssociation, Serializable, jakarta.resource.Referenceable {
     private javax.naming.Reference reference;
@@ -59,12 +55,7 @@ public class PMDManagedConnectionFactory
 
     private String userName;
 
-    @ConfigProperty(
-            defaultValue = "PMDManagedConnectionFactory",
-            description = "String value",
-            ignore = false,
-            supportsDynamicUpdates = false,
-            confidential = false)
+    @ConfigProperty(defaultValue = "PMDManagedConnectionFactory", description = "String value", ignore = false, supportsDynamicUpdates = false, confidential = false)
     String factoryName;
 
     @ConfigProperty(description = "String value", ignore = false)
@@ -75,7 +66,8 @@ public class PMDManagedConnectionFactory
      *
      * @desc Default conctructor
      */
-    public PMDManagedConnectionFactory() {}
+    public PMDManagedConnectionFactory() {
+    }
 
     public void setFactoryName(String name) {
         // this helps verify assertion Connector:SPEC:307 and Connector:SPEC:267
@@ -289,7 +281,8 @@ public class PMDManagedConnectionFactory
      *
      * @exception ResourceException
      */
-    public void setLogWriter(PrintWriter out) throws ResourceException {}
+    public void setLogWriter(PrintWriter out) throws ResourceException {
+    }
 
     /*
      * @name getLogWriter
@@ -340,15 +333,20 @@ public class PMDManagedConnectionFactory
             return false;
         }
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.user, that.getUser())) return false;
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
 
-        if (!Util.isEqual(this.userName, that.getUserName())) return false;
+        if (!Util.isEqual(this.userName, that.getUserName()))
+            return false;
 
-        if (!Util.isEqual(this.factoryName, that.getFactoryName())) return false;
+        if (!Util.isEqual(this.factoryName, that.getFactoryName()))
+            return false;
 
-        if (!Util.isEqual(this.noDefaultValue, that.getNoDefaultValue())) return false;
+        if (!Util.isEqual(this.noDefaultValue, that.getNoDefaultValue()))
+            return false;
 
         return true;
     }

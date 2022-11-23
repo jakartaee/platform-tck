@@ -36,7 +36,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "LINEITEM_TABLE")
 // @EntityListeners({ListenerB.class, ListenerC.class})
-@EntityListeners({ListenerC.class, ListenerB.class})
+@EntityListeners({ ListenerC.class, ListenerB.class })
 @ExcludeDefaultListeners()
 @ExcludeSuperclassListeners
 public class LineItem extends LineItemSuper implements java.io.Serializable, CallbackStatusIF {
@@ -49,7 +49,8 @@ public class LineItem extends LineItemSuper implements java.io.Serializable, Cal
 
     private Product product;
 
-    public LineItem() {}
+    public LineItem() {
+    }
 
     public LineItem(String v1, int v2, Order v3, Product v4) {
         id = v1;

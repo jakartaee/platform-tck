@@ -22,4 +22,5 @@ package com.sun.ts.tests.ejb.ee.webservices.allowedmethodstest.cm;
 
 import jakarta.ejb.EJBLocalObject;
 
-public interface TestBeanLocal extends EJBLocalObject {}
+public interface TestBeanLocal extends EJBLocalObject {
+}

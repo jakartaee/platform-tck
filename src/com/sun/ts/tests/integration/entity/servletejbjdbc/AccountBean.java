@@ -139,8 +139,10 @@ public class AccountBean implements EntityBean {
             }
             DB = new DBSupport();
             boolean foundKey = DB.keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (RemoteLoggingInitException e) {
             TestUtil.printStackTrace(e);
             throw new FinderException(e.getMessage());
@@ -156,8 +158,10 @@ public class AccountBean implements EntityBean {
         try {
             DB = new DBSupport();
             boolean foundKey = DB.keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (Exception se) {
             TestUtil.printStackTrace(se);
             throw new FinderException("unable to obtain primary key existance");

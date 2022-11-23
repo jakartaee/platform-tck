@@ -38,8 +38,8 @@ public class MsgBean extends MDBWrapper {
     private static final String bean2RefName = "Rousseau";
 
     /**
-     * Check that two environment entries whose names differ only by case are
-     * associated with different runtime values (as specified in DD).
+     * Check that two environment entries whose names differ only by case are associated with different runtime values (as
+     * specified in DD).
      */
     public Boolean testEjbRefCaseSensitivity(Properties props) {
 

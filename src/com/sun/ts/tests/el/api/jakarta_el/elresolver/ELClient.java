@@ -40,7 +40,7 @@ public class ELClient extends ServiceEETest {
 
     private Properties testProps;
 
-    private static final String[] names = {"doug", "nick", "roger", "ryan", "ed"};
+    private static final String[] names = { "doug", "nick", "roger", "ryan", "ed" };
 
     public static void main(String[] args) {
         ELClient theTests = new ELClient();
@@ -60,13 +60,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elResolverTest
      *
-     * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:51; EL:JAVADOC:52; EL:JAVADOC:53;
-     *                 EL:JAVADOC:54; EL:JAVADOC:55; EL:JAVADOC:229
+     * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:51; EL:JAVADOC:52; EL:JAVADOC:53; EL:JAVADOC:54; EL:JAVADOC:55;
+     * EL:JAVADOC:229
      *
-     * @test_Strategy: Create an ELContext and get its ELResolver. Verify that API
-     *                 calls work as expected: getValue() getType() setValue()
-     *                 isReadOnly() getCommonPropertyType()
-     *                 getFeatureDescriptors()
+     * @test_Strategy: Create an ELContext and get its ELResolver. Verify that API calls work as expected: getValue()
+     * getType() setValue() isReadOnly() getCommonPropertyType() getFeatureDescriptors()
      */
     public void elResolverTest() throws Fault {
 
@@ -85,7 +83,8 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
         TestUtil.logTrace(buf.toString());
     } // end elResolverTest
 
@@ -94,9 +93,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:233; EL:JAVADOC:239; EL:JAVADOC:242
      *
-     * @test_Strategy: Verify that a NullPointerException is thrown as expected
-     *                 for the following methods: getValue() getType() setValue()
-     *                 isReadOnly()
+     * @test_Strategy: Verify that a NullPointerException is thrown as expected for the following methods: getValue()
+     * getType() setValue() isReadOnly()
      *
      * @since: 3.0
      */
@@ -122,7 +120,8 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
         TestUtil.logTrace(buf.toString());
     } // end elResolverNPETest
 
@@ -131,8 +130,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:231; EL:JAVADOC:234; EL:JAVADOC:240
      *
-     * @test_Strategy: Verify that API calls throw PropertyNotFoundException as
-     *                 expected: getType() setValue() isReadOnly()
+     * @test_Strategy: Verify that API calls throw PropertyNotFoundException as expected: getType() setValue() isReadOnly()
      */
     public void elResolverPNFETest() throws Fault {
         boolean pass = true;
@@ -154,7 +152,8 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
         TestUtil.logTrace(buf.toString());
     } // end elResolverPNFETest
 
@@ -163,11 +162,10 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:244
      *
-     * @test_Strategy: Verify that the setValue() method throws a
-     *                 PropertyNotWritableException, if the resolver was
-     *                 constructed in read-only mode.
+     * @test_Strategy: Verify that the setValue() method throws a PropertyNotWritableException, if the resolver was
+     * constructed in read-only mode.
      *
-     *                 setValue()
+     * setValue()
      */
     public void elResolverPNWETest() throws Fault {
         boolean pass = false;

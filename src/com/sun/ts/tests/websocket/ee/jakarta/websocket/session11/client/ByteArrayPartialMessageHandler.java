@@ -35,6 +35,7 @@ public class ByteArrayPartialMessageHandler implements MessageHandler.Partial<by
     @Override
     public void onMessage(byte[] message, boolean finite) {
         sb.append(new String(message));
-        if (finite) endpoint.onMessage(HANDLER_SAYS + sb.toString());
+        if (finite)
+            endpoint.onMessage(HANDLER_SAYS + sb.toString());
     }
 }

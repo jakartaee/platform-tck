@@ -32,7 +32,8 @@ public class Address implements java.io.Serializable {
 
     protected int state;
 
-    public Address() {}
+    public Address() {
+    }
 
     public Address(String street, String city, int state) {
         this.street = street;

@@ -58,7 +58,7 @@ public class StandaloneDeliverable extends AbstractDeliverable {
     public Map getValidVehicles() {
         super.getValidVehicles();
 
-        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"connectorservlet", "genericvehicle"});
+        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] { "connectorservlet", "genericvehicle" });
 
         return htTSValidVehicles;
     }

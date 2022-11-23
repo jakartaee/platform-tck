@@ -24,8 +24,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
- * Used to store lists that will be utilized accross the board for a common
- * point of reference when testing.
+ * Used to store lists that will be utilized accross the board for a common point of reference when testing.
  */
 public final class TestNum {
 
@@ -38,7 +37,8 @@ public final class TestNum {
     /**
      * Private as this class will only have static methods and members.
      */
-    private TestNum() {}
+    private TestNum() {
+    }
 
     /**
      * Used for a common list of Float values when testing.
@@ -58,8 +58,7 @@ public final class TestNum {
     }
 
     /**
-     * Used a common reference point for Number types and a common value is
-     * assigned (1).
+     * Used a common reference point for Number types and a common value is assigned (1).
      *
      * @return - A common List of Number types with a constant value.
      */

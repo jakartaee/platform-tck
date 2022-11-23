@@ -27,11 +27,11 @@ import jakarta.ws.rs.Path;
 @Path("resource")
 public class Resource {
 
-    public static final String[] LABEL = {"type", "number"};
+    public static final String[] LABEL = { "type", "number" };
 
-    public static final String[] TYPE = {"home", "fax"};
+    public static final String[] TYPE = { "home", "fax" };
 
-    public static final String[] PHONE = {"212 555-1234", "646 555-4567"};
+    public static final String[] PHONE = { "212 555-1234", "646 555-4567" };
 
     @Path("tostructure")
     @GET

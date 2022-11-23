@@ -34,9 +34,7 @@ import java.io.PrintWriter;
  * servlet unprotected so a Permit all should ultmiately be set on this servlet.
  */
 @ServletSecurity(@HttpConstraint(EmptyRoleSemantic.DENY))
-@WebServlet(
-        name = "UnProtectedTestLogicalName",
-        urlPatterns = {"/UnProtectedTest"})
+@WebServlet(name = "UnProtectedTestLogicalName", urlPatterns = { "/UnProtectedTest" })
 public class UnProtectedTestServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

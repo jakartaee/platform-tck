@@ -79,8 +79,10 @@ public final class XMLUtils {
         tckmode = false;
         boolean errors = false;
         for (int i = 0; i < args.length; i++) {
-            if (args[i].equals("-v")) validating = true;
-            else if (args[i].equals("-n")) nsaware = true;
+            if (args[i].equals("-v"))
+                validating = true;
+            else if (args[i].equals("-n"))
+                nsaware = true;
             else {
                 filename = args[i++];
                 if (i < args.length) {
@@ -111,14 +113,16 @@ public final class XMLUtils {
             dbfactory = DocumentBuilderFactory.newInstance();
             if (validating) {
                 dbfactory.setValidating(validating);
-                if (nsaware) dbfactory.setNamespaceAware(nsaware);
+                if (nsaware)
+                    dbfactory.setNamespaceAware(nsaware);
                 dbfactory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
                 dbfactory.setAttribute(JAXP_SCHEMA_SOURCE, new File(schema));
             }
             builder = dbfactory.newDocumentBuilder();
             if (validating) {
                 builder.setErrorHandler(new org.xml.sax.ErrorHandler() {
-                    public void fatalError(SAXParseException e) throws SAXException {}
+                    public void fatalError(SAXParseException e) throws SAXException {
+                    }
 
                     public void error(SAXParseException e) throws SAXParseException {
                         throw e;
@@ -138,10 +142,12 @@ public final class XMLUtils {
             document = builder.parse(new InputSource(new StringReader(data)));
             rootElement = document.getDocumentElement();
             NodeList nodes = document.getElementsByTagName("Fault");
-            if (nodes.getLength() == 0) nodes = document.getElementsByTagName(prefix + ":Fault");
+            if (nodes.getLength() == 0)
+                nodes = document.getElementsByTagName(prefix + ":Fault");
             Node node = nodes.item(0);
             faultElement = (Element) node;
-            if (!errors) xmlDumpDOMNodes(XMLUtils.getRootElement());
+            if (!errors)
+                xmlDumpDOMNodes(XMLUtils.getRootElement());
         } catch (SAXParseException e) {
             if (tckmode) {
                 TestUtil.logErr("SAXParseException");
@@ -154,7 +160,8 @@ public final class XMLUtils {
             if (e.getException() != null) {
                 x = e.getException();
             }
-            if (!tckmode) x.printStackTrace();
+            if (!tckmode)
+                x.printStackTrace();
             errors = true;
         } catch (SAXException e) {
             if (tckmode) {
@@ -168,7 +175,8 @@ public final class XMLUtils {
             if (e.getException() != null) {
                 x = e.getException();
             }
-            if (!tckmode) x.printStackTrace();
+            if (!tckmode)
+                x.printStackTrace();
             errors = true;
         } catch (IOException e) {
             System.err.println("IOException: " + e.getMessage());
@@ -222,16 +230,16 @@ public final class XMLUtils {
                 dbfactory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
                 dbfactory.setAttribute(JAXP_SCHEMA_SOURCE, SOAPConstants.URI_NS_SOAP_ENVELOPE);
                 /***
-                 * if(JAXWS_Util.getSOAPVersion().equals(JAXWS_Util.SOAP11))
-                 * dbfactory.setAttribute( JAXP_SCHEMA_SOURCE,
-                 * SOAPConstants.URI_NS_SOAP_ENVELOPE); else dbfactory.setAttribute(
-                 * JAXP_SCHEMA_SOURCE, SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
+                 * if(JAXWS_Util.getSOAPVersion().equals(JAXWS_Util.SOAP11)) dbfactory.setAttribute( JAXP_SCHEMA_SOURCE,
+                 * SOAPConstants.URI_NS_SOAP_ENVELOPE); else dbfactory.setAttribute( JAXP_SCHEMA_SOURCE,
+                 * SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
                  ***/
             }
             builder = dbfactory.newDocumentBuilder();
             if (validating) {
                 builder.setErrorHandler(new org.xml.sax.ErrorHandler() {
-                    public void fatalError(SAXParseException e) throws SAXException {}
+                    public void fatalError(SAXParseException e) throws SAXException {
+                    }
 
                     public void error(SAXParseException e) throws SAXParseException {
                         throw e;
@@ -259,8 +267,10 @@ public final class XMLUtils {
                 System.err.println("  " + e.getMessage());
             }
             Throwable x = e;
-            if (e.getException() != null) x = e.getException();
-            if (!tckmode) x.printStackTrace();
+            if (e.getException() != null)
+                x = e.getException();
+            if (!tckmode)
+                x.printStackTrace();
             errors = true;
         } catch (Exception e) {
             if (tckmode) {
@@ -283,7 +293,8 @@ public final class XMLUtils {
             document = builder.parse(new InputSource(new StringReader(data)));
             rootElement = document.getDocumentElement();
             NodeList nodes = document.getElementsByTagName("Fault");
-            if (nodes.getLength() == 0) nodes = document.getElementsByTagName(prefix + ":Fault");
+            if (nodes.getLength() == 0)
+                nodes = document.getElementsByTagName(prefix + ":Fault");
             Node node = nodes.item(0);
             faultElement = (Element) node;
         } catch (SAXParseException e) {
@@ -298,7 +309,8 @@ public final class XMLUtils {
             if (e.getException() != null) {
                 x = e.getException();
             }
-            if (!tckmode) x.printStackTrace();
+            if (!tckmode)
+                x.printStackTrace();
             errors = true;
         } catch (SAXException e) {
             if (tckmode) {
@@ -312,7 +324,8 @@ public final class XMLUtils {
             if (e.getException() != null) {
                 x = e.getException();
             }
-            if (!tckmode) x.printStackTrace();
+            if (!tckmode)
+                x.printStackTrace();
             errors = true;
         } catch (IOException e) {
             if (tckmode) {
@@ -357,7 +370,8 @@ public final class XMLUtils {
             if (e.getException() != null) {
                 x = e.getException();
             }
-            if (!tckmode) x.printStackTrace();
+            if (!tckmode)
+                x.printStackTrace();
             errors = true;
         } catch (SAXException e) {
             if (tckmode) {
@@ -371,7 +385,8 @@ public final class XMLUtils {
             if (e.getException() != null) {
                 x = e.getException();
             }
-            if (!tckmode) x.printStackTrace();
+            if (!tckmode)
+                x.printStackTrace();
             errors = true;
         } catch (IOException e) {
             if (tckmode) {
@@ -414,8 +429,10 @@ public final class XMLUtils {
                 System.err.println("  " + e.getMessage());
             }
             Throwable x = e;
-            if (e.getException() != null) x = e.getException();
-            if (!tckmode) x.printStackTrace();
+            if (e.getException() != null)
+                x = e.getException();
+            if (!tckmode)
+                x.printStackTrace();
             errors = true;
         } catch (TransformerException e) {
             if (tckmode) {
@@ -429,7 +446,8 @@ public final class XMLUtils {
             if (e.getException() != null) {
                 x = e.getException();
             }
-            if (!tckmode) x.printStackTrace();
+            if (!tckmode)
+                x.printStackTrace();
             errors = true;
         } catch (Exception e) {
             if (tckmode) {
@@ -448,13 +466,15 @@ public final class XMLUtils {
 
     public static void setSpaces() {
         spacesString = "";
-        for (int i = 0; i < spaces; i++) spacesString = spacesString + " ";
+        for (int i = 0; i < spaces; i++)
+            spacesString = spacesString + " ";
     }
 
     public static String getText(Node node) {
         String result = "";
         result = node.getNodeValue();
-        if (result == null) result = "";
+        if (result == null)
+            result = "";
         result = result.trim();
         return result;
     }
@@ -494,17 +514,22 @@ public final class XMLUtils {
                 String attName = attnode.getNodeName();
                 String attValue = attnode.getNodeValue();
                 String _string = "<Attribute>" + attName + "=" + attValue + "</Attribute>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
+                if (captureResults)
+                    capturedResults.add(_string);
+                if (tckmode)
+                    TestUtil.logMsg(spacesString + _string);
+                else
+                    System.out.println(spacesString + _string);
             }
         }
     }
 
     public static boolean hasAttributes(Node root) {
         NamedNodeMap attribs = root.getAttributes();
-        if (attribs == null || attribs.getLength() == 0) return false;
-        else return true;
+        if (attribs == null || attribs.getLength() == 0)
+            return false;
+        else
+            return true;
     }
 
     public static void xmlDumpDocument(Document document) {
@@ -548,8 +573,10 @@ public final class XMLUtils {
     }
 
     public static void xmlDumpDOMNodes(Node node) {
-        if (node instanceof Document) xmlDumpDocument((Document) node);
-        else if (node instanceof Element) xmlDumpDOMNodes((Element) node);
+        if (node instanceof Document)
+            xmlDumpDocument((Document) node);
+        else if (node instanceof Element)
+            xmlDumpDOMNodes((Element) node);
     }
 
     public static void xmlDumpDOMNodes_(Element element) {
@@ -577,96 +604,135 @@ public final class XMLUtils {
     public static void processNode(Node node, String nodeName, String nodeValue, short nodeType) {
         String _string = "";
         switch (nodeType) {
-            case Node.ATTRIBUTE_NODE:
-                spaces += 2;
-                setSpaces();
-                _string = "<Attribute>" + nodeName + "=" + nodeValue + "</Attribute>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                spaces -= 2;
-                setSpaces();
-                break;
-            case Node.CDATA_SECTION_NODE:
-                _string = "<CDATA>" + nodeValue + "</CDATA>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                break;
-            case Node.COMMENT_NODE:
-                _string = "<Comment>" + nodeValue + "</Comment>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                break;
-            case Node.DOCUMENT_FRAGMENT_NODE:
-                _string = "<DocumentFragment/>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                break;
-            case Node.DOCUMENT_NODE:
-                _string = "<Document/>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                break;
-            case Node.DOCUMENT_TYPE_NODE:
-                _string = "<DocumentType>" + nodeName + "</DocumentType>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                break;
-            case Node.ELEMENT_NODE:
-                _string = "<Element>" + nodeName + "</Element>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                spaces += 2;
-                setSpaces();
-                processAttributes(node);
-                spaces -= 2;
-                setSpaces();
-                break;
-            case Node.ENTITY_NODE:
-                _string = "<Entity>" + nodeValue + "</Entity>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                break;
-            case Node.ENTITY_REFERENCE_NODE:
-                _string = "<EntityReference>" + nodeValue + "</EntityReference>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                break;
-            case Node.NOTATION_NODE:
-                _string = "<Notation>" + nodeValue + "</Notation>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                break;
-            case Node.PROCESSING_INSTRUCTION_NODE:
-                _string = "<ProcessingInstruction>" + nodeName + "</ProcessingInstruction>";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                break;
-            case Node.TEXT_NODE:
-                String text = getText(node);
-                if (!text.equals("")) {
-                    _string = "<Text>" + text + "</text>";
-                    if (captureResults) capturedResults.add(_string);
-                    if (tckmode) TestUtil.logMsg(spacesString + _string);
-                    else System.out.println(spacesString + _string);
-                }
-                break;
-            default:
-                _string = "<nodename=" + nodeName + ",nodetype=" + nodeType + ",nodeValue=" + nodeValue + ">";
-                if (captureResults) capturedResults.add(_string);
-                if (tckmode) TestUtil.logMsg(spacesString + _string);
-                else System.out.println(spacesString + _string);
-                break;
+        case Node.ATTRIBUTE_NODE:
+            spaces += 2;
+            setSpaces();
+            _string = "<Attribute>" + nodeName + "=" + nodeValue + "</Attribute>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            spaces -= 2;
+            setSpaces();
+            break;
+        case Node.CDATA_SECTION_NODE:
+            _string = "<CDATA>" + nodeValue + "</CDATA>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            break;
+        case Node.COMMENT_NODE:
+            _string = "<Comment>" + nodeValue + "</Comment>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            break;
+        case Node.DOCUMENT_FRAGMENT_NODE:
+            _string = "<DocumentFragment/>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            break;
+        case Node.DOCUMENT_NODE:
+            _string = "<Document/>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            break;
+        case Node.DOCUMENT_TYPE_NODE:
+            _string = "<DocumentType>" + nodeName + "</DocumentType>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            break;
+        case Node.ELEMENT_NODE:
+            _string = "<Element>" + nodeName + "</Element>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            spaces += 2;
+            setSpaces();
+            processAttributes(node);
+            spaces -= 2;
+            setSpaces();
+            break;
+        case Node.ENTITY_NODE:
+            _string = "<Entity>" + nodeValue + "</Entity>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            break;
+        case Node.ENTITY_REFERENCE_NODE:
+            _string = "<EntityReference>" + nodeValue + "</EntityReference>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            break;
+        case Node.NOTATION_NODE:
+            _string = "<Notation>" + nodeValue + "</Notation>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            break;
+        case Node.PROCESSING_INSTRUCTION_NODE:
+            _string = "<ProcessingInstruction>" + nodeName + "</ProcessingInstruction>";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            break;
+        case Node.TEXT_NODE:
+            String text = getText(node);
+            if (!text.equals("")) {
+                _string = "<Text>" + text + "</text>";
+                if (captureResults)
+                    capturedResults.add(_string);
+                if (tckmode)
+                    TestUtil.logMsg(spacesString + _string);
+                else
+                    System.out.println(spacesString + _string);
+            }
+            break;
+        default:
+            _string = "<nodename=" + nodeName + ",nodetype=" + nodeType + ",nodeValue=" + nodeValue + ">";
+            if (captureResults)
+                capturedResults.add(_string);
+            if (tckmode)
+                TestUtil.logMsg(spacesString + _string);
+            else
+                System.out.println(spacesString + _string);
+            break;
         }
     }
 

@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,8 +100,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:167; SAAJ:JAVADOC:168;
      *
-     * @test_Strategy: Call SOAPHeader.addHeaderElement(Name) method and verify
-     * creation of a new SOAPHeaderElement.
+     * @test_Strategy: Call SOAPHeader.addHeaderElement(Name) method and verify creation of a new SOAPHeaderElement.
      *
      * Description: Create a SOAPHeaderElement object
      *
@@ -115,12 +116,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addHeaderElementTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -129,7 +133,8 @@ public class URLClient extends EETest {
             throw new Fault("addHeaderElementTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("addHeaderElementTest1 failed");
+        if (!pass)
+            throw new Fault("addHeaderElementTest1 failed");
     }
 
     /*
@@ -137,8 +142,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:169; SAAJ:JAVADOC:170;
      *
-     * @test_Strategy: Call SOAPHeader.addHeaderElement(QName) method and verify
-     * creation of a new SOAPHeaderElement.
+     * @test_Strategy: Call SOAPHeader.addHeaderElement(QName) method and verify creation of a new SOAPHeaderElement.
      *
      * Description: Create a SOAPHeaderElement object
      *
@@ -154,12 +158,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addHeaderElementTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -168,7 +175,8 @@ public class URLClient extends EETest {
             throw new Fault("addHeaderElementTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("addHeaderElementTest2 failed");
+        if (!pass)
+            throw new Fault("addHeaderElementTest2 failed");
     }
 
     /*
@@ -176,8 +184,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:172;
      *
-     * @test_Strategy: Call SOAPHeader.ExamineHeaderElements(String) method and
-     * verify correct SOAPHeaderElements returned. Single element test.
+     * @test_Strategy: Call SOAPHeader.ExamineHeaderElements(String) method and verify correct SOAPHeaderElements returned.
+     * Single element test.
      *
      * Description: Examine SOAPHeaderElements that have specified actor
      *
@@ -192,12 +200,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "examineHeaderElementsTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -206,7 +217,8 @@ public class URLClient extends EETest {
             throw new Fault("examineHeaderElementsTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("examineHeaderElementsTest1 failed");
+        if (!pass)
+            throw new Fault("examineHeaderElementsTest1 failed");
     }
 
     /*
@@ -214,8 +226,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:172;
      *
-     * @test_Strategy: Call SOAPHeader.ExamineHeaderElements(String) method and
-     * verify correct SOAPHeaderElements returned. Multiple element test.
+     * @test_Strategy: Call SOAPHeader.ExamineHeaderElements(String) method and verify correct SOAPHeaderElements returned.
+     * Multiple element test.
      *
      * Description: Examine SOAPHeaderElements that have specified actor
      *
@@ -230,12 +242,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "examineHeaderElementsTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -244,7 +259,8 @@ public class URLClient extends EETest {
             throw new Fault("examineHeaderElementsTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("examineHeaderElementsTest2 failed");
+        if (!pass)
+            throw new Fault("examineHeaderElementsTest2 failed");
     }
 
     /*
@@ -252,8 +268,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:172;
      *
-     * @test_Strategy: Call SOAPHeader.ExamineHeaderElements(String) method and
-     * verify correct SOAPHeaderElements returned. Zero elements test.
+     * @test_Strategy: Call SOAPHeader.ExamineHeaderElements(String) method and verify correct SOAPHeaderElements returned.
+     * Zero elements test.
      *
      * Description: Examine SOAPHeaderElements that have specified actor
      *
@@ -268,12 +284,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "examineHeaderElementsTest3");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -282,7 +301,8 @@ public class URLClient extends EETest {
             throw new Fault("examineHeaderElementsTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("examineHeaderElementsTest3 failed");
+        if (!pass)
+            throw new Fault("examineHeaderElementsTest3 failed");
     }
 
     /*
@@ -290,8 +310,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:172;
      *
-     * @test_Strategy: Call SOAPHeader.ExamineHeaderElements(QName) method and
-     * verify correct SOAPHeaderElements returned. Zero elements test.
+     * @test_Strategy: Call SOAPHeader.ExamineHeaderElements(QName) method and verify correct SOAPHeaderElements returned.
+     * Zero elements test.
      *
      * Description: Examine SOAPHeaderElements that have specified actor
      *
@@ -306,12 +326,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "examineHeaderElementsTest4");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -320,7 +343,8 @@ public class URLClient extends EETest {
             throw new Fault("examineHeaderElementsTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("examineHeaderElementsTest4 failed");
+        if (!pass)
+            throw new Fault("examineHeaderElementsTest4 failed");
     }
 
     /*
@@ -328,8 +352,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:173;
      *
-     * @test_Strategy: Call SOAPHeader.extractHeaderElements(String) method and
-     * verify correct SOAPHeaderElements returned. Single element test.
+     * @test_Strategy: Call SOAPHeader.extractHeaderElements(String) method and verify correct SOAPHeaderElements returned.
+     * Single element test.
      *
      * Description: Extract SOAPHeaderElements that have specified actor
      *
@@ -344,12 +368,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "extractHeaderElementsTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -358,7 +385,8 @@ public class URLClient extends EETest {
             throw new Fault("extractHeaderElementsTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("extractHeaderElementsTest1 failed");
+        if (!pass)
+            throw new Fault("extractHeaderElementsTest1 failed");
     }
 
     /*
@@ -366,8 +394,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:173;
      *
-     * @test_Strategy: Call SOAPHeader.extracteaderElements(String) method and
-     * verify correct SOAPHeaderElements returned. Multiple element test.
+     * @test_Strategy: Call SOAPHeader.extracteaderElements(String) method and verify correct SOAPHeaderElements returned.
+     * Multiple element test.
      *
      * Description: Extract SOAPHeaderElements that have specified actor
      *
@@ -382,12 +410,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "extractHeaderElementsTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -396,7 +427,8 @@ public class URLClient extends EETest {
             throw new Fault("extractHeaderElementsTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("extractHeaderElementsTest2 failed");
+        if (!pass)
+            throw new Fault("extractHeaderElementsTest2 failed");
     }
 
     /*
@@ -404,8 +436,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:173;
      *
-     * @test_Strategy: Call SOAPHeader.extractHeaderElements(String) method and
-     * verify correct SOAPHeaderElements returned. Zero elements test.
+     * @test_Strategy: Call SOAPHeader.extractHeaderElements(String) method and verify correct SOAPHeaderElements returned.
+     * Zero elements test.
      *
      * Description: Extract SOAPHeaderElements that have specified actor
      *
@@ -420,12 +452,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "extractHeaderElementsTest3");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -434,7 +469,8 @@ public class URLClient extends EETest {
             throw new Fault("extractHeaderElementsTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("extractHeaderElementsTest3 failed");
+        if (!pass)
+            throw new Fault("extractHeaderElementsTest3 failed");
     }
 
     /*
@@ -442,8 +478,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:174; SAAJ:JAVADOC:175;
      *
-     * @test_Strategy: Call SOAPHeader.addNotUnderstoodHeaderElement(QName) method
-     * and verify correct SOAPHeaderElement contents.
+     * @test_Strategy: Call SOAPHeader.addNotUnderstoodHeaderElement(QName) method and verify correct SOAPHeaderElement
+     * contents.
      *
      * Description: Add NotUnderstood SOAPHeaderElement and verify contents.
      *
@@ -467,7 +503,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -476,7 +513,8 @@ public class URLClient extends EETest {
             throw new Fault("addNotUnderstoodHeaderElementTest failed", e);
         }
 
-        if (!pass) throw new Fault("addNotUnderstoodHeaderElementTest failed");
+        if (!pass)
+            throw new Fault("addNotUnderstoodHeaderElementTest failed");
     }
 
     /*
@@ -484,8 +522,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:176; SAAJ:JAVADOC:177;
      *
-     * @test_Strategy: Call SOAPHeader.addUpgradeHeaderElement(Iterator) method
-     * and verify correct SOAPHeaderElement contents.
+     * @test_Strategy: Call SOAPHeader.addUpgradeHeaderElement(Iterator) method and verify correct SOAPHeaderElement
+     * contents.
      *
      * Description: Add Upgrade SOAPHeaderElement and verify contents.
      *
@@ -509,7 +547,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -518,7 +557,8 @@ public class URLClient extends EETest {
             throw new Fault("addUpgradeHeaderElementTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("addUpgradeHeaderElementTest1 failed");
+        if (!pass)
+            throw new Fault("addUpgradeHeaderElementTest1 failed");
     }
 
     /*
@@ -526,8 +566,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:178; SAAJ:JAVADOC:179;
      *
-     * @test_Strategy: Call SOAPHeader.addUpgradeHeaderElement(String[]) method
-     * and verify correct SOAPHeaderElement contents.
+     * @test_Strategy: Call SOAPHeader.addUpgradeHeaderElement(String[]) method and verify correct SOAPHeaderElement
+     * contents.
      *
      * Description: Add Upgrade SOAPHeaderElement and verify contents.
      *
@@ -551,7 +591,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -560,7 +601,8 @@ public class URLClient extends EETest {
             throw new Fault("addUpgradeHeaderElementTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("addUpgradeHeaderElementTest2 failed");
+        if (!pass)
+            throw new Fault("addUpgradeHeaderElementTest2 failed");
     }
 
     /*
@@ -568,8 +610,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:180; SAAJ:JAVADOC:181;
      *
-     * @test_Strategy: Call SOAPHeader.addUpgradeHeaderElement(String) method and
-     * verify correct SOAPHeaderElement contents.
+     * @test_Strategy: Call SOAPHeader.addUpgradeHeaderElement(String) method and verify correct SOAPHeaderElement contents.
      *
      * Description: Add Upgrade SOAPHeaderElement and verify contents.
      *
@@ -593,7 +634,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -602,7 +644,8 @@ public class URLClient extends EETest {
             throw new Fault("addUpgradeHeaderElementTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("addUpgradeHeaderElementTest3 failed");
+        if (!pass)
+            throw new Fault("addUpgradeHeaderElementTest3 failed");
     }
 
     /*
@@ -610,8 +653,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:182;
      *
-     * @test_Strategy: Call SOAPHeader.examineAllHeaderElements() method and
-     * verify correct SOAPHeaderElements returned. Single element test.
+     * @test_Strategy: Call SOAPHeader.examineAllHeaderElements() method and verify correct SOAPHeaderElements returned.
+     * Single element test.
      *
      * Description: Examine all SOAPHeaderElements.
      *
@@ -625,13 +668,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "examineAllHeaderElementsTest1");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -639,7 +685,8 @@ public class URLClient extends EETest {
             throw new Fault("examineAllHeaderElementsTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("examineAllHeaderElementsTest1 failed");
+        if (!pass)
+            throw new Fault("examineAllHeaderElementsTest1 failed");
     }
 
     /*
@@ -647,9 +694,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:182;
      *
-     * @test_Strategy: Call SOAPHeader.examineAllHeaderElements() method and
-     * verify correct SOAPHeaderElements returned. Multiple element test same
-     * actor.
+     * @test_Strategy: Call SOAPHeader.examineAllHeaderElements() method and verify correct SOAPHeaderElements returned.
+     * Multiple element test same actor.
      *
      * Description: Examine all SOAPHeaderElement
      *
@@ -663,13 +709,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "examineAllHeaderElementsTest2");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -677,7 +726,8 @@ public class URLClient extends EETest {
             throw new Fault("examineAllHeaderElementsTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("examineAllHeaderElementsTest2 failed");
+        if (!pass)
+            throw new Fault("examineAllHeaderElementsTest2 failed");
     }
 
     /*
@@ -685,9 +735,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:182;
      *
-     * @test_Strategy: Call SOAPHeader.examineAllHeaderElements() method and
-     * verify correct SOAPHeaderElements returned. Multiple element test different
-     * actors.
+     * @test_Strategy: Call SOAPHeader.examineAllHeaderElements() method and verify correct SOAPHeaderElements returned.
+     * Multiple element test different actors.
      *
      * Description: Examine all SOAPHeaderElements.
      *
@@ -701,13 +750,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "examineAllHeaderElementsTest3");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -715,7 +767,8 @@ public class URLClient extends EETest {
             throw new Fault("examineAllHeaderElementsTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("examineAllHeaderElementsTest3 failed");
+        if (!pass)
+            throw new Fault("examineAllHeaderElementsTest3 failed");
     }
 
     /*
@@ -723,9 +776,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:171;
      *
-     * @test_Strategy: Call SOAPHeader.examineMustUnderstandHeaderElements(String)
-     * method and verify that the specified actor is returned when the
-     * MustUnderstand attribute is true.
+     * @test_Strategy: Call SOAPHeader.examineMustUnderstandHeaderElements(String) method and verify that the specified
+     * actor is returned when the MustUnderstand attribute is true.
      *
      * Description: Examine SOAPHeaderElements
      *
@@ -739,13 +791,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "examineMustUnderstandHeaderElementsTest1");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -753,7 +808,8 @@ public class URLClient extends EETest {
             throw new Fault("examineMustUnderstandHeaderElementsTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("examineMustUnderstandHeaderElementsTest1 failed");
+        if (!pass)
+            throw new Fault("examineMustUnderstandHeaderElementsTest1 failed");
     }
 
     /*
@@ -761,9 +817,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:171;
      *
-     * @test_Strategy: Call SOAPHeader.examineMustUnderstandHeaderElements(String)
-     * method and verify that the specified actor is not returned when the
-     * MustUnderstand attribute is false.
+     * @test_Strategy: Call SOAPHeader.examineMustUnderstandHeaderElements(String) method and verify that the specified
+     * actor is not returned when the MustUnderstand attribute is false.
      *
      * Description: Examine SOAPHeaderElements
      *
@@ -777,13 +832,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "examineMustUnderstandHeaderElementsTest2");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -791,7 +849,8 @@ public class URLClient extends EETest {
             throw new Fault("examineMustUnderstandHeaderElementsTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("examineMustUnderstandHeaderElementsTest2 failed");
+        if (!pass)
+            throw new Fault("examineMustUnderstandHeaderElementsTest2 failed");
     }
 
     /*
@@ -799,9 +858,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:171;
      *
-     * @test_Strategy: Call SOAPHeader.examineMustUnderstandHeaderElements(String)
-     * method and verify that the specified actor is returned when the
-     * MustUnderstand attribute is true with multiple actors.
+     * @test_Strategy: Call SOAPHeader.examineMustUnderstandHeaderElements(String) method and verify that the specified
+     * actor is returned when the MustUnderstand attribute is true with multiple actors.
      *
      * Description: Examine SOAPHeaderElements
      *
@@ -815,13 +873,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "examineMustUnderstandHeaderElementsTest3");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -829,7 +890,8 @@ public class URLClient extends EETest {
             throw new Fault("examineMustUnderstandHeaderElementsTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("examineMustUnderstandHeaderElementsTest3 failed");
+        if (!pass)
+            throw new Fault("examineMustUnderstandHeaderElementsTest3 failed");
     }
 
     /*
@@ -837,8 +899,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:183;
      *
-     * @test_Strategy: Call SOAPHeader.extractAllHeaderElements() method and
-     * verify correct SOAPHeaderElements returned. Single element test.
+     * @test_Strategy: Call SOAPHeader.extractAllHeaderElements() method and verify correct SOAPHeaderElements returned.
+     * Single element test.
      *
      * Description: Examine all SOAPHeaderElements.
      *
@@ -852,13 +914,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "extractAllHeaderElementsTest1");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -866,7 +931,8 @@ public class URLClient extends EETest {
             throw new Fault("extractAllHeaderElementsTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("extractAllHeaderElementsTest1 failed");
+        if (!pass)
+            throw new Fault("extractAllHeaderElementsTest1 failed");
     }
 
     /*
@@ -874,9 +940,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:183;
      *
-     * @test_Strategy: Call SOAPHeader.extractAllHeaderElements() method and
-     * verify correct SOAPHeaderElements returned. Multiple element test same
-     * actor.
+     * @test_Strategy: Call SOAPHeader.extractAllHeaderElements() method and verify correct SOAPHeaderElements returned.
+     * Multiple element test same actor.
      *
      * Description: Examine all SOAPHeaderElement
      *
@@ -890,13 +955,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "extractAllHeaderElementsTest2");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -904,7 +972,8 @@ public class URLClient extends EETest {
             throw new Fault("extractAllHeaderElementsTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("extractAllHeaderElementsTest2 failed");
+        if (!pass)
+            throw new Fault("extractAllHeaderElementsTest2 failed");
     }
 
     /*
@@ -912,9 +981,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:183;
      *
-     * @test_Strategy: Call SOAPHeader.extractAllHeaderElements() method and
-     * verify correct SOAPHeaderElements returned. Multiple element test different
-     * actors.
+     * @test_Strategy: Call SOAPHeader.extractAllHeaderElements() method and verify correct SOAPHeaderElements returned.
+     * Multiple element test different actors.
      *
      * Description: Examine all SOAPHeaderElements.
      *
@@ -928,13 +996,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "extractAllHeaderElementsTest3");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -942,6 +1013,7 @@ public class URLClient extends EETest {
             throw new Fault("extractAllHeaderElementsTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("extractAllHeaderElementsTest3 failed");
+        if (!pass)
+            throw new Fault("extractAllHeaderElementsTest3 failed");
     }
 }

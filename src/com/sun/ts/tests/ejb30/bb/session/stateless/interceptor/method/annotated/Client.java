@@ -48,8 +48,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:258
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -57,8 +57,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -66,9 +66,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o no parameters in business method.
-     * InvocationContext.getParameters() should return null or Object[]{}; This is
-     * verified in interceptor method.
+     * @test_Strategy: o no parameters in business method. InvocationContext.getParameters() should return null or
+     * Object[]{}; This is verified in interceptor method.
      */
 
     /*
@@ -76,8 +75,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only before
-     * proceed();
+     * @test_Strategy: o interceptor marks a tx to be rollback only before proceed();
      */
 
     /*
@@ -85,8 +83,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only before
-     * proceed();
+     * @test_Strategy: o interceptor marks a tx to be rollback only before proceed();
      */
 
     /*
@@ -94,9 +91,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only before
-     * proceed(), by runtime exception o bean instance is no longer usable after
-     * this test
+     * @test_Strategy: o interceptor marks a tx to be rollback only before proceed(), by runtime exception o bean instance
+     * is no longer usable after this test
      */
 
     /*
@@ -104,9 +100,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only after
-     * proceed(), by runtime exception o bean instance is no longer usable after
-     * this test
+     * @test_Strategy: o interceptor marks a tx to be rollback only after proceed(), by runtime exception o bean instance is
+     * no longer usable after this test
      */
 
     /*
@@ -114,8 +109,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -123,8 +118,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:255
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -132,8 +127,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -141,8 +136,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
 
     /*
@@ -150,8 +145,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o the checked exception throwb by the business method can
-     * be supressed by the interceptor.
+     * @test_Strategy: o the checked exception throwb by the business method can be supressed by the interceptor.
      */
 
     /*
@@ -159,8 +153,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o interceptor method occurs with the same security context
-     * as the business method
+     * @test_Strategy: o interceptor method occurs with the same security context as the business method
      */
 
 }

@@ -30,7 +30,8 @@ public class SetCookieHandler implements Handler {
 
     private static final String DELIM = "##";
 
-    private SetCookieHandler() {}
+    private SetCookieHandler() {
+    }
 
     public static Handler getInstance() {
         return HANDLER;

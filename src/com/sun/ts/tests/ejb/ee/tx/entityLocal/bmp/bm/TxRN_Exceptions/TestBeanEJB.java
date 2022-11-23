@@ -191,7 +191,8 @@ public class TestBeanEJB implements SessionBean {
             ut.rollback();
             TestUtil.logTrace("Rollback finished");
 
-            if (t1) testResult = true;
+            if (t1)
+                testResult = true;
 
             return (testResult);
 
@@ -252,7 +253,8 @@ public class TestBeanEJB implements SessionBean {
             ut.rollback();
             TestUtil.logTrace("Rollback finished");
 
-            if (t1) testResult = true;
+            if (t1)
+                testResult = true;
 
             return (testResult);
 
@@ -312,7 +314,8 @@ public class TestBeanEJB implements SessionBean {
             ut.rollback();
             TestUtil.logTrace("Rollback finished");
 
-            if (t1) testResult = true;
+            if (t1)
+                testResult = true;
 
             return (testResult);
 

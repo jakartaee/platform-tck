@@ -24,7 +24,8 @@ public class NoEntityAnnotation implements java.io.Serializable {
 
     private Long id;
 
-    public NoEntityAnnotation() {}
+    public NoEntityAnnotation() {
+    }
 
     @Id
     public Long getId() {

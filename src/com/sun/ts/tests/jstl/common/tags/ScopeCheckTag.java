@@ -58,15 +58,13 @@ public class ScopeCheckTag extends TagSupport {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * Sets the name of the variable to search for.
      *
-     * @param varName
-     *          variable name
+     * @param varName variable name
      */
     public void setVarName(String varName) {
         _varName = varName;
@@ -75,28 +73,24 @@ public class ScopeCheckTag extends TagSupport {
     /**
      * Sets the scope in which the variable is expected to be found.
      *
-     * @param inScope
-     *          scope to search
+     * @param inScope scope to search
      */
     public void setInScope(String inScope) {
         _inScope = inScope;
     }
 
     /**
-     * Flag which will, depending on the value, append the scope to the variable
-     * name provided.
+     * Flag which will, depending on the value, append the scope to the variable name provided.
      *
-     * @param useConfig
-     *          if true, the Config class will be used for the lookup.
+     * @param useConfig if true, the Config class will be used for the lookup.
      */
     public void setUseConfig(boolean useConfig) {
         _useConfig = useConfig;
     }
 
     /**
-     * When called, the PageContext will be checked for the specified variable in
-     * the specified scope. A message will be written to the current JspWriter
-     * indicating if the variable was found or not.
+     * When called, the PageContext will be checked for the specified variable in the specified scope. A message will be
+     * written to the current JspWriter indicating if the variable was found or not.
      *
      * @return EVAL_BODY
      */
@@ -128,8 +122,8 @@ public class ScopeCheckTag extends TagSupport {
     }
 
     /**
-     * <code>release</code> is called by the tag handler to release state. This
-     * method is invoked by the JSP page implementation object.
+     * <code>release</code> is called by the tag handler to release state. This method is invoked by the JSP page
+     * implementation object.
      */
     public void release() {
         _varName = null;

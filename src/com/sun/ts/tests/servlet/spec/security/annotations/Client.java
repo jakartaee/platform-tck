@@ -90,9 +90,8 @@ public class Client extends BaseUrlClient {
     private String request = null;
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -101,8 +100,7 @@ public class Client extends BaseUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -112,8 +110,8 @@ public class Client extends BaseUrlClient {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; securedWebServicePort;
-     * user; password; authuser; authpassword; ts_home;
+     * @class.setup_props: webServerHost; webServerPort; securedWebServicePort; user; password; authuser; authpassword;
+     * ts_home;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -144,12 +142,10 @@ public class Client extends BaseUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:215;
      *
-     * @assertion: 1. teh DenyAll annotation must be supported by the Web
-     * container. Access a web resource that uses the DenyAll annotation applied
-     * at the class level should result in an access denied.
+     * @assertion: 1. teh DenyAll annotation must be supported by the Web container. Access a web resource that uses the
+     * DenyAll annotation applied at the class level should result in an access denied.
      *
-     * @test_Strategy: 1. Send request to access DenyAllServlet 2. Receive an
-     * access denied
+     * @test_Strategy: 1. Send request to access DenyAllServlet 2. Receive an access denied
      */
     public void test1() throws Fault {
         trace("testing DenyAll");
@@ -179,20 +175,16 @@ public class Client extends BaseUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:218; Servlet:SPEC:294;
      *
-     * @assertion: 1. Servlet 3.0 spec (section 13.4 - 3rd from last para) states:
-     * "When a security-constraint in the portable deployment descriptor includes
-     * a url-pattern that matches a request URL, the security annotations
-     * described in this section have no effect on the access policy that applies
-     * to the request URL."
+     * @assertion: 1. Servlet 3.0 spec (section 13.4 - 3rd from last para) states: "When a security-constraint in the
+     * portable deployment descriptor includes a url-pattern that matches a request URL, the security annotations described
+     * in this section have no effect on the access policy that applies to the request URL."
      *
      *
-     * @test_Strategy: 1. We have GuestPageTestServlet setup with DenyAll anno but
-     * we have DD setup with roles and security-constraints that say POST can be
-     * accessed by Manager role (via user=javajoe) and according to spec
-     * statement, the DenyAll anno should be ignored. 2. attempt to POST as user
-     * javajoe should allow access since DD grants it. 3. do POST with incorrect
-     * authentication (ie "j2ee") should NOT allows access since "j2ee" is not in
-     * roles as defined in DD.
+     * @test_Strategy: 1. We have GuestPageTestServlet setup with DenyAll anno but we have DD setup with roles and
+     * security-constraints that say POST can be accessed by Manager role (via user=javajoe) and according to spec
+     * statement, the DenyAll anno should be ignored. 2. attempt to POST as user javajoe should allow access since DD grants
+     * it. 3. do POST with incorrect authentication (ie "j2ee") should NOT allows access since "j2ee" is not in roles as
+     * defined in DD.
      */
     public void test2() throws Fault {
 
@@ -260,16 +252,13 @@ public class Client extends BaseUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:216;
      *
-     * @assertion: 1. Servlet 3.0 (section 13.4) states: "When an annotation is
-     * specified at both the class and method level, the method targeted
-     * annotation overrides that on the class (for the method)" 2. PermitAll func
-     * must be supported by web container
+     * @assertion: 1. Servlet 3.0 (section 13.4) states: "When an annotation is specified at both the class and method
+     * level, the method targeted annotation overrides that on the class (for the method)" 2. PermitAll func must be
+     * supported by web container
      *
-     * @test_Strategy: 1. create ServletSecTestServlet with DeclareRoles
-     * annotation at the class level as well as the ServletSecurity anno. 2. we
-     * created ServletSecTestServlet.doGet() method with PermitAll access 3. try
-     * to access doGet using creds that would normally fail to ensure PermitAll
-     * really does work.
+     * @test_Strategy: 1. create ServletSecTestServlet with DeclareRoles annotation at the class level as well as the
+     * ServletSecurity anno. 2. we created ServletSecTestServlet.doGet() method with PermitAll access 3. try to access doGet
+     * using creds that would normally fail to ensure PermitAll really does work.
      *
      */
     public void test3() throws Fault {
@@ -294,16 +283,13 @@ public class Client extends BaseUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:216;
      *
-     * @assertion: 1. Servlet 3.0 (section 13.4) states: "When an annotation is
-     * specified at both the class and method level, the method targeted
-     * annotation overrides that on the class (for the method) " 2. DenyAll can be
-     * applied to class and method level so here we are validating its use at the
-     * method level.
+     * @assertion: 1. Servlet 3.0 (section 13.4) states: "When an annotation is specified at both the class and method
+     * level, the method targeted annotation overrides that on the class (for the method) " 2. DenyAll can be applied to
+     * class and method level so here we are validating its use at the method level.
      *
-     * @test_Strategy: 1. create ServletSecTestServlet with RolesAllowed
-     * annotation at the class level. 2. create ServletSecTestServlet.doPost
-     * method with DenyAll access set 3. try to access doPost using creds that
-     * normally work to ensure that setting deny all access really does work.
+     * @test_Strategy: 1. create ServletSecTestServlet with RolesAllowed annotation at the class level. 2. create
+     * ServletSecTestServlet.doPost method with DenyAll access set 3. try to access doPost using creds that normally work to
+     * ensure that setting deny all access really does work.
      *
      */
     public void test4() throws Fault {
@@ -339,12 +325,11 @@ public class Client extends BaseUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:215;
      *
-     * @assertion: Servlet 3.0 spec (section 13.4) states: "These annotations may
-     * be specified on (that is, targeted to) an HttpServlet implementation class
-     * or on specific method(s) of the implementation class as defined below."
+     * @assertion: Servlet 3.0 spec (section 13.4) states: "These annotations may be specified on (that is, targeted to) an
+     * HttpServlet implementation class or on specific method(s) of the implementation class as defined below."
      *
-     * @test_Strategy: 1. Send request for unprotected servlet that uses the
-     * PermitAll access at the class level. 2. Receive page
+     * @test_Strategy: 1. Send request for unprotected servlet that uses the PermitAll access at the class level. 2. Receive
+     * page
      */
     public void test5() throws Fault {
 
@@ -366,21 +351,16 @@ public class Client extends BaseUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:218; Servlet:SPEC:294;
      *
-     * @assertion: This validates Servlet 3.0 spec section 13.4, which says: "When
-     * a security-constraint in the portable deployment descriptor includes a
-     * url-pattern that matches a request URL, the security annotations described
-     * in this section have no effect on the access policy that applies to the
-     * request URL."
+     * @assertion: This validates Servlet 3.0 spec section 13.4, which says: "When a security-constraint in the portable
+     * deployment descriptor includes a url-pattern that matches a request URL, the security annotations described in this
+     * section have no effect on the access policy that applies to the request URL."
      *
-     * @test_Strategy: 1. Send request with correct authentication for url pattern
-     * that is defined with a DD that has security-constraints 2. Even if the
-     * servlet (eg url pattern) is defined with DenyAll anno, it should be ignored
-     * since the DD has overriding security-constraint note: pageGuest is defined
-     * with both: DenyAll and DD with security-constraint 3. In this case, the
-     * GuestPage should be accessible and the DenyAll access setting should be
-     * ignored. 4. Additionally, the DD has an authconstraint set for Manager
-     * (user==javajoe) so we want to verify that user is the principal passed into
-     * the servlet.
+     * @test_Strategy: 1. Send request with correct authentication for url pattern that is defined with a DD that has
+     * security-constraints 2. Even if the servlet (eg url pattern) is defined with DenyAll anno, it should be ignored since
+     * the DD has overriding security-constraint note: pageGuest is defined with both: DenyAll and DD with
+     * security-constraint 3. In this case, the GuestPage should be accessible and the DenyAll access setting should be
+     * ignored. 4. Additionally, the DD has an authconstraint set for Manager (user==javajoe) so we want to verify that user
+     * is the principal passed into the servlet.
      */
     public void test6() throws Fault {
 
@@ -424,12 +404,10 @@ public class Client extends BaseUrlClient {
      *
      *
      *
-     * @test_Strategy: 1. Send request to access servlet where there is a
-     * corresponding DD that excludes POST method via the http-method-omission DD
-     * element. (This means that all access to the PartialDD only allowed by
-     * Administrator EXCEPT for POST which has NO security constraints and is thus
-     * allowed by all. 2. Receive an access denied when trying to access GET with
-     * no cred (if the http-method-omission does its job.)
+     * @test_Strategy: 1. Send request to access servlet where there is a corresponding DD that excludes POST method via the
+     * http-method-omission DD element. (This means that all access to the PartialDD only allowed by Administrator EXCEPT
+     * for POST which has NO security constraints and is thus allowed by all. 2. Receive an access denied when trying to
+     * access GET with no cred (if the http-method-omission does its job.)
      *
      */
     public void test7() throws Fault {
@@ -478,10 +456,8 @@ public class Client extends BaseUrlClient {
     /**
      * Returns a valid HTTP/1.1 request line.
      *
-     * @param method
-     *          the request method
-     * @param path
-     *          the request path
+     * @param method the request method
+     * @param path the request path
      * @return a valid HTTP/1.1 request line
      */
     private static String getRequestLine(String method, String path) {
@@ -491,8 +467,7 @@ public class Client extends BaseUrlClient {
     /**
      * Simple wrapper around TestUtil.logTrace().
      *
-     * @param message
-     *          - the message to log
+     * @param message - the message to log
      */
     private static void trace(String message) {
         TestUtil.logMsg(CLASS_TRACE_HEADER + message);

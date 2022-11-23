@@ -20,7 +20,8 @@ import java.io.Serializable;
 
 public class Applicant implements Serializable {
 
-    public Applicant() {}
+    public Applicant() {
+    }
 
     private String name;
 

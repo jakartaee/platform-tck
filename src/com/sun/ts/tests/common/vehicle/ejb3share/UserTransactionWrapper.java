@@ -32,12 +32,12 @@ public final class UserTransactionWrapper implements EntityTransaction {
     private UserTransaction delegate;
 
     /**
-     * These are the various status and values for a transaction STATUS_ACTIVE:0
-     * STATUS_COMMITTED:3 STATUS_COMMITTING:8 STATUS_MARKED_ROLLBACK:1
-     * STATUS_NO_TRANSACTION:6 STATUS_PREPARED:2 STATUS_PREPARING:7
-     * STATUS_ROLLEDBACK:4 STATUS_ROLLING_BACK:9 STATUS_UNKNOWN:5 *
+     * These are the various status and values for a transaction STATUS_ACTIVE:0 STATUS_COMMITTED:3 STATUS_COMMITTING:8
+     * STATUS_MARKED_ROLLBACK:1 STATUS_NO_TRANSACTION:6 STATUS_PREPARED:2 STATUS_PREPARING:7 STATUS_ROLLEDBACK:4
+     * STATUS_ROLLING_BACK:9 STATUS_UNKNOWN:5 *
      */
-    public UserTransactionWrapper() {}
+    public UserTransactionWrapper() {
+    }
 
     public UserTransactionWrapper(UserTransaction delegate) {
         this.delegate = delegate;

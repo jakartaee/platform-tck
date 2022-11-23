@@ -56,8 +56,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * user; password;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; user; password;
      *
      */
     public void setup(String[] args, Properties props) throws Fault {
@@ -86,11 +85,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:805; EJB:SPEC:811
      *
-     * @test_Strategy: Package a Stateless Session bean using a Style 3
-     *                 declaration to grant permission to role 'Employee' for
-     *                 test1(int) method. Login as a user associated to this
-     *                 security role and check that we can call a business method
-     *                 on that bean.
+     * @test_Strategy: Package a Stateless Session bean using a Style 3 declaration to grant permission to role 'Employee'
+     * for test1(int) method. Login as a user associated to this security role and check that we can call a business method
+     * on that bean.
      */
     public void testStyle3Positive() throws Fault {
         boolean pass;
@@ -128,12 +125,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:805; EJB:SPEC:811
      *
-     * @test_Strategy: Package a Stateless Session bean using a Style 3
-     *                 declaration to grant permissions to role 'Manager' only for
-     *                 test1(double) method. Login as a user that is not
-     *                 associated to this security role and check that we get a
-     *                 java.rmi.RemoteException when calling a test1(double)
-     *                 method on that bean.
+     * @test_Strategy: Package a Stateless Session bean using a Style 3 declaration to grant permissions to role 'Manager'
+     * only for test1(double) method. Login as a user that is not associated to this security role and check that we get a
+     * java.rmi.RemoteException when calling a test1(double) method on that bean.
      */
     public void testStyle3Negative() throws Fault {
         boolean pass;

@@ -99,8 +99,10 @@ public class ServletClient extends HttpServlet {
             getTargetEndpointAddress(port2);
             System.out.println("doGet: test to execute is: " + test);
             if (test.equals("testwsreflookup")) {
-                if (testwsreflookup()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (testwsreflookup())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             }
             p.list(out);
         } catch (Exception e) {
@@ -152,7 +154,8 @@ public class ServletClient extends HttpServlet {
 
         try {
             String response = port2.echoString(request);
-            if (!JAXWS_Data.compareValues(request, response, "String")) pass = false;
+            if (!JAXWS_Data.compareValues(request, response, "String"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);

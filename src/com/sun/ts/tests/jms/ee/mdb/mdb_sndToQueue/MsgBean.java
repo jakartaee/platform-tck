@@ -64,19 +64,20 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
 
     public MsgBean() {
         TestUtil.logTrace("@MsgBean()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("@MsgBean-ejbCreate() !!");
         try {
             context = new TSNamingContext();
             qFactory = (QueueConnectionFactory) context.lookup("java:comp/env/jms/MyQueueConnectionFactory");
-            if (qFactory == null) TestUtil.logErr("qFactory error");
+            if (qFactory == null)
+                TestUtil.logErr("qFactory error");
             TestUtil.logTrace("got a qFactory !!");
 
             queue = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
-            if (queue == null) TestUtil.logErr("queue error");
+            if (queue == null)
+                TestUtil.logErr("queue error");
 
             TestUtil.logTrace("got a queue ");
             p = new Properties();
@@ -93,7 +94,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
 
         try {
             qConnection = qFactory.createQueueConnection();
-            if (qConnection == null) TestUtil.logErr("connection error");
+            if (qConnection == null)
+                TestUtil.logErr("connection error");
             else {
                 qConnection.start();
                 qSession = qConnection.createQueueSession(true, 0);

@@ -28,9 +28,8 @@ import java.lang.reflect.Method;
 /**
  * GenericTCKServlet.java
  *
- * Any test that would normally extend GenericServlet will instead extend this
- * class. This will provide a simple framework from invoking various tests
- * defined as methods within the servlet that extends this class.
+ * Any test that would normally extend GenericServlet will instead extend this class. This will provide a simple
+ * framework from invoking various tests defined as methods within the servlet that extends this class.
  *
  * Created: Wed Jul 31 20:57:16 2002
  *
@@ -41,36 +40,30 @@ public abstract class HttpTCKServlet extends HttpServlet {
     private static final String TEXT_PLAIN = "text/plain";
 
     /**
-     * <code>TEST_HEADER</code> is the constant for the <code>testname</code>
-     * header.
+     * <code>TEST_HEADER</code> is the constant for the <code>testname</code> header.
      */
     private static final String TEST_HEADER = "testname";
 
     /**
      * <code>TEST_ARGS</code> is an array of Classes used during reflection.
      */
-    private static final Class[] TEST_ARGS = {HttpServletRequest.class, HttpServletResponse.class};
+    private static final Class[] TEST_ARGS = { HttpServletRequest.class, HttpServletResponse.class };
 
     /**
      * <code>init</code> initializes the servlet.
      *
-     * @param config
-     *          - <code>ServletConfig</code>
+     * @param config - <code>ServletConfig</code>
      */
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
     }
 
     /**
-     * <code>invokeTest</code> uses reflection to invoke test methods in child
-     * classes of this particular class.
+     * <code>invokeTest</code> uses reflection to invoke test methods in child classes of this particular class.
      *
-     * @param req
-     *          - <code>HttpServletRequest</code>
-     * @param res
-     *          - <code>HttpServletResponse</code>
-     * @exception ServletException
-     *              if an error occurs
+     * @param req - <code>HttpServletRequest</code>
+     * @param res - <code>HttpServletResponse</code>
+     * @exception ServletException if an error occurs
      */
     protected void invokeTest(HttpServletRequest req, HttpServletResponse res) throws ServletException {
         res.setContentType(TEXT_PLAIN);
@@ -80,7 +73,7 @@ public abstract class HttpTCKServlet extends HttpServlet {
 
         try {
             Method method = this.getClass().getMethod(test, TEST_ARGS);
-            method.invoke(this, new Object[] {req, res});
+            method.invoke(this, new Object[] { req, res });
         } catch (InvocationTargetException ite) {
             throw new ServletException(ite.getTargetException());
         } catch (NoSuchMethodException nsme) {
@@ -91,34 +84,24 @@ public abstract class HttpTCKServlet extends HttpServlet {
     }
 
     /**
-     * A basic implementation of the <code>doGet</code> method which will call
-     * invokeTest.
+     * A basic implementation of the <code>doGet</code> method which will call invokeTest.
      *
-     * @param req
-     *          - <code>HttpServletRequest</code>
-     * @param res
-     *          - <code>HttpServletResponse</code>
-     * @exception ServletException
-     *              if an error occurs
-     * @exception java.io.IOException
-     *              if an IO error occurs
+     * @param req - <code>HttpServletRequest</code>
+     * @param res - <code>HttpServletResponse</code>
+     * @exception ServletException if an error occurs
+     * @exception java.io.IOException if an IO error occurs
      */
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         invokeTest(req, res);
     }
 
     /**
-     * A basic implementation of the <code>doPost</code> method which will call
-     * invokeTest.
+     * A basic implementation of the <code>doPost</code> method which will call invokeTest.
      *
-     * @param req
-     *          - <code>HttpServletRequest</code>
-     * @param res
-     *          - <code>HttpServletResponse</code>
-     * @exception ServletException
-     *              if an error occurs
-     * @exception java.io.IOException
-     *              if an IO error occurs
+     * @param req - <code>HttpServletRequest</code>
+     * @param res - <code>HttpServletResponse</code>
+     * @exception ServletException if an error occurs
+     * @exception java.io.IOException if an IO error occurs
      */
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         invokeTest(req, res);

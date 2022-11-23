@@ -30,12 +30,10 @@ import java.util.concurrent.TimeUnit;
 public abstract class ClientEndpoint<T extends Object> extends Endpoint implements MessageHandler.Whole<T> {
 
     /**
-     * This structure is static, because the original API was unable to set an
-     * instance of endpoint when connecting to server, the only available option
-     * as an argument of
-     * {@link WebSocketContainer#connectToServer(Class, ClientEndpointConfig, java.net.URI)}
-     * was Class. The instance of endpoint was created by websocket API, and no
-     * information could be injected into the instance.
+     * This structure is static, because the original API was unable to set an instance of endpoint when connecting to
+     * server, the only available option as an argument of
+     * {@link WebSocketContainer#connectToServer(Class, ClientEndpointConfig, java.net.URI)} was Class. The instance of
+     * endpoint was created by websocket API, and no information could be injected into the instance.
      */
     public static class ClientEndpointData {
         protected static volatile StringBuffer sb = new StringBuffer();
@@ -79,8 +77,7 @@ public abstract class ClientEndpoint<T extends Object> extends Endpoint implemen
 
         public static void newCountDown(int count) {
             messageLatch = new CountDownLatch(count);
-        }
-        ;
+        };
 
         public static void awaitCountDown(int seconds) {
             try {
@@ -91,7 +88,8 @@ public abstract class ClientEndpoint<T extends Object> extends Endpoint implemen
         }
 
         public static void newOnCloseCountDown() {
-            if (onCloseLatch == null) onCloseLatch = new CountDownLatch(1);
+            if (onCloseLatch == null)
+                onCloseLatch = new CountDownLatch(1);
         }
 
         public static long getCount() {
@@ -117,8 +115,7 @@ public abstract class ClientEndpoint<T extends Object> extends Endpoint implemen
     }
 
     /**
-     * Hopefully this approach might be changed when api allows for passing the
-     * instance instead of class.
+     * Hopefully this approach might be changed when api allows for passing the instance instead of class.
      */
     @Override
     public void onOpen(Session session, EndpointConfig config) {
@@ -132,8 +129,10 @@ public abstract class ClientEndpoint<T extends Object> extends Endpoint implemen
                 : session.getRequestURI().toASCIIString();
         WebSocketCommonClient.logTrace("RequestUri:", uri);
         if (session.isOpen()) {
-            if (addMessageHandler) session.addMessageHandler(this);
-        } else WebSocketCommonClient.logTrace("Session is closed!!!!", "");
+            if (addMessageHandler)
+                session.addMessageHandler(this);
+        } else
+            WebSocketCommonClient.logTrace("Session is closed!!!!", "");
         synchronized (ClientEndpointData.LOCK) {
             if (ClientEndpointData.callback != null && session.isOpen())
                 ClientEndpointData.callback.onOpen(session, config);
@@ -145,7 +144,8 @@ public abstract class ClientEndpoint<T extends Object> extends Endpoint implemen
         ClientEndpointData.setError(t);
         t.printStackTrace();
         synchronized (ClientEndpointData.LOCK) {
-            if (ClientEndpointData.callback != null) ClientEndpointData.callback.onError(session, t);
+            if (ClientEndpointData.callback != null)
+                ClientEndpointData.callback.onError(session, t);
         }
     }
 
@@ -159,7 +159,8 @@ public abstract class ClientEndpoint<T extends Object> extends Endpoint implemen
         appendMessage(message);
         WebSocketCommonClient.logTrace("Received message so far", ClientEndpointData.sb.toString());
         synchronized (ClientEndpointData.LOCK) {
-            if (ClientEndpointData.callback != null) ClientEndpointData.callback.onMessage(message);
+            if (ClientEndpointData.callback != null)
+                ClientEndpointData.callback.onMessage(message);
         }
         WebSocketTestCase.logTrace("CountDownLatch hit");
         if (ClientEndpointData.messageLatch.getCount() == 0)
@@ -173,10 +174,13 @@ public abstract class ClientEndpoint<T extends Object> extends Endpoint implemen
             WebSocketTestCase.logTrace("On close on session id", session.getId(), "reason", closeReason);
             if (ClientEndpointData.lastMessage == null)
                 WebSocketTestCase.logTrace("onClose has been called before a message was received");
-            else WebSocketTestCase.logTrace("onClose has been called");
-            if (ClientEndpointData.callback != null) ClientEndpointData.callback.onClose(session, closeReason);
+            else
+                WebSocketTestCase.logTrace("onClose has been called");
+            if (ClientEndpointData.callback != null)
+                ClientEndpointData.callback.onClose(session, closeReason);
             // onCloseLatch == null when close has not been called by client
-            if (ClientEndpointData.onCloseLatch == null) ClientEndpointData.newOnCloseCountDown();
+            if (ClientEndpointData.onCloseLatch == null)
+                ClientEndpointData.newOnCloseCountDown();
             ClientEndpointData.onCloseLatch.countDown();
         }
     }
@@ -189,7 +193,7 @@ public abstract class ClientEndpoint<T extends Object> extends Endpoint implemen
         return ClientEndpointData.sb;
     }
 
-    @SuppressWarnings({"unchecked", "unused"})
+    @SuppressWarnings({ "unchecked", "unused" })
     public T getLastMessage(Class<T> messageType) {
         return (T) ClientEndpointData.lastMessage;
     }

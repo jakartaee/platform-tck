@@ -22,4 +22,5 @@ package com.sun.ts.tests.ejb30.assembly.appres.common;
 import jakarta.ejb.Local;
 
 @Local
-public interface AppResLocalIF extends AppResCommonIF {}
+public interface AppResLocalIF extends AppResCommonIF {
+}

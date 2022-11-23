@@ -237,8 +237,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: attributeDefaults
      *
-     * @test_Strategy: verify the default values 0 for second, minute, hour, and
-     * '*' for dayOfMonth, month, year, and dayOfWeek
+     * @test_Strategy: verify the default values 0 for second, minute, hour, and '*' for dayOfMonth, month, year, and
+     * dayOfWeek
      */
     public void attributeDefaults() {
         appendReason(scheduleBean.attributeDefaults());
@@ -247,11 +247,10 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfMonthOverDayOfWeek
      *
-     * @test_Strategy: If dayOfWeek has a wildcard value and dayOfMonth does not,
-     * the dayOfMonth attribute takes precedence and the dayOfWeek attribute is
-     * ignored. If dayOfMonth has a non-wildcard value and dayOfWeek has a
-     * non-wildcard value, both attributes apply. Typically, at most one of these
-     * two attributes will be specified to contain a non-wildcard value.
+     * @test_Strategy: If dayOfWeek has a wildcard value and dayOfMonth does not, the dayOfMonth attribute takes precedence
+     * and the dayOfWeek attribute is ignored. If dayOfMonth has a non-wildcard value and dayOfWeek has a non-wildcard
+     * value, both attributes apply. Typically, at most one of these two attributes will be specified to contain a
+     * non-wildcard value.
      */
     public void dayOfMonthOverDayOfWeek() {
         appendReason(scheduleBean.dayOfMonthOverDayOfWeek());
@@ -261,9 +260,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfWeekOverDayOfMonth
      *
-     * @test_Strategy: If dayOfMonth has a wildcard value and dayOfWeek does not,
-     * the dayOfWeek attribute takes precedence and the dayOfMonth attribute is
-     * ignored.
+     * @test_Strategy: If dayOfMonth has a wildcard value and dayOfWeek does not, the dayOfWeek attribute takes precedence
+     * and the dayOfMonth attribute is ignored.
      */
     public void dayOfWeekOverDayOfMonth() {
         appendReason(scheduleBean.dayOfWeekOverDayOfMonth());
@@ -273,9 +271,8 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: dayOfMonthAndDayOfWeek
      *
-     * @test_Strategy: If dayOfMonth has a non-wildcard value and dayOfWeek has a
-     * non-wildcard value, both attributes apply. Typically, at most one of these
-     * two attributes will be specified to contain a non-wildcard value.
+     * @test_Strategy: If dayOfMonth has a non-wildcard value and dayOfWeek has a non-wildcard value, both attributes apply.
+     * Typically, at most one of these two attributes will be specified to contain a non-wildcard value.
      */
     public void dayOfMonthAndDayOfWeek() {
         scheduleBean.cancelAllTimers();
@@ -304,8 +301,7 @@ public class JsfClient extends JsfClientBase {
     /*
      * @testName: validStartEnd
      *
-     * @test_Strategy:verify ScheduleExpression with a stard and end value,
-     * supplied as java.util.Date
+     * @test_Strategy:verify ScheduleExpression with a stard and end value, supplied as java.util.Date
      */
     public void validStartEnd() {
         scheduleBean.validStartEnd(getReasonBuffer());

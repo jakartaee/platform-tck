@@ -27,7 +27,8 @@ public class DoesNotExist implements java.io.Serializable {
 
     private String firstName;
 
-    public DoesNotExist() {}
+    public DoesNotExist() {
+    }
 
     public DoesNotExist(int id) {
         this.id = id;

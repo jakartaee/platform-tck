@@ -45,12 +45,9 @@ public class SimpleBean implements Serializable, SimpleInterface {
 
     /**
      *
-     * @param firstName
-     *          - first name @String
-     * @param lastName
-     *          - last Name
-     * @return true is full name matches the given firstName + " " + lastName
-     *         pattern.
+     * @param firstName - first name @String
+     * @param lastName - last Name
+     * @return true is full name matches the given firstName + " " + lastName pattern.
      */
     public boolean isName(String firstName, String lastName) {
         boolean result = Boolean.FALSE;

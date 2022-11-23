@@ -83,8 +83,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -187,7 +189,8 @@ public class Client extends ServiceEETest {
             throw new Fault(t.toString());
         }
 
-        if (!pass) throw new Fault("transformBodyTest failed");
+        if (!pass)
+            throw new Fault("transformBodyTest failed");
     }
 
     /*
@@ -201,8 +204,7 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("transformHeaderTest");
         boolean pass = true;
         HeaderType ht = null;
-        String expected =
-                "theTransformHeaderOutboundClientSOAPHandlerInboundServerSOAPHandlerOutboundServerSOAPHandlerInboundClientSOAPHandler";
+        String expected = "theTransformHeaderOutboundClientSOAPHandlerInboundServerSOAPHandlerOutboundServerSOAPHandlerInboundClientSOAPHandler";
         try {
             ht = new HeaderType();
             ht.setMyheader("theTransformHeader");
@@ -224,6 +226,7 @@ public class Client extends ServiceEETest {
             throw new Fault(t.toString());
         }
 
-        if (!pass) throw new Fault("transformHeaderTest failed");
+        if (!pass)
+            throw new Fault("transformHeaderTest failed");
     }
 }

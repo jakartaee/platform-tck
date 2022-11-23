@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,8 +100,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:304;
      *
-     * @test_Strategy: Call Node.detachNode() method and verify that the given
-     * node is indeed removed.
+     * @test_Strategy: Call Node.detachNode() method and verify that the given node is indeed removed.
      *
      * Description: Through the Node interface you can detach a node element
      *
@@ -115,12 +116,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "detachNodeTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -129,7 +133,8 @@ public class URLClient extends EETest {
             throw new Fault("detachNodeTest failed", e);
         }
 
-        if (!pass) throw new Fault("detachNodeTest failed");
+        if (!pass)
+            throw new Fault("detachNodeTest failed");
     }
 
     /*
@@ -137,8 +142,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:305;
      *
-     * @test_Strategy: Call Node.recycleNode() method and verify that the given
-     * node is indeed recycled.
+     * @test_Strategy: Call Node.recycleNode() method and verify that the given node is indeed recycled.
      *
      * Description: Through the Node interface you can recycle a node element
      *
@@ -154,12 +158,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "recycleNodeTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -168,7 +175,8 @@ public class URLClient extends EETest {
             throw new Fault("recycleNodeTest failed", e);
         }
 
-        if (!pass) throw new Fault("recycleNodeTest failed");
+        if (!pass)
+            throw new Fault("recycleNodeTest failed");
     }
 
     /*
@@ -176,11 +184,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:303;
      *
-     * @test_Strategy: Call Node.getParentElement() method on an element with a
-     * parent and verify that the correct parent node is indeed returned.
+     * @test_Strategy: Call Node.getParentElement() method on an element with a parent and verify that the correct parent
+     * node is indeed returned.
      *
-     * Description: Through the Node interface you can get parent node element of
-     * a Node that has a parent.
+     * Description: Through the Node interface you can get parent node element of a Node that has a parent.
      *
      */
     public void getParentElementTest1() throws Fault {
@@ -194,12 +201,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getParentElementTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -208,7 +218,8 @@ public class URLClient extends EETest {
             throw new Fault("getParentElementTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("getParentElementTest1 failed");
+        if (!pass)
+            throw new Fault("getParentElementTest1 failed");
     }
 
     /*
@@ -216,11 +227,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:303;
      *
-     * @test_Strategy: Call Node.getParentElement() method on an element without a
-     * parent and verify that the parent node returned is null.
+     * @test_Strategy: Call Node.getParentElement() method on an element without a parent and verify that the parent node
+     * returned is null.
      *
-     * Description: Through the Node interface you cannot get parent node element
-     * of a Node that does not have a parent.
+     * Description: Through the Node interface you cannot get parent node element of a Node that does not have a parent.
      *
      */
     public void getParentElementTest2() throws Fault {
@@ -234,12 +244,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getParentElementTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -248,7 +261,8 @@ public class URLClient extends EETest {
             throw new Fault("getParentElementTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("getParentElementTest2 failed");
+        if (!pass)
+            throw new Fault("getParentElementTest2 failed");
     }
 
     /*
@@ -256,8 +270,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:301;
      *
-     * @test_Strategy: Call Node.setParentElementTest(SOAPElement) method on an
-     * element without a parent and verify that the parent is set correctly.
+     * @test_Strategy: Call Node.setParentElementTest(SOAPElement) method on an element without a parent and verify that the
+     * parent is set correctly.
      *
      * Description: Through the Node interface you can set parent node element
      *
@@ -273,12 +287,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setParentElementTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -287,7 +304,8 @@ public class URLClient extends EETest {
             throw new Fault("setParentElementTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("setParentElementTest1 failed");
+        if (!pass)
+            throw new Fault("setParentElementTest1 failed");
     }
 
     /*
@@ -295,12 +313,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:302;
      *
-     * @test_Strategy: Call Node.setParentElementTest(SOAPElement) method on an
-     * element without a parent to an improper parent and verify that a
-     * SOAPException condition occurs.
+     * @test_Strategy: Call Node.setParentElementTest(SOAPElement) method on an element without a parent to an improper
+     * parent and verify that a SOAPException condition occurs.
      *
-     * Description: Through the Node interface you cannot set parent node element
-     * to an improper parent.
+     * Description: Through the Node interface you cannot set parent node element to an improper parent.
      *
      */
     public void setParentElementTest2() throws Fault {
@@ -314,12 +330,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setParentElementTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -328,7 +347,8 @@ public class URLClient extends EETest {
             throw new Fault("setParentElementTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("setParentElementTest2 failed");
+        if (!pass)
+            throw new Fault("setParentElementTest2 failed");
     }
 
     /*
@@ -336,12 +356,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:302;
      *
-     * @test_Strategy: Call Node.setParentElementTest(SOAPElement) method on an
-     * element without a parent to a null parent and verify that a SOAPException
-     * condition occurs.
+     * @test_Strategy: Call Node.setParentElementTest(SOAPElement) method on an element without a parent to a null parent
+     * and verify that a SOAPException condition occurs.
      *
-     * Description: Through the Node interface you cannot set parent node element
-     * to a null parent.
+     * Description: Through the Node interface you cannot set parent node element to a null parent.
      *
      */
     public void setParentElementTest3() throws Fault {
@@ -355,12 +373,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setParentElementTest3");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -369,7 +390,8 @@ public class URLClient extends EETest {
             throw new Fault("setParentElementTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("setParentElementTest3 failed");
+        if (!pass)
+            throw new Fault("setParentElementTest3 failed");
     }
 
     /*
@@ -377,11 +399,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:299;
      *
-     * @test_Strategy: Call Node.getValue() method on an element with no child
-     * element and verify that null is returned.
+     * @test_Strategy: Call Node.getValue() method on an element with no child element and verify that null is returned.
      *
-     * Description: Through the Node interface you cannot get the value of the
-     * immediate child of a node element if a child does not exist.
+     * Description: Through the Node interface you cannot get the value of the immediate child of a node element if a child
+     * does not exist.
      *
      */
     public void getValueTest1() throws Fault {
@@ -395,12 +416,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getValueTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -409,7 +433,8 @@ public class URLClient extends EETest {
             throw new Fault("getValueTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("getValueTest1 failed");
+        if (!pass)
+            throw new Fault("getValueTest1 failed");
     }
 
     /*
@@ -417,11 +442,11 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:299;
      *
-     * @test_Strategy: Call Node.getValue() method on an element with a child
-     * element and verify that proper value is returned.
+     * @test_Strategy: Call Node.getValue() method on an element with a child element and verify that proper value is
+     * returned.
      *
-     * Description: Through the Node interface you can get the value of the
-     * immediate child of a node element if a child exists.
+     * Description: Through the Node interface you can get the value of the immediate child of a node element if a child
+     * exists.
      *
      */
     public void getValueTest2() throws Fault {
@@ -435,12 +460,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getValueTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -449,7 +477,8 @@ public class URLClient extends EETest {
             throw new Fault("getValueTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("getValueTest2 failed");
+        if (!pass)
+            throw new Fault("getValueTest2 failed");
     }
 
     /*
@@ -457,11 +486,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:300;
      *
-     * @test_Strategy: Call Node.setValue() method to set the value of this node
-     * element.
+     * @test_Strategy: Call Node.setValue() method to set the value of this node element.
      *
-     * Description: Sets the value of this node if this is a Text node or the
-     * immediate child of this node otherwise.
+     * Description: Sets the value of this node if this is a Text node or the immediate child of this node otherwise.
      *
      */
     public void setValueTest1() throws Fault {
@@ -474,13 +501,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "setValueTest1");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -488,7 +518,8 @@ public class URLClient extends EETest {
             throw new Fault("setValueTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("setValueTest1 failed");
+        if (!pass)
+            throw new Fault("setValueTest1 failed");
     }
 
     /*
@@ -496,11 +527,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:300;
      *
-     * @test_Strategy: Call Node.setValue() method to set the value of this node
-     * element.
+     * @test_Strategy: Call Node.setValue() method to set the value of this node element.
      *
-     * Description: Sets the value of this node if this is a Text node or the
-     * immediate child of this node otherwise.
+     * Description: Sets the value of this node if this is a Text node or the immediate child of this node otherwise.
      *
      */
     public void setValueTest2() throws Fault {
@@ -513,13 +542,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "setValueTest2");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -527,7 +559,8 @@ public class URLClient extends EETest {
             throw new Fault("setValueTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("setValueTest2 failed");
+        if (!pass)
+            throw new Fault("setValueTest2 failed");
     }
 
     /*
@@ -535,13 +568,11 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:208;
      *
-     * @test_Strategy: Call Node.setValue() method to set the value of this node
-     * element. Try setting value on a Node which is not a Text Node. Should get
-     * an IllegalStateException thrown.
+     * @test_Strategy: Call Node.setValue() method to set the value of this node element. Try setting value on a Node which
+     * is not a Text Node. Should get an IllegalStateException thrown.
      *
-     * Description: If the node is not a Text node and either has more than one
-     * child node or has a child node that is not a Text node then an
-     * IllegalStateException MUST be thrown.
+     * Description: If the node is not a Text node and either has more than one child node or has a child node that is not a
+     * Text node then an IllegalStateException MUST be thrown.
      *
      */
     public void setValueTest3() throws Fault {
@@ -554,13 +585,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "setValueTest3");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -568,6 +602,7 @@ public class URLClient extends EETest {
             throw new Fault("setValueTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("setValueTest2 failed");
+        if (!pass)
+            throw new Fault("setValueTest2 failed");
     }
 }

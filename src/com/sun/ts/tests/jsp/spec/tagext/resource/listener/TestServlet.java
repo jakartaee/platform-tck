@@ -37,16 +37,16 @@ public class TestServlet extends GenericTCKServlet {
         boolean passed = true;
 
         String[] expected = {
-            "ContextListener contextInitialized",
-            "passed DataSource",
-            "passed QueueConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed ConnectionFactory",
-            "passed Queue",
-            "passed Topic",
-            "passed Session",
-            "passed URL"
+                "ContextListener contextInitialized",
+                "passed DataSource",
+                "passed QueueConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed ConnectionFactory",
+                "passed Queue",
+                "passed Topic",
+                "passed Session",
+                "passed URL"
         };
 
         ServletConfig config = getServletConfig();
@@ -80,16 +80,16 @@ public class TestServlet extends GenericTCKServlet {
         boolean passed = true;
 
         String[] expected = {
-            "ContextAttributeListener attributeAdded",
-            "passed DataSource",
-            "passed QueueConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed ConnectionFactory",
-            "passed Queue",
-            "passed Topic",
-            "passed Session",
-            "passed URL"
+                "ContextAttributeListener attributeAdded",
+                "passed DataSource",
+                "passed QueueConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed ConnectionFactory",
+                "passed Queue",
+                "passed Topic",
+                "passed Session",
+                "passed URL"
         };
 
         ServletConfig config = getServletConfig();
@@ -126,16 +126,16 @@ public class TestServlet extends GenericTCKServlet {
         boolean passed = true;
 
         String[] expected = {
-            "RequestListener requestInitialized",
-            "passed DataSource",
-            "passed QueueConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed ConnectionFactory",
-            "passed Queue",
-            "passed Topic",
-            "passed Session",
-            "passed URL"
+                "RequestListener requestInitialized",
+                "passed DataSource",
+                "passed QueueConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed ConnectionFactory",
+                "passed Queue",
+                "passed Topic",
+                "passed Session",
+                "passed URL"
         };
 
         ServletConfig config = getServletConfig();
@@ -170,16 +170,16 @@ public class TestServlet extends GenericTCKServlet {
         boolean passed = true;
 
         String[] expected = {
-            "RequestAttributeListener attributeAdded",
-            "passed DataSource",
-            "passed QueueConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed TopicConnectionFactory",
-            "passed ConnectionFactory",
-            "passed Queue",
-            "passed Topic",
-            "passed Session",
-            "passed URL"
+                "RequestAttributeListener attributeAdded",
+                "passed DataSource",
+                "passed QueueConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed TopicConnectionFactory",
+                "passed ConnectionFactory",
+                "passed Queue",
+                "passed Topic",
+                "passed Session",
+                "passed URL"
         };
 
         request.setAttribute("CTSTEST", "CTSTEST");

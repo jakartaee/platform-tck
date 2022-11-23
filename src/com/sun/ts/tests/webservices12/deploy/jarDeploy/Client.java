@@ -77,8 +77,7 @@ public class Client extends EETest {
      * @assertion_ids: WS4EE:SPEC:183; JavaEE:SPEC:247;
      *
      *
-     * @test_Strategy: call method on deployed web services implementation, which
-     * is deployed from a .jar file
+     * @test_Strategy: call method on deployed web services implementation, which is deployed from a .jar file
      */
     public void call_hello() throws Fault {
         TestUtil.logMsg("call_hello");

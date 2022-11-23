@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,9 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:42.3
      *
-     * @testStrategy: Validate that the catch action, with no var attribute
-     * specified, will catch the Throwable and allow the page to continue
-     * processing.
+     * @testStrategy: Validate that the catch action, with no var attribute specified, will catch the Throwable and allow
+     * the page to continue processing.
      */
     public void positiveCatchTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveCatchTest");
@@ -80,9 +77,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:42.1
      *
-     * @testStrategy: Validate that the catch action properly stores the Throable
-     * into the variable name designated by the var attribute and validate the
-     * type of var as it should be the type of the Throwable.
+     * @testStrategy: Validate that the catch action properly stores the Throable into the variable name designated by the
+     * var attribute and validate the type of var as it should be the type of the Throwable.
      */
     public void positiveCatchVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveCatchVarTest");

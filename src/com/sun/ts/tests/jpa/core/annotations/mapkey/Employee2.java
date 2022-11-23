@@ -49,7 +49,8 @@ public class Employee2 implements java.io.Serializable {
 
     private Department department;
 
-    public Employee2() {}
+    public Employee2() {
+    }
 
     public Employee2(int id, String firstName, String lastName) {
         this.id = id;

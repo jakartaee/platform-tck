@@ -29,8 +29,7 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 
 /**
- * The rsSchema class creates the database and tables using Sun's J2EE Reference
- * Implementation.
+ * The rsSchema class creates the database and tables using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -148,9 +147,8 @@ public class rsSchema extends ServiceEETest {
     }
 
     /*
-     * This method returns a boolean value based on the string that is pulled out
-     * of the table. A "1" or a case insensitive "true" string results in a
-     * returned value of (boolean) true.
+     * This method returns a boolean value based on the string that is pulled out of the table. A "1" or a case insensitive
+     * "true" string results in a returned value of (boolean) true.
      *
      */
     public boolean extractValAsBoolVal(String sTableName, int count, Properties sqlProps, Connection conn)
@@ -172,9 +170,8 @@ public class rsSchema extends ServiceEETest {
     }
 
     /*
-     * This method returns a Boolean object based on the string that is pulled out
-     * of the table. A "1" or a case insensitive "true" string results in a
-     * returned Boolean object that equates to true.
+     * This method returns a Boolean object based on the string that is pulled out of the table. A "1" or a case insensitive
+     * "true" string results in a returned Boolean object that equates to true.
      *
      */
     public Boolean extractValAsBoolObj(String sTableName, int count, Properties sqlProps, Connection conn)
@@ -198,13 +195,10 @@ public class rsSchema extends ServiceEETest {
     }
 
     /*
-     * This method returns a String based on the string that is pulled out of the
-     * table. A case insensitive "true" string results in a returned String object
-     * with a value of "1". A case insensitive "false" string results in a
-     * returned Integer object with a value of 0. All other strings are returned
-     * as obtained from the table. The main purpose of this method is to interpret
-     * boolean values (eg "true" or "false") as a numeric value (ie "1" and "0",
-     * respectively).
+     * This method returns a String based on the string that is pulled out of the table. A case insensitive "true" string
+     * results in a returned String object with a value of "1". A case insensitive "false" string results in a returned
+     * Integer object with a value of 0. All other strings are returned as obtained from the table. The main purpose of this
+     * method is to interpret boolean values (eg "true" or "false") as a numeric value (ie "1" and "0", respectively).
      *
      */
     public String extractValAsNumericString(String sTableName, int count, Properties sqlProps, Connection conn)

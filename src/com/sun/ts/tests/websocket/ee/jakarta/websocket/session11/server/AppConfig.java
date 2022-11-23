@@ -69,7 +69,8 @@ public class AppConfig implements ServerApplicationConfig {
         };
         ServerEndpointConfig.Builder builder = ServerEndpointConfig.Builder.create(
                 WSCServerEndpoint.class, "/" + typeEnum.name().toLowerCase());
-        if (decoder != null) builder = builder.decoders(decoders);
+        if (decoder != null)
+            builder = builder.decoders(decoders);
         ServerEndpointConfig config = builder.configurator(configurator).build();
         set.add(config);
         return set;

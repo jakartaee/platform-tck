@@ -97,8 +97,7 @@ public class Client extends ServiceEETest {
     }
 
     private void getPortStandalone() throws Exception {
-        port = (HeaderTest)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, HeaderTestService.class, PORT_QNAME, HeaderTest.class);
+        port = (HeaderTest) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, HeaderTestService.class, PORT_QNAME, HeaderTest.class);
         JAXWS_Util.setTargetEndpointAddress(port, url);
     }
 
@@ -132,8 +131,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -171,13 +172,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: GoodOrderTestWithSoapHeaderAndMUFalse
      *
-     * @assertion_ids: JAXWS:SPEC:2048; JAXWS:SPEC:2049; JAXWS:SPEC:10008;
-     * JAXWS:SPEC:3038; WSI:SPEC:R1013; WSI:SPEC:R1034; WSI:SPEC:R1032;
-     * WSI:SPEC:R9802; WSI:SPEC:R2209;
+     * @assertion_ids: JAXWS:SPEC:2048; JAXWS:SPEC:2049; JAXWS:SPEC:10008; JAXWS:SPEC:3038; WSI:SPEC:R1013; WSI:SPEC:R1034;
+     * WSI:SPEC:R1032; WSI:SPEC:R9802; WSI:SPEC:R2209;
      *
-     * @test_Strategy: Call submitOrder() with a valid product code passing a soap
-     * header (ConfigHeader) with mustUnderstand=false. The soap header is simply
-     * ignored. The RPC request must succeed.
+     * @test_Strategy: Call submitOrder() with a valid product code passing a soap header (ConfigHeader) with
+     * mustUnderstand=false. The soap header is simply ignored. The RPC request must succeed.
      *
      */
     public void GoodOrderTestWithSoapHeaderAndMUFalse() throws Fault {
@@ -219,26 +218,26 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("The service endpoint simply ignores the soap header");
             TestUtil.logMsg("The RPC request must succeed");
             ProductOrderResponse poResponse = port.submitOrder(poRequest, ch);
-            if (!ProductOrdersEqual(poRequest, poResponse)) pass = false;
+            if (!ProductOrdersEqual(poRequest, poResponse))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("GoodOrderTestWithSoapHeaderAndMUFalse failed", e);
         }
 
-        if (!pass) throw new Fault("GoodOrderTestWithSoapHeaderAndMUFalse failed");
+        if (!pass)
+            throw new Fault("GoodOrderTestWithSoapHeaderAndMUFalse failed");
     }
 
     /*
      * @testName: GoodOrderTestWithSoapHeaderAndMUTrue
      *
-     * @assertion_ids: JAXWS:SPEC:2048; JAXWS:SPEC:2049; JAXWS:SPEC:10008;
-     * JAXWS:SPEC:3038; WSI:SPEC:R1013; WSI:SPEC:R1034; WSI:SPEC:R1032;
-     * WSI:SPEC:R9802; WSI:SPEC:R2209;
+     * @assertion_ids: JAXWS:SPEC:2048; JAXWS:SPEC:2049; JAXWS:SPEC:10008; JAXWS:SPEC:3038; WSI:SPEC:R1013; WSI:SPEC:R1034;
+     * WSI:SPEC:R1032; WSI:SPEC:R9802; WSI:SPEC:R2209;
      *
-     * @test_Strategy: Call submitOrder() with a valid product code passing a soap
-     * header (ConfigHeader) with mustUnderstand=true. The soap header is
-     * understood by the service endpoint and the soap header is valid. The RPC
+     * @test_Strategy: Call submitOrder() with a valid product code passing a soap header (ConfigHeader) with
+     * mustUnderstand=true. The soap header is understood by the service endpoint and the soap header is valid. The RPC
      * request must succeed.
      */
     public void GoodOrderTestWithSoapHeaderAndMUTrue() throws Fault {
@@ -281,27 +280,26 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("The RPC request must succeed");
             ProductOrderResponse poResponse = port.submitOrder(poRequest, ch);
             TestUtil.logMsg("GoodOrderTestWithMUTrueHeader succeeded (expected)");
-            if (!ProductOrdersEqual(poRequest, poResponse)) pass = false;
+            if (!ProductOrdersEqual(poRequest, poResponse))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("GoodOrderTestWithSoapHeaderAndMUTrue failed", e);
         }
 
-        if (!pass) throw new Fault("GoodOrderTestWithSoapHeaderAndMUTrue failed");
+        if (!pass)
+            throw new Fault("GoodOrderTestWithSoapHeaderAndMUTrue failed");
     }
 
     /*
      * @testName: SoapHeaderFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:2048; JAXWS:SPEC:2049; JAXWS:SPEC:10008;
-     * WSI:SPEC:R1013; WSI:SPEC:R1034; WSI:SPEC:R1032; WSI:SPEC:R9802;
-     * WSI:SPEC:R2209;
+     * @assertion_ids: JAXWS:SPEC:2048; JAXWS:SPEC:2049; JAXWS:SPEC:10008; WSI:SPEC:R1013; WSI:SPEC:R1034; WSI:SPEC:R1032;
+     * WSI:SPEC:R9802; WSI:SPEC:R2209;
      *
-     * @test_Strategy: Call submitOrder() passing soap header (ConfigHeader) with
-     * mustUnderstand attribute=true and the soap header (ConfigHeader) is not
-     * understood. The service endpoint must throw back the SOAP Header Fault
-     * (ConfigFault).
+     * @test_Strategy: Call submitOrder() passing soap header (ConfigHeader) with mustUnderstand attribute=true and the soap
+     * header (ConfigHeader) is not understood. The service endpoint must throw back the SOAP Header Fault (ConfigFault).
      *
      */
     public void SoapHeaderFaultTest() throws Fault {
@@ -353,20 +351,19 @@ public class Client extends ServiceEETest {
             throw new Fault("SoapHeaderFaultTest failed", e);
         }
 
-        if (!pass) throw new Fault("SoapHeaderFaultTest failed");
+        if (!pass)
+            throw new Fault("SoapHeaderFaultTest failed");
     }
 
     /*
      * @testName: SoapFaultTest
      *
-     * @assertion_ids: JAXWS:SPEC:2048; JAXWS:SPEC:2049; JAXWS:SPEC:10008;
-     * JAXWS:SPEC:3028; JAXWS:SPEC:2044; WSI:SPEC:R1013; WSI:SPEC:R1034;
-     * WSI:SPEC:R1032; WSI:SPEC:R9802; WSI:SPEC:R2209;
+     * @assertion_ids: JAXWS:SPEC:2048; JAXWS:SPEC:2049; JAXWS:SPEC:10008; JAXWS:SPEC:3028; JAXWS:SPEC:2044; WSI:SPEC:R1013;
+     * WSI:SPEC:R1034; WSI:SPEC:R1032; WSI:SPEC:R9802; WSI:SPEC:R2209;
      *
-     * @test_Strategy: Call submitOrder() passing soap header (ConfigHeader) with
-     * mustUnderstand attribute=false so the soap header (ConfigHeader) will
-     * simply be ignored. The submitOrder() contains an invalid product code so
-     * the service endpoint must throw back the SOAP Fault (BadOrderFault).
+     * @test_Strategy: Call submitOrder() passing soap header (ConfigHeader) with mustUnderstand attribute=false so the soap
+     * header (ConfigHeader) will simply be ignored. The submitOrder() contains an invalid product code so the service
+     * endpoint must throw back the SOAP Fault (BadOrderFault).
      *
      */
     public void SoapFaultTest() throws Fault {
@@ -419,7 +416,8 @@ public class Client extends ServiceEETest {
             throw new Fault("SoapFaultTest failed", e);
         }
 
-        if (!pass) throw new Fault("SoapFaultTest failed");
+        if (!pass)
+            throw new Fault("SoapFaultTest failed");
     }
 
     private boolean ProductOrdersEqual(ProductOrderRequest req, ProductOrderResponse resp) {

@@ -30,8 +30,7 @@ public class Client extends com.sun.xml.messaging.saaj.client.p2p.http.handler.A
     }
 
     /*
-     * @class.setup_props: ts_home; webServerHost; webServerPort; user; password;
-     * authuser; authpassword;
+     * @class.setup_props: ts_home; webServerHost; webServerPort; user; password; authuser; authpassword;
      */
 
     /*

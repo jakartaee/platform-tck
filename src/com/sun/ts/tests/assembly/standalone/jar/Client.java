@@ -67,17 +67,14 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:261
      *
-     * @test_Strategy: Package an ejb-jar file
-     *                 (assembly_standalone_jar_component_ejb.jar).
+     * @test_Strategy: Package an ejb-jar file (assembly_standalone_jar_component_ejb.jar).
      *
-     *                 Package a .ear file containing an application client
-     *                 accessing a bean in the stand-alone ejb-jar module (JNDI
-     *                 names match in runtime information).
+     * Package a .ear file containing an application client accessing a bean in the stand-alone ejb-jar module (JNDI names
+     * match in runtime information).
      *
-     *                 Deploy the ejb-jar module and the .ear file.
+     * Deploy the ejb-jar module and the .ear file.
      *
-     *                 Run the client and check that we can call a business method
-     *                 on the referenced bean at runtime.
+     * Run the client and check that we can call a business method on the referenced bean at runtime.
      */
     public void testStandaloneJar() throws Fault {
         TestBean bean;

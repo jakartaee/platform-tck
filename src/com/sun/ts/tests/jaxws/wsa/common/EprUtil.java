@@ -54,8 +54,10 @@ public class EprUtil {
             String wsdlLocation) {
         boolean pass1 = validateEPR(node, epr, endpointAddress, serviceName, portName, portTypeName, hasWSDL);
         boolean pass2 = validateWsdlLocation(node, wsdlLocation);
-        if (pass1 && pass2) return true;
-        else return false;
+        if (pass1 && pass2)
+            return true;
+        else
+            return false;
     }
 
     public static boolean validateEPR(
@@ -69,13 +71,19 @@ public class EprUtil {
 
         boolean pass = true;
 
-        if (node.getNodeType() == Node.DOCUMENT_NODE) node = node.getFirstChild();
+        if (node.getNodeType() == Node.DOCUMENT_NODE)
+            node = node.getFirstChild();
 
-        if (endpointAddress != null) TestUtil.logMsg("EndpointAddress=" + endpointAddress);
-        if (serviceName != null) TestUtil.logMsg("ServiceName=" + serviceName.getLocalPart());
-        if (portName != null) TestUtil.logMsg("PortName=" + portName.getLocalPart());
-        if (portTypeName != null) TestUtil.logMsg("PortTypeName=" + portTypeName.getLocalPart());
-        if (hasWSDL) TestUtil.logMsg("WSDL=" + hasWSDL);
+        if (endpointAddress != null)
+            TestUtil.logMsg("EndpointAddress=" + endpointAddress);
+        if (serviceName != null)
+            TestUtil.logMsg("ServiceName=" + serviceName.getLocalPart());
+        if (portName != null)
+            TestUtil.logMsg("PortName=" + portName.getLocalPart());
+        if (portTypeName != null)
+            TestUtil.logMsg("PortTypeName=" + portTypeName.getLocalPart());
+        if (hasWSDL)
+            TestUtil.logMsg("WSDL=" + hasWSDL);
         TestUtil.logMsg("EPR class=" + epr);
 
         if (epr.isAssignableFrom(W3CEndpointReference.class)) {
@@ -89,7 +97,8 @@ public class EprUtil {
                 pass = false;
             }
 
-            if (endpointAddress == null) return pass;
+            if (endpointAddress == null)
+                return pass;
 
             Element elm = (Element) node;
             Element add = DOMUtil.getFirstElementChild(node);
@@ -127,8 +136,10 @@ public class EprUtil {
                 prefix = XmlUtil.getPrefix(qname);
                 name = XmlUtil.getLocalPart(qname);
                 ns = service.lookupNamespaceURI(prefix);
-                if (debug) XMLUtils.xmlDumpDOMNodes(service);
-                if (debug) TestUtil.logMsg("prefix=" + prefix + " localPart=" + name + " namespace=" + ns);
+                if (debug)
+                    XMLUtils.xmlDumpDOMNodes(service);
+                if (debug)
+                    TestUtil.logMsg("prefix=" + prefix + " localPart=" + name + " namespace=" + ns);
                 if (!serviceName.getNamespaceURI().equals(ns)) {
                     TestUtil.logErr(
                             "Incorrect namespace uri, got: " + ns + " expected: " + serviceName.getNamespaceURI());
@@ -148,7 +159,8 @@ public class EprUtil {
                     prefix = XmlUtil.getPrefix(port);
                     name = XmlUtil.getLocalPart(port);
                     ns = service.lookupNamespaceURI(prefix);
-                    if (debug) TestUtil.logMsg("prefix=" + prefix + " localPart=" + name + " namespace=" + ns);
+                    if (debug)
+                        TestUtil.logMsg("prefix=" + prefix + " localPart=" + name + " namespace=" + ns);
                     if (!portName.getLocalPart().equals(name)) {
                         TestUtil.logErr("Incorrect port name, got: " + name + " expected: " + portName.getLocalPart());
                         pass = false;
@@ -169,8 +181,10 @@ public class EprUtil {
                 prefix = XmlUtil.getPrefix(qname);
                 name = XmlUtil.getLocalPart(qname);
                 ns = portType.lookupNamespaceURI(prefix);
-                if (debug) XMLUtils.xmlDumpDOMNodes(portType);
-                if (debug) TestUtil.logMsg("prefix=" + prefix + " localPart=" + name + " namespace=" + ns);
+                if (debug)
+                    XMLUtils.xmlDumpDOMNodes(portType);
+                if (debug)
+                    TestUtil.logMsg("prefix=" + prefix + " localPart=" + name + " namespace=" + ns);
                 if (!portTypeName.getNamespaceURI().equals(ns)) {
                     TestUtil.logErr(
                             "Incorrect namespace uri, got: " + ns + " expected:" + portTypeName.getNamespaceURI());
@@ -302,7 +316,8 @@ public class EprUtil {
             epr.writeTo(dr);
             Node node = dr.getNode();
             return validateEPR(node, epr.getClass(), endpointAddress, serviceName, portName, portTypeName, hasWSDL);
-        } else return false;
+        } else
+            return false;
     }
 
     public static boolean validateEPR(
@@ -319,7 +334,8 @@ public class EprUtil {
             Node node = dr.getNode();
             return validateEPR(
                     node, epr.getClass(), endpointAddress, serviceName, portName, portTypeName, hasWSDL, wsdlLocation);
-        } else return false;
+        } else
+            return false;
     }
 
     public static boolean validateReferenceParameter(Node n, String refParamName, String refParamValue) {
@@ -355,11 +371,9 @@ public class EprUtil {
             return true;
         }
         /*****
-         * WE DON'T NEED TO SEARCH for wsdl:import TestUtil.logMsg("Search
-         * wsdl:import element for location attribute"); Node node2 =
-         * XMLUtils.findNode_(n, "import"); actual = XMLUtils.getAttrValue_(node2,
-         * "location", wsdlLocation); if((actual != null) &&
-         * (actual.indexOf(wsdlLocation) != -1)){ return true;
+         * WE DON'T NEED TO SEARCH for wsdl:import TestUtil.logMsg("Search wsdl:import element for location attribute"); Node
+         * node2 = XMLUtils.findNode_(n, "import"); actual = XMLUtils.getAttrValue_(node2, "location", wsdlLocation); if((actual
+         * != null) && (actual.indexOf(wsdlLocation) != -1)){ return true;
          *****/
         TestUtil.logErr("<wsdlLocation> attribute with value of '" + wsdlLocation + "' was not found");
         return false;

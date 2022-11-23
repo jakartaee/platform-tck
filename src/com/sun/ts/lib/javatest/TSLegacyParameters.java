@@ -73,8 +73,10 @@ public class TSLegacyParameters extends BasicInterviewParameters {
     }
 
     public void setTestSuite(TestSuite ts) {
-        if (ts == null) throw new NullPointerException();
-        if (testSuite != null && testSuite != ts) throw new IllegalStateException();
+        if (ts == null)
+            throw new NullPointerException();
+        if (testSuite != null && testSuite != ts)
+            throw new IllegalStateException();
         testSuite = ts;
     }
 
@@ -83,8 +85,10 @@ public class TSLegacyParameters extends BasicInterviewParameters {
     }
 
     public void setWorkDirectory(WorkDirectory wd) {
-        if (wd == null) throw new NullPointerException();
-        if (workDir != null && workDir != wd) throw new IllegalStateException();
+        if (wd == null)
+            throw new NullPointerException();
+        if (workDir != null && workDir != wd)
+            throw new IllegalStateException();
         workDir = wd;
     }
 
@@ -143,12 +147,10 @@ public class TSLegacyParameters extends BasicInterviewParameters {
     }
 
     /*
-     * //-------------------------------------------------------------------------
-     * - public Parameters.ReportParameters getReportParameters () { return
-     * iReport; }
+     * //------------------------------------------------------------------------- - public Parameters.ReportParameters
+     * getReportParameters () { return iReport; }
      *
-     * protected Question getReportFirstQuestion () { return
-     * callInterview(iReport, getReportSuccessorQuestion()); }
+     * protected Question getReportFirstQuestion () { return callInterview(iReport, getReportSuccessorQuestion()); }
      */
     // --------------------------------------------------------------------------
     protected Question getEpilogFirstQuestion() {
@@ -174,12 +176,14 @@ public class TSLegacyParameters extends BasicInterviewParameters {
     private FinalQuestion qEpilog = new FinalQuestion(this, "epilog2") {
 
         public String getSummary() {
-            if (summary == null) summary = getResourceString("TSLegacyParameters.epilog2.smry");
+            if (summary == null)
+                summary = getResourceString("TSLegacyParameters.epilog2.smry");
             return summary;
         }
 
         public String getText() {
-            if (text == null) text = getResourceString("TSLegacyParameters.epilog2.text");
+            if (text == null)
+                text = getResourceString("TSLegacyParameters.epilog2.text");
             return MessageFormat.format(text, getTextArgs());
         }
 
@@ -210,7 +214,6 @@ public class TSLegacyParameters extends BasicInterviewParameters {
         return getEpilogFirstQuestion();
     }
     /*
-     * protected Question getReportSuccessorQuestion () { return
-     * getEpilogFirstQuestion(); }
+     * protected Question getReportSuccessorQuestion () { return getEpilogFirstQuestion(); }
      */
 }

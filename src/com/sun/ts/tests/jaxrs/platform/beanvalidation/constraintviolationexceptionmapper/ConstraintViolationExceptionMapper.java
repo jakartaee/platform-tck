@@ -24,8 +24,7 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
 
     @Override
     public Response toResponse(ConstraintViolationException exception) {
-        Response response =
-                Response.ok(ConstraintViolationException.class.getName()).build();
+        Response response = Response.ok(ConstraintViolationException.class.getName()).build();
         return response;
     }
 }

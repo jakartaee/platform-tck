@@ -131,8 +131,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -185,7 +187,8 @@ public class Client extends ServiceEETest {
             throw new Fault("testPingRPC failed", e);
         }
 
-        if (!pass) throw new Fault("testPingRPC failed");
+        if (!pass)
+            throw new Fault("testPingRPC failed");
     }
 
     /*
@@ -217,6 +220,7 @@ public class Client extends ServiceEETest {
             throw new Fault("testPingWSDL failed", e);
         }
 
-        if (!pass) throw new Fault("testPingWSDL failed");
+        if (!pass)
+            throw new Fault("testPingWSDL failed");
     }
 }

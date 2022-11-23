@@ -39,24 +39,12 @@ import jakarta.resource.spi.work.WorkManager;
 import javax.transaction.xa.XAResource;
 
 /**
- * This is a sample resource adapter that will use some ra.xml info. This RA is
- * used to assist with verifying the server supports annotations when there is
- * no ra.xml (Assertion 268) and the transaction support is Local.
+ * This is a sample resource adapter that will use some ra.xml info. This RA is used to assist with verifying the server
+ * supports annotations when there is no ra.xml (Assertion 268) and the transaction support is Local.
  *
  */
-@Connector(
-        description = "CTS Test Resource Adapter with No DD",
-        licenseDescription = "CTS License Required",
-        licenseRequired = true,
-        authMechanisms =
-                @AuthenticationMechanism(
-                        credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential,
-                        authMechanism = "BasicPassword",
-                        description = "Basic Password Authentication"),
-        reauthenticationSupport = false,
-        securityPermissions = @SecurityPermission(),
-        transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction,
-        requiredWorkContexts = {HintsContext.class, TransactionContext.class, SecurityContext.class})
+@Connector(description = "CTS Test Resource Adapter with No DD", licenseDescription = "CTS License Required", licenseRequired = true, authMechanisms = @AuthenticationMechanism(credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential, authMechanism = "BasicPassword", description = "Basic Password Authentication"), reauthenticationSupport = false, securityPermissions = @SecurityPermission(), transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction, requiredWorkContexts = {
+        HintsContext.class, TransactionContext.class, SecurityContext.class })
 public class MDCompleteRAImpl implements ResourceAdapter, java.io.Serializable {
 
     private transient BootstrapContext bsc;
@@ -151,7 +139,8 @@ public class MDCompleteRAImpl implements ResourceAdapter, java.io.Serializable {
 
         MDCompleteRAImpl that = (MDCompleteRAImpl) obj;
 
-        if (!Util.isEqual(this.RAName, that.getRAName())) return false;
+        if (!Util.isEqual(this.RAName, that.getRAName()))
+            return false;
 
         return true;
     }
@@ -168,9 +157,8 @@ public class MDCompleteRAImpl implements ResourceAdapter, java.io.Serializable {
     }
 
     /*
-     * this is the setter for the ConfigProperty annotation = RAName. According to
-     * onnector 1.6 spec, section 18.5, this setter must be invoked since it
-     * belongs to a ConfigProperty annotation for the ResourceAdapter JavaBean.
+     * this is the setter for the ConfigProperty annotation = RAName. According to onnector 1.6 spec, section 18.5, this
+     * setter must be invoked since it belongs to a ConfigProperty annotation for the ResourceAdapter JavaBean.
      */
     public void setRAName(String name) {
         this.RAName = name;

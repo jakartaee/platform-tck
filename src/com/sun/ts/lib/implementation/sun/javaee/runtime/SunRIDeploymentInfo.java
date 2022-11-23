@@ -32,26 +32,21 @@ import javax.xml.transform.sax.*;
 import org.xml.sax.*;
 
 /**
- * Provides all information required to deploy an application on a server. Much
- * of this information is extracted from runtime xml files. The following
- * information is provided:
+ * Provides all information required to deploy an application on a server. Much of this information is extracted from
+ * runtime xml files. The following information is provided:
  * <ul>
  * <li>EJB Jar info</li>
- * <li>Web Resources - Display name, context root, resource references and ejb
- * references for each web resource in this ear.</li>
- * <li>EJB Resources - Name, JNDI name, resource references, ejb references, and
- * CMP information for each ejb resource in this ear.</li>
- * <li>Resource References - For each resource reference, the JNDI name, default
- * resource principal name and password, and any mail configuration information
- * is provided.</li>
- * <li>EJB References - For each EJB reference, the EJB name and its
- * corresponding JNDI name is provided.</li>
+ * <li>Web Resources - Display name, context root, resource references and ejb references for each web resource in this
+ * ear.</li>
+ * <li>EJB Resources - Name, JNDI name, resource references, ejb references, and CMP information for each ejb resource
+ * in this ear.</li>
+ * <li>Resource References - For each resource reference, the JNDI name, default resource principal name and password,
+ * and any mail configuration information is provided.</li>
+ * <li>EJB References - For each EJB reference, the EJB name and its corresponding JNDI name is provided.</li>
  * </ul>
  * </p>
- * See: javaee.home.ri/lib/dtds/sun-application_5_0-0.dtd
- * javaee.home.ri/lib/dtds/sun-application-client_5_0-0.dtd
- * javaee.home.ri/lib/dtds/sun-ejb-jar_3_0-0.dtd
- * javaee.home.ri/lib/dtds/sun-web-app_2_5-0.dtd for more and updated
+ * See: javaee.home.ri/lib/dtds/sun-application_5_0-0.dtd javaee.home.ri/lib/dtds/sun-application-client_5_0-0.dtd
+ * javaee.home.ri/lib/dtds/sun-ejb-jar_3_0-0.dtd javaee.home.ri/lib/dtds/sun-web-app_2_5-0.dtd for more and updated
  * information.
  *
  * @author Mark Roth, Kyle Grucci, Ryan O'Connell
@@ -103,17 +98,11 @@ public class SunRIDeploymentInfo implements DeploymentInfo, java.io.Serializable
     /**
      * Creates a new deployment information object.
      *
-     * @param earFile
-     *          Full path to the ear file being deployed
-     * @param runtimeFiles
-     *          Array of full paths to runtime.xml files to analyze.
+     * @param earFile Full path to the ear file being deployed
+     * @param runtimeFiles Array of full paths to runtime.xml files to analyze.
      *
-     * @exception IOException
-     *              Thrown if an IO error occured while analyzing runtime
-     *              information.
-     * @exception DeploymentInfo.ParseException
-     *              Thrown if a parsing error occured while analyzing runtime
-     *              information.
+     * @exception IOException Thrown if an IO error occured while analyzing runtime information.
+     * @exception DeploymentInfo.ParseException Thrown if a parsing error occured while analyzing runtime information.
      */
     public SunRIDeploymentInfo(String earFile, String[] runtimeFiles)
             throws IOException, DeploymentInfo.ParseException {
@@ -127,30 +116,29 @@ public class SunRIDeploymentInfo implements DeploymentInfo, java.io.Serializable
     }
 
     /**
-     * A temporary properties list, until all information can be provided by this
-     * API.
+     * A temporary properties list, until all information can be provided by this API.
      */
     protected Properties properties = new Properties();
 
     /**
-     * Sets the value of the given property. This method should be temporary,
-     * until all important information can be provided by the API.
+     * Sets the value of the given property. This method should be temporary, until all important information can be
+     * provided by the API.
      */
     public void setProperty(String key, String value) {
         properties.setProperty(key, value);
     }
 
     /**
-     * Returns the value of the given property. This method should be temporary,
-     * until all important information can be provided by the API.
+     * Returns the value of the given property. This method should be temporary, until all important information can be
+     * provided by the API.
      */
     public String getProperty(String key) {
         return properties.getProperty(key);
     }
 
     /**
-     * Sets/gets an array of deploymentInfo objects from previously deployed apps
-     * in the currrent directory along with all common apps
+     * Sets/gets an array of deploymentInfo objects from previously deployed apps in the currrent directory along with all
+     * common apps
      */
     public void setPreviousInfos(DeploymentInfo[] infos) {
         prevDeployInfos = infos;
@@ -175,8 +163,7 @@ public class SunRIDeploymentInfo implements DeploymentInfo, java.io.Serializable
     }
 
     /**
-     * Returns a Map that maps runtimne deployment descriptor filename Strings to
-     * concrete implementations of the
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to concrete implementations of the
      * com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.SunEjbJar interface.
      */
     public Map getEjbRuntimeData() {
@@ -184,8 +171,7 @@ public class SunRIDeploymentInfo implements DeploymentInfo, java.io.Serializable
     }
 
     /**
-     * Returns a Map that maps runtimne deployment descriptor filename Strings to
-     * concrete implementations of the
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to concrete implementations of the
      * com.sun.ts.lib.implementation.sun.javaee.runtime.web.SunWebApp interface.
      */
     public Map getWebRuntimeData() {
@@ -193,20 +179,16 @@ public class SunRIDeploymentInfo implements DeploymentInfo, java.io.Serializable
     }
 
     /**
-     * Returns a Map that maps runtimne deployment descriptor filename Strings to
-     * concrete implementations of the
-     * com.sun.ts.lib.implementation.sun.javaee.runtime.app.SunApplication
-     * interface.
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to concrete implementations of the
+     * com.sun.ts.lib.implementation.sun.javaee.runtime.app.SunApplication interface.
      */
     public Map getAppRuntimeData() {
         return appRuntimeData;
     }
 
     /**
-     * Returns a Map that maps runtimne deployment descriptor filename Strings to
-     * concrete implementations of the
-     * com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.SunApplicationClient
-     * interface.
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to concrete implementations of the
+     * com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.SunApplicationClient interface.
      */
     public Map getAppClientRuntimeData() {
         return appClientRuntimeData;
@@ -226,16 +208,14 @@ public class SunRIDeploymentInfo implements DeploymentInfo, java.io.Serializable
 
     /**
      * Returns a List of concrete implementations of the
-     * com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.SunApplicationClient
-     * interface.
+     * com.sun.ts.lib.implementation.sun.javaee.runtime.appclient.SunApplicationClient interface.
      */
     public List getAppClientRuntimeDDs() {
         return makeList(appClientRuntimeData);
     }
 
     /**
-     * Returns a List of concrete implementations of the
-     * com.sun.ts.lib.implementation.sun.javaee.runtime.app.SunApplication
+     * Returns a List of concrete implementations of the com.sun.ts.lib.implementation.sun.javaee.runtime.app.SunApplication
      * interface.
      */
     public List getAppRuntimeDDs() {
@@ -243,16 +223,16 @@ public class SunRIDeploymentInfo implements DeploymentInfo, java.io.Serializable
     }
 
     /**
-     * Returns a List of concrete implementations of the
-     * com.sun.ts.lib.implementation.sun.javaee.runtime.web.SunWebApp interface.
+     * Returns a List of concrete implementations of the com.sun.ts.lib.implementation.sun.javaee.runtime.web.SunWebApp
+     * interface.
      */
     public List getWebRuntimeDDs() {
         return makeList(webRuntimeData);
     }
 
     /**
-     * Returns a List of concrete implementations of the
-     * com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.SunEjbJar interface.
+     * Returns a List of concrete implementations of the com.sun.ts.lib.implementation.sun.javaee.runtime.ejb.SunEjbJar
+     * interface.
      */
     public List getEjbRuntimeDDs() {
         return makeList(ejbRuntimeData);
@@ -305,8 +285,7 @@ public class SunRIDeploymentInfo implements DeploymentInfo, java.io.Serializable
     private String getAppserverLibDir() {
         String libDir = File.separator + "j2eetck" + File.separator + "lib";
         try {
-            PropertyManagerInterface propMgr =
-                    DeliverableFactory.getDeliverableInstance().getPropertyManager();
+            PropertyManagerInterface propMgr = DeliverableFactory.getDeliverableInstance().getPropertyManager();
             String ctsDtdDirectory = propMgr.getProperty("ts.home", libDir);
             libDir = ctsDtdDirectory + File.separator + "lib";
         } catch (Exception e) {

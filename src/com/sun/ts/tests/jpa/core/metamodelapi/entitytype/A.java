@@ -32,7 +32,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "COLTAB")
-@AttributeOverrides({@AttributeOverride(name = "name", column = @Column(name = "NAME"))})
+@AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
 public class A extends B {
 
     @Id
@@ -45,7 +45,8 @@ public class A extends B {
     @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
     protected Set<Address> address = new HashSet();
 
-    public A() {}
+    public A() {
+    }
 
     public A(String id, String name, int value) {
         super(name);

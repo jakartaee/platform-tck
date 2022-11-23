@@ -20,4 +20,5 @@
 
 package com.sun.ts.tests.common.vehicle.stateless3;
 
-public interface Stateless3VehicleIF extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF {}
+public interface Stateless3VehicleIF extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF {
+}

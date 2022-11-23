@@ -98,8 +98,7 @@ public final class JWS_Util {
     }
 
     /**
-     * **********************************************************************
-     * Porting wrapper methods
+     * ********************************************************************** Porting wrapper methods
      * ***********************************************************************
      */
     public static String getURLFromProp(String urlProp) throws Exception {
@@ -114,7 +113,8 @@ public final class JWS_Util {
     public static void setSOAPLogging(java.lang.Object stub, java.io.OutputStream s) throws Exception {
         boolean enableSoapLogging = Boolean.parseBoolean(TestUtil.getProperty("EnableSoapLogging"));
         boolean debug = false;
-        if (!enableSoapLogging) return;
+        if (!enableSoapLogging)
+            return;
         System.out.println("DEBUG: setSOAPLogging - NOT USED");
     }
 
@@ -123,9 +123,8 @@ public final class JWS_Util {
     }
 
     /**
-     * **********************************************************************
-     * Service.create and service.getPort wrapper methods
-     * ***********************************************************************
+     * ********************************************************************** Service.create and service.getPort wrapper
+     * methods ***********************************************************************
      */
     public static Service getService(QName sname) throws Exception {
         TestUtil.logMsg("JWS_Util:getService(QName)");
@@ -133,18 +132,21 @@ public final class JWS_Util {
         TestUtil.logMsg("QNAME=" + sname);
         TestUtil.logMsg("Creating Service via Service.create(QName)");
         service = Service.create(sname);
-        if (service == null) TestUtil.logErr("FATAL: Service.create(QName) returned a null");
+        if (service == null)
+            TestUtil.logErr("FATAL: Service.create(QName) returned a null");
         return service;
     }
 
     public static Service getService(URL wsdlurl, QName sname) throws Exception {
         TestUtil.logMsg("JWS_Util:getService(URL, QName)");
         Service service = null;
-        if (wsdlurl != null) TestUtil.logMsg("URL=" + wsdlurl.toString());
+        if (wsdlurl != null)
+            TestUtil.logMsg("URL=" + wsdlurl.toString());
         TestUtil.logMsg("QName=" + sname);
         TestUtil.logMsg("Creating Service via Service.create(URL, QName)");
         service = Service.create(wsdlurl, sname);
-        if (service == null) TestUtil.logErr("FATAL: Service.create(URL, QName) returned a null");
+        if (service == null)
+            TestUtil.logErr("FATAL: Service.create(URL, QName) returned a null");
         return service;
     }
 
@@ -153,26 +155,30 @@ public final class JWS_Util {
         Service service = null;
         TestUtil.logMsg("siClass=" + siClass.getName());
         service = (Service) siClass.newInstance();
-        if (service == null) TestUtil.logErr("FATAL: JWS_Util.getService(Class) returned service=null");
+        if (service == null)
+            TestUtil.logErr("FATAL: JWS_Util.getService(Class) returned service=null");
         return service;
     }
 
     public static Service getService(URL wsdlurl, QName siName, Class siClass) throws Exception {
         TestUtil.logMsg("JWS_Util:getService(URL, QName, Class)");
         Service service = null;
-        if (wsdlurl != null) TestUtil.logMsg("URL=" + wsdlurl.toString());
+        if (wsdlurl != null)
+            TestUtil.logMsg("URL=" + wsdlurl.toString());
         TestUtil.logMsg("siName=" + siName);
         TestUtil.logMsg("siClass=" + siClass.getName());
         Constructor ctr = siClass.getConstructor(URL.class, QName.class);
         service = (Service) ctr.newInstance(wsdlurl, siName);
-        if (service == null) TestUtil.logErr("FATAL: JWS_Util.getService(URL, QName, Class) returned service=null");
+        if (service == null)
+            TestUtil.logErr("FATAL: JWS_Util.getService(URL, QName, Class) returned service=null");
         return service;
     }
 
     public static Object getPort(URL wsdlurl, QName siName, Class siClass, QName seiName, Class seiClass)
             throws Exception {
         TestUtil.logMsg("JWS_Util.getPort(URL, QName, Class, QName, Class)");
-        if (wsdlurl != null) TestUtil.logMsg("URL=" + wsdlurl.toString());
+        if (wsdlurl != null)
+            TestUtil.logMsg("URL=" + wsdlurl.toString());
         TestUtil.logMsg("siName=" + siName);
         TestUtil.logMsg("siClass=" + siClass.getName());
         TestUtil.logMsg("seiName=" + seiName);
@@ -191,7 +197,8 @@ public final class JWS_Util {
         TestUtil.logMsg("Get stub/proxy for port qname=" + port);
         Object stub = svc.getPort(port, seiClass);
         TestUtil.logMsg("Obtained stub/proxy=" + stub);
-        if (stub == null) TestUtil.logErr("FATAL: JWS_Util.getPort(Service, QName) returned stub/proxy=null");
+        if (stub == null)
+            TestUtil.logErr("FATAL: JWS_Util.getPort(Service, QName) returned stub/proxy=null");
         return stub;
     }
 
@@ -226,8 +233,7 @@ public final class JWS_Util {
     }
 
     /**
-     * **********************************************************************
-     * Other methods
+     * ********************************************************************** Other methods
      * ***********************************************************************
      */
     public static void printSOAPMessage(SOAPMessage msg, PrintWriter writer) {
@@ -444,10 +450,12 @@ public final class JWS_Util {
     public static MessageFactory getMessageFactory(String soapVer) throws Exception {
         System.out.println("JWS_Util:getMessageFactory");
         if (soapVer.equals(SOAP11)) {
-            if (mfactorySOAP11 == null) mfactorySOAP11 = MessageFactory.newInstance();
+            if (mfactorySOAP11 == null)
+                mfactorySOAP11 = MessageFactory.newInstance();
             return mfactorySOAP11;
         } else {
-            if (mfactorySOAP12 == null) mfactorySOAP12 = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
+            if (mfactorySOAP12 == null)
+                mfactorySOAP12 = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
             return mfactorySOAP12;
         }
     }
@@ -455,10 +463,12 @@ public final class JWS_Util {
     public static SOAPFactory getSOAPFactory(String soapVer) throws Exception {
         System.out.println("JWS_Util:getSOAPFactory");
         if (soapVer.equals(SOAP11)) {
-            if (sfactorySOAP11 == null) sfactorySOAP11 = SOAPFactory.newInstance();
+            if (sfactorySOAP11 == null)
+                sfactorySOAP11 = SOAPFactory.newInstance();
             return sfactorySOAP11;
         } else {
-            if (sfactorySOAP12 == null) sfactorySOAP12 = SOAPFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
+            if (sfactorySOAP12 == null)
+                sfactorySOAP12 = SOAPFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
             return sfactorySOAP12;
         }
     }
@@ -488,10 +498,14 @@ public final class JWS_Util {
     public static Source makeSource(String msg, String type) {
         byte[] bytes = msg.getBytes();
         ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
-        if (type.equals("StreamSource")) return new StreamSource(inputStream);
-        else if (type.equals("DOMSource")) return new DOMSource(createDOMNode(inputStream));
-        else if (type.equals("SAXSource")) return new SAXSource(new InputSource(inputStream));
-        else return null;
+        if (type.equals("StreamSource"))
+            return new StreamSource(inputStream);
+        else if (type.equals("DOMSource"))
+            return new DOMSource(createDOMNode(inputStream));
+        else if (type.equals("SAXSource"))
+            return new SAXSource(new InputSource(inputStream));
+        else
+            return null;
     }
 
     public static Node createDOMNode(InputStream inputStream) {

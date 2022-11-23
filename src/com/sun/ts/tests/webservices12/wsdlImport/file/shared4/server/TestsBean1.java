@@ -19,17 +19,11 @@ package com.sun.ts.tests.webservices12.wsdlImport.file.shared4.server;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "Tests1Port",
-        serviceName = "Shared4FileSvc1",
-        targetNamespace = "http://Shared4FileSvc1.org/wsdl",
-        wsdlLocation = "META-INF/wsdl/std/svc1/Shared4FileSvc1.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.shared4.server.Tests1")
+@WebService(portName = "Tests1Port", serviceName = "Shared4FileSvc1", targetNamespace = "http://Shared4FileSvc1.org/wsdl", wsdlLocation = "META-INF/wsdl/std/svc1/Shared4FileSvc1.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.shared4.server.Tests1")
 @Stateless(name = "StatelessTestBean1")
 public class TestsBean1 {
     public com.sun.ts.tests.webservices12.wsdlImport.file.shared4.server.Astring invokeTest1() {
-        com.sun.ts.tests.webservices12.wsdlImport.file.shared4.server.Astring result =
-                new com.sun.ts.tests.webservices12.wsdlImport.file.shared4.server.Astring();
+        com.sun.ts.tests.webservices12.wsdlImport.file.shared4.server.Astring result = new com.sun.ts.tests.webservices12.wsdlImport.file.shared4.server.Astring();
         result.setResult("Hello");
         return result;
     }

@@ -74,40 +74,35 @@ public class JsfClient extends com.sun.ts.tests.ejb30.lite.async.common.annotate
     /*
      * @testName: addAway
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method returns void, and updates the result in
-     * a singleton, which is retrieved by the client.
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method returns void,
+     * and updates the result in a singleton, which is retrieved by the client.
      */
     /*
      * @testName: voidRuntimeException
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method throws RuntimeException, which is not
-     * visible to the client, and no effect on client execution. Also verify that
-     * stateless bean instance is discarded after such a RuntimeException.
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method throws
+     * RuntimeException, which is not visible to the client, and no effect on client execution. Also verify that stateless
+     * bean instance is discarded after such a RuntimeException.
      */
     /*
      * @testName: futureRuntimeException
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method with Future return type throws
-     * RuntimeException, which is retrieved with Future.get(). Also verify that
-     * stateless bean instance is discarded after such a RuntimeException.
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method with Future
+     * return type throws RuntimeException, which is retrieved with Future.get(). Also verify that stateless bean instance
+     * is discarded after such a RuntimeException.
      */
     /*
      * @testName: futureError
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method with Future return type throws
-     * AssertionError, which is retrieved with Future.get(). Also verify that
-     * stateless bean instance is discarded after such an Error.
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method with Future
+     * return type throws AssertionError, which is retrieved with Future.get(). Also verify that stateless bean instance is
+     * discarded after such an Error.
      */
     /*
      * @testName: futureException
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method with Future return type throws checked
-     * Exception, which is retrieved with Future.get().
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method with Future
+     * return type throws checked Exception, which is retrieved with Future.get().
      */
     /*
      * @testName: futureValueList
@@ -117,43 +112,37 @@ public class JsfClient extends com.sun.ts.tests.ejb30.lite.async.common.annotate
     /*
      * @testName: addReturn
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method returns Future.
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method returns
+     * Future.
      */
     /*
      * @testName: addSyncThrowException
      *
-     * @test_Strategy: Some methods on the interface are annotated as async and
-     * some are not. synchronous/blocking invocations on stateless, stateful, and
-     * singleton. The synchronous method throws TestFailedException, which should
-     * be received by client.
+     * @test_Strategy: Some methods on the interface are annotated as async and some are not. synchronous/blocking
+     * invocations on stateless, stateful, and singleton. The synchronous method throws TestFailedException, which should be
+     * received by client.
      */
     /*
      * @testName: addSyncReturn
      *
-     * @test_Strategy: Some methods on the interface are annotated as async and
-     * some are not. synchronous/blocking invocations on stateless, stateful, and
-     * singleton. The synchronous method should block for the return value.
+     * @test_Strategy: Some methods on the interface are annotated as async and some are not. synchronous/blocking
+     * invocations on stateless, stateful, and singleton. The synchronous method should block for the return value.
      */
     /*
      * @testName: addReturnWaitMillis
      *
-     * @test_Strategy: Some methods on the interface are annotated as async and
-     * some are not. Asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method should return immediately.
+     * @test_Strategy: Some methods on the interface are annotated as async and some are not. Asynchronous invocations on
+     * stateless, stateful, and singleton. The asynchronous method should return immediately.
      */
 
     /*
      * @testName: cancelMayInterruptIfRunningFalse
      *
-     * @test_Strategy: cancel an async invocation with mayInterruptIfRunning set
-     * to true or false. If the client's cancel request is sent before the
-     * previous async method is dispatched, the async method will not be executed.
-     * So need to make sure the cancel request is not sent until the bean has
-     * started processing the first async method.
+     * @test_Strategy: cancel an async invocation with mayInterruptIfRunning set to true or false. If the client's cancel
+     * request is sent before the previous async method is dispatched, the async method will not be executed. So need to
+     * make sure the cancel request is not sent until the bean has started processing the first async method.
      *
-     * The bean method also needs to wait for the client's cancel request, and
-     * then call SessionContext.wasCancelCalled.
+     * The bean method also needs to wait for the client's cancel request, and then call SessionContext.wasCancelCalled.
      */
     /*
      * @testName: cancelMayInterruptIfRunningTrue
@@ -174,9 +163,8 @@ public class JsfClient extends com.sun.ts.tests.ejb30.lite.async.common.annotate
     /*
      * @testName: addReturnConcurrent
      *
-     * @test_Strategy: asynchronous invocations on stateful The asynchronous
-     * method returns Future. Verify concurrent access is properly processed by
-     * the container.
+     * @test_Strategy: asynchronous invocations on stateful The asynchronous method returns Future. Verify concurrent access
+     * is properly processed by the container.
      */
     public void addReturnConcurrent() throws InterruptedException, ExecutionException {
         final int numOfConcurrentAccess = 50;

@@ -43,8 +43,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      */
     public void setup(String[] args, Properties props) throws Fault {
@@ -67,16 +66,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:872
      *
-     * @test_Strategy: Deploy a CMP 1.1 Entity bean (TestBean) with two resource
-     *                 references whose name differ only by case and are assigned
-     *                 to two distinct factory types: a
-     *                 jakarta.jms.QueueConnectionFactory and a
-     *                 jakarta.jms.TopicConnectionFactory.
+     * @test_Strategy: Deploy a CMP 1.1 Entity bean (TestBean) with two resource references whose name differ only by case
+     * and are assigned to two distinct factory types: a jakarta.jms.QueueConnectionFactory and a
+     * jakarta.jms.TopicConnectionFactory.
      *
-     *                 Check that TestBean can lookup the two factories, cast them
-     *                 to their respective Java types, and create a connection
-     *                 (corresponding to the factory type). This validates that
-     *                 the resource references were resolved correctly.
+     * Check that TestBean can lookup the two factories, cast them to their respective Java types, and create a connection
+     * (corresponding to the factory type). This validates that the resource references were resolved correctly.
      */
     public void testCaseSensitivity() throws Fault {
         TestBean bean = null;

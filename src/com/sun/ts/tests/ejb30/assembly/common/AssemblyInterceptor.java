@@ -33,10 +33,12 @@ public class AssemblyInterceptor {
     }
 
     @PostConstruct
-    protected void myCreate(InvocationContext inv) throws RuntimeException {}
+    protected void myCreate(InvocationContext inv) throws RuntimeException {
+    }
 
     @PreDestroy
-    protected void myRemove(InvocationContext inv) throws RuntimeException {}
+    protected void myRemove(InvocationContext inv) throws RuntimeException {
+    }
 
     @AroundInvoke
     protected Object intercept(InvocationContext inv) throws Exception {

@@ -81,8 +81,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:102
      *
-     * @test_Strategy: Create a stateless Session Bean. Deploy it on the J2EE
-     * server. Check creation life cycle call flow occurs.
+     * @test_Strategy: Create a stateless Session Bean. Deploy it on the J2EE server. Check creation life cycle call flow
+     * occurs.
      *
      */
 
@@ -100,7 +100,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         }
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     public void cleanup() throws Fault {

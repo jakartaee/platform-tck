@@ -30,10 +30,9 @@ import jakarta.jms.MessageListener;
 // This MDB implements jakarta.jms.MessageListener interface, so no need to
 // use annotation element messageListenerInterface, nor descritpor element
 // messaging-type
-@MessageDriven(
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
-        })
+@MessageDriven(activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+})
 public class TimerBasicBean extends TimerBasicBeanBase implements MessageListener {
     public TimerBasicBean() {
         super();

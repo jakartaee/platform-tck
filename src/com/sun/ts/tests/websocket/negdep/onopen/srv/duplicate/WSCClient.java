@@ -45,17 +45,14 @@ public class WSCClient extends NegativeDeploymentClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.4-3;
      *
-     * @test_Strategy: In both cases, a deployment error raised during the
-     * deployment process must halt the deployment of the application, any well
-     * formed endpoints deployed prior to the error being raised must be removed
-     * from service and no more websocket endpoints from that application may be
-     * deployed by the container, even if they are valid.
+     * @test_Strategy: In both cases, a deployment error raised during the deployment process must halt the deployment of
+     * the application, any well formed endpoints deployed prior to the error being raised must be removed from service and
+     * no more websocket endpoints from that application may be deployed by the container, even if they are valid.
      *
-     * The value attribute of this annotation must be present otherwise the
-     * implementation must throw an error. [WSC-4.4-3]
+     * The value attribute of this annotation must be present otherwise the implementation must throw an error. [WSC-4.4-3]
      *
-     * To verify the test fails when the deployment was successful, comment out
-     * one of the @OnOpen methods of OnOpenServerEndpoint
+     * To verify the test fails when the deployment was successful, comment out one of the @OnOpen methods of
+     * OnOpenServerEndpoint
      */
     public void duplicateOfOnOpenUndeployOtherEndpointTest() throws Fault {
         setProperty(Property.CONTENT, "anything");
@@ -68,7 +65,8 @@ public class WSCClient extends NegativeDeploymentClient {
             // DeploymentException
         }
         String response = getResponseAsString();
-        if ("anything".equals(response)) throwValidEndpointMustBeRemoved();
+        if ("anything".equals(response))
+            throwValidEndpointMustBeRemoved();
     }
 
     /*
@@ -76,19 +74,15 @@ public class WSCClient extends NegativeDeploymentClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.4-3;
      *
-     * @test_Strategy: In both cases, a deployment error raised during the
-     * deployment process must halt the deployment of the application, any well
-     * formed endpoints deployed prior to the error being raised must be removed
-     * from service and no more websocket endpoints from that application may be
-     * deployed by the container, even if they are valid.
+     * @test_Strategy: In both cases, a deployment error raised during the deployment process must halt the deployment of
+     * the application, any well formed endpoints deployed prior to the error being raised must be removed from service and
+     * no more websocket endpoints from that application may be deployed by the container, even if they are valid.
      *
-     * Any Java class using this annotation on a method that does not follow these
-     * rules, or that uses this annotation on more than one method may not be
-     * deployed by the implementation and the error reported to the deployer.
-     * [WSC-4.4-3]
+     * Any Java class using this annotation on a method that does not follow these rules, or that uses this annotation on
+     * more than one method may not be deployed by the implementation and the error reported to the deployer. [WSC-4.4-3]
      *
-     * To verify the test fails when the deployment was successful, comment out
-     * one of the @OnOpen methods of OnOpenServerEndpoint
+     * To verify the test fails when the deployment was successful, comment out one of the @OnOpen methods of
+     * OnOpenServerEndpoint
      */
     public void duplicateOfOnOpenTest() throws Fault {
         setProperty(Property.CONTENT, "anything");
@@ -101,6 +95,7 @@ public class WSCClient extends NegativeDeploymentClient {
             // DeploymentException
         }
         String response = getResponseAsString();
-        if (response != null && response.contains("anything")) throwValidEndpointMustBeRemoved();
+        if (response != null && response.contains("anything"))
+            throwValidEndpointMustBeRemoved();
     }
 }

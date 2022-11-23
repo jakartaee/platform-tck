@@ -26,9 +26,8 @@ import java.util.*;
 import java.util.jar.*;
 
 /**
- * This class is used to capture output from the tests (which goes to the .jtr
- * files) and to also send it to the standard output stream. This is done so
- * that "gmake runclient" when running Javatest in batch mode, will behave
+ * This class is used to capture output from the tests (which goes to the .jtr files) and to also send it to the
+ * standard output stream. This is done so that "gmake runclient" when running Javatest in batch mode, will behave
  * similar to the old "gmake runclient".
  *
  * @author Kyle Grucci
@@ -66,8 +65,7 @@ public class TSHarnessObserver implements Harness.Observer, TestResult.Observer 
 
     private static final String SEP = "*******************************";
 
-    private static final String SEP2 =
-            "********************************************************************************";
+    private static final String SEP2 = "********************************************************************************";
 
     private PrintWriter logDeploy;
 
@@ -91,7 +89,8 @@ public class TSHarnessObserver implements Harness.Observer, TestResult.Observer 
     // ------methods from Harness.Observer----------------------------------------
     public void startingTestRun(com.sun.javatest.Parameters p) {
 
-        if (jtrOutput) println("Starting tests");
+        if (jtrOutput)
+            println("Starting tests");
 
         PropertyManagerInterface propMgr = null;
         try {
@@ -100,7 +99,8 @@ public class TSHarnessObserver implements Harness.Observer, TestResult.Observer 
             keywords = mkp.getMatchKeywordsValue();
             TestUtil.logHarness("startingTestRun - keywords set to:  " + keywords);
 
-            if (keywords == null) keywords = "all";
+            if (keywords == null)
+                keywords = "all";
             propMgr = DeliverableFactory.getDeliverableInstance().getPropertyManager();
             propMgr.setProperty("current.keywords", keywords);
         } catch (Exception e) {
@@ -109,16 +109,19 @@ public class TSHarnessObserver implements Harness.Observer, TestResult.Observer 
         executionMode = ExecutionMode.getExecutionMode(propMgr);
     }
 
-    public void stoppingTestRun() {}
+    public void stoppingTestRun() {
+    }
 
-    public void finishedTestRun(boolean allOK) {}
+    public void finishedTestRun(boolean allOK) {
+    }
 
     public synchronized void finishedTesting() {
 
         PropertyManagerInterface propMgr = null;
         try {
             propMgr = DeliverableFactory.getDeliverableInstance().getPropertyManager();
-            if (keywords == null) keywords = "all";
+            if (keywords == null)
+                keywords = "all";
             propMgr.setProperty("current.keywords", keywords);
         } catch (Exception e) {
             e.printStackTrace();
@@ -290,7 +293,8 @@ public class TSHarnessObserver implements Harness.Observer, TestResult.Observer 
             }
         }
         // do deployment here
-        if (ss == null) ss = SuiteSynchronizer.getSuiteSynchronizer(new PrintWriter(System.out, true));
+        if (ss == null)
+            ss = SuiteSynchronizer.getSuiteSynchronizer(new PrintWriter(System.out, true));
 
         // get properties from the test description
         String testPropsInDescp = td.getParameter("testProps");
@@ -447,22 +451,28 @@ public class TSHarnessObserver implements Harness.Observer, TestResult.Observer 
     }
 
     // ------methods from TestResult.Observer----------------------------------
-    public void createdSection(TestResult tr, TestResult.Section section) {}
+    public void createdSection(TestResult tr, TestResult.Section section) {
+    }
 
-    public void completedSection(TestResult tr, TestResult.Section section) {}
+    public void completedSection(TestResult tr, TestResult.Section section) {
+    }
 
-    public void createdOutput(TestResult tr, TestResult.Section section, String outputName) {}
+    public void createdOutput(TestResult tr, TestResult.Section section, String outputName) {
+    }
 
-    public void completedOutput(TestResult tr, TestResult.Section section, String outputName) {}
+    public void completedOutput(TestResult tr, TestResult.Section section, String outputName) {
+    }
 
     public void updatedOutput(
             TestResult tr, TestResult.Section section, String outputName, int start, int end, String text) {
         print(text);
     }
 
-    public void updatedProperty(TestResult tr, String name, String value) {}
+    public void updatedProperty(TestResult tr, String name, String value) {
+    }
 
-    public void completed(TestResult tr) {}
+    public void completed(TestResult tr) {
+    }
 
     private void println(String msg) {
         if (jtrOutput) {

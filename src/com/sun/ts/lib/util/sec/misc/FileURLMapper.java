@@ -21,8 +21,7 @@ import java.io.File;
 import java.net.URL;
 
 /**
- * (Windows) Platform specific handling for file: URLs . In particular deals
- * with network paths mapping them to UNCs.
+ * (Windows) Platform specific handling for file: URLs . In particular deals with network paths mapping them to UNCs.
  *
  * @author Michael McMahon
  */
@@ -37,8 +36,8 @@ public class FileURLMapper {
     }
 
     /**
-     * @returns the platform specific path corresponding to the URL, and in
-     *          particular returns a UNC when the authority contains a hostname
+     * @returns the platform specific path corresponding to the URL, and in particular returns a UNC when the authority
+     * contains a hostname
      */
     public String getPath() {
         if (file != null) {

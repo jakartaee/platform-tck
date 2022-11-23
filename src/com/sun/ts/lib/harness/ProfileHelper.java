@@ -106,7 +106,8 @@ public final class ProfileHelper {
     public static class VIBuiltArchiveFilter extends ArchiveFilter {
         private static VIBuiltArchiveFilter instance = new VIBuiltArchiveFilter();
 
-        private VIBuiltArchiveFilter() {}
+        private VIBuiltArchiveFilter() {
+        }
 
         public static VIBuiltArchiveFilter getInstance() {
             return instance;
@@ -122,7 +123,8 @@ public final class ProfileHelper {
     public static class NonVIBuiltArchiveFilter extends ArchiveFilter {
         private static NonVIBuiltArchiveFilter instance = new NonVIBuiltArchiveFilter();
 
-        private NonVIBuiltArchiveFilter() {}
+        private NonVIBuiltArchiveFilter() {
+        }
 
         public static NonVIBuiltArchiveFilter getInstance() {
             return instance;
@@ -138,7 +140,8 @@ public final class ProfileHelper {
     public static class ArchiveFilter implements FilenameFilter {
         private static ArchiveFilter instance = new ArchiveFilter();
 
-        private ArchiveFilter() {}
+        private ArchiveFilter() {
+        }
 
         public static ArchiveFilter getInstance() {
             return instance;
@@ -151,9 +154,8 @@ public final class ProfileHelper {
         }
 
         /*
-         * This method is used to exclude certain apps containg rars from being
-         * deployed given that we deploy them ahead of time as part of the TCK
-         * configuration.
+         * This method is used to exclude certain apps containg rars from being deployed given that we deploy them ahead of time
+         * as part of the TCK configuration.
          */
         protected boolean appIsNotExcluded(File file, String sName) {
             boolean bVal = true;
@@ -189,7 +191,7 @@ public final class ProfileHelper {
 
                     for (int ii = 0; ii < sVal.length; ii++) {
                         if ((keywords.indexOf(sVal[ii] + "_vehicle") != -1
-                                        && keywords.indexOf("!" + sVal[ii] + "_vehicle") == -1)
+                                && keywords.indexOf("!" + sVal[ii] + "_vehicle") == -1)
                                 || keywords.indexOf("!" + sVal[ii] + "_vehicle") == -1) {
                             filtered.add(sVal[ii]);
                         }
@@ -202,7 +204,8 @@ public final class ProfileHelper {
                     }
 
                     for (int ii = 0; ii < sVal.length; ii++) {
-                        if (sName.indexOf(sVal[ii] + "_vehicle") != -1) bVal = true;
+                        if (sName.indexOf(sVal[ii] + "_vehicle") != -1)
+                            bVal = true;
                     }
                 }
             }

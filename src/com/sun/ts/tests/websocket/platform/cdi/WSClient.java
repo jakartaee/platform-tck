@@ -43,11 +43,9 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-7.1.1-1;
      *
-     * @test_Strategy: Websocket endpoints running in the Java EE platform must
-     * have full dependency injection support as described in the CDI
-     * specification. Websocket implementations part of the Java EE platform are
-     * required to support field, injection using the jakarta.inject.Inject
-     * annotation into all endpoint classes
+     * @test_Strategy: Websocket endpoints running in the Java EE platform must have full dependency injection support as
+     * described in the CDI specification. Websocket implementations part of the Java EE platform are required to support
+     * field, injection using the jakarta.inject.Inject annotation into all endpoint classes
      */
     public void cdiFieldTest() throws Fault {
         String msg = "field";
@@ -63,11 +61,9 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-7.1.1-1;
      *
-     * @test_Strategy: Websocket endpoints running in the Java EE platform must
-     * have full dependency injection support as described in the CDI
-     * specification. Websocket implementations part of the Java EE platform are
-     * required to support method injection using the jakarta.inject.Inject
-     * annotation into all endpoint classes
+     * @test_Strategy: Websocket endpoints running in the Java EE platform must have full dependency injection support as
+     * described in the CDI specification. Websocket implementations part of the Java EE platform are required to support
+     * method injection using the jakarta.inject.Inject annotation into all endpoint classes
      */
     public void cdiMethodTest() throws Fault {
         String msg = "method";
@@ -83,11 +79,9 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-7.1.1-1;
      *
-     * @test_Strategy: Websocket endpoints running in the Java EE platform must
-     * have full dependency injection support as described in the CDI
-     * specification. Websocket implementations part of the Java EE platform are
-     * required to support constructor injection using the jakarta.inject.Inject
-     * annotation into all endpoint classes
+     * @test_Strategy: Websocket endpoints running in the Java EE platform must have full dependency injection support as
+     * described in the CDI specification. Websocket implementations part of the Java EE platform are required to support
+     * constructor injection using the jakarta.inject.Inject annotation into all endpoint classes
      */
     public void cdiConstructorTest() throws Fault {
         String msg = "constructor";

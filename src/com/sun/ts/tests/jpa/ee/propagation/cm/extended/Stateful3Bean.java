@@ -36,13 +36,12 @@ import jakarta.persistence.PersistenceContextType;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
-@Remote({Stateful3IF.class})
+@Remote({ Stateful3IF.class })
 public class Stateful3Bean implements Stateful3IF {
 
     /*
-     * If multiple persistence units exist the unitName element must be specified.
-     * In this archive, only one persistence unit exists; thus, unitName is
-     * omitted.
+     * If multiple persistence units exist the unitName element must be specified. In this archive, only one persistence
+     * unit exists; thus, unitName is omitted.
      */
 
     @PersistenceContext(type = PersistenceContextType.EXTENDED, unitName = "CTS-EXT-UNIT")
@@ -135,8 +134,7 @@ public class Stateful3Bean implements Stateful3IF {
     }
 
     /*
-     * test_Strategy: getTransaction will throw an IllegalStateException if
-     * invoked on a Container-Managed JTA EM
+     * test_Strategy: getTransaction will throw an IllegalStateException if invoked on a Container-Managed JTA EM
      *
      */
 

@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,12 +62,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveSetSelectVarTest
      *
-     * @assertion_ids: JSTL:SPEC:69; JSTL:SPEC:69.1; JSTL:SPEC:69.2;
-     * JSTL:SPEC:69.5
+     * @assertion_ids: JSTL:SPEC:69; JSTL:SPEC:69.1; JSTL:SPEC:69.2; JSTL:SPEC:69.5
      *
-     * @testStrategy: Validate the action properly sets a scoped variable when
-     * select is provided a valid XPath expression and the the variable reference
-     * by var is available to another action.
+     * @testStrategy: Validate the action properly sets a scoped variable when select is provided a valid XPath expression
+     * and the the variable reference by var is available to another action.
      */
     public void positiveSetSelectVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetSelectVarTest");
@@ -79,13 +75,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveSetScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:69; JSTL:SPEC:69.3; JSTL:SPEC:69.3.1;
-     * JSTL:SPEC:69.3.2; JSTL:SPEC:69.3.3; JSTL:SPEC:69.3.4; JSTL:SPEC:69.4;
-     * JSTL:SPEC:69.5
+     * @assertion_ids: JSTL:SPEC:69; JSTL:SPEC:69.3; JSTL:SPEC:69.3.1; JSTL:SPEC:69.3.2; JSTL:SPEC:69.3.3; JSTL:SPEC:69.3.4;
+     * JSTL:SPEC:69.4; JSTL:SPEC:69.5
      *
-     * @testStrategy: Validate that the presense of the scope attribute properly
-     * exports var to the specified scope. Also verify that if scope is not
-     * specified, that var is exported to the page scope by default.
+     * @testStrategy: Validate that the presense of the scope attribute properly exports var to the specified scope. Also
+     * verify that if scope is not specified, that var is exported to the page scope by default.
      */
     public void positiveSetScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetScopeTest");
@@ -97,8 +91,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:69; JSTL:SPEC:69.8
      *
-     * @testStrategy: Validate that if the XPath expression fails to evaluate an
-     * instance of jakarta.servet.jsp.JspException is thrown.
+     * @testStrategy: Validate that if the XPath expression fails to evaluate an instance of jakarta.servet.jsp.JspException
+     * is thrown.
      */
     public void negativeSetSelectFailureTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeSetSelectFailureTest");
@@ -110,8 +104,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:69; JSTL:SPEC:69.2.1
      *
-     * @testStrategy: Validate that a fatal translation error occurs if the var
-     * attribute is not present.
+     * @testStrategy: Validate that a fatal translation error occurs if the var attribute is not present.
      */
     public void negativeSetVarReqAttrTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeSetVarReqAttrTest");
@@ -125,8 +118,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:69; JSTL:SPEC:69.2.1
      *
-     * @testStrategy: Validate that a fatal translation error occurs if the select
-     * attribute is not present.
+     * @testStrategy: Validate that a fatal translation error occurs if the select attribute is not present.
      */
     public void negativeSetSelectReqAttrTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeSetSelectReqAttrTest");
@@ -140,8 +132,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:69; JSTL:SPEC:69.2.1
      *
-     * @testStrategy: Validate that a fatal translation error occurs if the select
-     * attribute is not present.
+     * @testStrategy: Validate that a fatal translation error occurs if the select attribute is not present.
      */
     public void negativeSetInvalidScopeTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeSetInvalidScopeTest");

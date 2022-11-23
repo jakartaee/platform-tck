@@ -163,9 +163,8 @@ public class MetaIndex {
                 /* Convert dir into canonical form. */
                 dir = dir.getCanonicalFile();
                 /*
-                 * Note: The first line should contain the version of the meta-index
-                 * file. We have to match the right version before trying to parse this
-                 * file.
+                 * Note: The first line should contain the version of the meta-index file. We have to match the right version before
+                 * trying to parse this file.
                  */
                 line = reader.readLine();
                 if (line == null || !line.equals("% VERSION 2")) {
@@ -174,30 +173,30 @@ public class MetaIndex {
                 }
                 while ((line = reader.readLine()) != null) {
                     switch (line.charAt(0)) {
-                        case '!':
-                        case '#':
-                        case '@': {
-                            // Store away current contents, if any
-                            if ((curJarName != null) && (contents.size() > 0)) {
-                                map.put(new File(dir, curJarName), new MetaIndex(contents, isCurJarContainClassOnly));
+                    case '!':
+                    case '#':
+                    case '@': {
+                        // Store away current contents, if any
+                        if ((curJarName != null) && (contents.size() > 0)) {
+                            map.put(new File(dir, curJarName), new MetaIndex(contents, isCurJarContainClassOnly));
 
-                                contents.clear();
-                            }
-                            // Fetch new current jar file name
-                            curJarName = line.substring(2);
-                            if (line.charAt(0) == '!') {
-                                isCurJarContainClassOnly = true;
-                            } else if (isCurJarContainClassOnly) {
-                                isCurJarContainClassOnly = false;
-                            }
+                            contents.clear();
+                        }
+                        // Fetch new current jar file name
+                        curJarName = line.substring(2);
+                        if (line.charAt(0) == '!') {
+                            isCurJarContainClassOnly = true;
+                        } else if (isCurJarContainClassOnly) {
+                            isCurJarContainClassOnly = false;
+                        }
 
-                            break;
-                        }
-                        case '%':
-                            break;
-                        default: {
-                            contents.add(line);
-                        }
+                        break;
+                    }
+                    case '%':
+                        break;
+                    default: {
+                        contents.add(line);
+                    }
                     }
                 }
                 // Store away current contents, if any

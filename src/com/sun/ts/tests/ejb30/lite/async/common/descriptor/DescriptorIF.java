@@ -73,8 +73,7 @@ public interface DescriptorIF {
     void intParams(int i, int j, int k);
 
     /**
-     * async method only for int-param method and local views (including
-     * no-interface view)
+     * async method only for int-param method and local views (including no-interface view)
      */
     void intParamsLocalViews(int i, int j);
 

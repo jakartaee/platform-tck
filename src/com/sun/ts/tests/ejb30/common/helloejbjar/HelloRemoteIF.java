@@ -24,6 +24,5 @@ import jakarta.ejb.Remote;
 
 @Remote()
 public interface HelloRemoteIF extends HelloCommonIF {
-    public static final String GLOBAL_JNDI_NAME =
-            "java:global/ejb3_common_helloejbjar_standalone_component_ejb/HelloBean!" + HelloRemoteIF.class.getName();
+    public static final String GLOBAL_JNDI_NAME = "java:global/ejb3_common_helloejbjar_standalone_component_ejb/HelloBean!" + HelloRemoteIF.class.getName();
 }

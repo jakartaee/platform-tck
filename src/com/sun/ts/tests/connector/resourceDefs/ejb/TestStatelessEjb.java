@@ -28,32 +28,12 @@ import jakarta.resource.spi.TransactionSupport;
  * This is the impl for a stateless ejb.
  */
 @ConnectionFactoryDefinitions({
-    @ConnectionFactoryDefinition(
-            name = "java:app/env/EJBTestServlet_App_ConnectorResource",
-            description = "application scoped connector resource definition",
-            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
-            resourceAdapter = "whitebox-tx",
-            transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
-    @ConnectionFactoryDefinition(
-            name = "java:comp/env/EJBTestServlet_Comp_ConnectorResource",
-            description = "component scoped connector resource definition",
-            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
-            resourceAdapter = "whitebox-tx",
-            transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction),
-    // transactionSupport=TransactionSupport.TransactionSupportLevel.NoTransaction),
+        @ConnectionFactoryDefinition(name = "java:app/env/EJBTestServlet_App_ConnectorResource", description = "application scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
+        @ConnectionFactoryDefinition(name = "java:comp/env/EJBTestServlet_Comp_ConnectorResource", description = "component scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction),
+        // transactionSupport=TransactionSupport.TransactionSupportLevel.NoTransaction),
 
-    @ConnectionFactoryDefinition(
-            name = "java:module/env/EJBTestServlet_Module_ConnectorResource",
-            description = "module scoped connector resource definition",
-            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
-            resourceAdapter = "whitebox-tx",
-            transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
-    @ConnectionFactoryDefinition(
-            name = "java:global/env/EJBTestServlet_Global_ConnectorResource",
-            description = "globally scoped connector resource definition",
-            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
-            resourceAdapter = "whitebox-xa",
-            transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction)
+        @ConnectionFactoryDefinition(name = "java:module/env/EJBTestServlet_Module_ConnectorResource", description = "module scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
+        @ConnectionFactoryDefinition(name = "java:global/env/EJBTestServlet_Global_ConnectorResource", description = "globally scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-xa", transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction)
 })
 @Stateless
 public class TestStatelessEjb implements ITestStatelessEjb {

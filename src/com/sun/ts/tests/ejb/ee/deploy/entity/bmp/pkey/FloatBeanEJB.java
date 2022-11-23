@@ -46,7 +46,8 @@ public class FloatBeanEJB implements EntityBean {
 
     protected FloatPKCoffeeDAO dao = null;
 
-    public void ping() {}
+    public void ping() {
+    }
 
     /*
      * Bean life cycle.

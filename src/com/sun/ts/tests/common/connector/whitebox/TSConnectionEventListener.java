@@ -68,34 +68,34 @@ public class TSConnectionEventListener implements ConnectionEventListener {
         for (int i = 0; i < size; i++) {
             ConnectionEventListener l = (ConnectionEventListener) list.elementAt(i);
             switch (eventType) {
-                case ConnectionEvent.CONNECTION_CLOSED:
-                    l.connectionClosed(ce);
-                    ConnectorStatus.getConnectorStatus()
-                            .logAPI("TSConnectionEventListener.sendEvent", "CONNECTION_CLOSED", "");
-                    System.out.println("TSConnectionEventListener.sendEvent:CONNECTION_CLOSED");
-                    break;
-                case ConnectionEvent.LOCAL_TRANSACTION_STARTED:
-                    l.localTransactionStarted(ce);
-                    ConnectorStatus.getConnectorStatus()
-                            .logAPI("TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_STARTED", "");
-                    break;
-                case ConnectionEvent.LOCAL_TRANSACTION_COMMITTED:
-                    l.localTransactionCommitted(ce);
-                    ConnectorStatus.getConnectorStatus()
-                            .logAPI("TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_COMMITED", "");
-                    break;
-                case ConnectionEvent.LOCAL_TRANSACTION_ROLLEDBACK:
-                    l.localTransactionRolledback(ce);
-                    ConnectorStatus.getConnectorStatus()
-                            .logAPI("TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_ROLLEDBACK", "");
-                    break;
-                case ConnectionEvent.CONNECTION_ERROR_OCCURRED:
-                    l.connectionErrorOccurred(ce);
-                    ConnectorStatus.getConnectorStatus()
-                            .logAPI("TSConnectionEventListener.sendEvent", "CONNECTION_ERROR_OCCURED", "");
-                    break;
-                default:
-                    throw new IllegalArgumentException("Illegal eventType: " + eventType);
+            case ConnectionEvent.CONNECTION_CLOSED:
+                l.connectionClosed(ce);
+                ConnectorStatus.getConnectorStatus()
+                        .logAPI("TSConnectionEventListener.sendEvent", "CONNECTION_CLOSED", "");
+                System.out.println("TSConnectionEventListener.sendEvent:CONNECTION_CLOSED");
+                break;
+            case ConnectionEvent.LOCAL_TRANSACTION_STARTED:
+                l.localTransactionStarted(ce);
+                ConnectorStatus.getConnectorStatus()
+                        .logAPI("TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_STARTED", "");
+                break;
+            case ConnectionEvent.LOCAL_TRANSACTION_COMMITTED:
+                l.localTransactionCommitted(ce);
+                ConnectorStatus.getConnectorStatus()
+                        .logAPI("TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_COMMITED", "");
+                break;
+            case ConnectionEvent.LOCAL_TRANSACTION_ROLLEDBACK:
+                l.localTransactionRolledback(ce);
+                ConnectorStatus.getConnectorStatus()
+                        .logAPI("TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_ROLLEDBACK", "");
+                break;
+            case ConnectionEvent.CONNECTION_ERROR_OCCURRED:
+                l.connectionErrorOccurred(ce);
+                ConnectorStatus.getConnectorStatus()
+                        .logAPI("TSConnectionEventListener.sendEvent", "CONNECTION_ERROR_OCCURED", "");
+                break;
+            default:
+                throw new IllegalArgumentException("Illegal eventType: " + eventType);
             }
         }
     }

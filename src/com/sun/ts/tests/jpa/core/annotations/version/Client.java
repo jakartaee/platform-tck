@@ -26,7 +26,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -89,8 +90,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: intFieldTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:2115; PERSISTENCE:SPEC:2116;
-     * PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.1
+     * @assertion_ids: PERSISTENCE:SPEC:2115; PERSISTENCE:SPEC:2116; PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.1
      *
      * @test_Strategy:
      */
@@ -138,8 +138,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: intPropertyTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:2115; PERSISTENCE:SPEC:2116;
-     * PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.1
+     * @assertion_ids: PERSISTENCE:SPEC:2115; PERSISTENCE:SPEC:2116; PERSISTENCE:SPEC:2117; PERSISTENCE:SPEC:2117.1
      *
      * @test_Strategy:
      */

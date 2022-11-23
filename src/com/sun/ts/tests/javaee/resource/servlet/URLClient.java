@@ -45,16 +45,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: resourceCompTest
      *
-     * @assertion: A resource declared in java:comp/env can be referenced using
-     * "lookup" in a resource reference.
+     * @assertion: A resource declared in java:comp/env can be referenced using "lookup" in a resource reference.
      *
      * @assertion_ids: JavaEE:SPEC:8013, JavaEE:SPEC:8014
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, reference it using @Resource on a field
-     * of the Servlet and check that the resource is injected and has the expected
-     * property configured.
+     * @MailSessionResource on a Servlet, reference it using @Resource on a field of the Servlet and check that the resource
+     * is injected and has the expected property configured.
      */
     public void resourceCompTest() throws Fault {
         String testName = "resourceCompTest";
@@ -66,16 +64,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: resourceModuleTest
      *
-     * @assertion: A resource declared in java:module/env can be referenced using
-     * "lookup" in a resource reference.
+     * @assertion: A resource declared in java:module/env can be referenced using "lookup" in a resource reference.
      *
      * @assertion_ids: JavaEE:SPEC:8013, JavaEE:SPEC:8014
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, reference it using @Resource on a field
-     * of the Servlet and check that the resource is injected and has the expected
-     * property configured.
+     * @MailSessionResource on a Servlet, reference it using @Resource on a field of the Servlet and check that the resource
+     * is injected and has the expected property configured.
      */
     public void resourceModuleTest() throws Fault {
         String testName = "resourceModuleTest";
@@ -87,16 +83,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: resourceAppTest
      *
-     * @assertion: A resource declared in java:app/env can be referenced using
-     * "lookup" in a resource reference.
+     * @assertion: A resource declared in java:app/env can be referenced using "lookup" in a resource reference.
      *
      * @assertion_ids: JavaEE:SPEC:8013, JavaEE:SPEC:8014
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, reference it using @Resource on a field
-     * of the Servlet and check that the resource is injected and has the expected
-     * property configured.
+     * @MailSessionResource on a Servlet, reference it using @Resource on a field of the Servlet and check that the resource
+     * is injected and has the expected property configured.
      */
     public void resourceAppTest() throws Fault {
         String testName = "resourceAppTest";
@@ -108,16 +102,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: resourceGlobalTest
      *
-     * @assertion: A resource declared in java:comp/env can be referenced using
-     * "lookup" in a resource reference.
+     * @assertion: A resource declared in java:comp/env can be referenced using "lookup" in a resource reference.
      *
      * @assertion_ids: JavaEE:SPEC:8013, JavaEE:SPEC:8014
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, reference it using @Resource on a field
-     * of the Servlet and check that the resource is injected and has the expected
-     * property configured.
+     * @MailSessionResource on a Servlet, reference it using @Resource on a field of the Servlet and check that the resource
+     * is injected and has the expected property configured.
      */
     public void resourceGlobalTest() throws Fault {
         String testName = "resourceGlobalTest";
@@ -129,16 +121,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: resRefTest
      *
-     * @assertion: A resource declared in java:comp/env can be accessed using a
-     * JNDI lookup.
+     * @assertion: A resource declared in java:comp/env can be accessed using a JNDI lookup.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006, JavaEE:SPEC:8010
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a different
-     * Servlet in the same web module and check that the resource is found and has
-     * the expected property configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a different Servlet in the same web module and check
+     * that the resource is found and has the expected property configured.
      */
     public void resRefTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "resRefTest");
@@ -148,16 +138,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: compTest
      *
-     * @assertion: A resource declared in java:comp/env can be accessed using a
-     * JNDI lookup.
+     * @assertion: A resource declared in java:comp/env can be accessed using a JNDI lookup.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006, JavaEE:SPEC:8002
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a different
-     * Servlet in the same web module and check that the resource is found and has
-     * the expected property configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a different Servlet in the same web module and check
+     * that the resource is found and has the expected property configured.
      */
     public void compTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "compTest");
@@ -167,16 +155,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: moduleTest
      *
-     * @assertion: A resource declared in java:module/env can be accessed using a
-     * JNDI lookup.
+     * @assertion: A resource declared in java:module/env can be accessed using a JNDI lookup.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006, JavaEE:SPEC:8003
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a different
-     * Servlet in the same web module and check that the resource is found and has
-     * the expected property configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a different Servlet in the same web module and check
+     * that the resource is found and has the expected property configured.
      */
     public void moduleTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "moduleTest");
@@ -186,16 +172,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: appTest
      *
-     * @assertion: A resource declared in java:app/env can be accessed using a
-     * JNDI lookup.
+     * @assertion: A resource declared in java:app/env can be accessed using a JNDI lookup.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006, JavaEE:SPEC:8004
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a different
-     * Servlet in the same application and check that the resource is found and
-     * has the expected property configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a different Servlet in the same application and check
+     * that the resource is found and has the expected property configured.
      */
     public void appTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "appTest");
@@ -205,16 +189,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: globalTest
      *
-     * @assertion: A resource declared in java:global/env can be accessed using a
-     * JNDI lookup.
+     * @assertion: A resource declared in java:global/env can be accessed using a JNDI lookup.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006, JavaEE:SPEC:8005
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a different
-     * Servlet and check that the resource is found and has the expected property
-     * configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a different Servlet and check that the resource is
+     * found and has the expected property configured.
      */
     public void globalTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "globalTest");
@@ -224,16 +206,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: compEqualsModuleTest
      *
-     * @assertion: A resource declared in java:comp/env can be accessed using a
-     * JNDI lookup in java:module/env.
+     * @assertion: A resource declared in java:comp/env can be accessed using a JNDI lookup in java:module/env.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a different
-     * Servlet in the same web module and check that the resource is found and has
-     * the expected property configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a different Servlet in the same web module and check
+     * that the resource is found and has the expected property configured.
      */
     public void compEqualsModuleTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "compEqualsModuleTest");
@@ -243,16 +223,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: moduleEqualsCompTest
      *
-     * @assertion: A resource declared in java:module/env can be accessed using a
-     * JNDI lookup in java:comp/env.
+     * @assertion: A resource declared in java:module/env can be accessed using a JNDI lookup in java:comp/env.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8006
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a different
-     * Servlet in the same web module and check that the resource is found and has
-     * the expected property configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a different Servlet in the same web module and check
+     * that the resource is found and has the expected property configured.
      */
     public void moduleEqualsCompTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "moduleEqualsCompTest");
@@ -262,16 +240,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanTest
      *
-     * @assertion: A resource declared in java:app/env by a CDI managed bean can
-     * be accessed using a JNDI lookup.
+     * @assertion: A resource declared in java:app/env by a CDI managed bean can be accessed using a JNDI lookup.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8004
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a CDI bean, look it up using JNDI from a Servlet
-     * and check that the resource is found and has the expected property
-     * configured.
+     * @MailSessionResource on a CDI bean, look it up using JNDI from a Servlet and check that the resource is found and has
+     * the expected property configured.
      */
     public void beanTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanTest");
@@ -281,16 +257,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanCompTest
      *
-     * @assertion: A resource declared in java:comp/env can be accessed using a
-     * JNDI lookup from a CDI bean.
+     * @assertion: A resource declared in java:comp/env can be accessed using a JNDI lookup from a CDI bean.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8002
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean in
-     * the same web module and check that the resource is found and has the
-     * expected property configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean in the same web module and check that the
+     * resource is found and has the expected property configured.
      */
     public void beanCompTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanCompTest");
@@ -300,16 +274,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanModuleTest
      *
-     * @assertion: A resource declared in java:module/env can be accessed using a
-     * JNDI lookup from a CDI bean.
+     * @assertion: A resource declared in java:module/env can be accessed using a JNDI lookup from a CDI bean.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8003
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean in
-     * the same web module and check that the resource is found and has the
-     * expected property configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean in the same web module and check that the
+     * resource is found and has the expected property configured.
      */
     public void beanModuleTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanModuleTest");
@@ -319,16 +291,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanAppTest
      *
-     * @assertion: A resource declared in java:app/env can be accessed using a
-     * JNDI lookup from a CDI bean.
+     * @assertion: A resource declared in java:app/env can be accessed using a JNDI lookup from a CDI bean.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8004
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean in
-     * the same application and check that the resource is found and has the
-     * expected property configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean in the same application and check that the
+     * resource is found and has the expected property configured.
      */
     public void beanAppTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanAppTest");
@@ -338,16 +308,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanGlobalTest
      *
-     * @assertion: A resource declared in java:global/env can be accessed using a
-     * JNDI lookup from a CDI bean.
+     * @assertion: A resource declared in java:global/env can be accessed using a JNDI lookup from a CDI bean.
      *
      * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8005
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean
-     * and check that the resource is found and has the expected property
-     * configured.
+     * @MailSessionResource on a Servlet, look it up using JNDI from a CDI bean and check that the resource is found and has
+     * the expected property configured.
      */
     public void beanGlobalTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanGlobalTest");
@@ -357,16 +325,15 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanResourceCompTest
      *
-     * @assertion: A resource declared in java:comp/env can be injected into a CDI
-     * bean in the same web module using @Resource
+     * @assertion: A resource declared in java:comp/env can be injected into a CDI bean in the same web module
+     * using @Resource
      *
-     * @assertion_ids: JavaEE:SPEC:8002, JavaEE:SPEC:8006, JavaEE:SPEC:8010,
-     * JavaEE:SPEC:8012, JavaEE:SPEC:8014
+     * @assertion_ids: JavaEE:SPEC:8002, JavaEE:SPEC:8006, JavaEE:SPEC:8010, JavaEE:SPEC:8012, JavaEE:SPEC:8014
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
-     * the resource is found and has the expected property configured.
+     * @MailSessionResource on a Servlet, inject it into a CDI bean and check that the resource is found and has the
+     * expected property configured.
      */
     public void beanResourceCompTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanResourceCompTest");
@@ -376,16 +343,15 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanResourceModuleTest
      *
-     * @assertion: A resource declared in java:module/env can be injected into a
-     * CDI bean in the same web module using @Resource
+     * @assertion: A resource declared in java:module/env can be injected into a CDI bean in the same web module
+     * using @Resource
      *
-     * @assertion_ids: JavaEE:SPEC:8003, JavaEE:SPEC:8006, JavaEE:SPEC:8010,
-     * JavaEE:SPEC:8012, JavaEE:SPEC:8014
+     * @assertion_ids: JavaEE:SPEC:8003, JavaEE:SPEC:8006, JavaEE:SPEC:8010, JavaEE:SPEC:8012, JavaEE:SPEC:8014
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
-     * the resource is found and has the expected property configured.
+     * @MailSessionResource on a Servlet, inject it into a CDI bean and check that the resource is found and has the
+     * expected property configured.
      */
     public void beanResourceModuleTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanResourceModuleTest");
@@ -395,16 +361,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanResourceAppTest
      *
-     * @assertion: A resource declared in java:app/env can be injected into a CDI
-     * bean using @Resource
+     * @assertion: A resource declared in java:app/env can be injected into a CDI bean using @Resource
      *
-     * @assertion_ids: JavaEE:SPEC:8004, JavaEE:SPEC:8006, JavaEE:SPEC:8010,
-     * JavaEE:SPEC:8012, JavaEE:SPEC:8014
+     * @assertion_ids: JavaEE:SPEC:8004, JavaEE:SPEC:8006, JavaEE:SPEC:8010, JavaEE:SPEC:8012, JavaEE:SPEC:8014
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
-     * the resource is found and has the expected property configured.
+     * @MailSessionResource on a Servlet, inject it into a CDI bean and check that the resource is found and has the
+     * expected property configured.
      */
     public void beanResourceAppTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanResourceAppTest");
@@ -414,16 +378,15 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanResourceGlobalTest
      *
-     * @assertion: A resource declared in java:global/env can be accessed using a
-     * JNDI lookup from a CDI bean. injected into a CDI bean using @Resource
+     * @assertion: A resource declared in java:global/env can be accessed using a JNDI lookup from a CDI bean. injected into
+     * a CDI bean using @Resource
      *
-     * @assertion_ids: JavaEE:SPEC:8005, JavaEE:SPEC:8006, JavaEE:SPEC:8010,
-     * JavaEE:SPEC:8012, JavaEE:SPEC:8014
+     * @assertion_ids: JavaEE:SPEC:8005, JavaEE:SPEC:8006, JavaEE:SPEC:8010, JavaEE:SPEC:8012, JavaEE:SPEC:8014
      *
      * @test_Strategy: Declare a JavaMail Session resource using
      *
-     * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
-     * the resource is found and has the expected property configured.
+     * @MailSessionResource on a Servlet, inject it into a CDI bean and check that the resource is found and has the
+     * expected property configured.
      */
     public void beanResourceGlobalTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanResourceGlobalTest");
@@ -433,18 +396,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanRefCompTest
      *
-     * @assertion: A @Resource annotation on a CDI bean in a web module can create
-     * a java:app/env resource reference accessible to other CDI beans in the same
-     * web module, and can refer to java:comp/env resources in that web module
+     * @assertion: A @Resource annotation on a CDI bean in a web module can create a java:app/env resource reference
+     * accessible to other CDI beans in the same web module, and can refer to java:comp/env resources in that web module
      *
-     * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8002, JavaEE:SPEC:8011,
-     * JavaEE:SPEC:8014
+     * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8002, JavaEE:SPEC:8011, JavaEE:SPEC:8014
      *
-     * @test_Strategy: Declare a resource reference on a CDI bean field
-     * using @Resource referring to a java:comp resource declared elsewhere in
-     * that web module, look up the resource reference by name from another CDI
-     * bean using JNDI, and check that the resource is found and has the expected
-     * property configured.
+     * @test_Strategy: Declare a resource reference on a CDI bean field using @Resource referring to a java:comp resource
+     * declared elsewhere in that web module, look up the resource reference by name from another CDI bean using JNDI, and
+     * check that the resource is found and has the expected property configured.
      */
     public void beanRefCompTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanRefCompTest");
@@ -454,18 +413,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanRefModuleTest
      *
-     * @assertion: A @Resource annotation on a CDI bean in a web module can create
-     * a java:app/env resource reference accessible to other CDI beans in the same
-     * web module, and can refer to java:module/env resources in that web module
+     * @assertion: A @Resource annotation on a CDI bean in a web module can create a java:app/env resource reference
+     * accessible to other CDI beans in the same web module, and can refer to java:module/env resources in that web module
      *
-     * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8003, JavaEE:SPEC:8011,
-     * JavaEE:SPEC:8014
+     * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8003, JavaEE:SPEC:8011, JavaEE:SPEC:8014
      *
-     * @test_Strategy: Declare a resource reference on a CDI bean field
-     * using @Resource referring to a java:comp resource declared elsewhere in
-     * that web module, look up the resource reference by name from another CDI
-     * bean using JNDI, and check that the resource is found and has the expected
-     * property configured.
+     * @test_Strategy: Declare a resource reference on a CDI bean field using @Resource referring to a java:comp resource
+     * declared elsewhere in that web module, look up the resource reference by name from another CDI bean using JNDI, and
+     * check that the resource is found and has the expected property configured.
      */
     public void beanRefModuleTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanRefModuleTest");
@@ -475,18 +430,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanRefAppTest
      *
-     * @assertion: A @Resource annotation on a CDI bean in a web module can create
-     * a java:app/env resource reference accessible to other CDI beans in the same
-     * web module, and can refer to java:app/env resources
+     * @assertion: A @Resource annotation on a CDI bean in a web module can create a java:app/env resource reference
+     * accessible to other CDI beans in the same web module, and can refer to java:app/env resources
      *
-     * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8004, JavaEE:SPEC:8011,
-     * JavaEE:SPEC:8014
+     * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8004, JavaEE:SPEC:8011, JavaEE:SPEC:8014
      *
-     * @test_Strategy: Declare a resource reference on a CDI bean field
-     * using @Resource referring to a java:comp resource declared elsewhere in
-     * that web module, look up the resource reference by name from another CDI
-     * bean using JNDI, and check that the resource is found and has the expected
-     * property configured.
+     * @test_Strategy: Declare a resource reference on a CDI bean field using @Resource referring to a java:comp resource
+     * declared elsewhere in that web module, look up the resource reference by name from another CDI bean using JNDI, and
+     * check that the resource is found and has the expected property configured.
      */
     public void beanRefAppTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanRefAppTest");
@@ -496,18 +447,14 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: beanRefGlobalTest
      *
-     * @assertion: A @Resource annotation on a CDI bean in a web module can create
-     * a java:app/env resource reference accessible to other CDI beans in the same
-     * web module, and can refer to java:global/env resources
+     * @assertion: A @Resource annotation on a CDI bean in a web module can create a java:app/env resource reference
+     * accessible to other CDI beans in the same web module, and can refer to java:global/env resources
      *
-     * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8005, JavaEE:SPEC:8011,
-     * JavaEE:SPEC:8014
+     * @assertion_ids: JavaEE:SPEC:8000, JavaEE:SPEC:8005, JavaEE:SPEC:8011, JavaEE:SPEC:8014
      *
-     * @test_Strategy: Declare a resource reference on a CDI bean field
-     * using @Resource referring to a java:comp resource declared elsewhere in
-     * that web module, look up the resource reference by name from another CDI
-     * bean using JNDI, and check that the resource is found and has the expected
-     * property configured.
+     * @test_Strategy: Declare a resource reference on a CDI bean field using @Resource referring to a java:comp resource
+     * declared elsewhere in that web module, look up the resource reference by name from another CDI bean using JNDI, and
+     * check that the resource is found and has the expected property configured.
      */
     public void beanRefGlobalTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "beanRefGlobalTest");

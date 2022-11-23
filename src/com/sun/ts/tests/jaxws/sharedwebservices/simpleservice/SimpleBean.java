@@ -26,7 +26,8 @@ public class SimpleBean {
 
     private String myString;
 
-    public SimpleBean() {}
+    public SimpleBean() {
+    }
 
     public SimpleBean(int i, String s) {
         setMyInt(i);

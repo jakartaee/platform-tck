@@ -49,8 +49,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      */
     public void setup(String[] args, Properties props) throws Fault {
@@ -72,11 +71,9 @@ public class Client extends EETest {
      *
      * @test_Strategy: Package a CMP 2.0 Entity bean with a String primary key
      *
-     *                 Check that you can: - Create bean instances - Discover
-     *                 these instances with findByPrimaryKey() - Compare the bean
-     *                 instances (EJBObject.isIdentical()) - Get the primary keys
-     *                 using getPrimaryKey() - Remove the beans using
-     *                 EJBHome.remove([Primary Key])
+     * Check that you can: - Create bean instances - Discover these instances with findByPrimaryKey() - Compare the bean
+     * instances (EJBObject.isIdentical()) - Get the primary keys using getPrimaryKey() - Remove the beans using
+     * EJBHome.remove([Primary Key])
      */
     public void testStringPK() throws Fault {
         final String refPK1 = "cof001";
@@ -170,11 +167,9 @@ public class Client extends EETest {
      *
      * @test_Strategy: Package a CMP 2.0 Entity bean with a Long primary key
      *
-     *                 Check that you can: - Create bean instances - Discover
-     *                 these instances with findByPrimaryKey() - Compare the bean
-     *                 instances (EJBObject.isIdentical()) - Get the primary keys
-     *                 using getPrimaryKey() - Remove the beans using
-     *                 EJBHome.remove([Primary Key])
+     * Check that you can: - Create bean instances - Discover these instances with findByPrimaryKey() - Compare the bean
+     * instances (EJBObject.isIdentical()) - Get the primary keys using getPrimaryKey() - Remove the beans using
+     * EJBHome.remove([Primary Key])
      */
     public void testLongPK() throws Fault {
         final Long refPK1 = new Long(1515);
@@ -268,11 +263,9 @@ public class Client extends EETest {
      *
      * @test_Strategy: Package a CMP 2.0 Entity bean with a Float primary key
      *
-     *                 Check that you can: - Create bean instances - Discover
-     *                 these instances with findByPrimaryKey() - Compare the bean
-     *                 instances (EJBObject.isIdentical()) - Get the primary keys
-     *                 using getPrimaryKey() - Remove the beans using
-     *                 EJBHome.remove([Primary Key])
+     * Check that you can: - Create bean instances - Discover these instances with findByPrimaryKey() - Compare the bean
+     * instances (EJBObject.isIdentical()) - Get the primary keys using getPrimaryKey() - Remove the beans using
+     * EJBHome.remove([Primary Key])
      */
     public void testFloatPK() throws Fault {
         final Float refPK1 = new Float(37.2);
@@ -366,11 +359,9 @@ public class Client extends EETest {
      *
      * @test_Strategy: Package a CMP 2.0 Entity bean with a compound primary key
      *
-     *                 Check that you can: - Create bean instances - Discover
-     *                 these instances with findByPrimaryKey() - Compare the bean
-     *                 instances (EJBObject.isIdentical()) - Get the primary keys
-     *                 using getPrimaryKey() - Remove the beans using
-     *                 EJBHome.remove([Primary Key])
+     * Check that you can: - Create bean instances - Discover these instances with findByPrimaryKey() - Compare the bean
+     * instances (EJBObject.isIdentical()) - Get the primary keys using getPrimaryKey() - Remove the beans using
+     * EJBHome.remove([Primary Key])
      */
     public void testCompoundPK() throws Fault {
         final CompoundPK refPK1 = new CompoundPK(1, "cof0001", (float) 37.2);

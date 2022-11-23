@@ -42,8 +42,10 @@ public class WSCAnnotatedMixedServerEndpoint {
         @Override
         public void onMessage(String partialMessage, boolean last) {
             if (TypeEnum.STRING_PARTIAL.name().equals(partialMessage)) {
-                if (last) session.addMessageHandler(String.class, this);
-            } else super.onMessage(partialMessage, last);
+                if (last)
+                    session.addMessageHandler(String.class, this);
+            } else
+                super.onMessage(partialMessage, last);
         }
     }
 
@@ -60,8 +62,10 @@ public class WSCAnnotatedMixedServerEndpoint {
             } catch (IOException e) {
                 // do nothing
             }
-            if (TypeEnum.INPUTSTREAM.name().equals(msg)) session.addMessageHandler(InputStream.class, this);
-            else super.onMessage(new StringInputStream(msg));
+            if (TypeEnum.INPUTSTREAM.name().equals(msg))
+                session.addMessageHandler(InputStream.class, this);
+            else
+                super.onMessage(new StringInputStream(msg));
         }
     }
 
@@ -74,8 +78,10 @@ public class WSCAnnotatedMixedServerEndpoint {
         public void onMessage(PongMessage message) {
             String msg = null;
             msg = IOUtil.byteBufferToString(message.getApplicationData());
-            if (TypeEnum.PONG.name().equals(msg)) session.addMessageHandler(PongMessage.class, this);
-            else super.onMessage(new StringPongMessage(msg));
+            if (TypeEnum.PONG.name().equals(msg))
+                session.addMessageHandler(PongMessage.class, this);
+            else
+                super.onMessage(new StringPongMessage(msg));
         }
     }
 

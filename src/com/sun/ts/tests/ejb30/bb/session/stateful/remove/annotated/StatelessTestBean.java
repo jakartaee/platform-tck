@@ -33,7 +33,7 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
-@Remote({TestIF.class})
+@Remote({ TestIF.class })
 @Stateless(name = "StatelessTestBean")
 public class StatelessTestBean extends TestBeanBase implements TestIF {
     @Resource(name = "sessionContext")
@@ -54,7 +54,8 @@ public class StatelessTestBean extends TestBeanBase implements TestIF {
     @EJB(name = "twoLocalHome")
     private TwoLocalHome twoLocalHome;
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected RemoveLocalIF getRemoveLocalBean() {
         // return removeBean;

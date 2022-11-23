@@ -27,9 +27,8 @@ import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
 /**
- * A test client for callback methods. Note that since callback methods cannot
- * throw application exception, so we can only convey test result back to client
- * through the returned value.
+ * A test client for callback methods. Note that since callback methods cannot throw application exception, so we can
+ * only convey test result back to client through the returned value.
  */
 public class Client extends MDBClientBase {
     @Resource(name = "sendQueue")
@@ -60,8 +59,7 @@ public class Client extends MDBClientBase {
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
     public void setup(String[] args, java.util.Properties p) throws com.sun.ts.lib.harness.EETest.Fault {
         super.setup(args, p);
@@ -72,10 +70,8 @@ public class Client extends MDBClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o apply two callback annotations on the same method o Callback
-     * methods may throw RuntimeException o callback methods may use arbitrary
-     * names
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o apply two callback annotations
+     * on the same method o Callback methods may throw RuntimeException o callback methods may use arbitrary names
      */
 
     /*
@@ -83,10 +79,9 @@ public class Client extends MDBClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o verify callback methods in handler class are invoked o
-     * Callback methods may throw RuntimeException o callback methods may, in some
-     * cases, named as ejbCreate, ejbRemove
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o verify callback methods in
+     * handler class are invoked o Callback methods may throw RuntimeException o callback methods may, in some cases, named
+     * as ejbCreate, ejbRemove
      */
 
     /*
@@ -94,9 +89,8 @@ public class Client extends MDBClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o Resource o verify dependency injection has occurred when
-     * callback method is called o Callback methods may throw RuntimeException
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o Resource o verify dependency
+     * injection has occurred when callback method is called o Callback methods may throw RuntimeException
      */
 
 }

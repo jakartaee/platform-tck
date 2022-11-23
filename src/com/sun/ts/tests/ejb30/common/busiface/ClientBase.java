@@ -55,8 +55,8 @@ public abstract class ClientBase extends EETest {
     }
 
     /**
-     * Removes all beans used in this client. It should only be used by sfsb,
-     * though other bean types may also have a remove business method.
+     * Removes all beans used in this client. It should only be used by sfsb, though other bean types may also have a remove
+     * business method.
      */
     protected void remove() {
         if (getBean1() != null) {
@@ -99,7 +99,8 @@ public abstract class ClientBase extends EETest {
         }
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     protected void verifyRemoteSemantics(String[] s) throws Fault {
         if (s == null) {
@@ -129,7 +130,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void multipleInterfacesTest1() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final boolean expected = true;
         boolean actual = false;
         try {
@@ -149,7 +150,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void multipleInterfacesTest2() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final boolean expected = true;
         final boolean actual = getBean2().businessMethod2(s);
         if (expected != actual) {
@@ -164,7 +165,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void multipleInterfacesLocalTest1() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final String[] result = getTestBean().multipleInterfacesLocalTest1(s);
         verifyLocalSemantics(result);
     }
@@ -175,7 +176,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void multipleInterfacesLocalTest2() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final String[] result = getTestBean().multipleInterfacesLocalTest2(s);
         verifyLocalSemantics(result);
     }
@@ -186,7 +187,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void singleInterfaceLocalSerializableTest() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final String[] result = getTestBean().singleInterfaceLocalSerializableTest(s);
         verifyLocalSemantics(result);
     }
@@ -197,7 +198,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void singleInterfaceLocalExternalizableTest() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final String[] result = getTestBean().singleInterfaceLocalExternalizableTest(s);
         verifyLocalSemantics(result);
     }
@@ -208,7 +209,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void singleInterfaceLocalTimedObjectTest() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final String[] result = getTestBean().singleInterfaceLocalTimedObjectTest(s);
         verifyLocalSemantics(result);
     }
@@ -219,7 +220,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void singleInterfaceLocalSessionSynchronizationTest() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final String[] result = getTestBean().singleInterfaceLocalSessionSynchronizationTest(s);
         verifyLocalSemantics(result);
     }
@@ -230,7 +231,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void singleInterfaceLocalSessionBeanTest() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final String[] result = getTestBean().singleInterfaceLocalSessionBeanTest(s);
         verifyLocalSemantics(result);
     }
@@ -241,7 +242,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void multipleAnnotatedInterfacesTest1() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final boolean expected = true;
         boolean actual = false;
         actual = getAnnotatedInterfaceBean1().annotatedBusinessInterfaceMethod(s);
@@ -257,7 +258,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void multipleAnnotatedInterfacesTest2() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final boolean expected = true;
         final boolean actual = getAnnotatedInterfaceBean2().annotatedBusinessInterfaceMethod(s);
         if (expected != actual) {
@@ -272,7 +273,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void multipleAnnotatedInterfacesLocalTest1() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final String[] result = getTestBean().multipleAnnotatedInterfacesLocalTest1(s);
         verifyLocalSemantics(result);
     }
@@ -283,7 +284,7 @@ public abstract class ClientBase extends EETest {
      * @test_Strategy:
      */
     public void multipleAnnotatedInterfacesLocalTest2() throws Fault {
-        final String[] s = new String[] {Constants.VALUE};
+        final String[] s = new String[] { Constants.VALUE };
         final String[] result = getTestBean().multipleAnnotatedInterfacesLocalTest2(s);
         verifyLocalSemantics(result);
     }

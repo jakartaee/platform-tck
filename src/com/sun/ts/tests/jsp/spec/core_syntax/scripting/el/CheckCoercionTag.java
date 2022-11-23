@@ -25,16 +25,14 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * Tag implementation to validate type coercions for the JSP 2.0 expression
- * language.
+ * Tag implementation to validate type coercions for the JSP 2.0 expression language.
  */
 public class CheckCoercionTag extends BaseCheckTag {
 
     /**
      * Sets a Byte object.
      *
-     * @param _byte
-     *          a Byte object
+     * @param _byte a Byte object
      */
     public void setByte(Byte _byte) {
         _object = _byte;
@@ -43,8 +41,7 @@ public class CheckCoercionTag extends BaseCheckTag {
     /**
      * Sets a Character object.
      *
-     * @param _char
-     *          a Character object
+     * @param _char a Character object
      */
     public void setChar(Character _char) {
         _object = _char;
@@ -53,8 +50,7 @@ public class CheckCoercionTag extends BaseCheckTag {
     /**
      * Sets a Short object.
      *
-     * @param _short
-     *          a Short object
+     * @param _short a Short object
      */
     public void setShort(Short _short) {
         _object = _short;
@@ -63,8 +59,7 @@ public class CheckCoercionTag extends BaseCheckTag {
     /**
      * Sets an Integer object.
      *
-     * @param _int
-     *          an Integer object
+     * @param _int an Integer object
      */
     public void setInt(Integer _int) {
         _object = _int;
@@ -73,8 +68,7 @@ public class CheckCoercionTag extends BaseCheckTag {
     /**
      * Sets a Long object.
      *
-     * @param _long
-     *          a Long object
+     * @param _long a Long object
      */
     public void setLong(Long _long) {
         _object = _long;
@@ -83,8 +77,7 @@ public class CheckCoercionTag extends BaseCheckTag {
     /**
      * Sets a Float object.
      *
-     * @param _float
-     *          a Float object
+     * @param _float a Float object
      */
     public void setFloat(Float _float) {
         _object = _float;
@@ -93,8 +86,7 @@ public class CheckCoercionTag extends BaseCheckTag {
     /**
      * Sets a Double object.
      *
-     * @param _double
-     *          a Double object
+     * @param _double a Double object
      */
     public void setDouble(Double _double) {
         _object = _double;
@@ -103,8 +95,7 @@ public class CheckCoercionTag extends BaseCheckTag {
     /**
      * Sets a String object.
      *
-     * @param _string
-     *          a String object
+     * @param _string a String object
      */
     public void setString(String _string) {
         _object = _string;
@@ -113,8 +104,7 @@ public class CheckCoercionTag extends BaseCheckTag {
     /**
      * Sets a Boolean object.
      *
-     * @param _boolean
-     *          a Boolean object
+     * @param _boolean a Boolean object
      */
     public void setBoolean(Boolean _boolean) {
         _object = _boolean;
@@ -133,11 +123,10 @@ public class CheckCoercionTag extends BaseCheckTag {
     }
 
     /**
-     * Validates the to and from various types by taking the String value of the
-     * expected result and the resulting evaluation and checking for equality.
+     * Validates the to and from various types by taking the String value of the expected result and the resulting
+     * evaluation and checking for equality.
      *
-     * @throws JspException
-     *           if an error occurs.
+     * @throws JspException if an error occurs.
      */
     protected void performCheck() throws JspException {
         String message = null;

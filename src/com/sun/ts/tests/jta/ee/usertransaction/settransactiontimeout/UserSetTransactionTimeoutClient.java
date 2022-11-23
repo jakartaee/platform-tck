@@ -33,9 +33,8 @@ import java.io.Serializable;
 import java.util.Properties;
 
 /**
- * The UserSetTransactionTimeoutClient class tests setTransactionTimeout()
- * method of UserTransaction interface using Sun's J2EE Reference
- * Implementation.
+ * The UserSetTransactionTimeoutClient class tests setTransactionTimeout() method of UserTransaction interface using
+ * Sun's J2EE Reference Implementation.
  *
  * @author P.Sandani Basha
  * @version 1.0.1, 09/17/99
@@ -79,9 +78,8 @@ public class UserSetTransactionTimeoutClient extends ServiceEETest implements Se
     /**
      * @testName: testUserSetTransactionTimeout001
      * @assertion_ids: JTA:JAVADOC:40
-     * @test_Strategy: Before starting the User Transaction set the transaction
-     *                 time out as 10 seconds.Allow the thread to sleep for 30
-     *                 seconds then call commit() User Transaction.
+     * @test_Strategy: Before starting the User Transaction set the transaction time out as 10 seconds.Allow the thread to
+     * sleep for 30 seconds then call commit() User Transaction.
      */
     public void testUserSetTransactionTimeout001() throws Fault {
         // TestCase id :- 4.6.1
@@ -130,10 +128,8 @@ public class UserSetTransactionTimeoutClient extends ServiceEETest implements Se
     /**
      * @testName: testUserSetTransactionTimeout002
      * @assertion_ids: JTA:JAVADOC:40
-     * @test_Strategy: Before starting the User Transaction set the transaction
-     *                 time out as 10 seconds.Allow the thread to sleep for 5
-     *                 seconds then Call commit() User Transaction.Check the
-     *                 status of the User Transaction.
+     * @test_Strategy: Before starting the User Transaction set the transaction time out as 10 seconds.Allow the thread to
+     * sleep for 5 seconds then Call commit() User Transaction.Check the status of the User Transaction.
      */
     public void testUserSetTransactionTimeout002() throws Fault {
         // TestCase id :- 4.6.2

@@ -94,10 +94,9 @@ public class TopicTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Topic
-     * Connection, as well as a default Topic and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Topic Connection, as well as a default Topic and Topic. Tests that require multiple Destinations create
+     * the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -141,8 +140,8 @@ public class TopicTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -163,11 +162,9 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:12; JMS:JAVADOC:13;
      *
-     * @test_Strategy: Create a session in a separate thread that calls receive()
-     * and replies to the message. Have the thread call receive() again with no
-     * message sent. Close the thread's session and the receive() call should
-     * return, finishing the thread's run() method. Verify that the thread is no
-     * longer running.
+     * @test_Strategy: Create a session in a separate thread that calls receive() and replies to the message. Have the
+     * thread call receive() again with no message sent. Close the thread's session and the receive() call should return,
+     * finishing the thread's run() method. Verify that the thread is no longer running.
      */
     public void receiveNullClosedSessionTopicTest() throws Fault {
         int waitTime = 15; // seconds
@@ -206,7 +203,8 @@ public class TopicTests extends ServiceEETest {
             qReq.request(tempMsg);
 
             logMsg("Wait " + waitTime + " seconds for receive() to start again " + "before closing session...");
-            for (int i = 0; i < 100000; i++) {}
+            for (int i = 0; i < 100000; i++) {
+            }
             logMsg("Close the SessionThread's TopicSession");
             sT.getTopicSession().close();
 
@@ -233,8 +231,8 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:173; JMS:SPEC:198; JMS:SPEC:94; JMS:SPEC:91;
      *
-     * @test_Strategy: create a connection, send and receive a msg, then set the
-     * ClientID verify that IllegalStateException is thrown.
+     * @test_Strategy: create a connection, send and receive a msg, then set the ClientID verify that IllegalStateException
+     * is thrown.
      *
      */
     public void setClientIDLateTopicTest() throws Fault {
@@ -300,11 +298,10 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:132; JMS:SPEC:136;
      *
-     * @test_Strategy: Set up a receiver with a messagelistener. Send two messages
-     * to the destination. The message listener will receive the messages and
-     * automatically call recover() after the send one. It will verify that the
-     * second message only is received a second time. After waiting for the
-     * message listener to finish, the test checks the state of the listener.
+     * @test_Strategy: Set up a receiver with a messagelistener. Send two messages to the destination. The message listener
+     * will receive the messages and automatically call recover() after the send one. It will verify that the second message
+     * only is received a second time. After waiting for the message listener to finish, the test checks the state of the
+     * listener.
      */
     public void autoAckMsgListenerTopicTest() throws Fault {
         try {
@@ -347,12 +344,10 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:120; JMS:SPEC:121; JMS:SPEC:136;
      *
-     * @test_Strategy: Create topic sessions with two receivers and message
-     * listeners for two topics. Send multiple messages to the topics and then
-     * start the connection to begin receiving messages. The message listeners
-     * perform a Thread.sleep() in the onMessage() method, checking for concurrent
-     * use of the other listener. The test is over when the harness determines
-     * that the last message has been received.
+     * @test_Strategy: Create topic sessions with two receivers and message listeners for two topics. Send multiple messages
+     * to the topics and then start the connection to begin receiving messages. The message listeners perform a
+     * Thread.sleep() in the onMessage() method, checking for concurrent use of the other listener. The test is over when
+     * the harness determines that the last message has been received.
      */
     public void serialMsgListenerTopicTest() throws Fault {
         try {
@@ -425,16 +420,13 @@ public class TopicTests extends ServiceEETest {
     /*
      * @testName: setGetChangeClientIDTopicTest
      *
-     * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:90; JMS:SPEC:93; JMS:JAVADOC:514;
-     * JMS:JAVADOC:512; JMS:JAVADOC:650; JMS:JAVADOC:651;
+     * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:90; JMS:SPEC:93; JMS:JAVADOC:514; JMS:JAVADOC:512; JMS:JAVADOC:650;
+     * JMS:JAVADOC:651;
      *
-     * @test_Strategy: Test setClientID()/getClientID(). Make sure that the
-     * clientID set is the clientID returned. Then try and reset the clientID.
-     * Verify that the IllegalStateException is thrown. 1. use a
-     * TopicConnectionFactory that has no ClientID set, then call setClientID
-     * twice. Then try and set the clientID on a second connection to the clientID
-     * value of the first connection. Verify the InvalidClientIDException is
-     * thrown.
+     * @test_Strategy: Test setClientID()/getClientID(). Make sure that the clientID set is the clientID returned. Then try
+     * and reset the clientID. Verify that the IllegalStateException is thrown. 1. use a TopicConnectionFactory that has no
+     * ClientID set, then call setClientID twice. Then try and set the clientID on a second connection to the clientID value
+     * of the first connection. Verify the InvalidClientIDException is thrown.
      */
     public void setGetChangeClientIDTopicTest() throws Fault {
         boolean pass = true;
@@ -512,7 +504,8 @@ public class TopicTests extends ServiceEETest {
             TestUtil.logMsg("Create ExceptionListener");
             ExceptionListener foo = new ExceptionListener() {
 
-                public void onException(JMSException e) {}
+                public void onException(JMSException e) {
+                }
             };
 
             TestUtil.logMsg("Call setExceptionListener on Connection object");
@@ -588,14 +581,12 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:123; JMS:SPEC:129; JMS:SPEC:91;
      *
-     * @test_Strategy: Send x messages to x Topics from x senders. In a different
-     * session using client_acknowledge, create x TopicSubscribers. Send the
-     * messages in order 1,2,3...x. Receive them in order x...3,2,1, calling
-     * session.recover() after receiving 1 message. All x messages should be
-     * received. ("x" is specified by the numMessages parameter in ts.jte file.)
+     * @test_Strategy: Send x messages to x Topics from x senders. In a different session using client_acknowledge, create x
+     * TopicSubscribers. Send the messages in order 1,2,3...x. Receive them in order x...3,2,1, calling session.recover()
+     * after receiving 1 message. All x messages should be received. ("x" is specified by the numMessages parameter in
+     * ts.jte file.)
      *
-     * Note: default TopicSubscriber can stay open, since testing is done with
-     * newly created Destinations
+     * Note: default TopicSubscriber can stay open, since testing is done with newly created Destinations
      */
     public void reverseReceiveClientAckTest() throws Fault {
         boolean pass = true;
@@ -624,8 +615,7 @@ public class TopicTests extends ServiceEETest {
 
             // create session for receiving
             TestUtil.logMsg("Creating CLIENT_ACKNOWLEDGE session for receiving");
-            TopicSession receiveSession =
-                    tool.getDefaultTopicConnection().createTopicSession(false, Session.CLIENT_ACKNOWLEDGE);
+            TopicSession receiveSession = tool.getDefaultTopicConnection().createTopicSession(false, Session.CLIENT_ACKNOWLEDGE);
 
             // create receivers for receive session
             TestUtil.logMsg("Creating " + numMessages + " receivers in receive session");
@@ -690,9 +680,8 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:131; JMS:JAVADOC:122; JMS:SPEC:91;
      *
-     * @test_Strategy: Send three messages to Topic. Receive all three and call
-     * acknowledge on msg 2. Send and receive message 4. Recover and attempt to
-     * receive msg 4.
+     * @test_Strategy: Send three messages to Topic. Receive all three and call acknowledge on msg 2. Send and receive
+     * message 4. Recover and attempt to receive msg 4.
      */
     public void clientAckTopicTest() throws Fault {
         boolean pass = true;
@@ -784,7 +773,8 @@ public class TopicTests extends ServiceEETest {
                 rec4.acknowledge();
             }
 
-            if (!pass) throw new Fault("clientAckTopicTest Failed!!");
+            if (!pass)
+                throw new Fault("clientAckTopicTest Failed!!");
 
         } catch (Exception e) {
             TestUtil.logErr("Error: ", e);
@@ -797,10 +787,9 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:145; JMS:JAVADOC:122; JMS:SPEC:91;
      *
-     * @test_Strategy: Send messages to a topic that has a single TopicSubscriber
-     * in a CLIENT_ACKNOWLEDGE session. Receive all the messages without
-     * acknowledging the messages and call session recover. Verify that all the
-     * messages may still be received from the topic.
+     * @test_Strategy: Send messages to a topic that has a single TopicSubscriber in a CLIENT_ACKNOWLEDGE session. Receive
+     * all the messages without acknowledging the messages and call session recover. Verify that all the messages may still
+     * be received from the topic.
      */
     public void nonAckMsgsRedeliveredTopicTest() throws Fault {
         boolean pass = true;
@@ -815,8 +804,7 @@ public class TopicTests extends ServiceEETest {
             tool.getDefaultTopicSession().close();
 
             // create client_ack session for topic
-            TopicSession tSession =
-                    tool.getDefaultTopicConnection().createTopicSession(false, Session.CLIENT_ACKNOWLEDGE);
+            TopicSession tSession = tool.getDefaultTopicConnection().createTopicSession(false, Session.CLIENT_ACKNOWLEDGE);
             TopicSubscriber tSubscriber = tSession.createSubscriber(tool.getDefaultTopic());
             TopicPublisher tPublisher = tSession.createPublisher(tool.getDefaultTopic());
 
@@ -848,7 +836,8 @@ public class TopicTests extends ServiceEETest {
             // receive messages again but this time acknowlege them
             for (int i = 0; i < numMessages; i++) {
                 tempMsg = (TextMessage) tSubscriber.receive(timeout);
-                if (tempMsg != null) tempMsg.acknowledge();
+                if (tempMsg != null)
+                    tempMsg.acknowledge();
                 if (tempMsg == null) {
                     pass = false;
                     TestUtil.logErr("Did not receive message " + i);
@@ -866,7 +855,8 @@ public class TopicTests extends ServiceEETest {
             tSubscriber.close();
             tSession.close();
 
-            if (!pass) throw new Fault("nonAckMsgsRedeliveredTopicTest failed!!!");
+            if (!pass)
+                throw new Fault("nonAckMsgsRedeliveredTopicTest failed!!!");
         } catch (Exception e) {
             TestUtil.logErr("nonAckMsgsRedeliveredTopicTest failed: ", e);
             throw new Fault("nonAckMsgsRedeliveredTopicTest failed", e);
@@ -878,11 +868,9 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:5; JMS:JAVADOC:6; JMS:JAVADOC:8; JMS:SPEC:170;
      *
-     * @test_Strategy: Send and receive simple JMS message using TopicRequestor
-     * helper class. Tests the following API's:
+     * @test_Strategy: Send and receive simple JMS message using TopicRequestor helper class. Tests the following API's:
      *
-     * TopicRequestor(TopicSession, Topic) TopicRequestor.request(Message)
-     * TopicRequestor.close()
+     * TopicRequestor(TopicSession, Topic) TopicRequestor.request(Message) TopicRequestor.close()
      */
     public void topicRequestorSimpleSendAndRecvTest() throws Fault {
         boolean pass = true;
@@ -939,8 +927,8 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:830; JMS:JAVADOC:831; JMS:JAVADOC:9;
      *
-     * @test_Strategy: Test negative exception cases for TopicRequestor API's.
-     * Tests the following exceptions: InvalidDestinationException, JMSException.
+     * @test_Strategy: Test negative exception cases for TopicRequestor API's. Tests the following exceptions:
+     * InvalidDestinationException, JMSException.
      */
     public void topicRequestorExceptionTests() throws Fault {
         boolean pass = true;
@@ -1001,7 +989,8 @@ public class TopicTests extends ServiceEETest {
             TestUtil.logMsg("Try a request/response message exchange on a closed TopicRequestor");
             try {
                 messageReceived = (TextMessage) treq.request(messageSent);
-                if (messageReceived != null) TestUtil.logMsg("messageReceived=" + messageReceived.getText());
+                if (messageReceived != null)
+                    TestUtil.logMsg("messageReceived=" + messageReceived.getText());
                 TestUtil.logErr("Didn't throw JMSException");
                 pass = false;
             } catch (JMSException e) {

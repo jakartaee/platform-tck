@@ -52,8 +52,8 @@ public abstract class ComponentBase {
     }
 
     /**
-     * A template method to check injections into bean/interceptors. Always called
-     * by concrete subclass, not by BeanBase or InterceptorBase.
+     * A template method to check injections into bean/interceptors. Always called by concrete subclass, not by BeanBase or
+     * InterceptorBase.
      */
     protected void checkInjections(int nPreviousRecords) {
         StringBuilder sb = new StringBuilder();

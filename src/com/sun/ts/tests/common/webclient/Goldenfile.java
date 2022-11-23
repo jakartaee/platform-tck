@@ -48,8 +48,7 @@ public class Goldenfile {
     private File _file = null;
 
     /*
-     * Error message to return by public methods if the file is not found or the
-     * user has insufficient permissions.
+     * Error message to return by public methods if the file is not found or the user has insufficient permissions.
      */
     private byte[] _errMessage = null;
 
@@ -66,10 +65,8 @@ public class Goldenfile {
     /**
      * Creates a new GoldenFile based on the fully qualified filename provided.
      *
-     * @param path
-     *          Fully qualified file name
-     * @param encoding
-     *          to use when reading the goldenfile
+     * @param path Fully qualified file name
+     * @param encoding to use when reading the goldenfile
      */
     public Goldenfile(String path, String encoding) {
         _file = new File(path);
@@ -87,8 +84,7 @@ public class Goldenfile {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
@@ -101,12 +97,11 @@ public class Goldenfile {
     }
 
     /**
-     * Returns the byte content of the specified goldenfile using the charset
-     * encoding specified in the response from the server.
+     * Returns the byte content of the specified goldenfile using the charset encoding specified in the response from the
+     * server.
      *
      * @return the goldenfile as a byte array
-     * @throws IOException
-     *           if an error occurs processing the file.
+     * @throws IOException if an error occurs processing the file.
      */
     public byte[] getGoldenFileAsBytes() throws IOException {
         if (_file != null) {
@@ -117,12 +112,11 @@ public class Goldenfile {
     }
 
     /**
-     * Retuns a string representation of the specified goldenfile using the
-     * charset encoding specified in the response from the server.
+     * Retuns a string representation of the specified goldenfile using the charset encoding specified in the response from
+     * the server.
      *
      * @return the goldenfile as a String.
-     * @throws IOException
-     *           if an error occurs processing the file.
+     * @throws IOException if an error occurs processing the file.
      */
     public String getGoldenFileAsString() throws IOException {
         String gf = null;
@@ -138,12 +132,10 @@ public class Goldenfile {
     }
 
     /**
-     * Returns the goldenfile as an InputStream using the charset encoding
-     * specified in the response from the server.
+     * Returns the goldenfile as an InputStream using the charset encoding specified in the response from the server.
      *
      * @return goldenfile as an InputStream
-     * @throws IOException
-     *           If an error occurs processing the file.
+     * @throws IOException If an error occurs processing the file.
      */
     public InputStream getGoldenFileAsStream() throws IOException {
         if (_file != null) {

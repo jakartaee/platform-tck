@@ -38,7 +38,8 @@ public class WSProgramaticSubprotocolsServer extends Endpoint implements Message
         try {
             if (msg.equals("subprotocols"))
                 session.getBasicRemote().sendText(StringUtil.objectsToString(config.getSubprotocols()));
-            else if (msg.equals("path")) session.getBasicRemote().sendText(config.getPath());
+            else if (msg.equals("path"))
+                session.getBasicRemote().sendText(config.getPath());
             else if (msg.equals("endpoint"))
                 session.getBasicRemote().sendText(config.getEndpointClass().getName());
             else if (msg.equals("configurator"))
@@ -47,10 +48,12 @@ public class WSProgramaticSubprotocolsServer extends Endpoint implements Message
             else if (msg.equals("extensions")) {
                 StringBuilder sb = new StringBuilder().append("[");
                 Extension[] ext = config.getExtensions().toArray(new Extension[0]);
-                for (Extension e : ext) sb.append(e.getName()).append(" ");
+                for (Extension e : ext)
+                    sb.append(e.getName()).append(" ");
                 sb.append("]");
                 session.getBasicRemote().sendText(sb.toString());
-            } else session.getBasicRemote().sendText(session.getNegotiatedSubprotocol());
+            } else
+                session.getBasicRemote().sendText(session.getNegotiatedSubprotocol());
 
         } catch (IOException e) {
             e.printStackTrace();

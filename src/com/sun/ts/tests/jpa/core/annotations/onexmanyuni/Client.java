@@ -49,7 +49,8 @@ public class Client extends PMClientBase {
 
     private static final String CUST2_NAME = "Joey";
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -69,13 +70,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: oneXmanyUniJoinColumn
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039;
-     * PERSISTENCE:SPEC:1040; PERSISTENCE:SPEC:1041; PERSISTENCE:SPEC:1042;
-     * PERSISTENCE:SPEC:1046; PERSISTENCE:SPEC:1048; PERSISTENCE:SPEC:1097;
-     * PERSISTENCE:SPEC:1214; PERSISTENCE:SPEC:1243; PERSISTENCE:JAVADOC:374;
+     * @assertion_ids: PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039; PERSISTENCE:SPEC:1040; PERSISTENCE:SPEC:1041;
+     * PERSISTENCE:SPEC:1042; PERSISTENCE:SPEC:1046; PERSISTENCE:SPEC:1048; PERSISTENCE:SPEC:1097; PERSISTENCE:SPEC:1214;
+     * PERSISTENCE:SPEC:1243; PERSISTENCE:JAVADOC:374;
      *
-     * @test_Strategy: The two entities "Customer1" and "RetailOrder2" have
-     * One-to-Many relationship.
+     * @test_Strategy: The two entities "Customer1" and "RetailOrder2" have One-to-Many relationship.
      *
      */
     public void oneXmanyUniJoinColumn() throws Fault {

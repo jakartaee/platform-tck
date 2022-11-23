@@ -34,9 +34,9 @@ public class Client extends ServiceEETest {
 
     // Expected Enum Constant Summary
     private static final jakarta.xml.ws.soap.AddressingFeature.Responses expectedEnums[] = {
-        jakarta.xml.ws.soap.AddressingFeature.Responses.ALL,
-        jakarta.xml.ws.soap.AddressingFeature.Responses.ANONYMOUS,
-        jakarta.xml.ws.soap.AddressingFeature.Responses.NON_ANONYMOUS,
+            jakarta.xml.ws.soap.AddressingFeature.Responses.ALL,
+            jakarta.xml.ws.soap.AddressingFeature.Responses.ANONYMOUS,
+            jakarta.xml.ws.soap.AddressingFeature.Responses.NON_ANONYMOUS,
     };
 
     private boolean findEnums(jakarta.xml.ws.soap.AddressingFeature.Responses[] args) {
@@ -64,7 +64,8 @@ public class Client extends ServiceEETest {
     private void printEnums(jakarta.xml.ws.soap.AddressingFeature.Responses[] args) {
         TestUtil.logMsg("Print Enums");
         TestUtil.logMsg("-----------");
-        for (jakarta.xml.ws.soap.AddressingFeature.Responses c : args) TestUtil.logMsg("" + c);
+        for (jakarta.xml.ws.soap.AddressingFeature.Responses c : args)
+            TestUtil.logMsg("" + c);
     }
 
     public static void main(String[] args) {
@@ -92,17 +93,15 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:226;
      *
-     * @test_Strategy: Verify
-     * jakarta.xml.ws.soap.AddressingFeature.Responses.values() returns array
-     * containing the constants of this enum type.
+     * @test_Strategy: Verify jakarta.xml.ws.soap.AddressingFeature.Responses.values() returns array containing the
+     * constants of this enum type.
      */
     public void valuesTest() throws Fault {
         TestUtil.logTrace("valuesTest");
         boolean pass = true;
         try {
             TestUtil.logMsg("Call jakarta.xml.ws.soap.AddressingFeature.Responses.values() ...");
-            jakarta.xml.ws.soap.AddressingFeature.Responses[] responses =
-                    jakarta.xml.ws.soap.AddressingFeature.Responses.values();
+            jakarta.xml.ws.soap.AddressingFeature.Responses[] responses = jakarta.xml.ws.soap.AddressingFeature.Responses.values();
             printEnums(responses);
             pass = findEnums(responses);
         } catch (Exception e) {
@@ -111,7 +110,8 @@ public class Client extends ServiceEETest {
             throw new Fault("valuesTest failed", e);
         }
 
-        if (!pass) throw new Fault("valuesTest failed");
+        if (!pass)
+            throw new Fault("valuesTest failed");
     }
 
     /*
@@ -119,17 +119,15 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:225;
      *
-     * @test_Strategy: Verify
-     * jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf(String name) returns
-     * the enum constant of this type with specified name.
+     * @test_Strategy: Verify jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf(String name) returns the enum constant
+     * of this type with specified name.
      */
     public void valueOfTest() throws Fault {
         TestUtil.logTrace("valuesTest");
         boolean pass = true;
         try {
             TestUtil.logMsg("Call jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf(ALL) ...");
-            jakarta.xml.ws.soap.AddressingFeature.Responses responses =
-                    jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf("ALL");
+            jakarta.xml.ws.soap.AddressingFeature.Responses responses = jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf("ALL");
             if (responses != jakarta.xml.ws.soap.AddressingFeature.Responses.ALL) {
                 TestUtil.logErr("jakarta.xml.ws.soap.AddressingFeature.Responses.valueOf(ALL) failed:"
                         + " expected: "
@@ -145,6 +143,7 @@ public class Client extends ServiceEETest {
             throw new Fault("valuesTest failed", e);
         }
 
-        if (!pass) throw new Fault("valuesTest failed");
+        if (!pass)
+            throw new Fault("valuesTest failed");
     }
 }

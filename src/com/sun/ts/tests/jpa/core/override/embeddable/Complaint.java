@@ -30,7 +30,8 @@ public class Complaint implements Serializable {
 
     private int complaintNumber;
 
-    public Complaint() {}
+    public Complaint() {
+    }
 
     public int hashCode() {
         int hash = 0;

@@ -38,26 +38,10 @@ import jakarta.resource.spi.work.WorkManager;
 import javax.transaction.xa.XAResource;
 
 /**
- * This RA is used to assist with verifying the server supports permissions.xml
- * security enforcement within a rar file.
+ * This RA is used to assist with verifying the server supports permissions.xml security enforcement within a rar file.
  */
-@Connector(
-        description = "CTS Test Resource Adapter with No DD",
-        displayName = "whitebox-permissiondd.rar",
-        vendorName = "Java Software",
-        eisType = "TS EIS",
-        version = "1.6",
-        licenseDescription = "CTS License Required",
-        licenseRequired = true,
-        authMechanisms =
-                @AuthenticationMechanism(
-                        credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential,
-                        authMechanism = "BasicPassword",
-                        description = "Basic Password Authentication"),
-        reauthenticationSupport = false,
-        securityPermissions = @SecurityPermission(description = "Security Perm description", permissionSpec = ""),
-        transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction,
-        requiredWorkContexts = {HintsContext.class, SecurityContext.class})
+@Connector(description = "CTS Test Resource Adapter with No DD", displayName = "whitebox-permissiondd.rar", vendorName = "Java Software", eisType = "TS EIS", version = "1.6", licenseDescription = "CTS License Required", licenseRequired = true, authMechanisms = @AuthenticationMechanism(credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential, authMechanism = "BasicPassword", description = "Basic Password Authentication"), reauthenticationSupport = false, securityPermissions = @SecurityPermission(description = "Security Perm description", permissionSpec = ""), transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction, requiredWorkContexts = {
+        HintsContext.class, SecurityContext.class })
 public class PermissionDDResourceAdapterImpl implements ResourceAdapter, java.io.Serializable {
 
     private transient BootstrapContext bsc;
@@ -165,15 +149,20 @@ public class PermissionDDResourceAdapterImpl implements ResourceAdapter, java.io
 
         PermissionDDResourceAdapterImpl that = (PermissionDDResourceAdapterImpl) obj;
 
-        if (!Util.isEqual(this.serverSideUser, that.getServerSideUser())) return false;
+        if (!Util.isEqual(this.serverSideUser, that.getServerSideUser()))
+            return false;
 
-        if (!Util.isEqual(this.serverSidePwd, that.getServerSidePwd())) return false;
+        if (!Util.isEqual(this.serverSidePwd, that.getServerSidePwd()))
+            return false;
 
-        if (!Util.isEqual(this.eisUser, that.getEisUser())) return false;
+        if (!Util.isEqual(this.eisUser, that.getEisUser()))
+            return false;
 
-        if (!Util.isEqual(this.eisPwd, that.getEisPwd())) return false;
+        if (!Util.isEqual(this.eisPwd, that.getEisPwd()))
+            return false;
 
-        if (!Util.isEqual(this.raName, that.getRaName())) return false;
+        if (!Util.isEqual(this.raName, that.getRaName()))
+            return false;
 
         return true;
     }

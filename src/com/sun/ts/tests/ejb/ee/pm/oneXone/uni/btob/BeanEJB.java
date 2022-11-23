@@ -105,8 +105,10 @@ public abstract class BeanEJB implements EntityBean {
 
         BLocal b1 = aOne.getB();
 
-        if (b1 == null) return true;
-        else return false;
+        if (b1 == null)
+            return true;
+        else
+            return false;
     }
 
     public boolean test0() {
@@ -140,8 +142,10 @@ public abstract class BeanEJB implements EntityBean {
                 return true;
             } else {
                 TestUtil.logMsg("Relationship assignment failed");
-                if (!b1.isIdentical(bTwo)) TestUtil.logErr("b1 not identical to b2");
-                if (b2 != null) TestUtil.logErr("b2 not null");
+                if (!b1.isIdentical(bTwo))
+                    TestUtil.logErr("b1 not identical to b2");
+                if (b2 != null)
+                    TestUtil.logErr("b2 not null");
                 return false;
             }
 
@@ -195,20 +199,20 @@ public abstract class BeanEJB implements EntityBean {
             ALocal a1 = null;
             BLocal b1 = null;
             switch (flag) {
-                case NO_RELATION_SET:
-                    a1 = createALocal(a.getId(), a.getName(), a.getValue());
-                    b1 = createBLocal(b.getId(), b.getName(), b.getValue());
-                    break;
-                case NULL_RELATION_SET:
-                    a1 = createALocal(a.getId(), a.getName(), a.getValue());
-                    a1.setB(null);
-                    b1 = createBLocal(b.getId(), b.getName(), b.getValue());
-                    break;
-                case RELATION_SET:
-                    a1 = createALocal(a.getId(), a.getName(), a.getValue());
-                    b1 = createBLocal(b.getId(), b.getName(), b.getValue());
-                    a1.setB(b1);
-                    break;
+            case NO_RELATION_SET:
+                a1 = createALocal(a.getId(), a.getName(), a.getValue());
+                b1 = createBLocal(b.getId(), b.getName(), b.getValue());
+                break;
+            case NULL_RELATION_SET:
+                a1 = createALocal(a.getId(), a.getName(), a.getValue());
+                a1.setB(null);
+                b1 = createBLocal(b.getId(), b.getName(), b.getValue());
+                break;
+            case RELATION_SET:
+                a1 = createALocal(a.getId(), a.getName(), a.getValue());
+                b1 = createBLocal(b.getId(), b.getName(), b.getValue());
+                a1.setB(b1);
+                break;
             }
             setA1(a1);
             setB1(b1);

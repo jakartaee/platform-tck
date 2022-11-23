@@ -60,20 +60,16 @@ public class Client extends EETest {
     /**
      * @testName: test13DD
      *
-     * @assertion_ids: JavaEE:SPEC:283; JavaEE:SPEC:284; JavaEE:SPEC:10109;
-     *                 JavaEE:SPEC:10110; JavaEE:SPEC:10111
+     * @assertion_ids: JavaEE:SPEC:283; JavaEE:SPEC:284; JavaEE:SPEC:10109; JavaEE:SPEC:10110; JavaEE:SPEC:10111
      *
      * @test_Strategy: Package an ejb-jar file using a JavaEE 1.5 DD
      *
-     *                 Package an .ear file (JavaEE 1.5 DD's) including this
-     *                 ejb-jar and an application client (J2EE 1.3 DD's). This
-     *                 application client references a bean in this ejb-jar
-     *                 module.
+     * Package an .ear file (JavaEE 1.5 DD's) including this ejb-jar and an application client (J2EE 1.3 DD's). This
+     * application client references a bean in this ejb-jar module.
      *
-     *                 Deploy the .ear file.
+     * Deploy the .ear file.
      *
-     *                 Run the client and check we can call a business method on
-     *                 the referenced bean at runtime.
+     * Run the client and check we can call a business method on the referenced bean at runtime.
      */
     public void test13DD() throws Fault {
         TestBeanHome home = null;

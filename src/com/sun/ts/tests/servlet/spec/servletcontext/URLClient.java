@@ -23,9 +23,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -34,8 +33,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -54,8 +52,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:690;
      *
-     * @test_Strategy: Create a web application with no JSP, Create a Servlet,
-     * verify getJspConfigDescriptor retunes null;
+     * @test_Strategy: Create a web application with no JSP, Create a Servlet, verify getJspConfigDescriptor retunes null;
      */
     public void getJspConfigDescriptorTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getJspConfigDescriptorTest");

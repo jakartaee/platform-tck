@@ -41,7 +41,8 @@ public class ResolverTest {
     /**
      * Private as this class will only have static methods and members.
      */
-    private ResolverTest() {}
+    private ResolverTest() {
+    }
 
     public static boolean testCompositeELResolver(
             ELContext elContext, CompositeELResolver compResolver, StringBuffer buf) {
@@ -250,22 +251,14 @@ public class ResolverTest {
     /**
      * Test the ELResolver.invoke() mthod.
      *
-     * @param elContext
-     *          - elContext
-     * @param resolver
-     *          - el Resolver to be tested.
-     * @param beanName
-     *          - The javabean to be used.
-     * @param methodName
-     *          - The method in the javabean to call.
-     * @param types
-     *          - The @class types of the aurgs for the method.
-     * @param values
-     *          - The args that you want to pass into the method.
-     * @param negTest
-     *          - Is this a negetive test or not(true, false).
-     * @param buf
-     *          - String buffer used to capture loggig info.
+     * @param elContext - elContext
+     * @param resolver - el Resolver to be tested.
+     * @param beanName - The javabean to be used.
+     * @param methodName - The method in the javabean to call.
+     * @param types - The @class types of the aurgs for the method.
+     * @param values - The args that you want to pass into the method.
+     * @param negTest - Is this a negetive test or not(true, false).
+     * @param buf - String buffer used to capture loggig info.
      * @return
      */
     public static boolean testELResolverInvoke(

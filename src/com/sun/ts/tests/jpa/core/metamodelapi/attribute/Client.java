@@ -26,7 +26,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -60,8 +61,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<Order> mTypeOrder =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+            ManagedType<Order> mTypeOrder = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
             if (mTypeOrder != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
@@ -104,8 +104,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<Order> mTypeOrder =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+            ManagedType<Order> mTypeOrder = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
             if (mTypeOrder != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
@@ -147,8 +146,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<Order> mTypeOrder =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+            ManagedType<Order> mTypeOrder = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
             if (mTypeOrder != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
@@ -191,8 +189,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<Order> mTypeOrder =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+            ManagedType<Order> mTypeOrder = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
             if (mTypeOrder != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
@@ -231,8 +228,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<Order> mTypeOrder =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+            ManagedType<Order> mTypeOrder = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
             if (mTypeOrder != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
@@ -272,8 +268,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<Order> mTypeOrder =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+            ManagedType<Order> mTypeOrder = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
             if (mTypeOrder != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
@@ -311,8 +306,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<Order> mTypeOrder =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+            ManagedType<Order> mTypeOrder = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
             if (mTypeOrder != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");

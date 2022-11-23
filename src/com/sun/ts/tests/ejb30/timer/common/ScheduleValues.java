@@ -29,13 +29,13 @@ public class ScheduleValues {
     private static final String WILD_CARD = " * ";
 
     private static final String[] INVALID_COMMON_STRING = {
-        null, "", " ", "0.1", "1d", "1.0", "?", "%", "$", "!", "&", "-", "/", ",", ".", "1-", "1-2-3", "1+2", "3/4-5",
-        "1-*", "5-6*", "*-*", "**", "*-4", "*-", "*,1", "1,*", "5/*", "1, 2/2", "1-2/2"
+            null, "", " ", "0.1", "1d", "1.0", "?", "%", "$", "!", "&", "-", "/", ",", ".", "1-", "1-2-3", "1+2", "3/4-5",
+            "1-*", "5-6*", "*-*", "**", "*-4", "*-", "*,1", "1,*", "5/*", "1, 2/2", "1-2/2"
     }; // let's allow numbers in the form of 01, 02,
-    // 03, etc
+       // 03, etc
 
     // string values are case insensitive. Whitespaces are ignored
-    public static final String[] VALID_FEB_29_4000 = new String[] {" FEb  ", " 29 ", "  4000  "};
+    public static final String[] VALID_FEB_29_4000 = new String[] { " FEb  ", " 29 ", "  4000  " };
 
     public static final String DEFAULT_ATTRIBUTE_VALUE_0 = "0";
 
@@ -45,26 +45,26 @@ public class ScheduleValues {
     // second [0,59]
     /////////////////////////////////////////////////////////////////////
     private static final String[] SECOND_LIST_RANGE_INCREMENT = {
-        "0, 59",
-        "0,10,  55",
-        "58,47,3,   33",
-        " 0 -59",
-        "58-   59",
-        " \t \t  2 \t \t - \t \t 3 \t \t ",
-        "*/5",
-        "30/19",
-        " * \t/\t 5 ",
-        " 10\t/\t19 ",
-        "2-1",
-        "1, 8 - 9, 1",
-        "2-3, 3-4, 4-5, 4",
-        "59-0",
-        "1, 59-1, 3-5"
+            "0, 59",
+            "0,10,  55",
+            "58,47,3,   33",
+            " 0 -59",
+            "58-   59",
+            " \t \t  2 \t \t - \t \t 3 \t \t ",
+            "*/5",
+            "30/19",
+            " * \t/\t 5 ",
+            " 10\t/\t19 ",
+            "2-1",
+            "1, 8 - 9, 1",
+            "2-3, 3-4, 4-5, 4",
+            "59-0",
+            "1, 59-1, 3-5"
     };
 
-    private static final int[] INVALID_SECOND_INT = {-1, 60, Integer.MAX_VALUE, Integer.MIN_VALUE};
+    private static final int[] INVALID_SECOND_INT = { -1, 60, Integer.MAX_VALUE, Integer.MIN_VALUE };
 
-    private static final String[] INVALID_SECOND_STRING = {"0,60", "2,*", "50-60", "1--2", "-2-1", "60/2", "-1/2"};
+    private static final String[] INVALID_SECOND_STRING = { "0,60", "2,*", "50-60", "1--2", "-2-1", "60/2", "-1/2" };
 
     /////////////////////////////////////////////////////////////////////
     // minute [0,59]
@@ -79,74 +79,74 @@ public class ScheduleValues {
     // hour [0,23]
     /////////////////////////////////////////////////////////////////////
     private static final String[] HOUR_LIST_RANGE_INCREMENT = {
-        "  0 ,  23 ",
-        "2,11,22",
-        "23,15,4,9",
-        "0-23",
-        "22-23",
-        "7-2",
-        "2-1",
-        "1, 3-2, 2-3",
-        "0\t\t,\t\t2\t,\t4\t",
-        "*/5",
-        "0/12",
-        " * \t/\t 5 ",
-        " 0\t/\t12 "
+            "  0 ,  23 ",
+            "2,11,22",
+            "23,15,4,9",
+            "0-23",
+            "22-23",
+            "7-2",
+            "2-1",
+            "1, 3-2, 2-3",
+            "0\t\t,\t\t2\t,\t4\t",
+            "*/5",
+            "0/12",
+            " * \t/\t 5 ",
+            " 0\t/\t12 "
     };
 
-    private static final int[] INVALID_HOUR_INT = {-1, 24, Integer.MAX_VALUE, Integer.MIN_VALUE};
+    private static final int[] INVALID_HOUR_INT = { -1, 24, Integer.MAX_VALUE, Integer.MIN_VALUE };
 
-    private static final String[] INVALID_HOUR_STRING = {"0,24", "22-24", "1--2", "24/1", "-1/1"};
+    private static final String[] INVALID_HOUR_STRING = { "0,24", "22-24", "1--2", "24/1", "-1/1" };
 
     /////////////////////////////////////////////////////////////////////
     // dayOfMonth [1,31]
     /////////////////////////////////////////////////////////////////////
     private static final String[] DAY_OF_MONTH_LIST_RANGE = {
-        "1, 31",
-        "2,11,22",
-        "31,15,4,9",
-        "-3,-7, -2",
-        "3rd Wed, 1st Tue, Last",
-        "Last, 1, 2nd Mon",
-        " 1 - 31 ",
-        "30-31",
-        "20-last",
-        "1st   Mon-last   Fri",
-        "lasT",
-        "last  Tue",
-        "last \twed",
-        "last " + NL + "thu",
-        "-7--1",
-        "1--2",
-        "-7-last",
-        "1st Mon - Last",
-        "-1--7",
-        "2-1",
-        "17-Last, Last-5",
-        "Last Fri - 1st Mon, Last Thu - 2nd Wed, 3rd Sat"
+            "1, 31",
+            "2,11,22",
+            "31,15,4,9",
+            "-3,-7, -2",
+            "3rd Wed, 1st Tue, Last",
+            "Last, 1, 2nd Mon",
+            " 1 - 31 ",
+            "30-31",
+            "20-last",
+            "1st   Mon-last   Fri",
+            "lasT",
+            "last  Tue",
+            "last \twed",
+            "last " + NL + "thu",
+            "-7--1",
+            "1--2",
+            "-7-last",
+            "1st Mon - Last",
+            "-1--7",
+            "2-1",
+            "17-Last, Last-5",
+            "Last Fri - 1st Mon, Last Thu - 2nd Wed, 3rd Sat"
     };
 
-    private static final int[] INVALID_DAY_OF_MONTH_INT = {-8, 0, 32, Integer.MAX_VALUE, Integer.MIN_VALUE};
+    private static final int[] INVALID_DAY_OF_MONTH_INT = { -8, 0, 32, Integer.MAX_VALUE, Integer.MIN_VALUE };
 
     private static final String[] INVALID_DAY_OF_MONTH_STRING = {
-        "1st",
-        "2nd",
-        "3rd",
-        "4th",
-        "5th",
-        "6th",
-        "First",
-        "6th Mon",
-        "Last-",
-        "-2, *",
-        "1st Sun, *, 2nd Mon",
-        "\"Last\"",
-        "\"1\"",
-        "1,32",
-        "0,8,30",
-        "0-23",
-        "8-32",
-        "1/2"
+            "1st",
+            "2nd",
+            "3rd",
+            "4th",
+            "5th",
+            "6th",
+            "First",
+            "6th Mon",
+            "Last-",
+            "-2, *",
+            "1st Sun, *, 2nd Mon",
+            "\"Last\"",
+            "\"1\"",
+            "1,32",
+            "0,8,30",
+            "0-23",
+            "8-32",
+            "1/2"
     };
 
     /////////////////////////////////////////////////////////////////////
@@ -154,118 +154,118 @@ public class ScheduleValues {
     // "Sep", "Oct", "Nov", "Dec"}
     /////////////////////////////////////////////////////////////////////
     private static final String[] MONTH_VALUE_LIST_RANGE = {
-        "JAN",
-        "Feb",
-        "maR",
-        "apr",
-        "may",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-        "2,9,11",
-        "maR,jUn,Nov",
-        "9,11,8",
-        "Jun,Nov,Oct",
-        "11-12",
-        "NOV-dec",
-        "1-12",
-        "Sep - auG",
-        "9-1, 5-6",
-        "12-3, 4-6, Sep, Oct-Nov",
-        "2-1"
+            "JAN",
+            "Feb",
+            "maR",
+            "apr",
+            "may",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+            "2,9,11",
+            "maR,jUn,Nov",
+            "9,11,8",
+            "Jun,Nov,Oct",
+            "11-12",
+            "NOV-dec",
+            "1-12",
+            "Sep - auG",
+            "9-1, 5-6",
+            "12-3, 4-6, Sep, Oct-Nov",
+            "2-1"
     };
 
-    private static final int[] INVALID_MONTH_INT = {-1, 0, 13, Integer.MAX_VALUE, Integer.MIN_VALUE};
+    private static final int[] INVALID_MONTH_INT = { -1, 0, 13, Integer.MAX_VALUE, Integer.MIN_VALUE };
 
     private static final String[] INVALID_MONTH_STRING = {
-        "1,13",
-        "0,8,9",
-        "5-13",
-        "0-5",
-        "January",
-        "February",
-        "March",
-        "April",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-        "Jan-*",
-        "*-Jan",
-        "January-May",
-        "Jan,February,May",
-        "1--2",
-        "1/2"
+            "1,13",
+            "0,8,9",
+            "5-13",
+            "0-5",
+            "January",
+            "February",
+            "March",
+            "April",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+            "Jan-*",
+            "*-Jan",
+            "January-May",
+            "Jan,February,May",
+            "1--2",
+            "1/2"
     };
 
     /////////////////////////////////////////////////////////////////////
     // dayOfWeek [0,7] or {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}
     /////////////////////////////////////////////////////////////////////
     private static final String[] DAY_OF_WEEK_VALUE_LIST_RANGE = {
-        "Sun",
-        "Mon",
-        "Tue",
-        "Wed",
-        "Thu",
-        "Fri",
-        "Sat",
-        "0,3,6",
-        "Sun,Wed,Sat, Sun",
-        "7,4,2",
-        "Sun,Thu,Tue",
-        "0-6",
-        "2-1",
-        "1-7",
-        "Sun-Sat",
-        "Sat-Sun",
-        "Sun  -  Mon",
-        "6-5",
-        "Fri-Tue, Mon, Mon-Fri",
-        "0, 6-5, 5-4",
-        "Mon, 4, 4-6",
-        "1-Wed",
-        "7-Tue"
+            "Sun",
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat",
+            "0,3,6",
+            "Sun,Wed,Sat, Sun",
+            "7,4,2",
+            "Sun,Thu,Tue",
+            "0-6",
+            "2-1",
+            "1-7",
+            "Sun-Sat",
+            "Sat-Sun",
+            "Sun  -  Mon",
+            "6-5",
+            "Fri-Tue, Mon, Mon-Fri",
+            "0, 6-5, 5-4",
+            "Mon, 4, 4-6",
+            "1-Wed",
+            "7-Tue"
     };
 
-    private static final int[] INVALID_DAY_OF_WEEK_INT = {-1, 8, Integer.MAX_VALUE, Integer.MIN_VALUE};
+    private static final int[] INVALID_DAY_OF_WEEK_INT = { -1, 8, Integer.MAX_VALUE, Integer.MIN_VALUE };
 
     private static final String[] INVALID_DAY_OF_WEEK_STRING = {
-        "0,8",
-        "-1,3,4",
-        "0,4,8",
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Mon-*",
-        "*-Fri",
-        "Mon-Friday",
-        "Mon,Wed,Friday",
-        "*,Mon",
-        "1--2",
-        "1/2"
+            "0,8",
+            "-1,3,4",
+            "0,4,8",
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Mon-*",
+            "*-Fri",
+            "Mon-Friday",
+            "Mon,Wed,Friday",
+            "*,Mon",
+            "1--2",
+            "1/2"
     };
 
     /////////////////////////////////////////////////////////////////////
     // year a 4-digit calendar year
     /////////////////////////////////////////////////////////////////////
     private static final String[] YEAR_LIST_RANGE = {
-        "3000,9999", "8080,9000,9009", "9009,9000,9050", "1970-9999", "9998-9999", "2050, 2000-2010, 2020-2030, 2050"
+            "3000,9999", "8080,9000,9009", "9009,9000,9050", "1970-9999", "9998-9999", "2050, 2000-2010, 2020-2030, 2050"
     };
 
-    private static final int[] INVALID_YEAR_INT = {0, 99, -2009, 10000};
+    private static final int[] INVALID_YEAR_INT = { 0, 99, -2009, 10000 };
 
-    private static final String[] INVALID_YEAR_STRING = {"200*", "200?", "2008,09", "08-09", "1--2", "2020/2", "10/2"};
+    private static final String[] INVALID_YEAR_STRING = { "200*", "200?", "2008,09", "08-09", "1--2", "2020/2", "10/2" };
 
     /////////////////////////////////////////////////////////////////////
     // public methods
@@ -332,10 +332,10 @@ public class ScheduleValues {
     }
 
     public static String[] validDayOfMonthValuesString() {
-        String[] sequences = {"1st", "2nd", "3rd", "4th", "5th", "Last"};
-        String[] weekDays = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+        String[] sequences = { "1st", "2nd", "3rd", "4th", "5th", "Last" };
+        String[] weekDays = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
         String[] products = new String[sequences.length * weekDays.length];
-        for (int i = 0; i < products.length; ) {
+        for (int i = 0; i < products.length;) {
             for (String seq : sequences) {
                 for (String wkd : weekDays) {
                     products[i] = seq + " " + wkd;
@@ -433,7 +433,7 @@ public class ScheduleValues {
         if (dayOfWeek < 0 || dayOfWeek > 7) {
             throw new RuntimeException("dayOfWeek out of range [0, 7]: " + dayOfWeek);
         }
-        String[] dayOfWeekStrings = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        String[] dayOfWeekStrings = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
         return dayOfWeekStrings[dayOfWeek];
     }
 
@@ -450,7 +450,7 @@ public class ScheduleValues {
         if (month < 1 || month > 12) {
             throw new RuntimeException("month out of range [1, 12]: " + month);
         }
-        String[] monthStrings = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        String[] monthStrings = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
         return monthStrings[month - 1];
     }
 

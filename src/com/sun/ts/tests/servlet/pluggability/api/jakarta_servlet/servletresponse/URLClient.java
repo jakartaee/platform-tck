@@ -28,9 +28,8 @@ public class URLClient extends ResponseClient {
     private static final String CONTEXT_ROOT = "/servlet_plu_servletresponse_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends ResponseClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -77,9 +75,8 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:164;
      *
-     * @test_Strategy: Validate that if setLocale() is not called on the response,
-     * the getLocale() will return the default locale of the VM the container is
-     * running in.
+     * @test_Strategy: Validate that if setLocale() is not called on the response, the getLocale() will return the default
+     * locale of the VM the container is running in.
      */
 
     /*
@@ -96,8 +93,7 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:140
      *
-     * @test_Strategy: Servlet gets an output stream, writes to it, flushes it
-     * then checks that the response was committed
+     * @test_Strategy: Servlet gets an output stream, writes to it, flushes it then checks that the response was committed
      */
 
     /*
@@ -113,17 +109,15 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:143
      *
-     * @test_Strategy: Servlet tries to get an stream object after calling
-     * getWriter
+     * @test_Strategy: Servlet tries to get an stream object after calling getWriter
      */
     /*
      * @testName: getWriterTest
      *
      * @assertion_ids: Servlet:JAVADOC:144; Servlet:JAVADOC:151.3;
      *
-     * @test_Strategy: Client sets the content type. Servlet then gets a Writer
-     * object, then sets content type and writes data. Verify that content type
-     * didn't get set by servlet
+     * @test_Strategy: Client sets the content type. Servlet then gets a Writer object, then sets content type and writes
+     * data. Verify that content type didn't get set by servlet
      */
 
     /*
@@ -131,8 +125,7 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:146
      *
-     * @test_Strategy: Servlet gets a Writer object, writes data then flushes,
-     * then verifies response was committed
+     * @test_Strategy: Servlet gets a Writer object, writes data then flushes, then verifies response was committed
      */
 
     /*
@@ -140,9 +133,8 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:145; Servlet:JAVADOC:151.3;
      *
-     * @test_Strategy: Client sets the content type. Servlet then gets a Writer
-     * object, then sets content type and writes data. Verify that content type
-     * did get set by servlet
+     * @test_Strategy: Client sets the content type. Servlet then gets a Writer object, then sets content type and writes
+     * data. Verify that content type did get set by servlet
      */
 
     /*
@@ -150,8 +142,7 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:149;
      *
-     * @test_Strategy: Servlet tries to get a Writer object after calling
-     * getOutputStream
+     * @test_Strategy: Servlet tries to get a Writer object after calling getOutputStream
      */
     /*
      * @testName: isCommittedTest
@@ -167,8 +158,7 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:160; Servlet:SPEC:31;
      *
-     * @test_Strategy: Servlet writes data to the response, resets the buffer and
-     * then writes new data
+     * @test_Strategy: Servlet writes data to the response, resets the buffer and then writes new data
      */
 
     /*
@@ -176,8 +166,7 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:162; Servlet:SPEC:31;
      *
-     * @test_Strategy: Servlet writes data to the response, does a reset, then
-     * writes new data
+     * @test_Strategy: Servlet writes data to the response, does a reset, then writes new data
      */
 
     /*
@@ -185,8 +174,8 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:162; Servlet:SPEC:31;
      *
-     * @test_Strategy: Servlet writes data to the response, set the Headers, does
-     * a reset, then writes new data, set the new Header
+     * @test_Strategy: Servlet writes data to the response, set the Headers, does a reset, then writes new data, set the new
+     * Header
      */
 
     /*
@@ -194,8 +183,7 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:163; Servlet:SPEC:31;
      *
-     * @test_Strategy: Servlet writes data, flushes the buffer then tries to do a
-     * reset
+     * @test_Strategy: Servlet writes data, flushes the buffer then tries to do a reset
      */
 
     /*
@@ -233,8 +221,7 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:155
      *
-     * @test_Strategy: Servlet writes data and flushes buffer then tries to get
-     * the buffer size
+     * @test_Strategy: Servlet writes data and flushes buffer then tries to get the buffer size
      */
     /*
      * @testName: setContentLengthTest
@@ -247,8 +234,7 @@ public class URLClient extends ResponseClient {
     /*
      * @testName: getContentTypeTest
      *
-     * @assertion_ids: Servlet:JAVADOC:152; Servlet:JAVADOC:151.3;
-     * Servlet:SPEC:34;
+     * @assertion_ids: Servlet:JAVADOC:152; Servlet:JAVADOC:151.3; Servlet:SPEC:34;
      *
      * @test_Strategy: Servlet verifies the content type sent by the client
      */
@@ -256,8 +242,7 @@ public class URLClient extends ResponseClient {
     /*
      * @testName: getContentType1Test
      *
-     * @assertion_ids: Servlet:JAVADOC:152; Servlet:JAVADOC:151.3;
-     * Servlet:SPEC:34;
+     * @assertion_ids: Servlet:JAVADOC:152; Servlet:JAVADOC:151.3; Servlet:SPEC:34;
      *
      * @test_Strategy: Servlet verifies the content type set by the servlet
      */
@@ -267,8 +252,7 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:153; Servlet:SPEC:34;
      *
-     * @test_Strategy: Servlet verifies the content-type when not set by
-     * programmer
+     * @test_Strategy: Servlet verifies the content-type when not set by programmer
      */
 
     /*
@@ -276,28 +260,24 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:153; Servlet:SPEC:34;
      *
-     * @test_Strategy: Servlet verifies the content-type when not set by
-     * programmer and only character encoding is set
+     * @test_Strategy: Servlet verifies the content-type when not set by programmer and only character encoding is set
      */
 
     /*
      * @testName: getContentTypeNull2Test
      *
-     * @assertion_ids: Servlet:JAVADOC:151; Servlet:JAVADOC:151.1;
-     * Servlet:JAVADOC:153.1
+     * @assertion_ids: Servlet:JAVADOC:151; Servlet:JAVADOC:151.1; Servlet:JAVADOC:153.1
      *
-     * @test_Strategy: Servlet verifies content-type is being re-set by programmer
-     * and character encoding setting does not change
+     * @test_Strategy: Servlet verifies content-type is being re-set by programmer and character encoding setting does not
+     * change
      */
 
     /*
      * @testName: setContentTypeTest
      *
-     * @assertion_ids: Servlet:JAVADOC:151; Servlet:JAVADOC:151.3;
-     * Servlet:SPEC:34;
+     * @assertion_ids: Servlet:JAVADOC:151; Servlet:JAVADOC:151.3; Servlet:SPEC:34;
      *
-     * @test_Strategy: Servlet sets the content type Verify Content-Type is set in
-     * Client
+     * @test_Strategy: Servlet sets the content type Verify Content-Type is set in Client
      */
 
     /*
@@ -305,19 +285,16 @@ public class URLClient extends ResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:151; Servlet:SPEC:34;
      *
-     * @test_Strategy: Servlet sets the content-type, and verifies it with
-     * getContentType()
+     * @test_Strategy: Servlet sets the content-type, and verifies it with getContentType()
      */
 
     /*
      * @testName: setContentType2Test
      *
-     * @assertion_ids: Servlet:JAVADOC:151.2; Servlet:JAVADOC:151.3;
-     * Servlet:SPEC:34;
+     * @assertion_ids: Servlet:JAVADOC:151.2; Servlet:JAVADOC:151.3; Servlet:SPEC:34;
      *
-     * @test_Strategy: Servlet sets the content-type, Commit the response; Set the
-     * content-type again Verifies that content-type is set the first time The
-     * second setting is ignored.
+     * @test_Strategy: Servlet sets the content-type, Commit the response; Set the content-type again Verifies that
+     * content-type is set the first time The second setting is ignored.
      */
 
     /*

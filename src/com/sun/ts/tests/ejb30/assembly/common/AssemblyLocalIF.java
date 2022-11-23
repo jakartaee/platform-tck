@@ -23,4 +23,5 @@ package com.sun.ts.tests.ejb30.assembly.common;
 import jakarta.ejb.Local;
 
 @Local
-public interface AssemblyLocalIF extends AssemblyCommonIF {}
+public interface AssemblyLocalIF extends AssemblyCommonIF {
+}

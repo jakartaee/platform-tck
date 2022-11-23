@@ -165,13 +165,15 @@ public class TxECMPBeanEJB implements EntityBean {
             this.BRAND_NAME = newBrandName;
 
             // Check for intended exceptions to be thrown
-            if (flag == FLAGAPPEXCEPTION) throwAppException();
+            if (flag == FLAGAPPEXCEPTION)
+                throwAppException();
 
             if (flag == FLAGAPPEXCEPTIONWITHROLLBACK) {
                 TestUtil.logTrace("calling setRollbackOnly");
                 ectx.setRollbackOnly();
                 TestUtil.logTrace("Calling getRollbackOnly method");
-                if (ectx.getRollbackOnly()) isRolledback = true;
+                if (ectx.getRollbackOnly())
+                    isRolledback = true;
                 throwAppException();
             }
 
@@ -195,7 +197,8 @@ public class TxECMPBeanEJB implements EntityBean {
                 TestUtil.logTrace("Calling setRollbackOnly method");
                 ectx.setRollbackOnly();
                 TestUtil.logTrace("Calling getRollbackOnly method");
-                if (ectx.getRollbackOnly()) isRolledback = true;
+                if (ectx.getRollbackOnly())
+                    isRolledback = true;
             }
 
         } catch (AppException e) {

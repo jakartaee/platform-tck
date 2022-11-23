@@ -37,7 +37,8 @@ public class Customer1 implements Serializable {
     @JoinColumn(name = "FK_FOR_CUSTOMER1")
     private Set<RetailOrder2> orders = new HashSet();
 
-    public Customer1() {}
+    public Customer1() {
+    }
 
     public Long getId() {
         return id;

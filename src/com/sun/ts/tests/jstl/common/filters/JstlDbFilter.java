@@ -96,7 +96,8 @@ public class JstlDbFilter implements Filter, JstlTckConstants {
         _context.setAttribute(LOGDS, dsw);
     }
 
-    public JstlDbFilter() {}
+    public JstlDbFilter() {
+    }
 
     public void init(FilterConfig config) {
         _config = config;
@@ -104,10 +105,9 @@ public class JstlDbFilter implements Filter, JstlTckConstants {
     }
 
     /**
-     * When called by the container, the current request and response are wrapped
-     * by an instance of FormatRequestWrapper and FormatResponseWrapper
-     * respectively. Doing this allows the "logging" of certain events that must
-     * take place when using certain formatting actions.
+     * When called by the container, the current request and response are wrapped by an instance of FormatRequestWrapper and
+     * FormatResponseWrapper respectively. Doing this allows the "logging" of certain events that must take place when using
+     * certain formatting actions.
      */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -124,17 +124,19 @@ public class JstlDbFilter implements Filter, JstlTckConstants {
      * trace<br>
      * Dump output messages to the server log
      *
-     * @param buf
-     *          The message to print.
+     * @param buf The message to print.
      */
     private void trace(String buf) {
-        if (_debug) System.out.println("[JstlDbFilter] " + buf);
+        if (_debug)
+            System.out.println("[JstlDbFilter] " + buf);
     }
 
     private String escapeComma(String url) {
-        if (url == null) return url;
+        if (url == null)
+            return url;
         int comma = url.indexOf(',');
-        if (comma == -1) return url;
+        if (comma == -1)
+            return url;
         String result = StringUtils.replace(url, ",", "\\,");
         return result;
     }

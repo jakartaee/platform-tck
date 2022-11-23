@@ -30,8 +30,10 @@ public class ADVC implements java.io.Serializable {
 
     public boolean equals(Object o) {
         ADVC v = (ADVC) o;
-        if (id.equals(v.getId()) && name.equals(v.getName()) && value == v.getValue()) return true;
-        else return false;
+        if (id.equals(v.getId()) && name.equals(v.getName()) && value == v.getValue())
+            return true;
+        else
+            return false;
     }
 
     public ADVC(String id, String name, int value) {

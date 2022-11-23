@@ -65,8 +65,7 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elEqualOperandLessThanOrEqualTest
      * @assertion_ids: EL:SPEC:21.1
-     * @test_Strategy: Validate that if the operands in an EL <= or le operation
-     *                 are equal, the result is true.
+     * @test_Strategy: Validate that if the operands in an EL <= or le operation are equal, the result is true.
      */
     public void elEqualOperandLessThanOrEqualTest() throws Fault {
 
@@ -102,14 +101,14 @@ public class ELClient extends ServiceEETest {
             ExprEval.cleanup();
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: elEqualOperandGreaterThanOrEqualTest
      * @assertion_ids: EL:SPEC:21.1
-     * @test_Strategy: Validate that if the operands in an EL >= or ge operation
-     *                 are equal, the result is true.
+     * @test_Strategy: Validate that if the operands in an EL >= or ge operation are equal, the result is true.
      */
     public void elEqualOperandGreaterThanOrEqualTest() throws Fault {
 
@@ -145,14 +144,14 @@ public class ELClient extends ServiceEETest {
             ExprEval.cleanup();
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: elNullOperandLessThanOrEqualTest
      * @assertion_ids: EL:SPEC:21.2
-     * @test_Strategy: Validate that if one of the operands in an EL <= or le
-     *                 operation is null, the result is false.
+     * @test_Strategy: Validate that if one of the operands in an EL <= or le operation is null, the result is false.
      */
     public void elNullOperandLessThanOrEqualTest() throws Fault {
 
@@ -175,14 +174,14 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: elNullOperandGreaterThanOrEqualTest
      * @assertion_ids: EL:SPEC:21.2
-     * @test_Strategy: Validate that if one of the operands in an EL >= or ge
-     *                 operation is null, the result is false.
+     * @test_Strategy: Validate that if one of the operands in an EL >= or ge operation is null, the result is false.
      */
     public void elNullOperandGreaterThanOrEqualTest() throws Fault {
 
@@ -205,14 +204,14 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: elNullOperandNotEqualTest
      * @assertion_ids: EL:SPEC:22.2
-     * @test_Strategy: Validate that if one of the operands is null in an EL !=,
-     *                 ne operation return true.
+     * @test_Strategy: Validate that if one of the operands is null in an EL !=, ne operation return true.
      */
     public void elNullOperandNotEqualTest() throws Fault {
 
@@ -235,14 +234,14 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     } // End elNullOperandNotEqualTest
 
     /**
      * @testName: elNullOperandEqualTest
      * @assertion_ids: EL:SPEC:22.2
-     * @test_Strategy: Validate that if one of the operands is null in an EL =, eq
-     *                 operation return false.
+     * @test_Strategy: Validate that if one of the operands is null in an EL =, eq operation return false.
      */
     public void elNullOperandEqualTest() throws Fault {
 
@@ -265,21 +264,19 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     } // End elNullOperandEqualTest
 
     /**
      * @testName: elBigDecimalLessThanTest
      * @assertion_ids: EL:SPEC:21.3
-     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
-     *                 operation is a BigDecimal, the result is coerced to
-     *                 BigDecimal and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt" operation is a BigDecimal, the result is
+     * coerced to BigDecimal and the correct boolean value is returned.
      *
-     *                 Equations tested: BigDecimal "<" & "lt" BigDecimal
-     *                 BigDecimal "<" & "lt" Double BigDecimal "<" & "lt" Float
-     *                 BigDecimal "<" & "lt" BigInteger BigDecimal "<" & "lt"
-     *                 Integer BigDecimal "<" & "lt" Long BigDecimal "<" & "lt"
-     *                 Short BigDecimal "<" & "lt" Byte
+     * Equations tested: BigDecimal "<" & "lt" BigDecimal BigDecimal "<" & "lt" Double BigDecimal "<" & "lt" Float
+     * BigDecimal "<" & "lt" BigInteger BigDecimal "<" & "lt" Integer BigDecimal "<" & "lt" Long BigDecimal "<" & "lt" Short
+     * BigDecimal "<" & "lt" Byte
      */
     public void elBigDecimalLessThanTest() throws Fault {
 
@@ -296,15 +293,12 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigDecimalLessThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.3
-     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
-     *                 operation is a BigDecimal, the result is coerced to
-     *                 BigDecimal and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le" operation is a BigDecimal, the result is
+     * coerced to BigDecimal and the correct boolean value is returned.
      *
-     *                 Equations tested: BigDecimal "<=" & "le" BigDecimal
-     *                 BigDecimal "<=" & "le" Double BigDecimal "<=" & "le" Float
-     *                 BigDecimal "<=" & "le" BigInteger BigDecimal "<=" & "le"
-     *                 Integer BigDecimal "<=" & "le" Long BigDecimal "<=" & "le"
-     *                 Short BigDecimal "<=" & "le" Byte
+     * Equations tested: BigDecimal "<=" & "le" BigDecimal BigDecimal "<=" & "le" Double BigDecimal "<=" & "le" Float
+     * BigDecimal "<=" & "le" BigInteger BigDecimal "<=" & "le" Integer BigDecimal "<=" & "le" Long BigDecimal "<=" & "le"
+     * Short BigDecimal "<=" & "le" Byte
      */
     public void elBigDecimalLessThanEqualTest() throws Fault {
 
@@ -321,15 +315,12 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigDecimalGreaterThanTest
      * @assertion_ids: EL:SPEC:21.3
-     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
-     *                 operation is a BigDecimal, the result is coerced to
-     *                 BigDecimal and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt" operation is a BigDecimal, the result is
+     * coerced to BigDecimal and the correct boolean value is returned.
      *
-     *                 Equations tested: BigDecimal ">" & "gt" BigDecimal
-     *                 BigDecimal ">" & "gt" Double BigDecimal ">" & "gt" Float
-     *                 BigDecimal ">" & "gt" BigInteger BigDecimal ">" & "gt"
-     *                 Integer BigDecimal ">" & "gt" Long BigDecimal ">" & "gt"
-     *                 Short BigDecimal ">" & "gt" Byte
+     * Equations tested: BigDecimal ">" & "gt" BigDecimal BigDecimal ">" & "gt" Double BigDecimal ">" & "gt" Float
+     * BigDecimal ">" & "gt" BigInteger BigDecimal ">" & "gt" Integer BigDecimal ">" & "gt" Long BigDecimal ">" & "gt" Short
+     * BigDecimal ">" & "gt" Byte
      */
     public void elBigDecimalGreaterThanTest() throws Fault {
 
@@ -346,15 +337,12 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigDecimalGreaterThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.3
-     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
-     *                 operation is a BigDecimal, the result is coerced to
-     *                 BigDecimal and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge" operation is a BigDecimal, the result is
+     * coerced to BigDecimal and the correct boolean value is returned.
      *
-     *                 Equations tested: BigDecimal ">=" & "ge" BigDecimal
-     *                 BigDecimal ">=" & "ge" Double BigDecimal ">=" & "ge" Float
-     *                 BigDecimal ">=" & "ge" BigInteger BigDecimal ">=" & "ge"
-     *                 Integer BigDecimal ">=" & "ge" Long BigDecimal ">=" & "ge"
-     *                 Short BigDecimal ">=" & "ge" Byte
+     * Equations tested: BigDecimal ">=" & "ge" BigDecimal BigDecimal ">=" & "ge" Double BigDecimal ">=" & "ge" Float
+     * BigDecimal ">=" & "ge" BigInteger BigDecimal ">=" & "ge" Integer BigDecimal ">=" & "ge" Long BigDecimal ">=" & "ge"
+     * Short BigDecimal ">=" & "ge" Byte
      */
     public void elBigDecimalGreaterThanEqualTest() throws Fault {
 
@@ -371,15 +359,12 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigDecimalEqualToTest
      * @assertion_ids: EL:SPEC:22.1; EL:SPEC:22.3.1
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is a BigDecimal, the result is coerced to
-     *                 BigDecimal and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is a BigDecimal, the result is
+     * coerced to BigDecimal and the correct boolean value is returned.
      *
-     *                 Equations tested: BigDecimal "==" & "eq" BigDecimal
-     *                 BigDecimal "==" & "eq" Double BigDecimal "==" & "eq" Float
-     *                 BigDecimal "==" & "eq" BigInteger BigDecimal "==" & "eq"
-     *                 Integer BigDecimal "==" & "eq" Long BigDecimal "==" & "eq"
-     *                 Short BigDecimal "==" & "eq" Byte
+     * Equations tested: BigDecimal "==" & "eq" BigDecimal BigDecimal "==" & "eq" Double BigDecimal "==" & "eq" Float
+     * BigDecimal "==" & "eq" BigInteger BigDecimal "==" & "eq" Integer BigDecimal "==" & "eq" Long BigDecimal "==" & "eq"
+     * Short BigDecimal "==" & "eq" Byte
      */
     public void elBigDecimalEqualToTest() throws Fault {
 
@@ -393,15 +378,12 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigDecimalNotEqualToTest
      * @assertion_ids: EL:SPEC:22.3.2
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is a BigDecimal, the result is coerced to
-     *                 BigDecimal and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is a BigDecimal, the result is
+     * coerced to BigDecimal and the correct boolean value is returned.
      *
-     *                 Equations tested: BigDecimal "!=" & "ne" BigDecimal
-     *                 BigDecimal "!=" & "ne" Double BigDecimal "!=" & "ne" Float
-     *                 BigDecimal "!=" & "ne" BigInteger BigDecimal "!=" & "ne"
-     *                 Integer BigDecimal "!=" & "ne" Long BigDecimal "!=" & "ne"
-     *                 Short BigDecimal "!=" & "ne" Byte
+     * Equations tested: BigDecimal "!=" & "ne" BigDecimal BigDecimal "!=" & "ne" Double BigDecimal "!=" & "ne" Float
+     * BigDecimal "!=" & "ne" BigInteger BigDecimal "!=" & "ne" Integer BigDecimal "!=" & "ne" Long BigDecimal "!=" & "ne"
+     * Short BigDecimal "!=" & "ne" Byte
      */
     public void elBigDecimalNotEqualToTest() throws Fault {
 
@@ -415,14 +397,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatLessThanTest
      * @assertion_ids: EL:SPEC:21.4
-     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
-     *                 operation is a Float, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt" operation is a Float, the result is coerced
+     * to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Float "<" & "lt" Double Float "<" & "lt"
-     *                 Float Float "<" & "lt" BigInteger Float "<" & "lt" Integer
-     *                 Float "<" & "lt" Long Float "<" & "lt" Short Float "<" &
-     *                 "lt" Byte
+     * Equations tested: Float "<" & "lt" Double Float "<" & "lt" Float Float "<" & "lt" BigInteger Float "<" & "lt" Integer
+     * Float "<" & "lt" Long Float "<" & "lt" Short Float "<" & "lt" Byte
      */
     public void elFloatLessThanTest() throws Fault {
 
@@ -439,14 +418,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatLessThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.4
-     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
-     *                 operation is a Float, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le" operation is a Float, the result is
+     * coerced to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Float "<=" & "le" Double Float "<=" &
-     *                 "le" Float Float "<=" & "le" BigInteger Float "<=" & "le"
-     *                 Integer Float "<=" & "le" Long Float "<=" & "le" Short
-     *                 Float "<=" & "le" Byte
+     * Equations tested: Float "<=" & "le" Double Float "<=" & "le" Float Float "<=" & "le" BigInteger Float "<=" & "le"
+     * Integer Float "<=" & "le" Long Float "<=" & "le" Short Float "<=" & "le" Byte
      */
     public void elFloatLessThanEqualTest() throws Fault {
 
@@ -463,14 +439,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatGreaterThanTest
      * @assertion_ids: EL:SPEC:21.4
-     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
-     *                 operation is a Float, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt" operation is a Float, the result is coerced
+     * to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Float ">" & "gt" Double Float ">" & "gt"
-     *                 Float Float ">" & "gt" BigInteger Float ">" & "gt" Integer
-     *                 Float ">" & "gt" Long Float ">" & "gt" Short Float ">" &
-     *                 "gt" Byte
+     * Equations tested: Float ">" & "gt" Double Float ">" & "gt" Float Float ">" & "gt" BigInteger Float ">" & "gt" Integer
+     * Float ">" & "gt" Long Float ">" & "gt" Short Float ">" & "gt" Byte
      */
     public void elFloatGreaterThanTest() throws Fault {
 
@@ -487,14 +460,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatGreaterThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.4
-     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
-     *                 operation is a Float, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge" operation is a Float, the result is
+     * coerced to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Float ">=" & "ge" Double Float ">=" &
-     *                 "ge" Float Float ">=" & "ge" BigInteger Float ">=" & "ge"
-     *                 Integer Float ">=" & "ge" Long Float ">=" & "ge" Short
-     *                 Float ">=" & "ge" Byte
+     * Equations tested: Float ">=" & "ge" Double Float ">=" & "ge" Float Float ">=" & "ge" BigInteger Float ">=" & "ge"
+     * Integer Float ">=" & "ge" Long Float ">=" & "ge" Short Float ">=" & "ge" Byte
      */
     public void elFloatGreaterThanEqualTest() throws Fault {
 
@@ -511,14 +481,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatEqualToTest
      * @assertion_ids: EL:SPEC:22.1; EL:SPEC:22.4
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is a Float, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is a Float, the result is
+     * coerced to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Float "==" & "eq" Double Float "==" &
-     *                 "eq" Float Float "==" & "eq" BigInteger Float "==" & "eq"
-     *                 Integer Float "==" & "eq" Long Float "==" & "eq" Short
-     *                 Float "==" & "eq" Byte
+     * Equations tested: Float "==" & "eq" Double Float "==" & "eq" Float Float "==" & "eq" BigInteger Float "==" & "eq"
+     * Integer Float "==" & "eq" Long Float "==" & "eq" Short Float "==" & "eq" Byte
      */
     public void elFloatEqualToTest() throws Fault {
 
@@ -532,14 +499,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elFloatNotEqualToTest
      * @assertion_ids: EL:SPEC:22.4
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is a Float, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is a Float, the result is
+     * coerced to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Float "!=" & "ne" Double Float "!=" &
-     *                 "ne" Float Float "!=" & "ne" BigInteger Float "!=" & "ne"
-     *                 Integer Float "!=" & "ne" Long Float "!=" & "ne" Short
-     *                 Float "!=" & "ne" Byte
+     * Equations tested: Float "!=" & "ne" Double Float "!=" & "ne" Float Float "!=" & "ne" BigInteger Float "!=" & "ne"
+     * Integer Float "!=" & "ne" Long Float "!=" & "ne" Short Float "!=" & "ne" Byte
      */
     public void elFloatNotEqualToTest() throws Fault {
 
@@ -553,13 +517,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleLessThanTest
      * @assertion_ids: EL:SPEC:21.4
-     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
-     *                 operation is a Double, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt" operation is a Double, the result is
+     * coerced to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Double "<" & "lt" Double Double "<" &
-     *                 "lt" BigInteger Double "<" & "lt" Integer Double "<" & "lt"
-     *                 Long Double "<" & "lt" Short Double "<" & "lt" Byte
+     * Equations tested: Double "<" & "lt" Double Double "<" & "lt" BigInteger Double "<" & "lt" Integer Double "<" & "lt"
+     * Long Double "<" & "lt" Short Double "<" & "lt" Byte
      */
     public void elDoubleLessThanTest() throws Fault {
 
@@ -576,13 +538,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleLessThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.4
-     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
-     *                 operation is a Double, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le" operation is a Double, the result is
+     * coerced to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Double "<=" & "le" Double Double "<=" &
-     *                 "le" BigInteger Double "<=" & "le" Integer Double "<=" &
-     *                 "le" Long Double "<=" & "le" Short Double "<=" & "le" Byte
+     * Equations tested: Double "<=" & "le" Double Double "<=" & "le" BigInteger Double "<=" & "le" Integer Double "<=" &
+     * "le" Long Double "<=" & "le" Short Double "<=" & "le" Byte
      */
     public void elDoubleLessThanEqualTest() throws Fault {
 
@@ -599,13 +559,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleGreaterThanTest
      * @assertion_ids: EL:SPEC:21.4
-     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
-     *                 operation is a Double, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt" operation is a Double, the result is
+     * coerced to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Double ">" & "gt" Double Double ">" &
-     *                 "gt" BigInteger Double ">" & "gt" Integer Double ">" & "gt"
-     *                 Long Double ">" & "gt" Short Double ">" & "gt" Byte
+     * Equations tested: Double ">" & "gt" Double Double ">" & "gt" BigInteger Double ">" & "gt" Integer Double ">" & "gt"
+     * Long Double ">" & "gt" Short Double ">" & "gt" Byte
      */
     public void elDoubleGreaterThanTest() throws Fault {
 
@@ -622,13 +580,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleGreaterThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.4
-     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
-     *                 operation is a Double, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge" operation is a Double, the result is
+     * coerced to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Double ">=" & "ge" Double Double ">=" &
-     *                 "ge" BigInteger Double ">=" & "ge" Integer Double ">=" &
-     *                 "ge" Long Double ">=" & "ge" Short Double ">=" & "ge" Byte
+     * Equations tested: Double ">=" & "ge" Double Double ">=" & "ge" BigInteger Double ">=" & "ge" Integer Double ">=" &
+     * "ge" Long Double ">=" & "ge" Short Double ">=" & "ge" Byte
      */
     public void elDoubleGreaterThanEqualTest() throws Fault {
 
@@ -645,13 +601,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleEqualToTest
      * @assertion_ids: EL:SPEC:22.1; EL:SPEC:22.4
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is a Double, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is a Double, the result is
+     * coerced to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Double "==" & "eq" Double Double "==" &
-     *                 "eq" BigInteger Double "==" & "eq" Integer Double "==" &
-     *                 "eq" Long Double "==" & "eq" Short Double "==" & "eq" Byte
+     * Equations tested: Double "==" & "eq" Double Double "==" & "eq" BigInteger Double "==" & "eq" Integer Double "==" &
+     * "eq" Long Double "==" & "eq" Short Double "==" & "eq" Byte
      */
     public void elDoubleEqualToTest() throws Fault {
 
@@ -665,13 +619,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elDoubleNotEqualToTest
      * @assertion_ids: EL:SPEC:22.4
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is a Double, the result is coerced to Double and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is a Double, the result is
+     * coerced to Double and the correct boolean value is returned.
      *
-     *                 Equations tested: Double "!=" & "ne" Double Double "!=" &
-     *                 "ne" BigInteger Double "!=" & "ne" Integer Double "!=" &
-     *                 "ne" Long Double "!=" & "ne" Short Double "!=" & "ne" Byte
+     * Equations tested: Double "!=" & "ne" Double Double "!=" & "ne" BigInteger Double "!=" & "ne" Integer Double "!=" &
+     * "ne" Long Double "!=" & "ne" Short Double "!=" & "ne" Byte
      */
     public void elDoubleNotEqualToTest() throws Fault {
 
@@ -685,13 +637,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerLessThanTest
      * @assertion_ids: EL:SPEC:21.5
-     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
-     *                 operation is a BigInteger, the result is coerced to
-     *                 BigInteger and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt" operation is a BigInteger, the result is
+     * coerced to BigInteger and the correct boolean value is returned.
      *
-     *                 Equations tested: BigInteger "<" & "lt" BigInteger
-     *                 BigInteger "<" & "lt" Integer BigInteger "<" & "lt" Long
-     *                 BigInteger "<" & "lt" Short BigInteger "<" & "lt" Byte
+     * Equations tested: BigInteger "<" & "lt" BigInteger BigInteger "<" & "lt" Integer BigInteger "<" & "lt" Long
+     * BigInteger "<" & "lt" Short BigInteger "<" & "lt" Byte
      */
     public void elBigIntegerLessThanTest() throws Fault {
 
@@ -708,13 +658,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerLessThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.5
-     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
-     *                 operation is a BigInteger, the result is coerced to
-     *                 BigInteger and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le" operation is a BigInteger, the result is
+     * coerced to BigInteger and the correct boolean value is returned.
      *
-     *                 Equations tested: BigInteger "<=" & "le" BigInteger
-     *                 BigInteger "<=" & "le" Integer BigInteger "<=" & "le" Long
-     *                 BigInteger "<=" & "le" Short BigInteger "<=" & "le" Byte
+     * Equations tested: BigInteger "<=" & "le" BigInteger BigInteger "<=" & "le" Integer BigInteger "<=" & "le" Long
+     * BigInteger "<=" & "le" Short BigInteger "<=" & "le" Byte
      */
     public void elBigIntegerLessThanEqualTest() throws Fault {
 
@@ -731,13 +679,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerGreaterThanTest
      * @assertion_ids: EL:SPEC:21.5
-     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
-     *                 operation is a BigInteger, the result is coerced to
-     *                 BigInteger and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt" operation is a BigInteger, the result is
+     * coerced to BigInteger and the correct boolean value is returned.
      *
-     *                 Equations tested: BigInteger ">" & "gt" BigInteger
-     *                 BigInteger ">" & "gt" Integer BigInteger ">" & "gt" Long
-     *                 BigInteger ">" & "gt" Short BigInteger ">" & "gt" Byte
+     * Equations tested: BigInteger ">" & "gt" BigInteger BigInteger ">" & "gt" Integer BigInteger ">" & "gt" Long
+     * BigInteger ">" & "gt" Short BigInteger ">" & "gt" Byte
      */
     public void elBigIntegerGreaterThanTest() throws Fault {
 
@@ -754,13 +700,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerGreaterThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.5
-     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
-     *                 operation is a BigInteger, the result is coerced to
-     *                 BigInteger and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge" operation is a BigInteger, the result is
+     * coerced to BigInteger and the correct boolean value is returned.
      *
-     *                 Equations tested: BigInteger ">=" & "ge" BigInteger
-     *                 BigInteger ">=" & "ge" Integer BigInteger ">=" & "ge" Long
-     *                 BigInteger ">=" & "ge" Short BigInteger ">=" & "ge" Byte
+     * Equations tested: BigInteger ">=" & "ge" BigInteger BigInteger ">=" & "ge" Integer BigInteger ">=" & "ge" Long
+     * BigInteger ">=" & "ge" Short BigInteger ">=" & "ge" Byte
      */
     public void elBigIntegerGreaterThanEqualTest() throws Fault {
 
@@ -777,13 +721,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerEqualToTest
      * @assertion_ids: EL:SPEC:22.1; EL:SPEC:22.5.1
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is a BigInteger, the result is coerced to
-     *                 BigInteger and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is a BigInteger, the result is
+     * coerced to BigInteger and the correct boolean value is returned.
      *
-     *                 Equations tested: BigInteger "==" & "eq" BigInteger
-     *                 BigInteger "==" & "eq" Integer BigInteger "==" & "eq" Long
-     *                 BigInteger "==" & "eq" Short BigInteger "==" & "eq" Byte
+     * Equations tested: BigInteger "==" & "eq" BigInteger BigInteger "==" & "eq" Integer BigInteger "==" & "eq" Long
+     * BigInteger "==" & "eq" Short BigInteger "==" & "eq" Byte
      */
     public void elBigIntegerEqualToTest() throws Fault {
 
@@ -797,13 +739,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBigIntegerNotEqualToTest
      * @assertion_ids: EL:SPEC:22.5.2
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is a BigInteger, the result is coerced to
-     *                 BigInteger and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is a BigInteger, the result is
+     * coerced to BigInteger and the correct boolean value is returned.
      *
-     *                 Equations tested: BigInteger "!=" & "ne" BigInteger
-     *                 BigInteger "!=" & "ne" Integer BigInteger "!=" & "ne" Long
-     *                 BigInteger "!=" & "ne" Short BigInteger "!=" & "ne" Byte
+     * Equations tested: BigInteger "!=" & "ne" BigInteger BigInteger "!=" & "ne" Integer BigInteger "!=" & "ne" Long
+     * BigInteger "!=" & "ne" Short BigInteger "!=" & "ne" Byte
      */
     public void elBigIntegerNotEqualToTest() throws Fault {
 
@@ -817,12 +757,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongLessThanTest
      * @assertion_ids: EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
-     *                 operation is a Long, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt" operation is a Long, the result is coerced
+     * to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Long "<" & "lt" Integer Long "<" & "lt"
-     *                 Long Long "<" & "lt" Short Long "<" & "lt" Byte
+     * Equations tested: Long "<" & "lt" Integer Long "<" & "lt" Long Long "<" & "lt" Short Long "<" & "lt" Byte
      */
     public void elLongLessThanTest() throws Fault {
 
@@ -839,12 +777,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongLessThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
-     *                 operation is a Long, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le" operation is a Long, the result is coerced
+     * to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Long "<=" & "le" Integer Long "<=" & "le"
-     *                 Long Long "<=" & "le" Short Long "<=" & "le" Byte
+     * Equations tested: Long "<=" & "le" Integer Long "<=" & "le" Long Long "<=" & "le" Short Long "<=" & "le" Byte
      */
     public void elLongLessThanEqualTest() throws Fault {
 
@@ -861,12 +797,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongGreaterThanTest
      * @assertion_ids: EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
-     *                 operation is a Long, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt" operation is a Long, the result is coerced
+     * to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Long ">" & "gt" Integer Long ">" & "gt"
-     *                 Long Long ">" & "gt" Short Long ">" & "gt" Byte
+     * Equations tested: Long ">" & "gt" Integer Long ">" & "gt" Long Long ">" & "gt" Short Long ">" & "gt" Byte
      */
     public void elLongGreaterThanTest() throws Fault {
 
@@ -883,12 +817,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongGreaterThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
-     *                 operation is a Long, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge" operation is a Long, the result is coerced
+     * to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Long ">=" & "ge" Integer Long ">=" & "ge"
-     *                 Long Long ">=" & "ge" Short Long ">=" & "ge" Byte
+     * Equations tested: Long ">=" & "ge" Integer Long ">=" & "ge" Long Long ">=" & "ge" Short Long ">=" & "ge" Byte
      */
     public void elLongGreaterThanEqualTest() throws Fault {
 
@@ -905,12 +837,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongEqualToTest
      * @assertion_ids: EL:SPEC:22.1; EL:SPEC:22.6
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is a Long, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is a Long, the result is coerced
+     * to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Long "==" & "eq" Integer Long "==" & "eq"
-     *                 Long Long "==" & "eq" Short Long "==" & "eq" Byte
+     * Equations tested: Long "==" & "eq" Integer Long "==" & "eq" Long Long "==" & "eq" Short Long "==" & "eq" Byte
      */
     public void elLongEqualToTest() throws Fault {
 
@@ -924,12 +854,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elLongNotEqualToTest
      * @assertion_ids: EL:SPEC:22.6
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is a Long, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is a Long, the result is coerced
+     * to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Long "!=" & "ne" Integer Long "!=" & "ne"
-     *                 Long Long "!=" & "ne" Short Long "!=" & "ne" Byte
+     * Equations tested: Long "!=" & "ne" Integer Long "!=" & "ne" Long Long "!=" & "ne" Short Long "!=" & "ne" Byte
      */
     public void elLongNotEqualToTest() throws Fault {
 
@@ -943,12 +871,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerLessThanTest
      * @assertion_ids: EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
-     *                 operation is an Integer, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt" operation is an Integer, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Integer "<" & "lt" Integer Integer "<" &
-     *                 "lt" Short Integer "<" & "lt" Byte
+     * Equations tested: Integer "<" & "lt" Integer Integer "<" & "lt" Short Integer "<" & "lt" Byte
      */
     public void elIntegerLessThanTest() throws Fault {
 
@@ -965,12 +891,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerLessThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
-     *                 operation is an Integer, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le" operation is an Integer, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Integer "<=" & "le" Integer Integer "<="
-     *                 & "le" Short Integer "<=" & "le" Byte
+     * Equations tested: Integer "<=" & "le" Integer Integer "<=" & "le" Short Integer "<=" & "le" Byte
      */
     public void elIntegerLessThanEqualTest() throws Fault {
 
@@ -987,12 +911,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerGreaterThanTest
      * @assertion_ids: EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
-     *                 operation is an Integer, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt" operation is an Integer, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Integer ">" & "gt" Integer Integer ">" &
-     *                 "gt" Short Integer ">" & "gt" Byte
+     * Equations tested: Integer ">" & "gt" Integer Integer ">" & "gt" Short Integer ">" & "gt" Byte
      */
     public void elIntegerGreaterThanTest() throws Fault {
 
@@ -1009,12 +931,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerGreaterThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
-     *                 operation is an Integer, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge" operation is an Integer, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Integer ">=" & "ge" Integer Integer ">="
-     *                 & "ge" Short Integer ">=" & "ge" Byte
+     * Equations tested: Integer ">=" & "ge" Integer Integer ">=" & "ge" Short Integer ">=" & "ge" Byte
      */
     public void elIntegerGreaterThanEqualTest() throws Fault {
 
@@ -1031,12 +951,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerEqualToTest
      * @assertion_ids: EL:SPEC:22.1; EL:SPEC:22.6
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is an Integer, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is an Integer, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Integer "==" & "eq" Integer Integer "=="
-     *                 & "eq" Short Integer "==" & "eq" Byte
+     * Equations tested: Integer "==" & "eq" Integer Integer "==" & "eq" Short Integer "==" & "eq" Byte
      */
     public void elIntegerEqualToTest() throws Fault {
 
@@ -1050,12 +968,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elIntegerNotEqualToTest
      * @assertion_ids: EL:SPEC:22.6
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is an Integer, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is an Integer, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Integer "!=" & "ne" Integer Integer "!="
-     *                 & "ne" Short Integer "!=" & "ne" Byte
+     * Equations tested: Integer "!=" & "ne" Integer Integer "!=" & "ne" Short Integer "!=" & "ne" Byte
      */
     public void elIntegerNotEqualToTest() throws Fault {
 
@@ -1069,12 +985,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortLessThanTest
      * @assertion_ids: EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
-     *                 operation is an Short, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt" operation is an Short, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Short "<" & "lt" Short Short "<" & "lt"
-     *                 Byte
+     * Equations tested: Short "<" & "lt" Short Short "<" & "lt" Byte
      */
     public void elShortLessThanTest() throws Fault {
 
@@ -1091,12 +1005,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortLessThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
-     *                 operation is an Short, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le" operation is an Short, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Short "<=" & "le" Short Short "<=" & "le"
-     *                 Byte
+     * Equations tested: Short "<=" & "le" Short Short "<=" & "le" Byte
      */
     public void elShortLessThanEqualTest() throws Fault {
 
@@ -1113,12 +1025,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortGreaterThanTest
      * @assertion_ids: EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
-     *                 operation is an Short, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt" operation is an Short, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Short ">" & "gt" Short Short ">" & "gt"
-     *                 Byte
+     * Equations tested: Short ">" & "gt" Short Short ">" & "gt" Byte
      */
     public void elShortGreaterThanTest() throws Fault {
 
@@ -1135,12 +1045,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortGreaterThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
-     *                 operation is an Short, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge" operation is an Short, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Short ">=" & "ge" Short Short ">=" & "ge"
-     *                 Byte
+     * Equations tested: Short ">=" & "ge" Short Short ">=" & "ge" Byte
      */
     public void elShortGreaterThanEqualTest() throws Fault {
 
@@ -1157,12 +1065,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortEqualToTest
      * @assertion_ids: EL:SPEC:22.1; EL:SPEC:22.6
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is an Short, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is an Short, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Short "==" & "eq" Short Short "==" & "eq"
-     *                 Byte
+     * Equations tested: Short "==" & "eq" Short Short "==" & "eq" Byte
      */
     public void elShortEqualToTest() throws Fault {
 
@@ -1176,12 +1082,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elShortNotEqualToTest
      * @assertion_ids: EL:SPEC:22.6
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is an Short, the result is coerced to Long and
-     *                 the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is an Short, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Short "!=" & "ne" Short Short "!=" & "ne"
-     *                 Byte
+     * Equations tested: Short "!=" & "ne" Short Short "!=" & "ne" Byte
      */
     public void elShortNotEqualToTest() throws Fault {
 
@@ -1195,11 +1099,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteLessThanTest
      * @assertion_ids: EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
-     *                 operation is an Byte, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt" operation is an Byte, the result is coerced
+     * to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Byte "<" & "lt" Byte
+     * Equations tested: Byte "<" & "lt" Byte
      */
     public void elByteLessThanTest() throws Fault {
 
@@ -1216,11 +1119,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteLessThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
-     *                 operation is an Byte, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le" operation is an Byte, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Byte "<=" & "le" Byte
+     * Equations tested: Byte "<=" & "le" Byte
      */
     public void elByteLessThanEqualTest() throws Fault {
 
@@ -1237,11 +1139,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteGreaterThanTest
      * @assertion_ids: EL:SPEC:21.1
-     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
-     *                 operation is an Byte, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt" operation is an Byte, the result is coerced
+     * to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Byte ">" & "gt" Byte
+     * Equations tested: Byte ">" & "gt" Byte
      */
     public void elByteGreaterThanTest() throws Fault {
 
@@ -1258,11 +1159,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteGreaterThanEqualTest
      * @assertion_ids: EL:SPEC:21.1; EL:SPEC:21.6
-     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
-     *                 operation is an Byte, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge" operation is an Byte, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Byte ">=" & "ge" Byte
+     * Equations tested: Byte ">=" & "ge" Byte
      */
     public void elByteGreaterThanEqualTest() throws Fault {
 
@@ -1279,11 +1179,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteEqualToTest
      * @assertion_ids: EL:SPEC:22.1; EL:SPEC:22.6
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is an Byte, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is an Byte, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Byte "==" & "eq" Byte
+     * Equations tested: Byte "==" & "eq" Byte
      */
     public void elByteEqualToTest() throws Fault {
 
@@ -1297,11 +1196,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elByteNotEqualToTest
      * @assertion_ids: EL:SPEC:22.6
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is an Byte, the result is coerced to Long and the
-     *                 correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is an Byte, the result is
+     * coerced to Long and the correct boolean value is returned.
      *
-     *                 Equations tested: Byte "!=" & "ne" Byte
+     * Equations tested: Byte "!=" & "ne" Byte
      */
     public void elByteNotEqualToTest() throws Fault {
 
@@ -1315,11 +1213,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elStringLessThanTest
      * @assertion_ids: EL:SPEC:21.7
-     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
-     *                 operation is an String, that both operands are coerced to
-     *                 type String and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt" operation is an String, that both operands
+     * are coerced to type String and the correct boolean value is returned.
      *
-     *                 Equations tested: String "<" & "lt" String
+     * Equations tested: String "<" & "lt" String
      */
     public void elStringLessThanTest() throws Fault {
 
@@ -1336,11 +1233,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elStringLessThanEqualTest
      * @assertion_ids: EL:SPEC:21.7
-     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
-     *                 operation is a String, that both operands are coerced to
-     *                 type String and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le" operation is a String, that both operands
+     * are coerced to type String and the correct boolean value is returned.
      *
-     *                 Equations tested: String "<=" & "le" String
+     * Equations tested: String "<=" & "le" String
      */
     public void elStringLessThanEqualTest() throws Fault {
 
@@ -1357,11 +1253,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elStringGreaterThanTest
      * @assertion_ids: EL:SPEC:21.7
-     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
-     *                 operation is an String, that both operands are coerced to
-     *                 type String and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt" operation is an String, that both operands
+     * are coerced to type String and the correct boolean value is returned.
      *
-     *                 Equations tested: String ">" & "gt" String
+     * Equations tested: String ">" & "gt" String
      */
     public void elStringGreaterThanTest() throws Fault {
 
@@ -1378,11 +1273,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elStringGreaterThanEqualTest
      * @assertion_ids: EL:SPEC:21.7
-     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
-     *                 operation is an String, that both operands are coerced to
-     *                 type String and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge" operation is an String, that both operands
+     * are coerced to type String and the correct boolean value is returned.
      *
-     *                 Equations tested: String ">=" & "ge" String
+     * Equations tested: String ">=" & "ge" String
      */
     public void elStringGreaterThanEqualTest() throws Fault {
 
@@ -1399,11 +1293,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elStringEqualToTest
      * @assertion_ids: EL:SPEC:22.9
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is an String, that both operands are coerced to
-     *                 type String and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is an String, that both operands
+     * are coerced to type String and the correct boolean value is returned.
      *
-     *                 Equations tested: String "==" & "eq" String
+     * Equations tested: String "==" & "eq" String
      */
     public void elStringEqualToTest() throws Fault {
 
@@ -1417,11 +1310,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elStringNotEqualToTest
      * @assertion_ids: EL:SPEC:22.9
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is an String, that both operands are coerced to
-     *                 type String and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is an String, that both operands
+     * are coerced to type String and the correct boolean value is returned.
      *
-     *                 Equations tested: String "!=" & "ne" String
+     * Equations tested: String "!=" & "ne" String
      */
     public void elStringNotEqualToTest() throws Fault {
 
@@ -1435,10 +1327,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elOtherLessThanTest
      * @assertion_ids: EL:SPEC:21.8.2
-     * @test_Strategy: Validate that if operand A in an EL "<" or "lt" operation
-     *                 is comparable, the result A.compareTo(B) is returned.
+     * @test_Strategy: Validate that if operand A in an EL "<" or "lt" operation is comparable, the result A.compareTo(B) is
+     * returned.
      *
-     *                 Equation example: DougType "<" & "lt" NickType
+     * Equation example: DougType "<" & "lt" NickType
      */
     public void elOtherLessThanTest() throws Fault {
 
@@ -1455,10 +1347,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elOtherLessThanEqualTest
      * @assertion_ids: EL:SPEC:21.8.2
-     * @test_Strategy: Validate that if operand A in an EL "<=" or "le" operation
-     *                 is comparable, the result A.compareTo(B) is returned.
+     * @test_Strategy: Validate that if operand A in an EL "<=" or "le" operation is comparable, the result A.compareTo(B)
+     * is returned.
      *
-     *                 Equation example: DougType "<=" & "le" NickType
+     * Equation example: DougType "<=" & "le" NickType
      */
     public void elOtherLessThanEqualTest() throws Fault {
 
@@ -1475,10 +1367,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elOtherGreaterThanTest
      * @assertion_ids: EL:SPEC:21.8.2
-     * @test_Strategy: Validate that if operand A in an EL ">" or "gt" operation
-     *                 is comparable, the result A.compareTo(B) is returned.
+     * @test_Strategy: Validate that if operand A in an EL ">" or "gt" operation is comparable, the result A.compareTo(B) is
+     * returned.
      *
-     *                 Equation example: DougType "<" & "gt" NickType
+     * Equation example: DougType "<" & "gt" NickType
      */
     public void elOtherGreaterThanTest() throws Fault {
 
@@ -1495,10 +1387,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elOtherGreaterThanEqualTest
      * @assertion_ids: EL:SPEC:21.8.2
-     * @test_Strategy: Validate that if operand A in an EL ">=" or "ge" operation
-     *                 is comparable, the result A.compareTo(B) is returned.
+     * @test_Strategy: Validate that if operand A in an EL ">=" or "ge" operation is comparable, the result A.compareTo(B)
+     * is returned.
      *
-     *                 Equations tested: DougType ">=" & "ge" NickType
+     * Equations tested: DougType ">=" & "ge" NickType
      */
     public void elOtherGreaterThanEqualTest() throws Fault {
 
@@ -1515,10 +1407,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elOtherEqualToTest
      * @assertion_ids: EL:SPEC:22.11
-     * @test_Strategy: Validate that if operand A in an EL "==" or "eq" operation
-     *                 is comparable, the result A.equals(B) is returned.
+     * @test_Strategy: Validate that if operand A in an EL "==" or "eq" operation is comparable, the result A.equals(B) is
+     * returned.
      *
-     *                 Equations Example: DougType "==" & "eq" NickType
+     * Equations Example: DougType "==" & "eq" NickType
      */
     public void elOtherEqualToTest() throws Fault {
 
@@ -1532,10 +1424,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elOtherNotEqualToTest
      * @assertion_ids: EL:SPEC:22.11
-     * @test_Strategy: Validate that if operand A in an EL "!=" or "ne" operation
-     *                 is comparable, the result A.equals(B) is returned.
+     * @test_Strategy: Validate that if operand A in an EL "!=" or "ne" operation is comparable, the result A.equals(B) is
+     * returned.
      *
-     *                 Equation Example: DougType "!=" & "ne" NickType
+     * Equation Example: DougType "!=" & "ne" NickType
      */
     public void elOtherNotEqualToTest() throws Fault {
 
@@ -1549,11 +1441,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBooleanEqualToTest
      * @assertion_ids: EL:SPEC:22.7
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is an Boolean, that both operands are coerced to
-     *                 type Boolean and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is an Boolean, that both
+     * operands are coerced to type Boolean and the correct boolean value is returned.
      *
-     *                 Equations tested: Boolean "==" & "eq" String
+     * Equations tested: Boolean "==" & "eq" String
      */
     public void elBooleanEqualToTest() throws Fault {
 
@@ -1567,11 +1458,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elBooleanNotEqualToTest
      * @assertion_ids: EL:SPEC:22.7
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is an Boolean, that both operands are coerced to
-     *                 type Boolean and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is an Boolean, that both
+     * operands are coerced to type Boolean and the correct boolean value is returned.
      *
-     *                 Equations tested: String "!=" & "ne" String
+     * Equations tested: String "!=" & "ne" String
      */
     public void elBooleanNotEqualToTest() throws Fault {
 
@@ -1585,11 +1475,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elEnumEqualToTest
      * @assertion_ids: EL:SPEC:22.8
-     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
-     *                 operation is an Enum, that both operands are coerced to
-     *                 type Enum and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq" operation is an Enum, that both operands
+     * are coerced to type Enum and the correct boolean value is returned.
      *
-     *                 Example Equation: Enum "==" String or Integer
+     * Example Equation: Enum "==" String or Integer
      */
     public void elEnumEqualToTest() throws Fault {
 
@@ -1605,11 +1494,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elEnumNotEqualToTest
      * @assertion_ids: EL:SPEC:22.8
-     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
-     *                 operation is an Enum, that both operands are coerced to
-     *                 type String and the correct boolean value is returned.
+     * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne" operation is an Enum, that both operands
+     * are coerced to type String and the correct boolean value is returned.
      *
-     *                 Example Equation: Enum "!=" & "ne" Enum
+     * Example Equation: Enum "!=" & "ne" Enum
      */
     public void elEnumNotEqualToTest() throws Fault {
 
@@ -1626,17 +1514,13 @@ public class ELClient extends ServiceEETest {
     // methods
 
     /**
-     * This method is used to validate an expression that has at least one
-     * BigDecimal in it. We pass in one of the operands(testVal), the other
-     * operand is automatically picked up from the numberList.
+     * This method is used to validate an expression that has at least one BigDecimal in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - expected result.
-     * @param booleanOperator
-     *          - The operator in which the operands are compared. (i.e. ">, >=,
-     *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - expected result.
+     * @param booleanOperator - The operator in which the operands are compared. (i.e. ">, >=, <, <=, gt, ge, lt, le, ==,
+     * !=, eq, ne)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     private void testOperatorBoolean(BigDecimal testVal, Boolean expectedVal, String booleanOperator) throws Fault {
@@ -1649,7 +1533,8 @@ public class ELClient extends ServiceEETest {
             Object testNum = numberList.get(i);
 
             // We don't test numeric strings
-            if (!(testNum instanceof Number)) continue;
+            if (!(testNum instanceof Number))
+                continue;
 
             NameValuePair values[] = NameValuePair.buildNameValuePair(testVal, testNum);
 
@@ -1673,22 +1558,19 @@ public class ELClient extends ServiceEETest {
                 TestUtil.logTrace("*** End " + "\"" + "BigDecimal" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that has at least one
-     * BigInteger in it. We pass in one of the operands(testVal), the other
-     * operand is automatically picked up from the numberList.
+     * This method is used to validate an expression that has at least one BigInteger in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - expected result.
-     * @param booleanOperator
-     *          - The operator in which the operands are compared. (i.e. >, >=, <,
-     *          <=, gt, ge, lt, le, ==, !=, eq, ne)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - expected result.
+     * @param booleanOperator - The operator in which the operands are compared. (i.e. >, >=, <, <=, gt, ge, lt, le, ==, !=,
+     * eq, ne)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     private void testOperatorBoolean(BigInteger testVal, Boolean expectedVal, String booleanOperator) throws Fault {
@@ -1701,7 +1583,8 @@ public class ELClient extends ServiceEETest {
             Object testNum = numberList.get(i);
 
             // We don't test numeric strings
-            if (!(testNum instanceof Number)) continue;
+            if (!(testNum instanceof Number))
+                continue;
 
             if ((testNum instanceof BigDecimal) || (testNum instanceof Float) || (testNum instanceof Double)) {
                 String skipType = testNum.getClass().getSimpleName();
@@ -1732,22 +1615,19 @@ public class ELClient extends ServiceEETest {
                 TestUtil.logTrace("*** End " + "\"" + "BigInteger" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that has at least one Float
-     * in it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the numberList.
+     * This method is used to validate an expression that has at least one Float in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - expected result.
-     * @param booleanOperator
-     *          - The operator in which the operands are compared. (i.e. ">, >=,
-     *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - expected result.
+     * @param booleanOperator - The operator in which the operands are compared. (i.e. ">, >=, <, <=, gt, ge, lt, le, ==,
+     * !=, eq, ne)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     private void testOperatorBoolean(Float testVal, Boolean expectedVal, String booleanOperator) throws Fault {
@@ -1760,7 +1640,8 @@ public class ELClient extends ServiceEETest {
             Object testNum = numberList.get(i);
 
             // We don't test numeric strings
-            if (!(testNum instanceof Number)) continue;
+            if (!(testNum instanceof Number))
+                continue;
 
             if ((testNum instanceof BigDecimal)) {
                 String skipType = testNum.getClass().getSimpleName();
@@ -1791,22 +1672,19 @@ public class ELClient extends ServiceEETest {
                 TestUtil.logTrace("*** End " + "\"" + "Float" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that has at least one Double
-     * in it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the numberList.
+     * This method is used to validate an expression that has at least one Double in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - expected result.
-     * @param booleanOperator
-     *          - The operator in which the operands are compared. (i.e. ">, >=,
-     *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - expected result.
+     * @param booleanOperator - The operator in which the operands are compared. (i.e. ">, >=, <, <=, gt, ge, lt, le, ==,
+     * !=, eq, ne)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     private void testOperatorBoolean(Double testVal, Boolean expectedVal, String booleanOperator) throws Fault {
@@ -1819,7 +1697,8 @@ public class ELClient extends ServiceEETest {
             Object testNum = numberList.get(i);
 
             // We don't test numeric strings
-            if (!(testNum instanceof Number)) continue;
+            if (!(testNum instanceof Number))
+                continue;
 
             if ((testNum instanceof BigDecimal || testNum instanceof Float)) {
                 String skipType = testNum.getClass().getSimpleName();
@@ -1850,22 +1729,19 @@ public class ELClient extends ServiceEETest {
                 TestUtil.logTrace("*** End " + "\"" + "Double" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that has at least one Long in
-     * it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the numberList.
+     * This method is used to validate an expression that has at least one Long in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - expected result.
-     * @param booleanOperator
-     *          - The operator in which the operands are compared. (i.e. ">, >=,
-     *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - expected result.
+     * @param booleanOperator - The operator in which the operands are compared. (i.e. ">, >=, <, <=, gt, ge, lt, le, ==,
+     * !=, eq, ne)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     private void testOperatorBoolean(Long testVal, Boolean expectedVal, String booleanOperator) throws Fault {
@@ -1878,7 +1754,8 @@ public class ELClient extends ServiceEETest {
             Object testNum = numberList.get(i);
 
             // We don't test numeric strings
-            if (!(testNum instanceof Number)) continue;
+            if (!(testNum instanceof Number))
+                continue;
 
             if ((testNum instanceof BigDecimal
                     || testNum instanceof Float
@@ -1912,22 +1789,19 @@ public class ELClient extends ServiceEETest {
                 TestUtil.logTrace("*** End " + "\"" + "Long" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that has at least one Integer
-     * in it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the numberList.
+     * This method is used to validate an expression that has at least one Integer in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - expected result.
-     * @param booleanOperator
-     *          - The operator in which the operands are compared. (i.e. ">, >=,
-     *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - expected result.
+     * @param booleanOperator - The operator in which the operands are compared. (i.e. ">, >=, <, <=, gt, ge, lt, le, ==,
+     * !=, eq, ne)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     private void testOperatorBoolean(Integer testVal, Boolean expectedVal, String booleanOperator) throws Fault {
@@ -1940,7 +1814,8 @@ public class ELClient extends ServiceEETest {
             Object testNum = numberList.get(i);
 
             // We don't test numeric strings
-            if (!(testNum instanceof Number)) continue;
+            if (!(testNum instanceof Number))
+                continue;
 
             if ((testNum instanceof BigDecimal
                     || testNum instanceof Float
@@ -1975,22 +1850,19 @@ public class ELClient extends ServiceEETest {
                 TestUtil.logTrace("*** End " + "\"" + "Integer" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that has at least one Short
-     * in it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the numberList.
+     * This method is used to validate an expression that has at least one Short in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - expected result.
-     * @param booleanOperator
-     *          - The operator in which the operands are compared. (i.e. ">, >=,
-     *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - expected result.
+     * @param booleanOperator - The operator in which the operands are compared. (i.e. ">, >=, <, <=, gt, ge, lt, le, ==,
+     * !=, eq, ne)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     private void testOperatorBoolean(Short testVal, Boolean expectedVal, String booleanOperator) throws Fault {
@@ -2031,22 +1903,19 @@ public class ELClient extends ServiceEETest {
                 TestUtil.logTrace("*** End " + "\"" + "Short" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that has at least one Byte in
-     * it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the numberList.
+     * This method is used to validate an expression that has at least one Byte in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - expected result.
-     * @param booleanOperator
-     *          - The operator in which the operands are compared. (i.e. >, >=, <,
-     *          <=, gt, ge, lt, le, ==, !=, eq, ne)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - expected result.
+     * @param booleanOperator - The operator in which the operands are compared. (i.e. >, >=, <, <=, gt, ge, lt, le, ==, !=,
+     * eq, ne)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     private void testOperatorBoolean(Byte testVal, Boolean expectedVal, String booleanOperator) throws Fault {
@@ -2087,22 +1956,19 @@ public class ELClient extends ServiceEETest {
                 TestUtil.logTrace("*** End " + "\"" + "Byte" + "\"" + " Test Sequence ***");
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
-     * This method is used to validate an expression that has at least one String
-     * in it. We pass in one of the operands(testVal), the other operand is
-     * automatically picked up from the numberList.
+     * This method is used to validate an expression that has at least one String in it. We pass in one of the
+     * operands(testVal), the other operand is automatically picked up from the numberList.
      *
-     * @param testVal
-     *          - One of the operands used in the expression.
-     * @param expectedVal
-     *          - expected result.
-     * @param booleanOperator
-     *          - The operator in which the operands are compared. (i.e. ">, >=,
-     *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
+     * @param testVal - One of the operands used in the expression.
+     * @param expectedVal - expected result.
+     * @param booleanOperator - The operator in which the operands are compared. (i.e. ">, >=, <, <=, gt, ge, lt, le, ==,
+     * !=, eq, ne)
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
     private void testOperatorBoolean(Object testValOne, Object testValTwo, Boolean expectedVal, String booleanOperator)
@@ -2133,7 +1999,8 @@ public class ELClient extends ServiceEETest {
             TestUtil.logTrace("*** End " + "\"" + "String" + "\"" + " Test Sequence ***");
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     // ---------------------------------------------------- Inner Classes
@@ -2148,7 +2015,8 @@ public class ELClient extends ServiceEETest {
 
         public int compareTo(Object o) {
 
-            if (o == null) return -1;
+            if (o == null)
+                return -1;
             return this.toString().compareTo(o.toString());
         }
 
@@ -2156,11 +2024,11 @@ public class ELClient extends ServiceEETest {
         public boolean equals(Object o) {
 
             // test for null.
-            if (o == null) return false;
+            if (o == null)
+                return false;
 
             /*
-             * Since all DougType are staticly set to "Beta" All DougTypes are
-             * considered equal, and any other object is not.
+             * Since all DougType are staticly set to "Beta" All DougTypes are considered equal, and any other object is not.
              */
             return (o instanceof DougType);
         }
@@ -2180,7 +2048,8 @@ public class ELClient extends ServiceEETest {
 
         public int compareTo(Object o) {
 
-            if (o == null) return -1;
+            if (o == null)
+                return -1;
             return this.toString().compareTo(o.toString());
         }
 
@@ -2188,11 +2057,11 @@ public class ELClient extends ServiceEETest {
         public boolean equals(Object o) {
 
             // test for null.
-            if (o == null) return false;
+            if (o == null)
+                return false;
 
             /*
-             * Since all NickType are statically set to "Gamma" All NickTypes are
-             * considered equal, and any other object is not.
+             * Since all NickType are statically set to "Gamma" All NickTypes are considered equal, and any other object is not.
              */
             return (o instanceof NickType);
         }

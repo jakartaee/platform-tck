@@ -37,28 +37,20 @@ public abstract class InterceptorBase extends ComponentBase {
     // inject 3 float fields that are declared in ejb-jar.xml#OneBean, TwoBean,
     // and ThreeBean
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myFloat",
-            description = "declared in ejb-jar.xml#OneBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myFloat", description = "declared in ejb-jar.xml#OneBean")
     private float myFloatFromOne;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myFloat",
-            description = "declared in ejb-jar.xml#TwoBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myFloat", description = "declared in ejb-jar.xml#TwoBean")
     private float myFloatFromTwo;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myFloat",
-            description = "declared in ejb-jar.xml#ThreeBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myFloat", description = "declared in ejb-jar.xml#ThreeBean")
     private float myFloatFromThree;
 
     /**
-     * Checks injections into InterceptorBase class only. It cannot call the
-     * template method checkInjections, since the verify method in subclass will
-     * be called, which verifies injections in subclass. This PostConstruct method
-     * should be called before any PostConstruct in subclasses. When the subclass
-     * is a method-level interceptor, any PostConstruct methods on the superclass
-     * or subclass are ignored.
+     * Checks injections into InterceptorBase class only. It cannot call the template method checkInjections, since the
+     * verify method in subclass will be called, which verifies injections in subclass. This PostConstruct method should be
+     * called before any PostConstruct in subclasses. When the subclass is a method-level interceptor, any PostConstruct
+     * methods on the superclass or subclass are ignored.
      */
     @SuppressWarnings("unused")
     @PostConstruct
@@ -85,15 +77,12 @@ public abstract class InterceptorBase extends ComponentBase {
     }
 
     /**
-     * Collects the result of injections. For business method
-     * getInjectionStatusForInterceptors, a List<Boolean> param is passed in to
-     * hold injection status from Interceptor0, 1, and 2 in that order.
+     * Collects the result of injections. For business method getInjectionStatusForInterceptors, a List<Boolean> param is
+     * passed in to hold injection status from Interceptor0, 1, and 2 in that order.
      *
-     * For business method getInjectionRecordsForInterceptors, a
-     * List<List<String>> is passed in to hold injection records from
-     * Interceptor0, 1, and 2 in that order. Each inner list holds the injection
-     * record for the superclass and the subclass of an interceptor instance, in
-     * that order.
+     * For business method getInjectionRecordsForInterceptors, a List<List<String>> is passed in to hold injection records
+     * from Interceptor0, 1, and 2 in that order. Each inner list holds the injection record for the superclass and the
+     * subclass of an interceptor instance, in that order.
      */
     @SuppressWarnings("unused")
     @AroundInvoke

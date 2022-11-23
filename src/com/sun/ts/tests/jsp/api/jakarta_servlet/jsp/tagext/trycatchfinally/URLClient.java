@@ -34,9 +34,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -45,8 +44,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -69,8 +67,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:339;JSP:JAVADOC:341
      *
-     * @test_Strategy: Validate the behavior of the container when a tag
-     * implements the TryCatchFinally interface.
+     * @test_Strategy: Validate the behavior of the container when a tag implements the TryCatchFinally interface.
      */
     public void tryCatchFinallyTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tcfinally_web/TryCatchFinallyTest.jsp HTTP/1.1");

@@ -75,7 +75,7 @@ public class TestServlet extends HttpTCKServlet {
         String expected = s + a + b + c;
         String result = varargsBean.format(s, a, b, c);
         verify(expected, result, pw, false);
-        result = varargsBean.format(s, new Object[] {a, b, c});
+        result = varargsBean.format(s, new Object[] { a, b, c });
         verify(expected, result, pw, true);
     }
 
@@ -86,7 +86,7 @@ public class TestServlet extends HttpTCKServlet {
         String expected = a.toString() + a.toString();
         String result = varargsBean.listDogs(a, a);
         verify(expected, result, pw, false);
-        result = varargsBean.listDogs(new Dog[] {a, a});
+        result = varargsBean.listDogs(new Dog[] { a, a });
         verify(expected, result, pw, true);
     }
 
@@ -97,7 +97,7 @@ public class TestServlet extends HttpTCKServlet {
         int expected = a + b + c;
         int result = varargsBean.add(a, b, c);
         verify(expected, result, pw, false);
-        result = varargsBean.add(new int[] {a, b, c});
+        result = varargsBean.add(new int[] { a, b, c });
         verify(expected, result, pw, true);
     }
 

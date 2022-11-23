@@ -116,7 +116,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
         Class testDriverClass;
         Method methodToRun;
         Class params[] = null;
-        Class params1[] = {Integer.class};
+        Class params1[] = { Integer.class };
         Object args[] = null;
 
         int timerType = Integer.parseInt(TestUtil.getProperty("timer_type"));
@@ -156,132 +156,133 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
         }
 
         switch (timeoutAction) {
-            case TimerImpl.NOMSG:
-                TestUtil.logTrace("EJB_TIMEOUT: No message sent - return");
-                return;
+        case TimerImpl.NOMSG:
+            TestUtil.logTrace("EJB_TIMEOUT: No message sent - return");
+            return;
 
-            case TimerImpl.ACCESS:
-                message = TimerImpl.ACCESS_OK;
-                TestUtil.logTrace("EJB_TIMEOUT: Access OK, sending JMS message");
-                break;
+        case TimerImpl.ACCESS:
+            message = TimerImpl.ACCESS_OK;
+            TestUtil.logTrace("EJB_TIMEOUT: Access OK, sending JMS message");
+            break;
 
-            case TimerImpl.CHKMETH:
-                if (TimerImpl.accessCheckedMethod(nctx)) message = TimerImpl.CHKMETH_OK;
-                else message = TimerImpl.CHKMETH_FAIL;
-                TestUtil.logTrace("EJB_TIMEOUT: Sending results of attempt " + "to access checked method...");
-                break;
+        case TimerImpl.CHKMETH:
+            if (TimerImpl.accessCheckedMethod(nctx))
+                message = TimerImpl.CHKMETH_OK;
+            else
+                message = TimerImpl.CHKMETH_FAIL;
+            TestUtil.logTrace("EJB_TIMEOUT: Sending results of attempt " + "to access checked method...");
+            break;
 
-            case TimerImpl.RETRY:
-                try {
-                    TestUtil.logTrace("EJB_TIMEOUT: finding flag store bean");
-                    flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN, FlagStoreHome.class);
-                    flagStoreRef = (FlagStore) flagStoreHome.findByPrimaryKey(new Integer(TimerImpl.FLAGSTORE_KEY));
+        case TimerImpl.RETRY:
+            try {
+                TestUtil.logTrace("EJB_TIMEOUT: finding flag store bean");
+                flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN, FlagStoreHome.class);
+                flagStoreRef = (FlagStore) flagStoreHome.findByPrimaryKey(new Integer(TimerImpl.FLAGSTORE_KEY));
 
-                    TestUtil.logTrace("EJB_TIMEOUT: checking flag in flag store bean");
-                    if ((flagStoreRef.getRequiresNewAccessFlag()) == false) {
-                        TestUtil.logTrace("EJB_TIMEOUT: flag is false - set it and rollback");
-                        flagStoreRef.setRequiresNewAccessFlag(true);
-                        mctx.setRollbackOnly();
-                        return;
-                    }
-
-                    TestUtil.logTrace("EJB_TIMEOUT: flag is true - send a message");
-                    TestUtil.logTrace("removing flag store bean");
-                    flagStoreRef.remove();
-                    message = TimerImpl.RETRY_OK;
-                } catch (Exception e) {
-                    TimerImpl.handleException("ejbTimeout retry", e);
-                    TestUtil.logTrace("removing flag store bean");
-                    if (flagStoreRef != null)
-                        try {
-                            flagStoreRef.remove();
-                        } catch (Exception re) {
-                            TimerImpl.handleException("exception removing FlagStore bean", e);
-                        }
-                    message = TimerImpl.RETRY_FAIL;
+                TestUtil.logTrace("EJB_TIMEOUT: checking flag in flag store bean");
+                if ((flagStoreRef.getRequiresNewAccessFlag()) == false) {
+                    TestUtil.logTrace("EJB_TIMEOUT: flag is false - set it and rollback");
+                    flagStoreRef.setRequiresNewAccessFlag(true);
+                    mctx.setRollbackOnly();
+                    return;
                 }
-                break;
 
-            case TimerImpl.ROLLBACK:
-                try {
-                    TestUtil.logTrace("EJB_TIMEOUT: finding flag store bean");
-                    flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN, FlagStoreHome.class);
-                    flagStoreRef = (FlagStore) flagStoreHome.findByPrimaryKey(new Integer(TimerImpl.FLAGSTORE_KEY));
-
-                    TestUtil.logTrace("EJB_TIMEOUT: checking flags in flag store bean");
-                    if ((flagStoreRef.getRequiresNewAccessFlag()) == false) {
-                        if ((flagStoreRef.getRequiredAccessFlag()) == true) {
-                            TestUtil.logErr("EJB_TIMEOUT: Unexpected value of Required "
-                                    + "flag: true when RequiresNew flag is false");
-                            message = TimerImpl.ROLLBACK_FAIL;
-                            break;
-                        }
-                        TestUtil.logTrace("EJB_TIMEOUT: both flags unset, " + "set them and rollback");
-                        flagStoreRef.setRequiresNewAccessFlag(true);
-                        flagStoreRef.setRequiredAccessFlag(true);
-                        mctx.setRollbackOnly();
-                        return;
+                TestUtil.logTrace("EJB_TIMEOUT: flag is true - send a message");
+                TestUtil.logTrace("removing flag store bean");
+                flagStoreRef.remove();
+                message = TimerImpl.RETRY_OK;
+            } catch (Exception e) {
+                TimerImpl.handleException("ejbTimeout retry", e);
+                TestUtil.logTrace("removing flag store bean");
+                if (flagStoreRef != null)
+                    try {
+                        flagStoreRef.remove();
+                    } catch (Exception re) {
+                        TimerImpl.handleException("exception removing FlagStore bean", e);
                     }
+                message = TimerImpl.RETRY_FAIL;
+            }
+            break;
 
-                    TestUtil.logTrace("EJB_TIMEOUT: RequiresNew flag is true - " + "checking the Required flag");
+        case TimerImpl.ROLLBACK:
+            try {
+                TestUtil.logTrace("EJB_TIMEOUT: finding flag store bean");
+                flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN, FlagStoreHome.class);
+                flagStoreRef = (FlagStore) flagStoreHome.findByPrimaryKey(new Integer(TimerImpl.FLAGSTORE_KEY));
+
+                TestUtil.logTrace("EJB_TIMEOUT: checking flags in flag store bean");
+                if ((flagStoreRef.getRequiresNewAccessFlag()) == false) {
                     if ((flagStoreRef.getRequiredAccessFlag()) == true) {
                         TestUtil.logErr("EJB_TIMEOUT: Unexpected value of Required "
-                                + "flag: true when RequiresNew flag is true");
+                                + "flag: true when RequiresNew flag is false");
                         message = TimerImpl.ROLLBACK_FAIL;
                         break;
                     }
+                    TestUtil.logTrace("EJB_TIMEOUT: both flags unset, " + "set them and rollback");
+                    flagStoreRef.setRequiresNewAccessFlag(true);
+                    flagStoreRef.setRequiredAccessFlag(true);
+                    mctx.setRollbackOnly();
+                    return;
+                }
 
-                    TestUtil.logTrace("removing flag store bean");
-                    flagStoreRef.remove();
-                    message = TimerImpl.ROLLBACK_OK;
-                } catch (Exception e) {
-                    TimerImpl.handleException("ejbTimeout rollback", e);
-                    TestUtil.logTrace("removing flag store bean");
-                    if (flagStoreRef != null)
-                        try {
-                            flagStoreRef.remove();
-                        } catch (Exception re) {
-                            TimerImpl.handleException("exception removing FlagStore bean", e);
-                        }
+                TestUtil.logTrace("EJB_TIMEOUT: RequiresNew flag is true - " + "checking the Required flag");
+                if ((flagStoreRef.getRequiredAccessFlag()) == true) {
+                    TestUtil.logErr("EJB_TIMEOUT: Unexpected value of Required "
+                            + "flag: true when RequiresNew flag is true");
                     message = TimerImpl.ROLLBACK_FAIL;
-                }
-                break;
-
-            case TimerImpl.SERIALIZE:
-                TestUtil.logTrace("EJB_TIMEOUT: Getting timer handle...");
-                TimerHandle handle =
-                        TimerImpl.getTimerHandleFromEjbTimeout(mctx.getTimerService(), TimerImpl.SERIALIZE);
-
-                if (handle == null) {
-                    TestUtil.logErr("EJB_TIMEOUT: Null handle received from " + "getTimerHandleFromEjbTimeout()");
-
-                    message = TimerImpl.SERIALIZE_FAIL;
                     break;
                 }
 
-                TestUtil.logTrace("EJB_TIMEOUT: Verifying handle is " + "serializable...");
-                if (!(TimerImpl.isSerializable(handle))) {
+                TestUtil.logTrace("removing flag store bean");
+                flagStoreRef.remove();
+                message = TimerImpl.ROLLBACK_OK;
+            } catch (Exception e) {
+                TimerImpl.handleException("ejbTimeout rollback", e);
+                TestUtil.logTrace("removing flag store bean");
+                if (flagStoreRef != null)
+                    try {
+                        flagStoreRef.remove();
+                    } catch (Exception re) {
+                        TimerImpl.handleException("exception removing FlagStore bean", e);
+                    }
+                message = TimerImpl.ROLLBACK_FAIL;
+            }
+            break;
 
-                    TestUtil.logErr("EJB_TIMEOUT: Timer handle is not serializable");
-                    message = TimerImpl.SERIALIZE_FAIL;
-                    break;
-                }
+        case TimerImpl.SERIALIZE:
+            TestUtil.logTrace("EJB_TIMEOUT: Getting timer handle...");
+            TimerHandle handle = TimerImpl.getTimerHandleFromEjbTimeout(mctx.getTimerService(), TimerImpl.SERIALIZE);
 
-                TestUtil.logTrace("EJB_TIMEOUT: Getting deserialized handle...");
-                TimerHandle deserializedHandle = TimerImpl.getDeserializedHandle(handle);
+            if (handle == null) {
+                TestUtil.logErr("EJB_TIMEOUT: Null handle received from " + "getTimerHandleFromEjbTimeout()");
 
-                TestUtil.logTrace("EJB_TIMEOUT: Verifying timers are " + "identical...");
-                if (!(TimerImpl.timersAreIdentical(handle, deserializedHandle))) {
-                    TestUtil.logErr("EJB_TIMEOUT: Timers are not identical");
-                    message = TimerImpl.SERIALIZE_FAIL;
-                    break;
-                }
-                message = TimerImpl.SERIALIZE_OK;
+                message = TimerImpl.SERIALIZE_FAIL;
                 break;
+            }
 
-            default:
-                message = TimerImpl.INVALID_ACTION;
+            TestUtil.logTrace("EJB_TIMEOUT: Verifying handle is " + "serializable...");
+            if (!(TimerImpl.isSerializable(handle))) {
+
+                TestUtil.logErr("EJB_TIMEOUT: Timer handle is not serializable");
+                message = TimerImpl.SERIALIZE_FAIL;
                 break;
+            }
+
+            TestUtil.logTrace("EJB_TIMEOUT: Getting deserialized handle...");
+            TimerHandle deserializedHandle = TimerImpl.getDeserializedHandle(handle);
+
+            TestUtil.logTrace("EJB_TIMEOUT: Verifying timers are " + "identical...");
+            if (!(TimerImpl.timersAreIdentical(handle, deserializedHandle))) {
+                TestUtil.logErr("EJB_TIMEOUT: Timers are not identical");
+                message = TimerImpl.SERIALIZE_FAIL;
+                break;
+            }
+            message = TimerImpl.SERIALIZE_OK;
+            break;
+
+        default:
+            message = TimerImpl.INVALID_ACTION;
+            break;
         }
 
         TestUtil.logTrace("EJB_TIMEOUT: Sending message at " + System.currentTimeMillis());
@@ -309,7 +310,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
             handle = TimerImpl.createTimerHandle(timer_type, infoStr, ts);
             returnStr = (String) TimerImpl.getInfo(handle);
 
-            if (returnStr.equals(infoStr)) pass = true;
+            if (returnStr.equals(infoStr))
+                pass = true;
             else {
                 message = "getInfo failed: input = " + infoStr + ", return value = " + returnStr;
                 TestUtil.logErr(message);
@@ -345,7 +347,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
             handle = TimerImpl.createTimerHandle(timer_type, infoClass, ts);
             returnClass = (TimerInfo) TimerImpl.getInfo(handle);
 
-            if (returnClass.equals(infoClass)) pass = true;
+            if (returnClass.equals(infoClass))
+                pass = true;
             else {
                 message = "getInfo failed: input = " + infoClass + ", return value = " + returnClass;
                 TestUtil.logErr(message);
@@ -505,8 +508,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
             TimerService ts = mctx.getTimerService();
             TestUtil.logTrace("Initializing timer at " + System.currentTimeMillis());
             handle = TimerImpl.createTimerHandle(timer_type, new Integer(TimerImpl.NOMSG), ts);
-            message =
-                    (TimerImpl.isSerializable(handle)) ? TestUtil.getProperty("testName") : "checkSerialization failed";
+            message = (TimerImpl.isSerializable(handle)) ? TestUtil.getProperty("testName") : "checkSerialization failed";
         } catch (Exception e) {
             message = "exception in checkSerialization " + e.toString();
             TimerImpl.handleException("checkSerialization", e);
@@ -590,7 +592,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
                 // first time we've been called
                 TestUtil.logTrace("flag is false - cancel timer, set flag and rollback");
                 timer = findTimer(TimerImpl.ACCESS);
-                if (timer == null) message = "No timer found to cancel";
+                if (timer == null)
+                    message = "No timer found to cancel";
                 else {
                     TestUtil.logTrace("Cancelling timer at " + System.currentTimeMillis());
                     timer.cancel();
@@ -639,8 +642,10 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
     public void initializeFlagStoreBean() {
 
         String message = "FlagStore bean not yet created";
-        if (createFlagStoreBean() == true) message = "FlagStore bean successfully created";
-        else message = "Failed to create FlagStore bean";
+        if (createFlagStoreBean() == true)
+            message = "FlagStore bean successfully created";
+        else
+            message = "Failed to create FlagStore bean";
         TimerImpl.sendMessage(replyQueue, qcFactory, message);
     }
 
@@ -678,7 +683,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
     protected boolean createFlagStoreAndTimer(int timerType, int timerAction) {
 
         try {
-            if (createFlagStoreBean() == true) return initializeTimer(timerType, timerAction);
+            if (createFlagStoreBean() == true)
+                return initializeTimer(timerType, timerAction);
         } catch (Exception e) {
             TimerImpl.handleException("createFlagStoreAndTimer", e);
         }
@@ -697,7 +703,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
             TimerImpl.handleException("createFlagStoreBean", e);
             try {
                 TestUtil.logTrace("removing flag store bean");
-                if (flagStoreRef != null) flagStoreRef.remove();
+                if (flagStoreRef != null)
+                    flagStoreRef.remove();
             } catch (Exception e1) {
                 TimerImpl.handleException("removal of FlagStore bean failed", e);
             }
@@ -734,9 +741,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
     }
 
     /**
-     * Construct a property object needed by TS harness for logging. We retrieve
-     * the properties from the Message object passed into the MDB onMessage()
-     * method
+     * Construct a property object needed by TS harness for logging. We retrieve the properties from the Message object
+     * passed into the MDB onMessage() method
      */
     protected Properties getProperties(Message msg) throws JMSException {
         Properties props;
@@ -748,8 +754,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
         props = new Properties();
 
         /*
-         * Because a JMS property name cannot contain '.' the following properties
-         * are a special case
+         * Because a JMS property name cannot contain '.' the following properties are a special case
          */
 
         hostname = msg.getStringProperty("harnesshost");
@@ -763,7 +768,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener, TimedObject 
          * now pull out the rest of the properties from the message
          */
         propNames = msg.getPropertyNames();
-        for (String name = null; propNames.hasMoreElements(); ) {
+        for (String name = null; propNames.hasMoreElements();) {
             name = (String) propNames.nextElement();
             props.put(name, msg.getStringProperty(name));
         }

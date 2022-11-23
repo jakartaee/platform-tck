@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/jsp_tagfiles_directives_variable_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -61,9 +59,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Either the name-given attribute or the name- from-attribute
-     * must be specified. Specifying neither or both will result in a translation
-     * error.
+     * @test_Strategy: Either the name-given attribute or the name- from-attribute must be specified. Specifying neither or
+     * both will result in a translation error.
      */
 
     public void negativeNameGivenBothTest() throws Fault {
@@ -78,9 +75,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Either the name-given attribute or the name- from-attribute
-     * must be specified. Specifying neither or both will result in a translation
-     * error.
+     * @test_Strategy: Either the name-given attribute or the name- from-attribute must be specified. Specifying neither or
+     * both will result in a translation error.
      */
 
     public void negativeNameGivenNeitherTest() throws Fault {
@@ -95,8 +91,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if two variable directives
-     * have the same name-given.
+     * @test_Strategy: a translation error will result if two variable directives have the same name-given.
      */
 
     public void negativeNameGivenSameTest() throws Fault {
@@ -111,8 +106,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if two variable directives
-     * have the same name-given in the same translation unit.
+     * @test_Strategy: a translation error will result if two variable directives have the same name-given in the same
+     * translation unit.
      */
 
     public void negativeNameGivenSameIncludeTest() throws Fault {
@@ -127,8 +122,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if a variable name-given is
-     * the same as a dynamic-attributes of a tag directive.
+     * @test_Strategy: a translation error will result if a variable name-given is the same as a dynamic-attributes of a tag
+     * directive.
      */
 
     public void negativeNameGivenDynamicTest() throws Fault {
@@ -143,9 +138,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if a variable name-given is
-     * the same as a dynamic-attributes of a tag directive in the same translation
-     * unit.
+     * @test_Strategy: a translation error will result if a variable name-given is the same as a dynamic-attributes of a tag
+     * directive in the same translation unit.
      */
 
     public void negativeNameGivenDynamicIncludeTest() throws Fault {
@@ -160,8 +154,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if two variable directives
-     * have the same name-from-attribute.
+     * @test_Strategy: a translation error will result if two variable directives have the same name-from-attribute.
      */
 
     public void negativeNameFromAttributeSameTest() throws Fault {
@@ -176,8 +169,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if two variable directives
-     * have the same name-from-attribute.
+     * @test_Strategy: a translation error will result if two variable directives have the same name-from-attribute.
      */
 
     public void negativeNameFromAttributeSameIncludeTest() throws Fault {
@@ -192,8 +184,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result the attribute referred to
-     * by name-from-attribute does not exist.
+     * @test_Strategy: a translation error will result the attribute referred to by name-from-attribute does not exist.
      */
 
     public void negativeNameFromAttributeNoAttributeTest() throws Fault {
@@ -208,8 +199,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if the attribute referred
-     * to by name-from-attribute is not of type java.lang.String
+     * @test_Strategy: a translation error will result if the attribute referred to by name-from-attribute is not of type
+     * java.lang.String
      */
 
     public void negativeNameFromAttributeNotStringTest() throws Fault {
@@ -224,8 +215,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if the attribute referred
-     * to by name-from-attribute is not required.
+     * @test_Strategy: a translation error will result if the attribute referred to by name-from-attribute is not required.
      */
 
     public void negativeNameFromAttributeNotRequiredTest() throws Fault {
@@ -240,8 +230,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if the attribute referred
-     * to by name-from-attribute is rtexprvalue
+     * @test_Strategy: a translation error will result if the attribute referred to by name-from-attribute is rtexprvalue
      */
 
     public void negativeNameFromAttributeRtexprTest() throws Fault {
@@ -256,8 +245,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if alias is used without
-     * name-from-attribute
+     * @test_Strategy: a translation error will result if alias is used without name-from-attribute
      */
 
     public void negativeAliasNameGivenTest() throws Fault {
@@ -272,8 +260,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if alias is the same as the
-     * name of an attribute directive in the same translation unit.
+     * @test_Strategy: a translation error will result if alias is the same as the name of an attribute directive in the
+     * same translation unit.
      */
 
     public void negativeAliasAttributeSameTest() throws Fault {
@@ -288,8 +276,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: a translation error will result if alias is the same as the
-     * name of an attribute directive in the same translation unit.
+     * @test_Strategy: a translation error will result if alias is the same as the name of an attribute directive in the
+     * same translation unit.
      */
 
     public void negativeAliasAttributeSameIncludeTest() throws Fault {
@@ -304,8 +292,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: variable-class specifies the name of the class of the
-     * variable
+     * @test_Strategy: variable-class specifies the name of the class of the variable
      */
 
     public void positiveVariableClassTest() throws Fault {
@@ -434,8 +421,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: if true (default), a corresponding scripting variable is
-     * declared in the calling page or tag file.
+     * @test_Strategy: if true (default), a corresponding scripting variable is declared in the calling page or tag file.
      */
 
     public void positiveDeclareTest() throws Fault {
@@ -450,8 +436,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: if false, a corresponding scripting variable is not
-     * declared in the calling page or tag file.
+     * @test_Strategy: if false, a corresponding scripting variable is not declared in the calling page or tag file.
      */
 
     public void falseDeclareTest() throws Fault {

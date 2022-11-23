@@ -30,9 +30,8 @@ import java.io.PrintWriter;
 import java.util.Properties;
 
 /**
- * This class declares common fields and defines utility methods for parsing
- * command-line arguments and checking pass/fail status of testcases. It also
- * has methods for memory checking and dumping stack trace to some file after an
+ * This class declares common fields and defines utility methods for parsing command-line arguments and checking
+ * pass/fail status of testcases. It also has methods for memory checking and dumping stack trace to some file after an
  * exception occurs.
  */
 public class MailTestUtil {
@@ -109,26 +108,46 @@ public class MailTestUtil {
         int optind;
 
         for (optind = 0; optind < argv.length; optind++) {
-            if (argv[optind].equals("-t")) protocol = argv[++optind];
-            else if (argv[optind].equals("-tp")) transport_protocol = argv[++optind];
-            else if (argv[optind].equals("-th")) transport_host = ifnull(argv[++optind]);
-            else if (argv[optind].equals("-h")) host = ifnull(argv[++optind]);
-            else if (argv[optind].equals("-u")) user = ifnull(argv[++optind]);
-            else if (argv[optind].equals("-p")) password = ifnull(argv[++optind]);
-            else if (argv[optind].equals("-m")) mailbox = argv[++optind];
-            else if (argv[optind].equals("-test")) testbox = argv[++optind];
-            else if (argv[optind].equals("-from")) from = argv[++optind];
-            else if (argv[optind].equals("-to")) to = argv[++optind];
-            else if (argv[optind].equals("-r")) rootpath = argv[++optind];
-            else if (argv[optind].equals("-io")) iofile = argv[++optind];
-            else if (argv[optind].equals("-s")) pattern = argv[++optind];
-            else if (argv[optind].equals("-n")) newName = argv[++optind];
-            else if (argv[optind].equals("-subject")) subject = argv[++optind];
-            else if (argv[optind].equals("-pn")) portvalue = argv[++optind];
-            else if (argv[optind].equals("-WorkDir")) workdir = argv[++optind];
-            else if (argv[optind].equals("-A")) auth = true;
-            else if (argv[optind].equals("-proxy")) proxy = argv[++optind];
-            else if (argv[optind].equals("-D")) debug = true;
+            if (argv[optind].equals("-t"))
+                protocol = argv[++optind];
+            else if (argv[optind].equals("-tp"))
+                transport_protocol = argv[++optind];
+            else if (argv[optind].equals("-th"))
+                transport_host = ifnull(argv[++optind]);
+            else if (argv[optind].equals("-h"))
+                host = ifnull(argv[++optind]);
+            else if (argv[optind].equals("-u"))
+                user = ifnull(argv[++optind]);
+            else if (argv[optind].equals("-p"))
+                password = ifnull(argv[++optind]);
+            else if (argv[optind].equals("-m"))
+                mailbox = argv[++optind];
+            else if (argv[optind].equals("-test"))
+                testbox = argv[++optind];
+            else if (argv[optind].equals("-from"))
+                from = argv[++optind];
+            else if (argv[optind].equals("-to"))
+                to = argv[++optind];
+            else if (argv[optind].equals("-r"))
+                rootpath = argv[++optind];
+            else if (argv[optind].equals("-io"))
+                iofile = argv[++optind];
+            else if (argv[optind].equals("-s"))
+                pattern = argv[++optind];
+            else if (argv[optind].equals("-n"))
+                newName = argv[++optind];
+            else if (argv[optind].equals("-subject"))
+                subject = argv[++optind];
+            else if (argv[optind].equals("-pn"))
+                portvalue = argv[++optind];
+            else if (argv[optind].equals("-WorkDir"))
+                workdir = argv[++optind];
+            else if (argv[optind].equals("-A"))
+                auth = true;
+            else if (argv[optind].equals("-proxy"))
+                proxy = argv[++optind];
+            else if (argv[optind].equals("-D"))
+                debug = true;
             else if (argv[optind].equals("--")) {
                 optind++;
                 break;
@@ -139,29 +158,40 @@ public class MailTestUtil {
                 out.println("\t[-s pattern] [-n newname] [-subject subject] [-pn port_number]");
                 out.println("\t[-WorkDir workdirpath] [-A] [-proxy socks-proxy] [msgcount]");
                 System.exit(1);
-            } else break;
+            } else
+                break;
         }
         // get integer number from the command-line
 
-        if (optind < argv.length) msgcount = Integer.parseInt(argv[optind]);
+        if (optind < argv.length)
+            msgcount = Integer.parseInt(argv[optind]);
 
-        if (portvalue != null) portnum = Integer.parseInt(portvalue);
+        if (portvalue != null)
+            portnum = Integer.parseInt(portvalue);
 
-        if (transport_host == null) transport_host = host;
+        if (transport_host == null)
+            transport_host = host;
 
         if (protocol != null) {
             properties.setProperty("mail.store.protocol", protocol);
-            if (host != null) properties.setProperty("mail." + protocol + ".host", host);
-            if (user != null) properties.setProperty("mail." + protocol + ".user", user);
-            if (portnum > 0) properties.setProperty("mail." + protocol + ".port", "" + portnum);
-            if (proxy != null) properties.setProperty("mail." + protocol + ".socks.host", proxy);
+            if (host != null)
+                properties.setProperty("mail." + protocol + ".host", host);
+            if (user != null)
+                properties.setProperty("mail." + protocol + ".user", user);
+            if (portnum > 0)
+                properties.setProperty("mail." + protocol + ".port", "" + portnum);
+            if (proxy != null)
+                properties.setProperty("mail." + protocol + ".socks.host", proxy);
         }
         if (transport_protocol != null) {
             properties.setProperty("mail.transport.protocol", transport_protocol);
-            if (transport_host != null) properties.setProperty("mail." + transport_protocol + ".host", transport_host);
-            if (user != null) properties.setProperty("mail." + transport_protocol + ".user", user);
+            if (transport_host != null)
+                properties.setProperty("mail." + transport_protocol + ".host", transport_host);
+            if (user != null)
+                properties.setProperty("mail." + transport_protocol + ".user", user);
             properties.setProperty("mail." + transport_protocol + ".auth", "" + auth);
-            if (proxy != null) properties.setProperty("mail." + transport_protocol + ".socks.host", proxy);
+            if (proxy != null)
+                properties.setProperty("mail." + transport_protocol + ".socks.host", proxy);
         }
     }
 
@@ -219,9 +249,12 @@ public class MailTestUtil {
             }
             // Connect
             if (host != null || user != null || password != null)
-                if (portnum > 0) store.connect(host, portnum, user, password);
-                else store.connect(host, user, password);
-            else store.connect();
+                if (portnum > 0)
+                    store.connect(host, portnum, user, password);
+                else
+                    store.connect(host, user, password);
+            else
+                store.connect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -244,9 +277,12 @@ public class MailTestUtil {
             int portnum = -1;
             // Connect
             if (host != null || user != null || password != null)
-                if (portnum > 0) store.connect(host, portnum, user, password);
-                else store.connect(host, user, password);
-            else store.connect();
+                if (portnum > 0)
+                    store.connect(host, portnum, user, password);
+                else
+                    store.connect(host, user, password);
+            else
+                store.connect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -272,9 +308,12 @@ public class MailTestUtil {
 
             // Connect
             if (host != null || user != null || password != null)
-                if (portnum > 0) store.connect(host, portnum, user, password);
-                else store.connect(host, user, password);
-            else store.connect();
+                if (portnum > 0)
+                    store.connect(host, portnum, user, password);
+                else
+                    store.connect(host, user, password);
+            else
+                store.connect();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -288,8 +327,10 @@ public class MailTestUtil {
     public Folder getRootFolder(Store store) {
         Folder folder = null;
         try {
-            if (rootpath.equals("")) folder = store.getDefaultFolder();
-            else folder = store.getFolder(rootpath);
+            if (rootpath.equals(""))
+                folder = store.getDefaultFolder();
+            else
+                folder = store.getFolder(rootpath);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -305,8 +346,10 @@ public class MailTestUtil {
         out.println("Free Memory = " + rt.freeMemory());
         out.println("Test Aborted!");
 
-        if (errors == 0) status = Status.passed("OKAY");
-        else status = Status.failed("");
+        if (errors == 0)
+            status = Status.passed("OKAY");
+        else
+            status = Status.failed("");
 
         return status;
     }
@@ -344,8 +387,10 @@ public class MailTestUtil {
      * Check testcase pass/fail status.
      */
     public void checkStatus() {
-        if (errors == 0) status = Status.passed("OKAY");
-        else status = Status.failed("");
+        if (errors == 0)
+            status = Status.passed("OKAY");
+        else
+            status = Status.failed("");
     }
 
     public Session getSession() {

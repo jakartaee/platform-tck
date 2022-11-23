@@ -64,8 +64,7 @@ public class Client extends ServiceEETest {
 
     private static final QName PORT_QNAME = new QName(NAMESPACEURI, PORT_NAME);
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
 
     private static final Class SEI_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.Hello.class;
 
@@ -118,8 +117,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -199,6 +200,7 @@ public class Client extends ServiceEETest {
             throw new Fault("PortInfoTest failed", e);
         }
 
-        if (!pass) throw new Fault("PortInfoTest failed");
+        if (!pass)
+            throw new Fault("PortInfoTest failed");
     }
 }

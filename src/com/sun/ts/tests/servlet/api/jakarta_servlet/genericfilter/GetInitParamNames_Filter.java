@@ -158,5 +158,6 @@ public final class GetInitParamNames_Filter extends GenericFilter {
     }
 
     // remove the filter configuration object for this filter.
-    public void destroy() {}
+    public void destroy() {
+    }
 }

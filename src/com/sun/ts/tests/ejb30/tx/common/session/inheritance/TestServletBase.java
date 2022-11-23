@@ -31,18 +31,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @EJBs({
-    @EJB(name = "abeanRemote", beanName = "ABean", beanInterface = TxRemoteIF.class, description = "remote ABean"),
-    @EJB(name = "bbeanRemote", beanName = "BBean", beanInterface = TxRemoteIF.class, description = "remote BBean"),
-    @EJB(name = "cbeanRemote", beanName = "CBean", beanInterface = TxRemoteIF.class, description = "remote CBean"),
-    @EJB(name = "dbeanRemote", beanName = "DBean", beanInterface = TxRemoteIF.class, description = "remote DBean"),
-    @EJB(name = "ebeanRemote", beanName = "EBean", beanInterface = TxRemoteIF.class, description = "remote EBean"),
-    @EJB(name = "fbeanRemote", beanName = "FBean", beanInterface = TxRemoteIF.class, description = ""),
-    @EJB(name = "abeanLocal", beanName = "ABean", beanInterface = TxLocalIF.class, description = "local ABean"),
-    @EJB(name = "bbeanLocal", beanName = "BBean", beanInterface = TxLocalIF.class, description = "local BBean"),
-    @EJB(name = "cbeanLocal", beanName = "CBean", beanInterface = TxLocalIF.class, description = "local CBean"),
-    @EJB(name = "dbeanLocal", beanName = "DBean", beanInterface = TxLocalIF.class, description = "local DBean"),
-    @EJB(name = "ebeanLocal", beanName = "EBean", beanInterface = TxLocalIF.class, description = "local EBean"),
-    @EJB(name = "fbeanLocal", beanName = "FBean", beanInterface = TxLocalIF.class, description = "")
+        @EJB(name = "abeanRemote", beanName = "ABean", beanInterface = TxRemoteIF.class, description = "remote ABean"),
+        @EJB(name = "bbeanRemote", beanName = "BBean", beanInterface = TxRemoteIF.class, description = "remote BBean"),
+        @EJB(name = "cbeanRemote", beanName = "CBean", beanInterface = TxRemoteIF.class, description = "remote CBean"),
+        @EJB(name = "dbeanRemote", beanName = "DBean", beanInterface = TxRemoteIF.class, description = "remote DBean"),
+        @EJB(name = "ebeanRemote", beanName = "EBean", beanInterface = TxRemoteIF.class, description = "remote EBean"),
+        @EJB(name = "fbeanRemote", beanName = "FBean", beanInterface = TxRemoteIF.class, description = ""),
+        @EJB(name = "abeanLocal", beanName = "ABean", beanInterface = TxLocalIF.class, description = "local ABean"),
+        @EJB(name = "bbeanLocal", beanName = "BBean", beanInterface = TxLocalIF.class, description = "local BBean"),
+        @EJB(name = "cbeanLocal", beanName = "CBean", beanInterface = TxLocalIF.class, description = "local CBean"),
+        @EJB(name = "dbeanLocal", beanName = "DBean", beanInterface = TxLocalIF.class, description = "local DBean"),
+        @EJB(name = "ebeanLocal", beanName = "EBean", beanInterface = TxLocalIF.class, description = "local EBean"),
+        @EJB(name = "fbeanLocal", beanName = "FBean", beanInterface = TxLocalIF.class, description = "")
 })
 public abstract class TestServletBase extends HttpTCKServlet {
     public void aBeanRemote(HttpServletRequest request, HttpServletResponse response)

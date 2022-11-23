@@ -38,9 +38,8 @@ import org.apache.commons.httpclient.cookie.CookieSpec;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -49,8 +48,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -155,8 +153,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:439
      *
-     * @test_Strategy: Client sends a version 0 and 1 cookie to the servlet.
-     * Servlet verifies values and returns result to client
+     * @test_Strategy: Client sends a version 0 and 1 cookie to the servlet. Servlet verifies values and returns result to
+     * client
      */
     public void getDomainTest() throws Fault {
         // version 1
@@ -324,7 +322,8 @@ public class URLClient extends AbstractUrlClient {
                 i++;
             }
 
-            if (!foundcookie) throw new Fault("The test cookie was not located in the response");
+            if (!foundcookie)
+                throw new Fault("The test cookie was not located in the response");
         } catch (Throwable t) {
             throw new Fault("Exception occurred:" + t, t);
         }
@@ -335,8 +334,7 @@ public class URLClient extends AbstractUrlClient {
         String resultStringDate = sdf.format(expiryDate);
         try {
             Date resultDate = sdf.parse(resultStringDate);
-            Date expectedDate =
-                    sdf.parse(dateHeader.substring(dateHeader.indexOf(": ") + 2).trim());
+            Date expectedDate = sdf.parse(dateHeader.substring(dateHeader.indexOf(": ") + 2).trim());
             if (resultDate.before(expectedDate)) {
                 throw new Fault(
                         "The expiry date was incorrect, expected =" + expectedDate + ", result = " + resultDate);

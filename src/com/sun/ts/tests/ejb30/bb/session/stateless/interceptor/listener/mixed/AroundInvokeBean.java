@@ -35,10 +35,10 @@ import jakarta.interceptor.Interceptors;
 import java.util.ArrayList;
 
 @Stateless
-@Remote({AroundInvokeIF.class})
+@Remote({ AroundInvokeIF.class })
 // This bean must use cmt, since it uses setRollbackOnly
 @ExcludeDefaultInterceptors
-@Interceptors({Interceptor1.class, Interceptor1.class})
+@Interceptors({ Interceptor1.class, Interceptor1.class })
 public class AroundInvokeBean extends AroundInvokeBase implements AroundInvokeIF {
     @Resource(name = "ejbContext")
     private SessionContext ejbContext;
@@ -55,13 +55,13 @@ public class AroundInvokeBean extends AroundInvokeBase implements AroundInvokeIF
     // ============= override business methods from super ================
     @Override
     @ExcludeClassInterceptors
-    @Interceptors({InterceptorNoat1.class, MethodLevelOnlyNoopInterceptor.class})
+    @Interceptors({ InterceptorNoat1.class, MethodLevelOnlyNoopInterceptor.class })
     public ArrayList<String> methodLevelInterceptorMixedTest(ArrayList<String> alist) throws CalculatorException {
         return super.methodLevelInterceptorMixedTest(alist);
     }
 
     @Override
-    @Interceptors({Interceptor1.class, MethodLevelOnlyNoopInterceptor.class})
+    @Interceptors({ Interceptor1.class, MethodLevelOnlyNoopInterceptor.class })
     public ArrayList<String> methodLevelClassLevelInterceptorMixedTest(ArrayList<String> alist)
             throws CalculatorException {
         return super.methodLevelClassLevelInterceptorMixedTest(alist);
@@ -69,14 +69,14 @@ public class AroundInvokeBean extends AroundInvokeBase implements AroundInvokeIF
 
     @Override
     @ExcludeDefaultInterceptors
-    @Interceptors({InterceptorNoat1.class, InterceptorNoat1.class, MethodLevelOnlyNoopInterceptor.class})
+    @Interceptors({ InterceptorNoat1.class, InterceptorNoat1.class, MethodLevelOnlyNoopInterceptor.class })
     public ArrayList<String> repeatedInterceptors(ArrayList<String> alist) throws CalculatorException {
         return super.repeatedInterceptors(alist);
     }
 
     @Override
     @ExcludeDefaultInterceptors
-    @Interceptors({Interceptor1.class, InterceptorNoat1.class})
+    @Interceptors({ Interceptor1.class, InterceptorNoat1.class })
     public ArrayList<String> interceptorOrderingOverride(ArrayList<String> alist) throws CalculatorException {
         return super.interceptorOrderingOverride(alist);
     }

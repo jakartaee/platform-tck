@@ -27,12 +27,7 @@ import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceException;
 import java.util.*;
 
-@WebService(
-        targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl",
-        portName = "MarshallTestPort1",
-        serviceName = "MarshallTestService",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLMarshallTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.MarshallTest")
+@WebService(targetNamespace = "http://marshalltestservice.org/MarshallTestService.wsdl", portName = "MarshallTestPort1", serviceName = "MarshallTestService", wsdlLocation = "WEB-INF/wsdl/WSW2JDLMarshallTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.marshalltest.MarshallTest")
 public class MarshallTestImpl implements MarshallTest {
 
     private static final ObjectFactory of = new ObjectFactory();
@@ -404,7 +399,8 @@ public class MarshallTestImpl implements MarshallTest {
         JavaBeanArrayTestResponse r;
         try {
             r = of.createJavaBeanArrayTestResponse();
-            for (JavaBean e : v.getJavaBeanArray()) r.getJavaBeanArray().add(e);
+            for (JavaBean e : v.getJavaBeanArray())
+                r.getJavaBeanArray().add(e);
         } catch (Exception e) {
             throw new WebServiceException("Failed on object creation: " + e);
         }

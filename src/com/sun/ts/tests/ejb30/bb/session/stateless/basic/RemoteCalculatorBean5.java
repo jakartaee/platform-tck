@@ -35,7 +35,8 @@ public class RemoteCalculatorBean5 extends BaseRemoteCalculator {
     @Resource
     private SessionContext sessionContext;
 
-    public RemoteCalculatorBean5() {}
+    public RemoteCalculatorBean5() {
+    }
 
     @PostConstruct
     public void postConstruct() {

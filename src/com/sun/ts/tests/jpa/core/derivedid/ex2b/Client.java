@@ -27,7 +27,8 @@ import java.util.Properties;
  */
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -51,9 +52,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1182.1; PERSISTENCE:SPEC:1339
      *
-     * @test_Strategy: Derived Identifier The parent entity uses IdClass Case (b):
-     * The dependent entity uses EmbeddedId. The type of the empPK attribute is
-     * the same as that of the primary key of Employee.
+     * @test_Strategy: Derived Identifier The parent entity uses IdClass Case (b): The dependent entity uses EmbeddedId. The
+     * type of the empPK attribute is the same as that of the primary key of Employee.
      */
     public void DIDTest() throws Fault {
         boolean pass1 = false;

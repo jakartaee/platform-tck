@@ -45,22 +45,17 @@ public class Client extends ServiceEETest {
     private static final ObjectFactory of = new ObjectFactory();
 
     // Messages sent as straight XML as Source objects
-    private String helloReq =
-            "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest>";
+    private String helloReq = "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest>";
 
-    private String helloOneWayReq =
-            "<HelloOneWayRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloOneWayRequest>";
+    private String helloOneWayReq = "<HelloOneWayRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloOneWayRequest>";
 
     // Messages sent as SOAPMessage objects
-    private String helloReqSM =
-            "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest></soapenv:Body></soapenv:Envelope>";
+    private String helloReqSM = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest></soapenv:Body></soapenv:Envelope>";
 
-    private String helloOneWayReqSM =
-            "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloOneWayRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloOneWayRequest></soapenv:Body></soapenv:Envelope>";
+    private String helloOneWayReqSM = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloOneWayRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloOneWayRequest></soapenv:Body></soapenv:Envelope>";
 
     // Negative test case invalid messages
-    private String helloBadReq1 =
-            "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument><HelloRequest>";
+    private String helloBadReq1 = "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument><HelloRequest>";
 
     // The webserver defaults (overidden by harness properties)
     private static final String PROTOCOL = "http";
@@ -82,8 +77,7 @@ public class Client extends ServiceEETest {
 
     private static final String SHARED_CLIENT_PKG = "com.sun.ts.tests.jaxws.sharedclients.doclithelloclient";
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
 
     private static final String NAMESPACEURI = "http://helloservice.org/wsdl";
 
@@ -118,8 +112,7 @@ public class Client extends ServiceEETest {
 
     static HelloService service = null;
 
-    private static final Class JAXB_OBJECT_FACTORY =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.ObjectFactory.class;
+    private static final Class JAXB_OBJECT_FACTORY = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.ObjectFactory.class;
 
     private JAXBContext createJAXBContext() {
         try {
@@ -228,8 +221,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -288,14 +283,14 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTestXML failed");
+        if (!pass)
+            throw new Fault("invokeTestXML failed");
     }
 
     /*
      * @testName: invokeAsyncTestXML
      *
-     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:9; WS4EE:SPEC:4005;
-     * WS4EE:SPEC:4006; WS4EE:SPEC:4007;
+     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:9; WS4EE:SPEC:4005; WS4EE:SPEC:4006; WS4EE:SPEC:4007;
      *
      * @test_Strategy:
      */
@@ -330,14 +325,14 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeAsyncTestXML failed");
+        if (!pass)
+            throw new Fault("invokeAsyncTestXML failed");
     }
 
     /*
      * @testName: invokeAsyncHandlerTestXML
      *
-     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:9; WS4EE:SPEC:4005;
-     * WS4EE:SPEC:4006; WS4EE:SPEC:4008;
+     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:9; WS4EE:SPEC:4005; WS4EE:SPEC:4006; WS4EE:SPEC:4008;
      *
      * @test_Strategy:
      */
@@ -367,14 +362,14 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
         }
 
-        if (!pass) throw new Fault("invokeAsyncHandlerTestXML failed");
+        if (!pass)
+            throw new Fault("invokeAsyncHandlerTestXML failed");
     }
 
     /*
      * @testName: invokeOneWayTestXML
      *
-     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:11; JAXWS:SPEC:10016;
-     * JAXWS:SPEC:6006; WS4EE:SPEC:4005;
+     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:11; JAXWS:SPEC:10016; JAXWS:SPEC:6006; WS4EE:SPEC:4005;
      *
      * @test_Strategy:
      */
@@ -389,7 +384,8 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeOneWayTestXML failed");
+        if (!pass)
+            throw new Fault("invokeOneWayTestXML failed");
     }
 
     /*
@@ -416,19 +412,20 @@ public class Client extends ServiceEETest {
             helloRes = (HelloResponse) dispatchJaxb.invoke(helloReq);
             TestUtil.logMsg("HelloRequest: " + helloReq.getArgument());
             TestUtil.logMsg("HelloResponse: " + helloRes.getArgument());
-            if (!helloReq.getArgument().equals(helloRes.getArgument())) pass = false;
+            if (!helloReq.getArgument().equals(helloRes.getArgument()))
+                pass = false;
         } catch (Exception e) {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTestJAXB failed");
+        if (!pass)
+            throw new Fault("invokeTestJAXB failed");
     }
 
     /*
      * @testName: invokeAsyncTestJAXB
      *
-     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:9; WS4EE:SPEC:4005;
-     * WS4EE:SPEC:4006; WS4EE:SPEC:4007;
+     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:9; WS4EE:SPEC:4005; WS4EE:SPEC:4006; WS4EE:SPEC:4007;
      *
      * @test_Strategy:
      */
@@ -461,19 +458,20 @@ public class Client extends ServiceEETest {
             helloRes = (HelloResponse) res.get();
             TestUtil.logMsg("HelloRequest: " + helloReq.getArgument());
             TestUtil.logMsg("HelloResponse: " + helloRes.getArgument());
-            if (!helloReq.getArgument().equals(helloRes.getArgument())) pass = false;
+            if (!helloReq.getArgument().equals(helloRes.getArgument()))
+                pass = false;
         } catch (Exception e) {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeAsyncTestJAXB failed");
+        if (!pass)
+            throw new Fault("invokeAsyncTestJAXB failed");
     }
 
     /*
      * @testName: invokeAsyncHandlerTestJAXB
      *
-     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:10; WS4EE:SPEC:4005;
-     * WS4EE:SPEC:4006; WS4EE:SPEC:4008;
+     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:10; WS4EE:SPEC:4005; WS4EE:SPEC:4006; WS4EE:SPEC:4008;
      *
      * @test_Strategy:
      */
@@ -509,20 +507,21 @@ public class Client extends ServiceEETest {
             if (helloRes != null) {
                 TestUtil.logMsg("HelloRequest: " + helloReq.getArgument());
                 TestUtil.logMsg("HelloResponse: " + helloRes.getArgument());
-                if (!helloReq.getArgument().equals(helloRes.getArgument())) pass = false;
+                if (!helloReq.getArgument().equals(helloRes.getArgument()))
+                    pass = false;
             }
         } catch (Exception e) {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeAsyncHandlerTestJAXB failed");
+        if (!pass)
+            throw new Fault("invokeAsyncHandlerTestJAXB failed");
     }
 
     /*
      * @testName: invokeOneWayTestJAXB
      *
-     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:11; JAXWS:SPEC:6006;
-     * WS4EE:SPEC:4005;
+     * @assertion_ids: JAXWS:SPEC:4014; JAXWS:JAVADOC:11; JAXWS:SPEC:6006; WS4EE:SPEC:4005;
      *
      * @test_Strategy:
      */
@@ -544,7 +543,8 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeOneWayTestJAXB failed");
+        if (!pass)
+            throw new Fault("invokeOneWayTestJAXB failed");
     }
 
     /*
@@ -571,7 +571,8 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Received unexpected exception", e);
         }
-        if (!pass) throw new Fault("invokeNegativeTestXML failed");
+        if (!pass)
+            throw new Fault("invokeNegativeTestXML failed");
     }
 
     /*
@@ -597,7 +598,8 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Received unexpected exception", e);
         }
-        if (!pass) throw new Fault("invokeOneWayNegTestXML failed");
+        if (!pass)
+            throw new Fault("invokeOneWayNegTestXML failed");
     }
 
     /*
@@ -625,7 +627,8 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeTestSOAPMessage failed");
+        if (!pass)
+            throw new Fault("invokeTestSOAPMessage failed");
     }
 
     /*
@@ -665,7 +668,8 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeAsyncTestSOAPMessage failed");
+        if (!pass)
+            throw new Fault("invokeAsyncTestSOAPMessage failed");
     }
 
     /*
@@ -701,7 +705,8 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
         }
 
-        if (!pass) throw new Fault("invokeAsyncHandlerTestSOAPMessage failed");
+        if (!pass)
+            throw new Fault("invokeAsyncHandlerTestSOAPMessage failed");
     }
 
     /*
@@ -722,7 +727,8 @@ public class Client extends ServiceEETest {
             pass = false;
             e.printStackTrace();
         }
-        if (!pass) throw new Fault("invokeOneWayTestSOAPMessage failed");
+        if (!pass)
+            throw new Fault("invokeOneWayTestSOAPMessage failed");
     }
 
     /*
@@ -759,6 +765,7 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Received unexpected exception", e);
         }
-        if (!pass) throw new Fault("invokeTestJAXBNull failed");
+        if (!pass)
+            throw new Fault("invokeTestJAXBNull failed");
     }
 }

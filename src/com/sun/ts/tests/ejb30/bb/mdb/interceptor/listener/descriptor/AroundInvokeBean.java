@@ -36,10 +36,7 @@ import jakarta.jms.MessageListener;
 import jakarta.jms.Queue;
 import jakarta.jms.QueueConnectionFactory;
 
-@MessageDriven(
-        name = "AroundInvokeBean",
-        description = "A Simple MDB AroundInvokeBean",
-        messageListenerInterface = MessageListener.class)
+@MessageDriven(name = "AroundInvokeBean", description = "A Simple MDB AroundInvokeBean", messageListenerInterface = MessageListener.class)
 
 // activationConfig ={
 // @ActivationConfigProperty(propertyName="destinationType",
@@ -82,10 +79,12 @@ public class AroundInvokeBean extends AroundInvokeBase {
     }
 
     @PostConstruct
-    private void postConstruct() {}
+    private void postConstruct() {
+    }
 
     @PreDestroy
-    private void preDestroy() {}
+    private void preDestroy() {
+    }
 
     // ============ abstract methods from super ==========================
     protected jakarta.ejb.EJBContext getEJBContext() {

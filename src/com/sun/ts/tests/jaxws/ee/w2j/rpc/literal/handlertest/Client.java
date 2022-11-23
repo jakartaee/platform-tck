@@ -97,8 +97,7 @@ public class Client extends ServiceEETest {
 
     private QName PORT_QNAME1 = new QName(NAMESPACEURI, PORT_NAME1);
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.rlhandlerclient.RLHandlerService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.rlhandlerclient.RLHandlerService.class;
 
     private static final String LOGICAL = "Logical";
 
@@ -233,8 +232,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -288,14 +289,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: ClientLogicalHandlerTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9012;
-     * JAXWS:SPEC:9014; JAXWS:SPEC:9015.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
-     * WS4EE:SPEC:6010; WS4EE:SPEC:6015.1; WS4EE:SPEC:6015.2; WS4EE:SPEC:6015.3;
-     * WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005; WS4EE:SPEC:6051;
-     * WS4EE:SPEC:6027;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9012; JAXWS:SPEC:9014; JAXWS:SPEC:9015.1;
+     * JAXWS:SPEC:9017; JAXWS:SPEC:9018; WS4EE:SPEC:6010; WS4EE:SPEC:6015.1; WS4EE:SPEC:6015.2; WS4EE:SPEC:6015.3;
+     * WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005; WS4EE:SPEC:6051; WS4EE:SPEC:6027;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the client-side
-     * logical message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the client-side logical message handler callbacks are called.
      */
     public void ClientLogicalHandlerTest() throws Fault {
         TestUtil.logTrace("ClientLogicalHandlerTest");
@@ -433,7 +431,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientLogicalHandlerTest failed");
+        if (!pass)
+            throw new Fault("ClientLogicalHandlerTest failed");
     }
 
     /*
@@ -441,10 +440,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9011;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that a client-side handler
-     * added to the binding does not get called. The service-name-pattern and
-     * port-name-pattern tags are used in the handler xml file to denote what what
-     * handlers will and won't be instanciated
+     * @test_Strategy: Invoke an RPC method and ensure that a client-side handler added to the binding does not get called.
+     * The service-name-pattern and port-name-pattern tags are used in the handler xml file to denote what what handlers
+     * will and won't be instanciated
      */
     public void ClientHandlerDoesNotGetCalledTest() throws Fault {
         TestUtil.logTrace("ClientHandlerDoesNotGetCalledTest");
@@ -551,18 +549,17 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("ClientHandlerDoesNotGetCalledTest failed");
+        if (!pass)
+            throw new Fault("ClientHandlerDoesNotGetCalledTest failed");
     }
 
     /*
      * @testName: ServerLogicalHandlerTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018; WS4EE:SPEC:6010;
-     * WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005; WS4EE:SPEC:6051;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.1; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018; WS4EE:SPEC:6010; WS4EE:SPEC:6008; WS4EE:SPEC:6028; WS4EE:SPEC:6005; WS4EE:SPEC:6051;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called.
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called.
      */
     public void ServerLogicalHandlerTest() throws Fault {
         TestUtil.logTrace("ServerLogicalHandlerTest");
@@ -592,8 +589,10 @@ public class Client extends ServiceEETest {
                     pass = false;
                 }
                 String result = null;
-                if (mr != null) result = mr.getErrors();
-                else result = "null return";
+                if (mr != null)
+                    result = mr.getErrors();
+                else
+                    result = "null return";
                 if (!result.equals("")) {
                     pass = false;
                     TestUtil.logErr("The serverside tests for MessageContext.Scope failed:" + result);
@@ -656,19 +655,19 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerLogicalHandlerTest failed");
+        if (!pass)
+            throw new Fault("ServerLogicalHandlerTest failed");
     }
 
     /*
      * @testName: ServerHandlerDoesNotGetCalledTest
      *
-     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014;
-     * JAXWS:SPEC:9015.1; JAXWS:SPEC:9017; JAXWS:SPEC:9018;
+     * @assertion_ids: JAXWS:SPEC:9002; JAXWS:SPEC:9007; JAXWS:SPEC:9014; JAXWS:SPEC:9015.1; JAXWS:SPEC:9017;
+     * JAXWS:SPEC:9018;
      *
-     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap
-     * message handler callbacks are called. The service-name-pattern and
-     * port-name-pattern tags are used in the handler xml file to denote what what
-     * handlers will and won't be instanciated
+     * @test_Strategy: Invoke an RPC method and ensure that the server-side soap message handler callbacks are called. The
+     * service-name-pattern and port-name-pattern tags are used in the handler xml file to denote what what handlers will
+     * and won't be instanciated
      */
     public void ServerHandlerDoesNotGetCalledTest() throws Fault {
         TestUtil.logTrace("ServerHandlerDoesNotGetCalledTest");
@@ -698,8 +697,10 @@ public class Client extends ServiceEETest {
                     pass = false;
                 }
                 String result = null;
-                if (mr != null) result = mr.getErrors();
-                else result = "null return";
+                if (mr != null)
+                    result = mr.getErrors();
+                else
+                    result = "null return";
                 if (!result.equals("")) {
                     pass = false;
                     TestUtil.logErr("The serverside tests for MessageContext.Scope failed:" + result);
@@ -754,7 +755,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("ServerHandlerDoesNotGetCalledTest failed");
+        if (!pass)
+            throw new Fault("ServerHandlerDoesNotGetCalledTest failed");
     }
 
     private void purgeServerSideTrackerData() {

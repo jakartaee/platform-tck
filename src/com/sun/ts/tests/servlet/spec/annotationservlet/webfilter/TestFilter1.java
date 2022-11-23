@@ -30,9 +30,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter(
-        dispatcherTypes = DispatcherType.REQUEST,
-        urlPatterns = {"/Servlet1"})
+@WebFilter(dispatcherTypes = DispatcherType.REQUEST, urlPatterns = { "/Servlet1" })
 public final class TestFilter1 implements Filter {
 
     private FilterConfig filterConfig = null;
@@ -49,7 +47,8 @@ public final class TestFilter1 implements Filter {
     }
 
     // Remove the filter configuration object for this filter.
-    public void destroy() {}
+    public void destroy() {
+    }
 
     // initialize the filter configuration object for this filter.
     public void init(FilterConfig filterConfig) {

@@ -60,8 +60,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
      */
     public static Element getTypes(Document document) {
         Element[] children = getChildElements(document.getDocumentElement(), WSDL_NAMESPACE_URI, WSDL_TYPES_LOCAL_NAME);
-        if (children.length != 0) return children[0];
-        else return getTypesFromImports(document);
+        if (children.length != 0)
+            return children[0];
+        else
+            return getTypesFromImports(document);
     }
 
     public static Element getTypesFromImports(Document document) {
@@ -72,7 +74,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             try {
                 Document newDoc = DescriptionUtils.getDocumentFromLocation(location);
                 Element element = getTypes(newDoc);
-                if (element != null) return element;
+                if (element != null)
+                    return element;
             } catch (Exception e) {
                 e.printStackTrace(System.err);
                 break;
@@ -106,7 +109,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             try {
                 Document newDoc = DescriptionUtils.getDocumentFromLocation(location);
                 Element[] elements = getMessages(newDoc);
-                if (elements.length != 0) return elements;
+                if (elements.length != 0)
+                    return elements;
             } catch (Exception e) {
                 e.printStackTrace(System.err);
                 break;
@@ -120,10 +124,11 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
      * @return Element[]
      */
     public static Element[] getMessages(Document document) {
-        Element[] elements =
-                getChildElements(document.getDocumentElement(), WSDL_NAMESPACE_URI, WSDL_MESSAGE_LOCAL_NAME);
-        if (elements.length != 0) return elements;
-        else return getMessagesFromImports(document);
+        Element[] elements = getChildElements(document.getDocumentElement(), WSDL_NAMESPACE_URI, WSDL_MESSAGE_LOCAL_NAME);
+        if (elements.length != 0)
+            return elements;
+        else
+            return getMessagesFromImports(document);
     }
 
     /**
@@ -177,7 +182,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         Element message = getMessage(document, messageName);
         Element[] parts = getChildElements(message, WSDL_NAMESPACE_URI, WSDL_PART_LOCAL_NAME);
         String theParts[] = new String[parts.length];
-        for (int i = 0; i < parts.length; i++) theParts[i] = parts[i].getAttribute(WSDL_NAME_ATTR);
+        for (int i = 0; i < parts.length; i++)
+            theParts[i] = parts[i].getAttribute(WSDL_NAME_ATTR);
         return theParts;
     }
 
@@ -190,7 +196,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             try {
                 Document newDoc = DescriptionUtils.getDocumentFromLocation(location);
                 Element[] elements = getPortTypes(newDoc);
-                if (elements.length != 0) return elements;
+                if (elements.length != 0)
+                    return elements;
             } catch (Exception e) {
                 e.printStackTrace(System.err);
                 break;
@@ -204,10 +211,11 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
      * @return Element[]
      */
     public static Element[] getPortTypes(Document document) {
-        Element[] elements =
-                getChildElements(document.getDocumentElement(), WSDL_NAMESPACE_URI, WSDL_PORTTYPE_LOCAL_NAME);
-        if (elements.length != 0) return elements;
-        else return getPortTypesFromImports(document);
+        Element[] elements = getChildElements(document.getDocumentElement(), WSDL_NAMESPACE_URI, WSDL_PORTTYPE_LOCAL_NAME);
+        if (elements.length != 0)
+            return elements;
+        else
+            return getPortTypesFromImports(document);
     }
 
     /**
@@ -234,7 +242,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         Element[] services = getServices(document);
         for (int i = 0; i < services.length; i++) {
             Element port = getNamedChildElement(services[i], WSDL_NAMESPACE_URI, WSDL_PORT_LOCAL_NAME, name);
-            if (port != null) return port;
+            if (port != null)
+                return port;
         }
         return null;
     }
@@ -308,8 +317,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
                 children.add(child);
             }
         }
-        if (children.size() == 0) return getChildElementsFromImports(element, namespaceURI, localName);
-        else return (Element[]) children.toArray(new Element[children.size()]);
+        if (children.size() == 0)
+            return getChildElementsFromImports(element, namespaceURI, localName);
+        else
+            return (Element[]) children.toArray(new Element[children.size()]);
     }
 
     /**
@@ -376,8 +387,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
      */
     public static boolean isPortTypeNameAttr(Document document, String portTypeName) {
         Element portType = getPortType(document, portTypeName);
-        if (portType != null) return true;
-        else return false;
+        if (portType != null)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -386,8 +399,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
      */
     public static boolean isPortNameAttr(Document document, String portName) {
         Element port = getPort(document, portName);
-        if (port != null) return true;
-        else return false;
+        if (port != null)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -396,8 +411,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
      */
     public static boolean isServiceNameAttr(Document document, String serviceName) {
         Element service = getServiceName(document, serviceName);
-        if (service != null) return true;
-        else return false;
+        if (service != null)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -408,8 +425,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         Element input = getChildElement(e, WSDL_NAMESPACE_URI, WSDL_INPUT_LOCAL_NAME);
         String messageName = input.getAttribute(WSDL_MESSAGE_ATTR);
         int i = messageName.indexOf(":");
-        if (i != -1) return messageName.substring(i + 1);
-        else return messageName;
+        if (i != -1)
+            return messageName.substring(i + 1);
+        else
+            return messageName;
     }
 
     /**
@@ -420,8 +439,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         Element output = getChildElement(e, WSDL_NAMESPACE_URI, WSDL_OUTPUT_LOCAL_NAME);
         String messageName = output.getAttribute(WSDL_MESSAGE_ATTR);
         int i = messageName.indexOf(":");
-        if (i != -1) return messageName.substring(i + 1);
-        else return messageName;
+        if (i != -1)
+            return messageName.substring(i + 1);
+        else
+            return messageName;
     }
 
     /**
@@ -437,7 +458,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             Element[] operations = getChildElements(portType, WSDL_NAMESPACE_URI, WSDL_OPERATION_LOCAL_NAME);
             for (int i = 0; i < operations.length; i++) {
                 String theOperationName = operations[i].getAttribute(WSDL_NAME_ATTR);
-                if (theOperationName.equals(operationName)) return operations[i];
+                if (theOperationName.equals(operationName))
+                    return operations[i];
             }
         }
         return null;
@@ -495,8 +517,7 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         if (portType != null) {
             Element[] operations = getChildElements(portType, WSDL_NAMESPACE_URI, WSDL_OPERATION_LOCAL_NAME);
             for (int i = 0; i < operations.length; i++) {
-                Element input =
-                        DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_INPUT_LOCAL_NAME);
+                Element input = DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_INPUT_LOCAL_NAME);
                 String imsg = input.getAttribute(WSDL_MESSAGE_ATTR);
                 alist.add(imsg.substring(imsg.indexOf(":") + 1));
             }
@@ -516,8 +537,7 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         if (portType != null) {
             Element[] operations = getChildElements(portType, WSDL_NAMESPACE_URI, WSDL_OPERATION_LOCAL_NAME);
             for (int i = 0; i < operations.length; i++) {
-                Element output =
-                        DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_OUTPUT_LOCAL_NAME);
+                Element output = DescriptionUtils.getChildElement(operations[i], WSDL_NAMESPACE_URI, WSDL_OUTPUT_LOCAL_NAME);
                 // Operation always has an input, may not have an output so let's check
                 if (output != null) {
                     String omsg = output.getAttribute(WSDL_MESSAGE_ATTR);
@@ -553,8 +573,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
      */
     public static boolean hasFault(Element operation) {
         Element[] faults = getChildElements(operation, WSDL_NAMESPACE_URI, WSDL_FAULT_LOCAL_NAME);
-        if (faults.length > 0) return true;
-        else return false;
+        if (faults.length > 0)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -565,7 +587,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
     public static boolean hasFault(Element operation, String faultName) {
         Element[] faults = getChildElements(operation, WSDL_NAMESPACE_URI, WSDL_FAULT_LOCAL_NAME);
         for (int i = 0; i < faults.length; i++) {
-            if (faults[i].getAttribute(WSDL_NAME_ATTR).equals(faultName)) return true;
+            if (faults[i].getAttribute(WSDL_NAME_ATTR).equals(faultName))
+                return true;
         }
         return false;
     }
@@ -577,11 +600,13 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
      */
     public static Element getBindingOperationNameElement(Document document, String operationName) {
         Element[] bindings = getBindings(document);
-        if (bindings.length != 1) return null;
+        if (bindings.length != 1)
+            return null;
         Element[] operations = getChildElements(bindings[0], WSDL_NAMESPACE_URI, WSDL_OPERATION_LOCAL_NAME);
         for (int i = 0; i < operations.length; i++) {
             String theOperationName = operations[i].getAttribute(WSDL_NAME_ATTR);
-            if (theOperationName.equals(operationName)) return operations[i];
+            if (theOperationName.equals(operationName))
+                return operations[i];
         }
         return null;
     }
@@ -598,12 +623,13 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             schemas = getChildElements(types, XSD_NAMESPACE_URI, XSD_SCHEMA_LOCAL_NAME);
             for (int i = 0; i < schemas.length; i++) {
                 Element[] imports = getChildElements(schemas[i], XSD_NAMESPACE_URI, XSD_IMPORT_LOCAL_NAME);
-                for (int j = 0; j < imports.length; j++) alist.add(imports[j]);
+                for (int j = 0; j < imports.length; j++)
+                    alist.add(imports[j]);
             }
         } else {
-            Element[] imports =
-                    getChildElements(document.getDocumentElement(), XSD_NAMESPACE_URI, XSD_IMPORT_LOCAL_NAME);
-            for (int i = 0; i < imports.length; i++) alist.add(imports[i]);
+            Element[] imports = getChildElements(document.getDocumentElement(), XSD_NAMESPACE_URI, XSD_IMPORT_LOCAL_NAME);
+            for (int i = 0; i < imports.length; i++)
+                alist.add(imports[i]);
         }
         return (Element[]) alist.toArray(new Element[alist.size()]);
     }
@@ -621,7 +647,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             TestUtil.logMsg("elements=" + elements.length);
             for (int i = 0; i < elements.length; i++) {
                 TestUtil.logMsg("name=" + elements[i].getAttribute(XSD_NAME_ATTR));
-                if (elements[i].getAttribute(XSD_NAME_ATTR).equals(elementName)) return elements[i];
+                if (elements[i].getAttribute(XSD_NAME_ATTR).equals(elementName))
+                    return elements[i];
             }
         }
         return null;
@@ -637,8 +664,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         for (int i = 0; i < imports.length; i++) {
             alist.add(imports[i].getAttribute(XSD_NAMESPACE_ATTR));
         }
-        if (alist.size() == 0) return null;
-        else return (String[]) alist.toArray(new String[alist.size()]);
+        if (alist.size() == 0)
+            return null;
+        else
+            return (String[]) alist.toArray(new String[alist.size()]);
     }
 
     /**
@@ -652,7 +681,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         Element[] elements = getChildElements(document.getDocumentElement(), XSD_NAMESPACE_URI, XSD_ELEMENT_LOCAL_NAME);
         for (int i = 0; i < elements.length; i++) {
             String nameAttr = elements[i].getAttribute(XSD_NAME_ATTR);
-            if (nameAttr.equals(name)) return true;
+            if (nameAttr.equals(name))
+                return true;
         }
         return false;
     }
@@ -666,7 +696,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         Element[] elements = getChildElements(element, XSD_NAMESPACE_URI, XSD_ELEMENT_LOCAL_NAME);
         for (int i = 0; i < elements.length; i++) {
             String nameAttr = elements[i].getAttribute(XSD_NAME_ATTR);
-            if (nameAttr.equals(name)) return true;
+            if (nameAttr.equals(name))
+                return true;
         }
         return false;
     }
@@ -686,8 +717,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             thedocument.getDocumentElement().setAttribute("SchemaFile", schemaLocation);
             alist.add(thedocument);
         }
-        if (alist.size() == 0) return null;
-        else return (Document[]) alist.toArray(new Document[alist.size()]);
+        if (alist.size() == 0)
+            return null;
+        else
+            return (Document[]) alist.toArray(new Document[alist.size()]);
     }
 
     /**
@@ -725,8 +758,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             thedocument.getDocumentElement().setAttribute("WsdlFile", location);
             alist.add(thedocument);
         }
-        if (alist.size() == 0) return null;
-        else return (Document[]) alist.toArray(new Document[alist.size()]);
+        if (alist.size() == 0)
+            return null;
+        else
+            return (Document[]) alist.toArray(new Document[alist.size()]);
     }
 
     /**
@@ -744,8 +779,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             thedocument.getDocumentElement().setAttribute("SchemaFile", schemaLocation);
             alist.add(thedocument);
         }
-        if (alist.size() == 0) return null;
-        else return (Document[]) alist.toArray(new Document[alist.size()]);
+        if (alist.size() == 0)
+            return null;
+        else
+            return (Document[]) alist.toArray(new Document[alist.size()]);
     }
 
     /**
@@ -783,8 +820,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             thedocument.getDocumentElement().setAttribute("WsdlFile", location);
             alist.add(thedocument);
         }
-        if (alist.size() == 0) return null;
-        else return (Document[]) alist.toArray(new Document[alist.size()]);
+        if (alist.size() == 0)
+            return null;
+        else
+            return (Document[]) alist.toArray(new Document[alist.size()]);
     }
 
     /**
@@ -798,8 +837,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             String NS = imports[i].getAttribute(XSD_NAMESPACE_ATTR);
             alist.add(findPrefixForNamespace(document, NS));
         }
-        if (alist.size() == 0) return null;
-        else return (String[]) alist.toArray(new String[alist.size()]);
+        if (alist.size() == 0)
+            return null;
+        else
+            return (String[]) alist.toArray(new String[alist.size()]);
     }
 
     /**
@@ -813,7 +854,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         for (int i = 0; i < attributes.length; i++) {
             String name = attributes[i].getName();
             String value = attributes[i].getValue();
-            if (name.startsWith("xmlns:")) alist.add(name.substring(name.indexOf(":") + 1) + ":" + value);
+            if (name.startsWith("xmlns:"))
+                alist.add(name.substring(name.indexOf(":") + 1) + ":" + value);
         }
         return (String[]) alist.toArray(new String[alist.size()]);
     }
@@ -830,7 +872,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             String value = attributes[i].getValue();
             if (name.startsWith("xmlns:")) {
                 String nsprefix = name.substring(name.indexOf(":") + 1);
-                if (nsprefix.equals(prefix)) return value;
+                if (nsprefix.equals(prefix))
+                    return value;
             }
         }
         return null;
@@ -847,7 +890,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             String name = attributes[i].getName();
             String value = attributes[i].getValue();
             if (value.equals(namespace)) {
-                if (name.startsWith("xmlns:")) return name.substring(name.indexOf(":") + 1);
+                if (name.startsWith("xmlns:"))
+                    return name.substring(name.indexOf(":") + 1);
             }
         }
         return null;
@@ -863,8 +907,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         for (int i = 0; i < attributes.length; i++) {
             String name = attributes[i].getName();
             String value = attributes[i].getValue();
-            if (!value.equals(namespace)) continue;
-            if (name.startsWith("xmlns:")) return name.substring(name.indexOf(":") + 1);
+            if (!value.equals(namespace))
+                continue;
+            if (name.startsWith("xmlns:"))
+                return name.substring(name.indexOf(":") + 1);
         }
         return null;
     }
@@ -876,7 +922,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
      */
     public static Element getSoapBindingElement(Document document, String operationName) {
         Element[] bindings = getBindings(document);
-        if (bindings.length != 1) return null;
+        if (bindings.length != 1)
+            return null;
         return getChildElement(bindings[0], SOAP_NAMESPACE_URI, SOAP_BINDING_LOCAL_NAME);
     }
 
@@ -892,7 +939,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             for (int j = 0; j < operations.length; j++) {
                 Element input = getChildElement(operations[j], WSDL_NAMESPACE_URI, WSDL_INPUT_LOCAL_NAME);
                 Element header = getChildElement(input, SOAP_NAMESPACE_URI, SOAP_HEADER_LOCAL_NAME);
-                if (header != null) alist.add(header);
+                if (header != null)
+                    alist.add(header);
             }
         }
         return (Element[]) alist.toArray(new Element[alist.size()]);
@@ -905,7 +953,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
     public static String[] getSoapHeaderElementsPartAttr(Document document) {
         Element[] headers = getSoapHeaderElements(document);
         ArrayList alist = new ArrayList();
-        for (int i = 0; i < headers.length; i++) alist.add(headers[i].getAttribute(SOAP_PART_ATTR));
+        for (int i = 0; i < headers.length; i++)
+            alist.add(headers[i].getAttribute(SOAP_PART_ATTR));
         return (String[]) alist.toArray(new String[alist.size()]);
     }
 
@@ -1087,7 +1136,8 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
         try {
             URL url;
             URI uri = null;
-            if (location.startsWith("http")) url = new URL(location);
+            if (location.startsWith("http"))
+                url = new URL(location);
             else {
                 uri = context.toURI();
                 uri = uri.resolve(new URI(location));
@@ -1128,13 +1178,15 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
 
     private static void setSpaces() {
         spacesString = "";
-        for (int i = 0; i < spaces; i++) spacesString = spacesString + " ";
+        for (int i = 0; i < spaces; i++)
+            spacesString = spacesString + " ";
     }
 
     private static String getText(Node node) {
         String result = "";
         result = node.getNodeValue();
-        if (result == null) result = "";
+        if (result == null)
+            result = "";
         result = result.trim();
         return result;
     }
@@ -1154,8 +1206,10 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
 
     private static boolean hasAttributes(Node root) {
         NamedNodeMap attribs = root.getAttributes();
-        if (attribs == null || attribs.getLength() == 0) return false;
-        else return true;
+        if (attribs == null || attribs.getLength() == 0)
+            return false;
+        else
+            return true;
     }
 
     public static void dumpDOMNodes(Element element) {
@@ -1188,53 +1242,53 @@ public class DescriptionUtils implements DescriptionConstants, SOAPConstants, Sc
             String nodeValue = node.getNodeValue();
             short nodeType = node.getNodeType();
             switch (nodeType) {
-                case Node.ATTRIBUTE_NODE:
+            case Node.ATTRIBUTE_NODE:
+                setSpaces();
+                TestUtil.logMsg(spacesString + "<Attribute>" + nodeName + "=" + nodeValue + "</Attribute>");
+                break;
+            case Node.CDATA_SECTION_NODE:
+                TestUtil.logMsg("<CDATA>" + nodeValue + "</CDATA>");
+                break;
+            case Node.COMMENT_NODE:
+                TestUtil.logMsg("<Comment>" + nodeValue + "</Comment>");
+                break;
+            case Node.DOCUMENT_FRAGMENT_NODE:
+                TestUtil.logMsg("<DocumentFragment/>");
+                break;
+            case Node.DOCUMENT_NODE:
+                TestUtil.logMsg("<Document/>");
+                break;
+            case Node.DOCUMENT_TYPE_NODE:
+                TestUtil.logMsg("<DocumentType>" + nodeName + "</DocumentType>");
+                break;
+            case Node.ELEMENT_NODE:
+                setSpaces();
+                TestUtil.logMsg(spacesString + "<Element>" + nodeName + "</Element>");
+                spaces += 2;
+                processAttributes(node);
+                break;
+            case Node.ENTITY_NODE:
+                TestUtil.logMsg("<Entity>" + nodeValue + "</Entity>");
+                break;
+            case Node.ENTITY_REFERENCE_NODE:
+                TestUtil.logMsg("<EntityReference>" + nodeValue + "</EntityReference>");
+                break;
+            case Node.NOTATION_NODE:
+                TestUtil.logMsg("<Notation>" + nodeValue + "</Notation>");
+                break;
+            case Node.PROCESSING_INSTRUCTION_NODE:
+                TestUtil.logMsg("<ProcessingInstruction>" + nodeName + "</ProcessingInstruction>");
+                break;
+            case Node.TEXT_NODE:
+                String text = getText(node);
+                if (!text.equals("")) {
                     setSpaces();
-                    TestUtil.logMsg(spacesString + "<Attribute>" + nodeName + "=" + nodeValue + "</Attribute>");
-                    break;
-                case Node.CDATA_SECTION_NODE:
-                    TestUtil.logMsg("<CDATA>" + nodeValue + "</CDATA>");
-                    break;
-                case Node.COMMENT_NODE:
-                    TestUtil.logMsg("<Comment>" + nodeValue + "</Comment>");
-                    break;
-                case Node.DOCUMENT_FRAGMENT_NODE:
-                    TestUtil.logMsg("<DocumentFragment/>");
-                    break;
-                case Node.DOCUMENT_NODE:
-                    TestUtil.logMsg("<Document/>");
-                    break;
-                case Node.DOCUMENT_TYPE_NODE:
-                    TestUtil.logMsg("<DocumentType>" + nodeName + "</DocumentType>");
-                    break;
-                case Node.ELEMENT_NODE:
-                    setSpaces();
-                    TestUtil.logMsg(spacesString + "<Element>" + nodeName + "</Element>");
-                    spaces += 2;
-                    processAttributes(node);
-                    break;
-                case Node.ENTITY_NODE:
-                    TestUtil.logMsg("<Entity>" + nodeValue + "</Entity>");
-                    break;
-                case Node.ENTITY_REFERENCE_NODE:
-                    TestUtil.logMsg("<EntityReference>" + nodeValue + "</EntityReference>");
-                    break;
-                case Node.NOTATION_NODE:
-                    TestUtil.logMsg("<Notation>" + nodeValue + "</Notation>");
-                    break;
-                case Node.PROCESSING_INSTRUCTION_NODE:
-                    TestUtil.logMsg("<ProcessingInstruction>" + nodeName + "</ProcessingInstruction>");
-                    break;
-                case Node.TEXT_NODE:
-                    String text = getText(node);
-                    if (!text.equals("")) {
-                        setSpaces();
-                        TestUtil.logMsg(spacesString + "<Text>" + text + "</text>");
-                    }
-                    break;
-                default:
-                    TestUtil.logMsg("<" + nodeName + ">");
-                    break;
+                    TestUtil.logMsg(spacesString + "<Text>" + text + "</text>");
+                }
+                break;
+            default:
+                TestUtil.logMsg("<" + nodeName + ">");
+                break;
             }
             if (node instanceof Element) {
                 dumpDOMNodes_((Element) node);

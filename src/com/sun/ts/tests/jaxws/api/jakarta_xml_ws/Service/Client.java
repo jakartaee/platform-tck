@@ -76,8 +76,7 @@ public class Client extends ServiceEETest {
 
     private static final String NONEXISTANT_PORT_NAME = "BadPort";
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
 
     private static final Class SEI_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.Hello.class;
 
@@ -108,17 +107,17 @@ public class Client extends ServiceEETest {
 
     private EndpointReference epr = null;
 
-    private WebServiceFeature[] wsfmtomtrue = {new MTOMFeature(true)};
+    private WebServiceFeature[] wsfmtomtrue = { new MTOMFeature(true) };
 
-    private WebServiceFeature[] wsfmtomfalse = {new MTOMFeature(false)};
+    private WebServiceFeature[] wsfmtomfalse = { new MTOMFeature(false) };
 
-    private WebServiceFeature[] wsftcktrue = {new TCKFeature(true)};
+    private WebServiceFeature[] wsftcktrue = { new TCKFeature(true) };
 
-    private WebServiceFeature[] wsftckfalse = {new TCKFeature(false)};
+    private WebServiceFeature[] wsftckfalse = { new TCKFeature(false) };
 
-    private WebServiceFeature[] wsftrue = {new AddressingFeature(true)};
+    private WebServiceFeature[] wsftrue = { new AddressingFeature(true) };
 
-    private WebServiceFeature[] wsffalse = {new AddressingFeature(false)};
+    private WebServiceFeature[] wsffalse = { new AddressingFeature(false) };
 
     static HelloService service = null;
 
@@ -140,8 +139,7 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("WSDL Location URL2:    " + wsdlurl2);
     }
 
-    private static final Class JAXB_OBJECT_FACTORY =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.ObjectFactory.class;
+    private static final Class JAXB_OBJECT_FACTORY = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.ObjectFactory.class;
 
     private JAXBContext createJAXBContext() {
         try {
@@ -184,8 +182,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -213,11 +213,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: createTest1
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
-     * JAXWS:SPEC:4010; JAXWS:JAVADOC:48; JAXWS:SPEC:6003;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:48;
+     * JAXWS:SPEC:6003;
      *
-     * @test_Strategy: Call jakarta.xml.ws.Service.create(QName) to return a service
-     * instance.
+     * @test_Strategy: Call jakarta.xml.ws.Service.create(QName) to return a service instance.
      */
     public void createTest1() throws Fault {
         TestUtil.logTrace("createTest1");
@@ -236,24 +235,25 @@ public class Client extends ServiceEETest {
             if (service == null) {
                 TestUtil.logErr("service is null");
                 pass = false;
-            } else TestUtil.logMsg("service is " + service);
+            } else
+                TestUtil.logMsg("service is " + service);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("createTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("createTest1 failed");
+        if (!pass)
+            throw new Fault("createTest1 failed");
     }
 
     /*
      * @testName: createTest2
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
-     * JAXWS:SPEC:4010; JAXWS:JAVADOC:47; JAXWS:SPEC:6003;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:47;
+     * JAXWS:SPEC:6003;
      *
-     * @test_Strategy: Call jakarta.xml.ws.Service.create(URL, QName) to return a
-     * service instance.
+     * @test_Strategy: Call jakarta.xml.ws.Service.create(URL, QName) to return a service instance.
      */
     public void createTest2() throws Fault {
         TestUtil.logTrace("createTest2");
@@ -272,27 +272,27 @@ public class Client extends ServiceEETest {
             if (service == null) {
                 TestUtil.logErr("service is null");
                 pass = false;
-            } else TestUtil.logMsg("service is " + service);
+            } else
+                TestUtil.logMsg("service is " + service);
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("createTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("createTest2 failed");
+        if (!pass)
+            throw new Fault("createTest2 failed");
     }
 
     /*
      * @testName: createWithWSFTest1
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
-     * JAXWS:SPEC:4010; JAXWS:JAVADOC:217; JAXWS:SPEC:6003; JAXWS:SPEC:4000;
-     * JAXWS:SPEC:4031;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:217;
+     * JAXWS:SPEC:6003; JAXWS:SPEC:4000; JAXWS:SPEC:4031;
      *
-     * @test_Strategy: Call jakarta.xml.ws.Service.create(QName,
-     * WebServiceFeature[]) to return a service instance. Pass in a
-     * WebServiceFeature that the endpoint supports. A valid service object should
-     * be returned with that WebServiceFeature enabled.
+     * @test_Strategy: Call jakarta.xml.ws.Service.create(QName, WebServiceFeature[]) to return a service instance. Pass in
+     * a WebServiceFeature that the endpoint supports. A valid service object should be returned with that WebServiceFeature
+     * enabled.
      */
     public void createWithWSFTest1() throws Fault {
         TestUtil.logTrace("createWithWSFTest1");
@@ -312,7 +312,8 @@ public class Client extends ServiceEETest {
             if (service == null) {
                 TestUtil.logErr("service is null");
                 pass = false;
-            } else TestUtil.logMsg("service is " + service);
+            } else
+                TestUtil.logMsg("service is " + service);
         } catch (WebServiceException e) {
             TestUtil.logMsg("Caught WebServiceException (Service based features must not be supported)");
         } catch (Exception e) {
@@ -321,19 +322,19 @@ public class Client extends ServiceEETest {
             throw new Fault("createWithWSFTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("createWithWSFTest1 failed");
+        if (!pass)
+            throw new Fault("createWithWSFTest1 failed");
     }
 
     /*
      * @testName: createWithWSFTest2
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
-     * JAXWS:SPEC:4010; JAXWS:JAVADOC:216; JAXWS:SPEC:6003; JAXWS:SPEC:4031;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:216;
+     * JAXWS:SPEC:6003; JAXWS:SPEC:4031;
      *
-     * @test_Strategy: Call jakarta.xml.ws.Service.create(URL, QName,
-     * WebServiceFeature[]) to return a service instance. Pass in a
-     * WebServiceFeature that the endpoint supports. A valid service object should
-     * be returned with that WebServiceFeature enabled.
+     * @test_Strategy: Call jakarta.xml.ws.Service.create(URL, QName, WebServiceFeature[]) to return a service instance.
+     * Pass in a WebServiceFeature that the endpoint supports. A valid service object should be returned with that
+     * WebServiceFeature enabled.
      */
     public void createWithWSFTest2() throws Fault {
         TestUtil.logTrace("createWithWSFTest2");
@@ -353,7 +354,8 @@ public class Client extends ServiceEETest {
             if (service == null) {
                 TestUtil.logErr("service is null");
                 pass = false;
-            } else TestUtil.logMsg("service is " + service);
+            } else
+                TestUtil.logMsg("service is " + service);
         } catch (WebServiceException e) {
             TestUtil.logMsg("Caught WebServiceException (Service based features must not be supported)");
         } catch (Exception e) {
@@ -362,19 +364,18 @@ public class Client extends ServiceEETest {
             throw new Fault("createWithWSFTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("createWithWSFTest2 failed");
+        if (!pass)
+            throw new Fault("createWithWSFTest2 failed");
     }
 
     /*
      * @testName: createWithWSFNegativeTest1
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
-     * JAXWS:SPEC:4010; JAXWS:JAVADOC:217; JAXWS:SPEC:6003;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:217;
+     * JAXWS:SPEC:6003;
      *
-     * @test_Strategy: Call jakarta.xml.ws.Service.create(QName,
-     * WebServiceFeature[]) to return a service instance. Pass in a
-     * WebServiceFeature that the endpoint doesn't support. API should throw back
-     * a WebServiceException.
+     * @test_Strategy: Call jakarta.xml.ws.Service.create(QName, WebServiceFeature[]) to return a service instance. Pass in
+     * a WebServiceFeature that the endpoint doesn't support. API should throw back a WebServiceException.
      */
     public void createWithWSFNegativeTest1() throws Fault {
         TestUtil.logTrace("createWithWSFNegativeTest1");
@@ -398,7 +399,8 @@ public class Client extends ServiceEETest {
                 if (service == null) {
                     TestUtil.logErr("service is null");
                     pass = false;
-                } else TestUtil.logMsg("service is " + service);
+                } else
+                    TestUtil.logMsg("service is " + service);
             }
         } catch (WebServiceException e) {
             TestUtil.logMsg("Caught expected WebServiceException");
@@ -408,19 +410,18 @@ public class Client extends ServiceEETest {
             throw new Fault("createWithWSFNegativeTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("createWithWSFNegativeTest1 failed");
+        if (!pass)
+            throw new Fault("createWithWSFNegativeTest1 failed");
     }
 
     /*
      * @testName: createWithWSFNegativeTest2
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
-     * JAXWS:SPEC:4010; JAXWS:JAVADOC:216; JAXWS:SPEC:6003;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4003; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:216;
+     * JAXWS:SPEC:6003;
      *
-     * @test_Strategy: Call jakarta.xml.ws.Service.create(URL, QName,
-     * WebServiceFeature[]) to return a service instance. Pass in a
-     * WebServiceFeature that the endpoint doesn't support. API should throw back
-     * a WebServiceException.
+     * @test_Strategy: Call jakarta.xml.ws.Service.create(URL, QName, WebServiceFeature[]) to return a service instance.
+     * Pass in a WebServiceFeature that the endpoint doesn't support. API should throw back a WebServiceException.
      */
     public void createWithWSFNegativeTest2() throws Fault {
         TestUtil.logTrace("createWithWSFNegativeTest2");
@@ -444,7 +445,8 @@ public class Client extends ServiceEETest {
                 if (service == null) {
                     TestUtil.logErr("service is null");
                     pass = false;
-                } else TestUtil.logMsg("service is " + service);
+                } else
+                    TestUtil.logMsg("service is " + service);
             }
         } catch (WebServiceException e) {
             TestUtil.logMsg("Caught expected WebServiceException");
@@ -454,18 +456,18 @@ public class Client extends ServiceEETest {
             throw new Fault("createWithWSFNegativeTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("createWithWSFNegativeTest2 failed");
+        if (!pass)
+            throw new Fault("createWithWSFNegativeTest2 failed");
     }
 
     /*
      * @testName: GetPort1PosTest1WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4010;
-     * JAXWS:JAVADOC:52; JAXWS:JAVADOC:122; JAXWS:JAVADOC:116;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:52; JAXWS:JAVADOC:122;
+     * JAXWS:JAVADOC:116;
      *
-     * @test_Strategy: Call Service.getPort(QName, Class) to return a dynamic
-     * proxy for the service port. Pass a valid port name with WSDL access. Verify
-     * that the method returns a dynamic proxy.
+     * @test_Strategy: Call Service.getPort(QName, Class) to return a dynamic proxy for the service port. Pass a valid port
+     * name with WSDL access. Verify that the method returns a dynamic proxy.
      */
     public void GetPort1PosTest1WithWsdl() throws Fault {
         TestUtil.logTrace("GetPort1PosTest1WithWsdl");
@@ -497,7 +499,8 @@ public class Client extends ServiceEETest {
             throw new Fault("GetPort1PosTest1WithWsdl failed", e);
         }
 
-        if (!pass) throw new Fault("GetPort1PosTest1WithWsdl failed");
+        if (!pass)
+            throw new Fault("GetPort1PosTest1WithWsdl failed");
     }
 
     /*
@@ -505,9 +508,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:155; JAXWS:JAVADOC:181; JAXWS:SPEC:4026
      *
-     * @test_Strategy: Call Service.getPort(QName, Class, WebServiceFeature ...)
-     * to return a dynamic proxy for the service port. Pass a valid port name with
-     * WSDL access. Verify that the method returns a dynamic proxy.
+     * @test_Strategy: Call Service.getPort(QName, Class, WebServiceFeature ...) to return a dynamic proxy for the service
+     * port. Pass a valid port name with WSDL access. Verify that the method returns a dynamic proxy.
      */
     public void GetPortTest1WithFeatures() throws Fault {
         TestUtil.logTrace("GetPortTest1WithFeatures");
@@ -550,7 +552,8 @@ public class Client extends ServiceEETest {
             throw new Fault("GetPortTest1WithFeatures failed", e);
         }
 
-        if (!pass) throw new Fault("GetPortTest1WithFeatures failed");
+        if (!pass)
+            throw new Fault("GetPortTest1WithFeatures failed");
     }
 
     /*
@@ -558,9 +561,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:156; JAXWS:JAVADOC:183; JAXWS:SPEC:4025
      *
-     * @test_Strategy: Call Service.getPort(Class, WebServiceFeature ...) to
-     * return a dynamic proxy for the service port. Pass a valid port name with
-     * WSDL access. Verify that the method returns a dynamic proxy.
+     * @test_Strategy: Call Service.getPort(Class, WebServiceFeature ...) to return a dynamic proxy for the service port.
+     * Pass a valid port name with WSDL access. Verify that the method returns a dynamic proxy.
      */
     public void GetPortTest2WithFeatures() throws Fault {
         TestUtil.logTrace("GetPortTest2WithFeatures");
@@ -603,19 +605,17 @@ public class Client extends ServiceEETest {
             throw new Fault("GetPortTest2WithFeatures failed", e);
         }
 
-        if (!pass) throw new Fault("GetPortTest2WithFeatures failed");
+        if (!pass)
+            throw new Fault("GetPortTest2WithFeatures failed");
     }
 
     /*
      * @testName: GetPortTest3WithFeatures
      *
-     * @assertion_ids: JAXWS:JAVADOC:157; JAXWS:JAVADOC:182; JAXWS:SPEC:4027;
-     * JAXWS:JAVADOC:177;
+     * @assertion_ids: JAXWS:JAVADOC:157; JAXWS:JAVADOC:182; JAXWS:SPEC:4027; JAXWS:JAVADOC:177;
      *
-     * @test_Strategy: Call Service.getPort(EndpointReference, Class,
-     * WebServiceFeature ...) to return a dynamic proxy for the service port. Pass
-     * a valid port name with WSDL access. Verify that the method returns a
-     * dynamic proxy.
+     * @test_Strategy: Call Service.getPort(EndpointReference, Class, WebServiceFeature ...) to return a dynamic proxy for
+     * the service port. Pass a valid port name with WSDL access. Verify that the method returns a dynamic proxy.
      */
     public void GetPortTest3WithFeatures() throws Fault {
         TestUtil.logTrace("GetPortTest3WithFeatures");
@@ -665,19 +665,19 @@ public class Client extends ServiceEETest {
             throw new Fault("GetPortTest3WithFeatures failed", e);
         }
 
-        if (!pass) throw new Fault("GetPortTest3WithFeatures failed");
+        if (!pass)
+            throw new Fault("GetPortTest3WithFeatures failed");
     }
 
     /*
      * @testName: GetPort1NegTest1WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4001; JAXWS:SPEC:4011; JAXWS:SPEC:4013;
-     * JAXWS:JAVADOC:52; JAXWS:JAVADOC:122; JAXWS:JAVADOC:116;
+     * @assertion_ids: JAXWS:SPEC:4001; JAXWS:SPEC:4011; JAXWS:SPEC:4013; JAXWS:JAVADOC:52; JAXWS:JAVADOC:122;
+     * JAXWS:JAVADOC:116;
      *
-     * @test_Strategy: Call Service.getPort(QName, Class) to return a dynamic
-     * proxy for the service port. Pass a valid port name with WSDL access. Verify
-     * that the method returns a dynamic proxy. Verify that an exception occurs
-     * due to port not found. Expect a WebServiceException.
+     * @test_Strategy: Call Service.getPort(QName, Class) to return a dynamic proxy for the service port. Pass a valid port
+     * name with WSDL access. Verify that the method returns a dynamic proxy. Verify that an exception occurs due to port
+     * not found. Expect a WebServiceException.
      */
     public void GetPort1NegTest1WithWsdl() throws Fault {
         TestUtil.logTrace("GetPort1NegTest1WithWsdl");
@@ -707,18 +707,18 @@ public class Client extends ServiceEETest {
             throw new Fault("GetPort1NegTest1WithWsdl failed", e);
         }
 
-        if (!pass) throw new Fault("GetPort1NegTest1WithWsdl failed");
+        if (!pass)
+            throw new Fault("GetPort1NegTest1WithWsdl failed");
     }
 
     /*
      * @testName: GetPort2PosTest1WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4010;
-     * JAXWS:JAVADOC:53; JAXWS:JAVADOC:123; JAXWS:JAVADOC:116;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:53; JAXWS:JAVADOC:123;
+     * JAXWS:JAVADOC:116;
      *
-     * @test_Strategy: Call Service.getPort(Class) to return a dynamic proxy for
-     * the service port. Pass a valid SEI class. Access to WSDL metadata. Verify
-     * behavior.
+     * @test_Strategy: Call Service.getPort(Class) to return a dynamic proxy for the service port. Pass a valid SEI class.
+     * Access to WSDL metadata. Verify behavior.
      */
     public void GetPort2PosTest1WithWsdl() throws Fault {
         TestUtil.logTrace("GetPort2PosTest1WithWsdl");
@@ -752,18 +752,18 @@ public class Client extends ServiceEETest {
             throw new Fault("GetPort2PosTest1WithWsdl failed", e);
         }
 
-        if (!pass) throw new Fault("GetPort2PosTest1WithWsdl failed");
+        if (!pass)
+            throw new Fault("GetPort2PosTest1WithWsdl failed");
     }
 
     /*
      * @testName: GetPort2NegTest1WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4001; JAXWS:SPEC:4011; JAXWS:SPEC:4013;
-     * JAXWS:JAVADOC:53; JAXWS:JAVADOC:123; JAXWS:JAVADOC:116;
+     * @assertion_ids: JAXWS:SPEC:4001; JAXWS:SPEC:4011; JAXWS:SPEC:4013; JAXWS:JAVADOC:53; JAXWS:JAVADOC:123;
+     * JAXWS:JAVADOC:116;
      *
-     * @test_Strategy: Call Service.getPort(Class) to return a dynamic proxy for
-     * the service port. Pass an invalid SEI class. WSDL metadata access. Verify
-     * behavior. Expect WebServiceException.
+     * @test_Strategy: Call Service.getPort(Class) to return a dynamic proxy for the service port. Pass an invalid SEI
+     * class. WSDL metadata access. Verify behavior. Expect WebServiceException.
      */
     public void GetPort2NegTest1WithWsdl() throws Fault {
         TestUtil.logTrace("GetPort2NegTest1WithWsdl");
@@ -791,18 +791,17 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Caught expected Exception");
         }
 
-        if (!pass) throw new Fault("GetPort2NegTest1WithWsdl failed");
+        if (!pass)
+            throw new Fault("GetPort2NegTest1WithWsdl failed");
     }
 
     /*
      * @testName: GetPortsTest1WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:JAVADOC:54;
-     * JAXWS:JAVADOC:124; JAXWS:JAVADOC:116;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:JAVADOC:54; JAXWS:JAVADOC:124; JAXWS:JAVADOC:116;
      *
-     * @test_Strategy: Call Service.getPorts() to return a list of qualified names
-     * of the ports grouped by this service. Verify that the method returns a list
-     * of qualified names of the ports grouped by this service. Create a Service
+     * @test_Strategy: Call Service.getPorts() to return a list of qualified names of the ports grouped by this service.
+     * Verify that the method returns a list of qualified names of the ports grouped by this service. Create a Service
      * object with access to WSDL metadata.
      */
     public void GetPortsTest1WithWsdl() throws Fault {
@@ -839,17 +838,16 @@ public class Client extends ServiceEETest {
             throw new Fault("GetPortsTest1WithWsdl failed", e);
         }
 
-        if (!pass) throw new Fault("GetPortsTest1WithWsdl failed");
+        if (!pass)
+            throw new Fault("GetPortsTest1WithWsdl failed");
     }
 
     /*
      * @testName: GetServiceNameTest1
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:JAVADOC:55;
-     * JAXWS:JAVADOC:125; JAXWS:JAVADOC:116;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:JAVADOC:55; JAXWS:JAVADOC:125; JAXWS:JAVADOC:116;
      *
-     * @test_Strategy: Call Service.getServiceName() to return the name of this
-     * service.
+     * @test_Strategy: Call Service.getServiceName() to return the name of this service.
      */
     public void GetServiceNameTest1() throws Fault {
         TestUtil.logTrace("GetServiceNameTest1");
@@ -878,17 +876,16 @@ public class Client extends ServiceEETest {
             throw new Fault("GetServiceNameTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("GetServiceNameTest1 failed");
+        if (!pass)
+            throw new Fault("GetServiceNameTest1 failed");
     }
 
     /*
      * @testName: GetWSDLDocumentLocationTest1
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:JAVADOC:56;
-     * JAXWS:JAVADOC:126; JAXWS:JAVADOC:116;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:JAVADOC:56; JAXWS:JAVADOC:126; JAXWS:JAVADOC:116;
      *
-     * @test_Strategy: Call Service.getWSDLDocumentLocation() to return the
-     * location of the WSDL document for this service.
+     * @test_Strategy: Call Service.getWSDLDocumentLocation() to return the location of the WSDL document for this service.
      */
     public void GetWSDLDocumentLocationTest1() throws Fault {
         TestUtil.logTrace("GetWSDLDocumentLocationTest1");
@@ -909,24 +906,25 @@ public class Client extends ServiceEETest {
             if (url != null) {
                 TestUtil.logMsg("WSDLURL is not null (expected)");
                 pass = true;
-            } else TestUtil.logErr("WSDLURL is null (unexpected)");
+            } else
+                TestUtil.logErr("WSDLURL is null (unexpected)");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("GetWSDLDocumentLocationTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("GetWSDLDocumentLocationTest1 failed");
+        if (!pass)
+            throw new Fault("GetWSDLDocumentLocationTest1 failed");
     }
 
     /*
      * @testName: GetHandlerResolverTest1WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:JAVADOC:51;
-     * JAXWS:JAVADOC:121; JAXWS:JAVADOC:116;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:JAVADOC:51; JAXWS:JAVADOC:121; JAXWS:JAVADOC:116;
      *
-     * @test_Strategy: Call Service.getHandlerResolver() to get the configured
-     * HandlerResolver. Access to WSDL metadata. Verify behavior.
+     * @test_Strategy: Call Service.getHandlerResolver() to get the configured HandlerResolver. Access to WSDL metadata.
+     * Verify behavior.
      */
     public void GetHandlerResolverTest1WithWsdl() throws Fault {
         TestUtil.logTrace("GetHandlerResolverTest1WithWsdl");
@@ -953,17 +951,17 @@ public class Client extends ServiceEETest {
             throw new Fault("GetHandlerResolverTest1WithWsdl failed", e);
         }
 
-        if (!pass) throw new Fault("GetHandlerResolverTest1WithWsdl failed");
+        if (!pass)
+            throw new Fault("GetHandlerResolverTest1WithWsdl failed");
     }
 
     /*
      * @testName: SetHandlerResolverTest1WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4010;
-     * JAXWS:JAVADOC:58; JAXWS:JAVADOC:128;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:58; JAXWS:JAVADOC:128;
      *
-     * @test_Strategy: Call Service.getHandlerResolver() to get the configured
-     * HandlerResolver. Access to WSDL metadata. Verify behavior.
+     * @test_Strategy: Call Service.getHandlerResolver() to get the configured HandlerResolver. Access to WSDL metadata.
+     * Verify behavior.
      */
     public void SetHandlerResolverTest1WithWsdl() throws Fault {
         TestUtil.logTrace("SetHandlerResolverTest1WithWsdl");
@@ -994,18 +992,17 @@ public class Client extends ServiceEETest {
             throw new Fault("SetHandlerResolverTest1WithWsdl failed", e);
         }
 
-        if (!pass) throw new Fault("SetHandlerResolverTest1WithWsdl failed");
+        if (!pass)
+            throw new Fault("SetHandlerResolverTest1WithWsdl failed");
     }
 
     /*
      * @testName: CreateDispatchTest1WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4014;
-     * JAXWS:JAVADOC:49; JAXWS:JAVADOC:119;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4014; JAXWS:JAVADOC:49; JAXWS:JAVADOC:119;
      *
-     * @test_Strategy: Create a Dispatch object using the constructor via
-     * Service.createDispatch(QName, Source, Mode). Verify that the Dispatch
-     * object was successfully created.
+     * @test_Strategy: Create a Dispatch object using the constructor via Service.createDispatch(QName, Source, Mode).
+     * Verify that the Dispatch object was successfully created.
      */
     public void CreateDispatchTest1WithWsdl() throws Fault {
         TestUtil.logTrace("CreateDispatchTest1WithWsdl");
@@ -1025,26 +1022,26 @@ public class Client extends ServiceEETest {
             if (dispatch == null) {
                 TestUtil.logErr("Service.createDispatch() returned null");
                 pass = false;
-            } else TestUtil.logMsg("Dispatch object was successfully created");
+            } else
+                TestUtil.logMsg("Dispatch object was successfully created");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("CreateDispatchTest1WithWsdl failed", e);
         }
 
-        if (!pass) throw new Fault("CreateDispatchTest1WithWsdl failed");
+        if (!pass)
+            throw new Fault("CreateDispatchTest1WithWsdl failed");
     }
 
     /*
      * @testName: CreateDispatchTest2WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4010;
-     * JAXWS:SPEC:4014; JAXWS:JAVADOC:49; JAXWS:JAVADOC:119; JAXWS:JAVADOC:218;
-     * JAXWS:JAVADOC:241;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:SPEC:4014; JAXWS:JAVADOC:49;
+     * JAXWS:JAVADOC:119; JAXWS:JAVADOC:218; JAXWS:JAVADOC:241;
      *
-     * @test_Strategy: Create a Dispatch object using the constructor via
-     * Service.createDispatch(QName, JAXBContext, Mode). Verify that the Dispatch
-     * object was successfully created.
+     * @test_Strategy: Create a Dispatch object using the constructor via Service.createDispatch(QName, JAXBContext, Mode).
+     * Verify that the Dispatch object was successfully created.
      */
     public void CreateDispatchTest2WithWsdl() throws Fault {
         TestUtil.logTrace("CreateDispatchTest2WithWsdl");
@@ -1064,14 +1061,16 @@ public class Client extends ServiceEETest {
             if (dispatch == null) {
                 TestUtil.logErr("Service.createDispatch() returned null");
                 pass = false;
-            } else TestUtil.logMsg("Dispatch object was successfully created");
+            } else
+                TestUtil.logMsg("Dispatch object was successfully created");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("CreateDispatchTest2WithWsdl failed", e);
         }
 
-        if (!pass) throw new Fault("CreateDispatchTest2WithWsdl failed");
+        if (!pass)
+            throw new Fault("CreateDispatchTest2WithWsdl failed");
     }
 
     /*
@@ -1079,9 +1078,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:153; JAXWS:JAVADOC:179;
      *
-     * @test_Strategy: Create a Dispatch object using the constructor via
-     * Service.createDispatch(QName, Source, Mode, WebsServiceFeature ...). Verify
-     * that the Dispatch object was successfully created.
+     * @test_Strategy: Create a Dispatch object using the constructor via Service.createDispatch(QName, Source, Mode,
+     * WebsServiceFeature ...). Verify that the Dispatch object was successfully created.
      */
     public void CreateDispatchTest1WithFeatures() throws Fault {
         TestUtil.logTrace("CreateDispatchTest1WithFeatures");
@@ -1098,26 +1096,28 @@ public class Client extends ServiceEETest {
             }
             TestUtil.logMsg(
                     "Create Dispatch via Service.createDispatch(QName, Source, Mode, WebServiceFeature ...) - Addressing(true)");
-            Dispatch<Source> dispatch =
-                    service.createDispatch(PORT2_QNAME, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD, wsftrue);
+            Dispatch<Source> dispatch = service.createDispatch(PORT2_QNAME, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD, wsftrue);
             if (dispatch == null) {
                 TestUtil.logErr("Service.createDispatch() returned null");
                 pass = false;
-            } else TestUtil.logMsg("Dispatch object was successfully created");
+            } else
+                TestUtil.logMsg("Dispatch object was successfully created");
             TestUtil.logMsg(
                     "Create Dispatch via Service.createDispatch(QName, Source, Mode, WebServiceFeature ...) - Addressing(false)");
             dispatch = service.createDispatch(PORT2_QNAME, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD, wsffalse);
             if (dispatch == null) {
                 TestUtil.logErr("Service.createDispatch() returned null");
                 pass = false;
-            } else TestUtil.logMsg("Dispatch object was successfully created");
+            } else
+                TestUtil.logMsg("Dispatch object was successfully created");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("CreateDispatchTest1WithFeatures failed", e);
         }
 
-        if (!pass) throw new Fault("CreateDispatchTest1WithFeatures failed");
+        if (!pass)
+            throw new Fault("CreateDispatchTest1WithFeatures failed");
     }
 
     /*
@@ -1125,9 +1125,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:219; JAXWS:JAVADOC:242;
      *
-     * @test_Strategy: Create a Dispatch object using the constructor via
-     * Service.createDispatch(QName, JAXBContext, Mode, WebsServiceFeature ...).
-     * Verify that the Dispatch object was successfully created.
+     * @test_Strategy: Create a Dispatch object using the constructor via Service.createDispatch(QName, JAXBContext, Mode,
+     * WebsServiceFeature ...). Verify that the Dispatch object was successfully created.
      */
     public void CreateDispatchTest2WithFeatures() throws Fault {
         TestUtil.logTrace("CreateDispatchTest2WithFeatures");
@@ -1149,7 +1148,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr(
                         "Service.createDispatch(QName, JAXBContext, Mode, WebServiceFeature ...) returned null");
                 pass = false;
-            } else TestUtil.logMsg("Dispatch object was successfully created");
+            } else
+                TestUtil.logMsg("Dispatch object was successfully created");
             TestUtil.logMsg(
                     "Create Dispatch via Service.createDispatch(QName, JAXBContext, Mode, WebServiceFeature ...) - Addressing(false)");
             dispatch = createDispatchJAXB(service, wsffalse);
@@ -1157,14 +1157,16 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr(
                         "Service.createDispatch(QName, JAXBContext, Mode, WebServiceFeature ...) returned null");
                 pass = false;
-            } else TestUtil.logMsg("Dispatch object was successfully created");
+            } else
+                TestUtil.logMsg("Dispatch object was successfully created");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("CreateDispatchTest2WithFeatures failed", e);
         }
 
-        if (!pass) throw new Fault("CreateDispatchTest2WithFeatures failed");
+        if (!pass)
+            throw new Fault("CreateDispatchTest2WithFeatures failed");
     }
 
     /*
@@ -1172,9 +1174,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:154; JAXWS:JAVADOC:180;
      *
-     * @test_Strategy: Create a Dispatch object using the constructor via Service.
-     * createDispatch(EndpointReference, Source, Mode, WebServiceFeature ...).
-     * Verify that the Dispatch object was successfully created using EPR.
+     * @test_Strategy: Create a Dispatch object using the constructor via Service. createDispatch(EndpointReference, Source,
+     * Mode, WebServiceFeature ...). Verify that the Dispatch object was successfully created using EPR.
      */
     public void CreateDispatchObjectUsingEPRWithWFTrueTest() throws Fault {
         TestUtil.logTrace("CreateDispatchObjectUsingEPRWithWFTrueTest");
@@ -1197,26 +1198,28 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg(
                     "Create Dispatch via Service.createDispatch(EndpointReference, Source, Mode, WebServiceFeature ...) - Addressing(true)");
             String bindingID = new String(SOAPBinding.SOAP11HTTP_BINDING);
-            Dispatch<Source> dispatch =
-                    service.createDispatch(epr, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD, wsftrue);
+            Dispatch<Source> dispatch = service.createDispatch(epr, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD, wsftrue);
             if (dispatch == null) {
                 TestUtil.logErr("Service.createDispatch() returned null");
                 pass = false;
-            } else TestUtil.logMsg("Dispatch object was successfully created");
+            } else
+                TestUtil.logMsg("Dispatch object was successfully created");
             TestUtil.logMsg(
                     "Create Dispatch via Service.createDispatch(EndpointReference, Source, Mode, WebServiceFeature ...) - Addressing(false)");
             dispatch = service.createDispatch(epr, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD, wsffalse);
             if (dispatch == null) {
                 TestUtil.logErr("Service.createDispatch() returned null");
                 pass = false;
-            } else TestUtil.logMsg("Dispatch object was successfully created");
+            } else
+                TestUtil.logMsg("Dispatch object was successfully created");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("CreateDispatchObjectUsingEPRWithWFTrueTest failed", e);
         }
 
-        if (!pass) throw new Fault("CreateDispatchObjectUsingEPRWithWFTrueTest failed");
+        if (!pass)
+            throw new Fault("CreateDispatchObjectUsingEPRWithWFTrueTest failed");
     }
 
     /*
@@ -1224,9 +1227,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:220;
      *
-     * @test_Strategy: Create a Dispatch object using the constructor via Service.
-     * createDispatch(EndpointReference, JAXBContext, Mode, WebServiceFeature
-     * ...). Verify that the Dispatch object was successfully created using EPR.
+     * @test_Strategy: Create a Dispatch object using the constructor via Service. createDispatch(EndpointReference,
+     * JAXBContext, Mode, WebServiceFeature ...). Verify that the Dispatch object was successfully created using EPR.
      */
     public void CreateDispatchObjectUsingEPRWithWFTrueTest2() throws Fault {
         TestUtil.logTrace("CreateDispatchObjectUsingEPRWithWFTrueTest2");
@@ -1249,38 +1251,37 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg(
                     "Create Dispatch via Service.createDispatch(EndpointReference, JAXBContext, Mode, WebServiceFeature ...) - Addressing(true)");
             String bindingID = new String(SOAPBinding.SOAP11HTTP_BINDING);
-            Dispatch<Object> dispatch =
-                    service.createDispatch(epr, createJAXBContext(), jakarta.xml.ws.Service.Mode.PAYLOAD, wsftrue);
+            Dispatch<Object> dispatch = service.createDispatch(epr, createJAXBContext(), jakarta.xml.ws.Service.Mode.PAYLOAD, wsftrue);
             if (dispatch == null) {
                 TestUtil.logErr("Service.createDispatch() returned null");
                 pass = false;
-            } else TestUtil.logMsg("Dispatch object was successfully created");
+            } else
+                TestUtil.logMsg("Dispatch object was successfully created");
             TestUtil.logMsg(
                     "Create Dispatch via Service.createDispatch(EndpointReference, JAXBContext, Mode, WebServiceFeature ...) - Addressing(false)");
             dispatch = service.createDispatch(epr, createJAXBContext(), jakarta.xml.ws.Service.Mode.PAYLOAD, wsffalse);
             if (dispatch == null) {
                 TestUtil.logErr("Service.createDispatch() returned null");
                 pass = false;
-            } else TestUtil.logMsg("Dispatch object was successfully created");
+            } else
+                TestUtil.logMsg("Dispatch object was successfully created");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("CreateDispatchObjectUsingEPRWithWFTrueTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("CreateDispatchObjectUsingEPRWithWFTrueTest2 failed");
+        if (!pass)
+            throw new Fault("CreateDispatchObjectUsingEPRWithWFTrueTest2 failed");
     }
 
     /*
      * @testName: CreateDispatchExceptionTest1WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4001; JAXWS:SPEC:4014; JAXWS:SPEC:4016;
-     * JAXWS:SPEC:4015; JAXWS:JAVADOC:49;
+     * @assertion_ids: JAXWS:SPEC:4001; JAXWS:SPEC:4014; JAXWS:SPEC:4016; JAXWS:SPEC:4015; JAXWS:JAVADOC:49;
      *
-     * @test_Strategy: Create a Dispatch object using the constructor via
-     * Service.createDispatch(QName, Object, Mode). Pass an invalid port for the
-     * QName. Verify that the call to createDispatch() throws a
-     * WebServiceException.
+     * @test_Strategy: Create a Dispatch object using the constructor via Service.createDispatch(QName, Object, Mode). Pass
+     * an invalid port for the QName. Verify that the call to createDispatch() throws a WebServiceException.
      */
     public void CreateDispatchExceptionTest1WithWsdl() throws Fault {
         TestUtil.logTrace("CreateDispatchExceptionTest1WithWsdl");
@@ -1299,8 +1300,7 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("INVALID_PORT_QNAME=" + NONEXISTANT_PORT_QNAME);
             String bindingID = new String(SOAPBinding.SOAP11HTTP_BINDING);
             service.addPort(PORT_QNAME, bindingID, url);
-            Dispatch dispatch =
-                    service.createDispatch(NONEXISTANT_PORT_QNAME, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD);
+            Dispatch dispatch = service.createDispatch(NONEXISTANT_PORT_QNAME, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD);
             TestUtil.logErr("Service.createDispatch(QName. Object, Mode) did not throw expected WebServiceException");
             pass = false;
         } catch (WebServiceException e) {
@@ -1311,17 +1311,17 @@ public class Client extends ServiceEETest {
             throw new Fault("CreateDispatchExceptionTest1WithWsdl failed", e);
         }
 
-        if (!pass) throw new Fault("CreateDispatchExceptionTest1WithWsdl failed");
+        if (!pass)
+            throw new Fault("CreateDispatchExceptionTest1WithWsdl failed");
     }
 
     /*
      * @testName: CreatePortTest1WithWsdl
      *
-     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4010;
-     * JAXWS:JAVADOC:46; JAXWS:JAVADOC:118;
+     * @assertion_ids: JAXWS:SPEC:4000; JAXWS:SPEC:4009; JAXWS:SPEC:4010; JAXWS:JAVADOC:46; JAXWS:JAVADOC:118;
      *
-     * @test_Strategy: Create a port for service using Service.addPort(
-     * javax.xml.namespace.QName, java.net.String, java.lang.String).
+     * @test_Strategy: Create a port for service using Service.addPort( javax.xml.namespace.QName, java.net.String,
+     * java.lang.String).
      */
     public void CreatePortTest1WithWsdl() throws Fault {
         TestUtil.logTrace("CreatePortTest1WithWsdl");
@@ -1347,14 +1347,15 @@ public class Client extends ServiceEETest {
             throw new Fault("CreatePortTest1WithWsdl failed", e);
         }
 
-        if (!pass) throw new Fault("CreatePortTest1WithWsdl failed");
+        if (!pass)
+            throw new Fault("CreatePortTest1WithWsdl failed");
     }
 
     /*
      * @testName: getExecutorTest
      *
-     * @assertion_ids: JAXWS:SPEC:4002; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
-     * JAXWS:SPEC:4005; JAXWS:JAVADOC:50; JAXWS:JAVADOC:120;
+     * @assertion_ids: JAXWS:SPEC:4002; JAXWS:SPEC:4003; JAXWS:SPEC:4009; JAXWS:SPEC:4005; JAXWS:JAVADOC:50;
+     * JAXWS:JAVADOC:120;
      *
      * @test_Strategy: Get the Executor for this instance.
      */
@@ -1393,14 +1394,15 @@ public class Client extends ServiceEETest {
             throw new Fault("getExecutorTest failed", e);
         }
 
-        if (!pass) throw new Fault("getExecutorTest failed");
+        if (!pass)
+            throw new Fault("getExecutorTest failed");
     }
 
     /*
      * @testName: setExecutorTest
      *
-     * @assertion_ids: JAXWS:SPEC:4002; JAXWS:SPEC:4003; JAXWS:SPEC:4009;
-     * JAXWS:SPEC:4005; JAXWS:JAVADOC:57; JAXWS:JAVADOC:127;
+     * @assertion_ids: JAXWS:SPEC:4002; JAXWS:SPEC:4003; JAXWS:SPEC:4009; JAXWS:SPEC:4005; JAXWS:JAVADOC:57;
+     * JAXWS:JAVADOC:127;
      *
      * @test_Strategy: Set the Executor for this instance.
      */
@@ -1432,7 +1434,8 @@ public class Client extends ServiceEETest {
             throw new Fault("setExecutorTest failed", e);
         }
 
-        if (!pass) throw new Fault("setExecutorTest failed");
+        if (!pass)
+            throw new Fault("setExecutorTest failed");
     }
 
     private jakarta.xml.ws.Service getService(QName sname, WebServiceFeature[] wsfeatures) throws Exception {
@@ -1450,7 +1453,8 @@ public class Client extends ServiceEETest {
             throws Exception {
         TestUtil.logMsg("JAXWS_Util:getService(URL, QName, WebServiceFeature[])");
         jakarta.xml.ws.Service service = null;
-        if (wsdlurl != null) TestUtil.logMsg("URL=" + wsdlurl.toString());
+        if (wsdlurl != null)
+            TestUtil.logMsg("URL=" + wsdlurl.toString());
         TestUtil.logMsg("QName=" + sname);
         TestUtil.logMsg("Creating Service via jakarta.xml.ws.Service.create(URL, QName, WebServiceFeature[])");
         service = jakarta.xml.ws.Service.create(wsdlurl, sname, wsfeatures);

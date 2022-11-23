@@ -33,13 +33,14 @@ public abstract class ClientBase2NoAnnotation extends ClientBase {
 
     protected static final String CLIENT = "CLIENT";
 
-    protected static final String[] BASE2_BASE3_CLIENT = new String[] {BASE2, BASE3, CLIENT};
+    protected static final String[] BASE2_BASE3_CLIENT = new String[] { BASE2, BASE3, CLIENT };
 
     private static final List postConstructCalls = new ArrayList();
 
     private static final List injectedFields = new ArrayList();
 
-    public ClientBase2NoAnnotation() {}
+    public ClientBase2NoAnnotation() {
+    }
 
     public static List getPostConstructCalls() {
         return postConstructCalls;
@@ -50,8 +51,8 @@ public abstract class ClientBase2NoAnnotation extends ClientBase {
     }
 
     /**
-     * When this method is invoked, all injections, including those in this class,
-     * and all of its subclasses, should have been completed.
+     * When this method is invoked, all injections, including those in this class, and all of its subclasses, should have
+     * been completed.
      */
     // @PostConstruct
     private static void postConstructInBase2NoAnnotation() {

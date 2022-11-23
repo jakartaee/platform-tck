@@ -145,11 +145,11 @@ public class Client extends ServiceEETest {
 
     private AddressingFeatureTest4 port7 = null;
 
-    private WebServiceFeature[] enabledNotRequiredwsf = {new AddressingFeature(true, false)};
+    private WebServiceFeature[] enabledNotRequiredwsf = { new AddressingFeature(true, false) };
 
-    private WebServiceFeature[] nonEnabledwsf = {new AddressingFeature(false)};
+    private WebServiceFeature[] nonEnabledwsf = { new AddressingFeature(false) };
 
-    private WebServiceFeature[] enabledRequiredwsf = {new AddressingFeature(true, true)};
+    private WebServiceFeature[] enabledRequiredwsf = { new AddressingFeature(true, true) };
 
     static AddressingFeatureTest1Service service1 = null;
 
@@ -276,29 +276,25 @@ public class Client extends ServiceEETest {
     private void getPortJavaEE() throws Exception {
         javax.naming.InitialContext ic = new javax.naming.InitialContext();
         TestUtil.logMsg("Obtain service1 via WebServiceRef annotation");
-        AddressingFeatureTest1Service service1 =
-                (AddressingFeatureTest1Service) ic.lookup("java:comp/env/service/WSAJ2WDLAddressingFeatureTest1");
+        AddressingFeatureTest1Service service1 = (AddressingFeatureTest1Service) ic.lookup("java:comp/env/service/WSAJ2WDLAddressingFeatureTest1");
         TestUtil.logMsg("service1=" + service1);
         TestUtil.logMsg("******************************Retrieving Port 1************************\n");
         port1 = (AddressingFeatureTest1) service1.getPort(AddressingFeatureTest1.class, enabledNotRequiredwsf);
 
         TestUtil.logMsg("Obtain service2 via WebServiceRef annotation");
-        AddressingFeatureTest2Service service2 =
-                (AddressingFeatureTest2Service) ic.lookup("java:comp/env/service/WSAJ2WDLAddressingFeatureTest2");
+        AddressingFeatureTest2Service service2 = (AddressingFeatureTest2Service) ic.lookup("java:comp/env/service/WSAJ2WDLAddressingFeatureTest2");
         TestUtil.logMsg("service2=" + service2);
         TestUtil.logMsg("******************************Retrieving Port 2************************\n");
         port2 = (AddressingFeatureTest2) service2.getPort(AddressingFeatureTest2.class, enabledNotRequiredwsf);
 
         TestUtil.logMsg("Obtain service3 via WebServiceRef annotation");
-        AddressingFeatureTest3Service service3 =
-                (AddressingFeatureTest3Service) ic.lookup("java:comp/env/service/WSAJ2WDLAddressingFeatureTest3");
+        AddressingFeatureTest3Service service3 = (AddressingFeatureTest3Service) ic.lookup("java:comp/env/service/WSAJ2WDLAddressingFeatureTest3");
         TestUtil.logMsg("service3=" + service3);
         TestUtil.logMsg("******************************Retrieving Port 3************************\n");
         port3 = (AddressingFeatureTest3) service3.getPort(AddressingFeatureTest3.class, enabledNotRequiredwsf);
 
         TestUtil.logMsg("Obtain service4 via WebServiceRef annotation");
-        AddressingFeatureTest4Service service4 =
-                (AddressingFeatureTest4Service) ic.lookup("java:comp/env/service/WSAJ2WDLAddressingFeatureTest4");
+        AddressingFeatureTest4Service service4 = (AddressingFeatureTest4Service) ic.lookup("java:comp/env/service/WSAJ2WDLAddressingFeatureTest4");
         TestUtil.logMsg("service4=" + service4);
         TestUtil.logMsg("******************************Retrieving Port 4************************\n");
         port4 = (AddressingFeatureTest4) service4.getPort(AddressingFeatureTest4.class, enabledNotRequiredwsf);
@@ -312,7 +308,7 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("******************************Retrieving Port 7************************\n");
         port7 = (AddressingFeatureTest4) service4.getPort(AddressingFeatureTest4.class, enabledRequiredwsf);
 
-        Object[] portsTodump = new Object[] {port1, port2, port3, port4, port5, port6, port7};
+        Object[] portsTodump = new Object[] { port1, port2, port3, port4, port5, port6, port7 };
         dumpTargetEndpointAddressForPort(portsTodump);
     }
 
@@ -392,10 +388,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:3047;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server
-     * enabled/NotRequired. Addressing headers MAY be present on SOAPRequest and
-     * SOAPResponse since Addressing is Optional. If addressing headers exist
-     * check them otherwise don't.
+     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server enabled/NotRequired. Addressing headers
+     * MAY be present on SOAPRequest and SOAPResponse since Addressing is Optional. If addressing headers exist check them
+     * otherwise don't.
      */
     public void afClientEnabledNotREQServerEnabledNotREQTest() throws Fault {
         TestUtil.logMsg("afClientEnabledNotREQServerEnabledNotREQTest");
@@ -419,12 +414,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:3047;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server
-     * enabled/Required. If the Client does not send Addressing headers then the
-     * Server MUST throw back a SOAP Fault with a MessageAddressingHeaderRequired
-     * fault code since the Server mandates Addressing Required. If the Client
-     * does send Addressing headers then they MUST be present on SOAPRequest and
-     * SOAPResponse since the Server mandates requires addressing.
+     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server enabled/Required. If the Client does not
+     * send Addressing headers then the Server MUST throw back a SOAP Fault with a MessageAddressingHeaderRequired fault
+     * code since the Server mandates Addressing Required. If the Client does send Addressing headers then they MUST be
+     * present on SOAPRequest and SOAPResponse since the Server mandates requires addressing.
      */
     public void afClientEnabledNotREQServerEnabledREQTest() throws Fault {
         TestUtil.logMsg("afClientEnabledNotREQServerEnabledREQTest");
@@ -476,10 +469,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:3047;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server
-     * using defaults. Addressing headers MAY be present on SOAPRequest and
-     * SOAPResponse since Addressing is Optional. If addressing headers exist
-     * check them otherwise don't.
+     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server using defaults. Addressing headers MAY be
+     * present on SOAPRequest and SOAPResponse since Addressing is Optional. If addressing headers exist check them
+     * otherwise don't.
      */
     public void afClientEnabledNotREQServerUsingDefaultsTest() throws Fault {
         TestUtil.logMsg("afClientEnabledNotREQServerUsingDefaultsTest");
@@ -503,9 +495,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:SPEC:3047;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server
-     * NotEnabled. Addressing headers MAY be present on SOAPRequest but MUST NOT
-     * be present on SOAPResponse.
+     * @test_Strategy: Test Addressing Feature. Client enabled/NotRequired, Server NotEnabled. Addressing headers MAY be
+     * present on SOAPRequest but MUST NOT be present on SOAPResponse.
      */
     public void afClientEnabledNotREQServerNotEnabledTest() throws Fault {
         TestUtil.logMsg("afClientEnabledNotREQServerNotEnabledTest");
@@ -528,14 +519,12 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientNotEnabledServerEnabledNotREQTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.3; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.3;
-     * JAXWS:SPEC:6012.5; JAXWS:SPEC:7020; JAXWS:SPEC:7020.2; JAXWS:SPEC:10025;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.3; WSAMD:SPEC:3001.4; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2;
+     * JAXWS:SPEC:6012; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.5; JAXWS:SPEC:7020; JAXWS:SPEC:7020.2; JAXWS:SPEC:10025;
      * JAXWS:JAVADOC:190; JAXWS:SPEC:4034; JAXWS:SPEC:6012.1;
      *
-     * @test_Strategy: Test Addressing Feature. Client NotEnabled, Server
-     * enabled/NotRequired. Addressing headers MUST not be present on SOAPRequest
-     * and SOAPResponse.
+     * @test_Strategy: Test Addressing Feature. Client NotEnabled, Server enabled/NotRequired. Addressing headers MUST not
+     * be present on SOAPRequest and SOAPResponse.
      */
     public void afClientNotEnabledServerEnabledNotREQTest() throws Fault {
         TestUtil.logMsg("afClientNotEnabledServerEnabledNotREQTest");
@@ -557,15 +546,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientNotEnabledServerEnabledREQTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.3; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:4031; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012;
-     * JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.5; JAXWS:SPEC:3046;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.3; WSAMD:SPEC:3001.4; JAXWS:SPEC:4031; JAXWS:SPEC:6011;
+     * JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.5; JAXWS:SPEC:3046;
      * WSASB:SPEC:6004.3;
      *
-     * @test_Strategy: Test Addressing Feature. Client Not Enabled, Server
-     * enabled/Required. This scenario MUST throw back a SOAP Fault. Make sure the
-     * SOAP Fault has the correct information in it. The SOAP Fault faultcode must
-     * be: MessageAddressingHeaderRequired.
+     * @test_Strategy: Test Addressing Feature. Client Not Enabled, Server enabled/Required. This scenario MUST throw back a
+     * SOAP Fault. Make sure the SOAP Fault has the correct information in it. The SOAP Fault faultcode must be:
+     * MessageAddressingHeaderRequired.
      */
     public void afClientNotEnabledServerEnabledREQTest() throws Fault {
         TestUtil.logMsg("afClientNotEnabledServerEnabledREQTest");
@@ -615,12 +602,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afClientEnabledREQServerNotEnabledTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.6;
-     * JAXWS:SPEC:6016.1; JAXWS:SPEC:7020; JAXWS:SPEC:7020.1; JAXWS:JAVADOC:191;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.3;
+     * JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.6; JAXWS:SPEC:6016.1; JAXWS:SPEC:7020; JAXWS:SPEC:7020.1; JAXWS:JAVADOC:191;
      *
-     * @test_Strategy: Test Addressing Feature. Client enabled/Required, Server
-     * not enabled. This scenario MUST throw back a WebServiceException.
+     * @test_Strategy: Test Addressing Feature. Client enabled/Required, Server not enabled. This scenario MUST throw back a
+     * WebServiceException.
      */
     public void afClientEnabledREQServerNotEnabledTest() throws Fault {
         TestUtil.logMsg("afClientEnabledREQServerNotEnabledTest");

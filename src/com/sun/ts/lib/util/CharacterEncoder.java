@@ -25,13 +25,11 @@ import java.io.PrintStream;
 import java.nio.ByteBuffer;
 
 /**
- * This class defines the encoding half of character encoders. A character
- * encoder is an algorithim for transforming 8 bit binary data into text
- * (generally 7 bit ASCII or 8 bit ISO-Latin-1 text) for transmition over text
- * channels such as e-mail and network news.
+ * This class defines the encoding half of character encoders. A character encoder is an algorithim for transforming 8
+ * bit binary data into text (generally 7 bit ASCII or 8 bit ISO-Latin-1 text) for transmition over text channels such
+ * as e-mail and network news.
  *
- * The character encoders have been structured around a central theme that, in
- * general, the encoded text has the form:
+ * The character encoders have been structured around a central theme that, in general, the encoded text has the form:
  *
  * <pre>
  *	[Buffer Prefix]
@@ -39,21 +37,17 @@ import java.nio.ByteBuffer;
  *	[Buffer Suffix]
  * </pre>
  *
- * In the CharacterEncoder and CharacterDecoder classes, one complete chunk of
- * data is referred to as a <i>buffer</i>. Encoded buffers are all text, and
- * decoded buffers (sometimes just referred to as buffers) are binary octets.
+ * In the CharacterEncoder and CharacterDecoder classes, one complete chunk of data is referred to as a <i>buffer</i>.
+ * Encoded buffers are all text, and decoded buffers (sometimes just referred to as buffers) are binary octets.
  *
- * To create a custom encoder, you must, at a minimum, overide three abstract
- * methods in this class.
+ * To create a custom encoder, you must, at a minimum, overide three abstract methods in this class.
  * <DL>
  * <DD>bytesPerAtom which tells the encoder how many bytes to send to encodeAtom
  * <DD>encodeAtom which encodes the bytes sent to it as text.
- * <DD>bytesPerLine which tells the encoder the maximum number of bytes per
- * line.
+ * <DD>bytesPerLine which tells the encoder the maximum number of bytes per line.
  * </DL>
  *
- * Several useful encoders have already been written and are referenced in the
- * See Also list below.
+ * Several useful encoders have already been written and are referenced in the See Also list below.
  *
  * @version 1.38, 11/17/05
  * @author Chuck McManis
@@ -74,8 +68,7 @@ public abstract class CharacterEncoder {
     protected abstract int bytesPerLine();
 
     /**
-     * Encode the prefix for the entire buffer. By default is simply opens the
-     * PrintStream for use by the other functions.
+     * Encode the prefix for the entire buffer. By default is simply opens the PrintStream for use by the other functions.
      */
     protected void encodeBufferPrefix(OutputStream aStream) throws IOException {
         pStream = new PrintStream(aStream);
@@ -84,16 +77,17 @@ public abstract class CharacterEncoder {
     /**
      * Encode the suffix for the entire buffer.
      */
-    protected void encodeBufferSuffix(OutputStream aStream) throws IOException {}
+    protected void encodeBufferSuffix(OutputStream aStream) throws IOException {
+    }
 
     /**
      * Encode the prefix that starts every output line.
      */
-    protected void encodeLinePrefix(OutputStream aStream, int aLength) throws IOException {}
+    protected void encodeLinePrefix(OutputStream aStream, int aLength) throws IOException {
+    }
 
     /**
-     * Encode the suffix that ends every output line. By default this method just
-     * prints a <newline> into the output stream.
+     * Encode the suffix that ends every output line. By default this method just prints a <newline> into the output stream.
      */
     protected void encodeLineSuffix(OutputStream aStream) throws IOException {
         pStream.println();
@@ -104,22 +98,21 @@ public abstract class CharacterEncoder {
             throws IOException;
 
     /**
-     * This method works around the bizarre semantics of BufferedInputStream's
-     * read method.
+     * This method works around the bizarre semantics of BufferedInputStream's read method.
      */
     protected int readFully(InputStream in, byte buffer[]) throws java.io.IOException {
         for (int i = 0; i < buffer.length; i++) {
             int q = in.read();
-            if (q == -1) return i;
+            if (q == -1)
+                return i;
             buffer[i] = (byte) q;
         }
         return buffer.length;
     }
 
     /**
-     * Encode bytes from the input stream, and write them as text characters to
-     * the output stream. This method will run until it exhausts the input stream,
-     * but does not print the line suffix for a final line that is shorter than
+     * Encode bytes from the input stream, and write them as text characters to the output stream. This method will run
+     * until it exhausts the input stream, but does not print the line suffix for a final line that is shorter than
      * bytesPerLine().
      */
     public void encode(InputStream inStream, OutputStream outStream) throws IOException {
@@ -153,8 +146,7 @@ public abstract class CharacterEncoder {
     }
 
     /**
-     * Encode the buffer in <i>aBuffer</i> and write the encoded result to the
-     * OutputStream <i>aStream</i>.
+     * Encode the buffer in <i>aBuffer</i> and write the encoded result to the OutputStream <i>aStream</i>.
      */
     public void encode(byte aBuffer[], OutputStream aStream) throws IOException {
         ByteArrayInputStream inStream = new ByteArrayInputStream(aBuffer);
@@ -162,8 +154,8 @@ public abstract class CharacterEncoder {
     }
 
     /**
-     * A 'streamless' version of encode that simply takes a buffer of bytes and
-     * returns a string containing the encoded buffer.
+     * A 'streamless' version of encode that simply takes a buffer of bytes and returns a string containing the encoded
+     * buffer.
      */
     public String encode(byte aBuffer[]) {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -185,20 +177,17 @@ public abstract class CharacterEncoder {
      * <P>
      * The ByteBuffer's position will be advanced to ByteBuffer's limit.
      * <P>
-     * To avoid an extra copy, the implementation will attempt to return the byte
-     * array backing the ByteBuffer. If this is not possible, a new byte array
-     * will be created.
+     * To avoid an extra copy, the implementation will attempt to return the byte array backing the ByteBuffer. If this is
+     * not possible, a new byte array will be created.
      */
     private byte[] getBytes(ByteBuffer bb) {
         /*
-         * This should never return a BufferOverflowException, as we're careful to
-         * allocate just the right amount.
+         * This should never return a BufferOverflowException, as we're careful to allocate just the right amount.
          */
         byte[] buf = null;
 
         /*
-         * If it has a usable backing byte buffer, use it. Use only if the array
-         * exactly represents the current ByteBuffer.
+         * If it has a usable backing byte buffer, use it. Use only if the array exactly represents the current ByteBuffer.
          */
         if (bb.hasArray()) {
             byte[] tmp = bb.array();
@@ -210,8 +199,7 @@ public abstract class CharacterEncoder {
 
         if (buf == null) {
             /*
-             * This class doesn't have a concept of encode(buf, len, off), so if we
-             * have a partial buffer, we must reallocate space.
+             * This class doesn't have a concept of encode(buf, len, off), so if we have a partial buffer, we must reallocate space.
              */
             buf = new byte[bb.remaining()];
 
@@ -225,8 +213,7 @@ public abstract class CharacterEncoder {
     }
 
     /**
-     * Encode the <i>aBuffer</i> ByteBuffer and write the encoded result to the
-     * OutputStream <i>aStream</i>.
+     * Encode the <i>aBuffer</i> ByteBuffer and write the encoded result to the OutputStream <i>aStream</i>.
      * <P>
      * The ByteBuffer's position will be advanced to ByteBuffer's limit.
      */
@@ -236,8 +223,7 @@ public abstract class CharacterEncoder {
     }
 
     /**
-     * A 'streamless' version of encode that simply takes a ByteBuffer and returns
-     * a string containing the encoded buffer.
+     * A 'streamless' version of encode that simply takes a ByteBuffer and returns a string containing the encoded buffer.
      * <P>
      * The ByteBuffer's position will be advanced to ByteBuffer's limit.
      */
@@ -247,10 +233,9 @@ public abstract class CharacterEncoder {
     }
 
     /**
-     * Encode bytes from the input stream, and write them as text characters to
-     * the output stream. This method will run until it exhausts the input stream.
-     * It differs from encode in that it will add the line at the end of a final
-     * line that is shorter than bytesPerLine().
+     * Encode bytes from the input stream, and write them as text characters to the output stream. This method will run
+     * until it exhausts the input stream. It differs from encode in that it will add the line at the end of a final line
+     * that is shorter than bytesPerLine().
      */
     public void encodeBuffer(InputStream inStream, OutputStream outStream) throws IOException {
         int j;
@@ -281,8 +266,7 @@ public abstract class CharacterEncoder {
     }
 
     /**
-     * Encode the buffer in <i>aBuffer</i> and write the encoded result to the
-     * OutputStream <i>aStream</i>.
+     * Encode the buffer in <i>aBuffer</i> and write the encoded result to the OutputStream <i>aStream</i>.
      */
     public void encodeBuffer(byte aBuffer[], OutputStream aStream) throws IOException {
         ByteArrayInputStream inStream = new ByteArrayInputStream(aBuffer);
@@ -290,8 +274,8 @@ public abstract class CharacterEncoder {
     }
 
     /**
-     * A 'streamless' version of encode that simply takes a buffer of bytes and
-     * returns a string containing the encoded buffer.
+     * A 'streamless' version of encode that simply takes a buffer of bytes and returns a string containing the encoded
+     * buffer.
      */
     public String encodeBuffer(byte aBuffer[]) {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
@@ -306,8 +290,7 @@ public abstract class CharacterEncoder {
     }
 
     /**
-     * Encode the <i>aBuffer</i> ByteBuffer and write the encoded result to the
-     * OutputStream <i>aStream</i>.
+     * Encode the <i>aBuffer</i> ByteBuffer and write the encoded result to the OutputStream <i>aStream</i>.
      * <P>
      * The ByteBuffer's position will be advanced to ByteBuffer's limit.
      */
@@ -317,8 +300,7 @@ public abstract class CharacterEncoder {
     }
 
     /**
-     * A 'streamless' version of encode that simply takes a ByteBuffer and returns
-     * a string containing the encoded buffer.
+     * A 'streamless' version of encode that simply takes a ByteBuffer and returns a string containing the encoded buffer.
      * <P>
      * The ByteBuffer's position will be advanced to ByteBuffer's limit.
      */

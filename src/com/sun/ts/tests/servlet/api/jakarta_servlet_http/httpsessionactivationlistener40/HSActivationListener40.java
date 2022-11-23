@@ -58,4 +58,5 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet_http.httpsessionactivationl
 
 import jakarta.servlet.http.HttpSessionActivationListener;
 
-public final class HSActivationListener40 implements HttpSessionActivationListener {}
+public final class HSActivationListener40 implements HttpSessionActivationListener {
+}

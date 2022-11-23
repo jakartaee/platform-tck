@@ -22,12 +22,7 @@ package com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HelloPort",
-        serviceName = "HelloService",
-        targetNamespace = "http://helloservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello")
+@WebService(portName = "HelloPort", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello")
 public class HelloImpl implements Hello {
     private static final ObjectFactory of = new ObjectFactory();
 

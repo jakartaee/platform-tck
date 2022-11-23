@@ -55,7 +55,8 @@ public class SimpleTestClient extends SOAPClient {
 
     public String arrayOperationFromClient(String[] array) throws Exception {
         StringArray strArr = new StringArray();
-        for (int i = 0; i < array.length; i++) strArr.getItem().add(array[i]);
+        for (int i = 0; i < array.length; i++)
+            strArr.getItem().add(array[i]);
         return ((SimpleEndpoint) stubContext.getStub()).arrayOperationFromClient(strArr);
     }
 }

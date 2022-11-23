@@ -21,12 +21,7 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceException;
 
-@WebService(
-        portName = "SwaTestTwoPort",
-        serviceName = "WSIRLSwaTestService",
-        targetNamespace = "http://SwaTestService.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JRLSwaTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTest2")
+@WebService(portName = "SwaTestTwoPort", serviceName = "WSIRLSwaTestService", targetNamespace = "http://SwaTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLSwaTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTest2")
 public class SwaTestImpl2 implements SwaTest2 {
     public java.lang.String putMultipleAttachments(
             com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestPut request,

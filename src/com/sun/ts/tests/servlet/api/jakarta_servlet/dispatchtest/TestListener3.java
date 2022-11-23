@@ -23,7 +23,8 @@ import java.io.IOException;
 
 public final class TestListener3 implements AsyncListener {
 
-    public TestListener3() throws IOException {}
+    public TestListener3() throws IOException {
+    }
 
     public void onError(AsyncEvent event) throws IOException {
         event.getSuppliedResponse().getWriter().println("in onError method of TestListener3");

@@ -35,13 +35,15 @@ public class NamedNodeMapIterator implements Iterator {
     }
 
     public boolean hasNext() {
-        if (_map == null) return false;
+        if (_map == null)
+            return false;
         return _index < _map.getLength();
     }
 
     public Object next() {
         Object obj = _map.item(_index);
-        if (obj != null) ++_index;
+        if (obj != null)
+            ++_index;
         return obj;
     }
 

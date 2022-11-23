@@ -29,7 +29,8 @@ import com.sun.ts.tests.ejb30.common.calc.CalculatorException;
 // already declared in ejb-jar.xml.  Annotations not needed
 public class AssemblyBean extends AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF, AssemblyCommonIF {
 
-    public AssemblyBean() {}
+    public AssemblyBean() {
+    }
 
     @Override
     public String dirUsedInClassPath() {

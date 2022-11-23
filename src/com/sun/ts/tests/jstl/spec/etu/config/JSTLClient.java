@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,11 +62,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveConfigStaticMembersTest
      *
-     * @assertion_ids: JSTL:SPEC:99.1; JSTL:SPEC:99.2; JSTL:SPEC:99.3;
-     * JSTL:SPEC:99.4; JSTL:SPEC:99.5; JSTL:SPEC:99.6
+     * @assertion_ids: JSTL:SPEC:99.1; JSTL:SPEC:99.2; JSTL:SPEC:99.3; JSTL:SPEC:99.4; JSTL:SPEC:99.5; JSTL:SPEC:99.6
      *
-     * @testStrategy: Validate that the public static member values of the
-     * jakarta.servlet.jsp.jstl.core.Config class agree with the javadoc.
+     * @testStrategy: Validate that the public static member values of the jakarta.servlet.jsp.jstl.core.Config class agree
+     * with the javadoc.
      */
     public void positiveConfigStaticMembersTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveConfigStaticMemebersTest");
@@ -80,13 +77,11 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:100; JSTL:SPEC:101; JSTL:SPEC:102
      *
-     * @testStrategy: Validate the set(), get(), and remove() methods when passing
-     * a PageContext object. Using the same variable, verify that the Config class
-     * sets variables in the PageContext in such a way that even if the variable
-     * names specified are all the same, they are unique in each scope. Validate
-     * the the values returned by get() are the same as those set. Additionally
-     * validate that once the variables are removed, that additional calls to get
-     * for the same variables, will return null.
+     * @testStrategy: Validate the set(), get(), and remove() methods when passing a PageContext object. Using the same
+     * variable, verify that the Config class sets variables in the PageContext in such a way that even if the variable
+     * names specified are all the same, they are unique in each scope. Validate the the values returned by get() are the
+     * same as those set. Additionally validate that once the variables are removed, that additional calls to get for the
+     * same variables, will return null.
      */
     public void positiveConfigGetSetRemovePageContextTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveConfigGetSetRemovePageContextTest");
@@ -98,10 +93,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:100; JSTL:SPEC:101; JSTL:SPEC:102
      *
-     * @testStrategy: Validate the set(), get(), and remove() methods when passing
-     * a ServletRequest object. Additionally validate that once the variable is
-     * removed, that additional calls to get for the same variable, will return
-     * null.
+     * @testStrategy: Validate the set(), get(), and remove() methods when passing a ServletRequest object. Additionally
+     * validate that once the variable is removed, that additional calls to get for the same variable, will return null.
      */
     public void positiveConfigGetSetRemoveRequestTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveConfigGetSetRemoveRequestTest");
@@ -113,10 +106,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:100; JSTL:SPEC:101; JSTL:SPEC:102
      *
-     * @testStrategy: Validate the set(), get(), and remove() methods when passing
-     * an HttpSession object. Additionally validate that once the variable is
-     * removed, that additional calls to get for the same variable, will return
-     * null.
+     * @testStrategy: Validate the set(), get(), and remove() methods when passing an HttpSession object. Additionally
+     * validate that once the variable is removed, that additional calls to get for the same variable, will return null.
      */
     public void positiveConfigGetSetRemoveSessionTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jstl_etu_config_web/positiveConfigGetSetRemoveSessionTest.jsp HTTP/1.0");
@@ -130,10 +121,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:100; JSTL:SPEC:101; JSTL:SPEC:102
      *
-     * @testStrategy: Validate the set(), get(), and remove() methods when passing
-     * a ServletContext object. Additionally validate that once the variable is
-     * removed, that additional calls to get for the same variable, will return
-     * null.
+     * @testStrategy: Validate the set(), get(), and remove() methods when passing a ServletContext object. Additionally
+     * validate that once the variable is removed, that additional calls to get for the same variable, will return null.
      */
     public void positiveConfigGetSetRemoveApplicationTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveConfigGetSetRemoveApplicationTest");
@@ -145,11 +134,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:103; JSTL:SPEC:103.1
      *
-     * @testStrategy: Validate that the find() method is able to find the and
-     * return the specified variable from the PageContext without specifying a
-     * scope. Also validate that if no variable is found in the PageContext, that
-     * method will attempt to find a context initialization parameter by the name
-     * provided.
+     * @testStrategy: Validate that the find() method is able to find the and return the specified variable from the
+     * PageContext without specifying a scope. Also validate that if no variable is found in the PageContext, that method
+     * will attempt to find a context initialization parameter by the name provided.
      */
     public void positiveConfigFindTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveConfigFindTest");

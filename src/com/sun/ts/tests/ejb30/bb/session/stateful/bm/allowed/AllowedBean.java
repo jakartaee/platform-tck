@@ -41,10 +41,10 @@ import jakarta.transaction.Status;
 import java.util.Properties;
 
 @Stateful(name = "AllowedBean")
-@Remote({AllowedIF.class})
-@Local({AllowedLocalIF.class})
+@Remote({ AllowedIF.class })
+@Local({ AllowedLocalIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
-@Interceptors({com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class})
+@Interceptors({ com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulCancelInterceptor.class })
 @EJB(name = "ejb/TimerEJB", beanName = "TimerEJB", beanInterface = TimerLocalIF.class)
 public class AllowedBean extends AllowedBeanNonSessionSynchronizationBase
         implements AllowedIF, AllowedLocalIF, java.io.Serializable {

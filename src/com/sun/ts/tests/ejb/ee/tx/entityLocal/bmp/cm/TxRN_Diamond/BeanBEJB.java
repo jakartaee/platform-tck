@@ -118,11 +118,13 @@ public class BeanBEJB implements SessionBean {
 
             tempName1 = beanRef.getBrandName();
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
 
             tempName2 = beanRef.getDbBrandName();
             TestUtil.logTrace("DB Brand Name is " + tempName2);
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
 
             if (!b1) {
                 TestUtil.logMsg("Brand Name instance value did not match expected value");
@@ -135,7 +137,8 @@ public class BeanBEJB implements SessionBean {
                 TestUtil.logMsg("Expected: " + expName + ", Actual: " + tempName2);
             }
 
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
             return testResult;
 
         } catch (Exception e) {

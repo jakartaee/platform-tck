@@ -29,12 +29,7 @@ import java.net.*;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
 
-@WebService(
-        portName = "SwaTestTwoPort",
-        serviceName = "WSIDLSwaTestService",
-        targetNamespace = "http://SwaTestService.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTest2")
+@WebService(portName = "SwaTestTwoPort", serviceName = "WSIDLSwaTestService", targetNamespace = "http://SwaTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLSwaTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.SwaTest2")
 public class SwaTestImpl2 implements SwaTest2 {
     public com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.OutputResponseString putMultipleAttachments(
             com.sun.ts.tests.jaxws.wsi.w2j.document.literal.swatest.InputRequestPut request,

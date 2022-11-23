@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -113,12 +115,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "closeTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -127,7 +132,8 @@ public class URLClient extends EETest {
             throw new Fault("closeTest failed", e);
         }
 
-        if (!pass) throw new Fault("closeTest failed");
+        if (!pass)
+            throw new Fault("closeTest failed");
     }
 
     /*
@@ -137,8 +143,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPConnection.call().
      *
-     * Description: Sends the given message to the specified endpoint and blocks
-     * until it has returned the response.
+     * Description: Sends the given message to the specified endpoint and blocks until it has returned the response.
      *
      */
     public void callTest() throws Fault {
@@ -151,12 +156,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "callTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -165,7 +173,8 @@ public class URLClient extends EETest {
             throw new Fault("callTest failed", e);
         }
 
-        if (!pass) throw new Fault("callTest failed");
+        if (!pass)
+            throw new Fault("callTest failed");
     }
 
     /*
@@ -175,11 +184,9 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPConnection.get().
      *
-     * Description: Gets a SOAP response message from a specific endpoint and
-     * blocks until it has received the response. HTTP-GET from a valid endpoint
-     * that contains a valid webservice resource should succeed. The endpoint
-     * tested contains a valid webservice resource that must return a SOAP
-     * response. HTTP-GET must succeed.
+     * Description: Gets a SOAP response message from a specific endpoint and blocks until it has received the response.
+     * HTTP-GET from a valid endpoint that contains a valid webservice resource should succeed. The endpoint tested contains
+     * a valid webservice resource that must return a SOAP response. HTTP-GET must succeed.
      *
      */
     public void getTest1() throws Fault {
@@ -195,14 +202,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("getTest1 failed");
+        if (!pass)
+            throw new Fault("getTest1 failed");
     }
 
     /*
@@ -212,11 +221,9 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPConnection.get().
      *
-     * Description: Gets a SOAP response message from a specific endpoint and
-     * blocks until it has received the response. HTTP-GET from a valid endpoint
-     * that does not contain a valid webservice resource should fail with a
-     * SOAPExcpetion. The endpoint tested does not contain a valid webservice
-     * resource but contains an html resource. HTTP-GET must throw a
+     * Description: Gets a SOAP response message from a specific endpoint and blocks until it has received the response.
+     * HTTP-GET from a valid endpoint that does not contain a valid webservice resource should fail with a SOAPExcpetion.
+     * The endpoint tested does not contain a valid webservice resource but contains an html resource. HTTP-GET must throw a
      * SOAPException.
      *
      */
@@ -233,14 +240,16 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("getTest2 failed");
+        if (!pass)
+            throw new Fault("getTest2 failed");
     }
 
     /*
@@ -250,9 +259,8 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPConnection.get().
      *
-     * Description: Gets a message from a specific endpoint and blocks until it
-     * has received a response. HTTP-GET from an invalid endpoint (no such host)
-     * must throw a SOAPException. Endpoint does not exist.
+     * Description: Gets a message from a specific endpoint and blocks until it has received a response. HTTP-GET from an
+     * invalid endpoint (no such host) must throw a SOAPException. Endpoint does not exist.
      *
      */
     public void getTest3() throws Fault {
@@ -268,13 +276,15 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             e.printStackTrace();
             throw new Fault("getTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("getTest3 failed");
+        if (!pass)
+            throw new Fault("getTest3 failed");
     }
 }

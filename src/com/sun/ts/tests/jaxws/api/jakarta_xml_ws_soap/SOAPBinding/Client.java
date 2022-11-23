@@ -69,8 +69,7 @@ public class Client extends ServiceEETest {
 
     private QName SERVICE_QNAME = new QName(NAMESPACEURI, SERVICE_NAME);
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
 
     private TSURL ctsurl = new TSURL();
 
@@ -155,8 +154,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -220,7 +221,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("getSOAPBindingTest failed");
+        if (!pass)
+            throw new Fault("getSOAPBindingTest failed");
     }
 
     /*
@@ -280,7 +282,8 @@ public class Client extends ServiceEETest {
                 }
             }
         }
-        if (!pass) throw new Fault("setGetRolesForDispatchObjTest failed");
+        if (!pass)
+            throw new Fault("setGetRolesForDispatchObjTest failed");
     }
 
     /*
@@ -322,7 +325,8 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Expected: " + Constants.EXPECTED_SOAP12HTTP_MTOM_BINDING);
             pass = false;
         }
-        if (!pass) throw new Fault("soapBindingConstantsTest failed");
+        if (!pass)
+            throw new Fault("soapBindingConstantsTest failed");
     }
 
     /*
@@ -354,7 +358,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             }
         }
-        if (!pass) throw new Fault("getMessageFactoryTest failed");
+        if (!pass)
+            throw new Fault("getMessageFactoryTest failed");
     }
 
     /*
@@ -387,14 +392,14 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("getSOAPFactoryTest failed");
+        if (!pass)
+            throw new Fault("getSOAPFactoryTest failed");
     }
 
     /*
      * @testName: isSetMTOMEnabledTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:109; JAXWS:JAVADOC:110; WS4EE:SPEC:5005;
-     * WS4EE:SPEC:5006; JAXWS:SPEC:10023;
+     * @assertion_ids: JAXWS:JAVADOC:109; JAXWS:JAVADOC:110; WS4EE:SPEC:5005; WS4EE:SPEC:5006; JAXWS:SPEC:10023;
      *
      * @test_Strategy:
      */
@@ -432,6 +437,7 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg("MTOM is enabled as expected");
             }
         }
-        if (!pass) throw new Fault("isSetMTOMEnabledTest failed");
+        if (!pass)
+            throw new Fault("isSetMTOMEnabledTest failed");
     }
 }

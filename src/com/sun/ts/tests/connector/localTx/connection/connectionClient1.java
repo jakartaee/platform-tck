@@ -59,9 +59,8 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: whitebox-tx, JNDI name of TS WhiteBox;
-     * whitebox-tx-param, conn w/ params; rauser1, user name; rapassword1,
-     * password for rauser1;
+     * @class.setup_props: whitebox-tx, JNDI name of TS WhiteBox; whitebox-tx-param, conn w/ params; rauser1, user name;
+     * rapassword1, password for rauser1;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -106,13 +105,12 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetConnection1
      *
-     * @assertion_ids: Connector:SPEC:29; Connector:SPEC:31;
-     * Connector:JAVADOC:161;
+     * @assertion_ids: Connector:SPEC:29; Connector:SPEC:31; Connector:JAVADOC:161;
      *
      *
      *
-     * @test_Strategy: Call DataSource.getConnection. Check whether the connection
-     * has been correctly allocated from the ConnectionManager.
+     * @test_Strategy: Call DataSource.getConnection. Check whether the connection has been correctly allocated from the
+     * ConnectionManager.
      *
      * Use the connection in some interactions with the database.
      *
@@ -158,13 +156,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testgetConnectionWithParameter1
      *
-     * @assertion_ids: Connector:SPEC:30; Connector:SPEC:27; Connector:SPEC:18;
-     * Connector:JAVADOC:234;
+     * @assertion_ids: Connector:SPEC:30; Connector:SPEC:27; Connector:SPEC:18; Connector:JAVADOC:234;
      *
-     * @test_Strategy: Call the DataSource.getConnection(username,password). See
-     * if ConnectionManager can create the ManagedConnection using
-     * ManagedConnectionFactory. Check for the validity of the connection which is
-     * returned by performing some queries to the database.
+     * @test_Strategy: Call the DataSource.getConnection(username,password). See if ConnectionManager can create the
+     * ManagedConnection using ManagedConnectionFactory. Check for the validity of the connection which is returned by
+     * performing some queries to the database.
      *
      *
      */
@@ -240,12 +236,10 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIResourceException
      *
-     * @assertion_ids: Connector:JAVADOC:7; Connector:JAVADOC:9;
-     * Connector:JAVADOC:10; Connector:JAVADOC:11; Connector:JAVADOC:12;
-     * Connector:JAVADOC:13; Connector:JAVADOC:14; Connector:JAVADOC:15;
+     * @assertion_ids: Connector:JAVADOC:7; Connector:JAVADOC:9; Connector:JAVADOC:10; Connector:JAVADOC:11;
+     * Connector:JAVADOC:12; Connector:JAVADOC:13; Connector:JAVADOC:14; Connector:JAVADOC:15;
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for ResourceException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for ResourceException;
      *
      *
      */
@@ -350,11 +344,10 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPINotSupportedException
      *
-     * @assertion_ids: Connector:JAVADOC:1; Connector:JAVADOC:2;
-     * Connector:JAVADOC:3; Connector:JAVADOC:4; Connector:JAVADOC:5;
+     * @assertion_ids: Connector:JAVADOC:1; Connector:JAVADOC:2; Connector:JAVADOC:3; Connector:JAVADOC:4;
+     * Connector:JAVADOC:5;
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for NotSupportedException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for NotSupportedException;
      *
      */
     public void testAPINotSupportedException() throws Fault {
@@ -434,12 +427,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPILocalTransactionException
      *
-     * @assertion_ids: Connector:JAVADOC:209; Connector:JAVADOC:210;
-     * Connector:JAVADOC:211; Connector:JAVADOC:212; Connector:JAVADOC:213;
+     * @assertion_ids: Connector:JAVADOC:209; Connector:JAVADOC:210; Connector:JAVADOC:211; Connector:JAVADOC:212;
+     * Connector:JAVADOC:213;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for LocalTransactionException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for LocalTransactionException;
      *
      */
     public void testAPILocalTransactionException() throws Fault {
@@ -519,12 +511,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIResourceAllocationException
      *
-     * @assertion_ids: Connector:JAVADOC:272; Connector:JAVADOC:273;
-     * Connector:JAVADOC:274; Connector:JAVADOC:275; Connector:JAVADOC:276;
+     * @assertion_ids: Connector:JAVADOC:272; Connector:JAVADOC:273; Connector:JAVADOC:274; Connector:JAVADOC:275;
+     * Connector:JAVADOC:276;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for ResourceAllocationException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for ResourceAllocationException;
      *
      */
     public void testAPIResourceAllocationException() throws Fault {
@@ -604,12 +595,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIResourceAdapterInternalException
      *
-     * @assertion_ids: Connector:JAVADOC:267; Connector:JAVADOC:268;
-     * Connector:JAVADOC:269; Connector:JAVADOC:270; Connector:JAVADOC:271;
+     * @assertion_ids: Connector:JAVADOC:267; Connector:JAVADOC:268; Connector:JAVADOC:269; Connector:JAVADOC:270;
+     * Connector:JAVADOC:271;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for ResourceAdapterInternalException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for ResourceAdapterInternalException;
      *
      */
     public void testAPIResourceAdapterInternalException() throws Fault {
@@ -689,12 +679,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPISecurityException
      *
-     * @assertion_ids: Connector:JAVADOC:282; Connector:JAVADOC:283;
-     * Connector:JAVADOC:284; Connector:JAVADOC:285; Connector:JAVADOC:286;
+     * @assertion_ids: Connector:JAVADOC:282; Connector:JAVADOC:283; Connector:JAVADOC:284; Connector:JAVADOC:285;
+     * Connector:JAVADOC:286;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for SecurityException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for SecurityException;
      *
      */
     public void testAPISecurityException() throws Fault {
@@ -774,12 +763,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPISharingViolationException
      *
-     * @assertion_ids: Connector:JAVADOC:289; Connector:JAVADOC:290;
-     * Connector:JAVADOC:291; Connector:JAVADOC:292; Connector:JAVADOC:293;
+     * @assertion_ids: Connector:JAVADOC:289; Connector:JAVADOC:290; Connector:JAVADOC:291; Connector:JAVADOC:292;
+     * Connector:JAVADOC:293;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for SharingViolationException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for SharingViolationException;
      *
      */
     public void testAPISharingViolationException() throws Fault {
@@ -859,12 +847,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIUnavailableException
      *
-     * @assertion_ids: Connector:JAVADOC:297; Connector:JAVADOC:298;
-     * Connector:JAVADOC:299; Connector:JAVADOC:300; Connector:JAVADOC:301;
+     * @assertion_ids: Connector:JAVADOC:297; Connector:JAVADOC:298; Connector:JAVADOC:299; Connector:JAVADOC:300;
+     * Connector:JAVADOC:301;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for UnavailableException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for UnavailableException;
      *
      */
     public void testAPIUnavailableException() throws Fault {
@@ -944,12 +931,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIWorkException
      *
-     * @assertion_ids: Connector:JAVADOC:387; Connector:JAVADOC:388;
-     * Connector:JAVADOC:389; Connector:JAVADOC:390; Connector:JAVADOC:391;
+     * @assertion_ids: Connector:JAVADOC:387; Connector:JAVADOC:388; Connector:JAVADOC:389; Connector:JAVADOC:390;
+     * Connector:JAVADOC:391;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for WorkException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for WorkException;
      *
      */
     public void testAPIWorkException() throws Fault {
@@ -1029,12 +1015,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIWorkCompletedException
      *
-     * @assertion_ids: Connector:JAVADOC:370; Connector:JAVADOC:371;
-     * Connector:JAVADOC:372; Connector:JAVADOC:373; Connector:JAVADOC:374;
+     * @assertion_ids: Connector:JAVADOC:370; Connector:JAVADOC:371; Connector:JAVADOC:372; Connector:JAVADOC:373;
+     * Connector:JAVADOC:374;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for WorkCompletedException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for WorkCompletedException;
      *
      */
     public void testAPIWorkCompletedException() throws Fault {
@@ -1114,12 +1099,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIWorkRejectedException
      *
-     * @assertion_ids: Connector:JAVADOC:408; Connector:JAVADOC:409;
-     * Connector:JAVADOC:410; Connector:JAVADOC:411; Connector:JAVADOC:412;
+     * @assertion_ids: Connector:JAVADOC:408; Connector:JAVADOC:409; Connector:JAVADOC:410; Connector:JAVADOC:411;
+     * Connector:JAVADOC:412;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for WorkRejectedException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for WorkRejectedException;
      *
      */
     public void testAPIWorkRejectedException() throws Fault {
@@ -1199,12 +1183,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIEISSystemException
      *
-     * @assertion_ids: Connector:JAVADOC:181; Connector:JAVADOC:182;
-     * Connector:JAVADOC:183; Connector:JAVADOC:184; Connector:JAVADOC:185;
+     * @assertion_ids: Connector:JAVADOC:181; Connector:JAVADOC:182; Connector:JAVADOC:183; Connector:JAVADOC:184;
+     * Connector:JAVADOC:185;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for EISSystemException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for EISSystemException;
      *
      */
     public void testAPIEISSystemException() throws Fault {
@@ -1284,12 +1267,12 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIApplicationServerInternalException
      *
-     * @assertion_ids: Connector:JAVADOC:118; Connector:JAVADOC:119;
-     * Connector:JAVADOC:120; Connector:JAVADOC:121; Connector:JAVADOC:122;
+     * @assertion_ids: Connector:JAVADOC:118; Connector:JAVADOC:119; Connector:JAVADOC:120; Connector:JAVADOC:121;
+     * Connector:JAVADOC:122;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for ApplicationServerInternalException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for
+     * ApplicationServerInternalException;
      *
      */
     public void testAPIApplicationServerInternalException() throws Fault {
@@ -1369,12 +1352,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPICommException
      *
-     * @assertion_ids: Connector:JAVADOC:134; Connector:JAVADOC:135;
-     * Connector:JAVADOC:136; Connector:JAVADOC:137; Connector:JAVADOC:138;
+     * @assertion_ids: Connector:JAVADOC:134; Connector:JAVADOC:135; Connector:JAVADOC:136; Connector:JAVADOC:137;
+     * Connector:JAVADOC:138;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for CommException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for CommException;
      *
      */
     public void testAPICommException() throws Fault {
@@ -1454,11 +1436,10 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIRetryableWorkRejectedException
      *
-     * @assertion_ids: Connector:JAVADOC:352; Connector:JAVADOC:353;
-     * Connector:JAVADOC:354; Connector:JAVADOC:355; Connector:JAVADOC:356;
+     * @assertion_ids: Connector:JAVADOC:352; Connector:JAVADOC:353; Connector:JAVADOC:354; Connector:JAVADOC:355;
+     * Connector:JAVADOC:356;
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for RetryableWorkRejectedException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for RetryableWorkRejectedException;
      *
      */
     public void testAPIRetryableWorkRejectedException() throws Fault {
@@ -1538,12 +1519,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIIllegalStateException
      *
-     * @assertion_ids: Connector:JAVADOC:186; Connector:JAVADOC:187;
-     * Connector:JAVADOC:188; Connector:JAVADOC:189; Connector:JAVADOC:190;
+     * @assertion_ids: Connector:JAVADOC:186; Connector:JAVADOC:187; Connector:JAVADOC:188; Connector:JAVADOC:189;
+     * Connector:JAVADOC:190;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for IllegalStateException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for IllegalStateException;
      *
      */
     public void testAPIIllegalStateException() throws Fault {
@@ -1623,12 +1603,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIRetryableUnavailableException
      *
-     * @assertion_ids: Connector:JAVADOC:277; Connector:JAVADOC:278;
-     * Connector:JAVADOC:279; Connector:JAVADOC:280; Connector:JAVADOC:281;
+     * @assertion_ids: Connector:JAVADOC:277; Connector:JAVADOC:278; Connector:JAVADOC:279; Connector:JAVADOC:280;
+     * Connector:JAVADOC:281;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for RetryableUnavailableException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for RetryableUnavailableException;
      *
      */
     public void testAPIRetryableUnavailableException() throws Fault {
@@ -1708,13 +1687,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIManagedConnectionMetaData
      *
-     * @assertion_ids: Connector:JAVADOC:248; Connector:JAVADOC:250;
-     * Connector:JAVADOC:252; Connector:JAVADOC:254; Connector:JAVADOC:23;
-     * Connector:JAVADOC:227;
+     * @assertion_ids: Connector:JAVADOC:248; Connector:JAVADOC:250; Connector:JAVADOC:252; Connector:JAVADOC:254;
+     * Connector:JAVADOC:23; Connector:JAVADOC:227;
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for ManagedConnectionMetaData;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for ManagedConnectionMetaData;
      *
      */
     public void testAPIManagedConnectionMetaData() throws Fault {
@@ -1794,13 +1771,11 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIManagedConnection
      *
-     * @assertion_ids: Connector:JAVADOC:225; Connector:JAVADOC:223;
-     * Connector:JAVADOC:230;
+     * @assertion_ids: Connector:JAVADOC:225; Connector:JAVADOC:223; Connector:JAVADOC:230;
      *
      *
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for ManagedConnection
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for ManagedConnection
      *
      */
     public void testAPIManagedConnection() throws Fault {
@@ -1864,12 +1839,10 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIInvalidPropertyException
      *
-     * @assertion_ids: Connector:JAVADOC:192; Connector:JAVADOC:193;
-     * Connector:JAVADOC:194; Connector:JAVADOC:195; Connector:JAVADOC:196;
-     * Connector:JAVADOC:197; Connector:JAVADOC:191;
+     * @assertion_ids: Connector:JAVADOC:192; Connector:JAVADOC:193; Connector:JAVADOC:194; Connector:JAVADOC:195;
+     * Connector:JAVADOC:196; Connector:JAVADOC:197; Connector:JAVADOC:191;
      *
-     * @test_Strategy: Call the DataSource.getConnection(). verify the API
-     * assertions for InvalidPropertyException;
+     * @test_Strategy: Call the DataSource.getConnection(). verify the API assertions for InvalidPropertyException;
      *
      */
     public void testAPIInvalidPropertyException() throws Fault {
@@ -1965,9 +1938,8 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testAPIHintsContext
      *
-     * @assertion_ids: Connector:JAVADOC:345; Connector:JAVADOC:346;
-     * Connector:JAVADOC:347; Connector:JAVADOC:348; Connector:JAVADOC:349;
-     * Connector:JAVADOC:350; Connector:JAVADOC:351;
+     * @assertion_ids: Connector:JAVADOC:345; Connector:JAVADOC:346; Connector:JAVADOC:347; Connector:JAVADOC:348;
+     * Connector:JAVADOC:349; Connector:JAVADOC:350; Connector:JAVADOC:351;
      *
      * @test_Strategy: verify the API assertions for HintsContext;
      *

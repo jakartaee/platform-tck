@@ -26,23 +26,20 @@ import java.net.*;
 import java.util.*;
 
 /**
- * This abstract class must be extended by all clients of all J2EE-TS tests. All
- * implementations of this class must define a setup, cleanup, and
- * runtest(method names of runtest methods must match the 'testname' tag. EETest
- * uses reflection to invoke these methods which in turn, run the test(s) to
- * completion. Tests are assumed to pass, unless a Fault is thrown.
+ * This abstract class must be extended by all clients of all J2EE-TS tests. All implementations of this class must
+ * define a setup, cleanup, and runtest(method names of runtest methods must match the 'testname' tag. EETest uses
+ * reflection to invoke these methods which in turn, run the test(s) to completion. Tests are assumed to pass, unless a
+ * Fault is thrown.
  *
  * @author Kyle Grucci
  */
 public abstract class EETest implements Serializable {
 
     /*
-     * Please do NOT change this class in an incompatible manner with respect to
-     * serialization. Please see the serialization specification to determine what
-     * is a compatible change versus incompatible. If you do need to change this
-     * class in an incompatible manner you will need to rebuild the compat tests.
-     * You should also increment the serialVersionUID field to denote that this
-     * class is incompatible with older versions.
+     * Please do NOT change this class in an incompatible manner with respect to serialization. Please see the serialization
+     * specification to determine what is a compatible change versus incompatible. If you do need to change this class in an
+     * incompatible manner you will need to rebuild the compat tests. You should also increment the serialVersionUID field
+     * to denote that this class is incompatible with older versions.
      */
     static final long serialVersionUID = -4235235600918875382L;
 
@@ -99,13 +96,14 @@ public abstract class EETest implements Serializable {
                 vLeftOverTestArgs.addElement(argv[ii]);
             }
         }
-        if (bRunIndividualTest) p.setProperty("testName", sTestCase);
+        if (bRunIndividualTest)
+            p.setProperty("testName", sTestCase);
         return p;
     }
 
     private Method getSetupMethod(Class testClass, Method runMethod) {
         String[] s = {};
-        Class[] setupParameterTypes = {s.getClass(), (new Properties()).getClass()};
+        Class[] setupParameterTypes = { s.getClass(), (new Properties()).getClass() };
         Method setupMethod = null;
 
         // first check for @SetupMethod annotation on run method
@@ -228,7 +226,8 @@ public abstract class EETest implements Serializable {
             TestUtil.logHarness("Exception while reading props file", e);
         } finally {
             try {
-                if (propertyFileInputStream != null) propertyFileInputStream.close();
+                if (propertyFileInputStream != null)
+                    propertyFileInputStream.close();
             } catch (IOException ex) {
                 TestUtil.logHarness("IOException while closing props file", ex);
             }
@@ -238,17 +237,13 @@ public abstract class EETest implements Serializable {
 
     /**
      * <p>
-     * This method is only called when test are run outside of JavaTest. If a
-     * testcase name is passed within argv, then that testcase is run. Otherwise,
-     * all testcases within this implementation of EETest are run.
+     * This method is only called when test are run outside of JavaTest. If a testcase name is passed within argv, then that
+     * testcase is run. Otherwise, all testcases within this implementation of EETest are run.
      * </p>
      *
-     * @param argv
-     *          an array of arguments that a test may use
-     * @param log
-     *          Stream passed to TestUtil for standard loggin
-     * @param err
-     *          Writer passed to TestUtil for error logging
+     * @param argv an array of arguments that a test may use
+     * @param log Stream passed to TestUtil for standard loggin
+     * @param err Writer passed to TestUtil for error logging
      * @return a Javatest {@link Status} object (passed or failed)
      */
     public Status run(String[] argv, PrintStream log, PrintStream err) {
@@ -256,17 +251,13 @@ public abstract class EETest implements Serializable {
     }
 
     /**
-     * This method is only called when tests are run outside of JavaTest or if the
-     * test is being run in the same VM as the harness. If a testcase name is
-     * passed within argv, then that testcase is run. Otherwise, all testcases
-     * within this implementation of EETest are run.
+     * This method is only called when tests are run outside of JavaTest or if the test is being run in the same VM as the
+     * harness. If a testcase name is passed within argv, then that testcase is run. Otherwise, all testcases within this
+     * implementation of EETest are run.
      *
-     * @param argv
-     *          an array of arguments that a test may use
-     * @param log
-     *          Writer passed to TestUtil for standard loggin
-     * @param err
-     *          Writer passed to TestUtil for error logging
+     * @param argv an array of arguments that a test may use
+     * @param log Writer passed to TestUtil for standard loggin
+     * @param err Writer passed to TestUtil for error logging
      * @return a Javatest {@link Status} object (passed or failed)
      */
     public Status run(String[] argv, PrintWriter log, PrintWriter err) {
@@ -296,7 +287,8 @@ public abstract class EETest implements Serializable {
             }
         }
         props.put("line.separator", System.getProperty("line.separator"));
-        if (sTestCase == null) return runAllTestCases(argv, props, log, err);
+        if (sTestCase == null)
+            return runAllTestCases(argv, props, log, err);
         else {
             // need to pass these streams to the Local Reporter
             TestUtil.setCurrentTest(sTestCase, log, err);
@@ -313,7 +305,8 @@ public abstract class EETest implements Serializable {
 
     protected void setTestStatus(Status s, Throwable t) {
         // only set the status for the first failure
-        if (sTestStatus.getType() == Status.PASSED) sTestStatus = s;
+        if (sTestStatus.getType() == Status.PASSED)
+            sTestStatus = s;
         if (t != null) {
             TestUtil.logErr(s.getReason());
             TestUtil.logErr("Exception at:  ", t);
@@ -366,22 +359,20 @@ public abstract class EETest implements Serializable {
         for (int ii = 0; ii < sTestCases.length; ii++) {
             TestUtil.logMsg(sTestCases[ii]);
         }
-        if (iFailedCount > 0) return Status.failed("FAILED");
-        else return Status.passed("PASSED");
+        if (iFailedCount > 0)
+            return Status.failed("FAILED");
+        else
+            return Status.passed("PASSED");
     }
 
     /**
-     * This method is only called from JavaTest to run a single testcase. All
-     * properties are determined from the source code tags.
+     * This method is only called from JavaTest to run a single testcase. All properties are determined from the source code
+     * tags.
      *
-     * @param argv
-     *          an array of arguments that a test may use
-     * @param p
-     *          properties that are used by the testcase
-     * @param log
-     *          stream passed to TestUtil for standard logging
-     * @param err
-     *          stream passed to TestUtil for error logging
+     * @param argv an array of arguments that a test may use
+     * @param p properties that are used by the testcase
+     * @param log stream passed to TestUtil for standard logging
+     * @param err stream passed to TestUtil for error logging
      * @return a Javatest Status object (passed or failed)
      */
     public Status run(String[] argv, Properties p, PrintWriter log, PrintWriter err) {
@@ -449,13 +440,10 @@ public abstract class EETest implements Serializable {
     // return new RemoteStatus(run(argv, p));
     // }
     /**
-     * This run method is the one that actually invokes reflection to figure out
-     * and invoke the testcase methods.
+     * This run method is the one that actually invokes reflection to figure out and invoke the testcase methods.
      *
-     * @param argv
-     *          an array of arguments that a test may use
-     * @param p
-     *          properties that are used by the testcase
+     * @param argv an array of arguments that a test may use
+     * @param p properties that are used by the testcase
      * @return a Javatest Status object (passed or failed)
      */
     public Status run(String[] argv, Properties p) {
@@ -467,7 +455,7 @@ public abstract class EETest implements Serializable {
 
         // commented out as it's not currently used
         // Class testArgTypes[] = {};
-        Object testArgs[] = {argv, p};
+        Object testArgs[] = { argv, p };
         TestUtil.logTrace("*** in EETest.run(argv,p)");
         if (sTestCase == null || sTestCase.equals("")) {
             // TestUtil.logTrace("*** in EETestrun(): testCase=null)");
@@ -495,19 +483,24 @@ public abstract class EETest implements Serializable {
             // }
             TestUtil.logTrace("TESTCLASS=" + testClass.getName());
             runMethod = getRunMethod(testClass);
-            if (runMethod == null) TestUtil.logTrace("* RUN METHOD is null and is not found");
+            if (runMethod == null)
+                TestUtil.logTrace("* RUN METHOD is null and is not found");
             else {
                 TestUtil.logTrace("** GOT RUN METHOD!");
                 TestUtil.logTrace("**runmethod=" + runMethod.getName());
             }
             TestUtil.logTrace("ABOUT TO GET SETUP METHOD!");
             setupMethod = getSetupMethod(testClass, runMethod);
-            if (setupMethod == null) TestUtil.logTrace("SETUP METHOD not found");
-            else TestUtil.logTrace("GOT SETUP METHOD!");
+            if (setupMethod == null)
+                TestUtil.logTrace("SETUP METHOD not found");
+            else
+                TestUtil.logTrace("GOT SETUP METHOD!");
 
             cleanupMethod = getCleanupMethod(testClass, runMethod);
-            if (cleanupMethod == null) TestUtil.logTrace("CLEANUP METHOD not found");
-            else TestUtil.logTrace("GOT CLEANUP METHOD!");
+            if (cleanupMethod == null)
+                TestUtil.logTrace("CLEANUP METHOD not found");
+            else
+                TestUtil.logTrace("GOT CLEANUP METHOD!");
             // if anything went wrong while getting our methods, return
             if (setupMethod == null || runMethod == null || cleanupMethod == null)
                 return Status.failed("One of the test methods could not be" + "found for testcase: " + sTestCase);
@@ -515,8 +508,10 @@ public abstract class EETest implements Serializable {
                 TestUtil.logTrace("ABOUT TO INVOKE SETUP METHOD!");
                 // if new classname is true, use that class name instead of
                 // "this" class.
-                if (nCl) setupMethod.invoke(testClInst, testArgs);
-                else setupMethod.invoke(this, testArgs);
+                if (nCl)
+                    setupMethod.invoke(testClInst, testArgs);
+                else
+                    setupMethod.invoke(this, testArgs);
                 TestUtil.logTrace("INVOKED SETUP METHOD!");
             } catch (IllegalAccessException e) {
                 setTestStatus(Status.failed("Could not execute setup method" + "for test case: " + sTestCase), e);
@@ -537,8 +532,10 @@ public abstract class EETest implements Serializable {
                 try {
                     // if new classname is true, use that class name instead of
                     // "this" class.
-                    if (nCl) runMethod.invoke(testClInst, (java.lang.Object[]) null);
-                    else runMethod.invoke(this, (java.lang.Object[]) null);
+                    if (nCl)
+                        runMethod.invoke(testClInst, (java.lang.Object[]) null);
+                    else
+                        runMethod.invoke(this, (java.lang.Object[]) null);
                 } catch (IllegalAccessException e) {
                     setTestStatus(Status.failed("Could not execute run method" + "for test case: " + sTestCase), e);
                 } catch (InvocationTargetException e) {
@@ -558,8 +555,10 @@ public abstract class EETest implements Serializable {
             try {
                 // if new classname is true, use that class name instead of
                 // "this" class.
-                if (nCl) cleanupMethod.invoke(testClInst, (java.lang.Object[]) null);
-                else cleanupMethod.invoke(this, (java.lang.Object[]) null);
+                if (nCl)
+                    cleanupMethod.invoke(testClInst, (java.lang.Object[]) null);
+                else
+                    cleanupMethod.invoke(this, (java.lang.Object[]) null);
             } catch (IllegalAccessException e) {
                 setTestStatus(Status.failed("Could not execute cleanup method for test case: " + sTestCase), e);
             } catch (InvocationTargetException e) {
@@ -602,12 +601,11 @@ public abstract class EETest implements Serializable {
             String sRelativeTestDir = sCurrentDir.substring(sCurrentDir.indexOf("tests/"));
             sRelativeTestDir = sRelativeTestDir.substring(sRelativeTestDir.indexOf("/") + 1);
             // make sure we have a trailing "/"
-            if (!sRelativeTestDir.endsWith("/")) sRelativeTestDir += "/"; /*
-                                  * Get public methods for this class Loop
-                                  * through them to get methods that return
-                                  * void, have no parameters, and contain "Test"
-                                  * in their name.
-                                  */
+            if (!sRelativeTestDir.endsWith("/"))
+                sRelativeTestDir += "/"; /*
+                                          * Get public methods for this class Loop through them to get methods that return void, have no parameters, and contain
+                                          * "Test" in their name.
+                                          */
 
             Method[] methods = testClass.getMethods();
             for (int ii = 0; ii < methods.length; ii++) {
@@ -632,8 +630,10 @@ public abstract class EETest implements Serializable {
                         // construct the JavaTest recognizable testname
                         sJavaTestName = sRelativeTestDir + sClientJavaName + "#" + sJavaTestName;
                         // for all tests, check to see if it's excluded
-                        if (!ExcludeListProcessor.isTestExcluded(sJavaTestName)) tests.addElement(sName);
-                        else System.out.println(sJavaTestName + " is excluded.");
+                        if (!ExcludeListProcessor.isTestExcluded(sJavaTestName))
+                            tests.addElement(sName);
+                        else
+                            System.out.println(sJavaTestName + " is excluded.");
                         sJavaTestName = "";
                     }
                 }
@@ -642,8 +642,7 @@ public abstract class EETest implements Serializable {
             throw new SetupException("Failed while getting all test methods: ", e);
         }
         /*
-         * Check size of vector, if <= 0, no methods match signature if > 0, copy
-         * values into testMethods array
+         * Check size of vector, if <= 0, no methods match signature if > 0, copy values into testMethods array
          */
         if (tests.size() <= 0)
             throw new SetupException("No methods match signature: " + "\"public void methodName()\"");
@@ -655,57 +654,47 @@ public abstract class EETest implements Serializable {
     }
 
     /**
-     * prints a string to the TestUtil log stream. All tests should use this
-     * method for standard logging messages
+     * prints a string to the TestUtil log stream. All tests should use this method for standard logging messages
      *
-     * @param msg
-     *          string to print to the log stream
+     * @param msg string to print to the log stream
      */
     public void logMsg(String msg) {
         TestUtil.logMsg(msg);
     }
 
     /**
-     * prints a debug string to the TestUtil log stream. All tests should use this
-     * method for verbose logging messages. Whether or not the string is printed
-     * is determined by the last call to the TestUtil setTrace method.
+     * prints a debug string to the TestUtil log stream. All tests should use this method for verbose logging messages.
+     * Whether or not the string is printed is determined by the last call to the TestUtil setTrace method.
      *
-     * @param msg
-     *          string to print to the log stream
+     * @param msg string to print to the log stream
      */
     public void logTrace(String msg) {
         TestUtil.logTrace(msg);
     }
 
     /**
-     * prints a string to the TestUtil error stream. All tests should use this
-     * method for error messages
+     * prints a string to the TestUtil error stream. All tests should use this method for error messages
      *
-     * @param msg
-     *          string to print to the error stream
+     * @param msg string to print to the error stream
      */
     public void logErr(String msg) {
         TestUtil.logErr(msg);
     }
 
     /**
-     * prints a string to the TestUtil error stream. All tests should use this
-     * method for error messages
+     * prints a string to the TestUtil error stream. All tests should use this method for error messages
      *
-     * @param msg
-     *          string to print to the error stream
-     * @param e
-     *          a Throwable whose stacktrace gets printed
+     * @param msg string to print to the error stream
+     * @param e a Throwable whose stacktrace gets printed
      */
     public void logErr(String msg, Throwable e) {
         TestUtil.logErr(msg, e);
     }
 
     /**
-     * This exception must be thrown by all implentations of EETest to signify a
-     * test failure. Overrides 3 printStackTrace methods to preserver the original
-     * stack trace. Using setStackTraceElement() would be more elegant but it is
-     * not available prior to j2se 1.4.
+     * This exception must be thrown by all implentations of EETest to signify a test failure. Overrides 3 printStackTrace
+     * methods to preserver the original stack trace. Using setStackTraceElement() would be more elegant but it is not
+     * available prior to j2se 1.4.
      *
      * @author Kyle Grucci
      */
@@ -725,10 +714,8 @@ public abstract class EETest implements Serializable {
         /**
          * creates a Fault with a message.
          *
-         * @param msg
-         *          the message
-         * @param t
-         *          prints this exception's stacktrace
+         * @param msg the message
+         * @param t prints this exception's stacktrace
          */
         public Fault(String msg, Throwable t) {
             super(msg);
@@ -739,8 +726,7 @@ public abstract class EETest implements Serializable {
         /**
          * creates a Fault with a Throwable.
          *
-         * @param t
-         *          the Throwable
+         * @param t the Throwable
          */
         public Fault(Throwable t) {
             super(t);
@@ -762,8 +748,7 @@ public abstract class EETest implements Serializable {
         /**
          * Prints this throwable and its backtrace to the specified print stream.
          *
-         * @param s
-         *          <code>PrintStream</code> to use for output
+         * @param s <code>PrintStream</code> to use for output
          */
         public void printStackTrace(PrintStream s) {
             if (this.t != null) {
@@ -776,8 +761,7 @@ public abstract class EETest implements Serializable {
         /**
          * Prints this throwable and its backtrace to the specified print writer.
          *
-         * @param s
-         *          <code>PrintWriter</code> to use for output
+         * @param s <code>PrintWriter</code> to use for output
          */
         public void printStackTrace(PrintWriter s) {
             if (this.t != null) {
@@ -794,17 +778,18 @@ public abstract class EETest implements Serializable {
 
         @Override
         public synchronized Throwable initCause(Throwable cause) {
-            if (t != null) throw new IllegalStateException("Can't overwrite cause");
-            if (!Exception.class.isInstance(cause)) throw new IllegalArgumentException("Cause not permitted");
+            if (t != null)
+                throw new IllegalStateException("Can't overwrite cause");
+            if (!Exception.class.isInstance(cause))
+                throw new IllegalArgumentException("Cause not permitted");
             this.t = (Exception) cause;
             return this;
         }
     }
 
     /**
-     * This exception is used only by EETest. Overrides 3 printStackTrace methods
-     * to preserver the original stack trace. Using setStackTraceElement() would
-     * be more elegant but it is not available prior to j2se 1.4.
+     * This exception is used only by EETest. Overrides 3 printStackTrace methods to preserver the original stack trace.
+     * Using setStackTraceElement() would be more elegant but it is not available prior to j2se 1.4.
      *
      * @author Kyle Grucci
      */
@@ -823,10 +808,8 @@ public abstract class EETest implements Serializable {
         /**
          * creates a SetupException with a message
          *
-         * @param msg
-         *          the message
-         * @param e
-         *          prints this exception's stacktrace
+         * @param msg the message
+         * @param e prints this exception's stacktrace
          */
         public SetupException(String msg, Exception e) {
             super(msg);
@@ -848,8 +831,7 @@ public abstract class EETest implements Serializable {
         /**
          * Prints this throwable and its backtrace to the specified print stream.
          *
-         * @param s
-         *          <code>PrintStream</code> to use for output
+         * @param s <code>PrintStream</code> to use for output
          */
         public void printStackTrace(PrintStream s) {
             if (this.e != null) {
@@ -862,8 +844,7 @@ public abstract class EETest implements Serializable {
         /**
          * Prints this throwable and its backtrace to the specified print writer.
          *
-         * @param s
-         *          <code>PrintWriter</code> to use for output
+         * @param s <code>PrintWriter</code> to use for output
          */
         public void printStackTrace(PrintWriter s) {
             if (this.e != null) {
@@ -880,8 +861,10 @@ public abstract class EETest implements Serializable {
 
         @Override
         public synchronized Throwable initCause(Throwable cause) {
-            if (e != null) throw new IllegalStateException("Can't overwrite cause");
-            if (!Exception.class.isInstance(cause)) throw new IllegalArgumentException("Cause not permitted");
+            if (e != null)
+                throw new IllegalStateException("Can't overwrite cause");
+            if (!Exception.class.isInstance(cause))
+                throw new IllegalArgumentException("Cause not permitted");
             this.e = (Exception) cause;
             return this;
         }

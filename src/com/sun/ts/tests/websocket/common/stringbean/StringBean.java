@@ -17,9 +17,8 @@
 package com.sun.ts.tests.websocket.common.stringbean;
 
 /**
- * This is the object which standard implementation does not have a provider
- * for, even though its some simple String holder. It can also be used as
- * mutable string.
+ * This is the object which standard implementation does not have a provider for, even though its some simple String
+ * holder. It can also be used as mutable string.
  */
 public class StringBean {
     private String value;

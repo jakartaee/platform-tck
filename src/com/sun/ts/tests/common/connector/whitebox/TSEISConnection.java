@@ -140,7 +140,8 @@ public class TSEISConnection implements TSConnection {
      * @desc close a connection to the EIS.
      */
     public void close() throws Exception {
-        if (mc == null) return; // already be closed
+        if (mc == null)
+            return; // already be closed
         mc.removeTSConnection(this);
         mc.sendEvent(ConnectionEvent.CONNECTION_CLOSED, null, this);
         mc = null;

@@ -126,11 +126,13 @@ public class S1TestBeanEJB implements SessionBean {
                     "Verify that the UserTransaction commit call" + "commited the transaction to the database level");
 
             tempName1 = beanRef.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             tempName2 = beanRef.getDbBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b1) {
@@ -173,8 +175,7 @@ public class S1TestBeanEJB implements SessionBean {
             TestUtil.logMsg("Looking up home interface for EJB: " + txEBeanMandatory);
             beanHome = (TxEBeanHome) jctx.lookup(txEBeanMandatory, TxEBeanHome.class);
             TestUtil.logMsg("Creating entity EJB = " + pkey.toString());
-            beanRef = (TxEBean)
-                    beanHome.create(tName, pkey.intValue(), tName + "-" + pkey.intValue(), (float) 1.00, testProps);
+            beanRef = (TxEBean) beanHome.create(tName, pkey.intValue(), tName + "-" + pkey.intValue(), (float) 1.00, testProps);
 
             TestUtil.logTrace("Entity EJB objects created!");
             TestUtil.logMsg("TransactionRequiredException NOT thrown as expected!");

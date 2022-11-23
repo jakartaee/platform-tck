@@ -41,7 +41,8 @@ public class B implements java.io.Serializable {
     // ===========================================================
     // constructors
 
-    public B() {}
+    public B() {
+    }
 
     public B(String id, String name, int value) {
         this.id = id;

@@ -20,4 +20,5 @@
 
 package com.sun.ts.tests.ejb30.common.allowed;
 
-public interface AllowedLocalIF extends AllowedIF {}
+public interface AllowedLocalIF extends AllowedIF {
+}

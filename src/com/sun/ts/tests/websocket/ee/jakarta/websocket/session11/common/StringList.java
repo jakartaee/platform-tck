@@ -18,4 +18,5 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.session11.common;
 
 import java.util.List;
 
-public interface StringList extends List<String> {}
+public interface StringList extends List<String> {
+}

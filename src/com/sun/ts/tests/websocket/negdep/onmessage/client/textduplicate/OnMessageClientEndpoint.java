@@ -27,7 +27,7 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(decoders = {StringBeanTextDecoder.class})
+@ClientEndpoint(decoders = { StringBeanTextDecoder.class })
 public class OnMessageClientEndpoint extends AnnotatedStringClientEndpoint {
 
     @Override

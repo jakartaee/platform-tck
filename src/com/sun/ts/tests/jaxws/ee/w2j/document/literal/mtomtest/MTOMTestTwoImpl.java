@@ -27,12 +27,7 @@ import jakarta.jws.WebService;
 import jakarta.xml.ws.BindingType;
 import jakarta.xml.ws.soap.SOAPBinding;
 
-@WebService(
-        portName = "MTOMTestTwoPort",
-        serviceName = "MTOMTestService",
-        targetNamespace = "http://mtomtestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLMTOMTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomtest.MTOMTestTwo")
+@WebService(portName = "MTOMTestTwoPort", serviceName = "MTOMTestService", targetNamespace = "http://mtomtestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLMTOMTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.mtomtest.MTOMTestTwo")
 @BindingType(SOAPBinding.SOAP11HTTP_MTOM_BINDING)
 public class MTOMTestTwoImpl implements MTOMTestTwo {
 

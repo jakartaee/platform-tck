@@ -81,9 +81,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:313.4; EJB:SPEC:265; EJB:SPEC:314; EJB:SPEC:314.1
      *
-     * @test_Strategy: Return local interface type by executing the
-     * "findCustomerByHomePhone" method which is defined on the local home
-     * interface thus returning an EJBLocalObject.
+     * @test_Strategy: Return local interface type by executing the "findCustomerByHomePhone" method which is defined on the
+     * local home interface thus returning an EJBLocalObject.
      */
 
     public void selectTest1() throws Fault {
@@ -104,7 +103,8 @@ public class Client extends EETest {
             throw new Fault("selectTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("selectTest1 failed");
+        if (!pass)
+            throw new Fault("selectTest1 failed");
     }
 
     /*
@@ -112,9 +112,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:414; EJB:SPEC:291; EJB:SPEC:292; EJB:SPEC:373
      *
-     * @test_Strategy: Execute the ejbSelectHomeAddress method and ensure that a
-     * reference of an EJBLocalObject has been returned. The return-type-mapping
-     * element is defined as LOCAL.
+     * @test_Strategy: Execute the ejbSelectHomeAddress method and ensure that a reference of an EJBLocalObject has been
+     * returned. The return-type-mapping element is defined as LOCAL.
      *
      */
 
@@ -138,20 +137,18 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest2 failed", e);
         }
-        if (!pass) throw new Fault("selectTest2 failed");
+        if (!pass)
+            throw new Fault("selectTest2 failed");
     }
 
     /*
      * @testName: selectTest3
      *
-     * @assertion_ids: EJB:SPEC:371; EJB:SPEC:276; EJB:SPEC:282; EJB:SPEC:293;
-     * EJB:SPEC:313.1
+     * @assertion_ids: EJB:SPEC:371; EJB:SPEC:276; EJB:SPEC:282; EJB:SPEC:293; EJB:SPEC:313.1
      *
-     * @test_Strategy: If the result type of an ejbSelectMETHOD is java.util.Set
-     * it is the responsibility of the Persistence Manager to ensure that
-     * duplicates are removed even if the keyword DISTINCT is not used within the
-     * SELECT clause. Execute the ejbSelectHomeZipCodesByCity method and ensure
-     * the query returns zip codes without duplicates.
+     * @test_Strategy: If the result type of an ejbSelectMETHOD is java.util.Set it is the responsibility of the Persistence
+     * Manager to ensure that duplicates are removed even if the keyword DISTINCT is not used within the SELECT clause.
+     * Execute the ejbSelectHomeZipCodesByCity method and ensure the query returns zip codes without duplicates.
      *
      */
 
@@ -179,7 +176,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest3 failed", e);
         }
-        if (!pass) throw new Fault("selectTest3 failed");
+        if (!pass)
+            throw new Fault("selectTest3 failed");
     }
 
     /*
@@ -187,9 +185,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:313.2
      *
-     * @test_Strategy: The result type of a select method can be a collection of
-     * cmp-field values. Execute the ejbSelectAllHomeZipCodesByCity and ensure
-     * that the query returns expected zip codes.
+     * @test_Strategy: The result type of a select method can be a collection of cmp-field values. Execute the
+     * ejbSelectAllHomeZipCodesByCity and ensure that the query returns expected zip codes.
      *
      */
 
@@ -222,7 +219,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest4 failed", e);
         }
-        if (!pass) throw new Fault("selectTest4 failed");
+        if (!pass)
+            throw new Fault("selectTest4 failed");
     }
 
     /*
@@ -230,9 +228,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:320; EJB:SPEC:313.7; EJB:SPEC:370
      *
-     * @test_Strategy: Find all orders whose totalPrice is greater than that of
-     * the specified customer by executing the findAllOrdersWithGreaterPrice
-     * query.
+     * @test_Strategy: Find all orders whose totalPrice is greater than that of the specified customer by executing the
+     * findAllOrdersWithGreaterPrice query.
      *
      */
 
@@ -261,7 +258,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest5 failed", e);
         }
-        if (!pass) throw new Fault("selectTest5 failed");
+        if (!pass)
+            throw new Fault("selectTest5 failed");
     }
 
     /*
@@ -269,9 +267,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:414; EJB:SPEC:277
      *
-     * @test_Strategy: Return all customer references by executing the overloaded
-     * ejbSelectCustomersByAlias method and ensure that remote references to have
-     * been returned. The return-type-mapping element is defined as REMOTE.
+     * @test_Strategy: Return all customer references by executing the overloaded ejbSelectCustomersByAlias method and
+     * ensure that remote references to have been returned. The return-type-mapping element is defined as REMOTE.
      */
 
     public void selectTest6() throws Fault {
@@ -296,7 +293,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest6 failed", e);
         }
-        if (!pass) throw new Fault("selectTest6 failed");
+        if (!pass)
+            throw new Fault("selectTest6 failed");
     }
 
     /*
@@ -304,8 +302,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:372
      *
-     * @test_Strategy: The SELECT clause must be specified to return a
-     * single-valued expression. Find all line items related to an order.
+     * @test_Strategy: The SELECT clause must be specified to return a single-valued expression. Find all line items related
+     * to an order.
      *
      */
 
@@ -318,7 +316,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Find all line items related to the orders");
             o = orderHome.selectAllLineItems();
             expectedDVCs = new LineItemDVC[Schema.NUMOFLINEITEMS];
-            for (int i = 0; i < Schema.NUMOFLINEITEMS; i++) expectedDVCs[i] = Schema.lineItemDVC[i];
+            for (int i = 0; i < Schema.NUMOFLINEITEMS; i++)
+                expectedDVCs[i] = Schema.lineItemDVC[i];
             if (!Util.checkLineItemDVCs(o, expectedDVCs)) {
                 TestUtil.logErr("UnSuccessfully found all line items");
                 pass = false;
@@ -330,7 +329,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest7 failed", e);
         }
-        if (!pass) throw new Fault("selectTest7 failed");
+        if (!pass)
+            throw new Fault("selectTest7 failed");
     }
 
     /*
@@ -338,8 +338,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:313.5
      *
-     * @test_Strategy: Find all work addresses by executing the
-     * ejbSelectAllWorkAddresses method.
+     * @test_Strategy: Find all work addresses by executing the ejbSelectAllWorkAddresses method.
      *
      */
 
@@ -365,7 +364,8 @@ public class Client extends EETest {
             throw new Fault("selectTest8 failed", e);
         }
 
-        if (!pass) throw new Fault("selectTest8 failed");
+        if (!pass)
+            throw new Fault("selectTest8 failed");
     }
 
     /*
@@ -373,9 +373,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:313.5; EJB:SPEC:149
      *
-     * @test_Strategy: Return local interface type by executing the select method,
-     * ejbSelectPhonesByArea, returning a Collection of local references. The
-     * return-type-mapping element is set to LOCAL.
+     * @test_Strategy: Return local interface type by executing the select method, ejbSelectPhonesByArea, returning a
+     * Collection of local references. The return-type-mapping element is set to LOCAL.
      *
      *
      */
@@ -402,7 +401,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest9 failed", e);
         }
-        if (!pass) throw new Fault("selectTest9 failed");
+        if (!pass)
+            throw new Fault("selectTest9 failed");
     }
 
     /*
@@ -410,9 +410,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:371; EJB:SPEC:374
      *
-     * @test_Strategy: Execute the ejbSelectCustomerAddressBySet which includes
-     * the DISTINCT keyword in its' query and ensure the query returns work
-     * addresses without duplicates as expected.
+     * @test_Strategy: Execute the ejbSelectCustomerAddressBySet which includes the DISTINCT keyword in its' query and
+     * ensure the query returns work addresses without duplicates as expected.
      *
      */
 
@@ -441,7 +440,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest10 failed", e);
         }
-        if (!pass) throw new Fault("selectTest10 failed");
+        if (!pass)
+            throw new Fault("selectTest10 failed");
     }
 
     /*
@@ -449,10 +449,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:374
      *
-     * @test_Strategy: If the result type of an ejbSelectMETHOD is
-     * java.util.Collection and the reserved word DISTINCT is used, duplicates
-     * will be removed. Execute the ejbSelectCustomerAddressByCollection method
-     * and ensure that the query returns the work addresses without duplicates.
+     * @test_Strategy: If the result type of an ejbSelectMETHOD is java.util.Collection and the reserved word DISTINCT is
+     * used, duplicates will be removed. Execute the ejbSelectCustomerAddressByCollection method and ensure that the query
+     * returns the work addresses without duplicates.
      *
      */
 
@@ -482,23 +481,20 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest11 failed", e);
         }
-        if (!pass) throw new Fault("selectTest11 failed");
+        if (!pass)
+            throw new Fault("selectTest11 failed");
     }
 
     /*
      * @testName: selectTest12
      *
-     * @assertion_ids: EJB:SPEC:314.2; EJB:SPEC:271; EJB:SPEC:226; EJB:SPEC:271;
-     * EJB:SPEC:290
+     * @assertion_ids: EJB:SPEC:314.2; EJB:SPEC:271; EJB:SPEC:226; EJB:SPEC:271; EJB:SPEC:290
      *
-     * @test_Strategy: How the results type of a query is mapped depends on
-     * whether the query is defined on a finder method on the remote interface,
-     * for a finder on the local inteface, or for a select method. Query result
-     * values that designate the abstract schema type of an entity bean will be
-     * mapped to either entity bean local or remote interface types depending on
-     * the query method. Return local interface type by executing the
-     * "findCustomerByWorkCity" method which is defined on the local home
-     * interface thus returning a Collection of local references.
+     * @test_Strategy: How the results type of a query is mapped depends on whether the query is defined on a finder method
+     * on the remote interface, for a finder on the local inteface, or for a select method. Query result values that
+     * designate the abstract schema type of an entity bean will be mapped to either entity bean local or remote interface
+     * types depending on the query method. Return local interface type by executing the "findCustomerByWorkCity" method
+     * which is defined on the local home interface thus returning a Collection of local references.
      *
      */
 
@@ -510,7 +506,8 @@ public class Client extends EETest {
             TestUtil.logMsg("Find All Customers By Work City");
             c = customerHome.getCustomersByWorkCity("Burlington");
             expectedPKs = new String[Schema.NUMOFCUSTOMERS];
-            for (int i = 0; i < Schema.NUMOFCUSTOMERS; i++) expectedPKs[i] = Integer.toString(i + 1);
+            for (int i = 0; i < Schema.NUMOFCUSTOMERS; i++)
+                expectedPKs[i] = Integer.toString(i + 1);
             if (!Util.checkEJBs(c, Schema.CUSTOMERREF, expectedPKs)) {
                 TestUtil.logErr("UnSuccessfully found all customers working in City: Burlington");
                 pass = false;
@@ -523,7 +520,8 @@ public class Client extends EETest {
             throw new Fault("selectTest12 failed", e);
         }
 
-        if (!pass) throw new Fault("selectTest12 failed");
+        if (!pass)
+            throw new Fault("selectTest12 failed");
     }
 
     /*
@@ -531,9 +529,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:374
      *
-     * @test_Strategy: Execute the findCustomersByQuery30 method where the query
-     * contains the reserved word DISTINCT and ensure the query returns customers
-     * without duplicates.
+     * @test_Strategy: Execute the findCustomersByQuery30 method where the query contains the reserved word DISTINCT and
+     * ensure the query returns customers without duplicates.
      *
      */
 
@@ -569,18 +566,17 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest13 failed", e);
         }
-        if (!pass) throw new Fault("selectTest13 failed");
+        if (!pass)
+            throw new Fault("selectTest13 failed");
     }
 
     /*
      * @testName: selectTest15
      *
-     * @assertion_ids: EJB:SPEC:381; EJB:SPEC:313.3; EJB:SPEC:386; EJB:SPEC:406;
-     * EJB:SPEC:406.1
+     * @assertion_ids: EJB:SPEC:381; EJB:SPEC:313.3; EJB:SPEC:386; EJB:SPEC:406; EJB:SPEC:406.1
      *
-     * @test_Strategy: Execute the single-object select method ejbSelectMinSingle
-     * which contains the aggregate function MIN. Verify the results are
-     * accurately returned.
+     * @test_Strategy: Execute the single-object select method ejbSelectMinSingle which contains the aggregate function MIN.
+     * Verify the results are accurately returned.
      *
      */
 
@@ -603,7 +599,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest15 failed", e);
         }
-        if (!pass) throw new Fault("selectTest15 failed");
+        if (!pass)
+            throw new Fault("selectTest15 failed");
     }
 
     /*
@@ -611,9 +608,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:382; EJB:SPEC:387; EJB:SPEC:406; EJB:SPEC:406.1
      *
-     * @test_Strategy: Execute the single-object select method ejbSelectMaxSingle
-     * which contains the aggregate function MAX. Verify the results are
-     * accurately returned.
+     * @test_Strategy: Execute the single-object select method ejbSelectMaxSingle which contains the aggregate function MAX.
+     * Verify the results are accurately returned.
      *
      */
 
@@ -636,7 +632,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest17 failed", e);
         }
-        if (!pass) throw new Fault("selectTest17 failed");
+        if (!pass)
+            throw new Fault("selectTest17 failed");
     }
 
     /*
@@ -644,9 +641,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:380; EJB:SPEC:406; EJB:SPEC:406.1; EJB:SPEC:385
      *
-     * @test_Strategy: Execute the single-object select method ejbSelectAvgSingle
-     * which contains the aggregate function AVG. Verify the results are
-     * accurately returned.
+     * @test_Strategy: Execute the single-object select method ejbSelectAvgSingle which contains the aggregate function AVG.
+     * Verify the results are accurately returned.
      *
      */
 
@@ -669,7 +665,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest19 failed", e);
         }
-        if (!pass) throw new Fault("selectTest19 failed");
+        if (!pass)
+            throw new Fault("selectTest19 failed");
     }
 
     /*
@@ -677,9 +674,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:383; EJB:SPEC:406; EJB:SPEC:406.1; EJB:SPEC:388
      *
-     * @test_Strategy: Execute the single-object select method ejbSelectSumSingle
-     * which contains the aggregate function SUM. Verify the results are
-     * accurately returned.
+     * @test_Strategy: Execute the single-object select method ejbSelectSumSingle which contains the aggregate function SUM.
+     * Verify the results are accurately returned.
      *
      */
 
@@ -702,7 +698,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest21 failed", e);
         }
-        if (!pass) throw new Fault("selectTest21 failed");
+        if (!pass)
+            throw new Fault("selectTest21 failed");
     }
 
     /*
@@ -710,9 +707,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:384; EJB:SPEC:406; EJB:SPEC:406.4
      *
-     * @test_Strategy: Execute the single-object select method
-     * ejbSelectCountSingle which contains the aggregate function Count. Verify
-     * the results are accurately returned.
+     * @test_Strategy: Execute the single-object select method ejbSelectCountSingle which contains the aggregate function
+     * Count. Verify the results are accurately returned.
      *
      */
 
@@ -736,7 +732,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest23 failed", e);
         }
-        if (!pass) throw new Fault("selectTest23 failed");
+        if (!pass)
+            throw new Fault("selectTest23 failed");
     }
 
     /*
@@ -744,8 +741,7 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Execute two queries of different context and ensure the
-     * same cardinality results between the two.
+     * @test_Strategy: Execute two queries of different context and ensure the same cardinality results between the two.
      *
      */
 
@@ -774,7 +770,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest25 failed", e);
         }
-        if (!pass) throw new Fault("selectTest25 failed");
+        if (!pass)
+            throw new Fault("selectTest25 failed");
     }
 
     /*
@@ -782,14 +779,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:329
      *
-     * @test_Strategy: Find home addresses using a query to verify "inner join"
-     * semantics.
+     * @test_Strategy: Find home addresses using a query to verify "inner join" semantics.
      *
      */
 
     public void selectTest26() throws Fault {
         boolean pass = true;
-        AddressDVC expAddressDVCs[] = new AddressDVC[] {Schema.addressDVC[0], Schema.addressDVC[2]};
+        AddressDVC expAddressDVCs[] = new AddressDVC[] { Schema.addressDVC[0], Schema.addressDVC[2] };
         Collection c = null;
 
         try {
@@ -808,7 +804,8 @@ public class Client extends EETest {
             throw new Fault("selectTest26 failed", e);
         }
 
-        if (!pass) throw new Fault("selectTest26 failed");
+        if (!pass)
+            throw new Fault("selectTest26 failed");
     }
 
     /*
@@ -816,10 +813,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:414; EJB:SPEC:277
      *
-     * @test_Strategy: Return all customer references by executing the
-     * ejbSelectCustomersByAlias method which is overloaded and the correct
-     * references to have been returned. The return-type-mapping element is
-     * defined as REMOTE.
+     * @test_Strategy: Return all customer references by executing the ejbSelectCustomersByAlias method which is overloaded
+     * and the correct references to have been returned. The return-type-mapping element is defined as REMOTE.
      */
 
     public void selectTest28() throws Fault {
@@ -844,7 +839,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(e);
             throw new Fault("selectTest28 failed", e);
         }
-        if (!pass) throw new Fault("selectTest28 failed");
+        if (!pass)
+            throw new Fault("selectTest28 failed");
     }
 
     public void cleanup() throws Fault {

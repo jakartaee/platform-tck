@@ -114,8 +114,10 @@ public class TestBean1EJB implements SessionBean {
         try {
             TestUtil.logMsg("obtain naming context");
             nctx = new TSNamingContext();
-            if (c != null) return nctx.lookup(s, c);
-            else return nctx.lookup(s);
+            if (c != null)
+                return nctx.lookup(s, c);
+            else
+                return nctx.lookup(s);
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new EJBException("lookup failed: " + e);

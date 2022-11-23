@@ -42,5 +42,6 @@ public class InterceptorInstanceBean implements InterceptorInstanceIF {
     @Remove
     @ExcludeDefaultInterceptors
     @ExcludeClassInterceptors
-    public void remove() {}
+    public void remove() {
+    }
 }

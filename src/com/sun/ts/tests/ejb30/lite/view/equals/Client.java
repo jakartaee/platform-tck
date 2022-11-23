@@ -67,10 +67,8 @@ public class Client extends EJBLiteClientBase {
      * @testName: statelessEquals
      */
     public void statelessEquals() {
-        StatelessEqualsBean b0 =
-                (StatelessEqualsBean) lookup("noInterfaceStateless", "StatelessEqualsBean", StatelessEqualsBean.class);
-        StatelessEqualsBean b00 = (StatelessEqualsBean)
-                lookup("noInterfaceStatelessAgain", "StatelessEqualsBean", StatelessEqualsBean.class);
+        StatelessEqualsBean b0 = (StatelessEqualsBean) lookup("noInterfaceStateless", "StatelessEqualsBean", StatelessEqualsBean.class);
+        StatelessEqualsBean b00 = (StatelessEqualsBean) lookup("noInterfaceStatelessAgain", "StatelessEqualsBean", StatelessEqualsBean.class);
 
         // self equals, equals among bean refs to the same EJB of the same business
         // interface
@@ -113,10 +111,8 @@ public class Client extends EJBLiteClientBase {
      * @testName: statefulEquals
      */
     public void statefulEquals() {
-        StatefulEqualsBean b0 =
-                (StatefulEqualsBean) lookup("noInterfaceStateful", "StatefulEqualsBean", StatefulEqualsBean.class);
-        StatefulEqualsBean b00 =
-                (StatefulEqualsBean) lookup("noInterfaceStatefulAgain", "StatefulEqualsBean", StatefulEqualsBean.class);
+        StatefulEqualsBean b0 = (StatefulEqualsBean) lookup("noInterfaceStateful", "StatefulEqualsBean", StatefulEqualsBean.class);
+        StatefulEqualsBean b00 = (StatefulEqualsBean) lookup("noInterfaceStatefulAgain", "StatefulEqualsBean", StatefulEqualsBean.class);
 
         // self equals, not equals among bean refs to the same EJB of the same
         // business interface
@@ -150,10 +146,8 @@ public class Client extends EJBLiteClientBase {
      * @testName: singletonEquals
      */
     public void singletonEquals() {
-        BusinessLocalIF1 b0 =
-                (BusinessLocalIF1) lookup("businessLocalIF1Singleton", "SingletonEqualsBean", BusinessLocalIF1.class);
-        BusinessLocalIF1 b00 = (BusinessLocalIF1)
-                lookup("businessLocalIF1SingletonAgain", "SingletonEqualsBean", BusinessLocalIF1.class);
+        BusinessLocalIF1 b0 = (BusinessLocalIF1) lookup("businessLocalIF1Singleton", "SingletonEqualsBean", BusinessLocalIF1.class);
+        BusinessLocalIF1 b00 = (BusinessLocalIF1) lookup("businessLocalIF1SingletonAgain", "SingletonEqualsBean", BusinessLocalIF1.class);
 
         // self equals, equals among bean refs to the same EJB of the same business
         // interface

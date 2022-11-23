@@ -39,7 +39,8 @@ public class Timestamp_Field implements java.io.Serializable {
     @Basic
     protected String name;
 
-    public Timestamp_Field() {}
+    public Timestamp_Field() {
+    }
 
     public Timestamp_Field(String id) {
         this.id = id;

@@ -29,19 +29,22 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "RemoteCalculatorBean", description = "a simple stateless session bean")
-@Remote({RemoteCalculator.class})
+@Remote({ RemoteCalculator.class })
 public class RemoteCalculatorBean extends BaseRemoteCalculator implements RemoteCalculator {
 
     @Resource
     private SessionContext sessionContext;
 
-    public RemoteCalculatorBean() {}
+    public RemoteCalculatorBean() {
+    }
 
     // @PostConstruct
-    public void postConstruct() {}
+    public void postConstruct() {
+    }
 
     // @PreDestroy
-    public void preDestroy() {}
+    public void preDestroy() {
+    }
 
     @Override
     public int remoteAdd(int a, int b) {

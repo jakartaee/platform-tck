@@ -24,7 +24,8 @@ import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 public abstract class EjbLinkBeanBase implements EjbLinkIF {
-    public void call() throws TestFailedException {}
+    public void call() throws TestFailedException {
+    }
 
     public void localCall(int[] f) throws TestFailedException {
         f[0] = 1;
@@ -32,7 +33,7 @@ public abstract class EjbLinkBeanBase implements EjbLinkIF {
 
     public void callOneLocal() throws TestFailedException {
         EjbLinkLocalIF localBean1 = (EjbLinkLocalIF) ServiceLocator.lookupNoTry(Constants.BEAN1_LOCAL_REF_NAME);
-        int[] f = new int[] {0};
+        int[] f = new int[] { 0 };
         int expected = 1;
         localBean1.localCall(f);
         if (f[0] != expected) {

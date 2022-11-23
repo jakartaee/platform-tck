@@ -55,8 +55,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client client = new Client();
@@ -88,9 +87,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1011
      *
-     * @test_Strategy: A valid request is made to the endpoint and the returned
-     *                 response is investigated in order to determine the document
-     *                 composition.
+     * @test_Strategy: A valid request is made to the endpoint and the returned response is investigated in order to
+     * determine the document composition.
      *
      * @throws Fault
      */
@@ -136,9 +134,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1011
      *
-     * @test_Strategy: A request is made from the generated client. A handler
-     *                 verifies the encoding. The returned string indicates the
-     *                 success or failure.
+     * @test_Strategy: A request is made from the generated client. A handler verifies the encoding. The returned string
+     * indicates the success or failure.
      *
      * @throws Fault
      */

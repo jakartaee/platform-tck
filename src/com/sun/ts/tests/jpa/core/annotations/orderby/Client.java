@@ -45,7 +45,8 @@ public class Client extends PMClientBase {
 
     Address2 addr13 = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -90,18 +91,14 @@ public class Client extends PMClientBase {
     /*
      * @testName: orderByTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104;
-     * PERSISTENCE:SPEC:1106; PERSISTENCE:JAVADOC:145;
+     * @assertion_ids: PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104; PERSISTENCE:SPEC:1106; PERSISTENCE:JAVADOC:145;
      *
-     * @test_Strategy: The OrderBy annotation specifies the ordering of the
-     * elements of a collection valued association at the point when the
-     * association is retrieved.
+     * @test_Strategy: The OrderBy annotation specifies the ordering of the elements of a collection valued association at
+     * the point when the association is retrieved.
      *
-     * The property name must correspond to that of a persistenct property of the
-     * associated class.
+     * The property name must correspond to that of a persistenct property of the associated class.
      *
-     * The property used in the ordering must correspond to columns for which
-     * comparison operations are supported.
+     * The property used in the ordering must correspond to columns for which comparison operations are supported.
      *
      * If DESC is specified, the elements will be ordered in descending order.
      *
@@ -114,7 +111,7 @@ public class Client extends PMClientBase {
         boolean pass1 = true;
         boolean pass2 = false;
         List resultsList = new ArrayList();
-        final String[] expectedResult = new String[] {"Zoe", "Song", "Jie", "Ay"};
+        final String[] expectedResult = new String[] { "Zoe", "Song", "Jie", "Ay" };
 
         try {
             getEntityTransaction().begin();
@@ -161,25 +158,22 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("orderByTest1 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("orderByTest1 failed");
     }
 
     /*
      * @testName: orderByTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104;
-     * PERSISTENCE:SPEC:1106; PERSISTENCE:SPEC:1109; PERSISTENCE:SPEC:1110;
-     * PERSISTENCE:JAVADOC:145; PERSISTENCE:SPEC:653
+     * @assertion_ids: PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104; PERSISTENCE:SPEC:1106; PERSISTENCE:SPEC:1109;
+     * PERSISTENCE:SPEC:1110; PERSISTENCE:JAVADOC:145; PERSISTENCE:SPEC:653
      *
-     * @test_Strategy: The OrderBy annotation specifies the ordering of the
-     * elements of a collection valued association at the point when the
-     * association is retrieved.
+     * @test_Strategy: The OrderBy annotation specifies the ordering of the elements of a collection valued association at
+     * the point when the association is retrieved.
      *
-     * The property name must correspond to that of a persistenct property of the
-     * associated class.
+     * The property name must correspond to that of a persistenct property of the associated class.
      *
-     * The property used in the ordering must correspond to columns for which
-     * comparison operations are supported.
+     * The property used in the ordering must correspond to columns for which comparison operations are supported.
      *
      * If ASC is specified, the elements will be ordered in ascending order.
      *
@@ -192,7 +186,7 @@ public class Client extends PMClientBase {
         boolean pass1 = true;
         boolean pass2 = false;
         List resultsList = new ArrayList();
-        final String[] expectedResult = new String[] {"Jie", "Song", "Yay", "Zoe"};
+        final String[] expectedResult = new String[] { "Jie", "Song", "Yay", "Zoe" };
 
         try {
             getEntityTransaction().begin();
@@ -239,23 +233,21 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("orderByTest2 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("orderByTest2 failed");
     }
 
     /*
      * @testName: orderByTest3
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104;
-     * PERSISTENCE:SPEC:1106; PERSISTENCE:JAVADOC:145
+     * @assertion_ids: PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104; PERSISTENCE:SPEC:1106; PERSISTENCE:JAVADOC:145
      *
-     * @test_Strategy: The OrderBy annotation specifies the ordering of the
-     * elements of a collection valued association at the point when the
-     * association is retrieved.
+     * @test_Strategy: The OrderBy annotation specifies the ordering of the elements of a collection valued association at
+     * the point when the association is retrieved.
      *
      * If DESC is specified, the elements will be ordered in descending order.
      *
-     * Add to the Collection then retrieve the updated Collection and ensure the
-     * list is ordered.
+     * Add to the Collection then retrieve the updated Collection and ensure the list is ordered.
      *
      */
 
@@ -265,7 +257,7 @@ public class Client extends PMClientBase {
         boolean pass2 = false;
         List insResult;
         List resultsList = new ArrayList();
-        final String[] expectedResult = new String[] {"Zoe", "Song", "Penelope", "May", "Jie"};
+        final String[] expectedResult = new String[] { "Zoe", "Song", "Penelope", "May", "Jie" };
 
         try {
             getEntityTransaction().begin();
@@ -314,23 +306,21 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("orderByTest3 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("orderByTest3 failed");
     }
 
     /*
      * @testName: orderByTest4
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104;
-     * PERSISTENCE:SPEC:1106; PERSISTENCE:JAVADOC:145
+     * @assertion_ids: PERSISTENCE:SPEC:1103; PERSISTENCE:SPEC:1104; PERSISTENCE:SPEC:1106; PERSISTENCE:JAVADOC:145
      *
-     * @test_Strategy: The OrderBy annotation specifies the ordering of the
-     * elements of a collection valued association at the point when the
-     * association is retrieved.
+     * @test_Strategy: The OrderBy annotation specifies the ordering of the elements of a collection valued association at
+     * the point when the association is retrieved.
      *
      * If ASC is specified, the elements will be ordered in ascending order.
      *
-     * Retrieve the Collection, add to the Collection and retrieve it again making
-     * sure the list is ordered .
+     * Retrieve the Collection, add to the Collection and retrieve it again making sure the list is ordered .
      *
      */
 
@@ -339,7 +329,7 @@ public class Client extends PMClientBase {
         boolean pass1 = true;
         boolean pass2 = false;
         List resultsList = new ArrayList();
-        final String[] expectedResult = new String[] {"Jie", "May", "Penelope", "Song", "Zoe"};
+        final String[] expectedResult = new String[] { "Jie", "May", "Penelope", "Song", "Zoe" };
 
         try {
             getEntityTransaction().begin();
@@ -387,14 +377,14 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("orderByTest4 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("orderByTest4 failed");
     }
 
     /*
      * @testName: propertyDotNotationTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:2089; PERSISTENCE:SPEC:2092;
-     * PERSISTENCE:SPEC:2091;
+     * @assertion_ids: PERSISTENCE:SPEC:2089; PERSISTENCE:SPEC:2092; PERSISTENCE:SPEC:2091;
      *
      * @test_Strategy: identifier is the name of the respective property
      *
@@ -458,8 +448,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: fieldDotNotationTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:2089; PERSISTENCE:SPEC:2092;
-     * PERSISTENCE:SPEC:2091;
+     * @assertion_ids: PERSISTENCE:SPEC:2089; PERSISTENCE:SPEC:2092; PERSISTENCE:SPEC:2091;
      *
      * @test_Strategy: identifier is the name of the respective field
      *

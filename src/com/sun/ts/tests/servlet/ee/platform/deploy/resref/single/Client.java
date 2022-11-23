@@ -40,9 +40,8 @@ public class Client extends EETest {
     /**
      * Test setup
      *
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     webServerHost, the web server host; webServerPort, the
-     *                     web server port; mailuser1, the email recipient;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; webServerHost, the web server host;
+     * webServerPort, the web server port; mailuser1, the email recipient;
      */
     public void setup(String[] args, Properties props) throws Fault {
         boolean ok;
@@ -60,12 +59,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:platform:10125
      *
-     * @test_Strategy: Package a Servlet in a WAR file declaring a resource
-     *                 reference for a javax.sql.Datasource.
+     * @test_Strategy: Package a Servlet in a WAR file declaring a resource reference for a javax.sql.Datasource.
      *
-     *                 Check that: - We can deploy the application. - The Servlet
-     *                 can lookup the datasource. - We can use it to open a DB
-     *                 connection.
+     * Check that: - We can deploy the application. - The Servlet can lookup the datasource. - We can use it to open a DB
+     * connection.
      */
     public void testDatasource() throws Fault {
         try {
@@ -86,12 +83,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:platform:10125
      *
-     * @test_Strategy: Package a Servlet in a WAR file declaring a resource
-     *                 reference for a jakarta.mail.Session.
+     * @test_Strategy: Package a Servlet in a WAR file declaring a resource reference for a jakarta.mail.Session.
      *
-     *                 Check that: - We can deploy the application. - The Servlet
-     *                 can lookup the mail session. - We can use this factory to
-     *                 send a mail.
+     * Check that: - We can deploy the application. - The Servlet can lookup the mail session. - We can use this factory to
+     * send a mail.
      */
     public void testSession() throws Fault {
         try {
@@ -112,12 +107,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:platform:10125
      *
-     * @test_Strategy: Package a Servlet in a WAR file declaring a resource
-     *                 reference for a javax.net.URL.
+     * @test_Strategy: Package a Servlet in a WAR file declaring a resource reference for a javax.net.URL.
      *
-     *                 Check that: - We can deploy the application. - The Servlet
-     *                 can lookup URL factory to open a connection to a JSP
-     *                 bundled in the application.
+     * Check that: - We can deploy the application. - The Servlet can lookup URL factory to open a connection to a JSP
+     * bundled in the application.
      */
     public void testURL() throws Fault {
         try {
@@ -138,11 +131,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:platform:10125
      *
-     * @test_Strategy: Package a Servlet in a WAR file declaring a resource
-     *                 reference for a javax.jakarta.jms.QueueConnectionFactory
+     * @test_Strategy: Package a Servlet in a WAR file declaring a resource reference for a
+     * javax.jakarta.jms.QueueConnectionFactory
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup the JMS Queue Connection Factory.
+     * Check that: - We can deploy the application. - We can lookup the JMS Queue Connection Factory.
      */
     public void testQueue() throws Fault {
         try {
@@ -163,11 +155,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:platform:10125
      *
-     * @test_Strategy: Package a Servlet in a WAR file declaring a resource
-     *                 reference for a javax.jakarta.jms.TopicConnectionFactory
+     * @test_Strategy: Package a Servlet in a WAR file declaring a resource reference for a
+     * javax.jakarta.jms.TopicConnectionFactory
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup the JMS Topic Connection Factory.
+     * Check that: - We can deploy the application. - We can lookup the JMS Topic Connection Factory.
      */
     public void testTopic() throws Fault {
         try {

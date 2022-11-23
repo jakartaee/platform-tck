@@ -34,7 +34,7 @@ import jakarta.persistence.PersistenceContext;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
-@Remote({Stateful3IF.class})
+@Remote({ Stateful3IF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateful3Bean implements Stateful3IF {
 

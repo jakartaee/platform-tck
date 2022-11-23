@@ -50,17 +50,17 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     private Hashtable table = new Hashtable();
 
     String expected[] = {
-        "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true",
-        "false", "false"
+            "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true",
+            "false", "false"
     };
 
     // These are the method tests
     private static final String tests[] = {
-        "businessMethod",
+            "businessMethod",
     };
 
     // This is the results of the operation tests
-    private static final Properties methodList[] = {new Properties()};
+    private static final Properties methodList[] = { new Properties() };
 
     public void ejbCreate() throws CreateException {
         TestUtil.logTrace("ejbCreate");
@@ -121,7 +121,9 @@ public class TestBeanEJB implements SessionBean, TimedObject {
 
     private int testIndex(String s) {
         TestUtil.logTrace("testIndex");
-        for (int i = 0; i < tests.length; i++) if (s.equals(tests[i])) return i;
+        for (int i = 0; i < tests.length; i++)
+            if (s.equals(tests[i]))
+                return i;
         return -1;
     }
 
@@ -398,7 +400,8 @@ public class TestBeanEJB implements SessionBean, TimedObject {
                 if (name.indexOf(s) < 0) {
                     TestUtil.logErr("principal - expected: " + s + ", received: " + name);
                     return false;
-                } else return true;
+                } else
+                    return true;
             } else {
                 TestUtil.logErr("getCallerPrincipal() returned null reference");
                 return false;

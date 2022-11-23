@@ -78,9 +78,8 @@ public class Client extends ClientBase {
     /*
      * @testName: callBean2Bean1Local
      *
-     * @test_Strategy: bean1 packaged in jar1, bean2 and bean3 packaged in jar2.
-     * Bean2 should be able to locally access bean1. <ejb-local-ref> is declared
-     * in two_ejb.xml
+     * @test_Strategy: bean1 packaged in jar1, bean2 and bean3 packaged in jar2. Bean2 should be able to locally access
+     * bean1. <ejb-local-ref> is declared in two_ejb.xml
      *
      */
 }

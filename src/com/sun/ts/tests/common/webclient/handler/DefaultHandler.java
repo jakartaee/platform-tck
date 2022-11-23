@@ -77,11 +77,11 @@ public class DefaultHandler implements Handler {
     /**
      * Creates new DefaultHandler
      */
-    private DefaultHandler() {}
+    private DefaultHandler() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
@@ -94,10 +94,8 @@ public class DefaultHandler implements Handler {
     /**
      * Invokes handler logic.
      *
-     * @param configuredHeader
-     *          the user configured header
-     * @param responseHeader
-     *          the response header from the server
+     * @param configuredHeader the user configured header
+     * @param responseHeader the response header from the server
      * @return True if the passed match, otherwise false
      */
     public boolean invoke(Header configuredHeader, Header responseHeader) {
@@ -110,10 +108,8 @@ public class DefaultHandler implements Handler {
     /**
      * Utility method to determine equality of two Header objects
      *
-     * @param h1
-     *          first header
-     * @param h2
-     *          second header
+     * @param h1 first header
+     * @param h2 second header
      * @return true if the headers are equal, otherwise false
      */
     protected boolean areHeadersEqual(Header h1, Header h2) {

@@ -118,7 +118,8 @@ public class CounterEJB implements SessionBean, SessionSynchronization {
 
     public int decrement() throws InvalidTransactionException {
         TestUtil.logTrace("decrement");
-        if ((value - 1) < 0) throw new InvalidTransactionException("attempt to set counter to negative value");
+        if ((value - 1) < 0)
+            throw new InvalidTransactionException("attempt to set counter to negative value");
         else {
             TestUtil.logMsg("counter value before transaction: " + value);
             TestUtil.logMsg("decrement counter by 1");
@@ -130,7 +131,8 @@ public class CounterEJB implements SessionBean, SessionSynchronization {
 
     public int decrement(int n) throws InvalidTransactionException {
         TestUtil.logTrace("decrement");
-        if ((value - n) < 0) throw new InvalidTransactionException("attempt to set counter to negative value");
+        if ((value - n) < 0)
+            throw new InvalidTransactionException("attempt to set counter to negative value");
         else {
             TestUtil.logMsg("counter value before transaction: " + value);
             TestUtil.logMsg("decrement counter by " + n);

@@ -30,7 +30,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -52,9 +53,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: convertTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:3310; PERSISTENCE:JAVADOC:3311;
-     * PERSISTENCE:SPEC:1487; PERSISTENCE:SPEC:1489; PERSISTENCE:SPEC:1489.1;
-     * PERSISTENCE:SPEC:1956; PERSISTENCE:SPEC:1956.1; PERSISTENCE:SPEC:1991;
+     * @assertion_ids: PERSISTENCE:JAVADOC:3310; PERSISTENCE:JAVADOC:3311; PERSISTENCE:SPEC:1487; PERSISTENCE:SPEC:1489;
+     * PERSISTENCE:SPEC:1489.1; PERSISTENCE:SPEC:1956; PERSISTENCE:SPEC:1956.1; PERSISTENCE:SPEC:1991;
      *
      * @test_Strategy:
      */
@@ -101,11 +101,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: convertExceptionDuringPersistTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1495; PERSISTENCE:JAVADOC:3312;
-     * PERSISTENCE:JAVADOC:3313; PERSISTENCE:SPEC:1483; PERSISTENCE:SPEC:1483.1;
+     * @assertion_ids: PERSISTENCE:SPEC:1495; PERSISTENCE:JAVADOC:3312; PERSISTENCE:JAVADOC:3313; PERSISTENCE:SPEC:1483;
+     * PERSISTENCE:SPEC:1483.1;
      *
-     * @test_Strategy: Converter throws a RuntimeException wrapped by a
-     * PersistenceException during a persist
+     * @test_Strategy: Converter throws a RuntimeException wrapped by a PersistenceException during a persist
      */
     public void convertExceptionDuringPersistTest() throws Fault {
         boolean pass = false;
@@ -145,11 +144,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: convertExceptionDuringLoadTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1495; PERSISTENCE:JAVADOC:3312;
-     * PERSISTENCE:JAVADOC:3313; PERSISTENCE:SPEC:1483; PERSISTENCE:SPEC:1483.1;
+     * @assertion_ids: PERSISTENCE:SPEC:1495; PERSISTENCE:JAVADOC:3312; PERSISTENCE:JAVADOC:3313; PERSISTENCE:SPEC:1483;
+     * PERSISTENCE:SPEC:1483.1;
      *
-     * @test_Strategy: Converter throws a RuntimeException wrapped by a
-     * PersistenceException during a load
+     * @test_Strategy: Converter throws a RuntimeException wrapped by a PersistenceException during a load
      */
     public void convertExceptionDuringLoadTest() throws Fault {
         boolean pass = false;
@@ -208,9 +206,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: convertsTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:3312; PERSISTENCE:JAVADOC:3313;
-     * PERSISTENCE:JAVADOC:3314; PERSISTENCE:JAVADOC:3315;
-     * PERSISTENCE:JAVADOC:3316; PERSISTENCE:SPEC:1482; PERSISTENCE:SPEC:1483;
+     * @assertion_ids: PERSISTENCE:JAVADOC:3312; PERSISTENCE:JAVADOC:3313; PERSISTENCE:JAVADOC:3314;
+     * PERSISTENCE:JAVADOC:3315; PERSISTENCE:JAVADOC:3316; PERSISTENCE:SPEC:1482; PERSISTENCE:SPEC:1483;
      * PERSISTENCE:SPEC:1483.1; PERSISTENCE:SPEC:1484; PERSISTENCE:SPEC:1489.3;
      *
      * @test_Strategy: Converter throws a RuntimeException during a persist
@@ -274,17 +271,15 @@ public class Client extends PMClientBase {
     /*
      * @testName: mappedSuperClassTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1490; PERSISTENCE:SPEC:1481;
-     * PERSISTENCE:SPEC:1489.2; PERSISTENCE:SPEC:1957;
+     * @assertion_ids: PERSISTENCE:SPEC:1490; PERSISTENCE:SPEC:1481; PERSISTENCE:SPEC:1489.2; PERSISTENCE:SPEC:1957;
      *
-     * @test_Strategy: Test converter with property access and attributes from
-     * MappedSuperClass
+     * @test_Strategy: Test converter with property access and attributes from MappedSuperClass
      */
     public void mappedSuperClassTest() throws Fault {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
-            char[] c = {'D', 'o', 'e'};
+            char[] c = { 'D', 'o', 'e' };
             FullTimeEmployee expected = new FullTimeEmployee(1, "John", c, "3#5#0#0#0.0");
             TestUtil.logTrace("Persisting FullTimeEmployee:" + expected.toString());
             getEntityManager().persist(expected);
@@ -297,7 +292,7 @@ public class Client extends PMClientBase {
             if (emp != null) {
                 TestUtil.logTrace("Found FullTimeEmployee: " + emp.getId());
                 expected.setSalary(expected.getSalary().replace("#", ""));
-                c = new char[] {'J', 'a', 'm', 'e', 's'};
+                c = new char[] { 'J', 'a', 'm', 'e', 's' };
                 expected.setLastName(c);
                 if (emp.equals(expected)) {
                     TestUtil.logTrace("Received expected FullTimeEmployee:" + emp.toString());
@@ -322,8 +317,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: mappedSuperClass2Test
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1488; PERSISTENCE:SPEC:1491;
-     * PERSISTENCE:SPEC:1992;
+     * @assertion_ids: PERSISTENCE:SPEC:1488; PERSISTENCE:SPEC:1491; PERSISTENCE:SPEC:1992;
      *
      * @test_Strategy: Test overriding a converter
      */
@@ -368,8 +362,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1492; PERSISTENCE:SPEC:1494;
      *
-     * @test_Strategy: Test converters are applied when a JPQL or CriteriaQuery
-     * reads from the DB
+     * @test_Strategy: Test converters are applied when a JPQL or CriteriaQuery reads from the DB
      */
     public void convert2Test() throws Fault {
         boolean pass1 = false;
@@ -476,11 +469,9 @@ public class Client extends PMClientBase {
     /*
      * @testName: convert3Test
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1492; PERSISTENCE:SPEC:1493;
-     * PERSISTENCE:SPEC:1597;
+     * @assertion_ids: PERSISTENCE:SPEC:1492; PERSISTENCE:SPEC:1493; PERSISTENCE:SPEC:1597;
      *
-     * @test_Strategy: Test converters are applied when a JPQL or CriteriaQuery
-     * write to the DB
+     * @test_Strategy: Test converters are applied when a JPQL or CriteriaQuery write to the DB
      */
     public void convert3Test() throws Fault {
         boolean pass1 = false;

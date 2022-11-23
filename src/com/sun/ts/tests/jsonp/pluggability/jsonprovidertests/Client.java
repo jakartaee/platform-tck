@@ -83,8 +83,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:152;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * static JsonProvider provider()
+     * @test_Strategy: Test call of SPI provider method with signature: o public static JsonProvider provider()
      */
     public void jsonProviderTest1() throws Fault {
         boolean pass = true;
@@ -93,7 +92,8 @@ public class Client extends ServiceEETest {
             JsonProvider provider = JsonProvider.provider();
             String providerClass = provider.getClass().getName();
             logMsg("provider class=" + providerClass);
-            if (providerClass.equals(MY_JSONPROVIDER_CLASS)) logMsg("Current provider is my provider - expected.");
+            if (providerClass.equals(MY_JSONPROVIDER_CLASS))
+                logMsg("Current provider is my provider - expected.");
             else {
                 logErr("Current provider is not my provider - unexpected.");
                 pass = false;
@@ -108,7 +108,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest1 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest1 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest1 Failed");
     }
 
     /*
@@ -116,8 +117,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:144;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonGenerator createGenerator(Writer)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonGenerator createGenerator(Writer)
      */
     public void jsonProviderTest2() throws Fault {
         boolean pass = true;
@@ -136,7 +136,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest2 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest2 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest2 Failed");
     }
 
     /*
@@ -144,8 +145,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:192;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonGenerator createGenerator(OutputStream)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonGenerator createGenerator(OutputStream)
      */
     public void jsonProviderTest3() throws Fault {
         boolean pass = true;
@@ -164,7 +164,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest3 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest3 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest3 Failed");
     }
 
     /*
@@ -172,8 +173,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:146;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonParser createParser(Reader)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonParser createParser(Reader)
      */
     public void jsonProviderTest4() throws Fault {
         boolean pass = true;
@@ -187,7 +187,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest4 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest4 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest4 Failed");
     }
 
     /*
@@ -195,8 +196,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:196;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonParser createParser(InputStream)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonParser createParser(InputStream)
      */
     public void jsonProviderTest5() throws Fault {
         boolean pass = true;
@@ -210,7 +210,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest5 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest5 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest5 Failed");
     }
 
     /*
@@ -218,8 +219,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:465;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonParserFactory createParserFactory(Map<String, ?>)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonParserFactory
+     * createParserFactory(Map<String, ?>)
      */
     public void jsonProviderTest6() throws Fault {
         boolean pass = true;
@@ -233,7 +234,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest6 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest6 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest6 Failed");
     }
 
     /*
@@ -241,8 +243,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:426;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonParserFactory createParserFactory(Map<String, ?>)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonParserFactory
+     * createParserFactory(Map<String, ?>)
      */
     public void jsonProviderTest7() throws Fault {
         boolean pass = true;
@@ -256,7 +258,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest7 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest7 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest7 Failed");
     }
 
     /*
@@ -264,8 +267,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:425;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonGeneratorFactory
+     * createGeneratorFactory(Map<String, ?>)
      */
     public void jsonProviderTest8() throws Fault {
         boolean pass = true;
@@ -279,7 +282,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest8 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest8 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest8 Failed");
     }
 
     /*
@@ -287,8 +291,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:472;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonWriterFactory createWriterFactory(Map<String, ?>)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonWriterFactory
+     * createWriterFactory(Map<String, ?>)
      */
     public void jsonProviderTest9() throws Fault {
         boolean pass = true;
@@ -302,7 +306,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest9 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest9 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest9 Failed");
     }
 
     /*
@@ -310,9 +315,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:223;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonParser createParser(InputStream) Tests the case where a JsonException
-     * can be thrown. An InputStream of null will cause MyJsonProvider to throw
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonParser createParser(InputStream) Tests
+     * the case where a JsonException can be thrown. An InputStream of null will cause MyJsonProvider to throw
      * JsonException.
      */
     public void jsonProviderTest10() throws Fault {
@@ -328,7 +332,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest10 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest10 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest10 Failed");
     }
 
     /*
@@ -336,8 +341,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:464;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonArrayBuilder createArrayBuilder()
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonArrayBuilder createArrayBuilder()
      */
     public void jsonProviderTest11() throws Fault {
         boolean pass = true;
@@ -351,7 +355,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest11 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest11 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest11 Failed");
     }
 
     /*
@@ -359,8 +364,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:466;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonObjectBuilder createObjectBuilder()
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonObjectBuilder createObjectBuilder()
      */
     public void jsonProviderTest12() throws Fault {
         boolean pass = true;
@@ -374,7 +378,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest12 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest12 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest12 Failed");
     }
 
     /*
@@ -382,8 +387,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:465;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonBuilderFactory createBuilderFactory(Map<String, ?>)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonBuilderFactory
+     * createBuilderFactory(Map<String, ?>)
      */
     public void jsonProviderTest13() throws Fault {
         boolean pass = true;
@@ -397,7 +402,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest13 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest13 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest13 Failed");
     }
 
     /*
@@ -405,8 +411,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:467;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonReader createReader(Reader)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonReader createReader(Reader)
      */
     public void jsonProviderTest14() throws Fault {
         boolean pass = true;
@@ -420,7 +425,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest14 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest14 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest14 Failed");
     }
 
     /*
@@ -428,8 +434,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:468;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonReader createReader(InputStream)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonReader createReader(InputStream)
      */
     public void jsonProviderTest15() throws Fault {
         boolean pass = true;
@@ -443,7 +448,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest15 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest15 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest15 Failed");
     }
 
     /*
@@ -451,8 +457,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:470;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonWriter createWriter(Writer)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonWriter createWriter(Writer)
      */
     public void jsonProviderTest16() throws Fault {
         boolean pass = true;
@@ -466,7 +471,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest16 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest16 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest16 Failed");
     }
 
     /*
@@ -474,8 +480,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:471;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonWriter createWriter(OutputStream)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonWriter createWriter(OutputStream)
      */
     public void jsonProviderTest17() throws Fault {
         boolean pass = true;
@@ -489,7 +494,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest17 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest17 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest17 Failed");
     }
 
     /*
@@ -497,8 +503,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JSONP:JAVADOC:469;
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * JsonReaderFactory createReaderFactory(Map<String, ?>)
+     * @test_Strategy: Test call of SPI provider method with signature: o public JsonReaderFactory
+     * createReaderFactory(Map<String, ?>)
      */
     public void jsonProviderTest18() throws Fault {
         boolean pass = true;
@@ -512,6 +518,7 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonProviderTest18 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonProviderTest18 Failed");
+        if (!pass)
+            throw new Fault("jsonProviderTest18 Failed");
     }
 }

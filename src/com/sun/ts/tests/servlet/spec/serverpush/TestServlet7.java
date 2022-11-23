@@ -26,7 +26,7 @@ import java.io.PrintWriter;
 
 public class TestServlet7 extends HttpServlet {
 
-    private static final String[] METHODS = {"", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE"};
+    private static final String[] METHODS = { "", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE" };
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -61,10 +61,12 @@ public class TestServlet7 extends HttpServlet {
         }
 
         for (String method : METHODS) {
-            if (!testMethod(pb, pw, method)) pass = false;
+            if (!testMethod(pb, pw, method))
+                pass = false;
         }
 
-        if (pass) pw.println("test passed");
+        if (pass)
+            pw.println("test passed");
     }
 
     private boolean testMethod(PushBuilder pb, PrintWriter pw, String method) {

@@ -33,7 +33,8 @@ public class ServerSOAPHandler extends WsaBaseSOAPHandler {
         TestUtil.logMsg("Verify input action: [" + action + "]");
         System.out.println("ServerSOAPHandler.checkInboundAction: [operation=" + oper + ", action=" + action + "]");
         System.out.println("Verify input action: [" + action + "]");
-        if (action.equals("http://wrong.com/wrongaction")) return;
+        if (action.equals("http://wrong.com/wrongaction"))
+            return;
         if (oper.equals("addNumbersNoAction")) {
             if (!action.equals(TestConstants.ADD_NUMBERS_IN_NOACTION)) {
                 ThrowActionNotSupportedException(TestConstants.ADD_NUMBERS_IN_NOACTION, action);

@@ -27,7 +27,7 @@ import jakarta.ejb.Singleton;
 import java.util.concurrent.TimeUnit;
 
 @Singleton
-@SuppressWarnings({"unused", "unchecked"})
+@SuppressWarnings({ "unused", "unchecked" })
 public class EnvEntryBean extends EnvEntryBeanBase {
 
     @Resource(lookup = "java:app/env/myString")

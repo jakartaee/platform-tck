@@ -23,7 +23,8 @@ import jakarta.validation.ConstraintValidatorContext;
 public class ConstraintDefinitionValidator implements ConstraintValidator<ConstraintDefinitionAnnotation, StringBean> {
 
     @Override
-    public void initialize(ConstraintDefinitionAnnotation ann) {}
+    public void initialize(ConstraintDefinitionAnnotation ann) {
+    }
 
     @Override
     public boolean isValid(StringBean bean, ConstraintValidatorContext ctx) {

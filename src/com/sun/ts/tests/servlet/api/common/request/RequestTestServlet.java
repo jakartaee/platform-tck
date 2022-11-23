@@ -38,7 +38,7 @@ public class RequestTestServlet extends GenericServlet {
 
     private static final String TEST_HEADER = "testname";
 
-    private static final Class[] TEST_ARGS = {PrintWriter.class, ServletRequest.class, ServletResponse.class};
+    private static final Class[] TEST_ARGS = { PrintWriter.class, ServletRequest.class, ServletResponse.class };
 
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
@@ -50,7 +50,7 @@ public class RequestTestServlet extends GenericServlet {
         try {
             PrintWriter pw = servletResponse.getWriter();
             Method method = RequestTests.class.getMethod(test, TEST_ARGS);
-            method.invoke(null, new Object[] {pw, servletRequest, servletResponse});
+            method.invoke(null, new Object[] { pw, servletRequest, servletResponse });
         } catch (InvocationTargetException ite) {
             throw new ServletException(ite.getTargetException());
         } catch (NoSuchMethodException nsme) {

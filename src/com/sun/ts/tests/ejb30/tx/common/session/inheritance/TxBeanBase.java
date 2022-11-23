@@ -29,7 +29,8 @@ import javax.naming.NamingException;
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public abstract class TxBeanBase implements TxCommonIF {
 
-    public TxBeanBase() {}
+    public TxBeanBase() {
+    }
 
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public String foo() {
@@ -51,9 +52,8 @@ public abstract class TxBeanBase implements TxCommonIF {
     }
 
     /**
-     * subclass may override this method to customize the behavior of foo(),
-     * without overriding foo(), because overriding foo may affect foo's
-     * transaction attribute.
+     * subclass may override this method to customize the behavior of foo(), without overriding foo(), because overriding
+     * foo may affect foo's transaction attribute.
      */
     protected void fooImpl() {
         // noop

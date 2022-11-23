@@ -69,7 +69,7 @@ public class WsaSOAPUtils
 
     public static final String FAULT_CODE = "faultcode";
 
-    public static final String[] FAULT_CHILDREN = {FAULT_ACTOR, FAULT_CODE, FAULT_DETAIL, FAULT_STRING};
+    public static final String[] FAULT_CHILDREN = { FAULT_ACTOR, FAULT_CODE, FAULT_DETAIL, FAULT_STRING };
 
     private static String AddressingVersionNSURI = W3CAddressingConstants.WSA_NAMESPACE_NAME;
 
@@ -252,12 +252,15 @@ public class WsaSOAPUtils
             while (iter.hasNext()) {
                 DetailEntry de = (DetailEntry) iter.next();
                 StringBuffer s = new StringBuffer(de.getElementName().getLocalName());
-                if (de instanceof Text) s.append(":" + de.getValue());
+                if (de instanceof Text)
+                    s.append(":" + de.getValue());
                 faultDetail[i++] = s.toString();
             }
         }
-        if (i == 0) return null;
-        else return faultDetail;
+        if (i == 0)
+            return null;
+        else
+            return faultDetail;
     }
 
     public static String[] getFaultDetail(SOAPMessage message) throws SOAPException {
@@ -270,7 +273,8 @@ public class WsaSOAPUtils
 
         SOAPHeader header = message.getSOAPHeader();
         Iterator iter = header.getChildElements(W3CAddressingConstants.FAULT_DETAIL_QNAME);
-        if (!iter.hasNext()) return null;
+        if (!iter.hasNext())
+            return null;
         obj = iter.next();
         if (obj instanceof SOAPElement) {
             se = (SOAPElement) obj;
@@ -287,8 +291,10 @@ public class WsaSOAPUtils
                 faultDetail[i++] = text.getValue();
             }
         }
-        if (i == 0) return null;
-        else return faultDetail;
+        if (i == 0)
+            return null;
+        else
+            return faultDetail;
     }
 
     public static String[] getFaultDetail(SOAPMessageContext context) throws SOAPException {
@@ -296,21 +302,30 @@ public class WsaSOAPUtils
     }
 
     public static boolean isProblemHeaderQNameFaultDetail(String faultdetail) {
-        if (faultdetail == null) return false;
-        if (faultdetail.equals(PROBLEM_HEADER_QNAME_QNAME.getLocalPart())) return true;
-        else return false;
+        if (faultdetail == null)
+            return false;
+        if (faultdetail.equals(PROBLEM_HEADER_QNAME_QNAME.getLocalPart()))
+            return true;
+        else
+            return false;
     }
 
     public static boolean isProblemHeaderFaultDetail(String faultdetail) {
-        if (faultdetail == null) return false;
-        if (faultdetail.equals(PROBLEM_HEADER_QNAME.getLocalPart())) return true;
-        else return false;
+        if (faultdetail == null)
+            return false;
+        if (faultdetail.equals(PROBLEM_HEADER_QNAME.getLocalPart()))
+            return true;
+        else
+            return false;
     }
 
     public static boolean isProblemActionFaultDetail(String faultdetail) {
-        if (faultdetail == null) return false;
-        if (faultdetail.equals(PROBLEM_ACTION_QNAME.getLocalPart())) return true;
-        else return false;
+        if (faultdetail == null)
+            return false;
+        if (faultdetail.equals(PROBLEM_ACTION_QNAME.getLocalPart()))
+            return true;
+        else
+            return false;
     }
 
     private static final Source makeStreamSource(String msg) {
@@ -474,35 +489,25 @@ public class WsaSOAPUtils
             + "</addNumbers5>\n" + "</S:Body></S:Envelope>";
 
     /*****
-     * COMMENT OUT public static final void assertInvalidHeaderFaultCode(QName
-     * got, AddressingVersion av) { try {
-     * TestCase.assertEquals(av.invalidCardinalityTag, got); } catch
-     * (AssertionFailedError e) { TestCase.assertEquals(av.invalidMapTag, got); }
-     * }
+     * COMMENT OUT public static final void assertInvalidHeaderFaultCode(QName got, AddressingVersion av) { try {
+     * TestCase.assertEquals(av.invalidCardinalityTag, got); } catch (AssertionFailedError e) {
+     * TestCase.assertEquals(av.invalidMapTag, got); } }
      *
      * public static final void assertHeaderRequiredFaultCode(QName got) {
      * TestCase.assertEquals(W3CAddressingConstants.MAP_REQUIRED_QNAME, got); }
      *
-     * public static final void assertHeaderRequiredFaultCode12(SOAPFault f) {
-     * TestCase.assertNotNull("Fault element is null", f); QName faultcode =
-     * f.getFaultCodeAsQName();
-     * TestCase.assertEquals(SOAPConstants.SOAP_SENDER_FAULT, faultcode); Iterator
-     * iter = f.getFaultSubcodes(); TestCase.assertNotNull("Subcode iterator is
-     * null", iter); TestCase.assertTrue("Subcode iterator has no elements",
-     * iter.hasNext()); TestCase.assertEquals(iter.next(),
-     * W3CAddressingConstants.MAP_REQUIRED_QNAME); TestCase.assertTrue("No
-     * subsubcode on the fault", iter.hasNext());
-     * TestCase.assertEquals(iter.next(),
-     * W3CAddressingConstants.INVALID_CARDINALITY); }
+     * public static final void assertHeaderRequiredFaultCode12(SOAPFault f) { TestCase.assertNotNull("Fault element is
+     * null", f); QName faultcode = f.getFaultCodeAsQName(); TestCase.assertEquals(SOAPConstants.SOAP_SENDER_FAULT,
+     * faultcode); Iterator iter = f.getFaultSubcodes(); TestCase.assertNotNull("Subcode iterator is null", iter);
+     * TestCase.assertTrue("Subcode iterator has no elements", iter.hasNext()); TestCase.assertEquals(iter.next(),
+     * W3CAddressingConstants.MAP_REQUIRED_QNAME); TestCase.assertTrue("No subsubcode on the fault", iter.hasNext());
+     * TestCase.assertEquals(iter.next(), W3CAddressingConstants.INVALID_CARDINALITY); }
      *
-     * public static final void assertInvalidCardinalityCode12(SOAPFault f,
-     * AddressingVersion av) { TestCase.assertNotNull("Fault element is null", f);
-     * QName faultcode = f.getFaultCodeAsQName();
-     * TestCase.assertEquals(SOAPConstants.SOAP_SENDER_FAULT, faultcode); Iterator
-     * iter = f.getFaultSubcodes(); TestCase.assertNotNull("Subcode iterator is
-     * null", iter); TestCase.assertTrue("Subcode iterator has no elements",
-     * iter.hasNext()); TestCase.assertEquals(iter.next(), av.invalidMapTag);
-     * TestCase.assertTrue("No subsubcode on the fault", iter.hasNext());
-     * TestCase.assertEquals(iter.next(), av.invalidCardinalityTag); } COMMENT OUT
+     * public static final void assertInvalidCardinalityCode12(SOAPFault f, AddressingVersion av) {
+     * TestCase.assertNotNull("Fault element is null", f); QName faultcode = f.getFaultCodeAsQName();
+     * TestCase.assertEquals(SOAPConstants.SOAP_SENDER_FAULT, faultcode); Iterator iter = f.getFaultSubcodes();
+     * TestCase.assertNotNull("Subcode iterator is null", iter); TestCase.assertTrue("Subcode iterator has no elements",
+     * iter.hasNext()); TestCase.assertEquals(iter.next(), av.invalidMapTag); TestCase.assertTrue("No subsubcode on the
+     * fault", iter.hasNext()); TestCase.assertEquals(iter.next(), av.invalidCardinalityTag); } COMMENT OUT
      */
 }

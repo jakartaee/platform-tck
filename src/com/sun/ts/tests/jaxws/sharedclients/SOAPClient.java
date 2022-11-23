@@ -186,14 +186,16 @@ public abstract class SOAPClient extends Client {
     }
 
     private String getResponseAsString(SOAPMessage response) throws SOAPException, IOException {
-        if (response == null) return null;
+        if (response == null)
+            return null;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         response.writeTo(baos);
         return baos.toString();
     }
 
     private void LoggingSOAPRequest(String request) {
-        if (request == null) return;
+        if (request == null)
+            return;
         TestUtil.logMsg("-------------------");
         TestUtil.logMsg("Logging SOAPRequest");
         TestUtil.logMsg("-------------------");
@@ -201,7 +203,8 @@ public abstract class SOAPClient extends Client {
     }
 
     private void LoggingSOAPResponse(String response) {
-        if (response == null) return;
+        if (response == null)
+            return;
         TestUtil.logMsg("--------------------");
         TestUtil.logMsg("Logging SOAPResponse");
         TestUtil.logMsg("--------------------");

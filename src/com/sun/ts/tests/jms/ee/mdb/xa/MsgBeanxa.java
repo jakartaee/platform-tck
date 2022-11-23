@@ -63,8 +63,7 @@ public class MsgBeanxa implements MessageDrivenBean, MessageListener {
 
     public MsgBeanxa() {
         TestUtil.logTrace("@MsgBeanMsgTestPropsQ()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("mdb -ejbCreate() !!");
@@ -120,40 +119,40 @@ public class MsgBeanxa implements MessageDrivenBean, MessageListener {
             // test to see if this is the first message
             if (msg.getIntProperty("TestCaseNum") > 0) {
                 switch (msg.getIntProperty("TestCaseNum")) {
-                    case 1:
-                        runTest1(msg, qSession);
-                        break;
-                    case 2:
-                        runTest2(msg, qSession);
-                        break;
-                    case 3:
-                        runTest3(msg, qSession);
-                        break;
-                    case 4:
-                        runTest4(msg, qSession);
-                        break;
-                    case 5:
-                        runTest5(msg, qSession);
-                        break;
-                    case 6:
-                        runTest6(msg, qSession);
-                        break;
-                    case 7:
-                        runTest7(msg, qSession);
-                        break;
-                    case 8:
-                        runTest8(msg, qSession);
-                        break;
-                    case 9:
-                        runTest9(msg, qSession);
-                        break;
-                    case 10:
-                        runTest10(msg, qSession);
-                        break;
-                    default:
-                        TestUtil.logTrace(
-                                "Error in mdb - No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
-                        break;
+                case 1:
+                    runTest1(msg, qSession);
+                    break;
+                case 2:
+                    runTest2(msg, qSession);
+                    break;
+                case 3:
+                    runTest3(msg, qSession);
+                    break;
+                case 4:
+                    runTest4(msg, qSession);
+                    break;
+                case 5:
+                    runTest5(msg, qSession);
+                    break;
+                case 6:
+                    runTest6(msg, qSession);
+                    break;
+                case 7:
+                    runTest7(msg, qSession);
+                    break;
+                case 8:
+                    runTest8(msg, qSession);
+                    break;
+                case 9:
+                    runTest9(msg, qSession);
+                    break;
+                case 10:
+                    runTest10(msg, qSession);
+                    break;
+                default:
+                    TestUtil.logTrace(
+                            "Error in mdb - No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
+                    break;
                 }
             }
         } catch (Exception e) {

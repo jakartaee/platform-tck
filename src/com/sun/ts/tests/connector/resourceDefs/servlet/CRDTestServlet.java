@@ -55,41 +55,17 @@ import java.io.PrintWriter;
 //  XXXX:  try using transactionSupport=TransactionSupport.TransactionSupportLevel.XATransaction),
 //
 
-@DeclareRoles({"Administrator", "Manager", "Employee"})
-@ServletSecurity(
-        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
-        httpMethodConstraints = {
-            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
-        })
-@WebServlet(
-        name = "CRDTestServlet",
-        urlPatterns = {"/CRDTestServlet"})
+@DeclareRoles({ "Administrator", "Manager", "Employee" })
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = { "Administrator" }), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
+})
+@WebServlet(name = "CRDTestServlet", urlPatterns = { "/CRDTestServlet" })
 @ConnectionFactoryDefinitions({
-    @ConnectionFactoryDefinition(
-            name = "java:app/env/CRDTestServlet_App_ConnectorResource",
-            description = "application scoped connector resource definition",
-            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
-            resourceAdapter = "whitebox-tx",
-            transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
-    @ConnectionFactoryDefinition(
-            name = "java:comp/env/CRDTestServlet_Comp_ConnectorResource",
-            description = "component scoped connector resource definition",
-            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
-            resourceAdapter = "whitebox-tx",
-            transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction),
-    @ConnectionFactoryDefinition(
-            name = "java:module/env/CRDTestServlet_Module_ConnectorResource",
-            description = "module scoped connector resource definition",
-            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
-            resourceAdapter = "whitebox-tx",
-            transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
-    @ConnectionFactoryDefinition(
-            name = "java:global/env/CRDTestServlet_Global_ConnectorResource",
-            description = "globally scoped connector resource definition",
-            interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory",
-            resourceAdapter = "whitebox-xa",
-            transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction)
+        @ConnectionFactoryDefinition(name = "java:app/env/CRDTestServlet_App_ConnectorResource", description = "application scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
+        @ConnectionFactoryDefinition(name = "java:comp/env/CRDTestServlet_Comp_ConnectorResource", description = "component scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.LocalTransaction),
+        @ConnectionFactoryDefinition(name = "java:module/env/CRDTestServlet_Module_ConnectorResource", description = "module scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-tx", transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction),
+        @ConnectionFactoryDefinition(name = "java:global/env/CRDTestServlet_Global_ConnectorResource", description = "globally scoped connector resource definition", interfaceName = "com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory", resourceAdapter = "whitebox-xa", transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction)
 })
 public class CRDTestServlet extends HttpServlet {
     private String servletAppContext = null;

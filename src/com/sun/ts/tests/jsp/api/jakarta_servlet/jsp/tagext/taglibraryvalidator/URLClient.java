@@ -31,9 +31,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -42,8 +41,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -65,12 +63,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:212;JSP:JAVADOC:213;JSP:JAVADOC:214
      *
-     * @test_Strategy: Validate the setInitParameters(), getInitParameters(), and
-     * validate() methods of the TagLibraryValidator class. This will verify that
-     * the configured TLV is called only once for each taglibrary URI defined
-     * within the page, that setInitParameters() is invoked by the container
-     * before validate is called, and that an empty array of ValidationMessages or
-     * a null return value from validate() indicates the page is valid, thus no
+     * @test_Strategy: Validate the setInitParameters(), getInitParameters(), and validate() methods of the
+     * TagLibraryValidator class. This will verify that the configured TLV is called only once for each taglibrary URI
+     * defined within the page, that setInitParameters() is invoked by the container before validate is called, and that an
+     * empty array of ValidationMessages or a null return value from validate() indicates the page is valid, thus no
      * translation error will occur.
      */
     public void tagLibraryValidatorAPITest() throws Fault {
@@ -83,13 +79,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: tagLibraryValidatorTranslationFailureTest
      *
-     * @assertion_ids: JSP:JAVADOC:182;JSP:JAVADOC:183;
-     * JSP:JAVADOC:184;JSP:JAVADOC:386
+     * @assertion_ids: JSP:JAVADOC:182;JSP:JAVADOC:183; JSP:JAVADOC:184;JSP:JAVADOC:386
      *
-     * @test_Strategy: Validate that a translation error will occur if a non-null
-     * or non-empty array of ValidationMessages is returned when the validation()
-     * method is called. This also validates the use of the ValidationMessage
-     * class.
+     * @test_Strategy: Validate that a translation error will occur if a non-null or non-empty array of ValidationMessages
+     * is returned when the validation() method is called. This also validates the use of the ValidationMessage class.
      */
     public void tagLibraryValidatorTranslationFailureTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taglibvalidator_web/TLVTranslationErrorTest.jsp HTTP/1.1");

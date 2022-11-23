@@ -49,11 +49,7 @@ import javax.security.auth.Subject;
  *
  */
 @ConnectionDefinitions({
-    @ConnectionDefinition(
-            connectionFactory = com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory.class,
-            connectionFactoryImpl = com.sun.ts.tests.common.connector.whitebox.TSEISDataSource.class,
-            connection = com.sun.ts.tests.common.connector.whitebox.TSConnection.class,
-            connectionImpl = com.sun.ts.tests.common.connector.whitebox.TSEISConnection.class)
+        @ConnectionDefinition(connectionFactory = com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory.class, connectionFactoryImpl = com.sun.ts.tests.common.connector.whitebox.TSEISDataSource.class, connection = com.sun.ts.tests.common.connector.whitebox.TSConnection.class, connectionImpl = com.sun.ts.tests.common.connector.whitebox.TSEISConnection.class)
 })
 public class MDAnnotatedMCF
         implements ManagedConnectionFactory, ResourceAdapterAssociation, jakarta.resource.Referenceable, Serializable {
@@ -71,13 +67,7 @@ public class MDAnnotatedMCF
 
     private String userName;
 
-    @ConfigProperty(
-            defaultValue = "10",
-            type = Integer.class,
-            description = "Integer value",
-            ignore = false,
-            supportsDynamicUpdates = false,
-            confidential = false)
+    @ConfigProperty(defaultValue = "10", type = Integer.class, description = "Integer value", ignore = false, supportsDynamicUpdates = false, confidential = false)
     private Integer integer;
 
     private String factoryName = "MDAnnotatedMCF";
@@ -358,15 +348,20 @@ public class MDAnnotatedMCF
             return false;
         }
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.user, that.getUser())) return false;
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
 
-        if (!Util.isEqual(this.userName, that.getUserName())) return false;
+        if (!Util.isEqual(this.userName, that.getUserName()))
+            return false;
 
-        if (!Util.isEqual(this.TSRValue, that.getTSRValue())) return false;
+        if (!Util.isEqual(this.TSRValue, that.getTSRValue()))
+            return false;
 
-        if (!Util.isEqual(this.factoryName, that.getFactoryName())) return false;
+        if (!Util.isEqual(this.factoryName, that.getFactoryName()))
+            return false;
 
         return true;
     }

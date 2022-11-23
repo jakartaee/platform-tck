@@ -23,7 +23,8 @@ public abstract class B implements java.io.Serializable {
 
     protected String name;
 
-    public B() {}
+    public B() {
+    }
 
     public B(String name) {
         this.name = name;

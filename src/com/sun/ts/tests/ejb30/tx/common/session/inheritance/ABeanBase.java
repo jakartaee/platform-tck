@@ -22,7 +22,8 @@ package com.sun.ts.tests.ejb30.tx.common.session.inheritance;
 
 public abstract class ABeanBase extends TxBeanBase {
 
-    public ABeanBase() {}
+    public ABeanBase() {
+    }
 
     @Override()
     // @TransactionAttribute(TransactionAttributeType.NEVER)

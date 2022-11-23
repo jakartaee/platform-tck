@@ -27,9 +27,8 @@ import com.sun.ts.tests.ejb30.common.callback.ClientBase;
 import jakarta.ejb.EJB;
 
 /**
- * A test client for callback methods. Note that since callback methods cannot
- * throw application exception, so we can only convey test result back to client
- * through the returned value.
+ * A test client for callback methods. Note that since callback methods cannot throw application exception, so we can
+ * only convey test result back to client through the returned value.
  */
 public class Client extends ClientBase {
     @EJB(beanName = "CallbackBean")
@@ -79,10 +78,9 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default interceptors are configured for an ejb
-     * jar. class-level interceptors and in-bean lifecycle methods are also
-     * defined, and both class-level interceptors and bean class have superclass
-     * and super-superclass. Verify these all are invoked in the correct order.
+     * @test_Strategy: multiple default interceptors are configured for an ejb jar. class-level interceptors and in-bean
+     * lifecycle methods are also defined, and both class-level interceptors and bean class have superclass and
+     * super-superclass. Verify these all are invoked in the correct order.
      *
      */
 
@@ -91,11 +89,9 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: A bean that overrides and thus disables all lifecycle
-     * callback methods in its superclasses. Its class-level interceptor,
-     * InterceptorH, also overrides and disables its superclasses' lifecycle
-     * callback methods. In both cases, overriding methods themselves are not
-     * lifecycle methods.
+     * @test_Strategy: A bean that overrides and thus disables all lifecycle callback methods in its superclasses. Its
+     * class-level interceptor, InterceptorH, also overrides and disables its superclasses' lifecycle callback methods. In
+     * both cases, overriding methods themselves are not lifecycle methods.
      */
 
     /*
@@ -103,11 +99,9 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: A bean that overrides and thus disables all lifecycle
-     * callback methods in its superclasses. Its class-level interceptor,
-     * InterceptorH, also overrides and disables its superclasses' lifecycle
-     * callback methods. In both cases, one overriding method is
-     * still @PostConstruct method, and the other is re-annotated as @PreDestroy
+     * @test_Strategy: A bean that overrides and thus disables all lifecycle callback methods in its superclasses. Its
+     * class-level interceptor, InterceptorH, also overrides and disables its superclasses' lifecycle callback methods. In
+     * both cases, one overriding method is still @PostConstruct method, and the other is re-annotated as @PreDestroy
      * method.
      */
 
@@ -116,8 +110,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: A bean that does not contain any lifecycle methods. Its
-     * superclass contains lifecycle methods, and also overrides/disables
-     * lifecycle methods in ITS superclasses.
+     * @test_Strategy: A bean that does not contain any lifecycle methods. Its superclass contains lifecycle methods, and
+     * also overrides/disables lifecycle methods in ITS superclasses.
      */
 }

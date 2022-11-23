@@ -45,9 +45,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:106;
      *
-     * @test_Strategy: When an EJB method is annotated with @Asynchronous, the EJB
-     * container automatically allocates the necessary resources for its
-     * execution.
+     * @test_Strategy: When an EJB method is annotated with @Asynchronous, the EJB container automatically allocates the
+     * necessary resources for its execution.
      *
      * //Check this does not break build
      */

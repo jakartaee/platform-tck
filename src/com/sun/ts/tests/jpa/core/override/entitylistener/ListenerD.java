@@ -22,7 +22,8 @@ import jakarta.persistence.PrePersist;
 
 public class ListenerD {
 
-    public ListenerD() {}
+    public ListenerD() {
+    }
 
     @PrePersist
     public void prePersist(Object obj) {

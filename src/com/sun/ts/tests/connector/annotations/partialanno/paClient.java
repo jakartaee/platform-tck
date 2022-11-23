@@ -59,8 +59,7 @@ public class paClient extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: whitebox-mixedmode; whitebox-multianno; rauser1;
-     * rapassword1;
+     * @class.setup_props: whitebox-mixedmode; whitebox-multianno; rauser1; rapassword1;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -114,20 +113,15 @@ public class paClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testMixedModeConfigPropertyMCF
      *
-     * @assertion_ids: Connector:SPEC:264; Connector:SPEC:307; Connector:SPEC:277;
-     * Connector:SPEC:280; Connector:SPEC:268; Connector:JAVADOC:234;
-     * Connector:JAVADOC:145; Connector:JAVADOC:146; Connector:JAVADOC:147;
-     * Connector:JAVADOC:148; Connector:JAVADOC:140; Connector:JAVADOC:142;
-     * Connector:JAVADOC:143; Connector:JAVADOC:139;
+     * @assertion_ids: Connector:SPEC:264; Connector:SPEC:307; Connector:SPEC:277; Connector:SPEC:280; Connector:SPEC:268;
+     * Connector:JAVADOC:234; Connector:JAVADOC:145; Connector:JAVADOC:146; Connector:JAVADOC:147; Connector:JAVADOC:148;
+     * Connector:JAVADOC:140; Connector:JAVADOC:142; Connector:JAVADOC:143; Connector:JAVADOC:139;
      *
-     * @test_Strategy: This is testing that a RA with annotations and a partial DD
-     * will take the DD' config property and set it within the (annotated)
-     * ManagedConnectionFactory by checking that the setter for the config
-     * property was called. (as described in connector 1.6 spec section 18.5) The
-     * partial DD contains an element of metadata-complete=false for this
-     * particular test. This also tests that Config tools properly used
-     * interospection to discover config properties that were not defined in the
-     * DD.
+     * @test_Strategy: This is testing that a RA with annotations and a partial DD will take the DD' config property and set
+     * it within the (annotated) ManagedConnectionFactory by checking that the setter for the config property was called.
+     * (as described in connector 1.6 spec section 18.5) The partial DD contains an element of metadata-complete=false for
+     * this particular test. This also tests that Config tools properly used interospection to discover config properties
+     * that were not defined in the DD.
      *
      */
     public void testMixedModeConfigPropertyMCF() throws Fault {
@@ -167,23 +161,18 @@ public class paClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testNoDefaultVallAnnoElement
      *
-     * @assertion_ids: Connector:SPEC:264; Connector:SPEC:307; Connector:SPEC:277;
-     * Connector:SPEC:280; Connector:SPEC:268;
+     * @assertion_ids: Connector:SPEC:264; Connector:SPEC:307; Connector:SPEC:277; Connector:SPEC:280; Connector:SPEC:268;
      *
-     * @test_Strategy: This is testing that a RA with annotations and a partial DD
-     * will take the DD' config property and set it within the (annotated)
-     * ManagedConnectionFactory by checking that the setter for the config
-     * property was called. (as described in connector 1.6 spec section 18.5)
+     * @test_Strategy: This is testing that a RA with annotations and a partial DD will take the DD' config property and set
+     * it within the (annotated) ManagedConnectionFactory by checking that the setter for the config property was called.
+     * (as described in connector 1.6 spec section 18.5)
      *
-     * This particular test is focused on testing Connector:SPEC:277 which is
-     * where no defaultValue element (in a ConfigProperty annotation is not used -
-     * but instead, the config proeprty field is directly set and that set value
+     * This particular test is focused on testing Connector:SPEC:277 which is where no defaultValue element (in a
+     * ConfigProperty annotation is not used - but instead, the config proeprty field is directly set and that set value
      * must be used since no defaultValue is specified.
      *
-     * The partial DD contains an element of metadata-complete=false for this
-     * particular test. This also tests that Config tools properly used
-     * interospection to discover config properties that were not defined in the
-     * DD.
+     * The partial DD contains an element of metadata-complete=false for this particular test. This also tests that Config
+     * tools properly used interospection to discover config properties that were not defined in the DD.
      *
      */
     public void testNoDefaultVallAnnoElement() throws Fault {
@@ -225,10 +214,9 @@ public class paClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:264; Connector:SPEC:279; Connector:SPEC:267;
      *
-     * @test_Strategy: This is testing that a RA with annotations and a partial DD
-     * will take the DD's config property and set it within the (annotated)
-     * resource adapter JavaBean by checking that the setter for the config
-     * property was called. (as described in connector 1.6 spec section 18.5)
+     * @test_Strategy: This is testing that a RA with annotations and a partial DD will take the DD's config property and
+     * set it within the (annotated) resource adapter JavaBean by checking that the setter for the config property was
+     * called. (as described in connector 1.6 spec section 18.5)
      *
      */
     public void testMixedModeConfigPropertyRA() throws Fault {
@@ -270,11 +258,9 @@ public class paClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:271; Connector:SPEC:272;
      *
-     * @test_Strategy: This is testing that a RA with annotations and a partial DD
-     * that both have a ConfigProperty setting for the same named property (ie
-     * overRide) will use the default value specified in the DD as that is
-     * supposed to have precedence. (this is per connector 1.6 spec section
-     * 18.3.2)
+     * @test_Strategy: This is testing that a RA with annotations and a partial DD that both have a ConfigProperty setting
+     * for the same named property (ie overRide) will use the default value specified in the DD as that is supposed to have
+     * precedence. (this is per connector 1.6 spec section 18.3.2)
      *
      */
     public void testMixedModeConfigPropertyOverride() throws Fault {
@@ -316,9 +302,8 @@ public class paClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:273;
      *
-     * @test_Strategy: This is testing that a RA with annotations and a partial DD
-     * that have a configprop in the DD but NO matching prop in the anno - then
-     * the DD valu must be used. (this is per connector 1.6 spec section 18.3.2)
+     * @test_Strategy: This is testing that a RA with annotations and a partial DD that have a configprop in the DD but NO
+     * matching prop in the anno - then the DD valu must be used. (this is per connector 1.6 spec section 18.3.2)
      *
      */
     public void testMixedModeConfigPropertyNoOverride() throws Fault {
@@ -360,10 +345,9 @@ public class paClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:312; Connector:SPEC:274;
      *
-     * @test_Strategy: This is testing that If the JavaBean class specified in the
-     * resourceadapter-class element is annotated with the Connector annotation,
-     * the application server must use the information in the deployment
-     * descriptor to override the values specified in the annotation.
+     * @test_Strategy: This is testing that If the JavaBean class specified in the resourceadapter-class element is
+     * annotated with the Connector annotation, the application server must use the information in the deployment descriptor
+     * to override the values specified in the annotation.
      */
     public void testDDOverridesAnno() throws Fault {
 

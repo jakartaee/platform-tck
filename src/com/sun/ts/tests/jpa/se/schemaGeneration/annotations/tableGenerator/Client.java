@@ -32,7 +32,8 @@ public class Client extends PMClientBase {
 
     String schemaGenerationDir = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -127,9 +128,8 @@ public class Client extends PMClientBase {
         pass1c = findDataInFile(f1, "INSERT INTO SE_ANNOTATION_GENERATOR_TABLE(PK_COL, VAL_COL) VALUES ('DT1_ID', 1)");
 
         /*
-         * CREATE TABLE SCHEMAGENSIMPLE (ID INTEGER NOT NULL, PRIMARY KEY (ID))
-         * CREATE TABLE SE_ANNOTATION_GENERATOR_TABLE (PK_COL VARCHAR(50) NOT NULL,
-         * VAL_COL DECIMAL(15), PRIMARY KEY (PK_COL)) INSERT INTO
+         * CREATE TABLE SCHEMAGENSIMPLE (ID INTEGER NOT NULL, PRIMARY KEY (ID)) CREATE TABLE SE_ANNOTATION_GENERATOR_TABLE
+         * (PK_COL VARCHAR(50) NOT NULL, VAL_COL DECIMAL(15), PRIMARY KEY (PK_COL)) INSERT INTO
          * SE_ANNOTATION_GENERATOR_TABLE(PK_COL, VAL_COL) values ('DT1_ID', 1)
          */
 
@@ -259,7 +259,8 @@ public class Client extends PMClientBase {
         TestUtil.logTrace("Current file:");
         List<String> rows = getFileContent(file);
         TestUtil.logTrace("Rows:" + rows.size());
-        for (String row : rows) TestUtil.logTrace(row);
+        for (String row : rows)
+            TestUtil.logTrace(row);
         TestUtil.logTrace("-----------------");
     }
 }

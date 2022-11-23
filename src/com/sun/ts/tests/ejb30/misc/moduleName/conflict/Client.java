@@ -31,9 +31,8 @@ public class Client extends AbstractUrlClient {
     private static final String SERVLET_NAME = "TestServlet";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -42,8 +41,7 @@ public class Client extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     @Override
     public Status run(String args[], PrintWriter out, PrintWriter pw) {
@@ -59,8 +57,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: servletPostConstruct
      *
-     * @test_Strategy: verify modules having the same base name in the same ear
-     * can be successfully deployed
+     * @test_Strategy: verify modules having the same base name in the same ear can be successfully deployed
      */
     public void servletPostConstruct() throws Exception {
         TEST_PROPS.setProperty(APITEST, "servletPostConstruct");

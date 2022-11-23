@@ -39,7 +39,8 @@ public class BiDir1X1Person implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private BiDir1X1Project project;
 
-    public BiDir1X1Person() {}
+    public BiDir1X1Person() {
+    }
 
     public BiDir1X1Project getProject() {
         return project;

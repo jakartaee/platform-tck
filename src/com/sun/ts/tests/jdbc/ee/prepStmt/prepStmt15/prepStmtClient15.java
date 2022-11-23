@@ -45,8 +45,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The prepStmtClient15 class tests methods of PreparedStatement interface using
- * Sun's J2EE Reference Implementation.
+ * The prepStmtClient15 class tests methods of PreparedStatement interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.8, 11/24/00
@@ -94,14 +93,11 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -110,10 +106,10 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 /*
-                 * sqlp = new Properties(); String sqlStmt =
-                 * p.getProperty("rsQuery",""); InputStream istr = new
+                 * sqlp = new Properties(); String sqlStmt = p.getProperty("rsQuery",""); InputStream istr = new
                  * FileInputStream(sqlStmt); sqlp.load(istr);
                  */
                 sqlp = p;
@@ -146,16 +142,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject223
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Longvarchar_Tab with the maximum (mfg date) value of
-     * Date_Tab. Call the getObject(int columnno) method to retrieve this value.
-     * Extract the maximum (mfg date) value from the tssql.stmt file. Compare this
-     * value with the value returned by the getObject(int columnno) method. Both
-     * the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Longvarchar_Tab with the maximum (mfg date) value of
+     * Date_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (mfg date) value from
+     * the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject223() throws Fault {
@@ -229,16 +222,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject224
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Date_Tab with the maximum (mfg date) value of
-     * Date_Tab. Call the getObject(int columnno) method to retrieve this value.
-     * Extract the maximum (mfg date) value from the tssql.stmt file. Compare this
-     * value with the value returned by the getObject(int columnno) method. Both
-     * the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Date_Tab with the maximum (mfg date) value of
+     * Date_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (mfg date) value from
+     * the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject224() throws Fault {
@@ -314,16 +304,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject225
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Timestamp_Tab with the maximum (mfg timestamp) value
-     * of Timestamp_Tab. Call the getObject(int columnno) method to retrieve this
-     * value. Extract the maximum (mfg timestamp) value from the tssql.stmt file.
-     * Compare this value with the value returned by the getObject(int columnno)
-     * method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Timestamp_Tab with the maximum (mfg timestamp) value
+     * of Timestamp_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (mfg timestamp)
+     * value from the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method.
+     * Both the values should be equal.
      */
 
     public void testSetObject225() throws Fault {
@@ -403,16 +390,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject226
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Char_Tab with the maximum (mfg time) value of
-     * Time_Tab. Call the getObject(int columnno) method to retrieve this value.
-     * Extract the maximum (mfg time) value from the tssql.stmt file. Compare this
-     * value with the value returned by the getObject(int columnno) method. Both
-     * the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Char_Tab with the maximum (mfg time) value of
+     * Time_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (mfg time) value from
+     * the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject226() throws Fault {
@@ -486,16 +470,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject227
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Varchar_Tab with the maximum (mfg time)value of
-     * Time_Tab. Call the getObject(int columnno) method to retrieve this value.
-     * Extract the maximum (mfg time) value from the tssql.stmt file. Compare this
-     * value with the value returned by the getObject(int columnno) method. Both
-     * the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Varchar_Tab with the maximum (mfg time)value of
+     * Time_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (mfg time) value from
+     * the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject227() throws Fault {
@@ -570,16 +551,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject228
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Longvarchar_Tab with the maximum (mfg time) value of
-     * Time_Tab. Call the getObject(int columnno) method to retrieve this value.
-     * Extract the maximum (mfg time) value from the tssql.stmt file. Compare this
-     * value with the value returned by the getObject(int columnno) method. Both
-     * the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Longvarchar_Tab with the maximum (mfg time) value of
+     * Time_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (mfg time) value from
+     * the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject228() throws Fault {
@@ -655,16 +633,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject229
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Time_Tab with the maximum (mfg time) value of
-     * Time_Tab. Call the getObject(int columnno) method to retrieve this value.
-     * Extract the maximum (mfg time) value from the tssql.stmt file. Compare this
-     * value with the value returned by the getObject(int columnno) method. Both
-     * the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Time_Tab with the maximum (mfg time) value of
+     * Time_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (mfg time) value from
+     * the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject229() throws Fault {
@@ -741,16 +716,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject230
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Char_Tab with the maximum (brktime) value of
-     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this
-     * value. Extract the maximum (brktime) value from the tssql.stmt file.
-     * Compare this value with the value returned by the getObject(int columnno)
-     * method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Char_Tab with the maximum (brktime) value of
+     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (brktime) value
+     * from the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject230() throws Fault {
@@ -826,16 +798,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject231
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Varchar_Tab with the maximum (brktime) value of
-     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this
-     * value. Extract the maximum (brktime) value from the tssql.stmt file.
-     * Compare this value with the value returned by the getObject(int columnno)
-     * method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Varchar_Tab with the maximum (brktime) value of
+     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (brktime) value
+     * from the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject231() throws Fault {
@@ -910,16 +879,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject232
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Longvarchar_Tab with the maximum (brktime) value of
-     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this
-     * value. Extract the maximum (brktime) value from the tssql.stmt file.
-     * Compare this value with the value returned by the getObject(int columnno)
-     * method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Longvarchar_Tab with the maximum (brktime) value of
+     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (brktime) value
+     * from the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject232() throws Fault {
@@ -995,16 +961,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject233
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Date_Tab with the maximum (brktime) value of
-     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this
-     * value. Extract the maximum (brktime) value from the tssql.stmt file.
-     * Compare this value with the value returned by the getObject(int columnno)
-     * method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Date_Tab with the maximum (brktime) value of
+     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (brktime) value
+     * from the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject233() throws Fault {
@@ -1083,16 +1046,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject234
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Time_Tab with the maximum (brktime) value of
-     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this
-     * value. Extract the maximum (brktime) value from the tssql.stmt file.
-     * Compare this value with the value returned by the getObject(int columnno)
-     * method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Time_Tab with the maximum (brktime) value of
+     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (brktime) value
+     * from the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject234() throws Fault {
@@ -1171,16 +1131,13 @@ public class prepStmtClient15 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject235
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:26; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Using the setObject(int parameterIndex, Object x) method,update
-     * the column Null_Val of Timestamp_Tab with the maximum (brktime) value of
-     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this
-     * value. Extract the maximum (brktime) value from the tssql.stmt file.
-     * Compare this value with the value returned by the getObject(int columnno)
-     * method. Both the values should be equal.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Using the setObject(int
+     * parameterIndex, Object x) method,update the column Null_Val of Timestamp_Tab with the maximum (brktime) value of
+     * Timestamp_Tab. Call the getObject(int columnno) method to retrieve this value. Extract the maximum (brktime) value
+     * from the tssql.stmt file. Compare this value with the value returned by the getObject(int columnno) method. Both the
+     * values should be equal.
      */
 
     public void testSetObject235() throws Fault {

@@ -61,8 +61,8 @@ public class HttpResponse {
     private String _encoding = DEFAULT_ENCODING;
 
     /**
-     * The response body. Initialized after first call to one of the
-     * getResponseBody methods and cached for subsequent calls.
+     * The response body. Initialized after first call to one of the getResponseBody methods and cached for subsequent
+     * calls.
      */
     private String _responseBody = null;
 
@@ -92,8 +92,7 @@ public class HttpResponse {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
@@ -135,16 +134,14 @@ public class HttpResponse {
     /**
      * Returns the response header designated by the name provided.
      *
-     * @return a specfic response header or null if the specified header doesn't
-     *         exist.
+     * @return a specfic response header or null if the specified header doesn't exist.
      */
     public Header getResponseHeader(String headerName) {
         return _method.getResponseHeader(headerName);
     }
 
     /**
-     * Returns the response body as a byte array using the charset specified in
-     * the server's response.
+     * Returns the response body as a byte array using the charset specified in the server's response.
      *
      * @return response body as an array of bytes.
      */
@@ -156,16 +153,14 @@ public class HttpResponse {
      * Returns the response as bytes (no encoding is performed by client.
      *
      * @return the raw response bytes
-     * @throws IOException
-     *           if an error occurs reading from server
+     * @throws IOException if an error occurs reading from server
      */
     public byte[] getResponseBodyAsRawBytes() throws IOException {
         return _method.getResponseBody();
     }
 
     /**
-     * Returns the response body as a string using the charset specified in the
-     * server's response.
+     * Returns the response body as a string using the charset specified in the server's response.
      *
      * @return response body as a String
      */
@@ -174,20 +169,17 @@ public class HttpResponse {
     }
 
     /**
-     * Returns the response body of the server without being encoding by the
-     * client.
+     * Returns the response body of the server without being encoding by the client.
      *
      * @return an unecoded String representation of the response
-     * @throws IOException
-     *           if an error occurs reading from the server
+     * @throws IOException if an error occurs reading from the server
      */
     public String getResponseBodyAsRawString() throws IOException {
         return _method.getResponseBodyAsString();
     }
 
     /**
-     * Returns the response body as an InputStream using the encoding specified in
-     * the server's response.
+     * Returns the response body as an InputStream using the encoding specified in the server's response.
      *
      * @return response body as an InputStream
      */
@@ -196,12 +188,10 @@ public class HttpResponse {
     }
 
     /**
-     * Returns the response body as an InputStream without any encoding applied by
-     * the client.
+     * Returns the response body as an InputStream without any encoding applied by the client.
      *
      * @return an InputStream to read the response
-     * @throws IOException
-     *           if an error occurs reading from the server
+     * @throws IOException if an error occurs reading from the server
      */
     public InputStream getResponseBodyAsRawStream() throws IOException {
         return _method.getResponseBodyAsStream();
@@ -292,8 +282,7 @@ public class HttpResponse {
     }
 
     /*
-     * Private Methods
-     * ==========================================================================
+     * Private Methods ==========================================================================
      */
 
     /**

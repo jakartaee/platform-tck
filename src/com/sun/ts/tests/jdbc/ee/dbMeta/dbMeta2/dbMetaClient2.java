@@ -40,8 +40,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The dbMetaClient2 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The dbMetaClient2 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -76,14 +75,11 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -95,11 +91,16 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
                 dbUser = p.getProperty("user1", "");
                 sPtable = p.getProperty("ptable", "TSTABLE1");
                 sFtable = p.getProperty("ftable", "TSTABLE2");
-                if (dbName.length() == 0) throw new Fault("Invalid db1  Database Name");
-                if (dbUser.length() == 0) throw new Fault("Invalid Login Id");
-                if (sPtable.length() == 0) throw new Fault("Invalid Primary table");
-                if (sFtable.length() == 0) throw new Fault("Invalid Foreign table");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (dbName.length() == 0)
+                    throw new Fault("Invalid db1  Database Name");
+                if (dbUser.length() == 0)
+                    throw new Fault("Invalid Login Id");
+                if (sPtable.length() == 0)
+                    throw new Fault("Invalid Primary table");
+                if (sFtable.length() == 0)
+                    throw new Fault("Invalid Foreign table");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 int nLocdbname = dbName.indexOf('=');
                 sCatalogName = dbName.substring(nLocdbname + 1);
@@ -131,12 +132,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testStoresMixedCaseIdentifiers
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:846; JDBC:JAVADOC:847;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:846; JDBC:JAVADOC:847; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the storesMixedCaseIdentifiers() method It should return
-     * a boolean value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * storesMixedCaseIdentifiers() method It should return a boolean value
      *
      */
     public void testStoresMixedCaseIdentifiers() throws Fault {
@@ -162,12 +161,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsMixedCaseQuotedIdentifiers
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:848; JDBC:JAVADOC:849;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:848; JDBC:JAVADOC:849; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsMixedCaseQuotedIdentifiers() method It should
-     * return a boolean value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsMixedCaseQuotedIdentifiers() method It should return a boolean value
      *
      */
     public void testSupportsMixedCaseQuotedIdentifiers() throws Fault {
@@ -192,12 +189,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testStoresUpperCaseQuotedIdentifiers
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:850; JDBC:JAVADOC:851;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:850; JDBC:JAVADOC:851; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the storesUpperCaseQuotedIdentifiers() method It should
-     * return a boolean value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * storesUpperCaseQuotedIdentifiers() method It should return a boolean value
      *
      */
     public void testStoresUpperCaseQuotedIdentifiers() throws Fault {
@@ -222,12 +217,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testStoresLowerCaseQuotedIdentifiers
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:852; JDBC:JAVADOC:853;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:852; JDBC:JAVADOC:853; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the storesLowerCaseQuotedIdentifiers() method It should
-     * return a boolean value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * storesLowerCaseQuotedIdentifiers() method It should return a boolean value
      *
      */
     public void testStoresLowerCaseQuotedIdentifiers() throws Fault {
@@ -252,12 +245,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testStoresMixedCaseQuotedIdentifiers
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:854; JDBC:JAVADOC:855;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:854; JDBC:JAVADOC:855; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the storesMixedCaseQuotedIdentifiers() method It should
-     * return a boolean value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * storesMixedCaseQuotedIdentifiers() method It should return a boolean value
      *
      */
     public void testStoresMixedCaseQuotedIdentifiers() throws Fault {
@@ -282,12 +273,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetIdentifierQuoteString
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:856; JDBC:JAVADOC:857;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:856; JDBC:JAVADOC:857; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getIdentifierQuoteString() method It should return a
-     * String
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * getIdentifierQuoteString() method It should return a String
      *
      */
     public void testGetIdentifierQuoteString() throws Fault {
@@ -318,11 +307,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetSQLKeywords
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:858; JDBC:JAVADOC:859;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:858; JDBC:JAVADOC:859; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getSQLKeywords() method It should return a String
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the getSQLKeywords()
+     * method It should return a String
      *
      */
     public void testGetSQLKeywords() throws Fault {
@@ -348,12 +336,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetNumericFunctions
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:860; JDBC:JAVADOC:861;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:860; JDBC:JAVADOC:861; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getNumericFunctions() method It should return a
-     * String
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * getNumericFunctions() method It should return a String
      *
      */
     public void testGetNumericFunctions() throws Fault {
@@ -378,11 +364,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetStringFunctions
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:862; JDBC:JAVADOC:863;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:862; JDBC:JAVADOC:863; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getStringFunctions() method It should return a String
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the getStringFunctions()
+     * method It should return a String
      *
      */
     public void testGetStringFunctions() throws Fault {
@@ -407,11 +392,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetSystemFunctions
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:864; JDBC:JAVADOC:865;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:864; JDBC:JAVADOC:865; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getSystemFunctions() method It should return a String
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the getSystemFunctions()
+     * method It should return a String
      *
      */
     public void testGetSystemFunctions() throws Fault {
@@ -436,12 +420,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTimeDateFunctions
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:866; JDBC:JAVADOC:867;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:866; JDBC:JAVADOC:867; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getTimeDateFunctions() method It should return a
-     * String
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * getTimeDateFunctions() method It should return a String
      *
      */
     public void testGetTimeDateFunctions() throws Fault {
@@ -467,12 +449,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetSearchStringEscape
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:868; JDBC:JAVADOC:869;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:868; JDBC:JAVADOC:869; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getSearchStringEscape() method It should return a
-     * String
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * getSearchStringEscape() method It should return a String
      *
      */
     public void testGetSearchStringEscape() throws Fault {
@@ -498,12 +478,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetExtraNameCharacters
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:870; JDBC:JAVADOC:871;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:870; JDBC:JAVADOC:871; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getExtraNameCharacters() method It should return a
-     * String
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * getExtraNameCharacters() method It should return a String
      *
      */
     public void testGetExtraNameCharacters() throws Fault {
@@ -529,12 +507,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsAlterTableWithAddColumn
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:872; JDBC:JAVADOC:873;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:872; JDBC:JAVADOC:873; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsAlterTableWithAddColumn() method It should
-     * return a boolean value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsAlterTableWithAddColumn() method It should return a boolean value
      *
      */
     public void testSupportsAlterTableWithAddColumn() throws Fault {
@@ -559,12 +535,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsAlterTableWithDropColumn
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:874; JDBC:JAVADOC:875;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:874; JDBC:JAVADOC:875; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsAlterTableWithDropColumn() method It should
-     * return a boolean value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsAlterTableWithDropColumn() method It should return a boolean value
      *
      */
     public void testSupportsAlterTableWithDropColumn() throws Fault {
@@ -589,12 +563,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsColumnAliasing
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:876; JDBC:JAVADOC:877;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:876; JDBC:JAVADOC:877; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsColumnAliasing() method It should return a
-     * true value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsColumnAliasing() method It should return a true value
      *
      */
     public void testSupportsColumnAliasing() throws Fault {
@@ -621,12 +593,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testNullPlusNonNullIsNull
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:878; JDBC:JAVADOC:879;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:878; JDBC:JAVADOC:879; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the nullPlusNonNullIsNull() method It should return a
-     * boolean value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * nullPlusNonNullIsNull() method It should return a boolean value
      *
      */
     public void testNullPlusNonNullIsNull() throws Fault {
@@ -655,12 +625,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:880; JDBC:JAVADOC:881;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:880; JDBC:JAVADOC:881; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert() method It should return a boolean
-     * value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the supportsConvert()
+     * method It should return a boolean value
      *
      */
     public void testSupportsConvert() throws Fault {
@@ -685,12 +653,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert01
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(ARRAY, VARCHAR) method It should
-     * return a boolean value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(ARRAY, VARCHAR) method It should return a boolean value
      *
      */
     public void testSupportsConvert01() throws Fault {
@@ -715,12 +681,10 @@ public class dbMetaClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsConvert02
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:882; JDBC:JAVADOC:883; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsConvert(BIGINT, VARCHAR) method It should
-     * return a boolean value
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsConvert(BIGINT, VARCHAR) method It should return a boolean value
      *
      */
     public void testSupportsConvert02() throws Fault {

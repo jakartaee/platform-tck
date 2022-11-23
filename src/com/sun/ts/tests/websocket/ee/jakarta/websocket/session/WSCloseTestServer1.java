@@ -34,7 +34,7 @@ import java.lang.reflect.Method;
 @ServerEndpoint(value = "/WSCloseTestServer1")
 public class WSCloseTestServer1 {
 
-    private static final Class<?>[] TEST_ARGS = {String.class, Session.class};
+    private static final Class<?>[] TEST_ARGS = { String.class, Session.class };
 
     static String testName;
 
@@ -55,7 +55,7 @@ public class WSCloseTestServer1 {
             if (message.startsWith("testName=") && message.endsWith("Test")) {
                 testName = message.substring(9);
                 Method method = WSCloseTestServer1.class.getMethod(testName, TEST_ARGS);
-                method.invoke(this, new Object[] {message, session});
+                method.invoke(this, new Object[] { message, session });
             } else {
                 session.getBasicRemote().sendText("========WSCloseTestServer1 received String:" + message);
                 session.getBasicRemote().sendText("========WSCloseTestServer1 responds, please close your session");

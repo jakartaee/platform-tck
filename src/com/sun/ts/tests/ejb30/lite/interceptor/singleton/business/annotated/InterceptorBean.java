@@ -30,7 +30,7 @@ import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
 
 @Singleton
-@Interceptors({Interceptor5.class, Interceptor4.class})
+@Interceptors({ Interceptor5.class, Interceptor4.class })
 public class InterceptorBean extends InterceptorBeanBase implements InterceptorIF {
     private static final String simpleName = "InterceptorBean";
 

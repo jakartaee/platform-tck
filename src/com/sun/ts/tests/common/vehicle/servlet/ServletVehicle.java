@@ -114,8 +114,10 @@ public class ServletVehicle extends HttpServlet {
             // call EETest impl's run method
             sTestStatus = new RemoteStatus(testObj.run(arguments, properties));
 
-            if (sTestStatus.getType() == Status.PASSED) TestUtil.logMsg("Test running in servlet vehicle passed");
-            else TestUtil.logMsg("Test running in servlet vehicle failed");
+            if (sTestStatus.getType() == Status.PASSED)
+                TestUtil.logMsg("Test running in servlet vehicle passed");
+            else
+                TestUtil.logMsg("Test running in servlet vehicle failed");
         } catch (Throwable e) {
             TestUtil.logErr("Test running in servlet vehicle failed", e);
             sTestStatus = new RemoteStatus(Status.failed("Test running in servlet vehicle failed"));

@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setServletName("TestServlet");
@@ -58,9 +56,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:865; Servlet:SPEC:195.3;
      *
-     * @test_Strategy: Create a servlet TestServlet; Create a
-     * ServletContextListener using @WebListener; Send request to TestServlet;
-     * Veriy ServletContextListener is invoked properly.
+     * @test_Strategy: Create a servlet TestServlet; Create a ServletContextListener using @WebListener; Send request to
+     * TestServlet; Veriy ServletContextListener is invoked properly.
      */
     public void ContextListenerTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "ContextListenerTest");
@@ -73,9 +70,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:865; Servlet:SPEC:195.4;
      *
-     * @test_Strategy: Create a servlet TestServlet; Create a
-     * ServletContextAttributeListener using @WebListener; Send request to
-     * TestServlet; Veriy ServletContextAttributeListener is invoked properly.
+     * @test_Strategy: Create a servlet TestServlet; Create a ServletContextAttributeListener using @WebListener; Send
+     * request to TestServlet; Veriy ServletContextAttributeListener is invoked properly.
      */
     public void ContextAttributeListenerTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "ContextAttributeListenerTest");
@@ -92,9 +88,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:865; Servlet:SPEC:195.5;
      *
-     * @test_Strategy: Create a servlet TestServlet; Create a
-     * ServletRequestListener using @WebListener; Send request to TestServlet;
-     * Veriy ServletRequestListener is invoked properly.
+     * @test_Strategy: Create a servlet TestServlet; Create a ServletRequestListener using @WebListener; Send request to
+     * TestServlet; Veriy ServletRequestListener is invoked properly.
      */
     public void RequsetListenerTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "RequsetListenerTest");
@@ -107,10 +102,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:865; Servlet:SPEC:195.5;
      *
-     * @test_Strategy: Create a servlet TestServlet; Create a
-     * ServletRequestListener using @WebListener; Send request to TestServlet;
-     * Send a second request to TestServlet; Veriy ServletRequestListener is
-     * invoked properly.
+     * @test_Strategy: Create a servlet TestServlet; Create a ServletRequestListener using @WebListener; Send request to
+     * TestServlet; Send a second request to TestServlet; Veriy ServletRequestListener is invoked properly.
      */
     public void RepeatRequsetListenerTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "RepeatRequsetListenerTest");
@@ -131,9 +124,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:865; Servlet:SPEC:195.6;
      *
-     * @test_Strategy: Create a servlet TestServlet; Create a
-     * ServletRequestListener using @WebListener; Send request to TestServlet;
-     * Veriy ServletRequestListener is invoked properly.
+     * @test_Strategy: Create a servlet TestServlet; Create a ServletRequestListener using @WebListener; Send request to
+     * TestServlet; Veriy ServletRequestListener is invoked properly.
      */
     public void RequsetAttributeListenerTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "RequsetAttributeListenerTest");
@@ -146,10 +138,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:865; Servlet:SPEC:195.7;
      *
-     * @test_Strategy: Create a servlet HttpTestServlet; Create a
-     * HttpSessionListener using @WebListener; Send request to HttpTestServlet;
-     * Create a HttpSession and then invlalidate it; Veriy HttpSessionListener is
-     * invoked properly.
+     * @test_Strategy: Create a servlet HttpTestServlet; Create a HttpSessionListener using @WebListener; Send request to
+     * HttpTestServlet; Create a HttpSession and then invlalidate it; Veriy HttpSessionListener is invoked properly.
      */
     public void HttpSessionListenerTest() throws Fault {
         setServletName("HttpTestServlet");
@@ -163,14 +153,11 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:865; Servlet:SPEC:289; Servlet:SPEC:195.8;
      *
-     * @test_Strategy: Create a servlet TestServlet; Create a
-     * HttpSessionAttributeListener using @WebListener; Send request to
-     * TestServlet, that will set some attributes in; its first call to
-     * HttpSessionAttributeListenerPreLude then once; in this servlet method, the
-     * attributes are added, replaced, and; removed. This should cause the
-     * HttpSessionAttributeListener; event to get triggered for all 3 methods.
-     * Verification of; the 3 triggered event methods is then checked in the 2nd;
-     * invocation to HttpSessionAttributeListenerTest below.
+     * @test_Strategy: Create a servlet TestServlet; Create a HttpSessionAttributeListener using @WebListener; Send request
+     * to TestServlet, that will set some attributes in; its first call to HttpSessionAttributeListenerPreLude then once; in
+     * this servlet method, the attributes are added, replaced, and; removed. This should cause the
+     * HttpSessionAttributeListener; event to get triggered for all 3 methods. Verification of; the 3 triggered event
+     * methods is then checked in the 2nd; invocation to HttpSessionAttributeListenerTest below.
      */
     public void HttpSessionAttributeListenerTest() throws Fault {
 

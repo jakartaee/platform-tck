@@ -26,9 +26,8 @@ import jakarta.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
 /**
- * TestTag.java Simple tag to write the start, or header, as well as the end, or
- * footer, of an HTML document. Note, this tag should be the first and last
- * action of the test.
+ * TestTag.java Simple tag to write the start, or header, as well as the end, or footer, of an HTML document. Note, this
+ * tag should be the first and last action of the test.
  */
 public class TestTag extends TagSupport {
 
@@ -49,21 +48,18 @@ public class TestTag extends TagSupport {
     /**
      * <code>setTestName</code> sets the current testName for this particular test
      *
-     * @param name
-     *          a <code>String</code> value
+     * @param name a <code>String</code> value
      */
     public void setTestName(String name) {
         _name = name;
     }
 
     /**
-     * <code>doStartTag</code> will write the beginnings of a simple HTML document
-     * (<html>,<title>, and <body>). The value of title will be the value passed
-     * in by the testName attribute.
+     * <code>doStartTag</code> will write the beginnings of a simple HTML document (<html>,<title>, and <body>). The value
+     * of title will be the value passed in by the testName attribute.
      *
      * @return <code>EVAL_BODY_INCLUDE</code>
-     * @exception JspException
-     *              if an error occurs
+     * @exception JspException if an error occurs
      */
     @Override
     public int doStartTag() throws JspException {
@@ -83,12 +79,10 @@ public class TestTag extends TagSupport {
     }
 
     /**
-     * <code>doEndTag</code> will write the end of the HTML document once the test
-     * has concluded (</body>,</html>);
+     * <code>doEndTag</code> will write the end of the HTML document once the test has concluded (</body>,</html>);
      *
      * @return <code>EVAL_PAGE</code>
-     * @exception JspException
-     *              if an error occurs
+     * @exception JspException if an error occurs
      */
     @Override
     public int doEndTag() throws JspException {
@@ -103,8 +97,8 @@ public class TestTag extends TagSupport {
     }
 
     /**
-     * <code>release</code> is called by the tag handler to release state. This
-     * method is invoked by the JSP page implementation object.
+     * <code>release</code> is called by the tag handler to release state. This method is invoked by the JSP page
+     * implementation object.
      */
     @Override
     public void release() {

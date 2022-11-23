@@ -42,8 +42,7 @@ public class webParam2WebService {
     public String hello2(
             @WebParam(name = "name", partName = "string2") String name,
             String name2,
-            @WebParam(name = "Address", partName = "address", targetNamespace = "helloString2/Address")
-                    Address address) {
+            @WebParam(name = "Address", partName = "address", targetNamespace = "helloString2/Address") Address address) {
         System.out.println(" Address : " + address);
         return new StringBuffer()
                 .append("Hello ")
@@ -61,10 +60,8 @@ public class webParam2WebService {
 
     @WebMethod(operationName = "helloString4", action = "urn:HelloString4")
     public String hello4(
-            @WebParam(name = "Name", targetNamespace = "helloString4/Name", mode = WebParam.Mode.INOUT)
-                    Holder<Name> name,
-            @WebParam(name = "Employee", mode = WebParam.Mode.OUT)
-                    Holder<com.sun.ts.tests.jws.common.Employee> employee) {
+            @WebParam(name = "Name", targetNamespace = "helloString4/Name", mode = WebParam.Mode.INOUT) Holder<Name> name,
+            @WebParam(name = "Employee", mode = WebParam.Mode.OUT) Holder<com.sun.ts.tests.jws.common.Employee> employee) {
         return "Hello " + name + " to Web Service";
     }
 

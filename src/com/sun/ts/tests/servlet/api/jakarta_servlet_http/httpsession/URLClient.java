@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -49,8 +47,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; ts_home;
-     * servlet_waittime;
+     * @class.setup_props: webServerHost; webServerPort; ts_home; servlet_waittime;
      */
 
     /* Run test */
@@ -96,8 +93,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:467
      *
-     * @test_Strategy: Create a HttpSession; invalidate it; Verify that no
-     * IllegalStateException is thrown when getId is called.
+     * @test_Strategy: Create a HttpSession; invalidate it; Verify that no IllegalStateException is thrown when getId is
+     * called.
      */
     public void getIdIllegalStateExceptionTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getIdIllegalStateExceptionTest");
@@ -131,28 +128,22 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: expireHttpSessionTest
      *
-     * @assertion_ids: Servlet:SPEC:202; Servlet:SPEC:203; Servlet:SPEC:66;
-     * Servlet:JAVADOC:565; Servlet:JAVADOC:473; Servlet:JAVADOC:469;
-     * Servlet:JAVADOC:470; Servlet:JAVADOC:566;
+     * @assertion_ids: Servlet:SPEC:202; Servlet:SPEC:203; Servlet:SPEC:66; Servlet:JAVADOC:565; Servlet:JAVADOC:473;
+     * Servlet:JAVADOC:469; Servlet:JAVADOC:470; Servlet:JAVADOC:566;
      *
-     * @test_Strategy: 1. Client sends request to TestServlet which - creates a
-     * session using request.getSession() - and sets the session's
-     * maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in
-     * the response. Client records the current system time (t1),
+     * @test_Strategy: 1. Client sends request to TestServlet which - creates a session using request.getSession() - and
+     * sets the session's maxInactiveInterval to 10 secs. Client captures the JSESSIONID returned in the response. Client
+     * records the current system time (t1),
      *
-     * 2. Within maxInactiveInterval, client sends a request that contains the
-     * JSESSIONID in a request cookie to file index.html Client receives the
-     * response and records the current system time (t2).
+     * 2. Within maxInactiveInterval, client sends a request that contains the JSESSIONID in a request cookie to file
+     * index.html Client receives the response and records the current system time (t2).
      *
-     * 3. Client makes request with JSESSIONID to servlet getLastAccessedTime,
-     * including both t1 and t2 as request params. Servlet resumes session by
-     * calling request.getSession(false), verify t2 >
-     * session.getLastAccessedTime() > t1
+     * 3. Client makes request with JSESSIONID to servlet getLastAccessedTime, including both t1 and t2 as request params.
+     * Servlet resumes session by calling request.getSession(false), verify t2 > session.getLastAccessedTime() > t1
      *
-     * 4. Client waits for longer than maxInactiveInterval, and sends a
-     * request(including JSESSIONID) to the third servlet. The servlet tries to
-     * resume the session by calling request.getSession(false). Verify that no
-     * session is returned this time
+     * 4. Client waits for longer than maxInactiveInterval, and sends a request(including JSESSIONID) to the third servlet.
+     * The servlet tries to resume the session by calling request.getSession(false). Verify that no session is returned this
+     * time
      */
 
     public void expireHttpSessionTest() throws Fault {
@@ -349,8 +340,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:491
      *
-     * @test_Strategy: Servlet removes non-existant attribute then tries to tries
-     * to get it.
+     * @test_Strategy: Servlet removes non-existant attribute then tries to tries to get it.
      */
     public void removeAttributeDoNothingTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "removeAttributeDoNothingTest");

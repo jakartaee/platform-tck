@@ -37,7 +37,8 @@ public class InstallCompositeELResolverListener implements ServletContextListene
         jspContext.addELResolver(compResolver);
     }
 
-    public void contextDestroyed(ServletContextEvent evt) {}
+    public void contextDestroyed(ServletContextEvent evt) {
+    }
 
     public static CompositeELResolver getCompositeELResolver() {
         return compResolver;

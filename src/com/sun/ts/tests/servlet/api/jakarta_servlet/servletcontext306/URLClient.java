@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,9 +56,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:674.6;
      *
-     * @test_Strategy: Negative test for ServletContext.addServlet(String, String)
-     * Create a Servlet, call ServletContext.addServlet(String, String) Verify the
-     * expected IllegalStateException is thrown.
+     * @test_Strategy: Negative test for ServletContext.addServlet(String, String) Create a Servlet, call
+     * ServletContext.addServlet(String, String) Verify the expected IllegalStateException is thrown.
      */
     public void addServletStringTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "addServletStringTest");
@@ -72,9 +69,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:676.6;
      *
-     * @test_Strategy: Negative test for ServletContext.addServlet(String, Class)
-     * Create a Servlet, call ServletContext.addServlet(String, Class) Verify the
-     * expected IllegalStateException is thrown.
+     * @test_Strategy: Negative test for ServletContext.addServlet(String, Class) Create a Servlet, call
+     * ServletContext.addServlet(String, Class) Verify the expected IllegalStateException is thrown.
      */
     public void addServletClassTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "addServletClassTest");
@@ -86,9 +82,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:675.7;
      *
-     * @test_Strategy: Negative test for ServletContext.addServlet(String,
-     * Servlet) Create a Servlet, call ServletContext.addServlet(String, Servlet)
-     * Verify the expected IllegalStateException is thrown.
+     * @test_Strategy: Negative test for ServletContext.addServlet(String, Servlet) Create a Servlet, call
+     * ServletContext.addServlet(String, Servlet) Verify the expected IllegalStateException is thrown.
      */
     public void addServletTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "addServletTest");
@@ -100,9 +95,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:668.5;
      *
-     * @test_Strategy: Negative test for ServletContext.addFilter(String, String)
-     * Create a Servlet, call ServletContext.addFilter(String, String) Verify the
-     * expected IllegalStateException is thrown.
+     * @test_Strategy: Negative test for ServletContext.addFilter(String, String) Create a Servlet, call
+     * ServletContext.addFilter(String, String) Verify the expected IllegalStateException is thrown.
      */
     public void addFilterStringTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "addFilterStringTest");
@@ -114,9 +108,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:670.5;
      *
-     * @test_Strategy: Negative test for ServletContext.addFilter(String, Class)
-     * Create a Servlet, call ServletContext.addFilter(String, Class) Verify the
-     * expected IllegalStateException is thrown.
+     * @test_Strategy: Negative test for ServletContext.addFilter(String, Class) Create a Servlet, call
+     * ServletContext.addFilter(String, Class) Verify the expected IllegalStateException is thrown.
      */
     public void addFilterClassTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "addFilterClassTest");
@@ -128,9 +121,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:669.6;
      *
-     * @test_Strategy: Negative test for ServletContext.addFilter(String, Filter)
-     * Create a Servlet, call ServletContext.addFilter(String, Filter) Verify the
-     * expected IllegalStateException is thrown.
+     * @test_Strategy: Negative test for ServletContext.addFilter(String, Filter) Create a Servlet, call
+     * ServletContext.addFilter(String, Filter) Verify the expected IllegalStateException is thrown.
      */
     public void addFilterTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "addFilterTest");
@@ -142,9 +134,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:694.1;
      *
-     * @test_Strategy: Negative test for ServletContext.setInitParameter(String,
-     * String) Create a Servlet, call ServletContext.setInitParameter(String,
-     * String) Verify the expected IllegalStateException is thrown.
+     * @test_Strategy: Negative test for ServletContext.setInitParameter(String, String) Create a Servlet, call
+     * ServletContext.setInitParameter(String, String) Verify the expected IllegalStateException is thrown.
      */
     public void setInitParameterTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setInitParameterTest");

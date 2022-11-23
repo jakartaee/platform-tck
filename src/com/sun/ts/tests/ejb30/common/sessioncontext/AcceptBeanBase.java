@@ -46,7 +46,7 @@ public abstract class AcceptBeanBase implements AcceptLocalIF, AcceptIF {
     }
 
     public void accept(CommonIF bean) throws TestFailedException {
-        final String[] m = new String[] {FROM_CLIENT};
+        final String[] m = new String[] { FROM_CLIENT };
         if (bean instanceof Three1IF) {
             Three1IF bob = (Three1IF) bean;
             bob.hi(m);

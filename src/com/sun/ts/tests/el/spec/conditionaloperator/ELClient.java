@@ -31,7 +31,7 @@ public class ELClient extends ServiceEETest {
 
     Properties testProps;
 
-    private final boolean[] deferred = {true, false};
+    private final boolean[] deferred = { true, false };
 
     public static void main(String[] args) {
         ELClient theTests = new ELClient();
@@ -44,15 +44,16 @@ public class ELClient extends ServiceEETest {
         this.testProps = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: elConditionalStringTest
      *
      * @assertion_ids: EL:SPEC:26.1.1; EL:SPEC:26.1.2
      *
-     * @test_Strategy: Validate that if a String is passed with the conditional
-     * operator, the type is coerced to Boolean and the operator is applied.
+     * @test_Strategy: Validate that if a String is passed with the conditional operator, the type is coerced to Boolean and
+     * the operator is applied.
      *
      * Example Equation: ${true ? true : false}
      */
@@ -67,8 +68,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:26.1.1; EL:SPEC:26.1.2
      *
-     * @test_Strategy: Validate that if a Boolean is passed with the conditional
-     * operator, that the operator is applied.
+     * @test_Strategy: Validate that if a Boolean is passed with the conditional operator, that the operator is applied.
      *
      * Example Equation: ${true ? true : false}
      */
@@ -95,7 +95,8 @@ public class ELClient extends ServiceEETest {
                 pass = (ExprEval.compareClass(result, Boolean.class)
                         && ExprEval.compareValue((Boolean) result, expectedResult));
 
-                if (!pass) throw new Fault("TEST FAILED: pass = false");
+                if (!pass)
+                    throw new Fault("TEST FAILED: pass = false");
             }
         } catch (Exception e) {
             throw new Fault(e);
@@ -117,7 +118,8 @@ public class ELClient extends ServiceEETest {
                 pass = (ExprEval.compareClass(result, Boolean.class)
                         && ExprEval.compareValue((Boolean) result, expectedResult));
 
-                if (!pass) throw new Fault("TEST FAILED: pass = false");
+                if (!pass)
+                    throw new Fault("TEST FAILED: pass = false");
             }
         } catch (Exception e) {
             throw new Fault(e);

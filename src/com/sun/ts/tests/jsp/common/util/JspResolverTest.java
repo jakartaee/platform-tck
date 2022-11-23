@@ -32,7 +32,8 @@ public class JspResolverTest {
     /**
      * Private as this class will only have static methods and members.
      */
-    private JspResolverTest() {}
+    private JspResolverTest() {
+    }
 
     public static boolean testImplicitObjELResolver(
             ELContext elContext,
@@ -109,7 +110,8 @@ public class JspResolverTest {
         } else if (!readOnly) {
             buf.append("isReadOnly() returned false\n");
             pass = false;
-        } else buf.append("isReadOnly() returns true as expected\n");
+        } else
+            buf.append("isReadOnly() returns true as expected\n");
 
         // getCommonPropertyType()
         elContext.setPropertyResolved(false);
@@ -145,7 +147,8 @@ public class JspResolverTest {
             }
         } else {
             boolean fdPass = ResolverTest.testFeatureDescriptors(i, resolver, base, buf);
-            if (!fdPass) pass = false;
+            if (!fdPass)
+                pass = false;
         }
         return pass;
     }
@@ -228,7 +231,8 @@ public class JspResolverTest {
         } else if (readOnly) {
             buf.append("isReadOnly() returned true\n");
             pass = false;
-        } else buf.append("isReadOnly() returns false as expected\n");
+        } else
+            buf.append("isReadOnly() returns false as expected\n");
 
         // getCommonPropertyType()
         elContext.setPropertyResolved(false);
@@ -264,7 +268,8 @@ public class JspResolverTest {
             }
         } else {
             boolean fdPass = ResolverTest.testFeatureDescriptors(i, resolver, base, buf);
-            if (!fdPass) pass = false;
+            if (!fdPass)
+                pass = false;
         }
         return pass;
     }

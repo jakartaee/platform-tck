@@ -38,27 +38,25 @@ import java.util.StringTokenizer;
 public class TokenizedValidator extends WebValidatorBase {
 
     /**
-     * System property that will cause the specified goldenfile to be written if
-     * it doesn't already exist.
+     * System property that will cause the specified goldenfile to be written if it doesn't already exist.
      */
     private static final String RECORD_GF = "ts.record.gf";
 
     /**
      * Creates a new instance of TokenizedValidator
      */
-    public TokenizedValidator() {}
+    public TokenizedValidator() {
+    }
 
     /*
-     * protected methods
-     * ========================================================================
+     * protected methods ========================================================================
      */
 
     /**
      * Compare the server response and golenfile using a StringTokenizer.
      *
      * @return true if response and goldenfile are the same.
-     * @throws IOException
-     *           if an error occurs will processing the Goldenfile
+     * @throws IOException if an error occurs will processing the Goldenfile
      */
     protected boolean checkGoldenfile() throws IOException {
         String gf;
@@ -125,17 +123,14 @@ public class TokenizedValidator extends WebValidatorBase {
     }
 
     /*
-     * private methods
-     * ========================================================================
+     * private methods ========================================================================
      */
 
     /**
      * Dumps the response from the server and the content of the Goldenfile/
      *
-     * @param serverResponse
-     *          the response body from the server.
-     * @param goldenFile
-     *          the test goldenfile
+     * @param serverResponse the response body from the server.
+     * @param goldenFile the test goldenfile
      */
     private static void dumpResponseInfo(String serverResponse, String goldenFile) {
         StringBuffer sb = new StringBuffer(255);

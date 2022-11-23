@@ -40,7 +40,7 @@ import java.util.Map;
 import java.util.Properties;
 
 @Stateless(name = "Stateless3Bean")
-@Remote({Stateless3IF.class})
+@Remote({ Stateless3IF.class })
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateless3Bean implements Stateless3IF {
 
@@ -55,9 +55,9 @@ public class Stateless3Bean implements Stateless3IF {
 
     private Account accountRef;
 
-    private static final int ACCOUNTS[] = {1000, 1075, 40, 30564, 387};
+    private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
 
-    private static final double BALANCES[] = {50000.0, 10490.75, 200.50, 25000.0, 1000000.0};
+    private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0, 1000000.0 };
 
     @Resource
     public void setSessionContext(SessionContext sessionContext) {

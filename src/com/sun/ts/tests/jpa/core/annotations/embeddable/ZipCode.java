@@ -25,7 +25,8 @@ public class ZipCode implements java.io.Serializable {
 
     protected String plusFour;
 
-    public ZipCode() {}
+    public ZipCode() {
+    }
 
     public ZipCode(String zip, String plusFour) {
         this.zip = zip;

@@ -17,9 +17,8 @@
 package com.sun.ts.tests.websocket.common.client;
 
 /**
- * Standard WebTestCase can search strings in an order case sensitive, case
- * insensitive or not in order case sensitive. When there is a need to match not
- * in order and case insensitive, this class is used.
+ * Standard WebTestCase can search strings in an order case sensitive, case insensitive or not in order case sensitive.
+ * When there is a need to match not in order and case insensitive, this class is used.
  */
 public enum TextCaser {
     UPPER,
@@ -27,21 +26,20 @@ public enum TextCaser {
     LOWER;
 
     /**
-     * Get the text upper cased, lower cased, or unchanged, depending on current
-     * TextCaser value
+     * Get the text upper cased, lower cased, or unchanged, depending on current TextCaser value
      */
     public final String getCasedText(String text) {
         String ret = null;
         switch (this) {
-            case UPPER:
-                ret = text.toUpperCase();
-                break;
-            case LOWER:
-                ret = text.toLowerCase();
-                break;
-            case NONE:
-                ret = text;
-                break;
+        case UPPER:
+            ret = text.toUpperCase();
+            break;
+        case LOWER:
+            ret = text.toLowerCase();
+            break;
+        case NONE:
+            ret = text;
+            break;
         }
         return ret;
     }

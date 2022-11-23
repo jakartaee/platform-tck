@@ -30,9 +30,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -41,8 +40,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,9 +61,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:253
      *
-     * @test_Strategy: Validate that if a JSP configuration element specifies an
-     * encoding for a group of pages, the encoding is properly set for those pages
-     * when no encoding is set by the page(s) themselves.
+     * @test_Strategy: Validate that if a JSP configuration element specifies an encoding for a group of pages, the encoding
+     * is properly set for those pages when no encoding is set by the page(s) themselves.
      */
     public void jspConfigurationEncodingTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_config_encode_web/NoEncodingSpecifiedTest.jsp HTTP/1.1");
@@ -78,10 +75,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:146
      *
-     * @test_Strategy: Validate that if a JSP configuration element specifies an
-     * encoding for a group of pages, and the target page specifies the same
-     * encoding as that of the property group, no translation error occurs and the
-     * encoding is properly set.
+     * @test_Strategy: Validate that if a JSP configuration element specifies an encoding for a group of pages, and the
+     * target page specifies the same encoding as that of the property group, no translation error occurs and the encoding
+     * is properly set.
      */
     public void jspConfigurationSameEncodingTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_config_encode_web/SameEncodingSpecifiedTest.jsp HTTP/1.1");
@@ -94,9 +90,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:145
      *
-     * @test_Strategy: Validate that if a JSP configuration element specifies an
-     * encoding for a group of pages, and the target page specifies a different
-     * encoding as that of the property group, a translation error occurs.
+     * @test_Strategy: Validate that if a JSP configuration element specifies an encoding for a group of pages, and the
+     * target page specifies a different encoding as that of the property group, a translation error occurs.
      */
     public void jspConfigurationDifferentEncodingTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_config_encode_web/DifferentEncodingSpecifiedTest.jsp HTTP/1.1");

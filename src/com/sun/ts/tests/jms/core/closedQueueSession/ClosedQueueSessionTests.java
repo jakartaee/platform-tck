@@ -82,11 +82,9 @@ public class ClosedQueueSessionTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /**
-     * Used by tests that need a closed session for testing. Passes any exceptions
-     * up to caller.
+     * Used by tests that need a closed session for testing. Passes any exceptions up to caller.
      *
-     * @param int
-     *          The type of session that needs to be created and closed
+     * @param int The type of session that needs to be created and closed
      */
     private void createAndCloseSession(int type, String user, String password) throws Exception {
         if ((type == JmsTool.QUEUE) || (type == JmsTool.TX_QUEUE)) {
@@ -110,10 +108,9 @@ public class ClosedQueueSessionTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default
-     * QueueConnection, as well as a default Queue. Tests that require multiple
-     * Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default QueueConnection, as well as a default Queue. Tests that require multiple Destinations create the extras
+     * within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -157,8 +154,8 @@ public class ClosedQueueSessionTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -206,8 +203,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:190;
      *
-     * @test_Strategy: Close default session and call createBrowser on it. Check
-     * for IllegalStateException.
+     * @test_Strategy: Close default session and call createBrowser on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionCreateBrowserTest() throws Fault {
@@ -234,8 +230,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:192;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateBrowserMsgSelectorTest() throws Fault {
@@ -263,8 +258,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:182;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateQueueTest() throws Fault {
@@ -292,8 +286,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:184;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateReceiverTest() throws Fault {
@@ -321,8 +314,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:186;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateReceiverMsgSelectorTest() throws Fault {
@@ -332,8 +324,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
             createAndCloseSession(JmsTool.QUEUE, user, password);
             logMsg("Try to create Receiver with closed session.");
             try {
-                QueueReceiver qR =
-                        tool.getDefaultQueueSession().createReceiver(tool.getDefaultQueue(), "TEST = 'test'");
+                QueueReceiver qR = tool.getDefaultQueueSession().createReceiver(tool.getDefaultQueue(), "TEST = 'test'");
             } catch (jakarta.jms.IllegalStateException ise) {
                 logMsg("Caught expected exception");
                 return;
@@ -351,8 +342,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:188;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateSenderTest() throws Fault {
@@ -380,8 +370,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:194;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateTempQueueTest() throws Fault {
@@ -409,8 +398,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:213;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateMessageTest() throws Fault {
@@ -438,8 +426,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:209;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateBytesMessageTest() throws Fault {
@@ -467,8 +454,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:211;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateMapMessageTest() throws Fault {
@@ -496,8 +482,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:215;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateObjectMessageTest() throws Fault {
@@ -508,7 +493,8 @@ public class ClosedQueueSessionTests extends ServiceEETest {
             logMsg("Try to create ObjectMessage with closed session.");
             try {
                 ObjectMessage m = tool.getDefaultQueueSession().createObjectMessage();
-                if (m != null) TestUtil.logTrace("m=" + m);
+                if (m != null)
+                    TestUtil.logTrace("m=" + m);
                 TestUtil.logTrace("FAIL: expected IllegalStateException");
             } catch (jakarta.jms.IllegalStateException ise) {
                 logMsg("Caught expected exception");
@@ -527,8 +513,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:217;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateObject2MessageTest() throws Fault {
@@ -540,7 +525,8 @@ public class ClosedQueueSessionTests extends ServiceEETest {
             try {
                 String s = "Simple object";
                 ObjectMessage m = tool.getDefaultQueueSession().createObjectMessage(s);
-                if (m != null) TestUtil.logTrace("m=" + m);
+                if (m != null)
+                    TestUtil.logTrace("m=" + m);
                 TestUtil.logTrace("FAIL: expected IllegalStateException");
             } catch (jakarta.jms.IllegalStateException ise) {
                 logMsg("Caught expected exception");
@@ -559,8 +545,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:219;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateStreamMessageTest() throws Fault {
@@ -589,8 +574,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:221;
      *
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateTextMessageTest() throws Fault {
@@ -618,8 +602,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:223;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCreateText2MessageTest() throws Fault {
@@ -665,8 +648,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:326;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionGetMessageSelectorTest() throws Fault {
@@ -698,8 +680,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:332;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionReceiveTest() throws Fault {
@@ -731,8 +712,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionReceiveTimeoutTest() throws Fault {
@@ -764,8 +744,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:336;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionReceiveNoWaitTest() throws Fault {
@@ -797,8 +776,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:268;
      *
-     * @test_Strategy: Close default receiver and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionReceiverGetQueueTest() throws Fault {
@@ -849,8 +827,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:303;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionGetDeliveryModeTest() throws Fault {
@@ -882,8 +859,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:295;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionGetDisableMessageIDTest() throws Fault {
@@ -915,8 +891,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:299;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionGetDisableMessageTimestampTest() throws Fault {
@@ -948,8 +923,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:307;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionGetPriorityTest() throws Fault {
@@ -981,8 +955,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:311;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionGetTimeToLiveTest() throws Fault {
@@ -1014,8 +987,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:301;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSetDeliveryModeTest() throws Fault {
@@ -1046,8 +1018,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:293;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSetDisableMessageIDTest() throws Fault {
@@ -1078,8 +1049,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:297;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSetDisableMessageTimestampTest() throws Fault {
@@ -1110,8 +1080,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:305;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSetPriorityTest() throws Fault {
@@ -1141,8 +1110,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:309;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSetTimeToLiveTest() throws Fault {
@@ -1172,8 +1140,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:196;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSenderGetQueueTest() throws Fault {
@@ -1206,8 +1173,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:198;
      *
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSend1Test() throws Fault {
@@ -1239,8 +1205,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:200;
      *
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSend2Test() throws Fault {
@@ -1276,8 +1241,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:202;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSend3Test() throws Fault {
@@ -1308,8 +1272,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:204;
      *
-     * @test_Strategy: Close default sender and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default sender and call method on it. Check for IllegalStateException.
      */
 
     public void closedQueueSessionSend4Test() throws Fault {
@@ -1344,8 +1307,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:235;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionRecoverTest() throws Fault {
@@ -1370,8 +1332,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:636;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedSessionRecoverTest() throws Fault {
@@ -1398,8 +1359,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:229;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionCommitTest() throws Fault {
@@ -1426,8 +1386,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:225;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionGetTransactedTest() throws Fault {
@@ -1455,8 +1414,7 @@ public class ClosedQueueSessionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:113; JMS:JAVADOC:231;
      *
-     * @test_Strategy: Close default session and call method on it. Check for
-     * proper JMSException.
+     * @test_Strategy: Close default session and call method on it. Check for proper JMSException.
      */
 
     public void closedQueueSessionRollbackTest() throws Fault {

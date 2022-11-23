@@ -22,4 +22,5 @@ package com.sun.ts.tests.ejb.ee.deploy.session.stateful.single;
 
 import jakarta.ejb.EJBObject;
 
-public interface Single extends EJBObject {}
+public interface Single extends EJBObject {
+}

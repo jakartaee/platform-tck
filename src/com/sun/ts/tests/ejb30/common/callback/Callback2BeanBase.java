@@ -36,7 +36,8 @@ public abstract class Callback2BeanBase extends SharedCallbackBeanBase implement
     }
 
     // ================== business methods ====================================
-    public void removeFoo() {}
+    public void removeFoo() {
+    }
 
     public boolean isPostConstructOrPreDestroyCalledTest() {
         return isPostConstructOrPreDestroyCalled();

@@ -29,9 +29,8 @@ import com.sun.ts.lib.util.TestUtil;
 import java.util.Properties;
 
 /**
- * The MDBClient class invokes a test session bean, which will ask and the
- * message driven bean to send a text, byte, map, stream, and object message to
- * a queue
+ * The MDBClient class invokes a test session bean, which will ask and the message driven bean to send a text, byte,
+ * map, stream, and object message to a queue
  */
 public class MDBClient extends EETest {
 
@@ -91,18 +90,15 @@ public class MDBClient extends EETest {
     /*
      * @testName: test1
      *
-     * @assertion_ids: EJB:SPEC:61.7; EJB:SPEC:81.4; EJB:SPEC:827; EJB:SPEC:822;
-     * EJB:SPEC:817; EJB:SPEC:815; EJB:SPEC:814; EJB:SPEC:786; EJB:SPEC:785
+     * @assertion_ids: EJB:SPEC:61.7; EJB:SPEC:81.4; EJB:SPEC:827; EJB:SPEC:822; EJB:SPEC:817; EJB:SPEC:815; EJB:SPEC:814;
+     * EJB:SPEC:786; EJB:SPEC:785
      *
-     * @test_Strategy: 1. Create a stateful Session EJB Bean. 2. Have the EJB
-     * component send a message to a Queue Destination. handled by a
-     * message-driven bean 3. Set the MDB with run-as-specified-identity
-     * <Administrator> 4. Create another stateful session bean with a method 5.
-     * Protect the method with security role <Employee> 6. Since MDB uses
-     * run-as-specified-identity, <Administrator>, which is subset of the security
-     * role <Employee> set on the method permission, so access to the method
-     * should be allowed. 7. Verify call returns successfully by the message sent
-     * back by MDB.
+     * @test_Strategy: 1. Create a stateful Session EJB Bean. 2. Have the EJB component send a message to a Queue
+     * Destination. handled by a message-driven bean 3. Set the MDB with run-as-specified-identity <Administrator> 4. Create
+     * another stateful session bean with a method 5. Protect the method with security role <Employee> 6. Since MDB uses
+     * run-as-specified-identity, <Administrator>, which is subset of the security role <Employee> set on the method
+     * permission, so access to the method should be allowed. 7. Verify call returns successfully by the message sent back
+     * by MDB.
      *
      */
 

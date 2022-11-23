@@ -41,15 +41,11 @@ import java.io.PrintWriter;
  * The DD will take precedence and sets GET accessible by role=Administrator(j2ee)
  * and sets POST accessible by role=Manager(javajoe)
  */
-@ServletSecurity(
-        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
-        httpMethodConstraints = {
-            @HttpMethodConstraint(value = "POST", emptyRoleSemantic = EmptyRoleSemantic.DENY),
-            @HttpMethodConstraint(value = "GET", emptyRoleSemantic = EmptyRoleSemantic.DENY)
-        })
-@WebServlet(
-        name = "ServletSecTestLogicalName",
-        urlPatterns = {"/ServletSecTest"})
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = { "Administrator" }), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "POST", emptyRoleSemantic = EmptyRoleSemantic.DENY),
+        @HttpMethodConstraint(value = "GET", emptyRoleSemantic = EmptyRoleSemantic.DENY)
+})
+@WebServlet(name = "ServletSecTestLogicalName", urlPatterns = { "/ServletSecTest" })
 public class ServletSecTestServlet extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

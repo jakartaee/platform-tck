@@ -34,8 +34,7 @@ public class Client extends ClientBase {
     /*
      * @testName: mandatoryTest
      *
-     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235; EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
      *
      * @test_Strategy: client -> remote bm slsb -> remote cm slsb
      */
@@ -43,8 +42,7 @@ public class Client extends ClientBase {
     /*
      * @testName: localMandatoryTest
      *
-     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235; EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
      *
      * @test_Strategy: client -> remote bm slsb -> local cm slsb
      */
@@ -52,8 +50,7 @@ public class Client extends ClientBase {
     /*
      * @testName: neverTest
      *
-     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235; EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
      *
      * @test_Strategy: client -> remote bm slsb -> remote cm slsb
      */
@@ -61,8 +58,7 @@ public class Client extends ClientBase {
     /*
      * @testName: localNeverTest
      *
-     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235; EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
      *
      * @test_Strategy: client -> remote bm slsb -> local cm slsb
      */

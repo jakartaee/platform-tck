@@ -34,22 +34,23 @@ import java.io.Serializable;
 @Entity
 public class DID3bDependent implements Serializable {
     @AttributeOverrides({
-        @AttributeOverride(name = "empPK.firstName", column = @Column(name = "FIRSTNAME", updatable = false)),
-        @AttributeOverride(name = "empPK.lastName", column = @Column(name = "LASTNAME", updatable = false)),
-        @AttributeOverride(name = "name", column = @Column(name = "NAME", updatable = false))
+            @AttributeOverride(name = "empPK.firstName", column = @Column(name = "FIRSTNAME", updatable = false)),
+            @AttributeOverride(name = "empPK.lastName", column = @Column(name = "LASTNAME", updatable = false)),
+            @AttributeOverride(name = "name", column = @Column(name = "NAME", updatable = false))
     })
     @EmbeddedId
     DID3bDependentId id;
 
     @MapsId("empPK")
     @JoinColumns({
-        @JoinColumn(name = "FIRSTNAME", referencedColumnName = "FIRSTNAME"),
-        @JoinColumn(name = "LASTNAME", referencedColumnName = "LASTNAME")
+            @JoinColumn(name = "FIRSTNAME", referencedColumnName = "FIRSTNAME"),
+            @JoinColumn(name = "LASTNAME", referencedColumnName = "LASTNAME")
     })
     @ManyToOne
     DID3bEmployee emp;
 
-    public DID3bDependent() {}
+    public DID3bDependent() {
+    }
 
     public DID3bDependent(DID3bDependentId id, DID3bEmployee emp) {
         this.id = id;

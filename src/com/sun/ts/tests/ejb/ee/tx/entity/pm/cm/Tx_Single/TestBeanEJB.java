@@ -129,13 +129,15 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Verifying the transaction is commited on method return");
             tempName1 = beanRef1.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             beanRef2 = (TxEPMBean) beanHome.findByPrimaryKey(new Integer(1));
 
             tempName2 = beanRef2.getBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b1) {
@@ -209,13 +211,15 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Verifying the transaction is commited on method return");
             tempName1 = beanRef2.getBrandName();
-            if (tempName1.equals(expName)) b2 = true;
+            if (tempName1.equals(expName))
+                b2 = true;
 
             beanRef3 = (TxEPMBean) beanHome.findByPrimaryKey(new Integer(1));
 
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
             tempName2 = beanRef3.getBrandName();
-            if (tempName2.equals(expName)) b3 = true;
+            if (tempName2.equals(expName))
+                b3 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b2) {

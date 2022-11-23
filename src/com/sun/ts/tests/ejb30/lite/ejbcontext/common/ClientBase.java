@@ -59,9 +59,8 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: lookupIllegalArgumentException
      *
-     * @test_Strategy: Call EJBContext.lookup with null and another non-existent
-     * name, expecting IllegalArgumentException. Valid use of EJBContext.lookup
-     * method are tested in various other directories and are not present here.
+     * @test_Strategy: Call EJBContext.lookup with null and another non-existent name, expecting IllegalArgumentException.
+     * Valid use of EJBContext.lookup method are tested in various other directories and are not present here.
      */
     public void lookupIllegalArgumentException() throws TestFailedException {
         for (EJBContextIF b : beans) {
@@ -72,8 +71,7 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: getMessageContextIllegalStateException
      *
-     * @test_Strategy: Call EJBContext.getMessageContext() where it's not
-     * supported, expecting IllegalStateException.
+     * @test_Strategy: Call EJBContext.getMessageContext() where it's not supported, expecting IllegalStateException.
      */
     public void getMessageContextIllegalStateException() throws TestFailedException {
         for (EJBContextIF b : beans) {
@@ -84,13 +82,13 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: getInvokedBusinessInterface
      *
-     * @test_Strategy: Call EJBContext.getInvokedBusinessInterface() on
-     * no-interface, interface1 and interface2, and verify the returned interface.
+     * @test_Strategy: Call EJBContext.getInvokedBusinessInterface() on no-interface, interface1 and interface2, and verify
+     * the returned interface.
      */
     public void getInvokedBusinessInterface() throws TestFailedException {
         // getInvokedBusinessInterface() returns bean class type for no-interface
         // view
-        Class<?>[] expected = {getInvokedBusinessInterfaceForNoInterfaceView(), EJBContextIF.class, EJBContext2IF.class
+        Class<?>[] expected = { getInvokedBusinessInterfaceForNoInterfaceView(), EJBContextIF.class, EJBContext2IF.class
         };
         for (int i = 0; i < beans.length; i++) {
             assertEquals("", expected[i], beans[i].getInvokedBusinessInterface());
@@ -100,9 +98,8 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: getBusinessObjectIllegalStateException
      *
-     * @test_Strategy: Call EJBContext.getBusinessObject() with invalid interfaces
-     * on no-interface, interface1 and interface2, expecting
-     * IllegalStateException.
+     * @test_Strategy: Call EJBContext.getBusinessObject() with invalid interfaces on no-interface, interface1 and
+     * interface2, expecting IllegalStateException.
      */
     public void getBusinessObjectIllegalStateException() throws TestFailedException {
         for (EJBContextIF b : beans) {
@@ -113,12 +110,11 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: getBusinessObject
      *
-     * @test_Strategy: Call EJBContext.getBusinessObject() on no-interface,
-     * interface1 and interface2, and invoke add() on the obtained business
-     * object.
+     * @test_Strategy: Call EJBContext.getBusinessObject() on no-interface, interface1 and interface2, and invoke add() on
+     * the obtained business object.
      */
     public void getBusinessObject() {
-        EJBContextIF[] beansWithInterfaces = {interface1, interface2};
+        EJBContextIF[] beansWithInterfaces = { interface1, interface2 };
         int a = 2, b = 3;
         int expected = a + b;
         for (EJBContextIF bb : beansWithInterfaces) {
@@ -135,10 +131,9 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: ejbContextInjections
      *
-     * @test_Strategy: verify setter-, field- and descriptor-injections of
-     * EJBContext and SessionContext are performed correctly by the time
-     * postConstruct is called. The 2 injections are in both bean base and base
-     * classes, and the order of postConstruct calls are also verified.
+     * @test_Strategy: verify setter-, field- and descriptor-injections of EJBContext and SessionContext are performed
+     * correctly by the time postConstruct is called. The 2 injections are in both bean base and base classes, and the order
+     * of postConstruct calls are also verified.
      */
     public void ejbContextInjections() {
         for (EJBContextIF b : beans) {
@@ -150,9 +145,8 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: ejbContextInjectionsInInterceptor
      *
-     * @test_Strategy: verify setter-, field- and descriptor-injections of
-     * EJBContext and SessionContext are performed correctly by the time
-     * postConstruct is called in interceptor1 (the default interceptor).
+     * @test_Strategy: verify setter-, field- and descriptor-injections of EJBContext and SessionContext are performed
+     * correctly by the time postConstruct is called in interceptor1 (the default interceptor).
      */
     public void ejbContextInjectionsInInterceptor() {
         for (EJBContextIF b : beans) {
@@ -164,8 +158,8 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: lookupEJBContext
      *
-     * @test_Strategy: look up various injected and declared EJBContextIF in
-     * PostConstruct, AroundInvoke and business methods.
+     * @test_Strategy: look up various injected and declared EJBContextIF in PostConstruct, AroundInvoke and business
+     * methods.
      */
     public void lookupEJBContext() {
         for (EJBContextIF b : beans) {
@@ -176,8 +170,7 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: lookupEJBContextInInterceptor
      *
-     * @test_Strategy: look up various injected and declared EJBContextIF in
-     * PostConstruct and AroundInvoke of interceptor1
+     * @test_Strategy: look up various injected and declared EJBContextIF in PostConstruct and AroundInvoke of interceptor1
      */
     public void lookupEJBContextInInterceptor() {
         for (EJBContextIF b : beans) {
@@ -188,8 +181,7 @@ public abstract class ClientBase extends EJBLiteClientBase {
     /*
      * testName: lookupPortableJNDINames
      *
-     * @test_Strategy: call EJBContext.lookup(string) to look up resources in
-     * various portable jndi namespaces.
+     * @test_Strategy: call EJBContext.lookup(string) to look up resources in various portable jndi namespaces.
      */
     public void lookupPortableJNDINames() {
         for (EJBContextIF b : beans) {

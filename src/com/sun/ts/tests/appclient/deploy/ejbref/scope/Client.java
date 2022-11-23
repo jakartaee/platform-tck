@@ -47,8 +47,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -71,23 +70,17 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We package in the same .ear file:
+     * We package in the same .ear file:
      *
-     *                 - Two application clients's using the same ejb-ref-name
-     *                 ('ejb/Verona') to reference two distinct ReferencedBean's.
+     * - Two application clients's using the same ejb-ref-name ('ejb/Verona') to reference two distinct ReferencedBean's.
      *
-     *                 - One EJB jar, containing two distinct beans, whose
-     *                 identity is defined by a String environment entry
-     *                 ('myName').
+     * - One EJB jar, containing two distinct beans, whose identity is defined by a String environment entry ('myName').
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - We can deploy the application. - We can run one of the
-     *                 two application clients. - This application client can
-     *                 lookup its referenced bean and get the bean identity. -
-     *                 Check this runtime identity against the one specified in
-     *                 the application client DD (validates that this EJB
-     *                 reference is resolved correctly).
+     * - We can deploy the application. - We can run one of the two application clients. - This application client can
+     * lookup its referenced bean and get the bean identity. - Check this runtime identity against the one specified in the
+     * application client DD (validates that this EJB reference is resolved correctly).
      */
     public void testScope() throws Fault {
         ReferencedBeanHome home = null;

@@ -39,8 +39,7 @@ import java.util.TimeZone;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The dateTimeClient1 class tests methods of Timestamp class using Sun's J2EE
- * Reference Implementation.
+ * The dateTimeClient1 class tests methods of Timestamp class using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -75,14 +74,11 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -105,8 +101,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
             }
 
             /*
-             * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery","");
-             * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+             * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+             * sqlp.load(istr);
              */
             sqlp = p;
             msg = new JDBCTestMsg();
@@ -120,9 +116,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:32;
      *
-     * @test_Strategy: Create a Timestamp Object with a long value as an argument.
-     * Then get the String representation of that Timestamp object. Check whether
-     * it is same as equivalent String Value in the property file.
+     * @test_Strategy: Create a Timestamp Object with a long value as an argument. Then get the String representation of
+     * that Timestamp object. Check whether it is same as equivalent String Value in the property file.
      */
     public void testTimestamp01() throws Fault {
         String sTimestampVal = null;
@@ -162,9 +157,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:32;
      *
-     * @test_Strategy: Create a Timestamp Object with a long value as an argument.
-     * Then get the String representation of that Timestamp object. Check whether
-     * it is same as equivalent String Value in the property file.
+     * @test_Strategy: Create a Timestamp Object with a long value as an argument. Then get the String representation of
+     * that Timestamp object. Check whether it is same as equivalent String Value in the property file.
      */
 
     public void testTimestamp02() throws Fault {
@@ -204,9 +198,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:38;
      *
-     * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
-     * and call getNanos() to check and it should return an Integer value that is
-     * been set
+     * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method and call getNanos() to check and it should
+     * return an Integer value that is been set
      */
     public void testSetNanos01() throws Fault {
         String sLongTstampVal = null;
@@ -237,9 +230,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      * @assertion_ids: JDBC:JAVADOC:38; JDBC:JAVADOC:37;
      *
      *
-     * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
-     * and call getNanos() to check and it should return an Integer value that is
-     * been set
+     * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method and call getNanos() to check and it should
+     * return an Integer value that is been set
      */
 
     public void testSetNanos02() throws Fault {
@@ -273,9 +265,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:38;
      *
-     * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
-     * with the invalid value of argument and it should throw
-     * IllegalArgumentException
+     * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method with the invalid value of argument and it
+     * should throw IllegalArgumentException
      */
 
     public void testSetNanos03() throws Fault {
@@ -311,9 +302,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:38;
      *
-     * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method
-     * with an invalid value as argument and it should throw
-     * IllegalArgumentException
+     * @test_Strategy: Get a Timestamp object and call the setNanos(int n) method with an invalid value as argument and it
+     * should throw IllegalArgumentException
      */
     public void testSetNanos04() throws Fault {
         boolean illArgExceptFlag = false;
@@ -348,8 +338,7 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:37;
      *
-     * @test_Strategy: Get a Timestamp object and call the getNanos() method. It
-     * should return an Integer value.
+     * @test_Strategy: Get a Timestamp object and call the getNanos() method. It should return an Integer value.
      */
 
     public void testGetNanos() throws Fault {
@@ -380,10 +369,9 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:36;
      *
-     * @test_Strategy: Create a Timestamp Object with a long value as an argument.
-     * Then get the String representation of that Timestamp object. using the
-     * toString() method.Check whether it is same as equivalent String Value in
-     * property file.
+     * @test_Strategy: Create a Timestamp Object with a long value as an argument. Then get the String representation of
+     * that Timestamp object. using the toString() method.Check whether it is same as equivalent String Value in property
+     * file.
      */
     public void testToString01() throws Fault {
         String sTimestampVal = null;
@@ -401,7 +389,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
             sInTimeVal = inTimeVal.toString();
             msg.setMsg("sInTimeVal = " + sInTimeVal);
 
-            if (sInTimeVal.equals(sTimestampVal)) msg.setMsg("toString method returns a String object");
+            if (sInTimeVal.equals(sTimestampVal))
+                msg.setMsg("toString method returns a String object");
             else {
                 msg.printTestError("toString method does not return the String object", "Call to toString is Failed!");
             }
@@ -416,10 +405,9 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:36;
      *
-     * @test_Strategy: Create a Timestamp Object with a long value as an argument.
-     * Then get the String representation of that Timestamp object. using the
-     * toString() method.Check whether it is same as equivalent String Value in
-     * property file.
+     * @test_Strategy: Create a Timestamp Object with a long value as an argument. Then get the String representation of
+     * that Timestamp object. using the toString() method.Check whether it is same as equivalent String Value in property
+     * file.
      *
      */
     public void testToString02() throws Fault {
@@ -437,7 +425,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
             inTimeVal = new Timestamp(tstampVal);
             retTstampVal = inTimeVal.toString().trim();
 
-            if (retTstampVal.equals(sTimestampVal)) msg.setMsg("toString method returns a String object");
+            if (retTstampVal.equals(sTimestampVal))
+                msg.setMsg("toString method returns a String object");
             else {
                 msg.printTestError("toString method does not return a String object", "Call to toString is Failed!");
             }
@@ -452,9 +441,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:42;
      *
-     * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
-     * method with the value of ts is after than the Timestamp It should return a
-     * boolean value and the value should be equal to true
+     * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts) method with the value of ts is after than the
+     * Timestamp It should return a boolean value and the value should be equal to true
      */
     public void testAfter01() throws Fault {
         String sLongTstampVal = null;
@@ -494,9 +482,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:42;
      *
-     * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
-     * method with the value of ts is not after than the Timestamp It should
-     * return a boolean value and the value should be equal to false
+     * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts) method with the value of ts is not after than
+     * the Timestamp It should return a boolean value and the value should be equal to false
      */
     public void testAfter02() throws Fault {
         String sLongTstampVal = null;
@@ -519,7 +506,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
             msg.setMsg("Timestamp Value # 2 : " + inTimeVal2);
 
             booRetVal = inTimeVal1.after(inTimeVal2);
-            if (!booRetVal) msg.setMsg("after method returns : " + booRetVal);
+            if (!booRetVal)
+                msg.setMsg("after method returns : " + booRetVal);
             else {
                 msg.printTestError("after method does not return the expected Value ", "Call to after is Failed!");
             }
@@ -534,10 +522,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:42;
      *
-     * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
-     * method with the value of ts is after than the Timestamp in Nano second
-     * level It should return a boolean value and the value should be equal to
-     * true
+     * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts) method with the value of ts is after than the
+     * Timestamp in Nano second level It should return a boolean value and the value should be equal to true
      */
     public void testAfter03() throws Fault {
         Timestamp inTimeVal2 = null;
@@ -560,7 +546,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
             msg.setMsg("Timestamp Value # 2  :  " + inTimeVal2);
 
             booRetVal = inTimeVal1.after(inTimeVal2);
-            if (booRetVal) msg.setMsg("after method returns" + booRetVal);
+            if (booRetVal)
+                msg.setMsg("after method returns" + booRetVal);
             else {
                 msg.printTestError("after method does not return the expected Value ", "Call to after is Failed!");
             }
@@ -575,10 +562,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:42;
      *
-     * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts)
-     * method with the value of ts is not after than the Timestamp with Nano
-     * seconds level It should return a boolean value and the value should be
-     * equal to false
+     * @test_Strategy: Get a Timestamp object and call the after(Timestamp ts) method with the value of ts is not after than
+     * the Timestamp with Nano seconds level It should return a boolean value and the value should be equal to false
      */
     public void testAfter04() throws Fault {
         String sLongTstampVal = null;
@@ -600,7 +585,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
             msg.setMsg("TimeStamp Value # 2 :  " + inTimeVal1);
 
             booRetVal = inTimeVal.after(inTimeVal1);
-            if (!booRetVal) msg.setMsg("after method returns " + booRetVal);
+            if (!booRetVal)
+                msg.setMsg("after method returns " + booRetVal);
             else {
                 msg.printTestError("after method does not return the expected value", "Call to after is Failed!");
             }
@@ -615,9 +601,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:41;
      *
-     * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
-     * method with the value of ts is before than the Timestamp It should return a
-     * boolean value and the value should be equal to true
+     * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts) method with the value of ts is before than
+     * the Timestamp It should return a boolean value and the value should be equal to true
      */
     public void testBefore01() throws Fault {
         String sTimestampVal = null;
@@ -643,7 +628,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
             msg.setMsg("Timestamp Value2 : " + inTimeVal1);
 
             booRetVal = inTimeVal.before(inTimeVal1);
-            if (booRetVal) msg.setMsg("before method returns : " + booRetVal);
+            if (booRetVal)
+                msg.setMsg("before method returns : " + booRetVal);
             else {
                 msg.printTestError("before method does not return the expected value ", "Call to before is Failed!");
             }
@@ -658,9 +644,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:41;
      *
-     * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
-     * method with the value of ts is not before than the Timestamp It should
-     * return a boolean value and the value should be equal to false
+     * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts) method with the value of ts is not before
+     * than the Timestamp It should return a boolean value and the value should be equal to false
      *
      */
     public void testBefore02() throws Fault {
@@ -687,7 +672,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
             msg.setMsg("Timestamp Value2 :  " + inTimeVal1);
 
             booRetVal = inTimeVal.before(inTimeVal1);
-            if (!booRetVal) msg.setMsg("before method returns : " + booRetVal);
+            if (!booRetVal)
+                msg.setMsg("before method returns : " + booRetVal);
             else {
                 msg.printTestError("before method does not return the expected Value ", "Call to before is Failed!");
             }
@@ -702,10 +688,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:41;
      *
-     * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
-     * method with the value of ts is before than the Timestamp in Nano second
-     * level It should return a boolean value and the value should be equal to
-     * true.
+     * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts) method with the value of ts is before than
+     * the Timestamp in Nano second level It should return a boolean value and the value should be equal to true.
      *
      */
     public void testBefore03() throws Fault {
@@ -744,10 +728,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:41;
      *
-     * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts)
-     * method with the value of ts is not before than the Timestamp with Nano
-     * seconds level It should return a boolean value and the value should be
-     * equal to false
+     * @test_Strategy: Get a Timestamp object and call the before(Timestamp ts) method with the value of ts is not before
+     * than the Timestamp with Nano seconds level It should return a boolean value and the value should be equal to false
      */
     public void testBefore04() throws Fault {
         String sLongTstampVal = null;
@@ -785,9 +767,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:39;
      *
-     * @test_Strategy: Get a Timestamp object and call the equals(Timestamp ts)
-     * method with equal value of Timestamp It should return a boolean value and
-     * the value should be equal to true
+     * @test_Strategy: Get a Timestamp object and call the equals(Timestamp ts) method with equal value of Timestamp It
+     * should return a boolean value and the value should be equal to true
      */
     public void testEqualsTimestamp01() throws Fault {
         String sLongTstampVal = null;
@@ -828,9 +809,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:40;
      *
-     * @test_Strategy: Get a Timestamp object and call the equals(Object obj)
-     * method with equal value of Timestamp It should return a boolean value and
-     * the value should be equal to true
+     * @test_Strategy: Get a Timestamp object and call the equals(Object obj) method with equal value of Timestamp It should
+     * return a boolean value and the value should be equal to true
      */
     public void testEqualsObject01() throws Fault {
         String sLongTstampVal = null;
@@ -863,9 +843,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:40;
      *
-     * @test_Strategy: Get a Timestamp object and call the equals(Object obj)
-     * method with equal value of Timestamp in Nano seconds level It should return
-     * a boolean value and the value should be equal to true
+     * @test_Strategy: Get a Timestamp object and call the equals(Object obj) method with equal value of Timestamp in Nano
+     * seconds level It should return a boolean value and the value should be equal to true
      */
     public void testEqualsObject02() throws Fault {
         String sTimestampVal = null;
@@ -910,9 +889,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:35;
      *
-     * @test_Strategy: Call valueof(String ts) static method in java.sql.Timestamp
-     * class with a String argument to get a Timestamp object Check whether it is
-     * same as Timestamp object obtained from equivalent long value .
+     * @test_Strategy: Call valueof(String ts) static method in java.sql.Timestamp class with a String argument to get a
+     * Timestamp object Check whether it is same as Timestamp object obtained from equivalent long value .
      */
 
     public void testValueOf01() throws Fault {
@@ -955,9 +933,8 @@ public class dateTimeClient1 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:35;
      *
-     * @test_Strategy: Call valueof(String ts) static method in java.sql.Timestamp
-     * class with a String argument to get a Timestamp object Check whether it is
-     * same as Timestamp object obtained from equivalent long value .
+     * @test_Strategy: Call valueof(String ts) static method in java.sql.Timestamp class with a String argument to get a
+     * Timestamp object Check whether it is same as Timestamp object obtained from equivalent long value .
      */
     public void testValueOf02() throws Fault {
         String sTimestampVal = null;

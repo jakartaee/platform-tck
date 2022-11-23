@@ -58,20 +58,18 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:49.1
      *
-     * @test_Strategy: To evaluate A;B, A is first evaluated, and its value is
-     *                 discarded. B is then evaluated and its value is returned.
+     * @test_Strategy: To evaluate A;B, A is first evaluated, and its value is discarded. B is then evaluated and its value
+     * is returned.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expression: "a = types.tckBigDecimal; a [operator] b"
+     * Expression: "a = types.tckBigDecimal; a [operator] b"
      *
-     *                 Variable A - BigDecimal
+     * Variable A - BigDecimal
      *
-     *                 Variable B - Rotating through the following types:
-     *                 BigDecimal, BigInteger, Integer, Float, Long, Short,
-     *                 Double, Byte
+     * Variable B - Rotating through the following types: BigDecimal, BigInteger, Integer, Float, Long, Short, Double, Byte
      *
-     *                 Excluded: none
+     * Excluded: none
      *
      * @since: 3.0
      *
@@ -131,20 +129,18 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:49.1
      *
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expression: "a = types.tckFloat; a [operator] b"
+     * Expression: "a = types.tckFloat; a [operator] b"
      *
-     *                 Variable A - Float
+     * Variable A - Float
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal
+     * Exclude: BigDecimal
      *
      * @since: 3.0
      *
@@ -240,20 +236,18 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:49.1
      *
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expression: "a = types.tckDouble; a [operator] b"
+     * Expression: "a = types.tckDouble; a [operator] b"
      *
-     *                 Variable A - Double
+     * Variable A - Double
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, Float
+     * Exclude: BigDecimal, Float
      *
      * @since: 3.0
      *
@@ -350,20 +344,18 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:49.1
      *
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expression: "a = types.tckBigInteger; a [operator] b"
+     * Expression: "a = types.tckBigInteger; a [operator] b"
      *
-     *                 Variable A - BigInteger
+     * Variable A - BigInteger
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, Float, Double
+     * Exclude: BigDecimal, Float, Double
      *
      * @since: 3.0
      *
@@ -436,20 +428,18 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:49.1
      *
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expression: "a = types.tckInteger; a [operator] b"
+     * Expression: "a = types.tckInteger; a [operator] b"
      *
-     *                 Variable A - Integer
+     * Variable A - Integer
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double
+     * Exclude: BigDecimal, BigInteger, Float, Double
      *
      * @since: 3.0
      *
@@ -523,20 +513,18 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:49.1
      *
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expression: "a = types.tckLong; a [operator] b"
+     * Expression: "a = types.tckLong; a [operator] b"
      *
-     *                 Variable A - Long
+     * Variable A - Long
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer
+     * Exclude: BigDecimal, BigInteger, Float, Double, Integer
      *
      * @since: 3.0
      *
@@ -607,21 +595,18 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:49.1
      *
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expression: "a = types.tckShort; a [operator] b"
+     * Expression: "a = types.tckShort; a [operator] b"
      *
-     *                 Variable A - Short
+     * Variable A - Short
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
-     *                 Long
+     * Exclude: BigDecimal, BigInteger, Float, Double, Integer, Long
      *
      * @since: 3.0
      *
@@ -696,21 +681,18 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:49.1
      *
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expression: "a = types.tckByte; a [operator] b"
+     * Expression: "a = types.tckByte; a [operator] b"
      *
-     *                 Variable A - Byte
+     * Variable A - Byte
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
-     *                 Long, Short
+     * Exclude: BigDecimal, BigInteger, Float, Double, Integer, Long, Short
      *
      * @since: 3.0
      *
@@ -783,17 +765,16 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:SPEC:49.1
      *
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Expression: "a = null; a [operator] b"
+     * Expression: "a = null; a [operator] b"
      *
-     *                 Variable A - null
+     * Variable A - null
      *
-     *                 Variable B - null
+     * Variable B - null
      *
      * @since: 3.0
      *

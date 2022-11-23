@@ -131,11 +131,13 @@ public class TestBeanEJB implements SessionBean {
                     + "commited the transaction to the instance and database level");
 
             tempName1 = beanRef.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             tempName2 = beanRef.getDbBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b1) {
@@ -195,7 +197,8 @@ public class TestBeanEJB implements SessionBean {
                     "Verify that the UserTransaction commit call" + "commited the transaction to the database level");
 
             tempName = beanRef.getDbBrandName();
-            if (!tempName.equals(expName)) b1 = true;
+            if (!tempName.equals(expName))
+                b1 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName);
 
             if (!b1) {
@@ -253,11 +256,13 @@ public class TestBeanEJB implements SessionBean {
                     + "commited the transaction to the instance and database level");
 
             tempName1 = beanRef.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             tempName2 = beanRef.getDbBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b1) {
@@ -319,11 +324,13 @@ public class TestBeanEJB implements SessionBean {
                     + "still commited the transaction to the instance and database level");
 
             tempName1 = beanRef.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             tempName2 = beanRef.getDbBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b1) {

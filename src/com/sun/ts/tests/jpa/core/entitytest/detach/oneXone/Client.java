@@ -28,7 +28,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -56,13 +57,11 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:625; PERSISTENCE:SPEC:742
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows:
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows:
      *
-     * If X is a detached object and the persist method is invoked on it, an
-     * IllegalArgumentException is thrown or an EntityExistsException, or the
-     * transaction commit will fail. Invoke persist on a detached entity.
+     * If X is a detached object and the persist method is invoked on it, an IllegalArgumentException is thrown or an
+     * EntityExistsException, or the transaction commit will fail. Invoke persist on a detached entity.
      */
 
     public void detach1X1Test1() throws Fault {
@@ -117,7 +116,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("detach1X1Test1 failed");
+        if (!pass)
+            throw new Fault("detach1X1Test1 failed");
     }
 
     /*
@@ -125,9 +125,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:635
      *
-     * @test_Strategy: If X is a detached entity, invoking the remove method on it
-     * will cause an IllegalArgumentException to be thrown or the transaction
-     * commit will fail. Invoke remove on a detached entity.
+     * @test_Strategy: If X is a detached entity, invoking the remove method on it will cause an IllegalArgumentException to
+     * be thrown or the transaction commit will fail. Invoke remove on a detached entity.
      *
      */
 
@@ -184,7 +183,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("detach1X1Test2 failed");
+        if (!pass)
+            throw new Fault("detach1X1Test2 failed");
     }
 
     /*

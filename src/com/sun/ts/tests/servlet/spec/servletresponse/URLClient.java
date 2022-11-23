@@ -40,9 +40,8 @@ public class URLClient extends EETest {
     private static final String contextPath = "/servlet_spec_servletresponse_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -51,8 +50,7 @@ public class URLClient extends EETest {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         // setContextRoot(CONTEXT_ROOT);
@@ -91,10 +89,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: Servlet:JAVADOC:603
      *
-     * @test_Strategy: Servlet writes data in the buffer and flushes it; Verify
-     * data is sent back to client due to the flush, not by exiting service method
-     * This is done by sleeping a long time between flush and exit in servlet;
-     * Then verify time gap on client side.
+     * @test_Strategy: Servlet writes data in the buffer and flushes it; Verify data is sent back to client due to the
+     * flush, not by exiting service method This is done by sleeping a long time between flush and exit in servlet; Then
+     * verify time gap on client side.
      */
 
     public void testFlushBufferHttp() throws Fault {
@@ -148,10 +145,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: Servlet:JAVADOC:153
      *
-     * @test_Strategy: Servlet writes data in the buffer and flushes it; Verify
-     * data is sent back to client due to the flush, not by exiting service method
-     * This is done by sleeping a long time between flush and exit in servlet;
-     * Then verify time gap on client side.
+     * @test_Strategy: Servlet writes data in the buffer and flushes it; Verify data is sent back to client due to the
+     * flush, not by exiting service method This is done by sleeping a long time between flush and exit in servlet; Then
+     * verify time gap on client side.
      */
 
     public void testFlushBuffer() throws Fault {

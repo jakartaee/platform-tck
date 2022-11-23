@@ -90,8 +90,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -117,17 +119,14 @@ public class Client extends ServiceEETest {
     /*
      * @testName: SASendVariousMimeAttachmentsSOAP11Test
      *
-     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4;
-     * SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7; SAAJ:SPEC:8; SAAJ:SPEC:9;
-     * SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14;
-     * SAAJ:SPEC:15; SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
+     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4; SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7;
+     * SAAJ:SPEC:8; SAAJ:SPEC:9; SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14; SAAJ:SPEC:15;
+     * SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
      *
-     * @test_Strategy: Create a soap message with various MIME attachments and
-     * then send the soap message. Verify that all MIME attachments are received
-     * correctly. Sends a soap 1.1 protocol message. Standalone version soap test.
+     * @test_Strategy: Create a soap message with various MIME attachments and then send the soap message. Verify that all
+     * MIME attachments are received correctly. Sends a soap 1.1 protocol message. Standalone version soap test.
      *
-     * Description: Send soap message with various MIME attachments. Standalone
-     * version soap test.
+     * Description: Send soap message with various MIME attachments. Standalone version soap test.
      *
      */
     public void SASendVariousMimeAttachmentsSOAP11Test() throws Fault {
@@ -266,7 +265,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Reply message is incorrect (FAILED)");
             }
 
-            if (!pass) throw new Fault("SASendVariousMimeAttachmentsSOAP11Test failed");
+            if (!pass)
+                throw new Fault("SASendVariousMimeAttachmentsSOAP11Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -278,17 +278,14 @@ public class Client extends ServiceEETest {
     /*
      * @testName: SASendVariousMimeAttachmentsSOAP12Test
      *
-     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4;
-     * SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7; SAAJ:SPEC:8; SAAJ:SPEC:9;
-     * SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14;
-     * SAAJ:SPEC:15; SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
+     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4; SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7;
+     * SAAJ:SPEC:8; SAAJ:SPEC:9; SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14; SAAJ:SPEC:15;
+     * SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
      *
-     * @test_Strategy: Create a soap message with various MIME attachments and
-     * then send the soap message. Verify that all MIME attachments are received
-     * correctly. Sends a soap 1.2 protocol message. Standalone version soap test.
+     * @test_Strategy: Create a soap message with various MIME attachments and then send the soap message. Verify that all
+     * MIME attachments are received correctly. Sends a soap 1.2 protocol message. Standalone version soap test.
      *
-     * Description: Send soap message with various MIME attachments. Standalone
-     * version soap test.
+     * Description: Send soap message with various MIME attachments. Standalone version soap test.
      *
      */
     public void SASendVariousMimeAttachmentsSOAP12Test() throws Fault {
@@ -427,7 +424,8 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Reply message is incorrect (FAILED)");
             }
 
-            if (!pass) throw new Fault("SASendVariousMimeAttachmentsSOAP12Test failed");
+            if (!pass)
+                throw new Fault("SASendVariousMimeAttachmentsSOAP12Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -451,16 +449,22 @@ public class Client extends ServiceEETest {
                 SOAPElement se = (SOAPElement) i.next();
                 Name name = se.getElementName();
                 String value = se.getValue();
-                if (value == null || name == null) continue;
-                else if (value.equals("This is Header1") && name.getLocalName().equals("Header1")) foundHeader1 = true;
-                else if (value.equals("This is Header2") && name.getLocalName().equals("Header2")) foundHeader2 = true;
-                else if (value.equals("This is Header3") && name.getLocalName().equals("Header3")) foundHeader3 = true;
-                else if (value.equals("This is Header4") && name.getLocalName().equals("Header4")) foundHeader4 = true;
+                if (value == null || name == null)
+                    continue;
+                else if (value.equals("This is Header1") && name.getLocalName().equals("Header1"))
+                    foundHeader1 = true;
+                else if (value.equals("This is Header2") && name.getLocalName().equals("Header2"))
+                    foundHeader2 = true;
+                else if (value.equals("This is Header3") && name.getLocalName().equals("Header3"))
+                    foundHeader3 = true;
+                else if (value.equals("This is Header4") && name.getLocalName().equals("Header4"))
+                    foundHeader4 = true;
             }
             if (!foundHeader1 || !foundHeader2 || !foundHeader3 || !foundHeader4) {
                 TestUtil.logErr("Did not find expected soap headers in reply message");
                 pass = false;
-            } else TestUtil.logMsg("Did find expected soap headers in reply message");
+            } else
+                TestUtil.logMsg("Did find expected soap headers in reply message");
             TestUtil.logMsg("Verify soap body");
             boolean foundBody1 = false;
             boolean foundChild1 = false;
@@ -470,25 +474,30 @@ public class Client extends ServiceEETest {
             while (i.hasNext()) {
                 SOAPBodyElement sbe = (SOAPBodyElement) i.next();
                 Name name = sbe.getElementName();
-                if (name.getLocalName().equals("Body1")) foundBody1 = true;
+                if (name.getLocalName().equals("Body1"))
+                    foundBody1 = true;
                 Iterator c = sbe.getChildElements();
                 while (c.hasNext()) {
                     SOAPElement se = (SOAPElement) c.next();
                     name = se.getElementName();
                     String value = se.getValue();
-                    if (value.equals("This is Child1") && name.getLocalName().equals("Child1")) foundChild1 = true;
+                    if (value.equals("This is Child1") && name.getLocalName().equals("Child1"))
+                        foundChild1 = true;
                     else if (value.equals("This is Child2")
-                            && name.getLocalName().equals("Child2")) foundChild2 = true;
+                            && name.getLocalName().equals("Child2"))
+                        foundChild2 = true;
                 }
             }
             if (!foundBody1) {
                 TestUtil.logErr("Did not find expected soap body in reply message");
                 pass = false;
-            } else TestUtil.logMsg("Did find expected soap body in reply message");
+            } else
+                TestUtil.logMsg("Did find expected soap body in reply message");
             if (!foundChild1 || !foundChild2) {
                 TestUtil.logErr("Did not find expected soap body " + "child elements in reply message");
                 pass = false;
-            } else TestUtil.logMsg("Did find expected soap body child " + "elements in reply message");
+            } else
+                TestUtil.logMsg("Did find expected soap body child " + "elements in reply message");
             TestUtil.logMsg("Verify attachments");
             int count = msg.countAttachments();
             if (count == 5) {
@@ -504,11 +513,16 @@ public class Client extends ServiceEETest {
                     AttachmentPart a = (AttachmentPart) i.next();
                     String type = a.getContentType();
                     TestUtil.logMsg("MIME type of attachment = " + type);
-                    if (type.equals("image/gif")) gifFound = true;
-                    else if (type.equals("text/xml")) xmlFound = true;
-                    else if (type.equals("text/plain")) textFound = true;
-                    else if (type.equals("text/html")) htmlFound = true;
-                    else if (type.equals("image/jpeg")) jpegFound = true;
+                    if (type.equals("image/gif"))
+                        gifFound = true;
+                    else if (type.equals("text/xml"))
+                        xmlFound = true;
+                    else if (type.equals("text/plain"))
+                        textFound = true;
+                    else if (type.equals("text/html"))
+                        htmlFound = true;
+                    else if (type.equals("image/jpeg"))
+                        jpegFound = true;
                     else {
                         TestUtil.logErr("Got unexpected MIME type: " + type);
                         pass = false;
@@ -522,7 +536,8 @@ public class Client extends ServiceEETest {
                 if (!gifFound || !xmlFound || !textFound || !htmlFound || !jpegFound) {
                     TestUtil.logErr("Did not find all expected MIME types in reply message");
                     pass = false;
-                } else TestUtil.logMsg("Did find all expected MIME types in reply message");
+                } else
+                    TestUtil.logMsg("Did find all expected MIME types in reply message");
                 return pass;
             } else {
                 TestUtil.logErr("Got unexpected " + count + " attachments in reply message, expected 5");

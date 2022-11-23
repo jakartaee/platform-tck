@@ -31,14 +31,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "SCHEMAGENSIMPLE")
-@SecondaryTable(
-        name = "SCHEMAGENSIMPLE_SECOND",
-        pkJoinColumns = @PrimaryKeyJoinColumn(name = "SECONDARY_ID"),
-        foreignKey =
-                @ForeignKey(
-                        name = "MYCONSTRAINT",
-                        value = ConstraintMode.CONSTRAINT,
-                        foreignKeyDefinition = "FOREIGN KEY (SECONDARY_ID) REFERENCES SCHEMAGENSIMPLE (SIMPLEID)"))
+@SecondaryTable(name = "SCHEMAGENSIMPLE_SECOND", pkJoinColumns = @PrimaryKeyJoinColumn(name = "SECONDARY_ID"), foreignKey = @ForeignKey(name = "MYCONSTRAINT", value = ConstraintMode.CONSTRAINT, foreignKeyDefinition = "FOREIGN KEY (SECONDARY_ID) REFERENCES SCHEMAGENSIMPLE (SIMPLEID)"))
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "PRODUCT_TYPE", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Product")
@@ -50,7 +43,8 @@ public class Simple implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public Simple() {}
+    public Simple() {
+    }
 
     public Simple(int id) {
         this.simple_id = id;
@@ -68,8 +62,10 @@ public class Simple implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Simple)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Simple))
+            return false;
 
         Simple o1 = (Simple) o;
 

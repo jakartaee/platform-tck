@@ -54,7 +54,7 @@ public class JSONBDeliverable extends AbstractDeliverable {
         super.getValidVehicles();
 
         // add default values
-        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] {"standalone"});
+        htTSValidVehicles.put("tests.service_eetest.vehicles", new String[] { "standalone" });
 
         return htTSValidVehicles;
     }

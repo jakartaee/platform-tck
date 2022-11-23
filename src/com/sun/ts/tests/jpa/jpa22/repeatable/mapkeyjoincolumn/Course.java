@@ -28,7 +28,8 @@ public class Course implements java.io.Serializable {
 
     String courseName;
 
-    public Course() {}
+    public Course() {
+    }
 
     public Course(int id, String name) {
         this.id = id;

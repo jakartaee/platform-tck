@@ -76,8 +76,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * user; password;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; user; password;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -113,8 +112,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.1
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify EJBObject reference returned.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify EJBObject reference returned.
      *
      */
 
@@ -129,7 +127,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         }
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -137,8 +136,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.2
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify EJBHome reference returned.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify EJBHome reference returned.
      *
      */
 
@@ -153,7 +151,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         }
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -161,8 +160,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.5
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify Properies object received.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify Properies object received.
      *
      */
 
@@ -177,7 +175,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         }
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -185,8 +184,7 @@ public class Client extends EETest {
      *
      * @assertion_ids:EJB:SPEC:61; EJB:SPEC:61.6
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify Principal reference returned.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify Principal reference returned.
      *
      */
 
@@ -201,7 +199,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         }
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
@@ -209,8 +208,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.7
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify correct identity role.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify correct identity role.
      *
      */
 
@@ -225,7 +223,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test5 failed", e);
         }
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     /*
@@ -233,8 +232,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.8
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify correct identity role.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify correct identity role.
      *
      */
 
@@ -249,7 +247,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test5b failed", e);
         }
-        if (pass) throw new Fault("test5b failed");
+        if (pass)
+            throw new Fault("test5b failed");
     }
 
     /*
@@ -257,9 +256,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.9
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify IllegalStateException occurred because a bean instance
-     * cannot mark the current transaction for rollbackonly if bean managed.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify IllegalStateException occurred
+     * because a bean instance cannot mark the current transaction for rollbackonly if bean managed.
      *
      */
 
@@ -274,7 +272,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test6 failed", e);
         }
-        if (!pass) throw new Fault("test6 failed");
+        if (!pass)
+            throw new Fault("test6 failed");
     }
 
     /*
@@ -282,8 +281,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.9
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify transaction marked for rollback.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify transaction marked for rollback.
      *
      */
 
@@ -301,7 +299,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test6b failed", e);
         }
-        if (!pass) throw new Fault("test6b failed");
+        if (!pass)
+            throw new Fault("test6b failed");
     }
 
     /*
@@ -309,10 +308,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.10
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify IllegalStateException occurred because a bean instance
-     * cannot test if current transaction has been marked fro rollback if bean
-     * managed.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify IllegalStateException occurred
+     * because a bean instance cannot test if current transaction has been marked fro rollback if bean managed.
      *
      */
 
@@ -327,7 +324,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test7 failed", e);
         }
-        if (!pass) throw new Fault("test7 failed");
+        if (!pass)
+            throw new Fault("test7 failed");
     }
 
     /*
@@ -335,8 +333,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.10
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify transaction rollback status.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify transaction rollback status.
      *
      */
 
@@ -354,7 +351,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test7b failed", e);
         }
-        if (!pass) throw new Fault("test7b failed");
+        if (!pass)
+            throw new Fault("test7b failed");
     }
 
     /*
@@ -362,8 +360,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.11
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify TX_BEAN_MANAGED bean can obtain UserTransaction.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify TX_BEAN_MANAGED bean can obtain
+     * UserTransaction.
      *
      */
 
@@ -379,7 +377,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test8 failed", e);
         }
-        if (!pass) throw new Fault("test8 failed");
+        if (!pass)
+            throw new Fault("test8 failed");
     }
 
     /*
@@ -387,9 +386,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.11
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify bean with NotSupported transaction attribute set cannot
-     * obtain UserTransaction.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify bean with NotSupported
+     * transaction attribute set cannot obtain UserTransaction.
      *
      */
 
@@ -408,7 +406,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test9 failed", e);
         }
-        if (!pass) throw new Fault("test9 failed");
+        if (!pass)
+            throw new Fault("test9 failed");
     }
 
     /*
@@ -416,9 +415,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.11
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify bean with Supports transaction attribute set cannot obtain
-     * UserTransaction.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify bean with Supports transaction
+     * attribute set cannot obtain UserTransaction.
      *
      */
 
@@ -437,7 +435,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test10 failed", e);
         }
-        if (!pass) throw new Fault("test10 failed");
+        if (!pass)
+            throw new Fault("test10 failed");
     }
 
     /*
@@ -445,9 +444,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.11
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify bean with Required transaction attribute set cannot obtain
-     * UserTransaction.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify bean with Required transaction
+     * attribute set cannot obtain UserTransaction.
      *
      */
 
@@ -466,7 +464,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test11 failed", e);
         }
-        if (!pass) throw new Fault("test11 failed");
+        if (!pass)
+            throw new Fault("test11 failed");
     }
 
     /*
@@ -474,9 +473,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.11
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify bean with RequiresNew transaction attribute set cannot
-     * obtain UserTransaction.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify bean with RequiresNew
+     * transaction attribute set cannot obtain UserTransaction.
      *
      */
 
@@ -495,7 +493,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test12 failed", e);
         }
-        if (!pass) throw new Fault("test12 failed");
+        if (!pass)
+            throw new Fault("test12 failed");
     }
 
     /*
@@ -503,9 +502,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.11
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify bean with Mandatory transaction attribute set cannot obtain
-     * UserTransaction.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify bean with Mandatory transaction
+     * attribute set cannot obtain UserTransaction.
      *
      */
 
@@ -529,7 +527,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test13 failed", e);
         }
-        if (!pass) throw new Fault("test13 failed");
+        if (!pass)
+            throw new Fault("test13 failed");
     }
 
     /*
@@ -537,9 +536,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:61; EJB:SPEC:61.11
      *
-     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE
-     * server. Verify bean with Never transaction attribute set cannot obtain
-     * UserTransaction.
+     * @test_Strategy: Create a stateful Session Bean. Deploy it on the J2EE server. Verify bean with Never transaction
+     * attribute set cannot obtain UserTransaction.
      *
      */
 
@@ -558,7 +556,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test14 failed", e);
         }
-        if (!pass) throw new Fault("test14 failed");
+        if (!pass)
+            throw new Fault("test14 failed");
     }
 
     public void cleanup() throws Fault {

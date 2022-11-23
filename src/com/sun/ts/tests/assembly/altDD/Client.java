@@ -73,27 +73,22 @@ public class Client extends EETest {
      *
      * @test_Strategy: Package an application containing:
      *
-     *                 - An application client jar file including its own DD: DD2.
-     *                 DD2 declares one String environment entry, named
-     *                 'myCountry' whose value is 'Spain'.
+     * - An application client jar file including its own DD: DD2. DD2 declares one String environment entry, named
+     * 'myCountry' whose value is 'Spain'.
      *
-     *                 - An alternate DD: DD4. DD4 is almost identical to DD2.
-     *                 Nevertheless it changes the value for the 'myCountry'
-     *                 environment entry: the new value is 'France'.
+     * - An alternate DD: DD4. DD4 is almost identical to DD2. Nevertheless it changes the value for the 'myCountry'
+     * environment entry: the new value is 'France'.
      *
-     *                 - An application DD including the application client module
-     *                 and using an alt-dd element to define DD4 as an alternate
-     *                 DD for the application client.
+     * - An application DD including the application client module and using an alt-dd element to define DD4 as an alternate
+     * DD for the application client.
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - We can deploy the application.
+     * - We can deploy the application.
      *
-     *                 - The application client can lookup the 'ejb/myCountry'
-     *                 environment entry.
+     * - The application client can lookup the 'ejb/myCountry' environment entry.
      *
-     *                 - The runtime value is 'France', validating the use of DD4
-     *                 at deployment time.
+     * - The runtime value is 'France', validating the use of DD4 at deployment time.
      */
     public void testAppClient() throws Fault {
         PainterBeanHome home = null;
@@ -124,44 +119,34 @@ public class Client extends EETest {
      *
      * @test_Strategy: Package an application containing:
      *
-     *                 - An ejb-jar file including its own DD: DD1. This ejb-jar
-     *                 contains 2 beans sharing the same Home and Remote
-     *                 interfaces. According to DD1:
+     * - An ejb-jar file including its own DD: DD1. This ejb-jar contains 2 beans sharing the same Home and Remote
+     * interfaces. According to DD1:
      *
-     *                 . The two ejb-name's are Bean1 and Bean2.
+     * . The two ejb-name's are Bean1 and Bean2.
      *
-     *                 . Bean1 declares a String environment entry named myName
-     *                 whose value is 'Dali '
+     * . Bean1 declares a String environment entry named myName whose value is 'Dali '
      *
-     *                 . Bean2 declares a String environment entry named myName
-     *                 whose value is 'Picasso'
+     * . Bean2 declares a String environment entry named myName whose value is 'Picasso'
      *
-     *                 - An application client jar file including its own DD: DD2.
-     *                 DD2 declares one EJB reference using ejb-ref-name
-     *                 'ejb/myPainter' and an ejb-link element targeting Bean1.
+     * - An application client jar file including its own DD: DD2. DD2 declares one EJB reference using ejb-ref-name
+     * 'ejb/myPainter' and an ejb-link element targeting Bean1.
      *
-     *                 - An alternate DD: DD3. DD3 is almost identical to DD1.
-     *                 Nevertheless it changes the values for the myName
-     *                 environment entries: Bean1 is 'Gaughin' and Bean2 is
-     *                 'Matisse'.
+     * - An alternate DD: DD3. DD3 is almost identical to DD1. Nevertheless it changes the values for the myName environment
+     * entries: Bean1 is 'Gaughin' and Bean2 is 'Matisse'.
      *
-     *                 - An application DD including the EJB jar module and the
-     *                 application jar module, but also using an alt-dd element to
-     *                 define DD3 as an alternate DD for the ejb-jar.
+     * - An application DD including the EJB jar module and the application jar module, but also using an alt-dd element to
+     * define DD3 as an alternate DD for the ejb-jar.
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - We can deploy the application.
+     * - We can deploy the application.
      *
-     *                 - The application client can lookup 'ejb/myPainter' and
-     *                 create a Bean instance.
+     * - The application client can lookup 'ejb/myPainter' and create a Bean instance.
      *
-     *                 - The client can call a business method on that instance
-     *                 that return the value of the myName environment entry in
-     *                 the bean environment.
+     * - The client can call a business method on that instance that return the value of the myName environment entry in the
+     * bean environment.
      *
-     *                 - The returned value is 'Matisse', validating the use of
-     *                 DD3 at deployment time.
+     * - The returned value is 'Matisse', validating the use of DD3 at deployment time.
      */
     public void testEJB() throws Fault {
         PainterBeanHome home = null;

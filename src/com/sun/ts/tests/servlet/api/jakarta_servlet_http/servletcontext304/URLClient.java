@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -56,13 +54,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: addListenerTest
      *
-     * @assertion_ids: Servlet:JAVADOC:671.4; Servlet:JAVADOC:672.4;
-     * Servlet:JAVADOC:673.4;
+     * @assertion_ids: Servlet:JAVADOC:671.4; Servlet:JAVADOC:672.4; Servlet:JAVADOC:673.4;
      *
-     * @test_Strategy: In a ServletContextListener, call: -
-     * ServletContext.addListener(TCKTestListener.class) -
-     * ervletContext.addListener("TCKTestListener") -
-     * ServletContext.createListener(TCKTestListener.class) TCKTestListener
+     * @test_Strategy: In a ServletContextListener, call: - ServletContext.addListener(TCKTestListener.class) -
+     * ervletContext.addListener("TCKTestListener") - ServletContext.createListener(TCKTestListener.class) TCKTestListener
      * implements HttpSessionListener Verify it works
      */
     public void addListenerTest() throws Fault {

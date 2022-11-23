@@ -50,7 +50,8 @@ public class Client extends PMClientBase {
 
     static final String ORACLE = "oracle";
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -115,12 +116,11 @@ public class Client extends PMClientBase {
     /*
      * @testName: findExceptionsTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:465; PERSISTENCE:JAVADOC:466;
-     * PERSISTENCE:JAVADOC:467; PERSISTENCE:JAVADOC:468; PERSISTENCE:JAVADOC:474;
-     * PERSISTENCE:JAVADOC:474; PERSISTENCE:SPEC:592;
+     * @assertion_ids: PERSISTENCE:JAVADOC:465; PERSISTENCE:JAVADOC:466; PERSISTENCE:JAVADOC:467; PERSISTENCE:JAVADOC:468;
+     * PERSISTENCE:JAVADOC:474; PERSISTENCE:JAVADOC:474; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.find() method with various invalid
-     * argument combinations and verify various exceptions are thrown
+     * @test_Strategy: Call EntityManager.find() method with various invalid argument combinations and verify various
+     * exceptions are thrown
      */
     public void findExceptionsTest() throws Fault {
         int pass = 0;
@@ -440,8 +440,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:479
      *
-     * @test_Strategy: Call EntityManager.flush() method with various invalid
-     * argument combinations and verify various exceptions are thrown
+     * @test_Strategy: Call EntityManager.flush() method with various invalid argument combinations and verify various
+     * exceptions are thrown
      */
     public void flushExceptionsTest() throws Fault {
         boolean pass = false;
@@ -464,8 +464,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: lockTransactionRequiredExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:491; PERSISTENCE:JAVADOC:492;
-     * PERSISTENCE:JAVADOC:498; PERSISTENCE:JAVADOC:499
+     * @assertion_ids: PERSISTENCE:JAVADOC:491; PERSISTENCE:JAVADOC:492; PERSISTENCE:JAVADOC:498; PERSISTENCE:JAVADOC:499
      *
      * @test_Strategy: Call EntityManager.lock() method
      */
@@ -512,8 +511,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.contains(Class) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.contains(Class) that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback1Test() throws Fault {
         boolean pass = false;
@@ -551,8 +550,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.createNamedQuery(String) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createNamedQuery(String) that causes RuntimeException and verify Transaction is
+     * set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback2Test() throws Fault {
         boolean pass = false;
@@ -591,8 +590,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.createNamedQuery(String,Class) that
-     * causes RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createNamedQuery(String,Class) that causes RuntimeException and verify Transaction
+     * is set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback3Test() throws Fault {
         boolean pass = false;
@@ -632,8 +631,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.createNamedStoredProcedureQuery(String)
-     * that causes RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createNamedStoredProcedureQuery(String) that causes RuntimeException and verify
+     * Transaction is set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback4Test() throws Fault {
         boolean pass = false;
@@ -672,8 +671,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.createQuery(CriteriaDelete) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createQuery(CriteriaDelete) that causes RuntimeException and verify Transaction is
+     * set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback5Test() throws Fault {
         boolean pass = false;
@@ -720,8 +719,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.createQuery(CriteriaQuery) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createQuery(CriteriaQuery) that causes RuntimeException and verify Transaction is
+     * set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback6Test() throws Fault {
         boolean pass = false;
@@ -763,8 +762,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.createQuery(CriteriaUpdate) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createQuery(CriteriaUpdate) that causes RuntimeException and verify Transaction is
+     * set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback7Test() throws Fault {
         boolean pass = false;
@@ -814,8 +813,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.createQuery(String) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createQuery(String) that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback8Test() throws Fault {
         boolean pass = false;
@@ -853,8 +852,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.createQuery(String,Class) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createQuery(String,Class) that causes RuntimeException and verify Transaction is
+     * set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback9Test() throws Fault {
         boolean pass = false;
@@ -892,8 +891,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String) that
-     * causes RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String) that causes RuntimeException and verify
+     * Transaction is set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback10Test() throws Fault {
         boolean pass = false;
@@ -933,15 +932,14 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String,Class)
-     * that causes RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String,Class) that causes RuntimeException and verify
+     * Transaction is set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback11Test() throws Fault {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
-            StoredProcedureQuery spq =
-                    getEntityManager().createStoredProcedureQuery("doesnotexist", PMClientBase.class);
+            StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("doesnotexist", PMClientBase.class);
             TestUtil.logMsg("RuntimeException not thrown, try executing it");
             spq.execute();
             TestUtil.logErr("RuntimeException was not thrown, after trying to executing it");
@@ -975,9 +973,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call
-     * EntityManager.createStoredProcedureQuery(String,String) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String,String) that causes RuntimeException and verify
+     * Transaction is set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback12Test() throws Fault {
         boolean pass = false;
@@ -1017,8 +1014,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.detach(Object) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.detach(Object) that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback13Test() throws Fault {
         boolean pass = false;
@@ -1057,8 +1054,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.find(Class,Object) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.find(Class,Object) that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback14Test() throws Fault {
         boolean pass = false;
@@ -1096,8 +1093,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.find(Class,Object,LockModeType) that
-     * causes RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.find(Class,Object,LockModeType) that causes RuntimeException and verify
+     * Transaction is set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback15Test() throws Fault {
         boolean pass = false;
@@ -1135,8 +1132,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.find(Class,Object,LockModeType,Map) that
-     * causes RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.find(Class,Object,LockModeType,Map) that causes RuntimeException and verify
+     * Transaction is set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback16Test() throws Fault {
         boolean pass = false;
@@ -1174,8 +1171,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.find(Class,Object,Map) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.find(Class,Object,Map) that causes RuntimeException and verify Transaction is set
+     * for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback17Test() throws Fault {
         boolean pass = false;
@@ -1213,8 +1210,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager. getLockMode(Object) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager. getLockMode(Object) that causes RuntimeException and verify Transaction is set
+     * for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback21Test() throws Fault {
         boolean pass = false;
@@ -1252,8 +1249,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.getReference(Class,Object) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.getReference(Class,Object) that causes RuntimeException and verify Transaction is
+     * set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback23Test() throws Fault {
         boolean pass = false;
@@ -1291,8 +1288,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.lock(Object,LockModeType) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.lock(Object,LockModeType) that causes RuntimeException and verify Transaction is
+     * set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback24Test() throws Fault {
         boolean pass = false;
@@ -1330,8 +1327,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611;
      *
-     * @test_Strategy: Call EntityManager.lock(Object,LockModeType,Map() that
-     * causes RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.lock(Object,LockModeType,Map() that causes RuntimeException and verify Transaction
+     * is set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback25Test() throws Fault {
         boolean pass = false;
@@ -1369,8 +1366,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.merge(Class) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.merge(Class) that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback26Test() throws Fault {
         boolean pass = false;
@@ -1408,8 +1405,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.persist(Object) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.persist(Object) that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback27Test() throws Fault {
         boolean pass = false;
@@ -1447,8 +1444,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.refresh(Object) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.refresh(Object) that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback28Test() throws Fault {
         boolean pass = false;
@@ -1486,8 +1483,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.refresh(Object,LockModeType) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.refresh(Object,LockModeType) that causes RuntimeException and verify Transaction
+     * is set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback29Test() throws Fault {
         boolean pass = false;
@@ -1525,8 +1522,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.refresh(Object,LockModeType,Map) that
-     * causes RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.refresh(Object,LockModeType,Map) that causes RuntimeException and verify
+     * Transaction is set for rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback30Test() throws Fault {
         boolean pass = false;
@@ -1564,8 +1561,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.refresh(Object,Map) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.refresh(Object,Map) that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback31Test() throws Fault {
         boolean pass = false;
@@ -1603,8 +1600,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:611; PERSISTENCE:SPEC:592;
      *
-     * @test_Strategy: Call EntityManager.remove(Object) that causes
-     * RuntimeException and verify Transaction is set for rollback
+     * @test_Strategy: Call EntityManager.remove(Object) that causes RuntimeException and verify Transaction is set for
+     * rollback
      */
     public void entityManagerMethodsRuntimeExceptionsCauseRollback32Test() throws Fault {
         boolean pass = false;

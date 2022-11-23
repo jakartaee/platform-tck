@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:24.7
      *
-     * @testStrategy: Validate that if var is not specified, the resulting value
-     * of the url action is written to the current JspWriter.
+     * @testStrategy: Validate that if var is not specified, the resulting value of the url action is written to the current
+     * JspWriter.
      */
     public void positiveUrlDisplayUrlTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveUrlDisplayUrlTest");
@@ -81,9 +79,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:24.2; JSTL:SPEC:24.6
      *
-     * @testStrategy: Validate that the result of encoding the value of the url
-     * attribute is properly associated with a variable designated by var. Compare
-     * the result with that returned by response.encodeUrl().
+     * @testStrategy: Validate that the result of encoding the value of the url attribute is properly associated with a
+     * variable designated by var. Compare the result with that returned by response.encodeUrl().
      */
     public void positiveUrlValueVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUrlValueVarTest");
@@ -93,11 +90,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveUrlScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:24.3; JSTL:SPEC:24.3.1; JSTL:SPEC:24.3.1;
-     * JSTL:SPEC:24.3.2; JSTL:SPEC:24.3.3; JSTL:SPEC:24.3.4; JSTL:SPEC:24.3.5
+     * @assertion_ids: JSTL:SPEC:24.3; JSTL:SPEC:24.3.1; JSTL:SPEC:24.3.1; JSTL:SPEC:24.3.2; JSTL:SPEC:24.3.3;
+     * JSTL:SPEC:24.3.4; JSTL:SPEC:24.3.5
      *
-     * @testStrategy: Validate the behavior of the scope attribute with respect to
-     * var, both when scope is explicitly defined and when not defined.
+     * @testStrategy: Validate the behavior of the scope attribute with respect to var, both when scope is explicitly
+     * defined and when not defined.
      */
     public void positiveUrlScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUrlScopeTest");
@@ -109,8 +106,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:24.12
      *
-     * @testStrategy: Validate that if the URL to be encoded contains special
-     * characters, that they are not encoded by the action.
+     * @testStrategy: Validate that if the URL to be encoded contains special characters, that they are not encoded by the
+     * action.
      */
     public void positiveUrlNoCharEncodingTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUrlNoCharEncodingTest");
@@ -122,8 +119,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:25
      *
-     * @testStrategy: Validate the URL action can properly interact with nested
-     * param subtags.
+     * @testStrategy: Validate the URL action can properly interact with nested param subtags.
      */
     public void positiveUrlParamsBodyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUrlParamsBodyTest");
@@ -135,8 +131,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:24.5
      *
-     * @testStrategy: Validate that if an absolute URL is provided to the URL
-     * action, the result is not rewritten.
+     * @testStrategy: Validate that if an absolute URL is provided to the URL action, the result is not rewritten.
      */
     public void positiveUrlAbsUrlNotRewrittenTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUrlAbsUrlNotRewrittenTest");
@@ -148,8 +143,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:24.9
      *
-     * @testStrategy: Validate that an Exception is thrown if the body content of
-     * the action causes an exception.
+     * @testStrategy: Validate that an Exception is thrown if the body content of the action causes an exception.
      */
     public void negativeUrlExcBodyContentTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeUrlExcBodyContentTest");
@@ -161,9 +155,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:24.11.4; JSTL:SPEC:24.11.2
      *
-     * @testStrategy: Validate that an Exception occurs if the value provided to
-     * context or url (when context is specified) doesn't begin with a leading
-     * slash.
+     * @testStrategy: Validate that an Exception occurs if the value provided to context or url (when context is specified)
+     * doesn't begin with a leading slash.
      */
     public void negativeUrlContextUrlInvalidValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeUrlContextUrlInvalidValueTest");

@@ -37,8 +37,7 @@ public class BodyContentGetStringTag extends BodyTagSupport {
      * Validates BodyContent.getString()
      *
      * @return SKIP_BODY
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doAfterBody() throws JspException {
         BodyContent content = this.getBodyContent();

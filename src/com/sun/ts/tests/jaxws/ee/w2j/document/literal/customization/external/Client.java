@@ -132,8 +132,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -170,13 +172,12 @@ public class Client extends ServiceEETest {
     /*
      * @testName: CustomizationExternalTest
      *
-     * @assertion_ids: JAXWS:SPEC:8000; JAXWS:SPEC:8001; JAXWS:SPEC:8003;
-     * JAXWS:SPEC:8004; JAXWS:SPEC:8005; JAXWS:SPEC:8006; JAXWS:SPEC:8007;
-     * JAXWS:SPEC:8008; JAXWS:SPEC:8010; JAXWS:SPEC:8012; JAXWS:SPEC:8013;
-     * JAXWS:SPEC:2064; JAXWS:SPEC:7000; JAXWS:SPEC:8009;
+     * @assertion_ids: JAXWS:SPEC:8000; JAXWS:SPEC:8001; JAXWS:SPEC:8003; JAXWS:SPEC:8004; JAXWS:SPEC:8005; JAXWS:SPEC:8006;
+     * JAXWS:SPEC:8007; JAXWS:SPEC:8008; JAXWS:SPEC:8010; JAXWS:SPEC:8012; JAXWS:SPEC:8013; JAXWS:SPEC:2064;
+     * JAXWS:SPEC:7000; JAXWS:SPEC:8009;
      *
-     * @test_Strategy: An external customization file is used to change aspects of
-     * the wsdl file. If the endpoint is reachable then the customization worked.
+     * @test_Strategy: An external customization file is used to change aspects of the wsdl file. If the endpoint is
+     * reachable then the customization worked.
      *
      */
     public void CustomizationExternalTest() throws Fault {
@@ -211,6 +212,7 @@ public class Client extends ServiceEETest {
             e.printStackTrace();
         }
 
-        if (!pass) throw new Fault("CustomizationExternalTest failed");
+        if (!pass)
+            throw new Fault("CustomizationExternalTest failed");
     }
 }

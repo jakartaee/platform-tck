@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,8 +100,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:291; SAAJ:JAVADOC:292;
      *
-     * @test_Strategy: Call SOAPBody.addBodyElement(Name) method and verify
-     * creation of a new SOAPBodyElement.
+     * @test_Strategy: Call SOAPBody.addBodyElement(Name) method and verify creation of a new SOAPBodyElement.
      *
      * Description: Create a SOAPBodyElement object
      *
@@ -115,12 +116,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addBodyElementTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -129,7 +133,8 @@ public class URLClient extends EETest {
             throw new Fault("addBodyElementTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("addBodyElementTest1 failed");
+        if (!pass)
+            throw new Fault("addBodyElementTest1 failed");
     }
 
     /*
@@ -137,8 +142,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:293; SAAJ:JAVADOC:294;
      *
-     * @test_Strategy: Call SOAPBody.addBodyElement(QName) method and verify
-     * creation of a new SOAPBodyElement.
+     * @test_Strategy: Call SOAPBody.addBodyElement(QName) method and verify creation of a new SOAPBodyElement.
      *
      * Description: Create a SOAPBodyElement object
      *
@@ -154,12 +158,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addBodyElementTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -168,7 +175,8 @@ public class URLClient extends EETest {
             throw new Fault("addBodyElementTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("addBodyElementTest2 failed");
+        if (!pass)
+            throw new Fault("addBodyElementTest2 failed");
     }
 
     /*
@@ -176,11 +184,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:279; SAAJ:JAVADOC:280;
      *
-     * @test_Strategy: Call SOAPBody.addFault() method and verify the creation of
-     * a new SOAPFault object.
+     * @test_Strategy: Call SOAPBody.addFault() method and verify the creation of a new SOAPFault object.
      *
-     * Description: Creates a new SOAPFault object and adds it to this SOAPBody
-     * object.
+     * Description: Creates a new SOAPFault object and adds it to this SOAPBody object.
      *
      */
     public void addFaultTest1() throws Fault {
@@ -196,7 +202,8 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -204,7 +211,8 @@ public class URLClient extends EETest {
             throw new Fault("addFaultTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("addFaultTest1 failed");
+        if (!pass)
+            throw new Fault("addFaultTest1 failed");
     }
 
     /*
@@ -212,11 +220,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:285; SAAJ:JAVADOC:286;
      *
-     * @test_Strategy: Call SOAPBody.addFault(Name, String) method and verify the
-     * creation of a new SOAPFault object.
+     * @test_Strategy: Call SOAPBody.addFault(Name, String) method and verify the creation of a new SOAPFault object.
      *
-     * Description: Creates a new SOAPFault object and adds it to this SOAPBody
-     * object.
+     * Description: Creates a new SOAPFault object and adds it to this SOAPBody object.
      *
      */
     public void addFaultTest2() throws Fault {
@@ -232,7 +238,8 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -240,7 +247,8 @@ public class URLClient extends EETest {
             throw new Fault("addFaultTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("addFaultTest2 failed");
+        if (!pass)
+            throw new Fault("addFaultTest2 failed");
     }
 
     /*
@@ -248,11 +256,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:281; SAAJ:JAVADOC:282;
      *
-     * @test_Strategy: Call SOAPBody.addFault(Name, String, Locale) method and
-     * verify the creation of a new SOAPFault object.
-     *
-     * Description: Creates a new SOAPFault object and adds it to this SOAPBody
+     * @test_Strategy: Call SOAPBody.addFault(Name, String, Locale) method and verify the creation of a new SOAPFault
      * object.
+     *
+     * Description: Creates a new SOAPFault object and adds it to this SOAPBody object.
      *
      */
     public void addFaultTest3() throws Fault {
@@ -268,7 +275,8 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -276,7 +284,8 @@ public class URLClient extends EETest {
             throw new Fault("addFaultTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("addFaultTest3 failed");
+        if (!pass)
+            throw new Fault("addFaultTest3 failed");
     }
 
     /*
@@ -284,11 +293,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:287; SAAJ:JAVADOC:288;
      *
-     * @test_Strategy: Call SOAPBody.addFault(QName, String) method and verify the
-     * creation of a new SOAPFault object.
+     * @test_Strategy: Call SOAPBody.addFault(QName, String) method and verify the creation of a new SOAPFault object.
      *
-     * Description: Creates a new SOAPFault object and adds it to this SOAPBody
-     * object.
+     * Description: Creates a new SOAPFault object and adds it to this SOAPBody object.
      *
      */
     public void addFaultTest4() throws Fault {
@@ -304,7 +311,8 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -312,7 +320,8 @@ public class URLClient extends EETest {
             throw new Fault("addFaultTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("addFaultTest4 failed");
+        if (!pass)
+            throw new Fault("addFaultTest4 failed");
     }
 
     /*
@@ -320,11 +329,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:283; SAAJ:JAVADOC:284;
      *
-     * @test_Strategy: Call SOAPBody.addFault(QName, String, Locale) method and
-     * verify the creation of a new SOAPFault object.
-     *
-     * Description: Creates a new SOAPFault object and adds it to this SOAPBody
+     * @test_Strategy: Call SOAPBody.addFault(QName, String, Locale) method and verify the creation of a new SOAPFault
      * object.
+     *
+     * Description: Creates a new SOAPFault object and adds it to this SOAPBody object.
      *
      */
     public void addFaultTest5() throws Fault {
@@ -340,7 +348,8 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -348,7 +357,8 @@ public class URLClient extends EETest {
             throw new Fault("addFaultTest5 failed", e);
         }
 
-        if (!pass) throw new Fault("addFaultTest5 failed");
+        if (!pass)
+            throw new Fault("addFaultTest5 failed");
     }
 
     /*
@@ -356,11 +366,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:290;
      *
-     * @test_Strategy: Call SOAPBody.getFault() method and verify the return of
-     * the SOAPFault object.
+     * @test_Strategy: Call SOAPBody.getFault() method and verify the return of the SOAPFault object.
      *
-     * Description: Return the SOAPFault object that was added to this SOAPBody
-     * object.
+     * Description: Return the SOAPFault object that was added to this SOAPBody object.
      *
      */
     public void getFaultTest() throws Fault {
@@ -374,12 +382,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getFaultTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -388,7 +399,8 @@ public class URLClient extends EETest {
             throw new Fault("getFaultTest failed", e);
         }
 
-        if (!pass) throw new Fault("getFaultTest failed");
+        if (!pass)
+            throw new Fault("getFaultTest failed");
     }
 
     /*
@@ -396,11 +408,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:289;
      *
-     * @test_Strategy: Call SOAPBody.hasFault() method and verify whether this
-     * SOAPBody object has a SOAPFault object.
+     * @test_Strategy: Call SOAPBody.hasFault() method and verify whether this SOAPBody object has a SOAPFault object.
      *
-     * Description: Check whether a SOAPFault object exists in this SOAPBody
-     * object.
+     * Description: Check whether a SOAPFault object exists in this SOAPBody object.
      *
      */
     public void hasFaultTest() throws Fault {
@@ -414,12 +424,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "hasFaultTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -428,7 +441,8 @@ public class URLClient extends EETest {
             throw new Fault("hasFaultTest failed", e);
         }
 
-        if (!pass) throw new Fault("hasFaultTest failed");
+        if (!pass)
+            throw new Fault("hasFaultTest failed");
     }
 
     /*
@@ -436,8 +450,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:295; SAAJ:JAVADOC:296;
      *
-     * @test_Strategy: Call SOAPBody.addBodyElement(org.w3c.dom.Document) method
-     * and verify
+     * @test_Strategy: Call SOAPBody.addBodyElement(org.w3c.dom.Document) method and verify
      *
      * Description: Create a SOAPBodyElement object
      *
@@ -452,13 +465,16 @@ public class URLClient extends EETest {
             TestUtil.logMsg(url.toString());
             TestUtil.logMsg("Sending post request to test servlet.....");
             for (int i = 0; i < 2; i++) {
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 props.setProperty("TESTNAME", "addDocumentTest");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -466,7 +482,8 @@ public class URLClient extends EETest {
             throw new Fault("addDocumentTest failed", e);
         }
 
-        if (!pass) throw new Fault("addDocumentTest failed");
+        if (!pass)
+            throw new Fault("addDocumentTest failed");
     }
 
     /*
@@ -490,12 +507,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "extractContentAsDocumentTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -504,7 +524,8 @@ public class URLClient extends EETest {
             throw new Fault("extractContentAsDocumentTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("extractContentAsDocumentTest1 failed");
+        if (!pass)
+            throw new Fault("extractContentAsDocumentTest1 failed");
     }
 
     /*
@@ -514,8 +535,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPBody.extractContentAsDocument() method and verify.
      *
-     * Description: Extract content as a DOM Document. Negative test case for
-     * SOAPException to be thrown.
+     * Description: Extract content as a DOM Document. Negative test case for SOAPException to be thrown.
      *
      */
     public void extractContentAsDocumentTest2() throws Fault {
@@ -529,12 +549,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "extractContentAsDocumentTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -543,6 +566,7 @@ public class URLClient extends EETest {
             throw new Fault("extractContentAsDocumentTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("extractContentAsDocumentTest2 failed");
+        if (!pass)
+            throw new Fault("extractContentAsDocumentTest2 failed");
     }
 }

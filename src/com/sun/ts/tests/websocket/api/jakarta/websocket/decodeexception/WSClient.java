@@ -75,8 +75,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: constructorTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:32; WebSocket:JAVADOC:33;
-     * WebSocket:JAVADOC:34;
+     * @assertion_ids: WebSocket:JAVADOC:32; WebSocket:JAVADOC:33; WebSocket:JAVADOC:34;
      *
      * @test_Strategy: Test constructor DecodeException(String, String)
      */
@@ -109,8 +108,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: constructorTest1
      *
-     * @assertion_ids: WebSocket:JAVADOC:31; WebSocket:JAVADOC:33;
-     * WebSocket:JAVADOC:34;
+     * @assertion_ids: WebSocket:JAVADOC:31; WebSocket:JAVADOC:33; WebSocket:JAVADOC:34;
      *
      * @test_Strategy: Test constructor DecodeException(ByteBuffer, String)
      */
@@ -140,8 +138,7 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: constructorTest2
      *
-     * @assertion_ids: WebSocket:JAVADOC:30; WebSocket:JAVADOC:33;
-     * WebSocket:JAVADOC:34;
+     * @assertion_ids: WebSocket:JAVADOC:30; WebSocket:JAVADOC:33; WebSocket:JAVADOC:34;
      *
      * @test_Strategy: Test constructor DecodeException(String, String, Throwable)
      */
@@ -170,11 +167,9 @@ public class WSClient extends ServiceEETest {
     /*
      * @testName: constructorTest3
      *
-     * @assertion_ids: WebSocket:JAVADOC:29; WebSocket:JAVADOC:33;
-     * WebSocket:JAVADOC:34;
+     * @assertion_ids: WebSocket:JAVADOC:29; WebSocket:JAVADOC:33; WebSocket:JAVADOC:34;
      *
-     * @test_Strategy: Test constructor DecodeException(ByteBuffer, String,
-     * Throwable)
+     * @test_Strategy: Test constructor DecodeException(ByteBuffer, String, Throwable)
      */
     public void constructorTest3() throws Fault {
         boolean passed = true;
@@ -199,5 +194,6 @@ public class WSClient extends ServiceEETest {
         }
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 }

@@ -23,7 +23,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -51,8 +52,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:957
      *
-     * @test_Strategy: With the above archive (jar-file elements), deploy, create
-     * entities persist, then find.
+     * @test_Strategy: With the above archive (jar-file elements), deploy, create entities persist, then find.
      *
      */
 

@@ -40,7 +40,7 @@ import java.util.Properties;
 
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Stateless(name = "CDIUseCasesCMBEAN1")
-@Remote({CMBean1IF.class})
+@Remote({ CMBean1IF.class })
 public class CMBean1 implements CMBean1IF {
 
     private static final long serialVersionUID = 1L;
@@ -111,8 +111,10 @@ public class CMBean1 implements CMBean1IF {
             }
             consumer.close();
             TestUtil.logMsg("Cleaned up " + count + " messages from Queue (numOfMsgs=" + numOfMsgs + ")");
-            if (count == numOfMsgs) return true;
-            else return false;
+            if (count == numOfMsgs)
+                return true;
+            else
+                return false;
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new EJBException("CMBean1.cleanupQueue: failed");

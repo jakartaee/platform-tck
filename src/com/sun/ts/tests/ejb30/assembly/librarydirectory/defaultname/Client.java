@@ -85,8 +85,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: PostConstruct method must be invoked even when it's in a
-     * superclass not packaged in appclient-client.jar
+     * @test_Strategy: PostConstruct method must be invoked even when it's in a superclass not packaged in
+     * appclient-client.jar
      */
 
     /*
@@ -102,10 +102,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-     * deployed separately. It client view jar is packaged inside current ear and
-     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-     * helloBean
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and deployed separately. It client view jar is
+     * packaged inside current ear and referenced by both appclient and ejb jar thru MANIFEST.MF appclient -> helloBean
      */
 
     /*
@@ -113,9 +111,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-     * deployed separately. It client view jar is packaged inside current ear and
-     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-     * assemblyBean -> helloBean
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and deployed separately. It client view jar is
+     * packaged inside current ear and referenced by both appclient and ejb jar thru MANIFEST.MF appclient -> assemblyBean
+     * -> helloBean
      */
 }

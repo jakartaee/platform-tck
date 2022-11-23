@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,8 +100,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:100;
      *
-     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify
-     * creation of a new MimeHeaders object. Add a single header.
+     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify creation of a new MimeHeaders object. Add
+     * a single header.
      *
      * Description: Construct a MimeHeaders object.
      */
@@ -113,15 +115,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addHeader1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("addHeader1Test failed");
+            if (!pass)
+                throw new Fault("addHeader1Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -135,8 +141,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:100;
      *
-     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify
-     * creation of a new MimeHeaders object. Add two headers.
+     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify creation of a new MimeHeaders object. Add
+     * two headers.
      *
      * Description: Construct a MimeHeaders object.
      */
@@ -150,15 +156,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addHeader2Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("addHeader2Test failed");
+            if (!pass)
+                throw new Fault("addHeader2Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -172,9 +182,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:100;
      *
-     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify
-     * creation of a new MimeHeaders object. Add two headers that have different
-     * values.
+     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify creation of a new MimeHeaders object. Add
+     * two headers that have different values.
      *
      * Description: Construct a MimeHeaders object.
      */
@@ -188,15 +197,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addHeader3Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("addHeader3Test failed");
+            if (!pass)
+                throw new Fault("addHeader3Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -210,9 +223,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:100;
      *
-     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify
-     * creation of a new MimeHeaders object. Attempt to add an empty header and
-     * non-empty value.
+     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify creation of a new MimeHeaders object.
+     * Attempt to add an empty header and non-empty value.
      *
      * Description: Construct a MimeHeaders object.
      */
@@ -226,15 +238,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addHeader4Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("addHeader4Test failed");
+            if (!pass)
+                throw new Fault("addHeader4Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -248,9 +264,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:100;
      *
-     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify
-     * creation of a new MimeHeaders object. Attempt to add a non-empty header and
-     * empty value.
+     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify creation of a new MimeHeaders object.
+     * Attempt to add a non-empty header and empty value.
      *
      * Description: Construct a MimeHeaders object.
      */
@@ -264,15 +279,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addHeader5Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("addHeader5Test failed");
+            if (!pass)
+                throw new Fault("addHeader5Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -286,9 +305,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:100;
      *
-     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify
-     * creation of a new MimeHeaders object. Attempt to add a null header and null
-     * value.
+     * @test_Strategy: Call MimeHeaders.addHeader(String,String) method and verify creation of a new MimeHeaders object.
+     * Attempt to add a null header and null value.
      *
      * Description: Construct a MimeHeaders object.
      */
@@ -302,15 +320,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addHeader6Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("addHeader6Test failed");
+            if (!pass)
+                throw new Fault("addHeader6Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -324,8 +346,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:98;
      *
-     * @test_Strategy: Call MimeHeaders.getHeader(String) method and verify return
-     * of a the MimeHeaders object. Get a single header.
+     * @test_Strategy: Call MimeHeaders.getHeader(String) method and verify return of a the MimeHeaders object. Get a single
+     * header.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -339,15 +361,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getHeader1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getHeader1Test failed");
+            if (!pass)
+                throw new Fault("getHeader1Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -361,8 +387,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:98;
      *
-     * @test_Strategy: Call MimeHeaders.getHeader(String) method and verify return
-     * of the MimeHeaders object. Get single header from multiple headers.
+     * @test_Strategy: Call MimeHeaders.getHeader(String) method and verify return of the MimeHeaders object. Get single
+     * header from multiple headers.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -376,15 +402,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getHeader2Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getHeader2Test failed");
+            if (!pass)
+                throw new Fault("getHeader2Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -398,8 +428,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:98;
      *
-     * @test_Strategy: Call MimeHeaders.getHeader(String) method and verify return
-     * of the MimeHeaders object. Get header that contains two entries.
+     * @test_Strategy: Call MimeHeaders.getHeader(String) method and verify return of the MimeHeaders object. Get header
+     * that contains two entries.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -413,15 +443,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getHeader3Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getHeader3Test failed");
+            if (!pass)
+                throw new Fault("getHeader3Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -435,8 +469,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:98;
      *
-     * @test_Strategy: Call MimeHeaders.getHeader(String) method and verify return
-     * of the MimeHeaders object. Attempt to get a header that doesn't exist
+     * @test_Strategy: Call MimeHeaders.getHeader(String) method and verify return of the MimeHeaders object. Attempt to get
+     * a header that doesn't exist
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -450,15 +484,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getHeader4Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getHeader4Test failed");
+            if (!pass)
+                throw new Fault("getHeader4Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -472,8 +510,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:103;
      *
-     * @test_Strategy: Call MimeHeaders.getAllHeaders() method and verify return
-     * of all MimeHeaders objects. Get single header.
+     * @test_Strategy: Call MimeHeaders.getAllHeaders() method and verify return of all MimeHeaders objects. Get single
+     * header.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -487,15 +525,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAllHeaders1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getAllHeaders1Test failed");
+            if (!pass)
+                throw new Fault("getAllHeaders1Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -509,8 +551,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:103;
      *
-     * @test_Strategy: Call MimeHeaders.getAllHeaders() method and verify return
-     * of all MimeHeaders objects. Get multiple headers.
+     * @test_Strategy: Call MimeHeaders.getAllHeaders() method and verify return of all MimeHeaders objects. Get multiple
+     * headers.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -524,15 +566,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAllHeaders2Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getAllHeaders2Test failed");
+            if (!pass)
+                throw new Fault("getAllHeaders2Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -546,9 +592,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:103;
      *
-     * @test_Strategy: Call MimeHeaders.getAllHeaders() method and verify return
-     * of all MimeHeaders objects. Get single header that contains mulitple
-     * entries.
+     * @test_Strategy: Call MimeHeaders.getAllHeaders() method and verify return of all MimeHeaders objects. Get single
+     * header that contains mulitple entries.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -562,15 +607,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAllHeaders3Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getAllHeaders3Test failed");
+            if (!pass)
+                throw new Fault("getAllHeaders3Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -584,8 +633,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:103;
      *
-     * @test_Strategy: Call MimeHeaders.getAllHeaders() method and verify return
-     * of all MimeHeaders objects. Attempt to get all headers when none exist.
+     * @test_Strategy: Call MimeHeaders.getAllHeaders() method and verify return of all MimeHeaders objects. Attempt to get
+     * all headers when none exist.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -599,15 +648,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getAllHeaders4Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getAllHeaders4Test failed");
+            if (!pass)
+                throw new Fault("getAllHeaders4Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -621,8 +674,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:102;
      *
-     * @test_Strategy: Call MimeHeaders.removeAllHeaders() method and verify
-     * removal of all MimeHeaders objects. Remove single header.
+     * @test_Strategy: Call MimeHeaders.removeAllHeaders() method and verify removal of all MimeHeaders objects. Remove
+     * single header.
      *
      * Description: Remove a MimeHeaders object.
      */
@@ -636,15 +689,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "removeAllHeaders1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("removeAllHeaders1Test failed");
+            if (!pass)
+                throw new Fault("removeAllHeaders1Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -658,8 +715,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:102;
      *
-     * @test_Strategy: Call MimeHeaders.removeAllHeaders() method and verify
-     * removal of all MimeHeaders objects. Remove multiple headers.
+     * @test_Strategy: Call MimeHeaders.removeAllHeaders() method and verify removal of all MimeHeaders objects. Remove
+     * multiple headers.
      *
      * Description: Remove a MimeHeaders object.
      */
@@ -673,15 +730,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "removeAllHeaders2Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("removeAllHeaders2Test failed");
+            if (!pass)
+                throw new Fault("removeAllHeaders2Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -695,9 +756,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:102;
      *
-     * @test_Strategy: Call MimeHeaders.removeAllHeaders() method and verify
-     * removal of all MimeHeaders objects. Remove header that contains multiple
-     * entries.
+     * @test_Strategy: Call MimeHeaders.removeAllHeaders() method and verify removal of all MimeHeaders objects. Remove
+     * header that contains multiple entries.
      *
      * Description: Remove a MimeHeaders object.
      */
@@ -711,15 +771,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "removeAllHeaders3Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("removeAllHeaders3Test failed");
+            if (!pass)
+                throw new Fault("removeAllHeaders3Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -733,8 +797,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:102;
      *
-     * @test_Strategy: Call MimeHeaders.removeAllHeaders() method and verify
-     * removal of all MimeHeaders objects. Remove headers when none exist.
+     * @test_Strategy: Call MimeHeaders.removeAllHeaders() method and verify removal of all MimeHeaders objects. Remove
+     * headers when none exist.
      *
      * Description: Remove a MimeHeaders object.
      */
@@ -748,15 +812,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "removeAllHeaders4Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("removeAllHeaders4Test failed");
+            if (!pass)
+                throw new Fault("removeAllHeaders4Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -770,8 +838,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:99;
      *
-     * @test_Strategy: Call MimeHeaders.setHeader(String,String) method and verify
-     * return of a the MimeHeaders object. Set exist header.
+     * @test_Strategy: Call MimeHeaders.setHeader(String,String) method and verify return of a the MimeHeaders object. Set
+     * exist header.
      *
      * Description: Replace a MimeHeaders object.
      */
@@ -785,15 +853,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setHeader1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("setHeader1Test failed");
+            if (!pass)
+                throw new Fault("setHeader1Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -807,9 +879,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:99;
      *
-     * @test_Strategy: Call MimeHeaders.setHeader(String,String) method and verify
-     * return of the MimeHeaders object. Set existing header from list of two
-     * headers.
+     * @test_Strategy: Call MimeHeaders.setHeader(String,String) method and verify return of the MimeHeaders object. Set
+     * existing header from list of two headers.
      *
      * Description: Replace a MimeHeaders object.
      */
@@ -823,15 +894,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setHeader2Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("setHeader2Test failed");
+            if (!pass)
+                throw new Fault("setHeader2Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -845,9 +920,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:99;
      *
-     * @test_Strategy: Call MimeHeaders.setHeader(String,String) method and verify
-     * return of the MimeHeaders object. Set existing header that contains
-     * multiple values.
+     * @test_Strategy: Call MimeHeaders.setHeader(String,String) method and verify return of the MimeHeaders object. Set
+     * existing header that contains multiple values.
      *
      * Description: Replace/Construct a MimeHeaders object.
      */
@@ -861,15 +935,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setHeader3Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("setHeader3Test failed");
+            if (!pass)
+                throw new Fault("setHeader3Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -883,8 +961,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:99;
      *
-     * @test_Strategy: Call MimeHeaders.setHeader(String,String) method and verify
-     * return of the MimeHeaders object. Set header that doesn't exist
+     * @test_Strategy: Call MimeHeaders.setHeader(String,String) method and verify return of the MimeHeaders object. Set
+     * header that doesn't exist
      *
      * Description: Replace/Construct a MimeHeaders object.
      */
@@ -898,15 +976,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setHeader4Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("setHeader4Test failed");
+            if (!pass)
+                throw new Fault("setHeader4Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -920,8 +1002,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:99;
      *
-     * @test_Strategy: Call MimeHeaders.setHeader(Name,value) method and verify
-     * return of the MimeHeaders object. Set an existing header twice.
+     * @test_Strategy: Call MimeHeaders.setHeader(Name,value) method and verify return of the MimeHeaders object. Set an
+     * existing header twice.
      *
      * Description: Replace/Construct a MimeHeaders object.
      */
@@ -935,15 +1017,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setHeader5Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("setHeader5Test failed");
+            if (!pass)
+                throw new Fault("setHeader5Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -957,8 +1043,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:99;
      *
-     * @test_Strategy: Call MimeHeaders.setHeader(Name,emptyvalue|null) method and
-     * verify return of the MimeHeaders object. Set an existing header twice.
+     * @test_Strategy: Call MimeHeaders.setHeader(Name,emptyvalue|null) method and verify return of the MimeHeaders object.
+     * Set an existing header twice.
      *
      * Description: Replace/Construct a MimeHeaders object.
      */
@@ -972,15 +1058,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setHeader6Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("setHeader6Test failed");
+            if (!pass)
+                throw new Fault("setHeader6Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -994,8 +1084,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:101;
      *
-     * @test_Strategy: Call MimeHeaders.removeHeader(String) method and verify
-     * return of a the MimeHeaders object. Remove single header.
+     * @test_Strategy: Call MimeHeaders.removeHeader(String) method and verify return of a the MimeHeaders object. Remove
+     * single header.
      *
      * Description: Remove a MimeHeaders object.
      */
@@ -1009,15 +1099,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "removeHeader1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("removeHeader1Test failed");
+            if (!pass)
+                throw new Fault("removeHeader1Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1031,8 +1125,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:101;
      *
-     * @test_Strategy: Call MimeHeaders.removeHeader(String) method and verify
-     * return of the MimeHeaders object. Remove single header from list of two.
+     * @test_Strategy: Call MimeHeaders.removeHeader(String) method and verify return of the MimeHeaders object. Remove
+     * single header from list of two.
      *
      * Description: Replace a MimeHeaders object.
      */
@@ -1046,15 +1140,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "removeHeader2Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("removeHeader2Test failed");
+            if (!pass)
+                throw new Fault("removeHeader2Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1068,9 +1166,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:101;
      *
-     * @test_Strategy: Call MimeHeaders.removeHeader(String) method and verify
-     * return of the MimeHeaders object. Remove single header that contains
-     * multiple values.
+     * @test_Strategy: Call MimeHeaders.removeHeader(String) method and verify return of the MimeHeaders object. Remove
+     * single header that contains multiple values.
      *
      * Description: Remove a MimeHeaders object.
      */
@@ -1084,15 +1181,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "removeHeader3Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("removeHeader3Test failed");
+            if (!pass)
+                throw new Fault("removeHeader3Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1106,8 +1207,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:101;
      *
-     * @test_Strategy: Call MimeHeaders.removeHeader(String) method and verify
-     * return of the MimeHeaders object. Remove header that doesn't exist
+     * @test_Strategy: Call MimeHeaders.removeHeader(String) method and verify return of the MimeHeaders object. Remove
+     * header that doesn't exist
      *
      * Description: Remove a MimeHeaders object.
      */
@@ -1121,15 +1222,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "removeHeader4Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("removeHeader4Test failed");
+            if (!pass)
+                throw new Fault("removeHeader4Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1143,8 +1248,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:104;
      *
-     * @test_Strategy: Call MimeHeaders.getMatchingHeaders(String[]) method and
-     * verify return of a the MimeHeaders object.
+     * @test_Strategy: Call MimeHeaders.getMatchingHeaders(String[]) method and verify return of a the MimeHeaders object.
      *
      * Description: Retrieve a MimeHeaders object. Get single header.
      */
@@ -1158,15 +1262,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getMatchingHeaders1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getMatchingHeaders1Test failed");
+            if (!pass)
+                throw new Fault("getMatchingHeaders1Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1180,9 +1288,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:104;
      *
-     * @test_Strategy: Call MimeHeaders.getMatchingHeaders(String[]) method and
-     * verify return of the MimeHeaders object. Get single header from list of
-     * two.
+     * @test_Strategy: Call MimeHeaders.getMatchingHeaders(String[]) method and verify return of the MimeHeaders object. Get
+     * single header from list of two.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -1196,15 +1303,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getMatchingHeaders2Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getMatchingHeaders2Test failed");
+            if (!pass)
+                throw new Fault("getMatchingHeaders2Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1218,9 +1329,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:104;
      *
-     * @test_Strategy: Call MimeHeaders.getMatchingHeaders(String[]) method and
-     * verify return of the MimeHeaders object. Get single header that contains
-     * multiple values.
+     * @test_Strategy: Call MimeHeaders.getMatchingHeaders(String[]) method and verify return of the MimeHeaders object. Get
+     * single header that contains multiple values.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -1234,15 +1344,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getMatchingHeaders3Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getMatchingHeaders3Test failed");
+            if (!pass)
+                throw new Fault("getMatchingHeaders3Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1256,9 +1370,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:104;
      *
-     * @test_Strategy: Call MimeHeaders.getMatchingHeaders(String[]) method and
-     * verify return of the MimeHeaders object. Attempt to get a header that
-     * doesn't exist
+     * @test_Strategy: Call MimeHeaders.getMatchingHeaders(String[]) method and verify return of the MimeHeaders object.
+     * Attempt to get a header that doesn't exist
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -1272,15 +1385,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getMatchingHeaders4Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getMatchingHeaders4Test failed");
+            if (!pass)
+                throw new Fault("getMatchingHeaders4Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1294,9 +1411,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:104;
      *
-     * @test_Strategy: Call MimeHeaders.getMatchingHeaders(String[]) method and
-     * verify return of the MimeHeaders object. Attempt to get a headers and a
-     * non-existent header
+     * @test_Strategy: Call MimeHeaders.getMatchingHeaders(String[]) method and verify return of the MimeHeaders object.
+     * Attempt to get a headers and a non-existent header
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -1310,15 +1426,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getMatchingHeaders5Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getMatchingHeaders5Test failed");
+            if (!pass)
+                throw new Fault("getMatchingHeaders5Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1332,8 +1452,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:105;
      *
-     * @test_Strategy: Call MimeHeaders.getNonMatchingHeaders(String[]) method and
-     * verify return of a the MimeHeaders object. Get single header.
+     * @test_Strategy: Call MimeHeaders.getNonMatchingHeaders(String[]) method and verify return of a the MimeHeaders
+     * object. Get single header.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -1347,15 +1467,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getNonMatchingHeaders1Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getNonMatchingHeaders1Test failed");
+            if (!pass)
+                throw new Fault("getNonMatchingHeaders1Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1369,9 +1493,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:105;
      *
-     * @test_Strategy: Call MimeHeaders.getNonMatchingHeaders(String[]) method and
-     * verify return of the MimeHeaders object. Get single header from list of
-     * two.
+     * @test_Strategy: Call MimeHeaders.getNonMatchingHeaders(String[]) method and verify return of the MimeHeaders object.
+     * Get single header from list of two.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -1385,15 +1508,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getNonMatchingHeaders2Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getNonMatchingHeaders2Test failed");
+            if (!pass)
+                throw new Fault("getNonMatchingHeaders2Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1407,9 +1534,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:105;
      *
-     * @test_Strategy: Call MimeHeaders.getNonMatchingHeaders(String[]) method and
-     * verify return of the MimeHeaders object. Get single header that contains
-     * multiple values.
+     * @test_Strategy: Call MimeHeaders.getNonMatchingHeaders(String[]) method and verify return of the MimeHeaders object.
+     * Get single header that contains multiple values.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -1423,15 +1549,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getNonMatchingHeaders3Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getNonMatchingHeaders3Test failed");
+            if (!pass)
+                throw new Fault("getNonMatchingHeaders3Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1445,9 +1575,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:105;
      *
-     * @test_Strategy: Call MimeHeaders.getNonMatchingHeaders(String[]) method and
-     * verify return of the MimeHeaders object. Attempt to get header that results
-     * in no headers being returned.
+     * @test_Strategy: Call MimeHeaders.getNonMatchingHeaders(String[]) method and verify return of the MimeHeaders object.
+     * Attempt to get header that results in no headers being returned.
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -1461,15 +1590,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getNonMatchingHeaders4Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getNonMatchingHeaders4Test failed");
+            if (!pass)
+                throw new Fault("getNonMatchingHeaders4Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -1483,9 +1616,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:105;
      *
-     * @test_Strategy: Call MimeHeaders.getNonMatchingHeaders(String[]) method and
-     * verify return of the MimeHeaders object. Attempt to get a header and a
-     * non-existent header
+     * @test_Strategy: Call MimeHeaders.getNonMatchingHeaders(String[]) method and verify return of the MimeHeaders object.
+     * Attempt to get a header and a non-existent header
      *
      * Description: Retrieve a MimeHeaders object.
      */
@@ -1499,15 +1631,19 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getNonMatchingHeaders5Test");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
-            if (!pass) throw new Fault("getNonMatchingHeaders5Test failed");
+            if (!pass)
+                throw new Fault("getNonMatchingHeaders5Test failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

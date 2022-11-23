@@ -25,8 +25,7 @@ import java.util.List;
 
 /**
  * <p>
- * This implementation of {@link Recorder} will record signatures using the
- * <code>ApiCheck</code> framework.
+ * This implementation of {@link Recorder} will record signatures using the <code>ApiCheck</code> framework.
  * </p>
  */
 public class ApiCheckRecorder extends Recorder {
@@ -66,7 +65,7 @@ public class ApiCheckRecorder extends Recorder {
     protected void doRecord(String[] commandLine) throws Exception {
 
         Class batchSetup = Class.forName("javasoft.sqe.apiCheck.BatchSetup");
-        Method mainMethod = batchSetup.getDeclaredMethod("main", new Class[] {String[].class});
-        mainMethod.invoke(null, new Object[] {commandLine});
+        Method mainMethod = batchSetup.getDeclaredMethod("main", new Class[] { String[].class });
+        mainMethod.invoke(null, new Object[] { commandLine });
     } // END doRecord
 } // END SigTestRecorder

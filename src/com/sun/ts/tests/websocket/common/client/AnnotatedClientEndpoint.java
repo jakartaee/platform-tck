@@ -28,17 +28,15 @@ import jakarta.websocket.WebSocketContainer;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * For tests where the annotated client endpoint is to be tested, this
- * predefined endpoint can be used. Though merely a bridge to a ClientEndpoint
- * which can be used to connect to server using it in
+ * For tests where the annotated client endpoint is to be tested, this predefined endpoint can be used. Though merely a
+ * bridge to a ClientEndpoint which can be used to connect to server using it in
  * {@link WebSocketContainer#connectToServer(jakarta.websocket.Endpoint, jakarta.websocket.ClientEndpointConfig, java.net.URI)}
- * , this annotated endpoint is used to test the {@link OnMessage},
- * {@link OnError}, {@link OnOpen}, and {@link OnClose} are being called.
+ * , this annotated endpoint is used to test the {@link OnMessage}, {@link OnError}, {@link OnOpen}, and {@link OnClose}
+ * are being called.
  *
  * </p>
- * Note that {@link ClientEndpoint} annotation is to be add to subclasses, and
- * {@link OnMessage}, {@link OnError}, {@link OnOpen}, and {@link OnClose} are
- * to be overridden when convenient.
+ * Note that {@link ClientEndpoint} annotation is to be add to subclasses, and {@link OnMessage}, {@link OnError},
+ * {@link OnOpen}, and {@link OnClose} are to be overridden when convenient.
  */
 public abstract class AnnotatedClientEndpoint<DATATYPE> {
 

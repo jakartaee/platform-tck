@@ -28,9 +28,8 @@ import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import jakarta.ejb.EJB;
 
 /**
- * A test client for callback methods. Note that since callback methods cannot
- * throw application exception, so we can only convey test result back to client
- * through the returned value.
+ * A test client for callback methods. Note that since callback methods cannot throw application exception, so we can
+ * only convey test result back to client through the returned value.
  */
 public class Client extends ClientBase3NoAnnotation {
     @EJB(beanName = "CallbackBean")
@@ -81,10 +80,9 @@ public class Client extends ClientBase3NoAnnotation {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o verify callback methods in handler class are invoked o
-     * Callback methods may throw RuntimeException o callback methods may, in some
-     * cases, named as ejbCreate, ejbRemove
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o verify callback methods in
+     * handler class are invoked o Callback methods may throw RuntimeException o callback methods may, in some cases, named
+     * as ejbCreate, ejbRemove
      */
 
     /*
@@ -92,9 +90,8 @@ public class Client extends ClientBase3NoAnnotation {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o Resource o verify dependency injection has occurred when
-     * callback method is called o Callback methods may throw RuntimeException
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o Resource o verify dependency
+     * injection has occurred when callback method is called o Callback methods may throw RuntimeException
      */
 
     /*
@@ -102,10 +99,8 @@ public class Client extends ClientBase3NoAnnotation {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o apply two callback annotations on the same method o Callback
-     * methods may throw RuntimeException o callback methods may use arbitrary
-     * names
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o apply two callback annotations
+     * on the same method o Callback methods may throw RuntimeException o callback methods may use arbitrary names
      */
 
     /*
@@ -113,9 +108,8 @@ public class Client extends ClientBase3NoAnnotation {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o verify callback methods in handler class are invoked o
-     * callback methods may, in some cases, named as ejbCreate, ejbRemove
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o verify callback methods in
+     * handler class are invoked o callback methods may, in some cases, named as ejbCreate, ejbRemove
      */
 
     /*
@@ -123,9 +117,8 @@ public class Client extends ClientBase3NoAnnotation {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o Resource o verify dependency injection has occurred when
-     * callback method is called
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o Resource o verify dependency
+     * injection has occurred when callback method is called
      */
     //////////////////////////////////////////////////////////////////////
     // tests inherited from ClientBase2NoAnnotation

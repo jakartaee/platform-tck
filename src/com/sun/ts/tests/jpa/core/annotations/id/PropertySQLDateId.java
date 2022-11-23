@@ -29,7 +29,8 @@ public class PropertySQLDateId implements java.io.Serializable {
 
     private java.sql.Date date;
 
-    public PropertySQLDateId() {}
+    public PropertySQLDateId() {
+    }
 
     public PropertySQLDateId(java.sql.Date id, java.sql.Date date) {
         this.id = id;

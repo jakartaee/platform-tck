@@ -26,8 +26,8 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * An interceptor annotated onto beans. Since a metadata-complete descriptor is
- * used, this interceptor should be ignored.
+ * An interceptor annotated onto beans. Since a metadata-complete descriptor is used, this interceptor should be
+ * ignored.
  */
 public class InterceptorNotUsed {
 

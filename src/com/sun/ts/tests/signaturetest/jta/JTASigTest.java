@@ -37,15 +37,13 @@ public class JTASigTest extends SigTestEE {
     /***** Abstract Method Implementation *****/
 
     /**
-     * Returns a list of strings where each string represents a package name. Each
-     * package name will have it's signature tested by the signature test
-     * framework.
+     * Returns a list of strings where each string represents a package name. Each package name will have it's signature
+     * tested by the signature test framework.
      *
-     * @return String[] The names of the packages whose signatures should be
-     *         verified.
+     * @return String[] The names of the packages whose signatures should be verified.
      */
     protected String[] getPackages(String vehicleName) {
-        return new String[] {"jakarta.transaction"};
+        return new String[] { "jakarta.transaction" };
     }
 
     /**
@@ -62,10 +60,9 @@ public class JTASigTest extends SigTestEE {
     }
 
     /*
-     * The following comments are specified in the base class that defines the
-     * signature tests. This is done so the test finders will find the right class
-     * to run. The implementation of these methods is inherited from the super
-     * class which is part of the signature test framework.
+     * The following comments are specified in the base class that defines the signature tests. This is done so the test
+     * finders will find the right class to run. The implementation of these methods is inherited from the super class which
+     * is part of the signature test framework.
      */
 
     // NOTE: If the API under test is not part of your testing runtime
@@ -78,20 +75,17 @@ public class JTASigTest extends SigTestEE {
     // comments.
 
     /*
-     * @class.setup_props: sigTestClasspath, Location of JTA api jar files;
-     * ts_home, The base path of this TCK;
+     * @class.setup_props: sigTestClasspath, Location of JTA api jar files; ts_home, The base path of this TCK;
      * jtaJarClasspath, The Location of the JTA API jar file;
      */
 
     /*
      * @testName: signatureTest
      *
-     * @assertion: A JTA platform must implement the required classes and and APIs
-     * specified in the JTA Specification.
+     * @assertion: A JTA platform must implement the required classes and and APIs specified in the JTA Specification.
      *
-     * @test_Strategy: Using reflection, gather the implementation specific
-     * classes and APIs. Compare these results with the expected (required)
-     * classes and APIs.
+     * @test_Strategy: Using reflection, gather the implementation specific classes and APIs. Compare these results with the
+     * expected (required) classes and APIs.
      *
      */
 

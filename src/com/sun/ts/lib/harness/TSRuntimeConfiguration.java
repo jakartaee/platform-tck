@@ -34,12 +34,10 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 /**
- * This is a utility class that is called by SuiteSynchronizer to replace any
- * configurable properties in the runtime xml files with the user specific
- * values from ts.jte. A copy is made of each runtime xml file (with the
- * substituted values) in the harness.temp.directory/tmp directory. Each time a
- * given test is run, this copy is only created iff the jte file or the original
- * runtime have been changed since the last writing of the copy.
+ * This is a utility class that is called by SuiteSynchronizer to replace any configurable properties in the runtime xml
+ * files with the user specific values from ts.jte. A copy is made of each runtime xml file (with the substituted
+ * values) in the harness.temp.directory/tmp directory. Each time a given test is run, this copy is only created iff the
+ * jte file or the original runtime have been changed since the last writing of the copy.
  *
  * @author Kyle Grucci
  */
@@ -283,14 +281,14 @@ public class TSRuntimeConfiguration {
                 vInfoObjects = new Vector();
                 String sKey = "";
                 // create ReplacementInfo objects
-                for (Enumeration e = htFindAndReplace.keys(); e.hasMoreElements(); ) {
+                for (Enumeration e = htFindAndReplace.keys(); e.hasMoreElements();) {
                     sKey = (String) e.nextElement();
                     vInfoObjects.addElement(new ReplacementInfo(sKey, (String) htFindAndReplace.get(sKey)));
                 }
                 // add in the table the custom table of replacement strings
                 // if any
                 if (htCustomTable != null) {
-                    for (Enumeration e = htCustomTable.keys(); e.hasMoreElements(); ) {
+                    for (Enumeration e = htCustomTable.keys(); e.hasMoreElements();) {
                         sKey = (String) e.nextElement();
                         vInfoObjects.addElement(new ReplacementInfo(sKey, (String) htCustomTable.get(sKey)));
                     }
@@ -339,7 +337,7 @@ public class TSRuntimeConfiguration {
                     sTemp = new String(sFoundBuffer);
 
                     // get all ris that still match
-                    for (Enumeration e = vMatchingInfoObjects.elements(); e.hasMoreElements(); ) {
+                    for (Enumeration e = vMatchingInfoObjects.elements(); e.hasMoreElements();) {
                         ri = (ReplacementInfo) e.nextElement();
                         if (ri.sFind.startsWith(sTemp)) {
                             if (ri.sFind.equals(sTemp)) {
@@ -393,13 +391,14 @@ public class TSRuntimeConfiguration {
                 fReader.close();
 
                 /*
-                 * Always copy the file to tmp even if we don't replace anything as it
-                 * makes the location consistent for xml deployment handlers.
+                 * Always copy the file to tmp even if we don't replace anything as it makes the location consistent for xml deployment
+                 * handlers.
                  */
 
                 // if (bSomethingWasReplaced) {
                 sNewFileName = sTempDir + File.separator + file.getName();
-                if (TestUtil.harnessDebug) TestUtil.logHarnessDebug("New filename:" + sNewFileName);
+                if (TestUtil.harnessDebug)
+                    TestUtil.logHarnessDebug("New filename:" + sNewFileName);
                 File fTmpRuntimeFile = new File(sNewFileName);
 
                 if (fTmpRuntimeFile.exists()) {
@@ -449,32 +448,31 @@ public class TSRuntimeConfiguration {
     }
 
     /**
-     * Parse the HashTable which contains strings retrieved via calls into the
-     * porting classes for deployment. We must substitute on these strings prior
-     * to substituting them into the runtime.xml.
+     * Parse the HashTable which contains strings retrieved via calls into the porting classes for deployment. We must
+     * substitute on these strings prior to substituting them into the runtime.xml.
      */
     private Hashtable replaceOnRuntimeInfoStrings(Hashtable extras) {
         boolean changeIt = false;
         Hashtable resultTable = new Hashtable(extras);
         String searchFor[] = {
-            "namingServiceHost1",
-            "namingServicePort1",
-            "namingServiceHost2",
-            "namingServicePort2",
-            "webServerHost.1",
-            "webServerPort.1",
-            "webServerHost.2",
-            "webServerPort.2",
-            "securedWebServicePort.1",
-            "securedWebServicePort.2",
-            "wsdlRepository1",
-            "wsdlRepository2",
-            "harness.temp.directory",
-            "webServerHost",
-            "webServerPort, securedWebServicePort"
+                "namingServiceHost1",
+                "namingServicePort1",
+                "namingServiceHost2",
+                "namingServicePort2",
+                "webServerHost.1",
+                "webServerPort.1",
+                "webServerHost.2",
+                "webServerPort.2",
+                "securedWebServicePort.1",
+                "securedWebServicePort.2",
+                "wsdlRepository1",
+                "wsdlRepository2",
+                "harness.temp.directory",
+                "webServerHost",
+                "webServerPort, securedWebServicePort"
         };
 
-        for (Enumeration e = extras.keys(); e.hasMoreElements(); ) {
+        for (Enumeration e = extras.keys(); e.hasMoreElements();) {
             String sKey = (String) e.nextElement();
             String val = (String) extras.get(sKey);
             TestUtil.logHarnessDebug("extra Key = " + sKey);
@@ -484,7 +482,8 @@ public class TSRuntimeConfiguration {
             String buff = null;
             int startPos = 0;
             for (int i = 0; i < searchFor.length; i++) {
-                if (TestUtil.harnessDebug) TestUtil.logHarness("\n###Searching for=" + searchFor[i]);
+                if (TestUtil.harnessDebug)
+                    TestUtil.logHarness("\n###Searching for=" + searchFor[i]);
                 if ((startPos = val.lastIndexOf(searchFor[i])) != -1) {
                     changeIt = true;
                     String startBuff = val.substring(0, startPos);

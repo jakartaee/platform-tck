@@ -83,12 +83,10 @@ public class JsfClient extends com.sun.ts.tests.ejb30.lite.view.common.JsfClient
     /*
      * @testName: getBusinessObjectInSubclassBean
      *
-     * @test_Strategy:Try to get the business object with a particular interface,
-     * and call a method on the obtained business object. Expecting 2 results, the
-     * first result is the IllegalStateException when getting business object with
-     * BusinessLocalIF1; the second result is "SubclassBean". This is to verify
-     * that BusinessLocalIF1, which is implemented by the superclass of the bean
-     * class is not exposed as a business interface of the subclass bean.
+     * @test_Strategy:Try to get the business object with a particular interface, and call a method on the obtained business
+     * object. Expecting 2 results, the first result is the IllegalStateException when getting business object with
+     * BusinessLocalIF1; the second result is "SubclassBean". This is to verify that BusinessLocalIF1, which is implemented
+     * by the superclass of the bean class is not exposed as a business interface of the subclass bean.
      */
     public void getBusinessObjectInSubclassBean() {
         List<String> expected = Arrays.asList(

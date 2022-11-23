@@ -35,7 +35,8 @@ public class AnnualReview implements java.io.Serializable {
 
     private Integer service;
 
-    public AnnualReview() {}
+    public AnnualReview() {
+    }
 
     public AnnualReview(Integer id, Integer service) {
         this.id = id;

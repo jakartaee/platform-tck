@@ -30,7 +30,8 @@ import java.util.Vector;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -59,9 +60,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:628; PERSISTENCE:SPEC:629
      *
-     * @test_Strategy: A managed entity instance becomes removed by invoking the
-     * remove method on it or by cascading the remove operation. The semantics of
-     * the remove operation, applied to an entity X are as follows:
+     * @test_Strategy: A managed entity instance becomes removed by invoking the remove method on it or by cascading the
+     * remove operation. The semantics of the remove operation, applied to an entity X are as follows:
      *
      * If X is a new entity, it is ignored by the remove operation.
      *
@@ -110,7 +110,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("remove1XMTest1 failed");
+        if (!pass)
+            throw new Fault("remove1XMTest1 failed");
     }
 
     /*
@@ -118,8 +119,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:628; PERSISTENCE:SPEC:632
      *
-     * @test_Strategy: If X is a managed entity, the remove operation causes it to
-     * transition to the removed state. Invoke remove on a managed entity.
+     * @test_Strategy: If X is a managed entity, the remove operation causes it to transition to the removed state. Invoke
+     * remove on a managed entity.
      *
      */
 
@@ -184,7 +185,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("remove1XMTest2 failed");
+        if (!pass)
+            throw new Fault("remove1XMTest2 failed");
     }
 
     /*
@@ -192,19 +194,16 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:628; PERSISTENCE:SPEC:633
      *
-     * @test_Strategy: A managed entity instance becomes removed by invoking the
-     * remove method on it or by cascading the remove operation. The semantics of
-     * the remove operation, applied to an entity X are as follows:
+     * @test_Strategy: A managed entity instance becomes removed by invoking the remove method on it or by cascading the
+     * remove operation. The semantics of the remove operation, applied to an entity X are as follows:
      *
-     * The remove operation is cascaded to entities referenced by X, if the
-     * relationship from X to these other entities is annotated with
-     * cascade=REMOVE annotation member.
+     * The remove operation is cascaded to entities referenced by X, if the relationship from X to these other entities is
+     * annotated with cascade=REMOVE annotation member.
      *
-     * The cascade=REMOVE specification should only be applied to associations
-     * that are specified as OneToOne or OneToMany.
+     * The cascade=REMOVE specification should only be applied to associations that are specified as OneToOne or OneToMany.
      *
-     * Invoke remove on a OneToMany relationship from X annotated with
-     * cascade=REMOVE and ensure the remove operation is cascaded.
+     * Invoke remove on a OneToMany relationship from X annotated with cascade=REMOVE and ensure the remove operation is
+     * cascaded.
      *
      */
 
@@ -271,7 +270,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("remove1XMTest3 failed");
+        if (!pass)
+            throw new Fault("remove1XMTest3 failed");
     }
 
     /*
@@ -279,8 +279,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:628; PERSISTENCE:SPEC:636
      *
-     * @test_Strategy: If X is a removed entity, it is ignored by the remove
-     * operation. Invoke remove on a removed entity.
+     * @test_Strategy: If X is a removed entity, it is ignored by the remove operation. Invoke remove on a removed entity.
      *
      */
 
@@ -337,7 +336,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("remove1XMTest4 failed");
+        if (!pass)
+            throw new Fault("remove1XMTest4 failed");
     }
 
     /*
@@ -345,15 +345,13 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:637; PERSISTENCE:SPEC:648
      *
-     * @test_Strategy: A removed entity will be removed from the database at or
-     * before transaction commit or as a result of a flush operation. Accessing an
-     * entity in the removed state is undefined.
+     * @test_Strategy: A removed entity will be removed from the database at or before transaction commit or as a result of
+     * a flush operation. Accessing an entity in the removed state is undefined.
      *
-     * Remove an entity and force the removal using flush(). Verify the entity is
-     * removed.
+     * Remove an entity and force the removal using flush(). Verify the entity is removed.
      *
-     * The flush method can be used for force synchronization. The semantics of
-     * the flush operation applied to an entity X is as follows:
+     * The flush method can be used for force synchronization. The semantics of the flush operation applied to an entity X
+     * is as follows:
      *
      * If X is a removed entity, it is removed from the database.
      */
@@ -421,7 +419,8 @@ public class Client extends PMClientBase {
                 TestUtil.logErr("Unexpected exception caught trying to remove entity instance :", fe);
             }
         }
-        if (!pass) throw new Fault("remove1XMTest5 failed");
+        if (!pass)
+            throw new Fault("remove1XMTest5 failed");
     }
 
     /*
@@ -429,9 +428,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:673
      *
-     * @test_Strategy: The contains method [used to determine whether an entity
-     * instance is in the managed state] returns false: If the remove method has
-     * been called on the entity.
+     * @test_Strategy: The contains method [used to determine whether an entity instance is in the managed state] returns
+     * false: If the remove method has been called on the entity.
      *
      */
 
@@ -497,7 +495,8 @@ public class Client extends PMClientBase {
                 TestUtil.logErr("Unexpected exception rolling back TX:", fe);
             }
         }
-        if (!pass) throw new Fault("remove1XMTest6 failed");
+        if (!pass)
+            throw new Fault("remove1XMTest6 failed");
     }
 
     /*
@@ -505,9 +504,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:674
      *
-     * @test_Strategy: The contains method [used to determine whether an entity
-     * instance is in the managed state] returns false: If the remove operation
-     * has been cascaded to it.
+     * @test_Strategy: The contains method [used to determine whether an entity instance is in the managed state] returns
+     * false: If the remove operation has been cascaded to it.
      *
      */
 
@@ -575,7 +573,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("remove1XMTest7 failed");
+        if (!pass)
+            throw new Fault("remove1XMTest7 failed");
     }
 
     /*

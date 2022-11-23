@@ -23,9 +23,10 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
 
 @Stateful
-@Local({StatefulAsync2IF.class, StatefulAsyncIF.class})
-@Remote({StatefulAsync2RemoteIF.class, StatefulAsyncRemoteIF.class})
+@Local({ StatefulAsync2IF.class, StatefulAsyncIF.class })
+@Remote({ StatefulAsync2RemoteIF.class, StatefulAsyncRemoteIF.class })
 // StatefulAsync2IF and StatefulAsyncIF are its business interfaces. AsyncIF is
 // not
 // its business interface, though it was implemented by bean class.
-public class Async2Bean extends AsyncBeanBase implements AsyncIF {}
+public class Async2Bean extends AsyncBeanBase implements AsyncIF {
+}

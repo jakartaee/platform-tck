@@ -205,7 +205,8 @@ public class TestBeanEJB implements SessionBean {
             pass = false;
         } finally {
             try {
-                if (!removeCalled) cLocalRef.remove();
+                if (!removeCalled)
+                    cLocalRef.remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
@@ -308,7 +309,8 @@ public class TestBeanEJB implements SessionBean {
             pass = false;
         } finally {
             try {
-                if (!removeCalled) dLocalRef.remove();
+                if (!removeCalled)
+                    dLocalRef.remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
@@ -380,8 +382,10 @@ public class TestBeanEJB implements SessionBean {
             CLocalHome beanHome = (CLocalHome) cLocalRef.getEJBLocalHome();
             if (beanHome != null) {
                 CLocal findCLocalRef = beanHome.findByPrimaryKey("1");
-                if (cLocalRef.isIdentical(findCLocalRef)) pass = true;
-                else pass = false;
+                if (cLocalRef.isIdentical(findCLocalRef))
+                    pass = true;
+                else
+                    pass = false;
             } else {
                 TestUtil.logErr("LocalHome returned was null");
                 pass = false;
@@ -478,7 +482,8 @@ public class TestBeanEJB implements SessionBean {
             pass = false;
         } finally {
             try {
-                if (!removeCalled) cLocalRef.remove();
+                if (!removeCalled)
+                    cLocalRef.remove();
             } catch (Exception e) {
                 TestUtil.printStackTrace(e);
             }
@@ -496,7 +501,8 @@ public class TestBeanEJB implements SessionBean {
             A a = (A) aHome.findByPrimaryKey(pk);
             TestUtil.logMsg("Now Call method on Remote Interface");
             String whoAmI = a.whoAmIRemote();
-            if (whoAmI.equals("Remote-1-a1-1")) pass = true;
+            if (whoAmI.equals("Remote-1-a1-1"))
+                pass = true;
             else {
                 TestUtil.logErr("Expected: (Remote-1-a1-1), Received (" + whoAmI + ")");
                 pass = false;
@@ -525,7 +531,8 @@ public class TestBeanEJB implements SessionBean {
             ALocal a = (ALocal) aLocalHome.findByPrimaryKey(pk);
             TestUtil.logMsg("Now Call method on Local Interface");
             String whoAmI = a.whoAmILocal();
-            if (whoAmI.equals("Local-1-a1-1")) pass = true;
+            if (whoAmI.equals("Local-1-a1-1"))
+                pass = true;
             else {
                 TestUtil.logErr("Expected: (Local-1-a1-1), Received (" + whoAmI + ")");
                 pass = false;
@@ -600,12 +607,14 @@ public class TestBeanEJB implements SessionBean {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (mapRemoteToLocalTest()) TestUtil.logMsg("mapRemoteToLocalTest ... PASSED");
+        if (mapRemoteToLocalTest())
+            TestUtil.logMsg("mapRemoteToLocalTest ... PASSED");
         else {
             TestUtil.logMsg("mapRemoteToLocalTest ... FAILED");
             pass = false;
         }
-        if (mapLocalToRemoteTest()) TestUtil.logMsg("mapLocalToRemoteTest ... PASSED");
+        if (mapLocalToRemoteTest())
+            TestUtil.logMsg("mapLocalToRemoteTest ... PASSED");
         else {
             TestUtil.logMsg("mapLocalToRemoteTest ... FAILED");
             pass = false;
@@ -653,22 +662,26 @@ public class TestBeanEJB implements SessionBean {
 
     public boolean test4() {
         boolean pass = true;
-        if (createTest()) TestUtil.logMsg("EJBLocalHome.create ... PASSED");
+        if (createTest())
+            TestUtil.logMsg("EJBLocalHome.create ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalHome.create ... FAILED");
             pass = false;
         }
-        if (findTest()) TestUtil.logMsg("EJBLocalHome.find ... PASSED");
+        if (findTest())
+            TestUtil.logMsg("EJBLocalHome.find ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalHome.find ... FAILED");
             pass = false;
         }
-        if (removeLocalHomeTest()) TestUtil.logMsg("EJBLocalHome.remove ... PASSED");
+        if (removeLocalHomeTest())
+            TestUtil.logMsg("EJBLocalHome.remove ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalHome.remove ... FAILED");
             pass = false;
         }
-        if (homeTest()) TestUtil.logMsg("EJBLocalHome.home<METHOD> ... PASSED");
+        if (homeTest())
+            TestUtil.logMsg("EJBLocalHome.home<METHOD> ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalHome.home<METHOD> ... FAILED");
             pass = false;
@@ -678,27 +691,32 @@ public class TestBeanEJB implements SessionBean {
 
     public boolean test5() {
         boolean pass = true;
-        if (getPrimaryKeyTest()) TestUtil.logMsg("EJBLocalObject.getPrimaryKey ... PASSED");
+        if (getPrimaryKeyTest())
+            TestUtil.logMsg("EJBLocalObject.getPrimaryKey ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalObject.getPrimaryKey ... FAILED");
             pass = false;
         }
-        if (isIdenticalTest()) TestUtil.logMsg("EJBLocalObject.isIdentical ... PASSED");
+        if (isIdenticalTest())
+            TestUtil.logMsg("EJBLocalObject.isIdentical ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalObject.isIdentical ... FAILED");
             pass = false;
         }
-        if (getEJBLocalHomeTest()) TestUtil.logMsg("EJBLocalObject.getEJBLocalHome ... PASSED");
+        if (getEJBLocalHomeTest())
+            TestUtil.logMsg("EJBLocalObject.getEJBLocalHome ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalObject.getEJBLocalHome ... FAILED");
             pass = false;
         }
-        if (callBusinessMethodTest()) TestUtil.logMsg("businessMethod ... PASSED");
+        if (callBusinessMethodTest())
+            TestUtil.logMsg("businessMethod ... PASSED");
         else {
             TestUtil.logMsg("businessMethod ... FAILED");
             pass = false;
         }
-        if (removeLocalObjectTest()) TestUtil.logMsg("EJBLocalObject.remove ... PASSED");
+        if (removeLocalObjectTest())
+            TestUtil.logMsg("EJBLocalObject.remove ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalObject.remove ... FAILED");
             pass = false;
@@ -768,22 +786,26 @@ public class TestBeanEJB implements SessionBean {
 
     public boolean test8() {
         boolean pass = true;
-        if (createBmpTest()) TestUtil.logMsg("EJBLocalHome.create ... PASSED");
+        if (createBmpTest())
+            TestUtil.logMsg("EJBLocalHome.create ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalHome.create ... FAILED");
             pass = false;
         }
-        if (findBmpTest()) TestUtil.logMsg("EJBLocalHome.find ... PASSED");
+        if (findBmpTest())
+            TestUtil.logMsg("EJBLocalHome.find ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalHome.find ... FAILED");
             pass = false;
         }
-        if (removeLocalHomeBmpTest()) TestUtil.logMsg("EJBLocalHome.remove ... PASSED");
+        if (removeLocalHomeBmpTest())
+            TestUtil.logMsg("EJBLocalHome.remove ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalHome.remove ... FAILED");
             pass = false;
         }
-        if (homeBmpTest()) TestUtil.logMsg("EJBLocalHome.home<METHOD> ... PASSED");
+        if (homeBmpTest())
+            TestUtil.logMsg("EJBLocalHome.home<METHOD> ... PASSED");
         else {
             TestUtil.logMsg("EJBLocalHome.home<METHOD> ... FAILED");
             pass = false;

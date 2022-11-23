@@ -31,7 +31,7 @@ import javax.naming.InitialContext;
 import javax.xml.transform.stream.StreamSource;
 
 @Stateless(name = "WSMTOMFeaturesTestUsingDDsClntBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
     private static final boolean debug = true;

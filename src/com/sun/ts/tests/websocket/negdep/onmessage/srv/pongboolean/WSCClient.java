@@ -27,8 +27,7 @@ import com.sun.ts.tests.websocket.negdep.NegativeDeploymentClient;
  *                     tslib.name;
  */
 /**
- * @OnMessage can contain PongMessage. This test checks that PongMessage and
- *            boolean pair is undeployable.
+ * @OnMessage can contain PongMessage. This test checks that PongMessage and boolean pair is undeployable.
  * @since 1.11
  */
 public class WSCClient extends NegativeDeploymentClient {
@@ -48,19 +47,16 @@ public class WSCClient extends NegativeDeploymentClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.7-1;
      *
-     * @test_Strategy: In both cases, a deployment error raised during the
-     * deployment process must halt the deployment of the application, any well
-     * formed endpoints deployed prior to the error being raised must be removed
-     * from service and no more websocket endpoints from that application may be
-     * deployed by the container, even if they are valid.
+     * @test_Strategy: In both cases, a deployment error raised during the deployment process must halt the deployment of
+     * the application, any well formed endpoints deployed prior to the error being raised must be removed from service and
+     * no more websocket endpoints from that application may be deployed by the container, even if they are valid.
      *
-     * Any method annotated with @OnMessage that does not conform to the forms
-     * defied therein is invalid. The websocket implementation must not deploy
-     * such an endpoint and must raise a deployment error if an attempt is made to
-     * deploy such an annotated endpoint. [WSC-4.7-1]
+     * Any method annotated with @OnMessage that does not conform to the forms defied therein is invalid. The websocket
+     * implementation must not deploy such an endpoint and must raise a deployment error if an attempt is made to deploy
+     * such an annotated endpoint. [WSC-4.7-1]
      *
-     * To check the test fails when deployment pass, comment out the boolean
-     * argument in @OnMessage of OnMessageServerEndpoint
+     * To check the test fails when deployment pass, comment out the boolean argument in @OnMessage of
+     * OnMessageServerEndpoint
      */
     public void pongMessageBooleanOnMessageUndeployOtherEndpointTest() throws Fault {
         setEntity("anything");
@@ -73,7 +69,8 @@ public class WSCClient extends NegativeDeploymentClient {
             // DeploymentException
         }
         String response = getResponseAsString();
-        if ("anything".equals(response)) throwValidEndpointMustBeRemoved();
+        if ("anything".equals(response))
+            throwValidEndpointMustBeRemoved();
     }
 
     /*
@@ -81,19 +78,16 @@ public class WSCClient extends NegativeDeploymentClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.7-1;
      *
-     * @test_Strategy: In both cases, a deployment error raised during the
-     * deployment process must halt the deployment of the application, any well
-     * formed endpoints deployed prior to the error being raised must be removed
-     * from service and no more websocket endpoints from that application may be
-     * deployed by the container, even if they are valid.
+     * @test_Strategy: In both cases, a deployment error raised during the deployment process must halt the deployment of
+     * the application, any well formed endpoints deployed prior to the error being raised must be removed from service and
+     * no more websocket endpoints from that application may be deployed by the container, even if they are valid.
      *
-     * Any method annotated with @OnMessage that does not conform to the forms
-     * defied therein is invalid. The websocket implementation must not deploy
-     * such an endpoint and must raise a deployment error if an attempt is made to
-     * deploy such an annotated endpoint. [WSC-4.7-1]
+     * Any method annotated with @OnMessage that does not conform to the forms defied therein is invalid. The websocket
+     * implementation must not deploy such an endpoint and must raise a deployment error if an attempt is made to deploy
+     * such an annotated endpoint. [WSC-4.7-1]
      *
-     * To check the test fails when deployment pass, comment out the boolean
-     * argument in @OnMessage of OnMessageServerEndpoint
+     * To check the test fails when deployment pass, comment out the boolean argument in @OnMessage of
+     * OnMessageServerEndpoint
      */
     public void pongMessageBooleanOnMessageTest() throws Fault {
         setEntity(new StringPongMessage("anything"));
@@ -106,6 +100,7 @@ public class WSCClient extends NegativeDeploymentClient {
             // DeploymentException
         }
         String response = getResponseAsString();
-        if (response != null && response.contains("anything")) throwValidEndpointMustBeRemoved();
+        if (response != null && response.contains("anything"))
+            throwValidEndpointMustBeRemoved();
     }
 }

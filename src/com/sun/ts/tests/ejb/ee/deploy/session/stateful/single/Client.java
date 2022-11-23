@@ -70,13 +70,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:71
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean. Invoke
-     *                 getEJBMetaData().isSession() method at runtime and check
-     *                 that returned value is 'true'.
+     * @test_Strategy: Deploy and create a Stateful Session Bean. Invoke getEJBMetaData().isSession() method at runtime and
+     * check that returned value is 'true'.
      */
     public void testIsSession() throws Fault {
         try {
-            if (!home.getEJBMetaData().isSession()) throw new Fault("isSession() test failed ");
+            if (!home.getEJBMetaData().isSession())
+                throw new Fault("isSession() test failed ");
         } catch (Exception e) {
             throw new Fault("isSession() test failed: ", e);
         }
@@ -87,9 +87,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:72
      *
-     * @test_Strategy: Deploy and create a Stateful Session Bean. Invoke
-     *                 getEJBMetaData().isStatelessSession() method at runtime and
-     *                 check that returned value is 'false'.
+     * @test_Strategy: Deploy and create a Stateful Session Bean. Invoke getEJBMetaData().isStatelessSession() method at
+     * runtime and check that returned value is 'false'.
      */
     public void testIsStateless() throws Fault {
         boolean pass;
@@ -133,9 +132,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:49; EJB:JAVADOC:146
      *
-     * @test_Strategy: Create two Stateful Session Bean using the same home. Check
-     *                 that they have distinct identity, using the
-     *                 EJBObject.isIdentical() method.
+     * @test_Strategy: Create two Stateful Session Bean using the same home. Check that they have distinct identity, using
+     * the EJBObject.isIdentical() method.
      */
     public void testIdentity() throws Fault {
         Single bean1 = null;
@@ -168,10 +166,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:68
      *
-     * @test_Strategy: Deploy a Stateful Session Bean. Invoke
-     *                 getEJBMetaData().getHomeInterfaceClass() on its home
-     *                 interface and check that the name of the returned Class
-     *                 correspond with the one specified in the DD.
+     * @test_Strategy: Deploy a Stateful Session Bean. Invoke getEJBMetaData().getHomeInterfaceClass() on its home interface
+     * and check that the name of the returned Class correspond with the one specified in the DD.
      */
     public void testHomeInterface() throws Fault {
         Class runtimeHome = null;
@@ -193,10 +189,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:70
      *
-     * @test_Strategy: Deploy a Stateful Session Bean. Invoke
-     *                 getEJBMetaData().getRemoteInterfaceClass() on its home
-     *                 interface and check that the name of the returned Class
-     *                 correspond with the one specified in the DD.
+     * @test_Strategy: Deploy a Stateful Session Bean. Invoke getEJBMetaData().getRemoteInterfaceClass() on its home
+     * interface and check that the name of the returned Class correspond with the one specified in the DD.
      */
     public void testRemoteInterface() throws Fault {
         Class runtimeRemote = null;

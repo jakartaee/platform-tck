@@ -30,7 +30,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -52,17 +53,14 @@ public class Client extends PMClientBase {
     /*
      * @testName: nativeQueryTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1010; PERSISTENCE:SPEC:1011;
-     * PERSISTENCE:JAVADOC:198; PERSISTENCE:JAVADOC:64; PERSISTENCE:JAVADOC:77;
-     * PERSISTENCE:JAVADOC:78; PERSISTENCE:JAVADOC:21; PERSISTENCE:JAVADOC:65;
+     * @assertion_ids: PERSISTENCE:SPEC:1010; PERSISTENCE:SPEC:1011; PERSISTENCE:JAVADOC:198; PERSISTENCE:JAVADOC:64;
+     * PERSISTENCE:JAVADOC:77; PERSISTENCE:JAVADOC:78; PERSISTENCE:JAVADOC:21; PERSISTENCE:JAVADOC:65;
      * PERSISTENCE:SPEC:1370.2; PERSISTENCE:SPEC:1370.3;
      *
-     * @test_Strategy: When multiple entities are returned by a SQL query, the
-     * entities must be mapped to the column results of the SQL statement in a
-     * SqlResultSetMapping metadata definition.
+     * @test_Strategy: When multiple entities are returned by a SQL query, the entities must be mapped to the column results
+     * of the SQL statement in a SqlResultSetMapping metadata definition.
      *
-     * Scalar result types can be included in the query result by specifying the
-     * ColumnResult annotation in the metadata.
+     * Scalar result types can be included in the query result by specifying the ColumnResult annotation in the metadata.
      *
      *
      */
@@ -159,23 +157,21 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("nativeQueryTest2 failed");
+        if (!pass)
+            throw new Fault("nativeQueryTest2 failed");
     }
 
     /*
      * @testName: nativeQueryTest3
      *
-     * @assertion_ids: PERSISTENCE:SPEC:1012; PERSISTENCE:JAVADOC:200;
-     * PERSISTENCE:SPEC:1014; PERSISTENCE:SPEC:1015; PERSISTENCE:SPEC:1016;
-     * PERSISTENCE:JAVADOC:201
+     * @assertion_ids: PERSISTENCE:SPEC:1012; PERSISTENCE:JAVADOC:200; PERSISTENCE:SPEC:1014; PERSISTENCE:SPEC:1015;
+     * PERSISTENCE:SPEC:1016; PERSISTENCE:JAVADOC:201
      *
-     * @test_Strategy: When multiple entities are returned by a SQL query, the
-     * entities must be mapped to the column results of the SQL statement in a
-     * SqlResultSetMapping metadata definition.
+     * @test_Strategy: When multiple entities are returned by a SQL query, the entities must be mapped to the column results
+     * of the SQL statement in a SqlResultSetMapping metadata definition.
      *
-     * When multiple entity types that include aliases in the SQL statement are
-     * used, it is required that the column names be explicitly mapped to the
-     * entity fields. The FieldResult annotation is used for this purpose.
+     * When multiple entity types that include aliases in the SQL statement are used, it is required that the column names
+     * be explicitly mapped to the entity fields. The FieldResult annotation is used for this purpose.
      *
      */
 
@@ -268,17 +264,16 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("nativeQueryTest3 failed");
+        if (!pass)
+            throw new Fault("nativeQueryTest3 failed");
     }
 
     /*
      * @testName: nativeQueryColumnResultTypeTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1511; PERSISTENCE:SPEC:1556;
-     * PERSISTENCE:SPEC:1954;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1511; PERSISTENCE:SPEC:1556; PERSISTENCE:SPEC:1954;
      *
-     * @test_Strategy: Using the jakarta.persistence.ColumnResult.type attribute,
-     * return the totalprice as a String
+     * @test_Strategy: Using the jakarta.persistence.ColumnResult.type attribute, return the totalprice as a String
      *
      */
 
@@ -374,18 +369,18 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("nativeQueryColumnResultTypeTest failed");
+        if (!pass)
+            throw new Fault("nativeQueryColumnResultTypeTest failed");
     }
 
     /*
      * @testName: nativeQueryTestConstructorResult
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1512; PERSISTENCE:JAVADOC:1513;
-     * PERSISTENCE:SPEC:1951; PERSISTENCE:SPEC:1952; PERSISTENCE:SPEC:1953;
-     * PERSISTENCE:SPEC:1955;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1512; PERSISTENCE:JAVADOC:1513; PERSISTENCE:SPEC:1951; PERSISTENCE:SPEC:1952;
+     * PERSISTENCE:SPEC:1953; PERSISTENCE:SPEC:1955;
      *
-     * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class
-     * constructor passing in arg data and return the class.
+     * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class constructor passing in arg data and
+     * return the class.
      */
     public void nativeQueryTestConstructorResult() throws Fault {
 
@@ -447,15 +442,16 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("nativeQueryTestConstructorResult failed");
+        if (!pass)
+            throw new Fault("nativeQueryTestConstructorResult failed");
     }
     /*
      * @testName: nativeQueryTestConstructorResultWithId
      *
      * @assertion_ids: PERSISTENCE:SPEC:1557;
      *
-     * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class
-     * constructor passing in arg data and return the class.
+     * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class constructor passing in arg data and
+     * return the class.
      *
      */
 
@@ -513,7 +509,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("nativeQueryTestConstructorResultWithId failed");
+        if (!pass1 || !pass2)
+            throw new Fault("nativeQueryTestConstructorResultWithId failed");
     }
 
     /*
@@ -521,8 +518,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1557;
      *
-     * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class
-     * constructor passing in arg data except the id and return the class.
+     * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class constructor passing in arg data except
+     * the id and return the class.
      *
      */
 
@@ -579,7 +576,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass1 || !pass2) throw new Fault("nativeQueryTestConstructorResultNoId failed");
+        if (!pass1 || !pass2)
+            throw new Fault("nativeQueryTestConstructorResultNoId failed");
     }
 
     /*
@@ -644,7 +642,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("createNativeQueryStringTest failed");
+        if (!pass)
+            throw new Fault("createNativeQueryStringTest failed");
     }
 
     /*
@@ -702,7 +701,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("createNativeQueryResultClassTest failed");
+        if (!pass)
+            throw new Fault("createNativeQueryResultClassTest failed");
     }
 
     /*
@@ -759,7 +759,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("createNativeQueryResultClassTQTest failed");
+        if (!pass)
+            throw new Fault("createNativeQueryResultClassTQTest failed");
     }
 
     /*
@@ -767,8 +768,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:552
      *
-     * @test_Strategy: Use the createNativeQuery(String).executeUpdate() when no
-     * transaction is in effect and verify TransactionRequiredException is thrown
+     * @test_Strategy: Use the createNativeQuery(String).executeUpdate() when no transaction is in effect and verify
+     * TransactionRequiredException is thrown
      *
      */
     public void executeUpdateTransactionRequiredExceptionTest() throws Fault {
@@ -790,7 +791,8 @@ public class Client extends PMClientBase {
                 TestUtil.logErr("Unexpected Exception in rollback:", re);
             }
         }
-        if (!pass) throw new Fault("executeUpdateTransactionRequiredExceptionTest failed");
+        if (!pass)
+            throw new Fault("executeUpdateTransactionRequiredExceptionTest failed");
     }
 
     /*
@@ -849,7 +851,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("setParameterTest failed");
+        if (!pass)
+            throw new Fault("setParameterTest failed");
     }
 
     /*
@@ -902,7 +905,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("getSingleResultTest failed");
+        if (!pass)
+            throw new Fault("getSingleResultTest failed");
     }
 
     public void cleanup() throws Fault {

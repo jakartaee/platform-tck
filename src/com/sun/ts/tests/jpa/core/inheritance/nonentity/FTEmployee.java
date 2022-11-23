@@ -30,7 +30,8 @@ public class FTEmployee extends Employee {
 
     private float salary;
 
-    public FTEmployee() {}
+    public FTEmployee() {
+    }
 
     public FTEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
         this.id = id;

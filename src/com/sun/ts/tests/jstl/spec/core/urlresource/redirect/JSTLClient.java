@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:43; JSTL:SPEC:43.1; JSTL:SPEC:43.1.1
      *
-     * @testStrategy: Validate that the action can properly redirect when the url
-     * attribute is provided either a dynamic or static values.
+     * @testStrategy: Validate that the action can properly redirect when the url attribute is provided either a dynamic or
+     * static values.
      */
     public void positiveRedirectTest() throws Fault {
 
@@ -126,9 +124,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:43; JSTL:SPEC:43.1
      *
-     * @testStrategy: Validate that the action can properly redirect when the the
-     * body content consists of param subtags. The params should be added to the
-     * redirect URI.
+     * @testStrategy: Validate that the action can properly redirect when the the body content consists of param subtags.
+     * The params should be added to the redirect URI.
      */
     public void positiveRedirectParamsBodyTest() throws Fault {
 
@@ -157,8 +154,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:43.5
      *
-     * @testStrategy: Validate that if the body content of the action causes an
-     * exception that it is properly propagated.
+     * @testStrategy: Validate that if the body content of the action causes an exception that it is properly propagated.
      */
     public void negativeRedirectExcBodyContentTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeRedirectExcBodyContentTest");
@@ -176,9 +172,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:43.6.3; JSTL:SPEC:43.6.4
      *
-     * @testStrategy: Validate that if the context attribute is specified, and
-     * either context or url are provided values that don't start with a leading
-     * slash, an exception occurs.
+     * @testStrategy: Validate that if the context attribute is specified, and either context or url are provided values
+     * that don't start with a leading slash, an exception occurs.
      */
     public void negativeRedirectContextUrlInvalidValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeRedirectContextUrlInvalidValueTest");

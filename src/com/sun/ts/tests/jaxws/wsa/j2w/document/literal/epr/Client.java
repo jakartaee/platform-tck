@@ -94,9 +94,9 @@ public class Client extends ServiceEETest {
 
     private QName PORT_TYPE_QNAME = new QName(NAMESPACEURI, PORT_TYPE_NAME);
 
-    private WebServiceFeature[] wsftrue = {new AddressingFeature(true, true)};
+    private WebServiceFeature[] wsftrue = { new AddressingFeature(true, true) };
 
-    private WebServiceFeature[] wsffalse = {new AddressingFeature(false, false)};
+    private WebServiceFeature[] wsffalse = { new AddressingFeature(false, false) };
 
     AddNumbers port = null;
 
@@ -112,14 +112,11 @@ public class Client extends ServiceEETest {
 
     private Dispatch<SOAPMessage> dispatchSM = null;
 
-    private String doAddNumbersRequest =
-            "<ns1:doAddNumbers xmlns:ns1=\"http://foobar.org/\"><arg0>10</arg0><arg1>10</arg1></ns1:doAddNumbers>";
+    private String doAddNumbersRequest = "<ns1:doAddNumbers xmlns:ns1=\"http://foobar.org/\"><arg0>10</arg0><arg1>10</arg1></ns1:doAddNumbers>";
 
-    private String doAddNumbersRequestSM =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Body><ns3:doAddNumbers xmlns:ns3=\"http://foobar.org/\"><arg0>10</arg0><arg1>10</arg1></ns3:doAddNumbers></S:Body></S:Envelope>";
+    private String doAddNumbersRequestSM = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Body><ns3:doAddNumbers xmlns:ns3=\"http://foobar.org/\"><arg0>10</arg0><arg1>10</arg1></ns3:doAddNumbers></S:Body></S:Envelope>";
 
-    private static final Class JAXB_OBJECT_FACTORY =
-            com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr.ObjectFactory.class;
+    private static final Class JAXB_OBJECT_FACTORY = com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr.ObjectFactory.class;
 
     private JAXBContext createJAXBContext() {
         try {
@@ -130,20 +127,26 @@ public class Client extends ServiceEETest {
     }
 
     private Dispatch<Object> createDispatchJAXB(W3CEndpointReference myepr, WebServiceFeature[] wsf) throws Exception {
-        if (wsf == null) return service.createDispatch(myepr, createJAXBContext(), jakarta.xml.ws.Service.Mode.PAYLOAD);
-        else return service.createDispatch(myepr, createJAXBContext(), jakarta.xml.ws.Service.Mode.PAYLOAD, wsf);
+        if (wsf == null)
+            return service.createDispatch(myepr, createJAXBContext(), jakarta.xml.ws.Service.Mode.PAYLOAD);
+        else
+            return service.createDispatch(myepr, createJAXBContext(), jakarta.xml.ws.Service.Mode.PAYLOAD, wsf);
     }
 
     private Dispatch<Source> createDispatchSource(W3CEndpointReference myepr, WebServiceFeature[] wsf)
             throws Exception {
-        if (wsf == null) return service.createDispatch(myepr, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD);
-        else return service.createDispatch(myepr, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD, wsf);
+        if (wsf == null)
+            return service.createDispatch(myepr, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD);
+        else
+            return service.createDispatch(myepr, Source.class, jakarta.xml.ws.Service.Mode.PAYLOAD, wsf);
     }
 
     private Dispatch<SOAPMessage> createDispatchSOAPMessage(W3CEndpointReference myepr, WebServiceFeature[] wsf)
             throws Exception {
-        if (wsf == null) return service.createDispatch(myepr, SOAPMessage.class, jakarta.xml.ws.Service.Mode.MESSAGE);
-        else return service.createDispatch(myepr, SOAPMessage.class, jakarta.xml.ws.Service.Mode.MESSAGE, wsf);
+        if (wsf == null)
+            return service.createDispatch(myepr, SOAPMessage.class, jakarta.xml.ws.Service.Mode.MESSAGE);
+        else
+            return service.createDispatch(myepr, SOAPMessage.class, jakarta.xml.ws.Service.Mode.MESSAGE, wsf);
     }
 
     private void getTestURLs() throws Exception {
@@ -200,8 +203,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -238,12 +243,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: EPRGetEPRViaWSCTest1
      *
-     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:158; JAXWS:SPEC:4027.3; JAXWS:SPEC:4027.4; JAXWS:SPEC:4027.5;
-     * WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
-     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002;
-     * WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4;
-     * JAXWS:SPEC:5027; JAXWS:SPEC:5028;
+     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:158; JAXWS:SPEC:4027.3;
+     * JAXWS:SPEC:4027.4; JAXWS:SPEC:4027.5; WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
+     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
+     * WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4; JAXWS:SPEC:5027; JAXWS:SPEC:5028;
      *
      * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference().
      *
@@ -276,21 +279,19 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetEPRViaWSCTest1 failed");
+        if (!pass)
+            throw new Fault("EPRGetEPRViaWSCTest1 failed");
     }
 
     /*
      * @testName: EPRGetEPRViaWSCTest2
      *
-     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:159; JAXWS:SPEC:4027.3; JAXWS:SPEC:4027.4; JAXWS:SPEC:4027.5;
-     * WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
-     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002;
-     * WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4;
-     * JAXWS:SPEC:5027; JAXWS:SPEC:5028;
+     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:159; JAXWS:SPEC:4027.3;
+     * JAXWS:SPEC:4027.4; JAXWS:SPEC:4027.5; WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
+     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
+     * WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4; JAXWS:SPEC:5027; JAXWS:SPEC:5028;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(
-     * java.lang.Class).
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference( java.lang.Class).
      */
     public void EPRGetEPRViaWSCTest2() throws Fault {
         TestUtil.logMsg("EPRGetEPRViaWSCTest2");
@@ -319,18 +320,17 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetEPRViaWSCTest2 failed");
+        if (!pass)
+            throw new Fault("EPRGetEPRViaWSCTest2 failed");
     }
 
     /*
      * @testName: EPRGetEPRViaBPTest1
      *
-     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:186; JAXWS:SPEC:4027.3; JAXWS:SPEC:4027.4; JAXWS:SPEC:4027.5;
-     * WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
-     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002;
-     * WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4;
-     * JAXWS:SPEC:5027; JAXWS:SPEC:4022;
+     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:186; JAXWS:SPEC:4027.3;
+     * JAXWS:SPEC:4027.4; JAXWS:SPEC:4027.5; WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
+     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
+     * WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4; JAXWS:SPEC:5027; JAXWS:SPEC:4022;
      *
      * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference().
      *
@@ -362,29 +362,26 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetEPRViaBPTest1 failed");
+        if (!pass)
+            throw new Fault("EPRGetEPRViaBPTest1 failed");
     }
 
     /*
      * @testName: EPRGetEPRViaBPTest2
      *
-     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:187; JAXWS:SPEC:4027.3; JAXWS:SPEC:4027.4; JAXWS:SPEC:4027.5;
-     * WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
-     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002;
-     * WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4;
-     * JAXWS:SPEC:5027; JAXWS:SPEC:4022;
+     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:187; JAXWS:SPEC:4027.3;
+     * JAXWS:SPEC:4027.4; JAXWS:SPEC:4027.5; WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
+     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
+     * WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4; JAXWS:SPEC:5027; JAXWS:SPEC:4022;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(
-     * java.lang.Class).
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference( java.lang.Class).
      */
     public void EPRGetEPRViaBPTest2() throws Fault {
         TestUtil.logMsg("EPRGetEPRViaBPTest2");
         boolean pass = true;
         try {
             TestUtil.logMsg("Retrieve EPR via BindingProvider.getEndpointReference(" + "java.lang.Class)");
-            W3CEndpointReference epr = (W3CEndpointReference)
-                    bp.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
+            W3CEndpointReference epr = (W3CEndpointReference) bp.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
             if (epr != null) {
                 TestUtil.logMsg("---------------------------");
                 TestUtil.logMsg("DUMP OF ENDPOINT REFERENCE");
@@ -406,22 +403,20 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetEPRViaBPTest2 failed");
+        if (!pass)
+            throw new Fault("EPRGetEPRViaBPTest2 failed");
     }
 
     /*
      * @testName: EPRGetEPRViaBPWithUnsupportedEPRClassTest
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:187; JAXWS:SPEC:4027.3; JAXWS:SPEC:4027.4; JAXWS:SPEC:4027.5;
-     * JAXWS:SPEC:4027.6; JAXWS:SPEC:5024.3;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:187; JAXWS:SPEC:4027.3;
+     * JAXWS:SPEC:4027.4; JAXWS:SPEC:4027.5; JAXWS:SPEC:4027.6; JAXWS:SPEC:5024.3;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(
-     * java.lang.Class). Pass in an invalid Class. Expect a WebServiceException to
-     * be thrown.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference( java.lang.Class). Pass in an invalid Class.
+     * Expect a WebServiceException to be thrown.
      */
     public void EPRGetEPRViaBPWithUnsupportedEPRClassTest() throws Fault {
         TestUtil.logMsg("EPRGetEPRViaBPWithUnsupportedEPRClassTest");
@@ -438,22 +433,20 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetEPRViaBPWithUnsupportedEPRClassTest failed");
+        if (!pass)
+            throw new Fault("EPRGetEPRViaBPWithUnsupportedEPRClassTest failed");
     }
 
     /*
      * @testName: EPRWriteToAndReadFromTest
      *
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:141; JAXWS:JAVADOC:142;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:141; JAXWS:JAVADOC:142;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference().
-     * Write EPR as an XML Infoset Object using writeTo() method and then read EPR
-     * back from the XML Infoset Object using readfrom() method.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(). Write EPR as an XML Infoset Object using
+     * writeTo() method and then read EPR back from the XML Infoset Object using readfrom() method.
      */
     public void EPRWriteToAndReadFromTest() throws Fault {
         TestUtil.logMsg("EPRWriteToAndReadFromTest");
@@ -472,19 +465,19 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRWriteToAndReadFromTest failed");
+        if (!pass)
+            throw new Fault("EPRWriteToAndReadFromTest failed");
     }
 
     /*
      * @testName: ServiceGetPortViaWSCAndWSFTrueTest
      *
-     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:SPEC:4028; JAXWS:SPEC:4028.1; JAXWS:JAVADOC:140;
+     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
+     * JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference().
-     * From the returned EPR get the port via Service.getPort(EPR,
-     * AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=true.
-     * Verify invocation behavior.
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(). From the returned EPR get the port via
+     * Service.getPort(EPR, AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=true. Verify invocation
+     * behavior.
      *
      */
     public void ServiceGetPortViaWSCAndWSFTrueTest() throws Fault {
@@ -509,25 +502,26 @@ public class Client extends ServiceEETest {
                 if (result != 20) {
                     TestUtil.logErr("Expected result=20, got result=" + result);
                     pass = false;
-                } else TestUtil.logMsg("Got expected result=20");
+                } else
+                    TestUtil.logMsg("Got expected result=20");
             }
         } catch (Exception e) {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("ServiceGetPortViaWSCAndWSFTrueTest failed");
+        if (!pass)
+            throw new Fault("ServiceGetPortViaWSCAndWSFTrueTest failed");
     }
 
     /*
      * @testName: ServiceGetPortViaWSCAndWSFFalseTest
      *
-     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:SPEC:4028; JAXWS:SPEC:4028.1; JAXWS:JAVADOC:140;
+     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
+     * JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference().
-     * From the returned EPR get the port via Service.getPort(EPR,
-     * AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=false.
-     * Verify invocation behavior.
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(). From the returned EPR get the port via
+     * Service.getPort(EPR, AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=false. Verify invocation
+     * behavior.
      *
      */
     public void ServiceGetPortViaWSCAndWSFFalseTest() throws Fault {
@@ -557,19 +551,19 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("ServiceGetPortViaWSCAndWSFFalseTest failed");
+        if (!pass)
+            throw new Fault("ServiceGetPortViaWSCAndWSFFalseTest failed");
     }
 
     /*
      * @testName: ServiceGetPortViaBPAndWSFTrueTest
      *
-     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:SPEC:4028; JAXWS:SPEC:4028.1; JAXWS:JAVADOC:140;
+     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
+     * JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference().
-     * From the returned EPR get the port via Service.getPort(EPR,
-     * AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=true.
-     * Verify invocation behavior.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(). From the returned EPR get the port via
+     * Service.getPort(EPR, AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=true. Verify invocation
+     * behavior.
      *
      */
     public void ServiceGetPortViaBPAndWSFTrueTest() throws Fault {
@@ -594,25 +588,26 @@ public class Client extends ServiceEETest {
                 if (result != 20) {
                     TestUtil.logErr("Expected result=20, got result=" + result);
                     pass = false;
-                } else TestUtil.logMsg("Got expected result=20");
+                } else
+                    TestUtil.logMsg("Got expected result=20");
             }
         } catch (Exception e) {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("ServiceGetPortViaBPAndWSFTrueTest failed");
+        if (!pass)
+            throw new Fault("ServiceGetPortViaBPAndWSFTrueTest failed");
     }
 
     /*
      * @testName: ServiceGetPortViaBPAndWSFFalseTest
      *
-     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:SPEC:4028; JAXWS:SPEC:4028.1; JAXWS:JAVADOC:140;
+     * @assertion_ids: WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
+     * JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference().
-     * From the returned EPR get the port via Service.getPort(EPR,
-     * AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=false.
-     * Verify invocation behavior.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(). From the returned EPR get the port via
+     * Service.getPort(EPR, AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=false. Verify invocation
+     * behavior.
      *
      */
     public void ServiceGetPortViaBPAndWSFFalseTest() throws Fault {
@@ -642,22 +637,21 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("ServiceGetPortViaBPAndWSFFalseTest failed");
+        if (!pass)
+            throw new Fault("ServiceGetPortViaBPAndWSFFalseTest failed");
     }
 
     /*
      * @testName: EPRGetPortViaWSCAndNoWSFTest
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:SPEC:4028; JAXWS:SPEC:4028.1; JAXWS:JAVADOC:140;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
+     * JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference().
-     * From the returned EPR get the port via EndpointReference.getPort
-     * (AddNumbers.class). No WebServiceFeature is passed (DEFAULT CASE). Verify
-     * invocation behavior.
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(). From the returned EPR get the port via
+     * EndpointReference.getPort (AddNumbers.class). No WebServiceFeature is passed (DEFAULT CASE). Verify invocation
+     * behavior.
      *
      */
     public void EPRGetPortViaWSCAndNoWSFTest() throws Fault {
@@ -682,7 +676,8 @@ public class Client extends ServiceEETest {
                 if (result != 20) {
                     TestUtil.logErr("Expected result=20, got result=" + result);
                     pass = false;
-                } else TestUtil.logMsg("Got expected result=20");
+                } else
+                    TestUtil.logMsg("Got expected result=20");
             }
         } catch (SOAPFaultException e) {
             TestUtil.logMsg("Caught expected SOAPFaultException: " + e.getMessage());
@@ -690,22 +685,21 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetPortViaWSCAndNoWSFTest failed");
+        if (!pass)
+            throw new Fault("EPRGetPortViaWSCAndNoWSFTest failed");
     }
 
     /*
      * @testName: EPRGetPortViaWSCAndWSFTrueTest
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:SPEC:4028; JAXWS:SPEC:4028.1; JAXWS:JAVADOC:140;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
+     * JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference().
-     * From the returned EPR get the port via EndpointReference.getPort
-     * (AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=true.
-     * Verify invocation behavior.
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(). From the returned EPR get the port via
+     * EndpointReference.getPort (AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=true. Verify
+     * invocation behavior.
      *
      */
     public void EPRGetPortViaWSCAndWSFTrueTest() throws Fault {
@@ -730,28 +724,28 @@ public class Client extends ServiceEETest {
                 if (result != 20) {
                     TestUtil.logErr("Expected result=20, got result=" + result);
                     pass = false;
-                } else TestUtil.logMsg("Got expected result=20");
+                } else
+                    TestUtil.logMsg("Got expected result=20");
             }
         } catch (Exception e) {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetPortViaWSCAndWSFTrueTest failed");
+        if (!pass)
+            throw new Fault("EPRGetPortViaWSCAndWSFTrueTest failed");
     }
 
     /*
      * @testName: EPRGetPortViaWSCAndWSFFalseTest
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:SPEC:4028; JAXWS:SPEC:4028.1; JAXWS:JAVADOC:140;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
+     * JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference().
-     * From the returned EPR get the port via EndpointReference.getPort
-     * (AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=false.
-     * Verify invocation behavior.
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(). From the returned EPR get the port via
+     * EndpointReference.getPort (AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=false. Verify
+     * invocation behavior.
      *
      */
     public void EPRGetPortViaWSCAndWSFFalseTest() throws Fault {
@@ -781,22 +775,21 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetPortViaWSCAndWSFFalseTest failed");
+        if (!pass)
+            throw new Fault("EPRGetPortViaWSCAndWSFFalseTest failed");
     }
 
     /*
      * @testName: EPRGetPortViaBPAndNoWSFTest
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:SPEC:4028; JAXWS:SPEC:4028.1; JAXWS:JAVADOC:140;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
+     * JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference().
-     * From the returned EPR get the port via EndpointReference.getPort
-     * (AddNumbers.class). No WebServiceFeature is passed (DEFAULT CASE). Verify
-     * invocation behavior.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(). From the returned EPR get the port via
+     * EndpointReference.getPort (AddNumbers.class). No WebServiceFeature is passed (DEFAULT CASE). Verify invocation
+     * behavior.
      *
      */
     public void EPRGetPortViaBPAndNoWSFTest() throws Fault {
@@ -821,7 +814,8 @@ public class Client extends ServiceEETest {
                 if (result != 20) {
                     TestUtil.logErr("Expected result=20, got result=" + result);
                     pass = false;
-                } else TestUtil.logMsg("Got expected result=20");
+                } else
+                    TestUtil.logMsg("Got expected result=20");
             }
         } catch (SOAPFaultException e) {
             TestUtil.logMsg("Caught expected SOAPFaultException: " + e.getMessage());
@@ -829,22 +823,21 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetPortViaBPAndNoWSFTest failed");
+        if (!pass)
+            throw new Fault("EPRGetPortViaBPAndNoWSFTest failed");
     }
 
     /*
      * @testName: EPRGetPortViaBPAndWSFTrueTest
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:SPEC:4028; JAXWS:SPEC:4028.1; JAXWS:JAVADOC:140;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
+     * JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference().
-     * From the returned EPR get the port via EndpointReference.getPort
-     * (AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=true.
-     * Verify invocation behavior.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(). From the returned EPR get the port via
+     * EndpointReference.getPort (AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=true. Verify
+     * invocation behavior.
      *
      */
     public void EPRGetPortViaBPAndWSFTrueTest() throws Fault {
@@ -869,28 +862,28 @@ public class Client extends ServiceEETest {
                 if (result != 20) {
                     TestUtil.logErr("Expected result=20, got result=" + result);
                     pass = false;
-                } else TestUtil.logMsg("Got expected result=20");
+                } else
+                    TestUtil.logMsg("Got expected result=20");
             }
         } catch (Exception e) {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetPortViaBPAndWSFTrueTest failed");
+        if (!pass)
+            throw new Fault("EPRGetPortViaBPAndWSFTrueTest failed");
     }
 
     /*
      * @testName: EPRGetPortViaBPAndWSFFalseTest
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:SPEC:4028; JAXWS:SPEC:4028.1; JAXWS:JAVADOC:140;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
+     * JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference().
-     * From the returned EPR get the port via EndpointReference.getPort
-     * (AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=false.
-     * Verify invocation behavior.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(). From the returned EPR get the port via
+     * EndpointReference.getPort (AddNumbers.class, wsf). WebServiceFeature is passed with Addressing=false. Verify
+     * invocation behavior.
      *
      */
     public void EPRGetPortViaBPAndWSFFalseTest() throws Fault {
@@ -920,21 +913,19 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRGetPortViaBPAndWSFFalseTest failed");
+        if (!pass)
+            throw new Fault("EPRGetPortViaBPAndWSFFalseTest failed");
     }
 
     /*
      * @testName: EPRViaWSCCreateDispatchWSFTrueAndInvokeTest1
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference().
-     * Create a Dispatch object via Service.createDispatch() using the returned
-     * EPR, perform invocation via Dispatch.invoke() and then verify the result.
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(). Create a Dispatch object via
+     * Service.createDispatch() using the returned EPR, perform invocation via Dispatch.invoke() and then verify the result.
      * Pass WebServiceFeature with Addressing=true.
      *
      */
@@ -957,27 +948,26 @@ public class Client extends ServiceEETest {
                     || responseStr.indexOf("20") == -1) {
                 TestUtil.logErr("Unexpected response results");
                 pass = false;
-            } else TestUtil.logMsg("Got expected response results");
+            } else
+                TestUtil.logMsg("Got expected response results");
         } catch (Exception e) {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRViaWSCCreateDispatchWSFTrueAndInvokeTest1 failed");
+        if (!pass)
+            throw new Fault("EPRViaWSCCreateDispatchWSFTrueAndInvokeTest1 failed");
     }
 
     /*
      * @testName: EPRViaWSCCreateDispatchWSFTrueAndInvokeTest2
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(
-     * java.lang.Class). Create a Dispatch object via Service. createDispatch()
-     * using the returned EPR, perform invocation via Dispatch.invoke() and then
-     * verify the result. Pass WebServiceFeature with Addressing=true.
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference( java.lang.Class). Create a Dispatch object
+     * via Service. createDispatch() using the returned EPR, perform invocation via Dispatch.invoke() and then verify the
+     * result. Pass WebServiceFeature with Addressing=true.
      *
      */
     public void EPRViaWSCCreateDispatchWSFTrueAndInvokeTest2() throws Fault {
@@ -999,26 +989,25 @@ public class Client extends ServiceEETest {
                     || responseStr.indexOf("20") == -1) {
                 TestUtil.logErr("Unexpected response results");
                 pass = false;
-            } else TestUtil.logMsg("Got expected response results");
+            } else
+                TestUtil.logMsg("Got expected response results");
         } catch (Exception e) {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRViaWSCCreateDispatchWSFTrueAndInvokeTest2 failed");
+        if (!pass)
+            throw new Fault("EPRViaWSCCreateDispatchWSFTrueAndInvokeTest2 failed");
     }
 
     /*
      * @testName: EPRViaWSCCreateDispatchWSFFalseAndInvokeTest3
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference().
-     * Create a Dispatch object via Service.createDispatch() using the returned
-     * EPR. Pass WebServiceFeature with Addressing=false. Expect a
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(). Create a Dispatch object via
+     * Service.createDispatch() using the returned EPR. Pass WebServiceFeature with Addressing=false. Expect a
      * WebServiceException to be thrown.
      *
      */
@@ -1041,22 +1030,20 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRViaWSCCreateDispatchWSFFalseAndInvokeTest3 failed");
+        if (!pass)
+            throw new Fault("EPRViaWSCCreateDispatchWSFFalseAndInvokeTest3 failed");
     }
 
     /*
      * @testName: EPRViaWSCCreateJAXBDispatchWSFTrueAndInvokeTest1
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference().
-     * Create a JAXB Dispatch object via Service.createDispatch() using the
-     * returned EPR, perform invocation via Dispatch.invoke() and then verify the
-     * result. Pass WebServiceFeature with Addressing=true.
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(). Create a JAXB Dispatch object via
+     * Service.createDispatch() using the returned EPR, perform invocation via Dispatch.invoke() and then verify the result.
+     * Pass WebServiceFeature with Addressing=true.
      *
      */
     public void EPRViaWSCCreateJAXBDispatchWSFTrueAndInvokeTest1() throws Fault {
@@ -1074,36 +1061,33 @@ public class Client extends ServiceEETest {
             dispatchJaxb = createDispatchJAXB(myepr, wsftrue);
             java.util.Map<String, Object> reqContext = dispatchJaxb.getRequestContext();
             TestUtil.logMsg("Perform Dispatch invocation");
-            JAXBElement<DoAddNumbersResponse> response =
-                    (JAXBElement<DoAddNumbersResponse>) dispatchJaxb.invoke(request);
+            JAXBElement<DoAddNumbersResponse> response = (JAXBElement<DoAddNumbersResponse>) dispatchJaxb.invoke(request);
             TestUtil.logMsg("Dispatch invocation succeeded (expected) now check result");
             int result = response.getValue().getReturn();
             TestUtil.logMsg("result=" + result);
             if (result != 20) {
                 TestUtil.logErr("Expected result=20, got result=" + result);
                 pass = false;
-            } else TestUtil.logMsg("Got expected response results");
+            } else
+                TestUtil.logMsg("Got expected response results");
         } catch (Exception e) {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRViaWSCCreateJAXBDispatchWSFTrueAndInvokeTest1 failed");
+        if (!pass)
+            throw new Fault("EPRViaWSCCreateJAXBDispatchWSFTrueAndInvokeTest1 failed");
     }
 
     /*
      * @testName: EPRViaWSCCreateJAXBDispatchWSFFalseAndInvokeTest2
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
      *
-     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference().
-     * Create a JAXB Dispatch object via Service.createDispatch() using the
-     * returned EPR, perform invocation via Dispatch. invoke() and then verify the
-     * result. Pass WebServiceFeature with Addressing=false. Expect a
-     * WebServiceException to be thrown.
+     * @test_Strategy: Retrieve EPR via WebServiceContext.getEndpointReference(). Create a JAXB Dispatch object via
+     * Service.createDispatch() using the returned EPR, perform invocation via Dispatch. invoke() and then verify the
+     * result. Pass WebServiceFeature with Addressing=false. Expect a WebServiceException to be thrown.
      *
      */
     public void EPRViaWSCCreateJAXBDispatchWSFFalseAndInvokeTest2() throws Fault {
@@ -1121,8 +1105,7 @@ public class Client extends ServiceEETest {
             dispatchJaxb = createDispatchJAXB(myepr, wsffalse);
             java.util.Map<String, Object> reqContext = dispatchJaxb.getRequestContext();
             TestUtil.logMsg("Perform Dispatch invocation");
-            JAXBElement<DoAddNumbersResponse> response =
-                    (JAXBElement<DoAddNumbersResponse>) dispatchJaxb.invoke(request);
+            JAXBElement<DoAddNumbersResponse> response = (JAXBElement<DoAddNumbersResponse>) dispatchJaxb.invoke(request);
             TestUtil.logErr("Did not throw expected WebServiceException");
             pass = false;
         } catch (WebServiceException e) {
@@ -1131,21 +1114,19 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRViaWSCCreateJAXBDispatchWSFFalseAndInvokeTest2 failed");
+        if (!pass)
+            throw new Fault("EPRViaWSCCreateJAXBDispatchWSFFalseAndInvokeTest2 failed");
     }
 
     /*
      * @testName: EPRViaBPCreateDispatchWSFTrueAndInvokeTest1
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference().
-     * Create a Dispatch object via Service.createDispatch() using the returned
-     * EPR, perform invocation via Dispatch.invoke() and then verify the result.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(). Create a Dispatch object via
+     * Service.createDispatch() using the returned EPR, perform invocation via Dispatch.invoke() and then verify the result.
      * Pass WebServiceFeature with Addressing=true.
      *
      */
@@ -1168,26 +1149,25 @@ public class Client extends ServiceEETest {
                     || responseStr.indexOf("20") == -1) {
                 TestUtil.logErr("Unexpected response results");
                 pass = false;
-            } else TestUtil.logMsg("Got expected response results");
+            } else
+                TestUtil.logMsg("Got expected response results");
         } catch (Exception e) {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRViaBPCreateDispatchWSFTrueAndInvokeTest1 failed");
+        if (!pass)
+            throw new Fault("EPRViaBPCreateDispatchWSFTrueAndInvokeTest1 failed");
     }
 
     /*
      * @testName: EPRViaBPCreateDispatchWSFTrueAndInvokeTest2
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(
-     * java.lang.Class). Create a Dispatch object via Service. createDispatch()
-     * using the returned EPR, perform invocation and then verify the result. Pass
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference( java.lang.Class). Create a Dispatch object via
+     * Service. createDispatch() using the returned EPR, perform invocation and then verify the result. Pass
      * WebServiceFeature with Addressing=true.
      *
      */
@@ -1196,8 +1176,7 @@ public class Client extends ServiceEETest {
         boolean pass = true;
         try {
             TestUtil.logMsg("Create a Dispatch object of type SOAPMessage");
-            W3CEndpointReference myepr = (W3CEndpointReference)
-                    bp.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
+            W3CEndpointReference myepr = (W3CEndpointReference) bp.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
             TestUtil.logMsg("Pass WebServiceFeature with Addressing=true");
             dispatchSM = createDispatchSOAPMessage(myepr, wsftrue);
             SOAPMessage requestMsg = JAXWS_Util.makeSOAPMessage(doAddNumbersRequestSM);
@@ -1211,28 +1190,26 @@ public class Client extends ServiceEETest {
                     || responseStr.indexOf("20") == -1) {
                 TestUtil.logErr("Unexpected response results");
                 pass = false;
-            } else TestUtil.logMsg("Got expected response results");
+            } else
+                TestUtil.logMsg("Got expected response results");
         } catch (Exception e) {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRViaBPCreateDispatchWSFTrueAndInvokeTest2 failed");
+        if (!pass)
+            throw new Fault("EPRViaBPCreateDispatchWSFTrueAndInvokeTest2 failed");
     }
 
     /*
      * @testName: EPRViaBPCreateDispatchWSFFalseAndInvokeTest3
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(
-     * java.lang.Class). Create a Dispatch object via Service. createDispatch()
-     * using the returned EPR, perform invocation via Dispatch.invoke() and then
-     * verify the result. Pass WebServiceFeature with Addressing=false. Expect a
-     * WebServiceException to be thrown.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference( java.lang.Class). Create a Dispatch object via
+     * Service. createDispatch() using the returned EPR, perform invocation via Dispatch.invoke() and then verify the
+     * result. Pass WebServiceFeature with Addressing=false. Expect a WebServiceException to be thrown.
      *
      */
     public void EPRViaBPCreateDispatchWSFFalseAndInvokeTest3() throws Fault {
@@ -1240,8 +1217,7 @@ public class Client extends ServiceEETest {
         boolean pass = true;
         try {
             TestUtil.logMsg("Create a Dispatch object of type SOAPMessage");
-            W3CEndpointReference myepr = (W3CEndpointReference)
-                    bp.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
+            W3CEndpointReference myepr = (W3CEndpointReference) bp.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
             TestUtil.logMsg("Pass WebServiceFeature with Addressing=false");
             dispatchSM = createDispatchSOAPMessage(myepr, wsffalse);
             SOAPMessage requestMsg = JAXWS_Util.makeSOAPMessage(doAddNumbersRequestSM);
@@ -1255,23 +1231,20 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRViaBPCreateDispatchWSFFalseAndInvokeTest3 failed");
+        if (!pass)
+            throw new Fault("EPRViaBPCreateDispatchWSFFalseAndInvokeTest3 failed");
     }
 
     /*
      * @testName: EPRViaBPCreateJAXBDispatchWSFTrueAndInvokeTest1
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(
-     * java.lang.Class). Create a JAXB Dispatch object via Service.
-     * createDispatch() using the returned EPR, perform invocation via
-     * Dispatch.invoke() and then verify the result. Pass WebServiceFeature with
-     * Addressing=true.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference( java.lang.Class). Create a JAXB Dispatch
+     * object via Service. createDispatch() using the returned EPR, perform invocation via Dispatch.invoke() and then verify
+     * the result. Pass WebServiceFeature with Addressing=true.
      *
      */
     public void EPRViaBPCreateJAXBDispatchWSFTrueAndInvokeTest1() throws Fault {
@@ -1279,8 +1252,7 @@ public class Client extends ServiceEETest {
         boolean pass = true;
         try {
             TestUtil.logMsg("Create a Dispatch object of type JAXB");
-            W3CEndpointReference myepr = (W3CEndpointReference)
-                    bp.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
+            W3CEndpointReference myepr = (W3CEndpointReference) bp.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
             ObjectFactory of = new ObjectFactory();
             DoAddNumbers numbers = of.createDoAddNumbers();
             numbers.setArg0(10);
@@ -1290,36 +1262,33 @@ public class Client extends ServiceEETest {
             dispatchJaxb = createDispatchJAXB(myepr, wsftrue);
             java.util.Map<String, Object> reqContext = dispatchJaxb.getRequestContext();
             TestUtil.logMsg("Perform Dispatch invocation");
-            JAXBElement<DoAddNumbersResponse> response =
-                    (JAXBElement<DoAddNumbersResponse>) dispatchJaxb.invoke(request);
+            JAXBElement<DoAddNumbersResponse> response = (JAXBElement<DoAddNumbersResponse>) dispatchJaxb.invoke(request);
             TestUtil.logMsg("Dispatch invocation succeeded (expected) now check result");
             int result = response.getValue().getReturn();
             TestUtil.logMsg("result=" + result);
             if (result != 20) {
                 TestUtil.logErr("Expected result=20, got result=" + result);
                 pass = false;
-            } else TestUtil.logMsg("Got expected response results");
+            } else
+                TestUtil.logMsg("Got expected response results");
         } catch (Exception e) {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRViaBPCreateJAXBDispatchWSFTrueAndInvokeTest1 failed");
+        if (!pass)
+            throw new Fault("EPRViaBPCreateJAXBDispatchWSFTrueAndInvokeTest1 failed");
     }
 
     /*
      * @testName: EPRViaBPCreateJAXBDispatchWSFFalseAndInvokeTest2
      *
-     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2;
-     * WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3;
-     * WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
-     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009;
-     * JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
+     * @assertion_ids: WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1;
+     * WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2; WSAMD:SPEC:2002.3;
+     * WSAMD:SPEC:2002.4; WSACORE:SPEC:2007; WSACORE:SPEC:2008; WSACORE:SPEC:2009; JAXWS:JAVADOC:154; JAXWS:SPEC:4030;
      *
-     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference(
-     * java.lang.Class). Create a JAXB Dispatch object via Service.
-     * createDispatch() using the returned EPR, perform invocation via
-     * Dispatch.invoke() and then verify the result. Pass WebServiceFeature with
-     * Addressing=false. Expect a WebServiceException to be thrown.
+     * @test_Strategy: Retrieve EPR via BindingProvider.getEndpointReference( java.lang.Class). Create a JAXB Dispatch
+     * object via Service. createDispatch() using the returned EPR, perform invocation via Dispatch.invoke() and then verify
+     * the result. Pass WebServiceFeature with Addressing=false. Expect a WebServiceException to be thrown.
      *
      */
     public void EPRViaBPCreateJAXBDispatchWSFFalseAndInvokeTest2() throws Fault {
@@ -1327,8 +1296,7 @@ public class Client extends ServiceEETest {
         boolean pass = true;
         try {
             TestUtil.logMsg("Create a Dispatch object of type JAXB");
-            W3CEndpointReference myepr = (W3CEndpointReference)
-                    bp.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
+            W3CEndpointReference myepr = (W3CEndpointReference) bp.getEndpointReference(jakarta.xml.ws.wsaddressing.W3CEndpointReference.class);
             ObjectFactory of = new ObjectFactory();
             DoAddNumbers numbers = of.createDoAddNumbers();
             numbers.setArg0(10);
@@ -1338,8 +1306,7 @@ public class Client extends ServiceEETest {
             dispatchJaxb = createDispatchJAXB(myepr, wsffalse);
             java.util.Map<String, Object> reqContext = dispatchJaxb.getRequestContext();
             TestUtil.logMsg("Perform Dispatch invocation");
-            JAXBElement<DoAddNumbersResponse> response =
-                    (JAXBElement<DoAddNumbersResponse>) dispatchJaxb.invoke(request);
+            JAXBElement<DoAddNumbersResponse> response = (JAXBElement<DoAddNumbersResponse>) dispatchJaxb.invoke(request);
             TestUtil.logErr("Did not throw expected WebServiceException");
             pass = false;
         } catch (WebServiceException e) {
@@ -1348,6 +1315,7 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("EPRViaBPCreateJAXBDispatchWSFFalseAndInvokeTest2 failed");
+        if (!pass)
+            throw new Fault("EPRViaBPCreateJAXBDispatchWSFFalseAndInvokeTest2 failed");
     }
 }

@@ -28,8 +28,7 @@ public class Client extends ClientBase {
     /*
      * @testName: autoTimerInSuperClassNoParam
      *
-     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out
-     * method takes no Timer param.
+     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out method takes no Timer param.
      */
     public void autoTimerInSuperClassNoParam() {
         passIfRecurringTimeout("autoTimerInSuperClassNoParam");
@@ -47,8 +46,7 @@ public class Client extends ClientBase {
     /*
      * @testName: autoTimerWithInfo
      *
-     * @test_Strategy: verify the auto timer that was created with @Schedule in
-     * bean class with info attr
+     * @test_Strategy: verify the auto timer that was created with @Schedule in bean class with info attr
      */
     public void autoTimerWithInfo() {
         passIfRecurringTimeout("autoTimerWithInfo");
@@ -57,8 +55,7 @@ public class Client extends ClientBase {
     /*
      * @testName: autoTimerWithoutInfo
      *
-     * @test_Strategy: verify the auto timer that was created with @Schedule in
-     * bean class without info attr
+     * @test_Strategy: verify the auto timer that was created with @Schedule in bean class without info attr
      */
     public void autoTimerWithoutInfo() {
         passIfRecurringTimeout("autoTimerWithoutInfo");

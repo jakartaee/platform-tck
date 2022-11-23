@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,11 +100,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:162;
      *
-     * @test_Strategy: Call SOAPHeaderElement.setMustUnderstand(true) method and
-     * verify mustunderstand attribute is set to true
+     * @test_Strategy: Call SOAPHeaderElement.setMustUnderstand(true) method and verify mustunderstand attribute is set to
+     * true
      *
-     * Description: Set the mustunderstand attribute associated with the soap
-     * header element to true
+     * Description: Set the mustunderstand attribute associated with the soap header element to true
      *
      */
     public void setMustUnderstandTrueTest() throws Fault {
@@ -116,12 +117,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setMustUnderstandTrueTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -130,7 +134,8 @@ public class URLClient extends EETest {
             throw new Fault("setMustUnderstandTrueTest failed", e);
         }
 
-        if (!pass) throw new Fault("setMustUnderstandTrueTest failed");
+        if (!pass)
+            throw new Fault("setMustUnderstandTrueTest failed");
     }
 
     /*
@@ -138,11 +143,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:162;
      *
-     * @test_Strategy: Call SOAPHeaderElement.setMustUnderstand(false) method and
-     * verify mustunderstand attribute is set to false
+     * @test_Strategy: Call SOAPHeaderElement.setMustUnderstand(false) method and verify mustunderstand attribute is set to
+     * false
      *
-     * Description: Set the mustunderstand attribute associated with the soap
-     * header element to false
+     * Description: Set the mustunderstand attribute associated with the soap header element to false
      *
      */
     public void setMustUnderstandFalseTest() throws Fault {
@@ -156,12 +160,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "setMustUnderstandFalseTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -170,7 +177,8 @@ public class URLClient extends EETest {
             throw new Fault("setMustUnderstandFalseTest failed", e);
         }
 
-        if (!pass) throw new Fault("setMustUnderstandFalseTest failed");
+        if (!pass)
+            throw new Fault("setMustUnderstandFalseTest failed");
     }
 
     /*
@@ -178,11 +186,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:163;
      *
-     * @test_Strategy: Call SOAPHeaderElement.getMustUnderstand() method and
-     * verify mustunderstand attribute is set to true
+     * @test_Strategy: Call SOAPHeaderElement.getMustUnderstand() method and verify mustunderstand attribute is set to true
      *
-     * Description: Get the mustunderstand attribute associated with the soap
-     * header element when it is true
+     * Description: Get the mustunderstand attribute associated with the soap header element when it is true
      *
      */
     public void getMustUnderstandTrueTest() throws Fault {
@@ -196,12 +202,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getMustUnderstandTrueTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -210,7 +219,8 @@ public class URLClient extends EETest {
             throw new Fault("getMustUnderstandTrueTest failed", e);
         }
 
-        if (!pass) throw new Fault("getMustUnderstandTrueTest failed");
+        if (!pass)
+            throw new Fault("getMustUnderstandTrueTest failed");
     }
 
     /*
@@ -218,11 +228,9 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:163;
      *
-     * @test_Strategy: Call SOAPHeaderElement.getMustUnderstand() method and
-     * verify mustunderstand attribute is set to false
+     * @test_Strategy: Call SOAPHeaderElement.getMustUnderstand() method and verify mustunderstand attribute is set to false
      *
-     * Description: Get the mustunderstand attribute associated with the soap
-     * header element when it is false
+     * Description: Get the mustunderstand attribute associated with the soap header element when it is false
      *
      */
     public void getMustUnderstandFalseTest() throws Fault {
@@ -236,12 +244,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getMustUnderstandFalseTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -250,7 +261,8 @@ public class URLClient extends EETest {
             throw new Fault("getMustUnderstandFalseTest failed", e);
         }
 
-        if (!pass) throw new Fault("getMustUnderstandFalseTest failed");
+        if (!pass)
+            throw new Fault("getMustUnderstandFalseTest failed");
     }
 
     /*
@@ -258,11 +270,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:157;
      *
-     * @test_Strategy: Call SOAPHeaderElement.setActor(actor) method and verify
-     * actor associated is set properly.
+     * @test_Strategy: Call SOAPHeaderElement.setActor(actor) method and verify actor associated is set properly.
      *
-     * Description: Set the actor associated with the soap header element. For a
-     * SOAP1.1 or SOAP1.2 message this should succeed.
+     * Description: Set the actor associated with the soap header element. For a SOAP1.1 or SOAP1.2 message this should
+     * succeed.
      *
      */
     public void setActorTest() throws Fault {
@@ -285,7 +296,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -294,7 +306,8 @@ public class URLClient extends EETest {
             throw new Fault("setActorTest failed", e);
         }
 
-        if (!pass) throw new Fault("setActorTest failed");
+        if (!pass)
+            throw new Fault("setActorTest failed");
     }
 
     /*
@@ -302,11 +315,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:160;
      *
-     * @test_Strategy: Call SOAPHeaderElement.getActor() method and verify actor
-     * associated is set properly.
+     * @test_Strategy: Call SOAPHeaderElement.getActor() method and verify actor associated is set properly.
      *
-     * Description: Get the actor associated with the soap header element. For a
-     * SOAP1.1 or SOAP1.2 message this should succeed.
+     * Description: Get the actor associated with the soap header element. For a SOAP1.1 or SOAP1.2 message this should
+     * succeed.
      *
      */
     public void getActorTest() throws Fault {
@@ -329,7 +341,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -338,7 +351,8 @@ public class URLClient extends EETest {
             throw new Fault("getActorTest failed", e);
         }
 
-        if (!pass) throw new Fault("getActorTest failed");
+        if (!pass)
+            throw new Fault("getActorTest failed");
     }
 
     /*
@@ -346,12 +360,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:158; SAAJ:JAVADOC:159;
      *
-     * @test_Strategy: Call SOAPHeaderElement.setRole(role) method and verify role
-     * associated is set properly.
+     * @test_Strategy: Call SOAPHeaderElement.setRole(role) method and verify role associated is set properly.
      *
-     * Description: Set the role associated with the soap header element. For a
-     * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
-     * UnsupportedOperation- Exception.
+     * Description: Set the role associated with the soap header element. For a SOAP1.2 message this should succeed and for
+     * a SOAP1.1 message it must throw UnsupportedOperation- Exception.
      *
      */
     public void setRoleTest() throws Fault {
@@ -374,7 +386,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -383,7 +396,8 @@ public class URLClient extends EETest {
             throw new Fault("setRoleTest failed", e);
         }
 
-        if (!pass) throw new Fault("setRoleTest failed");
+        if (!pass)
+            throw new Fault("setRoleTest failed");
     }
 
     /*
@@ -391,12 +405,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:161;
      *
-     * @test_Strategy: Call SOAPHeaderElement.getRole() method and verify role
-     * associated is set properly.
+     * @test_Strategy: Call SOAPHeaderElement.getRole() method and verify role associated is set properly.
      *
-     * Description: Get the role associated with the soap header element. For a
-     * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
-     * UnsupportedOperation- Exception.
+     * Description: Get the role associated with the soap header element. For a SOAP1.2 message this should succeed and for
+     * a SOAP1.1 message it must throw UnsupportedOperation- Exception.
      *
      */
     public void getRoleTest() throws Fault {
@@ -419,7 +431,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -428,7 +441,8 @@ public class URLClient extends EETest {
             throw new Fault("getRoleTest failed", e);
         }
 
-        if (!pass) throw new Fault("getRoleTest failed");
+        if (!pass)
+            throw new Fault("getRoleTest failed");
     }
 
     /*
@@ -436,12 +450,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:164; SAAJ:JAVADOC:165;
      *
-     * @test_Strategy: Call SOAPHeaderElement.setRelay(relay) method and verify
-     * relay attribute is set properly.
+     * @test_Strategy: Call SOAPHeaderElement.setRelay(relay) method and verify relay attribute is set properly.
      *
-     * Description: Set the relay attribute for this soap header element. For a
-     * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
-     * UnsupportedOperation- Exception.
+     * Description: Set the relay attribute for this soap header element. For a SOAP1.2 message this should succeed and for
+     * a SOAP1.1 message it must throw UnsupportedOperation- Exception.
      *
      */
     public void setRelayTest() throws Fault {
@@ -464,7 +476,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -473,7 +486,8 @@ public class URLClient extends EETest {
             throw new Fault("setRelayTest failed", e);
         }
 
-        if (!pass) throw new Fault("setRelayTest failed");
+        if (!pass)
+            throw new Fault("setRelayTest failed");
     }
 
     /*
@@ -481,12 +495,10 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:166;
      *
-     * @test_Strategy: Call SOAPHeaderElement.getRelay() method and verify relay
-     * attribute is set properly.
+     * @test_Strategy: Call SOAPHeaderElement.getRelay() method and verify relay attribute is set properly.
      *
-     * Description: Get the relay attribute for this soap header element. For a
-     * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
-     * UnsupportedOperation- Exception.
+     * Description: Get the relay attribute for this soap header element. For a SOAP1.2 message this should succeed and for
+     * a SOAP1.1 message it must throw UnsupportedOperation- Exception.
      *
      */
     public void getRelayTest() throws Fault {
@@ -509,7 +521,8 @@ public class URLClient extends EETest {
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -518,6 +531,7 @@ public class URLClient extends EETest {
             throw new Fault("getRelayTest failed", e);
         }
 
-        if (!pass) throw new Fault("getRelayTest failed");
+        if (!pass)
+            throw new Fault("getRelayTest failed");
     }
 }

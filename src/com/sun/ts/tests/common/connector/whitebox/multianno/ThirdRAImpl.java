@@ -40,17 +40,8 @@ import javax.transaction.xa.XAResource;
  * Connector:SPEC:274.
  *
  */
-@Connector(
-        description = "CTS test RA specified in DD is used",
-        displayName = "ThirdRAImpl",
-        vendorName = "Java Software",
-        eisType = "TS EIS",
-        version = "1.0",
-        licenseDescription = "CTS License Required",
-        licenseRequired = true,
-        reauthenticationSupport = false,
-        transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction,
-        requiredWorkContexts = {HintsContext.class, SecurityContext.class})
+@Connector(description = "CTS test RA specified in DD is used", displayName = "ThirdRAImpl", vendorName = "Java Software", eisType = "TS EIS", version = "1.0", licenseDescription = "CTS License Required", licenseRequired = true, reauthenticationSupport = false, transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction, requiredWorkContexts = {
+        HintsContext.class, SecurityContext.class })
 public class ThirdRAImpl implements ResourceAdapter, Serializable {
     private String raName;
 
@@ -81,7 +72,8 @@ public class ThirdRAImpl implements ResourceAdapter, Serializable {
                     myStart(bsc);
                 }
 
-                public void release() {}
+                public void release() {
+                }
             });
         } catch (jakarta.resource.spi.work.WorkException we) {
             throw new ResourceAdapterInternalException();
@@ -96,7 +88,8 @@ public class ThirdRAImpl implements ResourceAdapter, Serializable {
         Debug.trace("ThirdRAImpl.stop ");
     }
 
-    public void endpointActivation(MessageEndpointFactory mef, ActivationSpec as) {}
+    public void endpointActivation(MessageEndpointFactory mef, ActivationSpec as) {
+    }
 
     public XAResource[] getXAResources(ActivationSpec[] as) {
         Debug.trace("ThirdRAImpl.getXAResources ");
@@ -108,11 +101,14 @@ public class ThirdRAImpl implements ResourceAdapter, Serializable {
         return onMessageMethod;
     }
 
-    private void chkUniqueMessageEndpointFactory() {}
+    private void chkUniqueMessageEndpointFactory() {
+    }
 
-    public void checkAssociation() {}
+    public void checkAssociation() {
+    }
 
-    public void endpointDeactivation(MessageEndpointFactory mef, ActivationSpec as) {}
+    public void endpointDeactivation(MessageEndpointFactory mef, ActivationSpec as) {
+    }
 
     /*
      * @name equals
@@ -138,7 +134,8 @@ public class ThirdRAImpl implements ResourceAdapter, Serializable {
             return false;
         }
 
-        if (!Util.isEqual(this.raName, that.getRaName())) return false;
+        if (!Util.isEqual(this.raName, that.getRaName()))
+            return false;
 
         return true;
     }

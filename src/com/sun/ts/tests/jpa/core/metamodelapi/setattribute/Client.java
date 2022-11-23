@@ -27,7 +27,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -64,8 +65,7 @@ public class Client extends PMClientBase {
             ManagedType<A> mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.setattribute.A.class);
             if (mType != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
-                SetAttribute<? super A, Address> setAttrib =
-                        mType.getSet("address", com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
+                SetAttribute<? super A, Address> setAttrib = mType.getSet("address", com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
                 Type t = setAttrib.getElementType();
                 if (t != null) {
                     TestUtil.logTrace("element Java Type  = " + t.getJavaType());
@@ -103,8 +103,7 @@ public class Client extends PMClientBase {
             ManagedType<A> mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.setattribute.A.class);
             if (mType != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
-                SetAttribute<? super A, Address> setAttrib =
-                        mType.getSet("address", com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
+                SetAttribute<? super A, Address> setAttrib = mType.getSet("address", com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
 
                 SetAttribute.CollectionType setAttribColType = setAttrib.getCollectionType();
                 TestUtil.logTrace("collection Type = " + setAttrib.getCollectionType());
@@ -142,13 +141,11 @@ public class Client extends PMClientBase {
             ManagedType<A> mType = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.setattribute.A.class);
             if (mType != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
-                SetAttribute<? super A, Address> setAttrib =
-                        mType.getSet("address", com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
+                SetAttribute<? super A, Address> setAttrib = mType.getSet("address", com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address.class);
 
                 TestUtil.logTrace("collection Element Type = "
                         + setAttrib.getElementType().getJavaType().getName());
-                String elementTypeName =
-                        setAttrib.getElementType().getJavaType().getName();
+                String elementTypeName = setAttrib.getElementType().getJavaType().getName();
                 if (elementTypeName.equals("com.sun.ts.tests.jpa.core.metamodelapi.setattribute.Address")) {
                     TestUtil.logTrace("Received expected result = " + elementTypeName);
                     pass = true;

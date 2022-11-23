@@ -28,6 +28,7 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateless
-@Local({RollbackIF.class})
+@Local({ RollbackIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
-public class RollbackBean extends RollbackOverrideBeanBase {}
+public class RollbackBean extends RollbackOverrideBeanBase {
+}

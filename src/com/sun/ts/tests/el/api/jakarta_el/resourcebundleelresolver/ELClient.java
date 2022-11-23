@@ -53,19 +53,17 @@ public class ELClient extends ServiceEETest {
         tckrb = new TckResourceBundle();
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
      * @testName: resourceBundleELResolverTest
      *
-     * @assertion_ids: EL:JAVADOC:103; EL:JAVADOC:104; EL:JAVADOC:105;
-     *                 EL:JAVADOC:106; EL:JAVADOC:107; EL:JAVADOC:108;
-     *                 EL:JAVADOC:109
+     * @assertion_ids: EL:JAVADOC:103; EL:JAVADOC:104; EL:JAVADOC:105; EL:JAVADOC:106; EL:JAVADOC:107; EL:JAVADOC:108;
+     * EL:JAVADOC:109
      *
-     * @test_Strategy: Verify that API calls work as expected:
-     *                 ResourceBundleELResolver() setValue() getValue() getType()
-     *                 isReadOnly() getCommonPropertyType()
-     *                 getFeatureDescriptors()
+     * @test_Strategy: Verify that API calls work as expected: ResourceBundleELResolver() setValue() getValue() getType()
+     * isReadOnly() getCommonPropertyType() getFeatureDescriptors()
      */
     public void resourceBundleELResolverTest() throws Fault {
 
@@ -82,21 +80,20 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
         TestUtil.logTrace(buf.toString());
     }
 
     /**
      * @testName: resourceBundleELResolverNPETest
      *
-     * @assertion_ids: EL:JAVADOC:106; EL:JAVADOC:105; EL:JAVADOC:107;
-     *                 EL:JAVADOC:108; EL:JAVADOC:109; EL:JAVADOC:313;
-     *                 EL:JAVADOC:314; EL:JAVADOC:316; EL:JAVADOC:317
+     * @assertion_ids: EL:JAVADOC:106; EL:JAVADOC:105; EL:JAVADOC:107; EL:JAVADOC:108; EL:JAVADOC:109; EL:JAVADOC:313;
+     * EL:JAVADOC:314; EL:JAVADOC:316; EL:JAVADOC:317
      *
-     * @test_Strategy: Verify that the following methods throw a
-     *                 NullPointerException, if context is null:
+     * @test_Strategy: Verify that the following methods throw a NullPointerException, if context is null:
      *
-     *                 getValue() getType() setValue() isReadOnly()
+     * getValue() getType() setValue() isReadOnly()
      */
     public void resourceBundleELResolverNPETest() throws Fault {
 
@@ -111,7 +108,8 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
         TestUtil.logTrace(buf.toString());
     }
 
@@ -120,11 +118,10 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:108; EL:JAVADOC:109; EL:JAVADOC:318
      *
-     * @test_Strategy: Verify that the following methods throw a
-     *                 PropertyNotWritableException, since
-     *                 ResourceBundleELResolvers are non-writable.
+     * @test_Strategy: Verify that the following methods throw a PropertyNotWritableException, since
+     * ResourceBundleELResolvers are non-writable.
      *
-     *                 setValue()
+     * setValue()
      */
     public void resourceBundleELResolverPNWETest() throws Fault {
 
@@ -141,7 +138,8 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
         TestUtil.logTrace(buf.toString());
     }
 
@@ -150,9 +148,12 @@ public class ELClient extends ServiceEETest {
         private static final String KEYS = "Breakfast Lunch Dinner";
 
         public Object handleGetObject(String key) {
-            if ("Breakfast".equals(key)) return "BREAKFAST";
-            if ("Lunch".equals(key)) return "LUNCH";
-            if ("Dinner".equals(key)) return "DINNER";
+            if ("Breakfast".equals(key))
+                return "BREAKFAST";
+            if ("Lunch".equals(key))
+                return "LUNCH";
+            if ("Dinner".equals(key))
+                return "DINNER";
 
             return null;
         }

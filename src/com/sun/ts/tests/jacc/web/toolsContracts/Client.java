@@ -84,25 +84,23 @@ public class Client extends ServiceEETest {
         }
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
      * @testName: WebResourcePermission
      *
-     * @assertion_ids: JACC:SPEC:36; JACC:SPEC:72; JACC:SPEC:27; JACC:SPEC:28;
-     *                 JACC:SPEC:52; JACC:SPEC:128;
+     * @assertion_ids: JACC:SPEC:36; JACC:SPEC:72; JACC:SPEC:27; JACC:SPEC:28; JACC:SPEC:52; JACC:SPEC:128;
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Deploy the application.
+     * 2. Deploy the application.
      *
-     *                 3. During deployment, appserver generates permissions for
-     *                 the J2EE components based on the given deployment
-     *                 descriptor
+     * 3. During deployment, appserver generates permissions for the J2EE components based on the given deployment
+     * descriptor
      *
-     *                 4. Retrieve server side logs and verify the generated
-     *                 permissions matches the expected permission collection
+     * 4. Retrieve server side logs and verify the generated permissions matches the expected permission collection
      *
      */
     public void WebResourcePermission() throws Fault {
@@ -117,8 +115,7 @@ public class Client extends ServiceEETest {
         // 3) verify expected policy statements with generated policy statements
 
         // Get "unchecked" WebResourcePermissions
-        Permissions uncheckedWebResourcePermissions =
-                logProcessor.getSpecificPermissions(unCheckedPermissions, "WebResourcePermission");
+        Permissions uncheckedWebResourcePermissions = logProcessor.getSpecificPermissions(unCheckedPermissions, "WebResourcePermission");
 
         TestUtil.logMsg("Server generated unchecked WebResourcePermissions");
         logProcessor.printPermissionCollection(uncheckedWebResourcePermissions);
@@ -148,8 +145,7 @@ public class Client extends ServiceEETest {
         // 3) verify expected policy statements with generated policy statements
 
         // Get "excluded" WebResourcePermissions
-        Permissions excludedWebResourcePermissions =
-                logProcessor.getSpecificPermissions(excludedPermissions, "WebResourcePermission");
+        Permissions excludedWebResourcePermissions = logProcessor.getSpecificPermissions(excludedPermissions, "WebResourcePermission");
 
         TestUtil.logMsg("Server generated excluded WebResourcePermissions");
         logProcessor.printPermissionCollection(excludedWebResourcePermissions);
@@ -173,8 +169,7 @@ public class Client extends ServiceEETest {
         // 3) verify expected policy statements with generated policy statements
 
         // Get "addToRole" WebResourcePermissions
-        Permissions addToRoleWebResourcePermissions =
-                logProcessor.getSpecificPermissions(addToRolePermissions, "WebResourcePermission");
+        Permissions addToRoleWebResourcePermissions = logProcessor.getSpecificPermissions(addToRolePermissions, "WebResourcePermission");
 
         TestUtil.logMsg("Server generated addToRole WebResourcePermissions");
         logProcessor.printPermissionCollection(addToRoleWebResourcePermissions);
@@ -198,21 +193,16 @@ public class Client extends ServiceEETest {
     /**
      * @testName: WebRoleRefPermission
      *
-     * @assertion_ids: JACC:SPEC:36; JACC:SPEC:112; JACC:SPEC:38; JACC:SPEC:43;
-     *                 JACC:SPEC:44; JACC:JAVADOC:50; JACC:SPEC:27; JACC:SPEC:28;
-     *                 JACC:SPEC:45; JACC:SPEC:52; JACC:SPEC:75; JACC:SPEC:128;
-     *                 JACC:SPEC:131
+     * @assertion_ids: JACC:SPEC:36; JACC:SPEC:112; JACC:SPEC:38; JACC:SPEC:43; JACC:SPEC:44; JACC:JAVADOC:50; JACC:SPEC:27;
+     * JACC:SPEC:28; JACC:SPEC:45; JACC:SPEC:52; JACC:SPEC:75; JACC:SPEC:128; JACC:SPEC:131
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ). 2.
-     *                 Deploy the application.
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ). 2. Deploy the application.
      *
-     *                 3. During deployment, appserver generates permissions for
-     *                 the J2EE components based on the given deployment
-     *                 descriptor
+     * 3. During deployment, appserver generates permissions for the J2EE components based on the given deployment
+     * descriptor
      *
-     *                 4. Retrieve server side logs and verify the generated
-     *                 permissions matches the expected permission collection
+     * 4. Retrieve server side logs and verify the generated permissions matches the expected permission collection
      */
     public void WebRoleRefPermission() throws Fault {
         boolean verified = false;
@@ -224,8 +214,7 @@ public class Client extends ServiceEETest {
         // 3) verify expected policy statements with generated policy statements
 
         // Get "addToRole" WebRoleRefPermissions
-        Permissions addToRoleWebRoleRefPermissions =
-                logProcessor.getSpecificPermissions(addToRolePermissions, "WebRoleRefPermission");
+        Permissions addToRoleWebRoleRefPermissions = logProcessor.getSpecificPermissions(addToRolePermissions, "WebRoleRefPermission");
 
         TestUtil.logMsg("Server generated addToRole WebRoleRefPermissions");
         logProcessor.printPermissionCollection(addToRoleWebRoleRefPermissions);
@@ -271,32 +260,25 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:SPEC:130; JACC:SPEC:131;
      *
-     * @test_Strategy: This is testing that: If the any authenticated user
-     *                 role-name, **, does not appear in a security-role-ref
-     *                 within the servlet, a WebRoleRefPermission must also be
-     *                 added for it. The name of each such WebRoleRefPermission
-     *                 must be the servlet-name of the corresponding servlet
-     *                 element. steps: 1. We have any-authenticated-user
-     *                 referenced in a security-constraint in our DD (for
-     *                 anyauthuser.jsp) We have a total of 5 servlets defined in
-     *                 our DD also.
+     * @test_Strategy: This is testing that: If the any authenticated user role-name, **, does not appear in a
+     * security-role-ref within the servlet, a WebRoleRefPermission must also be added for it. The name of each such
+     * WebRoleRefPermission must be the servlet-name of the corresponding servlet element. steps: 1. We have
+     * any-authenticated-user referenced in a security-constraint in our DD (for anyauthuser.jsp) We have a total of 5
+     * servlets defined in our DD also.
      *
-     *                 2. Deploy the application.
+     * 2. Deploy the application.
      *
-     *                 3. During deployment, appserver generates permissions for
-     *                 the J2EE components based on the given deployment
-     *                 descriptor
+     * 3. During deployment, appserver generates permissions for the J2EE components based on the given deployment
+     * descriptor
      *
-     *                 4. Retrieve server side logs and verify the generated
-     *                 permissions matches the expected permission collection
+     * 4. Retrieve server side logs and verify the generated permissions matches the expected permission collection
      */
     public void AnyAuthUserWebRoleRef() throws Fault {
         boolean verified = false;
         Permissions expectedAddToRolePerms = new Permissions();
 
         // retrieve server generated addToRole policy statements
-        Permissions addToRoleWebRoleRefPermissions =
-                logProcessor.getSpecificPermissions(addToRolePermissions, "WebRoleRefPermission");
+        Permissions addToRoleWebRoleRefPermissions = logProcessor.getSpecificPermissions(addToRolePermissions, "WebRoleRefPermission");
 
         // for debug aid, print out server generated addToRole policy statements
         TestUtil.logMsg("Server generated addToRole WebRoleRefPermissions");
@@ -330,20 +312,17 @@ public class Client extends ServiceEETest {
     /**
      * @testName: WebResourcePermissionExcludedPolicy
      *
-     * @assertion_ids: JACC:SPEC:37; JACC:SPEC:114; JACC:SPEC:111; JACC:SPEC:27;
-     *                 JACC:SPEC:28; JACC:SPEC:34; JACC:SPEC:52
+     * @assertion_ids: JACC:SPEC:37; JACC:SPEC:114; JACC:SPEC:111; JACC:SPEC:27; JACC:SPEC:28; JACC:SPEC:34; JACC:SPEC:52
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Deploy the application.
+     * 2. Deploy the application.
      *
-     *                 3. During deployment, appserver generates permissions for
-     *                 the J2EE components based on the given deployment
-     *                 descriptor
+     * 3. During deployment, appserver generates permissions for the J2EE components based on the given deployment
+     * descriptor
      *
-     *                 4. Retrieve server side logs and verify the generated
-     *                 permissions matches the expected permission collection
+     * 4. Retrieve server side logs and verify the generated permissions matches the expected permission collection
      *
      */
     public void WebResourcePermissionExcludedPolicy() throws Fault {
@@ -356,8 +335,7 @@ public class Client extends ServiceEETest {
         // 3) verify expected policy statements with generated policy statements
 
         // Get "excluded" WebResourcePermissions
-        Permissions excludedWebResourcePermissions =
-                logProcessor.getSpecificPermissions(excludedPermissions, "WebResourcePermission");
+        Permissions excludedWebResourcePermissions = logProcessor.getSpecificPermissions(excludedPermissions, "WebResourcePermission");
 
         TestUtil.logMsg("Server generated excluded WebResourcePermissions");
         logProcessor.printPermissionCollection(excludedWebResourcePermissions);
@@ -380,29 +358,25 @@ public class Client extends ServiceEETest {
     /**
      * @testName: WebResourcePermissionUnCheckedPolicy
      *
-     * @assertion_ids: JACC:SPEC:36; JACC:SPEC:39; JACC:SPEC:27; JACC:SPEC:28;
-     *                 JACC:SPEC:52; JACC:JAVADOC:17
+     * @assertion_ids: JACC:SPEC:36; JACC:SPEC:39; JACC:SPEC:27; JACC:SPEC:28; JACC:SPEC:52; JACC:JAVADOC:17
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Deploy the application.
+     * 2. Deploy the application.
      *
-     *                 3. During deployment, appserver generates permissions for
-     *                 the J2EE components based on the given deployment
-     *                 descriptor
+     * 3. During deployment, appserver generates permissions for the J2EE components based on the given deployment
+     * descriptor
      *
-     *                 4. Retrieve server side logs and verify the generated
-     *                 unchecked permissions matches the expected permission
-     *                 collection
+     * 4. Retrieve server side logs and verify the generated unchecked permissions matches the expected permission
+     * collection
      */
     public void WebResourcePermissionUnCheckedPolicy() throws Fault {
         Permissions expectedPermissions = new Permissions();
         boolean verified = false;
 
         // Get "unchecked" WebResourcePermissions
-        Permissions uncheckedWebResourcePermissions =
-                logProcessor.getSpecificPermissions(unCheckedPermissions, "WebResourcePermission");
+        Permissions uncheckedWebResourcePermissions = logProcessor.getSpecificPermissions(unCheckedPermissions, "WebResourcePermission");
 
         TestUtil.logMsg("Server generated unchecked WebResourcePermissions");
         logProcessor.printPermissionCollection(uncheckedWebResourcePermissions);
@@ -428,22 +402,19 @@ public class Client extends ServiceEETest {
     /**
      * @testName: WebUserDataPermission
      *
-     * @assertion_ids: JACC:SPEC:41; JACC:SPEC:42; JACC:JAVADOC:54;
-     *                 JACC:JAVADOC:56; JACC:JAVADOC:58; JACC:SPEC:27;
-     *                 JACC:SPEC:28; JACC:SPEC:34; JACC:SPEC:52
+     * @assertion_ids: JACC:SPEC:41; JACC:SPEC:42; JACC:JAVADOC:54; JACC:JAVADOC:56; JACC:JAVADOC:58; JACC:SPEC:27;
+     * JACC:SPEC:28; JACC:SPEC:34; JACC:SPEC:52
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Deploy the application.
+     * 2. Deploy the application.
      *
-     *                 3. During deployment, appserver generates permissions for
-     *                 the J2EE components based on the given deployment
-     *                 descriptor
+     * 3. During deployment, appserver generates permissions for the J2EE components based on the given deployment
+     * descriptor
      *
-     *                 4. Retrieve server side logs and verify the generated
-     *                 unchecked permissions matches the expected permission
-     *                 collection
+     * 4. Retrieve server side logs and verify the generated unchecked permissions matches the expected permission
+     * collection
      *
      *
      */
@@ -458,8 +429,7 @@ public class Client extends ServiceEETest {
         // 3) verify expected policy statements with generated policy statements
 
         // Get "unchecked" WebUserDataPermissions
-        Permissions uncheckedWebUserDataPermissions =
-                logProcessor.getSpecificPermissions(unCheckedPermissions, "WebUserDataPermission");
+        Permissions uncheckedWebUserDataPermissions = logProcessor.getSpecificPermissions(unCheckedPermissions, "WebUserDataPermission");
 
         TestUtil.logMsg("Server generated unchecked WebUserDataPermissions");
         logProcessor.printPermissionCollection(uncheckedWebUserDataPermissions);
@@ -490,8 +460,7 @@ public class Client extends ServiceEETest {
         // 3) verify expected policy statements with generated policy statements
 
         // Get "excluded" WebUserDataPermission
-        Permissions excludedWebUserDataPermissions =
-                logProcessor.getSpecificPermissions(excludedPermissions, "WebUserDataPermission");
+        Permissions excludedWebUserDataPermissions = logProcessor.getSpecificPermissions(excludedPermissions, "WebUserDataPermission");
 
         TestUtil.logMsg("Server generated excluded WebUserDataPermission");
         logProcessor.printPermissionCollection(excludedWebUserDataPermissions);
@@ -515,22 +484,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:JAVADOC:40
      *
-     * @test_Strategy: 1. When we deploy the applications defined in
-     *                 toolsContracts, the equals() and hashcode() method will be
-     *                 called on all JACC Permission classes. ( i.e
-     *                 EJBMethodPermission, EJBRoleRefPermission,
-     *                 WebResourcePermission, WebRoleRefPermission,
-     *                 WebUserDataPermission)
+     * @test_Strategy: 1. When we deploy the applications defined in toolsContracts, the equals() and hashcode() method will
+     * be called on all JACC Permission classes. ( i.e EJBMethodPermission, EJBRoleRefPermission, WebResourcePermission,
+     * WebRoleRefPermission, WebUserDataPermission)
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify the result of WebResourcePermission.equals()
+     * 2. Use FetchLog servlet to read the server side log and verify the result of WebResourcePermission.equals()
      *
      *
      */
     public void WebResourcePermissionEquals() throws Fault {
         boolean verified = false;
 
-        String tempArgs[] = {"WebResourcePermission.equals() : PASSED"};
+        String tempArgs[] = { "WebResourcePermission.equals() : PASSED" };
 
         // verify the log contains the required string.
         verified = logProcessor.verifyLogContains(tempArgs);
@@ -547,22 +512,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:JAVADOC:47
      *
-     * @test_Strategy: 1. When we deploy the applications defined in
-     *                 toolsContracts, the equals() and hashcode() method will be
-     *                 called on all JACC Permission classes. ( i.e
-     *                 EJBMethodPermission, EJBRoleRefPermission,
-     *                 WebResourcePermission, WebRoleRefPermission,
-     *                 WebUserDataPermission)
+     * @test_Strategy: 1. When we deploy the applications defined in toolsContracts, the equals() and hashcode() method will
+     * be called on all JACC Permission classes. ( i.e EJBMethodPermission, EJBRoleRefPermission, WebResourcePermission,
+     * WebRoleRefPermission, WebUserDataPermission)
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify the result of WebRoleRefPermission.equals()
+     * 2. Use FetchLog servlet to read the server side log and verify the result of WebRoleRefPermission.equals()
      *
      *
      */
     public void WebRoleRefPermissionEquals() throws Fault {
         boolean verified = false;
 
-        String tempArgs[] = {"WebRoleRefPermission.equals() : PASSED"};
+        String tempArgs[] = { "WebRoleRefPermission.equals() : PASSED" };
 
         // verify the log contains the required string.
         verified = logProcessor.verifyLogContains(tempArgs);
@@ -579,22 +540,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:JAVADOC:53
      *
-     * @test_Strategy: 1. When we deploy the applications defined in
-     *                 toolsContracts, the equals() and hashcode() method will be
-     *                 called on all JACC Permission classes. ( i.e
-     *                 EJBMethodPermission, EJBRoleRefPermission,
-     *                 WebResourcePermission, WebRoleRefPermission,
-     *                 WebUserDataPermission)
+     * @test_Strategy: 1. When we deploy the applications defined in toolsContracts, the equals() and hashcode() method will
+     * be called on all JACC Permission classes. ( i.e EJBMethodPermission, EJBRoleRefPermission, WebResourcePermission,
+     * WebRoleRefPermission, WebUserDataPermission)
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify the result of WebUserDataPermission.equals()
+     * 2. Use FetchLog servlet to read the server side log and verify the result of WebUserDataPermission.equals()
      *
      *
      */
     public void WebUserDataPermissionEquals() throws Fault {
         boolean verified = false;
 
-        String tempArgs[] = {"WebUserDataPermission.equals() : PASSED"};
+        String tempArgs[] = { "WebUserDataPermission.equals() : PASSED" };
 
         // verify the log contains the required string.
         verified = logProcessor.verifyLogContains(tempArgs);
@@ -611,22 +568,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:JAVADOC:42
      *
-     * @test_Strategy: 1. When we deploy the applications defined in
-     *                 toolsContracts, the equals() and hashcode() method will be
-     *                 called on all JACC Permission classes. ( i.e
-     *                 EJBMethodPermission, EJBRoleRefPermission,
-     *                 WebResourcePermission, WebRoleRefPermission,
-     *                 WebUserDataPermission)
+     * @test_Strategy: 1. When we deploy the applications defined in toolsContracts, the equals() and hashcode() method will
+     * be called on all JACC Permission classes. ( i.e EJBMethodPermission, EJBRoleRefPermission, WebResourcePermission,
+     * WebRoleRefPermission, WebUserDataPermission)
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify the result of WebResourcePermission.hashCode()
+     * 2. Use FetchLog servlet to read the server side log and verify the result of WebResourcePermission.hashCode()
      *
      *
      */
     public void WebResourcePermissionHashCode() throws Fault {
         boolean verified = false;
 
-        String tempArgs[] = {"WebResourcePermission.hashCode() : PASSED"};
+        String tempArgs[] = { "WebResourcePermission.hashCode() : PASSED" };
 
         // verify the log contains the required string.
         verified = logProcessor.verifyLogContains(tempArgs);
@@ -643,22 +596,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:JAVADOC:49
      *
-     * @test_Strategy: 1. When we deploy the applications defined in
-     *                 toolsContracts, the equals() and hashcode() method will be
-     *                 called on all JACC Permission classes. ( i.e
-     *                 EJBMethodPermission, EJBRoleRefPermission,
-     *                 WebResourcePermission, WebRoleRefPermission,
-     *                 WebUserDataPermission)
+     * @test_Strategy: 1. When we deploy the applications defined in toolsContracts, the equals() and hashcode() method will
+     * be called on all JACC Permission classes. ( i.e EJBMethodPermission, EJBRoleRefPermission, WebResourcePermission,
+     * WebRoleRefPermission, WebUserDataPermission)
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify the result of WebRoleRefPermission.hashCode()
+     * 2. Use FetchLog servlet to read the server side log and verify the result of WebRoleRefPermission.hashCode()
      *
      *
      */
     public void WebRoleRefPermissionHashCode() throws Fault {
         boolean verified = false;
 
-        String tempArgs[] = {"WebRoleRefPermission.hashCode() : PASSED"};
+        String tempArgs[] = { "WebRoleRefPermission.hashCode() : PASSED" };
 
         // verify the log contains the required string.
         verified = logProcessor.verifyLogContains(tempArgs);
@@ -675,22 +624,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:JAVADOC:55
      *
-     * @test_Strategy: 1. When we deploy the applications defined in
-     *                 toolsContracts, the equals() and hashcode() method will be
-     *                 called on all JACC Permission classes. ( i.e
-     *                 EJBMethodPermission, EJBRoleRefPermission,
-     *                 WebResourcePermission, WebRoleRefPermission,
-     *                 WebUserDataPermission)
+     * @test_Strategy: 1. When we deploy the applications defined in toolsContracts, the equals() and hashcode() method will
+     * be called on all JACC Permission classes. ( i.e EJBMethodPermission, EJBRoleRefPermission, WebResourcePermission,
+     * WebRoleRefPermission, WebUserDataPermission)
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify the result of WebUserDataPermission.hashCode()
+     * 2. Use FetchLog servlet to read the server side log and verify the result of WebUserDataPermission.hashCode()
      *
      *
      */
     public void WebUserDataPermissionHashCode() throws Fault {
         boolean verified = false;
 
-        String tempArgs[] = {"WebUserDataPermission.hashCode() : PASSED"};
+        String tempArgs[] = { "WebUserDataPermission.hashCode() : PASSED" };
 
         // verify the log contains the required string.
         verified = logProcessor.verifyLogContains(tempArgs);
@@ -707,22 +652,19 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:SPEC:25; JACC:SPEC:15; JACC:SPEC:63
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Use FetchLog servlet to read the server side log to
-     *                 verify PolicyConfigurationFactory is called and
-     *                 instantiated in the server.
+     * 2. Use FetchLog servlet to read the server side log to verify PolicyConfigurationFactory is called and instantiated
+     * in the server.
      *
-     *                 Description The getPolicyConfigurationFactory method must
-     *                 be used in the containers to which the application or
-     *                 module are being deployed to find or instantiate
-     *                 PolicyConfigurationFactory objects.
+     * Description The getPolicyConfigurationFactory method must be used in the containers to which the application or
+     * module are being deployed to find or instantiate PolicyConfigurationFactory objects.
      *
      */
     public void PolicyConfigurationFactory() throws Fault {
         boolean verified = false;
-        String args[] = {"PolicyConfigurationFactory instantiated"};
+        String args[] = { "PolicyConfigurationFactory instantiated" };
 
         // verify whether the log contains required messages.
         verified = logProcessor.verifyLogContains(args);
@@ -739,22 +681,19 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:SPEC:26; JACC:JAVADOC:28; JACC:JAVADOC:29
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Use FetchLog servlet to read the server side log to
-     *                 verify PolicyConfigurationFactory is called and
-     *                 instantiated in the server.
+     * 2. Use FetchLog servlet to read the server side log to verify PolicyConfigurationFactory is called and instantiated
+     * in the server.
      *
-     *                 Description The getPolicyconfiguration method of the
-     *                 factory must be used to find or instantiate
-     *                 PolicyConfiguration objects corresponding to the
-     *                 application or modules being deployed.
+     * Description The getPolicyconfiguration method of the factory must be used to find or instantiate PolicyConfiguration
+     * objects corresponding to the application or modules being deployed.
      *
      */
     public void GetPolicyConfiguration() throws Fault {
         boolean verified = false;
-        String args[] = {"PolicyConfigurationFactory.getPolicyConfiguration() invoked"};
+        String args[] = { "PolicyConfigurationFactory.getPolicyConfiguration() invoked" };
 
         // verify whether the log contains required messages.
         verified = logProcessor.verifyLogContains(args);
@@ -770,32 +709,24 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:SPEC:60;
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Use FetchLog servlet to read the server side log to
-     *                 verify PolicyConfigurationFactory is called and
-     *                 instantiated in the server.
+     * 2. Use FetchLog servlet to read the server side log to verify PolicyConfigurationFactory is called and instantiated
+     * in the server.
      *
-     *                 Description This method looks for occurances of error
-     *                 message within JACCLog.txt where those error messags would
-     *                 only appear in JACCLog.txt if there was a
-     *                 policyConfiguration lifecycle state that was in the wrong
-     *                 state at the wrong time. This can ONLY test the state for
-     *                 being in the 'inService' state or not. So testing is done
-     *                 to make sure the PolicyConfigration state is correct wrt
-     *                 policyConfiguration.inService() for each of the methods
-     *                 defined in the PolicyConfiguration javadoc table. Again,
-     *                 this is not a complete validation of all states, but is
-     *                 only able to validate if the state is inService or not at
-     *                 each of the method calls based on the javadoc table.
-     *                 Occurance of an ERROR message below would be a flag for a
-     *                 method being in an incorrect state.
+     * Description This method looks for occurances of error message within JACCLog.txt where those error messags would only
+     * appear in JACCLog.txt if there was a policyConfiguration lifecycle state that was in the wrong state at the wrong
+     * time. This can ONLY test the state for being in the 'inService' state or not. So testing is done to make sure the
+     * PolicyConfigration state is correct wrt policyConfiguration.inService() for each of the methods defined in the
+     * PolicyConfiguration javadoc table. Again, this is not a complete validation of all states, but is only able to
+     * validate if the state is inService or not at each of the method calls based on the javadoc table. Occurance of an
+     * ERROR message below would be a flag for a method being in an incorrect state.
      */
     public void validateNoInvalidStates() throws Fault {
         boolean verified = false;
-        String args1[] = {"ERROR - our policy config should not be in the INSERVICE state."};
-        String args2[] = {"ERROR - our policy config should be in the INSERVICE state."};
+        String args1[] = { "ERROR - our policy config should not be in the INSERVICE state." };
+        String args2[] = { "ERROR - our policy config should be in the INSERVICE state." };
 
         // verify that the log contains no errors related to the inService state
         verified = logProcessor.verifyLogContains(args1);
@@ -822,20 +753,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:SPEC:54; JACC:SPEC:5; JACC:SPEC:23
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify that TSPolicy.refresh() method is called
+     * 2. Use FetchLog servlet to read the server side log and verify that TSPolicy.refresh() method is called
      *
-     *                 (Note: This assertion implicitly tests JACC:SPEC:5,
-     *                 JACC:SPEC:23 i.e loading provider specified interfaces by
-     *                 the containers)
+     * (Note: This assertion implicitly tests JACC:SPEC:5, JACC:SPEC:23 i.e loading provider specified interfaces by the
+     * containers)
      *
      */
     public void PolicyRefresh() throws Fault {
         boolean verified = false;
-        String tempArgs[] = {"TSPolicy.refresh() invoked"};
+        String tempArgs[] = { "TSPolicy.refresh() invoked" };
 
         // verify the log contains TSPolicy.refresh().
         verified = logProcessor.verifyLogContains(tempArgs);
@@ -850,25 +779,21 @@ public class Client extends ServiceEETest {
     /**
      * @testName: Policy
      *
-     * @assertion_ids: JACC:SPEC:53; JACC:SPEC:56; JACC:SPEC:67; JACC:SPEC:68;
-     *                 JACC:SPEC:105; JACC:SPEC:14; JACC:SPEC:22
+     * @assertion_ids: JACC:SPEC:53; JACC:SPEC:56; JACC:SPEC:67; JACC:SPEC:68; JACC:SPEC:105; JACC:SPEC:14; JACC:SPEC:22
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Use FetchLog servlet, and verify the server side log
-     *                 contains the following string "TSPolicy.refresh() invoked"
+     * 2. Use FetchLog servlet, and verify the server side log contains the following string "TSPolicy.refresh() invoked"
      *
-     *                 3. The occurance of the above string indicates the server
-     *                 used the system property
-     *                 jakarta.security.jacc.policy.provider to instantiate and
-     *                 replace the policy object used by the JRE
+     * 3. The occurance of the above string indicates the server used the system property
+     * jakarta.security.jacc.policy.provider to instantiate and replace the policy object used by the JRE
      */
     public void Policy() throws Fault {
 
         boolean verified = false;
 
-        String args[] = {"TSPolicy.refresh() invoked"};
+        String args[] = { "TSPolicy.refresh() invoked" };
 
         // verify whether the log contains required string.
         verified = logProcessor.verifyLogContains(args);

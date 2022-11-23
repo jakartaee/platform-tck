@@ -48,7 +48,8 @@ public class Project implements java.io.Serializable {
 
     private Collection<Person> persons = new java.util.ArrayList<Person>();
 
-    public Project() {}
+    public Project() {
+    }
 
     public Project(long projId, String name, BigDecimal budget) {
         this.projId = projId;
@@ -99,10 +100,7 @@ public class Project implements java.io.Serializable {
 
     /* Bi-Directional ManyProjectsToManyPersons */
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "PROJECT_PERSON",
-            joinColumns = @JoinColumn(name = "projects_PROJID", referencedColumnName = "PROJID"),
-            inverseJoinColumns = @JoinColumn(name = "persons_PERSONID", referencedColumnName = "PERSONID"))
+    @JoinTable(name = "PROJECT_PERSON", joinColumns = @JoinColumn(name = "projects_PROJID", referencedColumnName = "PROJID"), inverseJoinColumns = @JoinColumn(name = "persons_PERSONID", referencedColumnName = "PERSONID"))
     public Collection<Person> getPersons() {
         return persons;
     }

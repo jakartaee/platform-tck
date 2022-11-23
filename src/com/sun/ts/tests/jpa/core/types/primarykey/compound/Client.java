@@ -39,7 +39,8 @@ public class Client extends PMClientBase {
 
     private static final CompoundPK3 refPK6 = new CompoundPK3(6, "cof0006", 6.0F);
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -56,26 +57,18 @@ public class Client extends PMClientBase {
 
     /**
      * @testName: testCompoundPK1
-     * @assertion_ids: PERSISTENCE:SPEC:1063; PERSISTENCE:SPEC:1064;
-     *                 PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:547;
-     *                 PERSISTENCE:SPEC:1127; PERSISTENCE:SPEC:535;
-     *                 PERSISTENCE:SPEC:544; PERSISTENCE:SPEC:545;
-     *                 PERSISTENCE:SPEC:546
+     * @assertion_ids: PERSISTENCE:SPEC:1063; PERSISTENCE:SPEC:1064; PERSISTENCE:SPEC:533; PERSISTENCE:SPEC:547;
+     * PERSISTENCE:SPEC:1127; PERSISTENCE:SPEC:535; PERSISTENCE:SPEC:544; PERSISTENCE:SPEC:545; PERSISTENCE:SPEC:546
      * @test_Strategy: Define a 3.0 Entity bean with a compound primary key
-     *                 <p/>
-     *                 A composite primary key may either be represented and
-     *                 mapped as an embeddable class or may be represented and
-     *                 mapped to multiple fields or properties of the entity
-     *                 class.
-     *                 <p/>
-     *                 Using an @Embeddable composite primary key class mapped as
-     *                 a @EmbeddedId, Check that you can: - Create bean instances
-     *                 - Discover these instances with
-     *                 EntityManager.find(EntityClass, primaryKey) - Remove the
-     *                 beans using EntityManager.remove(Object entity)
-     *                 <p/>
-     *                 There should be only one EmbeddedId annotation and no Id
-     *                 annotations when the EmbeddedId annotation is used.
+     * <p/>
+     * A composite primary key may either be represented and mapped as an embeddable class or may be represented and mapped
+     * to multiple fields or properties of the entity class.
+     * <p/>
+     * Using an @Embeddable composite primary key class mapped as a @EmbeddedId, Check that you can: - Create bean instances
+     * - Discover these instances with EntityManager.find(EntityClass, primaryKey) - Remove the beans using
+     * EntityManager.remove(Object entity)
+     * <p/>
+     * There should be only one EmbeddedId annotation and no Id annotations when the EmbeddedId annotation is used.
      */
     public void testCompoundPK1() throws Fault {
 
@@ -159,28 +152,20 @@ public class Client extends PMClientBase {
 
     /**
      * @testName: testCompoundPK2
-     * @assertion_ids: PERSISTENCE:SPEC:1065; PERSISTENCE:SPEC:1066;
-     *                 PERSISTENCE:JAVADOC:85; PERSISTENCE:SPEC:548;
-     *                 PERSISTENCE:SPEC:549; PERSISTENCE:SPEC:535;
-     *                 PERSISTENCE:SPEC:544; PERSISTENCE:SPEC:545;
-     *                 PERSISTENCE:SPEC:546; PERSISTENCE:SPEC:1102
+     * @assertion_ids: PERSISTENCE:SPEC:1065; PERSISTENCE:SPEC:1066; PERSISTENCE:JAVADOC:85; PERSISTENCE:SPEC:548;
+     * PERSISTENCE:SPEC:549; PERSISTENCE:SPEC:535; PERSISTENCE:SPEC:544; PERSISTENCE:SPEC:545; PERSISTENCE:SPEC:546;
+     * PERSISTENCE:SPEC:1102
      * @test_Strategy: Define a 3.0 Entity bean with a compound primary key
-     *                 <p/>
-     *                 A composite primary key may either be represented and
-     *                 mapped as an embeddable class or may be represented and
-     *                 mapped to multiple fields or properties of the entity
-     *                 class.
-     *                 <p/>
-     *                 Using the @IdClass annotation to define a composite primary
-     *                 key class where the primary keys are mapped to multiple
-     *                 properties of the entity class, Check that you can: -
-     *                 Create bean instances - Discover these instances with
-     *                 EntityManager.find(EntityClass, primaryKey) - Remove the
-     *                 beans using EntityManager.remove(Object entity)
-     *                 <p/>
-     *                 When using the @IdClass annotion, the @Id annotation must
-     *                 also be applied to such field or properties. This entity
-     *                 uses the @Id annotations on the primary key properties.
+     * <p/>
+     * A composite primary key may either be represented and mapped as an embeddable class or may be represented and mapped
+     * to multiple fields or properties of the entity class.
+     * <p/>
+     * Using the @IdClass annotation to define a composite primary key class where the primary keys are mapped to multiple
+     * properties of the entity class, Check that you can: - Create bean instances - Discover these instances with
+     * EntityManager.find(EntityClass, primaryKey) - Remove the beans using EntityManager.remove(Object entity)
+     * <p/>
+     * When using the @IdClass annotion, the @Id annotation must also be applied to such field or properties. This entity
+     * uses the @Id annotations on the primary key properties.
      */
     public void testCompoundPK2() throws Fault {
 
@@ -244,26 +229,18 @@ public class Client extends PMClientBase {
 
     /**
      * @testName: testCompoundPK3
-     * @assertion_ids: PERSISTENCE:SPEC:1065; PERSISTENCE:SPEC:1066;
-     *                 PERSISTENCE:JAVADOC:85; PERSISTENCE:SPEC:548;
-     *                 PERSISTENCE:SPEC:549; PERSISTENCE:SPEC:535;
-     *                 PERSISTENCE:SPEC:544; PERSISTENCE:SPEC:545
+     * @assertion_ids: PERSISTENCE:SPEC:1065; PERSISTENCE:SPEC:1066; PERSISTENCE:JAVADOC:85; PERSISTENCE:SPEC:548;
+     * PERSISTENCE:SPEC:549; PERSISTENCE:SPEC:535; PERSISTENCE:SPEC:544; PERSISTENCE:SPEC:545
      * @test_Strategy: Define a 3.0 Entity bean with a compound primary key
-     *                 <p/>
-     *                 A composite primary key may either be represented and
-     *                 mapped as an embeddable class or may be represented and
-     *                 mapped to multiple fields or properties of the entity
-     *                 class.
-     *                 <p/>
-     *                 Using the @IdClass annotation to define a composite primary
-     *                 key class where the primary keys are mapped to multiple
-     *                 fields of the entity class, Check that you can: - Create
-     *                 bean instances - Discover these instances with
-     *                 EntityManager.find(EntityClass, primaryKey) - Remove the
-     *                 beans using EntityManager.remove(Object entity)
-     *                 <p/>
-     *                 When using the @IdClass annotion, the @Id annotation must
-     *                 also be applied to such fields.
+     * <p/>
+     * A composite primary key may either be represented and mapped as an embeddable class or may be represented and mapped
+     * to multiple fields or properties of the entity class.
+     * <p/>
+     * Using the @IdClass annotation to define a composite primary key class where the primary keys are mapped to multiple
+     * fields of the entity class, Check that you can: - Create bean instances - Discover these instances with
+     * EntityManager.find(EntityClass, primaryKey) - Remove the beans using EntityManager.remove(Object entity)
+     * <p/>
+     * When using the @IdClass annotion, the @Id annotation must also be applied to such fields.
      */
     public void testCompoundPK3() throws Fault {
 

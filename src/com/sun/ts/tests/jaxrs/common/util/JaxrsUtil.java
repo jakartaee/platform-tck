@@ -55,27 +55,29 @@ public abstract class JaxrsUtil {
     }
 
     public static final <T> //
-            String iterableToString(String separator, Iterable<T> collection) {
-        if (collection != null) return iterableToString(separator, collection.iterator());
+    String iterableToString(String separator, Iterable<T> collection) {
+        if (collection != null)
+            return iterableToString(separator, collection.iterator());
         return "";
     }
 
     public static final <T> //
-            String iterableToString(String separator, Iterator<T> iterator) {
+    String iterableToString(String separator, Iterator<T> iterator) {
         StringBuilder sb = new StringBuilder();
         while (iterator.hasNext()) {
             T item = iterator.next();
             if (item != null) {
                 String appendable = item.toString();
                 sb.append(appendable);
-                if (iterator.hasNext()) sb.append(separator);
+                if (iterator.hasNext())
+                    sb.append(separator);
             }
         }
         return sb.toString();
     }
 
     public static final <T> //
-            String enumerationToString(String separator, Enumeration<T> enumeration) {
+    String enumerationToString(String separator, Enumeration<T> enumeration) {
         StringBuilder sb = new StringBuilder();
         if (enumeration != null)
             while (enumeration.hasMoreElements()) {
@@ -83,7 +85,8 @@ public abstract class JaxrsUtil {
                 if (item != null) {
                     String appendable = item.toString();
                     sb.append(appendable);
-                    if (enumeration.hasMoreElements()) sb.append(separator);
+                    if (enumeration.hasMoreElements())
+                        sb.append(separator);
                 }
             }
         return sb.toString();
@@ -98,7 +101,8 @@ public abstract class JaxrsUtil {
                 if (item != null) {
                     String appendable = item.toString();
                     sb.append(appendable);
-                    if (i != collection.length - 1) sb.append(separator);
+                    if (i != collection.length - 1)
+                        sb.append(separator);
                 }
             }
         return sb.toString();
@@ -135,32 +139,51 @@ public abstract class JaxrsUtil {
 
     public static String toString(Object object) {
         String to = null;
-        if (object == null) to = "null";
-        else if (Iterable.class.isInstance(object)) to = iterableToString(" ", (Iterable<?>) object);
-        else if (Enumeration.class.isInstance(object)) to = enumerationToString(" ", (Enumeration<?>) object);
-        else if (java.util.Map.class.isInstance(object)) to = mapToString((java.util.Map<?, ?>) object);
-        else if (Iterator.class.isInstance(object)) to = iterableToString(" ", (Iterator<?>) object);
-        else if (Array.class.isInstance(object)) to = iterableToString(" ", (Object[]) object);
-        else if (object.getClass().isArray()) to = primitiveArrayToString(object);
-        else to = String.valueOf(object);
+        if (object == null)
+            to = "null";
+        else if (Iterable.class.isInstance(object))
+            to = iterableToString(" ", (Iterable<?>) object);
+        else if (Enumeration.class.isInstance(object))
+            to = enumerationToString(" ", (Enumeration<?>) object);
+        else if (java.util.Map.class.isInstance(object))
+            to = mapToString((java.util.Map<?, ?>) object);
+        else if (Iterator.class.isInstance(object))
+            to = iterableToString(" ", (Iterator<?>) object);
+        else if (Array.class.isInstance(object))
+            to = iterableToString(" ", (Object[]) object);
+        else if (object.getClass().isArray())
+            to = primitiveArrayToString(object);
+        else
+            to = String.valueOf(object);
         return to;
     }
 
     public static String primitiveArrayToString(Object array) {
         String to = null;
-        if (array == null) to = "null";
+        if (array == null)
+            to = "null";
         else if (array.getClass().isArray()) {
             String sarray = array.toString();
-            if (sarray.startsWith("[I")) to = Arrays.toString((int[]) array);
-            else if (sarray.startsWith("[B")) to = Arrays.toString((byte[]) array);
-            else if (sarray.startsWith("[J")) to = Arrays.toString((long[]) array);
-            else if (sarray.startsWith("[C")) to = Arrays.toString((char[]) array);
-            else if (sarray.startsWith("[S")) to = Arrays.toString((short[]) array);
-            else if (sarray.startsWith("[F")) to = Arrays.toString((float[]) array);
-            else if (sarray.startsWith("[D")) to = Arrays.toString((double[]) array);
-            else if (sarray.startsWith("[Z")) to = Arrays.toString((boolean[]) array);
-            else if (sarray.startsWith("[L")) to = Arrays.toString((Object[]) array);
-        } else to = String.valueOf(array);
+            if (sarray.startsWith("[I"))
+                to = Arrays.toString((int[]) array);
+            else if (sarray.startsWith("[B"))
+                to = Arrays.toString((byte[]) array);
+            else if (sarray.startsWith("[J"))
+                to = Arrays.toString((long[]) array);
+            else if (sarray.startsWith("[C"))
+                to = Arrays.toString((char[]) array);
+            else if (sarray.startsWith("[S"))
+                to = Arrays.toString((short[]) array);
+            else if (sarray.startsWith("[F"))
+                to = Arrays.toString((float[]) array);
+            else if (sarray.startsWith("[D"))
+                to = Arrays.toString((double[]) array);
+            else if (sarray.startsWith("[Z"))
+                to = Arrays.toString((boolean[]) array);
+            else if (sarray.startsWith("[L"))
+                to = Arrays.toString((Object[]) array);
+        } else
+            to = String.valueOf(array);
         return to;
     }
 }

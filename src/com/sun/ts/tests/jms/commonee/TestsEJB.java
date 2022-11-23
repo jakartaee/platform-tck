@@ -104,17 +104,17 @@ public class TestsEJB implements Tests {
 
     private int byteValue2 = 244;
 
-    private byte[] bytesValue = {127, -127, 1, 0};
+    private byte[] bytesValue = { 127, -127, 1, 0 };
 
-    private byte[] bytesValueRecvd = {0, 0, 0, 0};
+    private byte[] bytesValueRecvd = { 0, 0, 0, 0 };
 
-    private byte[] byteValues = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    private byte[] byteValues = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-    private byte[] byteValues2 = {11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+    private byte[] byteValues2 = { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 
-    private byte[] byteValuesReturned = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private byte[] byteValuesReturned = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-    private byte[] byteValuesReturned2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private byte[] byteValuesReturned2 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     private char charValue = 'Z';
 
@@ -439,7 +439,8 @@ public class TestsEJB implements Tests {
                 while (msgs.hasMoreElements()) {
                     tempMsg = (TextMessage) msgs.nextElement();
                     totalMsg++;
-                    if (!(tempMsg.getText().indexOf(message) < 0)) msgCount++;
+                    if (!(tempMsg.getText().indexOf(message) < 0))
+                        msgCount++;
                 }
                 TestUtil.logTrace("found " + msgCount + " messages total in browser");
             } while ((msgCount < num) && (i < 10));
@@ -493,7 +494,8 @@ public class TestsEJB implements Tests {
                 while (msgs.hasMoreElements()) {
                     tempMsg = (TextMessage) msgs.nextElement();
                     totalMsg++;
-                    if (!(tempMsg.getText().indexOf(message) < 0)) msgCount++;
+                    if (!(tempMsg.getText().indexOf(message) < 0))
+                        msgCount++;
                 }
                 TestUtil.logTrace("found " + msgCount + " messages total in browser");
             } while ((msgCount < num) && (i < 10));
@@ -848,27 +850,34 @@ public class TestsEJB implements Tests {
 
             // create default QueueSender
             TestUtil.logTrace("Creating QueueSender");
-            if (setQueue) qsender = qsess.createSender(queue);
-            else qsender = qsess.createSender((Queue) null);
+            if (setQueue)
+                qsender = qsess.createSender(queue);
+            else
+                qsender = qsess.createSender((Queue) null);
             qsender.setPriority(priority);
             qsender.setTimeToLive(forever);
-            if (mode != DeliveryMode.PERSISTENT) qsender.setDeliveryMode(mode);
+            if (mode != DeliveryMode.PERSISTENT)
+                qsender.setDeliveryMode(mode);
 
             TestUtil.logMsg("Creating 1 TextMessage");
             messageSent = qsess.createTextMessage();
 
-            if (text != null) messageSent.setText(text);
+            if (text != null)
+                messageSent.setText(text);
             messageSent.setStringProperty("COM_SUN_JMS_TESTNAME", TestName);
             messageSent.setJMSCorrelationID(jmsCorrelationID);
             messageSent.setJMSType(type);
 
-            if (setDest) messageSent.setJMSReplyTo(queue);
+            if (setDest)
+                messageSent.setJMSReplyTo(queue);
 
             // -----------------------------------------------------------------------------
             TestUtil.logMsg("Sending a TextMessage");
             timeBeforeSend = System.currentTimeMillis();
-            if (setQueue) qsender.send(messageSent);
-            else qsender.send(queue, messageSent);
+            if (setQueue)
+                qsender.send(messageSent);
+            else
+                qsender.send(queue, messageSent);
             timeAfterSend = System.currentTimeMillis();
 
             valueAtSend = logPropertyAtSend(messageSent, timeBeforeSend, timeAfterSend);
@@ -889,28 +898,21 @@ public class TestsEJB implements Tests {
     }
 
     /*
-     * public String receiveTextMessage_Q() { TextMessage receivedM = null; String
-     * tmp = null;
+     * public String receiveTextMessage_Q() { TextMessage receivedM = null; String tmp = null;
      *
-     * try { //get QueueConnectionFactory and QueueConnection setup_Q();
-     * qconn.start();
+     * try { //get QueueConnectionFactory and QueueConnection setup_Q(); qconn.start();
      *
-     * // create default Session TestUtil.logTrace("Creating QueueSession");
-     * QueueSession qsess = qconn.createQueueSession(true,
-     * Session.AUTO_ACKNOWLEDGE);
+     * // create default Session TestUtil.logTrace("Creating QueueSession"); QueueSession qsess =
+     * qconn.createQueueSession(true, Session.AUTO_ACKNOWLEDGE);
      *
-     * // create default QueueReceiver
-     * TestUtil.logTrace("Creating QueueReceiver"); QueueReceiver qreceiver =
+     * // create default QueueReceiver TestUtil.logTrace("Creating QueueReceiver"); QueueReceiver qreceiver =
      * qsess.createReceiver(queue);
      *
-     * receivedM = (TextMessage) qreceiver.receive(timeout); tmp =
-     * receivedM.getText(); } catch (Exception e ) {
-     * TestUtil.logErr("Failed to receive a message in receiveTextMessage_Q: ",
-     * e); throw new EJBException(e); } finally { if ( qconn != null) { try {
-     * TestUtil.logTrace("Closing Connection in receiveTextMessage_Q");
-     * qconn.close(); } catch (Exception ce) {
-     * TestUtil.logErr("Error closing conn in receiveTextMessage_Q" +
-     * ce.getMessage(), ce); } } } return tmp; }
+     * receivedM = (TextMessage) qreceiver.receive(timeout); tmp = receivedM.getText(); } catch (Exception e ) {
+     * TestUtil.logErr("Failed to receive a message in receiveTextMessage_Q: ", e); throw new EJBException(e); } finally {
+     * if ( qconn != null) { try { TestUtil.logTrace("Closing Connection in receiveTextMessage_Q"); qconn.close(); } catch
+     * (Exception ce) { TestUtil.logErr("Error closing conn in receiveTextMessage_Q" + ce.getMessage(), ce); } } } return
+     * tmp; }
      */
 
     public ArrayList sendFullBytesMessage_Q(String TestName) {
@@ -939,7 +941,8 @@ public class TestsEJB implements Tests {
             QueueSender qsender = qsess.createSender(queue);
             qsender.setPriority(priority);
             qsender.setTimeToLive(forever);
-            if (mode != DeliveryMode.PERSISTENT) qsender.setDeliveryMode(mode);
+            if (mode != DeliveryMode.PERSISTENT)
+                qsender.setDeliveryMode(mode);
 
             TestUtil.logMsg("Creating 1 BytesMessage");
             messageSentB = qsess.createBytesMessage();
@@ -948,7 +951,8 @@ public class TestsEJB implements Tests {
             messageSentB.setJMSCorrelationID(jmsCorrelationID);
             messageSentB.setJMSType(type);
 
-            if (setDest) messageSentB.setJMSReplyTo(queue);
+            if (setDest)
+                messageSentB.setJMSReplyTo(queue);
 
             // -----------------------------------------------------------------------------
             TestUtil.logMsg("Writing one of each primitive type to the message");
@@ -1223,7 +1227,8 @@ public class TestsEJB implements Tests {
             QueueSender qsender = qsess.createSender(queue);
             qsender.setPriority(priority);
             qsender.setTimeToLive(forever);
-            if (mode != DeliveryMode.PERSISTENT) qsender.setDeliveryMode(mode);
+            if (mode != DeliveryMode.PERSISTENT)
+                qsender.setDeliveryMode(mode);
 
             TestUtil.logMsg("Creating 1 MapMessage");
             messageSent = qsess.createMapMessage();
@@ -1232,7 +1237,8 @@ public class TestsEJB implements Tests {
             messageSent.setJMSCorrelationID(jmsCorrelationID);
             messageSent.setJMSType(type);
 
-            if (setDest) messageSent.setJMSReplyTo(queue);
+            if (setDest)
+                messageSent.setJMSReplyTo(queue);
 
             messageSent.setBoolean("booleanValue", booleanValue);
             messageSent.setByte("byteValue", byteValue);
@@ -1467,7 +1473,8 @@ public class TestsEJB implements Tests {
             QueueSender qsender = qsess.createSender(queue);
             qsender.setPriority(priority);
             qsender.setTimeToLive(forever);
-            if (mode != DeliveryMode.PERSISTENT) qsender.setDeliveryMode(mode);
+            if (mode != DeliveryMode.PERSISTENT)
+                qsender.setDeliveryMode(mode);
 
             TestUtil.logMsg("Creating 1 StreamMessage");
             messageSent = qsess.createStreamMessage();
@@ -1476,7 +1483,8 @@ public class TestsEJB implements Tests {
             messageSent.setJMSCorrelationID(jmsCorrelationID);
             messageSent.setJMSType(type);
 
-            if (setDest) messageSent.setJMSReplyTo(queue);
+            if (setDest)
+                messageSent.setJMSReplyTo(queue);
 
             messageSent.writeBytes(byteValues2, 0, byteValues.length);
             messageSent.writeBoolean(booleanValue);
@@ -1726,7 +1734,8 @@ public class TestsEJB implements Tests {
             QueueSender qsender = qsess.createSender(queue);
             qsender.setPriority(priority);
             qsender.setTimeToLive(forever);
-            if (mode != DeliveryMode.PERSISTENT) qsender.setDeliveryMode(mode);
+            if (mode != DeliveryMode.PERSISTENT)
+                qsender.setDeliveryMode(mode);
 
             TestUtil.logMsg("Creating 1 ObjectMessage");
             messageSent = qsess.createObjectMessage();
@@ -1736,7 +1745,8 @@ public class TestsEJB implements Tests {
             messageSent.setJMSCorrelationID(jmsCorrelationID);
             messageSent.setJMSType(type);
 
-            if (setDest) messageSent.setJMSReplyTo(queue);
+            if (setDest)
+                messageSent.setJMSReplyTo(queue);
 
             TestUtil.logTrace("Sending an ObjectMessage...");
             timeBeforeSend = System.currentTimeMillis();
@@ -1866,8 +1876,10 @@ public class TestsEJB implements Tests {
 
         try {
             replyto = msg.getJMSReplyTo();
-            if (replyto != null) return ((Queue) replyto).getQueueName();
-            else return null;
+            if (replyto != null)
+                return ((Queue) replyto).getQueueName();
+            else
+                return null;
         } catch (Exception e) {
             TestUtil.logErr("Exception calling getJMSReplyTo in getReplyTo: ", e);
             return null;

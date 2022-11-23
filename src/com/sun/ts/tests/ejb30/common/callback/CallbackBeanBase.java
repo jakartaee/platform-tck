@@ -28,7 +28,8 @@ public abstract class CallbackBeanBase extends SharedCallbackBeanBase implements
     public static final String isPostConstructOrPreDestroyCalledTest = "isPostConstructOrPreDestroyCalledTest";
 
     // ================== business methods ====================================
-    public void removeFoo() {}
+    public void removeFoo() {
+    }
 
     public boolean isPostConstructCalledTest() {
         return isPostConstructCalled();

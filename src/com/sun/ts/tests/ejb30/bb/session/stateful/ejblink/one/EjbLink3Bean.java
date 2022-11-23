@@ -32,18 +32,20 @@ import jakarta.ejb.Stateful;
 // @Local({EjbLinkIF.class})
 
 /*
- * This bean is to be packaged in the same ejb-jar as EjbLink2Bean. bean2 calls
- * bean3.call(), but this bean does not call any other beans.
+ * This bean is to be packaged in the same ejb-jar as EjbLink2Bean. bean2 calls bean3.call(), but this bean does not
+ * call any other beans.
  */
 public class EjbLink3Bean extends EjbLinkBeanBase implements EjbLinkIF {
 
     @Resource
     private SessionContext sessionContext;
 
-    public EjbLink3Bean() {}
+    public EjbLink3Bean() {
+    }
 
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
 

@@ -39,9 +39,8 @@ public class DynamicAttributesTag extends TagSupport implements DynamicAttribute
     }
 
     /**
-     * Sets the _throwException instance variable. If true, when
-     * setDynamicAttribute() is called by the container, a JspException will be
-     * thrown.
+     * Sets the _throwException instance variable. If true, when setDynamicAttribute() is called by the container, a
+     * JspException will be thrown.
      *
      * @param throwException
      */
@@ -50,13 +49,11 @@ public class DynamicAttributesTag extends TagSupport implements DynamicAttribute
     }
 
     /**
-     * Validates that setDynamicAttributes is properly called and will cause a
-     * test failure if setDynamicAttribute throws a JspException and doStartTag()
-     * is called.
+     * Validates that setDynamicAttributes is properly called and will cause a test failure if setDynamicAttribute throws a
+     * JspException and doStartTag() is called.
      *
      * @return SKIP_BODY
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doStartTag() throws JspException {
         try {
@@ -79,18 +76,13 @@ public class DynamicAttributesTag extends TagSupport implements DynamicAttribute
     }
 
     /**
-     * Called by the container if a tag has an attribute present and not declared
-     * by the TLD. If _throwException is true, a JspException will be thrown by
-     * this method.
+     * Called by the container if a tag has an attribute present and not declared by the TLD. If _throwException is true, a
+     * JspException will be thrown by this method.
      *
-     * @param uri
-     *          - the namespace of the attribute (if any)
-     * @param localName
-     *          - the attribute name
-     * @param value
-     *          - the attribute value
-     * @throws JspException
-     *           if _throwException is true
+     * @param uri - the namespace of the attribute (if any)
+     * @param localName - the attribute name
+     * @param value - the attribute value
+     * @throws JspException if _throwException is true
      */
     public void setDynamicAttribute(String uri, String localName, Object value) throws JspException {
         _setDynCalled = true;

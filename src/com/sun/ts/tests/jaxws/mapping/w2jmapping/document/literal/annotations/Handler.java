@@ -28,16 +28,19 @@ import jakarta.xml.ws.soap.*;
 
 public class Handler implements jakarta.xml.ws.handler.LogicalHandler<LogicalMessageContext> {
     @PostConstruct
-    public void myInit() {}
+    public void myInit() {
+    }
 
     @PreDestroy
-    public void myDestroy() {}
+    public void myDestroy() {
+    }
 
     public boolean handleMessage(LogicalMessageContext context) {
         return true;
     }
 
-    public void close(MessageContext context) {}
+    public void close(MessageContext context) {
+    }
 
     public boolean handleFault(LogicalMessageContext context) {
         return true;

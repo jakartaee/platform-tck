@@ -22,12 +22,7 @@ package com.sun.ts.tests.jaxws.ee.w2j.document.literal.catalogtest;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HelloPort",
-        serviceName = "CatalogTestService",
-        targetNamespace = "http://catalogtestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLCatalogTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.catalogtest.Hello")
+@WebService(portName = "HelloPort", serviceName = "CatalogTestService", targetNamespace = "http://catalogtestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLCatalogTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.catalogtest.Hello")
 public class HelloImpl implements Hello {
 
     public HelloResponse hello(HelloRequest req) {

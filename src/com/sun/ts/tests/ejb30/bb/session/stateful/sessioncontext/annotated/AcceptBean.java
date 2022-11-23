@@ -33,8 +33,8 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "AcceptBean")
-@Remote({AcceptIF.class})
-@Local({AcceptLocalIF.class})
+@Remote({ AcceptIF.class })
+@Local({ AcceptLocalIF.class })
 // use bmt so that it can be safely removed from the calling bean (TestBean)
 @TransactionManagement(TransactionManagementType.BEAN)
 public class AcceptBean extends AcceptBeanBase {
@@ -45,8 +45,10 @@ public class AcceptBean extends AcceptBeanBase {
         return sessionContext;
     }
 
-    public AcceptBean() {}
+    public AcceptBean() {
+    }
 
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 }

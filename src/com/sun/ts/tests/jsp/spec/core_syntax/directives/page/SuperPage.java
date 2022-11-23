@@ -95,9 +95,11 @@ public abstract class SuperPage extends HttpServlet implements HttpJspPage {
         jspDestroy();
     }
 
-    public void jspInit() {}
+    public void jspInit() {
+    }
 
-    public void jspDestroy() {}
+    public void jspDestroy() {
+    }
 
     // to be provided by JSP processor
 

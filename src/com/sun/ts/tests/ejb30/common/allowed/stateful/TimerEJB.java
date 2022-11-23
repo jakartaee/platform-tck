@@ -34,7 +34,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 @Stateless(name = "TimerEJB")
-@Local({TimerLocalIF.class})
+@Local({ TimerLocalIF.class })
 public class TimerEJB implements TimerLocalIF {
     private SessionContext sessionContext;
 
@@ -45,7 +45,8 @@ public class TimerEJB implements TimerLocalIF {
 
     @Timeout
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    private void ejbTimeout(jakarta.ejb.Timer timer) {}
+    private void ejbTimeout(jakarta.ejb.Timer timer) {
+    }
 
     // @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public TimerHandle startTimer(long duration, String info) {

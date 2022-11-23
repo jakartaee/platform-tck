@@ -20,12 +20,7 @@ import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.Holder;
 
-@WebService(
-        portName = "EchoPort",
-        serviceName = "EchoService",
-        targetNamespace = "http://Echo.org",
-        wsdlLocation = "META-INF/wsdl/EchoService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefAndAddressingCombinedTest.Echo")
+@WebService(portName = "EchoPort", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "META-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefAndAddressingCombinedTest.Echo")
 @Stateless(name = "WSEjbWSRefAndAddressingCombinedTest")
 public class EchoBean {
 

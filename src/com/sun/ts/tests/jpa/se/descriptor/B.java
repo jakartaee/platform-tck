@@ -36,7 +36,8 @@ public class B implements java.io.Serializable {
     // ===========================================================
     // constructors
 
-    public B() {}
+    public B() {
+    }
 
     public B(String id, String name, int value) {
         this.id = id;
@@ -89,8 +90,10 @@ public class B implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof B)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof B))
+            return false;
 
         B o1 = (B) o;
 

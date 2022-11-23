@@ -32,13 +32,11 @@ public class FormatRequestWrapper extends HttpServletRequestWrapper {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * This wrapper method will add an attribute to the passed request when this
-     * method is called.
+     * This wrapper method will add an attribute to the passed request when this method is called.
      */
     public void setCharacterEncoding(String enc) throws UnsupportedEncodingException {
         super.setAttribute("charenc", enc.toLowerCase());

@@ -40,22 +40,17 @@ public interface AccessTimeoutIF extends StatefulConcurrencyIF {
 
     public static final String beanClassLevelAccessTimeoutBeanLocal = "beanClassLevelAccessTimeoutBeanLocal";
 
-    public static final String beanClassMethodLevelAccessTimeoutBeanLocal =
-            "beanClassMethodLevelAccessTimeoutBeanLocal";
+    public static final String beanClassMethodLevelAccessTimeoutBeanLocal = "beanClassMethodLevelAccessTimeoutBeanLocal";
 
-    public static final String beanClassMethodLevelOverrideAccessTimeoutBeanLocal =
-            "beanClassMethodLevelOverrideAccessTimeoutBeanLocal";
+    public static final String beanClassMethodLevelOverrideAccessTimeoutBeanLocal = "beanClassMethodLevelOverrideAccessTimeoutBeanLocal";
 
-    public static final String annotatedSuperClassAccessTimeoutBeanRemote =
-            "annotatedSuperClassAccessTimeoutBeanRemote";
+    public static final String annotatedSuperClassAccessTimeoutBeanRemote = "annotatedSuperClassAccessTimeoutBeanRemote";
 
     public static final String beanClassLevelAccessTimeoutBeanRemote = "beanClassLevelAccessTimeoutBeanRemote";
 
-    public static final String beanClassMethodLevelAccessTimeoutBeanRemote =
-            "beanClassMethodLevelAccessTimeoutBeanRemote";
+    public static final String beanClassMethodLevelAccessTimeoutBeanRemote = "beanClassMethodLevelAccessTimeoutBeanRemote";
 
-    public static final String beanClassMethodLevelOverrideAccessTimeoutBeanRemote =
-            "beanClassMethodLevelOverrideAccessTimeoutBeanRemote";
+    public static final String beanClassMethodLevelOverrideAccessTimeoutBeanRemote = "beanClassMethodLevelOverrideAccessTimeoutBeanRemote";
 
     /**
      * These methods are not async method unless declared as such in subclasses.

@@ -24,14 +24,14 @@ import java.util.Arrays;
 
 public class AlgoResources5_sw extends java.util.ListResourceBundle {
 
-    private static final Object[][] resources = {{"mkey", "sw message"}};
+    private static final Object[][] resources = { { "mkey", "sw message" } };
 
     /** Creates new AlogResources5_sw */
-    public AlgoResources5_sw() {}
+    public AlgoResources5_sw() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
     public java.lang.Object[][] getContents() {
         return Arrays.copyOf(resources, resources.length);

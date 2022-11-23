@@ -155,7 +155,8 @@ public class Client extends ServiceEETest {
     public void cleanup() throws Fault {
         try {
             TestUtil.logMsg("Close JMSContext");
-            if (context != null) context.close();
+            if (context != null)
+                context.close();
             if (queueTest) {
                 TestUtil.logMsg("Flush any messages left on Queue");
                 tool.flushDestination();
@@ -175,11 +176,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1102; JMS:JAVADOC:1104; JMS:JAVADOC:1106;
      *
-     * @test_Strategy: Test the JMSConsumer receive API's. Tests the following
-     * API's:
+     * @test_Strategy: Test the JMSConsumer receive API's. Tests the following API's:
      *
-     * JMSConsumer.receive() JMSConsumer.receive(long timeout)
-     * JMSConsumer.receiveNoWait()
+     * JMSConsumer.receive() JMSConsumer.receive(long timeout) JMSConsumer.receiveNoWait()
      *
      */
     public void queueReceiveTests() throws Fault {
@@ -279,7 +278,8 @@ public class Client extends ServiceEETest {
             throw new Fault("queueReceiveTests", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -294,21 +294,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1369; JMS:JAVADOC:1372; JMS:JAVADOC:1375;
      *
-     * @test_Strategy: Send and receive messages of the following types:
-     * BytesMessage, MapMessage, ObjectMessage, TextMessage. Test the following
-     * API's: JMSConsumer.receiveBody(Class<T>), JMSConsumer.receiveBody(Class<T>,
-     * long), and JMSConsumer.recieveBodyNoWait(Class<T>)
+     * @test_Strategy: Send and receive messages of the following types: BytesMessage, MapMessage, ObjectMessage,
+     * TextMessage. Test the following API's: JMSConsumer.receiveBody(Class<T>), JMSConsumer.receiveBody(Class<T>, long),
+     * and JMSConsumer.recieveBodyNoWait(Class<T>)
      *
-     * <T> T = JMSConsumer.receiveBody(Class<T>) <T> T =
-     * JMSConsumer.receiveBody(Class<T>, long) <T> T =
+     * <T> T = JMSConsumer.receiveBody(Class<T>) <T> T = JMSConsumer.receiveBody(Class<T>, long) <T> T =
      * JMSConsumer.receiveBodyNoWait(Class<T>)
      *
      * Test the following:
      *
-     * String message = JMSConsumer.receiveBody(String.class) StringBuffer message
-     * = JMSConsumer.receiveBody(StringBuffer.class, long); byte[] message =
-     * JMSConsumer.receiveBody(byte[].class, long); Map message =
-     * JMSConsumer.receiveBodyNoWait(Map.class);
+     * String message = JMSConsumer.receiveBody(String.class) StringBuffer message =
+     * JMSConsumer.receiveBody(StringBuffer.class, long); byte[] message = JMSConsumer.receiveBody(byte[].class, long); Map
+     * message = JMSConsumer.receiveBodyNoWait(Map.class);
      *
      */
     public void queueReceiveBodyTests() throws Fault {
@@ -435,7 +432,8 @@ public class Client extends ServiceEETest {
                 for (int i = 0; i < 5; i++) {
                     TestUtil.sleepSec(1);
                     map = consumer.receiveBodyNoWait(Map.class);
-                    if (map != null) break;
+                    if (map != null)
+                        break;
                 }
             }
             if (map == null) {
@@ -478,7 +476,8 @@ public class Client extends ServiceEETest {
             throw new Fault("queueReceiveBodyTests", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -493,9 +492,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1371; JMS:JAVADOC:1374; JMS:JAVADOC:1377;
      *
-     * @test_Strategy: Test exception cases for JMSConsumer.receiveBody(Class<T>),
-     * JMSConsumer.receiveBody(Class<T>, long), and
-     * JMSConsumer.recieveBodyNoWait(Class<T>).
+     * @test_Strategy: Test exception cases for JMSConsumer.receiveBody(Class<T>), JMSConsumer.receiveBody(Class<T>, long),
+     * and JMSConsumer.recieveBodyNoWait(Class<T>).
      *
      * Test for exception MessageFormatRuntimeException.
      *
@@ -580,7 +578,8 @@ public class Client extends ServiceEETest {
             try {
                 for (int i = 0; i < 5; i++) {
                     TestUtil.sleepSec(1);
-                    if (consumer.receiveBodyNoWait(Boolean.class) != null) break;
+                    if (consumer.receiveBodyNoWait(Boolean.class) != null)
+                        break;
                 }
                 TestUtil.logErr("Did not throw expected MessageFormatRuntimeException");
                 pass = false;
@@ -657,7 +656,8 @@ public class Client extends ServiceEETest {
             throw new Fault("queueReceiveBodyExceptionTests", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -729,7 +729,8 @@ public class Client extends ServiceEETest {
             throw new Fault("queueGetMessageSelectorTest", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -812,11 +813,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1102; JMS:JAVADOC:1104; JMS:JAVADOC:1106;
      *
-     * @test_Strategy: Test the JMSConsumer receive API's. Tests the following
-     * API's:
+     * @test_Strategy: Test the JMSConsumer receive API's. Tests the following API's:
      *
-     * JMSConsumer.receive() JMSConsumer.receive(long timeout)
-     * JMSConsumer.receiveNoWait()
+     * JMSConsumer.receive() JMSConsumer.receive(long timeout) JMSConsumer.receiveNoWait()
      *
      */
     public void topicReceiveTests() throws Fault {
@@ -916,7 +915,8 @@ public class Client extends ServiceEETest {
             throw new Fault("topicReceiveTests", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -931,21 +931,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1369; JMS:JAVADOC:1372; JMS:JAVADOC:1375;
      *
-     * @test_Strategy: Send and receive messages of the following types:
-     * BytesMessage, MapMessage, ObjectMessage, TextMessage. Test the following
-     * API's: JMSConsumer.receiveBody(Class<T>), JMSConsumer.receiveBody(Class<T>,
-     * long), and JMSConsumer.recieveBodyNoWait(Class<T>)
+     * @test_Strategy: Send and receive messages of the following types: BytesMessage, MapMessage, ObjectMessage,
+     * TextMessage. Test the following API's: JMSConsumer.receiveBody(Class<T>), JMSConsumer.receiveBody(Class<T>, long),
+     * and JMSConsumer.recieveBodyNoWait(Class<T>)
      *
-     * <T> T = JMSConsumer.receiveBody(Class<T>) <T> T =
-     * JMSConsumer.receiveBody(Class<T>, long) <T> T =
+     * <T> T = JMSConsumer.receiveBody(Class<T>) <T> T = JMSConsumer.receiveBody(Class<T>, long) <T> T =
      * JMSConsumer.receiveBodyNoWait(Class<T>)
      *
      * Test the following:
      *
-     * String message = JMSConsumer.receiveBody(String.class) StringBuffer message
-     * = JMSConsumer.receiveBody(StringBuffer.class, long); byte[] message =
-     * JMSConsumer.receiveBody(byte[].class, long); Map message =
-     * JMSConsumer.receiveBodyNoWait(Map.class);
+     * String message = JMSConsumer.receiveBody(String.class) StringBuffer message =
+     * JMSConsumer.receiveBody(StringBuffer.class, long); byte[] message = JMSConsumer.receiveBody(byte[].class, long); Map
+     * message = JMSConsumer.receiveBodyNoWait(Map.class);
      *
      */
     public void topicReceiveBodyTests() throws Fault {
@@ -1072,7 +1069,8 @@ public class Client extends ServiceEETest {
                 for (int i = 0; i < 5; i++) {
                     TestUtil.sleepSec(1);
                     map = consumer.receiveBodyNoWait(Map.class);
-                    if (map != null) break;
+                    if (map != null)
+                        break;
                 }
             }
             if (map == null) {
@@ -1115,7 +1113,8 @@ public class Client extends ServiceEETest {
             throw new Fault("topicReceiveBodyTests", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -1130,9 +1129,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1371; JMS:JAVADOC:1374; JMS:JAVADOC:1377;
      *
-     * @test_Strategy: Test exception cases for JMSConsumer.receiveBody(Class<T>),
-     * JMSConsumer.receiveBody(Class<T>, long), and
-     * JMSConsumer.recieveBodyNoWait(Class<T>).
+     * @test_Strategy: Test exception cases for JMSConsumer.receiveBody(Class<T>), JMSConsumer.receiveBody(Class<T>, long),
+     * and JMSConsumer.recieveBodyNoWait(Class<T>).
      *
      * Test for exception MessageFormatRuntimeException.
      *
@@ -1217,7 +1215,8 @@ public class Client extends ServiceEETest {
             try {
                 for (int i = 0; i < 5; i++) {
                     TestUtil.sleepSec(1);
-                    if (consumer.receiveBodyNoWait(Boolean.class) != null) break;
+                    if (consumer.receiveBodyNoWait(Boolean.class) != null)
+                        break;
                 }
                 TestUtil.logErr("Did not throw expected MessageFormatRuntimeException");
                 pass = false;
@@ -1294,7 +1293,8 @@ public class Client extends ServiceEETest {
             throw new Fault("topicReceiveBodyExceptionTests", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -1366,7 +1366,8 @@ public class Client extends ServiceEETest {
             throw new Fault("topicGetMessageSelectorTest", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }

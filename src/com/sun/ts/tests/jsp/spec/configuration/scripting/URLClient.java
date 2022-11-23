@@ -30,9 +30,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -41,8 +40,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -61,10 +59,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:256
      *
-     * @test_Strategy: Validate that if scripting-invalid is not specified in the
-     * target property-group, that a translation error is not generated and the
-     * scripting elements are evaluated. This test is performed against standard
-     * syntax JSP pages as well as JSP documents.
+     * @test_Strategy: Validate that if scripting-invalid is not specified in the target property-group, that a translation
+     * error is not generated and the scripting elements are evaluated. This test is performed against standard syntax JSP
+     * pages as well as JSP documents.
      */
     public void jspConfigurationScriptingUnspecifiedTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_config_scr_web/scrunspec/DeclarationTest.jsp HTTP/1.1");
@@ -92,10 +89,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:144
      *
-     * @test_Strategy: Validate that if scripting-invalid is set to false in the
-     * target property-group, that a translation error is not generated and the
-     * scripting elements are evaluated. This test is performed against standard
-     * syntax JSP pages as well as JSP documents.
+     * @test_Strategy: Validate that if scripting-invalid is set to false in the target property-group, that a translation
+     * error is not generated and the scripting elements are evaluated. This test is performed against standard syntax JSP
+     * pages as well as JSP documents.
      */
     public void jspConfigurationScriptingFalseTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_config_scr_web/scrfalse/DeclarationTest.jsp HTTP/1.1");
@@ -126,10 +122,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:143
      *
-     * @test_Strategy: Validate that if scripting-invalid is set to false in the
-     * target property-group, that a translation error is generated (except in the
-     * case of RT expressions). This test is performed against standard syntax JSP
-     * pages as well as JSP documents.
+     * @test_Strategy: Validate that if scripting-invalid is set to false in the target property-group, that a translation
+     * error is generated (except in the case of RT expressions). This test is performed against standard syntax JSP pages
+     * as well as JSP documents.
      */
     public void jspConfigurationScriptingTrueTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_config_scr_web/scrtrue/DeclarationTest.jsp HTTP/1.1");

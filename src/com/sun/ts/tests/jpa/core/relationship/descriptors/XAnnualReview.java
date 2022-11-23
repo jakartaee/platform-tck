@@ -31,7 +31,8 @@ public class XAnnualReview implements java.io.Serializable {
 
     private Integer xService;
 
-    public XAnnualReview() {}
+    public XAnnualReview() {
+    }
 
     public XAnnualReview(Integer xAid, Integer xService) {
         this.xAid = xAid;

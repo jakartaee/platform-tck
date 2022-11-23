@@ -28,7 +28,7 @@ import java.util.Map;
 public class ReadonlyGetParamsConfigurator extends Configurator {
     static final String KEY = "ReadOnlyKey";
 
-    static final String[] VALUES = {"ReadOnlyValue1", "ReadOnlyValue2"};
+    static final String[] VALUES = { "ReadOnlyValue1", "ReadOnlyValue2" };
 
     @Override
     public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response) {

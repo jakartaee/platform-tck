@@ -40,8 +40,10 @@ public class LibrariedQuestionaire {
 
                     WebSocketContainer container = ContainerProvider.getWebSocketContainer();
 
-                    if (TCKWebSocketContainer.class.isInstance(container)) name = TCKWebSocketContainer.class.getName();
-                    else name = container.getClass().getName();
+                    if (TCKWebSocketContainer.class.isInstance(container))
+                        name = TCKWebSocketContainer.class.getName();
+                    else
+                        name = container.getClass().getName();
                 } finally {
                     Thread.currentThread().setContextClassLoader(origCl);
                 }

@@ -43,7 +43,8 @@ public class ResourceBundleELResolverTag extends SimpleTagSupport {
             boolean pass = ResolverTest.testELResolver(
                     context, resourceBundleResolver, resources, "okKey", "all right!", buf, true);
             out.println(buf.toString());
-            if (pass == true) out.println("Test PASSED");
+            if (pass == true)
+                out.println("Test PASSED");
         } catch (Throwable t) {
             out.println("buffer is " + buf.toString());
             JspTestUtil.handleThrowable(t, out, "ResourceBundleELResolverTag");
@@ -53,8 +54,10 @@ public class ResourceBundleELResolverTag extends SimpleTagSupport {
     static class MyResources extends ResourceBundle {
 
         public Object handleGetObject(String key) {
-            if (key.equals("okKey")) return "Ok";
-            if (key.equals("cancelKey")) return "Cancel";
+            if (key.equals("okKey"))
+                return "Ok";
+            if (key.equals("cancelKey"))
+                return "Cancel";
             return null;
         }
 

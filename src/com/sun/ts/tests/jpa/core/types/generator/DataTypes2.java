@@ -42,7 +42,8 @@ public class DataTypes2 implements java.io.Serializable {
 
     private Float floatData;
 
-    public DataTypes2() {}
+    public DataTypes2() {
+    }
 
     public DataTypes2(
             Character characterData,

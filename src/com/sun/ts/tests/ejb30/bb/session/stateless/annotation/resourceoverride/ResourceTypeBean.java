@@ -41,59 +41,20 @@ import java.net.URL;
 import javax.sql.DataSource;
 
 @Stateless(name = "ResourceTypeBean")
-@Remote({ResourceIF.class})
+@Remote({ ResourceIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 @Resources({
-    @Resource(description = "user transaction", name = "myUserTransaction", type = UserTransaction.class),
-    @Resource(
-            name = "dataSource",
-            type = Object.class,
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION,
-            description = "<resource-ref>"),
-    @Resource(
-            name = "myDataSource2",
-            type = DataSource.class,
-            authenticationType = AuthenticationType.APPLICATION,
-            shareable = false),
-    @Resource(
-            name = "mailSession",
-            type = Session.class,
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION,
-            description = "<resource-ref>"),
-    @Resource(
-            name = "url",
-            type = URL.class,
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION,
-            description = "<resource-ref>"),
-    @Resource(
-            name = "queueConnectionFactory",
-            type = QueueConnectionFactory.class,
-            authenticationType = AuthenticationType.APPLICATION,
-            shareable = false,
-            description = "<resource-ref>"),
-    @Resource(
-            name = "topicConnectionFactory",
-            type = TopicConnectionFactory.class,
-            authenticationType = AuthenticationType.APPLICATION,
-            shareable = false,
-            description = "<resource-ref>"),
-    @Resource(
-            name = "connectionFactoryQ",
-            type = ConnectionFactory.class,
-            authenticationType = AuthenticationType.APPLICATION,
-            shareable = false,
-            description = "<resource-ref>"),
-    @Resource(
-            name = "connectionFactoryT",
-            type = ConnectionFactory.class,
-            authenticationType = AuthenticationType.APPLICATION,
-            shareable = false,
-            description = "<resource-ref>"),
-    @Resource(name = "queue", type = Queue.class, description = "<resource-env-ref>"),
-    @Resource(name = "topic", type = Topic.class, description = "<resource-env-ref>")
+        @Resource(description = "user transaction", name = "myUserTransaction", type = UserTransaction.class),
+        @Resource(name = "dataSource", type = Object.class, shareable = false, authenticationType = AuthenticationType.APPLICATION, description = "<resource-ref>"),
+        @Resource(name = "myDataSource2", type = DataSource.class, authenticationType = AuthenticationType.APPLICATION, shareable = false),
+        @Resource(name = "mailSession", type = Session.class, shareable = false, authenticationType = AuthenticationType.APPLICATION, description = "<resource-ref>"),
+        @Resource(name = "url", type = URL.class, shareable = false, authenticationType = AuthenticationType.APPLICATION, description = "<resource-ref>"),
+        @Resource(name = "queueConnectionFactory", type = QueueConnectionFactory.class, authenticationType = AuthenticationType.APPLICATION, shareable = false, description = "<resource-ref>"),
+        @Resource(name = "topicConnectionFactory", type = TopicConnectionFactory.class, authenticationType = AuthenticationType.APPLICATION, shareable = false, description = "<resource-ref>"),
+        @Resource(name = "connectionFactoryQ", type = ConnectionFactory.class, authenticationType = AuthenticationType.APPLICATION, shareable = false, description = "<resource-ref>"),
+        @Resource(name = "connectionFactoryT", type = ConnectionFactory.class, authenticationType = AuthenticationType.APPLICATION, shareable = false, description = "<resource-ref>"),
+        @Resource(name = "queue", type = Queue.class, description = "<resource-env-ref>"),
+        @Resource(name = "topic", type = Topic.class, description = "<resource-env-ref>")
 })
 public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
 
@@ -144,9 +105,11 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
         return "queue";
     }
 
-    public ResourceTypeBean() {}
+    public ResourceTypeBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected jakarta.ejb.EJBContext getEJBContext() {
         return sessionContext;

@@ -39,19 +39,18 @@ public abstract class RequestConformanceChecker implements SOAPHandler<SOAPMessa
         return new HashSet<QName>();
     }
 
-    public void init(java.util.Map<String, Object> config) {}
-    ;
+    public void init(java.util.Map<String, Object> config) {
+    };
 
     public boolean handleFault(SOAPMessageContext context) {
         return true;
-    }
-    ;
+    };
 
-    public void destroy() {}
-    ;
+    public void destroy() {
+    };
 
-    public void close(MessageContext context) {}
-    ;
+    public void close(MessageContext context) {
+    };
 
     public abstract void test(SOAPMessageContext context) throws SOAPException;
 

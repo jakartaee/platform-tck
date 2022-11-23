@@ -143,20 +143,15 @@ public class Client extends ServiceEETest {
 
     static AddNumbersService4 service4 = null;
 
-    String ReplyToHeaderForAnonymousResponsesSoapMsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType3/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testAnonymousResponsesReplyToHeader</testName></addNumbers></S:Body></S:Envelope>";
+    String ReplyToHeaderForAnonymousResponsesSoapMsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType3/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testAnonymousResponsesReplyToHeader</testName></addNumbers></S:Body></S:Envelope>";
 
-    String FaultToHeaderForAnonymousResponsesSoapMsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><FaultTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></FaultTo><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{3}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType3/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>-10</number1><number2>-10</number2><testName>testAnonymousResponsesFaultToHeader</testName></addNumbers></S:Body></S:Envelope>";
+    String FaultToHeaderForAnonymousResponsesSoapMsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><FaultTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></FaultTo><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{3}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType3/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>-10</number1><number2>-10</number2><testName>testAnonymousResponsesFaultToHeader</testName></addNumbers></S:Body></S:Envelope>";
 
-    String ReplyToHeaderForNonAnonymousResponsesSoapMsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType4/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testNonAnonymousResponsesReplyToHeader</testName></addNumbers></S:Body></S:Envelope>";
+    String ReplyToHeaderForNonAnonymousResponsesSoapMsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType4/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testNonAnonymousResponsesReplyToHeader</testName></addNumbers></S:Body></S:Envelope>";
 
-    String FaultToHeaderForNonAnonymousResponsesSoapMsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><FaultTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></FaultTo><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{3}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType4/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>-10</number1><number2>-10</number2><testName>testNonAnonymousResponsesFaultToHeader</testName></addNumbers></S:Body></S:Envelope>";
+    String FaultToHeaderForNonAnonymousResponsesSoapMsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><FaultTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></FaultTo><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{3}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType4/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>-10</number1><number2>-10</number2><testName>testNonAnonymousResponsesFaultToHeader</testName></addNumbers></S:Body></S:Envelope>";
 
-    String TestNonAnonymousResponsesAssertionSoapMsg =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType4/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testNonAnonymousResponsesAssertion</testName></addNumbers></S:Body></S:Envelope>";
+    String TestNonAnonymousResponsesAssertionSoapMsg = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><Action xmlns=\"http://www.w3.org/2005/08/addressing\">http://example.com/AddNumbersPortType4/add</Action></S:Header><S:Body><addNumbers xmlns=\"http://example.com/\"><number1>10</number1><number2>10</number2><testName>testNonAnonymousResponsesAssertion</testName></addNumbers></S:Body></S:Envelope>";
 
     private Dispatch<SOAPMessage> createDispatchSOAPMessage(Service service, QName port) throws Exception {
         return service.createDispatch(
@@ -190,10 +185,8 @@ public class Client extends ServiceEETest {
         file4 = JAXWS_Util.getURLFromProp(ENDPOINT_URL4);
         url4 = ctsurl.getURLString(PROTOCOL, hostname, portnum, file4);
         if (endpointPublishSupport) {
-            urlToNonAnonymousProcessor =
-                    ctsurl.getURLString(PROTOCOL, hostname, javaseServerPort, NONANONYMOUSPROCESSOR);
-            urlToNonAnonymousProcessor2 =
-                    ctsurl.getURLString(PROTOCOL, hostname, javaseServerPort, NONANONYMOUSPROCESSOR2);
+            urlToNonAnonymousProcessor = ctsurl.getURLString(PROTOCOL, hostname, javaseServerPort, NONANONYMOUSPROCESSOR);
+            urlToNonAnonymousProcessor2 = ctsurl.getURLString(PROTOCOL, hostname, javaseServerPort, NONANONYMOUSPROCESSOR2);
         } else {
             urlToNonAnonymousProcessor = ctsurl.getURLString(PROTOCOL, hostname, portnum, NONANONYMOUSPROCESSOR);
             urlToNonAnonymousProcessor2 = ctsurl.getURLString(PROTOCOL, hostname, portnum, NONANONYMOUSPROCESSOR2);
@@ -250,8 +243,8 @@ public class Client extends ServiceEETest {
     /*
      * @class.testArgs: -ap jaxws-url-props.dat
      *
-     * @class.setup_props: webServerHost; webServerPort; platform.mode;
-     * port.range.min; port.range.max; http.server.supports.endpoint.publish;
+     * @class.setup_props: webServerHost; webServerPort; platform.mode; port.range.min; port.range.max;
+     * http.server.supports.endpoint.publish;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -261,8 +254,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -297,10 +292,8 @@ public class Client extends ServiceEETest {
                 }
 
                 getTestURLs();
-                service3 =
-                        (AddNumbersService3) JAXWS_Util.getService(wsdlurl3, SERVICE_QNAME3, AddNumbersService3.class);
-                service4 =
-                        (AddNumbersService4) JAXWS_Util.getService(wsdlurl4, SERVICE_QNAME4, AddNumbersService4.class);
+                service3 = (AddNumbersService3) JAXWS_Util.getService(wsdlurl3, SERVICE_QNAME3, AddNumbersService3.class);
+                service4 = (AddNumbersService4) JAXWS_Util.getService(wsdlurl4, SERVICE_QNAME4, AddNumbersService4.class);
                 getPortsStandalone();
             } else {
                 TestUtil.logMsg("WebServiceRef is not set in Client (get it from specific vehicle)");
@@ -329,9 +322,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2;
      *
-     * @test_Strategy: Invocation on port marked with AnonymousResponses assertion
-     * Verify that wsa:ReplyTo in the SOAPRequest is the anonymous URI. Verify
-     * that wsa:To in the SOAPResponse is the anonymous URI.
+     * @test_Strategy: Invocation on port marked with AnonymousResponses assertion Verify that wsa:ReplyTo in the
+     * SOAPRequest is the anonymous URI. Verify that wsa:To in the SOAPResponse is the anonymous URI.
      */
     public void testAnonymousResponsesAssertion() throws Fault {
         TestUtil.logMsg("testAnonymousResponsesAssertion");
@@ -344,7 +336,8 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("testAnonymousResponsesAssertion failed");
+        if (!pass)
+            throw new Fault("testAnonymousResponsesAssertion failed");
     }
 
     /*
@@ -352,9 +345,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.3;
      *
-     * @test_Strategy: Invocation on port marked with NonAnonymousResponses
-     * assertion. The <ReplyTo> header may or may not be set by default depending
-     * on the implementation. The test has to account for this.
+     * @test_Strategy: Invocation on port marked with NonAnonymousResponses assertion. The <ReplyTo> header may or may not
+     * be set by default depending on the implementation. The test has to account for this.
      */
     public void testNonAnonymousResponsesAssertion() throws Fault {
         TestUtil.logMsg("testNonAnonymousResponsesAssertion");
@@ -370,18 +362,18 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
 
-        if (!pass) throw new Fault("testNonAnonymousResponsesAssertion failed");
+        if (!pass)
+            throw new Fault("testNonAnonymousResponsesAssertion failed");
     }
 
     /*
      * @testName: testNonAnonymousResponsesWithReplyToSetToValidProviderEndpoint
      *
-     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2;
-     * WSASB:SPEC:6012; WSASB:SPEC:6012.7; WSASB:SPEC:6013;
+     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2; WSASB:SPEC:6012; WSASB:SPEC:6012.7;
+     * WSASB:SPEC:6013;
      *
-     * @test_Strategy: Test for NonAnonymousResponses assertion where <ReplyTo>
-     * header is set to a NonAnonymousProvider which will process the SOAP
-     * response. Verify that the NonAnonymousProvider recieved the SOAP response.
+     * @test_Strategy: Test for NonAnonymousResponses assertion where <ReplyTo> header is set to a NonAnonymousProvider
+     * which will process the SOAP response. Verify that the NonAnonymousProvider recieved the SOAP response.
      */
     public void testNonAnonymousResponsesWithReplyToSetToValidProviderEndpoint() throws Fault {
         TestUtil.logMsg("testNonAnonymousResponsesWithReplyToSetToValidProviderEndpoint");
@@ -421,21 +413,21 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         } finally {
-            if (responseProcessor != null) responseProcessor.stop();
+            if (responseProcessor != null)
+                responseProcessor.stop();
         }
-        if (!pass) throw new Fault("testNonAnonymousResponsesWithReplyToSetToValidProviderEndpoint failed");
+        if (!pass)
+            throw new Fault("testNonAnonymousResponsesWithReplyToSetToValidProviderEndpoint failed");
     }
 
     /*
      * @testName: testNonAnonymousResponsesWithFaultToSetToValidProviderEndpoint
      *
-     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2;
-     * WSASB:SPEC:6012; WSASB:SPEC:6012.7; WSASB:SPEC:6013;
+     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2; WSASB:SPEC:6012; WSASB:SPEC:6012.7;
+     * WSASB:SPEC:6013;
      *
-     * @test_Strategy: Test for NonAnonymousResponses assertion where <FaultTo>
-     * header is set to a NonAnonymousProvider which will process the SOAP
-     * response. Verify that the NonAnonymousProvider received the SOAPFault
-     * message.
+     * @test_Strategy: Test for NonAnonymousResponses assertion where <FaultTo> header is set to a NonAnonymousProvider
+     * which will process the SOAP response. Verify that the NonAnonymousProvider received the SOAPFault message.
      */
     public void testNonAnonymousResponsesWithFaultToSetToValidProviderEndpoint() throws Fault {
         TestUtil.logMsg("testNonAnonymousResponsesWithFaultToSetToValidProviderEndpoint");
@@ -480,20 +472,23 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         } finally {
-            if (responseProcessor != null) responseProcessor.stop();
-            if (responseProcessor2 != null) responseProcessor2.stop();
+            if (responseProcessor != null)
+                responseProcessor.stop();
+            if (responseProcessor2 != null)
+                responseProcessor2.stop();
         }
-        if (!pass) throw new Fault("testNonAnonymousResponsesWithFaultToSetToValidProviderEndpoint failed");
+        if (!pass)
+            throw new Fault("testNonAnonymousResponsesWithFaultToSetToValidProviderEndpoint failed");
     }
 
     /*
      * @testName: testAnonymousResponsesWithReplyToSetToNone
      *
-     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2;
-     * WSASB:SPEC:6012; WSASB:SPEC:6012.7; WSASB:SPEC:6013;
+     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2; WSASB:SPEC:6012; WSASB:SPEC:6012.7;
+     * WSASB:SPEC:6013;
      *
-     * @test_Strategy: Test for AnonymousResponses assertion where <ReplyTo>
-     * header is set to the None URI. This value must be accepted.
+     * @test_Strategy: Test for AnonymousResponses assertion where <ReplyTo> header is set to the None URI. This value must
+     * be accepted.
      *
      */
     public void testAnonymousResponsesWithReplyToSetToNone() throws Fault {
@@ -522,17 +517,18 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("testAnonymousResponsesWithReplyToSetToNone failed");
+        if (!pass)
+            throw new Fault("testAnonymousResponsesWithReplyToSetToNone failed");
     }
 
     /*
      * @testName: testAnonymousResponsesWithFaultToSetToNone
      *
-     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2;
-     * WSASB:SPEC:6012; WSASB:SPEC:6012.7; WSASB:SPEC:6013;
+     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2; WSASB:SPEC:6012; WSASB:SPEC:6012.7;
+     * WSASB:SPEC:6013;
      *
-     * @test_Strategy: Test for AnonymousResponses assertion where <FaultTo>
-     * header is set to the None URI. This value must be accepted.
+     * @test_Strategy: Test for AnonymousResponses assertion where <FaultTo> header is set to the None URI. This value must
+     * be accepted.
      *
      */
     public void testAnonymousResponsesWithFaultToSetToNone() throws Fault {
@@ -562,17 +558,18 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("testAnonymousResponsesWithFaultToSetToNone failed");
+        if (!pass)
+            throw new Fault("testAnonymousResponsesWithFaultToSetToNone failed");
     }
 
     /*
      * @testName: testNonAnonymousResponsesWithReplyToSetToNone
      *
-     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2;
-     * WSASB:SPEC:6012; WSASB:SPEC:6012.7; WSASB:SPEC:6013;
+     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2; WSASB:SPEC:6012; WSASB:SPEC:6012.7;
+     * WSASB:SPEC:6013;
      *
-     * @test_Strategy: Test for NonAnonymousResponses assertion where <ReplyTo>
-     * header is set to the None URI. This value must be accepted.
+     * @test_Strategy: Test for NonAnonymousResponses assertion where <ReplyTo> header is set to the None URI. This value
+     * must be accepted.
      */
     public void testNonAnonymousResponsesWithReplyToSetToNone() throws Fault {
         TestUtil.logMsg("testNonAnonymousResponsesWithReplyToSetToNone");
@@ -599,17 +596,18 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("testNonAnonymousResponsesWithReplyToSetToNone failed");
+        if (!pass)
+            throw new Fault("testNonAnonymousResponsesWithReplyToSetToNone failed");
     }
 
     /*
      * @testName: testNonAnonymousResponsesWithFaultToSetToNone
      *
-     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2;
-     * WSASB:SPEC:6012; WSASB:SPEC:6012.7; WSASB:SPEC:6013;
+     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2; WSASB:SPEC:6012; WSASB:SPEC:6012.7;
+     * WSASB:SPEC:6013;
      *
-     * @test_Strategy: Test for NonAnonymousResponses assertion where <FaultTo>
-     * header is set to the None URI. This value must be accepted.
+     * @test_Strategy: Test for NonAnonymousResponses assertion where <FaultTo> header is set to the None URI. This value
+     * must be accepted.
      */
     public void testNonAnonymousResponsesWithFaultToSetToNone() throws Fault {
         TestUtil.logMsg("testNonAnonymousResponsesWithFaultToSetToNone");
@@ -637,18 +635,18 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("testNonAnonymousResponsesWithFaultToSetToNone failed");
+        if (!pass)
+            throw new Fault("testNonAnonymousResponsesWithFaultToSetToNone failed");
     }
 
     /*
      * @testName: testOnlyAnonymousAddressSupportedFaultBadReplyTo
      *
-     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2;
-     * WSASB:SPEC:6012; WSASB:SPEC:6012.7; WSASB:SPEC:6013;
+     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2; WSASB:SPEC:6012; WSASB:SPEC:6012.7;
+     * WSASB:SPEC:6013;
      *
-     * @test_Strategy: Test for OnlyAnonymousAddressSupported fault from client
-     * runtime. Pass in soap message with <ReplyTo> header not equal to Anonymous
-     * URI. Expect SOAPFault.
+     * @test_Strategy: Test for OnlyAnonymousAddressSupported fault from client runtime. Pass in soap message with <ReplyTo>
+     * header not equal to Anonymous URI. Expect SOAPFault.
      *
      */
     public void testOnlyAnonymousAddressSupportedFaultBadReplyTo() throws Fault {
@@ -699,11 +697,14 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("testOnlyAnonymousAddressSupportedFaultBadReplyTo failed");
-        if (done) return;
+        if (!pass)
+            throw new Fault("testOnlyAnonymousAddressSupportedFaultBadReplyTo failed");
+        if (done)
+            return;
 
         try {
-            if (response == null) throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
+            if (response == null)
+                throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
             if (!response.getSOAPPart().getEnvelope().getBody().hasFault())
                 throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
         } catch (SOAPException e) {
@@ -735,18 +736,18 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
 
-        if (!pass) throw new Fault("testOnlyAnonymousAddressSupportedFaultBadReplyTo failed");
+        if (!pass)
+            throw new Fault("testOnlyAnonymousAddressSupportedFaultBadReplyTo failed");
     }
 
     /*
      * @testName: testOnlyAnonymousAddressSupportedFaultBadFaultTo
      *
-     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2;
-     * WSASB:SPEC:6012; WSASB:SPEC:6012.7; WSASB:SPEC:6013;
+     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.2; WSASB:SPEC:6012; WSASB:SPEC:6012.7;
+     * WSASB:SPEC:6013;
      *
-     * @test_Strategy: Test for OnlyAnonymousAddressSupported fault from client
-     * runtime. Pass in soap message with <FaultTo> header not equal to Anonymous
-     * URI. Expect SOAPFault.
+     * @test_Strategy: Test for OnlyAnonymousAddressSupported fault from client runtime. Pass in soap message with <FaultTo>
+     * header not equal to Anonymous URI. Expect SOAPFault.
      *
      */
     public void testOnlyAnonymousAddressSupportedFaultBadFaultTo() throws Fault {
@@ -801,11 +802,14 @@ public class Client extends ServiceEETest {
             pass = false;
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
-        if (!pass) throw new Fault("testOnlyAnonymousAddressSupportedFaultBadFaultTo failed");
-        if (done) return;
+        if (!pass)
+            throw new Fault("testOnlyAnonymousAddressSupportedFaultBadFaultTo failed");
+        if (done)
+            return;
 
         try {
-            if (response == null) throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
+            if (response == null)
+                throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
             if (!response.getSOAPPart().getEnvelope().getBody().hasFault())
                 throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
         } catch (SOAPException e) {
@@ -838,18 +842,18 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
 
-        if (!pass) throw new Fault("testOnlyAnonymousAddressSupportedFaultBadFaultTo failed");
+        if (!pass)
+            throw new Fault("testOnlyAnonymousAddressSupportedFaultBadFaultTo failed");
     }
 
     /*
      * @testName: testOnlyNonAnonymousAddressSupportedFaultBadReplyTo
      *
-     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.3;
-     * WSASB:SPEC:6012; WSASB:SPEC:6012.8; WSASB:SPEC:6013;
+     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.3; WSASB:SPEC:6012; WSASB:SPEC:6012.8;
+     * WSASB:SPEC:6013;
      *
-     * @test_Strategy: Test for OnlyNonAnonymousAddressSupported fault from client
-     * runtime. Pass in soap message with <ReplyTo> header equal to Anonymous URI.
-     * Expect SOAPFault.
+     * @test_Strategy: Test for OnlyNonAnonymousAddressSupported fault from client runtime. Pass in soap message with
+     * <ReplyTo> header equal to Anonymous URI. Expect SOAPFault.
      *
      */
     public void testOnlyNonAnonymousAddressSupportedFaultBadReplyTo() throws Fault {
@@ -904,12 +908,15 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
 
-        if (!pass) throw new Fault("testOnlyNonAnonymousAddressSupportedFaultBadReplyTo failed");
+        if (!pass)
+            throw new Fault("testOnlyNonAnonymousAddressSupportedFaultBadReplyTo failed");
 
-        if (done) return;
+        if (done)
+            return;
 
         try {
-            if (response == null) throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
+            if (response == null)
+                throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
             if (!response.getSOAPPart().getEnvelope().getBody().hasFault())
                 throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
         } catch (SOAPException e) {
@@ -941,18 +948,18 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
 
-        if (!pass) throw new Fault("testOnlyNonAnonymousAddressSupportedFaultBadReplyTo failed");
+        if (!pass)
+            throw new Fault("testOnlyNonAnonymousAddressSupportedFaultBadReplyTo failed");
     }
 
     /*
      * @testName: testOnlyNonAnonymousAddressSupportedFaultBadFaultTo
      *
-     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.3;
-     * WSASB:SPEC:6012; WSASB:SPEC:6012.8; WSASB:SPEC:6013;
+     * @assertion_ids: WSAMD:SPEC:3003; WSAMD:SPEC:3003.1; WSAMD:SPEC:3003.3; WSASB:SPEC:6012; WSASB:SPEC:6012.8;
+     * WSASB:SPEC:6013;
      *
-     * @test_Strategy: Test for OnlyNonAnonymousAddressSupported fault from client
-     * runtime. Pass in soap message with <FaultTo> header equal to Anonymous URI.
-     * Expect SOAPFault.
+     * @test_Strategy: Test for OnlyNonAnonymousAddressSupported fault from client runtime. Pass in soap message with
+     * <FaultTo> header equal to Anonymous URI. Expect SOAPFault.
      *
      */
     public void testOnlyNonAnonymousAddressSupportedFaultBadFaultTo() throws Fault {
@@ -1008,12 +1015,15 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("testOnlyNonAnonymousAddressSupportedFaultBadFaultTo failed");
+        if (!pass)
+            throw new Fault("testOnlyNonAnonymousAddressSupportedFaultBadFaultTo failed");
 
-        if (done) return;
+        if (done)
+            return;
 
         try {
-            if (response == null) throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
+            if (response == null)
+                throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
             if (!response.getSOAPPart().getEnvelope().getBody().hasFault())
                 throw new Fault("Expected a SOAPFault to be returned in SOAPResponse");
         } catch (SOAPException e) {
@@ -1045,6 +1055,7 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: ", e);
         }
 
-        if (!pass) throw new Fault("testOnlyNonAnonymousAddressSupportedFaultBadFaultTo failed");
+        if (!pass)
+            throw new Fault("testOnlyNonAnonymousAddressSupportedFaultBadFaultTo failed");
     }
 }

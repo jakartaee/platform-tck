@@ -24,4 +24,5 @@ import jakarta.ejb.Stateless;
 
 @LocalBean
 @Stateless
-public class NoInterfaceViewBean extends BaseBean implements NormalInterface1, NormalInterface2 {}
+public class NoInterfaceViewBean extends BaseBean implements NormalInterface1, NormalInterface2 {
+}

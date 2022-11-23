@@ -31,8 +31,7 @@ public class JsonPTest extends ServiceEETest {
     /**
      * Java VM code execution entry point.
      *
-     * @param args
-     *          Command line arguments.
+     * @param args Command line arguments.
      */
     public static void main(String[] args) {
         PatchTests theTests = new PatchTests();
@@ -43,10 +42,8 @@ public class JsonPTest extends ServiceEETest {
     /**
      * Test setup.
      *
-     * @param args
-     *          Command line arguments.
-     * @param p
-     *          Test properties.
+     * @param args Command line arguments.
+     * @param p Test properties.
      * @throws Fault
      */
     public void setup(String[] args, Properties p) throws EETest.Fault {

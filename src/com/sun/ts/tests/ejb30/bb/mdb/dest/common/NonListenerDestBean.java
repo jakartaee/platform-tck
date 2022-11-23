@@ -33,11 +33,9 @@ import jakarta.ejb.MessageDrivenContext;
 // destinationType is also annotated here, though it should also be optional.
 // optional destinationType is tested in mdb/dest/optional and mdb/dest/optional2.
 //
-@MessageDriven(
-        name = "NonListenerDestBean",
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
-        })
+@MessageDriven(name = "NonListenerDestBean", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue")
+})
 public class NonListenerDestBean extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.DestBeanBase {
     // implements MessageListener {
     @Resource(name = "mdc")

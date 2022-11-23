@@ -20,7 +20,8 @@ import java.io.Serializable;
 
 public class Book implements Serializable {
 
-    public Book() {}
+    public Book() {
+    }
 
     private String name;
 

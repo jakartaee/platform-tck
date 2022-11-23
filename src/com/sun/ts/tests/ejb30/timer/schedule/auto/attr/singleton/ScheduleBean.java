@@ -35,7 +35,7 @@ import java.util.logging.Level;
 // Startup to force
 // eager creation.
 public class ScheduleBean extends com.sun.ts.tests.ejb30.timer.schedule.auto.attr.stateless.ScheduleBeanBase3 {
-    @SuppressWarnings({"unused"})
+    @SuppressWarnings({ "unused" })
     @PostConstruct
     private void postConstruct() {
         Helper.getLogger().logp(Level.FINE, "ScheduleBean", "postConstruct", "Entering " + this);

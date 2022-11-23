@@ -29,7 +29,8 @@ import java.util.Set;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -62,8 +63,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: elementCollectionEmbeddableType
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:318; PERSISTENCE:JAVADOC:319;
-     * PERSISTENCE:SPEC:2007;
+     * @assertion_ids: PERSISTENCE:JAVADOC:318; PERSISTENCE:JAVADOC:319; PERSISTENCE:SPEC:2007;
      *
      * @test_Strategy: ElementCollection of an embeddable class
      *
@@ -208,8 +208,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:2008;
      *
-     * @test_Strategy: ElementCollection of a basic type using mapping file to
-     * define annotation
+     * @test_Strategy: ElementCollection of a basic type using mapping file to define annotation
      */
     @SetupMethod(name = "setupCust")
     @CleanupMethod(name = "cleanupCust")

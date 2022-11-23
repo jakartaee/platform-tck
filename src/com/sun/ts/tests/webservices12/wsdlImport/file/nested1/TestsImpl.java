@@ -18,16 +18,10 @@ package com.sun.ts.tests.webservices12.wsdlImport.file.nested1;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "TestsPort",
-        serviceName = "Nested1FileSvc",
-        targetNamespace = "http://Nested1FileSvc.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/nestedimportwsdl.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.nested1.Tests")
+@WebService(portName = "TestsPort", serviceName = "Nested1FileSvc", targetNamespace = "http://Nested1FileSvc.org/wsdl", wsdlLocation = "WEB-INF/wsdl/nestedimportwsdl.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.file.nested1.Tests")
 public class TestsImpl implements Tests {
     public com.sun.ts.tests.webservices12.wsdlImport.file.nested1.Astring invokeTest1() {
-        com.sun.ts.tests.webservices12.wsdlImport.file.nested1.Astring result =
-                new com.sun.ts.tests.webservices12.wsdlImport.file.nested1.Astring();
+        com.sun.ts.tests.webservices12.wsdlImport.file.nested1.Astring result = new com.sun.ts.tests.webservices12.wsdlImport.file.nested1.Astring();
         result.setResult("Hello");
         return result;
     }

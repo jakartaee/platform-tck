@@ -35,5 +35,6 @@ public class Callback4BeanSuper extends Callback2BeanSuperSuper implements Callb
     }
 
     @Override // override and disable this lifecycle method in superclass.
-    protected void postConstructMethodInSuperSuper() throws RuntimeException {}
+    protected void postConstructMethodInSuperSuper() throws RuntimeException {
+    }
 }

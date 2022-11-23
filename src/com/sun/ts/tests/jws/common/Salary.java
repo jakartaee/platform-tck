@@ -42,7 +42,8 @@ public class Salary {
         this.bonusPercentage = bonusPercentage;
     }
 
-    public Salary() {}
+    public Salary() {
+    }
 
     public int getSalary() {
         return salary;

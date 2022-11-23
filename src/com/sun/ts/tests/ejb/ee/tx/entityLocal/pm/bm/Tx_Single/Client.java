@@ -82,12 +82,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.1; EJB:SPEC:583.2
      *
-     * @test_Strategy: Bean managed Tx commit - Required Entity EJBs. Start a user
-     * Transaction Create an instance of an Entity EJB (TxEPMBeanLocal) bean.
-     * Update some Data in the bean. Commit the transaction. Create an instance of
-     * the previously created bean, by doing a findByPrimaryKey(). Ensure that the
-     * instance data reflects the update that occurred to the previous bean. This
-     * assures us that the database was also updated
+     * @test_Strategy: Bean managed Tx commit - Required Entity EJBs. Start a user Transaction Create an instance of an
+     * Entity EJB (TxEPMBeanLocal) bean. Update some Data in the bean. Commit the transaction. Create an instance of the
+     * previously created bean, by doing a findByPrimaryKey(). Ensure that the instance data reflects the update that
+     * occurred to the previous bean. This assures us that the database was also updated
      *
      */
     public void test1() throws Fault {
@@ -100,8 +98,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -118,13 +118,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.1; EJB:SPEC:583.2
      *
-     * @test_Strategy: Bean managed Tx Rolled Back - Required Entity EJBs. Start a
-     * user Transaction Create an instance of an Entity EJB (TxEPMBeanLocal) bean.
-     * Commit the creation of the bean. Start another transaction Update some Data
-     * in the bean. Rollback the transaction. Create an instance of the previously
-     * created bean, by doing a findByPrimaryKey(). Ensure that the instance data
-     * reflects the original values of the previous bean. This assures us that the
-     * database was also rolledback.
+     * @test_Strategy: Bean managed Tx Rolled Back - Required Entity EJBs. Start a user Transaction Create an instance of an
+     * Entity EJB (TxEPMBeanLocal) bean. Commit the creation of the bean. Start another transaction Update some Data in the
+     * bean. Rollback the transaction. Create an instance of the previously created bean, by doing a findByPrimaryKey().
+     * Ensure that the instance data reflects the original values of the previous bean. This assures us that the database
+     * was also rolledback.
      *
      */
     public void test2() throws Fault {
@@ -137,8 +135,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test2");
             testResult = beanRef.test2();
 
-            if (!testResult) throw new Fault("test2 failed");
-            else logMsg("test2 passed");
+            if (!testResult)
+                throw new Fault("test2 failed");
+            else
+                logMsg("test2 passed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {
@@ -155,15 +155,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.1; EJB:SPEC:583.2
      *
-     * @test_Strategy: Bean managed Tx commit - Required Entity EJBs. Start a user
-     * Transaction Create an instance of an Entity EJB (TxEPMBeanLocal) bean.
-     * Commit the transaction. Start a user Transaction Create an instance of the
-     * previously created bean, by doing a findByPrimaryKey(). Update some Data in
-     * the bean. Commit the transaction. Create an instance of the previously
-     * created bean, by doing a findByPrimaryKey(). Ensure that the instance data
-     * reflects the update that occurred to the previous bean. This assures us
-     * that the database was also updated via the second bean which was created
-     * using findByPrimaryKey().
+     * @test_Strategy: Bean managed Tx commit - Required Entity EJBs. Start a user Transaction Create an instance of an
+     * Entity EJB (TxEPMBeanLocal) bean. Commit the transaction. Start a user Transaction Create an instance of the
+     * previously created bean, by doing a findByPrimaryKey(). Update some Data in the bean. Commit the transaction. Create
+     * an instance of the previously created bean, by doing a findByPrimaryKey(). Ensure that the instance data reflects the
+     * update that occurred to the previous bean. This assures us that the database was also updated via the second bean
+     * which was created using findByPrimaryKey().
      *
      */
     public void test3() throws Fault {
@@ -176,8 +173,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test3");
             testResult = beanRef.test3();
 
-            if (!testResult) throw new Fault("test3 failed");
-            else logMsg("test3 passed");
+            if (!testResult)
+                throw new Fault("test3 failed");
+            else
+                logMsg("test3 passed");
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         } finally {
@@ -194,15 +193,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:583.1; EJB:SPEC:583.2
      *
-     * @test_Strategy: Bean managed Tx Rolled back - Required Entity EJBs. Start a
-     * user Transaction Create an instance of an Entity EJB (TxEPMBeanLocal) bean.
-     * Commit the transaction. Start a user Transaction Create an instance of the
-     * previously created bean, by doing a findByPrimaryKey(). Update some Data in
-     * the bean. Rollback the transaction. Create an instance of the previously
-     * created bean, by doing a findByPrimaryKey(). Ensure that the instance data
-     * reflects the rollback that occurred to the previous bean by checking to see
-     * if the values are equal to the original values. This assures us that the
-     * database was also rolled back via the second bean which was created using
+     * @test_Strategy: Bean managed Tx Rolled back - Required Entity EJBs. Start a user Transaction Create an instance of an
+     * Entity EJB (TxEPMBeanLocal) bean. Commit the transaction. Start a user Transaction Create an instance of the
+     * previously created bean, by doing a findByPrimaryKey(). Update some Data in the bean. Rollback the transaction.
+     * Create an instance of the previously created bean, by doing a findByPrimaryKey(). Ensure that the instance data
+     * reflects the rollback that occurred to the previous bean by checking to see if the values are equal to the original
+     * values. This assures us that the database was also rolled back via the second bean which was created using
      * findByPrimaryKey()
      *
      */
@@ -217,8 +213,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test4");
             testResult = beanRef.test4();
 
-            if (!testResult) throw new Fault("test4 failed");
-            else logMsg("test4 passed");
+            if (!testResult)
+                throw new Fault("test4 failed");
+            else
+                logMsg("test4 passed");
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         } finally {
@@ -235,14 +233,11 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Bean managed Tx commit - RequiresNew Entity EJBs. Start a
-     * user Transaction Create an instance of an Entity EJB (TxEPMBeanLocal) bean.
-     * Perform an update to the Entity EJB's instance data. Commit the
-     * transaction. Create an instance of the previously created bean, by doing a
-     * findByPrimaryKey(). Ensure that the instance data reflects the update that
-     * occurred to the previous bean. This assures us that the database was also
-     * updated Verify the instance data updates as well as the Database data is
-     * updated
+     * @test_Strategy: Bean managed Tx commit - RequiresNew Entity EJBs. Start a user Transaction Create an instance of an
+     * Entity EJB (TxEPMBeanLocal) bean. Perform an update to the Entity EJB's instance data. Commit the transaction. Create
+     * an instance of the previously created bean, by doing a findByPrimaryKey(). Ensure that the instance data reflects the
+     * update that occurred to the previous bean. This assures us that the database was also updated Verify the instance
+     * data updates as well as the Database data is updated
      *
      */
     public void test5() throws Fault {
@@ -255,8 +250,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test7");
             testResult = beanRef.test5();
 
-            if (!testResult) throw new Fault("test5 failed");
-            else logMsg("test5 passed");
+            if (!testResult)
+                throw new Fault("test5 failed");
+            else
+                logMsg("test5 passed");
         } catch (Exception e) {
             throw new Fault("test5 failed", e);
         } finally {
@@ -273,13 +270,11 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Bean managed Tx rollback - RequiresNew Entity EJBs. Start a
-     * user Transaction Create an instance of an Entity EJB (TxEPMBeanLocal) bean.
-     * Commit the creation of the bean. Start another transaction Update some Data
-     * in the bean. Rollback the transaction. Create an instance of the previously
-     * created bean, by doing a findByPrimaryKey(). Ensure that the instance data
-     * reflects the original values of the previous bean. This assures us that the
-     * database was also rolledback.
+     * @test_Strategy: Bean managed Tx rollback - RequiresNew Entity EJBs. Start a user Transaction Create an instance of an
+     * Entity EJB (TxEPMBeanLocal) bean. Commit the creation of the bean. Start another transaction Update some Data in the
+     * bean. Rollback the transaction. Create an instance of the previously created bean, by doing a findByPrimaryKey().
+     * Ensure that the instance data reflects the original values of the previous bean. This assures us that the database
+     * was also rolledback.
      *
      */
     public void test6() throws Fault {
@@ -292,8 +287,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test8");
             testResult = beanRef.test6();
 
-            if (!testResult) throw new Fault("test6 failed");
-            else logMsg("test6 passed");
+            if (!testResult)
+                throw new Fault("test6 failed");
+            else
+                logMsg("test6 passed");
         } catch (Exception e) {
             throw new Fault("test6 failed", e);
         } finally {

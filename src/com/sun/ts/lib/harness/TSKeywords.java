@@ -21,9 +21,8 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class is used by the TS harness to figure out which keywords should be
- * associated with directories of tests. Keywords are read in by the
- * TSTestFinder and written out to the test decriptions.
+ * This class is used by the TS harness to figure out which keywords should be associated with directories of tests.
+ * Keywords are read in by the TSTestFinder and written out to the test decriptions.
  *
  * A singleton class not intended for concurrent access.
  *
@@ -43,7 +42,8 @@ public class TSKeywords {
     // an uninitialized singleton instance
     private static TSKeywords instance = new TSKeywords();
 
-    private TSKeywords() {}
+    private TSKeywords() {
+    }
 
     public static TSKeywords getInstance(File path) {
         if (instance == null) {
@@ -65,8 +65,7 @@ public class TSKeywords {
     }
 
     /**
-     * This method gets the current set of keywords to be used for a given
-     * directory path.
+     * This method gets the current set of keywords to be used for a given directory path.
      *
      * @return a String array of the keywords that this test should be run in
      */

@@ -80,10 +80,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:628.1
      *
-     * @test_Strategy: AppException from Entity EJB. - Create an instance of a
-     * stateful session Testbean bean. - Create an instance of an Entity
-     * TxEBean(Required) bean. - Cause an AppException in the Entity bean. -
-     * Ensure that the client receives AppException.
+     * @test_Strategy: AppException from Entity EJB. - Create an instance of a stateful session Testbean bean. - Create an
+     * instance of an Entity TxEBean(Required) bean. - Cause an AppException in the Entity bean. - Ensure that the client
+     * receives AppException.
      */
 
     public void test1() throws Fault {
@@ -96,8 +95,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -116,12 +117,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:629.2; EJB:SPEC:629.5
      *
-     * @test_Strategy: SysException from Entity EJB. - Create an instance of a
-     * stateful session Testbean bean. - Create an instance of an Entity
-     * TxEBean(Required) bean. - Cause a SysException in the Entity bean. - Ensure
-     * that the client receives TransactionRolledbackLocalException. - Check that
-     * transaction was marked for rollback. - Verify the transaction did not
-     * commit.
+     * @test_Strategy: SysException from Entity EJB. - Create an instance of a stateful session Testbean bean. - Create an
+     * instance of an Entity TxEBean(Required) bean. - Cause a SysException in the Entity bean. - Ensure that the client
+     * receives TransactionRolledbackLocalException. - Check that transaction was marked for rollback. - Verify the
+     * transaction did not commit.
      */
 
     public void test2() throws Fault {
@@ -134,8 +133,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test2");
             testResult = beanRef.test2();
 
-            if (!testResult) throw new Fault("test2 failed");
-            else logMsg("test2 passed");
+            if (!testResult)
+                throw new Fault("test2 failed");
+            else
+                logMsg("test2 passed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {
@@ -154,10 +155,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10619; EJB:SPEC:628.1
      *
-     * @test_Strategy: CreateException from Entity EJB. - Create 1 instance of a
-     * stateful session Testbean beans. - Create 3 instances of an Entity
-     * TxEBean(Required) bean. - Cause a CreateException in the Entity bean. -
-     * Ensure that the client receives CreateException.
+     * @test_Strategy: CreateException from Entity EJB. - Create 1 instance of a stateful session Testbean beans. - Create 3
+     * instances of an Entity TxEBean(Required) bean. - Cause a CreateException in the Entity bean. - Ensure that the client
+     * receives CreateException.
      */
 
     public void test3() throws Fault {
@@ -170,8 +170,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test3");
             testResult = beanRef.test3();
 
-            if (!testResult) throw new Fault("test3 failed");
-            else logMsg("test3 passed");
+            if (!testResult)
+                throw new Fault("test3 failed");
+            else
+                logMsg("test3 passed");
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         } finally {
@@ -190,10 +192,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10472; EJB:SPEC:10619
      *
-     * @test_Strategy: FinderException from Entity EJB. - Create 1 instance of a
-     * stateful session Testbean beans. - Create 2 instances of an Entity
-     * TxEBean(Required) bean. - Delete the second instance. - Try to find the
-     * second instance. - Catch FinderException
+     * @test_Strategy: FinderException from Entity EJB. - Create 1 instance of a stateful session Testbean beans. - Create 2
+     * instances of an Entity TxEBean(Required) bean. - Delete the second instance. - Try to find the second instance. -
+     * Catch FinderException
      */
 
     public void test5() throws Fault {
@@ -206,8 +207,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test5");
             testResult = beanRef.test5();
 
-            if (!testResult) throw new Fault("test5 failed");
-            else logMsg("test5 passed");
+            if (!testResult)
+                throw new Fault("test5 failed");
+            else
+                logMsg("test5 passed");
         } catch (Exception e) {
             throw new Fault("test5 failed", e);
         } finally {
@@ -226,12 +229,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:11472; EJB:SPEC:10619
      *
-     * @test_Strategy: ObjectNotFoundException from Entity EJB. - Create 1
-     * instance of a stateful session Testbean beans. - Create 1 instance of an
-     * Entity TxEBean(Required) bean, creating a fresh database table. - Use
-     * findByPrimaryKey(...) to find a record with a key that does not exist. Note
-     * that the programmer knows all the keys that exist (only "1") since it is a
-     * newly created table. - Catch ObjectNotFoundException
+     * @test_Strategy: ObjectNotFoundException from Entity EJB. - Create 1 instance of a stateful session Testbean beans. -
+     * Create 1 instance of an Entity TxEBean(Required) bean, creating a fresh database table. - Use findByPrimaryKey(...)
+     * to find a record with a key that does not exist. Note that the programmer knows all the keys that exist (only "1")
+     * since it is a newly created table. - Catch ObjectNotFoundException
      */
 
     public void test6() throws Fault {
@@ -244,8 +245,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test6");
             testResult = beanRef.test6();
 
-            if (!testResult) throw new Fault("test6 failed");
-            else logMsg("test6 passed");
+            if (!testResult)
+                throw new Fault("test6 failed");
+            else
+                logMsg("test6 passed");
         } catch (Exception e) {
             throw new Fault("test6 failed", e);
         } finally {
@@ -264,9 +267,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10619
      *
-     * @test_Strategy: RemoveException from Entity EJB. - Create 1 instance of an
-     * Entity TxEBean(Required) bean. - Force a RemoveException. - Catch
-     * RemoveException.
+     * @test_Strategy: RemoveException from Entity EJB. - Create 1 instance of an Entity TxEBean(Required) bean. - Force a
+     * RemoveException. - Catch RemoveException.
      */
 
     public void test7() throws Fault {
@@ -279,8 +281,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test7");
             testResult = beanRef.test7();
 
-            if (!testResult) throw new Fault("test7 failed");
-            else logMsg("test7 passed");
+            if (!testResult)
+                throw new Fault("test7 failed");
+            else
+                logMsg("test7 passed");
         } catch (Exception e) {
             throw new Fault("test7 failed", e);
         } finally {
@@ -299,12 +303,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:629.2; EJB:SPEC:629.5
      *
-     * @test_Strategy: EJBException from Entity EJB. - Create an instance of a
-     * stateful session Testbean bean. - Create an instance of an Entity
-     * TxEBean(Required) bean. - Cause a EJBException in the Entity bean. - Ensure
-     * that the client receives TransactionRolledbackLocalException. - Check that
-     * the client transaction(t1) is still active. - Verify the transaction did
-     * not commit.
+     * @test_Strategy: EJBException from Entity EJB. - Create an instance of a stateful session Testbean bean. - Create an
+     * instance of an Entity TxEBean(Required) bean. - Cause a EJBException in the Entity bean. - Ensure that the client
+     * receives TransactionRolledbackLocalException. - Check that the client transaction(t1) is still active. - Verify the
+     * transaction did not commit.
      */
 
     public void test8() throws Fault {
@@ -317,8 +319,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test8");
             testResult = beanRef.test8();
 
-            if (!testResult) throw new Fault("test8 failed");
-            else logMsg("test8 passed");
+            if (!testResult)
+                throw new Fault("test8 failed");
+            else
+                logMsg("test8 passed");
         } catch (Exception e) {
             throw new Fault("test8 failed", e);
         } finally {
@@ -337,11 +341,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:629.2; EJB:SPEC:629.5
      *
-     * @test_Strategy: Error from Entity EJB. - Create an instance of a stateful
-     * session Testbean bean. - Create an instance of an Entity TxEBean(Required)
-     * bean. - Cause a Error in the Entity bean. - Ensure that the client receives
-     * TransactionRolledbackLocalException. - Check that the client
-     * transaction(t1) is still active. - Verify the transaction did not commit.
+     * @test_Strategy: Error from Entity EJB. - Create an instance of a stateful session Testbean bean. - Create an instance
+     * of an Entity TxEBean(Required) bean. - Cause a Error in the Entity bean. - Ensure that the client receives
+     * TransactionRolledbackLocalException. - Check that the client transaction(t1) is still active. - Verify the
+     * transaction did not commit.
      */
 
     public void test9() throws Fault {
@@ -354,8 +357,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test9");
             testResult = beanRef.test9();
 
-            if (!testResult) throw new Fault("test9 failed");
-            else logMsg("test9 passed");
+            if (!testResult)
+                throw new Fault("test9 failed");
+            else
+                logMsg("test9 passed");
         } catch (Exception e) {
             throw new Fault("test9 failed", e);
         } finally {

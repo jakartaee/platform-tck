@@ -33,8 +33,7 @@ import jakarta.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
 /**
- * Simple tag to verify adpated SimpleTag instance is provided though a call to
- * Tag.getParent().
+ * Simple tag to verify adpated SimpleTag instance is provided though a call to Tag.getParent().
  */
 public class TagAdapterVerifierTag extends TagSupport {
 
@@ -47,12 +46,10 @@ public class TagAdapterVerifierTag extends TagSupport {
     }
 
     /**
-     * Validates that the parent of this Classic tag handler is an instance of
-     * SimpleTag adapted with a TagAdapter.
+     * Validates that the parent of this Classic tag handler is an instance of SimpleTag adapted with a TagAdapter.
      *
      * @return Tag.EVAL_PAGE
-     * @throws JspException
-     *           if an unexpected error occurs.
+     * @throws JspException if an unexpected error occurs.
      */
     public int doEndTag() throws JspException {
         JspTestUtil.debug("[TagAdapterVerifierTag] in doEndTag()");

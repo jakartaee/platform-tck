@@ -30,7 +30,8 @@ public class Order implements java.io.Serializable {
 
     private String description;
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(int total) {
         this.total = total;
@@ -83,8 +84,10 @@ public class Order implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Order)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Order))
+            return false;
 
         Order o1 = (Order) o;
 

@@ -39,8 +39,7 @@ public class BodyContentFlushTag extends BodyTagSupport {
      * Validates that an IOException is thrown if BodyContent.flush() is called.
      *
      * @return SKIP_BODY
-     * @throws JspException
-     *           - if an error occurs
+     * @throws JspException - if an error occurs
      */
     public int doAfterBody() throws JspException {
         JspTestUtil.debug("[BodyContentFlushTag] in doAfterBody()");

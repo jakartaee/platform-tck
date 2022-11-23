@@ -37,12 +37,10 @@ public class BodyContainerInteractionTag extends ContainerInteractionTag impleme
     }
 
     /**
-     * Validate container behavior when returning either EVAL_BODY_INCLUDE,
-     * SKIP_BODY, SKIP_PAGE, or EVAL_BODY_BUFFERED.
+     * Validate container behavior when returning either EVAL_BODY_INCLUDE, SKIP_BODY, SKIP_PAGE, or EVAL_BODY_BUFFERED.
      *
      * @return an int value based on the doStartTag attribute.
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doStartTag() throws JspException {
         int retValue = 0;
@@ -56,11 +54,9 @@ public class BodyContainerInteractionTag extends ContainerInteractionTag impleme
     }
 
     /**
-     * Validate the container calls setBodyContent on tag instances when
-     * doStartTag() returns EVAL_BODY_BUFFERED.
+     * Validate the container calls setBodyContent on tag instances when doStartTag() returns EVAL_BODY_BUFFERED.
      *
-     * @param content
-     *          - the body content.
+     * @param content - the body content.
      */
     public void setBodyContent(BodyContent content) {
         _content = content;
@@ -68,11 +64,9 @@ public class BodyContainerInteractionTag extends ContainerInteractionTag impleme
     }
 
     /**
-     * Validate the container calls doInitBody() before the evaluation of the
-     * body.
+     * Validate the container calls doInitBody() before the evaluation of the body.
      *
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public void doInitBody() throws JspException {
         addMethodToList("doInitBody");

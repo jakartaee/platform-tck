@@ -27,28 +27,22 @@ import jakarta.ejb.Stateful;
 import jakarta.interceptor.Interceptors;
 
 @Stateful
-@Interceptors({Interceptor1.class, Interceptor2.class})
+@Interceptors({ Interceptor1.class, Interceptor2.class })
 public class ThreeBean extends BeanBase {
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myFloat",
-            description = "declared in web.xml")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myFloat", description = "declared in web.xml")
     private float myFloatFromWebXml;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myDouble")
     private double myDoubleFromWebXml;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myFloat",
-            description = "declared in ejb-jar.xml#OneBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myFloat", description = "declared in ejb-jar.xml#OneBean")
     private float myFloatFromOneBean;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myDouble")
     private double myDoubleFromOneBean;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myFloat",
-            description = "declared in ejb-jar.xml#TwoBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myFloat", description = "declared in ejb-jar.xml#TwoBean")
     private float myFloatFromTwoBean;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myDouble")

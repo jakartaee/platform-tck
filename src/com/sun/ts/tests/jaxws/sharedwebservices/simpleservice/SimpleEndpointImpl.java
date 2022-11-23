@@ -20,17 +20,14 @@
 
 package com.sun.ts.tests.jaxws.sharedwebservices.simpleservice;
 
-@jakarta.jws.WebService(
-        targetNamespace = "http://simpletestservice.org/wsdl",
-        serviceName = "SimpleTest",
-        portName = "SimpleEndpointPort",
-        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint")
+@jakarta.jws.WebService(targetNamespace = "http://simpletestservice.org/wsdl", serviceName = "SimpleTest", portName = "SimpleEndpointPort", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.simpleservice.SimpleEndpoint")
 public class SimpleEndpointImpl implements SimpleEndpoint {
     public String helloWorld() {
         return "hello world";
     }
 
-    public void oneWayOperation() {}
+    public void oneWayOperation() {
+    }
 
     public String overloadedOperation(String param) {
         return param;
@@ -41,7 +38,7 @@ public class SimpleEndpointImpl implements SimpleEndpoint {
     }
 
     public String[] arrayOperation() {
-        return new String[] {"one", "two", "three"};
+        return new String[] { "one", "two", "three" };
     }
 
     public SimpleBean getBean() {

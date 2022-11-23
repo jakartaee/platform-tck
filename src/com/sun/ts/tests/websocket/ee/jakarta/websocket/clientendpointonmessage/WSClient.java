@@ -617,8 +617,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: partialStringTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send partial message
      */
@@ -633,8 +632,7 @@ public class WSClient extends WebSocketCommonClient {
     /*
      * @testName: partialStringAndSessionTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3;
-     * WebSocket:JAVADOC:80;
+     * @assertion_ids: WebSocket:SPEC:WSC-4.7-2; WebSocket:SPEC:WSC-4.7-3; WebSocket:JAVADOC:80;
      *
      * @test_Strategy: send string and string receive the combined string
      */

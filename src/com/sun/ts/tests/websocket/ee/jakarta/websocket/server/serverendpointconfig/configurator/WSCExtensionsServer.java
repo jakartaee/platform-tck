@@ -93,8 +93,7 @@ public class WSCExtensionsServer extends Endpoint implements MessageHandler.Whol
     public static List<ExtensionImpl> getRequestedExtension() {
         Extension.Parameter firstParam = ExtensionsServerEndpointConfig.PARAMETER[0];
         Extension.Parameter secondParam = ExtensionsServerEndpointConfig.PARAMETER[1];
-        ExtensionImpl extension =
-                new ExtensionImpl(ExtensionsServerEndpointConfig.EXT_NAMES[0], firstParam, secondParam);
+        ExtensionImpl extension = new ExtensionImpl(ExtensionsServerEndpointConfig.EXT_NAMES[0], firstParam, secondParam);
         List<ExtensionImpl> list = new ArrayList<>();
         list.add(extension);
         return list;
@@ -103,8 +102,7 @@ public class WSCExtensionsServer extends Endpoint implements MessageHandler.Whol
     public static List<ExtensionImpl> getOrderedExtensions() {
         Extension.Parameter firstParam = ExtensionsServerEndpointConfig.PARAMETER[0];
         Extension.Parameter secondParam = ExtensionsServerEndpointConfig.PARAMETER[1];
-        ExtensionImpl extension =
-                new ExtensionImpl(ExtensionsServerEndpointConfig.EXT_NAMES[1], firstParam, secondParam);
+        ExtensionImpl extension = new ExtensionImpl(ExtensionsServerEndpointConfig.EXT_NAMES[1], firstParam, secondParam);
         List<ExtensionImpl> list = new ArrayList<>();
         list.add(extension);
         list.add(getRequestedExtension().iterator().next());

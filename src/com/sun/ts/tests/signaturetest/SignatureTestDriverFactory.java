@@ -29,16 +29,14 @@ public class SignatureTestDriverFactory {
 
     /**
      * <p>
-     * Identifier for the driver that uses API Check to perform signature
-     * validation.
+     * Identifier for the driver that uses API Check to perform signature validation.
      * </p>
      */
     public static final String API_CHECK = "apicheck";
 
     /**
      * <p>
-     * Identifier for the driver that uses the Signature Test framwork for
-     * signature validation.
+     * Identifier for the driver that uses the Signature Test framwork for signature validation.
      * </p>
      */
     public static final String SIG_TEST = "sigtest";
@@ -46,17 +44,16 @@ public class SignatureTestDriverFactory {
     // ------------------------------------------------------------ Constructors
 
     // Access via factory method
-    private SignatureTestDriverFactory() {} // END SignatureTestDriverFactory
+    private SignatureTestDriverFactory() {
+    } // END SignatureTestDriverFactory
 
     // ---------------------------------------------------------- Public Methods
 
     /**
      * <p>
-     * Obtain a {@link SignatureTestDriver} instance based on the
-     * <code>type</code> argument.
+     * Obtain a {@link SignatureTestDriver} instance based on the <code>type</code> argument.
      *
-     * @param type
-     *          the driver type to create
+     * @param type the driver type to create
      * @return a {@link SignatureTestDriver} implementation
      */
     public static SignatureTestDriver getInstance(String type) {

@@ -67,18 +67,19 @@ public class multipart_Test extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
-     * javamail.password ; javamail.mailbox; javamail.root.path; mailuser1;
-     * mailHost; mailFrom; transport_protocol; smtp.port; imap.port;
+     * @class.setup_props: javamail.protocol; javamail.server; javamail.username; javamail.password ; javamail.mailbox;
+     * javamail.root.path; mailuser1; mailHost; mailFrom; transport_protocol; smtp.port; imap.port;
      */
     public void setup(String[] args, Properties props) throws Fault {
         try {
             // mail recipient
             mailTo = props.getProperty("mailuser1");
-            if (mailTo.length() == 0) throw new Fault("Invalid mailuser1 - the mail to property");
+            if (mailTo.length() == 0)
+                throw new Fault("Invalid mailuser1 - the mail to property");
 
             transport_protocol = props.getProperty("transport_protocol");
-            if (transport_protocol.length() == 0) throw new Fault("Invalid transport_protocol");
+            if (transport_protocol.length() == 0)
+                throw new Fault("Invalid transport_protocol");
 
             user = TestUtil.getProperty("javamail.username");
             password = TestUtil.getProperty("javamail.password");
@@ -107,8 +108,7 @@ public class multipart_Test extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:235;
      *
-     * @test_Strategy: Call api with part argument, then verify by calling
-     * getCount.
+     * @test_Strategy: Call api with part argument, then verify by calling getCount.
      */
     // derived from javamail suite multipart_Test class
     public void testAddBodyPart1() throws Fault {
@@ -119,7 +119,7 @@ public class multipart_Test extends ServiceEETest implements Serializable {
             // create a message
             MimeMessage msg = new MimeMessage(session);
 
-            InternetAddress[] address = {new InternetAddress(mailTo)};
+            InternetAddress[] address = { new InternetAddress(mailTo) };
 
             msg.setRecipients(Message.RecipientType.TO, address);
             msg.setSubject("TestAddBodyPart1()" + new Date());
@@ -143,7 +143,8 @@ public class multipart_Test extends ServiceEETest implements Serializable {
             mp.addBodyPart(mbp2); // API TEST
             mp.addBodyPart(mbp1); // API TEST
 
-            if (mp.getCount() == 3) TestUtil.logTrace("Multipart1: passed.\n");
+            if (mp.getCount() == 3)
+                TestUtil.logTrace("Multipart1: passed.\n");
             else {
                 throw new Fault("Multipart1: count incorrect- failed\n");
             }
@@ -168,8 +169,7 @@ public class multipart_Test extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JavaEE:SPEC:235;
      *
-     * @test_Strategy: Call api with part argument and position, then verify by
-     * calling getCount.
+     * @test_Strategy: Call api with part argument and position, then verify by calling getCount.
      */
     public void testAddBodyPart2() throws Fault {
 
@@ -178,7 +178,7 @@ public class multipart_Test extends ServiceEETest implements Serializable {
             // create a message
             MimeMessage msg = new MimeMessage(session);
 
-            InternetAddress[] address = {new InternetAddress(mailTo)};
+            InternetAddress[] address = { new InternetAddress(mailTo) };
 
             msg.setRecipients(Message.RecipientType.TO, address);
             msg.setSubject("testAddBodyPart2()" + new Date());
@@ -202,7 +202,8 @@ public class multipart_Test extends ServiceEETest implements Serializable {
             mp.addBodyPart(mbp1, 2); // API TEST
             mp.addBodyPart(mbp2, 3); // API TEST
 
-            if (mp.getCount() == 4) TestUtil.logTrace("Multipart2: passed.\n");
+            if (mp.getCount() == 4)
+                TestUtil.logTrace("Multipart2: passed.\n");
             else {
                 throw new Fault("Multipart2: count incorrect- failed\n");
             }
@@ -222,7 +223,7 @@ public class multipart_Test extends ServiceEETest implements Serializable {
             throw new Fault("Call to testAddBodyPart2 Failed!", e);
         }
     } // end of testAddBodyPart2
-    //
+      //
 
     /* cleanup */
     public void cleanup() throws Fault {

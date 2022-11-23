@@ -30,11 +30,7 @@ import jakarta.xml.ws.Action;
 import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.soap.Addressing;
 
-@WebService(
-        name = "AddNumbersPortType",
-        portName = "AddNumbersPort",
-        serviceName = "AddNumbersService",
-        targetNamespace = "http://example.com")
+@WebService(name = "AddNumbersPortType", portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "http://example.com")
 @HandlerChain(file = "server-handler.xml")
 @Addressing(enabled = true, required = true)
 public class AddNumbersImpl {

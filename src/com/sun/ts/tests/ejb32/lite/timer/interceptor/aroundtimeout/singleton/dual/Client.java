@@ -26,9 +26,8 @@ public class Client extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
     /*
      * @testName: asBusiness
      *
-     * @test_Strategy: timeout method can also be exposed as business methods.
-     * When invoked as a business method, the around-invoke method in the
-     * method-level interceptor is to be invoked, not the around-timeout method.
+     * @test_Strategy: timeout method can also be exposed as business methods. When invoked as a business method, the
+     * around-invoke method in the method-level interceptor is to be invoked, not the around-timeout method.
      */
     public void asBusiness() {
         // There should be no exception
@@ -39,9 +38,8 @@ public class Client extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
     /*
      * @testName: asTimeout
      *
-     * @test_Strategy: When invoked as a timeout method, the around-timeout method
-     * in the method-level interceptor is to be invoked, not the around-invoke
-     * method.
+     * @test_Strategy: When invoked as a timeout method, the around-timeout method in the method-level interceptor is to be
+     * invoked, not the around-invoke method.
      */
     public void asTimeout() {
         passIfRecurringTimeout();

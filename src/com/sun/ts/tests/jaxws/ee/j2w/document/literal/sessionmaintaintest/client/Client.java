@@ -131,8 +131,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -169,11 +171,9 @@ public class Client extends ServiceEETest {
     /*
      * @testName: SessionMaintainPropertyNotSetTest
      *
-     * @assertion_ids: WS4EE:SPEC:5004; JAXWS:JAVADOC:69; JAXWS:JAVADOC:129;
-     * JAXWS:SPEC:4005;
+     * @assertion_ids: WS4EE:SPEC:5004; JAXWS:JAVADOC:69; JAXWS:JAVADOC:129; JAXWS:SPEC:4005;
      *
-     * @test_Strategy: With maintain property set to false, session should not be
-     * maintained.
+     * @test_Strategy: With maintain property set to false, session should not be maintained.
      *
      */
 
@@ -186,23 +186,23 @@ public class Client extends ServiceEETest {
             if (port.compareSessionId(id)) {
                 TestUtil.logErr("Client session was maintain when it should not have been");
                 pass = false;
-            } else TestUtil.logMsg("Client session is not maintained");
+            } else
+                TestUtil.logMsg("Client session is not maintained");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("SessionMaintainPropertyNotSetTest failed", e);
         }
-        if (!pass) throw new Fault("SessionMaintainPropertyNotSetTest failed");
+        if (!pass)
+            throw new Fault("SessionMaintainPropertyNotSetTest failed");
     }
 
     /*
      * @testName: SessionMaintainPropertySetToFalseTest
      *
-     * @assertion_ids: WS4EE:SPEC:5004; JAXWS:JAVADOC:69; JAXWS:JAVADOC:129;
-     * JAXWS:SPEC:4005;
+     * @assertion_ids: WS4EE:SPEC:5004; JAXWS:JAVADOC:69; JAXWS:JAVADOC:129; JAXWS:SPEC:4005;
      *
-     * @test_Strategy: With maintain property set to false, session should not be
-     * maintained.
+     * @test_Strategy: With maintain property set to false, session should not be maintained.
      *
      */
 
@@ -225,17 +225,16 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("SessionMaintainPropertySetToFalseTest failed", e);
         }
-        if (!pass) throw new Fault("SessionMaintainPropertySetToFalseTest failed");
+        if (!pass)
+            throw new Fault("SessionMaintainPropertySetToFalseTest failed");
     }
 
     /*
      * @testName: SessionMaintainPropertySetToTrueTest
      *
-     * @assertion_ids: WS4EE:SPEC:5004; JAXWS:JAVADOC:69; JAXWS:JAVADOC:129;
-     * JAXWS:SPEC:4005;
+     * @assertion_ids: WS4EE:SPEC:5004; JAXWS:JAVADOC:69; JAXWS:JAVADOC:129; JAXWS:SPEC:4005;
      *
-     * @test_Strategy: With maintain property set to true, session should be
-     * maintained.
+     * @test_Strategy: With maintain property set to true, session should be maintained.
      *
      */
 
@@ -250,12 +249,14 @@ public class Client extends ServiceEETest {
             if (!port.compareSessionId(id)) {
                 TestUtil.logErr("Client session was not maintain when it should have been");
                 pass = false;
-            } else TestUtil.logMsg("Client session is maintained");
+            } else
+                TestUtil.logMsg("Client session is maintained");
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("SessionMaintainPropertySetToTrueTest failed", e);
         }
-        if (!pass) throw new Fault("SessionMaintainPropertySetToTrueTest failed");
+        if (!pass)
+            throw new Fault("SessionMaintainPropertySetToTrueTest failed");
     }
 }

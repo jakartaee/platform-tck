@@ -28,7 +28,8 @@ public class NoEntityListener implements java.io.Serializable {
 
     private Long id;
 
-    public NoEntityListener() {}
+    public NoEntityListener() {
+    }
 
     @Id
     public Long getId() {

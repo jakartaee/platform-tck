@@ -29,8 +29,8 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 
 /**
- * SimpleTag instance to validate the that this SimpleTag is passed to the
- * nested Classic tag wrapped with by a TagAdapter.
+ * SimpleTag instance to validate the that this SimpleTag is passed to the nested Classic tag wrapped with by a
+ * TagAdapter.
  */
 public class TASimpleTag extends SimpleTagSupport {
 
@@ -44,10 +44,8 @@ public class TASimpleTag extends SimpleTagSupport {
     /**
      * Invokes the JspFragment, in this case, a nested Classic Tag.
      *
-     * @throws JspException
-     *           - if an unexpected error occurs
-     * @throws IOException
-     *           - if an I/O error occurs
+     * @throws JspException - if an unexpected error occurs
+     * @throws IOException - if an I/O error occurs
      */
     public void doTag() throws JspException, IOException {
         this.getJspBody().invoke(this.getJspContext().getOut());

@@ -48,7 +48,8 @@ import java.util.Map;
  */
 public class APIAssertionTest {
 
-    public APIAssertionTest() {}
+    public APIAssertionTest() {
+    }
 
     public static void checkManagedConnectionAPI(ManagedConnection mcon) {
         if (mcon == null) {
@@ -231,8 +232,7 @@ public class APIAssertionTest {
             List beanProps = new ArrayList();
             beanProps.add(new PropertyDescriptor("destinationName", LocalTxActivationSpec.class));
             beanProps.add(new PropertyDescriptor("destinationType", LocalTxActivationSpec.class));
-            PropertyDescriptor[] pd =
-                    (PropertyDescriptor[]) beanProps.toArray(new PropertyDescriptor[beanProps.size()]);
+            PropertyDescriptor[] pd = (PropertyDescriptor[]) beanProps.toArray(new PropertyDescriptor[beanProps.size()]);
             ne.setInvalidPropertyDescriptors(pd);
             Debug.trace("throwing setInvalidPropertyDescriptors(pd)");
             throw ne;
@@ -327,8 +327,7 @@ public class APIAssertionTest {
         }
 
         try {
-            jakarta.resource.spi.IllegalStateException ne =
-                    new jakarta.resource.spi.IllegalStateException("message1", "ERRCODE1");
+            jakarta.resource.spi.IllegalStateException ne = new jakarta.resource.spi.IllegalStateException("message1", "ERRCODE1");
             throw ne;
         } catch (jakarta.resource.spi.IllegalStateException ex) {
             logAPIPass("IllegalStateException(str, str) passed");
@@ -338,8 +337,7 @@ public class APIAssertionTest {
 
         try {
             Exception someThrowable = new Exception("test");
-            jakarta.resource.spi.IllegalStateException ne =
-                    new jakarta.resource.spi.IllegalStateException(someThrowable);
+            jakarta.resource.spi.IllegalStateException ne = new jakarta.resource.spi.IllegalStateException(someThrowable);
             throw ne;
         } catch (jakarta.resource.spi.IllegalStateException ex) {
             logAPIPass("IllegalStateException(throwable) passed");
@@ -349,8 +347,7 @@ public class APIAssertionTest {
 
         try {
             Exception someThrowable = new Exception("test");
-            jakarta.resource.spi.IllegalStateException ne =
-                    new jakarta.resource.spi.IllegalStateException("someString", someThrowable);
+            jakarta.resource.spi.IllegalStateException ne = new jakarta.resource.spi.IllegalStateException("someString", someThrowable);
             throw ne;
         } catch (jakarta.resource.spi.IllegalStateException ex) {
             logAPIPass("IllegalStateException(str, throwable) passed");
@@ -880,8 +877,7 @@ public class APIAssertionTest {
         }
 
         try {
-            jakarta.resource.spi.SecurityException ne =
-                    new jakarta.resource.spi.SecurityException("message1", "ERRCODE1");
+            jakarta.resource.spi.SecurityException ne = new jakarta.resource.spi.SecurityException("message1", "ERRCODE1");
             throw ne;
         } catch (jakarta.resource.spi.SecurityException ex) {
             logAPIPass("SecurityException(str, str) passed");
@@ -901,8 +897,7 @@ public class APIAssertionTest {
 
         try {
             Exception someThrowable = new Exception("test");
-            jakarta.resource.spi.SecurityException ne =
-                    new jakarta.resource.spi.SecurityException("someString", someThrowable);
+            jakarta.resource.spi.SecurityException ne = new jakarta.resource.spi.SecurityException("someString", someThrowable);
             throw ne;
         } catch (jakarta.resource.spi.SecurityException ex) {
             logAPIPass("SecurityException(str, throwable) passed");
@@ -1077,9 +1072,8 @@ public class APIAssertionTest {
     }
 
     /*
-     * used to assist with verifying assertions: Connector:JAVADOC:1,
-     * Connector:JAVADOC:2, Connector:JAVADOC:3, Connector:JAVADOC:4,
-     * Connector:JAVADOC:5
+     * used to assist with verifying assertions: Connector:JAVADOC:1, Connector:JAVADOC:2, Connector:JAVADOC:3,
+     * Connector:JAVADOC:4, Connector:JAVADOC:5
      */
     private void checkNotSupportedException() {
 
@@ -1132,10 +1126,8 @@ public class APIAssertionTest {
     }
 
     /*
-     * used to assist with testing api assertions: Connector:JAVADOC:7,
-     * Connector:JAVADOC:9, Connector:JAVADOC:10, Connector:JAVADOC:11,
-     * Connector:JAVADOC:12, Connector:JAVADOC:13, Connector:JAVADOC:14,
-     * Connector:JAVADOC:15
+     * used to assist with testing api assertions: Connector:JAVADOC:7, Connector:JAVADOC:9, Connector:JAVADOC:10,
+     * Connector:JAVADOC:11, Connector:JAVADOC:12, Connector:JAVADOC:13, Connector:JAVADOC:14, Connector:JAVADOC:15
      */
     private void checkResourceException() {
 

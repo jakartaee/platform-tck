@@ -119,15 +119,15 @@ public class Client extends ServiceEETest {
     private RespectBindingFeatureTest3 port8a = null;
 
     private WebServiceFeature[] nonEnabledAddressingEnabledRespectBindingwsf = {
-        new AddressingFeature(false), new RespectBindingFeature(true)
+            new AddressingFeature(false), new RespectBindingFeature(true)
     };
 
     private WebServiceFeature[] enabledRequiredAddressingEnabledRespectBindingwsf = {
-        new AddressingFeature(true, true), new RespectBindingFeature(true)
+            new AddressingFeature(true, true), new RespectBindingFeature(true)
     };
 
     private WebServiceFeature[] enabledNotRequiredAddressingEnabledRespectBindingwsf = {
-        new AddressingFeature(true, false), new RespectBindingFeature(true)
+            new AddressingFeature(true, false), new RespectBindingFeature(true)
     };
 
     static RespectBindingFeatureTestService service = null;
@@ -153,67 +153,47 @@ public class Client extends ServiceEETest {
     }
 
     /*************************************************************************************************
-     * Table to cover RespectBinding/RespectBindingFeature which has only
-     * enabled/disabled param.
+     * Table to cover RespectBinding/RespectBindingFeature which has only enabled/disabled param.
      *
-     * These scenarios exist for RespectBinding/RespectBindingFeatures (using
-     * addressingfeature tests (scenarios) as my starting point and converting
-     * that test into RespectBinding/Feature by copying and modifying it
-     * appropriately corresponding to this scenario table):
+     * These scenarios exist for RespectBinding/RespectBindingFeatures (using addressingfeature tests (scenarios) as my
+     * starting point and converting that test into RespectBinding/Feature by copying and modifying it appropriately
+     * corresponding to this scenario table):
      *
      * There exist the following 20+ scenarios for RespectBindingFeature:
      *
-     * ------------------- ------------------- ---------------------
-     * --------------- Client Server RespectBindingFeature Expected Result
-     * ------------------- ------------------- ---------------------
-     * --------------- 1). Enabled/NotRequired Enabled/NotRequired N/A N/A-not TCK
-     * test 2). Enabled/Required Enabled/NotRequired N/A N/A-not TCK test 3).
-     * NotEnabled Enabled/NotRequired N/A N/A-not TCK test 4a) Enabled/NotRequired
-     * Enabled/Required S-Enabled/C-Enabled Expect No Error 4b)
-     * Enabled/NotRequired Enabled/Required S-Enabled/C-Disabled N/A-not TCK test
-     * 4c) Enabled/NotRequired Enabled/Required S-Disabled/C-Enabled N/A-not TCK
-     * test 4d) Enabled/NotRequired Enabled/Required S-Disabled/C-Disabled N/A-not
-     * TCK test 5a) Enabled/Required Enabled/Required S-Enabled/C-Enabled Expect
-     * No Error 5b) Enabled/Required Enabled/Required S-Enabled/C-Disabled N/A-not
-     * TCK test 5c) Enabled/Required Enabled/Required S-Disabled/C-Enabled N/A-not
-     * TCK test 5d) Enabled/Required Enabled/Required S-Disabled/C-Disabled
-     * N/A-not TCK test 6a) NotEnabled Enabled/Required S-Enabled/C-Enabled Expect
-     * Exception 6b) NotEnabled Enabled/Required S-Enabled/C-Disabled N/A-not TCK
-     * test 6c) NotEnabled Enabled/Required S-Disabled/C-Enabled N/A-not TCK test
-     * 6d) NotEnabled Enabled/Required S-Disabled/C-Disabled N/A-not TCK test 7a)
-     * Enabled/NotRequired NotEnabled S-Enabled/C-Enabled Expect No Error 7b)
-     * Enabled/NotRequired NotEnabled S-Enabled/C-Disabled N/A-not TCK test 7c)
-     * Enabled/NotRequired NotEnabled S-Disabled/C-Enabled N/A-not TCK test 7d)
-     * Enabled/NotRequired NotEnabled S-Disabled/C-Disabled N/A-not TCK test 8a)
-     * Enabled/Required NotEnabled S-Enabled/C-Enabled Expect Exception 8b)
-     * Enabled/Required NotEnabled S-Enabled/C-Disabled N/A-not TCK test 8c)
-     * Enabled/Required NotEnabled S-Disabled/C-Enabled N/A-not TCK test 8d)
-     * Enabled/Required NotEnabled S-Disabled/C-Disabled N/A-not TCK test
+     * ------------------- ------------------- --------------------- --------------- Client Server RespectBindingFeature
+     * Expected Result ------------------- ------------------- --------------------- --------------- 1). Enabled/NotRequired
+     * Enabled/NotRequired N/A N/A-not TCK test 2). Enabled/Required Enabled/NotRequired N/A N/A-not TCK test 3). NotEnabled
+     * Enabled/NotRequired N/A N/A-not TCK test 4a) Enabled/NotRequired Enabled/Required S-Enabled/C-Enabled Expect No Error
+     * 4b) Enabled/NotRequired Enabled/Required S-Enabled/C-Disabled N/A-not TCK test 4c) Enabled/NotRequired
+     * Enabled/Required S-Disabled/C-Enabled N/A-not TCK test 4d) Enabled/NotRequired Enabled/Required S-Disabled/C-Disabled
+     * N/A-not TCK test 5a) Enabled/Required Enabled/Required S-Enabled/C-Enabled Expect No Error 5b) Enabled/Required
+     * Enabled/Required S-Enabled/C-Disabled N/A-not TCK test 5c) Enabled/Required Enabled/Required S-Disabled/C-Enabled
+     * N/A-not TCK test 5d) Enabled/Required Enabled/Required S-Disabled/C-Disabled N/A-not TCK test 6a) NotEnabled
+     * Enabled/Required S-Enabled/C-Enabled Expect Exception 6b) NotEnabled Enabled/Required S-Enabled/C-Disabled N/A-not
+     * TCK test 6c) NotEnabled Enabled/Required S-Disabled/C-Enabled N/A-not TCK test 6d) NotEnabled Enabled/Required
+     * S-Disabled/C-Disabled N/A-not TCK test 7a) Enabled/NotRequired NotEnabled S-Enabled/C-Enabled Expect No Error 7b)
+     * Enabled/NotRequired NotEnabled S-Enabled/C-Disabled N/A-not TCK test 7c) Enabled/NotRequired NotEnabled
+     * S-Disabled/C-Enabled N/A-not TCK test 7d) Enabled/NotRequired NotEnabled S-Disabled/C-Disabled N/A-not TCK test 8a)
+     * Enabled/Required NotEnabled S-Enabled/C-Enabled Expect Exception 8b) Enabled/Required NotEnabled S-Enabled/C-Disabled
+     * N/A-not TCK test 8c) Enabled/Required NotEnabled S-Disabled/C-Enabled N/A-not TCK test 8d) Enabled/Required
+     * NotEnabled S-Disabled/C-Disabled N/A-not TCK test
      *
-     * test scenarios 4a-b, 5a-b, 6a-b use port2 test scenarios 4c-d, 5c-d, 6c-d
-     * use port21 test scenarios 7a-b, 8a-b use port3 test scenarios 7c-d, 8c-d
-     * use port31
+     * test scenarios 4a-b, 5a-b, 6a-b use port2 test scenarios 4c-d, 5c-d, 6c-d use port21 test scenarios 7a-b, 8a-b use
+     * port3 test scenarios 7c-d, 8c-d use port31
      *
      * where port2 is configured via- WSDL: <wsam:Addressing/> Impl2.java:
      *
      * @BindingType(value=SOAPBinding.SOAP11HTTP_BINDING) @RespectBinding(enabled=true)
      *
-     *                                                    where port21 is
-     *                                                    configured via- WSDL:
-     *                                                    <wsam:Addressing/>
-     *                                                    Impl21.java:
+     * where port21 is configured via- WSDL: <wsam:Addressing/> Impl21.java:
      * @BindingType(value=SOAPBinding.SOAP11HTTP_BINDING) @RespectBinding(enabled=false)
      *
-     *                                                    where port3 is
-     *                                                    configured via- WSDL:
-     *                                                    <wsam:Addressing/>
-     *                                                    Impl3.java:
+     * where port3 is configured via- WSDL: <wsam:Addressing/> Impl3.java:
      * @BindingType(value=SOAPBinding.SOAP11HTTP_BINDING) @Addressing(enabled=false) @RespectBinding(enabled=true)
      *
-     *                                                    where port31 is
-     *                                                    configured via- WSDL:
-     *                                                    <wsam:Addressing/>
-     *                                                    Impl31.java: @BindingType(value=SOAPBinding.SOAP11HTTP_BINDING) @Addressing(enabled=false) @RespectBinding(enabled=false)
+     * where port31 is configured via- WSDL: <wsam:Addressing/>
+     * Impl31.java: @BindingType(value=SOAPBinding.SOAP11HTTP_BINDING) @Addressing(enabled=false) @RespectBinding(enabled=false)
      *************************************************************************************************/
     private void getPortStandalone() throws Exception {
         TestUtil.logMsg("******************************Retrieving Port 4a************************\n");
@@ -279,19 +259,14 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("Obtain service via WebServiceRef annotation");
         TestUtil.logMsg("service=" + service);
 
-        port4a = (RespectBindingFeatureTest2)
-                service.getPort(RespectBindingFeatureTest2.class, enabledNotRequiredAddressingEnabledRespectBindingwsf);
-        port5a = (RespectBindingFeatureTest2)
-                service.getPort(RespectBindingFeatureTest2.class, enabledRequiredAddressingEnabledRespectBindingwsf);
-        port6a = (RespectBindingFeatureTest2)
-                service.getPort(RespectBindingFeatureTest2.class, nonEnabledAddressingEnabledRespectBindingwsf);
-        port7a = (RespectBindingFeatureTest3)
-                service.getPort(RespectBindingFeatureTest3.class, enabledNotRequiredAddressingEnabledRespectBindingwsf);
-        port8a = (RespectBindingFeatureTest3)
-                service.getPort(RespectBindingFeatureTest3.class, enabledRequiredAddressingEnabledRespectBindingwsf);
+        port4a = (RespectBindingFeatureTest2) service.getPort(RespectBindingFeatureTest2.class, enabledNotRequiredAddressingEnabledRespectBindingwsf);
+        port5a = (RespectBindingFeatureTest2) service.getPort(RespectBindingFeatureTest2.class, enabledRequiredAddressingEnabledRespectBindingwsf);
+        port6a = (RespectBindingFeatureTest2) service.getPort(RespectBindingFeatureTest2.class, nonEnabledAddressingEnabledRespectBindingwsf);
+        port7a = (RespectBindingFeatureTest3) service.getPort(RespectBindingFeatureTest3.class, enabledNotRequiredAddressingEnabledRespectBindingwsf);
+        port8a = (RespectBindingFeatureTest3) service.getPort(RespectBindingFeatureTest3.class, enabledRequiredAddressingEnabledRespectBindingwsf);
 
         // debug dumping of ports
-        Object[] portsTodump = new Object[] {port4a, port5a, port6a, port7a, port8a};
+        Object[] portsTodump = new Object[] { port4a, port5a, port6a, port7a, port8a };
         dumpTargetEndpointAddressForPort(portsTodump);
     }
 
@@ -371,16 +346,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afCltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabledTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.1;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:7022;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2;
+     * JAXWS:SPEC:6012; JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:7022;
      * JAXWS:SPEC:7022.1; JAXWS:SPEC:7022; JAXWS:JAVADOC:189;
      *
      *
-     * @test_Strategy: Test RespectBinding Feature. Addressing Client
-     * Enabled/NotRequired, Server Enabled/Required; RespectBinding Server
-     * Enabled, Client Enabled. Addressing headers MUST be present on SOAPRequest
-     * and SOAPResponse.
+     * @test_Strategy: Test RespectBinding Feature. Addressing Client Enabled/NotRequired, Server Enabled/Required;
+     * RespectBinding Server Enabled, Client Enabled. Addressing headers MUST be present on SOAPRequest and SOAPResponse.
      */
     public void afCltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabledTest() throws Fault {
         TestUtil.logMsg("afCltEnabledNotREQSvrEnabledREQrbfSvrEnabledCltEnabledTest");
@@ -403,15 +375,12 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.1;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:7022;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2;
+     * JAXWS:SPEC:6012; JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.5; JAXWS:SPEC:7022;
      * JAXWS:SPEC:7022.1; JAXWS:JAVADOC:189;
      *
-     * @test_Strategy: Test RespectBinding Feature. Addressing Client
-     * Enabled/Required, Server Enabled/Required; RespectBinding Server Enabled,
-     * Client Enabled. Addressing headers MUST be present on SOAPRequest and
-     * SOAPResponse.
+     * @test_Strategy: Test RespectBinding Feature. Addressing Client Enabled/Required, Server Enabled/Required;
+     * RespectBinding Server Enabled, Client Enabled. Addressing headers MUST be present on SOAPRequest and SOAPResponse.
      */
     public void afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest() throws Fault {
         TestUtil.logMsg("afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest");
@@ -434,16 +403,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.3; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6011; JAXWS:SPEC:6011.2; JAXWS:SPEC:6012; JAXWS:SPEC:6012.1;
-     * JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.5; JAXWS:SPEC:7022; JAXWS:SPEC:7022.1;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.3; WSAMD:SPEC:3001.4; JAXWS:SPEC:6011; JAXWS:SPEC:6011.2;
+     * JAXWS:SPEC:6012; JAXWS:SPEC:6012.1; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.5; JAXWS:SPEC:7022; JAXWS:SPEC:7022.1;
      * JAXWS:JAVADOC:189;
      *
-     * @test_Strategy: Test RespectBinding Feature. Addressing Client NotEnabled,
-     * Server Enabled/Required; RespectBinding Server Enabled, Client Enabled.
-     * This scenario MUST throw back a SOAP Fault. Make sure the SOAP Fault has
-     * the correct information in it. The SOAP Fault faultcode must be:
-     * MessageAddressingHeaderRequired.
+     * @test_Strategy: Test RespectBinding Feature. Addressing Client NotEnabled, Server Enabled/Required; RespectBinding
+     * Server Enabled, Client Enabled. This scenario MUST throw back a SOAP Fault. Make sure the SOAP Fault has the correct
+     * information in it. The SOAP Fault faultcode must be: MessageAddressingHeaderRequired.
      */
     public void afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest() throws Fault {
         TestUtil.logMsg("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest");
@@ -494,15 +460,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.6;
-     * JAXWS:SPEC:6016.1; JAXWS:SPEC:7020; JAXWS:SPEC:7020.1; JAXWS:JAVADOC:191;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.3;
+     * JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.6; JAXWS:SPEC:6016.1; JAXWS:SPEC:7020; JAXWS:SPEC:7020.1; JAXWS:JAVADOC:191;
      * JAXWS:SPEC:7022; JAXWS:SPEC:7022.1; JAXWS:JAVADOC:189;
      *
-     * @test_Strategy: Test RespectBinding Feature. Addressing Client
-     * Enabled/NotRequired, Server NotEnabled; RespectBinding Server Enabled,
-     * Client Enabled. Addressing headers MAY be present on SOAPRequest and MUST
-     * NOT be present on SOAPResponse
+     * @test_Strategy: Test RespectBinding Feature. Addressing Client Enabled/NotRequired, Server NotEnabled; RespectBinding
+     * Server Enabled, Client Enabled. Addressing headers MAY be present on SOAPRequest and MUST NOT be present on
+     * SOAPResponse
      */
     public void afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest() throws Fault {
         TestUtil.logMsg("afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest");
@@ -525,14 +489,12 @@ public class Client extends ServiceEETest {
     /*
      * @testName: afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest
      *
-     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4;
-     * JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.3; JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.6;
-     * JAXWS:SPEC:6016.1; JAXWS:SPEC:7020; JAXWS:SPEC:7020.1; JAXWS:JAVADOC:191;
+     * @assertion_ids: WSAMD:SPEC:3001.1; WSAMD:SPEC:3001.2; WSAMD:SPEC:3001.4; JAXWS:SPEC:6012.2; JAXWS:SPEC:6012.3;
+     * JAXWS:SPEC:6012.4; JAXWS:SPEC:6012.6; JAXWS:SPEC:6016.1; JAXWS:SPEC:7020; JAXWS:SPEC:7020.1; JAXWS:JAVADOC:191;
      * JAXWS:SPEC:7022; JAXWS:SPEC:7022.1; JAXWS:JAVADOC:189;
      *
-     * @test_Strategy: Test RespectBinding Feature. Addressing Client
-     * Enabled/Required, Server NotEnabled; RespectBinding Server Enabled, Client
-     * Enabled. This scenario MUST throw back a WebServiceException.
+     * @test_Strategy: Test RespectBinding Feature. Addressing Client Enabled/Required, Server NotEnabled; RespectBinding
+     * Server Enabled, Client Enabled. This scenario MUST throw back a WebServiceException.
      */
     public void afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest() throws Fault {
         TestUtil.logMsg("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest");

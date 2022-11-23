@@ -61,8 +61,7 @@ public class SerializersCustomizationCDITest extends ServiceEETest {
      *
      * @assertion_ids: JSONB:SPEC:JSB-4.7.2-3
      *
-     * @test_Strategy: Assert that CDI injection is supported in serializers and
-     * deserializers
+     * @test_Strategy: Assert that CDI injection is supported in serializers and deserializers
      */
     public void testCDISupport() throws Fault {
         AnimalShelterWithInjectedSerializer animalShelter = new AnimalShelterWithInjectedSerializer();

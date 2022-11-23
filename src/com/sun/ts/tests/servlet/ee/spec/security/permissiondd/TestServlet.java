@@ -47,20 +47,17 @@ import java.util.PropertyPermission;
  * call.
  *
  */
-@ServletSecurity(
-        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
-        httpMethodConstraints = {
-            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
-        })
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = { "Administrator" }), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
+})
 @WebServlet("/TestServlet")
 public class TestServlet extends HttpServlet {
     private String servletAppContext = null;
 
     private String testMethod = null;
 
-    private static final String SEC_MGR_WARNING =
-            "ERROR:  Security Manager is NOT enabled and must be for these tests.  If you have passed these tests while running with Security Manager enabled, you can use keywords to bypass the running of these tests when Security Manager is disabled.";
+    private static final String SEC_MGR_WARNING = "ERROR:  Security Manager is NOT enabled and must be for these tests.  If you have passed these tests while running with Security Manager enabled, you can use keywords to bypass the running of these tests when Security Manager is disabled.";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         debug("in TestServlet.doGet()");
@@ -177,11 +174,9 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that a perm (PropertyPermission) is bundled with the app and
-     * that the app does NOT have grants for that perms write action but it should
-     * have perms for the read action. The perm is defined ONLY in permissions.xml
-     * and not defined at the higher (app server) level. This tests the
-     * permission.xml from within a servlet
+     * This validates that a perm (PropertyPermission) is bundled with the app and that the app does NOT have grants for
+     * that perms write action but it should have perms for the read action. The perm is defined ONLY in permissions.xml and
+     * not defined at the higher (app server) level. This tests the permission.xml from within a servlet
      */
     public void validateRestrictedLocalPerm(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -204,19 +199,15 @@ public class TestServlet extends HttpServlet {
                     return;
                 }
                 /*
-                 * // XXXX: if EE were to conclusively state it supports local
-                 * permissions, we could // validate using customPermissions that a
-                 * write was not assigned but when // using common EE permissions, we
-                 * can not be sure that EE perms restrict // allowing PropertyPermission
-                 * "write" actions so we cant assume its restricted // by default and
-                 * won't test for this at this current rev. PropertyPermission
-                 * writePropertyPerm = new PropertyPermission("TestPropertyPerm",
-                 * "write"); try { doCheckPermission(writePropertyPerm); // should NOT
-                 * get here - we should have had an excpetion thrown send_output(out,
-                 * "FAILURE:  validateRestrictedLocalPerm() did not throw expected exception for write of TestPropertyPerm."
-                 * ); return; } catch (AccessControlException ex) { send_output(out,
-                 * "SUCCESS:  validateRestrictedLocalPerm() threw expected exception for write of TestPropertyPerm."
-                 * ); }
+                 * // XXXX: if EE were to conclusively state it supports local permissions, we could // validate using customPermissions
+                 * that a write was not assigned but when // using common EE permissions, we can not be sure that EE perms restrict //
+                 * allowing PropertyPermission "write" actions so we cant assume its restricted // by default and won't test for this at
+                 * this current rev. PropertyPermission writePropertyPerm = new PropertyPermission("TestPropertyPerm", "write"); try {
+                 * doCheckPermission(writePropertyPerm); // should NOT get here - we should have had an excpetion thrown
+                 * send_output(out,
+                 * "FAILURE:  validateRestrictedLocalPerm() did not throw expected exception for write of TestPropertyPerm." ); return;
+                 * } catch (AccessControlException ex) { send_output(out,
+                 * "SUCCESS:  validateRestrictedLocalPerm() threw expected exception for write of TestPropertyPerm." ); }
                  */
                 send_output(out, "SUCCESS:  validateRestrictedLocalPerm passed.");
 
@@ -232,13 +223,10 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that a perm (PropertyPermission) that is bundled with the
-     * app. Additionally, we want to verify the perm for class=PropertyPermission
-     * does NOT pass the access check since we will be trying to access a
-     * non-existing/invalid named perm. Then, as a sanity check, access a perm
-     * using a name that IS validly defined in permissions.xml (but not defined at
-     * any higher appserver level). This tests the permission.xml from within a
-     * servlet
+     * This validates that a perm (PropertyPermission) that is bundled with the app. Additionally, we want to verify the
+     * perm for class=PropertyPermission does NOT pass the access check since we will be trying to access a
+     * non-existing/invalid named perm. Then, as a sanity check, access a perm using a name that IS validly defined in
+     * permissions.xml (but not defined at any higher appserver level). This tests the permission.xml from within a servlet
      */
     public void validateLocalPermsInvalidName(HttpServletRequest request, HttpServletResponse response) {
 
@@ -292,11 +280,9 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that a permission is bundled with the app and that the app
-     * does NOT have the higher level app server grants for that perm but this
-     * does have local grants for that permission via permissions.xml. There are
-     * no actions define for this perm. This tests the permission.xml from within
-     * a servlet
+     * This validates that a permission is bundled with the app and that the app does NOT have the higher level app server
+     * grants for that perm but this does have local grants for that permission via permissions.xml. There are no actions
+     * define for this perm. This tests the permission.xml from within a servlet
      */
     public void validateLocalGrantForCustomPerm(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -327,16 +313,13 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that a permission is bundled with the app and that the app
-     * does have grants for that perm. This perm should be granted at both: -
-     * configuration (config.vi) to add perm to appserver polcy - in local
-     * permissions.xml This should validate we can have the perm declared in both
-     * places and it still works. This tests the permission.xml from within a
-     * servlet
+     * This validates that a permission is bundled with the app and that the app does have grants for that perm. This perm
+     * should be granted at both: - configuration (config.vi) to add perm to appserver polcy - in local permissions.xml This
+     * should validate we can have the perm declared in both places and it still works. This tests the permission.xml from
+     * within a servlet
      *
-     * NOTE: this test originally used custom permissions (extending Permission)
-     * but the status of custom permissions are not currently specified in EE so
-     * we've modified this test to use common EE Security permissions.
+     * NOTE: this test originally used custom permissions (extending Permission) but the status of custom permissions are
+     * not currently specified in EE so we've modified this test to use common EE Security permissions.
      *
      */
     public void validateCustomPerm(HttpServletRequest request, HttpServletResponse response) {
@@ -366,15 +349,12 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that a permission is granted from within the app server not
-     * listed/granted from within the local permissions.xml. In such a case the
-     * permission shoudl be 'inherited' from teh app server and NOT declined just
-     * because it was omitted from the local permissions.xml. This tests the
-     * permission.xml from within a servlet
+     * This validates that a permission is granted from within the app server not listed/granted from within the local
+     * permissions.xml. In such a case the permission shoudl be 'inherited' from teh app server and NOT declined just
+     * because it was omitted from the local permissions.xml. This tests the permission.xml from within a servlet
      *
-     * NOTE: this test originally used custom permissions (extending Permission)
-     * but the status of custom permissions are not currently specified in EE so
-     * we've modified this test to use common EE Security permissions.
+     * NOTE: this test originally used custom permissions (extending Permission) but the status of custom permissions are
+     * not currently specified in EE so we've modified this test to use common EE Security permissions.
      */
     public void validateCustomPermFromAppServer(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -405,10 +385,9 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that the servlet will properly fail a permission check when
-     * a particular grant is missing. (in this case, the perm with matching name
-     * does not exist in permissions.xml and so should fail access check. This
-     * tests the permission.xml from within a servlet
+     * This validates that the servlet will properly fail a permission check when a particular grant is missing. (in this
+     * case, the perm with matching name does not exist in permissions.xml and so should fail access check. This tests the
+     * permission.xml from within a servlet
      */
     public void validateMissingPermFails(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -437,9 +416,8 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that the servlet supports the list of required perms that
-     * are listed in JavaEE7 spec, Table EE.6-2 This tests the permission.xml from
-     * within a servlet
+     * This validates that the servlet supports the list of required perms that are listed in JavaEE7 spec, Table EE.6-2
+     * This tests the permission.xml from within a servlet
      */
     public void validateRequiredPermSet(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -484,9 +462,8 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that a permission is bundled with the app and that the app
-     * does NOT have grants for that perm. This tests the permission.xml from
-     * within a library thats embedded within a servlet
+     * This validates that a permission is bundled with the app and that the app does NOT have grants for that perm. This
+     * tests the permission.xml from within a library thats embedded within a servlet
      */
     public void validateRestrictedLocalPermInLib(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -502,9 +479,8 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that a permission is bundled with the app and that the app
-     * does NOT have grants for that perm. This tests the permission.xml from
-     * within a library thats embedded within a servlet
+     * This validates that a permission is bundled with the app and that the app does NOT have grants for that perm. This
+     * tests the permission.xml from within a library thats embedded within a servlet
      */
     public void validateLocalGrantForCustomPermInLib(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -520,12 +496,10 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that a permission is bundled with the app and that the app
-     * does have grants for that perm. This perm should be granted at both: -
-     * configuration (config.vi) to add perm to appserver polcy - in local
-     * permissions.xml This should validate we can have the perm declared in both
-     * places and it still works. This tests the permission.xml from within a
-     * library thats embedded within a servlet
+     * This validates that a permission is bundled with the app and that the app does have grants for that perm. This perm
+     * should be granted at both: - configuration (config.vi) to add perm to appserver polcy - in local permissions.xml This
+     * should validate we can have the perm declared in both places and it still works. This tests the permission.xml from
+     * within a library thats embedded within a servlet
      */
     public void validateCustomPermInLib(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -541,9 +515,8 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that the servlet will properly fail a permission check when
-     * a particular grant is missing. This tests the permission.xml from within a
-     * library thats embedded within a servlet
+     * This validates that the servlet will properly fail a permission check when a particular grant is missing. This tests
+     * the permission.xml from within a library thats embedded within a servlet
      */
     public void validateMissingPermFailsInLib(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -559,9 +532,8 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates that the servlet supports the list of required perms that
-     * are listed in JavaEE7 spec, Table EE.6-2 This tests the permission.xml from
-     * within a library thats embedded within a servlet
+     * This validates that the servlet supports the list of required perms that are listed in JavaEE7 spec, Table EE.6-2
+     * This tests the permission.xml from within a library thats embedded within a servlet
      */
     public void validateRequiredPermSetInLib(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -577,13 +549,11 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates permissions for a lib are the same as the perms for the code
-     * that is calling the lib. (in this case, the perms for the lib must be the
-     * same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para) This
-     * particular test has a locally defined permission with one name and attempts
-     * to validate access for that perm under a different (non-existing) name. The
-     * actions do match but the name does not. Access should be denied. This tests
-     * the permission.xml from within a library thats embedded within a servlet
+     * This validates permissions for a lib are the same as the perms for the code that is calling the lib. (in this case,
+     * the perms for the lib must be the same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para) This particular
+     * test has a locally defined permission with one name and attempts to validate access for that perm under a different
+     * (non-existing) name. The actions do match but the name does not. Access should be denied. This tests the
+     * permission.xml from within a library thats embedded within a servlet
      */
     public void validateLocalPermsInvalidNameInLib(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -599,13 +569,11 @@ public class TestServlet extends HttpServlet {
     }
 
     /*
-     * This validates permissions for a lib are the same as the perms for the code
-     * that is calling the lib. (in this case, the perms for the lib must be the
-     * same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para)
+     * This validates permissions for a lib are the same as the perms for the code that is calling the lib. (in this case,
+     * the perms for the lib must be the same as this servlet). per EE 7 spec, section EE.6.2.2.6 (4th para)
      *
-     * This validates that a permission is granted from within the app server not
-     * listed/granted from within the local permissions.xml. In such a case the
-     * permission shoudl be 'inherited' from teh app server and NOT declined just
+     * This validates that a permission is granted from within the app server not listed/granted from within the local
+     * permissions.xml. In such a case the permission shoudl be 'inherited' from teh app server and NOT declined just
      * because it was omitted from the local permissions.xml.
      *
      */

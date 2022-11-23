@@ -23,12 +23,7 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1016;
 import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceException;
 
-@WebService(
-        portName = "SimpleEndpointPort",
-        serviceName = "SimpleTest",
-        targetNamespace = "http://simpletestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/W2JRLR1016TestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1016.SimpleEndpoint")
+@WebService(portName = "SimpleEndpointPort", serviceName = "SimpleTest", targetNamespace = "http://simpletestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR1016TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1016.SimpleEndpoint")
 public class SimpleEndpointImpl implements SimpleEndpoint {
     public void alwaysThrowsWebServiceException() {
         throw new WebServiceException("alwaysThrowsWebServiceException");

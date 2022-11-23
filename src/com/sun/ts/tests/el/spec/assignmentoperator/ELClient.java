@@ -55,21 +55,17 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elAssignmentOperatorBigDecimalTest
-     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
-     *                 EL:SPEC:48.1.4
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3; EL:SPEC:48.1.4
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Variable A - BigDecimal
+     * Variable A - BigDecimal
      *
-     *                 Variable B - Rotating through the following types:
-     *                 BigDecimal, BigInteger, Integer, Float, Long, Short,
-     *                 Double, Byte
+     * Variable B - Rotating through the following types: BigDecimal, BigInteger, Integer, Float, Long, Short, Double, Byte
      *
-     *                 Excluded: none
+     * Excluded: none
      *
      * @since: 3.0
      *
@@ -121,20 +117,17 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elAssignmentOperatorFloatTest
-     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
-     *                 EL:SPEC:48.1.4
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3; EL:SPEC:48.1.4
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Variable A - Float
+     * Variable A - Float
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal
+     * Exclude: BigDecimal
      *
      * @since: 3.0
      *
@@ -218,20 +211,17 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elAssignmentOperatorDoubleTest
-     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
-     *                 EL:SPEC:48.1.4
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3; EL:SPEC:48.1.4
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Variable A - Double
+     * Variable A - Double
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, Float
+     * Exclude: BigDecimal, Float
      *
      * @since: 3.0
      *
@@ -316,20 +306,17 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elAssignmentOperatorBigIntegerTest
-     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
-     *                 EL:SPEC:48.1.4
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3; EL:SPEC:48.1.4
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Variable A - BigInteger
+     * Variable A - BigInteger
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, Float, Double
+     * Exclude: BigDecimal, Float, Double
      *
      * @since: 3.0
      *
@@ -395,20 +382,17 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elAssignmentOperatorIntegerTest
-     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
-     *                 EL:SPEC:48.1.4
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3; EL:SPEC:48.1.4
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Variable A - Integer
+     * Variable A - Integer
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double
+     * Exclude: BigDecimal, BigInteger, Float, Double
      *
      * @since: 3.0
      *
@@ -475,20 +459,17 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elAssignmentOperatorLongTest
-     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
-     *                 EL:SPEC:48.1.4
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3; EL:SPEC:48.1.4
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Variable A - Long
+     * Variable A - Long
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer
+     * Exclude: BigDecimal, BigInteger, Float, Double, Integer
      *
      * @since: 3.0
      *
@@ -556,21 +537,17 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elAssignmentOperatorShortTest
-     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
-     *                 EL:SPEC:48.1.4
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3; EL:SPEC:48.1.4
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Variable A - Short
+     * Variable A - Short
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
-     *                 Long
+     * Exclude: BigDecimal, BigInteger, Float, Double, Integer, Long
      *
      * @since: 3.0
      *
@@ -639,21 +616,17 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elAssignmentOperatorByteTest
-     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
-     *                 EL:SPEC:48.1.4
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3; EL:SPEC:48.1.4
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Variable A - Byte
+     * Variable A - Byte
      *
-     *                 Variable B - Rotating through the following types: Integer,
-     *                 Float, Long, Short, Double, Byte
+     * Variable B - Rotating through the following types: Integer, Float, Long, Short, Double, Byte
      *
-     *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
-     *                 Long, Short
+     * Exclude: BigDecimal, BigInteger, Float, Double, Integer, Long, Short
      *
      * @since: 3.0
      *
@@ -723,17 +696,15 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elAssignmentOperatorNullTest
-     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
-     *                 EL:SPEC:48.1.4
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3; EL:SPEC:48.1.4
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Variable A - null
+     * Variable A - null
      *
-     *                 Variable B - null
+     * Variable B - null
      *
      * @since: 3.0
      *
@@ -774,21 +745,17 @@ public class ELClient extends ServiceEETest {
 
     /**
      * @testName: elAssignmentOperatorMultiTest
-     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
-     *                 EL:SPEC:48.1.4
-     * @test_Strategy: Validate that when we have variable A set to a specific
-     *                 data type that we coerce and receive back the correct value
-     *                 and Class type.
+     * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3; EL:SPEC:48.1.4
+     * @test_Strategy: Validate that when we have variable A set to a specific data type that we coerce and receive back the
+     * correct value and Class type.
      *
-     *                 Operators: +, -, *, /, div, %, mod
+     * Operators: +, -, *, /, div, %, mod
      *
-     *                 Variable A - BigDecimal
+     * Variable A - BigDecimal
      *
-     *                 Variable B - Rotating through the following types:
-     *                 BigDecimal, BigInteger, Integer, Float, Long, Short,
-     *                 Double, Byte
+     * Variable B - Rotating through the following types: BigDecimal, BigInteger, Integer, Float, Long, Short, Double, Byte
      *
-     *                 Excluded: none
+     * Excluded: none
      *
      * @since: 3.0
      *

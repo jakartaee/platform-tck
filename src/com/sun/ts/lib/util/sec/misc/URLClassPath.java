@@ -52,8 +52,8 @@ import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 
 /**
- * This class is used to maintain a search path of URLs for loading classes and
- * resources from both JAR files and directories.
+ * This class is used to maintain a search path of URLs for loading classes and resources from both JAR files and
+ * directories.
  *
  * @author David Connelly
  */
@@ -68,8 +68,7 @@ public class URLClassPath {
         JAVA_VERSION = java.security.AccessController.doPrivileged(
                 new com.sun.ts.lib.util.sec.security.action.GetPropertyAction("java.version"));
         DEBUG = (java.security.AccessController.doPrivileged(
-                        new com.sun.ts.lib.util.sec.security.action.GetPropertyAction("sun.misc.URLClassPath.debug"))
-                != null);
+                new com.sun.ts.lib.util.sec.security.action.GetPropertyAction("sun.misc.URLClassPath.debug")) != null);
     }
 
     /* The original search path of URLs. */
@@ -88,16 +87,12 @@ public class URLClassPath {
     private URLStreamHandler jarHandler;
 
     /**
-     * Creates a new URLClassPath for the given URLs. The URLs will be searched in
-     * the order specified for classes and resources. A URL ending with a '/' is
-     * assumed to refer to a directory. Otherwise, the URL is assumed to refer to
-     * a JAR file.
+     * Creates a new URLClassPath for the given URLs. The URLs will be searched in the order specified for classes and
+     * resources. A URL ending with a '/' is assumed to refer to a directory. Otherwise, the URL is assumed to refer to a
+     * JAR file.
      *
-     * @param urls
-     *          the directory and JAR file URLs to search for classes and
-     *          resources
-     * @param factory
-     *          the URLStreamHandlerFactory to use when creating new URLs
+     * @param urls the directory and JAR file URLs to search for classes and resources
+     * @param factory the URLStreamHandlerFactory to use when creating new URLs
      */
     public URLClassPath(URL[] urls, URLStreamHandlerFactory factory) {
         for (int i = 0; i < urls.length; i++) {
@@ -114,12 +109,12 @@ public class URLClassPath {
     }
 
     /**
-     * Appends the specified URL to the search path of directory and JAR file URLs
-     * from which to load classes and resources.
+     * Appends the specified URL to the search path of directory and JAR file URLs from which to load classes and resources.
      */
     public void addURL(URL url) {
         synchronized (urls) {
-            if (path.contains(url)) return;
+            if (path.contains(url))
+                return;
 
             urls.add(0, url);
             path.add(url);
@@ -136,15 +131,11 @@ public class URLClassPath {
     }
 
     /**
-     * Finds the resource with the specified name on the URL search path or null
-     * if not found or security check fails.
+     * Finds the resource with the specified name on the URL search path or null if not found or security check fails.
      *
-     * @param name
-     *          the name of the resource
-     * @param check
-     *          whether to perform a security check
-     * @return a <code>URL</code> for the resource, or <code>null</code> if the
-     *         resource could not be found.
+     * @param name the name of the resource
+     * @param check whether to perform a security check
+     * @return a <code>URL</code> for the resource, or <code>null</code> if the resource could not be found.
      */
     public URL findResource(String name, boolean check) {
         Loader loader;
@@ -158,13 +149,11 @@ public class URLClassPath {
     }
 
     /**
-     * Finds the first Resource on the URL search path which has the specified
-     * name. Returns null if no Resource could be found.
+     * Finds the first Resource on the URL search path which has the specified name. Returns null if no Resource could be
+     * found.
      *
-     * @param name
-     *          the name of the Resource
-     * @param check
-     *          whether to perform a security check
+     * @param name the name of the Resource
+     * @param check whether to perform a security check
      * @return the Resource, or null if not found
      */
     public Resource getResource(String name, boolean check) {
@@ -183,11 +172,9 @@ public class URLClassPath {
     }
 
     /**
-     * Finds all resources on the URL search path with the given name. Returns an
-     * enumeration of the URL objects.
+     * Finds all resources on the URL search path with the given name. Returns an enumeration of the URL objects.
      *
-     * @param name
-     *          the resource name
+     * @param name the resource name
      * @return an Enumeration of all the urls having the specified name
      */
     public Enumeration findResources(final String name, final boolean check) {
@@ -231,11 +218,9 @@ public class URLClassPath {
     }
 
     /**
-     * Finds all resources on the URL search path with the given name. Returns an
-     * enumeration of the Resource objects.
+     * Finds all resources on the URL search path with the given name. Returns an enumeration of the Resource objects.
      *
-     * @param name
-     *          the resource name
+     * @param name the resource name
      * @return an Enumeration of all the resources having the specified name
      */
     public Enumeration getResources(final String name, final boolean check) {
@@ -279,9 +264,8 @@ public class URLClassPath {
     }
 
     /*
-     * Returns the Loader at the specified position in the URL search path. The
-     * URLs are opened and expanded as needed. Returns null if the specified index
-     * is out of range.
+     * Returns the Loader at the specified position in the URL search path. The URLs are opened and expanded as needed.
+     * Returns null if the specified index is out of range.
      */
     private synchronized Loader getLoader(int index) {
         // Expand URL search path until the request can be satisfied
@@ -361,8 +345,8 @@ public class URLClassPath {
     /**
      * Convert class path specification into an array of file URLs.
      *
-     * The path of the file is encoded before conversion into URL form so that
-     * reserved characters can safely appear in the path.
+     * The path of the file is encoded before conversion into URL form so that reserved characters can safely appear in the
+     * path.
      */
     public static URL[] pathToURLs(String path) {
         StringTokenizer st = new StringTokenizer(path, File.pathSeparator);
@@ -390,8 +374,8 @@ public class URLClassPath {
     }
 
     /*
-     * Check whether the resource URL should be returned. Return null on security
-     * check failure. Called by java.net.URLClassLoader.
+     * Check whether the resource URL should be returned. Return null on security check failure. Called by
+     * java.net.URLClassLoader.
      */
     public URL checkURL(URL url) {
         try {
@@ -404,8 +388,7 @@ public class URLClassPath {
     }
 
     /*
-     * Check whether the resource URL should be returned. Throw exception on
-     * failure. Called internally within this file.
+     * Check whether the resource URL should be returned. Throw exception on failure. Called internally within this file.
      */
     static void check(URL url) throws IOException {
         SecurityManager security = System.getSecurityManager();
@@ -437,8 +420,7 @@ public class URLClassPath {
     }
 
     /**
-     * Inner class used to represent a loader of resources and classes from a base
-     * URL.
+     * Inner class used to represent a loader of resources and classes from a base URL.
      */
     private static class Loader {
         private final URL base;
@@ -471,8 +453,7 @@ public class URLClassPath {
                 }
 
                 /*
-                 * For a HTTP connection we use the HEAD method to check if the resource
-                 * exists.
+                 * For a HTTP connection we use the HEAD method to check if the resource exists.
                  */
                 URLConnection uc = url.openConnection();
                 if (uc instanceof HttpURLConnection) {
@@ -533,8 +514,8 @@ public class URLClassPath {
         }
 
         /*
-         * Returns the Resource for the specified name, or null if not found or the
-         * caller does not have the permission to get the resource.
+         * Returns the Resource for the specified name, or null if not found or the caller does not have the permission to get
+         * the resource.
          */
         Resource getResource(final String name) {
             return getResource(name, true);
@@ -679,8 +660,7 @@ public class URLClassPath {
         }
 
         /*
-         * Creates the resource and if the check flag is set to true, checks if is
-         * its okay to return the resource.
+         * Creates the resource and if the check flag is set to true, checks if is its okay to return the resource.
          */
         Resource checkResource(final String name, boolean check, final JarEntry entry) {
 
@@ -722,24 +702,21 @@ public class URLClassPath {
 
                 public Manifest getManifest() throws IOException {
                     return jar.getManifest();
-                }
-                ;
+                };
 
                 public Certificate[] getCertificates() {
                     return entry.getCertificates();
-                }
-                ;
+                };
 
                 public CodeSigner[] getCodeSigners() {
                     return entry.getCodeSigners();
-                }
-                ;
+                };
             };
         }
 
         /*
-         * Returns true iff atleast one resource in the jar file has the same
-         * package name as that of the specified resource name.
+         * Returns true iff atleast one resource in the jar file has the same package name as that of the specified resource
+         * name.
          */
         boolean validIndex(final String name) {
             String packageName = name;
@@ -754,7 +731,8 @@ public class URLClassPath {
             while (enum_.hasMoreElements()) {
                 entry = (ZipEntry) enum_.nextElement();
                 entryName = entry.getName();
-                if ((pos = entryName.lastIndexOf("/")) != -1) entryName = entryName.substring(0, pos);
+                if ((pos = entryName.lastIndexOf("/")) != -1)
+                    entryName = entryName.substring(0, pos);
                 if (entryName.equals(packageName)) {
                     return true;
                 }
@@ -789,19 +767,20 @@ public class URLClassPath {
                 throw (InternalError) new InternalError().initCause(e);
             }
             final JarEntry entry = jar.getJarEntry(name);
-            if (entry != null) return checkResource(name, check, entry);
+            if (entry != null)
+                return checkResource(name, check, entry);
 
-            if (index == null) return null;
+            if (index == null)
+                return null;
 
             HashSet visited = new HashSet();
             return getResource(name, check, visited);
         }
 
         /*
-         * Version of getResource() that tracks the jar files that have been visited
-         * by linking through the index files. This helper method uses a HashSet to
-         * store the URLs of jar files that have been searched and uses it to avoid
-         * going into an infinite loop, looking for a non-existent resource
+         * Version of getResource() that tracks the jar files that have been visited by linking through the index files. This
+         * helper method uses a HashSet to store the URLs of jar files that have been searched and uses it to avoid going into
+         * an infinite loop, looking for a non-existent resource
          */
         Resource getResource(final String name, boolean check, Set visited) {
 
@@ -812,10 +791,10 @@ public class URLClassPath {
             LinkedList jarFilesList = null;
 
             /*
-             * If there no jar files in the index that can potential contain this
-             * resource then return immediately.
+             * If there no jar files in the index that can potential contain this resource then return immediately.
              */
-            if ((jarFilesList = index.get(name)) == null) return null;
+            if ((jarFilesList = index.get(name)) == null)
+                return null;
 
             do {
                 jarFiles = jarFilesList.toArray();
@@ -839,8 +818,8 @@ public class URLClassPath {
                             });
 
                             /*
-                             * this newly opened jar file has its own index, merge it into the
-                             * parent's index, taking into account the relative path.
+                             * this newly opened jar file has its own index, merge it into the parent's index, taking into account the relative
+                             * path.
                              */
                             JarIndex newIndex = newLoader.getIndex();
                             if (newIndex != null) {
@@ -858,8 +837,7 @@ public class URLClassPath {
                     }
 
                     /*
-                     * Note that the addition of the url to the list of visited jars
-                     * incorporates a check for presence in the hashmap
+                     * Note that the addition of the url to the list of visited jars incorporates a check for presence in the hashmap
                      */
                     boolean visitedURL = !visited.add(url);
                     if (!visitedURL) {
@@ -874,8 +852,7 @@ public class URLClassPath {
                         }
 
                         /*
-                         * Verify that at least one other resource with the same package
-                         * name as the lookedup resource is present in the new jar
+                         * Verify that at least one other resource with the same package name as the lookedup resource is present in the new jar
                          */
                         if (!newLoader.validIndex(name)) {
                             /* the mapping is wrong */
@@ -884,9 +861,8 @@ public class URLClassPath {
                     }
 
                     /*
-                     * If newLoader is the current loader or if it is a loader that has
-                     * already been searched or if the new loader does not have an index
-                     * then skip it and move on to the next loader.
+                     * If newLoader is the current loader or if it is a loader that has already been searched or if the new loader does not
+                     * have an index then skip it and move on to the next loader.
                      */
                     if (visitedURL || newLoader == this || newLoader.getIndex() == null) {
                         continue;
@@ -941,8 +917,7 @@ public class URLClassPath {
         }
 
         /*
-         * Parses value of the Class-Path manifest attribute and returns an array of
-         * URLs relative to the specified base URL.
+         * Parses value of the Class-Path manifest attribute and returns an array of URLs relative to the specified base URL.
          */
         private URL[] parseClassPath(URL base, String value) throws MalformedURLException {
             StringTokenizer st = new StringTokenizer(value);
@@ -958,8 +933,7 @@ public class URLClassPath {
     }
 
     /*
-     * Inner class used to represent a loader of classes and resources from a file
-     * URL that refers to a directory.
+     * Inner class used to represent a loader of classes and resources from a file URL that refers to a directory.
      */
     private static class FileLoader extends Loader {
         private File dir;
@@ -996,34 +970,30 @@ public class URLClassPath {
                     return null;
                 }
 
-                if (check) URLClassPath.check(url);
+                if (check)
+                    URLClassPath.check(url);
                 final File file = new File(dir, name.replace('/', File.separatorChar));
                 if (file.exists()) {
                     return new Resource() {
                         public String getName() {
                             return name;
-                        }
-                        ;
+                        };
 
                         public URL getURL() {
                             return url;
-                        }
-                        ;
+                        };
 
                         public URL getCodeSourceURL() {
                             return getBaseURL();
-                        }
-                        ;
+                        };
 
                         public InputStream getInputStream() throws IOException {
                             return new FileInputStream(file);
-                        }
-                        ;
+                        };
 
                         public int getContentLength() throws IOException {
                             return (int) file.length();
-                        }
-                        ;
+                        };
                     };
                 }
             } catch (Exception e) {

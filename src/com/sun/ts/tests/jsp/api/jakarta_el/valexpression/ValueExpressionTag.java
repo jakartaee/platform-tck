@@ -49,8 +49,10 @@ public class ValueExpressionTag extends SimpleTagSupport {
             boolean pass = ExpressionTest.testValueExpression(
                     vexp, elContext, "#{foo}", String.class, VALUE, READONLY, LITERAL_TEXT, buf);
             out.println(buf.toString());
-            if (pass) out.println("Test PASSED.");
-            else out.println("Test FAILED.");
+            if (pass)
+                out.println("Test PASSED.");
+            else
+                out.println("Test FAILED.");
         } catch (Throwable t) {
             out.println(buf.toString());
             JspTestUtil.handleThrowable(t, out, "ValueExpressionTag");

@@ -74,8 +74,7 @@ public class QueuePropertyTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -150,47 +149,37 @@ public class QueuePropertyTests extends ServiceEETest {
     /*
      * @testName: msgPropertiesQTest
      *
-     * @assertion_ids: JMS:SPEC:20.1; JMS:SPEC:20.2; JMS:SPEC:20.3; JMS:SPEC:20.4;
-     * JMS:SPEC:20.5; JMS:SPEC:20.6; JMS:SPEC:20.7; JMS:SPEC:20.8; JMS:SPEC:21;
-     * JMS:SPEC:23; JMS:SPEC:24; JMS:SPEC:25; JMS:SPEC:26; JMS:SPEC:10;
-     * JMS:SPEC:27; JMS:SPEC:28; JMS:SPEC:29; JMS:SPEC:31; JMS:SPEC:32;
-     * JMS:SPEC:34; JMS:SPEC:19; JMS:SPEC:70; JMS:SPEC:71; JMS:JAVADOC:411;
-     * JMS:JAVADOC:413; JMS:JAVADOC:415; JMS:JAVADOC:417; JMS:JAVADOC:419;
-     * JMS:JAVADOC:421; JMS:JAVADOC:423; JMS:JAVADOC:425; JMS:JAVADOC:427;
-     * JMS:JAVADOC:409; JMS:JAVADOC:391; JMS:JAVADOC:393; JMS:JAVADOC:395;
-     * JMS:JAVADOC:397; JMS:JAVADOC:399; JMS:JAVADOC:401; JMS:JAVADOC:403;
-     * JMS:JAVADOC:405; JMS:JAVADOC:407; JMS:JAVADOC:500; JMS:JAVADOC:516;
-     * JMS:JAVADOC:387; JMS:JAVADOC:792; JMS:JAVADOC:776; JMS:JAVADOC:778;
-     * JMS:JAVADOC:780; JMS:JAVADOC:782; JMS:JAVADOC:784; JMS:JAVADOC:786;
-     * JMS:JAVADOC:788; JMS:JAVADOC:790; JMS:JAVADOC:793;
+     * @assertion_ids: JMS:SPEC:20.1; JMS:SPEC:20.2; JMS:SPEC:20.3; JMS:SPEC:20.4; JMS:SPEC:20.5; JMS:SPEC:20.6;
+     * JMS:SPEC:20.7; JMS:SPEC:20.8; JMS:SPEC:21; JMS:SPEC:23; JMS:SPEC:24; JMS:SPEC:25; JMS:SPEC:26; JMS:SPEC:10;
+     * JMS:SPEC:27; JMS:SPEC:28; JMS:SPEC:29; JMS:SPEC:31; JMS:SPEC:32; JMS:SPEC:34; JMS:SPEC:19; JMS:SPEC:70; JMS:SPEC:71;
+     * JMS:JAVADOC:411; JMS:JAVADOC:413; JMS:JAVADOC:415; JMS:JAVADOC:417; JMS:JAVADOC:419; JMS:JAVADOC:421;
+     * JMS:JAVADOC:423; JMS:JAVADOC:425; JMS:JAVADOC:427; JMS:JAVADOC:409; JMS:JAVADOC:391; JMS:JAVADOC:393;
+     * JMS:JAVADOC:395; JMS:JAVADOC:397; JMS:JAVADOC:399; JMS:JAVADOC:401; JMS:JAVADOC:403; JMS:JAVADOC:405;
+     * JMS:JAVADOC:407; JMS:JAVADOC:500; JMS:JAVADOC:516; JMS:JAVADOC:387; JMS:JAVADOC:792; JMS:JAVADOC:776;
+     * JMS:JAVADOC:778; JMS:JAVADOC:780; JMS:JAVADOC:782; JMS:JAVADOC:784; JMS:JAVADOC:786; JMS:JAVADOC:788;
+     * JMS:JAVADOC:790; JMS:JAVADOC:793;
      *
-     * @test_Strategy: set and read properties for boolean, byte, short, int,
-     * long, float, double, and String. Verify expected results set and read
-     * properties for Boolean, Byte, Short, Int, Long, Float, Double, and String.
-     * Verify expected results.
+     * @test_Strategy: set and read properties for boolean, byte, short, int, long, float, double, and String. Verify
+     * expected results set and read properties for Boolean, Byte, Short, Int, Long, Float, Double, and String. Verify
+     * expected results.
      *
-     * When a client receives a message it is in read-only mode. Send a message
-     * and have the client attempt modify the properties. Verify that a
-     * MessageNotWriteableException is thrown. Call setObject property with an
-     * invalid object and verify that a MessageFormatException is thrown
+     * When a client receives a message it is in read-only mode. Send a message and have the client attempt modify the
+     * properties. Verify that a MessageNotWriteableException is thrown. Call setObject property with an invalid object and
+     * verify that a MessageFormatException is thrown
      *
-     * call property get methods( other than getStringProperty and
-     * getObjectProperty) for non-existent properties and verify that a null
-     * pointer exception is returned. call getStringProperty and getObjectProperty
-     * for non-existent properties and verify that a null is returned.
+     * call property get methods( other than getStringProperty and getObjectProperty) for non-existent properties and verify
+     * that a null pointer exception is returned. call getStringProperty and getObjectProperty for non-existent properties
+     * and verify that a null is returned.
      *
-     * set object properties and verify the correct value is returned with the
-     * getObjectProperty method.
+     * set object properties and verify the correct value is returned with the getObjectProperty method.
      *
-     * call the clearProperties method on the received message and verify that the
-     * messages properties were deleted. Test that getObjectProperty returns a
-     * null and the getShortProperty throws a null pointer exception.
+     * call the clearProperties method on the received message and verify that the messages properties were deleted. Test
+     * that getObjectProperty returns a null and the getShortProperty throws a null pointer exception.
      *
-     * After clearing the message properties, call getText and verify that the
-     * message body has not been cleared.
+     * After clearing the message properties, call getText and verify that the message body has not been cleared.
      *
-     * call getJMSXPropertyNames() and verify that the names of the required JMSX
-     * properties for JMSXGroupID and JMSXGroupSeq are returned.
+     * call getJMSXPropertyNames() and verify that the names of the required JMSX properties for JMSXGroupID and
+     * JMSXGroupSeq are returned.
      */
     public void msgPropertiesQTest() throws Fault {
         boolean pass = true;
@@ -277,8 +266,10 @@ public class QueuePropertyTests extends ServiceEETest {
             do {
                 String tmp = (String) propertyNames.nextElement();
                 logTrace("+++++++   Property Name is: " + tmp);
-                if (tmp.indexOf("JMS") != 0) i++;
-                else if (tmp.equals("JMSXDeliveryCount")) i++;
+                if (tmp.indexOf("JMS") != 0)
+                    i++;
+                else if (tmp.equals("JMSXDeliveryCount"))
+                    i++;
             } while (propertyNames.hasMoreElements());
 
             if (i == numPropertyNames) {
@@ -674,15 +665,13 @@ public class QueuePropertyTests extends ServiceEETest {
     /*
      * @testName: msgPropertiesConversionQTest
      *
-     * @assertion_ids: JMS:SPEC:22.1; JMS:SPEC:22.2; JMS:SPEC:22.3; JMS:SPEC:22.4;
-     * JMS:SPEC:22.5; JMS:SPEC:22.6; JMS:SPEC:22.7; JMS:SPEC:22.8; JMS:SPEC:22.9;
-     * JMS:SPEC:22.10; JMS:SPEC:22.11; JMS:SPEC:22.12; JMS:SPEC:22.13;
-     * JMS:SPEC:22.14; JMS:SPEC:22.15; JMS:SPEC:22.16; JMS:JAVADOC:768;
-     * JMS:JAVADOC:769; JMS:JAVADOC:770; JMS:JAVADOC:771; JMS:JAVADOC:767;
-     * JMS:JAVADOC:772; JMS:JAVADOC:773; JMS:JAVADOC:774;
+     * @assertion_ids: JMS:SPEC:22.1; JMS:SPEC:22.2; JMS:SPEC:22.3; JMS:SPEC:22.4; JMS:SPEC:22.5; JMS:SPEC:22.6;
+     * JMS:SPEC:22.7; JMS:SPEC:22.8; JMS:SPEC:22.9; JMS:SPEC:22.10; JMS:SPEC:22.11; JMS:SPEC:22.12; JMS:SPEC:22.13;
+     * JMS:SPEC:22.14; JMS:SPEC:22.15; JMS:SPEC:22.16; JMS:JAVADOC:768; JMS:JAVADOC:769; JMS:JAVADOC:770; JMS:JAVADOC:771;
+     * JMS:JAVADOC:767; JMS:JAVADOC:772; JMS:JAVADOC:773; JMS:JAVADOC:774;
      *
-     * @test_Strategy: create a message, set properties for all of the primitive
-     * types verify the conversion by getting the properties.
+     * @test_Strategy: create a message, set properties for all of the primitive types verify the conversion by getting the
+     * properties.
      */
     public void msgPropertiesConversionQTest() throws Fault {
         boolean pass = true;
@@ -1502,12 +1491,11 @@ public class QueuePropertyTests extends ServiceEETest {
     /*
      * @testName: msgPropertyExistTest
      *
-     * @assertion_ids: JMS:JAVADOC:411; JMS:JAVADOC:413; JMS:JAVADOC:415;
-     * JMS:JAVADOC:417; JMS:JAVADOC:419; JMS:JAVADOC:421; JMS:JAVADOC:423;
-     * JMS:JAVADOC:425; JMS:JAVADOC:427; JMS:JAVADOC:389;
+     * @assertion_ids: JMS:JAVADOC:411; JMS:JAVADOC:413; JMS:JAVADOC:415; JMS:JAVADOC:417; JMS:JAVADOC:419; JMS:JAVADOC:421;
+     * JMS:JAVADOC:423; JMS:JAVADOC:425; JMS:JAVADOC:427; JMS:JAVADOC:389;
      *
-     * @test_Strategy: Set and read properties for boolean, byte, short, int,
-     * long, float, double, and String. Verify expected results
+     * @test_Strategy: Set and read properties for boolean, byte, short, int, long, float, double, and String. Verify
+     * expected results
      */
     public void msgPropertyExistTest() throws Fault {
         boolean pass = true;

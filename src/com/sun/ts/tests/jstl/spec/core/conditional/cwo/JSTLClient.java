@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -64,15 +62,12 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveCWOTest
      *
-     * @assertion_ids: JSTL:SPEC:15.1.1; JSTL:SPEC:15.1.1.1; JSTL:SPEC:15.1.1.2;
-     * JSTL:SPEC:15.2.1.1; JSTL:SPEC:15.2.1
+     * @assertion_ids: JSTL:SPEC:15.1.1; JSTL:SPEC:15.1.1.1; JSTL:SPEC:15.1.1.2; JSTL:SPEC:15.2.1.1; JSTL:SPEC:15.2.1
      *
-     * @testStrategy: Validate the behavior/interaction of 'choose', 'when'
-     * 'otherwise' actions. - single 'when' action evaluating to true - one 'when'
-     * action evaluating to false and two 'when' actions evaluating to true. Only
-     * the first when that evaluates to true should process it's body content -
-     * single 'when' evaluating to false which should cause the 'otherwise' action
-     * to process its body
+     * @testStrategy: Validate the behavior/interaction of 'choose', 'when' 'otherwise' actions. - single 'when' action
+     * evaluating to true - one 'when' action evaluating to false and two 'when' actions evaluating to true. Only the first
+     * when that evaluates to true should process it's body content - single 'when' evaluating to false which should cause
+     * the 'otherwise' action to process its body
      */
     public void positiveCWOTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveCWOTest");
@@ -84,9 +79,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:15.1.1.2
      *
-     * @testStrategy: Validate that the tag throws an instance of
-     * jakarta.servlet.jsp.JspTagException if the expression evaluates to a type not
-     * expected by the tag.
+     * @testStrategy: Validate that the tag throws an instance of jakarta.servlet.jsp.JspTagException if the expression
+     * evaluates to a type not expected by the tag.
      */
     public void negativeCWOWhenTypeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeCWOWhenTypeTest");
@@ -98,8 +92,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:15.2.1.6
      *
-     * @testStrategy: Validate that an exception caused by the body content of a
-     * when action is properly propagated to and by the choose action.
+     * @testStrategy: Validate that an exception caused by the body content of a when action is properly propagated to and
+     * by the choose action.
      */
     public void negativeCWOWhenExcBodyContentTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeCWOWhenExcBodyContentTest");
@@ -111,8 +105,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:15.3.4
      *
-     * @testStrategy: Validate that an exception caused by the body content of an
-     * otherwise action is properly propagaged to and by the choose action.
+     * @testStrategy: Validate that an exception caused by the body content of an otherwise action is properly propagaged to
+     * and by the choose action.
      */
     public void negativeCWOOtherwiseExcBodyContentTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeCWOOtherwiseExcBodyContentTest");
@@ -124,8 +118,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:15.1.1.2
      *
-     * @testStrategy: Validate that a fatal translation error occurs if the choose
-     * action has no nested when actions.
+     * @testStrategy: Validate that a fatal translation error occurs if the choose action has no nested when actions.
      */
     public void negativeCWONoWhenActionsTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeCWONoWhenActionsTest");
@@ -139,8 +132,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:15.2.1.5
      *
-     * @testStrategy: Validate that a fatal translation error occurs if otherwise
-     * appears before when or if when appears after otherwise.
+     * @testStrategy: Validate that a fatal translation error occurs if otherwise appears before when or if when appears
+     * after otherwise.
      */
     public void negativeCWOWhenBeforeOtherwiseTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenBeforeOtherwiseTest");
@@ -154,8 +147,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:15.2.1.4
      *
-     * @testStrategy: Validate a fatal translation error occurs if a when action
-     * has no choose as an immediate parent.
+     * @testStrategy: Validate a fatal translation error occurs if a when action has no choose as an immediate parent.
      */
     public void negativeCWOWhenNoParentTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenNoParentTest");
@@ -169,8 +161,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:15.3.2
      *
-     * @testStrategy: Validate a fatal translation error occurs if an otherwise
-     * action has no choose as an immediate parent.
+     * @testStrategy: Validate a fatal translation error occurs if an otherwise action has no choose as an immediate parent.
      */
     public void negativeCWOOtherwiseNoParentTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeCWOOtherwiseNoParentTest");
@@ -184,8 +175,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:15.2.1.3
      *
-     * @testStrategy: Validate that a fatal translation error occurs if a nested
-     * when action has no 'test' attribute.
+     * @testStrategy: Validate that a fatal translation error occurs if a nested when action has no 'test' attribute.
      */
     public void negativeCWOWhenTestReqAttrTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenTestReqAttrTest");

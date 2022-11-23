@@ -29,10 +29,7 @@ import jakarta.persistence.Table;
 @NamedNativeQuery(name = "findAllSQLCoffees", query = "select * from COFFEE", resultSetMapping = "CoffeeResult")
 @SqlResultSetMapping(name = "CoffeeResult", entities = @EntityResult(entityClass = Coffee.class))
 @NamedQuery(name = "findAllCoffees", query = "Select Distinct c from Coffee c")
-@NamedQuery(
-        name = "findAllNewCoffees",
-        query =
-                "Select NEW com.sun.ts.tests.jpa.jpa22.repeatable.namednativequery.Coffee(c.id, c.brandName, c.price) from Coffee c where c.price <> 0")
+@NamedQuery(name = "findAllNewCoffees", query = "Select NEW com.sun.ts.tests.jpa.jpa22.repeatable.namednativequery.Coffee(c.id, c.brandName, c.price) from Coffee c where c.price <> 0")
 @Entity
 @Table(name = "COFFEE")
 public class Coffee implements java.io.Serializable {
@@ -44,7 +41,8 @@ public class Coffee implements java.io.Serializable {
 
     private float price;
 
-    public Coffee() {}
+    public Coffee() {
+    }
 
     public Coffee(Integer id, String brandName, float price) {
         this.id = id;

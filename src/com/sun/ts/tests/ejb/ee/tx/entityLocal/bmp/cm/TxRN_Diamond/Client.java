@@ -81,12 +81,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:613
      *
-     * @test_Strategy: Container managed Tx commit - RequiresNew Entity EJBs.
-     * Create Session EJBs A (RequiresNew), B (RequiresNew), C (RequiresNew).
-     * Create Entity EJB D (RequiresNew). Perform transactions in Bean A,
-     * involving Beans B & C. Beans B & C update data in Bean D. Verify the tx
-     * commit occured immediately after the calls to Bean B and Bean C have
-     * completed.
+     * @test_Strategy: Container managed Tx commit - RequiresNew Entity EJBs. Create Session EJBs A (RequiresNew), B
+     * (RequiresNew), C (RequiresNew). Create Entity EJB D (RequiresNew). Perform transactions in Bean A, involving Beans B
+     * & C. Beans B & C update data in Bean D. Verify the tx commit occured immediately after the calls to Bean B and Bean C
+     * have completed.
      */
     public void test1() throws Fault {
         try {
@@ -98,8 +96,10 @@ public class Client extends EETest {
             logMsg("Execute BeanA:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {

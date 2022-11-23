@@ -39,8 +39,8 @@ import java.util.Vector;
 import java.util.logging.Level;
 
 /**
- * Jacc PolicyConfiguration delegates the policy configuration tasks to vendor's
- * PolicyConfiguration implementation class.
+ * Jacc PolicyConfiguration delegates the policy configuration tasks to vendor's PolicyConfiguration implementation
+ * class.
  *
  */
 public class TSPolicyConfigurationImpl implements PolicyConfiguration {
@@ -91,15 +91,12 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
      *
      * @return this object's policy context identifier.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the getContextID method signature. The
-     *           exception thrown by the implementation class will be encapsulated
-     *           (during construction) in the thrown PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the getContextID method signature. The exception thrown by the implementation class will be
+     * encapsulated (during construction) in the thrown PolicyContextException.
      */
     public String getContextID() throws PolicyContextException {
 
@@ -124,42 +121,35 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     /**
-     * Used to add permissions to a named role in this PolicyConfiguration. If the
-     * named Role does not exist in the PolicyConfiguration, it is created as a
-     * result of the call to this function.
+     * Used to add permissions to a named role in this PolicyConfiguration. If the named Role does not exist in the
+     * PolicyConfiguration, it is created as a result of the call to this function.
      * <P>
-     * It is the job of the Policy provider to ensure that all the permissions
-     * added to a role are granted to principals "mapped to the role".
+     * It is the job of the Policy provider to ensure that all the permissions added to a role are granted to principals
+     * "mapped to the role".
      * <P>
      *
-     * @param roleName
-     *          the name of the Role to which the permissions are to be added.
-     *          <P>
-     * @param permissions
-     *          the collection of permissions to be added to the role. The
-     *          collection may be either a homogenous or heterogenous collection.
+     * @param roleName the name of the Role to which the permissions are to be added.
+     * <P>
+     * @param permissions the collection of permissions to be added to the role. The collection may be either a homogenous
+     * or heterogenous collection.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" or "inService" when this
-     *           method is called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" or "inService" when this method is called.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the addToRole method signature. The
-     *           exception thrown by the implementation class will be encapsulated
-     *           (during construction) in the thrown PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the addToRole method signature. The exception thrown by the implementation class will be
+     * encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void addToRole(String roleName, PermissionCollection permissions) throws PolicyContextException {
         String permissionType = null;
         if (logger.isLoggable(Level.FINER)) {
             logger.entering("TSPolicyConfigurationImpl", "addToRole");
         }
-        if (roleName == null || permissions == null) return;
+        if (roleName == null || permissions == null)
+            return;
 
         policyConfiguration = pcf.getPolicyConfiguration(applicationContext, false);
         policyConfiguration.addToRole(roleName, permissions);
@@ -168,7 +158,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
         if (logger.isLoggable(Level.INFO)) {
             StringBuffer sbuf = new StringBuffer("");
             int bufLength = 0;
-            for (Enumeration en = permissions.elements(); en.hasMoreElements(); ) {
+            for (Enumeration en = permissions.elements(); en.hasMoreElements();) {
                 sbuf.append("addToRole :: ");
                 sbuf.append(applicationContext + " , ");
                 sbuf.append(appTime + " , ");
@@ -212,42 +202,34 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     /**
-     * Used to add a single permission to a named role in this
-     * PolicyConfiguration. If the named Role does not exist in the
-     * PolicyConfiguration, it is created as a result of the call to this
-     * function.
+     * Used to add a single permission to a named role in this PolicyConfiguration. If the named Role does not exist in the
+     * PolicyConfiguration, it is created as a result of the call to this function.
      * <P>
-     * It is the job of the Policy provider to ensure that all the permissions
-     * added to a role are granted to principals "mapped to the role".
+     * It is the job of the Policy provider to ensure that all the permissions added to a role are granted to principals
+     * "mapped to the role".
      * <P>
      *
-     * @param roleName
-     *          the name of the Role to which the permission is to be added.
-     *          <P>
-     * @param permission
-     *          the permission to be added to the role.
+     * @param roleName the name of the Role to which the permission is to be added.
+     * <P>
+     * @param permission the permission to be added to the role.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" or "inService" when this
-     *           method is called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" or "inService" when this method is called.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the addToRole method signature. The
-     *           exception thrown by the implementation class will be encapsulated
-     *           (during construction) in the thrown PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the addToRole method signature. The exception thrown by the implementation class will be
+     * encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void addToRole(String roleName, Permission permission) throws PolicyContextException {
         String permissionType = null;
         if (logger.isLoggable(Level.FINER)) {
             logger.entering("TSPolicyConfigurationImpl", "addToRole");
         }
-        if (roleName == null || permission == null) return;
+        if (roleName == null || permission == null)
+            return;
 
         policyConfiguration = pcf.getPolicyConfiguration(applicationContext, false);
 
@@ -293,33 +275,26 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
      * Used to add unchecked policy statements to this PolicyConfiguration.
      * <P>
      *
-     * @param permissions
-     *          the collection of permissions to be added as unchecked policy
-     *          statements. The collection may be either a homogenous or
-     *          heterogenous collection.
+     * @param permissions the collection of permissions to be added as unchecked policy statements. The collection may be
+     * either a homogenous or heterogenous collection.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" or "inService" when this
-     *           method is called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" or "inService" when this method is called.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the addToUncheckedPolicy method signature.
-     *           The exception thrown by the implementation class will be
-     *           encapsulated (during construction) in the thrown
-     *           PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the addToUncheckedPolicy method signature. The exception thrown by the implementation class
+     * will be encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void addToUncheckedPolicy(PermissionCollection permissions) throws PolicyContextException {
         String permissionType = null;
         if (logger.isLoggable(Level.FINER)) {
             logger.entering("TSPolicyConfigurationImpl", "addToUncheckedPolicy");
         }
-        if (permissions == null) return;
+        if (permissions == null)
+            return;
         policyConfiguration = pcf.getPolicyConfiguration(applicationContext, false);
         policyConfiguration.addToUncheckedPolicy(permissions);
         assertStateNotInservice("addToUncheckedPolicy");
@@ -328,7 +303,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
             StringBuffer sbuf = new StringBuffer("");
             int bufLength = 0;
 
-            for (Enumeration en = permissions.elements(); en.hasMoreElements(); ) {
+            for (Enumeration en = permissions.elements(); en.hasMoreElements();) {
                 sbuf.append("unchecked :: ");
                 sbuf.append(applicationContext + " , ");
                 sbuf.append(appTime + " , ");
@@ -359,35 +334,28 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     /**
-     * Used to add a single unchecked policy statement to this
-     * PolicyConfiguration.
+     * Used to add a single unchecked policy statement to this PolicyConfiguration.
      * <P>
      *
-     * @param permission
-     *          the permission to be added to the unchecked policy statements.
+     * @param permission the permission to be added to the unchecked policy statements.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" or "inService" when this
-     *           method is called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" or "inService" when this method is called.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the addToUncheckedPolicy method signature.
-     *           The exception thrown by the implementation class will be
-     *           encapsulated (during construction) in the thrown
-     *           PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the addToUncheckedPolicy method signature. The exception thrown by the implementation class
+     * will be encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void addToUncheckedPolicy(Permission permission) throws PolicyContextException {
         if (logger.isLoggable(Level.FINER)) {
             logger.entering("TSPolicyConfigurationImpl", "addToUncheckedPolicy");
         }
 
-        if (permission == null) return;
+        if (permission == null)
+            return;
 
         policyConfiguration = pcf.getPolicyConfiguration(applicationContext, false);
         policyConfiguration.addToUncheckedPolicy(permission);
@@ -417,33 +385,26 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
      * Used to add excluded policy statements to this PolicyConfiguration.
      * <P>
      *
-     * @param permissions
-     *          the collection of permissions to be added to the excluded policy
-     *          statements. The collection may be either a homogenous or
-     *          heterogenous collection.
+     * @param permissions the collection of permissions to be added to the excluded policy statements. The collection may be
+     * either a homogenous or heterogenous collection.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" or "inService" when this
-     *           method is called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" or "inService" when this method is called.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the addToExcludedPolicy method signature.
-     *           The exception thrown by the implementation class will be
-     *           encapsulated (during construction) in the thrown
-     *           PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the addToExcludedPolicy method signature. The exception thrown by the implementation class will
+     * be encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void addToExcludedPolicy(PermissionCollection permissions) throws PolicyContextException {
         String permissionType = null;
         if (logger.isLoggable(Level.FINER)) {
             logger.entering("TSPolicyConfigurationImpl", "addToExcludedPolicy");
         }
-        if (permissions == null) return;
+        if (permissions == null)
+            return;
 
         policyConfiguration = pcf.getPolicyConfiguration(applicationContext, false);
         policyConfiguration.addToExcludedPolicy(permissions);
@@ -452,7 +413,7 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
         if (logger.isLoggable(Level.INFO)) {
             StringBuffer sbuf = new StringBuffer("");
             int bufLength = 0;
-            for (Enumeration en = permissions.elements(); en.hasMoreElements(); ) {
+            for (Enumeration en = permissions.elements(); en.hasMoreElements();) {
                 sbuf.append("excluded :: ");
                 sbuf.append(applicationContext + " , ");
                 sbuf.append(appTime + " , ");
@@ -484,31 +445,25 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
      * Used to add a single excluded policy statement to this PolicyConfiguration.
      * <P>
      *
-     * @param permission
-     *          the permission to be added to the excluded policy statements.
+     * @param permission the permission to be added to the excluded policy statements.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" or "inService" when this
-     *           method is called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" or "inService" when this method is called.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the addToExcludedPolicy method signature.
-     *           The exception thrown by the implementation class will be
-     *           encapsulated (during construction) in the thrown
-     *           PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the addToExcludedPolicy method signature. The exception thrown by the implementation class will
+     * be encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void addToExcludedPolicy(Permission permission) throws PolicyContextException {
         String permissionType = null;
         if (logger.isLoggable(Level.FINER)) {
             logger.entering("TSPolicyConfigurationImpl", "addToExcludedPolicy");
         }
-        if (permission == null) return;
+        if (permission == null)
+            return;
 
         policyConfiguration = pcf.getPolicyConfiguration(applicationContext, false);
         policyConfiguration.addToExcludedPolicy(permission);
@@ -535,33 +490,27 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     /**
-     * Used to remove a role and all its permissions from this
-     * PolicyConfiguration.
+     * Used to remove a role and all its permissions from this PolicyConfiguration.
      * <P>
      *
-     * @param roleName
-     *          the name of the Role to remove from this PolicyConfiguration.
+     * @param roleName the name of the Role to remove from this PolicyConfiguration.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" or "inService" when this
-     *           method is called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" or "inService" when this method is called.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the removeRole method signature. The
-     *           exception thrown by the implementation class will be encapsulated
-     *           (during construction) in the thrown PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the removeRole method signature. The exception thrown by the implementation class will be
+     * encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void removeRole(String roleName) throws PolicyContextException {
         if (logger.isLoggable(Level.FINER)) {
             logger.entering("TSPolicyConfigurationImpl", "removeRole");
         }
-        if (roleName == null) return;
+        if (roleName == null)
+            return;
 
         policyConfiguration = pcf.getPolicyConfiguration(applicationContext, false);
         policyConfiguration.removeRole(roleName);
@@ -576,24 +525,17 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     /**
-     * Used to remove any unchecked policy statements from this
-     * PolicyConfiguration.
+     * Used to remove any unchecked policy statements from this PolicyConfiguration.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" or "inService" when this
-     *           method is called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" or "inService" when this method is called.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the removeUncheckedPolicy method signature.
-     *           The exception thrown by the implementation class will be
-     *           encapsulated (during construction) in the thrown
-     *           PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the removeUncheckedPolicy method signature. The exception thrown by the implementation class
+     * will be encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void removeUncheckedPolicy() throws PolicyContextException {
         if (logger.isLoggable(Level.FINER)) {
@@ -613,24 +555,17 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     /**
-     * Used to remove any excluded policy statements from this
-     * PolicyConfiguration.
+     * Used to remove any excluded policy statements from this PolicyConfiguration.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" or "inService" when this
-     *           method is called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" or "inService" when this method is called.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the removeExcludedPolicy method signature.
-     *           The exception thrown by the implementation class will be
-     *           encapsulated (during construction) in the thrown
-     *           PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the removeExcludedPolicy method signature. The exception thrown by the implementation class
+     * will be encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void removeExcludedPolicy() throws PolicyContextException {
         if (logger.isLoggable(Level.FINER)) {
@@ -650,32 +585,24 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     /**
-     * This method is used to set to "inService" the state of the policy context
-     * whose interface is this PolicyConfiguration Object. Only those policy
-     * contexts whose state is "inService" will be included in the policy contexts
-     * processed by the Policy.refresh method. A policy context whose state is
-     * "inService" may be returned to the "open" state by calling the
-     * getPolicyConfiguration method of the PolicyConfiguration factory with the
-     * policy context identifier of the policy context.
+     * This method is used to set to "inService" the state of the policy context whose interface is this PolicyConfiguration
+     * Object. Only those policy contexts whose state is "inService" will be included in the policy contexts processed by
+     * the Policy.refresh method. A policy context whose state is "inService" may be returned to the "open" state by calling
+     * the getPolicyConfiguration method of the PolicyConfiguration factory with the policy context identifier of the policy
+     * context.
      * <P>
-     * When the state of a policy context is "inService", calling any method other
-     * than commit, delete, getContextID, or inService on its PolicyConfiguration
-     * Object will cause an UnsupportedOperationException to be thrown.
+     * When the state of a policy context is "inService", calling any method other than commit, delete, getContextID, or
+     * inService on its PolicyConfiguration Object will cause an UnsupportedOperationException to be thrown.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" when this method is
-     *           called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" when this method is called.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the commit method signature. The exception
-     *           thrown by the implementation class will be encapsulated (during
-     *           construction) in the thrown PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the commit method signature. The exception thrown by the implementation class will be
+     * encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void commit() throws PolicyContextException {
         // Date date= new Date();
@@ -697,45 +624,32 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     /**
-     * Creates a relationship between this configuration and another such that
-     * they share the same principal-to-role mappings. PolicyConfigurations are
-     * linked to apply a common principal-to-role mapping to multiple seperately
-     * manageable PolicyConfigurations, as is required when an application is
-     * composed of multiple modules.
+     * Creates a relationship between this configuration and another such that they share the same principal-to-role
+     * mappings. PolicyConfigurations are linked to apply a common principal-to-role mapping to multiple seperately
+     * manageable PolicyConfigurations, as is required when an application is composed of multiple modules.
      * <P>
-     * Note that the policy statements which comprise a role, or comprise the
-     * excluded or unchecked policy collections in a PolicyConfiguration are
-     * unaffected by the configuration being linked to another.
+     * Note that the policy statements which comprise a role, or comprise the excluded or unchecked policy collections in a
+     * PolicyConfiguration are unaffected by the configuration being linked to another.
      * <P>
      *
-     * @param link
-     *          a reference to a different PolicyConfiguration than this
-     *          PolicyConfiguration.
-     *          <P>
-     *          The relationship formed by this method is symetric, transitive and
-     *          idempotent. If the argument PolicyConfiguration does not have a
-     *          different Policy context identifier than this PolicyConfiguration
-     *          no relationship is formed, and an exception, as described below,
-     *          is thrown.
+     * @param link a reference to a different PolicyConfiguration than this PolicyConfiguration.
+     * <P>
+     * The relationship formed by this method is symetric, transitive and idempotent. If the argument PolicyConfiguration
+     * does not have a different Policy context identifier than this PolicyConfiguration no relationship is formed, and an
+     * exception, as described below, is thrown.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws java.lang.UnsupportedOperationException
-     *           if the state of the policy context whose interface is this
-     *           PolicyConfiguration Object is "deleted" or "inService" when this
-     *           method is called.
+     * @throws java.lang.UnsupportedOperationException if the state of the policy context whose interface is this
+     * PolicyConfiguration Object is "deleted" or "inService" when this method is called.
      *
-     * @throws java.lang.IllegalArgumentException
-     *           if called with an argument PolicyConfiguration whose Policy
-     *           context is equivalent to that of this PolicyConfiguration.
+     * @throws java.lang.IllegalArgumentException if called with an argument PolicyConfiguration whose Policy context is
+     * equivalent to that of this PolicyConfiguration.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the linkConfiguration method signature. The
-     *           exception thrown by the implementation class will be encapsulated
-     *           (during construction) in the thrown PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the linkConfiguration method signature. The exception thrown by the implementation class will
+     * be encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void linkConfiguration(PolicyConfiguration link) throws PolicyContextException {
         String contextId = null;
@@ -764,10 +678,11 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
                 StringBuffer sbuf = new StringBuffer("");
                 int bufLength = 0;
                 sbuf.append("link :: ");
-                for (Enumeration appEnum = applicationLinkTable.elements(); appEnum.hasMoreElements(); ) {
+                for (Enumeration appEnum = applicationLinkTable.elements(); appEnum.hasMoreElements();) {
                     String stuffedAppName = stuffData((String) appEnum.nextElement());
                     sbuf.append(stuffedAppName);
-                    if (appEnum.hasMoreElements()) sbuf.append(",");
+                    if (appEnum.hasMoreElements())
+                        sbuf.append(",");
                 }
                 sbuf.append(" : ");
                 sbuf.append(appTime);
@@ -804,23 +719,19 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     /**
-     * Causes all policy statements to be deleted from this PolicyConfiguration
-     * and sets its internal state such that calling any method, other than
-     * delete, getContextID, or inService on the PolicyConfiguration will be
-     * rejected and cause an UnsupportedOperationException to be thrown.
+     * Causes all policy statements to be deleted from this PolicyConfiguration and sets its internal state such that
+     * calling any method, other than delete, getContextID, or inService on the PolicyConfiguration will be rejected and
+     * cause an UnsupportedOperationException to be thrown.
      * <P>
-     * This operation has no affect on any linked PolicyConfigurations other than
-     * removing any links involving the deleted PolicyConfiguration.
+     * This operation has no affect on any linked PolicyConfigurations other than removing any links involving the deleted
+     * PolicyConfiguration.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the delete method signature. The exception
-     *           thrown by the implementation class will be encapsulated (during
-     *           construction) in the thrown PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the delete method signature. The exception thrown by the implementation class will be
+     * encapsulated (during construction) in the thrown PolicyContextException.
      */
     public void delete() throws PolicyContextException {
         if (logger.isLoggable(Level.FINER)) {
@@ -839,21 +750,17 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     /**
-     * This method is used to determine if the policy context whose interface is
-     * this PolicyConfiguration Object is in the "inService" state.
+     * This method is used to determine if the policy context whose interface is this PolicyConfiguration Object is in the
+     * "inService" state.
      *
-     * @return true if the state of the associated policy context is "inService";
-     *         false otherwise.
+     * @return true if the state of the associated policy context is "inService"; false otherwise.
      *
-     * @throws java.lang.SecurityException
-     *           if called by an AccessControlContext that has not been granted
-     *           the "setPolicy" SecurityPermission.
+     * @throws java.lang.SecurityException if called by an AccessControlContext that has not been granted the "setPolicy"
+     * SecurityPermission.
      *
-     * @throws jakarta.security.jacc.PolicyContextException
-     *           if the implementation throws a checked exception that has not
-     *           been accounted for by the inService method signature. The
-     *           exception thrown by the implementation class will be encapsulated
-     *           (during construction) in the thrown PolicyContextException.
+     * @throws jakarta.security.jacc.PolicyContextException if the implementation throws a checked exception that has not
+     * been accounted for by the inService method signature. The exception thrown by the implementation class will be
+     * encapsulated (during construction) in the thrown PolicyContextException.
      */
     public boolean inService() throws PolicyContextException {
         if (logger.isLoggable(Level.FINER)) {
@@ -886,12 +793,18 @@ public class TSPolicyConfigurationImpl implements PolicyConfiguration {
     }
 
     public String getPermissionType(Permission permission) {
-        if (permission instanceof WebResourcePermission) return "WebResourcePermission";
-        else if (permission instanceof WebUserDataPermission) return "WebUserDataPermission";
-        else if (permission instanceof WebRoleRefPermission) return "WebRoleRefPermission";
-        else if (permission instanceof EJBMethodPermission) return "EJBMethodPermission";
-        else if (permission instanceof EJBRoleRefPermission) return "EJBRoleRefPermission";
-        else return null;
+        if (permission instanceof WebResourcePermission)
+            return "WebResourcePermission";
+        else if (permission instanceof WebUserDataPermission)
+            return "WebUserDataPermission";
+        else if (permission instanceof WebRoleRefPermission)
+            return "WebRoleRefPermission";
+        else if (permission instanceof EJBMethodPermission)
+            return "EJBMethodPermission";
+        else if (permission instanceof EJBRoleRefPermission)
+            return "EJBRoleRefPermission";
+        else
+            return null;
     }
 
     // This method process the input string and stuffs the character twice if

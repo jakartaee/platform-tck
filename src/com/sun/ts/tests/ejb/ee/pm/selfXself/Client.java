@@ -85,8 +85,7 @@ public class Client extends EETest {
 
     /*
      *
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public static void setup(String[] args, Properties p) throws Exception {
@@ -102,7 +101,8 @@ public class Client extends EETest {
         deptHome = (DepartmentHome) nctx.lookup(DeptBean, DepartmentHome.class);
         try {
             TestUtil.logMsg("Check if test data already exists in Persistent Storage");
-            if (SchemaAlreadyExists()) return;
+            if (SchemaAlreadyExists())
+                return;
 
             TestUtil.logMsg("Begin creating test data in Persistent Storage");
 
@@ -123,8 +123,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:377; EJB:SPEC:409; EJB:SPEC:270
      *
-     * @test_Strategy: This test verifies a single-object finder returns a cmr
-     * value as the result.
+     * @test_Strategy: This test verifies a single-object finder returns a cmr value as the result.
      */
 
     public void selfRefTest1() throws Fault {
@@ -149,7 +148,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(ex);
             throw new Fault("selfRefTest1 failed", ex);
         }
-        if (!pass) throw new Fault("selfRefTest1 failed");
+        if (!pass)
+            throw new Fault("selfRefTest1 failed");
     }
 
     /*
@@ -179,7 +179,8 @@ public class Client extends EETest {
             TestUtil.printStackTrace(ex);
             throw new Fault("selfRefTest2 failed", ex);
         }
-        if (!pass) throw new Fault("selfRefTest2 failed");
+        if (!pass)
+            throw new Fault("selfRefTest2 failed");
     }
 
     /*
@@ -187,11 +188,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:232.1
      *
-     * @test_Strategy: A 1x1 uni-directional relationship between entitybean
-     * between entitybean objects. Do set relationship fields to null. The results
-     * should be set to null. Deploy EAR on the J2EE server. Ensure the entitybean
-     * objects were created and that the persistence manager has null settings for
-     * the relationship fields not set.
+     * @test_Strategy: A 1x1 uni-directional relationship between entitybean between entitybean objects. Do set relationship
+     * fields to null. The results should be set to null. Deploy EAR on the J2EE server. Ensure the entitybean objects were
+     * created and that the persistence manager has null settings for the relationship fields not set.
      *
      */
 
@@ -206,7 +205,8 @@ public class Client extends EETest {
 
             // Uni-Directional relationship fields should be null for
             // entitybean object
-            if (empRef.test3()) TestUtil.logMsg("relationship fields are null - expected");
+            if (empRef.test3())
+                TestUtil.logMsg("relationship fields are null - expected");
             else {
                 TestUtil.logErr("relationship fields are nonnull - unexpected");
                 pass = false;
@@ -217,7 +217,8 @@ public class Client extends EETest {
             throw new Fault("selfRefTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("selfRefTest3 failed");
+        if (!pass)
+            throw new Fault("selfRefTest3 failed");
     }
 
     /*
@@ -225,11 +226,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:204
      *
-     * @test_Strategy: A 1x1 uni-directional relationship between entitybean
-     * objects. Create a 1x1 uni-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Perform the relationship assignment
-     * per assertion tag. Ensure the proper relationship results are correct after
-     * the assignment by the persistence manager.
+     * @test_Strategy: A 1x1 uni-directional relationship between entitybean objects. Create a 1x1 uni-directional
+     * relationship between entitybean objects. Deploy EAR on the J2EE server. Perform the relationship assignment per
+     * assertion tag. Ensure the proper relationship results are correct after the assignment by the persistence manager.
      *
      */
 
@@ -258,7 +257,8 @@ public class Client extends EETest {
                 TestUtil.logErr("Error caught removing bean:", e);
             }
 
-            if (!pass) throw new Fault("selfRefTest4 failed");
+            if (!pass)
+                throw new Fault("selfRefTest4 failed");
         }
     }
 

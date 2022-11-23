@@ -202,8 +202,7 @@ public class TestContainerInitializer implements ServletContainerInitializer {
         context.setInitParameter(SERVLET_TEST, servlet_test.toString());
 
         try {
-            Filter badfilter =
-                    context.createFilter(com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.BadFilter.class);
+            Filter badfilter = context.createFilter(com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.BadFilter.class);
         } catch (ServletException ex) {
             filter_test = true;
         }

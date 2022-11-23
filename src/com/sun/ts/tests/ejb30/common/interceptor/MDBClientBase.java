@@ -22,13 +22,13 @@ package com.sun.ts.tests.ejb30.common.interceptor;
 
 public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messaging.ClientBase
         implements com.sun.ts.tests.ejb30.common.messaging.Constants,
-                com.sun.ts.tests.ejb30.common.interceptor.Constants {
+        com.sun.ts.tests.ejb30.common.interceptor.Constants {
 
     /*
      * testName: getBeanTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void getBeanTest() throws Fault {
         sendReceive(getBeanTest, 0);
@@ -37,8 +37,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: getParametersTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void getParametersTest() throws Fault {
         sendReceive(getParametersTest, 0);
@@ -47,9 +47,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: getParametersEmptyTest
      *
-     * @test_Strategy: o no parameters in business method.
-     * InvocationContext.getParameters() should return null or Object[]{}; This is
-     * verified in interceptor method.
+     * @test_Strategy: o no parameters in business method. InvocationContext.getParameters() should return null or
+     * Object[]{}; This is verified in interceptor method.
      */
     public void getParametersEmptyTest() throws Fault {
         sendReceive(getParametersEmptyTest, 0);
@@ -58,8 +57,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: setParametersTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void setParametersTest() throws Fault {
         sendReceive(setParametersTest, 0);
@@ -68,8 +67,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: getEJBContextTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void getEJBContextTest() throws Fault {
         sendReceive(getEJBContextTest, 0);
@@ -78,8 +77,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: getContextDataTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void getContextDataTest() throws Fault {
         sendReceive(getContextDataTest, 0);
@@ -88,8 +87,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: getMethodTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void getMethodTest() throws Fault {
         sendReceive(getMethodTest, 0);
@@ -98,8 +97,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: exceptionTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void exceptionTest() throws Fault {
         sendReceive(exceptionTest, 0);
@@ -108,8 +107,7 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: suppressExceptionTest
      *
-     * @test_Strategy: o the checked exception throwb by the business method can
-     * be supressed by the interceptor.
+     * @test_Strategy: o the checked exception throwb by the business method can be supressed by the interceptor.
      */
     public void suppressExceptionTest() throws Fault {
         sendReceive(suppressExceptionTest, 0);
@@ -118,8 +116,7 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: txRollbackOnlyTest
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only before
-     * proceed();
+     * @test_Strategy: o interceptor marks a tx to be rollback only before proceed();
      */
     public void txRollbackOnlyTest() throws Fault {
         sendReceive(txRollbackOnlyTest, 0);
@@ -128,8 +125,7 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: txRollbackOnlyAfterTest
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only after
-     * proceed();
+     * @test_Strategy: o interceptor marks a tx to be rollback only after proceed();
      */
     public void txRollbackOnlyAfterTest() throws Fault {
         sendReceive(txRollbackOnlyAfterTest, 0);
@@ -138,9 +134,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: runtimeExceptionTest
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only before
-     * proceed(), by runtime exception o bean instance is no longer usable after
-     * this test
+     * @test_Strategy: o interceptor marks a tx to be rollback only before proceed(), by runtime exception o bean instance
+     * is no longer usable after this test
      */
     public void runtimeExceptionTest() throws Fault {
         sendReceive(runtimeExceptionTest, 0);
@@ -149,9 +144,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: runtimeExceptionAfterTest
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only after
-     * proceed(), by runtime exception o bean instance is no longer usable after
-     * this test
+     * @test_Strategy: o interceptor marks a tx to be rollback only after proceed(), by runtime exception o bean instance is
+     * no longer usable after this test
      */
     public void runtimeExceptionAfterTest() throws Fault {
         sendReceive(runtimeExceptionAfterTest, 0);
@@ -175,8 +169,7 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: sameInvocationContextTest
      *
-     * @test_Strategy: o the same instance of InvocationContext is passed to all
-     * interceptors
+     * @test_Strategy: o the same instance of InvocationContext is passed to all interceptors
      */
     public void sameInvocationContextTest() throws Fault {
         sendReceive(sameInvocationContextTest, 0);
@@ -185,8 +178,7 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: sameSecContextTest
      *
-     * @test_Strategy: o interceptor method occurs with the same security context
-     * as the business method
+     * @test_Strategy: o interceptor method occurs with the same security context as the business method
      */
     public void sameSecContextTest() throws Fault {
         sendReceive(sameSecContextTest, 0);

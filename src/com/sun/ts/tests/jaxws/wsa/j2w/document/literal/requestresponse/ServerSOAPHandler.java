@@ -71,9 +71,12 @@ public class ServerSOAPHandler extends WsaBaseSOAPHandler {
         testName = (String) context.get("test.name");
         TestUtil.logMsg("ServerSOAPHandler.getAction(): testName=" + testName);
         System.out.println("ServerSOAPHandler.getAction(): testName=" + testName);
-        if (testName == null) return super.getAction(context);
-        else if (!testName.equals("missingActionHeader")) return super.getAction(context);
-        else return null;
+        if (testName == null)
+            return super.getAction(context);
+        else if (!testName.equals("missingActionHeader"))
+            return super.getAction(context);
+        else
+            return null;
     }
 
     protected String whichHandler() {

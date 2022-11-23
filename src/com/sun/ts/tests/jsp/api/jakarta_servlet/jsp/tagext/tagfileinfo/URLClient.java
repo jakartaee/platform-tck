@@ -29,16 +29,14 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 import java.io.PrintWriter;
 
 /**
- * Test client for TagFileInfo. Implementation note, all tests are performed
- * within a TagExtraInfo class. If the test fails, a translation error will be
- * generated and a ValidationMessage array will be returned.
+ * Test client for TagFileInfo. Implementation note, all tests are performed within a TagExtraInfo class. If the test
+ * fails, a translation error will be generated and a ValidationMessage array will be returned.
  */
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -47,8 +45,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -70,8 +67,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:259
      *
-     * @test_Strategy: Validate TagFileInfo.getName returns the expected values
-     * based on what is defined in the TLD.
+     * @test_Strategy: Validate TagFileInfo.getName returns the expected values based on what is defined in the TLD.
      */
     public void tagFileInfoGetNameTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagfileinfo_web/GetNameTest.jsp HTTP/1.1");
@@ -84,8 +80,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:260
      *
-     * @test_Strategy: Validate TagFileInfo.getPath() returns the expected values
-     * based on what is defined in the TLD.
+     * @test_Strategy: Validate TagFileInfo.getPath() returns the expected values based on what is defined in the TLD.
      */
     public void tagFileInfoGetPathTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagfileinfo_web/GetPathTest.jsp HTTP/1.1");
@@ -98,8 +93,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:261
      *
-     * @test_Strategy: Validate TagFileInfo.getTagInfo() returns the expected
-     * values based on what is defined in the tag file.
+     * @test_Strategy: Validate TagFileInfo.getTagInfo() returns the expected values based on what is defined in the tag
+     * file.
      */
     public void tagFileInfoGetTagInfoTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagfileinfo_web/GetTagInfoTest.jsp HTTP/1.1");

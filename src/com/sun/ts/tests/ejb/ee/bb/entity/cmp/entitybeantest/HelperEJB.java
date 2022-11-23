@@ -180,8 +180,10 @@ public class HelperEJB implements SessionBean {
     public boolean isCreateLifeCycle1() {
         boolean status;
         TestUtil.logTrace("isCreateLifeCycle1");
-        if (createLifeCycleFlag && createMethodCalledFlag == 1) status = true;
-        else status = false;
+        if (createLifeCycleFlag && createMethodCalledFlag == 1)
+            status = true;
+        else
+            status = false;
         reset();
         return status;
     }
@@ -189,8 +191,10 @@ public class HelperEJB implements SessionBean {
     public boolean isCreateLifeCycle2() {
         boolean status;
         TestUtil.logTrace("isCreateLifeCycle2");
-        if (createLifeCycleFlag && createMethodCalledFlag == 2) status = true;
-        else status = false;
+        if (createLifeCycleFlag && createMethodCalledFlag == 2)
+            status = true;
+        else
+            status = false;
         reset();
         return status;
     }

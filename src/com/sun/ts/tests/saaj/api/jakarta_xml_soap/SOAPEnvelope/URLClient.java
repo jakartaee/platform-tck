@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -100,8 +102,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPEnvelope.addBody().
      *
-     * Description: Creates a SOAPBody object and sets it as the SOAPBody object
-     * for this SOAPEnvelope object.
+     * Description: Creates a SOAPBody object and sets it as the SOAPBody object for this SOAPEnvelope object.
      *
      */
     public void addBodyTest() throws Fault {
@@ -114,12 +115,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addBodyTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -128,7 +132,8 @@ public class URLClient extends EETest {
             throw new Fault("addBodyTest failed", e);
         }
 
-        if (!pass) throw new Fault("addBodyTest failed");
+        if (!pass)
+            throw new Fault("addBodyTest failed");
     }
 
     /*
@@ -138,8 +143,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPEnvelope.getBody().
      *
-     * Description: Returns the SOAPBody object associated with this SOAPEnvelope
-     * object.
+     * Description: Returns the SOAPBody object associated with this SOAPEnvelope object.
      *
      */
     public void getBodyTest() throws Fault {
@@ -152,12 +156,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getBodyTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -166,7 +173,8 @@ public class URLClient extends EETest {
             throw new Fault("getBodyTest failed", e);
         }
 
-        if (!pass) throw new Fault("getBodyTest failed");
+        if (!pass)
+            throw new Fault("getBodyTest failed");
     }
 
     /*
@@ -176,8 +184,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPEnvelope.addHeader().
      *
-     * Description: Creates a SOAPHeader object and sets it as the SOAPHeader
-     * object for this SOAPEnvelope object.
+     * Description: Creates a SOAPHeader object and sets it as the SOAPHeader object for this SOAPEnvelope object.
      *
      */
     public void addHeaderTest() throws Fault {
@@ -190,12 +197,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "addHeaderTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -204,7 +214,8 @@ public class URLClient extends EETest {
             throw new Fault("addHeaderTest failed", e);
         }
 
-        if (!pass) throw new Fault("addHeaderTest failed");
+        if (!pass)
+            throw new Fault("addHeaderTest failed");
     }
 
     /*
@@ -214,8 +225,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPEnvelope.getHeader().
      *
-     * Description: Returns the SOAPHeader object associated with this
-     * SOAPEnvelope object.
+     * Description: Returns the SOAPHeader object associated with this SOAPEnvelope object.
      */
     public void getHeaderTest() throws Fault {
         boolean pass = true;
@@ -227,12 +237,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getHeaderTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -241,7 +254,8 @@ public class URLClient extends EETest {
             throw new Fault("getHeaderTest failed", e);
         }
 
-        if (!pass) throw new Fault("getHeaderTest failed");
+        if (!pass)
+            throw new Fault("getHeaderTest failed");
     }
 
     /*
@@ -251,8 +265,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPEnvelope.createName(String).
      *
-     * Description: Creates a new Name object initialized with the given local
-     * name.
+     * Description: Creates a new Name object initialized with the given local name.
      *
      */
     public void createNameTest1() throws Fault {
@@ -265,12 +278,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "createNameTest1");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -279,7 +295,8 @@ public class URLClient extends EETest {
             throw new Fault("createNameTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("createNameTest1 failed");
+        if (!pass)
+            throw new Fault("createNameTest1 failed");
     }
 
     /*
@@ -289,8 +306,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPEnvelope.createName(String, String, String).
      *
-     * Description: Creates a new Name object initialized with the given local
-     * name, prefix, and URI.
+     * Description: Creates a new Name object initialized with the given local name, prefix, and URI.
      *
      */
     public void createNameTest2() throws Fault {
@@ -303,12 +319,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "createNameTest2");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -317,7 +336,8 @@ public class URLClient extends EETest {
             throw new Fault("createNameTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("createNameTest2 failed");
+        if (!pass)
+            throw new Fault("createNameTest2 failed");
     }
 
     /*
@@ -327,8 +347,7 @@ public class URLClient extends EETest {
      *
      * @test_Strategy: Call SOAPEnvelope.createName(String, String).
      *
-     * Description: Creates a new Name object initialized with the given local
-     * name, prefix, and URI.
+     * Description: Creates a new Name object initialized with the given local name, prefix, and URI.
      *
      */
     public void createNameTest3() throws Fault {
@@ -341,12 +360,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "createNameTest3");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -355,6 +377,7 @@ public class URLClient extends EETest {
             throw new Fault("createNameTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("createNameTest3 failed");
+        if (!pass)
+            throw new Fault("createNameTest3 failed");
     }
 }

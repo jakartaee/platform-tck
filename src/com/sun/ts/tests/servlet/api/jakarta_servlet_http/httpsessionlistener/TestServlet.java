@@ -78,7 +78,7 @@ public class TestServlet extends HttpTCKServlet {
 
         StaticLog.clear();
 
-        String[] expected = {"HSListener:sessionCreated"};
+        String[] expected = { "HSListener:sessionCreated" };
 
         HttpSession session = request.getSession(true);
 
@@ -99,7 +99,7 @@ public class TestServlet extends HttpTCKServlet {
 
         StaticLog.clear();
 
-        String[] expected = {"HSListener:sessionDestroyed"};
+        String[] expected = { "HSListener:sessionDestroyed" };
 
         HttpSession session = request.getSession(true);
 

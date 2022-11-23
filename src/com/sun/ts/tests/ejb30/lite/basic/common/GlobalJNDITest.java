@@ -25,7 +25,8 @@ import java.util.logging.Level;
 
 public class GlobalJNDITest {
 
-    private GlobalJNDITest() {}
+    private GlobalJNDITest() {
+    }
 
     // no appName or interfaceName in global jndi name. Only moduleName and
     // beanName
@@ -77,12 +78,10 @@ public class GlobalJNDITest {
     /**
      * For intra-app use.
      *
-     * If the app is packaged in EAR, then call this method with (moduleName,
-     * beanName, and optional interfaceClass).
+     * If the app is packaged in EAR, then call this method with (moduleName, beanName, and optional interfaceClass).
      *
-     * If the app is packaged in WAR or JAR, then call this method with
-     * (moduleName, beanName, and optional interfaceClass). Note that module-name
-     * is still required for standalone modules.
+     * If the app is packaged in WAR or JAR, then call this method with (moduleName, beanName, and optional interfaceClass).
+     * Note that module-name is still required for standalone modules.
      */
     public static String getAppJNDIName(String moduleName, String beanName, Class<?> interfaceClass) {
         String result = "java:app";

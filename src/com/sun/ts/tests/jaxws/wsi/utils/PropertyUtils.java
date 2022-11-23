@@ -27,13 +27,10 @@ import java.util.Properties;
  */
 public class PropertyUtils {
     /**
-     * Returns the property with the specified name. If the property does not
-     * exist, an EETest.Fault exception is thrown.
+     * Returns the property with the specified name. If the property does not exist, an EETest.Fault exception is thrown.
      *
-     * @param properties
-     *          the properties.
-     * @param key
-     *          the key.
+     * @param properties the properties.
+     * @param key the key.
      *
      * @return the value.
      *
@@ -48,14 +45,11 @@ public class PropertyUtils {
     }
 
     /**
-     * Returns the property, with the specified name, as an integer. If the
-     * property does not exist or cannot be converted to an integer, an
-     * EETest.Fault exception is thrown.
+     * Returns the property, with the specified name, as an integer. If the property does not exist or cannot be converted
+     * to an integer, an EETest.Fault exception is thrown.
      *
-     * @param properties
-     *          the properties.
-     * @param key
-     *          the key.
+     * @param properties the properties.
+     * @param key the key.
      *
      * @return the value.
      *
@@ -72,14 +66,11 @@ public class PropertyUtils {
     }
 
     /**
-     * Returns the property, with the specified name, as a boolean. If the
-     * property does not exist or cannot be converted to a boolean, an
-     * EETest.Fault exception is thrown.
+     * Returns the property, with the specified name, as a boolean. If the property does not exist or cannot be converted to
+     * a boolean, an EETest.Fault exception is thrown.
      *
-     * @param properties
-     *          the properties.
-     * @param key
-     *          the key.
+     * @param properties the properties.
+     * @param key the key.
      *
      * @return the value.
      *

@@ -25,11 +25,10 @@ import jakarta.ejb.Stateless;
 import jakarta.ejb.Timer;
 
 /**
- * timeout-method is only specified in ejb-jar.xml. The timeout-method (timeout)
- * is implemented in superclass TimerBeanBaseWithoutTimeOutMethod.
+ * timeout-method is only specified in ejb-jar.xml. The timeout-method (timeout) is implemented in superclass
+ * TimerBeanBaseWithoutTimeOutMethod.
  *
- * The timeout-method for both programmatic and auto timers are specified with
- * <method-params> element.
+ * The timeout-method for both programmatic and auto timers are specified with <method-params> element.
  */
 @Stateless
 public class WithParamTimeoutBean extends TimerBeanBaseWithoutTimeOutMethod implements TimeoutParamIF {

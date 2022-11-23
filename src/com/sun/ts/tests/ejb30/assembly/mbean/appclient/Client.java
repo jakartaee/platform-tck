@@ -54,9 +54,11 @@ public class Client extends EETest {
         s.exit();
     }
 
-    public void setup(String[] args, Properties p) {}
+    public void setup(String[] args, Properties p) {
+    }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 
     @SuppressWarnings("unused")
     @PostConstruct
@@ -83,7 +85,7 @@ public class Client extends EETest {
      * @test_Strategy: managed beans packaged inside application client jar
      */
     public void mbeanPostConstruct() {
-        AppResCommonIF[] beans = {one, oneWithLookup, two, twoWithLookup};
+        AppResCommonIF[] beans = { one, oneWithLookup, two, twoWithLookup };
         for (AppResCommonIF b : beans) {
             Helper.getLogger().info(b.getPostConstructRecords().toString());
         }

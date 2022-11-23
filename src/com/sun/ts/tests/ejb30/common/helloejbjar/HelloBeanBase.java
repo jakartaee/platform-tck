@@ -37,9 +37,11 @@ public class HelloBeanBase implements HelloRemoteIF, HelloLocalIF {
     @Resource(lookup = "java:module/ModuleName")
     private String moduleName;
 
-    public HelloBeanBase() {}
+    public HelloBeanBase() {
+    }
 
-    public void hello() {}
+    public void hello() {
+    }
 
     public Object getMessage() {
         return toString();

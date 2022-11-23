@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setServletName("TestServlet");
@@ -56,17 +54,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: test1
      *
-     * @assertion_ids: Servlet:SPEC:221; Servlet:SPEC:221.1; Servlet:SPEC:221.2;
-     * Servlet:SPEC:221.3; Servlet:SPEC:221.6; Servlet:SPEC:221.7;
-     * Servlet:SPEC:221.9; Servlet:SPEC:221.10; Servlet:JAVADOC:825;
+     * @assertion_ids: Servlet:SPEC:221; Servlet:SPEC:221.1; Servlet:SPEC:221.2; Servlet:SPEC:221.3; Servlet:SPEC:221.6;
+     * Servlet:SPEC:221.7; Servlet:SPEC:221.9; Servlet:SPEC:221.10; Servlet:JAVADOC:825;
      *
-     * @test_Strategy: Create a servlet Servlet1; Define Servlet1 using
-     * annotation @WebServlet(String); Add Servlet1 to ServletContext
-     * programmatically using different name; Invoke Servlet1 at the URL specified
-     * by @WebServlet; Verify that it works as defined at @WebServlet; Invoke
-     * Servlet1 at the URL specified by API programing; Veriy Servlet1 is invoked
-     * properly; Verify that servlet name is set correctly; Verify that servlet
-     * name is set to the default name;
+     * @test_Strategy: Create a servlet Servlet1; Define Servlet1 using annotation @WebServlet(String); Add Servlet1 to
+     * ServletContext programmatically using different name; Invoke Servlet1 at the URL specified by @WebServlet; Verify
+     * that it works as defined at @WebServlet; Invoke Servlet1 at the URL specified by API programing; Veriy Servlet1 is
+     * invoked properly; Verify that servlet name is set correctly; Verify that servlet name is set to the default name;
      */
     public void test1() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/Servlet1URL HTTP/1.1");
@@ -85,16 +79,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: test2
      *
-     * @assertion_ids: Servlet:SPEC:221; Servlet:SPEC:221.1; Servlet:SPEC:221.2;
-     * Servlet:SPEC:221.3; Servlet:SPEC:221.4; Servlet:SPEC:221.6;
-     * Servlet:SPEC:221.7; Servlet:SPEC:221.9; Servlet:SPEC:221.10;
-     * Servlet:JAVADOC:825;
+     * @assertion_ids: Servlet:SPEC:221; Servlet:SPEC:221.1; Servlet:SPEC:221.2; Servlet:SPEC:221.3; Servlet:SPEC:221.4;
+     * Servlet:SPEC:221.6; Servlet:SPEC:221.7; Servlet:SPEC:221.9; Servlet:SPEC:221.10; Servlet:JAVADOC:825;
      *
-     * @test_Strategy: Create a servlet Servlet2; Define Servlet2 using
-     * annotation @WebServlet(value=""); Add Servlet2 to ServletContext
-     * programmatically under different name; Invoke Servlet2 at any of the URLs
-     * specified by @WebServlet; Verify that it is invoked properly; Invoke
-     * Servlet2 at the URLs specified in program; Veriy Servlet2 is invoked
+     * @test_Strategy: Create a servlet Servlet2; Define Servlet2 using annotation @WebServlet(value=""); Add Servlet2 to
+     * ServletContext programmatically under different name; Invoke Servlet2 at any of the URLs specified by @WebServlet;
+     * Verify that it is invoked properly; Invoke Servlet2 at the URLs specified in program; Veriy Servlet2 is invoked
      * properly; Verify that servlet name is set properly;
      */
     public void test2() throws Fault {
@@ -151,19 +141,16 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: test3
      *
-     * @assertion_ids: Servlet:SPEC:221; Servlet:SPEC:221.1; Servlet:SPEC:221.2;
-     * Servlet:SPEC:221.3; Servlet:SPEC:221.4; Servlet:SPEC:221.7;
-     * Servlet:SPEC:221.9; Servlet:SPEC:221.10; Servlet:JAVADOC:819;
-     * Servlet:JAVADOC:822; Servlet:JAVADOC:825;
+     * @assertion_ids: Servlet:SPEC:221; Servlet:SPEC:221.1; Servlet:SPEC:221.2; Servlet:SPEC:221.3; Servlet:SPEC:221.4;
+     * Servlet:SPEC:221.7; Servlet:SPEC:221.9; Servlet:SPEC:221.10; Servlet:JAVADOC:819; Servlet:JAVADOC:822;
+     * Servlet:JAVADOC:825;
      *
      * @test_Strategy: Create a servlet Servlet3; Define Servlet3 using annotation
      *
-     * @WebServlet(value="", initParams={}, name="") Add Servlet3 to
-     * ServletContext programmatically under different name; Invoke Servlet3 at
-     * the URL specified by @WebServlet; Verify that it is properly invoked;
-     * Invoke Servlet3 at the URL specified by program; Veriy Servlet3 is invoked
-     * and -- value is set correctly -- all @initParams are passed correctly. --
-     * servlet name is set correctly
+     * @WebServlet(value="", initParams={}, name="") Add Servlet3 to ServletContext programmatically under different name;
+     * Invoke Servlet3 at the URL specified by @WebServlet; Verify that it is properly invoked; Invoke Servlet3 at the URL
+     * specified by program; Veriy Servlet3 is invoked and -- value is set correctly -- all @initParams are passed
+     * correctly. -- servlet name is set correctly
      */
     public void test3() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/Servlet3URL HTTP/1.1");

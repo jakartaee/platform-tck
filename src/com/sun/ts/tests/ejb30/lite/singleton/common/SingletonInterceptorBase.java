@@ -47,9 +47,8 @@ public abstract class SingletonInterceptorBase {
     }
 
     /**
-     * If the interceptor class (e.g., Interceptor1) is subclassed by the
-     * container, getClass().getSimpleName() returns the subclass' name, which is
-     * not what we are expecting. The safest way is to always override it.
+     * If the interceptor class (e.g., Interceptor1) is subclassed by the container, getClass().getSimpleName() returns the
+     * subclass' name, which is not what we are expecting. The safest way is to always override it.
      */
     protected String getSimpleName() {
         return getClass().getSimpleName();

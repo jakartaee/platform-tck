@@ -44,8 +44,7 @@ import org.w3c.dom.Node;
 
 public class Client extends ServiceEETest {
 
-    private static String xmlSource =
-            "<EndpointReference xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{0}</Address><Metadata xmlns:wsdli=\"http://www.w3.org/ns/wsdl-instance\" wsdli:wsdlLocation=\"http://helloservice.org/wsdl {1}\"><wsam:InterfaceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:wsns=\"http://helloservice.org/wsdl\">wsns:Hello</wsam:InterfaceName><wsam:ServiceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:ns3=\"http://www.w3.org/2005/08/addressing\" xmlns=\"\" xmlns:wsns=\"http://helloservice.org/wsdl\" EndpointName=\"HelloPort\">wsns:HelloService</wsam:ServiceName></Metadata></EndpointReference>";
+    private static String xmlSource = "<EndpointReference xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{0}</Address><Metadata xmlns:wsdli=\"http://www.w3.org/ns/wsdl-instance\" wsdli:wsdlLocation=\"http://helloservice.org/wsdl {1}\"><wsam:InterfaceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:wsns=\"http://helloservice.org/wsdl\">wsns:Hello</wsam:InterfaceName><wsam:ServiceName xmlns:wsam=\"http://www.w3.org/2007/05/addressing/metadata\" xmlns:ns3=\"http://www.w3.org/2005/08/addressing\" xmlns=\"\" xmlns:wsns=\"http://helloservice.org/wsdl\" EndpointName=\"HelloPort\">wsns:HelloService</wsam:ServiceName></Metadata></EndpointReference>";
 
     // The webserver defaults (overidden by harness properties)
     private static final String PROTOCOL = "http";
@@ -81,8 +80,7 @@ public class Client extends ServiceEETest {
 
     private QName PORT_TYPE_QNAME = new QName(NAMESPACEURI, PORT_TYPE_NAME);
 
-    private String helloReq =
-            "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest>";
+    private String helloReq = "<HelloRequest xmlns=\"http://helloservice.org/types\"><argument>foo</argument></HelloRequest>";
 
     private String foo_arg = "foo";
 
@@ -108,8 +106,7 @@ public class Client extends ServiceEETest {
 
     private Hello port = null;
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
 
     static HelloService service = null;
 
@@ -171,8 +168,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -221,8 +220,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:141; JAXWS:JAVADOC:178;
      *
-     * @test_Strategy: Test factory method to read an EndpointReference from the
-     * infoset contained in eprInfoset.
+     * @test_Strategy: Test factory method to read an EndpointReference from the infoset contained in eprInfoset.
      */
     public void readFromTest() throws Fault {
         TestUtil.logTrace("readFromTest");
@@ -278,7 +276,8 @@ public class Client extends ServiceEETest {
                     if (!EprUtil.validateEPR(epr, url, SERVICE_QNAME, PORT_QNAME, PORT_TYPE_QNAME, Boolean.TRUE)) {
                         pass = false;
                         TestUtil.logErr("toString failed to write out xml source as expected");
-                    } else TestUtil.logMsg("toString passed to write out xml source as expected");
+                    } else
+                        TestUtil.logMsg("toString passed to write out xml source as expected");
                 }
             } else {
                 TestUtil.logErr("W3CEndpointReference object not created");
@@ -301,9 +300,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Get the port from the EndpointReference for this binding
-     * provider. Verify method invocation works from the port obtained from the
-     * EPR.
+     * @test_Strategy: Get the port from the EndpointReference for this binding provider. Verify method invocation works
+     * from the port obtained from the EPR.
      */
     public void getPortFromEndpointReferenceForDispatchObjTest() throws Fault {
         TestUtil.logTrace("getPortFromEndpointReferenceForDispatchObjTest");
@@ -327,9 +325,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:140;
      *
-     * @test_Strategy: Get the port from the EndpointReference for this binding
-     * provider. Verify method invocation works from the port obtained from the
-     * EPR.
+     * @test_Strategy: Get the port from the EndpointReference for this binding provider. Verify method invocation works
+     * from the port obtained from the EPR.
      */
     public void getPortFromEndpointReferenceForStubObjTest() throws Fault {
         TestUtil.logTrace("getPortFromEndpointReferenceForStubObjTest");
@@ -353,9 +350,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:140; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
      *
-     * @test_Strategy: Get the port from the EndpointReference for this binding
-     * provider. Verify method invocation works from the port obtained from the
-     * EPR.
+     * @test_Strategy: Get the port from the EndpointReference for this binding provider. Verify method invocation works
+     * from the port obtained from the EPR.
      */
     public void getPortFromEndpointReference2ForDispatchObjTest() throws Fault {
         TestUtil.logTrace("getPortFromEndpointReference2ForDispatchObjTest");
@@ -379,9 +375,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:140; JAXWS:SPEC:4028; JAXWS:SPEC:4028.1;
      *
-     * @test_Strategy: Get the port from the EndpointReference for this binding
-     * provider. Verify method invocation works from the port obtained from the
-     * EPR.
+     * @test_Strategy: Get the port from the EndpointReference for this binding provider. Verify method invocation works
+     * from the port obtained from the EPR.
      */
     public void getPortFromEndpointReference2ForStubObjTest() throws Fault {
         TestUtil.logTrace("getPortFromEndpointReference2ForStubObjTest");
@@ -482,10 +477,8 @@ public class Client extends ServiceEETest {
                         Source resMsg = dispatchSrc.invoke(reqMsg);
                         // TEST PASSES if expected RESULT otherwise FAIL
                         /*
-                         * expected RESULT=<HelloResponse
-                         * xmlns="http://helloservice.org/types"><argument>foo</{http://
-                         * helloservice.org/types}argument></{http://helloservice.org/types}
-                         * HelloResponse>
+                         * expected RESULT=<HelloResponse xmlns="http://helloservice.org/types"><argument>foo</{http://
+                         * helloservice.org/types}argument></{http://helloservice.org/types} HelloResponse>
                          */
                         try {
                             DOMResult dr = JAXWS_Util.getSourceAsDOMResult(resMsg);

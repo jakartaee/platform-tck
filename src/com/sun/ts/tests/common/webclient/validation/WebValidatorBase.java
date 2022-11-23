@@ -37,14 +37,12 @@ import org.apache.commons.httpclient.Header;
 public abstract class WebValidatorBase implements ValidationStrategy {
 
     /**
-     * Used to detect 4xx class HTTP errors to allow fail fast situations when 4xx
-     * errors are not expected.
+     * Used to detect 4xx class HTTP errors to allow fail fast situations when 4xx errors are not expected.
      */
     protected static final char CLIENT_ERROR = '4';
 
     /**
-     * Used to detect 5xx class HTTP errors to allows fail fast situations when
-     * 5xx errors are not expected.
+     * Used to detect 5xx class HTTP errors to allows fail fast situations when 5xx errors are not expected.
      */
     protected static final char SERVER_ERROR = '5';
 
@@ -64,8 +62,7 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     protected WebTestCase _case = null;
 
     /**
-     * <tt>validate</tt> Will validate the response against the configured
-     * TestCase.
+     * <tt>validate</tt> Will validate the response against the configured TestCase.
      *
      *
      * <ul>
@@ -104,8 +101,7 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     }
 
     /**
-     * <code>checkStatusCode</code> will perform status code comparisons based on
-     * the algorithm below
+     * <code>checkStatusCode</code> will perform status code comparisons based on the algorithm below
      * <ul>
      * <li>Check the HTTP status code</li>
      * <ul>
@@ -116,14 +112,12 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * </li>
      * <li>
      * <p>
-     * If test case status code null and response 4xx, return failure, print
-     * error; return false
+     * If test case status code null and response 4xx, return failure, print error; return false
      * </p>
      * </li>
      * <li>
      * <p>
-     * If test case status code null and response 5xx, return failure include
-     * response body; return false
+     * If test case status code null and response 5xx, return failure include response body; return false
      * <p>
      * </li>
      * <li>
@@ -133,21 +127,20 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * </li>
      * <li>
      * <p>
-     * Test case status code not null, compare it with the response status code;
-     * return true if equal
+     * Test case status code not null, compare it with the response status code; return true if equal
      * <p>
      * <li>
      * </ul>
      * </ul>
      *
      * @return boolen result of check
-     * @throws IOException
-     *           if an IO error occurs during validation
+     * @throws IOException if an IO error occurs during validation
      */
     protected boolean checkStatusCode() throws IOException {
         String sCode = _case.getStatusCode();
         String resCode = _res.getStatusCode();
-        if ("-1".equals(sCode)) return true;
+        if ("-1".equals(sCode))
+            return true;
 
         if (sCode == null && resCode.charAt(0) == CLIENT_ERROR) {
             TestUtil.logErr("[WebValidatorBase] Unexpected " + resCode + " received from "
@@ -213,8 +206,8 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     }
 
     /**
-     * <code>checkSearchStrings</code> will scan the response for the configured
-     * strings that are to be expected in the response.
+     * <code>checkSearchStrings</code> will scan the response for the configured strings that are to be expected in the
+     * response.
      * <ul>
      * <li>Check search strings</li>
      * <ul>
@@ -225,20 +218,18 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * </li>
      * <li>
      * <p>
-     * If list of Strings is not null, scan response body. If string is found,
-     * return true, otherwise display error and return false.
+     * If list of Strings is not null, scan response body. If string is found, return true, otherwise display error and
+     * return false.
      * </p>
      * </li>
      * </ul>
      * </ul>
-     * <em>NOTE:</em> If there are multiple search strings, the search will be
-     * performed as such to preserve the order. For example, if the list of search
-     * strings contains two entities, the search for the second entity will be
-     * started after the index if the first match.
+     * <em>NOTE:</em> If there are multiple search strings, the search will be performed as such to preserve the order. For
+     * example, if the list of search strings contains two entities, the search for the second entity will be started after
+     * the index if the first match.
      *
      * @return boolen result of check
-     * @throws IOException
-     *           if an IO error occurs during validation
+     * @throws IOException if an IO error occurs during validation
      */
     protected boolean checkSearchStrings() throws IOException {
         List list = _case.getSearchStrings();
@@ -288,9 +279,8 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     }
 
     /**
-     * <code>checkSearchStringsNoCase</code> will scan the response for the
-     * configured case insensitive strings that are to be expected in the
-     * response.
+     * <code>checkSearchStringsNoCase</code> will scan the response for the configured case insensitive strings that are to
+     * be expected in the response.
      * <ul>
      * <li>Check search strings</li>
      * <ul>
@@ -301,20 +291,18 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * </li>
      * <li>
      * <p>
-     * If list of Strings is not null, scan response body. If string is found,
-     * return true, otherwise display error and return false.
+     * If list of Strings is not null, scan response body. If string is found, return true, otherwise display error and
+     * return false.
      * </p>
      * </li>
      * </ul>
      * </ul>
-     * <em>NOTE:</em> If there are multiple search strings, the search will be
-     * performed as such to preserve the order. For example, if the list of search
-     * strings contains two entities, the search for the second entity will be
-     * started after the index if the first match.
+     * <em>NOTE:</em> If there are multiple search strings, the search will be performed as such to preserve the order. For
+     * example, if the list of search strings contains two entities, the search for the second entity will be started after
+     * the index if the first match.
      *
      * @return boolen result of check
-     * @throws IOException
-     *           if an IO error occurs during validation
+     * @throws IOException if an IO error occurs during validation
      */
     protected boolean checkSearchStringsNoCase() throws IOException {
         List list = _case.getSearchStringsNoCase();
@@ -364,8 +352,8 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     }
 
     /**
-     * <code>checkUnorderedSearchStrings</code> will scan the response for the
-     * configured strings that are to be expected in the response.
+     * <code>checkUnorderedSearchStrings</code> will scan the response for the configured strings that are to be expected in
+     * the response.
      * <ul>
      * <li>Check search strings</li>
      * <ul>
@@ -376,16 +364,15 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * </li>
      * <li>
      * <p>
-     * If list of Strings is not null, scan response body. If string is found,
-     * return true, otherwise display error and return false.
+     * If list of Strings is not null, scan response body. If string is found, return true, otherwise display error and
+     * return false.
      * </p>
      * </li>
      * </ul>
      * </ul>
      *
      * @return boolen result of check
-     * @throws IOException
-     *           if an IO error occurs during validation
+     * @throws IOException if an IO error occurs during validation
      */
     protected boolean checkUnorderedSearchStrings() throws IOException {
         List list = _case.getUnorderedSearchStrings();
@@ -423,8 +410,8 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     }
 
     /**
-     * <code>checkUnexpectedSearchStrings</code> will scan the response for the
-     * configured strings that are not expected in the response.
+     * <code>checkUnexpectedSearchStrings</code> will scan the response for the configured strings that are not expected in
+     * the response.
      * <ul>
      * <li>Check unexpected search strings</li>
      * <ul>
@@ -435,16 +422,15 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * </li>
      * <li>
      * <p>
-     * If list of Strings is not null, scan response body. If string is not found,
-     * return true, otherwise display error and return false.
+     * If list of Strings is not null, scan response body. If string is not found, return true, otherwise display error and
+     * return false.
      * <p>
      * </li>
      * </ul>
      * </ul>
      *
      * @return boolen result of check
-     * @throws IOException
-     *           if an IO error occurs during validation
+     * @throws IOException if an IO error occurs during validation
      */
     protected boolean checkUnexpectedSearchStrings() throws IOException {
         List list = _case.getUnexpectedSearchStrings();
@@ -474,8 +460,7 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     }
 
     /**
-     * <code>checkGoldenFile</code> compare the server's response with the
-     * configured goldenfile
+     * <code>checkGoldenFile</code> compare the server's response with the configured goldenfile
      * <ul>
      * <li>Check the goldenfile</li>
      * <ul>
@@ -486,22 +471,20 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * </li>
      * <li>
      * <p>
-     * If goldenfile is not null, compare the goldenfile with the response. If
-     * equal, return true, otherwise display error and return false.
+     * If goldenfile is not null, compare the goldenfile with the response. If equal, return true, otherwise display error
+     * and return false.
      * <p>
      * </li>
      * </ul>
      * </ul>
      *
      * @return boolen result of check
-     * @throws IOException
-     *           if an IO error occurs during validation
+     * @throws IOException if an IO error occurs during validation
      */
     protected abstract boolean checkGoldenfile() throws IOException;
 
     /**
-     * <code>checkReasonPhrase</code> will perform comparisons between the
-     * configued reason-phrase and that of the response.
+     * <code>checkReasonPhrase</code> will perform comparisons between the configued reason-phrase and that of the response.
      * <ul>
      * <li>Check reason-phrase</li>
      * <ul>
@@ -512,9 +495,8 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * </li>
      * <li>
      * <p>
-     * If configured reason-phrase is not null, compare the reason-phrases with
-     * the response. If equal, return true, otherwise display error and return
-     * false.
+     * If configured reason-phrase is not null, compare the reason-phrases with the response. If equal, return true,
+     * otherwise display error and return false.
      * <p>
      * </li>
      * </ul>
@@ -536,8 +518,7 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     }
 
     /**
-     * <code>checkExpectedHeaders</code> will check the response for the
-     * configured expected headers.
+     * <code>checkExpectedHeaders</code> will check the response for the configured expected headers.
      * <ul>
      * <li>Check expected headers</li>
      * <ul>
@@ -548,9 +529,8 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * </li>
      * <li>
      * <p>
-     * If there are expected headers, scan the response for the expected headers.
-     * If all expected headers are found, return true, otherwise display an error
-     * and return false.
+     * If there are expected headers, scan the response for the expected headers. If all expected headers are found, return
+     * true, otherwise display an error and return false.
      * <p>
      * </li>
      * </ul>
@@ -604,8 +584,7 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     }
 
     /**
-     * <code>checkUnexpectedHeaders</code> will check the response for the
-     * configured unexpected expected headers.
+     * <code>checkUnexpectedHeaders</code> will check the response for the configured unexpected expected headers.
      * <ul>
      * <li>Check unexpected headers</li>
      * <ul>
@@ -616,9 +595,8 @@ public abstract class WebValidatorBase implements ValidationStrategy {
      * </li>
      * <li>
      * <p>
-     * If there are configured unexpected headers, scan the response for the
-     * unexpected headers. If the headers are not found, return true, otherwise
-     * display an error and return false.
+     * If there are configured unexpected headers, scan the response for the unexpected headers. If the headers are not
+     * found, return true, otherwise display an error and return false.
      * <p>
      * </li>
      * </ul>
@@ -663,8 +641,7 @@ public abstract class WebValidatorBase implements ValidationStrategy {
     }
 
     /**
-     * Utility method to determine of the expected or unexpected headers are empty
-     * or not.
+     * Utility method to determine of the expected or unexpected headers are empty or not.
      */
     protected boolean isEmpty(Header[] headers) {
         if (headers == null || headers.length == 0) {

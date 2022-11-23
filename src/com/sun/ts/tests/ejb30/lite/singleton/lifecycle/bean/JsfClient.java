@@ -28,12 +28,11 @@ import java.util.Vector;
 import java.util.logging.Level;
 
 /**
- * singleton EJBs are used in many other test directories. This directory covers
- * requirements very specific to singleton, including equals, not equals,
- * hashCode, error handling, injection, jndi lookup.
+ * singleton EJBs are used in many other test directories. This directory covers requirements very specific to
+ * singleton, including equals, not equals, hashCode, error handling, injection, jndi lookup.
  *
- * These tests, as many others in ejb30/lite, extensively use no-interface
- * beans. Therefore, many no-interface requirements are covered here.
+ * These tests, as many others in ejb30/lite, extensively use no-interface beans. Therefore, many no-interface
+ * requirements are covered here.
  */
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
@@ -59,8 +58,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: beanReferenceEqualsAndHashCodeA
      *
-     * @test_Strategy: All references to a no-interface singleton bean are equal.
-     * Also compare their hashCode.
+     * @test_Strategy: All references to a no-interface singleton bean are equal. Also compare their hashCode.
      */
     public void beanReferenceEqualsAndHashCodeA() {
         beanReferenceEqualsAndHashCode(aSingleton);
@@ -69,8 +67,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: beanReferenceEqualsAndHashCodeB
      *
-     * @test_Strategy: All references to a 1-interface singleton bean are equal.
-     * Also compare their hashCode.
+     * @test_Strategy: All references to a 1-interface singleton bean are equal. Also compare their hashCode.
      */
     public void beanReferenceEqualsAndHashCodeB() {
         beanReferenceEqualsAndHashCode(bSingleton);
@@ -79,8 +76,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: beanReferenceEqualsAndHashCodeC2
      *
-     * @test_Strategy: All references to a singleton bean that are of the same
-     * type are equal. Also compare their hashCode.
+     * @test_Strategy: All references to a singleton bean that are of the same type are equal. Also compare their hashCode.
      */
     public void beanReferenceEqualsAndHashCodeC2() {
         beanReferenceEqualsAndHashCode(c2Singleton);
@@ -135,8 +131,8 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: beanClassHashCodeA
      *
-     * @test_Strategy: create n threads to concurrently invoke ASingletonBean, get
-     * its hashCode. These hashCode values must be the same.
+     * @test_Strategy: create n threads to concurrently invoke ASingletonBean, get its hashCode. These hashCode values must
+     * be the same.
      */
     public void beanClassHashCodeA() {
         beanClassHashCode(aSingleton, "ejb/aSingleton", "ASingletonBean", null);
@@ -145,8 +141,8 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: beanClassHashCodeB
      *
-     * @test_Strategy: create n threads to concurrently invoke BSingletonBean, get
-     * its hashCode. These hashCode values must be the same.
+     * @test_Strategy: create n threads to concurrently invoke BSingletonBean, get its hashCode. These hashCode values must
+     * be the same.
      */
     public void beanClassHashCodeB() {
         beanClassHashCode(bSingleton, "ejb/bSingleton", "BSingletonBean", null);
@@ -155,8 +151,8 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: beanClassHashCodeC2
      *
-     * @test_Strategy: create n threads to concurrently invoke C2SingletonBean,
-     * get its hashCode. These hashCode values must be the same.
+     * @test_Strategy: create n threads to concurrently invoke C2SingletonBean, get its hashCode. These hashCode values must
+     * be the same.
      */
     public void beanClassHashCodeC2() {
         beanClassHashCode(c2Singleton, "ejb/c2Singleton", "CSingletonBean", CSingletonIF.class);
@@ -165,9 +161,8 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: beanClassHashCodeCC2
      *
-     * @test_Strategy: create n threads to concurrently invoke C2SingletonBean,
-     * get its hashCode. These hashCode values must be the same as that of
-     * CSingletonIF.
+     * @test_Strategy: create n threads to concurrently invoke C2SingletonBean, get its hashCode. These hashCode values must
+     * be the same as that of CSingletonIF.
      */
     public void beanClassHashCodeCC2() {
         beanClassHashCode(cSingleton, "ejb/c2Singleton", "CSingletonBean", C2SingletonIF.class);
@@ -176,8 +171,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: noDestructionAfterSystemException
      *
-     * @test_Strategy: System exceptions from singleton business methods do not
-     * cause the bean destruction.
+     * @test_Strategy: System exceptions from singleton business methods do not cause the bean destruction.
      */
     public void noDestructionAfterSystemException() {
         noDestructionAfterSystemException(aSingleton);

@@ -33,7 +33,8 @@ public class Timestamp_Property implements java.io.Serializable {
 
     protected String name;
 
-    public Timestamp_Property() {}
+    public Timestamp_Property() {
+    }
 
     public Timestamp_Property(String id) {
         this.id = id;

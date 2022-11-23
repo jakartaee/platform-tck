@@ -147,8 +147,7 @@ public class Client extends ServiceEETest {
     }
 
     private void getPortStandalone() throws Exception {
-        port = (MTOMTest)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MTOMTestService.class, PORT_QNAME1, MTOMTest.class);
+        port = (MTOMTest) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, MTOMTestService.class, PORT_QNAME1, MTOMTest.class);
         JAXWS_Util.setTargetEndpointAddress(port, url);
         SOAPBinding binding = (SOAPBinding) ((BindingProvider) port).getBinding();
         binding.setMTOMEnabled(true);
@@ -187,8 +186,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -236,8 +237,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: MTOMInTest
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:4013; JAXWS:SPEC:10022; JAXWS:SPEC:2080; JAXWS:SPEC:3054;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:4013; JAXWS:SPEC:10022;
+     * JAXWS:SPEC:2080; JAXWS:SPEC:3054;
      *
      * @test_Strategy: Test MTOM attachments on input.
      */
@@ -281,14 +282,15 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MTOMInTest failed");
+        if (!pass)
+            throw new Fault("MTOMInTest failed");
     }
 
     /*
      * @testName: MTOMInOutTest
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:4013; JAXWS:SPEC:10022; JAXWS:SPEC:2080; JAXWS:SPEC:3054;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:4013; JAXWS:SPEC:10022;
+     * JAXWS:SPEC:2080; JAXWS:SPEC:3054;
      *
      * @test_Strategy: Test MTOM attachments on input and output.
      */
@@ -359,21 +361,23 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error: " + tmpRes);
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("All received documents are as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("All received documents are as expected (ok)");
 
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MTOMInOutTest failed");
+        if (!pass)
+            throw new Fault("MTOMInOutTest failed");
     }
 
     /*
      * @testName: MTOMOutTest
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:4013; JAXWS:SPEC:10022; JAXWS:SPEC:2080; JAXWS:SPEC:3054;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:4013; JAXWS:SPEC:10022;
+     * JAXWS:SPEC:2080; JAXWS:SPEC:3054;
      *
      * @test_Strategy: Test MTOM attachments on output.
      */
@@ -388,8 +392,7 @@ public class Client extends ServiceEETest {
             DataHandler doc3 = AttachmentHelper.getDataHandlerDoc(docURL3);
             Image doc4 = AttachmentHelper.getImageDoc(docURL4);
 
-            String urls =
-                    docURL1.toString() + "," + docURL2.toString() + "," + docURL3.toString() + "," + docURL4.toString();
+            String urls = docURL1.toString() + "," + docURL2.toString() + "," + docURL3.toString() + "," + docURL4.toString();
             TestUtil.logTrace("urls=" + urls);
             TestUtil.logMsg("Receive 4 documents using MTOM via webservice method mtomOut()");
             TestUtil.logMsg("Documents to receive: [" + SDOC1 + "," + SDOC2 + "," + SDOC3 + "," + SDOC4 + "]");
@@ -415,21 +418,22 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error: " + tmpRes);
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("All received documents are as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("All received documents are as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MTOMOutTest failed");
+        if (!pass)
+            throw new Fault("MTOMOutTest failed");
     }
 
     /*
      * @testName: MTOMInOut2RequestCheckHttpHeadersTest
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:4013; JAXWS:SPEC:10022; JAXWS:SPEC:10024; JAXWS:SPEC:2080;
-     * JAXWS:SPEC:3054;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:4013; JAXWS:SPEC:10022;
+     * JAXWS:SPEC:10024; JAXWS:SPEC:2080; JAXWS:SPEC:3054;
      *
      * @test_Strategy: Test MTOM HTTP Content-Type Header for correctness.
      */
@@ -450,14 +454,15 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("MTOMInOut2RequestCheckHttpHeadersTest failed");
+        if (!pass)
+            throw new Fault("MTOMInOut2RequestCheckHttpHeadersTest failed");
     }
 
     /*
      * @testName: MTOMInOut2ResponseCheckHttpHeadersTest
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:4013; JAXWS:SPEC:10022; JAXWS:SPEC:10024;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:4013; JAXWS:SPEC:10022;
+     * JAXWS:SPEC:10024;
      *
      * @test_Strategy: Test MTOM HTTP Content-Type Header for correctness.
      */
@@ -478,14 +483,15 @@ public class Client extends ServiceEETest {
             pass = false;
         }
 
-        if (!pass) throw new Fault("MTOMInOut2ResponseCheckHttpHeadersTest failed");
+        if (!pass)
+            throw new Fault("MTOMInOut2ResponseCheckHttpHeadersTest failed");
     }
 
     /*
      * @testName: MTOMOut2Test
      *
-     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006;
-     * WS4EE:SPEC:4013; JAXWS:SPEC:2080; JAXWS:SPEC:3054;
+     * @assertion_ids: JAXWS:SPEC:10013; JAXWS:SPEC:10014; WS4EE:SPEC:5006; WS4EE:SPEC:4013; JAXWS:SPEC:2080;
+     * JAXWS:SPEC:3054;
      *
      * @test_Strategy: Test MTOM attachments on output.
      */
@@ -507,12 +513,14 @@ public class Client extends ServiceEETest {
                 TestUtil.logErr("Client-side error: " + tmpRes);
                 pass = false;
             }
-            if (pass) TestUtil.logMsg("The received document is as expected (ok)");
+            if (pass)
+                TestUtil.logMsg("The received document is as expected (ok)");
         } catch (Exception e) {
             TestUtil.logErr("Exception occurred");
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("MTOMOut2Test failed");
+        if (!pass)
+            throw new Fault("MTOMOut2Test failed");
     }
 }

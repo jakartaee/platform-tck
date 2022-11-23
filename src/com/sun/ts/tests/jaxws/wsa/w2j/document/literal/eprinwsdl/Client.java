@@ -93,7 +93,7 @@ public class Client extends ServiceEETest {
 
     private Test1 port1 = null;
 
-    private WebServiceFeature[] addressingenabled = {new AddressingFeature(true)};
+    private WebServiceFeature[] addressingenabled = { new AddressingFeature(true) };
 
     static EPRInWsdlTestService service = null;
 
@@ -144,8 +144,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -185,15 +187,13 @@ public class Client extends ServiceEETest {
     /*
      * @testName: GetEPRAndVerifyMetaDataAndRefParamsTest1
      *
-     * @assertion_ids: WSAMD:SPEC:4002; WSAMD:SPEC:2000; WSAMD:SPEC:2000.1;
-     * WSAMD:SPEC:2000.2; WSAMD:SPEC:2001; WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2;
-     * WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
+     * @assertion_ids: WSAMD:SPEC:4002; WSAMD:SPEC:2000; WSAMD:SPEC:2000.1; WSAMD:SPEC:2000.2; WSAMD:SPEC:2001;
+     * WSAMD:SPEC:2001.1; WSAMD:SPEC:2001.2; WSAMD:SPEC:2001.3; WSAMD:SPEC:2002; WSAMD:SPEC:2002.1; WSAMD:SPEC:2002.2;
      * WSAMD:SPEC:2002.3; WSAMD:SPEC:2002.4; WSACORE:SPEC:2003;
      *
-     * @test_Strategy: Retrieve EPR via BinderProvider.getEndpointReference().
-     * Verify that the returned EPR matches the EPR defined in the WSDL. Perform
-     * invocation and verify the reference parameters defined in the EPR in the
-     * WSDL are sent across.
+     * @test_Strategy: Retrieve EPR via BinderProvider.getEndpointReference(). Verify that the returned EPR matches the EPR
+     * defined in the WSDL. Perform invocation and verify the reference parameters defined in the EPR in the WSDL are sent
+     * across.
      */
     public void GetEPRAndVerifyMetaDataAndRefParamsTest1() throws Fault {
         TestUtil.logMsg("GetEPRAndVerifyMetaDataAndRefParamsTest1");
@@ -221,14 +221,16 @@ public class Client extends ServiceEETest {
                 TestUtil.logTrace("name=" + name);
                 TestUtil.logTrace("value=" + value);
                 boolean success = EprUtil.validateReferenceParameter(dr.getNode(), name, value);
-                if (!success) pass = false;
+                if (!success)
+                    pass = false;
 
                 name = "MyParam2";
                 value = "There";
                 TestUtil.logTrace("name=" + name);
                 TestUtil.logTrace("value=" + value);
                 success = EprUtil.validateReferenceParameter(dr.getNode(), name, value);
-                if (!success) pass = false;
+                if (!success)
+                    pass = false;
                 DataType data = new DataType();
                 data.setParam("GetEPRAndVerifyMetaDataAndRefParamsTest1");
                 Holder<DataType> hdt = new Holder<DataType>();
@@ -246,7 +248,8 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("GetEPRAndVerifyMetaDataAndRefParamsTest1 failed");
+        if (!pass)
+            throw new Fault("GetEPRAndVerifyMetaDataAndRefParamsTest1 failed");
     }
 
     /*
@@ -254,9 +257,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSAMD:SPEC:4002;
      *
-     * @test_Strategy: Call Service.getPort(Class, AddressingFeature(true)).
-     * Perform invocation and verify that the reference parameters of the inlined
-     * EPR in wsdl are sent across.
+     * @test_Strategy: Call Service.getPort(Class, AddressingFeature(true)). Perform invocation and verify that the
+     * reference parameters of the inlined EPR in wsdl are sent across.
      */
     public void GetPortAndVerifyRefParamsAreSentTest1() throws Fault {
         TestUtil.logMsg("GetPortAndVerifyRefParamsAreSentTest1");
@@ -281,7 +283,8 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("GetPortAndVerifyRefParamsAreSentTest1 failed", e);
         }
-        if (!pass) throw new Fault("GetPortAndVerifyRefParamsAreSentTest1 failed");
+        if (!pass)
+            throw new Fault("GetPortAndVerifyRefParamsAreSentTest1 failed");
     }
 
     /*
@@ -289,9 +292,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSAMD:SPEC:4002;
      *
-     * @test_Strategy: Call Service.getPort(EPR, Class, AddressingFeature(true)).
-     * Perform invocation and verify that the reference parameters of the inlined
-     * EPR in wsdl are sent across.
+     * @test_Strategy: Call Service.getPort(EPR, Class, AddressingFeature(true)). Perform invocation and verify that the
+     * reference parameters of the inlined EPR in wsdl are sent across.
      */
     public void GetPortAndVerifyRefParamsAreSentTest2() throws Fault {
         TestUtil.logMsg("GetPortAndVerifyRefParamsAreSentTest2");
@@ -319,7 +321,8 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("GetPortAndVerifyRefParamsAreSentTest2 failed", e);
         }
-        if (!pass) throw new Fault("GetPortAndVerifyRefParamsAreSentTest2 failed");
+        if (!pass)
+            throw new Fault("GetPortAndVerifyRefParamsAreSentTest2 failed");
     }
 
     /*
@@ -327,10 +330,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSAMD:SPEC:4002;
      *
-     * @test_Strategy: Retrieve EPR via BinderProvider.getEndpointReference().
-     * Modify the EPR to change the reference parameters. Call
-     * Service.getPort(EPR, Class, AddressingFeature(true)). Perform invocation
-     * and verify that the modified reference parameters are sent across.
+     * @test_Strategy: Retrieve EPR via BinderProvider.getEndpointReference(). Modify the EPR to change the reference
+     * parameters. Call Service.getPort(EPR, Class, AddressingFeature(true)). Perform invocation and verify that the
+     * modified reference parameters are sent across.
      */
     public void GetPortAndVerifyModifiedRefParamsAreSentTest3() throws Fault {
         TestUtil.logMsg("GetPortAndVerifyModifiedRefParamsAreSentTest3");
@@ -364,6 +366,7 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("GetPortAndVerifyModifiedRefParamsAreSentTest3 failed", e);
         }
-        if (!pass) throw new Fault("GetPortAndVerifyModifiedRefParamsAreSentTest3 failed");
+        if (!pass)
+            throw new Fault("GetPortAndVerifyModifiedRefParamsAreSentTest3 failed");
     }
 }

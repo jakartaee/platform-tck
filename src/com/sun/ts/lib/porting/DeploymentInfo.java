@@ -24,45 +24,40 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Provides all information required to deploy an application on a server. Much
- * of this information is extracted from runtime xml files. The following
- * information is provided:
+ * Provides all information required to deploy an application on a server. Much of this information is extracted from
+ * runtime xml files. The following information is provided:
  * <ul>
  * <li>EJB Jar info</li>
- * <li>Web Resources - Display name, context root, resource references and ejb
- * references for each web resource in this ear.</li>
- * <li>EJB Resources - Name, JNDI name, resource references, ejb references, and
- * CMP information for each ejb resource in this ear.</li>
- * <li>Resource References - For each resource reference, the JNDI name, default
- * resource principal name and password, and any mail configuration information
- * is provided.</li>
- * <li>EJB References - For each EJB reference, the EJB name and its
- * corresponding JNDI name is provided.</li>
+ * <li>Web Resources - Display name, context root, resource references and ejb references for each web resource in this
+ * ear.</li>
+ * <li>EJB Resources - Name, JNDI name, resource references, ejb references, and CMP information for each ejb resource
+ * in this ear.</li>
+ * <li>Resource References - For each resource reference, the JNDI name, default resource principal name and password,
+ * and any mail configuration information is provided.</li>
+ * <li>EJB References - For each EJB reference, the EJB name and its corresponding JNDI name is provided.</li>
  * </ul>
  * <p>
- * See: javaee.home.ri/lib/dtds/sun-application_5_0-0.dtd
- * javaee.home.ri/lib/dtds/sun-application-client_5_0-0.dtd
- * javaee.home.ri/lib/dtds/sun-ejb-jar_3_0-0.dtd
- * javaee.home.ri/lib/dtds/sun-web-app_2_5-0.dtd for more and updated
+ * See: javaee.home.ri/lib/dtds/sun-application_5_0-0.dtd javaee.home.ri/lib/dtds/sun-application-client_5_0-0.dtd
+ * javaee.home.ri/lib/dtds/sun-ejb-jar_3_0-0.dtd javaee.home.ri/lib/dtds/sun-web-app_2_5-0.dtd for more and updated
  * information.
  *
  */
 public interface DeploymentInfo extends java.io.Serializable {
     /**
-     * Sets the value of the given property. This method should be temporary,
-     * until all important information can be provided by the API.
+     * Sets the value of the given property. This method should be temporary, until all important information can be
+     * provided by the API.
      */
     public void setProperty(String key, String value);
 
     /**
-     * Returns the value of the given property. This method should be temporary,
-     * until all important information can be provided by the API.
+     * Returns the value of the given property. This method should be temporary, until all important information can be
+     * provided by the API.
      */
     public String getProperty(String key);
 
     /**
-     * Sets/gets an array of deploymentInfo objects from previously deployed apps
-     * in the currrent directory along with all common apps
+     * Sets/gets an array of deploymentInfo objects from previously deployed apps in the currrent directory along with all
+     * common apps
      */
     public void setPreviousInfos(DeploymentInfo[] infos);
 
@@ -79,54 +74,46 @@ public interface DeploymentInfo extends java.io.Serializable {
     public String[] getRuntimeFiles();
 
     /**
-     * Returns a Map that maps runtimne deployment descriptor filename Strings to
-     * concrete implementations of the com.sun.ts.lib.porting.ejb.SunEjbJar
-     * interface.
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to concrete implementations of the
+     * com.sun.ts.lib.porting.ejb.SunEjbJar interface.
      */
     public Map getEjbRuntimeData();
 
     /**
-     * Returns a Map that maps runtimne deployment descriptor filename Strings to
-     * concrete implementations of the com.sun.ts.lib.porting.web.SunWebApp
-     * interface.
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to concrete implementations of the
+     * com.sun.ts.lib.porting.web.SunWebApp interface.
      */
     public Map getWebRuntimeData();
 
     /**
-     * Returns a Map that maps runtimne deployment descriptor filename Strings to
-     * concrete implementations of the com.sun.ts.lib.porting.app.SunApplication
-     * interface.
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to concrete implementations of the
+     * com.sun.ts.lib.porting.app.SunApplication interface.
      */
     public Map getAppRuntimeData();
 
     /**
-     * Returns a Map that maps runtimne deployment descriptor filename Strings to
-     * concrete implementations of the
+     * Returns a Map that maps runtimne deployment descriptor filename Strings to concrete implementations of the
      * com.sun.ts.lib.porting.appclient.SunApplicationClient interface.
      */
     public Map getAppClientRuntimeData();
 
     /**
-     * Returns a List of concrete implementations of the
-     * com.sun.ts.lib.porting.appclient.SunApplicationClient interface.
+     * Returns a List of concrete implementations of the com.sun.ts.lib.porting.appclient.SunApplicationClient interface.
      */
     public List getAppClientRuntimeDDs();
 
     /**
-     * Returns a List of concrete implementations of the
-     * com.sun.ts.lib.porting.app.SunApplication interface.
+     * Returns a List of concrete implementations of the com.sun.ts.lib.porting.app.SunApplication interface.
      */
     public List getAppRuntimeDDs();
 
     /**
-     * Returns a List of concrete implementations of the
-     * com.sun.ts.lib.porting.web.SunWebApp interface.
+     * Returns a List of concrete implementations of the com.sun.ts.lib.porting.web.SunWebApp interface.
      */
     public List getWebRuntimeDDs();
 
     /**
-     * Returns a List of concrete implementations of the
-     * com.sun.ts.lib.porting.ejb.SunEjbJar interface.
+     * Returns a List of concrete implementations of the com.sun.ts.lib.porting.ejb.SunEjbJar interface.
      */
     public List getEjbRuntimeDDs();
 

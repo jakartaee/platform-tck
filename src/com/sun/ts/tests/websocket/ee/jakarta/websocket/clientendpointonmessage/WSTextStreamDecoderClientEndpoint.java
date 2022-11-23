@@ -29,7 +29,7 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(decoders = {StringBeanTextStreamDecoder.class})
+@ClientEndpoint(decoders = { StringBeanTextStreamDecoder.class })
 public class WSTextStreamDecoderClientEndpoint extends AnnotatedStringClientEndpoint {
 
     @OnMessage

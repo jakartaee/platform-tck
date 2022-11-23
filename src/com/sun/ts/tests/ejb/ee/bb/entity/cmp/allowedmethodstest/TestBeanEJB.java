@@ -47,28 +47,28 @@ public class TestBeanEJB implements EntityBean {
 
     // These are the method tests
     private static final String tests[] = {
-        "ejbCreate",
-        "ejbPostCreate",
-        "ejbFindByPrimaryKey",
-        "ejbActivate",
-        "ejbPassivate",
-        "ejbLoad",
-        "ejbStore",
-        "setEntityContext",
-        "businessMethod"
+            "ejbCreate",
+            "ejbPostCreate",
+            "ejbFindByPrimaryKey",
+            "ejbActivate",
+            "ejbPassivate",
+            "ejbLoad",
+            "ejbStore",
+            "setEntityContext",
+            "businessMethod"
     };
 
     // This is the results of the operation tests
     private static final Properties methodList[] = {
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties()
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties()
     };
 
     private boolean ejbLoadCalled = false;
@@ -96,7 +96,8 @@ public class TestBeanEJB implements EntityBean {
             TestUtil.printStackTrace(e);
             throw new CreateException(e.getMessage());
         }
-        if (flag == 1) doOperationTests("ejbCreate");
+        if (flag == 1)
+            doOperationTests("ejbCreate");
         try {
             ref.setData(table);
         } catch (Exception e) {
@@ -109,7 +110,8 @@ public class TestBeanEJB implements EntityBean {
     public void ejbPostCreate(Properties p, Helper ref, int KEY_ID, String BRAND_NAME, float PRICE, int flag)
             throws CreateException {
         TestUtil.logTrace("ejbPostCreate");
-        if (flag == 2) doOperationTests("ejbPostCreate");
+        if (flag == 2)
+            doOperationTests("ejbPostCreate");
         try {
             ref.setData(table);
         } catch (Exception e) {
@@ -157,7 +159,8 @@ public class TestBeanEJB implements EntityBean {
 
     public void ejbLoad() {
         TestUtil.logTrace("ejbLoad");
-        if (ejbLoadCalled) return;
+        if (ejbLoadCalled)
+            return;
         doOperationTests("ejbLoad");
         ejbLoadCalled = true;
         ejbStoreCalled = false;
@@ -165,7 +168,8 @@ public class TestBeanEJB implements EntityBean {
 
     public void ejbStore() {
         TestUtil.logTrace("ejbStore");
-        if (ejbStoreCalled) return;
+        if (ejbStoreCalled)
+            return;
         doOperationTests("ejbStore");
         ejbStoreCalled = true;
         ejbLoadCalled = false;
@@ -210,7 +214,9 @@ public class TestBeanEJB implements EntityBean {
 
     private int testIndex(String s) {
         TestUtil.logTrace("testIndex");
-        for (int i = 0; i < tests.length; i++) if (s.equals(tests[i])) return i;
+        for (int i = 0; i < tests.length; i++)
+            if (s.equals(tests[i]))
+                return i;
         return -1;
     }
 

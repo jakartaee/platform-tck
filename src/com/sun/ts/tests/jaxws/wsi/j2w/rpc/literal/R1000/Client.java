@@ -41,8 +41,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -73,9 +72,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1000
      *
-     * @test_Strategy: Make a request and inspect response to ensure the
-     *                 soap:Fault only has children of faultcode , faultstring ,
-     *                 faultactor and detail.
+     * @test_Strategy: Make a request and inspect response to ensure the soap:Fault only has children of faultcode ,
+     * faultstring , faultactor and detail.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -99,9 +97,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1000
      *
-     * @test_Strategy: Make a request and inspect response to ensure the
-     *                 soap:Fault only has children of faultcode , faultstring ,
-     *                 faultactor and detail.
+     * @test_Strategy: Make a request and inspect response to ensure the soap:Fault only has children of faultcode ,
+     * faultstring , faultactor and detail.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -121,8 +118,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     }
 
     private void validateFaultChildrenNames(SOAPMessage response) throws EETest.Fault, SOAPException {
-        Iterator children =
-                response.getSOAPPart().getEnvelope().getBody().getFault().getChildElements();
+        Iterator children = response.getSOAPPart().getEnvelope().getBody().getFault().getChildElements();
         SOAPElement child;
         while (children.hasNext()) {
             child = (SOAPElement) children.next();

@@ -60,4 +60,5 @@ package com.sun.ts.tests.servlet.api.jakarta_servlet.srattributelistener40;
 
 import jakarta.servlet.ServletRequestAttributeListener;
 
-public final class SRAttributeListener40 implements ServletRequestAttributeListener {}
+public final class SRAttributeListener40 implements ServletRequestAttributeListener {
+}

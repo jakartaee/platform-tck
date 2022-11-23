@@ -26,9 +26,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * These tests verify various ways of specifying @Asynchronous on interfaces and
- * bean class and their superclasses. Some of these requirements are also
- * covered in ../annotated directory. This test directory focuses on type-level
+ * These tests verify various ways of specifying @Asynchronous on interfaces and bean class and their superclasses. Some
+ * of these requirements are also covered in ../annotated directory. This test directory focuses on type-level
  *
  * @Asynchronous on business interface and super-interfaces, and type-level
  * @Asynchronous on bean superclasses.
@@ -92,8 +91,7 @@ public class MetadataJsfClientBase extends AsyncJsfClientBase {
     /*
      * testName: beanClassLevelReturnType
      *
-     * @test_Strategy:verify 2 types of return types in bean class: Future<T> and
-     * T.
+     * @test_Strategy:verify 2 types of return types in bean class: Future<T> and T.
      */
     public void beanClassLevelReturnType() throws InterruptedException, ExecutionException {
         final boolean expected = true;
@@ -105,9 +103,8 @@ public class MetadataJsfClientBase extends AsyncJsfClientBase {
     /*
      * testName: beanClassLevelRuntimeException
      *
-     * @test_Strategy: for async method with void return type, RuntimeException is
-     * not visible to the client. For Future return type, RuntimeException is
-     * wrapped as EJBException and then as ExecutionException.
+     * @test_Strategy: for async method with void return type, RuntimeException is not visible to the client. For Future
+     * return type, RuntimeException is wrapped as EJBException and then as ExecutionException.
      */
     public void beanClassLevelRuntimeException() throws InterruptedException, TimeoutException {
         beanClassLevelRuntimeException(getBeanClassLevel(), getBeanClassLevel());
@@ -127,8 +124,7 @@ public class MetadataJsfClientBase extends AsyncJsfClientBase {
     /*
      * testName: beanClassLevelSyncMethod
      *
-     * @test_Strategy: syncMethodException is implemented in a bean superclass
-     * that is not annotated with @Asynchronous.
+     * @test_Strategy: syncMethodException is implemented in a bean superclass that is not annotated with @Asynchronous.
      */
     public void beanClassLevelSyncMethod() {
         beanClassLevelSyncMethod(getBeanClassLevel());

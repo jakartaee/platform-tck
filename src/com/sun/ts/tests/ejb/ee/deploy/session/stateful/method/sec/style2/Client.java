@@ -56,8 +56,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * user; password;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; user; password;
      *
      */
     public void setup(String[] args, Properties props) throws Fault {
@@ -86,10 +85,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:805; EJB:SPEC:811
      *
-     * @test_Strategy: Package a Stateful Session bean using a Style 2 declaration
-     *                 to grant permission to role 'Employee' for test1 methods.
-     *                 Login as a user associated to this security role and check
-     *                 that we can call a business method on that bean.
+     * @test_Strategy: Package a Stateful Session bean using a Style 2 declaration to grant permission to role 'Employee'
+     * for test1 methods. Login as a user associated to this security role and check that we can call a business method on
+     * that bean.
      */
     public void testStyle2Positive() throws Fault {
         boolean pass;
@@ -126,12 +124,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:805; EJB:SPEC:811
      *
-     * @test_Strategy: Package a Stateful Session bean using a Style 2 declaration
-     *                 to grant permissions to role 'Manager' only for test2
-     *                 methods. Login as a user that is not associated to this
-     *                 security role and check that we get a
-     *                 java.rmi.RemoteException when calling a test2() method on
-     *                 that bean.
+     * @test_Strategy: Package a Stateful Session bean using a Style 2 declaration to grant permissions to role 'Manager'
+     * only for test2 methods. Login as a user that is not associated to this security role and check that we get a
+     * java.rmi.RemoteException when calling a test2() method on that bean.
      */
     public void testStyle2Negative() throws Fault {
         boolean pass;
@@ -170,15 +165,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:805
      *
-     * @test_Strategy: Package a Stateful Session bean using: - a Style 2
-     *                 declaration to grant permissions to role Employee only for
-     *                 test1 business methods. - a Style3 declaration to grant
-     *                 permissions to role Manager only for business method
-     *                 test1(int).
+     * @test_Strategy: Package a Stateful Session bean using: - a Style 2 declaration to grant permissions to role Employee
+     * only for test1 business methods. - a Style3 declaration to grant permissions to role Manager only for business method
+     * test1(int).
      *
-     *                 Login as a user that is associated with the Employee
-     *                 security role, but not the Manager's one. Check that we can
-     *                 call the test1(int) business method on that bean.
+     * Login as a user that is associated with the Employee security role, but not the Manager's one. Check that we can call
+     * the test1(int) business method on that bean.
      */
     public void testStyle3Style2() throws Fault {
         boolean pass;

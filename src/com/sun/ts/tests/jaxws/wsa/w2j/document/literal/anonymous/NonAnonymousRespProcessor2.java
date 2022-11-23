@@ -39,7 +39,8 @@ import java.util.concurrent.TimeoutException;
 public class NonAnonymousRespProcessor2 implements Provider<SOAPMessage> {
     Exchanger<SOAPMessage> msgExchanger;
 
-    public NonAnonymousRespProcessor2() {}
+    public NonAnonymousRespProcessor2() {
+    }
 
     public NonAnonymousRespProcessor2(Exchanger<SOAPMessage> msgExchanger) {
         this.msgExchanger = msgExchanger;

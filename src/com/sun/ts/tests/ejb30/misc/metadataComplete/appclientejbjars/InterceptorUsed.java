@@ -34,8 +34,7 @@ public class InterceptorUsed {
     }
 
     /**
-     * This interceptor method only intercepts any business method that has
-     * parameters int, int.
+     * This interceptor method only intercepts any business method that has parameters int, int.
      */
     @AroundInvoke
     protected Object intercept(InvocationContext inv) throws Exception {
@@ -45,7 +44,7 @@ public class InterceptorUsed {
                     + "business method: " + inv.getMethod() + "\n");
             Integer p1 = (Integer) params[0];
             Integer p2 = (Integer) params[1];
-            Object[] newParams = new Integer[] {p1 + 100, p2 + 100};
+            Object[] newParams = new Integer[] { p1 + 100, p2 + 100 };
             inv.setParameters(newParams);
         }
         return inv.proceed();

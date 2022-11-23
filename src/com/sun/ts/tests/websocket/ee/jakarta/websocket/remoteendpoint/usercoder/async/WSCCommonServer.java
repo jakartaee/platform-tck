@@ -32,30 +32,30 @@ public abstract class WSCCommonServer implements WSCSuperEndpoint {
         OPS op = OPS.valueOf(msg);
         Future<Void> future = null;
         switch (op) {
-            case BOOL:
-                future = session.getAsyncRemote().sendObject(BOOL);
-                break;
-            case BYTE:
-                future = session.getAsyncRemote().sendObject(NUMERIC.byteValue());
-                break;
-            case CHAR:
-                future = session.getAsyncRemote().sendObject(CHAR);
-                break;
-            case DOUBLE:
-                future = session.getAsyncRemote().sendObject(NUMERIC.doubleValue());
-                break;
-            case FLOAT:
-                future = session.getAsyncRemote().sendObject(NUMERIC.floatValue());
-                break;
-            case INT:
-                future = session.getAsyncRemote().sendObject(NUMERIC.intValue());
-                break;
-            case LONG:
-                future = session.getAsyncRemote().sendObject(NUMERIC.longValue());
-                break;
-            case SHORT:
-                future = session.getAsyncRemote().sendObject(NUMERIC.shortValue());
-                break;
+        case BOOL:
+            future = session.getAsyncRemote().sendObject(BOOL);
+            break;
+        case BYTE:
+            future = session.getAsyncRemote().sendObject(NUMERIC.byteValue());
+            break;
+        case CHAR:
+            future = session.getAsyncRemote().sendObject(CHAR);
+            break;
+        case DOUBLE:
+            future = session.getAsyncRemote().sendObject(NUMERIC.doubleValue());
+            break;
+        case FLOAT:
+            future = session.getAsyncRemote().sendObject(NUMERIC.floatValue());
+            break;
+        case INT:
+            future = session.getAsyncRemote().sendObject(NUMERIC.intValue());
+            break;
+        case LONG:
+            future = session.getAsyncRemote().sendObject(NUMERIC.longValue());
+            break;
+        case SHORT:
+            future = session.getAsyncRemote().sendObject(NUMERIC.shortValue());
+            break;
         }
         future.get();
     }

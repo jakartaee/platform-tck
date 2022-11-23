@@ -52,7 +52,8 @@ public class JTATestEJB implements SessionBean {
 
     private String password = null;
 
-    public JTATestEJB() {}
+    public JTATestEJB() {
+    }
 
     public void ejbCreate(Properties props) throws CreateException {
         p = props;
@@ -246,7 +247,9 @@ public class JTATestEJB implements SessionBean {
         }
     }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 }

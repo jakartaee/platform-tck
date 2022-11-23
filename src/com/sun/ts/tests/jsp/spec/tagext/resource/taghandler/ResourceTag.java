@@ -69,7 +69,8 @@ public class ResourceTag extends TagSupport {
                 if (!(DB1 instanceof DataSource)) {
                     passed = false;
                     out.println("wrong type DataSource");
-                } else out.println("passed DataSource");
+                } else
+                    out.println("passed DataSource");
             } else {
                 passed = false;
                 out.println("DB1 is null");
@@ -79,7 +80,8 @@ public class ResourceTag extends TagSupport {
                 if (!(qcFactory instanceof jakarta.jms.QueueConnectionFactory)) {
                     passed = false;
                     out.println("wrong type QueueConnectionFactory");
-                } else out.println("passed QueueConnectionFactory");
+                } else
+                    out.println("passed QueueConnectionFactory");
             } else {
                 passed = false;
                 out.println("qcFactory is null");
@@ -89,7 +91,8 @@ public class ResourceTag extends TagSupport {
                 if (!(tcFactory instanceof jakarta.jms.TopicConnectionFactory)) {
                     passed = false;
                     out.println("wrong type TopicConnectionFactory");
-                } else out.println("passed TopicConnectionFactory");
+                } else
+                    out.println("passed TopicConnectionFactory");
             } else {
                 passed = false;
                 out.println("tcFactory is null");
@@ -99,7 +102,8 @@ public class ResourceTag extends TagSupport {
                 if (!(cFactory instanceof jakarta.jms.ConnectionFactory)) {
                     out.println("wrong type ConnectionFactory");
                     passed = false;
-                } else out.println("passed ConnectionFactory");
+                } else
+                    out.println("passed ConnectionFactory");
             } else {
                 passed = false;
                 out.println("cFactory is null");
@@ -109,7 +113,8 @@ public class ResourceTag extends TagSupport {
                 if (!(myQueue instanceof jakarta.jms.Queue)) {
                     out.println("wrong type Queue");
                     passed = false;
-                } else out.println("passed Queue");
+                } else
+                    out.println("passed Queue");
             } else {
                 passed = false;
                 out.println("myQueue is null");
@@ -119,7 +124,8 @@ public class ResourceTag extends TagSupport {
                 if (!(myTopic instanceof jakarta.jms.Topic)) {
                     out.println("wrong type Topic");
                     passed = false;
-                } else out.println("passed Topic");
+                } else
+                    out.println("passed Topic");
             } else {
                 out.println("myTopic is null");
                 passed = false;
@@ -129,7 +135,8 @@ public class ResourceTag extends TagSupport {
                 if (!(mailSession instanceof jakarta.mail.Session)) {
                     passed = false;
                     out.println("wrong type .Session");
-                } else out.println("passed Session");
+                } else
+                    out.println("passed Session");
             } else {
                 passed = false;
                 out.println("mailSession is null");
@@ -139,13 +146,15 @@ public class ResourceTag extends TagSupport {
                 if (!(myUrl instanceof java.net.URL)) {
                     passed = false;
                     out.println("wrong type URL ");
-                } else out.println("passed URL ");
+                } else
+                    out.println("passed URL ");
             } else {
                 passed = false;
                 out.println("myUrl is null");
             }
 
-            if (passed == true) out.println("Test PASSED.");
+            if (passed == true)
+                out.println("Test PASSED.");
 
         } catch (IOException ioe) {
             throw new JspException("Unexpected Exception", ioe);

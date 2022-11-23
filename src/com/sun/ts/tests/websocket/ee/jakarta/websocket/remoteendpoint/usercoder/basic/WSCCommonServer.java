@@ -28,30 +28,30 @@ public abstract class WSCCommonServer implements WSCSuperEndpoint {
     public void onMessage(String msg, Session session) throws IOException, EncodeException {
         OPS op = OPS.valueOf(msg);
         switch (op) {
-            case BOOL:
-                session.getBasicRemote().sendObject(BOOL);
-                break;
-            case BYTE:
-                session.getBasicRemote().sendObject(NUMERIC.byteValue());
-                break;
-            case CHAR:
-                session.getBasicRemote().sendObject(CHAR);
-                break;
-            case DOUBLE:
-                session.getBasicRemote().sendObject(NUMERIC.doubleValue());
-                break;
-            case FLOAT:
-                session.getBasicRemote().sendObject(NUMERIC.floatValue());
-                break;
-            case INT:
-                session.getBasicRemote().sendObject(NUMERIC.intValue());
-                break;
-            case LONG:
-                session.getBasicRemote().sendObject(NUMERIC.longValue());
-                break;
-            case SHORT:
-                session.getBasicRemote().sendObject(NUMERIC.shortValue());
-                break;
+        case BOOL:
+            session.getBasicRemote().sendObject(BOOL);
+            break;
+        case BYTE:
+            session.getBasicRemote().sendObject(NUMERIC.byteValue());
+            break;
+        case CHAR:
+            session.getBasicRemote().sendObject(CHAR);
+            break;
+        case DOUBLE:
+            session.getBasicRemote().sendObject(NUMERIC.doubleValue());
+            break;
+        case FLOAT:
+            session.getBasicRemote().sendObject(NUMERIC.floatValue());
+            break;
+        case INT:
+            session.getBasicRemote().sendObject(NUMERIC.intValue());
+            break;
+        case LONG:
+            session.getBasicRemote().sendObject(NUMERIC.longValue());
+            break;
+        case SHORT:
+            session.getBasicRemote().sendObject(NUMERIC.shortValue());
+            break;
         }
     }
 

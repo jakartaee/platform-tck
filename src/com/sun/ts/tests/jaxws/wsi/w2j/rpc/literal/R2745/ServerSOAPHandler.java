@@ -46,8 +46,7 @@ public class ServerSOAPHandler extends HTTPSOAPHandler {
     /**
      * Verifies the contents of the Content-Type HTTP header
      *
-     * @param request
-     *          the HTTP servlet request.
+     * @param request the HTTP servlet request.
      */
     protected String verifySOAPActionHeader(Map<String, List<String>> m) {
         System.out.println("in ServerSOAPHandler:verifySOAPActionHeader");

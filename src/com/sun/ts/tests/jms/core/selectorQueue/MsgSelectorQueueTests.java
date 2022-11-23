@@ -86,9 +86,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * The beginning of the test creates receiver and message. This is broken
-     * apart from the rest of the test so that the user can specify message
-     * properties before sending the message.
+     * The beginning of the test creates receiver and message. This is broken apart from the rest of the test so that the
+     * user can specify message properties before sending the message.
      */
     private void startTest(String selector, String headerValue) throws Exception {
         logTrace("startTest(): Creating receiver with message selector");
@@ -103,8 +102,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     }
 
     /*
-     * Send the message and try to receive it. Check the result against the
-     * expectation.
+     * Send the message and try to receive it. Check the result against the expectation.
      */
     private void finishTestReceive() throws Exception {
         logTrace("finishTestReceive(): Sending test message");
@@ -128,8 +126,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     }
 
     /*
-     * Send the message. Used with finishTest() to send a second message and make
-     * sure that the first is not received my the message consumer.
+     * Send the message. Used with finishTest() to send a second message and make sure that the first is not received my the
+     * message consumer.
      */
     private void sendFirstMessage() throws JMSException {
         logTrace("sendFirstMessage(): Sending message that does not match selector");
@@ -143,8 +141,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     }
 
     /*
-     * Send the second message which does match the selector. Receive() and verify
-     * that only this second message is received.
+     * Send the second message which does match the selector. Receive() and verify that only this second message is
+     * received.
      */
     private void finishTest() throws Exception {
         TestUtil.logTrace("time_out is " + jms_timeout);
@@ -207,8 +205,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -233,8 +231,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:49; JMS:SPEC:39;
      *
-     * @test_Strategy: create receiver with selector set msg header to include
-     * string send message check receipt of message
+     * @test_Strategy: create receiver with selector set msg header to include string send message check receipt of message
      */
     public void selectorTest01() throws Fault {
         try {
@@ -254,8 +251,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:49; JMS:SPEC:39;
      *
-     * @test_Strategy: create receiver with selector set msg header to include '
-     * character send message check receipt of message
+     * @test_Strategy: create receiver with selector set msg header to include ' character send message check receipt of
+     * message
      */
     public void selectorTest02() throws Fault {
         try {
@@ -273,11 +270,10 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     /*
      * @testName: selectorTest03
      *
-     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:63; JMS:SPEC:55; JMS:SPEC:49;
-     * JMS:SPEC:40;
+     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:63; JMS:SPEC:55; JMS:SPEC:49; JMS:SPEC:40;
      *
-     * @test_Strategy: create receiver with selector set msg properties to include
-     * values at ends of long range send message check receipt of message
+     * @test_Strategy: create receiver with selector set msg properties to include values at ends of long range send message
+     * check receipt of message
      */
     public void selectorTest03() throws Fault {
         try {
@@ -298,11 +294,10 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     /*
      * @testName: selectorTest04
      *
-     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:63; JMS:SPEC:55; JMS:SPEC:56;
-     * JMS:SPEC:49; JMS:SPEC:40;
+     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:63; JMS:SPEC:55; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:40;
      *
-     * @test_Strategy: create receiver with selector set msg properties to include
-     * numeric value send message check receipt of message
+     * @test_Strategy: create receiver with selector set msg properties to include numeric value send message check receipt
+     * of message
      */
     public void selectorTest04() throws Fault {
         try {
@@ -324,8 +319,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:49; JMS:SPEC:40;
      *
-     * @test_Strategy: create receiver with selector containing octal set msg
-     * properties to include numeric value send message check receipt of message
+     * @test_Strategy: create receiver with selector containing octal set msg properties to include numeric value send
+     * message check receipt of message
      */
     public void selectorTest05() throws Fault {
         try {
@@ -346,9 +341,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:49; JMS:SPEC:40;
      *
-     * @test_Strategy: create receiver with selector containing hexadecimal set
-     * msg properties to include numeric value send message check receipt of
-     * message
+     * @test_Strategy: create receiver with selector containing hexadecimal set msg properties to include numeric value send
+     * message check receipt of message
      */
     public void selectorTest06() throws Fault {
         try {
@@ -367,11 +361,10 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     /*
      * @testName: selectorTest07
      *
-     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:56; JMS:SPEC:49;
-     * JMS:SPEC:41;
+     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:41;
      *
-     * @test_Strategy: create receiver with selector set msg properties to include
-     * numeric value send message check receipt of message
+     * @test_Strategy: create receiver with selector set msg properties to include numeric value send message check receipt
+     * of message
      */
     public void selectorTest07() throws Fault {
         try {
@@ -393,8 +386,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:49; JMS:SPEC:41;
      *
-     * @test_Strategy: create receiver with selector set msg properties to include
-     * numeric value send message check receipt of message
+     * @test_Strategy: create receiver with selector set msg properties to include numeric value send message check receipt
+     * of message
      */
     public void selectorTest08() throws Fault {
         try {
@@ -415,8 +408,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:49; JMS:SPEC:41;
      *
-     * @test_Strategy: create receiver with selector set msg properties to include
-     * numeric value send message check receipt of message
+     * @test_Strategy: create receiver with selector set msg properties to include numeric value send message check receipt
+     * of message
      */
     public void selectorTest09() throws Fault {
         try {
@@ -435,11 +428,9 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     /*
      * @testName: selectorTest11
      *
-     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:56; JMS:SPEC:49;
-     * JMS:SPEC:42;
+     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:42;
      *
-     * @test_Strategy: create receiver with selector send message with header
-     * including TRUE/FALSE check receipt of message
+     * @test_Strategy: create receiver with selector send message with header including TRUE/FALSE check receipt of message
      */
     public void selectorTest11() throws Fault {
         try {
@@ -461,8 +452,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:42;
      *
-     * @test_Strategy: create receiver with selector send message with header
-     * including TRUE/FALSE check receipt of message
+     * @test_Strategy: create receiver with selector send message with header including TRUE/FALSE check receipt of message
      */
     public void selectorTest12() throws Fault {
         try {
@@ -484,8 +474,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:43;
      *
-     * @test_Strategy: create receiver with selector send message with identifiers
-     * including '_' and '$' check receipt of message
+     * @test_Strategy: create receiver with selector send message with identifiers including '_' and '$' check receipt of
+     * message
      */
     public void identifierTest01() throws Fault {
         try {
@@ -505,11 +495,9 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     /*
      * @testName: identifierTest02
      *
-     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:49; JMS:SPEC:44;
-     * JMS:SPEC:175;
+     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:49; JMS:SPEC:44; JMS:SPEC:175;
      *
-     * @test_Strategy: create receiver with selector containing 'NULL' check for
-     * proper exception
+     * @test_Strategy: create receiver with selector containing 'NULL' check for proper exception
      */
     public void identifierTest02() throws Fault {
         try {
@@ -533,8 +521,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:44; JMS:SPEC:175;
      *
-     * @test_Strategy: create receiver with selector containing 'TRUE' check for
-     * proper exception
+     * @test_Strategy: create receiver with selector containing 'TRUE' check for proper exception
      */
     public void identifierTest03() throws Fault {
         try {
@@ -558,8 +545,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:44; JMS:SPEC:175;
      *
-     * @test_Strategy: create receiver with selector containing 'FALSE' check for
-     * proper exception
+     * @test_Strategy: create receiver with selector containing 'FALSE' check for proper exception
      */
     public void identifierTest04() throws Fault {
         try {
@@ -583,8 +569,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:45; JMS:SPEC:175;
      *
-     * @test_Strategy: create receiver with selector containing 'NOT' check for
-     * proper exception
+     * @test_Strategy: create receiver with selector containing 'NOT' check for proper exception
      */
     public void identifierTest05() throws Fault {
         try {
@@ -608,8 +593,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:45;
      *
-     * @test_Strategy: create receiver with selector containing 'AND' check for
-     * proper exception
+     * @test_Strategy: create receiver with selector containing 'AND' check for proper exception
      */
     public void identifierTest06() throws Fault {
         try {
@@ -633,8 +617,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:45;
      *
-     * @test_Strategy: create receiver with selector containing 'OR' check for
-     * proper exception
+     * @test_Strategy: create receiver with selector containing 'OR' check for proper exception
      */
     public void identifierTest07() throws Fault {
         try {
@@ -658,8 +641,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:45;
      *
-     * @test_Strategy: create receiver with selector containing 'BETWEEN' check
-     * for proper exception
+     * @test_Strategy: create receiver with selector containing 'BETWEEN' check for proper exception
      */
     public void identifierTest08() throws Fault {
         try {
@@ -683,8 +665,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:45;
      *
-     * @test_Strategy: create receiver with selector containing 'LIKE' check for
-     * proper exception
+     * @test_Strategy: create receiver with selector containing 'LIKE' check for proper exception
      */
     public void identifierTest09() throws Fault {
         try {
@@ -708,8 +689,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:45;
      *
-     * @test_Strategy: create receiver with selector containing 'IN' check for
-     * proper exception
+     * @test_Strategy: create receiver with selector containing 'IN' check for proper exception
      */
     public void identifierTest10() throws Fault {
         try {
@@ -733,8 +713,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:45;
      *
-     * @test_Strategy: create receiver with selector containing 'IS' check for
-     * proper exception
+     * @test_Strategy: create receiver with selector containing 'IS' check for proper exception
      */
     public void identifierTest11() throws Fault {
         try {
@@ -758,8 +737,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:48;
      *
-     * @test_Strategy: create receiver with selector set two msg properties with
-     * names differing in case send message check receipt of message
+     * @test_Strategy: create receiver with selector set two msg properties with names differing in case send message check
+     * receipt of message
      */
     public void identifierTest12() throws Fault {
         try {
@@ -781,8 +760,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:46;
      *
-     * @test_Strategy: create receiver with selector send message check that
-     * message is not received
+     * @test_Strategy: create receiver with selector send message check that message is not received
      */
     public void identifierTest13() throws Fault {
         try {
@@ -804,8 +782,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:45;
      *
-     * @test_Strategy: create receiver with selector containing 'ESCAPE' check for
-     * proper exception
+     * @test_Strategy: create receiver with selector containing 'ESCAPE' check for proper exception
      */
     public void identifierTest14() throws Fault {
         try {
@@ -829,8 +806,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:53;
      *
-     * @test_Strategy: create receiver with selector containing extra spaces send
-     * message with header set check receipt of message
+     * @test_Strategy: create receiver with selector containing extra spaces send message with header set check receipt of
+     * message
      */
     public void whitespaceTest1() throws Fault {
         try {
@@ -850,8 +827,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:53;
      *
-     * @test_Strategy: create receiver with selector containing tabs send message
-     * with header set check receipt of message
+     * @test_Strategy: create receiver with selector containing tabs send message with header set check receipt of message
      */
     public void whitespaceTest2() throws Fault {
         try {
@@ -871,8 +847,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:53;
      *
-     * @test_Strategy: create receiver with selector containing form feeds send
-     * message with header set check receipt of message
+     * @test_Strategy: create receiver with selector containing form feeds send message with header set check receipt of
+     * message
      */
     public void whitespaceTest3() throws Fault {
         try {
@@ -892,8 +868,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:53;
      *
-     * @test_Strategy: create receiver with selector containing line terminators
-     * send message with header set check receipt of message
+     * @test_Strategy: create receiver with selector containing line terminators send message with header set check receipt
+     * of message
      */
     public void whitespaceTest4() throws Fault {
         try {
@@ -913,8 +889,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:54;
      *
-     * @test_Strategy: create receiver with selector send message with TRUE
-     * boolean property check receipt of message
+     * @test_Strategy: create receiver with selector send message with TRUE boolean property check receipt of message
      */
     public void expressionTest1() throws Fault {
         try {
@@ -935,8 +910,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:54;
      *
-     * @test_Strategy: create receiver with selector send message with FALSE
-     * boolean property check that message is not received
+     * @test_Strategy: create receiver with selector send message with FALSE boolean property check that message is not
+     * received
      */
     public void expressionTest2() throws Fault {
         try {
@@ -959,8 +934,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:54;
      *
-     * @test_Strategy: create receiver with selector referenceing null property
-     * send message check that message is not received
+     * @test_Strategy: create receiver with selector referenceing null property send message check that message is not
+     * received
      */
     public void expressionTest3() throws Fault {
         try {
@@ -982,8 +957,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:57;
      *
-     * @test_Strategy: create receiver with selector that should evaluate to FALSE
-     * send message check that message is not received
+     * @test_Strategy: create receiver with selector that should evaluate to FALSE send message check that message is not
+     * received
      */
     public void bracketingTest1() throws Fault {
         try {
@@ -1008,8 +983,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:57;
      *
-     * @test_Strategy: create receiver with selector that should evaluate to TRUE
-     * send message check receipt of message
+     * @test_Strategy: create receiver with selector that should evaluate to TRUE send message check receipt of message
      */
     public void bracketingTest2() throws Fault {
         try {
@@ -1029,8 +1003,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:57;
      *
-     * @test_Strategy: create receiver with selector that should evaluate to FALSE
-     * send message check that message is not received
+     * @test_Strategy: create receiver with selector that should evaluate to FALSE send message check that message is not
+     * received
      */
     public void bracketingTest3() throws Fault {
         try {
@@ -1056,8 +1030,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:57;
      *
-     * @test_Strategy: create receiver with selector that should evaluate to TRUE
-     * send message check receipt of message
+     * @test_Strategy: create receiver with selector that should evaluate to TRUE send message check receipt of message
      */
     public void bracketingTest4() throws Fault {
         try {
@@ -1079,8 +1052,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:59;
      *
-     * @test_Strategy: create receiver with selector containing operators send
-     * message with properties matching selector check receipt of message
+     * @test_Strategy: create receiver with selector containing operators send message with properties matching selector
+     * check receipt of message
      */
     public void comparisonTest01() throws Fault {
         try {
@@ -1110,9 +1083,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:59;
      *
-     * @test_Strategy: create receiver with selector containing operators send
-     * message with properties not matching selector check that message is not
-     * received
+     * @test_Strategy: create receiver with selector containing operators send message with properties not matching selector
+     * check that message is not received
      */
     public void comparisonTest02() throws Fault {
         try {
@@ -1142,8 +1114,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:60;
      *
-     * @test_Strategy: create receiver with selector send message with exact and
-     * approximate numeric values check receipt of message
+     * @test_Strategy: create receiver with selector send message with exact and approximate numeric values check receipt of
+     * message
      */
     public void comparisonTest03() throws Fault {
         try {
@@ -1165,8 +1137,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:61;
      *
-     * @test_Strategy: create receiver with selector containing > and string
-     * should throw InvalidSelectorException
+     * @test_Strategy: create receiver with selector containing > and string should throw InvalidSelectorException
      */
     public void comparisonTest04() throws Fault {
         try {
@@ -1190,8 +1161,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:61;
      *
-     * @test_Strategy: create receiver with selector containing >= and string
-     * should throw InvalidSelectorException
+     * @test_Strategy: create receiver with selector containing >= and string should throw InvalidSelectorException
      */
     public void comparisonTest05() throws Fault {
         try {
@@ -1215,8 +1185,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:61;
      *
-     * @test_Strategy: create receiver with selector containing < and string
-     * should throw InvalidSelectorException
+     * @test_Strategy: create receiver with selector containing < and string should throw InvalidSelectorException
      */
     public void comparisonTest06() throws Fault {
         try {
@@ -1240,8 +1209,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:61;
      *
-     * @test_Strategy: create receiver with selector containing <= and string
-     * should throw InvalidSelectorException
+     * @test_Strategy: create receiver with selector containing <= and string should throw InvalidSelectorException
      */
     public void comparisonTest07() throws Fault {
         try {
@@ -1265,8 +1233,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:61;
      *
-     * @test_Strategy: create receiver with valid selector send matching message
-     * check for receipt of message
+     * @test_Strategy: create receiver with valid selector send matching message check for receipt of message
      */
     public void comparisonTest08() throws Fault {
         try {
@@ -1287,8 +1254,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:61;
      *
-     * @test_Strategy: create receiver with selector comparing TRUE with > should
-     * throw InvalidSelectorException
+     * @test_Strategy: create receiver with selector comparing TRUE with > should throw InvalidSelectorException
      */
     public void comparisonTest09() throws Fault {
         try {
@@ -1312,8 +1278,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:61;
      *
-     * @test_Strategy: create receiver with selector comparing TRUE with >= should
-     * throw InvalidSelectorException
+     * @test_Strategy: create receiver with selector comparing TRUE with >= should throw InvalidSelectorException
      */
     public void comparisonTest10() throws Fault {
         try {
@@ -1337,8 +1302,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:61;
      *
-     * @test_Strategy: create receiver with selector comparing TRUE with < should
-     * throw InvalidSelectorException
+     * @test_Strategy: create receiver with selector comparing TRUE with < should throw InvalidSelectorException
      */
     public void comparisonTest11() throws Fault {
         try {
@@ -1362,8 +1326,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:61;
      *
-     * @test_Strategy: create receiver with selector comparing TRUE with <= should
-     * throw InvalidSelectorException
+     * @test_Strategy: create receiver with selector comparing TRUE with <= should throw InvalidSelectorException
      */
     public void comparisonTest12() throws Fault {
         try {
@@ -1387,8 +1350,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:61;
      *
-     * @test_Strategy: create receiver with valid selector send matching message
-     * check for receipt of message
+     * @test_Strategy: create receiver with valid selector send matching message check for receipt of message
      */
     public void comparisonTest13() throws Fault {
         try {
@@ -1410,8 +1372,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:62;
      *
-     * @test_Strategy: create receiver with selector containing +,- send message
-     * with numeric properties check receipt of message
+     * @test_Strategy: create receiver with selector containing +,- send message with numeric properties check receipt of
+     * message
      */
     public void operatorTest1() throws Fault {
         try {
@@ -1433,8 +1395,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:62;
      *
-     * @test_Strategy: create receiver with selector containing *,/ send message
-     * with numeric properties check receipt of message
+     * @test_Strategy: create receiver with selector containing *,/ send message with numeric properties check receipt of
+     * message
      */
     public void operatorTest2() throws Fault {
         try {
@@ -1456,8 +1418,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:62;
      *
-     * @test_Strategy: create receiver with selector containing +,- send message
-     * with numeric properties check receipt of message
+     * @test_Strategy: create receiver with selector containing +,- send message with numeric properties check receipt of
+     * message
      */
     public void operatorTest3() throws Fault {
         try {
@@ -1479,13 +1441,12 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:64;
      *
-     * @test_Strategy: create receiver with selector containing BETWEEN send
-     * message matching selector check receipt of message
+     * @test_Strategy: create receiver with selector containing BETWEEN send message matching selector check receipt of
+     * message
      */
     public void betweenTest1() throws Fault {
         try {
-            String selector =
-                    "myProp0 BETWEEN 5 and 10 AND " + "myProp1 BETWEEN -1 and 1 AND " + "myProp2 BETWEEN 0 and 2";
+            String selector = "myProp0 BETWEEN 5 and 10 AND " + "myProp1 BETWEEN -1 and 1 AND " + "myProp2 BETWEEN 0 and 2";
             String value = ""; // set for JMSType automatically
 
             startTest(selector, value);
@@ -1504,8 +1465,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:64;
      *
-     * @test_Strategy: create receiver with selector containing BETWEEN send
-     * message not matching selector check that message is not received
+     * @test_Strategy: create receiver with selector containing BETWEEN send message not matching selector check that
+     * message is not received
      */
     public void betweenTest2() throws Fault {
         try {
@@ -1529,8 +1490,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:64;
      *
-     * @test_Strategy: create receiver with selector containing NOT BETWEEN send
-     * message matching selector check receipt of message
+     * @test_Strategy: create receiver with selector containing NOT BETWEEN send message matching selector check receipt of
+     * message
      */
     public void betweenTest3() throws Fault {
         try {
@@ -1552,8 +1513,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:64;
      *
-     * @test_Strategy: create receiver with selector containing NOT BETWEEN send
-     * message not matching selector check that message is not received
+     * @test_Strategy: create receiver with selector containing NOT BETWEEN send message not matching selector check that
+     * message is not received
      */
     public void betweenTest4() throws Fault {
         try {
@@ -1579,9 +1540,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:64;
      *
-     * @test_Strategy: create receiver with selector containing BETWEEN send
-     * message with property that is not arithmetic check that message is not
-     * received
+     * @test_Strategy: create receiver with selector containing BETWEEN send message with property that is not arithmetic
+     * check that message is not received
      */
     public void betweenTest5() throws Fault {
         try {
@@ -1606,9 +1566,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:64;
      *
-     * @test_Strategy: create receiver with selector containing BETWEEN send
-     * message with property that is not arithmetic check that message is not
-     * received
+     * @test_Strategy: create receiver with selector containing BETWEEN send message with property that is not arithmetic
+     * check that message is not received
      */
     public void betweenTest6() throws Fault {
         try {
@@ -1633,8 +1592,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:64;
      *
-     * @test_Strategy: create receiver with syntactically incorrect selector check
-     * for proper excepion
+     * @test_Strategy: create receiver with syntactically incorrect selector check for proper excepion
      */
     public void betweenTest7() throws Fault {
         try {
@@ -1658,8 +1616,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:65;
      *
-     * @test_Strategy: create receiver with selector containing IN send message
-     * matching selector check receipt of message
+     * @test_Strategy: create receiver with selector containing IN send message matching selector check receipt of message
      */
     public void inTest1() throws Fault {
         try {
@@ -1679,8 +1636,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:65;
      *
-     * @test_Strategy: create receiver with selector containing IN send message
-     * not matching selector check that message is not received
+     * @test_Strategy: create receiver with selector containing IN send message not matching selector check that message is
+     * not received
      */
     public void inTest2() throws Fault {
         try {
@@ -1702,8 +1659,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:65;
      *
-     * @test_Strategy: create receiver with selector containing NOT IT send
-     * message matching selector check receipt of message
+     * @test_Strategy: create receiver with selector containing NOT IT send message matching selector check receipt of
+     * message
      */
     public void inTest3() throws Fault {
         try {
@@ -1723,8 +1680,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:65;
      *
-     * @test_Strategy: create receiver with selector containing NOT IN send
-     * message not matching selector check that message is not received
+     * @test_Strategy: create receiver with selector containing NOT IN send message not matching selector check that message
+     * is not received
      */
     public void inTest4() throws Fault {
         try {
@@ -1746,9 +1703,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:65;
      *
-     * @test_Strategy: create receiver with selector containing IN msg selector
-     * references an unknown property send message check that message is not
-     * received
+     * @test_Strategy: create receiver with selector containing IN msg selector references an unknown property send message
+     * check that message is not received
      */
     public void inTest5() throws Fault {
         try {
@@ -1770,9 +1726,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:65;
      *
-     * @test_Strategy: create receiver with selector containing NOT IN msg
-     * selector references an unknown property send message check that message is
-     * not received
+     * @test_Strategy: create receiver with selector containing NOT IN msg selector references an unknown property send
+     * message check that message is not received
      */
     public void inTest6() throws Fault {
         try {
@@ -1794,8 +1749,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:65;
      *
-     * @test_Strategy: create receiver with selector containing NOT IN set msg
-     * property of integer type send message check that message is not received
+     * @test_Strategy: create receiver with selector containing NOT IN set msg property of integer type send message check
+     * that message is not received
      */
     public void inTest7() throws Fault {
         try {
@@ -1820,8 +1775,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:65;
      *
-     * @test_Strategy: create receiver with syntactically incorrect selector check
-     * for proper exception
+     * @test_Strategy: create receiver with syntactically incorrect selector check for proper exception
      */
     public void inTest8() throws Fault {
         try {
@@ -1845,8 +1799,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector containing LIKE send
-     * message matching selector check receipt of message
+     * @test_Strategy: create receiver with message selector containing LIKE send message matching selector check receipt of
+     * message
      */
     public void likeTest01() throws Fault {
         try {
@@ -1866,9 +1820,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains
-     * LIKE statement using '_' send message matching selector check receipt of
-     * message
+     * @test_Strategy: create receiver with message selector selector contains LIKE statement using '_' send message
+     * matching selector check receipt of message
      */
     public void likeTest02() throws Fault {
         try {
@@ -1890,9 +1843,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains
-     * LIKE statement using '%' send message matching selector check receipt of
-     * message
+     * @test_Strategy: create receiver with message selector selector contains LIKE statement using '%' send message
+     * matching selector check receipt of message
      */
     public void likeTest03() throws Fault {
         try {
@@ -1918,9 +1870,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains
-     * LIKE statement using ESCAPE character send message matching selector check
-     * receipt of message
+     * @test_Strategy: create receiver with message selector selector contains LIKE statement using ESCAPE character send
+     * message matching selector check receipt of message
      */
     public void likeTest04() throws Fault {
         try {
@@ -1940,8 +1891,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector containing LIKE send
-     * message not matching selector check that message is not received
+     * @test_Strategy: create receiver with message selector containing LIKE send message not matching selector check that
+     * message is not received
      */
     public void likeTest05() throws Fault {
         try {
@@ -1964,9 +1915,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains
-     * LIKE statement using '_' send message not matching selector check that
-     * message is not received
+     * @test_Strategy: create receiver with message selector selector contains LIKE statement using '_' send message not
+     * matching selector check that message is not received
      */
     public void likeTest06() throws Fault {
         try {
@@ -1990,9 +1940,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains
-     * LIKE statement using '%' send message not matching selector check that
-     * message is not received
+     * @test_Strategy: create receiver with message selector selector contains LIKE statement using '%' send message not
+     * matching selector check that message is not received
      */
     public void likeTest07() throws Fault {
         try {
@@ -2014,9 +1963,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains
-     * LIKE statement using ESCAPE character send message not matching selector
-     * check that message is not received
+     * @test_Strategy: create receiver with message selector selector contains LIKE statement using ESCAPE character send
+     * message not matching selector check that message is not received
      */
     public void likeTest08() throws Fault {
         try {
@@ -2038,8 +1986,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector containing NOT LIKE
-     * send message matching selector check receipt of message
+     * @test_Strategy: create receiver with message selector containing NOT LIKE send message matching selector check
+     * receipt of message
      */
     public void likeTest09() throws Fault {
         try {
@@ -2059,14 +2007,12 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains NOT
-     * LIKE statement using '_' send message matching selector check receipt of
-     * message
+     * @test_Strategy: create receiver with message selector selector contains NOT LIKE statement using '_' send message
+     * matching selector check receipt of message
      */
     public void likeTest10() throws Fault {
         try {
-            String selector =
-                    "JMSType NOT LIKE 's_ector' AND " + "myProp0 NOT LIKE '_cd' AND " + "myProp1 NOT LIKE '12_'";
+            String selector = "JMSType NOT LIKE 's_ector' AND " + "myProp0 NOT LIKE '_cd' AND " + "myProp1 NOT LIKE '12_'";
             String value = "selector"; // set for JMSType automatically
 
             startTest(selector, value);
@@ -2084,14 +2030,12 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains NOT
-     * LIKE statement using '%' send message matching selector check receipt of
-     * message
+     * @test_Strategy: create receiver with message selector selector contains NOT LIKE statement using '%' send message
+     * matching selector check receipt of message
      */
     public void likeTest11() throws Fault {
         try {
-            String selector =
-                    "myProp0 NOT LIKE '%cde' AND " + "myProp1 NOT LIKE '01%' AND " + "myProp2 NOT LIKE 'A%x%D'";
+            String selector = "myProp0 NOT LIKE '%cde' AND " + "myProp1 NOT LIKE '01%' AND " + "myProp2 NOT LIKE 'A%x%D'";
             String value = ""; // set for JMSType automatically
 
             startTest(selector, value);
@@ -2110,9 +2054,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains NOT
-     * LIKE statement using ESCAPE character send message matching selector check
-     * receipt of message
+     * @test_Strategy: create receiver with message selector selector contains NOT LIKE statement using ESCAPE character
+     * send message matching selector check receipt of message
      */
     public void likeTest12() throws Fault {
         try {
@@ -2132,8 +2075,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector containing NOT LIKE
-     * send message not matching selector check that message is not received
+     * @test_Strategy: create receiver with message selector containing NOT LIKE send message not matching selector check
+     * that message is not received
      */
     public void likeTest13() throws Fault {
         try {
@@ -2156,14 +2099,12 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains NOT
-     * LIKE statement using '_' send message not matching selector check that
-     * message is not received
+     * @test_Strategy: create receiver with message selector selector contains NOT LIKE statement using '_' send message not
+     * matching selector check that message is not received
      */
     public void likeTest14() throws Fault {
         try {
-            String selector =
-                    "JMSType NOT LIKE 'se_ector' OR " + "myProp0 NOT LIKE '_bcd' OR " + "myProp1 NOT LIKE '123_'";
+            String selector = "JMSType NOT LIKE 'se_ector' OR " + "myProp0 NOT LIKE '_bcd' OR " + "myProp1 NOT LIKE '123_'";
             String value = "selector"; // set for JMSType automatically
 
             startTest(selector, value);
@@ -2183,9 +2124,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains NOT
-     * LIKE statement using '%' send message not matching selector check that
-     * message is not received
+     * @test_Strategy: create receiver with message selector selector contains NOT LIKE statement using '%' send message not
+     * matching selector check that message is not received
      */
     public void likeTest15() throws Fault {
         try {
@@ -2207,9 +2147,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains NOT
-     * LIKE statement using ESCAPE character send message not matching selector
-     * check that message is not received
+     * @test_Strategy: create receiver with message selector selector contains NOT LIKE statement using ESCAPE character
+     * send message not matching selector check that message is not received
      */
     public void likeTest16() throws Fault {
         try {
@@ -2231,9 +2170,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector selector contains NOT
-     * LIKE statement using ESCAPE character '\' send message not matching
-     * selector check receipt of message
+     * @test_Strategy: create receiver with message selector selector contains NOT LIKE statement using ESCAPE character '\'
+     * send message not matching selector check receipt of message
      */
     public void likeTest17() throws Fault {
         try {
@@ -2253,8 +2191,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:60; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector using LIKE selector
-     * references unknown property send message check that message is not received
+     * @test_Strategy: create receiver with message selector using LIKE selector references unknown property send message
+     * check that message is not received
      */
     public void likeTest18() throws Fault {
         try {
@@ -2276,9 +2214,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:60; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector using NOT LIKE
-     * selector references unknown property send message check that message is not
-     * received
+     * @test_Strategy: create receiver with message selector using NOT LIKE selector references unknown property send
+     * message check that message is not received
      */
     public void likeTest19() throws Fault {
         try {
@@ -2300,8 +2237,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector using LIKE send
-     * message with non-string property check that message is not received
+     * @test_Strategy: create receiver with message selector using LIKE send message with non-string property check that
+     * message is not received
      */
     public void likeTest20() throws Fault {
         try {
@@ -2326,8 +2263,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with invalid selector check for proper
-     * exception
+     * @test_Strategy: create receiver with invalid selector check for proper exception
      */
     public void likeTest21() throws Fault {
         try {
@@ -2351,8 +2287,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:67;
      *
-     * @test_Strategy: create receiver with message selector containing IS NULL
-     * selector references unknown property send message check receipt of message
+     * @test_Strategy: create receiver with message selector containing IS NULL selector references unknown property send
+     * message check receipt of message
      */
     public void isNullTest1() throws Fault {
         try {
@@ -2372,9 +2308,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:67;
      *
-     * @test_Strategy: create receiver with message selector containing IS NULL
-     * selector references existing property send message check that message is
-     * not received
+     * @test_Strategy: create receiver with message selector containing IS NULL selector references existing property send
+     * message check that message is not received
      */
     public void isNullTest2() throws Fault {
         try {
@@ -2396,9 +2331,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:68;
      *
-     * @test_Strategy: create receiver with message selector containing IS NOT
-     * NULL selector references existing property send message check receipt of
-     * message
+     * @test_Strategy: create receiver with message selector containing IS NOT NULL selector references existing property
+     * send message check receipt of message
      */
     public void isNullTest3() throws Fault {
         try {
@@ -2419,9 +2353,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:68;
      *
-     * @test_Strategy: create receiver with message selector containing IS NOT
-     * NULL selector references unknown property send message check that message
-     * is not received
+     * @test_Strategy: create receiver with message selector containing IS NOT NULL selector references unknown property
+     * send message check that message is not received
      */
     public void isNullTest4() throws Fault {
         try {
@@ -2443,9 +2376,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:247;
      *
-     * @test_Strategy: create receiver with message selector selector contains
-     * lower case versions of selector operators send message matching selector
-     * check receipt of message
+     * @test_Strategy: create receiver with message selector selector contains lower case versions of selector operators
+     * send message matching selector check receipt of message
      */
     public void caseTest1() throws Fault {
         try {
@@ -2472,9 +2404,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:58;
      *
-     * @test_Strategy: create receiver with message selector containing AND and OR
-     * send message not matching selector check that message is not received !F&F
-     * = (!F)&F = T&F = F incorrect order would be !F&F -> !(F&F) = !F = T
+     * @test_Strategy: create receiver with message selector containing AND and OR send message not matching selector check
+     * that message is not received !F&F = (!F)&F = T&F = F incorrect order would be !F&F -> !(F&F) = !F = T
      */
     public void precedenceTest1() throws Fault {
         try {
@@ -2499,8 +2430,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:58;
      *
-     * @test_Strategy: create receiver with message selector containing AND and
-     * NOT send message matching selector check receipt of message
+     * @test_Strategy: create receiver with message selector containing AND and NOT send message matching selector check
+     * receipt of message
      */
     public void precedenceTest2() throws Fault {
         try {
@@ -2522,9 +2453,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:58;
      *
-     * @test_Strategy: create receiver with message selector containing AND and OR
-     * send message matching selector check receipt of message TvT&F = Tv(T&F) =
-     * TvF = T incorrect order would be TvT&F -> (TvT)&F = T&F = F
+     * @test_Strategy: create receiver with message selector containing AND and OR send message matching selector check
+     * receipt of message TvT&F = Tv(T&F) = TvF = T incorrect order would be TvT&F -> (TvT)&F = T&F = F
      */
     public void precedenceTest3() throws Fault {
         try {
@@ -2546,8 +2476,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:62;
      *
-     * @test_Strategy: create receiver with message selector send message check
-     * receipt of message
+     * @test_Strategy: create receiver with message selector send message check receipt of message
      */
     public void precedenceTest4() throws Fault {
         try {
@@ -2569,8 +2498,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:62;
      *
-     * @test_Strategy: create receiver with message selector send message matching
-     * selector check receipt of message
+     * @test_Strategy: create receiver with message selector send message matching selector check receipt of message
      */
     public void precedenceTest5() throws Fault {
         try {
@@ -2595,8 +2523,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:60;
      *
-     * @test_Strategy: create receiver with selector referencing unknown property
-     * send message check that message is not received
+     * @test_Strategy: create receiver with selector referencing unknown property send message check that message is not
+     * received
      */
     public void nullTest01() throws Fault {
         try {
@@ -2618,8 +2546,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:60;
      *
-     * @test_Strategy: create receiver with selector referencing unknown property
-     * send message check that message is not received
+     * @test_Strategy: create receiver with selector referencing unknown property send message check that message is not
+     * received
      */
     public void nullTest02() throws Fault {
         try {
@@ -2641,8 +2569,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:60;
      *
-     * @test_Strategy: create receiver with selector referencing unknown property
-     * send message check that message is not received
+     * @test_Strategy: create receiver with selector referencing unknown property send message check that message is not
+     * received
      */
     public void nullTest03() throws Fault {
         try {
@@ -2664,8 +2592,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:248.1;
      *
-     * @test_Strategy: create receiver with selector containing AND send message
-     * matching selector check receipt of message
+     * @test_Strategy: create receiver with selector containing AND send message matching selector check receipt of message
      */
     public void nullTest04() throws Fault {
         try {
@@ -2684,13 +2611,11 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     /*
      * @testName: nullTest05
      *
-     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:248.2; JMS:SPEC:248.3;
-     * JMS:SPEC:248.4; JMS:SPEC:248.5; JMS:SPEC:248.6; JMS:SPEC:248.7;
-     * JMS:SPEC:248.8; JMS:SPEC:248.9;
+     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:248.2; JMS:SPEC:248.3; JMS:SPEC:248.4; JMS:SPEC:248.5;
+     * JMS:SPEC:248.6; JMS:SPEC:248.7; JMS:SPEC:248.8; JMS:SPEC:248.9;
      *
-     * @test_Strategy: create receiver with selector containing AND each
-     * comparison should evaluate to FALSE send message check that message is not
-     * received
+     * @test_Strategy: create receiver with selector containing AND each comparison should evaluate to FALSE send message
+     * check that message is not received
      */
     public void nullTest05() throws Fault {
         try {
@@ -2719,11 +2644,11 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     /*
      * @testName: nullTest06
      *
-     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:249.1; JMS:SPEC:249.2;
-     * JMS:SPEC:249.3; JMS:SPEC:249.4; JMS:SPEC:249.7;
+     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:249.1; JMS:SPEC:249.2; JMS:SPEC:249.3; JMS:SPEC:249.4;
+     * JMS:SPEC:249.7;
      *
-     * @test_Strategy: create receiver with selector containing OR each comparison
-     * should evaluate to TRUE send message check receipt of message
+     * @test_Strategy: create receiver with selector containing OR each comparison should evaluate to TRUE send message
+     * check receipt of message
      */
     public void nullTest06() throws Fault {
         try {
@@ -2746,11 +2671,10 @@ public class MsgSelectorQueueTests extends ServiceEETest {
     /*
      * @testName: nullTest07
      *
-     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:249.5; JMS:SPEC:249.6;
-     * JMS:SPEC:249.8; JMS:SPEC:249.9;
+     * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:249.5; JMS:SPEC:249.6; JMS:SPEC:249.8; JMS:SPEC:249.9;
      *
-     * @test_Strategy: create receiver with selector containing OR each comparison
-     * should evaluate to FALSE send message check that message is not received
+     * @test_Strategy: create receiver with selector containing OR each comparison should evaluate to FALSE send message
+     * check that message is not received
      */
     public void nullTest07() throws Fault {
         try {
@@ -2775,8 +2699,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:250.2;
      *
-     * @test_Strategy: create receiver with selector containing NOT send message
-     * matching selector check receipt of message
+     * @test_Strategy: create receiver with selector containing NOT send message matching selector check receipt of message
      */
     public void nullTest08() throws Fault {
         try {
@@ -2797,8 +2720,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:250.1;
      *
-     * @test_Strategy: create receiver with selector containing NOT send message
-     * not matching selector check that message is not received
+     * @test_Strategy: create receiver with selector containing NOT send message not matching selector check that message is
+     * not received
      */
     public void nullTest09() throws Fault {
         try {
@@ -2821,8 +2744,8 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:250.3;
      *
-     * @test_Strategy: create receiver with selector containing NOT selector
-     * references an unknown property send message check receipt of message
+     * @test_Strategy: create receiver with selector containing NOT selector references an unknown property send message
+     * check receipt of message
      */
     public void nullTest10() throws Fault {
         try {
@@ -2844,8 +2767,7 @@ public class MsgSelectorQueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:37;
      *
-     * @test_Strategy: create receiver with null selector. check receipt of
-     * message
+     * @test_Strategy: create receiver with null selector. check receipt of message
      */
     public void nullTest11() throws Fault {
         try {

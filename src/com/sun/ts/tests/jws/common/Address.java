@@ -49,7 +49,8 @@ public class Address {
         this.country = country;
     }
 
-    public Address() {}
+    public Address() {
+    }
 
     public String getEmail() {
         return email;

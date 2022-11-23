@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/servlet_js_servletrequestwrapper30_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setContextRoot(CONTEXT_ROOT);
@@ -59,10 +57,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:721;
      *
-     * @test_Strategy: Create a ServletRequestWrapper that wrap another servlet;
-     * calls ServletRequestWrapper.getServletContext(); verifies that returned
-     * ServletContext instance is consistent with the one stored in
-     * ServletConfigs.
+     * @test_Strategy: Create a ServletRequestWrapper that wrap another servlet; calls
+     * ServletRequestWrapper.getServletContext(); verifies that returned ServletContext instance is consistent with the one
+     * stored in ServletConfigs.
      */
     public void getServletContextTest() throws Fault {
         setServletName("TestServletWrapper");
@@ -78,10 +75,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:718;
      *
-     * @test_Strategy: Create a ServletRequestWrapper that wraps TestServlet;
-     * Client send a request the ServletRequestWrapper; call
-     * ServletRequestWrapper.getDispatcherType() verifies that
-     * DispatcherType.REQUEST is returned.
+     * @test_Strategy: Create a ServletRequestWrapper that wraps TestServlet; Client send a request the
+     * ServletRequestWrapper; call ServletRequestWrapper.getDispatcherType() verifies that DispatcherType.REQUEST is
+     * returned.
      */
     public void getDispatcherTypeTestRequest() throws Fault {
         setServletName("TestServletWrapper");
@@ -95,9 +91,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:718;
      *
-     * @test_Strategy: Create a ServletRequestWrapper that wraps TestServlet;
-     * Client send a request the ServletRequestWrapper; Forward to SecondServlet
-     * call ServletRequestWrapper.getDispatcherType() verifies that
+     * @test_Strategy: Create a ServletRequestWrapper that wraps TestServlet; Client send a request the
+     * ServletRequestWrapper; Forward to SecondServlet call ServletRequestWrapper.getDispatcherType() verifies that
      * DispatcherType.FORWARD is returned.
      */
     public void getDispatcherTypeTestForward() throws Fault {
@@ -112,9 +107,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:718;
      *
-     * @test_Strategy: Create a ServletRequestWrapper that wraps TestServlet;
-     * Client send a request the ServletRequestWrapper; Include to SecondServlet
-     * call ServletRequestWrapper.getDispatcherType() verifies that
+     * @test_Strategy: Create a ServletRequestWrapper that wraps TestServlet; Client send a request the
+     * ServletRequestWrapper; Include to SecondServlet call ServletRequestWrapper.getDispatcherType() verifies that
      * DispatcherType.INCLUDE is returned.
      */
     public void getDispatcherTypeTestInclude() throws Fault {
@@ -129,10 +123,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:718;
      *
-     * @test_Strategy: Create a ServletRequestWrapper that wraps SecondServlet;
-     * Maps 404 to the ServletRequestWrapper; Client send a request to
-     * nowhereland; In SecondServlet, call
-     * ServletRequestWrapper.getDispatcherType() verifies that
+     * @test_Strategy: Create a ServletRequestWrapper that wraps SecondServlet; Maps 404 to the ServletRequestWrapper;
+     * Client send a request to nowhereland; In SecondServlet, call ServletRequestWrapper.getDispatcherType() verifies that
      * DispatcherType.ERROR is returned.
      */
     public void getDispatcherTypeTestError() throws Fault {
@@ -145,16 +137,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getDispatcherTypeTestAsync
      *
-     * @assertion_ids: Servlet:JAVADOC:640; Servlet:JAVADOC:703;
-     * Servlet:JAVADOC:710;
+     * @assertion_ids: Servlet:JAVADOC:640; Servlet:JAVADOC:703; Servlet:JAVADOC:710;
      *
-     * @test_Strategy: Create three Servlets AsyncTestServletWrapper,
-     * AsyncTestServlet and AsyncTests, all support async; AsyncTestServletWrapper
-     * wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper;
-     * StartAsync in AsyncTestServlet; Invoke AsyncTests using
-     * AsyncContext.dispatch(String) call
-     * ServletRequestWrapper.getDispatcherType() verifies that
-     * DispatcherType.ASYNC is returned.
+     * @test_Strategy: Create three Servlets AsyncTestServletWrapper, AsyncTestServlet and AsyncTests, all support async;
+     * AsyncTestServletWrapper wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper; StartAsync in
+     * AsyncTestServlet; Invoke AsyncTests using AsyncContext.dispatch(String) call
+     * ServletRequestWrapper.getDispatcherType() verifies that DispatcherType.ASYNC is returned.
      */
     public void getDispatcherTypeTestAsync() throws Fault {
         setServletName("AsyncTestServletWrapper");
@@ -168,11 +156,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:722; Servlet:JAVADOC:727;
      *
-     * @test_Strategy: Create three Servlets AsyncTestServletWrapper,
-     * AsyncTestServlet and AsyncTests, all support async; AsyncTestServletWrapper
-     * wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper;
-     * StartAsync in AsyncTestServlet ServletRequestWrapper.startAsync(); call
-     * ServletRequestWrapper.isAsyncStarted() verifies that true is returned.
+     * @test_Strategy: Create three Servlets AsyncTestServletWrapper, AsyncTestServlet and AsyncTests, all support async;
+     * AsyncTestServletWrapper wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper; StartAsync in
+     * AsyncTestServlet ServletRequestWrapper.startAsync(); call ServletRequestWrapper.isAsyncStarted() verifies that true
+     * is returned.
      */
     public void asyncStartedTest1() throws Fault {
         setServletName("AsyncTestServletWrapper");
@@ -186,11 +173,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:722;
      *
-     * @test_Strategy: Create three Servlets AsyncTestServletWrapper,
-     * AsyncTestServlet and AsyncTests, all support async; AsyncTestServletWrapper
-     * wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper;
-     * call ServletRequestWrapper.isAsyncStarted() without start async mode
-     * verifies that false is returned.
+     * @test_Strategy: Create three Servlets AsyncTestServletWrapper, AsyncTestServlet and AsyncTests, all support async;
+     * AsyncTestServletWrapper wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper; call
+     * ServletRequestWrapper.isAsyncStarted() without start async mode verifies that false is returned.
      */
     public void asyncStartedTest2() throws Fault {
         setServletName("AsyncTestServletWrapper");
@@ -202,15 +187,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: asyncStartedTest3
      *
-     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:722;
-     * Servlet:JAVADOC:727;
+     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:722; Servlet:JAVADOC:727;
      *
-     * @test_Strategy: Create three Servlets AsyncTestServletWrapper,
-     * AsyncTestServlet and AsyncTests, all support async; AsyncTestServletWrapper
-     * wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper;
-     * StartAsync in AsyncTestServlet ServletRequestWrapper.startAsync(); call
-     * ServletRequestWrapper.isAsyncStarted() after AsyncContext.complete() called
-     * verifies that true is returned before it dispatch return to the container
+     * @test_Strategy: Create three Servlets AsyncTestServletWrapper, AsyncTestServlet and AsyncTests, all support async;
+     * AsyncTestServletWrapper wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper; StartAsync in
+     * AsyncTestServlet ServletRequestWrapper.startAsync(); call ServletRequestWrapper.isAsyncStarted() after
+     * AsyncContext.complete() called verifies that true is returned before it dispatch return to the container
      */
     public void asyncStartedTest3() throws Fault {
         setServletName("AsyncTestServletWrapper");
@@ -222,14 +204,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: asyncStartedTest4
      *
-     * @assertion_ids: Servlet:JAVADOC:640; Servlet:JAVADOC:722;
-     * Servlet:JAVADOC:727;
+     * @assertion_ids: Servlet:JAVADOC:640; Servlet:JAVADOC:722; Servlet:JAVADOC:727;
      *
-     * @test_Strategy: Create three Servlets AsyncTestServletWrapper,
-     * AsyncTestServlet and AsyncTests, all support async; AsyncTestServletWrapper
-     * wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper;
-     * StartAsync in AsyncTestServlet ServletRequestWrapper.startAsync(); Invoke
-     * AsyncTests using AsyncContext.dispatch(String) call
+     * @test_Strategy: Create three Servlets AsyncTestServletWrapper, AsyncTestServlet and AsyncTests, all support async;
+     * AsyncTestServletWrapper wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper; StartAsync in
+     * AsyncTestServlet ServletRequestWrapper.startAsync(); Invoke AsyncTests using AsyncContext.dispatch(String) call
      * ServletRequestWrapper.isAsyncStarted() verifies that false is returned.
      */
     public void asyncStartedTest4() throws Fault {
@@ -244,9 +223,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:723;
      *
-     * @test_Strategy: Create two Servlets AsyncTestServletWrapper,
-     * AsyncTestServlet all support async; AsyncTestServletWrapper wraps
-     * AsyncTestServlet; Client send a request to AsyncTestServletWrapper; call
+     * @test_Strategy: Create two Servlets AsyncTestServletWrapper, AsyncTestServlet all support async;
+     * AsyncTestServletWrapper wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper; call
      * ServletRequestWrapper.isAsyncSupported() verifies that true is returned.
      */
     public void isAsyncSupportedTest1() throws Fault {
@@ -261,10 +239,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:723;
      *
-     * @test_Strategy: Create two Servlets TestServletWrapper, TestServlet all
-     * does not support async; TestServletWrapper wraps TestServlet; Client send a
-     * request to TestServletWrapper; call
-     * ServletRequestWrapper.isAsyncSupported() verifies that false is returned.
+     * @test_Strategy: Create two Servlets TestServletWrapper, TestServlet all does not support async; TestServletWrapper
+     * wraps TestServlet; Client send a request to TestServletWrapper; call ServletRequestWrapper.isAsyncSupported()
+     * verifies that false is returned.
      */
     public void isAsyncSupportedTest2() throws Fault {
         setServletName("TestServletWrapper");
@@ -278,10 +255,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:728;
      *
-     * @test_Strategy: Create two Servlets TestServletWrapper, TestServlet all
-     * does not support async; TestServletWrapper wraps TestServlet; Client send a
-     * request to TestServletWrapper; call ServletRequestWrapper.startAsyncTest()
-     * verifies that IllegalStateException is thrown.
+     * @test_Strategy: Create two Servlets TestServletWrapper, TestServlet all does not support async; TestServletWrapper
+     * wraps TestServlet; Client send a request to TestServletWrapper; call ServletRequestWrapper.startAsyncTest() verifies
+     * that IllegalStateException is thrown.
      */
     public void startAsyncTest1() throws Fault {
         setServletName("TestServletWrapper");
@@ -292,14 +268,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: startAsyncTest2
      *
-     * @assertion_ids: Servlet:JAVADOC:640; Servlet:JAVADOC:722;
-     * Servlet:JAVADOC:727; Servlet:JAVADOC:728;
+     * @assertion_ids: Servlet:JAVADOC:640; Servlet:JAVADOC:722; Servlet:JAVADOC:727; Servlet:JAVADOC:728;
      *
-     * @test_Strategy: Create three Servlets AsyncTestServletWrapper,
-     * AsyncTestServlet, AsyncTest all support async; AsyncTestServletWrapper
-     * wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper;
-     * Start Async in AsyncTestServlet; Invoke AsyncTests using
-     * AsyncContext.dispatch(String) Call ServletRequestWrapper.startAsyncTest()
+     * @test_Strategy: Create three Servlets AsyncTestServletWrapper, AsyncTestServlet, AsyncTest all support async;
+     * AsyncTestServletWrapper wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper; Start Async in
+     * AsyncTestServlet; Invoke AsyncTests using AsyncContext.dispatch(String) Call ServletRequestWrapper.startAsyncTest()
      * outside of dispatch verifies that IllegalStateException is thrown.
      */
     public void startAsyncTest2() throws Fault {
@@ -312,14 +285,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getAsyncContextTest
      *
-     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:716;
-     * Servlet:JAVADOC:727;
+     * @assertion_ids: Servlet:JAVADOC:638; Servlet:JAVADOC:716; Servlet:JAVADOC:727;
      *
-     * @test_Strategy: Create two Servlets AsyncTestServletWrapper,
-     * AsyncTestServlet all support async; AsyncTestServletWrapper wraps
-     * AsyncTestServlet; Client send a request to AsyncTestServletWrapper; Start
-     * Async in AsyncTestServlet; call ServletRequestWrapper.getAsyncContext()
-     * verifies it works.
+     * @test_Strategy: Create two Servlets AsyncTestServletWrapper, AsyncTestServlet all support async;
+     * AsyncTestServletWrapper wraps AsyncTestServlet; Client send a request to AsyncTestServletWrapper; Start Async in
+     * AsyncTestServlet; call ServletRequestWrapper.getAsyncContext() verifies it works.
      */
     public void getAsyncContextTest() throws Fault {
         setServletName("AsyncTestServletWrapper");

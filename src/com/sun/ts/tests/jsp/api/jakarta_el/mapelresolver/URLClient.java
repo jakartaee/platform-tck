@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,12 +58,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: mapElResolverTest
      *
-     * @assertion_ids: EL:JAVADOC:76; EL:JAVADOC:77; EL:JAVADOC:78; EL:JAVADOC:79;
-     * EL:JAVADOC:80; EL:JAVADOC:83
+     * @assertion_ids: EL:JAVADOC:76; EL:JAVADOC:77; EL:JAVADOC:78; EL:JAVADOC:79; EL:JAVADOC:80; EL:JAVADOC:83
      *
-     * @test_Strategy: Obtain an MapELResolver via the PageContext and verify that
-     * API calls work as expected: setValue() getValue() getType() isReadOnly()
-     * getCommonPropertyType() getFeatureDescriptors()
+     * @test_Strategy: Obtain an MapELResolver via the PageContext and verify that API calls work as expected: setValue()
+     * getValue() getType() isReadOnly() getCommonPropertyType() getFeatureDescriptors()
      */
     public void mapElResolverTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "mapElResolverTest");

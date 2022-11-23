@@ -32,7 +32,8 @@ public class Integer_Property implements java.io.Serializable {
 
     protected String name;
 
-    public Integer_Property() {}
+    public Integer_Property() {
+    }
 
     public Integer_Property(String id) {
         this.id = id;

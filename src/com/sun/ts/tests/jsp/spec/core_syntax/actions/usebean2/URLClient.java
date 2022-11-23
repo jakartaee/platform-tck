@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/jsp_coresyntx_act_usebean2_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -77,8 +75,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: The scope of the scripting language variable is dependent
-     * upon the scoping rules and capabilities of the scripting language
+     * @test_Strategy: The scope of the scripting language variable is dependent upon the scoping rules and capabilities of
+     * the scripting language
      */
 
     public void blockSCopeTest() throws Fault {
@@ -94,8 +92,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: If the jsp:useBean action had a non-empty body it is
-     * ignored if this bean already exists.
+     * @test_Strategy: If the jsp:useBean action had a non-empty body it is ignored if this bean already exists.
      */
 
     public void existingWithBodyTest() throws Fault {
@@ -111,9 +108,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: If the object is not found in the specified scope and
-     * neither class nor beanName are given, a java.lang.InstantiationException
-     * shall occur.
+     * @test_Strategy: If the object is not found in the specified scope and neither class nor beanName are given, a
+     * java.lang.InstantiationException shall occur.
      */
 
     public void noClassNoBeanNameTest() throws Fault {
@@ -129,8 +125,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: The variable is initialized and available within the scope
-     * of the body. Body content is not restricted.
+     * @test_Strategy: The variable is initialized and available within the scope of the body. Body content is not
+     * restricted.
      */
 
     public void unrestrictedBodyTest() throws Fault {

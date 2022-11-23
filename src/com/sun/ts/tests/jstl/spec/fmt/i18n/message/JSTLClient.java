@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,9 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44; JSTL:SPEC:44.1; JSTL:SPEC:44.1.1
      *
-     * @testStrategy: Validate that the message action is able to properly lookup
-     * and display the message associated with the provided key. This will also
-     * establish that the key attribute can accept both static and dynamic values.
+     * @testStrategy: Validate that the message action is able to properly lookup and display the message associated with
+     * the provided key. This will also establish that the key attribute can accept both static and dynamic values.
      */
     public void positiveMessageKeyTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyTest");
@@ -83,8 +80,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44.2; JSTL:SPEC:44.2.1
      *
-     * @testStrategy: Validate that the message action can lookup a localized
-     * message from a ResourceBundle specified via the bundle attribute.
+     * @testStrategy: Validate that the message action can lookup a localized message from a ResourceBundle specified via
+     * the bundle attribute.
      */
     public void positiveMessageBundleTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageBundleTest");
@@ -99,9 +96,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44.3; JSTL:SPEC:44.4.6
      *
-     * @testStrategy: Validate that if var is present, the message is not written
-     * to the current JspWriter, but is exported to the PageContext and associated
-     * with the name specified by var.
+     * @testStrategy: Validate that if var is present, the message is not written to the current JspWriter, but is exported
+     * to the PageContext and associated with the name specified by var.
      */
     public void positiveMessageVarTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageVarTest");
@@ -114,12 +110,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveMessageScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:44.4; JSTL:SPEC:44.4.1; JSTL:SPEC:44.4.2;
-     * JSTL:SPEC:44.4.3; JSTL:SPEC:44.4.4; JSTL:SPEC:44.4.6
+     * @assertion_ids: JSTL:SPEC:44.4; JSTL:SPEC:44.4.1; JSTL:SPEC:44.4.2; JSTL:SPEC:44.4.3; JSTL:SPEC:44.4.4;
+     * JSTL:SPEC:44.4.6
      *
-     * @testStrategy: Validate that the scope attribute affects the scope to which
-     * var is exported. This will also validate that if var is specified, but
-     * scope is not, var is exported to the page scope by default.
+     * @testStrategy: Validate that the scope attribute affects the scope to which var is exported. This will also validate
+     * that if var is specified, but scope is not, var is exported to the page scope by default.
      */
     public void positiveMessageScopeTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageScopeTest");
@@ -134,8 +129,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44.4; JSTL:SPEC:44.4.1; JSTL:SPEC:44.4.2
      *
-     * @testStrategy: Validate that if the key attribute evaluates to null, or is
-     * empty (""), that '??????' is written to the current JspWriter.
+     * @testStrategy: Validate that if the key attribute evaluates to null, or is empty (""), that '??????' is written to
+     * the current JspWriter.
      */
     public void positiveMessageKeyNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyNullEmptyTest");
@@ -150,9 +145,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44.11
      *
-     * @testStrategy: Validate that if the key specified by the message action
-     * does not exist in the ResourceBundle being used, the '???<key>???' is
-     * written to the current JspWriter (<key> is the unknown key).
+     * @testStrategy: Validate that if the key specified by the message action does not exist in the ResourceBundle being
+     * used, the '???<key>???' is written to the current JspWriter (<key> is the unknown key).
      */
     public void positiveMessageKeyNotFoundTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyNotFoundTest");
@@ -167,8 +161,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44.5
      *
-     * @testStrategy: Validate that the message action can properly look up a
-     * localized message when the key is provided as body content to the action.
+     * @testStrategy: Validate that the message action can properly look up a localized message when the key is provided as
+     * body content to the action.
      */
     public void positiveMessageKeyBodyTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyBodyTest");
@@ -183,9 +177,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44.8
      *
-     * @testStrategy: Validate that the message action can properly lookup and
-     * display compound messages with the key and <fmt:param> subtags provided as
-     * body content to the action.
+     * @testStrategy: Validate that the message action can properly lookup and display compound messages with the key and
+     * <fmt:param> subtags provided as body content to the action.
      */
     public void positiveMessageKeyParamBodyTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyParamBodyTest");
@@ -200,9 +193,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44.8
      *
-     * @testStrategy: Validate the the action can properly perform parametric
-     * replacement of parameters provided as body content against a compound
-     * message.
+     * @testStrategy: Validate the the action can properly perform parametric replacement of parameters provided as body
+     * content against a compound message.
      */
     public void positiveMessageParamBodyTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageParamBodyTest");
@@ -217,8 +209,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44.9
      *
-     * @testStrategy: Validate that if a message is compound and no param subtags
-     * are provided, the message is returned as is.
+     * @testStrategy: Validate that if a message is compound and no param subtags are provided, the message is returned as
+     * is.
      */
     public void positiveMessageCompoundNoParamTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageCompoundNoParamTest");
@@ -233,8 +225,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44.6
      *
-     * @testStrategy: Validate that a message action will use the prefix specified
-     * by a parent bundle action when looking up messsage keys.
+     * @testStrategy: Validate that a message action will use the prefix specified by a parent bundle action when looking up
+     * messsage keys.
      */
     public void positiveMessagePrefixTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessagePrefixTest");
@@ -249,10 +241,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:106.1
      *
-     * @testStrategy: Validate that if a message action has a bundle as a parent
-     * tag and the same message action has the bundle attribute specified, that
-     * the key look up will be performed against the resource bundle specified by
-     * the bundle attribute.
+     * @testStrategy: Validate that if a message action has a bundle as a parent tag and the same message action has the
+     * bundle attribute specified, that the key look up will be performed against the resource bundle specified by the
+     * bundle attribute.
      */
     public void positiveMessageBundleOverrideTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageBundleOverrideTest");
@@ -267,9 +258,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:44.14
      *
-     * @testStrategy: Validate that if a LocalizationContext, provided to the
-     * message action has a null resource bundle, the message displayed is
-     * ???<key>???.
+     * @testStrategy: Validate that if a LocalizationContext, provided to the message action has a null resource bundle, the
+     * message displayed is ???<key>???.
      */
     public void positiveMessageNoLocalizationContextTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveMessageNoLocalizationContextTest");
@@ -281,13 +271,10 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:106.3; JSTL:SPEC:106.3.1
      *
-     * @testStrategy: Validate that if the configuration variables
-     * jakarta.servlet.jsp.jstl.fmt.locale and
-     * jakarta.servlet.jsp.jstl.fmt.localizationContext are available, and the
-     * message action is not nested within a bundle action, the message can
-     * properly be localized. To try to throw a wrench in things, the client will
-     * send a preferred locale across the wire that, if used, will not resolve to
-     * any ResourceBundle (no fallback defined).
+     * @testStrategy: Validate that if the configuration variables jakarta.servlet.jsp.jstl.fmt.locale and
+     * jakarta.servlet.jsp.jstl.fmt.localizationContext are available, and the message action is not nested within a bundle
+     * action, the message can properly be localized. To try to throw a wrench in things, the client will send a preferred
+     * locale across the wire that, if used, will not resolve to any ResourceBundle (no fallback defined).
      */
     public void positiveMessageLocaleConfigurationTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageLocaleConfigurationTest");
@@ -302,13 +289,11 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:106.3; JSTL:SPEC:106.3.2; JSTL:SPEC:26.2.2
      *
-     * @testStrategy: Validate that if the default localization context cannot
-     * determine a locale, that the fallback locale will be used and allow the
-     * message action to properly localize a message. To try to throw a wrench in
-     * things, the client will send a preferred locale across the wire that, if
-     * used, will not resolve to any resource bundle (no fallback defined).
-     * Additionally verify that the fallbackLocale variable can be configured
-     * using a String representation of a locale as well as an instance of Locale.
+     * @testStrategy: Validate that if the default localization context cannot determine a locale, that the fallback locale
+     * will be used and allow the message action to properly localize a message. To try to throw a wrench in things, the
+     * client will send a preferred locale across the wire that, if used, will not resolve to any resource bundle (no
+     * fallback defined). Additionally verify that the fallbackLocale variable can be configured using a String
+     * representation of a locale as well as an instance of Locale.
      */
     public void positiveMessageFallbackLocaleTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveMessageFallbackLocaleTest");
@@ -321,11 +306,10 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: localeSupportTest
      *
-     * @assertion_ids: JSTL:SPEC:107.1; JSTL:SPEC:107.1.1; JSTL:SPEC:107.2;
-     * JSTL:SPEC:107.2.1; JSTL:SPEC:107.3; JSTL:SPEC:107.4
+     * @assertion_ids: JSTL:SPEC:107.1; JSTL:SPEC:107.1.1; JSTL:SPEC:107.2; JSTL:SPEC:107.2.1; JSTL:SPEC:107.3;
+     * JSTL:SPEC:107.4
      *
-     * @test_Strategy: validates jakarta.servlet.jsp.jstl.fmt.LocaleSupport for
-     * static getLocalizedMessage() methods.
+     * @test_Strategy: validates jakarta.servlet.jsp.jstl.fmt.LocaleSupport for static getLocalizedMessage() methods.
      */
 
     public void localeSupportTest() throws Fault {
@@ -345,8 +329,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:107.1.2; JSTL:SPEC:107.2.2
      *
-     * @test_Strategy: validates jakarta.servlet.jsp.jstl.fmt.LocaleSupport for
-     * static getLocalizedMessage() methods.
+     * @test_Strategy: validates jakarta.servlet.jsp.jstl.fmt.LocaleSupport for static getLocalizedMessage() methods.
      */
 
     public void negativeLocaleSupportTest() throws Fault {

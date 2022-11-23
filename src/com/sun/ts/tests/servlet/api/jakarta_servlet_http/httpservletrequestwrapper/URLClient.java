@@ -29,9 +29,8 @@ public class URLClient extends HttpRequestClient {
     private static final String CONTEXT_ROOT = "/servlet_jsh_HSReqWrapper_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -40,8 +39,7 @@ public class URLClient extends HttpRequestClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:385
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then sets some
-     * attributes and verifies they can be retrieved.
+     * @test_Strategy: Servlet wraps the request. Servlet then sets some attributes and verifies they can be retrieved.
      */
 
     /*
@@ -75,8 +72,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:384
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then sets an attribute
-     * and retrieves it.
+     * @test_Strategy: Servlet wraps the request. Servlet then sets an attribute and retrieves it.
      */
 
     /*
@@ -84,8 +80,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:386
      *
-     * @test_Strategy: Client sets an encoding. Servlet wraps the request. Servlet
-     * then tries to retrieve it.
+     * @test_Strategy: Client sets an encoding. Servlet wraps the request. Servlet then tries to retrieve it.
      */
 
     /*
@@ -93,9 +88,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:389
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then compares this
-     * length to the actual length of the content body read in using
-     * getInputStream
+     * @test_Strategy: Servlet wraps the request. Servlet then compares this length to the actual length of the content body
+     * read in using getInputStream
      */
 
     /*
@@ -103,8 +97,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:390; Servlet:SPEC:34;
      *
-     * @test_Strategy: Client sets the content type. Servlet wraps the request.
-     * Servlet reads it from wrapped request.
+     * @test_Strategy: Client sets the content type. Servlet wraps the request. Servlet reads it from wrapped request.
      *
      */
 
@@ -113,8 +106,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:391
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then tries to read the
-     * input stream.
+     * @test_Strategy: Servlet wraps the request. Servlet then tries to read the input stream.
      */
 
     /*
@@ -122,8 +114,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:407
      *
-     * @test_Strategy: Client specifics a locale, Servlet wraps the request.
-     * Servlet then verifies it.
+     * @test_Strategy: Client specifics a locale, Servlet wraps the request. Servlet then verifies it.
      */
 
     /*
@@ -131,8 +122,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:408
      *
-     * @test_Strategy: Client specifics 2 locales.Servlet wraps the request.
-     * Servlet then verifies it.
+     * @test_Strategy: Client specifics 2 locales.Servlet wraps the request. Servlet then verifies it.
      */
 
     /*
@@ -140,8 +130,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:394
      *
-     * @test_Strategy: Client sets several parameters.Servlet wraps the request.
-     * Servlet then attempts to access them.
+     * @test_Strategy: Client sets several parameters.Servlet wraps the request. Servlet then attempts to access them.
      */
 
     /*
@@ -149,8 +138,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:395
      *
-     * @test_Strategy: Client sets several parameters.Servlet wraps the request.
-     * Servlet then attempts to access them.
+     * @test_Strategy: Client sets several parameters.Servlet wraps the request. Servlet then attempts to access them.
      */
 
     /*
@@ -158,8 +146,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:393
      *
-     * @test_Strategy: Client sets a parameter.Servlet wraps the request. Servlet
-     * then retrieves parameter.
+     * @test_Strategy: Client sets a parameter.Servlet wraps the request. Servlet then retrieves parameter.
      */
 
     /*
@@ -167,8 +154,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:396
      *
-     * @test_Strategy: Client sets a parameter which has 2 values.Servlet wraps
-     * the request. Servlet then verifies both values.
+     * @test_Strategy: Client sets a parameter which has 2 values.Servlet wraps the request. Servlet then verifies both
+     * values.
      */
 
     /*
@@ -176,8 +163,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:397
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then verifies the
-     * protocol used by the client
+     * @test_Strategy: Servlet wraps the request. Servlet then verifies the protocol used by the client
      */
 
     /*
@@ -185,8 +171,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:401
      *
-     * @test_Strategy: Client sets some content.Servlet wraps the request. Servlet
-     * then reads the content
+     * @test_Strategy: Client sets some content.Servlet wraps the request. Servlet then reads the content
      */
 
     /*
@@ -194,8 +179,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:403
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then reads and verifies
-     * where the request originated
+     * @test_Strategy: Servlet wraps the request. Servlet then reads and verifies where the request originated
      */
 
     /*
@@ -203,8 +187,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:404
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then reads and verifies
-     * where the request originated
+     * @test_Strategy: Servlet wraps the request. Servlet then reads and verifies where the request originated
      */
 
     /*
@@ -212,8 +195,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:410
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then tries to get a
-     * dispatcher
+     * @test_Strategy: Servlet wraps the request. Servlet then tries to get a dispatcher
      */
 
     /*
@@ -221,8 +203,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:398
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then verifies the scheme
-     * of the url used in the request
+     * @test_Strategy: Servlet wraps the request. Servlet then verifies the scheme of the url used in the request
      */
 
     /*
@@ -230,8 +211,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:399
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then verifies the
-     * destination of the request
+     * @test_Strategy: Servlet wraps the request. Servlet then verifies the destination of the request
      */
 
     /*
@@ -239,8 +219,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:400
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then verifies the
-     * destination port of the request
+     * @test_Strategy: Servlet wraps the request. Servlet then verifies the destination port of the request
      */
 
     /*
@@ -248,8 +227,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:409
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then verifies the
-     * isSecure method for the non-secure case.
+     * @test_Strategy: Servlet wraps the request. Servlet then verifies the isSecure method for the non-secure case.
      */
 
     /*
@@ -257,8 +235,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:406
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then adds then removes
-     * an attribute, then verifies it was removed.
+     * @test_Strategy: Servlet wraps the request. Servlet then adds then removes an attribute, then verifies it was removed.
      */
 
     /*
@@ -266,8 +243,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:405
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then adds an attribute,
-     * then verifies it was added
+     * @test_Strategy: Servlet wraps the request. Servlet then adds an attribute, then verifies it was added
      */
 
     /*
@@ -275,8 +251,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:388
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then tries to set an
-     * invalid encoding.
+     * @test_Strategy: Servlet wraps the request. Servlet then tries to set an invalid encoding.
      */
 
     /*
@@ -284,19 +259,16 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:387
      *
-     * @test_Strategy: Servlet wraps the request. Servlet then sets a new encoding
-     * and tries to retrieve it.
+     * @test_Strategy: Servlet wraps the request. Servlet then sets a new encoding and tries to retrieve it.
      */
 
     /*
      * @testName: setCharacterEncodingTest1
      *
-     * @assertion_ids: Servlet:JAVADOC:387; Servlet:JAVADOC:386; Servlet:SPEC:28;
-     * Servlet:SPEC:213;
+     * @assertion_ids: Servlet:JAVADOC:387; Servlet:JAVADOC:386; Servlet:SPEC:28; Servlet:SPEC:213;
      *
-     * @test_Strategy: Servlet wraps the HttpServletRequest. HttpServletRequest
-     * calls getReader(); then sets a new encoding and tries to retrieve it.
-     * verifies that the new encoding is ignored.
+     * @test_Strategy: Servlet wraps the HttpServletRequest. HttpServletRequest calls getReader(); then sets a new encoding
+     * and tries to retrieve it. verifies that the new encoding is ignored.
      */
 
     // ---------------------- END ServletRequestWrapper
@@ -310,8 +282,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:355
      *
-     * @test_Strategy: Validate an IllegalArgumentException is thrown is a null
-     * request is passed to the Wrapper's constructor.
+     * @test_Strategy: Validate an IllegalArgumentException is thrown is a null request is passed to the Wrapper's
+     * constructor.
      */
     public void httpRequestWrapperConstructorTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "httpRequestWrapperConstructorTest");
@@ -323,8 +295,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:626
      *
-     * @test_Strategy: Validate an IllegalArgumentException is thrown is a null
-     * request is passed to the Wrapper's constructor.
+     * @test_Strategy: Validate an IllegalArgumentException is thrown is a null request is passed to the Wrapper's
+     * constructor.
      */
     public void httpRequestWrapperConstructorIllegalArgumentExceptionTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "httpRequestWrapperConstructorIllegalArgumentExceptionTest");
@@ -432,8 +404,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:368
      *
-     * @test_Strategy: Servlet wraps the request. Servlet verifies the result of a
-     * non-authed user
+     * @test_Strategy: Servlet wraps the request. Servlet verifies the result of a non-authed user
      */
 
     /*
@@ -473,8 +444,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:375
      *
-     * @test_Strategy: Servlet wraps the request. Servlet verifies
-     * getSession(boolean) call
+     * @test_Strategy: Servlet wraps the request. Servlet verifies getSession(boolean) call
      */
 
     /*
@@ -482,8 +452,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:376
      *
-     * @test_Strategy: Servlet wraps the request. Servlet verifies getSession()
-     * call
+     * @test_Strategy: Servlet wraps the request. Servlet verifies getSession() call
      */
 
     /*
@@ -491,9 +460,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:378
      *
-     * @test_Strategy: Access Servlet through URL; Servlet wraps the request;
-     * Servlet verifies API isRequestedSessionIdFromCookie return false; Negative
-     * test
+     * @test_Strategy: Access Servlet through URL; Servlet wraps the request; Servlet verifies API
+     * isRequestedSessionIdFromCookie return false; Negative test
      */
 
     /*
@@ -501,10 +469,9 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:378
      *
-     * @test_Strategy: Access Servlet through URL; Servlet wraps the request;
-     * Servlet starts a HttpSession; Client saves SessionID from Server and use it
-     * to access Servlet again; Servlet verifies API
-     * isRequestedSessionIdFromCookie return true; Positive test
+     * @test_Strategy: Access Servlet through URL; Servlet wraps the request; Servlet starts a HttpSession; Client saves
+     * SessionID from Server and use it to access Servlet again; Servlet verifies API isRequestedSessionIdFromCookie return
+     * true; Positive test
      */
 
     /*
@@ -520,8 +487,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:377; Servlet:SPEC:211;
      *
-     * @test_Strategy: Client sends request without session ID; Servlet wraps the
-     * request; Verifies isRequestedSessionIdValid() returns false;
+     * @test_Strategy: Client sends request without session ID; Servlet wraps the request; Verifies
+     * isRequestedSessionIdValid() returns false;
      */
 
     /*
@@ -529,8 +496,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:371;
      *
-     * @test_Strategy: Client sends request with a session ID; Verifies
-     * getRequestedSessionId() returns the same;
+     * @test_Strategy: Client sends request with a session ID; Verifies getRequestedSessionId() returns the same;
      */
 
     /*
@@ -538,8 +504,8 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:371;
      *
-     * @test_Strategy: Client sends request to a servlet with a sesion ID; Servlet
-     * start a sesison; Verifies getRequestedSessionId() returns the same;
+     * @test_Strategy: Client sends request to a servlet with a sesion ID; Servlet start a sesison; Verifies
+     * getRequestedSessionId() returns the same;
      */
 
     /*
@@ -547,8 +513,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:631;
      *
-     * @test_Strategy: Send an HttpServletRequestWrapper to server; Test Servlet
-     * API getLocalPort();
+     * @test_Strategy: Send an HttpServletRequestWrapper to server; Test Servlet API getLocalPort();
      */
 
     /*
@@ -556,8 +521,7 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:634;
      *
-     * @test_Strategy: Send an HttpServletRequestWrapper to server; Test Servlet
-     * API getLocalName();
+     * @test_Strategy: Send an HttpServletRequestWrapper to server; Test Servlet API getLocalName();
      */
 
     /*
@@ -565,19 +529,16 @@ public class URLClient extends HttpRequestClient {
      *
      * @assertion_ids: Servlet:JAVADOC:932.1;
      *
-     * @test_Strategy: Send an HttpServletRequest to server; Verify that
-     * request.changeSessionId() throws IllegalStateException when it is called
-     * without a session;
+     * @test_Strategy: Send an HttpServletRequest to server; Verify that request.changeSessionId() throws
+     * IllegalStateException when it is called without a session;
      */
     /*
      * @testName: changeSessionIDTest1
      *
-     * @assertion_ids: Servlet:JAVADOC:304; Servlet:JAVADOC:375;
-     * Servlet:JAVADOC:467; Servlet:JAVADOC:476; Servlet:JAVADOC:484;
-     * Servlet:JAVADOC:932; Servlet:JAVADOC:935;
+     * @assertion_ids: Servlet:JAVADOC:304; Servlet:JAVADOC:375; Servlet:JAVADOC:467; Servlet:JAVADOC:476;
+     * Servlet:JAVADOC:484; Servlet:JAVADOC:932; Servlet:JAVADOC:935;
      *
-     * @test_Strategy: Send an HttpServletRequest to server; Verify that
-     * request.changeSessionId() works.
+     * @test_Strategy: Send an HttpServletRequest to server; Verify that request.changeSessionId() works.
      */
 
     /*

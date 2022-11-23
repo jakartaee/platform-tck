@@ -44,12 +44,14 @@ public class CEJB implements SessionBean {
     public boolean test3() {
         TestUtil.logTrace("test3");
         boolean pass = true;
-        if (getObjectTest()) TestUtil.logMsg("getEJBObject ... PASSED");
+        if (getObjectTest())
+            TestUtil.logMsg("getEJBObject ... PASSED");
         else {
             TestUtil.logMsg("getEJBObject ... FAILED");
             pass = false;
         }
-        if (getLocalObjectTest()) TestUtil.logMsg("getEJBLocalObject ... PASSED");
+        if (getLocalObjectTest())
+            TestUtil.logMsg("getEJBLocalObject ... PASSED");
         else {
             TestUtil.logMsg("getEJBLocalObject ... FAILED");
             pass = false;
@@ -85,7 +87,8 @@ public class CEJB implements SessionBean {
             EJBLocalObject object = context.getEJBLocalObject();
             if (object != null) {
                 TestUtil.logMsg("getEJBLocalObject() returned EJBLocalObject reference");
-                if (object instanceof CLocal) TestUtil.logMsg("An CLocal object");
+                if (object instanceof CLocal)
+                    TestUtil.logMsg("An CLocal object");
                 else {
                     TestUtil.logErr("Not an CLocal object");
                     pass = false;

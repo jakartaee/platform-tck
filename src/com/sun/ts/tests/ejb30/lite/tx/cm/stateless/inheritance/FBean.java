@@ -27,4 +27,5 @@ import jakarta.ejb.TransactionAttributeType;
 
 @Stateless()
 @TransactionAttribute(TransactionAttributeType.NEVER)
-public class FBean extends FBeanBase implements TxLocalIF {}
+public class FBean extends FBeanBase implements TxLocalIF {
+}

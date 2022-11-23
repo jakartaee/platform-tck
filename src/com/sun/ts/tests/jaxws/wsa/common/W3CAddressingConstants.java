@@ -40,13 +40,11 @@ public interface W3CAddressingConstants {
 
     public static final String WSA_REFERENCEPROPERTIES_NAME = "ReferenceParameters";
 
-    public static final QName WSA_REFERENCEPROPERTIES_QNAME =
-            new QName(WSA_NAMESPACE_NAME, WSA_REFERENCEPROPERTIES_NAME);
+    public static final QName WSA_REFERENCEPROPERTIES_QNAME = new QName(WSA_NAMESPACE_NAME, WSA_REFERENCEPROPERTIES_NAME);
 
     public static final String WSA_REFERENCEPARAMETERS_NAME = "ReferenceParameters";
 
-    public static final QName WSA_REFERENCEPARAMETERS_QNAME =
-            new QName(WSA_NAMESPACE_NAME, WSA_REFERENCEPARAMETERS_NAME);
+    public static final QName WSA_REFERENCEPARAMETERS_QNAME = new QName(WSA_NAMESPACE_NAME, WSA_REFERENCEPARAMETERS_NAME);
 
     public static final String WSA_METADATA_NAME = "Metadata";
 
@@ -68,15 +66,13 @@ public interface W3CAddressingConstants {
 
     public static final QName WSA_MESSAGEID_QNAME = new QName(WSA_NAMESPACE_NAME, "MessageID", WSA_NAMESPACE_PREFIX);
 
-    public static final QName WSA_IS_REFERENCE_PARAMETER_QNAME =
-            new QName(WSA_NAMESPACE_NAME, "IsReferenceParameter", WSA_NAMESPACE_PREFIX);
+    public static final QName WSA_IS_REFERENCE_PARAMETER_QNAME = new QName(WSA_NAMESPACE_NAME, "IsReferenceParameter", WSA_NAMESPACE_PREFIX);
 
     public static final String WSA_RELATIONSHIP_REPLY = WSA_NAMESPACE_NAME + "/reply";
 
     public static final QName WSA_RELATESTO_QNAME = new QName(WSA_NAMESPACE_NAME, "RelatesTo", WSA_NAMESPACE_PREFIX);
 
-    public static final QName WSA_RELATIONSHIPTYPE_QNAME =
-            new QName(WSA_NAMESPACE_NAME, "RelationshipType", WSA_NAMESPACE_PREFIX);
+    public static final QName WSA_RELATIONSHIPTYPE_QNAME = new QName(WSA_NAMESPACE_NAME, "RelationshipType", WSA_NAMESPACE_PREFIX);
 
     public static final String WSA_ANONYMOUS_ADDRESS_URI = WSA_NAMESPACE_NAME + "/anonymous";
 
@@ -92,8 +88,7 @@ public interface W3CAddressingConstants {
 
     public static final String WSAW_USING_ADDRESSING_NAME = "UsingAddressing";
 
-    public static final QName WSAW_USING_ADDRESSING_QNAME =
-            new QName(WSA_NAMESPACE_WSDL_NAME, WSAW_USING_ADDRESSING_NAME);
+    public static final QName WSAW_USING_ADDRESSING_QNAME = new QName(WSA_NAMESPACE_WSDL_NAME, WSAW_USING_ADDRESSING_NAME);
 
     public static final String WSAW_ANONYMOUS_NAME = "Anonymous";
 
@@ -115,11 +110,9 @@ public interface W3CAddressingConstants {
 
     public static final String ENDPOINT_UNAVAILABLE_TEXT = "The endpoint is unable to process the message at this time";
 
-    public static final String INVALID_MAP_TEXT =
-            "A header representing a Message Addressing Property is not valid and the message cannot be processed";
+    public static final String INVALID_MAP_TEXT = "A header representing a Message Addressing Property is not valid and the message cannot be processed";
 
-    public static final String MAP_REQUIRED_TEXT =
-            "A required header representing a Message Addressing Property is not present";
+    public static final String MAP_REQUIRED_TEXT = "A required header representing a Message Addressing Property is not present";
 
     public static final QName PROBLEM_ACTION_QNAME = new QName(WSA_NAMESPACE_NAME, "ProblemAction");
 
@@ -130,8 +123,7 @@ public interface W3CAddressingConstants {
     public static final QName FAULT_DETAIL_QNAME = new QName(WSA_NAMESPACE_NAME, "FaultDetail");
 
     // Fault subsubcode when an invalid address is specified.
-    public static final QName INVALID_ADDRESS_SUBCODE =
-            new QName(WSA_NAMESPACE_NAME, "InvalidAddress", WSA_NAMESPACE_PREFIX);
+    public static final QName INVALID_ADDRESS_SUBCODE = new QName(WSA_NAMESPACE_NAME, "InvalidAddress", WSA_NAMESPACE_PREFIX);
 
     // Fault subsubcode when an invalid header was expected to be
     // EndpointReference but was not valid.
@@ -139,37 +131,30 @@ public interface W3CAddressingConstants {
 
     // Fault subsubcode when greater than expected number of the specified header
     // is received.
-    public static final QName INVALID_CARDINALITY =
-            new QName(WSA_NAMESPACE_NAME, "InvalidCardinality", WSA_NAMESPACE_PREFIX);
+    public static final QName INVALID_CARDINALITY = new QName(WSA_NAMESPACE_NAME, "InvalidCardinality", WSA_NAMESPACE_PREFIX);
 
     // Fault subsubcode when an invalid header was expected to be
     // EndpointReference but did not contain address.
-    public static final QName MISSING_ADDRESS_IN_EPR =
-            new QName(WSA_NAMESPACE_NAME, "MissingAddressInEPR", WSA_NAMESPACE_PREFIX);
+    public static final QName MISSING_ADDRESS_IN_EPR = new QName(WSA_NAMESPACE_NAME, "MissingAddressInEPR", WSA_NAMESPACE_PREFIX);
 
     // Fault subsubcode when a header contains a message id that was a duplicate
     // of one already received.
-    public static final QName DUPLICATE_MESSAGEID =
-            new QName(WSA_NAMESPACE_NAME, "DuplicateMessageID", WSA_NAMESPACE_PREFIX);
+    public static final QName DUPLICATE_MESSAGEID = new QName(WSA_NAMESPACE_NAME, "DuplicateMessageID", WSA_NAMESPACE_PREFIX);
 
     // Fault subsubcode when <code>Action</code> and <code>SOAPAction</code> for
     // the mesage did not match.
     public static final QName ACTION_MISMATCH = new QName(WSA_NAMESPACE_NAME, "ActionMismatch", WSA_NAMESPACE_PREFIX);
 
     // Fault subsubcode when the only address supported is the anonymous address.
-    public static final QName ONLY_ANONYMOUS_ADDRESS_SUPPORTED =
-            new QName(WSA_NAMESPACE_NAME, "OnlyAnonymousAddressSupported", WSA_NAMESPACE_PREFIX);
+    public static final QName ONLY_ANONYMOUS_ADDRESS_SUPPORTED = new QName(WSA_NAMESPACE_NAME, "OnlyAnonymousAddressSupported", WSA_NAMESPACE_PREFIX);
 
     // Fault subsubcode when anonymous address is not supported.
-    public static final QName ONLY_NON_ANONYMOUS_ADDRESS_SUPPORTED =
-            new QName(WSA_NAMESPACE_NAME, "OnlyNonAnonymousAddressSupported", WSA_NAMESPACE_PREFIX);
+    public static final QName ONLY_NON_ANONYMOUS_ADDRESS_SUPPORTED = new QName(WSA_NAMESPACE_NAME, "OnlyNonAnonymousAddressSupported", WSA_NAMESPACE_PREFIX);
 
     // SOAP 1.1 Fault Codes
-    public static final QName SOAP11_MUSTUNDERSTAND_FAULT =
-            new QName(SOAPConstants.URI_NS_SOAP_1_1_ENVELOPE, "MustUnderstand");
+    public static final QName SOAP11_MUSTUNDERSTAND_FAULT = new QName(SOAPConstants.URI_NS_SOAP_1_1_ENVELOPE, "MustUnderstand");
 
-    public static final QName SOAP11_VERSIONMISMATCH_FAULT =
-            new QName(SOAPConstants.URI_NS_SOAP_1_1_ENVELOPE, "VersionMismatch");
+    public static final QName SOAP11_VERSIONMISMATCH_FAULT = new QName(SOAPConstants.URI_NS_SOAP_1_1_ENVELOPE, "VersionMismatch");
 
     public static final QName SOAP11_CLIENT_FAULT = new QName(SOAPConstants.URI_NS_SOAP_1_1_ENVELOPE, "Client");
 

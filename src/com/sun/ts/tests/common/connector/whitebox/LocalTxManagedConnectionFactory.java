@@ -59,7 +59,8 @@ public class LocalTxManagedConnectionFactory
      *
      * @desc Default conctructor
      */
-    public LocalTxManagedConnectionFactory() {}
+    public LocalTxManagedConnectionFactory() {
+    }
 
     public String getUser() {
         return user;
@@ -303,13 +304,17 @@ public class LocalTxManagedConnectionFactory
             return false;
         }
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.user, that.getUser())) return false;
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
 
-        if (!Util.isEqual(this.userName, that.getUserName())) return false;
+        if (!Util.isEqual(this.userName, that.getUserName()))
+            return false;
 
-        if (!Util.isEqual(this.TSRValue, that.getTSRValue())) return false;
+        if (!Util.isEqual(this.TSRValue, that.getTSRValue()))
+            return false;
 
         return true;
     }

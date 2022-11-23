@@ -32,10 +32,7 @@ import jakarta.ejb.EJB;
 public class OneManagedBean extends AppResBeanBase {
     public static final String NAME = "one-managed-bean";
 
-    @EJB(
-            name = "java:module/env/hello",
-            lookup =
-                    "java:global/ejb3_common_helloejbjar_standalone_component_ejb/HelloBean!com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF")
+    @EJB(name = "java:module/env/hello", lookup = "java:global/ejb3_common_helloejbjar_standalone_component_ejb/HelloBean!com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF")
     private HelloRemoteIF hello;
 
     @SuppressWarnings("unused")

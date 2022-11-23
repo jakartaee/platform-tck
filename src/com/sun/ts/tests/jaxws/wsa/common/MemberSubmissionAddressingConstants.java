@@ -41,13 +41,11 @@ public interface MemberSubmissionAddressingConstants {
 
     public static final String WSA_REFERENCEPROPERTIES_NAME = "ReferenceProperties";
 
-    public static final QName WSA_REFERENCEPROPERTIES_QNAME =
-            new QName(WSA_NAMESPACE_NAME, WSA_REFERENCEPROPERTIES_NAME);
+    public static final QName WSA_REFERENCEPROPERTIES_QNAME = new QName(WSA_NAMESPACE_NAME, WSA_REFERENCEPROPERTIES_NAME);
 
     public static final String WSA_REFERENCEPARAMETERS_NAME = "ReferenceParameters";
 
-    public static final QName WSA_REFERENCEPARAMETERS_QNAME =
-            new QName(WSA_NAMESPACE_NAME, WSA_REFERENCEPARAMETERS_NAME);
+    public static final QName WSA_REFERENCEPARAMETERS_QNAME = new QName(WSA_NAMESPACE_NAME, WSA_REFERENCEPARAMETERS_NAME);
 
     public static final String WSA_ISREFPARAM_NAME = "isReferenceParameter";
 
@@ -93,8 +91,7 @@ public interface MemberSubmissionAddressingConstants {
 
     public static final String WSAW_USING_ADDRESSING_NAME = "UsingAddressing";
 
-    public static final QName WSAW_USING_ADDRESSING_QNAME =
-            new QName(WSA_NAMESPACE_WSDL_NAME, WSAW_USING_ADDRESSING_NAME);
+    public static final QName WSAW_USING_ADDRESSING_QNAME = new QName(WSA_NAMESPACE_WSDL_NAME, WSAW_USING_ADDRESSING_NAME);
 
     public static final String WSDL_INSTANCE_NAMESPACE_NAME = "http://www.w3.org/2004/08/wsdl-instance";
 
@@ -110,17 +107,13 @@ public interface MemberSubmissionAddressingConstants {
 
     public static final String ACTION_NOT_SUPPORTED_TEXT = "The \"%s\" cannot be processed at the receiver.";
 
-    public static final String DESTINATION_UNREACHABLE_TEXT =
-            "No route can be determined to reach the destination role defined by the WS-Addressing To.";
+    public static final String DESTINATION_UNREACHABLE_TEXT = "No route can be determined to reach the destination role defined by the WS-Addressing To.";
 
-    public static final String ENDPOINT_UNAVAILABLE_TEXT =
-            "The endpoint is unable to process the message at this time.";
+    public static final String ENDPOINT_UNAVAILABLE_TEXT = "The endpoint is unable to process the message at this time.";
 
-    public static final String INVALID_MAP_TEXT =
-            "A message information header is not valid and the message cannot be processed.";
+    public static final String INVALID_MAP_TEXT = "A message information header is not valid and the message cannot be processed.";
 
-    public static final String MAP_REQUIRED_TEXT =
-            "A required message information header, To, MessageID, or Action, is not present.";
+    public static final String MAP_REQUIRED_TEXT = "A required message information header, To, MessageID, or Action, is not present.";
 
     public static final QName PROBLEM_ACTION_QNAME = new QName(WSA_NAMESPACE_NAME, "ProblemAction");
 

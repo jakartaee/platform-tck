@@ -43,7 +43,8 @@ public final class CheckHttpHeadersFilter implements Filter, SOAPRequests {
     private boolean testInvalidCase = false;
 
     // remove the filter configuration object for this filter.
-    public void destroy() {}
+    public void destroy() {
+    }
 
     // initialize the filter configuration object for this filter.
 
@@ -62,10 +63,12 @@ public final class CheckHttpHeadersFilter implements Filter, SOAPRequests {
         byte buffer[] = new byte[65536];
         int count = 0;
         int tmpcount = 0;
-        if (request.getInputStream().markSupported()) request.getInputStream().mark(8192);
+        if (request.getInputStream().markSupported())
+            request.getInputStream().mark(8192);
         while (tmpcount != -1) {
             tmpcount = request.getInputStream().read(buffer, count, 8192);
-            if (tmpcount != -1) count += tmpcount;
+            if (tmpcount != -1)
+                count += tmpcount;
         }
         ByteArrayInputStream bais = new ByteArrayInputStream(buffer, 0, count);
         input = new String(buffer);
@@ -99,8 +102,10 @@ public final class CheckHttpHeadersFilter implements Filter, SOAPRequests {
             testValidCase = false;
             testInvalidCase = false;
             if (input.indexOf("Check-Content-Transfer-Encoding") >= 0) {
-                if (input.indexOf("TestValidCase") >= 0) testValidCase = true;
-                else if (input.indexOf("TestInvalidCase") >= 0) testInvalidCase = true;
+                if (input.indexOf("TestValidCase") >= 0)
+                    testValidCase = true;
+                else if (input.indexOf("TestInvalidCase") >= 0)
+                    testInvalidCase = true;
                 try {
                     result = verifyContentTransferEncodingHeader((HttpServletRequest) request, bais);
                 } catch (Exception e) {
@@ -108,7 +113,8 @@ public final class CheckHttpHeadersFilter implements Filter, SOAPRequests {
                     e.printStackTrace();
                     result = "Exception";
                 }
-            } else result = verifyContentTypeHttpHeader((HttpServletRequest) request);
+            } else
+                result = verifyContentTypeHttpHeader((HttpServletRequest) request);
             xml = MessageFormat.format(MTOM_RESPONSE_DOCLIT, result);
             response.setContentType("text/xml");
             System.out.println("DEBUG: HTTP Response output=" + xml);
@@ -122,8 +128,7 @@ public final class CheckHttpHeadersFilter implements Filter, SOAPRequests {
     /**
      * Verifies the contents of the Content-Type HTTP header
      *
-     * @param request
-     *          the HTTP servlet request.
+     * @param request the HTTP servlet request.
      */
     protected String verifyContentTypeHttpHeader(HttpServletRequest request) {
         String result = null;
@@ -134,8 +139,7 @@ public final class CheckHttpHeadersFilter implements Filter, SOAPRequests {
             if ((headerValueLC.indexOf("multipart/related") >= 0)
                     && (headerValueLC.indexOf("text/xml") >= 0)
                     && (headerValueLC.indexOf("application/xop+xml") >= 0)) {
-                result =
-                        "PASSED: HTTP Content-Type header contains expected: multipart/related, text/xml, application/xop+xml";
+                result = "PASSED: HTTP Content-Type header contains expected: multipart/related, text/xml, application/xop+xml";
             } else {
                 result = "FAILED: HTTP Content-Type header does not contain expected values";
             }
@@ -149,8 +153,7 @@ public final class CheckHttpHeadersFilter implements Filter, SOAPRequests {
     /**
      * Verifies the contents of the Content-Transfer-Encoding mime header
      *
-     * @param request
-     *          the HTTP servlet request.
+     * @param request the HTTP servlet request.
      *
      */
     protected String verifyContentTransferEncodingHeader(HttpServletRequest request, ByteArrayInputStream bais)
@@ -169,8 +172,10 @@ public final class CheckHttpHeadersFilter implements Filter, SOAPRequests {
         int k = 0;
         while (iterator.hasNext()) {
             ap = (AttachmentPart) iterator.next();
-            if (testValidCase) ap.addMimeHeader("Content-Transfer-Encoding", "base64");
-            if (testInvalidCase) ap.addMimeHeader("Content-Transfer-Encoding", "invalid");
+            if (testValidCase)
+                ap.addMimeHeader("Content-Transfer-Encoding", "base64");
+            if (testInvalidCase)
+                ap.addMimeHeader("Content-Transfer-Encoding", "invalid");
             headerValues = ap.getMimeHeader("Content-Transfer-Encoding");
             if (headerValues != null && headerValues.length > 0) {
                 for (int i = 0; i < headerValues.length; i++) {
@@ -181,8 +186,10 @@ public final class CheckHttpHeadersFilter implements Filter, SOAPRequests {
                             || (headerValues[i].indexOf("quoted-printable") >= 0)
                             || (headerValues[i].indexOf("base64") >= 0)) {
                         if (i == 0) {
-                            if (result == null) result = "Attach[" + k + "]=";
-                            else result = result + "Attach[" + k + "]=";
+                            if (result == null)
+                                result = "Attach[" + k + "]=";
+                            else
+                                result = result + "Attach[" + k + "]=";
                         }
                         result = result + headerValues[i] + " ";
                     } else {
@@ -194,7 +201,8 @@ public final class CheckHttpHeadersFilter implements Filter, SOAPRequests {
             }
             ++k;
         }
-        if (result == null) result = "No Content-Transfer-Encoding mime headers were found";
+        if (result == null)
+            result = "No Content-Transfer-Encoding mime headers were found";
         System.out.println("result=" + result);
         return result;
     }

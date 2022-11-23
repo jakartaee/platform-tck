@@ -38,8 +38,7 @@ public class GetBodyContentTestTag extends BodyTagSupport {
      * Validate the that get/setBodyContent() work as expected.
      *
      * @return Tag.EVAL_PAGE
-     * @throws JspException
-     *           if an unexpected error occurs
+     * @throws JspException if an unexpected error occurs
      */
     public int doEndTag() throws JspException {
         BodyContent bc = this.getBodyContent();

@@ -31,5 +31,6 @@ import jakarta.ejb.TransactionAttributeType;
 @TransactionAttribute(TransactionAttributeType.NEVER)
 public class FBean extends FBeanBase implements TxRemoteIF, TxLocalIF {
 
-    public FBean() {}
+    public FBean() {
+    }
 }

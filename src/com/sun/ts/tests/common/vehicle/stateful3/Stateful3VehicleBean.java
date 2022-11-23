@@ -36,7 +36,7 @@ import jakarta.persistence.PersistenceUnit;
 import java.util.Properties;
 
 @Stateful(name = "Stateful3VehicleBean")
-@Remote({Stateful3VehicleIF.class})
+@Remote({ Stateful3VehicleIF.class })
 public class Stateful3VehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
         implements Stateful3VehicleIF, java.io.Serializable {
 

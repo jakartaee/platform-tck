@@ -106,11 +106,15 @@ public class SOAPConnectionFactoryTestServlet extends HttpServlet {
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("newInstanceTest() test PASSED");
-        else TestUtil.logErr("newInstanceTest() test FAILED");
+        if (pass)
+            TestUtil.logMsg("newInstanceTest() test PASSED");
+        else
+            TestUtil.logErr("newInstanceTest() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -140,17 +144,22 @@ public class SOAPConnectionFactoryTestServlet extends HttpServlet {
             if (scon == null) {
                 TestUtil.logErr("SOAPConnection.createConnection() returned null");
                 pass = false;
-            } else scon.close();
+            } else
+                scon.close();
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (pass) TestUtil.logMsg("createConnectionTest() test PASSED");
-        else TestUtil.logErr("createConnectionTest() test FAILED");
+        if (pass)
+            TestUtil.logMsg("createConnectionTest() test PASSED");
+        else
+            TestUtil.logErr("createConnectionTest() test FAILED");
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

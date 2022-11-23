@@ -24,7 +24,8 @@ public class ThrowingStringBean {
     }
 
     @SuppressWarnings("unused")
-    public void set(String bean) {}
+    public void set(String bean) {
+    }
 
     @Override
     public String toString() {

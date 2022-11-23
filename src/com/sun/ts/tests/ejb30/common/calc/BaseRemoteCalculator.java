@@ -21,8 +21,8 @@
 package com.sun.ts.tests.ejb30.common.calc;
 
 /**
- * An implementation of RemoteCalculator interface. It forwards to an instance
- * of <code>NoInterfaceRemoteCalculator</code> for all operations.
+ * An implementation of RemoteCalculator interface. It forwards to an instance of
+ * <code>NoInterfaceRemoteCalculator</code> for all operations.
  *
  * @author Cheng Fang
  */
@@ -30,13 +30,13 @@ public class BaseRemoteCalculator implements RemoteCalculator {
 
     private NoInterfaceRemoteCalculator calc = new NoInterfaceRemoteCalculator();
 
-    public BaseRemoteCalculator() {}
+    public BaseRemoteCalculator() {
+    }
 
     /*
      * (non-Javadoc)
      *
-     * @see com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#removeAdd(int,
-     * int)
+     * @see com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#removeAdd(int, int)
      */
     public int remoteAdd(int a, int b) {
         return calc.remoteAdd(a, b);
@@ -45,9 +45,7 @@ public class BaseRemoteCalculator implements RemoteCalculator {
     /*
      * (non-Javadoc)
      *
-     * @see
-     * com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#removeSubtract(int,
-     * int)
+     * @see com.sun.ts.tests.ejb30.common.calc.RemoteCalculator#removeSubtract(int, int)
      */
     public int remoteSubtract(int a, int b) {
         return calc.remoteSubtract(a, b);

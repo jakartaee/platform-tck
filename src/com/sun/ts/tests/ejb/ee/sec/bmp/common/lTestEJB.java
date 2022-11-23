@@ -80,7 +80,8 @@ public class lTestEJB implements EntityBean {
             db = new DBSupport2(ectx);
             db.getDBConnection(ctsuser, ctspassword);
 
-            if (newTable) db.tableInit();
+            if (newTable)
+                db.tableInit();
             db.createNewRow(cofID, cofPrice, cofName);
         } catch (RemoteLoggingInitException re) {
             TestUtil.printStackTrace(re);
@@ -141,8 +142,10 @@ public class lTestEJB implements EntityBean {
             db.getDBConnection(ctsuser, ctspassword);
 
             boolean foundKey = db.keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (SQLException se) {
             TestUtil.printStackTrace(se);
             throw new FinderException("SQL Exception in primary key finder");
@@ -171,8 +174,10 @@ public class lTestEJB implements EntityBean {
             db.getDBConnection(ctsuser, ctspassword);
 
             boolean foundKey = db.keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (SQLException se) {
             TestUtil.printStackTrace(se);
             throw new FinderException("SQL Exception in primary key finder");
@@ -232,8 +237,10 @@ public class lTestEJB implements EntityBean {
         String name = ectx.getCallerPrincipal().getName();
         TestUtil.logMsg("IsCallerB1: " + name);
 
-        if (name.indexOf(caller) < 0) return false;
-        else return true;
+        if (name.indexOf(caller) < 0)
+            return false;
+        else
+            return true;
     }
 
     public boolean IsCallerB2(String caller, java.util.Properties props) {
@@ -293,7 +300,8 @@ public class lTestEJB implements EntityBean {
             } catch (Exception ex) {
                 TestUtil.logErr("Cannot remove the bean: ", ex);
             }
-        else TestUtil.logMsg("ejbref == null");
+        else
+            TestUtil.logMsg("ejbref == null");
     }
 
     public boolean EjbIsAuthz(java.util.Properties props) {
@@ -305,7 +313,8 @@ public class lTestEJB implements EntityBean {
             boolean result = ejb1ref.EjbIsAuthz();
             ejb1ref.remove();
 
-            if (!result) return false;
+            if (!result)
+                return false;
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -323,7 +332,8 @@ public class lTestEJB implements EntityBean {
             boolean result = ejb1ref.EjbSecRoleRef(role);
             ejb1ref.remove();
 
-            if (!result) return false;
+            if (!result)
+                return false;
             return true;
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -340,7 +350,8 @@ public class lTestEJB implements EntityBean {
             boolean result = ejb1ref.EjbSecRoleRef(role);
             ejb1ref.remove();
 
-            if (result) return false;
+            if (result)
+                return false;
             return true;
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -358,13 +369,15 @@ public class lTestEJB implements EntityBean {
             boolean result = ejb1ref.EjbSecRoleRef(role);
             ejb1ref.remove();
 
-            if (!result) return false;
+            if (!result)
+                return false;
 
             ejb2ref = ejb2home.create(props, newTable, 1, "coffee-1", 1);
             result = ejb2ref.EjbSecRoleRefScope(role);
             ejb2ref.remove();
 
-            if (result) return false;
+            if (result)
+                return false;
             return true;
 
         } catch (Exception e) {

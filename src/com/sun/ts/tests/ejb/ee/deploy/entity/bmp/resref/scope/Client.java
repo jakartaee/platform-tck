@@ -73,21 +73,16 @@ public class Client extends EETest {
      *
      * @test_Strategy:
      *
-     *                 We package in the same jar:
+     * We package in the same jar:
      *
-     *                 - Two BMP beans using the same res-ref-name
-     *                 ('jms/myFactory') to reference two distinct resource
-     *                 manager connection factories (a QueueConnectionFactory and
-     *                 a TopicConnectionFactory).
+     * - Two BMP beans using the same res-ref-name ('jms/myFactory') to reference two distinct resource manager connection
+     * factories (a QueueConnectionFactory and a TopicConnectionFactory).
      *
-     *                 We check that:
+     * We check that:
      *
-     *                 - We can deploy the application. - We can lookup each bean.
-     *                 - Each bean can lookup its resource manager connection
-     *                 factory. - We can cast that factory to its expected java
-     *                 type and use it to create a connection. This validates the
-     *                 resolution of the resource manager connection factories
-     *                 references.
+     * - We can deploy the application. - We can lookup each bean. - Each bean can lookup its resource manager connection
+     * factory. - We can cast that factory to its expected java type and use it to create a connection. This validates the
+     * resolution of the resource manager connection factories references.
      *
      */
     public void testScope() throws Fault {

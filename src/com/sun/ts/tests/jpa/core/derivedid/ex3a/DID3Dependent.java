@@ -39,8 +39,8 @@ public class DID3Dependent implements Serializable {
 
     @Id
     @JoinColumns({
-        @JoinColumn(name = "FIRSTNAME", referencedColumnName = "firstname"),
-        @JoinColumn(name = "LASTNAME", referencedColumnName = "lastname")
+            @JoinColumn(name = "FIRSTNAME", referencedColumnName = "firstname"),
+            @JoinColumn(name = "LASTNAME", referencedColumnName = "lastname")
     })
     @ManyToOne
     DID3Employee emp;
@@ -55,7 +55,8 @@ public class DID3Dependent implements Serializable {
         this.emp = emp;
     }
 
-    public DID3Dependent() {}
+    public DID3Dependent() {
+    }
 
     public DID3Employee getEmp() {
         return emp;

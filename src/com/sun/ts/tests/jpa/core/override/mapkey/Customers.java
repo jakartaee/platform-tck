@@ -34,7 +34,8 @@ public class Customers implements Serializable {
     @Column(unique = true, nullable = false)
     private String custName;
 
-    public Customers() {}
+    public Customers() {
+    }
 
     public Integer getId() {
         return id;

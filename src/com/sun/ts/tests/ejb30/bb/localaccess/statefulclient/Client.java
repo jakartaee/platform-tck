@@ -56,8 +56,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids: EJB:JAVADOC:84
      *
-     * @test_Strategy: the (remote) test bean modifies the value of String array.
-     * This change should not affect the value in Client.
+     * @test_Strategy: the (remote) test bean modifies the value of String array. This change should not affect the value in
+     * Client.
      */
 
     /////////////////////////////////////////////////////////////////////////

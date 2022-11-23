@@ -36,18 +36,9 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 
 @EJBs({
-    @EJB(
-            name = containerConcurrencyBeanLocal,
-            beanName = "ContainerConcurrencyBean",
-            beanInterface = StatefulConcurrencyIF.class),
-    @EJB(
-            name = defaultConcurrencyBeanLocal,
-            beanName = "DefaultConcurrencyBean",
-            beanInterface = StatefulConcurrencyIF.class),
-    @EJB(
-            name = notAllowedConcurrencyBeanLocal,
-            beanName = "NotAllowedConcurrencyBean",
-            beanInterface = StatefulConcurrencyIF.class)
+        @EJB(name = containerConcurrencyBeanLocal, beanName = "ContainerConcurrencyBean", beanInterface = StatefulConcurrencyIF.class),
+        @EJB(name = defaultConcurrencyBeanLocal, beanName = "DefaultConcurrencyBean", beanInterface = StatefulConcurrencyIF.class),
+        @EJB(name = notAllowedConcurrencyBeanLocal, beanName = "NotAllowedConcurrencyBean", beanInterface = StatefulConcurrencyIF.class)
 })
 public abstract class JsfClientBase extends StatefulConcurrencyJsfClientBase {
 
@@ -94,7 +85,7 @@ public abstract class JsfClientBase extends StatefulConcurrencyJsfClientBase {
      * @test_Strategy:
      */
     public void notAllowed() throws InterruptedException {
-        StatefulConcurrencyIF[] bs = {getNotAllowedConcurrencyBeanLocal(), getNotAllowedConcurrencyBeanNoInterface()};
+        StatefulConcurrencyIF[] bs = { getNotAllowedConcurrencyBeanLocal(), getNotAllowedConcurrencyBeanNoInterface() };
         for (StatefulConcurrencyIF b : bs) {
             checkConcurrentAccessResult(concurrentPing(b), 1, 1);
         }

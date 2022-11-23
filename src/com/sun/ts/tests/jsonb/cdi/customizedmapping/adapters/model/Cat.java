@@ -21,7 +21,8 @@
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model;
 
 public class Cat extends Animal {
-    public Cat() {}
+    public Cat() {
+    }
 
     public Cat(int age, String name, float weight, boolean furry, boolean cuddly) {
         super(age, name, weight, furry);
@@ -40,9 +41,12 @@ public class Cat extends Animal {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Cat)) return false;
-        if (!super.equals(o)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Cat))
+            return false;
+        if (!super.equals(o))
+            return false;
 
         Cat cat = (Cat) o;
 

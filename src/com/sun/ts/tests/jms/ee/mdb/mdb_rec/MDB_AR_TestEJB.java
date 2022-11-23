@@ -91,7 +91,8 @@ public class MDB_AR_TestEJB {
     // driven beans.
     // Has send methods for each type of jms message.
 
-    public MDB_AR_TestEJB() {}
+    public MDB_AR_TestEJB() {
+    }
 
     public void setup(Properties props) {
         p = props;

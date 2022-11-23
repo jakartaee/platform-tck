@@ -36,16 +36,19 @@ import jakarta.ejb.Stateless;
 // AnnotatedLocalBusinessInterface2.class})
 public class AnnotatedInterfaceBean extends BusinessBeanBase
         implements AnnotatedLocalBusinessInterface1,
-                AnnotatedLocalBusinessInterface2,
-                AnnotatedBusinessInterface1,
-                AnnotatedBusinessInterface2,
-                java.io.Serializable {
+        AnnotatedLocalBusinessInterface2,
+        AnnotatedBusinessInterface1,
+        AnnotatedBusinessInterface2,
+        java.io.Serializable {
     @Resource(name = "sessionContext")
     private SessionContext sessionContext;
 
-    public AnnotatedInterfaceBean() {}
+    public AnnotatedInterfaceBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
-    public void remove2() {}
+    public void remove2() {
+    }
 }

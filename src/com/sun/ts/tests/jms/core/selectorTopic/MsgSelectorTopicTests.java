@@ -90,9 +90,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * The beginning of the test creates receiver and message. This is broken
-     * apart from the rest of the test so that the user can specify message
-     * properties before sending the message.
+     * The beginning of the test creates receiver and message. This is broken apart from the rest of the test so that the
+     * user can specify message properties before sending the message.
      */
     private void startTest(String selector, String headerValue) throws Exception {
         logTrace("startTest(): Creating receiver with message selector");
@@ -107,8 +106,7 @@ public class MsgSelectorTopicTests extends ServiceEETest {
     }
 
     /*
-     * Send the message and try to receive it. Check the result against the
-     * expectation.
+     * Send the message and try to receive it. Check the result against the expectation.
      */
     private void finishTestReceive() throws Exception {
         logTrace("finishTestReceive(): Sending test message");
@@ -133,8 +131,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
     }
 
     /*
-     * Send the message. Used with finishTest() to send a second message and make
-     * sure that the first is not received my the message consumer.
+     * Send the message. Used with finishTest() to send a second message and make sure that the first is not received my the
+     * message consumer.
      */
     private void sendFirstMessage() throws JMSException {
         logTrace("sendFirstMessage(): Sending message that does not match selector");
@@ -148,8 +146,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
     }
 
     /*
-     * Send the second message which does match the selector. Receive() and verify
-     * that only this second message is received.
+     * Send the second message which does match the selector. Receive() and verify that only this second message is
+     * received.
      */
     private void finishTest() throws Exception {
 
@@ -236,8 +234,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -262,8 +260,7 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:55; JMS:SPEC:49; JMS:SPEC:39;
      *
-     * @test_Strategy: create receiver with selector set msg header to include
-     * string send message check receipt of message
+     * @test_Strategy: create receiver with selector set msg header to include string send message check receipt of message
      */
     public void selectorTest01() throws Fault {
         try {
@@ -283,8 +280,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:56; JMS:SPEC:49; JMS:SPEC:43;
      *
-     * @test_Strategy: create receiver with selector send message with identifiers
-     * including '_' and '$' check receipt of message
+     * @test_Strategy: create receiver with selector send message with identifiers including '_' and '$' check receipt of
+     * message
      */
     public void identifierTest01() throws Fault {
         try {
@@ -306,8 +303,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:53;
      *
-     * @test_Strategy: create receiver with selector containing extra spaces send
-     * message with header set check receipt of message
+     * @test_Strategy: create receiver with selector containing extra spaces send message with header set check receipt of
+     * message
      */
     public void whitespaceTest1() throws Fault {
         try {
@@ -327,8 +324,7 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:54;
      *
-     * @test_Strategy: create receiver with selector send message with TRUE
-     * boolean property check receipt of message
+     * @test_Strategy: create receiver with selector send message with TRUE boolean property check receipt of message
      */
     public void expressionTest1() throws Fault {
         try {
@@ -349,8 +345,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:57;
      *
-     * @test_Strategy: create receiver with selector that should evaluate to FALSE
-     * send message check that message is not received
+     * @test_Strategy: create receiver with selector that should evaluate to FALSE send message check that message is not
+     * received
      */
     public void bracketingTest1() throws Fault {
         try {
@@ -375,8 +371,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:59;
      *
-     * @test_Strategy: create receiver with selector containing operators send
-     * message with properties matching selector check receipt of message
+     * @test_Strategy: create receiver with selector containing operators send message with properties matching selector
+     * check receipt of message
      */
     public void comparisonTest01() throws Fault {
         try {
@@ -406,8 +402,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:62;
      *
-     * @test_Strategy: create receiver with selector containing +,- send message
-     * with numeric properties check receipt of message
+     * @test_Strategy: create receiver with selector containing +,- send message with numeric properties check receipt of
+     * message
      */
     public void operatorTest1() throws Fault {
         try {
@@ -429,13 +425,12 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:64;
      *
-     * @test_Strategy: create receiver with selector containing BETWEEN send
-     * message matching selector check receipt of message
+     * @test_Strategy: create receiver with selector containing BETWEEN send message matching selector check receipt of
+     * message
      */
     public void betweenTest1() throws Fault {
         try {
-            String selector =
-                    "myProp0 BETWEEN 5 and 10 AND " + "myProp1 BETWEEN -1 and 1 AND " + "myProp2 BETWEEN 0 and 2";
+            String selector = "myProp0 BETWEEN 5 and 10 AND " + "myProp1 BETWEEN -1 and 1 AND " + "myProp2 BETWEEN 0 and 2";
             String value = ""; // set for JMSType automatically
 
             startTest(selector, value);
@@ -454,8 +449,7 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:65;
      *
-     * @test_Strategy: create receiver with selector containing IN send message
-     * matching selector check receipt of message
+     * @test_Strategy: create receiver with selector containing IN send message matching selector check receipt of message
      */
     public void inTest1() throws Fault {
         try {
@@ -475,8 +469,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:66;
      *
-     * @test_Strategy: create receiver with message selector containing LIKE send
-     * message matching selector check receipt of message
+     * @test_Strategy: create receiver with message selector containing LIKE send message matching selector check receipt of
+     * message
      */
     public void likeTest01() throws Fault {
         try {
@@ -496,8 +490,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:67;
      *
-     * @test_Strategy: create receiver with message selector containing IS NULL
-     * selector references unknown property send message check receipt of message
+     * @test_Strategy: create receiver with message selector containing IS NULL selector references unknown property send
+     * message check receipt of message
      */
     public void isNullTest1() throws Fault {
         try {
@@ -517,9 +511,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:247;
      *
-     * @test_Strategy: create receiver with message selector selector contains
-     * lower case versions of selector operators send message matching selector
-     * check receipt of message
+     * @test_Strategy: create receiver with message selector selector contains lower case versions of selector operators
+     * send message matching selector check receipt of message
      */
     public void caseTest1() throws Fault {
         try {
@@ -546,9 +539,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:58;
      *
-     * @test_Strategy: create receiver with message selector containing AND and OR
-     * send message not matching selector check that message is not received !F&F
-     * = (!F)&F = T&F = F incorrect order would be !F&F -> !(F&F) = !F = T
+     * @test_Strategy: create receiver with message selector containing AND and OR send message not matching selector check
+     * that message is not received !F&F = (!F)&F = T&F = F incorrect order would be !F&F -> !(F&F) = !F = T
      */
     public void precedenceTest1() throws Fault {
         try {
@@ -573,8 +565,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:49; JMS:SPEC:60;
      *
-     * @test_Strategy: create receiver with selector referencing unknown property
-     * send message check that message is not received
+     * @test_Strategy: create receiver with selector referencing unknown property send message check that message is not
+     * received
      */
     public void nullTest01() throws Fault {
         try {
@@ -596,8 +588,7 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:37;
      *
-     * @test_Strategy: create receiver with null selector. check receipt of
-     * message
+     * @test_Strategy: create receiver with null selector. check receipt of message
      */
     public void nullTest11() throws Fault {
         try {
@@ -617,8 +608,7 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:37;
      *
-     * @test_Strategy: create receiver with empty selector. check receipt of
-     * message
+     * @test_Strategy: create receiver with empty selector. check receipt of message
      */
     public void emptyTest() throws Fault {
         try {
@@ -638,21 +628,17 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:37;
      *
-     * @test_Strategy: The javadoc documents the messageSelector parameter as
-     * follows: A value of null or an empty string indicates that there is no
-     * message selector for the message consumer.
+     * @test_Strategy: The javadoc documents the messageSelector parameter as follows: A value of null or an empty string
+     * indicates that there is no message selector for the message consumer.
      *
      * Test Case: Test with messageSelector = empty string.
      *
-     * 1) Lookup durable connection factory (clientid set), topic, and create a
-     * durable subscription with an empty string message selector for that topic
-     * then close the connection. 2) Lookup non durable connection factory (no
-     * clientid set), topic, send a TextMessage, then close the connection. 3)
-     * Lookup durable connection factory (clientid set), topic and reactivate the
-     * durable subscription created in step 1 above but this time not specifying a
-     * message selector. Try and receive the message that was sent in step 2. The
-     * message should be received. If message received then test passes. If no
-     * message recevied then test failed.
+     * 1) Lookup durable connection factory (clientid set), topic, and create a durable subscription with an empty string
+     * message selector for that topic then close the connection. 2) Lookup non durable connection factory (no clientid
+     * set), topic, send a TextMessage, then close the connection. 3) Lookup durable connection factory (clientid set),
+     * topic and reactivate the durable subscription created in step 1 above but this time not specifying a message
+     * selector. Try and receive the message that was sent in step 2. The message should be received. If message received
+     * then test passes. If no message recevied then test failed.
      *
      */
     public void durableTopicEmptyStringSelTest() throws Fault {
@@ -745,7 +731,8 @@ public class MsgSelectorTopicTests extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("durableTopicEmptyStringSelTest failed");
+        if (!pass)
+            throw new Fault("durableTopicEmptyStringSelTest failed");
     }
 
     /*
@@ -753,21 +740,17 @@ public class MsgSelectorTopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:36; JMS:SPEC:37;
      *
-     * @test_Strategy: The javadoc documents the messageSelector parameter as
-     * follows: A value of null or an empty string indicates that there is no
-     * message selector for the message consumer.
+     * @test_Strategy: The javadoc documents the messageSelector parameter as follows: A value of null or an empty string
+     * indicates that there is no message selector for the message consumer.
      *
      * Test Case: Test with messageSelector = null.
      *
-     * 1) Lookup durable connection factory (clientid set), topic, and create a
-     * durable subscription with an empty string message selector for that topic
-     * then close the connection. 2) Lookup non durable connection factory (no
-     * clientid set), topic, send a TextMessage, then close the connection. 3)
-     * Lookup durable connection factory (clientid set), topic and reactivate the
-     * durable subscription created in step 1 above but this time not specifying a
-     * message selector. Try and receive the message that was sent in step 2. The
-     * message should be received. If message received then test passes. If no
-     * message recevied then test failed.
+     * 1) Lookup durable connection factory (clientid set), topic, and create a durable subscription with an empty string
+     * message selector for that topic then close the connection. 2) Lookup non durable connection factory (no clientid
+     * set), topic, send a TextMessage, then close the connection. 3) Lookup durable connection factory (clientid set),
+     * topic and reactivate the durable subscription created in step 1 above but this time not specifying a message
+     * selector. Try and receive the message that was sent in step 2. The message should be received. If message received
+     * then test passes. If no message recevied then test failed.
      *
      */
     public void durableTopicNullSelTest() throws Fault {
@@ -858,6 +841,7 @@ public class MsgSelectorTopicTests extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("durableTopicNullSelTest failed");
+        if (!pass)
+            throw new Fault("durableTopicNullSelTest failed");
     }
 } // The End......

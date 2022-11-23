@@ -45,9 +45,8 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The callStmtClient19 class tests methods of CallableStatement interface (to
- * check the Support for IN, OUT and INOUT parameters of Stored Procedure) using
- * Sun's J2EE Reference Implementation.
+ * The callStmtClient19 class tests methods of CallableStatement interface (to check the Support for IN, OUT and INOUT
+ * parameters of Stored Procedure) using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -89,14 +88,11 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -104,7 +100,8 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
 
                 if (drManager.equals("yes")) {
@@ -118,9 +115,8 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
                 }
                 rsSch = new rsSchema();
                 stmt = conn.createStatement(/*
-                                     * ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                     * ResultSet.CONCUR_READ_ONLY
-                                     */ );
+                                             * ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY
+                                             */ );
                 dbmd = conn.getMetaData();
                 msg = new JDBCTestMsg();
             } catch (SQLException ex) {
@@ -135,14 +131,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject221
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set Date object for SQL
-     * Type Date and call statement.executeQuery method and call getObject method
-     * of ResultSet. It should return a String object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set Date object for SQL Type Date and call
+     * statement.executeQuery method and call getObject method of ResultSet. It should return a String object that is been
+     * set.
      *
      */
     public void testSetObject221() throws Fault {
@@ -209,14 +203,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject223
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set Time object for SQL
-     * Type Char and call statement.executeQuery method and call getObject method
-     * of ResultSet. It should return a String object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set Time object for SQL Type Char and call
+     * statement.executeQuery method and call getObject method of ResultSet. It should return a String object that is been
+     * set.
      *
      */
     public void testSetObject223() throws Fault {
@@ -284,14 +276,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject224
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set Time object for SQL
-     * Type Varchar and call statement.executeQuery method and call getObject
-     * method of ResultSet. It should return a String object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set Time object for SQL Type Varchar and call
+     * statement.executeQuery method and call getObject method of ResultSet. It should return a String object that is been
+     * set.
      *
      */
     public void testSetObject224() throws Fault {
@@ -359,14 +349,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject225
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set Time object for SQL
-     * Type Longvarchar and call statement.executeQuery method and call getObject
-     * method of ResultSet. It should return a String object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set Time object for SQL Type Longvarchar and
+     * call statement.executeQuery method and call getObject method of ResultSet. It should return a String object that is
+     * been set.
      *
      */
     public void testSetObject225() throws Fault {
@@ -434,14 +422,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject226
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set Time object for SQL
-     * Type Time and call statement.executeQuery method and call getObject method
-     * of ResultSet. It should return a String object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set Time object for SQL Type Time and call
+     * statement.executeQuery method and call getObject method of ResultSet. It should return a String object that is been
+     * set.
      *
      */
     public void testSetObject226() throws Fault {
@@ -508,14 +494,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject227
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set Timestamp object for
-     * SQL Type Char and call statement.executeQuery method and call getObject
-     * method of ResultSet. It should return a String object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set Timestamp object for SQL Type Char and
+     * call statement.executeQuery method and call getObject method of ResultSet. It should return a String object that is
+     * been set.
      *
      */
     public void testSetObject227() throws Fault {
@@ -582,14 +566,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject228
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set Timestamp object for
-     * SQL Type Varchar and call statement.executeQuery method and call getObject
-     * method of ResultSet. It should return a String object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set Timestamp object for SQL Type Varchar and
+     * call statement.executeQuery method and call getObject method of ResultSet. It should return a String object that is
+     * been set.
      *
      */
     public void testSetObject228() throws Fault {
@@ -657,15 +639,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject229
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set Timestamp object for
-     * SQL Type Longvarchar and call statement.executeQuery method and call
-     * getObject method of ResultSet. It should return a String object that is
-     * been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set Timestamp object for SQL Type Longvarchar
+     * and call statement.executeQuery method and call getObject method of ResultSet. It should return a String object that
+     * is been set.
      *
      */
     public void testSetObject229() throws Fault {
@@ -734,14 +713,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject231
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set Timestamp object for
-     * SQL Type Time and call statement.executeQuery method and call getObject
-     * method of ResultSet. It should return a String object that is been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set Timestamp object for SQL Type Time and
+     * call statement.executeQuery method and call getObject method of ResultSet. It should return a String object that is
+     * been set.
      *
      */
     public void testSetObject231() throws Fault {
@@ -814,15 +791,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetObject232
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694;
-     * JDBC:JAVADOC:695; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:694; JDBC:JAVADOC:695; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setObject(int
-     * parameterIndex, Object x,int jdbcType) method to set Timestamp object for
-     * SQL Type Timestamp and call statement.executeQuery method and call
-     * getObject method of ResultSet. It should return a String object that is
-     * been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setObject(int parameterIndex, Object x,int jdbcType) method to set Timestamp object for SQL Type Timestamp
+     * and call statement.executeQuery method and call getObject method of ResultSet. It should return a String object that
+     * is been set.
      *
      */
     public void testSetObject232() throws Fault {
@@ -887,16 +861,13 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1237;
-     * JDBC:JAVADOC:1238; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1237; JDBC:JAVADOC:1238; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setBigDecimal(int
-     * parameterIndex, int jdbcType) method to set maximum BigDecimal value in
-     * null column and call registerOutParameter(int parameterIndex,int jdbcType,
-     * int scale) method and call getBigDecimal method. It should return a
-     * BigDecimal object that is been set. (Note: This test case also checks the
-     * support for INOUT parameter in Stored Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setBigDecimal(int parameterIndex, int jdbcType) method to set maximum BigDecimal value in null column and
+     * call registerOutParameter(int parameterIndex,int jdbcType, int scale) method and call getBigDecimal method. It should
+     * return a BigDecimal object that is been set. (Note: This test case also checks the support for INOUT parameter in
+     * Stored Procedure)
      *
      */
     public void testRegisterOutParameter01() throws Fault {
@@ -921,7 +892,8 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
             BigDecimal oRetVal = cstmt.getBigDecimal(1);
 
             msg.addOutputMsg("" + maxDecimalVal, "" + oRetVal);
-            if ((maxDecimalVal.compareTo(oRetVal) == 0)) msg.setMsg("registerOutParameter registers the OUT parameter");
+            if ((maxDecimalVal.compareTo(oRetVal) == 0))
+                msg.setMsg("registerOutParameter registers the OUT parameter");
             else {
                 msg.printTestError(
                         "registerOutParameter does not register the OUT parameter", "test registerOutParameter Failed");
@@ -949,16 +921,13 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1237;
-     * JDBC:JAVADOC:1238; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1237; JDBC:JAVADOC:1238; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setBigDecimal(int
-     * parameterIndex, int jdbcType) method to set minimum BigDecimal value in
-     * maximum value column and call registerOutParameter(int parameterIndex,int
-     * jdbcType,int scale) method and call getBigDecimal method. It should return
-     * a BigDecimal object that is been set. (Note: This test case also checks the
-     * support for INOUT parameter in Stored Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setBigDecimal(int parameterIndex, int jdbcType) method to set minimum BigDecimal value in maximum value
+     * column and call registerOutParameter(int parameterIndex,int jdbcType,int scale) method and call getBigDecimal method.
+     * It should return a BigDecimal object that is been set. (Note: This test case also checks the support for INOUT
+     * parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter02() throws Fault {
@@ -983,7 +952,8 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
             BigDecimal oRetVal = cstmt.getBigDecimal(1);
 
             msg.addOutputMsg("" + minDecimalVal, "" + oRetVal);
-            if ((minDecimalVal.compareTo(oRetVal) == 0)) msg.setMsg("registerOutParameter registers the OUT parameter");
+            if ((minDecimalVal.compareTo(oRetVal) == 0))
+                msg.setMsg("registerOutParameter registers the OUT parameter");
             else {
                 msg.printTestError(
                         "registerOutParameter does not register the OUT parameter", "test registerOutParameter Failed");
@@ -1011,16 +981,13 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1237;
-     * JDBC:JAVADOC:1238; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1237; JDBC:JAVADOC:1238; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setBigDecimal(int
-     * parameterIndex, int jdbcType) method to set maximum Decimal value in null
-     * column and call registerOutParameter(int parameterIndex,int jdbcType, int
-     * scale) method and call getBigDecimal method. It should return a BigDecimal
-     * object that is been set. (Note: This test case also checks the support for
-     * INOUT parameter in Stored Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setBigDecimal(int parameterIndex, int jdbcType) method to set maximum Decimal value in null column and call
+     * registerOutParameter(int parameterIndex,int jdbcType, int scale) method and call getBigDecimal method. It should
+     * return a BigDecimal object that is been set. (Note: This test case also checks the support for INOUT parameter in
+     * Stored Procedure)
      *
      */
     public void testRegisterOutParameter03() throws Fault {
@@ -1046,7 +1013,8 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
             oRetVal = cstmt.getBigDecimal(1);
 
             msg.addOutputMsg("" + maxDecimalVal, "" + oRetVal);
-            if ((maxDecimalVal.compareTo(oRetVal) == 0)) msg.setMsg("registerOutParameter registers the OUT parameter");
+            if ((maxDecimalVal.compareTo(oRetVal) == 0))
+                msg.setMsg("registerOutParameter registers the OUT parameter");
             else {
                 msg.printTestError(
                         "registerOutParameter does not register the OUT parameter", "test registerOutParameter Failed");
@@ -1074,16 +1042,13 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1237;
-     * JDBC:JAVADOC:1238; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1237; JDBC:JAVADOC:1238; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setBigDecimal(int
-     * parameterIndex, int jdbcType) method to set minimum Decimal value in
-     * maximum value column in Decimal table and call registerOutParameter(int
-     * parameterIndex,int jdbcType,int scale) method and call getBigDecimal
-     * method. It should return a BigDecimal object that is been set. (Note: This
-     * test case also checks the support for INOUT parameter in Stored Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setBigDecimal(int parameterIndex, int jdbcType) method to set minimum Decimal value in maximum value column
+     * in Decimal table and call registerOutParameter(int parameterIndex,int jdbcType,int scale) method and call
+     * getBigDecimal method. It should return a BigDecimal object that is been set. (Note: This test case also checks the
+     * support for INOUT parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter04() throws Fault {
@@ -1109,7 +1074,8 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
             oRetVal = cstmt.getBigDecimal(1);
 
             msg.addOutputMsg("" + minDecimalVal, "" + oRetVal);
-            if ((minDecimalVal.compareTo(oRetVal) == 0)) msg.setMsg("registerOutParameter registers the OUT parameter");
+            if ((minDecimalVal.compareTo(oRetVal) == 0))
+                msg.setMsg("registerOutParameter registers the OUT parameter");
             else {
                 msg.printTestError(
                         "registerOutParameter does not register the OUT parameter", "test registerOutParameter Failed");
@@ -1138,16 +1104,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter05
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-     * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235; JDBC:JAVADOC:1236; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setDouble(int
-     * parameterIndex, int jdbcType) method to set maximum Double value in null
-     * column and call registerOutParameter(int parameterIndex,int jdbcType)
-     * method and call getDouble method. It should return a double value that is
-     * been set. (Note: This test case also checks the support for INOUT parameter
-     * in Stored Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setDouble(int parameterIndex, int jdbcType) method to set maximum Double value in null column and call
+     * registerOutParameter(int parameterIndex,int jdbcType) method and call getDouble method. It should return a double
+     * value that is been set. (Note: This test case also checks the support for INOUT parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter05() throws Fault {
@@ -1171,7 +1133,8 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
             double oRetVal = cstmt.getDouble(1);
 
             msg.addOutputMsg("" + maxDoubleVal, "" + oRetVal);
-            if (maxDoubleVal == oRetVal) msg.setMsg("registerOutParameter registers the OUT parameter");
+            if (maxDoubleVal == oRetVal)
+                msg.setMsg("registerOutParameter registers the OUT parameter");
             else {
                 msg.printTestError(
                         "registerOutParameter does not register the OUT parameter", "test registerOutParameter Failed");
@@ -1200,16 +1163,13 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter06
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-     * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235; JDBC:JAVADOC:1236; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setDouble(int
-     * parameterIndex, int jdbcType) method to set minimum double value in maximum
-     * value column in Double table and call registerOutParameter(int
-     * parameterIndex,int jdbcType) method and call getDouble method. It should
-     * return a double value that is been set. (Note: This test case also checks
-     * the support for INOUT parameter in Stored Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setDouble(int parameterIndex, int jdbcType) method to set minimum double value in maximum value column in
+     * Double table and call registerOutParameter(int parameterIndex,int jdbcType) method and call getDouble method. It
+     * should return a double value that is been set. (Note: This test case also checks the support for INOUT parameter in
+     * Stored Procedure)
      *
      */
     public void testRegisterOutParameter06() throws Fault {
@@ -1231,7 +1191,8 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
             double oRetVal = cstmt.getDouble(1);
 
             msg.addOutputMsg("" + minDoubleVal, "" + oRetVal);
-            if (minDoubleVal == oRetVal) msg.setMsg("registerOutParameter registers the OUT parameter");
+            if (minDoubleVal == oRetVal)
+                msg.setMsg("registerOutParameter registers the OUT parameter");
             else {
                 msg.printTestError(
                         "registerOutParameter does not register the OUT parameter", "test registerOutParameter Failed");
@@ -1260,15 +1221,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter07
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-     * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235; JDBC:JAVADOC:1236; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setDouble(int
-     * parameterIndex, int jdbcType) method to set maximum Float value in null
-     * column and call registerOutParameter method and call getDouble method. It
-     * should return a double value that is been set. (Note: This test case also
-     * checks the support for INOUT parameter in Stored Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setDouble(int parameterIndex, int jdbcType) method to set maximum Float value in null column and call
+     * registerOutParameter method and call getDouble method. It should return a double value that is been set. (Note: This
+     * test case also checks the support for INOUT parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter07() throws Fault {
@@ -1291,7 +1249,8 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
             double oRetVal = cstmt.getDouble(1);
 
             msg.addOutputMsg("" + maxFloatVal, "" + oRetVal);
-            if (maxFloatVal == oRetVal) msg.setMsg("registerOutParameter registers the OUT parameter");
+            if (maxFloatVal == oRetVal)
+                msg.setMsg("registerOutParameter registers the OUT parameter");
             else {
                 msg.printTestError(
                         "registerOutParameter does not register the OUT parameter", "test registerOutParameter Failed");
@@ -1320,16 +1279,12 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
     /*
      * @testName: testRegisterOutParameter08
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235;
-     * JDBC:JAVADOC:1236; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1235; JDBC:JAVADOC:1236; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. execute the stored procedure and call the setDouble() method to
-     * set minimum float value in maximum value column in Float table and call
-     * registerOutParameter(int parameterIndex,int jdbcType) method and call
-     * getDouble method. It should return a double value that is been set. (Note:
-     * This test case also checks the support for INOUT parameter in Stored
-     * Procedure)
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. execute the stored procedure and
+     * call the setDouble() method to set minimum float value in maximum value column in Float table and call
+     * registerOutParameter(int parameterIndex,int jdbcType) method and call getDouble method. It should return a double
+     * value that is been set. (Note: This test case also checks the support for INOUT parameter in Stored Procedure)
      *
      */
     public void testRegisterOutParameter08() throws Fault {
@@ -1352,7 +1307,8 @@ public class callStmtClient19 extends ServiceEETest implements Serializable {
             double oRetVal = cstmt.getDouble(1);
 
             msg.addOutputMsg("" + minFloatVal, "" + oRetVal);
-            if (minFloatVal == oRetVal) msg.setMsg("registerOutParameter registers the OUT parameter");
+            if (minFloatVal == oRetVal)
+                msg.setMsg("registerOutParameter registers the OUT parameter");
             else {
                 msg.printTestError(
                         "registerOutParameter does not register the OUT parameter", "test registerOutParameter Failed");

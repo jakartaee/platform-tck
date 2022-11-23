@@ -45,11 +45,11 @@ import org.w3c.dom.NodeList;
  * <p/>
  * 1) Fetches log records from JPALog.txt
  * <p/>
- * 2) Checks for the existance of search string in the log for example to verify
- * whether server log contains a string "Java EE rocks" use the following code
+ * 2) Checks for the existance of search string in the log for example to verify whether server log contains a string
+ * "Java EE rocks" use the following code
  * <p/>
- * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean
- * contains = logProcessor.verifyLogContains("Java EE rocks");
+ * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean contains =
+ * logProcessor.verifyLogContains("Java EE rocks");
  * <p/>
  * where "properties" contains the following key value pair 1) log.file.location
  * <p/>
@@ -96,7 +96,7 @@ public class LogFileProcessor {
         TestUtil.logTrace("Searching for current Sequence Number");
         if (recordCollection != null) {
             TestUtil.logTrace("Record collection has:  " + recordCollection.size() + " records.");
-            for (Iterator iterator = recordCollection.iterator(); iterator.hasNext(); ) {
+            for (Iterator iterator = recordCollection.iterator(); iterator.hasNext();) {
                 // loop thru all message tag/entries in the log file searching for last
                 // sequence number
                 recordEntry = (LogRecordEntry) iterator.next();
@@ -116,7 +116,8 @@ public class LogFileProcessor {
     public void purgeLog() {
         File logfile = null;
         try {
-            if (logFileLocation != null) logfile = new File(logFileLocation);
+            if (logFileLocation != null)
+                logfile = new File(logFileLocation);
 
             if (logFileLocation == null || !logfile.exists()) {
                 TestUtil.logErr("Log File : " + logFileLocation + " does not exists");
@@ -143,7 +144,8 @@ public class LogFileProcessor {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
-            if (logFileLocation != null) logfile = new File(logFileLocation);
+            if (logFileLocation != null)
+                logfile = new File(logFileLocation);
 
             if (logFileLocation == null || !logfile.exists()) {
                 TestUtil.logErr("Log File : " + logFileLocation + " does not exists");
@@ -232,11 +234,11 @@ public class LogFileProcessor {
     }
 
     /**
-     * Checks for the existance of search string in the log. For example to verify
-     * whether server log contains a string "Java EE rocks" use the following code
+     * Checks for the existance of search string in the log. For example to verify whether server log contains a string
+     * "Java EE rocks" use the following code
      * <p/>
-     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean
-     * contains = logProcessor.verifyLogContains("Java EE rocks");
+     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean contains =
+     * logProcessor.verifyLogContains("Java EE rocks");
      * <p/>
      * where "properties" contains the key value pair for 1) log.file.location
      */
@@ -245,17 +247,16 @@ public class LogFileProcessor {
     }
 
     /**
-     * Checks for the existance of search string in the log. For example to verify
-     * whether server log contains a string "Java EE rocks" use the following code
+     * Checks for the existance of search string in the log. For example to verify whether server log contains a string
+     * "Java EE rocks" use the following code
      * <p/>
-     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean
-     * contains = logProcessor.verifyLogContains("Java EE rocks");
+     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean contains =
+     * logProcessor.verifyLogContains("Java EE rocks");
      * <p/>
      * where "properties" contains the key value pair for 1) log.file.location
      * <p/>
-     * This method takes a sequence number which is used to find the place in the
-     * log to start search from, 0 being the top of the file and another value to
-     * start from that location.
+     * This method takes a sequence number which is used to find the place in the log to start search from, 0 being the top
+     * of the file and another value to start from that location.
      */
     public boolean verifyLogContains(String args[], long sequenceNum) {
         LogRecordEntry recordEntry = null;
@@ -292,7 +293,7 @@ public class LogFileProcessor {
             //
         }
 
-        for (Iterator iterator = recordCollection.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = recordCollection.iterator(); iterator.hasNext();) {
 
             // loop thru all message tag/entries in the log file
             recordEntry = (LogRecordEntry) iterator.next();
@@ -325,7 +326,8 @@ public class LogFileProcessor {
 
                 // Return true if, we found matches for all strings
                 // in the given string array
-                if (numberOfMatches == numberOfArgs) return true;
+                if (numberOfMatches == numberOfArgs)
+                    return true;
             } else {
                 // TestUtil.logTrace("bypassing record sequence number too low,
                 // min:"+sequenceNum+", actual:"+seqNum);
@@ -344,17 +346,14 @@ public class LogFileProcessor {
     }
 
     /**
-     * Checks for the existance of one of the search string(from a given String
-     * array.
+     * Checks for the existance of one of the search string(from a given String array.
      * <p/>
-     * For example to verify whether server log contains one of the following
-     * String String[] arr ={"aaa", "bbb", "ccc"};
+     * For example to verify whether server log contains one of the following String String[] arr ={"aaa", "bbb", "ccc"};
      * <p/>
-     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean
-     * contains = logProcessor.verifyLogContainsOneOf(arr);
+     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean contains =
+     * logProcessor.verifyLogContainsOneOf(arr);
      * <p/>
-     * This method will return true if the log file contains one of the specified
-     * String (say "aaa" )
+     * This method will return true if the log file contains one of the specified String (say "aaa" )
      * <p/>
      * where "properties" contains the key value pair for 1) log.file.location
      */
@@ -376,8 +375,7 @@ public class LogFileProcessor {
         int numberOfArgs = args.length;
 
         Iterator iterator = recordCollection.iterator();
-        searchLabel:
-        while (iterator.hasNext()) {
+        searchLabel: while (iterator.hasNext()) {
             // loop thru all message tag/entries in the log file
             recordEntry = (LogRecordEntry) iterator.next();
             String message = recordEntry.getMessage();
@@ -409,26 +407,22 @@ public class LogFileProcessor {
     }
 
     /**
-     * This method looks for the presence of the given substring (from the array
-     * of strings "args") in the serverlog, which starts with the given
-     * "srchStrPrefix" search-string-prefix.
+     * This method looks for the presence of the given substring (from the array of strings "args") in the serverlog, which
+     * starts with the given "srchStrPrefix" search-string-prefix.
      * <p/>
      * <p/>
-     * For example to verify whether server log contains one of the following
-     * Strings in a server log with appContextId as the message prefix we can
-     * issue the following command
+     * For example to verify whether server log contains one of the following Strings in a server log with appContextId as
+     * the message prefix we can issue the following command
      * <p/>
      * String[] arr ={"aaa", "bbb", "ccc"}; String srchStrPrefix ="appContextId";
      * <p/>
-     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean
-     * contains = logProcessor.verifyLogContainsOneOf(arr);
+     * LogFileProcessor logProcessor = new LogFileProcessor(properties); boolean contains =
+     * logProcessor.verifyLogContainsOneOf(arr);
      * <p/>
-     * "appContextId= xxxx aaa yyyyyyyyyyyyyyyyy" "appContextId= yyyy bbb
-     * xxxxxxxxxxxxxxxxx"
+     * "appContextId= xxxx aaa yyyyyyyyyyyyyyyyy" "appContextId= yyyy bbb xxxxxxxxxxxxxxxxx"
      * <p/>
-     * This method will return true if the log file contains one of the specified
-     * String (say "aaa" ) in the message log with "appContextId" as its message
-     * prefix.
+     * This method will return true if the log file contains one of the specified String (say "aaa" ) in the message log
+     * with "appContextId" as its message prefix.
      * <p/>
      * where "properties" contains the key value pair for 1) log.file.location
      */
@@ -447,8 +441,7 @@ public class LogFileProcessor {
         int numberOfArgs = args.length;
 
         Iterator iterator = recordCollection.iterator();
-        searchLabel:
-        while (iterator.hasNext()) {
+        searchLabel: while (iterator.hasNext()) {
             // loop thru all message tag/entries in the log file
             recordEntry = (LogRecordEntry) iterator.next();
             String message = recordEntry.getMessage();
@@ -495,10 +488,14 @@ public class LogFileProcessor {
         TestUtil.logTrace("Milli Seconds  =" + rec.getMilliSeconds());
         TestUtil.logTrace("Seqence no  =" + rec.getSequenceNumber());
         TestUtil.logTrace("Message     =" + rec.getMessage());
-        if (rec.getClassName() != null) TestUtil.logTrace("Class name  =" + rec.getClassName());
-        if (rec.getMethodName() != null) TestUtil.logTrace("Method name =" + rec.getMethodName());
-        if (rec.getLevel() != null) TestUtil.logTrace("Level        =" + rec.getLevel());
-        if (rec.getThrown() != null) TestUtil.logTrace("Thrown       =" + rec.getThrown());
+        if (rec.getClassName() != null)
+            TestUtil.logTrace("Class name  =" + rec.getClassName());
+        if (rec.getMethodName() != null)
+            TestUtil.logTrace("Method name =" + rec.getMethodName());
+        if (rec.getLevel() != null)
+            TestUtil.logTrace("Level        =" + rec.getLevel());
+        if (rec.getThrown() != null)
+            TestUtil.logTrace("Thrown       =" + rec.getThrown());
         TestUtil.logTrace("");
     }
 
@@ -511,13 +508,16 @@ public class LogFileProcessor {
         strtok = new StringTokenizer(ContextId, DELIMETER);
         if (ContextId.indexOf(DELIMETER) > 0) {
             qstring = strtok.nextToken();
-            if (strtok.hasMoreTokens()) qparams = strtok.nextToken();
+            if (strtok.hasMoreTokens())
+                qparams = strtok.nextToken();
         }
 
         // return query string or query params based on the content
         // of the string str
-        if (str.equals("LogQueryString")) return qstring;
-        else return qparams;
+        if (str.equals("LogQueryString"))
+            return qstring;
+        else
+            return qparams;
     }
 
     // This method tokenize the given string and

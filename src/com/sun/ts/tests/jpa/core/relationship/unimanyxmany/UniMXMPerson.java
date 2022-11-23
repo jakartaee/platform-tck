@@ -32,7 +32,8 @@ import java.util.Collection;
 @Entity
 public class UniMXMPerson implements Serializable {
 
-    public UniMXMPerson() {}
+    public UniMXMPerson() {
+    }
 
     public UniMXMPerson(Long id, String name) {
         this.id = id;
@@ -47,10 +48,7 @@ public class UniMXMPerson implements Serializable {
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "UNIMXMPERSON_UNIMXMPROJECT",
-            joinColumns = @JoinColumn(name = "UniMXMPerson_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "UniMXMProject_ID", referencedColumnName = "ID"))
+    @JoinTable(name = "UNIMXMPERSON_UNIMXMPROJECT", joinColumns = @JoinColumn(name = "UniMXMPerson_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "UniMXMProject_ID", referencedColumnName = "ID"))
     private Collection<UniMXMProject> projects;
 
     public Collection<UniMXMProject> getProjects() {

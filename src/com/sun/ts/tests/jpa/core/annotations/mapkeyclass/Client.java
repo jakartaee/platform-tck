@@ -29,7 +29,8 @@ public class Client extends PMClientBase {
 
     private Map<Course, Semester> student2EnrollmentMap;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -52,19 +53,14 @@ public class Client extends PMClientBase {
     /*
      * @testName: mapKeyClass
      *
-     * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-     * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
-     * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
-     * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
-     * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
-     * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
-     * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
-     * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
-     * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
-     * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
-     * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
-     * PERSISTENCE:SPEC:846; PERSISTENCE:SPEC:1204; PERSISTENCE:JAVADOC:350;
-     * PERSISTENCE:JAVADOC:370;
+     * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501; PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504;
+     * PERSISTENCE:SPEC:505; PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508; PERSISTENCE:SPEC:932;
+     * PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939; PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
+     * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020; PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023;
+     * PERSISTENCE:SPEC:1025; PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908; PERSISTENCE:SPEC:909;
+     * PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925; PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
+     * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163; PERSISTENCE:SPEC:846;
+     * PERSISTENCE:SPEC:1204; PERSISTENCE:JAVADOC:350; PERSISTENCE:JAVADOC:370;
      *
      * @test_Strategy: With basic entity requirements, persist/remove an entity.
      */
@@ -83,7 +79,8 @@ public class Client extends PMClientBase {
             if (courses != null) {
                 if (courses.containsAll(student2EnrollmentMap.keySet())
                         && student2EnrollmentMap.keySet().containsAll(courses)
-                        && courses.size() == student2EnrollmentMap.keySet().size()) pass = true;
+                        && courses.size() == student2EnrollmentMap.keySet().size())
+                    pass = true;
             } else {
                 TestUtil.logErr("getCourses() returned null value");
             }

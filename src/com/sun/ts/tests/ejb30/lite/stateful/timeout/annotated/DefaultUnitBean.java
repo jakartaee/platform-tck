@@ -37,4 +37,5 @@ import java.util.concurrent.TimeUnit;
 @AccessTimeout(value = StatefulTimeoutIF.TIMEOUT_MINUTES, unit = TimeUnit.MINUTES)
 @Local(StatefulTimeoutIF.class)
 @LocalBean
-public class DefaultUnitBean extends StatefulTimeoutBeanBase {}
+public class DefaultUnitBean extends StatefulTimeoutBeanBase {
+}

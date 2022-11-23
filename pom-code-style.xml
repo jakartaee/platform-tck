@@ -3,6 +3,9 @@
   <groupId>jakartaee</groupId>
   <artifactId>tck</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <pluginManagement>
@@ -43,6 +46,25 @@
             </execution>
           </executions>
         </plugin>
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>2.21.0</version>
+          <configuration>
+            <includes>
+              <include>**/*.java</include>
+            </includes> 
+            <configFile>${project.basedir}/ee4j-eclipse-formatting.xml</configFile>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code</groupId>
+          <artifactId>impsort-maven-plugin</artifactId>
+          <version>1.4.1</version>
+          <configuration>
+            <removeUnused>true</removeUnused>
+          </configuration>
+         </plugin>
       </plugins>
     </pluginManagement>
   </build>

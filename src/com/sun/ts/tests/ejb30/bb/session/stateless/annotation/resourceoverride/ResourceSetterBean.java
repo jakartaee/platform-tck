@@ -39,7 +39,7 @@ import java.net.URL;
 import javax.sql.DataSource;
 
 @Stateless(name = "ResourceSetterBean")
-@Remote({ResourceIF.class})
+@Remote({ ResourceIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
@@ -67,9 +67,11 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
 
     private Queue queue;
 
-    public ResourceSetterBean() {}
+    public ResourceSetterBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
 
@@ -88,12 +90,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
         return dataSource;
     }
 
-    @Resource(
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION,
-            name = "dataSource",
-            type = Object.class)
+    @Resource(description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION, name = "dataSource", type = Object.class)
     private void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -108,11 +105,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
         return dataSource2;
     }
 
-    @Resource(
-            name = "myDataSource2",
-            type = DataSource.class,
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "myDataSource2", type = DataSource.class, shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private void setDataSource2(DataSource dataSource2) {
         this.dataSource2 = dataSource2;
     }
@@ -127,11 +120,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
         return mailSession;
     }
 
-    @Resource(
-            name = "mailSession",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "mailSession", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private void setMailSession(jakarta.mail.Session mailSession) {
         this.mailSession = mailSession;
     }
@@ -146,11 +135,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
         return url;
     }
 
-    @Resource(
-            name = "url",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "url", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private void setUrl(URL url) {
         this.url = url;
     }
@@ -165,11 +150,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
         return queueConnectionFactory;
     }
 
-    @Resource(
-            name = "queueConnectionFactory",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "queueConnectionFactory", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private void setQueueConnectionFactory(QueueConnectionFactory queueConnectionFactory) {
         this.queueConnectionFactory = queueConnectionFactory;
     }
@@ -184,11 +165,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
         return topicConnectionFactory;
     }
 
-    @Resource(
-            name = "topicConnectionFactory",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "topicConnectionFactory", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private void setTopicConnectionFactory(TopicConnectionFactory topicConnectionFactory) {
         this.topicConnectionFactory = topicConnectionFactory;
     }
@@ -203,11 +180,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
         return connectionFactoryT;
     }
 
-    @Resource(
-            name = "connectionFactoryT",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "connectionFactoryT", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private void setConnectionFactoryT(ConnectionFactory conn) {
         connectionFactoryT = conn;
     }
@@ -222,11 +195,7 @@ public class ResourceSetterBean extends ResourceBeanBase implements ResourceIF {
         return connectionFactoryQ;
     }
 
-    @Resource(
-            name = "connectionFactoryQ",
-            description = "<resource-ref>",
-            shareable = false,
-            authenticationType = AuthenticationType.APPLICATION)
+    @Resource(name = "connectionFactoryQ", description = "<resource-ref>", shareable = false, authenticationType = AuthenticationType.APPLICATION)
     private void setConnectionFactoryQ(ConnectionFactory conn) {
         connectionFactoryQ = conn;
     }

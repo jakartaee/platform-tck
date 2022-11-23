@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,12 +58,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: methodInfoTest
      *
-     * @assertion_ids: EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:87; EL:JAVADOC:88;
-     * EL:JAVADOC:89
+     * @assertion_ids: EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:87; EL:JAVADOC:88; EL:JAVADOC:89
      *
-     * @test_Strategy: Validate the behavior of MethodExpression and MethodInfo
-     * class methods: MethodExpression.getMethodInfo() MethodExpression.invoke()
-     * MethodInfo.getName() MethodInfo.getReturnType() MethodInfo.getParamTypes()
+     * @test_Strategy: Validate the behavior of MethodExpression and MethodInfo class methods:
+     * MethodExpression.getMethodInfo() MethodExpression.invoke() MethodInfo.getName() MethodInfo.getReturnType()
+     * MethodInfo.getParamTypes()
      */
     public void methodInfoTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "methodInfoTest");

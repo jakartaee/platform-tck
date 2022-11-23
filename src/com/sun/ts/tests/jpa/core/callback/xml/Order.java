@@ -39,7 +39,8 @@ public class Order extends CallbackStatusImpl implements java.io.Serializable, C
 
     private Collection<LineItem> lineItemsCollection = new java.util.ArrayList<LineItem>();
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(String id, double totalPrice) {
         this.id = id;

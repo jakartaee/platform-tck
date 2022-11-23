@@ -82,12 +82,10 @@ public class SimpleValues {
     public static final String OBJ_PATH = "/" + OBJ_NAME;
 
     /** JSON {@code JsonObject} value used in tests. */
-    public static final JsonObject OBJ_VALUE =
-            createSimpleObject(new String[] {"name", "age"}, new Object[] {"Sarah Connor", 32});
+    public static final JsonObject OBJ_VALUE = createSimpleObject(new String[] { "name", "age" }, new Object[] { "Sarah Connor", 32 });
 
     /** JSON {@code JsonObject} second value used in tests. */
-    public static final JsonObject OBJ_VALUE2 =
-            createSimpleObject(new String[] {"name", "age"}, new Object[] {"Kyle Reese", 35});
+    public static final JsonObject OBJ_VALUE2 = createSimpleObject(new String[] { "name", "age" }, new Object[] { "Kyle Reese", 35 });
 
     /** Name of JSON default value stored in simple object. */
     public static final String DEF_NAME = "name";
@@ -105,12 +103,10 @@ public class SimpleValues {
     public static final String DEF_OBJ_PATH = "/child";
 
     /** JSON default object stored in simple object. */
-    public static final JsonObject DEF_OBJ_VALUE =
-            createSimpleObject(new String[] {"name", "age"}, new Object[] {"John Connor", 6});
+    public static final JsonObject DEF_OBJ_VALUE = createSimpleObject(new String[] { "name", "age" }, new Object[] { "John Connor", 6 });
 
     /** JSON default object stored in simple object with name changed. */
-    public static final JsonObject DEF_OBJ_VALUE2 =
-            createSimpleObject(new String[] {"name", "age"}, new Object[] {"John Smith", 6});
+    public static final JsonObject DEF_OBJ_VALUE2 = createSimpleObject(new String[] { "name", "age" }, new Object[] { "John Smith", 6 });
 
     /** Value of JSON {@code String} array at index 0. */
     public static final String STR_VALUE_1 = "First value";
@@ -149,21 +145,19 @@ public class SimpleValues {
     public static final int INT_VALUE_5 = 5;
 
     /** Value of JSON {@code JsonObject} array at index 0. */
-    public static final JsonObject OBJ_VALUE_1 = createSimpleObject(new String[] {"first"}, new String[] {STR_VALUE_1});
+    public static final JsonObject OBJ_VALUE_1 = createSimpleObject(new String[] { "first" }, new String[] { STR_VALUE_1 });
 
     /** Value of JSON {@code JsonObject} array at index 1. */
-    public static final JsonObject OBJ_VALUE_2 =
-            createSimpleObject(new String[] {"second"}, new String[] {STR_VALUE_2});
+    public static final JsonObject OBJ_VALUE_2 = createSimpleObject(new String[] { "second" }, new String[] { STR_VALUE_2 });
 
     /** Value of JSON {@code JsonObject} array at index 2. */
-    public static final JsonObject OBJ_VALUE_3 = createSimpleObject(new String[] {"third"}, new String[] {STR_VALUE_3});
+    public static final JsonObject OBJ_VALUE_3 = createSimpleObject(new String[] { "third" }, new String[] { STR_VALUE_3 });
 
     /** Value of JSON {@code JsonObject} array at index 3. */
-    public static final JsonObject OBJ_VALUE_4 =
-            createSimpleObject(new String[] {"fourth"}, new String[] {STR_VALUE_4});
+    public static final JsonObject OBJ_VALUE_4 = createSimpleObject(new String[] { "fourth" }, new String[] { STR_VALUE_4 });
 
     /** Value of JSON {@code JsonObject} array at index 4. */
-    public static final JsonObject OBJ_VALUE_5 = createSimpleObject(new String[] {"fifth"}, new String[] {STR_VALUE_5});
+    public static final JsonObject OBJ_VALUE_5 = createSimpleObject(new String[] { "fifth" }, new String[] { STR_VALUE_5 });
 
     /** JSON {@code boolean} value: {@code true}. */
     public static final boolean BOOL_TRUE = true;
@@ -181,8 +175,7 @@ public class SimpleValues {
     public static final double DBL_VALUE = 0x1.f5c926b3a0942P+1014;
 
     /** JSON {@code BigDecimal} value used in tests. */
-    public static final BigDecimal BDC_VALUE =
-            new BigDecimal(new BigInteger("1234567890123456789012345678901234567890"), 10);
+    public static final BigDecimal BDC_VALUE = new BigDecimal(new BigInteger("1234567890123456789012345678901234567890"), 10);
 
     /** Message content: null String. */
     public static final String NULL = "null";
@@ -529,8 +522,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates compound JSON object after ADD DEF_OBJ_NAME,
-     * createSimpleStringArray5().
+     * Creates compound JSON object after ADD DEF_OBJ_NAME, createSimpleStringArray5().
      *
      * @return compound JSON object with ADD operation applied.
      */
@@ -542,14 +534,11 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON object with provided {@code name[i]} and
-     * {@code value[i]} pairs.
+     * Creates simple JSON object with provided {@code name[i]} and {@code value[i]} pairs.
      *
-     * @param names
-     *          Names of JSON values to be added. Pairs of {@code names[i]} and
-     *          {@code values[i]} are used for add operations.
-     * @param values
-     *          JSON values to be added for specified names.
+     * @param names Names of JSON values to be added. Pairs of {@code names[i]} and {@code values[i]} are used for add
+     * operations.
+     * @param values JSON values to be added for specified names.
      * @return Simple JSON object.
      */
     @SuppressWarnings("UnnecessaryUnboxing")
@@ -560,20 +549,20 @@ public class SimpleValues {
         JsonObjectBuilder builder = Json.createObjectBuilder();
         for (int i = 0; i < names.length; i++) {
             switch (JsonValueType.getType(values[i].getClass())) {
-                case String:
-                    builder = builder.add(names[i], (String) values[i]);
-                    break;
-                case Integer:
-                    builder = builder.add(names[i], ((Integer) values[i]).intValue());
-                    break;
-                case Boolean:
-                    builder = builder.add(names[i], ((Boolean) values[i]).booleanValue());
-                    break;
-                case JsonValue:
-                    builder = builder.add(names[i], (JsonValue) values[i]);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Value does not match known JSON value type");
+            case String:
+                builder = builder.add(names[i], (String) values[i]);
+                break;
+            case Integer:
+                builder = builder.add(names[i], ((Integer) values[i]).intValue());
+                break;
+            case Boolean:
+                builder = builder.add(names[i], ((Boolean) values[i]).booleanValue());
+                break;
+            case JsonValue:
+                builder = builder.add(names[i], (JsonValue) values[i]);
+                break;
+            default:
+                throw new IllegalArgumentException("Value does not match known JSON value type");
             }
         }
         return builder.build();
@@ -582,8 +571,7 @@ public class SimpleValues {
     /**
      * Creates simple JSON array with specified {@code String} values.
      *
-     * @param values
-     *          JSON array {@code String} values.
+     * @param values JSON array {@code String} values.
      * @return Newly created JSON array.
      */
     public static JsonArray createStringArray(final String... values) {
@@ -606,33 +594,27 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array after ADD STR_VALUE operation before existing
-     * element.
+     * Creates simple JSON array after ADD STR_VALUE operation before existing element.
      *
-     * @return Simple JSON array after ADD STR_VALUE operation before existing
-     *         element.
+     * @return Simple JSON array after ADD STR_VALUE operation before existing element.
      */
     public static JsonArray createSimpleStringArrayWithStrBefore() {
         return Json.createArrayBuilder().add(STR_VALUE).add(STR_VALUE_1).build();
     }
 
     /**
-     * Creates simple JSON array after ADD STR_VALUE operation after existing
-     * element.
+     * Creates simple JSON array after ADD STR_VALUE operation after existing element.
      *
-     * @return Simple JSON array after ADD STR_VALUE operation after existing
-     *         element.
+     * @return Simple JSON array after ADD STR_VALUE operation after existing element.
      */
     public static JsonArray createSimpleStringArrayWithStrAfter() {
         return Json.createArrayBuilder().add(STR_VALUE_1).add(STR_VALUE).build();
     }
 
     /**
-     * Creates simple JSON array after REPLACE STR_VALUE operation on existing
-     * element.
+     * Creates simple JSON array after REPLACE STR_VALUE operation on existing element.
      *
-     * @return Simple JSON array after REPLACE STR_VALUE operation on existing
-     *         element.
+     * @return Simple JSON array after REPLACE STR_VALUE operation on existing element.
      */
     public static JsonArray createSimpleStringArrayReplaceStr() {
         return Json.createArrayBuilder().add(STR_VALUE).build();
@@ -657,8 +639,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with two {@code String} values to be inserted
-     * into another array.
+     * Creates simple JSON array with two {@code String} values to be inserted into another array.
      *
      * @return Newly created JSON array.
      */
@@ -667,8 +648,8 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code String} values as a result of
-     * COPY 2nd element to the beginning of the array.
+     * Creates simple JSON array with three {@code String} values as a result of COPY 2nd element to the beginning of the
+     * array.
      *
      * @return Newly created JSON array.
      */
@@ -681,8 +662,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code String} values as a result of
-     * COPY 1st element to the end of the array.
+     * Creates simple JSON array with three {@code String} values as a result of COPY 1st element to the end of the array.
      *
      * @return Newly created JSON array.
      */
@@ -695,8 +675,8 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code String} values as a result of
-     * COPY 1st element to the middle of the array.
+     * Creates simple JSON array with three {@code String} values as a result of COPY 1st element to the middle of the
+     * array.
      *
      * @return Newly created JSON array.
      */
@@ -724,8 +704,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with five {@code String} values in reversed
-     * order.
+     * Creates simple JSON array with five {@code String} values in reversed order.
      *
      * @return Newly created JSON array.
      */
@@ -740,8 +719,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array after ADD [STR_VALUE_6, STR_VALUE_7] operation
-     * between two existing elements.
+     * Creates simple JSON array after ADD [STR_VALUE_6, STR_VALUE_7] operation between two existing elements.
      *
      * @return Simple JSON array after ADD operation.
      */
@@ -763,33 +741,27 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array after ADD INT_VALUE operation before existing
-     * element.
+     * Creates simple JSON array after ADD INT_VALUE operation before existing element.
      *
-     * @return Simple JSON array after ADD INT_VALUE operation before existing
-     *         element.
+     * @return Simple JSON array after ADD INT_VALUE operation before existing element.
      */
     public static JsonArray createSimpleIntArrayWithIntBefore() {
         return Json.createArrayBuilder().add(INT_VALUE).add(INT_VALUE_1).build();
     }
 
     /**
-     * Creates simple JSON array after ADD INT_VALUE operation after existing
-     * element.
+     * Creates simple JSON array after ADD INT_VALUE operation after existing element.
      *
-     * @return Simple JSON array after ADD INT_VALUE operation after existing
-     *         element.
+     * @return Simple JSON array after ADD INT_VALUE operation after existing element.
      */
     public static JsonArray createSimpleIntArrayWithIntAfter() {
         return Json.createArrayBuilder().add(INT_VALUE_1).add(INT_VALUE).build();
     }
 
     /**
-     * Creates simple JSON array after REPLACE INT_VALUE operation on existing
-     * element.
+     * Creates simple JSON array after REPLACE INT_VALUE operation on existing element.
      *
-     * @return Simple JSON array after REPLACE INT_VALUE operation on existing
-     *         element.
+     * @return Simple JSON array after REPLACE INT_VALUE operation on existing element.
      */
     public static JsonArray createSimpleIntArrayReplaceInt() {
         return Json.createArrayBuilder().add(INT_VALUE).build();
@@ -814,8 +786,8 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code int} values as a result of COPY
-     * 2nd element to the beginning of the array.
+     * Creates simple JSON array with three {@code int} values as a result of COPY 2nd element to the beginning of the
+     * array.
      *
      * @return Newly created JSON array.
      */
@@ -828,8 +800,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code int} values as a result of COPY
-     * 1st element to the end of the array.
+     * Creates simple JSON array with three {@code int} values as a result of COPY 1st element to the end of the array.
      *
      * @return Newly created JSON array.
      */
@@ -842,8 +813,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code int} values as a result of COPY
-     * 1st element to the middle of the array.
+     * Creates simple JSON array with three {@code int} values as a result of COPY 1st element to the middle of the array.
      *
      * @return Newly created JSON array.
      */
@@ -895,33 +865,27 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array after ADD BOOL_FALSE operation before existing
-     * element (BOOL_TRUE).
+     * Creates simple JSON array after ADD BOOL_FALSE operation before existing element (BOOL_TRUE).
      *
-     * @return Simple JSON array after ADD BOOL_FALSE operation before existing
-     *         element.
+     * @return Simple JSON array after ADD BOOL_FALSE operation before existing element.
      */
     public static JsonArray createSimpleBoolArrayWithBoolBefore() {
         return Json.createArrayBuilder().add(BOOL_FALSE).add(BOOL_TRUE).build();
     }
 
     /**
-     * Creates simple JSON array after ADD BOOL_FALSE operation after existing
-     * element (BOOL_TRUE).
+     * Creates simple JSON array after ADD BOOL_FALSE operation after existing element (BOOL_TRUE).
      *
-     * @return Simple JSON array after ADD BOOL_FALSE operation after existing
-     *         element.
+     * @return Simple JSON array after ADD BOOL_FALSE operation after existing element.
      */
     public static JsonArray createSimpleBoolArrayWithBoolAfter() {
         return Json.createArrayBuilder().add(BOOL_TRUE).add(BOOL_FALSE).build();
     }
 
     /**
-     * Creates simple JSON array after REPLACE BOOL_FALSE operation on existing
-     * element.
+     * Creates simple JSON array after REPLACE BOOL_FALSE operation on existing element.
      *
-     * @return Simple JSON array after REPLACE BOOL_FALSE operation on existing
-     *         element.
+     * @return Simple JSON array after REPLACE BOOL_FALSE operation on existing element.
      */
     public static JsonArray createSimpleBoolArrayReplaceBool() {
         return Json.createArrayBuilder().add(BOOL_FALSE).build();
@@ -946,8 +910,8 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code boolean} values as a result of
-     * COPY 2nd element to the beginning of the array.
+     * Creates simple JSON array with three {@code boolean} values as a result of COPY 2nd element to the beginning of the
+     * array.
      *
      * @return Newly created JSON array.
      */
@@ -960,8 +924,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code boolean} values as a result of
-     * COPY 1st element to the end of the array.
+     * Creates simple JSON array with three {@code boolean} values as a result of COPY 1st element to the end of the array.
      *
      * @return Newly created JSON array.
      */
@@ -974,8 +937,8 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code boolean} values as a result of
-     * COPY 1st element to the middle of the array.
+     * Creates simple JSON array with three {@code boolean} values as a result of COPY 1st element to the middle of the
+     * array.
      *
      * @return Newly created JSON array.
      */
@@ -1003,8 +966,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with five {@code boolean} values in reversed
-     * order.
+     * Creates simple JSON array with five {@code boolean} values in reversed order.
      *
      * @return Newly created JSON array.
      */
@@ -1028,33 +990,27 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array after ADD OBJ_VALUE operation before existing
-     * element.
+     * Creates simple JSON array after ADD OBJ_VALUE operation before existing element.
      *
-     * @return Simple JSON array after ADD OBJ_VALUE operation before existing
-     *         element.
+     * @return Simple JSON array after ADD OBJ_VALUE operation before existing element.
      */
     public static JsonArray createSimpleObjectArrayWithObjectBefore() {
         return Json.createArrayBuilder().add(OBJ_VALUE).add(OBJ_VALUE_1).build();
     }
 
     /**
-     * Creates simple JSON array after ADD OBJ_VALUE operation after existing
-     * element.
+     * Creates simple JSON array after ADD OBJ_VALUE operation after existing element.
      *
-     * @return Simple JSON array after ADD OBJ_VALUE operation after existing
-     *         element.
+     * @return Simple JSON array after ADD OBJ_VALUE operation after existing element.
      */
     public static JsonArray createSimpleObjectArrayWithObjectAfter() {
         return Json.createArrayBuilder().add(OBJ_VALUE_1).add(OBJ_VALUE).build();
     }
 
     /**
-     * Creates simple JSON array after REPLACE OBJ_VALUE operation on existing
-     * element.
+     * Creates simple JSON array after REPLACE OBJ_VALUE operation on existing element.
      *
-     * @return Simple JSON array after REPLACE OBJ_VALUE operation on existing
-     *         element.
+     * @return Simple JSON array after REPLACE OBJ_VALUE operation on existing element.
      */
     public static JsonArray createSimpleObjectArrayReplaceObject() {
         return Json.createArrayBuilder().add(OBJ_VALUE).build();
@@ -1070,8 +1026,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with two {@code JsonObject} values in reverse
-     * order.
+     * Creates simple JSON array with two {@code JsonObject} values in reverse order.
      *
      * @return Newly created JSON array.
      */
@@ -1080,8 +1035,8 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code JsonObject} values as a result
-     * of COPY 2nd element to the beginning of the array.
+     * Creates simple JSON array with three {@code JsonObject} values as a result of COPY 2nd element to the beginning of
+     * the array.
      *
      * @return Newly created JSON array.
      */
@@ -1094,8 +1049,8 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code JsonObject} values as a result
-     * of COPY 1st element to the end of the array.
+     * Creates simple JSON array with three {@code JsonObject} values as a result of COPY 1st element to the end of the
+     * array.
      *
      * @return Newly created JSON array.
      */
@@ -1108,8 +1063,8 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with three {@code JsonObject} values as a result
-     * of COPY 1st element to the middle of the array.
+     * Creates simple JSON array with three {@code JsonObject} values as a result of COPY 1st element to the middle of the
+     * array.
      *
      * @return Newly created JSON array.
      */
@@ -1137,8 +1092,7 @@ public class SimpleValues {
     }
 
     /**
-     * Creates simple JSON array with five {@code JsonObject} values in reversed
-     * order.
+     * Creates simple JSON array with five {@code JsonObject} values in reversed order.
      *
      * @return Newly created JSON array.
      */
@@ -1155,8 +1109,7 @@ public class SimpleValues {
     /**
      * Convert provided {@code Object} instance to {@code JsonValue}.
      *
-     * @param value
-     *          {@code Object} instance to be converted.
+     * @param value {@code Object} instance to be converted.
      * @return JsonValue instance containing provided {@code Object};
      */
     @SuppressWarnings("UnnecessaryUnboxing")
@@ -1165,35 +1118,33 @@ public class SimpleValues {
             return JsonValue.NULL;
         }
         switch (JsonValueType.getType(value.getClass())) {
-            case String:
-                return Json.createValue((String) value);
-            case Integer:
-                return Json.createValue(((Integer) value).intValue());
-            case Long:
-                return Json.createValue(((Long) value).longValue());
-            case BigInteger:
-                return Json.createValue((BigInteger) value);
-            case Double:
-                return Json.createValue(((Double) value).doubleValue());
-            case BigDecimal:
-                return Json.createValue((BigDecimal) value);
-            case Boolean:
-                return ((Boolean) value).booleanValue() ? JsonValue.TRUE : JsonValue.FALSE;
-            case JsonValue:
-                return (JsonValue) value;
-            case Null:
-                return JsonValue.NULL;
-            default:
-                throw new IllegalArgumentException("Value does not match known JSON value type");
+        case String:
+            return Json.createValue((String) value);
+        case Integer:
+            return Json.createValue(((Integer) value).intValue());
+        case Long:
+            return Json.createValue(((Long) value).longValue());
+        case BigInteger:
+            return Json.createValue((BigInteger) value);
+        case Double:
+            return Json.createValue(((Double) value).doubleValue());
+        case BigDecimal:
+            return Json.createValue((BigDecimal) value);
+        case Boolean:
+            return ((Boolean) value).booleanValue() ? JsonValue.TRUE : JsonValue.FALSE;
+        case JsonValue:
+            return (JsonValue) value;
+        case Null:
+            return JsonValue.NULL;
+        default:
+            throw new IllegalArgumentException("Value does not match known JSON value type");
         }
     }
 
     /**
-     * Convert JSON value to {@code String} containing value stored in JSON
-     * format.
+     * Convert JSON value to {@code String} containing value stored in JSON format.
      *
-     * @param value
-     *          JSON value to be converted.
+     * @param value JSON value to be converted.
      * @return Provided value stored in JSON format.
      */
     public static String jsonData(final JsonValue value) {
@@ -1208,33 +1159,28 @@ public class SimpleValues {
     }
 
     /**
-     * Apply patch on provided JSON {@code value} using {@code apply()} method of
-     * {@code JsonPatch}.
+     * Apply patch on provided JSON {@code value} using {@code apply()} method of {@code JsonPatch}.
      *
-     * @param patch
-     *          {@code JsonPatch} with patch operations.
-     * @param value
-     *          JSON {@code value} to be patched.
+     * @param patch {@code JsonPatch} with patch operations.
+     * @param value JSON {@code value} to be patched.
      * @return Result of JSON {@code value} patching.
      */
     public static JsonValue patchApply(final JsonPatch patch, final JsonValue value) {
         switch (value.getValueType()) {
-            case OBJECT:
-                return patch.apply((JsonObject) value);
-            case ARRAY:
-                return patch.apply((JsonArray) value);
-            default:
-                throw new IllegalArgumentException("Unsupported JSON value type to be pached");
+        case OBJECT:
+            return patch.apply((JsonObject) value);
+        case ARRAY:
+            return patch.apply((JsonArray) value);
+        default:
+            throw new IllegalArgumentException("Unsupported JSON value type to be pached");
         }
     }
 
     /**
      * Convert {@code boolean} value to {@code JsonValue}.
      *
-     * @param value
-     *          Source {@code boolean} value.
-     * @return {@code JsonValue.TRUE} if provided {@code value} is {@code true} or
-     *         {@code JsonValue.FALSE} otherwise.
+     * @param value Source {@code boolean} value.
+     * @return {@code JsonValue.TRUE} if provided {@code value} is {@code true} or {@code JsonValue.FALSE} otherwise.
      */
     public static JsonValue booleanValue(final boolean value) {
         return value ? JsonValue.TRUE : JsonValue.FALSE;
@@ -1243,5 +1189,6 @@ public class SimpleValues {
     /**
      * Creates an instance of RFC 6902 operation test.
      */
-    private SimpleValues() {}
+    private SimpleValues() {
+    }
 }

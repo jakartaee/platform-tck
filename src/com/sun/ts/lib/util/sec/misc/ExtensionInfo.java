@@ -24,8 +24,7 @@ import java.util.jar.Attributes;
 import java.util.jar.Attributes.Name;
 
 /**
- * This class holds all necessary information to install or upgrade a extension
- * on the user's disk
+ * This class holds all necessary information to install or upgrade a extension on the user's disk
  *
  * @author Jerome Dochez
  */
@@ -48,8 +47,7 @@ public class ExtensionInfo {
 
     /**
      * <p>
-     * attributes fully describer an extension. The underlying described extension
-     * may be installed and requested.
+     * attributes fully describer an extension. The underlying described extension may be installed and requested.
      * <p>
      */
     public String title;
@@ -76,22 +74,19 @@ public class ExtensionInfo {
      * Create a new uninitialized extension information object
      * </p>
      */
-    public ExtensionInfo() {}
+    public ExtensionInfo() {
+    }
 
     /**
      * <p>
-     * Create and initialize an extension information object. The initialization
-     * uses the attributes passed as being the content of a manifest file to load
-     * the extension information from. Since manifest file may contain information
-     * on several extension they may depend on, the extension key parameter is
-     * prepanded to the attribute name to make the key used to retrieve the
-     * attribute from the manifest file
+     * Create and initialize an extension information object. The initialization uses the attributes passed as being the
+     * content of a manifest file to load the extension information from. Since manifest file may contain information on
+     * several extension they may depend on, the extension key parameter is prepanded to the attribute name to make the key
+     * used to retrieve the attribute from the manifest file
      * <p>
      *
-     * @param extensionKey
-     *          unique extension key in the manifest
-     * @param attr
-     *          Attributes of a manifest file
+     * @param extensionKey unique extension key in the manifest
+     * @param attr Attributes of a manifest file
      */
     public ExtensionInfo(String extensionKey, Attributes attr) throws NullPointerException {
         String s;
@@ -103,55 +98,63 @@ public class ExtensionInfo {
 
         String attrKey = s + Name.EXTENSION_NAME.toString();
         name = attr.getValue(attrKey);
-        if (name != null) name = name.trim();
+        if (name != null)
+            name = name.trim();
 
         attrKey = s + Name.SPECIFICATION_TITLE.toString();
         title = attr.getValue(attrKey);
-        if (title != null) title = title.trim();
+        if (title != null)
+            title = title.trim();
 
         attrKey = s + Name.SPECIFICATION_VERSION.toString();
         specVersion = attr.getValue(attrKey);
-        if (specVersion != null) specVersion = specVersion.trim();
+        if (specVersion != null)
+            specVersion = specVersion.trim();
 
         attrKey = s + Name.SPECIFICATION_VENDOR.toString();
         specVendor = attr.getValue(attrKey);
-        if (specVendor != null) specVendor = specVendor.trim();
+        if (specVendor != null)
+            specVendor = specVendor.trim();
 
         attrKey = s + Name.IMPLEMENTATION_VERSION.toString();
         implementationVersion = attr.getValue(attrKey);
-        if (implementationVersion != null) implementationVersion = implementationVersion.trim();
+        if (implementationVersion != null)
+            implementationVersion = implementationVersion.trim();
 
         attrKey = s + Name.IMPLEMENTATION_VENDOR.toString();
         vendor = attr.getValue(attrKey);
-        if (vendor != null) vendor = vendor.trim();
+        if (vendor != null)
+            vendor = vendor.trim();
 
         attrKey = s + Name.IMPLEMENTATION_VENDOR_ID.toString();
         vendorId = attr.getValue(attrKey);
-        if (vendorId != null) vendorId = vendorId.trim();
+        if (vendorId != null)
+            vendorId = vendorId.trim();
 
         attrKey = s + Name.IMPLEMENTATION_URL.toString();
         url = attr.getValue(attrKey);
-        if (url != null) url = url.trim();
+        if (url != null)
+            url = url.trim();
     }
 
     /**
      * <p>
      *
-     * @return true if the extension described by this extension information is
-     *         compatible with the extension described by the extension
-     *         information passed as a parameter
-     *         </p>
+     * @return true if the extension described by this extension information is compatible with the extension described by
+     * the extension information passed as a parameter
+     * </p>
      *
-     * @param the
-     *          requested extension information to compare to
+     * @param the requested extension information to compare to
      */
     public int isCompatibleWith(ExtensionInfo ei) {
 
-        if (name == null || ei.name == null) return INCOMPATIBLE;
+        if (name == null || ei.name == null)
+            return INCOMPATIBLE;
         if (name.compareTo(ei.name) == 0) {
             // is this true, if not spec version is specified, we consider
             // the value as being "any".
-            if (specVersion == null || ei.specVersion == null) return COMPATIBLE;
+            if (specVersion == null || ei.specVersion == null)
+                return COMPATIBLE;
 
             int version = compareExtensionVersion(specVersion, ei.specVersion);
             if (version < 0) {
@@ -191,8 +194,7 @@ public class ExtensionInfo {
 
     /**
      * <p>
-     * helper method to print sensible information on the undelying described
-     * extension
+     * helper method to print sensible information on the undelying described extension
      * </p>
      */
     public String toString() {
@@ -203,15 +205,13 @@ public class ExtensionInfo {
     }
 
     /*
-     * <p> helper method to compare two versions. version are in the x.y.z.t
-     * pattern. </p>
+     * <p> helper method to compare two versions. version are in the x.y.z.t pattern. </p>
      *
      * @param source version to compare to
      *
      * @param target version used to compare against
      *
-     * @return < 0 if source < version > 0 if source > version = 0 if source =
-     * version
+     * @return < 0 if source < version > 0 if source > version = 0 if source = version
      */
     private int compareExtensionVersion(String source, String target) throws NumberFormatException {
         source = source.toLowerCase();
@@ -221,18 +221,17 @@ public class ExtensionInfo {
     }
 
     /*
-     * <p> helper method to compare two versions. version are in the x.y.z.t
-     * pattern. </p>
+     * <p> helper method to compare two versions. version are in the x.y.z.t pattern. </p>
      *
      * @param source version to compare to
      *
      * @param target version used to compare against
      *
-     * @return < 0 if source < version > 0 if source > version = 0 if source =
-     * version
+     * @return < 0 if source < version > 0 if source > version = 0 if source = version
      */
     private int strictCompareExtensionVersion(String source, String target) throws NumberFormatException {
-        if (source.equals(target)) return 0;
+        if (source.equals(target))
+            return 0;
 
         StringTokenizer stk = new StringTokenizer(source, ".,");
         StringTokenizer ttk = new StringTokenizer(target, ".,");
@@ -241,28 +240,35 @@ public class ExtensionInfo {
         int n = 0, m = 0, result = 0;
 
         // Convert token into meaning number for comparision
-        if (stk.hasMoreTokens()) n = convertToken(stk.nextToken().toString());
+        if (stk.hasMoreTokens())
+            n = convertToken(stk.nextToken().toString());
 
         // Convert token into meaning number for comparision
-        if (ttk.hasMoreTokens()) m = convertToken(ttk.nextToken().toString());
+        if (ttk.hasMoreTokens())
+            m = convertToken(ttk.nextToken().toString());
 
-        if (n > m) return 1;
-        else if (m > n) return -1;
+        if (n > m)
+            return 1;
+        else if (m > n)
+            return -1;
         else {
             // Look for index of "." in the string
             int sIdx = source.indexOf(".");
             int tIdx = target.indexOf(".");
 
-            if (sIdx == -1) sIdx = source.length() - 1;
+            if (sIdx == -1)
+                sIdx = source.length() - 1;
 
-            if (tIdx == -1) tIdx = target.length() - 1;
+            if (tIdx == -1)
+                tIdx = target.length() - 1;
 
             return strictCompareExtensionVersion(source.substring(sIdx + 1), target.substring(tIdx + 1));
         }
     }
 
     private int convertToken(String token) {
-        if (token == null || token.equals("")) return 0;
+        if (token == null || token.equals(""))
+            return 0;
 
         int charValue = 0;
         int charVersion = 0;
@@ -271,7 +277,7 @@ public class ExtensionInfo {
         int endIndex = strLength;
         char lastChar;
 
-        Object[] args = {name};
+        Object[] args = { name };
         MessageFormat mf = new MessageFormat(rb.getString("optpkg.versionerror"));
         String versionError = mf.format(args);
 

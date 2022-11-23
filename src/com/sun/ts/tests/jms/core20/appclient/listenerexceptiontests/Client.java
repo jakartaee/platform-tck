@@ -265,8 +265,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1351;
      *
-     * @test_Strategy: Calling Connection.close() from a CompletionListener MUST
-     * throw IllegalStateException.
+     * @test_Strategy: Calling Connection.close() from a CompletionListener MUST throw IllegalStateException.
      */
     public void illegalStateExceptionTest1() throws Fault {
         boolean pass = true;
@@ -339,8 +338,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1351; JMS:JAVADOC:1352;
      *
-     * @test_Strategy: Calling Connection.close() or Connection.stop() from a
-     * MessageListener MUST throw IllegalStateException.
+     * @test_Strategy: Calling Connection.close() or Connection.stop() from a MessageListener MUST throw
+     * IllegalStateException.
      */
     public void illegalStateExceptionTest2() throws Fault {
         boolean pass = true;
@@ -465,8 +464,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1356;
      *
-     * @test_Strategy: Calling Session.close() from a CompletionListener or
-     * MessageListener MUST throw IllegalStateException.
+     * @test_Strategy: Calling Session.close() from a CompletionListener or MessageListener MUST throw
+     * IllegalStateException.
      */
     public void illegalStateExceptionTest3() throws Fault {
         boolean pass = true;
@@ -588,8 +587,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:338;
      *
-     * @test_Strategy: Calling MessageConsumer.close() from a MessageListener is
-     * allowed.
+     * @test_Strategy: Calling MessageConsumer.close() from a MessageListener is allowed.
      */
     public void callingMessageConsumerCloseIsAllowed() throws Fault {
         boolean pass = true;
@@ -655,8 +653,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1098;
      *
-     * @test_Strategy: Calling JMSConsumer.close() from a MessageListsner is
-     * allowed.
+     * @test_Strategy: Calling JMSConsumer.close() from a MessageListsner is allowed.
      */
     public void callingJMSConsumerCloseIsAllowed() throws Fault {
         boolean pass = true;

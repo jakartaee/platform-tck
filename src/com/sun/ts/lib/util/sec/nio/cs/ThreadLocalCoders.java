@@ -41,7 +41,8 @@ public class ThreadLocalCoders {
 
         private void moveToFront(Object[] oa, int i) {
             Object ob = oa[i];
-            for (int j = i; j > 0; j--) oa[j] = oa[j - 1];
+            for (int j = i; j > 0; j--)
+                oa[j] = oa[j - 1];
             oa[0] = ob;
         }
 
@@ -55,9 +56,11 @@ public class ThreadLocalCoders {
             } else {
                 for (int i = 0; i < oa.length; i++) {
                     Object ob = oa[i];
-                    if (ob == null) continue;
+                    if (ob == null)
+                        continue;
                     if (hasName(ob, name)) {
-                        if (i > 0) moveToFront(oa, i);
+                        if (i > 0)
+                            moveToFront(oa, i);
                         return ob;
                     }
                 }
@@ -75,13 +78,16 @@ public class ThreadLocalCoders {
         boolean hasName(Object ob, Object name) {
             if (name instanceof String)
                 return (((CharsetDecoder) ob).charset().name().equals(name));
-            if (name instanceof Charset) return ((CharsetDecoder) ob).charset().equals(name);
+            if (name instanceof Charset)
+                return ((CharsetDecoder) ob).charset().equals(name);
             return false;
         }
 
         Object create(Object name) {
-            if (name instanceof String) return Charset.forName((String) name).newDecoder();
-            if (name instanceof Charset) return ((Charset) name).newDecoder();
+            if (name instanceof String)
+                return Charset.forName((String) name).newDecoder();
+            if (name instanceof Charset)
+                return ((Charset) name).newDecoder();
             assert false;
             return null;
         }
@@ -97,13 +103,16 @@ public class ThreadLocalCoders {
         boolean hasName(Object ob, Object name) {
             if (name instanceof String)
                 return (((CharsetEncoder) ob).charset().name().equals(name));
-            if (name instanceof Charset) return ((CharsetEncoder) ob).charset().equals(name);
+            if (name instanceof Charset)
+                return ((CharsetEncoder) ob).charset().equals(name);
             return false;
         }
 
         Object create(Object name) {
-            if (name instanceof String) return Charset.forName((String) name).newEncoder();
-            if (name instanceof Charset) return ((Charset) name).newEncoder();
+            if (name instanceof String)
+                return Charset.forName((String) name).newEncoder();
+            if (name instanceof Charset)
+                return ((Charset) name).newEncoder();
             assert false;
             return null;
         }

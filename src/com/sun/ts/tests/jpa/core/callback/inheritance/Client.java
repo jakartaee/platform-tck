@@ -72,9 +72,8 @@ public class Client extends EntityCallbackClientBase {
     /*
      * @testName: prePersistTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:700; PERSISTENCE:SPEC:708;
-     * PERSISTENCE:SPEC:1067; PERSISTENCE:SPEC:997; PERSISTENCE:SPEC:999;
-     * PERSISTENCE:SPEC:998
+     * @assertion_ids: PERSISTENCE:SPEC:700; PERSISTENCE:SPEC:708; PERSISTENCE:SPEC:1067; PERSISTENCE:SPEC:997;
+     * PERSISTENCE:SPEC:999; PERSISTENCE:SPEC:998
      *
      * @test_Strategy:
      */

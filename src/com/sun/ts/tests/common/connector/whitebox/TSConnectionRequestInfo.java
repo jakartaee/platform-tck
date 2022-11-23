@@ -83,9 +83,11 @@ public class TSConnectionRequestInfo implements ConnectionRequestInfo {
 
         TSConnectionRequestInfo that = (TSConnectionRequestInfo) obj;
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.user, that.getUser())) return false;
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
 
         return true;
     }

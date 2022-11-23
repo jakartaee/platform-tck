@@ -30,7 +30,7 @@ public class ArrayELResolverTag extends SimpleTagSupport {
     public void doTag() throws JspException, IOException {
 
         StringBuffer buf = new StringBuffer();
-        String[] colors = {"red", "blue", "green"};
+        String[] colors = { "red", "blue", "green" };
         JspWriter out = getJspContext().getOut();
         ELContext context = getJspContext().getELContext();
         ArrayELResolver arrayResolver = new ArrayELResolver();
@@ -39,7 +39,8 @@ public class ArrayELResolverTag extends SimpleTagSupport {
             boolean pass = ResolverTest.testELResolver(
                     context, arrayResolver, colors, Integer.valueOf(1), "yellow", buf, false);
             out.println(buf.toString());
-            if (pass == true) out.println("Test PASSED");
+            if (pass == true)
+                out.println("Test PASSED");
 
         } catch (Throwable t) {
             out.println("buffer is " + buf.toString());

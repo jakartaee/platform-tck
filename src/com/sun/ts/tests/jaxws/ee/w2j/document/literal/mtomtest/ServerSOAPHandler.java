@@ -38,8 +38,7 @@ public class ServerSOAPHandler extends HTTPSOAPHandler {
         System.out.println("in processInboundMessage");
         if (Handler_Util.checkForMsg(context, "MTOMInOut2RequestCheckHttpHeadersTest")) {
             JAXWS_Util.dumpHTTPHeaders(context);
-            Map<String, List<String>> map =
-                    (Map<String, List<String>>) context.get(MessageContext.HTTP_REQUEST_HEADERS);
+            Map<String, List<String>> map = (Map<String, List<String>>) context.get(MessageContext.HTTP_REQUEST_HEADERS);
             String result = verifyContentTypeHttpHeader(map);
             if (!result.equals(PASSED)) {
                 throw new RuntimeException("In ServerSOAPHandler:processInboundMessage: " + result);
@@ -50,8 +49,7 @@ public class ServerSOAPHandler extends HTTPSOAPHandler {
     /**
      * Verifies the contents of the Content-Type HTTP header
      *
-     * @param request
-     *          the HTTP servlet request.
+     * @param request the HTTP servlet request.
      */
     protected String verifyContentTypeHttpHeader(Map<String, List<String>> m) {
         String result = FAILED;

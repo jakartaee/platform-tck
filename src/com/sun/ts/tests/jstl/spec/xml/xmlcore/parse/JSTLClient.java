@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,11 +64,10 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.3
      *
-     * @testStrategy: Validate that parse action is able to parse various input
-     * sources as provided by the xml attribute: - Strings - Readers - Instances
-     * of javax.xml.transform.Source - Objects exported by: + x:parse + x:set +
-     * x:transform No validation will be performed against the result. The test
-     * will be considered a success if no parse exceptions are thrown.
+     * @testStrategy: Validate that parse action is able to parse various input sources as provided by the xml attribute: -
+     * Strings - Readers - Instances of javax.xml.transform.Source - Objects exported by: + x:parse + x:set + x:transform No
+     * validation will be performed against the result. The test will be considered a success if no parse exceptions are
+     * thrown.
      */
     public void positiveParseXmlInputTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParseXmlInputTest");
@@ -82,11 +79,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.3
      *
-     * @testStrategy: Validate that if an instance of org.xml.sax.XMLFilter is
-     * provided to the filter attribute, that it is properly applied by the
-     * action. This will be verified using a simple XML filter that will add an
-     * attribute ('test') to the provided elements. XPath will be used to verify
-     * that the attribute exists.
+     * @testStrategy: Validate that if an instance of org.xml.sax.XMLFilter is provided to the filter attribute, that it is
+     * properly applied by the action. This will be verified using a simple XML filter that will add an attribute ('test')
+     * to the provided elements. XPath will be used to verify that the attribute exists.
      */
     public void positiveParseFilterTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParseFilterTest");
@@ -98,9 +93,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.4; JSTL:SPEC:67.4.1
      *
-     * @testStrategy: Validate that if the parse operation is successfull, and var
-     * is specified, the result is available via the PageContext and is of type
-     * java.lang.Object.
+     * @testStrategy: Validate that if the parse operation is successfull, and var is specified, the result is available via
+     * the PageContext and is of type java.lang.Object.
      */
     public void positiveParseVarTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParseVarTest");
@@ -112,9 +106,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.6; JSTL:SPEC:67.6.1
      *
-     * @testStrategy: Validate that if the parse operation is successfull, and
-     * varDom is specified, the result is available via the PageContext and is of
-     * type org.w3c.dom.Document.
+     * @testStrategy: Validate that if the parse operation is successfull, and varDom is specified, the result is available
+     * via the PageContext and is of type org.w3c.dom.Document.
      */
     public void positiveParseVarDomTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParseVarDomTest");
@@ -124,12 +117,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveParseScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.5; JSTL:SPEC:67.5.1;
-     * JSTL:SPEC:67.5.2; JSTL:SPEC:67.5.3; JSTL:SPEC:67.5.4; JSTL:SPEC:67.11
+     * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.5; JSTL:SPEC:67.5.1; JSTL:SPEC:67.5.2; JSTL:SPEC:67.5.3; JSTL:SPEC:67.5.4;
+     * JSTL:SPEC:67.11
      *
-     * @testStrategy: Validate that the presence of the 'scope' property exports
-     * var to the specified scope. If var is provided, but scope is not, verify
-     * that var is exported to the page scope by default.
+     * @testStrategy: Validate that the presence of the 'scope' property exports var to the specified scope. If var is
+     * provided, but scope is not, verify that var is exported to the page scope by default.
      */
     public void positiveParseScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParseScopeTest");
@@ -139,12 +131,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveParseScopeDomTest
      *
-     * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.7; JSTL:SPEC:67.7.1;
-     * JSTL:SPEC:67.7.2; JSTL:SPEC:67.7.4; JSTL:SPEC:67.7.4; JSTL:SPEC:67.12
+     * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.7; JSTL:SPEC:67.7.1; JSTL:SPEC:67.7.2; JSTL:SPEC:67.7.4; JSTL:SPEC:67.7.4;
+     * JSTL:SPEC:67.12
      *
-     * @testStrategy: Validate that the presence of the 'scopeDom' property
-     * exports varDom to the specified scope. If varDom is provided, but scopeDom
-     * is not, verify that varDom is exported to the page scope by default.
+     * @testStrategy: Validate that the presence of the 'scopeDom' property exports varDom to the specified scope. If varDom
+     * is provided, but scopeDom is not, verify that varDom is exported to the page scope by default.
      */
     public void positiveParseScopeDomTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParseScopeDomTest");
@@ -156,9 +147,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.14
      *
-     * @testStrategy: Validate that parse action can properly parse XML provided
-     * as body content to the action. No exception should occur, and the result
-     * should be available via an XPath expression.
+     * @testStrategy: Validate that parse action can properly parse XML provided as body content to the action. No exception
+     * should occur, and the result should be available via an XPath expression.
      */
     public void positiveParseXmlBodyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParseXmlBodyTest");
@@ -170,8 +160,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.3; JSTL:SPEC:67.3.3
      *
-     * @testStrategy: Validate that if the 'filter' attribute is null, no
-     * filtering takes place and the parse operation proceed normally.
+     * @testStrategy: Validate that if the 'filter' attribute is null, no filtering takes place and the parse operation
+     * proceed normally.
      */
     public void positiveParseFilterNullTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParseFilterNullTest");
@@ -183,8 +173,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.1; JSTL:SPEC:67.1.1
      *
-     * @testStrategy: Validate that when the SystemID attribute is used, it's able
-     * to resolve external Entities referenced by the provided XML document.
+     * @testStrategy: Validate that when the SystemID attribute is used, it's able to resolve external Entities referenced
+     * by the provided XML document.
      */
     public void positiveParseSystemIdTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParseSystemIdTest");
@@ -196,9 +186,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.1; JSTL:SPEC:67.1.1
      *
-     * @testStrategy: Validate that no DTD validation is performed against a
-     * document provided with a DTD. Confirm by providing an XML document that
-     * goes against the provided DTD. No parsing exception should occur.
+     * @testStrategy: Validate that no DTD validation is performed against a document provided with a DTD. Confirm by
+     * providing an XML document that goes against the provided DTD. No parsing exception should occur.
      */
     public void positiveParseNoDTDValidationTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveParseNoDTDValidationTest");
@@ -210,8 +199,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.5; JSTL:SPEC:67.5.5
      *
-     * @testStrategy: Validate that if scope is specified, but var is not, that a
-     * fatal translation error occurs.
+     * @testStrategy: Validate that if scope is specified, but var is not, that a fatal translation error occurs.
      */
     public void negativeParseScopeVarSyntaxTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeParseScopeVarSyntaxTest");
@@ -225,8 +213,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.7; JSTL:SPEC:67.7.5
      *
-     * @testStrategy: Validate that if scopeDom is specified, but varDom is not,
-     * that a fatal translation error occurs.
+     * @testStrategy: Validate that if scopeDom is specified, but varDom is not, that a fatal translation error occurs.
      */
     public void negativeParseScopeVarDomSyntaxTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeParseScopeVarDomSyntaxTest");
@@ -240,8 +227,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.16
      *
-     * @testStrategy: Validate that a fatal translation error occurs if the scope
-     * attribute is provided an invalid value.
+     * @testStrategy: Validate that a fatal translation error occurs if the scope attribute is provided an invalid value.
      */
     public void negativeParseInvalidScopeTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeParseInvalidScopeTest");
@@ -255,8 +241,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67; JSTL:SPEC:67.19.2
      *
-     * @testStrategy: Validate that if doc is null or empty, that an instance of
-     * jakarta.servlet.jsp.JspException is thrown.
+     * @testStrategy: Validate that if doc is null or empty, that an instance of jakarta.servlet.jsp.JspException is thrown.
      */
     public void negativeParseDocNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeParseDocNullEmptyTest");
@@ -268,8 +253,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:67
      *
-     * @test_Strategy: Validate that the xml attribute is still available for use
-     * (deprecated and not removed).
+     * @test_Strategy: Validate that the xml attribute is still available for use (deprecated and not removed).
      */
     public void positiveParseXmlAttrTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jstl_xml_parse_web/positiveParseXmlAttrTest.jsp HTTP/1.1");

@@ -71,7 +71,8 @@ public class Ejb1TestEJB implements SessionBean {
 
     private transient TSConnection con2 = null;
 
-    public Ejb1TestEJB() {}
+    public Ejb1TestEJB() {
+    }
 
     public void ejbCreate(java.util.Properties props) throws CreateException {
         this.testProps = props;

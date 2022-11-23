@@ -27,22 +27,21 @@ import java.io.PrintWriter;
 public class JSTLClient extends SqlUrlClient {
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; ts_home; jstl.db.url;
-     * jstl.db.user; jstl.db.password; jstl.db.driver;
+     * @class.setup_props: webServerHost; webServerPort; ts_home; jstl.db.url; jstl.db.user; jstl.db.password;
+     * jstl.db.driver;
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -51,8 +50,7 @@ public class JSTLClient extends SqlUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -68,9 +66,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60.2; JSTL:SPEC:60.2.2; JSTL:SPEC:60.9.1
      *
-     * @testStrategy: Validate the sql:update use of the dataSource attribute -
-     * That a query can be successfully executed when the dataSource attribute is
-     * passed an instance of a DataSource.
+     * @testStrategy: Validate the sql:update use of the dataSource attribute - That a query can be successfully executed
+     * when the dataSource attribute is passed an instance of a DataSource.
      */
     public void positiveUpdateDataSourceAttributeDataSourceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateDataSourceAttributeDataSourceTest");
@@ -82,9 +79,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60
      *
-     * @testStrategy: Validate sql:update action specifying a dataSource attribute
-     * which contains JDBC DriverManager properties (URL, driver, user, password)
-     * The query is passed as body content.
+     * @testStrategy: Validate sql:update action specifying a dataSource attribute which contains JDBC DriverManager
+     * properties (URL, driver, user, password) The query is passed as body content.
      */
     public void positiveUpdateDataSourceAttributeDriverManagerTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateDataSourceAttributeDriverManagerTest");
@@ -94,12 +90,11 @@ public class JSTLClient extends SqlUrlClient {
     /*
      * @testName: positiveUpdateScopeAttributeTest
      *
-     * @assertion_ids: JSTL:SPEC:60.11; JSTL:SPEC:60.3; JSTL:SPEC:60.4;
-     * JSTL:SPEC:60.4.1;JSTL:SPEC:60.4.2; JSTL:SPEC:60.4.3; JSTL:SPEC:60.4.4
+     * @assertion_ids: JSTL:SPEC:60.11; JSTL:SPEC:60.3; JSTL:SPEC:60.4; JSTL:SPEC:60.4.1;JSTL:SPEC:60.4.2; JSTL:SPEC:60.4.3;
+     * JSTL:SPEC:60.4.4
      *
-     * @testStrategy: Validate that the action exports var to the specified scope
-     * as well as validating that if scope is not specified, var will be exported
-     * to the page scope by default.
+     * @testStrategy: Validate that the action exports var to the specified scope as well as validating that if scope is not
+     * specified, var will be exported to the page scope by default.
      */
     public void positiveUpdateScopeAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateScopeAttributeTest");
@@ -111,8 +106,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60.3.1
      *
-     * @testStrategy: Validate the sql:update use of the var attribute - That
-     * scoped var attribute returned is of type java.lang.Integer.
+     * @testStrategy: Validate the sql:update use of the var attribute - That scoped var attribute returned is of type
+     * java.lang.Integer.
      */
     public void positiveUpdateVarAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateVarAttributeTest");
@@ -124,8 +119,7 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60
      *
-     * @testStrategy: Validate the sql:update can successfully execute a query
-     * when the var attribute is not specified.
+     * @testStrategy: Validate the sql:update can successfully execute a query when the var attribute is not specified.
      */
     public void positiveUpdateNoVarAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateNoVarAttributeTest");
@@ -137,9 +131,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60.1; JSTL:SPEC:60.1.1; JSTL:SPEC:60.1.2
      *
-     * @testStrategy: Validate the sql:update use of the var attribute - That
-     * scoped var attribute returned is equal to 0 if the SQL statement does not
-     * affect any rows.
+     * @testStrategy: Validate the sql:update use of the var attribute - That scoped var attribute returned is equal to 0 if
+     * the SQL statement does not affect any rows.
      */
     public void positiveUpdateNoRowsResultTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateNoRowsResultTest");
@@ -151,9 +144,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60; JSTL:SPEC:60.10
      *
-     * @testStrategy: Validate the sql:update use of the var attribute - That
-     * scoped var attribute returned is equal to the number of rows affected by
-     * the SQL statement.
+     * @testStrategy: Validate the sql:update use of the var attribute - That scoped var attribute returned is equal to the
+     * number of rows affected by the SQL statement.
      */
     public void positiveUpdateRowsResultTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateRowsResultTest");
@@ -165,8 +157,7 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60
      *
-     * @testStrategy: Validate the sql:update action - That a SQL query can be
-     * passed as body content.
+     * @testStrategy: Validate the sql:update action - That a SQL query can be passed as body content.
      */
     public void positiveUpdateBodyContentTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateBodyContentTest");
@@ -178,8 +169,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60.6; JSTL:SPEC:60.1; JSTL:SPEC:60.1.1
      *
-     * @testStrategy: Validate the sql:update use of the sql attribute - That sql
-     * attribute can be specified in order to execute a SQL statement.
+     * @testStrategy: Validate the sql:update use of the sql attribute - That sql attribute can be specified in order to
+     * execute a SQL statement.
      */
     public void positiveUpdateSQLAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateSQLAttributeTest");
@@ -191,10 +182,9 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60
      *
-     * @testStrategy: Validate sql:update action utilizing the configuration
-     * parameter jakarta.servlet.jsp.jstl.sql.dataSource. The query is passed as
-     * body content. - that jakarta.servlet.jsp.jstl.sql.dataSource can be provided
-     * a DataSource.
+     * @testStrategy: Validate sql:update action utilizing the configuration parameter
+     * jakarta.servlet.jsp.jstl.sql.dataSource. The query is passed as body content. - that
+     * jakarta.servlet.jsp.jstl.sql.dataSource can be provided a DataSource.
      */
     public void positiveUpdateDataSourceConfigDataSourceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateDataSourceConfigDataSourceTest");
@@ -206,10 +196,9 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60
      *
-     * @testStrategy: Validate sql:update action utilizing the configuration
-     * parameter jakarta.servlet.jsp.jstl.sql.dataSource and setting it to a String
-     * representing JDBC DriverManager parameters. The query is passed as body
-     * content
+     * @testStrategy: Validate sql:update action utilizing the configuration parameter
+     * jakarta.servlet.jsp.jstl.sql.dataSource and setting it to a String representing JDBC DriverManager parameters. The
+     * query is passed as body content
      */
     public void positiveUpdateDataSourceConfigDriverManagerTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveUpdateDataSourceConfigDriverManagerTest");
@@ -221,8 +210,7 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60
      *
-     * @testStrategy: Validate sql:update action dataSource attribute takes
-     * precedence over the configuration parameter
+     * @testStrategy: Validate sql:update action dataSource attribute takes precedence over the configuration parameter
      * jakarta.servlet.jsp.jstl.sql.dataSource.
      */
     public void positiveUpdateDataSourceConfigPrecedenceTest() throws Fault {
@@ -235,9 +223,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60.1.2
      *
-     * @testStrategy: Validate the sql:update action use of the sql attribute -
-     * That a JspException is thrown when an invalid Datatype is specified for sql
-     * attribute.
+     * @testStrategy: Validate the sql:update action use of the sql attribute - That a JspException is thrown when an
+     * invalid Datatype is specified for sql attribute.
      */
     public void negativeUpdateSQLAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeUpdateSQLAttributeTest");
@@ -249,9 +236,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60.1.2
      *
-     * @testStrategy: Validate the sql:update action use of the sql attribute -
-     * That a JspException is thrown when an invalid SQL query is specified for
-     * sql.
+     * @testStrategy: Validate the sql:update action use of the sql attribute - That a JspException is thrown when an
+     * invalid SQL query is specified for sql.
      */
     public void negativeUpdateSQLAttributeTest2() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeUpdateSQLAttributeTest2");
@@ -263,9 +249,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60.13
      *
-     * @testStrategy: Validate the sql:update action use of the body content -
-     * That a JspException is thrown when an invalid SQL query is specified via
-     * body content.
+     * @testStrategy: Validate the sql:update action use of the body content - That a JspException is thrown when an invalid
+     * SQL query is specified via body content.
      */
     public void negativeUpdateBodyContentTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeUpdateBodyContentTest");
@@ -277,8 +262,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60.3.2
      *
-     * @testStrategy: Validate the sql:update var attribute - That a translation
-     * error occurs when the var attribute is empty.
+     * @testStrategy: Validate the sql:update var attribute - That a translation error occurs when the var attribute is
+     * empty.
      */
     public void negativeUpdateVarAttributeTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeUpdateVarAttributeTest");
@@ -292,8 +277,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60; JSTL:SPEC:60.1.3
      *
-     * @testStrategy: Validate that if a sql:update action utilizes the scope
-     * attribute that is invalid, that a translation error will occur.
+     * @testStrategy: Validate that if a sql:update action utilizes the scope attribute that is invalid, that a translation
+     * error will occur.
      */
     public void negativeUpdateScopeAttributeTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeUpdateScopeAttributeTest");
@@ -307,9 +292,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60.12
      *
-     * @testStrategy: Validate the sql:update action var and scope attribute -
-     * That a translation error occurs when the scope attribute is specified and
-     * the var attribute is not.
+     * @testStrategy: Validate the sql:update action var and scope attribute - That a translation error occurs when the
+     * scope attribute is specified and the var attribute is not.
      */
     public void negativeUpdateScopeVarAttributeTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeUpdateScopeVarAttributeTest");
@@ -323,8 +307,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60; JSTL:SPEC:60.1.3
      *
-     * @testStrategy: Validate the sql:update action which specifies an invalid
-     * DataType for the dataSource attribute will generate a JspException.
+     * @testStrategy: Validate the sql:update action which specifies an invalid DataType for the dataSource attribute will
+     * generate a JspException.
      */
     public void negativeUpdateDataSourceAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeUpdateDataSourceAttributeTest");
@@ -336,9 +320,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60; JSTL:SPEC:60.1.3
      *
-     * @testStrategy: Validate the sql:update action which specifies an DataSource
-     * Object which is null for the dataSource attribute will generate a
-     * JspException.
+     * @testStrategy: Validate the sql:update action which specifies an DataSource Object which is null for the dataSource
+     * attribute will generate a JspException.
      */
     public void negativeUpdateDataSourceNullAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeUpdateDataSourceNullAttributeTest");
@@ -350,9 +333,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:60; JSTL:SPEC:61.4
      *
-     * @testStrategy: Validate the sql:update action which specifies an DataSource
-     * Object which is uninitialized for the dataSource attribute will generate a
-     * JspException.
+     * @testStrategy: Validate the sql:update action which specifies an DataSource Object which is uninitialized for the
+     * dataSource attribute will generate a JspException.
      */
     public void negativeUpdateDataSourceAttributeEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeUpdateDataSourceAttributeEmptyTest");

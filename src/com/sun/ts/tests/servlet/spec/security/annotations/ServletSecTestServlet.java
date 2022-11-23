@@ -37,13 +37,11 @@ import java.io.PrintWriter;
  * this declares several roles, specifies which roles are allowed, then
  * sets POST to DENYALL and sets GET TO PERMITALL.
  */
-@DeclareRoles({"Administrator", "Manager", "Employee"})
-@ServletSecurity(
-        value = @HttpConstraint(rolesAllowed = {"Administrator"}),
-        httpMethodConstraints = {
-            @HttpMethodConstraint(value = "POST", emptyRoleSemantic = EmptyRoleSemantic.DENY),
-            @HttpMethodConstraint(value = "GET", emptyRoleSemantic = EmptyRoleSemantic.PERMIT)
-        })
+@DeclareRoles({ "Administrator", "Manager", "Employee" })
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = { "Administrator" }), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "POST", emptyRoleSemantic = EmptyRoleSemantic.DENY),
+        @HttpMethodConstraint(value = "GET", emptyRoleSemantic = EmptyRoleSemantic.PERMIT)
+})
 @WebServlet("/ServletSecTest")
 public class ServletSecTestServlet extends HttpServlet {
 

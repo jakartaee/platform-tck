@@ -48,8 +48,7 @@ public class DeploymentClient extends EETest {
     /* Test setup: */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * whitebox-embed; rauser1; rapassword1;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; whitebox-embed; rauser1; rapassword1;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -78,9 +77,8 @@ public class DeploymentClient extends EETest {
      *
      * @assertion_ids: Connector:SPEC:147; Connector:SPEC:153;
      *
-     * @test_Strategy: Call DataSource.getConnection for the embedded resource
-     * adapter. Check whether the connection has been correctly allocated from the
-     * ConnectionManager.
+     * @test_Strategy: Call DataSource.getConnection for the embedded resource adapter. Check whether the connection has
+     * been correctly allocated from the ConnectionManager.
      *
      * Use the connection in some interactions with the database.
      *

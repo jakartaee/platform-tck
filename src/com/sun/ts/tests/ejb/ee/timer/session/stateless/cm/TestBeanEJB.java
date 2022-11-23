@@ -46,48 +46,48 @@ public class TestBeanEJB extends StatelessWrapper implements TimedObject {
 
     // Expected results of allowed methods tests
     private static final String expected[] = {
-        "true", // getEJBHome
-        "true", // getCallerPrincipal
-        "true", // getRollbackOnly
-        "true", // isCallerInRole
-        "true", // getEJBObject
-        "true", // JNDI access
-        "false", // getUserTransaction
-        "false", // UserTransaction_Methods_Test1 -ut.begin()
-        "false", // UserTransaction_Methods_Test2 -ut.commit()
-        "false", // UserTransaction_Methods_Test3 -ut.getStatus()
-        "false", // UserTransaction_Methods_Test4 -ut.rollback()
-        "false", // UserTransaction_Methods_Test5 -ut.setRollbackOnly()
-        "false", // UserTransaction_Methods_Test6 -ut.setTransactionTimeout()
-        "true", // setRollbackOnly
-        "true", // getEJBLocalHome
-        "true", // getEJBLocalObject
-        "false", // getPrimaryKey
-        "true", // getTimerService
-        "true" // Timer Service methods
+            "true", // getEJBHome
+            "true", // getCallerPrincipal
+            "true", // getRollbackOnly
+            "true", // isCallerInRole
+            "true", // getEJBObject
+            "true", // JNDI access
+            "false", // getUserTransaction
+            "false", // UserTransaction_Methods_Test1 -ut.begin()
+            "false", // UserTransaction_Methods_Test2 -ut.commit()
+            "false", // UserTransaction_Methods_Test3 -ut.getStatus()
+            "false", // UserTransaction_Methods_Test4 -ut.rollback()
+            "false", // UserTransaction_Methods_Test5 -ut.setRollbackOnly()
+            "false", // UserTransaction_Methods_Test6 -ut.setTransactionTimeout()
+            "true", // setRollbackOnly
+            "true", // getEJBLocalHome
+            "true", // getEJBLocalObject
+            "false", // getPrimaryKey
+            "true", // getTimerService
+            "true" // Timer Service methods
     };
 
     // Allowed methods tests not tested
     private static final boolean skip[] = {
-        false, // getEJBHome
-        false, // getCallerPrincipal
-        false, // getRollbackOnly
-        false, // isCallerInRole
-        false, // getEJBObject
-        false, // JNDI access
-        false, // getUserTransaction
-        false, // UserTransaction_Methods_Test1 -ut.begin()
-        false, // UserTransaction_Methods_Test2 -ut.commit()
-        false, // UserTransaction_Methods_Test3 -ut.getStatus()
-        false, // UserTransaction_Methods_Test4 -ut.rollback()
-        false, // UserTransaction_Methods_Test5 -ut.setRollbackOnly()
-        false, // UserTransaction_Methods_Test6 -ut.setTransactionTimeout()
-        true, // setRollbackOnly
-        false, // getEJBLocalHome
-        false, // getEJBLocalObject
-        true, // getPrimaryKey
-        false, // getTimerService
-        false // Timer Service methods
+            false, // getEJBHome
+            false, // getCallerPrincipal
+            false, // getRollbackOnly
+            false, // isCallerInRole
+            false, // getEJBObject
+            false, // JNDI access
+            false, // getUserTransaction
+            false, // UserTransaction_Methods_Test1 -ut.begin()
+            false, // UserTransaction_Methods_Test2 -ut.commit()
+            false, // UserTransaction_Methods_Test3 -ut.getStatus()
+            false, // UserTransaction_Methods_Test4 -ut.rollback()
+            false, // UserTransaction_Methods_Test5 -ut.setRollbackOnly()
+            false, // UserTransaction_Methods_Test6 -ut.setTransactionTimeout()
+            true, // setRollbackOnly
+            false, // getEJBLocalHome
+            false, // getEJBLocalObject
+            true, // getPrimaryKey
+            false, // getTimerService
+            false // Timer Service methods
     };
 
     private FlagStoreHome flagStoreHome;
@@ -130,136 +130,139 @@ public class TestBeanEJB extends StatelessWrapper implements TimedObject {
         }
 
         switch (timeoutAction) {
-            case TimerImpl.NOMSG:
-                TestUtil.logTrace("EJB_TIMEOUT: No message sent - return");
-                return;
+        case TimerImpl.NOMSG:
+            TestUtil.logTrace("EJB_TIMEOUT: No message sent - return");
+            return;
 
-            case TimerImpl.ACCESS:
-                msg = TimerImpl.ACCESS_OK;
-                TestUtil.logTrace("EJB_TIMEOUT: Access OK, sending JMS message");
-                break;
+        case TimerImpl.ACCESS:
+            msg = TimerImpl.ACCESS_OK;
+            TestUtil.logTrace("EJB_TIMEOUT: Access OK, sending JMS message");
+            break;
 
-            case TimerImpl.CHKMETH:
-                if (TimerImpl.accessCheckedMethod(nctx)) msg = TimerImpl.CHKMETH_OK;
-                else msg = TimerImpl.CHKMETH_FAIL;
-                TestUtil.logTrace("EJB_TIMEOUT: Sending results of attempt " + "to access checked method...");
-                break;
+        case TimerImpl.CHKMETH:
+            if (TimerImpl.accessCheckedMethod(nctx))
+                msg = TimerImpl.CHKMETH_OK;
+            else
+                msg = TimerImpl.CHKMETH_FAIL;
+            TestUtil.logTrace("EJB_TIMEOUT: Sending results of attempt " + "to access checked method...");
+            break;
 
-            case TimerImpl.RETRY:
-                try {
-                    TestUtil.logTrace("EJB_TIMEOUT: finding flag store bean");
-                    flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN, FlagStoreHome.class);
-                    flagStoreRef = (FlagStore) flagStoreHome.findByPrimaryKey(new Integer(TimerImpl.FLAGSTORE_KEY));
+        case TimerImpl.RETRY:
+            try {
+                TestUtil.logTrace("EJB_TIMEOUT: finding flag store bean");
+                flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN, FlagStoreHome.class);
+                flagStoreRef = (FlagStore) flagStoreHome.findByPrimaryKey(new Integer(TimerImpl.FLAGSTORE_KEY));
 
-                    TestUtil.logTrace("EJB_TIMEOUT: checking flag in flag store bean");
-                    if ((flagStoreRef.getRequiresNewAccessFlag()) == false) {
-                        TestUtil.logTrace("EJB_TIMEOUT: flag is false - set it and rollback");
-                        flagStoreRef.setRequiresNewAccessFlag(true);
-                        sctx.setRollbackOnly();
-                        return;
-                    }
-
-                    TestUtil.logTrace("EJB_TIMEOUT: flag is true - send a message");
-                    if (flagStoreRef != null) flagStoreRef.remove();
-                    msg = TimerImpl.RETRY_OK;
-                } catch (Exception e) {
-                    TimerImpl.handleException("ejbTimeout retry", e);
-                    TestUtil.logTrace("removing flag store bean");
-                    if (flagStoreRef != null)
-                        try {
-                            flagStoreRef.remove();
-                        } catch (Exception re) {
-                            TimerImpl.handleException("exception removing FlagStore bean", e);
-                        }
-                    msg = TimerImpl.RETRY_FAIL;
+                TestUtil.logTrace("EJB_TIMEOUT: checking flag in flag store bean");
+                if ((flagStoreRef.getRequiresNewAccessFlag()) == false) {
+                    TestUtil.logTrace("EJB_TIMEOUT: flag is false - set it and rollback");
+                    flagStoreRef.setRequiresNewAccessFlag(true);
+                    sctx.setRollbackOnly();
+                    return;
                 }
-                break;
 
-            case TimerImpl.ROLLBACK:
-                try {
-                    TestUtil.logTrace("EJB_TIMEOUT: finding flag store bean");
-                    flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN, FlagStoreHome.class);
-                    flagStoreRef = (FlagStore) flagStoreHome.findByPrimaryKey(new Integer(TimerImpl.FLAGSTORE_KEY));
-
-                    TestUtil.logTrace("EJB_TIMEOUT: checking flags in flag store bean");
-                    if ((flagStoreRef.getRequiresNewAccessFlag()) == false) {
-                        if ((flagStoreRef.getRequiredAccessFlag()) == true) {
-                            TestUtil.logErr("EJB_TIMEOUT: Unexpected value of Required "
-                                    + "flag: true when RequiresNew flag is false");
-                            msg = TimerImpl.ROLLBACK_FAIL;
-                            break;
-                        }
-                        TestUtil.logTrace("EJB_TIMEOUT: both flags unset, " + "set them and rollback");
-                        flagStoreRef.setRequiresNewAccessFlag(true);
-                        flagStoreRef.setRequiredAccessFlag(true);
-                        sctx.setRollbackOnly();
-                        return;
+                TestUtil.logTrace("EJB_TIMEOUT: flag is true - send a message");
+                if (flagStoreRef != null)
+                    flagStoreRef.remove();
+                msg = TimerImpl.RETRY_OK;
+            } catch (Exception e) {
+                TimerImpl.handleException("ejbTimeout retry", e);
+                TestUtil.logTrace("removing flag store bean");
+                if (flagStoreRef != null)
+                    try {
+                        flagStoreRef.remove();
+                    } catch (Exception re) {
+                        TimerImpl.handleException("exception removing FlagStore bean", e);
                     }
+                msg = TimerImpl.RETRY_FAIL;
+            }
+            break;
 
-                    TestUtil.logTrace("EJB_TIMEOUT: RequiresNew flag is true - " + "checking the Required flag");
+        case TimerImpl.ROLLBACK:
+            try {
+                TestUtil.logTrace("EJB_TIMEOUT: finding flag store bean");
+                flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN, FlagStoreHome.class);
+                flagStoreRef = (FlagStore) flagStoreHome.findByPrimaryKey(new Integer(TimerImpl.FLAGSTORE_KEY));
+
+                TestUtil.logTrace("EJB_TIMEOUT: checking flags in flag store bean");
+                if ((flagStoreRef.getRequiresNewAccessFlag()) == false) {
                     if ((flagStoreRef.getRequiredAccessFlag()) == true) {
                         TestUtil.logErr("EJB_TIMEOUT: Unexpected value of Required "
-                                + "flag: true when RequiresNew flag is true");
+                                + "flag: true when RequiresNew flag is false");
                         msg = TimerImpl.ROLLBACK_FAIL;
                         break;
                     }
+                    TestUtil.logTrace("EJB_TIMEOUT: both flags unset, " + "set them and rollback");
+                    flagStoreRef.setRequiresNewAccessFlag(true);
+                    flagStoreRef.setRequiredAccessFlag(true);
+                    sctx.setRollbackOnly();
+                    return;
+                }
 
-                    if (flagStoreRef != null) flagStoreRef.remove();
-                    msg = TimerImpl.ROLLBACK_OK;
-                } catch (Exception e) {
-                    TimerImpl.handleException("ejbTimeout rollback", e);
-                    TestUtil.logTrace("removing flag store bean");
-                    if (flagStoreRef != null)
-                        try {
-                            flagStoreRef.remove();
-                        } catch (Exception re) {
-                            TimerImpl.handleException("exception removing FlagStore bean", e);
-                        }
+                TestUtil.logTrace("EJB_TIMEOUT: RequiresNew flag is true - " + "checking the Required flag");
+                if ((flagStoreRef.getRequiredAccessFlag()) == true) {
+                    TestUtil.logErr("EJB_TIMEOUT: Unexpected value of Required "
+                            + "flag: true when RequiresNew flag is true");
                     msg = TimerImpl.ROLLBACK_FAIL;
-                }
-                break;
-
-            case TimerImpl.SERIALIZE:
-                TestUtil.logTrace("EJB_TIMEOUT: Getting timer handle...");
-                TimerHandle handle =
-                        TimerImpl.getTimerHandleFromEjbTimeout(sctx.getTimerService(), TimerImpl.SERIALIZE);
-
-                if (handle == null) {
-                    TestUtil.logErr("EJB_TIMEOUT: Null handle received from " + "getTimerHandleFromEjbTimeout()");
-
-                    msg = TimerImpl.SERIALIZE_FAIL;
                     break;
                 }
 
-                TestUtil.logTrace("EJB_TIMEOUT: Verifying handle is " + "serializable...");
-                if (!(TimerImpl.isSerializable(handle))) {
+                if (flagStoreRef != null)
+                    flagStoreRef.remove();
+                msg = TimerImpl.ROLLBACK_OK;
+            } catch (Exception e) {
+                TimerImpl.handleException("ejbTimeout rollback", e);
+                TestUtil.logTrace("removing flag store bean");
+                if (flagStoreRef != null)
+                    try {
+                        flagStoreRef.remove();
+                    } catch (Exception re) {
+                        TimerImpl.handleException("exception removing FlagStore bean", e);
+                    }
+                msg = TimerImpl.ROLLBACK_FAIL;
+            }
+            break;
 
-                    TestUtil.logErr("EJB_TIMEOUT: Timer handle is not serializable");
-                    msg = TimerImpl.SERIALIZE_FAIL;
-                    break;
-                }
+        case TimerImpl.SERIALIZE:
+            TestUtil.logTrace("EJB_TIMEOUT: Getting timer handle...");
+            TimerHandle handle = TimerImpl.getTimerHandleFromEjbTimeout(sctx.getTimerService(), TimerImpl.SERIALIZE);
 
-                TestUtil.logTrace("EJB_TIMEOUT: Getting deserialized handle...");
-                TimerHandle deserializedHandle = TimerImpl.getDeserializedHandle(handle);
+            if (handle == null) {
+                TestUtil.logErr("EJB_TIMEOUT: Null handle received from " + "getTimerHandleFromEjbTimeout()");
 
-                TestUtil.logTrace("EJB_TIMEOUT: Verifying timers are " + "identical...");
-                if (!(TimerImpl.timersAreIdentical(handle, deserializedHandle))) {
-                    TestUtil.logErr("EJB_TIMEOUT: Timers are not identical");
-                    msg = TimerImpl.SERIALIZE_FAIL;
-                    break;
-                }
-                msg = TimerImpl.SERIALIZE_OK;
+                msg = TimerImpl.SERIALIZE_FAIL;
                 break;
+            }
 
-            case TimerImpl.ALLOWED:
-                Properties props = TimerImpl.doOperationTests(sctx, nctx, timer, skip, role, TimerImpl.SESSION);
-                boolean results = TimerImpl.checkOperationsTestResults(props, expected, skip);
-                msg = (results) ? TimerImpl.ALLOW_OK : TimerImpl.ALLOW_FAIL;
-                break;
+            TestUtil.logTrace("EJB_TIMEOUT: Verifying handle is " + "serializable...");
+            if (!(TimerImpl.isSerializable(handle))) {
 
-            default:
-                msg = TimerImpl.INVALID_ACTION;
+                TestUtil.logErr("EJB_TIMEOUT: Timer handle is not serializable");
+                msg = TimerImpl.SERIALIZE_FAIL;
                 break;
+            }
+
+            TestUtil.logTrace("EJB_TIMEOUT: Getting deserialized handle...");
+            TimerHandle deserializedHandle = TimerImpl.getDeserializedHandle(handle);
+
+            TestUtil.logTrace("EJB_TIMEOUT: Verifying timers are " + "identical...");
+            if (!(TimerImpl.timersAreIdentical(handle, deserializedHandle))) {
+                TestUtil.logErr("EJB_TIMEOUT: Timers are not identical");
+                msg = TimerImpl.SERIALIZE_FAIL;
+                break;
+            }
+            msg = TimerImpl.SERIALIZE_OK;
+            break;
+
+        case TimerImpl.ALLOWED:
+            Properties props = TimerImpl.doOperationTests(sctx, nctx, timer, skip, role, TimerImpl.SESSION);
+            boolean results = TimerImpl.checkOperationsTestResults(props, expected, skip);
+            msg = (results) ? TimerImpl.ALLOW_OK : TimerImpl.ALLOW_FAIL;
+            break;
+
+        default:
+            msg = TimerImpl.INVALID_ACTION;
+            break;
         }
 
         TestUtil.logTrace("EJB_TIMEOUT: Sending message at " + System.currentTimeMillis());

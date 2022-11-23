@@ -69,26 +69,24 @@ public class ParseUtil {
         encodedInPath.set('`');
 
         // US ASCII control characters 00-1F and 7F.
-        for (int i = 0; i < 32; i++) encodedInPath.set(i);
+        for (int i = 0; i < 32; i++)
+            encodedInPath.set(i);
         encodedInPath.set(127);
     }
 
     /**
-     * Constructs an encoded version of the specified path string suitable for use
-     * in the construction of a URL.
+     * Constructs an encoded version of the specified path string suitable for use in the construction of a URL.
      *
-     * A path separator is replaced by a forward slash. The string is UTF8
-     * encoded. The % escape sequence is used for characters that are above 0x7F
-     * or those defined in RFC2396 as reserved or excluded in the path component
-     * of a URL.
+     * A path separator is replaced by a forward slash. The string is UTF8 encoded. The % escape sequence is used for
+     * characters that are above 0x7F or those defined in RFC2396 as reserved or excluded in the path component of a URL.
      */
     public static String encodePath(String path) {
         return encodePath(path, true);
     }
 
     /*
-     * flag indicates whether path uses platform dependent File.separatorChar or
-     * not. True indicates path uses platform dependent File.separatorChar.
+     * flag indicates whether path uses platform dependent File.separatorChar or not. True indicates path uses platform
+     * dependent File.separatorChar.
      */
     public static String encodePath(String path, boolean flag) {
         char[] retCC = new char[path.length() * 2 + 16];
@@ -98,13 +96,16 @@ public class ParseUtil {
         int n = path.length();
         for (int i = 0; i < n; i++) {
             char c = pathCC[i];
-            if ((!flag && c == '/') || (flag && c == File.separatorChar)) retCC[retLen++] = '/';
+            if ((!flag && c == '/') || (flag && c == File.separatorChar))
+                retCC[retLen++] = '/';
             else {
                 if (c <= 0x007F) {
                     if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <= '9') {
                         retCC[retLen++] = c;
-                    } else if (encodedInPath.get(c)) retLen = escape(retCC, c, retLen);
-                    else retCC[retLen++] = c;
+                    } else if (encodedInPath.get(c))
+                        retLen = escape(retCC, c, retLen);
+                    else
+                        retCC[retLen++] = c;
                 } else if (c > 0x07FF) {
                     retLen = escape(retCC, (char) (0xE0 | ((c >> 12) & 0x0F)), retLen);
                     retLen = escape(retCC, (char) (0x80 | ((c >> 6) & 0x3F)), retLen);
@@ -130,8 +131,7 @@ public class ParseUtil {
     }
 
     /**
-     * Appends the URL escape sequence for the specified char to the specified
-     * StringBuffer.
+     * Appends the URL escape sequence for the specified char to the specified StringBuffer.
      */
     private static int escape(char[] cc, char c, int index) {
         cc[index++] = '%';
@@ -148,12 +148,13 @@ public class ParseUtil {
     }
 
     /**
-     * Returns a new String constructed from the specified String by replacing the
-     * URL escape sequences and UTF8 encoding with the characters they represent.
+     * Returns a new String constructed from the specified String by replacing the URL escape sequences and UTF8 encoding
+     * with the characters they represent.
      */
     public static String decode(String s) {
         int n = s.length();
-        if ((n == 0) || (s.indexOf('%') < 0)) return s;
+        if ((n == 0) || (s.indexOf('%') < 0))
+            return s;
 
         StringBuilder sb = new StringBuilder(n);
         ByteBuffer bb = ByteBuffer.allocate(n);
@@ -163,17 +164,18 @@ public class ParseUtil {
                 .onUnmappableCharacter(CodingErrorAction.REPORT);
 
         char c = s.charAt(0);
-        for (int i = 0; i < n; ) {
+        for (int i = 0; i < n;) {
             assert c == s.charAt(i);
             if (c != '%') {
                 sb.append(c);
-                if (++i >= n) break;
+                if (++i >= n)
+                    break;
                 c = s.charAt(i);
                 continue;
             }
             bb.clear();
             int ui = i;
-            for (; ; ) {
+            for (;;) {
                 assert (n - i >= 2);
                 try {
                     bb.put(unescape(s, i));
@@ -181,17 +183,21 @@ public class ParseUtil {
                     throw new IllegalArgumentException();
                 }
                 i += 3;
-                if (i >= n) break;
+                if (i >= n)
+                    break;
                 c = s.charAt(i);
-                if (c != '%') break;
+                if (c != '%')
+                    break;
             }
             bb.flip();
             cb.clear();
             dec.reset();
             CoderResult cr = dec.decode(bb, cb, true);
-            if (cr.isError()) throw new IllegalArgumentException("Error decoding percent encoded characters");
+            if (cr.isError())
+                throw new IllegalArgumentException("Error decoding percent encoded characters");
             cr = dec.flush(cb);
-            if (cr.isError()) throw new IllegalArgumentException("Error decoding percent encoded characters");
+            if (cr.isError())
+                throw new IllegalArgumentException("Error decoding percent encoded characters");
             sb.append(cb.flip().toString());
         }
 
@@ -227,7 +233,8 @@ public class ParseUtil {
             }
         }
         // Remove trailing .
-        if (file.endsWith("/.")) file = file.substring(0, file.length() - 1);
+        if (file.endsWith("/."))
+            file = file.substring(0, file.length() - 1);
 
         return file;
     }
@@ -250,13 +257,15 @@ public class ParseUtil {
         String path = url.getPath();
         String query = url.getQuery();
         String ref = url.getRef();
-        if (path != null && !(path.startsWith("/"))) path = "/" + path;
+        if (path != null && !(path.startsWith("/")))
+            path = "/" + path;
 
         //
         // In java.net.URI class, a port number of -1 implies the default
         // port number. So get it stripped off before creating URI instance.
         //
-        if (auth != null && auth.endsWith(":-1")) auth = auth.substring(0, auth.length() - 3);
+        if (auth != null && auth.endsWith(":-1"))
+            auth = auth.substring(0, auth.length() - 3);
 
         java.net.URI uri;
         try {
@@ -315,8 +324,7 @@ public class ParseUtil {
             String query) {
         if (opaquePart != null) {
             /*
-             * check if SSP begins with an IPv6 address because we must not quote a
-             * literal IPv6 address
+             * check if SSP begins with an IPv6 address because we must not quote a literal IPv6 address
              */
             if (opaquePart.startsWith("//[")) {
                 int end = opaquePart.indexOf("]");
@@ -337,7 +345,8 @@ public class ParseUtil {
             }
         } else {
             appendAuthority(sb, authority, userInfo, host, port);
-            if (path != null) sb.append(quote(path, L_PATH, H_PATH));
+            if (path != null)
+                sb.append(quote(path, L_PATH, H_PATH));
             if (query != null) {
                 sb.append('?');
                 sb.append(quote(query, L_URIC, H_URIC));
@@ -353,9 +362,11 @@ public class ParseUtil {
                 sb.append('@');
             }
             boolean needBrackets = ((host.indexOf(':') >= 0) && !host.startsWith("[") && !host.endsWith("]"));
-            if (needBrackets) sb.append('[');
+            if (needBrackets)
+                sb.append('[');
             sb.append(host);
-            if (needBrackets) sb.append(']');
+            if (needBrackets)
+                sb.append(']');
             if (port != -1) {
                 sb.append(':');
                 sb.append(port);
@@ -406,7 +417,8 @@ public class ParseUtil {
                     }
                     appendEscape(sb, (byte) c);
                 } else {
-                    if (sb != null) sb.append(c);
+                    if (sb != null)
+                        sb.append(c);
                 }
             } else if (allowNonASCII && (Character.isSpaceChar(c) || Character.isISOControl(c))) {
                 if (sb == null) {
@@ -415,7 +427,8 @@ public class ParseUtil {
                 }
                 appendEncoded(sb, c);
             } else {
-                if (sb != null) sb.append(c);
+                if (sb != null)
+                    sb.append(c);
             }
         }
         return (sb == null) ? s : sb.toString();
@@ -426,7 +439,8 @@ public class ParseUtil {
     // at the given position
     //
     private static boolean isEscaped(String s, int pos) {
-        if (s == null || (s.length() <= (pos + 2))) return false;
+        if (s == null || (s.length() <= (pos + 2)))
+            return false;
 
         return s.charAt(pos) == '%' && match(s.charAt(pos + 1), L_HEX, H_HEX) && match(s.charAt(pos + 2), L_HEX, H_HEX);
     }
@@ -440,13 +454,15 @@ public class ParseUtil {
         }
         while (bb.hasRemaining()) {
             int b = bb.get() & 0xff;
-            if (b >= 0x80) appendEscape(sb, (byte) b);
-            else sb.append((char) b);
+            if (b >= 0x80)
+                appendEscape(sb, (byte) b);
+            else
+                sb.append((char) b);
         }
     }
 
     private static final char[] hexDigits = {
-        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
     };
 
     private static void appendEscape(StringBuffer sb, byte b) {
@@ -457,8 +473,10 @@ public class ParseUtil {
 
     // Tell whether the given character is permitted by the given mask pair
     private static boolean match(char c, long lowMask, long highMask) {
-        if (c < 64) return ((1L << c) & lowMask) != 0;
-        if (c < 128) return ((1L << (c - 64)) & highMask) != 0;
+        if (c < 64)
+            return ((1L << c) & lowMask) != 0;
+        if (c < 128)
+            return ((1L << (c - 64)) & highMask) != 0;
         return false;
     }
 
@@ -479,7 +497,8 @@ public class ParseUtil {
         long m = 0;
         int f = Math.max(Math.min(first, 63), 0);
         int l = Math.max(Math.min(last, 63), 0);
-        for (int i = f; i <= l; i++) m |= 1L << i;
+        for (int i = f; i <= l; i++)
+            m |= 1L << i;
         return m;
     }
 
@@ -489,7 +508,8 @@ public class ParseUtil {
         long m = 0;
         for (int i = 0; i < n; i++) {
             char c = chars.charAt(i);
-            if (c < 64) m |= (1L << c);
+            if (c < 64)
+                m |= (1L << c);
         }
         return m;
     }
@@ -500,7 +520,8 @@ public class ParseUtil {
         long m = 0;
         int f = Math.max(Math.min(first, 127), 64) - 64;
         int l = Math.max(Math.min(last, 127), 64) - 64;
-        for (int i = f; i <= l; i++) m |= 1L << i;
+        for (int i = f; i <= l; i++)
+            m |= 1L << i;
         return m;
     }
 
@@ -510,7 +531,8 @@ public class ParseUtil {
         long m = 0;
         for (int i = 0; i < n; i++) {
             char c = chars.charAt(i);
-            if ((c >= 64) && (c < 128)) m |= (1L << (c - 64));
+            if ((c >= 64) && (c < 128))
+                m |= (1L << (c - 64));
         }
         return m;
     }

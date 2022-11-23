@@ -42,7 +42,7 @@ public class WSCClient extends WebSocketCommonClient {
     static final String KEY = "aFirstKey";
 
     static final String[] HEADERS = {
-        "header1", "header2", "header3", "header4", "header5", "header6", "header7", "header8"
+            "header1", "header2", "header3", "header4", "header5", "header6", "header7", "header8"
     };
 
     /* Run test */
@@ -50,22 +50,20 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: headerToHeaderTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:77; WebSocket:JAVADOC:174;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:16; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:77; WebSocket:JAVADOC:174; WebSocket:JAVADOC:15; WebSocket:JAVADOC:16;
+     * WebSocket:JAVADOC:210;
      *
      * @test_Strategy: HandshakeResponse.getHeaders HandshakeRequest.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ClientEndpointConfig.Configurator.beforeRequest
+     * ClientEndpointConfig.Configurator.afterResponse ClientEndpointConfig.Configurator.beforeRequest
      * ServerEndpointConfig.Configurator.modifyHandshake
      *
-     * This test sets headers to request on client, on server it reads them, and
-     * put them to response, and headers are checked on client
+     * This test sets headers to request on client, on server it reads them, and put them to response, and headers are
+     * checked on client
      */
     public void headerToHeaderTest() throws Fault {
         ClientConfigurator configurator = new ClientConfigurator();
         configurator.addToRequestAndResponse(KEY, HEADERS);
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         invoke("echo", "anything", "anything");
         configurator.assertBeforeRequestHasBeenCalled();
@@ -75,22 +73,19 @@ public class WSCClient extends WebSocketCommonClient {
     /*
      * @testName: addHeadersOnServerTest
      *
-     * @assertion_ids: WebSocket:JAVADOC:77; WebSocket:JAVADOC:174;
-     * WebSocket:JAVADOC:15; WebSocket:JAVADOC:16; WebSocket:JAVADOC:210;
+     * @assertion_ids: WebSocket:JAVADOC:77; WebSocket:JAVADOC:174; WebSocket:JAVADOC:15; WebSocket:JAVADOC:16;
+     * WebSocket:JAVADOC:210;
      *
      * @test_Strategy: HandshakeResponse.getHeaders HandshakeRequest.getHeaders
-     * ClientEndpointConfig.Configurator.afterResponse
-     * ClientEndpointConfig.Configurator.beforeRequest
+     * ClientEndpointConfig.Configurator.afterResponse ClientEndpointConfig.Configurator.beforeRequest
      * ServerEndpointConfig.Configurator.modifyHandshake
      *
-     * This test puts new values to header map on server and it is checked on a
-     * client
+     * This test puts new values to header map on server and it is checked on a client
      */
     public void addHeadersOnServerTest() throws Fault {
         ClientConfigurator configurator = new ClientConfigurator();
         configurator.addToResponse(SetHeadersConfigurator.KEY, SetHeadersConfigurator.HEADERS);
-        ClientEndpointConfig config =
-                ClientEndpointConfig.Builder.create().configurator(configurator).build();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create().configurator(configurator).build();
         setClientEndpointConfig(config);
         invoke("setheaders", "anything", "anything");
         configurator.assertBeforeRequestHasBeenCalled();

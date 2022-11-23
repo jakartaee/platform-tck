@@ -45,7 +45,7 @@ public class SqlUrlClient extends AbstractUrlClient implements JstlTckConstants 
         super.setTestProperties(testCase);
         HttpRequest httpReq = testCase.getRequest();
         Enumeration enumm = dbArgs.propertyNames();
-        for (; enumm.hasMoreElements(); ) {
+        for (; enumm.hasMoreElements();) {
             String name = (String) enumm.nextElement();
             String value = dbArgs.getProperty(name);
             httpReq.addRequestHeader(name, value);
@@ -60,7 +60,8 @@ public class SqlUrlClient extends AbstractUrlClient implements JstlTckConstants 
             String name = (String) enumm.nextElement();
             String value = dbArgs.getProperty(name);
             newParams.append(name + "=" + value);
-            if (i < (size - 1)) newParams.append("&");
+            if (i < (size - 1))
+                newParams.append("&");
         }
 
         // insert these parameters into the URL as appropriate

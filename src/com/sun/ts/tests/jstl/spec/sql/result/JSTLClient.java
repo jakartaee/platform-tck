@@ -27,22 +27,21 @@ import java.io.PrintWriter;
 public class JSTLClient extends SqlUrlClient {
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; ts_home; jstl.db.url;
-     * jstl.db.user; jstl.db.password; jstl.db.driver;
+     * @class.setup_props: webServerHost; webServerPort; ts_home; jstl.db.url; jstl.db.user; jstl.db.password;
+     * jstl.db.driver;
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -51,8 +50,7 @@ public class JSTLClient extends SqlUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -68,9 +66,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:59
      *
-     * @testStrategy: Validate the behavior of the sql:query action - That a query
-     * executed using maxRows attribute returns the correct value for
-     * Result.isLimitedByMaxRows()
+     * @testStrategy: Validate the behavior of the sql:query action - That a query executed using maxRows attribute returns
+     * the correct value for Result.isLimitedByMaxRows()
      */
     public void positiveResultIsLimitedByMaxRowsTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveResultIsLimitedByMaxRowsTest");
@@ -82,8 +79,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:59
      *
-     * @testStrategy: Validate the access to Result.getRows is case insensitive. -
-     * For a row returned by getRows(), specify the column names in lower case.
+     * @testStrategy: Validate the access to Result.getRows is case insensitive. - For a row returned by getRows(), specify
+     * the column names in lower case.
      */
     public void positiveResultGetRowsLowerCaseTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveResultGetRowsLowerCaseTest");
@@ -95,8 +92,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:59
      *
-     * @testStrategy: Validate the access to Result.getRows is case insensitive. -
-     * For a row returned by getRows(), specify the column names in upper case.
+     * @testStrategy: Validate the access to Result.getRows is case insensitive. - For a row returned by getRows(), specify
+     * the column names in upper case.
      */
     public void positiveResultGetRowsUpperCaseTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveResultGetRowsUpperCaseTest");
@@ -108,8 +105,8 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:59
      *
-     * @testStrategy: Validate the values returned by Result.getColumns can be
-     * used to access the column values returned by Result.getRows().
+     * @testStrategy: Validate the values returned by Result.getColumns can be used to access the column values returned by
+     * Result.getRows().
      */
     public void positiveResultGetColumnNamesTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveResultGetColumnNamesTest");
@@ -121,8 +118,7 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:59
      *
-     * @testStrategy: Validate that you can access each column for a given row
-     * which is returned by Result.getRowsByIndex().
+     * @testStrategy: Validate that you can access each column for a given row which is returned by Result.getRowsByIndex().
      */
     public void positiveResultGetRowsByIndexTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveResultGetRowsByIndexTest");
@@ -134,8 +130,7 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:59
      *
-     * @testStrategy: Validate that the correct number of rows is returned by
-     * Result.getRowsByIndex().
+     * @testStrategy: Validate that the correct number of rows is returned by Result.getRowsByIndex().
      */
     public void positiveResultGetRowsByIndexCountTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveResultGetRowsByIndexCountTest");
@@ -147,8 +142,7 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:59
      *
-     * @testStrategy: Validate that the correct number of rows is returned by
-     * Result.getRows().
+     * @testStrategy: Validate that the correct number of rows is returned by Result.getRows().
      */
     public void positiveResultGetRowsCountTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveResultGetRowsCountTest");
@@ -160,8 +154,7 @@ public class JSTLClient extends SqlUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:59
      *
-     * @testStrategy: Validate that the correct number of columns is returned by
-     * Result.getColumnNames().
+     * @testStrategy: Validate that the correct number of columns is returned by Result.getColumnNames().
      */
     public void positiveResultGetColumnNamesCountTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveResultGetColumnNamesCountTest");

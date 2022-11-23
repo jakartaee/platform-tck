@@ -112,8 +112,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -146,11 +148,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: TestCatalogWithValidSystemIdAndValidURIValidWSDL
      *
-     * @assertion_ids: JAXWS:SPEC:4020; WS4EE:SPEC:5007; WS4EE:SPEC:35;
-     * WS4EE:SPEC:4014;
+     * @assertion_ids: JAXWS:SPEC:4020; WS4EE:SPEC:5007; WS4EE:SPEC:35; WS4EE:SPEC:4014;
      *
-     * @test_Strategy: Positive test case for oasis catalogs. Valid SystemId and
-     * valid URI pointing to a valid WSDL. Must pass.
+     * @test_Strategy: Positive test case for oasis catalogs. Valid SystemId and valid URI pointing to a valid WSDL. Must
+     * pass.
      */
     public void TestCatalogWithValidSystemIdAndValidURIValidWSDL() throws Fault {
         boolean pass = true;
@@ -159,8 +160,7 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("TestCatalogWithValidSystemIdAndValidURIValidWSDL");
             TestUtil.logMsg("Get port via wsdl catalog with Valid URI/Valid WSDL");
             if (modeProperty.equals("standalone")) {
-                port = (Hello)
-                        JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, CatalogTestService.class, PORT_QNAME, Hello.class);
+                port = (Hello) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, CatalogTestService.class, PORT_QNAME, Hello.class);
                 TestUtil.logMsg("port=" + port);
                 JAXWS_Util.setTargetEndpointAddress(port, url);
             } else {
@@ -179,6 +179,7 @@ public class Client extends ServiceEETest {
             throw new Fault("TestCatalogWithValidSystemIdAndValidURIValidWSDL failed", e);
         }
 
-        if (!pass) throw new Fault("TestCatalogWithValidSystemIdAndValidURIValidWSDL failed");
+        if (!pass)
+            throw new Fault("TestCatalogWithValidSystemIdAndValidURIValidWSDL failed");
     }
 }

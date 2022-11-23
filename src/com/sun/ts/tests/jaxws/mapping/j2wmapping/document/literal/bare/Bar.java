@@ -24,7 +24,8 @@ public class Bar {
 
     private String bar;
 
-    public Bar() {}
+    public Bar() {
+    }
 
     public String getBar() {
         return bar;

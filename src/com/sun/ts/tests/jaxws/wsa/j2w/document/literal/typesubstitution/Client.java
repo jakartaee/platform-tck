@@ -94,8 +94,7 @@ public class Client extends ServiceEETest {
     }
 
     private void getPortStandalone() throws Exception {
-        port = (CarDealer)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, CarDealerService.class, PORT_QNAME, CarDealer.class);
+        port = (CarDealer) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, CarDealerService.class, PORT_QNAME, CarDealer.class);
         TestUtil.logMsg("port=" + port);
         JAXWS_Util.setTargetEndpointAddress(port, url);
     }
@@ -129,8 +128,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -201,7 +202,8 @@ public class Client extends ServiceEETest {
                             && !color.equals("white")) {
                         TestUtil.logErr("data mismatch expected Toyota Camry 1998 white");
                         pass = false;
-                    } else TestUtil.logMsg("Toyota car matches");
+                    } else
+                        TestUtil.logMsg("Toyota car matches");
                 } else if (car instanceof Ford) {
                     Ford t = (Ford) car;
                     color = t.getColor();
@@ -212,7 +214,8 @@ public class Client extends ServiceEETest {
                             && !color.equals("red")) {
                         TestUtil.logErr("data mismatch expected Ford Mustang 1999 red");
                         pass = false;
-                    } else TestUtil.logMsg("Ford car matches");
+                    } else
+                        TestUtil.logMsg("Ford car matches");
                 } else {
                     TestUtil.logErr("data mismatch - no car of this type expected");
                     pass = false;
@@ -229,6 +232,7 @@ public class Client extends ServiceEETest {
             throw new Fault("getCars failed", e);
         }
 
-        if (!pass) throw new Fault("getCars failed");
+        if (!pass)
+            throw new Fault("getCars failed");
     }
 }

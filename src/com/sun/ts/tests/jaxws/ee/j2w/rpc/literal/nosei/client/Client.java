@@ -131,8 +131,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -169,8 +171,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: echoTest
      *
-     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3013; JAXWS:SPEC:3036;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: JAXWS:SPEC:3000; JAXWS:SPEC:3013; JAXWS:SPEC:3036; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
      * @test_Strategy:
      *
@@ -180,10 +182,13 @@ public class Client extends ServiceEETest {
         TestUtil.logMsg("echoTest");
         boolean pass = true;
 
-        if (!stringTest()) pass = false;
-        if (!stringArrayTest()) pass = false;
+        if (!stringTest())
+            pass = false;
+        if (!stringArrayTest())
+            pass = false;
 
-        if (!pass) throw new Fault("echoTest failed");
+        if (!pass)
+            throw new Fault("echoTest failed");
     }
 
     public boolean stringTest() throws Fault {
@@ -193,7 +198,8 @@ public class Client extends ServiceEETest {
 
         try {
             String response = port.echoString(request);
-            if (!JAXWS_Data.compareValues(request, response, "String")) pass = false;
+            if (!JAXWS_Data.compareValues(request, response, "String"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
@@ -210,10 +216,12 @@ public class Client extends ServiceEETest {
 
         try {
             StringArray request = new StringArray();
-            for (int i = 0; i < values.length; i++) request.getItem().add(values[i]);
+            for (int i = 0; i < values.length; i++)
+                request.getItem().add(values[i]);
             StringArray response = port.echoStringArray(request);
             List<String> actual = response.getItem();
-            if (!JAXWS_Data.compareArrayValues(expect, actual, "String")) pass = false;
+            if (!JAXWS_Data.compareArrayValues(expect, actual, "String"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);

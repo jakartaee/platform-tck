@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String[] args, PrintWriter out, PrintWriter err) {
         setContextRoot("/servlet_spec_listenerorder_web");
@@ -53,11 +51,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: 1. Define servlet TestServlet in web.xml; 2. Define three
-     * RequestListeners in web.xml in the order of ServletRequestListener1,
-     * ServletRequestListener2, ServletRequestListener3; 3. Send request to
-     * /TestServlet, verify TestServlet is invoked 3. Also verify in all
-     * RequestListeners that they are invoked in the order declared in web.xml
+     * @test_Strategy: 1. Define servlet TestServlet in web.xml; 2. Define three RequestListeners in web.xml in the order of
+     * ServletRequestListener1, ServletRequestListener2, ServletRequestListener3; 3. Send request to /TestServlet, verify
+     * TestServlet is invoked 3. Also verify in all RequestListeners that they are invoked in the order declared in web.xml
      */
     public void requestListenerOrderTest() throws Fault {
         TEST_PROPS.setProperty(STATUS_CODE, OK);

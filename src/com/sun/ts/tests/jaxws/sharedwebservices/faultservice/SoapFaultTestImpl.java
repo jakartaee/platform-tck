@@ -26,11 +26,7 @@ import jakarta.xml.ws.soap.SOAPFaultException;
 import java.rmi.ServerException;
 import javax.xml.namespace.QName;
 
-@jakarta.jws.WebService(
-        targetNamespace = "http://faulttestservice.org/wsdl",
-        portName = "SoapFaultTestPort",
-        serviceName = "FaultTest",
-        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.faultservice.SoapFaultTest")
+@jakarta.jws.WebService(targetNamespace = "http://faulttestservice.org/wsdl", portName = "SoapFaultTestPort", serviceName = "FaultTest", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.faultservice.SoapFaultTest")
 public class SoapFaultTestImpl implements SoapFaultTest {
     public String alwaysThrowsException() throws DummyException {
         throw new DummyException("dummyString1", "dummyString2");

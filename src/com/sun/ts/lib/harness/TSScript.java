@@ -164,7 +164,7 @@ public class TSScript extends com.sun.javatest.Script {
             if (TestUtil.harnessDebug) {
                 StringBuffer sb = new StringBuffer();
                 sb.append("test description contains key/value:");
-                for (Iterator e = td.getParameterKeys(); e.hasNext(); ) {
+                for (Iterator e = td.getParameterKeys(); e.hasNext();) {
                     String k = (String) (e.next());
                     sb.append(k).append('=').append(td.getParameter(k));
                 }
@@ -341,8 +341,7 @@ public class TSScript extends com.sun.javatest.Script {
                 if (executeArgs == null) {
                     executeArgs = "-p " + sTestJteFile + " -t " + testName + " -vehicle " + sVehicle;
                 } else {
-                    executeArgs =
-                            " -p " + sTestJteFile + " -t " + testName + " -vehicle " + sVehicle + " " + executeArgs;
+                    executeArgs = " -p " + sTestJteFile + " -t " + testName + " -vehicle " + sVehicle + " " + executeArgs;
                 }
             }
             // props needed:
@@ -406,14 +405,14 @@ public class TSScript extends com.sun.javatest.Script {
                     pExecProps.put(
                             "client_name",
                             sClientEar.substring(
-                                            sClientEar.lastIndexOf(File.separator) + 1, sClientEar.indexOf("_vehicles"))
+                                    sClientEar.lastIndexOf(File.separator) + 1, sClientEar.indexOf("_vehicles"))
                                     + "_" + sVehicle
                                     + "_vehicle_client");
                 } else {
                     pExecProps.put(
                             "client_name",
                             sClientEar.substring(
-                                            sClientEar.lastIndexOf(File.separator) + 1, sClientEar.lastIndexOf("."))
+                                    sClientEar.lastIndexOf(File.separator) + 1, sClientEar.lastIndexOf("."))
                                     + "_client");
                 }
 
@@ -762,7 +761,8 @@ public class TSScript extends com.sun.javatest.Script {
 
         private static ClassFilter instance = new ClassFilter();
 
-        private ClassFilter() {}
+        private ClassFilter() {
+        }
 
         public static ClassFilter getInstance() {
             return instance;

@@ -44,8 +44,10 @@ public class SecTestEJB implements SessionBean {
     }
 
     public boolean IsCaller(String caller) {
-        if (sctx.getCallerPrincipal().getName().indexOf(caller) < 0) return false;
-        else return true;
+        if (sctx.getCallerPrincipal().getName().indexOf(caller) < 0)
+            return false;
+        else
+            return true;
     }
 
     public boolean EjbNotAuthz() {
@@ -84,9 +86,12 @@ public class SecTestEJB implements SessionBean {
         sctx = sc;
     }
 
-    public void ejbRemove() {}
+    public void ejbRemove() {
+    }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 }

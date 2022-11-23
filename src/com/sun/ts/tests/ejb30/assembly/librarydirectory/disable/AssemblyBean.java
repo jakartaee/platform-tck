@@ -29,17 +29,16 @@ import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
 
 /**
- * This bean is packaged into lib/shared.jar, but this library-directory is
- * disabled by using an empty element value. Although this bean has the same
- * name as the one in ../../common, and implements the same remote/local
- * interface, it should not cause any conflict since this directory is disabled
- * in application.xml
+ * This bean is packaged into lib/shared.jar, but this library-directory is disabled by using an empty element value.
+ * Although this bean has the same name as the one in ../../common, and implements the same remote/local interface, it
+ * should not cause any conflict since this directory is disabled in application.xml
  */
 @Stateless(name = "AssemblyBean")
-@Interceptors({AssemblyInterceptor.class})
+@Interceptors({ AssemblyInterceptor.class })
 public class AssemblyBean extends AssemblyBeanBase implements AssemblyRemoteIF, AssemblyLocalIF {
 
-    public AssemblyBean() {}
+    public AssemblyBean() {
+    }
 
     @Override
     public int remoteAdd(int a, int b) {

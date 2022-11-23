@@ -47,7 +47,8 @@ public class Spouse implements java.io.Serializable {
 
     private Customer customer;
 
-    public Spouse() {}
+    public Spouse() {
+    }
 
     public Spouse(String v1, String v2, String v3, String v4, String v5, Info v6) {
         id = v1;

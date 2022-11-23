@@ -27,8 +27,8 @@ import jakarta.ejb.Timer;
 public class ScheduleBeanBase3 extends ScheduleBeanBase2 {
     @SuppressWarnings("unused")
     @Schedules({
-        @Schedule(hour = "*", minute = "*", second = ODD_SECONDS, persistent = false, info = "autoTimerNonPersistent"),
-        @Schedule(hour = "*", minute = "*", second = EVEN_SECONDS, info = "autoTimerPersistent")
+            @Schedule(hour = "*", minute = "*", second = ODD_SECONDS, persistent = false, info = "autoTimerNonPersistent"),
+            @Schedule(hour = "*", minute = "*", second = EVEN_SECONDS, info = "autoTimerPersistent")
     })
     private void autoTimerPersistentAndNonPersistent(Timer timer) {
         String info = (String) timer.getInfo();

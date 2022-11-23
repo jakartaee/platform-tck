@@ -27,20 +27,16 @@ import jakarta.ejb.Singleton;
 import jakarta.interceptor.Interceptors;
 
 @Singleton
-@Interceptors({Interceptor1.class, Interceptor2.class})
+@Interceptors({ Interceptor1.class, Interceptor2.class })
 public class TwoBean extends BeanBase {
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myShort",
-            description = "declared in web.xml")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myShort", description = "declared in web.xml")
     private short myShortFromWebXml;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.Client/myLong")
     private long myLongFromWebXml;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myShort",
-            description = "declared in ejb-jar.xml#OneBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myShort", description = "declared in ejb-jar.xml#OneBean")
     private short myShortFromOneBean;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myLong")
@@ -52,9 +48,7 @@ public class TwoBean extends BeanBase {
     @Resource(description = "declared in ejb-jar.xml#TwoBean")
     private long myLong;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myShort",
-            description = "declared in ejb-jar.xml#ThreeBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myShort", description = "declared in ejb-jar.xml#ThreeBean")
     private short myShortFromThreeBean;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myLong")

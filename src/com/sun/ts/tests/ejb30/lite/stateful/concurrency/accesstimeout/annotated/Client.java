@@ -25,22 +25,10 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 
 @EJBs({
-    @EJB(
-            name = AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanLocal,
-            beanName = "BeanClassMethodLevelOverrideAccessTimeoutBean",
-            beanInterface = AccessTimeoutIF.class),
-    @EJB(
-            name = AccessTimeoutIF.beanClassMethodLevelAccessTimeoutBeanLocal,
-            beanName = "BeanClassMethodLevelAccessTimeoutBean",
-            beanInterface = AccessTimeoutIF.class),
-    @EJB(
-            name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal,
-            beanName = "BeanClassLevelAccessTimeoutBean",
-            beanInterface = AccessTimeoutIF.class),
-    @EJB(
-            name = AccessTimeoutIF.annotatedSuperClassAccessTimeoutBeanLocal,
-            beanName = "AnnotatedSuperClassAccessTimeoutBean",
-            beanInterface = AccessTimeoutIF.class)
+        @EJB(name = AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanLocal, beanName = "BeanClassMethodLevelOverrideAccessTimeoutBean", beanInterface = AccessTimeoutIF.class),
+        @EJB(name = AccessTimeoutIF.beanClassMethodLevelAccessTimeoutBeanLocal, beanName = "BeanClassMethodLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class),
+        @EJB(name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal, beanName = "BeanClassLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class),
+        @EJB(name = AccessTimeoutIF.annotatedSuperClassAccessTimeoutBeanLocal, beanName = "AnnotatedSuperClassAccessTimeoutBean", beanInterface = AccessTimeoutIF.class)
 })
 public class Client extends ClientBase {
     /*

@@ -78,9 +78,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:71
      *
-     * @test_Strategy: Deploy a BMP Entity Bean an lookup its home interface.
-     *                 Invoke getEJBMetaData().isSession() method at runtime and
-     *                 check that returned value is 'false'.
+     * @test_Strategy: Deploy a BMP Entity Bean an lookup its home interface. Invoke getEJBMetaData().isSession() method at
+     * runtime and check that returned value is 'false'.
      */
     public void testIsSession() throws Fault {
         try {
@@ -97,9 +96,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:72
      *
-     * @test_Strategy: Deploy a BMP Entity Bean and lookup its home interface.
-     *                 Invoke getEJBMetaData().isStatelessSession() method at
-     *                 runtime and check that returned value is 'false'.
+     * @test_Strategy: Deploy a BMP Entity Bean and lookup its home interface. Invoke getEJBMetaData().isStatelessSession()
+     * method at runtime and check that returned value is 'false'.
      */
     public void testIsStateless() throws Fault {
         boolean pass;
@@ -120,9 +118,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:78
      *
-     * @test_Strategy: Deploy and create a BMP Entity Bean. Attempt to call
-     *                 getPrimaryKey() and check that we do not catch any
-     *                 Exception.
+     * @test_Strategy: Deploy and create a BMP Entity Bean. Attempt to call getPrimaryKey() and check that we do not catch
+     * any Exception.
      */
     public void testGetPrimaryKey() throws Fault {
         Single bean = null;
@@ -151,10 +148,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:68
      *
-     * @test_Strategy: Deploy a BMP Entity Bean. Invoke
-     *                 getEJBMetaData().getHomeInterfaceClass() on its home
-     *                 interface and check that the name of the returned Class
-     *                 correspond with the one specified in the DD (home element).
+     * @test_Strategy: Deploy a BMP Entity Bean. Invoke getEJBMetaData().getHomeInterfaceClass() on its home interface and
+     * check that the name of the returned Class correspond with the one specified in the DD (home element).
      */
     public void testHomeInterface() throws Fault {
         Class runtimeHome = null;
@@ -176,11 +171,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:70
      *
-     * @test_Strategy: Deploy a BMP Entity bean and lookup its interface. Invoke
-     *                 getEJBMetaData().getRemoteInterfaceClass() on its home
-     *                 interface and check that the name of the returned Class
-     *                 correspond with the one specified in the DD (remote
-     *                 element).
+     * @test_Strategy: Deploy a BMP Entity bean and lookup its interface. Invoke getEJBMetaData().getRemoteInterfaceClass()
+     * on its home interface and check that the name of the returned Class correspond with the one specified in the DD
+     * (remote element).
      */
     public void testRemoteInterface() throws Fault {
         Class runtimeRemote = null;
@@ -202,8 +195,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:432
      *
-     * @test_Strategy: Deploy and create a BMP Entity Bean using the special
-     *                 create method.
+     * @test_Strategy: Deploy and create a BMP Entity Bean using the special create method.
      */
     public void testCreate() throws Fault {
         Single bean = null;
@@ -221,9 +213,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:485
      *
-     * @test_Strategy: Deploy and create a BMP Entity bean. Invoke a method of its
-     *                 remote interface returning a String (we use to "tag" this
-     *                 particular home interface).
+     * @test_Strategy: Deploy and create a BMP Entity bean. Invoke a method of its remote interface returning a String (we
+     * use to "tag" this particular home interface).
      */
     public void testBusinessMethod() throws Fault {
         Single bean = null;

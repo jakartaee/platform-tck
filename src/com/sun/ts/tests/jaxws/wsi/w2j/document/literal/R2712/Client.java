@@ -46,8 +46,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -79,8 +78,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2712
      *
-     * @test_Strategy: Send a request and verify the child elements using a
-     *                 servlet filter.
+     * @test_Strategy: Send a request and verify the child elements using a servlet filter.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -100,8 +98,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2712
      *
-     * @test_Strategy: Send a request to the endpoint which inturn sends a
-     *                 response back. Verify the child elements in that response.
+     * @test_Strategy: Send a request to the endpoint which inturn sends a response back. Verify the child elements in that
+     * response.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -126,8 +124,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Verifies that the correct child element of the soap:body is returned
      *
-     * @param request
-     *          the SOAPMessage response.
+     * @param request the SOAPMessage response.
      *
      * @return "PASSED" if valid; an error message otherwise.
      *

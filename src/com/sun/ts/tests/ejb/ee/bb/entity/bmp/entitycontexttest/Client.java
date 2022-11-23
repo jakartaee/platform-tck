@@ -63,8 +63,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * user; password;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; user; password;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -106,8 +105,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:450.1
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify EJBObject reference returned.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify EJBObject reference returned.
      *
      */
 
@@ -130,7 +128,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -138,8 +137,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:450.2
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify EJBHome reference returned.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify EJBHome reference returned.
      *
      */
 
@@ -162,7 +160,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -170,8 +169,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:777
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify Properies object received.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify Properies object received.
      *
      */
 
@@ -194,7 +192,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -202,8 +201,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:450.5
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify Principal reference returned.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify Principal reference returned.
      *
      */
 
@@ -226,7 +224,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
@@ -234,9 +233,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:450.6
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify correct identity role. This is a POSITIVE test where caller is in
-     * role1.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify correct identity role. This is a
+     * POSITIVE test where caller is in role1.
      *
      */
 
@@ -259,7 +257,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     /*
@@ -267,9 +266,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:450.6
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify correct identity role. This is a NEGATIVE test where caller is not
-     * in role2.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify correct identity role. This is a
+     * NEGATIVE test where caller is not in role2.
      *
      */
 
@@ -292,7 +290,8 @@ public class Client extends EETest {
             }
         }
 
-        if (pass) throw new Fault("test5b failed");
+        if (pass)
+            throw new Fault("test5b failed");
     }
 
     /*
@@ -300,9 +299,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:450.7
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify setRollback functionality since entity beans are always
-     * container-managed.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify setRollback functionality since
+     * entity beans are always container-managed.
      *
      */
 
@@ -325,7 +323,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test6 failed");
+        if (!pass)
+            throw new Fault("test6 failed");
     }
 
     /*
@@ -333,9 +332,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:450.8
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify getRollback functionality since entity beans are always
-     * container-managed.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify getRollback functionality since
+     * entity beans are always container-managed.
      *
      */
 
@@ -358,7 +356,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test7 failed");
+        if (!pass)
+            throw new Fault("test7 failed");
     }
 
     /*
@@ -366,8 +365,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:450.11
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify entity bean cannot obtain UserTransaction.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify entity bean cannot obtain
+     * UserTransaction.
      *
      */
 
@@ -391,7 +390,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test8 failed");
+        if (!pass)
+            throw new Fault("test8 failed");
     }
 
     /*
@@ -399,8 +399,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:450.9
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify entity bean can obtain its primary key.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify entity bean can obtain its primary
+     * key.
      *
      */
 
@@ -424,7 +424,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test9 failed");
+        if (!pass)
+            throw new Fault("test9 failed");
     }
 
     /*
@@ -432,8 +433,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:450.10; EJB:JAVADOC:27
      *
-     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server.
-     * Verify entity bean can obtain timer service.
+     * @test_Strategy: Create an Entity BMP Bean. Deploy it on the J2EE server. Verify entity bean can obtain timer service.
      *
      */
 
@@ -457,7 +457,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test10 failed");
+        if (!pass)
+            throw new Fault("test10 failed");
     }
 
     public void cleanup() throws Fault {

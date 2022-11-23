@@ -25,7 +25,8 @@ public class Client extends PMClientBase {
 
     private static final long serialVersionUID = 22L;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -49,8 +50,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:3316;
      *
-     * @test_Strategy: try @Convert works when annotated multiple times
-     * without @Converts
+     * @test_Strategy: try @Convert works when annotated multiple times without @Converts
      */
     public void convertsTest() throws Fault {
         boolean pass1 = false;

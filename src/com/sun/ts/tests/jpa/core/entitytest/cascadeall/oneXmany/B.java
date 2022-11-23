@@ -86,8 +86,10 @@ public class B implements java.io.Serializable {
 
     public boolean isA() {
         TestUtil.logTrace("isA");
-        if (getA1() != null) TestUtil.logTrace("Relationship set for A ...");
-        else TestUtil.logTrace("Relationship not set for A ...");
+        if (getA1() != null)
+            TestUtil.logTrace("Relationship set for A ...");
+        else
+            TestUtil.logTrace("Relationship not set for A ...");
         return getA1() != null;
     }
 
@@ -96,7 +98,8 @@ public class B implements java.io.Serializable {
         if (isA()) {
             A a1 = getA1();
             return a1;
-        } else return null;
+        } else
+            return null;
     }
 
     public String getBId() {

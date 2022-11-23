@@ -34,7 +34,8 @@ public class Department {
         this.location = location;
     }
 
-    public Department() {}
+    public Department() {
+    }
 
     public String getName() {
         return name;

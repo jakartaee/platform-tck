@@ -34,9 +34,7 @@ import java.io.PrintWriter;
  * this servlet will be set to DENYALL because of the DD settings.
  */
 @ServletSecurity(@HttpConstraint(EmptyRoleSemantic.PERMIT))
-@WebServlet(
-        name = "DenyAllTestLogicalName",
-        urlPatterns = {"/ServletDenyAll"})
+@WebServlet(name = "DenyAllTestLogicalName", urlPatterns = { "/ServletDenyAll" })
 public class DenyAllServlet extends HttpServlet {
 
     //

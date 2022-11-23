@@ -24,12 +24,7 @@ import jakarta.jws.WebService;
 import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.MTOM;
 
-@WebService(
-        portName = "Hello2Port",
-        serviceName = "HelloService",
-        targetNamespace = "http://helloservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello2")
+@WebService(portName = "Hello2Port", serviceName = "HelloService", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSDLHelloService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.sharedwebservices.doclithelloservice.Hello2")
 @Addressing
 @MTOM
 public class Hello2Impl implements Hello2 {

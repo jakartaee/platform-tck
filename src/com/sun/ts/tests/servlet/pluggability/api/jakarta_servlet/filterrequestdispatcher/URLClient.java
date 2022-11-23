@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -60,11 +58,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:54; Servlet:SPEC:59;
      *
-     * @test_Strategy: 1. Create a servlet, a JSP page and a web page -
-     * /generic/DummyServlet, /generic/dummyJSP, and /dummy.html. 2. Map a filter
-     * Test_Filter on all above three with dispatcher value set to REQUEST using
-     * url-pattern, as well as ERROR, FORWARD and INCLUDE. 3. Client try to access
-     * all of them directly. 4. Verify that filter is properly invoked.
+     * @test_Strategy: 1. Create a servlet, a JSP page and a web page - /generic/DummyServlet, /generic/dummyJSP, and
+     * /dummy.html. 2. Map a filter Test_Filter on all above three with dispatcher value set to REQUEST using url-pattern,
+     * as well as ERROR, FORWARD and INCLUDE. 3. Client try to access all of them directly. 4. Verify that filter is
+     * properly invoked.
      */
     public void RequestTest() throws Fault {
         TEST_PROPS.setProperty(DONOTUSEServletName, "true");
@@ -85,10 +82,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:54;
      *
-     * @test_Strategy: 1. Create a servlet - RequestTestServlet. 2. Map a filter
-     * Test_Filter on RequestTestServlet with dispatcher value set to REQUEST
-     * using servlet-name 3. Client try to access RequestTestServlet directly. 4.
-     * Verify that filter is properly invoked.
+     * @test_Strategy: 1. Create a servlet - RequestTestServlet. 2. Map a filter Test_Filter on RequestTestServlet with
+     * dispatcher value set to REQUEST using servlet-name 3. Client try to access RequestTestServlet directly. 4. Verify
+     * that filter is properly invoked.
      */
     public void RequestTest1() throws Fault {
         TEST_PROPS.setProperty(DONOTUSEServletName, "true");
@@ -101,9 +97,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:54;
      *
-     * @test_Strategy: 1. Create a servlet - forward/ForwardedServlet. 2. Map a
-     * filter Test_Filter on forward/ForwardedServlet with dispatcher value not
-     * set to REQUEST but to FORWARD only. 3. Client try to access
+     * @test_Strategy: 1. Create a servlet - forward/ForwardedServlet. 2. Map a filter Test_Filter on
+     * forward/ForwardedServlet with dispatcher value not set to REQUEST but to FORWARD only. 3. Client try to access
      * forward/ForwardedServlet directly. 4. Verify that filter is not invoked.
      */
     public void RequestTest2() throws Fault {
@@ -120,11 +115,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:55; Servlet:JAVADOC:273;
      *
-     * @test_Strategy: 1. Create two servlets - TestServlet, ForwardedServlet. 2.
-     * Map a filter Test_Filter using <servlet-name> for ForwardedServlet with
-     * dispacther value FORWARD. 3. Client try to use the RequestDispatcher to
-     * forward to ForwardedServlet through TestServlet. 4. Verify that filter is
-     * properly invoked.
+     * @test_Strategy: 1. Create two servlets - TestServlet, ForwardedServlet. 2. Map a filter Test_Filter using
+     * <servlet-name> for ForwardedServlet with dispacther value FORWARD. 3. Client try to use the RequestDispatcher to
+     * forward to ForwardedServlet through TestServlet. 4. Verify that filter is properly invoked.
      */
     public void ForwardTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "forwardTest");
@@ -136,12 +129,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:55; Servlet:SPEC:59; Servlet:JAVADOC:273;
      *
-     * @test_Strategy: 1. Create two servlets - ForwardTest1Servlet,
-     * /generic/TestServlet 2. Map a filter Test_Filter using <url-pattern> for
-     * TestServlet with dispacther value FORWARD, as well as ERROR, INCLUDE and
-     * REQUEST. 3. Client try to access ForwardTest1Servlet which in turn use the
-     * RequestDispatcher to forward to TestServlet. 4. Verify that filter is
-     * properly invoked.
+     * @test_Strategy: 1. Create two servlets - ForwardTest1Servlet, /generic/TestServlet 2. Map a filter Test_Filter using
+     * <url-pattern> for TestServlet with dispacther value FORWARD, as well as ERROR, INCLUDE and REQUEST. 3. Client try to
+     * access ForwardTest1Servlet which in turn use the RequestDispatcher to forward to TestServlet. 4. Verify that filter
+     * is properly invoked.
      */
     public void ForwardTest1() throws Fault {
         TEST_PROPS.setProperty(APITEST, "forwardServletTest");
@@ -159,11 +150,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:56; Servlet:SPEC:59;
      *
-     * @test_Strategy: 1. Create two servlets - TestServlet, IncludedServlet. 2.
-     * Map a filter Test_Filter on IncludedServlet with dispacther value set to
-     * INCLUDE only. 3. Client try to use the RequestDispatcher's include to
-     * access IncludedServlet through TestServlet. 4. Verify that filter is
-     * properly invoked.
+     * @test_Strategy: 1. Create two servlets - TestServlet, IncludedServlet. 2. Map a filter Test_Filter on IncludedServlet
+     * with dispacther value set to INCLUDE only. 3. Client try to use the RequestDispatcher's include to access
+     * IncludedServlet through TestServlet. 4. Verify that filter is properly invoked.
      */
     public void IncludeTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "includeTest");
@@ -175,12 +164,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:56; Servlet:SPEC:59;
      *
-     * @test_Strategy: 1. Create two servlet - TestServlet, /generic/DummyServlet,
-     * a JSP dummyJSP and a HTML file dummy.html. 2. Map a filter Test_Filter on
-     * /generic/DummyServlet, dummyJSP and dummy.html with dispacther value set to
-     * INCLUDE as well as ERROR, FORWARD and REQUEST using url-pattern. 3. Client
-     * try to use the RequestDispatcher's include to access all three through
-     * TestServlet. 4. Verify that filter is properly invoked.
+     * @test_Strategy: 1. Create two servlet - TestServlet, /generic/DummyServlet, a JSP dummyJSP and a HTML file
+     * dummy.html. 2. Map a filter Test_Filter on /generic/DummyServlet, dummyJSP and dummy.html with dispacther value set
+     * to INCLUDE as well as ERROR, FORWARD and REQUEST using url-pattern. 3. Client try to use the RequestDispatcher's
+     * include to access all three through TestServlet. 4. Verify that filter is properly invoked.
      */
     public void IncludeTest1() throws Fault {
         TEST_PROPS.setProperty(APITEST, "includeJSPTest");
@@ -198,11 +185,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:57; Servlet:SPEC:59;
      *
-     * @test_Strategy: 1. Create an Error Page /generic/ErrorPage handling
-     * error-code 404. 2. Map a filter Test_Filter on /generic/ErrorPage with
-     * dispacther value set to ERROR as well as FORWARD INCLUDE and REQUEST. 3.
-     * Client try to access a non-existent Servlet 4. Verify that filter is
-     * properly invoked.
+     * @test_Strategy: 1. Create an Error Page /generic/ErrorPage handling error-code 404. 2. Map a filter Test_Filter on
+     * /generic/ErrorPage with dispacther value set to ERROR as well as FORWARD INCLUDE and REQUEST. 3. Client try to access
+     * a non-existent Servlet 4. Verify that filter is properly invoked.
      */
     public void ErrorTest() throws Fault {
         TEST_PROPS.setProperty(DONOTUSEServletName, "true");

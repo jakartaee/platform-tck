@@ -37,45 +37,45 @@ public class MsgBean extends ParentMsgBeanNoTx {
             if (msg.getIntProperty("TestCaseNum") > 0) {
 
                 switch (msg.getIntProperty("TestCaseNum")) {
-                    case 1: // MDB Queue w/ BMT demarcation
-                        runGetRollbackOnlyBMT(msg, qSession, testName);
-                        break;
+                case 1: // MDB Queue w/ BMT demarcation
+                    runGetRollbackOnlyBMT(msg, qSession, testName);
+                    break;
 
-                    case 2: // MDB Queue w/ BMT demarcation
-                        runSetRollbackOnlyBMT(msg, qSession, testName);
-                        break;
+                case 2: // MDB Queue w/ BMT demarcation
+                    runSetRollbackOnlyBMT(msg, qSession, testName);
+                    break;
 
-                    case 3: // MDB Queue w/CMT - TX_NOT_SUPPORTED
-                        runSetRollbackOnlyCMT(msg, qSession, testName);
-                        break;
+                case 3: // MDB Queue w/CMT - TX_NOT_SUPPORTED
+                    runSetRollbackOnlyCMT(msg, qSession, testName);
+                    break;
 
-                    case 4: // MDB Queue w/CMT - TX_NOT_SUPPORTED
-                        runGetRollbackOnlyCMT(msg, qSession, testName);
-                        break;
+                case 4: // MDB Queue w/CMT - TX_NOT_SUPPORTED
+                    runGetRollbackOnlyCMT(msg, qSession, testName);
+                    break;
 
-                    case 5: // MDB Queue w/CMT - TX_NOT_SUPPORTED
-                    case 6: // MDB Queue w/CMT
-                        runGetUserTransaction(msg, qSession, testName);
-                        break;
+                case 5: // MDB Queue w/CMT - TX_NOT_SUPPORTED
+                case 6: // MDB Queue w/CMT
+                    runGetUserTransaction(msg, qSession, testName);
+                    break;
 
-                    case 7: // MDB Queue w/CMT
-                    case 8: // MDB Queue w/CMT - TX_NOT_SUPPORTED
-                        runGetCallerPrincipal(msg, qSession, testName);
-                        break;
+                case 7: // MDB Queue w/CMT
+                case 8: // MDB Queue w/CMT - TX_NOT_SUPPORTED
+                    runGetCallerPrincipal(msg, qSession, testName);
+                    break;
 
-                    case 11: // MDB Queue w/CMT
-                    case 12: // MDB Queue w/CMT - TX_NOT_SUPPORTED
-                        runGetEJBHome(msg, qSession, testName);
-                        break;
+                case 11: // MDB Queue w/CMT
+                case 12: // MDB Queue w/CMT - TX_NOT_SUPPORTED
+                    runGetEJBHome(msg, qSession, testName);
+                    break;
 
-                    case 15: // MDB Queue w/ BMT demarcation
-                        runBeginAgain(msg, qSession, testName);
-                        break;
+                case 15: // MDB Queue w/ BMT demarcation
+                    runBeginAgain(msg, qSession, testName);
+                    break;
 
-                    default:
-                        TestUtil.logErr("Error in mdb - ");
-                        TestUtil.logErr("No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
-                        break;
+                default:
+                    TestUtil.logErr("Error in mdb - ");
+                    TestUtil.logErr("No test match for TestCaseNum: " + msg.getIntProperty("TestCaseNum"));
+                    break;
                 }
             }
         } catch (Exception e) {

@@ -72,26 +72,26 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
     // These are the method tests
     private static final String tests[] = {
-        "ejbCreate",
-        "ejbPostCreate",
-        "ejbFindTheBean",
-        "ejbLoad",
-        "ejbStore",
-        "setEntityContext",
-        "businessMethod",
-        "ejbHomeDoTest"
+            "ejbCreate",
+            "ejbPostCreate",
+            "ejbFindTheBean",
+            "ejbLoad",
+            "ejbStore",
+            "setEntityContext",
+            "businessMethod",
+            "ejbHomeDoTest"
     };
 
     // This is the results of the operation tests
     private static final Properties methodList[] = {
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties()
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties()
     };
 
     private boolean ejbLoadCalled = false;
@@ -113,7 +113,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
             throw new CreateException("Unexpected Exception occurred in ejbCreate: " + e);
         }
 
-        if (flag == 1) doOperationTests("ejbCreate");
+        if (flag == 1)
+            doOperationTests("ejbCreate");
         try {
             ref.setData(table);
         } catch (Exception e) {
@@ -126,7 +127,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
     public void ejbPostCreate(Properties p, Helper ref, int coffeeID, String coffeName, float coffeePrice, int flag) {
         TestUtil.logTrace("ejbPostCreate");
-        if (flag == 2) doOperationTests("ejbPostCreate");
+        if (flag == 2)
+            doOperationTests("ejbPostCreate");
         try {
             ref.setData(table);
         } catch (Exception e) {
@@ -184,7 +186,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
     public void ejbLoad() {
         TestUtil.logTrace("ejbLoad");
-        if (ejbLoadCalled) return;
+        if (ejbLoadCalled)
+            return;
         doOperationTests("ejbLoad");
         ejbLoadCalled = true;
         ejbStoreCalled = false;
@@ -192,7 +195,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
     public void ejbStore() {
         TestUtil.logTrace("ejbStore");
-        if (ejbStoreCalled) return;
+        if (ejbStoreCalled)
+            return;
         doOperationTests("ejbStore");
         ejbStoreCalled = true;
         ejbLoadCalled = false;
@@ -215,8 +219,10 @@ public class TestBeanEJB implements EntityBean, TimedObject {
         try {
             TestUtil.logMsg("Check if Primary Key Exists");
             boolean foundKey = keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (Exception e) {
             throw new FinderException("Exception occurred: " + e);
         }
@@ -278,7 +284,9 @@ public class TestBeanEJB implements EntityBean, TimedObject {
 
     private int testIndex(String s) {
         TestUtil.logTrace("testIndex");
-        for (int i = 0; i < tests.length; i++) if (s.equals(tests[i])) return i;
+        for (int i = 0; i < tests.length; i++)
+            if (s.equals(tests[i]))
+                return i;
         return -1;
     }
 
@@ -631,7 +639,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
             throw new SQLException("SQL Exception in tableInit:" + s.getMessage());
         } finally {
             try {
-                if (stmt != null) stmt.close();
+                if (stmt != null)
+                    stmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.logErr("SQLException occurred closing DB Connection", e);
@@ -663,7 +672,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
             throw new SQLException("SQL Exception in createNewRow" + e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.logErr("SQLException occurred in createNewRow", e);
@@ -685,14 +695,18 @@ public class TestBeanEJB implements EntityBean, TimedObject {
             pStmt = dbConnection.prepareStatement(sqlStr);
             pStmt.setInt(1, pkey);
             result = pStmt.executeQuery();
-            if (!result.next()) return false;
-            else return true;
+            if (!result.next())
+                return false;
+            else
+                return true;
         } catch (SQLException e) {
             throw new SQLException("Caught SQL Exception in keyExists" + e.getMessage());
         } finally {
             try {
-                if (result != null) result.close();
-                if (pStmt != null) pStmt.close();
+                if (result != null)
+                    result.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.logErr("SQLException occurred in keyExists", e);
@@ -719,7 +733,8 @@ public class TestBeanEJB implements EntityBean, TimedObject {
             throw new SQLException("SQL Exception in removeRow:" + e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.logErr("SQLException occurred in removeRow", e);

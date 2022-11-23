@@ -26,7 +26,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -59,19 +60,15 @@ public class Client extends PMClientBase {
      *
      * find(Class entityClass, Object PK, LockModeType lck)
      *
-     * Find by primary key and lock. Search for an entity of the specified class
-     * and primary key and lock it with respect to the specified lock type. If the
-     * entity instance is contained in the persistence context it is returned from
-     * there, and the effect of this method is the same as if the lock method had
-     * been called on the entity. If the entity is found within the persistence
-     * context and the lock mode type is pessimistic and the entity has a version
-     * attribute, the persistence provider must perform optimistic version checks
-     * when obtaining the database lock. If these checks fail, the
-     * OptimisticLockException will be thrown. If the lock mode type is
-     * pessimistic and the entity instance is found but cannot be locked: - the
-     * PessimisticLockException will be thrown if the database locking failure
-     * causes transaction-level rollback. - the LockTimeoutException will be
-     * thrown if the database locking failure causes only statement-level rollback
+     * Find by primary key and lock. Search for an entity of the specified class and primary key and lock it with respect to
+     * the specified lock type. If the entity instance is contained in the persistence context it is returned from there,
+     * and the effect of this method is the same as if the lock method had been called on the entity. If the entity is found
+     * within the persistence context and the lock mode type is pessimistic and the entity has a version attribute, the
+     * persistence provider must perform optimistic version checks when obtaining the database lock. If these checks fail,
+     * the OptimisticLockException will be thrown. If the lock mode type is pessimistic and the entity instance is found but
+     * cannot be locked: - the PessimisticLockException will be thrown if the database locking failure causes
+     * transaction-level rollback. - the LockTimeoutException will be thrown if the database locking failure causes only
+     * statement-level rollback
      *
      */
     public void findTest1() throws Fault {
@@ -114,26 +111,19 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy:
      *
-     * find(Class entityClass, Object PK, LockModeType lck, Map<String, Object>
-     * properties)
+     * find(Class entityClass, Object PK, LockModeType lck, Map<String, Object> properties)
      *
      *
-     * Find by primary key and lock, using specified properties. Search for an
-     * entity of the specified class and primary key and lock it with respect to
-     * the specified lock type. If the entity instance is contained in the
-     * persistence context it is returned from there. If the entity is found
-     * within the persistence context and the lock mode type is pessimistic and
-     * the entity has a version attribute, the persistence provider must perform
-     * optimistic version checks when obtaining the database lock. If these checks
-     * fail, the OptimisticLockException will be thrown. If the lock mode type is
-     * pessimistic and the entity instance is found but cannot be locked: - the
-     * PessimisticLockException will be thrown if the database locking failure
-     * causes transaction-level rollback. - the LockTimeoutException will be
-     * thrown if the database locking failure causes only statement-level rollback
-     * If a vendor-specific property or hint is not recognized, it is silently
-     * ignored. Portable applications should not rely on the standard timeout
-     * hint. Depending on the database in use and the locking mechanisms used by
-     * the provider, the hint may or may not be observed
+     * Find by primary key and lock, using specified properties. Search for an entity of the specified class and primary key
+     * and lock it with respect to the specified lock type. If the entity instance is contained in the persistence context
+     * it is returned from there. If the entity is found within the persistence context and the lock mode type is
+     * pessimistic and the entity has a version attribute, the persistence provider must perform optimistic version checks
+     * when obtaining the database lock. If these checks fail, the OptimisticLockException will be thrown. If the lock mode
+     * type is pessimistic and the entity instance is found but cannot be locked: - the PessimisticLockException will be
+     * thrown if the database locking failure causes transaction-level rollback. - the LockTimeoutException will be thrown
+     * if the database locking failure causes only statement-level rollback If a vendor-specific property or hint is not
+     * recognized, it is silently ignored. Portable applications should not rely on the standard timeout hint. Depending on
+     * the database in use and the locking mechanisms used by the provider, the hint may or may not be observed
      *
      */
     public void findTest2() throws Fault {
@@ -181,9 +171,8 @@ public class Client extends PMClientBase {
      *
      * find(Class entityClass, Object PK, LockModeType lck)
      *
-     * 1) Create an entity manager 2) Lock entity (coffee) in em1 using
-     * PESSIMISTIC_READ lock 3) Try to Lock the same entity for coffee with a
-     * PESSIMISTIC_WRITE lock
+     * 1) Create an entity manager 2) Lock entity (coffee) in em1 using PESSIMISTIC_READ lock 3) Try to Lock the same entity
+     * for coffee with a PESSIMISTIC_WRITE lock
      *
      */
     public void findTest3() throws Fault {
@@ -231,10 +220,9 @@ public class Client extends PMClientBase {
      *
      * find(Class entityClass, Object PK, Map<String, Object> properties)
      *
-     * Find by primary key, using the specified properties. Search for an entity
-     * of the specified class and primary key. If the entity instance is contained
-     * in the persistence context, it is returned from there. If a vendor-specific
-     * property or hint is not recognized, it is silently ignored.
+     * Find by primary key, using the specified properties. Search for an entity of the specified class and primary key. If
+     * the entity instance is contained in the persistence context, it is returned from there. If a vendor-specific property
+     * or hint is not recognized, it is silently ignored.
      *
      */
     public void findTest4() throws Fault {
@@ -280,10 +268,8 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy:
      *
-     * public void lock(Object entity, LockModeType lockMode); 1) Create One
-     * entity manager 2) Lock entity (coffee) in em1 using PESSIMISTIC_WRITE lock
-     * 3) Try to obtain same Lock for cofee the same object and modify its
-     * contents
+     * public void lock(Object entity, LockModeType lockMode); 1) Create One entity manager 2) Lock entity (coffee) in em1
+     * using PESSIMISTIC_WRITE lock 3) Try to obtain same Lock for cofee the same object and modify its contents
      *
      */
     public void lockTest1() throws Fault {
@@ -327,12 +313,10 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:332
      *
-     * @test_Strategy: public void lock(Object entity, LockModeType lockMode,
-     * Map<String, Object> properties);
+     * @test_Strategy: public void lock(Object entity, LockModeType lockMode, Map<String, Object> properties);
      *
-     * 1) Create One entity manager 2) Lock entity (coffee) in em1 using
-     * PESSIMISTIC_WRITE lock 3) Try to obtain same Lock for cofee the same object
-     * and modify its contents
+     * 1) Create One entity manager 2) Lock entity (coffee) in em1 using PESSIMISTIC_WRITE lock 3) Try to obtain same Lock
+     * for cofee the same object and modify its contents
      *
      * Note: This test uses lock with property map (unlike lockTest1)
      */
@@ -381,10 +365,8 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy:
      *
-     * public void refresh(Object entity, LockModeType lockMode); 1) Create entity
-     * manager 2) Find entity and refresh in em1 using PESSIMISTIC_READ lock 3)
-     * Try to obtain refresh same entity using PESSIMISTIC_WRITE lock and modify
-     * its contents
+     * public void refresh(Object entity, LockModeType lockMode); 1) Create entity manager 2) Find entity and refresh in em1
+     * using PESSIMISTIC_READ lock 3) Try to obtain refresh same entity using PESSIMISTIC_WRITE lock and modify its contents
      *
      */
     public void refreshTest1() throws Fault {
@@ -431,11 +413,9 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy:
      *
-     * public void refresh(Object entity, LockModeType lockMode, Map<String,
-     * Object> properties); 1) Create entity manager 2) Find entity and refresh in
-     * em1 using PESSIMISTIC_READ lock 3) Try to obtain refresh same entity using
-     * PESSIMISTIC_WRITE lock and modify its contents Note: This test uses refresh
-     * with property map (unlike refreshTest1)
+     * public void refresh(Object entity, LockModeType lockMode, Map<String, Object> properties); 1) Create entity manager
+     * 2) Find entity and refresh in em1 using PESSIMISTIC_READ lock 3) Try to obtain refresh same entity using
+     * PESSIMISTIC_WRITE lock and modify its contents Note: This test uses refresh with property map (unlike refreshTest1)
      *
      */
     public void refreshTest2() throws Fault {
@@ -485,9 +465,8 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy:
      *
-     * public void refresh(Object entity, LockModeType lockMode, Map<String,
-     * Object> properties); 1) Create entity manager 2) Find entity and refresh 3)
-     * Try to obtain refresh same entity and modify its contents
+     * public void refresh(Object entity, LockModeType lockMode, Map<String, Object> properties); 1) Create entity manager
+     * 2) Find entity and refresh 3) Try to obtain refresh same entity and modify its contents
      *
      */
     public void refreshTest3() throws Fault {

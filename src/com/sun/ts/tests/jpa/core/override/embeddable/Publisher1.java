@@ -24,7 +24,8 @@ import java.io.Serializable;
 @Embeddable
 public class Publisher1 implements Serializable {
 
-    public Publisher1() {}
+    public Publisher1() {
+    }
 
     @Transient
     private String name;

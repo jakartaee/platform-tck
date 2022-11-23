@@ -98,14 +98,13 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: positivePrimitiveToBoxedTest
      * @assertion_ids: EL:SPEC:37.3; EL:SPEC:37.5
-     * @test_Strategy: Validate that the primitive types - boolean - char - byte -
-     *                 short - int - long - float - double when found in an
-     *                 expression are converted to the appropriate 'boxed' types.
+     * @test_Strategy: Validate that the primitive types - boolean - char - byte - short - int - long - float - double when
+     * found in an expression are converted to the appropriate 'boxed' types.
      */
     public void positivePrimitiveToBoxedTest() throws Fault {
 
         boolean fail = false;
-        boolean[] pass = {false, false, false, false, false, false, false, false};
+        boolean[] pass = { false, false, false, false, false, false, false, false };
         Object result = null;
 
         try {
@@ -133,8 +132,7 @@ public class ELClient extends ServiceEETest {
             pass[6] = ExprEval.compareClass(result, Float.class) && ExprEval.compareValue(result, Float.valueOf(2000f));
 
             result = ExprEval.evaluateValueExpression("#{2000.00}", null, Double.class);
-            pass[7] =
-                    ExprEval.compareClass(result, Double.class) && ExprEval.compareValue(result, Double.valueOf(2000));
+            pass[7] = ExprEval.compareClass(result, Double.class) && ExprEval.compareValue(result, Double.valueOf(2000));
 
         } catch (RuntimeException re) {
             throw new Fault(re);
@@ -149,25 +147,22 @@ public class ELClient extends ServiceEETest {
             }
         }
 
-        if (fail) throw new Fault("TEST FAILED");
+        if (fail)
+            throw new Fault("TEST FAILED");
     }
 
     /**
      * @testName: positiveBoxedToPrimitiveTest
      * @assertion_ids: EL:SPEC:37.3; EL:SPEC:37.4
-     * @test_Strategy: Validate that the 'boxed' types - Boolean - Character -
-     *                 Byte - Short - Integer - Long - Float - Double when found
-     *                 in an expression are converted to the appropriate primitive
-     *                 types. Note that the conversion takes place in
-     *                 ExprEval.evaluateValueExpression() when
-     *                 ExpressionFactory.createValueExpression() is called. When
-     *                 ValueExpression.getValue() is subsequently called, the
-     *                 primitive type is converted back to its 'boxed' type.
+     * @test_Strategy: Validate that the 'boxed' types - Boolean - Character - Byte - Short - Integer - Long - Float -
+     * Double when found in an expression are converted to the appropriate primitive types. Note that the conversion takes
+     * place in ExprEval.evaluateValueExpression() when ExpressionFactory.createValueExpression() is called. When
+     * ValueExpression.getValue() is subsequently called, the primitive type is converted back to its 'boxed' type.
      */
     public void positiveBoxedToPrimitiveTest() throws Fault {
 
         boolean fail = false;
-        boolean[] pass = {false, false, false, false, false, false, false, false};
+        boolean[] pass = { false, false, false, false, false, false, false, false };
         Object result = null;
 
         String immExpr = "${A}";
@@ -237,15 +232,15 @@ public class ELClient extends ServiceEETest {
             }
         }
 
-        if (fail) throw new Fault("TEST FAILED");
+        if (fail)
+            throw new Fault("TEST FAILED");
     }
 
     /**
      * @testName: positiveElBooleanCoercionTest
      * @assertion_ids: EL:SPEC:41.1; EL:SPEC:41.2; EL:SPEC:41.3
-     * @test_Strategy: Validate that null, the empty String, a Boolean, and a
-     *                 proper String argument to Boolean.valueOf() are coerced to
-     *                 the expected Boolean values.
+     * @test_Strategy: Validate that null, the empty String, a Boolean, and a proper String argument to Boolean.valueOf()
+     * are coerced to the expected Boolean values.
      */
     public void positiveElBooleanCoercionTest() throws Fault {
 
@@ -272,16 +267,15 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: negativeElBooleanCoercionTest
      * @assertion_ids: EL:SPEC:41.4; EL:JAVADOC:112
-     * @test_Strategy: Validate that an error occurs when an attempt is made to
-     *                 coerce an invalid class to a Boolean. The coercion is
-     *                 performed with a call to ValueExpression.getValue(), which
-     *                 must throw an ELException.
+     * @test_Strategy: Validate that an error occurs when an attempt is made to coerce an invalid class to a Boolean. The
+     * coercion is performed with a call to ValueExpression.getValue(), which must throw an ELException.
      */
     public void negativeElBooleanCoercionTest() throws Fault {
 
@@ -298,17 +292,16 @@ public class ELClient extends ServiceEETest {
             throw new Fault(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: elPrimitiveToStringCoercionTest
      * @assertion_ids: EL:SPEC:38.1; EL:SPEC:38.2; EL:SPEC:38.3; EL:SPEC:38.5
-     * @test_Strategy: Validate that the following types coerce to type of String
-     *                 and the expected String value is returned.
+     * @test_Strategy: Validate that the following types coerce to type of String and the expected String value is returned.
      *
-     *                 Types: String(), boolean, null, byte, char, short, int,
-     *                 long, float, double, enum.
+     * Types: String(), boolean, null, byte, char, short, int, long, float, double, enum.
      *
      */
     public void elPrimitiveToStringCoercionTest() throws Fault {
@@ -372,8 +365,7 @@ public class ELClient extends ServiceEETest {
             // enum to String
             result11 = ExprEval.evaluateValueExpression("#{'" + morning + "'}", null, expectedClass);
 
-            pass11 =
-                    (ExprEval.compareClass(result11, expectedClass) && ExprEval.compareValue(result11, morning.name()));
+            pass11 = (ExprEval.compareClass(result11, expectedClass) && ExprEval.compareValue(result11, morning.name()));
 
         } catch (RuntimeException re) {
             throw new Fault(re);
@@ -421,11 +413,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elWrapperToStringCoercionTest
      * @assertion_ids: EL:SPEC:38.5
-     * @test_Strategy: Validate that the following types coerce to type of String
-     *                 and the expected String value is returned.
+     * @test_Strategy: Validate that the following types coerce to type of String and the expected String value is returned.
      *
-     *                 Types: Boolean, Byte, Character, Short, Integer, Long,
-     *                 Float, Double.
+     * Types: Boolean, Byte, Character, Short, Integer, Long, Float, Double.
      *
      */
     public void elWrapperToStringCoercionTest() throws Fault {
@@ -516,11 +506,10 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: positiveElCharacterCoercionTest
      * @assertion_ids: EL:SPEC:40.1; EL:SPEC:40.2; EL:SPEC:40.4; EL:SPEC:40.5
-     * @test_Strategy: Validate that the following types coerce to type of
-     *                 Character and the expected Character value is returned.
+     * @test_Strategy: Validate that the following types coerce to type of Character and the expected Character value is
+     * returned.
      *
-     *                 Types: String, Byte, Character, Short, Integer, Long,
-     *                 Float, Double, null, empty String.
+     * Types: String, Byte, Character, Short, Integer, Long, Float, Double, null, empty String.
      *
      */
     public void positiveElCharacterCoercionTest() throws Fault {
@@ -632,10 +621,8 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: negativeElCharacterCoercionTest
      * @assertion_ids: EL:SPEC:40.3; EL:JAVADOC:112
-     * @test_Strategy: Validate that an error occurs when an attempt is made to
-     *                 coerce a boolean to Character. The coercion is performed
-     *                 with a call to ValueExpression.getValue(), which must throw
-     *                 an ELException.
+     * @test_Strategy: Validate that an error occurs when an attempt is made to coerce a boolean to Character. The coercion
+     * is performed with a call to ValueExpression.getValue(), which must throw an ELException.
      */
     public void negativeElCharacterCoercionTest() throws Fault {
 
@@ -653,18 +640,15 @@ public class ELClient extends ServiceEETest {
             TestUtil.printStackTrace(e);
         }
 
-        if (!pass) throw new Fault("TEST FAILED: pass = false");
+        if (!pass)
+            throw new Fault("TEST FAILED: pass = false");
     }
 
     /**
      * @testName: negativeElNumberCoercionTest
-     * @assertion_ids: EL:SPEC:39.3; EL:SPEC:39.6.1.1; EL:SPEC:39.7.3;
-     *                 EL:SPEC:39.7.1; EL:SPEC:39.6.1.1; EL:JAVADOC:112
-     * @test_Strategy: Validate that an error occurs when an attempt is made to
-     *                 coerce a: -Boolean to Number. -String to a Number. The
-     *                 coercion is performed with a call to
-     *                 ValueExpression.getValue(), which must throw an
-     *                 ELException.
+     * @assertion_ids: EL:SPEC:39.3; EL:SPEC:39.6.1.1; EL:SPEC:39.7.3; EL:SPEC:39.7.1; EL:SPEC:39.6.1.1; EL:JAVADOC:112
+     * @test_Strategy: Validate that an error occurs when an attempt is made to coerce a: -Boolean to Number. -String to a
+     * Number. The coercion is performed with a call to ValueExpression.getValue(), which must throw an ELException.
      */
     public void negativeElNumberCoercionTest() throws Fault {
 
@@ -691,7 +675,8 @@ public class ELClient extends ServiceEETest {
                 TestUtil.printStackTrace(e);
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
 
             // Coercing String to Number type.
             try {
@@ -706,18 +691,18 @@ public class ELClient extends ServiceEETest {
                 TestUtil.printStackTrace(e);
             }
 
-            if (!pass) throw new Fault("TEST FAILED: pass = false");
+            if (!pass)
+                throw new Fault("TEST FAILED: pass = false");
         }
     }
 
     /**
      * @testName: elNullToNumberCoercionTest
      * @assertion_ids: EL:SPEC:39.1
-     * @test_Strategy: Validate that when null or empty String is given. That the
-     *                 returned value is 0. Test this for the Following types.
+     * @test_Strategy: Validate that when null or empty String is given. That the returned value is 0. Test this for the
+     * Following types.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      */
     public void elNullToNumberCoercionTest() throws Fault {
 
@@ -772,11 +757,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumberToByteCoercionTest
      * @assertion_ids: EL:SPEC:39.5.3
-     * @test_Strategy: Validate that following Number types coerce to Byte and the
-     *                 expected Byte value is returned.
+     * @test_Strategy: Validate that following Number types coerce to Byte and the expected Byte value is returned.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      *
      */
     public void elNumberToByteCoercionTest() throws Fault {
@@ -842,11 +825,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumberToShortCoercionTest
      * @assertion_ids: EL:SPEC:39.5.4
-     * @test_Strategy: Validate that following Number types coerce to Short and
-     *                 the expected Short value is returned.
+     * @test_Strategy: Validate that following Number types coerce to Short and the expected Short value is returned.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      *
      */
     public void elNumberToShortCoercionTest() throws Fault {
@@ -912,11 +893,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumberToIntegerCoercionTest
      * @assertion_ids: EL:SPEC:39.5.5
-     * @test_Strategy: Validate that following Number types coerce to Integer and
-     *                 the expected Integer value is returned.
+     * @test_Strategy: Validate that following Number types coerce to Integer and the expected Integer value is returned.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      *
      */
     public void elNumberToIntegerCoercionTest() throws Fault {
@@ -982,11 +961,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumberToLongCoercionTest
      * @assertion_ids: EL:SPEC:39.5.6
-     * @test_Strategy: Validate that following Number types coerce to Long and the
-     *                 expected Long value is returned.
+     * @test_Strategy: Validate that following Number types coerce to Long and the expected Long value is returned.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      *
      */
     public void elNumberToLongCoercionTest() throws Fault {
@@ -1052,11 +1029,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumberToFloatCoercionTest
      * @assertion_ids: EL:SPEC:39.5.7
-     * @test_Strategy: Validate that following Number types coerce to Float and
-     *                 the expected Float value is returned.
+     * @test_Strategy: Validate that following Number types coerce to Float and the expected Float value is returned.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      *
      */
     public void elNumberToFloatCoercionTest() throws Fault {
@@ -1123,11 +1098,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumberToDoubleCoercionTest
      * @assertion_ids: EL:SPEC:39.5.8
-     * @test_Strategy: Validate that following Number types coerce to Double and
-     *                 the expected Double value is returned.
+     * @test_Strategy: Validate that following Number types coerce to Double and the expected Double value is returned.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      *
      */
     public void elNumberToDoubleCoercionTest() throws Fault {
@@ -1193,11 +1166,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elStringToNumberCoercionTest
      * @assertion_ids: EL:SPEC:39.6.1.2; EL:SPEC:39.7.2; EL:SPEC:39.7.4
-     * @test_Strategy: Validate that String types coerce to the following types
-     *                 and the expected value is returned.
+     * @test_Strategy: Validate that String types coerce to the following types and the expected value is returned.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      *
      */
     public void elStringToNumberCoercionTest() throws Fault {
@@ -1264,11 +1235,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elCharacterToNumberCoercionTest
      * @assertion_ids: EL:SPEC:39.2
-     * @test_Strategy: Validate that Character types coerce to the following types
-     *                 and the expected value is returned.
+     * @test_Strategy: Validate that Character types coerce to the following types and the expected value is returned.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      *
      */
     public void elCharacterToNumberCoercionTest() throws Fault {
@@ -1334,11 +1303,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumberToBigIntegerCoercionTest
      * @assertion_ids: EL:SPEC:39.5.1.1; EL:SPEC:39.5.1.2
-     * @test_Strategy: Validate that following Number types coerce to BigInteger
-     *                 and the expected value is returned.
+     * @test_Strategy: Validate that following Number types coerce to BigInteger and the expected value is returned.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      *
      */
     public void elNumberToBigIntegerCoercionTest() throws Fault {
@@ -1405,11 +1372,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elNumberToBigDecimalCoercionTest
      * @assertion_ids: EL:SPEC:39.5.2.1; EL:SPEC:39.5.2.2
-     * @test_Strategy: Validate that following Number types coerce to BigDecimal
-     *                 and the expected value is returned.
+     * @test_Strategy: Validate that following Number types coerce to BigDecimal and the expected value is returned.
      *
-     *                 Types: Byte, Short, Integer, Long, Float, Double,
-     *                 BigDecimal, BigInteger.
+     * Types: Byte, Short, Integer, Long, Float, Double, BigDecimal, BigInteger.
      *
      */
     public void elNumberToBigDecimalCoercionTest() throws Fault {
@@ -1476,17 +1441,14 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elCoerceToEnumTypeTest
      * @assertion_ids: EL:SPEC:42.1; EL:SPEC:42.2; EL:SPEC:42.3; EL:SPEC:42.4
-     * @test_Strategy: Validate that - an assignable enum type can be coerced to
-     *                 an enum - coercing a null value to an enum type returns a
-     *                 null value - coercing an empty string to an enum type
-     *                 returns a null value - coercing a string to an enum is
-     *                 successful if the string is identical to one of the enum
-     *                 values. If not, an ELException is thrown.
+     * @test_Strategy: Validate that - an assignable enum type can be coerced to an enum - coercing a null value to an enum
+     * type returns a null value - coercing an empty string to an enum type returns a null value - coercing a string to an
+     * enum is successful if the string is identical to one of the enum values. If not, an ELException is thrown.
      */
     public void elCoerceToEnumTypeTest() throws Fault {
 
         boolean fail = false;
-        boolean[] pass = {false, false, false, false, false};
+        boolean[] pass = { false, false, false, false, false };
         Object result = null;
 
         try {
@@ -1530,24 +1492,21 @@ public class ELClient extends ServiceEETest {
             }
         }
 
-        if (fail) throw new Fault("TEST FAILED");
+        if (fail)
+            throw new Fault("TEST FAILED");
     }
 
     /**
      * @testName: elCoerceToArrayTest
-     * @assertion_ids: EL:SPEC:81.1; EL:SPEC:81.2; EL:SPEC:81.3; EL:SPEC:81.4;
-     *                 EL:SPEC:81.5
-     * @test_Strategy: Validate that - coercing a null to an array returns a null
-     *                 value, coercing an array of type T returns an array of type
-     *                 T, coercing an array coerces each member of the array to
-     *                 the expected type, coercing an array where at least one
-     *                 element cannot be coerced results in an ELException. If
-     *                 not, an ELException is thrown.
+     * @assertion_ids: EL:SPEC:81.1; EL:SPEC:81.2; EL:SPEC:81.3; EL:SPEC:81.4; EL:SPEC:81.5
+     * @test_Strategy: Validate that - coercing a null to an array returns a null value, coercing an array of type T returns
+     * an array of type T, coercing an array coerces each member of the array to the expected type, coercing an array where
+     * at least one element cannot be coerced results in an ELException. If not, an ELException is thrown.
      */
     public void elCoerceToArrayTest() throws Fault {
 
         boolean fail = false;
-        boolean[] pass = {false, false, false, false, false};
+        boolean[] pass = { false, false, false, false, false };
         Object result = null;
 
         try {
@@ -1555,8 +1514,7 @@ public class ELClient extends ServiceEETest {
             ELProcessor elp0 = new ELProcessor();
             elp0.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClient", "testPrimitiveBooleanArray");
             result = elp0.eval("testPrimitiveBooleanArray(null)");
-            pass[0] =
-                    ExprEval.compareClass(result, Integer.class) && ExprEval.compareValue(result, Integer.valueOf(-1));
+            pass[0] = ExprEval.compareClass(result, Integer.class) && ExprEval.compareValue(result, Integer.valueOf(-1));
 
             // If A is an array of T, coerce quietly
             ELProcessor elp1 = new ELProcessor();
@@ -1604,7 +1562,8 @@ public class ELClient extends ServiceEETest {
             }
         }
 
-        if (fail) throw new Fault("TEST FAILED");
+        if (fail)
+            throw new Fault("TEST FAILED");
     }
 
     public static int testPrimitiveBooleanArray(boolean input[]) {
@@ -1618,15 +1577,13 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elCoerceLambdaExpressionToFunctionalInterfaceTest
      * @assertion_ids: EL:SPEC:79.1; EL:SPEC:79.2; EL:SPEC:79.3
-     * @test_Strategy: Validate that - a lambda expression can be coerced to a
-     *                 functional interface invocation if the parameter types
-     *                 match or can be made to match via the standard coercion
-     *                 rules.
+     * @test_Strategy: Validate that - a lambda expression can be coerced to a functional interface invocation if the
+     * parameter types match or can be made to match via the standard coercion rules.
      */
     public void elCoerceLambdaExpressionToFunctionalInterfaceTest() throws Fault {
 
         boolean fail = false;
-        boolean[] pass = {false, false, false, false, false};
+        boolean[] pass = { false, false, false, false, false };
         Object result = null;
 
         try {
@@ -1682,7 +1639,8 @@ public class ELClient extends ServiceEETest {
             }
         }
 
-        if (fail) throw new Fault("TEST FAILED");
+        if (fail)
+            throw new Fault("TEST FAILED");
     }
 
     public static String testPredicateString(Predicate<String> filter) {
@@ -1706,11 +1664,9 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: elCoerceToOtherTypeTest
      * @assertion_ids: EL:SPEC:43.1; EL:SPEC:43.2
-     * @test_Strategy: Validate that - an assignable "other" type can be coerced
-     *                 to an "other" type. We coerce an instance of the class
-     *                 java.sql.Time to its parent class java.util.Date. -
-     *                 coercing a null value to an "other" type returns a null
-     *                 value
+     * @test_Strategy: Validate that - an assignable "other" type can be coerced to an "other" type. We coerce an instance
+     * of the class java.sql.Time to its parent class java.util.Date. - coercing a null value to an "other" type returns a
+     * null value
      *
      */
     public void elCoerceToOtherTypeTest() throws Fault {
@@ -1732,7 +1688,8 @@ public class ELClient extends ServiceEETest {
             ExprEval.cleanup();
         }
 
-        if (!pass1 || !pass2) throw new Fault("TEST FAILED");
+        if (!pass1 || !pass2)
+            throw new Fault("TEST FAILED");
     }
 
     // ------------------------------------------------- private methods

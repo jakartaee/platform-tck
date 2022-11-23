@@ -41,7 +41,8 @@ public class Address implements java.io.Serializable {
 
     private String zip;
 
-    public Address() {}
+    public Address() {
+    }
 
     public Address(String id, String street, String city, String state, String zip) {
         this.id = id;

@@ -24,4 +24,5 @@ import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxLocalIF;
 import jakarta.ejb.Singleton;
 
 @Singleton()
-public class EBean extends EBeanBase implements TxLocalIF {}
+public class EBean extends EBeanBase implements TxLocalIF {
+}

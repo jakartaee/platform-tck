@@ -66,7 +66,8 @@ public class SecTestRoleRefEJB implements EntityBean {
             ctspassword = TestUtil.getProperty(password1);
             db.getDBConnection(ctsuser, ctspassword);
 
-            if (newTable) db.tableInit();
+            if (newTable)
+                db.tableInit();
             db.createNewRow(cofID, cofName, cofPrice);
         } catch (RemoteLoggingInitException e) {
             TestUtil.printStackTrace(e);
@@ -124,8 +125,10 @@ public class SecTestRoleRefEJB implements EntityBean {
             TestUtil.logMsg("Initialize DBSupport");
             db = new DBSupport(ectx);
             boolean foundKey = db.keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (SQLException se) {
             TestUtil.printStackTrace(se);
             throw new FinderException("SQL Exception in primary key finder");
@@ -148,8 +151,10 @@ public class SecTestRoleRefEJB implements EntityBean {
             TestUtil.logMsg("Initialize DBSupport");
             db = new DBSupport(ectx);
             boolean foundKey = db.keyExists(key.intValue());
-            if (foundKey) return key;
-            else throw new FinderException("Key not found: " + key);
+            if (foundKey)
+                return key;
+            else
+                throw new FinderException("Key not found: " + key);
         } catch (SQLException se) {
             TestUtil.printStackTrace(se);
             throw new FinderException("SQL Exception in primary key finder");

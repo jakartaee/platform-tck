@@ -30,7 +30,8 @@ public class Order implements java.io.Serializable {
 
     private int total;
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(int total) {
         this.total = total;

@@ -27,9 +27,7 @@ import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/binarydecodersessionpathparam/{param}",
-        decoders = {StringBeanBinaryDecoder.class})
+@ServerEndpoint(value = "/binarydecodersessionpathparam/{param}", decoders = { StringBeanBinaryDecoder.class })
 public class WSBinaryDecoderAndSessionAndPathParamServer {
 
     @SuppressWarnings("unused")

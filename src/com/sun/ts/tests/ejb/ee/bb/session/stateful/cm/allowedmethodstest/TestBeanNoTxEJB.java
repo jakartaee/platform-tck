@@ -50,28 +50,28 @@ public class TestBeanNoTxEJB implements SessionBean {
 
     // These are the method tests
     private static final String tests[] = {
-        "ejbCreate",
-        "ejbRemove",
-        "ejbActivate",
-        "ejbPassivate",
-        "afterBegin",
-        "beforeCompletion",
-        "afterCompletion",
-        "setSessionContext",
-        "businessMethod"
+            "ejbCreate",
+            "ejbRemove",
+            "ejbActivate",
+            "ejbPassivate",
+            "afterBegin",
+            "beforeCompletion",
+            "afterCompletion",
+            "setSessionContext",
+            "businessMethod"
     };
 
     // This is the results of the operation tests
     private static final Properties methodList[] = {
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties(),
-        new Properties()
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties(),
+            new Properties()
     };
 
     public void ejbCreate(Properties p) throws CreateException {
@@ -148,7 +148,9 @@ public class TestBeanNoTxEJB implements SessionBean {
 
     private int testIndex(String s) {
         TestUtil.logTrace("testIndex");
-        for (int i = 0; i < tests.length; i++) if (s.equals(tests[i])) return i;
+        for (int i = 0; i < tests.length; i++)
+            if (s.equals(tests[i]))
+                return i;
         return -1;
     }
 

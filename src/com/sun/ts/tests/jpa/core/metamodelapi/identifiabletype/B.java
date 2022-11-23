@@ -50,7 +50,8 @@ public abstract class B implements java.io.Serializable {
     @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
     Set<Address> sAddress_inherited = new HashSet<Address>();
 
-    public B() {}
+    public B() {
+    }
 
     public B(String name) {
         this.name = name;

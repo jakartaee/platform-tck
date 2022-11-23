@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -92,14 +94,12 @@ public class URLClient extends EETest {
     /*
      * @testName: SendSyncReqRespMsgSOAP11Test1
      *
-     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4;
-     * SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7; SAAJ:SPEC:8; SAAJ:SPEC:9;
-     * SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14;
-     * SAAJ:SPEC:15; SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
+     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4; SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7;
+     * SAAJ:SPEC:8; SAAJ:SPEC:9; SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14; SAAJ:SPEC:15;
+     * SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
      *
-     * @test_Strategy: Create a soap message containing a soap message part with
-     * no attachments and send it as a synchronous soap message. Sends a soap 1.1
-     * protocol message.
+     * @test_Strategy: Create a soap message containing a soap message part with no attachments and send it as a synchronous
+     * soap message. Sends a soap 1.1 protocol message.
      *
      * Description: Send synchronous soap message with no attachments.
      *
@@ -119,9 +119,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("SendSyncReqRespMsgSOAP11Test1 failed");
+            if (!pass)
+                throw new Fault("SendSyncReqRespMsgSOAP11Test1 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -133,14 +135,12 @@ public class URLClient extends EETest {
     /*
      * @testName: SendSyncReqRespMsgSOAP11Test2
      *
-     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4;
-     * SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7; SAAJ:SPEC:8; SAAJ:SPEC:9;
-     * SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14;
-     * SAAJ:SPEC:15; SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
+     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4; SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7;
+     * SAAJ:SPEC:8; SAAJ:SPEC:9; SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14; SAAJ:SPEC:15;
+     * SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
      *
-     * @test_Strategy: Create a soap message containing a soap message part with a
-     * single attachment and send it as a synchronous soap message. Sends a soap
-     * 1.1 protocol message.
+     * @test_Strategy: Create a soap message containing a soap message part with a single attachment and send it as a
+     * synchronous soap message. Sends a soap 1.1 protocol message.
      *
      * Description: Send synchronous soap message with a single attachment.
      *
@@ -160,9 +160,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("SendSyncReqRespMsgSOAP11Test2 failed");
+            if (!pass)
+                throw new Fault("SendSyncReqRespMsgSOAP11Test2 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -174,14 +176,12 @@ public class URLClient extends EETest {
     /*
      * @testName: SendSyncReqRespMsgSOAP11Test3
      *
-     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4;
-     * SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7; SAAJ:SPEC:8; SAAJ:SPEC:9;
-     * SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14;
-     * SAAJ:SPEC:15; SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
+     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4; SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7;
+     * SAAJ:SPEC:8; SAAJ:SPEC:9; SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14; SAAJ:SPEC:15;
+     * SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
      *
-     * @test_Strategy: Create a soap message containing a soap message part with
-     * multiple attachments and send it as a synchronous soap message. Sends a
-     * soap 1.1 protocol message.
+     * @test_Strategy: Create a soap message containing a soap message part with multiple attachments and send it as a
+     * synchronous soap message. Sends a soap 1.1 protocol message.
      *
      * Description: Send synchronous soap message with multiple attachments.
      *
@@ -201,9 +201,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("SendSyncReqRespMsgSOAP11Test3 failed");
+            if (!pass)
+                throw new Fault("SendSyncReqRespMsgSOAP11Test3 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -215,14 +217,12 @@ public class URLClient extends EETest {
     /*
      * @testName: SendSyncReqRespMsgSOAP12Test1
      *
-     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4;
-     * SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7; SAAJ:SPEC:8; SAAJ:SPEC:9;
-     * SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14;
-     * SAAJ:SPEC:15; SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
+     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4; SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7;
+     * SAAJ:SPEC:8; SAAJ:SPEC:9; SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14; SAAJ:SPEC:15;
+     * SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
      *
-     * @test_Strategy: Create a soap message containing a soap message part with
-     * no attachments and send it as a synchronous soap message. Sends a soap 1.2
-     * protocol message.
+     * @test_Strategy: Create a soap message containing a soap message part with no attachments and send it as a synchronous
+     * soap message. Sends a soap 1.2 protocol message.
      *
      * Description: Send synchronous soap message with no attachments.
      *
@@ -242,9 +242,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("SendSyncReqRespMsgSOAP12Test1 failed");
+            if (!pass)
+                throw new Fault("SendSyncReqRespMsgSOAP12Test1 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -256,14 +258,12 @@ public class URLClient extends EETest {
     /*
      * @testName: SendSyncReqRespMsgSOAP12Test2
      *
-     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4;
-     * SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7; SAAJ:SPEC:8; SAAJ:SPEC:9;
-     * SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14;
-     * SAAJ:SPEC:15; SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
+     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4; SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7;
+     * SAAJ:SPEC:8; SAAJ:SPEC:9; SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14; SAAJ:SPEC:15;
+     * SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
      *
-     * @test_Strategy: Create a soap message containing a soap message part with a
-     * single attachment and send it as a synchronous soap message. Sends a soap
-     * 1.2 protocol message.
+     * @test_Strategy: Create a soap message containing a soap message part with a single attachment and send it as a
+     * synchronous soap message. Sends a soap 1.2 protocol message.
      *
      * Description: Send synchronous soap message with a single attachment.
      *
@@ -283,9 +283,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("SendSyncReqRespMsgSOAP12Test2 failed");
+            if (!pass)
+                throw new Fault("SendSyncReqRespMsgSOAP12Test2 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -297,14 +299,12 @@ public class URLClient extends EETest {
     /*
      * @testName: SendSyncReqRespMsgSOAP12Test3
      *
-     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4;
-     * SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7; SAAJ:SPEC:8; SAAJ:SPEC:9;
-     * SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14;
-     * SAAJ:SPEC:15; SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
+     * @assertion_ids: SAAJ:SPEC:1; SAAJ:SPEC:2; SAAJ:SPEC:3; SAAJ:SPEC:4; SAAJ:SPEC:5; SAAJ:SPEC:6; SAAJ:SPEC:7;
+     * SAAJ:SPEC:8; SAAJ:SPEC:9; SAAJ:SPEC:10; SAAJ:SPEC:11; SAAJ:SPEC:12; SAAJ:SPEC:13; SAAJ:SPEC:14; SAAJ:SPEC:15;
+     * SAAJ:SPEC:16; SAAJ:SPEC:17; SAAJ:SPEC:18;
      *
-     * @test_Strategy: Create a soap message containing a soap message part with
-     * multiple attachments and send it as a synchronous soap message. Sends a
-     * soap 1.2 protocol message.
+     * @test_Strategy: Create a soap message containing a soap message part with multiple attachments and send it as a
+     * synchronous soap message. Sends a soap 1.2 protocol message.
      *
      * Description: Send synchronous soap message with multiple attachments.
      *
@@ -324,9 +324,11 @@ public class URLClient extends EETest {
             urlConn = TestUtil.sendPostData(props, url);
             TestUtil.logMsg("Getting response from test servlet.....");
             Properties resProps = TestUtil.getResponseProperties(urlConn);
-            if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+            if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                pass = false;
 
-            if (!pass) throw new Fault("SendSyncReqRespMsgSOAP12Test3 failed");
+            if (!pass)
+                throw new Fault("SendSyncReqRespMsgSOAP12Test3 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

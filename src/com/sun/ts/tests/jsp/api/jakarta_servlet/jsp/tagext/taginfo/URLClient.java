@@ -29,16 +29,14 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 import java.io.PrintWriter;
 
 /**
- * Test client for TagInfo. Implementation note, all tests are performed within
- * a TagExtraInfo class. If the test fails, a translation error will be
- * generated and a ValidationMessage array will be returned.
+ * Test client for TagInfo. Implementation note, all tests are performed within a TagExtraInfo class. If the test fails,
+ * a translation error will be generated and a ValidationMessage array will be returned.
  */
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -47,8 +45,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -70,8 +67,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:232
      *
-     * @test_Strategy: Validate TagInfo.getTagName() returns the expected values
-     * based on what is defined in the TLD.
+     * @test_Strategy: Validate TagInfo.getTagName() returns the expected values based on what is defined in the TLD.
      */
     public void tagInfoGetTagNameTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetTagNameTest.jsp HTTP/1.1");
@@ -84,8 +80,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:233
      *
-     * @test_Strategy: Validate TagInfo.getAttributes() returns the expected
-     * values based on what is defined in the TLD.
+     * @test_Strategy: Validate TagInfo.getAttributes() returns the expected values based on what is defined in the TLD.
      */
     public void tagInfoGetAttributesTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetAttributesTest.jsp HTTP/1.1");
@@ -98,9 +93,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:237;JSP:JAVADOC:238
      *
-     * @test_Strategy: Validate TagInfo.getTagExtraInfo() returns the expected
-     * values based on what is defined in the TLD. This implicitly tests
-     * TagInfo.setTagExtraInfo().
+     * @test_Strategy: Validate TagInfo.getTagExtraInfo() returns the expected values based on what is defined in the TLD.
+     * This implicitly tests TagInfo.setTagExtraInfo().
      */
     public void tagInfoGetTagExtraInfoTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetTagExtraInfoTest.jsp HTTP/1.1");
@@ -113,8 +107,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:239
      *
-     * @test_Strategy: Validate TagInfo.getTagClassName() returns the expected
-     * values based on what is defined in the TLD.
+     * @test_Strategy: Validate TagInfo.getTagClassName() returns the expected values based on what is defined in the TLD.
      */
     public void tagInfoGetTagClassNameTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetTagClassNameTest.jsp HTTP/1.1");
@@ -127,8 +120,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:240
      *
-     * @test_Strategy: Validate TagInfo.getBodyContent() returns the expected
-     * values based on what is defined in the TLD.
+     * @test_Strategy: Validate TagInfo.getBodyContent() returns the expected values based on what is defined in the TLD.
      */
     public void tagInfoGetBodyContentTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetBodyContentTest.jsp HTTP/1.1");
@@ -141,8 +133,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:241
      *
-     * @test_Strategy: Validate TagInfo.getInfoString() returns the expected
-     * values based on what is defined in the TLD.
+     * @test_Strategy: Validate TagInfo.getInfoString() returns the expected values based on what is defined in the TLD.
      */
     public void tagInfoGetInfoStringTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetInfoStringTest.jsp HTTP/1.1");
@@ -155,9 +146,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:242;JSP:JAVADOC:243
      *
-     * @test_Strategy: Validate TagInfo.getAttributes() returns the expected
-     * values based on what is defined in the TLD. This implicitly tests
-     * TagInfo.setTagLibrary().
+     * @test_Strategy: Validate TagInfo.getAttributes() returns the expected values based on what is defined in the TLD.
+     * This implicitly tests TagInfo.setTagLibrary().
      */
     public void tagInfoGetTagLibraryTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetTagLibraryTest.jsp HTTP/1.1");
@@ -170,8 +160,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:244
      *
-     * @test_Strategy: Validate TagInfo.getDisplayName() returns the expected
-     * values based on what is defined in the TLD.
+     * @test_Strategy: Validate TagInfo.getDisplayName() returns the expected values based on what is defined in the TLD.
      */
     public void tagInfoGetDisplayNameTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetDisplayNameTest.jsp HTTP/1.1");
@@ -184,8 +173,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:245
      *
-     * @test_Strategy: Validate TagInfo.getSmallIconName() returns the expected
-     * values based on what is defined in the TLD.
+     * @test_Strategy: Validate TagInfo.getSmallIconName() returns the expected values based on what is defined in the TLD.
      */
     public void tagInfoGetSmallIconTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetSmallIconTest.jsp HTTP/1.1");
@@ -198,8 +186,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:246
      *
-     * @test_Strategy: Validate TagInfo.getLargeIconName() returns the expected
-     * values based on what is defined in the TLD.
+     * @test_Strategy: Validate TagInfo.getLargeIconName() returns the expected values based on what is defined in the TLD.
      */
     public void tagInfoGetLargeIconTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetLargeIconTest.jsp HTTP/1.1");
@@ -212,8 +199,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:247
      *
-     * @test_Strategy: Validate TagInfo.getTagVariableInfos() returns the expected
-     * values based on what is defined in the TLD.
+     * @test_Strategy: Validate TagInfo.getTagVariableInfos() returns the expected values based on what is defined in the
+     * TLD.
      */
     public void tagInfoGetTagVariableInfosTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/GetTagVariableInfosTest.jsp HTTP/1.1");
@@ -226,8 +213,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:248
      *
-     * @test_Strategy: Validate TagInfo.hasDynamicAttributes() returns the
-     * expected values based on what is defined in the TLD.
+     * @test_Strategy: Validate TagInfo.hasDynamicAttributes() returns the expected values based on what is defined in the
+     * TLD.
      */
     public void tagInfoHasDynamicAttributesTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/HasDynamicAttributesTest.jsp HTTP/1.1");
@@ -236,10 +223,9 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /*
-     * testName: tagInfoIsValidTest assertion_ids: JSP:JAVADOC:235 test_Strategy:
-     * Translation-time validation of the attributes. This is a convenience method
-     * on the associated TagExtraInfo class. This method should be exercised with
-     * a jsp 1.1 tld. See tagInfoConstructor11Test.
+     * testName: tagInfoIsValidTest assertion_ids: JSP:JAVADOC:235 test_Strategy: Translation-time validation of the
+     * attributes. This is a convenience method on the associated TagExtraInfo class. This method should be exercised with a
+     * jsp 1.1 tld. See tagInfoConstructor11Test.
      */
     public void tagInfoIsValidTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_taginfo_web/IsValidTest.jsp HTTP/1.1");

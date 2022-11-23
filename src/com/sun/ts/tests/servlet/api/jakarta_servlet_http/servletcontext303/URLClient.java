@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -57,8 +55,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:672.11; Servlet:JAVADOC:673.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a HttpSessionListener is added;
-     * Verify in servlet that java.lang.IllegalStateException is thrown.
+     * @test_Strategy: Create a Servlet, in which, a HttpSessionListener is added; Verify in servlet that
+     * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddHListenerClassTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "negativeaddHListenerClassTest");
@@ -71,8 +69,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:671.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a HttpSessionListener is added;
-     * Verify in servlet that java.lang.IllegalStateException is thrown.
+     * @test_Strategy: Create a Servlet, in which, a HttpSessionListener is added; Verify in servlet that
+     * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddHListenerStringTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "negativeaddHListenerStringTest");
@@ -85,8 +83,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:672.11; Servlet:JAVADOC:673.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a HttpSessionAttributeListener
-     * is added; Verify in servlet that java.lang.IllegalStateException is thrown.
+     * @test_Strategy: Create a Servlet, in which, a HttpSessionAttributeListener is added; Verify in servlet that
+     * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddHAListenerClassTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "negativeaddHAListenerClassTest");
@@ -99,8 +97,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:671.11;
      *
-     * @test_Strategy: Create a Servlet, in which, a HttpSessionAttributeListener
-     * is added; Verify in servlet that java.lang.IllegalStateException is thrown.
+     * @test_Strategy: Create a Servlet, in which, a HttpSessionAttributeListener is added; Verify in servlet that
+     * java.lang.IllegalStateException is thrown.
      */
     public void negativeaddHAListenerStringTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "negativeaddHAListenerClassTest");

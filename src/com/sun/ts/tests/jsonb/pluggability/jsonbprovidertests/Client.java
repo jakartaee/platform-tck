@@ -57,8 +57,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: jsonbProviderTest1
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * static JsonbProvider provider()
+     * @test_Strategy: Test call of SPI provider method with signature: o public static JsonbProvider provider()
      */
     public void jsonbProviderTest1() throws Fault {
         try {
@@ -74,8 +73,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: jsonbProviderTest2
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * static JsonbProvider provider(String provider)
+     * @test_Strategy: Test call of SPI provider method with signature: o public static JsonbProvider provider(String
+     * provider)
      */
     public void jsonbProviderTest2() throws Fault {
         boolean pass = true;
@@ -84,7 +83,8 @@ public class Client extends ServiceEETest {
             JsonbProvider provider = JsonbProvider.provider(MY_JSONBROVIDER_CLASS);
             String providerClass = provider.getClass().getName();
             logMsg("provider class=" + providerClass);
-            if (providerClass.equals(MY_JSONBROVIDER_CLASS)) logMsg("Current provider is my provider - expected.");
+            if (providerClass.equals(MY_JSONBROVIDER_CLASS))
+                logMsg("Current provider is my provider - expected.");
             else {
                 logErr("Current provider is not my provider - unexpected.");
                 pass = false;
@@ -99,7 +99,8 @@ public class Client extends ServiceEETest {
         } catch (Exception e) {
             throw new Fault("jsonbProviderTest2 Failed: ", e);
         }
-        if (!pass) throw new Fault("jsonbProviderTest2 Failed");
+        if (!pass)
+            throw new Fault("jsonbProviderTest2 Failed");
     }
 
     /*
@@ -113,7 +114,8 @@ public class Client extends ServiceEETest {
             JsonbBuilder builder = JsonbProvider.provider(MY_JSONBROVIDER_CLASS).create();
             String providerClass = builder.getClass().getName();
             logMsg("jsonb builder class=" + providerClass);
-            if (providerClass.equals(MY_JSONBBUILDER_CLASS)) logMsg("Current jsonb builder is my builder - expected.");
+            if (providerClass.equals(MY_JSONBBUILDER_CLASS))
+                logMsg("Current jsonb builder is my builder - expected.");
             else {
                 logErr("Current jsonb builder is not my builder - unexpected.");
                 throw new Fault("jsonbProviderTest3 Failed");

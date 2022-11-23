@@ -22,12 +22,7 @@ package com.sun.ts.tests.jaxws.ee.w2j.document.literal.headertest;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "HeaderTestPort",
-        serviceName = "HeaderTestService",
-        targetNamespace = "http://headertestservice.org/HeaderTestService.wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JDLHeaderTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.headertest.HeaderTest")
+@WebService(portName = "HeaderTestPort", serviceName = "HeaderTestService", targetNamespace = "http://headertestservice.org/HeaderTestService.wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JDLHeaderTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.ee.w2j.document.literal.headertest.HeaderTest")
 public class HeaderTestImpl implements HeaderTest {
 
     public ProductOrderResponse submitOrder(ProductOrderRequest poRequest, ConfigHeader configHeader)
@@ -73,7 +68,9 @@ public class HeaderTestImpl implements HeaderTest {
     private boolean ValidHeader(ConfigHeader ch, boolean mu, String msg, String test) {
         if (ch.isMustUnderstand() == mu
                 && ch.getMessage().equals(msg)
-                && ch.getTestName().equals(test)) return true;
-        else return false;
+                && ch.getTestName().equals(test))
+            return true;
+        else
+            return false;
     }
 }

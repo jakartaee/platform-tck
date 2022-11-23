@@ -59,11 +59,9 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: getTarget
      *
-     * @test_Strategy: the bean business method getTarget return the identity
-     * hashcode for the bean instance, which is compared to the result of
-     * InvocationContext.getTarget()'s. They should be the same. This test is
-     * executed for AroundInvoke methods in both the bean class and in interceptor
-     * class.
+     * @test_Strategy: the bean business method getTarget return the identity hashcode for the bean instance, which is
+     * compared to the result of InvocationContext.getTarget()'s. They should be the same. This test is executed for
+     * AroundInvoke methods in both the bean class and in interceptor class.
      */
     public void getTarget() throws TestFailedException {
         InvocationContextTestImpl.getTarget(beans);
@@ -72,9 +70,8 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: getContextData
      *
-     * @test_Strategy: Put context data in interceptor method and verify it inside
-     * finally block after executing business method. This test is executed for
-     * AroundInvoke methods in both the bean class and in interceptor class.
+     * @test_Strategy: Put context data in interceptor method and verify it inside finally block after executing business
+     * method. This test is executed for AroundInvoke methods in both the bean class and in interceptor class.
      */
     public void getContextData() throws TestFailedException {
         InvocationContextTestImpl.getContextData(beans);
@@ -83,8 +80,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: getTimer
      *
-     * @test_Strategy: InvocatioinContext.getTimer() returns null for lifecycle
-     * and around-invoke methods.
+     * @test_Strategy: InvocatioinContext.getTimer() returns null for lifecycle and around-invoke methods.
      */
     public void getTimer() throws TestFailedException {
         InvocationContextTestImpl.getTimer(beans);
@@ -93,12 +89,10 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: getSetParameters
      *
-     * @test_Strategy: the bean business method getSetParametersEmpty takes no
-     * params. InvocationContext.getParameters() should return null or empty
-     * params. Setting params to a non-empty array should result in
-     * IllegalArgumentException. The bean business method getSetParameters takes 2
-     * String params, verified and modified in interceptor. The client should get
-     * the result based on the new params.
+     * @test_Strategy: the bean business method getSetParametersEmpty takes no params. InvocationContext.getParameters()
+     * should return null or empty params. Setting params to a non-empty array should result in IllegalArgumentException.
+     * The bean business method getSetParameters takes 2 String params, verified and modified in interceptor. The client
+     * should get the result based on the new params.
      */
     public void getSetParameters() throws TestFailedException {
         InvocationContextTestImpl.getSetParametersEmpty(beans);
@@ -108,10 +102,9 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: proceedAgain
      *
-     * @test_Strategy: call proceed() from interceptor method. The first call
-     * results in TestFailedException, and the subsequent proceed() call returns
-     * true. Expecting TestFailedException from the first proceed call, and true
-     * value from the second proceed call.
+     * @test_Strategy: call proceed() from interceptor method. The first call results in TestFailedException, and the
+     * subsequent proceed() call returns true. Expecting TestFailedException from the first proceed call, and true value
+     * from the second proceed call.
      */
     public void proceedAgain() throws TestFailedException {
         InvocationContextTestImpl.proceedAgain(beans);

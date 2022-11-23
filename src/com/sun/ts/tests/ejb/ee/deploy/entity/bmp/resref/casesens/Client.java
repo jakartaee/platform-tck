@@ -71,16 +71,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:872
      *
-     * @test_Strategy: Deploy a BMP Entity bean (TestBean) with two resource
-     *                 references whose name differ only by case and are assigned
-     *                 to two distinct factory types: a
-     *                 jakarta.jms.QueueConnectionFactory and a
-     *                 jakarta.jms.TopicConnectionFactory.
+     * @test_Strategy: Deploy a BMP Entity bean (TestBean) with two resource references whose name differ only by case and
+     * are assigned to two distinct factory types: a jakarta.jms.QueueConnectionFactory and a
+     * jakarta.jms.TopicConnectionFactory.
      *
-     *                 Check that TestBean can lookup the two factories, cast them
-     *                 to their respective java types, and create a connection
-     *                 (corresponding to the factory type). This validates that
-     *                 the resource references were resolved correctly.
+     * Check that TestBean can lookup the two factories, cast them to their respective java types, and create a connection
+     * (corresponding to the factory type). This validates that the resource references were resolved correctly.
      */
     public void testCaseSensitivity() throws Fault {
         TestBean bean = null;

@@ -49,15 +49,15 @@ public class ELClient extends ServiceEETest {
         this.testProps = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
      * @testName: methodInfoTest
      *
      * @assertion_ids: EL:JAVADOC:411;EL:JAVADOC:412;EL:JAVADOC:413
-     * @test_Strategy: Validate the behavior of MethodInfo MethodInfo class
-     *                 methods: MethodInfo.getName() MethodInfo.getReturnType()
-     *                 MethodInfo.getParamTypes()
+     * @test_Strategy: Validate the behavior of MethodInfo MethodInfo class methods: MethodInfo.getName()
+     * MethodInfo.getReturnType() MethodInfo.getParamTypes()
      */
     public void methodInfoTest() throws Fault {
 
@@ -72,14 +72,13 @@ public class ELClient extends ServiceEETest {
             ELContext context = simpleContext.getELContext();
 
             // case 1: non-null return value
-            Class<?>[] paramTypes1 = {Object.class};
-            MethodExpression mexp1 =
-                    expFactory.createMethodExpression(context, "#{vect.add}", boolean.class, paramTypes1);
+            Class<?>[] paramTypes1 = { Object.class };
+            MethodExpression mexp1 = expFactory.createMethodExpression(context, "#{vect.add}", boolean.class, paramTypes1);
             MethodInfo minfo1 = mexp1.getMethodInfo(context);
             pass1 = ExpressionTest.testMethodInfo(minfo1, "add", boolean.class, 1, paramTypes1, buf);
 
             // case 2: null return value
-            Class<?>[] paramTypes2 = {int.class, Object.class};
+            Class<?>[] paramTypes2 = { int.class, Object.class };
 
             MethodExpression mexp2 = expFactory.createMethodExpression(context, "#{vect.add}", null, paramTypes2);
             MethodInfo minfo2 = mexp2.getMethodInfo(context);
@@ -103,6 +102,7 @@ public class ELClient extends ServiceEETest {
             throw new Fault(ex);
         }
 
-        if (!(pass1 && pass2 && pass3 && pass4)) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!(pass1 && pass2 && pass3 && pass4))
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
     }
 }

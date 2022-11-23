@@ -26,16 +26,13 @@ import jakarta.xml.ws.soap.Addressing;
 import jakarta.xml.ws.soap.AddressingFeature;
 import jakarta.xml.ws.soap.SOAPBinding;
 
-@WebService(
-        portName = "AddressingEndpoint4Port",
-        serviceName = "AddressingService4",
-        targetNamespace = "http://rpclitservice.org/wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpoint4")
+@WebService(portName = "AddressingEndpoint4Port", serviceName = "AddressingService4", targetNamespace = "http://rpclitservice.org/wsdl", endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withannotations.AddressingEndpoint4")
 @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
 @Addressing(enabled = true, required = true, responses = AddressingFeature.Responses.ANONYMOUS)
 public class AddressingEndpoint4Impl implements AddressingEndpoint4 {
 
-    public void address1(String s) {}
+    public void address1(String s) {
+    }
 
     public String address2() {
         return "hello";

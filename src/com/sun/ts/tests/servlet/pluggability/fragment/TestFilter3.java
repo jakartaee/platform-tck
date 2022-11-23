@@ -58,7 +58,8 @@ public final class TestFilter3 implements Filter {
         }
     }
 
-    public void destroy() {}
+    public void destroy() {
+    }
 
     public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;

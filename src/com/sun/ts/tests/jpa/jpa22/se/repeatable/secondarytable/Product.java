@@ -50,7 +50,8 @@ public class Product implements java.io.Serializable {
 
     private int quantity;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Product(String id, int quantity) {
         this.id = id;

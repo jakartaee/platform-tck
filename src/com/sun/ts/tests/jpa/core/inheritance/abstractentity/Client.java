@@ -54,7 +54,8 @@ public class Client extends PMClientBase {
 
     private final Date d10 = getSQLDate(2003, 1, 25);
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -79,16 +80,12 @@ public class Client extends PMClientBase {
     /*
      * @testName: abstractEntityTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590;
-     * PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588; PERSISTENCE:SPEC:1126;
-     * PERSISTENCE:SPEC:1126.1; PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4;
-     * PERSISTENCE:JAVADOC:25; PERSISTENCE:JAVADOC:26; PERSISTENCE:JAVADOC:28;
-     * PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:1113; PERSISTENCE:SPEC:1116;
-     * PERSISTENCE:SPEC:1118; PERSISTENCE:JAVADOC:23; PERSISTENCE:JAVADOC:86;
-     * PERSISTENCE:JAVADOC:87
+     * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590; PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588;
+     * PERSISTENCE:SPEC:1126; PERSISTENCE:SPEC:1126.1; PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4;
+     * PERSISTENCE:JAVADOC:25; PERSISTENCE:JAVADOC:26; PERSISTENCE:JAVADOC:28; PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:1113;
+     * PERSISTENCE:SPEC:1116; PERSISTENCE:SPEC:1118; PERSISTENCE:JAVADOC:23; PERSISTENCE:JAVADOC:86; PERSISTENCE:JAVADOC:87
      *
-     * @test_Strategy: An entity may have a non-entity superclass which may be
-     * either abstract or concrete.
+     * @test_Strategy: An entity may have a non-entity superclass which may be either abstract or concrete.
      */
 
     public void abstractEntityTest1() throws Fault {
@@ -107,21 +104,19 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("abstractEntityTest1 failed");
+        if (!pass)
+            throw new Fault("abstractEntityTest1 failed");
     }
 
     /*
      * @testName: abstractEntityTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590;
-     * PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588; PERSISTENCE:SPEC:1126;
-     * PERSISTENCE:SPEC:1126.1; PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4;
-     * PERSISTENCE:JAVADOC:25; PERSISTENCE:JAVADOC:26; PERSISTENCE:JAVADOC:28;
-     * PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:1113; PERSISTENCE:SPEC:1116;
-     * PERSISTENCE:SPEC:1118; PERSISTENCE:JAVADOC:35
+     * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590; PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588;
+     * PERSISTENCE:SPEC:1126; PERSISTENCE:SPEC:1126.1; PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4;
+     * PERSISTENCE:JAVADOC:25; PERSISTENCE:JAVADOC:26; PERSISTENCE:JAVADOC:28; PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:1113;
+     * PERSISTENCE:SPEC:1116; PERSISTENCE:SPEC:1118; PERSISTENCE:JAVADOC:35
      *
-     * @test_Strategy: An entity may have a non-entity superclass which may be
-     * either abstract or concrete.
+     * @test_Strategy: An entity may have a non-entity superclass which may be either abstract or concrete.
      */
 
     public void abstractEntityTest2() throws Fault {
@@ -140,18 +135,17 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Unexpected exception occurred", e);
         }
 
-        if (!pass) throw new Fault("abstractEntityTest2 failed");
+        if (!pass)
+            throw new Fault("abstractEntityTest2 failed");
     }
 
     /*
      * @testName: abstractEntityTest3
      *
-     * @assertion_ids: PERSISTENCE:SPEC:588.1;PERSISTENCE:SPEC:1352;
-     * PERSISTENCE:SPEC:1353; PERSISTENCE:SPEC:1219;
+     * @assertion_ids: PERSISTENCE:SPEC:588.1;PERSISTENCE:SPEC:1352; PERSISTENCE:SPEC:1353; PERSISTENCE:SPEC:1219;
      *
-     * @test_Strategy: An abstract entity is mapped as an entity and can be the
-     * target of queries (which will operate over and/or retrieve instances of its
-     * concrete subclasses).
+     * @test_Strategy: An abstract entity is mapped as an entity and can be the target of queries (which will operate over
+     * and/or retrieve instances of its concrete subclasses).
      */
 
     public void abstractEntityTest3() throws Fault {
@@ -212,7 +206,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass1 || !pass2) throw new Fault("abstractEntityTest3 failed");
+        if (!pass1 || !pass2)
+            throw new Fault("abstractEntityTest3 failed");
     }
 
     public void createTestData() {

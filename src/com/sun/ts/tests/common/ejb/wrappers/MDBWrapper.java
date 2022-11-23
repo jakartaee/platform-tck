@@ -40,8 +40,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 /**
- * Life cyle and test invocation methods for MDB. Actual test methods are
- * defined in subclasses of this class.
+ * Life cyle and test invocation methods for MDB. Actual test methods are defined in subclasses of this class.
  *
  * WARNING: We assume the MDB is CMT. Do not use this wrapper for a BMT MDB!
  */
@@ -122,15 +121,15 @@ public class MDBWrapper implements MessageDrivenBean, MessageListener {
     }
 
     /**
-     * Run corresponding test by invoking test method on the current instance
-     * (also used for cleanup of stateful session beans).
+     * Run corresponding test by invoking test method on the current instance (also used for cleanup of stateful session
+     * beans).
      */
     protected boolean runTest(String testName, Message msg, QueueSession session, Properties props) {
 
         Boolean pass = Boolean.FALSE;
         Class testDriverClass;
         Method testMethod;
-        Class params[] = {Properties.class};
+        Class params[] = { Properties.class };
         Object args[] = new Object[1];
 
         TestUtil.logTrace("[MDBWrapper] runTest()");
@@ -154,9 +153,8 @@ public class MDBWrapper implements MessageDrivenBean, MessageListener {
     }
 
     /**
-     * Construct a property object needed by TS harness for logging. We retrieve
-     * the properties from the Message object passed into the MDB onMessage()
-     * method
+     * Construct a property object needed by TS harness for logging. We retrieve the properties from the Message object
+     * passed into the MDB onMessage() method
      */
     protected Properties getProperties(Message msg) throws JMSException {
         Properties props;
@@ -168,8 +166,7 @@ public class MDBWrapper implements MessageDrivenBean, MessageListener {
         props = new Properties();
 
         /*
-         * Because a JMS property name cannot contain '.' the following properties
-         * are a special case
+         * Because a JMS property name cannot contain '.' the following properties are a special case
          */
         hostname = msg.getStringProperty("harnesshost");
         props.put("harness.host", hostname);
@@ -182,7 +179,7 @@ public class MDBWrapper implements MessageDrivenBean, MessageListener {
          * now pull out the rest of the properties from the message
          */
         propNames = msg.getPropertyNames();
-        for (String name = null; propNames.hasMoreElements(); ) {
+        for (String name = null; propNames.hasMoreElements();) {
             name = (String) propNames.nextElement();
             props.put(name, msg.getStringProperty(name));
         }

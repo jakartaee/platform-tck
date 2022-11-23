@@ -43,10 +43,10 @@ import javax.security.auth.Subject;
 
 public class MDCompleteMCF
         implements ManagedConnectionFactory,
-                ResourceAdapterAssociation,
-                TransactionSupport,
-                Serializable,
-                jakarta.resource.Referenceable {
+        ResourceAdapterAssociation,
+        TransactionSupport,
+        Serializable,
+        jakarta.resource.Referenceable {
     private javax.naming.Reference reference;
 
     private ResourceAdapter resourceAdapter;
@@ -362,15 +362,20 @@ public class MDCompleteMCF
             return false;
         }
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.user, that.getUser())) return false;
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
 
-        if (!Util.isEqual(this.userName, that.getUserName())) return false;
+        if (!Util.isEqual(this.userName, that.getUserName()))
+            return false;
 
-        if (!Util.isEqual(this.TSRValue, that.getTSRValue())) return false;
+        if (!Util.isEqual(this.TSRValue, that.getTSRValue()))
+            return false;
 
-        if (!Util.isEqual(this.factoryName, that.getFactoryName())) return false;
+        if (!Util.isEqual(this.factoryName, that.getFactoryName()))
+            return false;
 
         return true;
     }

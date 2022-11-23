@@ -27,17 +27,16 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(
-        encoders = {
-            TextStreamCoderBool.class,
-            TextStreamCoderByte.class,
-            TextStreamCoderChar.class,
-            TextStreamCoderDouble.class,
-            TextStreamCoderInt.class,
-            TextStreamCoderLong.class,
-            TextStreamCoderFloat.class,
-            TextStreamCoderShort.class
-        })
+@ClientEndpoint(encoders = {
+        TextStreamCoderBool.class,
+        TextStreamCoderByte.class,
+        TextStreamCoderChar.class,
+        TextStreamCoderDouble.class,
+        TextStreamCoderInt.class,
+        TextStreamCoderLong.class,
+        TextStreamCoderFloat.class,
+        TextStreamCoderShort.class
+})
 public class WSCTextStreamClientEndpoint extends AnnotatedStringClientEndpoint {
 
     @Override

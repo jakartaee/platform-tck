@@ -50,10 +50,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:130;
      *
-     * @test_Strategy: String is defined in 4.2.4 to have a MBW<String>, whereas
-     * JSONB has MBW<Object> for which it fails to be chosen and String MBW is
-     * used. This is intentional for JAXRS spec not to allow other MBW to send
-     * Strings
+     * @test_Strategy: String is defined in 4.2.4 to have a MBW<String>, whereas JSONB has MBW<Object> for which it fails to
+     * be chosen and String MBW is used. This is intentional for JAXRS spec not to allow other MBW to send Strings
      */
     public void serverJsonBStringReturnTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest(Request.GET, "tostring"));
@@ -67,8 +65,8 @@ public class JAXRSClient extends JaxrsCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:130;
      *
-     * @test_Strategy: For CHAR and other than String data types, JSONB MBW is
-     * used, since unlike String, they have text/plain MBW in 4.2.4.
+     * @test_Strategy: For CHAR and other than String data types, JSONB MBW is used, since unlike String, they have
+     * text/plain MBW in 4.2.4.
      */
     public void serverJsonBCharReturnTest() throws Fault {
         Jsonb jsonb = JsonbBuilder.create();

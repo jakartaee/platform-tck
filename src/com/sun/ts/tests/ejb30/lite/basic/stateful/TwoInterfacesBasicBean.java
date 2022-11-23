@@ -29,6 +29,7 @@ import jakarta.ejb.Stateful;
 import java.util.concurrent.TimeUnit;
 
 @Stateful
-@Local({Basic1IF.class, Basic2IF.class})
+@Local({ Basic1IF.class, Basic2IF.class })
 @AccessTimeout(unit = TimeUnit.SECONDS, value = 0)
-public class TwoInterfacesBasicBean extends BasicBeanBase implements Basic1IF, Basic2IF {}
+public class TwoInterfacesBasicBean extends BasicBeanBase implements Basic1IF, Basic2IF {
+}

@@ -229,8 +229,10 @@ public class TestsTEJB implements TestsT {
             receivedM = (TextMessage) recr.receive(timeout);
             recr.close();
 
-            if (receivedM != null) tmp = receivedM.getText();
-            else return null;
+            if (receivedM != null)
+                tmp = receivedM.getText();
+            else
+                return null;
         } catch (Exception e) {
             TestUtil.logErr("Failed to receive a message in receiveTextMessage_CT: ", e);
             throw new EJBException(e);

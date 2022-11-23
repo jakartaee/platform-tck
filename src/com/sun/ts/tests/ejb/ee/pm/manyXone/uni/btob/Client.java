@@ -47,8 +47,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -78,15 +77,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:232.1
      *
-     * @test_Strategy: A manyx1 uni-directional relationship between entitybean
-     * objects. Create a manyx1 uni-directional relationship between entitybean
-     * objects. Do not set the relationship fields. The results should be set to
-     * null. Deploy EAR on the J2EE server. Ensure the entity beans were created
-     * and that the persistence manager has null settings for the relationship
-     * fields not set.
+     * @test_Strategy: A manyx1 uni-directional relationship between entitybean objects. Create a manyx1 uni-directional
+     * relationship between entitybean objects. Do not set the relationship fields. The results should be set to null.
+     * Deploy EAR on the J2EE server. Ensure the entity beans were created and that the persistence manager has null
+     * settings for the relationship fields not set.
      *
-     * Create 1 entity bean and verify the cmr-fields being null for entitybean
-     * objects.
+     * Create 1 entity bean and verify the cmr-fields being null for entitybean objects.
      *
      */
 
@@ -102,7 +98,8 @@ public class Client extends EETest {
             bRef.init(props);
 
             // Uni-Directional relationship fields should be null for entitybean
-            if (!bRef.isA()) TestUtil.logMsg("relationship fields are null - expected");
+            if (!bRef.isA())
+                TestUtil.logMsg("relationship fields are null - expected");
             else {
                 TestUtil.logErr("relationship fields are not null - unexpected");
                 pass = false;
@@ -119,7 +116,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_Mx1_uni_test0 failed");
+        if (!pass)
+            throw new Fault("btob_Mx1_uni_test0 failed");
     }
 
     /*
@@ -127,12 +125,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:232.1
      *
-     * @test_Strategy: A manyx1 uni-directional relationship between entitybean
-     * objects. Create a manyx1 uni-directional relationship between entitybean
-     * objects. Do set relationship fields to null. The results should be set to
-     * null. Deploy EAR on the J2EE server. Ensure the entity beans were created
-     * and that the persistence manager has null settings for the relationship
-     * fields not set.
+     * @test_Strategy: A manyx1 uni-directional relationship between entitybean objects. Create a manyx1 uni-directional
+     * relationship between entitybean objects. Do set relationship fields to null. The results should be set to null.
+     * Deploy EAR on the J2EE server. Ensure the entity beans were created and that the persistence manager has null
+     * settings for the relationship fields not set.
      *
      * Create 1 entity bean and verify the cmr-fields being null.
      *
@@ -150,7 +146,8 @@ public class Client extends EETest {
             bRef.init(props);
 
             // Uni-Directional relationship fields should be null for entitybean
-            if (!bRef.isA()) TestUtil.logMsg("relationship fields are null - expected");
+            if (!bRef.isA())
+                TestUtil.logMsg("relationship fields are null - expected");
             else {
                 TestUtil.logErr("relationship fields are not null - unexpected");
                 pass = false;
@@ -167,7 +164,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_Mx1_uni_test0b failed");
+        if (!pass)
+            throw new Fault("btob_Mx1_uni_test0b failed");
     }
 
     /*
@@ -175,11 +173,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:207
      *
-     * @test_Strategy: A manyx1 uni-directional relationship between entitybean
-     * objects. Create a manyx1 uni-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Perform the relationship assignment
-     * per assertion tag. Ensure the proper relationship results are correct after
-     * the assignment by the persistence manager.
+     * @test_Strategy: A manyx1 uni-directional relationship between entitybean objects. Create a manyx1 uni-directional
+     * relationship between entitybean objects. Deploy EAR on the J2EE server. Perform the relationship assignment per
+     * assertion tag. Ensure the proper relationship results are correct after the assignment by the persistence manager.
      *
      */
 
@@ -212,7 +208,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_Mx1_uni_test1 failed");
+        if (!pass)
+            throw new Fault("btob_Mx1_uni_test1 failed");
     }
 
     /*
@@ -220,11 +217,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:201
      *
-     * @test_Strategy: A manyx1 uni-directional relationship between entitybean
-     * objects. Create a manyx1 uni-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Ensure the entity beans were
-     * created and that the persistence manager is handling getting/setting of
-     * data. Ensure uni-directional data access from both entitybean objects.
+     * @test_Strategy: A manyx1 uni-directional relationship between entitybean objects. Create a manyx1 uni-directional
+     * relationship between entitybean objects. Deploy EAR on the J2EE server. Ensure the entity beans were created and that
+     * the persistence manager is handling getting/setting of data. Ensure uni-directional data access from both entitybean
+     * objects.
      *
      */
 
@@ -262,6 +258,7 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_Mx1_uni_test2 failed");
+        if (!pass)
+            throw new Fault("btob_Mx1_uni_test2 failed");
     }
 }

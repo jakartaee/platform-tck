@@ -42,8 +42,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The resultSetClient47 class tests methods of resultSet interface using Sun's
- * J2EE Reference Implementation.
+ * The resultSetClient47 class tests methods of resultSet interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 99/10/12
@@ -81,14 +80,11 @@ public class resultSetClient47 extends ServiceEETest implements Serializable {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -124,12 +120,11 @@ public class resultSetClient47 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString84
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404;
-     * JDBC:JAVADOC:405; JDBC:JAVADOC:368; JDBC:JAVADOC:369; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:404; JDBC:JAVADOC:405; JDBC:JAVADOC:368; JDBC:JAVADOC:369;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getString(String columnName) method with the SQL null column of
-     * JDBC datatype TIMESTAMP.It should return null String object.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getString(String columnName)
+     * method with the SQL null column of JDBC datatype TIMESTAMP.It should return null String object.
      */
     public void testGetString84() throws Fault {
         ResultSet oRes = null;
@@ -146,7 +141,8 @@ public class resultSetClient47 extends ServiceEETest implements Serializable {
             String sColName = rsMetaData.getColumnName(1);
             String oRetVal = oRes.getString(sColName);
 
-            if (oRetVal == null) msg.setMsg("getString returns the Null Value " + oRetVal);
+            if (oRetVal == null)
+                msg.setMsg("getString returns the Null Value " + oRetVal);
             else {
                 msg.printTestError("getString did not return the Null Value", "Call to getString is Failed!");
             }
@@ -173,14 +169,13 @@ public class resultSetClient47 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBytes01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
-     * JDBC:JAVADOC:391; JDBC:JAVADOC:368; JDBC:JAVADOC:369; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390; JDBC:JAVADOC:391; JDBC:JAVADOC:368; JDBC:JAVADOC:369;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the
-     * database.Update the column value of Binary_Tab table with a byte array
-     * using the PreparedStatement.setBytes(int columnIndex) method.Call the
-     * getBytes(int columnIndex) method with the SQL column of JDBC datatype
-     * BINARY.It should return the byte array object that has been set.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database.Update the column value of Binary_Tab
+     * table with a byte array using the PreparedStatement.setBytes(int columnIndex) method.Call the getBytes(int
+     * columnIndex) method with the SQL column of JDBC datatype BINARY.It should return the byte array object that has been
+     * set.
      */
     public void testGetBytes01() throws Fault {
         String binarySize = null;
@@ -254,12 +249,11 @@ public class resultSetClient47 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBytes02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
-     * JDBC:JAVADOC:391; JDBC:JAVADOC:370; JDBC:JAVADOC:371; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390; JDBC:JAVADOC:391; JDBC:JAVADOC:370; JDBC:JAVADOC:371;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getBytes(int columnIndex) method with the SQL null column of JDBC
-     * datatype BINARY.It should return null byte array object.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getBytes(int columnIndex) method
+     * with the SQL null column of JDBC datatype BINARY.It should return null byte array object.
      */
     public void testGetBytes02() throws Fault {
         String binarySize = null;
@@ -280,7 +274,8 @@ public class resultSetClient47 extends ServiceEETest implements Serializable {
             msg.setMsg("get the Null value from the table using GetBytes Method");
             byte[] oRetVal = oRes.getBytes(1);
             // check whether the value is null or not
-            if (oRes.wasNull()) msg.setMsg("GetBytes returns the Null Value " + oRetVal);
+            if (oRes.wasNull())
+                msg.setMsg("GetBytes returns the Null Value " + oRetVal);
             else {
                 msg.printTestError("GetBytes did not return the Null Value", "test getBytes Failed");
             }
@@ -307,14 +302,11 @@ public class resultSetClient47 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBytes03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
-     * JDBC:JAVADOC:391; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390; JDBC:JAVADOC:391; JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the
-     * database.Update the column value of Varbinary_Tab table with a byte array
-     * using the PreparedStatement.setBytes(int columnIndex).Call the getBytes(int
-     * columnIndex) method with the SQL column of JDBC datatype VARBINARY.It
-     * should return the byte array object that has been set.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database.Update the column value of Varbinary_Tab
+     * table with a byte array using the PreparedStatement.setBytes(int columnIndex).Call the getBytes(int columnIndex)
+     * method with the SQL column of JDBC datatype VARBINARY.It should return the byte array object that has been set.
      */
     public void testGetBytes03() throws Fault {
         String varbinarySize = null;
@@ -387,12 +379,11 @@ public class resultSetClient47 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBytes04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390;
-     * JDBC:JAVADOC:391; JDBC:JAVADOC:370; JDBC:JAVADOC:371; JavaEE:SPEC:191;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:390; JDBC:JAVADOC:391; JDBC:JAVADOC:370; JDBC:JAVADOC:371;
+     * JavaEE:SPEC:191;
      *
-     * @test_Strategy: Get a ResultSet object from the Connection to the database.
-     * Call the getBytes(int columnIndex) method with the SQL null column of JDBC
-     * datatype VARBINARY.It should return null byte array object.
+     * @test_Strategy: Get a ResultSet object from the Connection to the database. Call the getBytes(int columnIndex) method
+     * with the SQL null column of JDBC datatype VARBINARY.It should return null byte array object.
      */
     public void testGetBytes04() throws Fault {
         String varbinarySize = null;
@@ -414,7 +405,8 @@ public class resultSetClient47 extends ServiceEETest implements Serializable {
             msg.setMsg("get the Null value from the table using GetBytes Method");
             byte[] oRetVal = oRes.getBytes(1);
             // check whether the value is null or not
-            if (oRes.wasNull()) msg.setMsg("GetBytes returns the Null Value " + oRetVal);
+            if (oRes.wasNull())
+                msg.setMsg("GetBytes returns the Null Value " + oRetVal);
             else {
                 msg.printTestError("GetBytes did not return the Null Value", "test getBytes Failed");
             }

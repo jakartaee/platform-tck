@@ -127,7 +127,9 @@ public class SecTestEJB implements EntityBean {
         TestUtil.logTrace("ejbLoad");
     }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 }

@@ -22,12 +22,7 @@ import jakarta.jws.WebService;
 import jakarta.xml.ws.WebServiceException;
 import javax.naming.InitialContext;
 
-@WebService(
-        portName = "InterModuleSeiPort",
-        serviceName = "InterModuleService",
-        targetNamespace = "http://InterModuleService.org/wsdl",
-        wsdlLocation = "META-INF/wsdl/InterModuleService.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.inter.InterModuleSei")
+@WebService(portName = "InterModuleSeiPort", serviceName = "InterModuleService", targetNamespace = "http://InterModuleService.org/wsdl", wsdlLocation = "META-INF/wsdl/InterModuleService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.deploy.portcomplink.ejb.inter.InterModuleSei")
 @Stateless(name = "InterModuleEjb")
 public class InterModuleEjbBean {
 

@@ -67,8 +67,7 @@ public class TSResourceManager {
     }
 
     /**
-     * Starts the new Global Transaction branch. transaction can be started in
-     * three ways.
+     * Starts the new Global Transaction branch. transaction can be started in three ways.
      * <p>
      * 1. With no flags (TMNOFLAGS) : This is starting a new transaction
      * </p>
@@ -79,14 +78,10 @@ public class TSResourceManager {
      * 3. With resume flag(TRESUME) : This is resuming a suspended transaction
      * </p>
      *
-     * @param xid
-     *          Global Id for the transaction.
-     * @param flags
-     *          Flags used for Transaction. For more details see JTA spec.
-     * @param con
-     *          Connection involved in the Global Transaction.
-     * @throws XAExcpetion
-     *           In case of a failure / Invalid flag / Invalid XA protocol.
+     * @param xid Global Id for the transaction.
+     * @param flags Flags used for Transaction. For more details see JTA spec.
+     * @param con Connection involved in the Global Transaction.
+     * @throws XAExcpetion In case of a failure / Invalid flag / Invalid XA protocol.
      */
     public void start(Xid xid, int flags, TSConnection con) throws XAException {
         System.out.println("start." + flags + "." + xid + "..." + con);
@@ -95,11 +90,13 @@ public class TSResourceManager {
         if (flags == XAResource.TMNOFLAGS) {
             TSXaTransaction txn = new TSXaTransaction(xid);
             txn.setStatus(TSXaTransaction.STARTED);
-            if (con != null) txn.addConnection(con);
+            if (con != null)
+                txn.addConnection(con);
             association.put(xid, txn);
         } else if (flags == XAResource.TMJOIN) {
             TSXaTransaction txn = (TSXaTransaction) association.get(xid);
-            if (con != null) txn.addConnection(con);
+            if (con != null)
+                txn.addConnection(con);
             association.put(xid, txn);
         } else if (flags == XAResource.TMRESUME) {
             TSXaTransaction txn = (TSXaTransaction) association.get(xid);
@@ -111,20 +108,20 @@ public class TSResourceManager {
     /**
      * Ends the Global Transaction branch.
      *
-     * @param xid
-     *          Global Id for the transaction.
-     * @param flags
-     *          Flags used for Transaction. For more details see JTA spec.
-     * @throws XAExcpetion
-     *           In case of a failure / Invalid flag / Invalid XA protocol.
+     * @param xid Global Id for the transaction.
+     * @param flags Flags used for Transaction. For more details see JTA spec.
+     * @throws XAExcpetion In case of a failure / Invalid flag / Invalid XA protocol.
      */
     public void end(Xid xid, int flags) throws XAException {
         sanityCheck(xid, flags, "end");
 
         int status = 0;
-        if (flags == XAResource.TMFAIL) status = TSXaTransaction.ENDFAILED;
-        if (flags == XAResource.TMSUSPEND) status = TSXaTransaction.SUSPENDED;
-        if (flags == XAResource.TMSUCCESS) status = TSXaTransaction.ENDSUCCESSFUL;
+        if (flags == XAResource.TMFAIL)
+            status = TSXaTransaction.ENDFAILED;
+        if (flags == XAResource.TMSUSPEND)
+            status = TSXaTransaction.SUSPENDED;
+        if (flags == XAResource.TMSUCCESS)
+            status = TSXaTransaction.ENDSUCCESSFUL;
 
         TSXaTransaction txn = (TSXaTransaction) association.get(xid);
         txn.setStatus(status);
@@ -134,10 +131,8 @@ public class TSResourceManager {
     /**
      * Prepare the Global Transaction branch.
      *
-     * @param xid
-     *          Global Id for the transaction.
-     * @throws XAExcpetion
-     *           In case of a failure / Invalid XA protocol.
+     * @param xid Global Id for the transaction.
+     * @throws XAExcpetion In case of a failure / Invalid XA protocol.
      */
     public int prepare(Xid xid) throws XAException {
         sanityCheck(xid, XAResource.TMNOFLAGS, "prepare");
@@ -162,10 +157,8 @@ public class TSResourceManager {
     /**
      * Commits the Global Transaction branch.
      *
-     * @param xid
-     *          Global Id for the transaction.
-     * @throws XAExcpetion
-     *           In case of a failure / Invalid XA protocol.
+     * @param xid Global Id for the transaction.
+     * @throws XAExcpetion In case of a failure / Invalid XA protocol.
      */
     public void commit(Xid xid, boolean onePhase) throws XAException {
 
@@ -193,10 +186,8 @@ public class TSResourceManager {
     /**
      * Rolls back the Global Transaction branch.
      *
-     * @param xid
-     *          Global Id for the transaction.
-     * @throws XAExcpetion
-     *           In case of a failure / Invalid XA protocol.
+     * @param xid Global Id for the transaction.
+     * @throws XAExcpetion In case of a failure / Invalid XA protocol.
      */
     public void rollback(Xid xid) throws XAException {
 
@@ -217,8 +208,7 @@ public class TSResourceManager {
     /**
      * Get the Transaction status of a Connection.
      *
-     * @param con
-     *          Connection involved.
+     * @param con Connection involved.
      */
     int getTransactionStatus(TSConnection con) {
         Enumeration e = association.keys();
@@ -240,12 +230,9 @@ public class TSResourceManager {
     /**
      * Reads a particular key in a distributed transaction.
      *
-     * @param key
-     *          Key to be read.
-     * @param con
-     *          Connection involved.
-     * @throws TSEIExcpetion
-     *           If an error occurs.
+     * @param key Key to be read.
+     * @param con Connection involved.
+     * @throws TSEIExcpetion If an error occurs.
      */
     DataElement read(String key, TSConnection con) throws TSEISException {
         System.out.println("ResourceManager.read");
@@ -264,12 +251,9 @@ public class TSResourceManager {
     /**
      * Do the sanity check.
      *
-     * @param xid
-     *          Global Id for the transaction branch.
-     * @param flags
-     *          Flag sent by the Transaction Manager.
-     * @throws XAExcpetion
-     *           In case of an invalid XA protocol.
+     * @param xid Global Id for the transaction branch.
+     * @param flags Flag sent by the Transaction Manager.
+     * @throws XAExcpetion In case of an invalid XA protocol.
      */
     private void sanityCheck(Xid xid, int flags, String operation) throws XAException {
         // Sanity checks for the xa_start operation.

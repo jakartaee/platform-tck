@@ -27,18 +27,15 @@ import jakarta.websocket.server.ServerContainer;
 public class TestListener implements ServletContextListener {
 
     /**
-     * Receives notification that the web application initialization process is
-     * starting.
+     * Receives notification that the web application initialization process is starting.
      *
-     * @param sce
-     *          The ServletContextEvent
+     * @param sce The ServletContextEvent
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext context = sce.getServletContext();
         try {
-            final ServerContainer serverContainer =
-                    (ServerContainer) context.getAttribute("jakarta.websocket.server.ServerContainer");
+            final ServerContainer serverContainer = (ServerContainer) context.getAttribute("jakarta.websocket.server.ServerContainer");
             serverContainer.addEndpoint(new EchoServerConfig());
         } catch (Exception ex) {
             // The DeploymentException can be thrown here, since no
@@ -51,8 +48,7 @@ public class TestListener implements ServletContextListener {
     /**
      * Receives notification that the servlet context is about to be shut down.
      *
-     * @param sce
-     *          The servlet context event
+     * @param sce The servlet context event
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {

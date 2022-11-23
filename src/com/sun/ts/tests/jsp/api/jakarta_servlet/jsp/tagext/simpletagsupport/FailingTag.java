@@ -42,8 +42,7 @@ public class FailingTag extends TagSupport {
      * This method shouldn't be invoked.
      *
      * @return Tag.SKIP_BODY
-     * @throws JspException
-     *           - if an unexpected error occurs
+     * @throws JspException - if an unexpected error occurs
      */
     public int doEndTag() throws JspException {
         JspTestUtil.debug("[FailingTag] in doEndTag()");

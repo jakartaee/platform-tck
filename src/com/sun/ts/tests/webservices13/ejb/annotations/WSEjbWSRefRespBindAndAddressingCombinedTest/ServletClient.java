@@ -42,26 +42,17 @@ public class ServletClient extends HttpServlet {
 
     @Addressing
     @RespectBinding(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefrespbindandaddrcombtestport1",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestport1", type = Echo.class, value = EchoService.class)
     Echo port1 = null;
 
     @Addressing(enabled = true, required = true)
     @RespectBinding(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefrespbindandaddrcombtestport2",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestport2", type = Echo.class, value = EchoService.class)
     Echo port2 = null;
 
     @Addressing(enabled = false)
     @RespectBinding(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefrespbindandaddrcombtestport3",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestport3", type = Echo.class, value = EchoService.class)
     Echo port3 = null;
 
     @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestservice")
@@ -88,11 +79,15 @@ public class ServletClient extends HttpServlet {
             String test = harnessProps.getProperty("TEST");
             System.out.println("doGet: test to execute is: " + test);
             if (test.equals("VerifyAddrHeadersExistForEnabledRequiredPort")) {
-                if (VerifyAddrHeadersExistForEnabledRequiredPort()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyAddrHeadersExistForEnabledRequiredPort())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else {
-                if (VerifyFaultConditionOnPort()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyFaultConditionOnPort())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             }
             p.list(out);
         } catch (Exception e) {

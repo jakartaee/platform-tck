@@ -47,19 +47,11 @@ import java.security.cert.X509Certificate;
  *
  */
 
-@DeclareRoles({"Administrator"})
-@ServletSecurity(
-        value = @HttpConstraint(EmptyRoleSemantic.PERMIT),
-        httpMethodConstraints = {
-            @HttpMethodConstraint(
-                    value = "POST",
-                    rolesAllowed = "Administrator",
-                    transportGuarantee = TransportGuarantee.CONFIDENTIAL),
-            @HttpMethodConstraint(
-                    value = "GET",
-                    rolesAllowed = "Administrator",
-                    transportGuarantee = TransportGuarantee.CONFIDENTIAL)
-        })
+@DeclareRoles({ "Administrator" })
+@ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.PERMIT), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator", transportGuarantee = TransportGuarantee.CONFIDENTIAL),
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator", transportGuarantee = TransportGuarantee.CONFIDENTIAL)
+})
 @WebServlet("/ServletSecTest")
 public class ServletSecTestServlet extends HttpServlet {
     private boolean fail = false;
@@ -71,28 +63,23 @@ public class ServletSecTestServlet extends HttpServlet {
     /*
      * testName: clientCertTest
      *
-     * 1) If a request has been transmitted over a secure protocol, such as HTTPS,
-     * this information must be exposed via the isSecure method of the
-     * ServletRequest interface. The web container must expose the following
-     * attributes to the servlet programmer. 1) The cipher suite 2) the bit size
-     * of the algorithm 3) SSL certificate
+     * 1) If a request has been transmitted over a secure protocol, such as HTTPS, this information must be exposed via the
+     * isSecure method of the ServletRequest interface. The web container must expose the following attributes to the
+     * servlet programmer. 1) The cipher suite 2) the bit size of the algorithm 3) SSL certificate
      *
      * If any of the above attributes are not set report test failure.
      *
      * 2. Verify the request.getAuthType returns CLIENT_CERT
      *
-     * If there is an SSL certificate associated with the request, it must be
-     * exposed by the servlet container to the servlet programmer as an array of
-     * objects of type java.security.cert.X509Certificate
+     * If there is an SSL certificate associated with the request, it must be exposed by the servlet container to the
+     * servlet programmer as an array of objects of type java.security.cert.X509Certificate
      *
      * See Also: * Servlet 2.3 Specification section 4.7
      *
-     * @test_strategy: 1. Look for the following request attributes a)
-     * cipher-suite b) key-size c) SSL certificate If any of the above attributes
-     * is not set/incorrect, report test failure.
+     * @test_strategy: 1. Look for the following request attributes a) cipher-suite b) key-size c) SSL certificate If any of
+     * the above attributes is not set/incorrect, report test failure.
      *
-     * Note: SSL certificate attribute will be set only if there is a client
-     * certificate involved in SSL connection.
+     * Note: SSL certificate attribute will be set only if there is a client certificate involved in SSL connection.
      *
      *
      */
@@ -137,7 +124,8 @@ public class ServletSecTestServlet extends HttpServlet {
             if (cipherSuite == null) {
                 out.println(testName + ": " + FAILSTRING + " - cipher-suite attribute not set");
                 fail = true;
-            } else out.println(testName + ": cipher-suite : " + cipherSuite);
+            } else
+                out.println(testName + ": cipher-suite : " + cipherSuite);
 
             keySize = (Integer) request.getAttribute(keySizeAttrib);
 
@@ -145,7 +133,8 @@ public class ServletSecTestServlet extends HttpServlet {
             if (keySize == null) {
                 out.println(testName + ": " + FAILSTRING + " - key-size attribute not set");
                 fail = true;
-            } else out.println(testName + ": key-size : " + keySize.toString());
+            } else
+                out.println(testName + ": key-size : " + keySize.toString());
 
             certificates = (X509Certificate[]) request.getAttribute(certificateAttrib);
 

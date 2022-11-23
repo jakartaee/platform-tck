@@ -64,10 +64,8 @@ public class TCKExtension implements Extension {
         /**
          * Create {@link Parameter} with name and value.
          *
-         * @param name
-         *          parameter name.
-         * @param value
-         *          parameter value.
+         * @param name parameter name.
+         * @param value parameter value.
          */
         public TCKParameter(String name, String value) {
             this.name = name;

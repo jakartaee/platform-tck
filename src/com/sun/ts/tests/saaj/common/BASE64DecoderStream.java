@@ -21,10 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * This class implements a BASE64 Decoder. It is implemented as a
- * FilterInputStream, so one can just wrap this class around any input stream
- * and read bytes from this filter. The decoding is done as the bytes are read
- * out.
+ * This class implements a BASE64 Decoder. It is implemented as a FilterInputStream, so one can just wrap this class
+ * around any input stream and read bytes from this filter. The decoding is done as the bytes are read out.
  *
  * @author John Mani
  * @author Bill Shannon
@@ -39,8 +37,7 @@ public class BASE64DecoderStream extends FilterInputStream {
     /**
      * Create a BASE64 decoder that decodes the specified input stream
      *
-     * @param in
-     *          the input stream
+     * @param in the input stream
      */
     public BASE64DecoderStream(InputStream in) {
         super(in);
@@ -48,51 +45,43 @@ public class BASE64DecoderStream extends FilterInputStream {
     }
 
     /**
-     * Read the next decoded byte from this input stream. The byte is returned as
-     * an <code>int</code> in the range <code>0</code> to <code>255</code>. If no
-     * byte is available because the end of the stream has been reached, the value
-     * <code>-1</code> is returned. This method blocks until input data is
-     * available, the end of the stream is detected, or an exception is thrown.
+     * Read the next decoded byte from this input stream. The byte is returned as an <code>int</code> in the range
+     * <code>0</code> to <code>255</code>. If no byte is available because the end of the stream has been reached, the value
+     * <code>-1</code> is returned. This method blocks until input data is available, the end of the stream is detected, or
+     * an exception is thrown.
      *
-     * @return next byte of data, or <code>-1</code> if the end of the stream is
-     *         reached.
-     * @exception IOException
-     *              if an I/O error occurs.
+     * @return next byte of data, or <code>-1</code> if the end of the stream is reached.
+     * @exception IOException if an I/O error occurs.
      * @see java.io.FilterInputStream#in
      */
     public int read() throws IOException {
         if (index >= bufsize) {
             decode(); // Fills up buffer
             if (bufsize == 0) // buffer is empty
-            return -1;
+                return -1;
             index = 0; // reset index into buffer
         }
         return buffer[index++] & 0xff; // Zero off the MSB
     }
 
     /**
-     * Reads up to <code>len</code> decoded bytes of data from this input stream
-     * into an array of bytes. This method blocks until some input is available.
+     * Reads up to <code>len</code> decoded bytes of data from this input stream into an array of bytes. This method blocks
+     * until some input is available.
      * <p>
      *
-     * @param buf
-     *          the buffer into which the data is read.
-     * @param off
-     *          the start offset of the data.
-     * @param len
-     *          the maximum number of bytes read.
-     * @return the total number of bytes read into the buffer, or <code>-1</code>
-     *         if there is no more data because the end of the stream has been
-     *         reached.
-     * @exception IOException
-     *              if an I/O error occurs.
+     * @param buf the buffer into which the data is read.
+     * @param off the start offset of the data.
+     * @param len the maximum number of bytes read.
+     * @return the total number of bytes read into the buffer, or <code>-1</code> if there is no more data because the end
+     * of the stream has been reached.
+     * @exception IOException if an I/O error occurs.
      */
     public int read(byte[] buf, int off, int len) throws IOException {
         int i, c;
         for (i = 0; i < len; i++) {
             if ((c = read()) == -1) {
                 if (i == 0) // At end of stream, so we should
-                i = -1; // return -1 , NOT 0.
+                    i = -1; // return -1 , NOT 0.
                 break;
             }
             buf[off + i] = (byte) c;
@@ -102,18 +91,16 @@ public class BASE64DecoderStream extends FilterInputStream {
     }
 
     /**
-     * Tests if this input stream supports marks. Currently this class does not
-     * support marks
+     * Tests if this input stream supports marks. Currently this class does not support marks
      */
     public boolean markSupported() {
         return false; // Maybe later ..
     }
 
     /**
-     * Returns the number of bytes that can be read from this input stream without
-     * blocking. However, this figure is only a close approximation in case the
-     * original encoded stream contains embedded CRLFs; since the CRLFs are
-     * discarded, not decoded
+     * Returns the number of bytes that can be read from this input stream without blocking. However, this figure is only a
+     * close approximation in case the original encoded stream contains embedded CRLFs; since the CRLFs are discarded, not
+     * decoded
      */
     public int available() throws IOException {
         // This is only an estimate, since in.available()
@@ -125,21 +112,23 @@ public class BASE64DecoderStream extends FilterInputStream {
      * This character array provides the character to value map based on RFC1521.
      */
     private static final char pem_array[] = {
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', // 0
-        'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', // 1
-        'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', // 2
-        'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', // 3
-        'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', // 4
-        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', // 5
-        'w', 'x', 'y', 'z', '0', '1', '2', '3', // 6
-        '4', '5', '6', '7', '8', '9', '+', '/' // 7
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', // 0
+            'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', // 1
+            'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', // 2
+            'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', // 3
+            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', // 4
+            'o', 'p', 'q', 'r', 's', 't', 'u', 'v', // 5
+            'w', 'x', 'y', 'z', '0', '1', '2', '3', // 6
+            '4', '5', '6', '7', '8', '9', '+', '/' // 7
     };
 
     private static final byte pem_convert_array[] = new byte[256];
 
     static {
-        for (int i = 0; i < 255; i++) pem_convert_array[i] = -1;
-        for (int i = 0; i < pem_array.length; i++) pem_convert_array[pem_array[i]] = (byte) i;
+        for (int i = 0; i < 255; i++)
+            pem_convert_array[i] = -1;
+        for (int i = 0; i < pem_array.length; i++)
+            pem_convert_array[pem_array[i]] = (byte) i;
     }
 
     /* The decoder algorithm */
@@ -148,17 +137,19 @@ public class BASE64DecoderStream extends FilterInputStream {
     private void decode() throws IOException {
         bufsize = 0;
         /*
-         * We need 4 valid base64 characters before we start decoding. We skip
-         * anything that's not a valid base64 character (usually just CRLF).
+         * We need 4 valid base64 characters before we start decoding. We skip anything that's not a valid base64 character
+         * (usually just CRLF).
          */
         int got = 0;
         while (got < 4) {
             int i = in.read();
             if (i == -1) {
-                if (got == 0) return; // EOF before any data is ok
+                if (got == 0)
+                    return; // EOF before any data is ok
                 throw new IOException("Error in encoded stream, got " + got);
             }
-            if (i >= 0 && i < 256 && i == '=' || pem_convert_array[i] != -1) decode_buffer[got++] = (byte) i;
+            if (i >= 0 && i < 256 && i == '=' || pem_convert_array[i] != -1)
+                decode_buffer[got++] = (byte) i;
         }
 
         byte a, b;
@@ -168,14 +159,14 @@ public class BASE64DecoderStream extends FilterInputStream {
         buffer[bufsize++] = (byte) (((a << 2) & 0xfc) | ((b >>> 4) & 3));
 
         if (decode_buffer[2] == '=') // End of this BASE64 encoding
-        return;
+            return;
         a = b;
         b = pem_convert_array[decode_buffer[2] & 0xff];
         // The second decoded byte
         buffer[bufsize++] = (byte) (((a << 4) & 0xf0) | ((b >>> 2) & 0xf));
 
         if (decode_buffer[3] == '=') // End of this BASE64 encoding
-        return;
+            return;
         a = b;
         b = pem_convert_array[decode_buffer[3] & 0xff];
         // The third decoded byte
@@ -183,20 +174,20 @@ public class BASE64DecoderStream extends FilterInputStream {
     }
 
     /**
-     * Base64 decode a byte array. No line breaks are allowed. This method is
-     * suitable for short strings, such as those in the IMAP AUTHENTICATE
-     * protocol, but not to decode the entire content of a MIME part.
+     * Base64 decode a byte array. No line breaks are allowed. This method is suitable for short strings, such as those in
+     * the IMAP AUTHENTICATE protocol, but not to decode the entire content of a MIME part.
      *
-     * NOTE: inbuf may only contain valid base64 characters. Whitespace is not
-     * ignored.
+     * NOTE: inbuf may only contain valid base64 characters. Whitespace is not ignored.
      */
     public static byte[] decode(byte[] inbuf) {
         int size = (inbuf.length / 4) * 3;
-        if (size == 0) return inbuf;
+        if (size == 0)
+            return inbuf;
 
         if (inbuf[inbuf.length - 1] == '=') {
             size--;
-            if (inbuf[inbuf.length - 2] == '=') size--;
+            if (inbuf[inbuf.length - 2] == '=')
+                size--;
         }
         byte[] outbuf = new byte[size];
 
@@ -210,14 +201,14 @@ public class BASE64DecoderStream extends FilterInputStream {
             outbuf[outpos++] = (byte) (((a << 2) & 0xfc) | ((b >>> 4) & 3));
 
             if (inbuf[inpos] == '=') // End of this BASE64 encoding
-            return outbuf;
+                return outbuf;
             a = b;
             b = pem_convert_array[inbuf[inpos++] & 0xff];
             // The second decoded byte
             outbuf[outpos++] = (byte) (((a << 4) & 0xf0) | ((b >>> 2) & 0xf));
 
             if (inbuf[inpos] == '=') // End of this BASE64 encoding
-            return outbuf;
+                return outbuf;
             a = b;
             b = pem_convert_array[inbuf[inpos++] & 0xff];
             // The third decoded byte
@@ -228,11 +219,9 @@ public class BASE64DecoderStream extends FilterInputStream {
     }
 
     /***
-     * begin TEST program *** public static void main(String argv[]) throws
-     * Exception { FileInputStream infile = new FileInputStream(argv[0]);
-     * BASE64DecoderStream decoder = new BASE64DecoderStream(infile); int c;
+     * begin TEST program *** public static void main(String argv[]) throws Exception { FileInputStream infile = new
+     * FileInputStream(argv[0]); BASE64DecoderStream decoder = new BASE64DecoderStream(infile); int c;
      *
-     * while ((c = decoder.read()) != -1) System.out.print((char)c);
-     * System.out.flush(); } end TEST program
+     * while ((c = decoder.read()) != -1) System.out.print((char)c); System.out.flush(); } end TEST program
      ***/
 }

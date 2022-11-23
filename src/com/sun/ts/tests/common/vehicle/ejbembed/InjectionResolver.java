@@ -32,36 +32,29 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * Since JavaEE annotations are not required in ejb embeddable usage, this class
- * helps resolving @EJB and @PostConstruct in client classes when tests are
- * running in ejbembed vehicle.
+ * Since JavaEE annotations are not required in ejb embeddable usage, this class helps resolving @EJB and @PostConstruct
+ * in client classes when tests are running in ejbembed vehicle.
  *
- * It resolves type-level, field and setter @EJB injections, and @PostConstruct
- * methods as well. This class constructs a portable jndi name from the metadata
- * in @EJB annotations.
+ * It resolves type-level, field and setter @EJB injections, and @PostConstruct methods as well. This class constructs a
+ * portable jndi name from the metadata in @EJB annotations.
  *
- * All client classes and their superclasses need to be scanned for @EJB
- * and @PostConstruct. The most general superclass should be processed first.
- * However, all @PostConstruct methods must be invoked after all @EJB injections
- * have been resolved and initialized.
+ * All client classes and their superclasses need to be scanned for @EJB and @PostConstruct. The most general superclass
+ * should be processed first. However, all @PostConstruct methods must be invoked after all @EJB injections have been
+ * resolved and initialized.
  *
- * For type-level injections, name, beanName, and beanInterface are all
- * required, and so they are sufficient to construct the portable jndi name.
- * Then a mapping between JavaEE lookup name and portable global jndi name is
+ * For type-level injections, name, beanName, and beanInterface are all required, and so they are sufficient to
+ * construct the portable jndi name. Then a mapping between JavaEE lookup name and portable global jndi name is
  * recorded, which can be consulted when test methods look up the ejb ref.
  *
- * For field and setter @EJB injection, all 3 @EJB attributes are optional.
- * beanInterface may be present or be inferred from the field or parameter type.
- * Obtaining beanName is complicated and requires searching all ejb bean
- * classes, parsing its component- defining annotations and parsing ejb-jar.xml.
- * This part is too much for our purpose.
+ * For field and setter @EJB injection, all 3 @EJB attributes are optional. beanInterface may be present or be inferred
+ * from the field or parameter type. Obtaining beanName is complicated and requires searching all ejb bean classes,
+ * parsing its component- defining annotations and parsing ejb-jar.xml. This part is too much for our purpose.
  *
- * So we make it a rule for test writers that all client classes that are to be
- * run in ejbembed vehicle always use beanName attribute in @EJB injections.
+ * So we make it a rule for test writers that all client classes that are to be run in ejbembed vehicle always use
+ * beanName attribute in @EJB injections.
  *
- * After a portable global jndi name is constructed, the field is initialized to
- * the lookup result, and the setter method is invoked, passing the lookup
- * result as the parameter.
+ * After a portable global jndi name is constructed, the field is initialized to the lookup result, and the setter
+ * method is invoked, passing the lookup result as the parameter.
  *
  * moduleName is set by various vehicles.
  */
@@ -205,11 +198,9 @@ public class InjectionResolver {
     }
 
     /**
-     * EJB spec requires that lookup and beanName attributes cannot be both
-     * present in the same @EJB. For those tests that specifically test lookup
-     * attribute, beanName value has to be indirectly specified in description
-     * attribute in the form: description="beanName=LookupBean" This method
-     * extracts the beanName value from description attribute of @EJB
+     * EJB spec requires that lookup and beanName attributes cannot be both present in the same @EJB. For those tests that
+     * specifically test lookup attribute, beanName value has to be indirectly specified in description attribute in the
+     * form: description="beanName=LookupBean" This method extracts the beanName value from description attribute of @EJB
      */
     private String getBeanNameFromDescription(String description) {
         String[] tokens = description.split("=");

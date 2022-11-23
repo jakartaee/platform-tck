@@ -73,8 +73,7 @@ public class HttpClient implements Serializable {
     /**
      * Constructs a new HttpRequest instance with the specified URL.
      *
-     * @param url
-     *          the URL.
+     * @param url the URL.
      */
     public HttpClient() throws EETest.Fault {
         super();
@@ -100,15 +99,16 @@ public class HttpClient implements Serializable {
     }
 
     private String getCharsetAsName() {
-        if (cs == null) return DEFAULT_CHARSET;
-        else return cs.name().toUpperCase();
+        if (cs == null)
+            return DEFAULT_CHARSET;
+        else
+            return cs.name().toUpperCase();
     }
 
     /**
      * Sets the HTTP request method.
      *
-     * @param method
-     *          the HTTP request method.
+     * @param method the HTTP request method.
      */
     public void setMethod(String method) {
         if (method != null) {
@@ -130,10 +130,8 @@ public class HttpClient implements Serializable {
     /**
      * Adds the specified HTTP header.
      *
-     * @param name
-     *          the header name.
-     * @param value
-     *          the header value.
+     * @param name the header name.
+     * @param value the header value.
      */
     public void addHeader(String name, String value) {
         name = properCase(name);
@@ -147,10 +145,8 @@ public class HttpClient implements Serializable {
     /**
      * Sets the specified HTTP header.
      *
-     * @param name
-     *          the header name.
-     * @param value
-     *          the header value.
+     * @param name the header name.
+     * @param value the header value.
      */
     public void setHeader(String name, String value) {
         headers.put(properCase(name), value);
@@ -159,18 +155,15 @@ public class HttpClient implements Serializable {
     /**
      * Sets the specified HTTP header.
      *
-     * @param name
-     *          the header name.
-     * @param value
-     *          the header value.
+     * @param name the header name.
+     * @param value the header value.
      */
     public void setHeaderCaseAsIs(String name, String value) {
         headers.put(name, value);
     }
 
     /**
-     * Returns the HTTP status code. Until the request has completed, this value
-     * is 200.
+     * Returns the HTTP status code. Until the request has completed, this value is 200.
      *
      * @return the HTTP status code.
      */
@@ -179,8 +172,7 @@ public class HttpClient implements Serializable {
     }
 
     /**
-     * Returns the HTTP status message. Until the request has completed, this
-     * value is OK.
+     * Returns the HTTP status message. Until the request has completed, this value is OK.
      *
      * @return the HTTP status message.
      */
@@ -189,11 +181,9 @@ public class HttpClient implements Serializable {
     }
 
     /**
-     * Interacts with the server by sending the request and receiving the
-     * response.
+     * Interacts with the server by sending the request and receiving the response.
      *
-     * @param is
-     *          the request message input stream.
+     * @param is the request message input stream.
      *
      * @throws java.io.IOException
      */
@@ -209,10 +199,8 @@ public class HttpClient implements Serializable {
     /**
      * Sends the request to the server.
      *
-     * @param conn
-     *          the HTTP URL connection.
-     * @param is
-     *          the request message input stream.
+     * @param conn the HTTP URL connection.
+     * @param is the request message input stream.
      *
      * @throws java.io.IOException
      */
@@ -233,11 +221,9 @@ public class HttpClient implements Serializable {
     }
 
     /**
-     * Receives the response from the server. If no content is returned, this
-     * method returns null.
+     * Receives the response from the server. If no content is returned, this method returns null.
      *
-     * @param conn
-     *          the HTTP URL connection.
+     * @param conn the HTTP URL connection.
      *
      * @return the response message input stream.
      *
@@ -253,7 +239,8 @@ public class HttpClient implements Serializable {
             } catch (IOException e) {
                 is = conn.getErrorStream();
             }
-            if (is == null) return null;
+            if (is == null)
+                return null;
             transfer(is, os);
             response = os.toByteArray();
         } catch (IOException e) {
@@ -264,13 +251,10 @@ public class HttpClient implements Serializable {
     }
 
     /**
-     * Transfers all data from the specified input stream to the specified output
-     * stream.
+     * Transfers all data from the specified input stream to the specified output stream.
      *
-     * @param is
-     *          the input stream.
-     * @param os
-     *          the output stream.
+     * @param is the input stream.
+     * @param os the output stream.
      *
      * @throws java.io.IOException
      */
@@ -293,8 +277,7 @@ public class HttpClient implements Serializable {
     /**
      * Proper cases an HTTP header name (e.g. Accept-Language).
      *
-     * @param name
-     *          the name.
+     * @param name the name.
      * @return the proper cased name.
      */
     protected String properCase(String name) {

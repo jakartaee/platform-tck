@@ -31,9 +31,8 @@ public class Client extends AbstractUrlClient {
     public static final String SERVLET_NAME = "TestServlet";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -42,8 +41,7 @@ public class Client extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     @Override
     public Status run(String args[], PrintWriter out, PrintWriter err) {
@@ -59,8 +57,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: clientPostConstruct
      *
-     * @test_Strategy: declare resources in application.xml and inject them into
-     * web client.
+     * @test_Strategy: declare resources in application.xml and inject them into web client.
      */
     public void clientPostConstruct() throws Exception {
         TEST_PROPS.setProperty(APITEST, "clientPostConstruct");
@@ -70,8 +67,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: mbeanPostConstruct
      *
-     * @test_Strategy: declare resources in application.xml and inject them into
-     * managed bean.
+     * @test_Strategy: declare resources in application.xml and inject them into managed bean.
      */
     public void mbeanPostConstruct() throws Exception {
         TEST_PROPS.setProperty(APITEST, "mbeanPostConstruct");
@@ -81,8 +77,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: ejbPostConstruct
      *
-     * @test_Strategy: declare resources in application.xml and inject them into
-     * AppResBean.
+     * @test_Strategy: declare resources in application.xml and inject them into AppResBean.
      */
     public void ejbPostConstruct() throws Exception {
         TEST_PROPS.setProperty(APITEST, "ejbPostConstruct");

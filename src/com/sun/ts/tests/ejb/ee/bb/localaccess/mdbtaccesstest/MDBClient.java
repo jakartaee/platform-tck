@@ -73,9 +73,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:2.3
      *
-     * @test_Strategy: Create a Message-Driven Bean for a Topic that accesses a
-     * Local Entity Bean within the same EAR. Deploy the EAR on the J2EE server.
-     * Verify local access from Message-Driven Bean to a local Entity Bean.(CMP)
+     * @test_Strategy: Create a Message-Driven Bean for a Topic that accesses a Local Entity Bean within the same EAR.
+     * Deploy the EAR on the J2EE server. Verify local access from Message-Driven Bean to a local Entity Bean.(CMP)
      */
 
     public void test1() throws Fault {
@@ -88,7 +87,8 @@ public class MDBClient extends Client {
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         }
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -96,9 +96,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:2.1
      *
-     * @test_Strategy: Create a Message-Driven Bean for a Topic that accesses a
-     * Local Session Bean within the same EAR. Deploy the EAR on the J2EE server.
-     * Verify local access from Message-Driven Bean to a local Session Bean. (SL)
+     * @test_Strategy: Create a Message-Driven Bean for a Topic that accesses a Local Session Bean within the same EAR.
+     * Deploy the EAR on the J2EE server. Verify local access from Message-Driven Bean to a local Session Bean. (SL)
      */
 
     public void test2() throws Fault {
@@ -118,7 +117,8 @@ public class MDBClient extends Client {
             }
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -126,9 +126,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:2.2
      *
-     * @test_Strategy: Create a Message-Driven Bean for a Topic that accesses a
-     * Local Session Bean within the same EAR. Deploy the EAR on the J2EE server.
-     * Verify local access from Message-Driven Bean to a local Entity Bean (BMP).
+     * @test_Strategy: Create a Message-Driven Bean for a Topic that accesses a Local Session Bean within the same EAR.
+     * Deploy the EAR on the J2EE server. Verify local access from Message-Driven Bean to a local Entity Bean (BMP).
      */
 
     public void test3() throws Fault {
@@ -140,7 +139,8 @@ public class MDBClient extends Client {
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         }
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -148,9 +148,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:2.1
      *
-     * @test_Strategy: Create a Message-Driven Bean for a Topic that accesses a
-     * Local Session Bean within the same EAR. Deploy the EAR on the J2EE server.
-     * Verify local access from Message-Driven Bean to a local Session Bean (SF).
+     * @test_Strategy: Create a Message-Driven Bean for a Topic that accesses a Local Session Bean within the same EAR.
+     * Deploy the EAR on the J2EE server. Verify local access from Message-Driven Bean to a local Session Bean (SF).
      */
 
     public void test4() throws Fault {
@@ -162,7 +161,8 @@ public class MDBClient extends Client {
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         }
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     private boolean doTest(int TestNum, String TestCase) throws Exception {
@@ -179,7 +179,8 @@ public class MDBClient extends Client {
         // verify success from mdb
         if (!checkOnResponse(TestCase)) {
             throw new Exception("Error: Did not get expected response from mdb!");
-        } else result = true;
+        } else
+            result = true;
         return result;
     }
 

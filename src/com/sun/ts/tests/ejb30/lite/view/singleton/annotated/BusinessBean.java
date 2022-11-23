@@ -27,11 +27,13 @@ import jakarta.ejb.Local;
 import jakarta.ejb.Singleton;
 
 @Singleton
-@Local({BusinessLocalIF1.class, BusinessLocalIF2.class})
+@Local({ BusinessLocalIF1.class, BusinessLocalIF2.class })
 public class BusinessBean extends BusinessBeanBase {
-    public void remove() {}
+    public void remove() {
+    }
 
-    public void remove2() {}
+    public void remove2() {
+    }
 
     //////////////////////////////////////////////////////////////////////
     // These 3 methods should not be called since this bean does not

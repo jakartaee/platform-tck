@@ -33,18 +33,16 @@ import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-@ServerEndpoint(
-        value = "/binary",
-        encoders = {
-            BinaryCoderBool.class,
-            BinaryCoderByte.class,
-            BinaryCoderChar.class,
-            BinaryCoderDouble.class,
-            BinaryCoderInt.class,
-            BinaryCoderLong.class,
-            BinaryCoderFloat.class,
-            BinaryCoderShort.class
-        })
+@ServerEndpoint(value = "/binary", encoders = {
+        BinaryCoderBool.class,
+        BinaryCoderByte.class,
+        BinaryCoderChar.class,
+        BinaryCoderDouble.class,
+        BinaryCoderInt.class,
+        BinaryCoderLong.class,
+        BinaryCoderFloat.class,
+        BinaryCoderShort.class
+})
 public class WSCBinaryServer extends WSCCommonServer {
 
     @Override

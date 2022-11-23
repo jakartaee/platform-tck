@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -54,17 +52,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRequestAttributes
      *
-     * @assertion_ids: Servlet:SPEC:76.1; Servlet:SPEC:76.2; Servlet:SPEC:76.3;
-     * Servlet:SPEC:76.4; Servlet:SPEC:76.5;
+     * @assertion_ids: Servlet:SPEC:76.1; Servlet:SPEC:76.2; Servlet:SPEC:76.3; Servlet:SPEC:76.4; Servlet:SPEC:76.5;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and IncludedServlet; 2. In
-     * TestServlet, get RequestDispatcher by using
-     * ServletContext.getRequestDispatcher(String), and access IncludedServlet
-     * using RequestDispatcher.include. 3. Verify in IncludedServlet the following
-     * request attributes set correctly required by Servlet 2.4 Spec:
-     * jakarta.servlet.include.request_uri; jakarta.servlet.include.context_path;
-     * jakarta.servlet.include.servlet_path; jakarta.servlet.include.path_info;
-     * jakarta.servlet.include.query_string;
+     * @test_Strategy: 1. Create servlets TestServlet and IncludedServlet; 2. In TestServlet, get RequestDispatcher by using
+     * ServletContext.getRequestDispatcher(String), and access IncludedServlet using RequestDispatcher.include. 3. Verify in
+     * IncludedServlet the following request attributes set correctly required by Servlet 2.4 Spec:
+     * jakarta.servlet.include.request_uri; jakarta.servlet.include.context_path; jakarta.servlet.include.servlet_path;
+     * jakarta.servlet.include.path_info; jakarta.servlet.include.query_string;
      */
     public void getRequestAttributes() throws Fault {
         TEST_PROPS.setProperty(
@@ -78,17 +72,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRequestAttributes1
      *
-     * @assertion_ids: Servlet:SPEC:76.1; Servlet:SPEC:76.2; Servlet:SPEC:76.3;
-     * Servlet:SPEC:76.4; Servlet:SPEC:76.5;
+     * @assertion_ids: Servlet:SPEC:76.1; Servlet:SPEC:76.2; Servlet:SPEC:76.3; Servlet:SPEC:76.4; Servlet:SPEC:76.5;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and IncludedServlet; 2. In
-     * TestServlet, get RequestDispatcher by using
-     * ServletRequest.getRequestDispatcher(String), and access IncludedServlet
-     * using RequestDispatcher.include. 3. Verify in IncludedServlet the following
-     * request attributes set correctly required by Servlet 2.4 Spec:
-     * jakarta.servlet.include.request_uri; jakarta.servlet.include.context_path;
-     * jakarta.servlet.include.servlet_path; jakarta.servlet.include.path_info;
-     * jakarta.servlet.include.query_string;
+     * @test_Strategy: 1. Create servlets TestServlet and IncludedServlet; 2. In TestServlet, get RequestDispatcher by using
+     * ServletRequest.getRequestDispatcher(String), and access IncludedServlet using RequestDispatcher.include. 3. Verify in
+     * IncludedServlet the following request attributes set correctly required by Servlet 2.4 Spec:
+     * jakarta.servlet.include.request_uri; jakarta.servlet.include.context_path; jakarta.servlet.include.servlet_path;
+     * jakarta.servlet.include.path_info; jakarta.servlet.include.query_string;
      */
     public void getRequestAttributes1() throws Fault {
         TEST_PROPS.setProperty(
@@ -102,17 +92,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRequestAttributes2
      *
-     * @assertion_ids: Servlet:SPEC:76.1; Servlet:SPEC:76.2; Servlet:SPEC:76.3;
-     * Servlet:SPEC:76.4; Servlet:SPEC:76.5;
+     * @assertion_ids: Servlet:SPEC:76.1; Servlet:SPEC:76.2; Servlet:SPEC:76.3; Servlet:SPEC:76.4; Servlet:SPEC:76.5;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and IncludedServlet; 2. In
-     * TestServlet, get RequestDispatcher by using
-     * ServletContext.getNamedDispatcher(String), and access IncludedServlet using
-     * RequestDispatcher.include. 3. Verify in IncludedServlet the following
-     * request attributes not set required by Servlet 2.4 Spec:
-     * jakarta.servlet.include.request_uri; jakarta.servlet.include.context_path;
-     * jakarta.servlet.include.servlet_path; jakarta.servlet.include.path_info;
-     * jakarta.servlet.include.query_string;
+     * @test_Strategy: 1. Create servlets TestServlet and IncludedServlet; 2. In TestServlet, get RequestDispatcher by using
+     * ServletContext.getNamedDispatcher(String), and access IncludedServlet using RequestDispatcher.include. 3. Verify in
+     * IncludedServlet the following request attributes not set required by Servlet 2.4 Spec:
+     * jakarta.servlet.include.request_uri; jakarta.servlet.include.context_path; jakarta.servlet.include.servlet_path;
+     * jakarta.servlet.include.path_info; jakarta.servlet.include.query_string;
      */
     public void getRequestAttributes2() throws Fault {
         TEST_PROPS.setProperty(
@@ -128,11 +114,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:82; Servlet:JAVADOC:279; Servlet:JAVADOC:280;
      *
-     * @test_Strategy: Validate an exception thrown during a
-     * RequestDispatcher.include() operation results in an IOException or
-     * ServletException being thrown, the Servlet or IOException will be
-     * propagated back to the caller and will not be wrapped by a
-     * ServletException.
+     * @test_Strategy: Validate an exception thrown during a RequestDispatcher.include() operation results in an IOException
+     * or ServletException being thrown, the Servlet or IOException will be propagated back to the caller and will not be
+     * wrapped by a ServletException.
      */
     public void requestDispatcherIncludeIOAndServletExceptionTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -148,10 +132,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:82
      *
-     * @test_Strategy: Validate a RuntimeException thrown during a
-     * RequestDispacher.include() operation results in the RuntimeException being
-     * propagated back to the caller and will not be wrapped by a
-     * ServletException.
+     * @test_Strategy: Validate a RuntimeException thrown during a RequestDispacher.include() operation results in the
+     * RuntimeException being propagated back to the caller and will not be wrapped by a ServletException.
      */
     public void requestDispatcherIncludeRuntimeExceptionTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -167,10 +149,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:82
      *
-     * @test_Strategy: Validate a checked exception that is thrown during a
-     * RequetDispatcher.include() operation and is not an instance of
-     * ServletException or IOException is returned to the caller wrapped by
-     * ServletException.
+     * @test_Strategy: Validate a checked exception that is thrown during a RequetDispatcher.include() operation and is not
+     * an instance of ServletException or IOException is returned to the caller wrapped by ServletException.
      */
     public void requestDispatcherIncludeCheckedExceptionTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -186,11 +166,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:82; Servlet:JAVADOC:275; Servlet:JAVADOC:276;
      *
-     * @test_Strategy: Validate an exception thrown during a
-     * RequestDispatcher.forward() operation results in an IOException or
-     * ServletException being thrown, the Servlet or IOException will be
-     * propagated back to the caller and will not be wrapped by a
-     * ServletException.
+     * @test_Strategy: Validate an exception thrown during a RequestDispatcher.forward() operation results in an IOException
+     * or ServletException being thrown, the Servlet or IOException will be propagated back to the caller and will not be
+     * wrapped by a ServletException.
      */
     public void requestDispatcherForwardIOAndServletExceptionTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -206,10 +184,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:82
      *
-     * @test_Strategy: Validate a RuntimeException thrown during a
-     * RequestDispacher.forward() operation results in the RuntimeException being
-     * propagated back to the caller and will not be wrapped by a
-     * ServletException.
+     * @test_Strategy: Validate a RuntimeException thrown during a RequestDispacher.forward() operation results in the
+     * RuntimeException being propagated back to the caller and will not be wrapped by a ServletException.
      */
     public void requestDispatcherForwardRuntimeExceptionTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -225,10 +201,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:82
      *
-     * @test_Strategy: Validate a checked exception that is thrown during a
-     * RequetDispatcher.forward() operation and is not an instance of
-     * ServletException or IOException is returned to the caller wrapped by
-     * ServletException.
+     * @test_Strategy: Validate a checked exception that is thrown during a RequetDispatcher.forward() operation and is not
+     * an instance of ServletException or IOException is returned to the caller wrapped by ServletException.
      */
     public void requestDispatcherForwardCheckedExceptionTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -242,17 +216,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRequestAttributes3
      *
-     * @assertion_ids: Servlet:SPEC:180.1; Servlet:SPEC:180.2; Servlet:SPEC:180.3;
-     * Servlet:SPEC:180.4; Servlet:SPEC:180.5;
+     * @assertion_ids: Servlet:SPEC:180.1; Servlet:SPEC:180.2; Servlet:SPEC:180.3; Servlet:SPEC:180.4; Servlet:SPEC:180.5;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and ForwardedServlet; 2. In
-     * TestServlet, get RequestDispatcher by using
-     * ServletContext.getRequestDispatcher(String), and access ForwardedServlet
-     * using RequestDispatcher.forward. 3. Verify in ForwardedServlet the
-     * following request attributes set correctly required by Servlet 2.4 Spec:
-     * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path;
-     * jakarta.servlet.forward.servlet_path; jakarta.servlet.forward.path_info;
-     * jakarta.servlet.forward.query_string;
+     * @test_Strategy: 1. Create servlets TestServlet and ForwardedServlet; 2. In TestServlet, get RequestDispatcher by
+     * using ServletContext.getRequestDispatcher(String), and access ForwardedServlet using RequestDispatcher.forward. 3.
+     * Verify in ForwardedServlet the following request attributes set correctly required by Servlet 2.4 Spec:
+     * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path; jakarta.servlet.forward.servlet_path;
+     * jakarta.servlet.forward.path_info; jakarta.servlet.forward.query_string;
      */
     public void getRequestAttributes3() throws Fault {
         TEST_PROPS.setProperty(
@@ -270,17 +240,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRequestAttributes4
      *
-     * @assertion_ids: Servlet:SPEC:180.1; Servlet:SPEC:180.2; Servlet:SPEC:180.3;
-     * Servlet:SPEC:180.4; Servlet:SPEC:180.5;
+     * @assertion_ids: Servlet:SPEC:180.1; Servlet:SPEC:180.2; Servlet:SPEC:180.3; Servlet:SPEC:180.4; Servlet:SPEC:180.5;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and ForwardedServlet; 2. In
-     * TestServlet, get RequestDispatcher by using
-     * ServletRequest.getRequestDispatcher(String), and access ForwardedServlet
-     * using RequestDispatcher.forward. 3. Verify in ForwardedServlet the
-     * following request attributes set correctly required by Servlet 2.4 Spec:
-     * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path;
-     * jakarta.servlet.forward.servlet_path; jakarta.servlet.forward.path_info;
-     * jakarta.servlet.forward.query_string;
+     * @test_Strategy: 1. Create servlets TestServlet and ForwardedServlet; 2. In TestServlet, get RequestDispatcher by
+     * using ServletRequest.getRequestDispatcher(String), and access ForwardedServlet using RequestDispatcher.forward. 3.
+     * Verify in ForwardedServlet the following request attributes set correctly required by Servlet 2.4 Spec:
+     * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path; jakarta.servlet.forward.servlet_path;
+     * jakarta.servlet.forward.path_info; jakarta.servlet.forward.query_string;
      */
     public void getRequestAttributes4() throws Fault {
         TEST_PROPS.setProperty(
@@ -298,17 +264,13 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRequestAttributes5
      *
-     * @assertion_ids: Servlet:SPEC:181.1; Servlet:SPEC:181.2; Servlet:SPEC:181.3;
-     * Servlet:SPEC:181.4; Servlet:SPEC:181.5;
+     * @assertion_ids: Servlet:SPEC:181.1; Servlet:SPEC:181.2; Servlet:SPEC:181.3; Servlet:SPEC:181.4; Servlet:SPEC:181.5;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and ForwardedServlet; 2. In
-     * TestServlet, get RequestDispatcher by using
-     * ServletContext.getNamedDispatcher(String), and access ForwardedServlet
-     * using RequestDispatcher.forward. 3. Verify in ForwardedServlet the
-     * following request attributes are not set required by Servlet 2.4 Spec:
-     * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path;
-     * jakarta.servlet.forward.servlet_path; jakarta.servlet.forward.path_info;
-     * jakarta.servlet.forward.query_string;
+     * @test_Strategy: 1. Create servlets TestServlet and ForwardedServlet; 2. In TestServlet, get RequestDispatcher by
+     * using ServletContext.getNamedDispatcher(String), and access ForwardedServlet using RequestDispatcher.forward. 3.
+     * Verify in ForwardedServlet the following request attributes are not set required by Servlet 2.4 Spec:
+     * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path; jakarta.servlet.forward.servlet_path;
+     * jakarta.servlet.forward.path_info; jakarta.servlet.forward.query_string;
      */
     public void getRequestAttributes5() throws Fault {
         TEST_PROPS.setProperty(
@@ -326,20 +288,15 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getRequestAttributes6
      *
-     * @assertion_ids: Servlet:SPEC:181.1; Servlet:SPEC:181.2; Servlet:SPEC:181.3;
-     * Servlet:SPEC:181.4; Servlet:SPEC:181.5;
+     * @assertion_ids: Servlet:SPEC:181.1; Servlet:SPEC:181.2; Servlet:SPEC:181.3; Servlet:SPEC:181.4; Servlet:SPEC:181.5;
      *
-     * @test_Strategy: 1. Create servlets TestServlet, ForwardedServlet and
-     * MultiForwardedServlet; 2. In TestServlet, get RequestDispatcher by using
-     * ServletContext.getRequestDispatcher(String), and access
-     * MultiForwardedServlet using RequestDispatcher.forward. 3. In
-     * MultiForwardedServlet, get RequestDispatcher by using
-     * ServletContext.getRequestDispatcher(String), and access ForwardedServlet
-     * using RequestDispatcher.forward. 4. Verify in ForwardedServlet the
-     * following request attributes are set required by Servlet 2.4 Spec:
-     * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path;
-     * jakarta.servlet.forward.servlet_path; jakarta.servlet.forward.path_info;
-     * jakarta.servlet.forward.query_string;
+     * @test_Strategy: 1. Create servlets TestServlet, ForwardedServlet and MultiForwardedServlet; 2. In TestServlet, get
+     * RequestDispatcher by using ServletContext.getRequestDispatcher(String), and access MultiForwardedServlet using
+     * RequestDispatcher.forward. 3. In MultiForwardedServlet, get RequestDispatcher by using
+     * ServletContext.getRequestDispatcher(String), and access ForwardedServlet using RequestDispatcher.forward. 4. Verify
+     * in ForwardedServlet the following request attributes are set required by Servlet 2.4 Spec:
+     * jakarta.servlet.forward.request_uri; jakarta.servlet.forward.context_path; jakarta.servlet.forward.servlet_path;
+     * jakarta.servlet.forward.path_info; jakarta.servlet.forward.query_string;
      */
     public void getRequestAttributes6() throws Fault {
         TEST_PROPS.setProperty(
@@ -359,11 +316,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:77;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and ForwardedServlet; 2. In
-     * TestServlet, first write "Test FAILED" to ServletResponse; then access
-     * ForwardedServlet using RequestDispatcher.forward. 3. Verify that the
-     * message "Test FAILED" wrote to ServletResponse is cleared and not sent to
-     * Client as required by Servlet 2.4 Spec.
+     * @test_Strategy: 1. Create servlets TestServlet and ForwardedServlet; 2. In TestServlet, first write "Test FAILED" to
+     * ServletResponse; then access ForwardedServlet using RequestDispatcher.forward. 3. Verify that the message
+     * "Test FAILED" wrote to ServletResponse is cleared and not sent to Client as required by Servlet 2.4 Spec.
      */
     public void bufferContent() throws Fault {
         TEST_PROPS.setProperty(SEARCH_STRING, "bufferContent_in_ForwardedServlet_invoked");
@@ -377,9 +332,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:50;
      *
-     * @test_Strategy: Validate the container passes the same objects from a
-     * RequestDispatcher operation to the target entity. The container should not
-     * wrap the object at any point.
+     * @test_Strategy: Validate the container passes the same objects from a RequestDispatcher operation to the target
+     * entity. The container should not wrap the object at any point.
      */
     public void requestDispatcherNoWrappingTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -401,10 +355,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:76; Servlet:JAVADOC:561;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In
-     * TestServlet;, access HttpTestServlet using RequestDispatcher.include. 3.
-     * Verify in HttpTestServlet, that getRequestURI returns correct URI according
-     * to 8.3
+     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In TestServlet;, access HttpTestServlet using
+     * RequestDispatcher.include. 3. Verify in HttpTestServlet, that getRequestURI returns correct URI according to 8.3
      */
     public void getRequestURIIncludeTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getRequestURIIncludeTest");
@@ -416,10 +368,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:76; Servlet:JAVADOC:562;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In
-     * TestServlet;, access HttpTestServlet using RequestDispatcher.include. 3.
-     * Verify in HttpTestServlet, that getRequestURL returns correct URI according
-     * to 8.3
+     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In TestServlet;, access HttpTestServlet using
+     * RequestDispatcher.include. 3. Verify in HttpTestServlet, that getRequestURL returns correct URI according to 8.3
      */
     public void getRequestURLIncludeTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getRequestURLIncludeTest");
@@ -431,10 +381,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:78;; Servlet:JAVADOC:561;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In
-     * TestServlet;, access HttpTestServlet using RequestDispatcher.forward. 3.
-     * Verify in HttpTestServlet, that getRequestURI returns correct URI according
-     * to 8.4
+     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In TestServlet;, access HttpTestServlet using
+     * RequestDispatcher.forward. 3. Verify in HttpTestServlet, that getRequestURI returns correct URI according to 8.4
      */
     public void getRequestURIForwardTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getRequestURIForwardTest");
@@ -446,10 +394,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:78; Servlet:JAVADOC:562;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In
-     * TestServlet;, access HttpTestServlet using RequestDispatcher.forward. 3.
-     * Verify in HttpTestServlet, that getRequestURL returns correct URL according
-     * to 8.4
+     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In TestServlet;, access HttpTestServlet using
+     * RequestDispatcher.forward. 3. Verify in HttpTestServlet, that getRequestURL returns correct URL according to 8.4
      */
     public void getRequestURLForwardTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getRequestURLForwardTest");
@@ -461,11 +407,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:192; Servlet:JAVADOC:552;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. Send
-     * request to TestServlet with ?testname=getQueryStringIncludeTest; 3. In
-     * TestServlet, access HttpTestServlet using RequestDispatcher.include, with
-     * ?testname=getQueryStringTestInclude; 4. Verify in HttpTestServlet, that
-     * getQueryString returns correct QueryString
+     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. Send request to TestServlet with
+     * ?testname=getQueryStringIncludeTest; 3. In TestServlet, access HttpTestServlet using RequestDispatcher.include, with
+     * ?testname=getQueryStringTestInclude; 4. Verify in HttpTestServlet, that getQueryString returns correct QueryString
      * testname=getQueryStringIncludeTest according to 8.3
      */
     public void getQueryStringIncludeTest() throws Fault {
@@ -478,11 +422,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:78; Servlet:JAVADOC:552;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. Send
-     * request to TestServlet with ?testname=getQueryStringForwardTest; 3. In
-     * TestServlet, access HttpTestServlet using RequestDispatcher.forward, with
-     * ?testname=getQueryStringTestForward; 4. Verify in HttpTestServlet, that
-     * getQueryString returns correct QueryString
+     * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. Send request to TestServlet with
+     * ?testname=getQueryStringForwardTest; 3. In TestServlet, access HttpTestServlet using RequestDispatcher.forward, with
+     * ?testname=getQueryStringTestForward; 4. Verify in HttpTestServlet, that getQueryString returns correct QueryString
      * testname=getQueryStringTestForward according to 8.4.2
      */
     public void getQueryStringForwardTest() throws Fault {

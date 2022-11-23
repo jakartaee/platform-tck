@@ -24,7 +24,7 @@ import jakarta.ejb.MessageDriven;
 import jakarta.ejb.MessageDrivenContext;
 import jakarta.interceptor.Interceptors;
 
-@MessageDriven(activationConfig = {@ActivationConfigProperty(propertyName = "category", propertyValue = "online")})
+@MessageDriven(activationConfig = { @ActivationConfigProperty(propertyName = "category", propertyValue = "online") })
 @Interceptors(LoggerInterceptor.class)
 public class OnlineEventMonitorBean implements NoUseListener {
 

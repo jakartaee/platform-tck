@@ -61,12 +61,12 @@ public class TestBeanEJB implements SessionBean {
 
     // These are the method tests
     private static final String tests[] = {
-        "ejbCreate", "ejbRemove", "ejbActivate", "ejbPassivate", "setSessionContext", "businessMethod"
+            "ejbCreate", "ejbRemove", "ejbActivate", "ejbPassivate", "setSessionContext", "businessMethod"
     };
 
     // This is the results of the operation tests
     private static final Properties methodList[] = {
-        new Properties(), new Properties(), new Properties(), new Properties(), new Properties(), new Properties()
+            new Properties(), new Properties(), new Properties(), new Properties(), new Properties(), new Properties()
     };
 
     public void ejbCreate(Properties p, int flag) throws CreateException {
@@ -92,7 +92,8 @@ public class TestBeanEJB implements SessionBean {
             TestUtil.printStackTrace(e);
             throw new CreateException("Exception occurred: " + e);
         }
-        if (flag == 0) doOperationTests("ejbCreate");
+        if (flag == 0)
+            doOperationTests("ejbCreate");
     }
 
     public void setSessionContext(SessionContext sc) {
@@ -112,7 +113,8 @@ public class TestBeanEJB implements SessionBean {
         TestUtil.logTrace("ejbRemove");
         doOperationTests("ejbRemove");
         try {
-            if (helperRef != null) helperRef.setData(table);
+            if (helperRef != null)
+                helperRef.setData(table);
         } catch (RemoteException re) {
             TestUtil.printStackTrace(re);
             throw new EJBException(re.getMessage());
@@ -152,7 +154,9 @@ public class TestBeanEJB implements SessionBean {
 
     private int testIndex(String s) {
         TestUtil.logTrace("testIndex");
-        for (int i = 0; i < tests.length; i++) if (s.equals(tests[i])) return i;
+        for (int i = 0; i < tests.length; i++)
+            if (s.equals(tests[i]))
+                return i;
         return -1;
     }
 

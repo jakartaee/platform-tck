@@ -46,7 +46,7 @@ import java.io.ObjectStreamField;
  * @version 1.2, 09/26/00
  */
 public class StreamMessageTestImpl extends MessageTestImpl implements StreamMessage {
-    private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField("buf", byte[].class)};
+    private static final ObjectStreamField[] serialPersistentFields = { new ObjectStreamField("buf", byte[].class) };
 
     // every write method will first write the type byte,
     // and then the data with that type.
@@ -177,14 +177,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
      *
      * @return the <code>boolean</code> value read.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageFormatException
-     *              if this type conversion is invalid
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageFormatException if this type conversion is invalid
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public boolean readBoolean() throws JMSException {
         boolean ret = false;
@@ -194,16 +190,16 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
             byte type = getType();
 
             switch (type) {
-                case BOOLEAN_TYPE:
-                    ret = dis.readBoolean();
-                    break;
-                case STRING_TYPE:
-                    String s = dis.readUTF();
+            case BOOLEAN_TYPE:
+                ret = dis.readBoolean();
+                break;
+            case STRING_TYPE:
+                String s = dis.readUTF();
 
-                    ret = Boolean.valueOf(s).booleanValue();
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+                ret = Boolean.valueOf(s).booleanValue();
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -221,14 +217,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
      *
      * @return the next byte from the stream message as a 8-bit <code>byte</code>.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageFormatException
-     *              if this type conversion is invalid
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageFormatException if this type conversion is invalid
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public byte readByte() throws JMSException {
         byte ret = 0;
@@ -238,16 +230,16 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
             byte type = getType();
 
             switch (type) {
-                case BYTE_TYPE:
-                    ret = dis.readByte();
-                    break;
-                case STRING_TYPE:
-                    String s = dis.readUTF();
+            case BYTE_TYPE:
+                ret = dis.readByte();
+                break;
+            case STRING_TYPE:
+                String s = dis.readUTF();
 
-                    ret = Byte.valueOf(s).byteValue();
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+                ret = Byte.valueOf(s).byteValue();
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -265,14 +257,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
      *
      * @return a 16-bit number from the stream message.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageFormatException
-     *              if this type conversion is invalid
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageFormatException if this type conversion is invalid
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public short readShort() throws JMSException {
         short ret = 0;
@@ -282,19 +270,19 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
             byte type = getType();
 
             switch (type) {
-                case BYTE_TYPE:
-                    ret = dis.readByte();
-                    break;
-                case SHORT_TYPE:
-                    ret = dis.readShort();
-                    break;
-                case STRING_TYPE:
-                    String s = dis.readUTF();
+            case BYTE_TYPE:
+                ret = dis.readByte();
+                break;
+            case SHORT_TYPE:
+                ret = dis.readShort();
+                break;
+            case STRING_TYPE:
+                String s = dis.readUTF();
 
-                    ret = Short.valueOf(s).shortValue();
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+                ret = Short.valueOf(s).shortValue();
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -312,14 +300,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
      *
      * @return a Unicode character from the stream message.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageFormatException
-     *              if this type conversion is invalid
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageFormatException if this type conversion is invalid
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public char readChar() throws JMSException {
         char ret = 0;
@@ -329,16 +313,16 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
             byte type = getType();
 
             switch (type) {
-                case CHAR_TYPE:
-                    ret = dis.readChar();
-                    break;
-                case STRING_TYPE:
-                    String s = dis.readUTF();
+            case CHAR_TYPE:
+                ret = dis.readChar();
+                break;
+            case STRING_TYPE:
+                String s = dis.readUTF();
 
-                    ret = s.charAt(0); // ???
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+                ret = s.charAt(0); // ???
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -354,17 +338,12 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Read a 32-bit integer from the stream message.
      *
-     * @return a 32-bit integer value from the stream message, interpreted as a
-     *         <code>int</code>.
+     * @return a 32-bit integer value from the stream message, interpreted as a <code>int</code>.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageFormatException
-     *              if this type conversion is invalid
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageFormatException if this type conversion is invalid
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public int readInt() throws JMSException {
         int ret = 0;
@@ -374,22 +353,22 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
             byte type = getType();
 
             switch (type) {
-                case BYTE_TYPE:
-                    ret = dis.readByte();
-                    break;
-                case SHORT_TYPE:
-                    ret = dis.readShort();
-                    break;
-                case INT_TYPE:
-                    ret = dis.readInt();
-                    break;
-                case STRING_TYPE:
-                    String s = dis.readUTF();
+            case BYTE_TYPE:
+                ret = dis.readByte();
+                break;
+            case SHORT_TYPE:
+                ret = dis.readShort();
+                break;
+            case INT_TYPE:
+                ret = dis.readInt();
+                break;
+            case STRING_TYPE:
+                String s = dis.readUTF();
 
-                    ret = Integer.valueOf(s).intValue();
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+                ret = Integer.valueOf(s).intValue();
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -405,17 +384,12 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Read a 64-bit integer from the stream message.
      *
-     * @return a 64-bit integer value from the stream message, interpreted as a
-     *         <code>long</code>.
+     * @return a 64-bit integer value from the stream message, interpreted as a <code>long</code>.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageFormatException
-     *              if this type conversion is invalid
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageFormatException if this type conversion is invalid
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public long readLong() throws JMSException {
         long ret = 0;
@@ -425,25 +399,25 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
             byte type = getType();
 
             switch (type) {
-                case BYTE_TYPE:
-                    ret = dis.readByte();
-                    break;
-                case SHORT_TYPE:
-                    ret = dis.readShort();
-                    break;
-                case INT_TYPE:
-                    ret = dis.readInt();
-                    break;
-                case LONG_TYPE:
-                    ret = dis.readLong();
-                    break;
-                case STRING_TYPE:
-                    String s = dis.readUTF();
+            case BYTE_TYPE:
+                ret = dis.readByte();
+                break;
+            case SHORT_TYPE:
+                ret = dis.readShort();
+                break;
+            case INT_TYPE:
+                ret = dis.readInt();
+                break;
+            case LONG_TYPE:
+                ret = dis.readLong();
+                break;
+            case STRING_TYPE:
+                String s = dis.readUTF();
 
-                    ret = Long.valueOf(s).longValue();
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+                ret = Long.valueOf(s).longValue();
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -461,14 +435,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
      *
      * @return a <code>float</code> value from the stream message.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageFormatException
-     *              if this type conversion is invalid
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageFormatException if this type conversion is invalid
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public float readFloat() throws JMSException {
         float ret = 0;
@@ -478,16 +448,16 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
             byte type = getType();
 
             switch (type) {
-                case FLOAT_TYPE:
-                    ret = dis.readFloat();
-                    break;
-                case STRING_TYPE:
-                    String s = dis.readUTF();
+            case FLOAT_TYPE:
+                ret = dis.readFloat();
+                break;
+            case STRING_TYPE:
+                String s = dis.readUTF();
 
-                    ret = Float.valueOf(s).floatValue();
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+                ret = Float.valueOf(s).floatValue();
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -505,14 +475,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
      *
      * @return a <code>double</code> value from the stream message.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageFormatException
-     *              if this type conversion is invalid
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageFormatException if this type conversion is invalid
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public double readDouble() throws JMSException {
         double ret = 0;
@@ -522,19 +488,19 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
             byte type = getType();
 
             switch (type) {
-                case FLOAT_TYPE:
-                    ret = dis.readFloat();
-                    break;
-                case DOUBLE_TYPE:
-                    ret = dis.readDouble();
-                    break;
-                case STRING_TYPE:
-                    String s = dis.readUTF();
+            case FLOAT_TYPE:
+                ret = dis.readFloat();
+                break;
+            case DOUBLE_TYPE:
+                ret = dis.readDouble();
+                break;
+            case STRING_TYPE:
+                String s = dis.readUTF();
 
-                    ret = Double.valueOf(s).doubleValue();
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+                ret = Double.valueOf(s).doubleValue();
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -552,14 +518,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
      *
      * @return a Unicode string from the stream message.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageFormatException
-     *              if this type conversion is invalid
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageFormatException if this type conversion is invalid
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public String readString() throws JMSException {
         String ret = null;
@@ -569,35 +531,35 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
             byte type = getType();
 
             switch (type) {
-                case BOOLEAN_TYPE:
-                    ret = String.valueOf(dis.readBoolean());
-                    break;
-                case BYTE_TYPE:
-                    ret = String.valueOf(dis.readByte());
-                    break;
-                case SHORT_TYPE:
-                    ret = String.valueOf(dis.readShort());
-                    break;
-                case CHAR_TYPE:
-                    ret = String.valueOf(dis.readChar());
-                    break;
-                case INT_TYPE:
-                    ret = String.valueOf(dis.readInt());
-                    break;
-                case LONG_TYPE:
-                    ret = String.valueOf(dis.readLong());
-                    break;
-                case FLOAT_TYPE:
-                    ret = String.valueOf(dis.readFloat());
-                    break;
-                case DOUBLE_TYPE:
-                    ret = String.valueOf(dis.readDouble());
-                    break;
-                case STRING_TYPE:
-                    ret = dis.readUTF();
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+            case BOOLEAN_TYPE:
+                ret = String.valueOf(dis.readBoolean());
+                break;
+            case BYTE_TYPE:
+                ret = String.valueOf(dis.readByte());
+                break;
+            case SHORT_TYPE:
+                ret = String.valueOf(dis.readShort());
+                break;
+            case CHAR_TYPE:
+                ret = String.valueOf(dis.readChar());
+                break;
+            case INT_TYPE:
+                ret = String.valueOf(dis.readInt());
+                break;
+            case LONG_TYPE:
+                ret = String.valueOf(dis.readLong());
+                break;
+            case FLOAT_TYPE:
+                ret = String.valueOf(dis.readFloat());
+                break;
+            case DOUBLE_TYPE:
+                ret = String.valueOf(dis.readDouble());
+                break;
+            case STRING_TYPE:
+                ret = dis.readUTF();
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -613,20 +575,15 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Read a byte array from the stream message.
      *
-     * @param value
-     *          the buffer into which the data is read.
+     * @param value the buffer into which the data is read.
      *
-     * @return the total number of bytes read into the buffer, or -1 if there is
-     *         no more data because the end of the stream has been reached.
+     * @return the total number of bytes read into the buffer, or -1 if there is no more data because the end of the stream
+     * has been reached.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageFormatException
-     *              if this type conversion is invalid
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageFormatException if this type conversion is invalid
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public int readBytes(byte[] value) throws JMSException {
         int ret = -1;
@@ -642,38 +599,37 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
                 available_bytes = getBytesLength();
             }
             switch (type) {
-                case BYTES_TYPE:
+            case BYTES_TYPE:
 
-                    // bytes array field is empty
-                    if (first_time_readBytes && available_bytes == 0) {
-                        return 0;
-                    } else if (!first_time_readBytes && available_bytes == 0) {
+                // bytes array field is empty
+                if (first_time_readBytes && available_bytes == 0) {
+                    return 0;
+                } else if (!first_time_readBytes && available_bytes == 0) {
 
-                        /*
-                         * this is the case that last time readBytes() read exactly same bytes
-                         * left in the bytes array field, spec requires an extra readBytes(),
-                         * and return -1 ;-(
-                         */
-                        return -1;
-                    }
-                    if (value.length > available_bytes) {
+                    /*
+                     * this is the case that last time readBytes() read exactly same bytes left in the bytes array field, spec requires an
+                     * extra readBytes(), and return -1 ;-(
+                     */
+                    return -1;
+                }
+                if (value.length > available_bytes) {
 
-                        // read all! (available_bytes won't be zero.)
-                        ret = dis.read(value, 0, available_bytes);
-                        available_bytes = 0;
+                    // read all! (available_bytes won't be zero.)
+                    ret = dis.read(value, 0, available_bytes);
+                    available_bytes = 0;
 
-                        // initiate first_time_readBytes to true for next field
-                        first_time_readBytes = true;
-                    } else if (value.length <= available_bytes) {
+                    // initiate first_time_readBytes to true for next field
+                    first_time_readBytes = true;
+                } else if (value.length <= available_bytes) {
 
-                        // read all, but needs readBytes again
-                        ret = dis.read(value, 0, value.length);
-                        available_bytes = available_bytes - value.length;
-                        first_time_readBytes = false;
-                    }
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+                    // read all, but needs readBytes again
+                    ret = dis.read(value, 0, value.length);
+                    available_bytes = available_bytes - value.length;
+                    first_time_readBytes = false;
+                }
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -690,20 +646,15 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
      * Read a Java object from the stream message.
      *
      * <P>
-     * Note that this method can be used to return in objectified format, an
-     * object that had been written to the Stream with the equivalent
-     * <CODE>writeObject</CODE> method call, or it's equivalent primitive
-     * write<type> method.
+     * Note that this method can be used to return in objectified format, an object that had been written to the Stream with
+     * the equivalent <CODE>writeObject</CODE> method call, or it's equivalent primitive write<type> method.
      *
-     * @return a Java object from the stream message, in objectified format (ie.
-     *         if it set as an int, then a Integer is returned).
+     * @return a Java object from the stream message, in objectified format (ie. if it set as an int, then a Integer is
+     * returned).
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageEOFException
-     *              if an end of message stream
-     * @exception MessageNotReadableException
-     *              if message in write-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageEOFException if an end of message stream
+     * @exception MessageNotReadableException if message in write-only mode.
      */
     public Object readObject() throws JMSException {
         Object ret = null;
@@ -713,35 +664,35 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
             byte type = getType();
 
             switch (type) {
-                case BOOLEAN_TYPE:
-                    ret = Boolean.valueOf(dis.readBoolean());
-                    break;
-                case BYTE_TYPE:
-                    ret = Byte.valueOf(dis.readByte());
-                    break;
-                case SHORT_TYPE:
-                    ret = Short.valueOf(dis.readShort());
-                    break;
-                case CHAR_TYPE:
-                    ret = Character.valueOf(dis.readChar());
-                    break;
-                case INT_TYPE:
-                    ret = Integer.valueOf(dis.readInt());
-                    break;
-                case LONG_TYPE:
-                    ret = Long.valueOf(dis.readLong());
-                    break;
-                case FLOAT_TYPE:
-                    ret = Float.valueOf(dis.readFloat());
-                    break;
-                case DOUBLE_TYPE:
-                    ret = Double.valueOf(dis.readDouble());
-                    break;
-                case STRING_TYPE:
-                    ret = dis.readUTF();
-                    break;
-                default:
-                    throw new MessageFormatException("type conversion is invalid");
+            case BOOLEAN_TYPE:
+                ret = Boolean.valueOf(dis.readBoolean());
+                break;
+            case BYTE_TYPE:
+                ret = Byte.valueOf(dis.readByte());
+                break;
+            case SHORT_TYPE:
+                ret = Short.valueOf(dis.readShort());
+                break;
+            case CHAR_TYPE:
+                ret = Character.valueOf(dis.readChar());
+                break;
+            case INT_TYPE:
+                ret = Integer.valueOf(dis.readInt());
+                break;
+            case LONG_TYPE:
+                ret = Long.valueOf(dis.readLong());
+                break;
+            case FLOAT_TYPE:
+                ret = Float.valueOf(dis.readFloat());
+                break;
+            case DOUBLE_TYPE:
+                ret = Double.valueOf(dis.readDouble());
+                break;
+            case STRING_TYPE:
+                ret = dis.readUTF();
+                break;
+            default:
+                throw new MessageFormatException("type conversion is invalid");
             } // switch
         } catch (EOFException e1) {
             throw new MessageEOFException("at end of message"); // I18N
@@ -755,17 +706,13 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     } // readObject()
 
     /**
-     * Write a <code>boolean</code> to the stream message. The value
-     * <code>true</code> is written out as the value <code>(byte)1</code>; the
-     * value <code>false</code> is written out as the value <code>(byte)0</code>.
+     * Write a <code>boolean</code> to the stream message. The value <code>true</code> is written out as the value
+     * <code>(byte)1</code>; the value <code>false</code> is written out as the value <code>(byte)0</code>.
      *
-     * @param value
-     *          the <code>boolean</code> value to be written.
+     * @param value the <code>boolean</code> value to be written.
      *
-     * @exception JMSException
-     *              if JMS fails to read message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to read message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeBoolean(boolean value) throws JMSException {
         try {
@@ -783,12 +730,9 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write out a <code>byte</code> to the stream message.
      *
-     * @param value
-     *          the <code>byte</code> value to be written.
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @param value the <code>byte</code> value to be written.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeByte(byte value) throws JMSException {
         try {
@@ -806,13 +750,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write a <code>short</code> to the stream message.
      *
-     * @param value
-     *          the <code>short</code> to be written.
+     * @param value the <code>short</code> to be written.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeShort(short value) throws JMSException {
         try {
@@ -830,13 +771,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write a <code>char</code> to the stream message.
      *
-     * @param value
-     *          the <code>char</code> value to be written.
+     * @param value the <code>char</code> value to be written.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeChar(char value) throws JMSException {
         try {
@@ -854,13 +792,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write an <code>int</code> to the stream message.
      *
-     * @param value
-     *          the <code>int</code> to be written.
+     * @param value the <code>int</code> to be written.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeInt(int value) throws JMSException {
         try {
@@ -878,13 +813,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write a <code>long</code> to the stream message.
      *
-     * @param value
-     *          the <code>long</code> to be written.
+     * @param value the <code>long</code> to be written.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeLong(long value) throws JMSException {
         try {
@@ -902,13 +834,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write a <code>float</code> to the stream message.
      *
-     * @param value
-     *          the <code>float</code> value to be written.
+     * @param value the <code>float</code> value to be written.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeFloat(float value) throws JMSException {
         try {
@@ -926,13 +855,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write a <code>double</code> to the stream message.
      *
-     * @param value
-     *          the <code>double</code> value to be written.
+     * @param value the <code>double</code> value to be written.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeDouble(double value) throws JMSException {
         try {
@@ -950,13 +876,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write a string to the stream message.
      *
-     * @param value
-     *          the <code>String</code> value to be written.
+     * @param value the <code>String</code> value to be written.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeString(String value) throws JMSException {
         try {
@@ -974,13 +897,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write a byte array to the stream message.
      *
-     * @param value
-     *          the byte array to be written.
+     * @param value the byte array to be written.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeBytes(byte[] value) throws JMSException {
         writeBytes(value, 0, value.length);
@@ -989,17 +909,12 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     /**
      * Write a portion of a byte array to the stream message.
      *
-     * @param value
-     *          the byte array value to be written.
-     * @param offset
-     *          the initial offset within the byte array.
-     * @param length
-     *          the number of bytes to use.
+     * @param value the byte array value to be written.
+     * @param offset the initial offset within the byte array.
+     * @param length the number of bytes to use.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
      */
     public void writeBytes(byte[] value, int offset, int length) throws JMSException {
 
@@ -1023,18 +938,14 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
      * Write a Java object to the stream message.
      *
      * <P>
-     * Note that this method only works for the objectified primitive object types
-     * (Integer, Double, Long ...), String's and byte arrays.
+     * Note that this method only works for the objectified primitive object types (Integer, Double, Long ...), String's and
+     * byte arrays.
      *
-     * @param value
-     *          the Java object to be written.
+     * @param value the Java object to be written.
      *
-     * @exception JMSException
-     *              if JMS fails to write message due to some internal JMS error.
-     * @exception MessageNotWriteableException
-     *              if message in read-only mode.
-     * @exception MessageFormatException
-     *              if the object is invalid
+     * @exception JMSException if JMS fails to write message due to some internal JMS error.
+     * @exception MessageNotWriteableException if message in read-only mode.
+     * @exception MessageFormatException if the object is invalid
      */
     public void writeObject(Object value) throws JMSException {
         if (value instanceof Boolean) {
@@ -1063,14 +974,10 @@ public class StreamMessageTestImpl extends MessageTestImpl implements StreamMess
     } // writeObject()
 
     /**
-     * Put the message in read-only mode, and reposition the stream to the
-     * beginning.
+     * Put the message in read-only mode, and reposition the stream to the beginning.
      *
-     * @exception JMSException
-     *              if JMS fails to reset the message due to some internal JMS
-     *              error.
-     * @exception MessageFormatException
-     *              if message has an invalid format
+     * @exception JMSException if JMS fails to reset the message due to some internal JMS error.
+     * @exception MessageFormatException if message has an invalid format
      */
     public void reset() throws JMSException {
 

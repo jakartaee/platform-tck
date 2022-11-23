@@ -24,35 +24,30 @@ public class Client extends com.sun.ts.tests.ejb30.timer.schedule.auto.attr.stat
     /*
      * @testName: autoTimerInSuperClassNoParam
      *
-     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out
-     * method takes no Timer param.
+     * @test_Strategy: an auto-timer is declared in bean superclass. Its time- out method takes no Timer param.
      */
 
     /*
      * @testName: autoTimerNonPersistent
      *
-     * @test_Strategy: a non-persistent auto-timer is declared in bean class along
-     * with a persistent auto-timer.
+     * @test_Strategy: a non-persistent auto-timer is declared in bean class along with a persistent auto-timer.
      */
 
     /*
      * @testName: autoTimerPersistent
      *
-     * @test_Strategy: a non-persistent auto-timer is declared in bean class along
-     * with a persistent auto-timer.
+     * @test_Strategy: a non-persistent auto-timer is declared in bean class along with a persistent auto-timer.
      */
 
     /*
      * @testName: autoTimerWithInfo
      *
-     * @test_Strategy: verify the auto timer that was created with @Schedule in
-     * bean class with info attr
+     * @test_Strategy: verify the auto timer that was created with @Schedule in bean class with info attr
      */
 
     /*
      * @testName: autoTimerWithoutInfo
      *
-     * @test_Strategy: verify the auto timer that was created with @Schedule in
-     * bean class without info attr
+     * @test_Strategy: verify the auto timer that was created with @Schedule in bean class without info attr
      */
 }

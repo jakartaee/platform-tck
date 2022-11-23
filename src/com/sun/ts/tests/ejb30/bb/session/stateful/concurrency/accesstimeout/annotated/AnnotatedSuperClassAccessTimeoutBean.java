@@ -25,8 +25,8 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.Stateful;
 
 /**
- * All @AccessTimeout metadata are specified in superclass (either class-level
- * or method-level or method-level overriding class-level).
+ * All @AccessTimeout metadata are specified in superclass (either class-level or method-level or method-level
+ * overriding class-level).
  */
 @Stateful(mappedName = "stateful-concurrency-accesstimeout-annotated-AnnotatedSuperClassAccessTimeoutBean")
 @Remote(AccessTimeoutRemoteIF.class)

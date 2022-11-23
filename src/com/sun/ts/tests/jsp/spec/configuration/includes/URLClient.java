@@ -30,9 +30,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -41,8 +40,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -63,13 +61,11 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:147;JSP:SPEC:148;JSP:SPEC:149
      *
-     * @test_Strategy: Validate the following: - The container properly recognizes
-     * prelude and coda configuration elements. - Prelude includes are includes at
-     * the beginning of the target JSP(s) identified by the url-pattern, and are
-     * included in the order they appear in the deployment descriptor. - Coda
-     * includes are inserted at the end of the target JSP(s) identified by the
-     * url-pattern, and are included in the order they appear in the deployment
-     * descriptor. - Validate with both standard syntax JSPs and JSP documents.
+     * @test_Strategy: Validate the following: - The container properly recognizes prelude and coda configuration elements.
+     * - Prelude includes are includes at the beginning of the target JSP(s) identified by the url-pattern, and are included
+     * in the order they appear in the deployment descriptor. - Coda includes are inserted at the end of the target JSP(s)
+     * identified by the url-pattern, and are included in the order they appear in the deployment descriptor. - Validate
+     * with both standard syntax JSPs and JSP documents.
      */
     public void jspConfigurationIncludesTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_config_includes_web/IncludesTest.jsp HTTP/1.1");
@@ -95,9 +91,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:147;JSP:SPEC:148;JSP:SPEC:149
      *
-     * @test_Strategy: Validate the same as above test. JSP.1.10.4 states that
-     * implicit includes can use either the same syntax as the including page, or
-     * a different syntax.
+     * @test_Strategy: Validate the same as above test. JSP.1.10.4 states that implicit includes can use either the same
+     * syntax as the including page, or a different syntax.
      */
     public void jspConfigurationIncludes3Test() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_config_includes_web/three/Includes3Test.jspx HTTP/1.1");

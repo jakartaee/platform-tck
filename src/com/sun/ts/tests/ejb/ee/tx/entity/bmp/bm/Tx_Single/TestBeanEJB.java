@@ -149,10 +149,12 @@ public class TestBeanEJB implements SessionBean {
                     "Verify that the UserTransaction commit call" + "commited the transaction to the database level");
 
             tempName1 = beanRef1.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
             tempName2 = beanRef1.getDbBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             ut.begin();
@@ -164,10 +166,12 @@ public class TestBeanEJB implements SessionBean {
                     "Verify that the UserTransaction commit call" + "commited the transaction to the database level");
 
             tempPrice1 = beanRef2.getPrice();
-            if (tempPrice1 == expPrice) b3 = true;
+            if (tempPrice1 == expPrice)
+                b3 = true;
             TestUtil.logTrace("Instance Price is " + tempPrice1);
             tempPrice2 = beanRef2.getDbPrice();
-            if (tempPrice2 == expPrice) b4 = true;
+            if (tempPrice2 == expPrice)
+                b4 = true;
             TestUtil.logTrace("DB Price is " + tempPrice2);
 
             if (!b1) {
@@ -346,10 +350,12 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logMsg("Verifying the transaction is commited on method return");
             tempName1 = beanRef2.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logMsg("Instance Brand Name is " + tempName1);
             tempName2 = beanRef2.getDbBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logMsg("DB Brand Name is " + tempName2);
 
             if (!b1) {
@@ -429,7 +435,8 @@ public class TestBeanEJB implements SessionBean {
             TestUtil.logMsg("Verifying the transaction is rolled back.");
 
             tempName1 = beanRef2.getDbBrandName();
-            if (tempName1.equals(tName1 + "-1")) b1 = true;
+            if (tempName1.equals(tName1 + "-1"))
+                b1 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName1);
 
             if (b1) {
@@ -499,11 +506,13 @@ public class TestBeanEJB implements SessionBean {
             ut.commit();
 
             tempName1 = beanRef1.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logMsg("Brand Name is " + tempName1);
 
             tempPrice1 = beanRef1.getPrice();
-            if (tempPrice1 == (float) 100.00) b2 = true;
+            if (tempPrice1 == (float) 100.00)
+                b2 = true;
             TestUtil.logMsg("Price is " + tempPrice1);
 
             if (!b1) {
@@ -516,11 +525,13 @@ public class TestBeanEJB implements SessionBean {
             }
 
             tempName2 = beanRef1.getDbBrandName();
-            if (tempName2.equals(expName)) b3 = true;
+            if (tempName2.equals(expName))
+                b3 = true;
             TestUtil.logMsg("DB Brand Name is " + tempName2);
 
             tempPrice2 = beanRef1.getDbPrice();
-            if (tempPrice2 == expPrice) b4 = true;
+            if (tempPrice2 == expPrice)
+                b4 = true;
             TestUtil.logMsg("DB Price is " + tempPrice2);
 
             if (!b3) {
@@ -597,11 +608,13 @@ public class TestBeanEJB implements SessionBean {
             ut.rollback();
 
             tempName1 = beanRef1.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logMsg("Brand Name is " + tempName1);
 
             tempPrice1 = beanRef1.getPrice();
-            if (tempPrice1 == (float) 100.00) b2 = true;
+            if (tempPrice1 == (float) 100.00)
+                b2 = true;
             TestUtil.logMsg("Price is " + tempPrice1);
 
             if (!b1) {
@@ -614,11 +627,13 @@ public class TestBeanEJB implements SessionBean {
             }
 
             tempName2 = beanRef1.getDbBrandName();
-            if (tempName2.equals(expName)) b3 = true;
+            if (tempName2.equals(expName))
+                b3 = true;
             TestUtil.logMsg("DB Brand Name is " + tempName2);
 
             tempPrice2 = beanRef1.getDbPrice();
-            if (tempPrice2 == expPrice) b4 = true;
+            if (tempPrice2 == expPrice)
+                b4 = true;
             TestUtil.logMsg("DB Price is " + tempPrice2);
 
             if (!b3) {

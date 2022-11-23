@@ -43,8 +43,10 @@ public class AnimalShelterInjectedAdapter {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AnimalShelterInjectedAdapter)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof AnimalShelterInjectedAdapter))
+            return false;
 
         AnimalShelterInjectedAdapter that = (AnimalShelterInjectedAdapter) o;
 

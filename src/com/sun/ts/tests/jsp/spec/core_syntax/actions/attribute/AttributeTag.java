@@ -41,8 +41,7 @@ public class AttributeTag extends TagSupport {
     /**
      * Sets the attribute as evaluated by the container.
      *
-     * @param attribute
-     *          - the evaluated attribute value
+     * @param attribute - the evaluated attribute value
      */
     public void setAttribute(String attribute) {
         _attribute = attribute;
@@ -51,20 +50,18 @@ public class AttributeTag extends TagSupport {
     /**
      * Sets the expected result of the attribute evaluation.
      *
-     * @param expected
-     *          - the result the test expects
+     * @param expected - the result the test expects
      */
     public void setExpected(String expected) {
         _expected = expected;
     }
 
     /**
-     * Prints 'Test PASSED' if the evaluated result is the same as the expected
-     * result, otherwise 'Test FAILED' will be printed along with an explanation.
+     * Prints 'Test PASSED' if the evaluated result is the same as the expected result, otherwise 'Test FAILED' will be
+     * printed along with an explanation.
      *
      * @return EVAL_PAGE
-     * @throws JspException
-     *           if an unexpected error occurs
+     * @throws JspException if an unexpected error occurs
      */
     public int doEndTag() throws JspException {
         JspWriter out = pageContext.getOut();

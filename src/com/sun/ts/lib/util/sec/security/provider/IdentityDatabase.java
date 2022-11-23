@@ -52,8 +52,7 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     /**
      * Construct a new, empty database with a specified source file.
      *
-     * @param file
-     *          the source file.
+     * @param file the source file.
      */
     public IdentityDatabase(File file) throws InvalidParameterException {
         this(file.getName());
@@ -69,14 +68,12 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     }
 
     /**
-     * Initialize an identity database from a stream. The stream should contain
-     * data to initialized a serialized IdentityDatabase object.
+     * Initialize an identity database from a stream. The stream should contain data to initialized a serialized
+     * IdentityDatabase object.
      *
-     * @param is
-     *          the input stream from which to restore the database.
+     * @param is the input stream from which to restore the database.
      *
-     * @exception IOException
-     *              if a stream IO exception occurs
+     * @exception IOException if a stream IO exception occurs
      */
     public static IdentityDatabase fromStream(InputStream is) throws IOException {
         IdentityDatabase db = null;
@@ -111,12 +108,9 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     /**
      * Initialize an IdentityDatabase from file.
      *
-     * @param f
-     *          the filename where the identity database is stored.
+     * @param f the filename where the identity database is stored.
      *
-     * @exception IOException
-     *              a file-related exception occurs (e.g. the directory of the
-     *              file passed does not exists, etc.
+     * @exception IOException a file-related exception occurs (e.g. the directory of the file passed does not exists, etc.
      *
      * @IOException if a file IO exception occurs.
      */
@@ -135,11 +129,9 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     }
 
     /**
-     * @param name
-     *          the name of the identity to be retrieved.
+     * @param name the name of the identity to be retrieved.
      *
-     * @return the identity named name, or null if there are no identities named
-     *         name in the database.
+     * @return the identity named name, or null if there are no identities named name in the database.
      */
     public Identity getIdentity(String name) {
         Identity id = identities.get(name);
@@ -152,11 +144,9 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     /**
      * Get an identity by key.
      *
-     * @param name
-     *          the key of the identity to be retrieved.
+     * @param name the key of the identity to be retrieved.
      *
-     * @return the identity with a given key, or null if there are no identities
-     *         with that key in the database.
+     * @return the identity with a given key, or null if there are no identities with that key in the database.
      */
     public Identity getIdentity(PublicKey key) {
         if (key == null) {
@@ -187,11 +177,9 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     /**
      * Adds an identity to the database.
      *
-     * @param identity
-     *          the identity to be added.
+     * @param identity the identity to be added.
      *
-     * @exception KeyManagementException
-     *              if a name or key clash occurs, or if another exception occurs.
+     * @exception KeyManagementException if a name or key clash occurs, or if another exception occurs.
      */
     public void addIdentity(Identity identity) throws KeyManagementException {
         localCheck("add.identity");
@@ -247,11 +235,9 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     /**
      * Save the database in its current state to an output stream.
      *
-     * @param os
-     *          the output stream to which the database should be serialized.
+     * @param os the output stream to which the database should be serialized.
      *
-     * @exception IOException
-     *              if an IO exception is raised by stream operations.
+     * @exception IOException if an IO exception is raised by stream operations.
      */
     public void save(OutputStream os) throws IOException {
         try {
@@ -267,8 +253,7 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     /**
      * Save the database to a file.
      *
-     * @exception IOException
-     *              if an IO exception is raised by stream operations.
+     * @exception IOException if an IO exception is raised by stream operations.
      */
     void save(File f) throws IOException {
         setSourceFile(f);
@@ -279,9 +264,7 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     /**
      * Saves the database to the default source file.
      *
-     * @exception KeyManagementException
-     *              when there is no default source file specified for this
-     *              database.
+     * @exception KeyManagementException when there is no default source file specified for this database.
      */
     public void save() throws IOException {
         if (sourceFile == null) {
@@ -315,9 +298,8 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     }
 
     /**
-     * This method initializes the system's identity database. The canonical
-     * location is <user.home>/identitydatabase.obj. This is settable through the
-     * identity.database property.
+     * This method initializes the system's identity database. The canonical location is <user.home>/identitydatabase.obj.
+     * This is settable through the identity.database property.
      */
     private static void initializeSystem() {
 
@@ -344,10 +326,9 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
     }
 
     /*
-     * private static File securityPropFile(String filename) { // maybe check for
-     * a system property which will specify where to // look. String sep =
-     * File.separator; return new File(System.getProperty("java.home") + sep +
-     * "lib" + sep + "security" + sep + filename); }
+     * private static File securityPropFile(String filename) { // maybe check for a system property which will specify where
+     * to // look. String sep = File.separator; return new File(System.getProperty("java.home") + sep + "lib" + sep +
+     * "security" + sep + filename); }
      */
 
     public String toString() {

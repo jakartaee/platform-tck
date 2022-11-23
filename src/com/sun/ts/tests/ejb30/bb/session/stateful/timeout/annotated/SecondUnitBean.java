@@ -35,4 +35,5 @@ import java.util.concurrent.TimeUnit;
 @Local(StatefulTimeoutIF.class)
 @Remote(StatefulTimeoutRemoteIF.class)
 @LocalBean
-public class SecondUnitBean extends StatefulTimeoutBeanBase {}
+public class SecondUnitBean extends StatefulTimeoutBeanBase {
+}

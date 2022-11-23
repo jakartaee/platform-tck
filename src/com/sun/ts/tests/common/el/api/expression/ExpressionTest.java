@@ -40,7 +40,8 @@ public class ExpressionTest {
     // Set New Line from system prop, if not defined used "\n as default."
     private static final String NLINE = System.getProperty("line.separator", "\n");
 
-    private ExpressionTest() {}
+    private ExpressionTest() {
+    }
 
     public static boolean testMethodInfo(
             MethodInfo minfo,

@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setContextRoot("/servlet_plu_dispatchertype_web");
@@ -58,9 +56,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:654;
      *
-     * @test_Strategy: 1. Create a servlet - TestServlet 2. Client send a request
-     * to TestServlet 3. In TestServlet, call DispatcherType.values 4. Verify that
-     * DispatcherType.values works properly.
+     * @test_Strategy: 1. Create a servlet - TestServlet 2. Client send a request to TestServlet 3. In TestServlet, call
+     * DispatcherType.values 4. Verify that DispatcherType.values works properly.
      */
     public void valuesTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "valuesTest");
@@ -72,9 +69,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:653;
      *
-     * @test_Strategy: 1. Create a servlet - TestServlet 2. Client send a request
-     * to TestServlet 3. In TestServlet, call DispatcherType.valueOf 4. Verify
-     * that DispatcherType.valueOf works properly.
+     * @test_Strategy: 1. Create a servlet - TestServlet 2. Client send a request to TestServlet 3. In TestServlet, call
+     * DispatcherType.valueOf 4. Verify that DispatcherType.valueOf works properly.
      */
     public void valueOfTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "valueOfTest");
@@ -85,10 +81,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:653;
      *
-     * @test_Strategy: 1. Create a servlet - TestServlet 2. Client send a request
-     * to TestServlet 3. In TestServlet, call DispatcherType.valueOf(String name)
-     * 4. Verify that DispatcherType.valueOf throws NullPointerException when name
-     * is null
+     * @test_Strategy: 1. Create a servlet - TestServlet 2. Client send a request to TestServlet 3. In TestServlet, call
+     * DispatcherType.valueOf(String name) 4. Verify that DispatcherType.valueOf throws NullPointerException when name is
+     * null
      */
 
     public void valueOfNullTest() throws Fault {
@@ -100,10 +95,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:653;
      *
-     * @test_Strategy: 1. Create a servlet - TestServlet 2. Client send a request
-     * to TestServlet 3. In TestServlet, call DispatcherType.valueOf(String name)
-     * 4. Verify that DispatcherType.valueOf throws IllegalArgumentException when
-     * name is invalid Dispatcher type
+     * @test_Strategy: 1. Create a servlet - TestServlet 2. Client send a request to TestServlet 3. In TestServlet, call
+     * DispatcherType.valueOf(String name) 4. Verify that DispatcherType.valueOf throws IllegalArgumentException when name
+     * is invalid Dispatcher type
      */
 
     public void valueOfInvalidTest() throws Fault {

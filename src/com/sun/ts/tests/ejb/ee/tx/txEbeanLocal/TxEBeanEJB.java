@@ -103,7 +103,8 @@ public class TxEBeanEJB implements EntityBean {
             initLogging(p);
 
             // create the table layout, if needed
-            if (key == 1) createTableLayout();
+            if (key == 1)
+                createTableLayout();
 
             // Check if key already exists
             if (keyExists(tName, key)) {
@@ -138,8 +139,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new CreateException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());
@@ -180,8 +183,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new RemoveException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());
@@ -225,8 +230,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new ObjectNotFoundException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());
@@ -266,8 +273,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new ObjectNotFoundException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());
@@ -319,8 +328,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new FinderException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());
@@ -364,8 +375,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new FinderException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());
@@ -441,8 +454,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());
@@ -481,8 +496,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());
@@ -567,8 +584,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());
@@ -612,8 +631,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());
@@ -657,13 +678,15 @@ public class TxEBeanEJB implements EntityBean {
             this.brand = newBrandName;
 
             // Check for intended exceptions to be thrown
-            if (flag == FLAGAPPEXCEPTION) throwAppException();
+            if (flag == FLAGAPPEXCEPTION)
+                throwAppException();
 
             if (flag == FLAGAPPEXCEPTIONWITHROLLBACK) {
                 TestUtil.logTrace("calling setRollbackOnly");
                 ectx.setRollbackOnly();
                 TestUtil.logTrace("Calling getRollbackOnly method");
-                if (ectx.getRollbackOnly()) isRolledback = true;
+                if (ectx.getRollbackOnly())
+                    isRolledback = true;
                 throwAppException();
             }
 
@@ -683,7 +706,8 @@ public class TxEBeanEJB implements EntityBean {
                 TestUtil.logTrace("Calling setRollbackOnly method");
                 ectx.setRollbackOnly();
                 TestUtil.logTrace("Calling getRollbackOnly method");
-                if (ectx.getRollbackOnly()) isRolledback = true;
+                if (ectx.getRollbackOnly())
+                    isRolledback = true;
             }
 
         } catch (AppException e) {
@@ -815,8 +839,10 @@ public class TxEBeanEJB implements EntityBean {
             throw new EJBException(e.getMessage());
         } finally {
             try {
-                if (stmt != null) stmt.close();
-                if (con != null) con.close();
+                if (stmt != null)
+                    stmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.printStackTrace(se);
             }
@@ -845,15 +871,18 @@ public class TxEBeanEJB implements EntityBean {
             ResultSet result;
             result = pStmt.executeQuery();
 
-            if (result.next()) b = true;
+            if (result.next())
+                b = true;
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             TestUtil.logTrace("Exception from keyExists: " + e.getMessage());
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
-                if (con != null) con.close();
+                if (pStmt != null)
+                    pStmt.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException se) {
                 TestUtil.logErr("SQLException closing db connection for " + this.tName, se);
                 throw new EJBException(se.getMessage());

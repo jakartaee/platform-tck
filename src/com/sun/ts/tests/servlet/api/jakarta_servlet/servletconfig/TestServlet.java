@@ -33,8 +33,7 @@ import java.util.Enumeration;
 public class TestServlet extends GenericTCKServlet {
 
     /**
-     * getInitParameterNames returns an Enumeration of values associated with the
-     * init parameters
+     * getInitParameterNames returns an Enumeration of values associated with the init parameters
      */
     public void getServletConfigInitParameterNames(ServletRequest request, ServletResponse response)
             throws ServletException, IOException {

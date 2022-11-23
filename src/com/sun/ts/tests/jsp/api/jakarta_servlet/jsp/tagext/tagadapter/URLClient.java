@@ -29,19 +29,16 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 import java.io.PrintWriter;
 
 /**
- * Test client for TagAdapter. There isn't much that can be done to really test
- * the runtime functionality of TagAdapter as the container will provide the
- * code to cause the wrapping to occur. This set of tests will perform basic API
- * tests to make sure that methods that should not be called by the container
- * throw an UnsupportedOperationException. The last test will make sure that a
- * tag nested within a SimpleTag will be passed an instance of the TagAdapter.
+ * Test client for TagAdapter. There isn't much that can be done to really test the runtime functionality of TagAdapter
+ * as the container will provide the code to cause the wrapping to occur. This set of tests will perform basic API tests
+ * to make sure that methods that should not be called by the container throw an UnsupportedOperationException. The last
+ * test will make sure that a tag nested within a SimpleTag will be passed an instance of the TagAdapter.
  */
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -50,8 +47,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -86,8 +82,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:287
      *
-     * @test_Strategy: Validates that an UnsupportedOperationException is thrown
-     * if a call to TagAdapter.setPageContext() is made.
+     * @test_Strategy: Validates that an UnsupportedOperationException is thrown if a call to TagAdapter.setPageContext() is
+     * made.
      */
     public void tagAdapterSetPageContextTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "tagAdapterSetPageContextTest");
@@ -99,8 +95,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:289
      *
-     * @test_Strategy: Validates that an UnsupportedOperationException is thrown
-     * if a call to TagAdapter.setParent() is made.
+     * @test_Strategy: Validates that an UnsupportedOperationException is thrown if a call to TagAdapter.setParent() is
+     * made.
      */
     public void tagAdapterSetParentTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "tagAdapterSetParentTest");
@@ -112,8 +108,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:290
      *
-     * @test_Strategy: Validates that getParent always returns
-     * getAdaptee().getParent()
+     * @test_Strategy: Validates that getParent always returns getAdaptee().getParent()
      */
     public void tagAdapterGetParentTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "tagAdapterGetParentTest");
@@ -125,8 +120,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:293;JSP:JAVADOC:294
      *
-     * @test_Strategy: Validates that an UnsupportedOperationException is thrown
-     * if a call to TagAdapter.doStartTag() is made.
+     * @test_Strategy: Validates that an UnsupportedOperationException is thrown if a call to TagAdapter.doStartTag() is
+     * made.
      */
     public void tagAdapterDoStartTagTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "tagAdapterDoStartTagTest");
@@ -138,8 +133,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:296;JSP:JAVADOC:297
      *
-     * @test_Strategy: Validates that an UnsupportedOperationException is thrown
-     * if a call to TagAdapter.doEndTag() is made.
+     * @test_Strategy: Validates that an UnsupportedOperationException is thrown if a call to TagAdapter.doEndTag() is made.
      */
     public void tagAdapterDoEndTagTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "tagAdapterDoEndTagTest");
@@ -151,8 +145,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:299
      *
-     * @test_Strategy: Validates that an UnsupportedOperationException is thrown
-     * if a call to TagAdapter.release() is made.
+     * @test_Strategy: Validates that an UnsupportedOperationException is thrown if a call to TagAdapter.release() is made.
      */
     public void tagAdapterReleaseTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "tagAdapterReleaseTest");
@@ -162,14 +155,12 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: tagAdapterValidationTest
      *
-     * @assertion_ids: JSP:JAVADOC:286;JSP:JAVADOC:288;JSP:JAVADOC:291;
-     * JSP:JAVADOC:292;JSP:JAVADOC:295;JSP:JAVADOC:298; JSP:JAVADOC:290
+     * @assertion_ids: JSP:JAVADOC:286;JSP:JAVADOC:288;JSP:JAVADOC:291; JSP:JAVADOC:292;JSP:JAVADOC:295;JSP:JAVADOC:298;
+     * JSP:JAVADOC:290
      *
-     * @test_Strategy: This validates that the container properly wraps a
-     * SimpleTag instance with a TagAdapter when a Classic tag handler is a child
-     * of the SimpleTag handler within the JSP Page. This also makes the
-     * assumption, that all of the previous tests passed as it expects an
-     * UnsupportedOperationException to be thrown if an illegal method call is
+     * @test_Strategy: This validates that the container properly wraps a SimpleTag instance with a TagAdapter when a
+     * Classic tag handler is a child of the SimpleTag handler within the JSP Page. This also makes the assumption, that all
+     * of the previous tests passed as it expects an UnsupportedOperationException to be thrown if an illegal method call is
      * made on the TagAdapter.
      */
     public void tagAdapterValidationTest() throws Fault {

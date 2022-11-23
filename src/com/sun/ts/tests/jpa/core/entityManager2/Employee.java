@@ -37,40 +37,26 @@ import java.util.Date;
  * Employee
  */
 @NamedStoredProcedureQueries({
-    @NamedStoredProcedureQuery(
-            name = "get-id-firstname-lastname",
-            procedureName = "GetEmpIdFNameLNameFromRS",
-            hints = {
+        @NamedStoredProcedureQuery(name = "get-id-firstname-lastname", procedureName = "GetEmpIdFNameLNameFromRS", hints = {
                 @QueryHint(name = "fooname", value = "barvalue"),
                 @QueryHint(name = "fooname2", value = "barvalue2")
-            },
-            parameters = {@StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN)},
-            resultSetMappings = "id-firstname-lastname"),
-    @NamedStoredProcedureQuery(
-            name = "get-id-firstname-lastname-refcursor",
-            procedureName = "GetEmpIdFNameLNameFromRS",
-            hints = {
+        }, parameters = { @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN) }, resultSetMappings = "id-firstname-lastname"),
+        @NamedStoredProcedureQuery(name = "get-id-firstname-lastname-refcursor", procedureName = "GetEmpIdFNameLNameFromRS", hints = {
                 @QueryHint(name = "fooname", value = "barvalue"),
                 @QueryHint(name = "fooname2", value = "barvalue2")
-            },
-            parameters = {
+        }, parameters = {
                 @StoredProcedureParameter(type = Integer.class, mode = ParameterMode.IN),
                 @StoredProcedureParameter(type = void.class, mode = ParameterMode.REF_CURSOR)
-            },
-            resultSetMappings = "id-firstname-lastname")
+        }, resultSetMappings = "id-firstname-lastname")
 })
 @SqlResultSetMappings({
-    @SqlResultSetMapping(
-            name = "id-firstname-lastname",
-            classes = {
-                @ConstructorResult(
-                        targetClass = com.sun.ts.tests.jpa.core.entityManager2.Employee.class,
-                        columns = {
-                            @ColumnResult(name = "ID"),
-                            @ColumnResult(name = "FIRSTNAME"),
-                            @ColumnResult(name = "LASTNAME")
-                        })
-            })
+        @SqlResultSetMapping(name = "id-firstname-lastname", classes = {
+                @ConstructorResult(targetClass = com.sun.ts.tests.jpa.core.entityManager2.Employee.class, columns = {
+                        @ColumnResult(name = "ID"),
+                        @ColumnResult(name = "FIRSTNAME"),
+                        @ColumnResult(name = "LASTNAME")
+                })
+        })
 })
 @Entity
 @Table(name = "EMPLOYEE")
@@ -85,7 +71,8 @@ public class Employee implements java.io.Serializable, Comparable<Employee> {
 
     private float salary;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(int id, String firstName, String lastName, Date hireDate, float salary) {
         this.id = id;
@@ -153,8 +140,10 @@ public class Employee implements java.io.Serializable, Comparable<Employee> {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Employee)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Employee))
+            return false;
 
         Employee o1 = (Employee) o;
 

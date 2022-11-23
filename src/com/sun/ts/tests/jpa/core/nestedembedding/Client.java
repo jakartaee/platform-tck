@@ -27,7 +27,8 @@ import java.util.Vector;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -49,17 +50,16 @@ public class Client extends PMClientBase {
     /*
      * @testName: NE1XMTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:618; PERSISTENCE:SPEC:623;
-     * PERSISTENCE:JAVADOC:129; PERSISTENCE:JAVADOC:132; PERSISTENCE:SPEC:566
+     * @assertion_ids: PERSISTENCE:SPEC:618; PERSISTENCE:SPEC:623; PERSISTENCE:JAVADOC:129; PERSISTENCE:JAVADOC:132;
+     * PERSISTENCE:SPEC:566
      *
-     * @test_Strategy: The new entity bean instance becomes both managed and
-     * persistent by invoking the persist method on it. The semantics of the
-     * persist operation as applied to entity X is as follows: The perist
-     * operation is cascaded to entities referenced by X, if the relationship from
-     * X to these other entities is annotated with cascade=ALL annotation member.
+     * @test_Strategy: The new entity bean instance becomes both managed and persistent by invoking the persist method on
+     * it. The semantics of the persist operation as applied to entity X is as follows: The perist operation is cascaded to
+     * entities referenced by X, if the relationship from X to these other entities is annotated with cascade=ALL annotation
+     * member.
      *
-     * Invoke persist on a OneToMany relationship from X annotated with
-     * cascade=ALL and ensure the persist operation is cascaded.
+     * Invoke persist on a OneToMany relationship from X annotated with cascade=ALL and ensure the persist operation is
+     * cascaded.
      *
      */
     public void NE1XMTest1() throws Fault {

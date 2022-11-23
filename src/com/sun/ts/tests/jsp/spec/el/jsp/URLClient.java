@@ -28,9 +28,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -62,11 +60,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:282
      *
-     * @test_Strategy: [ELDeferredValueValue] In a jsp page, pass a String literal
-     * expression and an expression using the #{} syntax to a tag handler via a
-     * deferred-value element in the tld file. Verify that the expressions are
-     * accepted and that their values are transmitted correctly to the tag
-     * handler.
+     * @test_Strategy: [ELDeferredValueValue] In a jsp page, pass a String literal expression and an expression using the
+     * #{} syntax to a tag handler via a deferred-value element in the tld file. Verify that the expressions are accepted
+     * and that their values are transmitted correctly to the tag handler.
      */
     public void positiveELDeferredValueValueTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/positiveELDeferredValueValue.jsp HTTP/1.1");
@@ -79,9 +75,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:282
      *
-     * @test_Strategy: [ELDeferredValueValue] In a jsp page, pass an expression
-     * using the ${} syntax to a tag handler via a deferred-value element in the
-     * tld file. Verify that a page translation error occurs.
+     * @test_Strategy: [ELDeferredValueValue] In a jsp page, pass an expression using the ${} syntax to a tag handler via a
+     * deferred-value element in the tld file. Verify that a page translation error occurs.
      */
     public void negativeELDeferredValueValueTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/negativeELDeferredValueValue.jsp HTTP/1.1");
@@ -94,11 +89,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:284
      *
-     * @test_Strategy: [ELDeferredValueCoercion] In a jsp page, pass a String
-     * literal expression and an expression using the #{} syntax to a tag handler
-     * via a deferred-value element in the tld file. Verify that the expressions
-     * are accepted, that their values are coerced to the expected type and
-     * evaluate as expected.
+     * @test_Strategy: [ELDeferredValueCoercion] In a jsp page, pass a String literal expression and an expression using the
+     * #{} syntax to a tag handler via a deferred-value element in the tld file. Verify that the expressions are accepted,
+     * that their values are coerced to the expected type and evaluate as expected.
      */
     public void eLDeferredValueCoercionTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/ELDeferredValueCoercion.jsp HTTP/1.1");
@@ -111,11 +104,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:287
      *
-     * @test_Strategy: [ELDeferredMethodValue] In a jsp page, pass a String
-     * literal expression and an expression using the #{} syntax to a tag handler
-     * via a deferred-method element in the tld file. Verify that the expressions
-     * are accepted and that their values are transmitted correctly to the tag
-     * handler.
+     * @test_Strategy: [ELDeferredMethodValue] In a jsp page, pass a String literal expression and an expression using the
+     * #{} syntax to a tag handler via a deferred-method element in the tld file. Verify that the expressions are accepted
+     * and that their values are transmitted correctly to the tag handler.
      */
     public void positiveELDeferredMethodValueTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/positiveELDeferredMethodValue.jsp HTTP/1.1");
@@ -128,9 +119,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:287
      *
-     * @test_Strategy: [ELDeferredMethodValue] In a jsp page, pass an expression
-     * using the ${} syntax to a tag handler via a deferred-method element in the
-     * tld file. Verify that a page translation error occurs.
+     * @test_Strategy: [ELDeferredMethodValue] In a jsp page, pass an expression using the ${} syntax to a tag handler via a
+     * deferred-method element in the tld file. Verify that a page translation error occurs.
      */
     public void negativeELDeferredMethodValueTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/negativeELDeferredMethodValue.jsp HTTP/1.1");
@@ -143,11 +133,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:288
      *
-     * @test_Strategy: [ELDeferredMethodStringLiteral] In a jsp page, pass a
-     * literal expression representing a String and a literal expression
-     * representing a Double to a tag handler via a deferred-method element in the
-     * tld file. Verify that the expressions are accepted, that they are coerced
-     * to the proper type and have the expected values.
+     * @test_Strategy: [ELDeferredMethodStringLiteral] In a jsp page, pass a literal expression representing a String and a
+     * literal expression representing a Double to a tag handler via a deferred-method element in the tld file. Verify that
+     * the expressions are accepted, that they are coerced to the proper type and have the expected values.
      */
     public void eLDeferredMethodStringLiteralTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/ELDeferredMethodStringLiteral.jsp HTTP/1.1");
@@ -160,10 +148,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:289
      *
-     * @test_Strategy: [ELDeferredMethodStringLiteralError] In a jsp page, pass a
-     * string literal to a tag handler via a deferred-method element in the tld
-     * file where the method signature -element has a return value of void. Verify
-     * that a page translation error occurs.
+     * @test_Strategy: [ELDeferredMethodStringLiteralError] In a jsp page, pass a string literal to a tag handler via a
+     * deferred-method element in the tld file where the method signature -element has a return value of void. Verify that a
+     * page translation error occurs.
      */
     public void eLDeferredMethodStringLiteralErrorTest1() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/ELDeferredMethodStringLiteralError1.jsp HTTP/1.1");
@@ -176,10 +163,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:289
      *
-     * @test_Strategy: [ELDeferredMethodStringLiteralError] In a jsp page, pass a
-     * string literal to a tag handler via a deferred-method element in the tld
-     * file where the string literal cannot be coerced to the return type of the
-     * method signature. Verify that a page translation error occurs.
+     * @test_Strategy: [ELDeferredMethodStringLiteralError] In a jsp page, pass a string literal to a tag handler via a
+     * deferred-method element in the tld file where the string literal cannot be coerced to the return type of the method
+     * signature. Verify that a page translation error occurs.
      */
     public void eLDeferredMethodStringLiteralErrorTest2() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/ELDeferredMethodStringLiteralError2.jsp HTTP/1.1");
@@ -192,9 +178,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:272
      *
-     * @test_Strategy: [TemplateTextPoundTranslationError] Verify that the #{
-     * character sequence, when embedded in template text, triggers a translation
-     * error.
+     * @test_Strategy: [TemplateTextPoundTranslationError] Verify that the #{ character sequence, when embedded in template
+     * text, triggers a translation error.
      */
     public void templateTextPoundTranslationErrorTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/TemplateTextPoundTranslationError.jsp HTTP/1.1");
@@ -207,10 +192,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:273
      *
-     * @test_Strategy: [TagLibraryPoundTranslationError] Verify that the #{
-     * character sequence triggers a translation error if used for a tag attribute
-     * of a tag library where the jsp-version is greater than or equal to 2.1, and
-     * for which the attribute is not marked as a deferred expression in the TLD.
+     * @test_Strategy: [TagLibraryPoundTranslationError] Verify that the #{ character sequence triggers a translation error
+     * if used for a tag attribute of a tag library where the jsp-version is greater than or equal to 2.1, and for which the
+     * attribute is not marked as a deferred expression in the TLD.
      */
     public void tagLibraryPoundTranslationErrorTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/TagLibraryPoundTranslationError.jsp HTTP/1.1");
@@ -223,11 +207,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:290
      *
-     * @test_Strategy: [AllowedDynamicAttributeValueTypes] In a jsp page, pass a
-     * literal expression, a scriptlet expression, an expression using the ${}
-     * syntax, and deferred-value and deferred-method expressions using the #{}
-     * syntax as dynamic attributes to a tag handler. Verify that the expressions
-     * are accepted.
+     * @test_Strategy: [AllowedDynamicAttributeValueTypes] In a jsp page, pass a literal expression, a scriptlet expression,
+     * an expression using the ${} syntax, and deferred-value and deferred-method expressions using the #{} syntax as
+     * dynamic attributes to a tag handler. Verify that the expressions are accepted.
      */
     public void allowedDynamicAttributeValueTypesTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/AllowedDynamicAttributeValueTypes.jsp HTTP/1.1");
@@ -240,10 +222,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:291
      *
-     * @test_Strategy: [DynamicAttributeSetterMethod] Verify that an argument to
-     * the setter method of a dynamic attribute must be of type java.lang.Object.
-     * Implement a tag handler with a setter method whose argument is a primitive
-     * type and see that the container generates an internal server error.
+     * @test_Strategy: [DynamicAttributeSetterMethod] Verify that an argument to the setter method of a dynamic attribute
+     * must be of type java.lang.Object. Implement a tag handler with a setter method whose argument is a primitive type and
+     * see that the container generates an internal server error.
      */
     public void dynamicAttributeSetterMethodTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/DynamicAttributeSetterMethod.jsp HTTP/1.1");
@@ -256,8 +237,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:35
      *
-     * @test_Strategy: [ImplicitELImport] Verify that each of the implicit package
-     * is available to the EL environment.
+     * @test_Strategy: [ImplicitELImport] Verify that each of the implicit package is available to the EL environment.
      */
     public void implicitImportTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_el_jsp_web/ImplicitELImport.jsp HTTP/1.1");

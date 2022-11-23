@@ -61,59 +61,42 @@ public class Client extends EETest {
     /*************************************************************************************************
      * Table to cover Addressing/RespectBinding annotation combinations.
      *
-     * These test scenarios exist for covering the various combinations of
-     * Addressing/RespectBinding annotations in JSR 109. This test case is
-     * borrowed from the jaxws respectbindingfeature test case which uses JAXWS
-     * API's to control these same combinations. This test case demonstrates that
-     * these combinations can now be all annotation driven via JSR 109.
+     * These test scenarios exist for covering the various combinations of Addressing/RespectBinding annotations in JSR 109.
+     * This test case is borrowed from the jaxws respectbindingfeature test case which uses JAXWS API's to control these
+     * same combinations. This test case demonstrates that these combinations can now be all annotation driven via JSR 109.
      *
-     * There exist the following 20+ scenarios for Addressing/RespectBinding
-     * combinations (only 5 test cases are valid):
+     * There exist the following 20+ scenarios for Addressing/RespectBinding combinations (only 5 test cases are valid):
      *
-     * ------------------- ------------------- ---------------------
-     * --------------- Client (Addressing) Server (Addressing)
-     * RespectBindingFeature Expected Result -------------------
-     * ------------------- --------------------- --------------- 1).
-     * Enabled/NotRequired Enabled/NotRequired N/A N/A-not TCK test 2).
-     * Enabled/Required Enabled/NotRequired N/A N/A-not TCK test 3). NotEnabled
-     * Enabled/NotRequired N/A N/A-not TCK test 4a) Enabled/NotRequired
-     * Enabled/Required S-Enabled/C-Enabled Expect No Error 4b)
-     * Enabled/NotRequired Enabled/Required S-Enabled/C-Disabled N/A-not TCK test
-     * 4c) Enabled/NotRequired Enabled/Required S-Disabled/C-Enabled N/A-not TCK
-     * test 4d) Enabled/NotRequired Enabled/Required S-Disabled/C-Disabled N/A-not
-     * TCK test 5a) Enabled/Required Enabled/Required S-Enabled/C-Enabled Expect
-     * No Error 5b) Enabled/Required Enabled/Required S-Enabled/C-Disabled N/A-not
-     * TCK test 5c) Enabled/Required Enabled/Required S-Disabled/C-Enabled N/A-not
-     * TCK test 5d) Enabled/Required Enabled/Required S-Disabled/C-Disabled
-     * N/A-not TCK test 6a) NotEnabled Enabled/Required S-Enabled/C-Enabled Expect
-     * Exception 6b) NotEnabled Enabled/Required S-Enabled/C-Disabled N/A-not TCK
-     * test 6c) NotEnabled Enabled/Required S-Disabled/C-Enabled N/A-not TCK test
-     * 6d) NotEnabled Enabled/Required S-Disabled/C-Disabled N/A-not TCK test 7a)
-     * Enabled/NotRequired NotEnabled S-Enabled/C-Enabled Expect No Error 7b)
-     * Enabled/NotRequired NotEnabled S-Enabled/C-Disabled N/A-not TCK test 7c)
-     * Enabled/NotRequired NotEnabled S-Disabled/C-Enabled N/A-not TCK test 7d)
-     * Enabled/NotRequired NotEnabled S-Disabled/C-Disabled N/A-not TCK test 8a)
-     * Enabled/Required NotEnabled S-Enabled/C-Enabled Expect Exception 8b)
-     * Enabled/Required NotEnabled S-Enabled/C-Disabled N/A-not TCK test 8c)
-     * Enabled/Required NotEnabled S-Disabled/C-Enabled N/A-not TCK test 8d)
-     * Enabled/Required NotEnabled S-Disabled/C-Disabled N/A-not TCK test
+     * ------------------- ------------------- --------------------- --------------- Client (Addressing) Server (Addressing)
+     * RespectBindingFeature Expected Result ------------------- ------------------- --------------------- ---------------
+     * 1). Enabled/NotRequired Enabled/NotRequired N/A N/A-not TCK test 2). Enabled/Required Enabled/NotRequired N/A N/A-not
+     * TCK test 3). NotEnabled Enabled/NotRequired N/A N/A-not TCK test 4a) Enabled/NotRequired Enabled/Required
+     * S-Enabled/C-Enabled Expect No Error 4b) Enabled/NotRequired Enabled/Required S-Enabled/C-Disabled N/A-not TCK test
+     * 4c) Enabled/NotRequired Enabled/Required S-Disabled/C-Enabled N/A-not TCK test 4d) Enabled/NotRequired
+     * Enabled/Required S-Disabled/C-Disabled N/A-not TCK test 5a) Enabled/Required Enabled/Required S-Enabled/C-Enabled
+     * Expect No Error 5b) Enabled/Required Enabled/Required S-Enabled/C-Disabled N/A-not TCK test 5c) Enabled/Required
+     * Enabled/Required S-Disabled/C-Enabled N/A-not TCK test 5d) Enabled/Required Enabled/Required S-Disabled/C-Disabled
+     * N/A-not TCK test 6a) NotEnabled Enabled/Required S-Enabled/C-Enabled Expect Exception 6b) NotEnabled Enabled/Required
+     * S-Enabled/C-Disabled N/A-not TCK test 6c) NotEnabled Enabled/Required S-Disabled/C-Enabled N/A-not TCK test 6d)
+     * NotEnabled Enabled/Required S-Disabled/C-Disabled N/A-not TCK test 7a) Enabled/NotRequired NotEnabled
+     * S-Enabled/C-Enabled Expect No Error 7b) Enabled/NotRequired NotEnabled S-Enabled/C-Disabled N/A-not TCK test 7c)
+     * Enabled/NotRequired NotEnabled S-Disabled/C-Enabled N/A-not TCK test 7d) Enabled/NotRequired NotEnabled
+     * S-Disabled/C-Disabled N/A-not TCK test 8a) Enabled/Required NotEnabled S-Enabled/C-Enabled Expect Exception 8b)
+     * Enabled/Required NotEnabled S-Enabled/C-Disabled N/A-not TCK test 8c) Enabled/Required NotEnabled
+     * S-Disabled/C-Enabled N/A-not TCK test 8d) Enabled/Required NotEnabled S-Disabled/C-Disabled N/A-not TCK test
      *
-     * From the last column you can see that the only valid test cases are:
-     * 4a,5a,6a,7a,8a. According to the JAXWS Javadoc API the behavior of
-     * RespectBinding(enabled=false) is implementation specific, so we cannot test
-     * for any combo where RespectBinding is not enabled.
+     * From the last column you can see that the only valid test cases are: 4a,5a,6a,7a,8a. According to the JAXWS Javadoc
+     * API the behavior of RespectBinding(enabled=false) is implementation specific, so we cannot test for any combo where
+     * RespectBinding is not enabled.
      *
-     * test scenarios 4a, 5a, 6a use Echo port test scenarios 7a, 8a use Echo2
-     * port
+     * test scenarios 4a, 5a, 6a use Echo port test scenarios 7a, 8a use Echo2 port
      *
-     * where Echo port is configured via- WSDL: <wsam:Addressing/> // Addressing
-     * enabled/required in WSDL
-     * EchoImpl.java: @BindingType(value=SOAPBinding.SOAP11HTTP_BINDING) @RespectBinding(enabled=true)
-     * // Impl enables RespectBinding
+     * where Echo port is configured via- WSDL: <wsam:Addressing/> // Addressing enabled/required in WSDL
+     * EchoImpl.java: @BindingType(value=SOAPBinding.SOAP11HTTP_BINDING) @RespectBinding(enabled=true) // Impl enables
+     * RespectBinding
      *
-     * where Echo2 port is configured via- WSDL: <wsam:Addressing/> // Addressing
-     * enabled/required in WSDL Echo2Impl.java: @Addressing(enabled=false) // Impl
-     * turns off Addressing @RespectBinding(enabled=true) // Impl enables
+     * where Echo2 port is configured via- WSDL: <wsam:Addressing/> // Addressing enabled/required in WSDL
+     * Echo2Impl.java: @Addressing(enabled=false) // Impl turns off Addressing @RespectBinding(enabled=true) // Impl enables
      * RespectBinding
      *
      *************************************************************************************************/
@@ -148,8 +131,10 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -205,14 +190,11 @@ public class Client extends EETest {
     /*
      * @testName: afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
-     * WS4EE:SPEC:4021;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020; WS4EE:SPEC:4021;
      *
-     * @test_Strategy: Test RespectBinding Feature. Addressing Client
-     * Enabled/Required, Server Enabled/Required; RespectBinding Server Enabled,
-     * Client Enabled. Addressing headers MUST be present on SOAPRequest and
-     * SOAPResponse.
+     * @test_Strategy: Test RespectBinding Feature. Addressing Client Enabled/Required, Server Enabled/Required;
+     * RespectBinding Server Enabled, Client Enabled. Addressing headers MUST be present on SOAPRequest and SOAPResponse.
      */
     public void afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest() throws Fault {
         boolean pass = true;
@@ -245,7 +227,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
-            } else TestUtil.logMsg("Addressing Headers Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
             pass = false;
@@ -256,27 +239,27 @@ public class Client extends EETest {
             TestUtil.logMsg("-------------------------------");
             String testName = "afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest";
             pass = ejbclient.echo("Echo from EjbClient on port5a", testName);
-            if (!pass) TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
-            else TestUtil.logMsg("Addressing Headers Exist (Expected)");
+            if (!pass)
+                TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
+            else
+                TestUtil.logMsg("Addressing Headers Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
             pass = false;
         }
-        if (!pass) throw new Fault("afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest failed");
+        if (!pass)
+            throw new Fault("afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest failed");
     }
 
     /*
      * @testName: afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
-     * WS4EE:SPEC:4021;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020; WS4EE:SPEC:4021;
      *
-     * @test_Strategy: Test RespectBinding Feature. Addressing Client NotEnabled,
-     * Server Enabled/Required; RespectBinding Server Enabled, Client Enabled.
-     * This scenario MUST throw back a SOAP Fault. Make sure the SOAP Fault has
-     * the correct information in it. The SOAP Fault faultcode must be:
-     * MessageAddressingHeaderRequired.
+     * @test_Strategy: Test RespectBinding Feature. Addressing Client NotEnabled, Server Enabled/Required; RespectBinding
+     * Server Enabled, Client Enabled. This scenario MUST throw back a SOAP Fault. Make sure the SOAP Fault has the correct
+     * information in it. The SOAP Fault faultcode must be: MessageAddressingHeaderRequired.
      */
     public void afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest() throws Fault {
         boolean pass = true;
@@ -336,7 +319,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest (Unexpected)");
-            } else TestUtil.logMsg("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest (Expected)");
+            } else
+                TestUtil.logMsg("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
         }
@@ -346,26 +330,27 @@ public class Client extends EETest {
             TestUtil.logMsg("-------------------------------");
             String testName = "afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest";
             pass = ejbclient.echo("Echo from EjbClient on port6a", testName);
-            if (!pass) TestUtil.logErr("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest (Unexpected)");
-            else TestUtil.logMsg("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest (Expected)");
+            if (!pass)
+                TestUtil.logErr("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest (Unexpected)");
+            else
+                TestUtil.logMsg("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
             pass = false;
         }
-        if (!pass) throw new Fault("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest failed");
+        if (!pass)
+            throw new Fault("afCltNotEnabledSvrEnabledREQrbfSvrEnabledCltEnabledTest failed");
     }
 
     /*
      * @testName: afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
-     * WS4EE:SPEC:4021;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020; WS4EE:SPEC:4021;
      *
-     * @test_Strategy: Test RespectBinding Feature. Addressing Client
-     * Enabled/NotRequired, Server NotEnabled; RespectBinding Server Enabled,
-     * Client Enabled. Addressing headers MAY be present on SOAPRequest but MUST
-     * NOT be present on SOAPResponse.
+     * @test_Strategy: Test RespectBinding Feature. Addressing Client Enabled/NotRequired, Server NotEnabled; RespectBinding
+     * Server Enabled, Client Enabled. Addressing headers MAY be present on SOAPRequest but MUST NOT be present on
+     * SOAPResponse.
      */
     public void afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest() throws Fault {
         boolean pass = true;
@@ -400,7 +385,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("Addressing Headers EXIST in SOAPResponse (Unexpected)");
-            } else TestUtil.logMsg("Addressing Headers DO NOT EXIST in SOAPResponse (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers DO NOT EXIST in SOAPResponse (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.logErr("Addressing Headers EXIST in SOAPResponse (Unexpected)");
@@ -415,25 +401,25 @@ public class Client extends EETest {
             if (!passEjb) {
                 pass = false;
                 TestUtil.logErr("Addressing Headers EXIST in SOAPResponse (Unexpected)");
-            } else TestUtil.logMsg("Addressing Headers DO NOT EXIST in SOAPResponse (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers DO NOT EXIST in SOAPResponse (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.logErr("Addressing Headers EXIST in SOAPResponse (Unexpected)");
             pass = false;
         }
-        if (!pass) throw new Fault("afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest failed");
+        if (!pass)
+            throw new Fault("afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest failed");
     }
 
     /*
      * @testName: afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
-     * WS4EE:SPEC:4021;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020; WS4EE:SPEC:4021;
      *
-     * @test_Strategy: Test RespectBinding Feature. Addressing Client
-     * Enabled/Required, Server NotEnabled; RespectBinding Server Enabled, Client
-     * Enabled. This scenario MUST throw back a WebServiceException.
+     * @test_Strategy: Test RespectBinding Feature. Addressing Client Enabled/Required, Server NotEnabled; RespectBinding
+     * Server Enabled, Client Enabled. This scenario MUST throw back a WebServiceException.
      */
     public void afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest() throws Fault {
         boolean pass = true;
@@ -469,7 +455,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest (Unexpected)");
-            } else TestUtil.logMsg("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest (Expected)");
+            } else
+                TestUtil.logMsg("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
             pass = false;
@@ -480,12 +467,15 @@ public class Client extends EETest {
             TestUtil.logMsg("-------------------------------");
             String testName = "afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest";
             pass = ejbclient.echo("Echo from EjbClient on port8a", testName);
-            if (!pass) TestUtil.logErr("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest (Unexpected)");
-            else TestUtil.logMsg("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest (Expected)");
+            if (!pass)
+                TestUtil.logErr("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest (Unexpected)");
+            else
+                TestUtil.logMsg("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
             pass = false;
         }
-        if (!pass) throw new Fault("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest failed");
+        if (!pass)
+            throw new Fault("afCltEnabledREQSvrNotEnabledrbfSvrEnabledCltEnabledTest failed");
     }
 }

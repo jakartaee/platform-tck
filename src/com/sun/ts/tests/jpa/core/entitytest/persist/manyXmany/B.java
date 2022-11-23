@@ -47,10 +47,7 @@ public class B implements java.io.Serializable {
     // ===========================================================
     // relationship fields
 
-    @ManyToMany(
-            targetEntity = com.sun.ts.tests.jpa.core.entitytest.persist.manyXmany.A.class,
-            cascade = CascadeType.PERSIST,
-            mappedBy = "bCol")
+    @ManyToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.persist.manyXmany.A.class, cascade = CascadeType.PERSIST, mappedBy = "bCol")
     protected Collection aCol = new java.util.ArrayList();
 
     // ===========================================================

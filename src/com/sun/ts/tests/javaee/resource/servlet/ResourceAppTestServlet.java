@@ -26,13 +26,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@MailSessionDefinition(
-        name = "java:app/env/ResourceAppTestServlet_MailSession",
-        properties = {"test=ResourceAppTestServlet_MailSession"})
-@MailSessionDefinition(
-        name = "java:app/env/ResourceAppTestServlet_MailSession_repeatable",
-        properties = {"test=ResourceAppTestServlet_MailSession_repeatable"})
-@WebServlet(urlPatterns = {"/resourceAppTest"})
+@MailSessionDefinition(name = "java:app/env/ResourceAppTestServlet_MailSession", properties = { "test=ResourceAppTestServlet_MailSession" })
+@MailSessionDefinition(name = "java:app/env/ResourceAppTestServlet_MailSession_repeatable", properties = {
+        "test=ResourceAppTestServlet_MailSession_repeatable" })
+@WebServlet(urlPatterns = { "/resourceAppTest" })
 public class ResourceAppTestServlet extends HttpServlet {
 
     // the value of the "test" property above

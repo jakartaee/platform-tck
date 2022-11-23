@@ -89,7 +89,8 @@ public abstract class CoreServletTest implements Servlet {
         this.config = config;
     }
 
-    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {}
+    public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+    }
 
     public String getServletInfo() {
         return "Servlet Info";

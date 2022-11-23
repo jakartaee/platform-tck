@@ -68,8 +68,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * user; password;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; user; password;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -105,8 +104,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.1; EJB:JAVADOC:114
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify EJBObject reference returned.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify EJBObject reference returned.
      *
      */
 
@@ -121,7 +119,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         }
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -129,8 +128,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.2; EJB:JAVADOC:22
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify EJBHome reference returned.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify EJBHome reference returned.
      *
      */
 
@@ -145,7 +143,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         }
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -153,8 +152,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.3; EJB:JAVADOC:112
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify EJBLocalObject received.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify EJBLocalObject received.
      *
      */
 
@@ -169,7 +167,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         }
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -177,8 +176,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.5; EJB:JAVADOC:21
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify Principal reference returned.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify Principal reference returned.
      *
      */
 
@@ -193,7 +191,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         }
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
@@ -201,9 +200,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.6; EJB:JAVADOC:32
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify correct identity role. This is a POSITIVE test where caller
-     * is in role1.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify correct identity role. This is a
+     * POSITIVE test where caller is in role1.
      *
      */
 
@@ -218,7 +216,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test5 failed", e);
         }
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     /*
@@ -226,9 +225,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.6; EJB:JAVADOC:32
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify correct identity role. This is a NEGATIVE test where caller
-     * is not in role2.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify correct identity role. This is a
+     * NEGATIVE test where caller is not in role2.
      *
      */
 
@@ -243,7 +241,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test5b failed", e);
         }
-        if (pass) throw new Fault("test5b failed");
+        if (pass)
+            throw new Fault("test5b failed");
     }
 
     /*
@@ -251,9 +250,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.7; EJB:JAVADOC:34
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify setRollback functionality since entity beans are always
-     * container-managed.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify setRollback functionality since
+     * entity beans are always container-managed.
      *
      */
 
@@ -268,7 +266,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test6 failed", e);
         }
-        if (!pass) throw new Fault("test6 failed");
+        if (!pass)
+            throw new Fault("test6 failed");
     }
 
     /*
@@ -276,9 +275,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.8; EJB:JAVADOC:25
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify getRollback functionality since entity beans are always
-     * container-managed.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify getRollback functionality since
+     * entity beans are always container-managed.
      *
      */
 
@@ -293,7 +291,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test7 failed", e);
         }
-        if (!pass) throw new Fault("test7 failed");
+        if (!pass)
+            throw new Fault("test7 failed");
     }
 
     /*
@@ -301,8 +300,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.11; EJB:JAVADOC:30
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify entity bean cannot obtain UserTransaction.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify entity bean cannot obtain
+     * UserTransaction.
      *
      */
 
@@ -318,7 +317,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test8 failed", e);
         }
-        if (!pass) throw new Fault("test8 failed");
+        if (!pass)
+            throw new Fault("test8 failed");
     }
 
     /*
@@ -326,8 +326,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.9; EJB:JAVADOC:116
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify entity bean can obtain its primary key.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify entity bean can obtain its
+     * primary key.
      *
      */
 
@@ -343,7 +343,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test9 failed", e);
         }
-        if (!pass) throw new Fault("test9 failed");
+        if (!pass)
+            throw new Fault("test9 failed");
     }
 
     /*
@@ -351,8 +352,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.10; EJB:JAVADOC:27
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify entity bean can obtain timer service.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify entity bean can obtain timer
+     * service.
      *
      */
 
@@ -368,7 +369,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test10 failed", e);
         }
-        if (!pass) throw new Fault("test10 failed");
+        if (!pass)
+            throw new Fault("test10 failed");
     }
 
     /*
@@ -376,8 +378,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:249.4; EJB:JAVADOC:23
      *
-     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE
-     * server. Verify EJBLocalHome reference returned.
+     * @test_Strategy: Create an Entity CMP 2.0 Bean. Deploy it on the J2EE server. Verify EJBLocalHome reference returned.
      *
      */
     public void test11() throws Fault {
@@ -391,7 +392,8 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test11 failed", e);
         }
-        if (!pass) throw new Fault("test11 failed");
+        if (!pass)
+            throw new Fault("test11 failed");
     }
 
     /*
@@ -399,8 +401,8 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client -> stateless FastPathBean -> stateless FastPathBean2
-     * -> CMP 2.x Entity TestBean.getIt(). It is a non-CMP business method.
+     * @test_Strategy: client -> stateless FastPathBean -> stateless FastPathBean2 -> CMP 2.x Entity TestBean.getIt(). It is
+     * a non-CMP business method.
      */
     public void getIt() throws Exception {
         FastPath fastPath = getFastPathBean();
@@ -417,8 +419,8 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client -> stateless FastPathBean -> stateless FastPathBean2
-     * -> CMP 2.x Entity TestBean.setIt(). It is a non-CMP business method.
+     * @test_Strategy: client -> stateless FastPathBean -> stateless FastPathBean2 -> CMP 2.x Entity TestBean.setIt(). It is
+     * a non-CMP business method.
      */
     public void setIt() throws Exception {
         FastPath fastPath = getFastPathBean();
@@ -435,8 +437,8 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client -> stateless FastPathBean -> stateless FastPathBean2
-     * -> CMP 2.x Entity TestBean.getCoffeeId(). It is a CMP business method.
+     * @test_Strategy: client -> stateless FastPathBean -> stateless FastPathBean2 -> CMP 2.x Entity TestBean.getCoffeeId().
+     * It is a CMP business method.
      */
     public void getCoffeeId() throws Exception {
         final String coffeeId = "coffeeId";
@@ -454,8 +456,8 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client -> stateless FastPathBean -> stateless FastPathBean2
-     * -> CMP 2.x Entity TestBean.setBrandName(). It is a CMP business method.
+     * @test_Strategy: client -> stateless FastPathBean -> stateless FastPathBean2 -> CMP 2.x Entity
+     * TestBean.setBrandName(). It is a CMP business method.
      */
     public void setBrandName() throws Exception {
         final String oldBrand = "oldBrand";

@@ -22,9 +22,7 @@ import jakarta.mail.Session;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-@MailSessionDefinition(
-        name = "java:app/env/Bean_MailSession",
-        properties = {"test=Bean_MailSession"})
+@MailSessionDefinition(name = "java:app/env/Bean_MailSession", properties = { "test=Bean_MailSession" })
 @ApplicationScoped
 public class Bean {
 
@@ -32,8 +30,10 @@ public class Bean {
         try {
             InitialContext ic = new InitialContext();
             Object obj = ic.lookup(jndiName);
-            if (obj instanceof Session) return (Session) obj;
-            else return null;
+            if (obj instanceof Session)
+                return (Session) obj;
+            else
+                return null;
         } catch (NamingException nex) {
             return null;
         }

@@ -30,14 +30,12 @@ public class PatchTests extends JsonPTest {
     /**
      * Test {@link JsonPatch} factory methods added in JSON-P 1.1.
      *
-     * @throws Fault
-     *           when this test failed.
+     * @throws Fault when this test failed.
      *
      * @testName: jsonCreatePatch11Test
      *
-     * @assertion_ids: JSONP:JAVADOC:574; JSONP:JAVADOC:579; JSONP:JAVADOC:581;
-     *                 JSONP:JAVADOC:653; JSONP:JAVADOC:658; JSONP:JAVADOC:660;
-     *                 JSONP:JAVADOC:620; JSONP:JAVADOC:621;
+     * @assertion_ids: JSONP:JAVADOC:574; JSONP:JAVADOC:579; JSONP:JAVADOC:581; JSONP:JAVADOC:653; JSONP:JAVADOC:658;
+     * JSONP:JAVADOC:660; JSONP:JAVADOC:620; JSONP:JAVADOC:621;
      *
      * @test_Strategy: Tests JsonPatch API factory methods added in JSON-P 1.1.
      */

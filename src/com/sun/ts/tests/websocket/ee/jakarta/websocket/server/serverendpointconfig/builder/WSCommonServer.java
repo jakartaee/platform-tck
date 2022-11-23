@@ -41,7 +41,8 @@ public class WSCommonServer extends Endpoint implements MessageHandler.Whole<Str
         try {
             if (message.equals("subprotocols"))
                 session.getBasicRemote().sendText(StringUtil.objectsToString(config.getSubprotocols()));
-            else if (message.equals("path")) session.getBasicRemote().sendText(config.getPath());
+            else if (message.equals("path"))
+                session.getBasicRemote().sendText(config.getPath());
             else if (message.equals("endpoint"))
                 session.getBasicRemote().sendText(config.getEndpointClass().getName());
             else if (message.equals("configurator"))
@@ -50,7 +51,8 @@ public class WSCommonServer extends Endpoint implements MessageHandler.Whole<Str
             else if (message.equals("extensions")) {
                 StringBuilder sb = new StringBuilder().append("[");
                 Extension[] ext = config.getExtensions().toArray(new Extension[0]);
-                for (Extension e : ext) sb.append(e.getName()).append(" ");
+                for (Extension e : ext)
+                    sb.append(e.getName()).append(" ");
                 sb.append("]");
                 session.getBasicRemote().sendText(sb.toString());
             } else if (message.equals("decoders")) {

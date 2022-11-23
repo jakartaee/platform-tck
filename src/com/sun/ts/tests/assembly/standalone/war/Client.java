@@ -47,8 +47,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * webServerHost; webServerPort;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; webServerHost; webServerPort;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -66,17 +65,14 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:261
      *
-     * @test_Strategy: Package a war file containing a JSP
-     *                 (assembly_standalone_war_component_jsp.jar).
+     * @test_Strategy: Package a war file containing a JSP (assembly_standalone_war_component_jsp.jar).
      *
-     *                 Package a .ear file containing an application client
-     *                 accessing the JSP packaged in the stand-alone WAR module
-     *                 (URL resource factory).
+     * Package a .ear file containing an application client accessing the JSP packaged in the stand-alone WAR module (URL
+     * resource factory).
      *
-     *                 Deploy the WAR module and the .ear file.
+     * Deploy the WAR module and the .ear file.
      *
-     *                 Run the client and check that we can access this JSP at
-     *                 runtime.
+     * Run the client and check that we can access this JSP at runtime.
      *
      */
     public void testStandaloneWar() throws Fault {

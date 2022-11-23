@@ -27,11 +27,7 @@ import jakarta.xml.ws.*;
 /*
  * Provider<SOAPMessage> - req/res a SOAPMessage in Message Mode
  */
-@WebServiceProvider(
-        serviceName = "HelloService",
-        portName = "Hello2Port",
-        targetNamespace = "http://helloservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSDLHelloProviderService.wsdl")
+@WebServiceProvider(serviceName = "HelloService", portName = "Hello2Port", targetNamespace = "http://helloservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSDLHelloProviderService.wsdl")
 @BindingType(value = jakarta.xml.ws.soap.SOAPBinding.SOAP11HTTP_BINDING)
 @ServiceMode(value = jakarta.xml.ws.Service.Mode.MESSAGE)
 public class Hello2Impl implements Provider<SOAPMessage> {
@@ -43,8 +39,7 @@ public class Hello2Impl implements Provider<SOAPMessage> {
         SOAPMessage respMsg = null;
         try {
 
-            String helloResp =
-                    "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloResponse xmlns=\"http://helloservice.org/types\"><argument>responseBean</argument></HelloResponse></soapenv:Body></soapenv:Envelope>";
+            String helloResp = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><HelloResponse xmlns=\"http://helloservice.org/types\"><argument>responseBean</argument></HelloResponse></soapenv:Body></soapenv:Envelope>";
 
             respMsg = JAXWS_Util.makeSOAPMessage(helloResp);
             respMsg.saveChanges();

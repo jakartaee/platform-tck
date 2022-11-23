@@ -36,7 +36,8 @@ public class DataTypes2 implements java.io.Serializable {
 
     private java.sql.Timestamp tsData;
 
-    public DataTypes2() {}
+    public DataTypes2() {
+    }
 
     public DataTypes2(java.util.Date id) {
         this.id = id;

@@ -24,8 +24,9 @@ import jakarta.ejb.SessionSynchronization;
 import jakarta.ejb.Stateful;
 
 /**
- * This bean implements SessionSynchronization interface to specify afterBegin,
- * beforeCompletion, and afterCompletion callbacks.
+ * This bean implements SessionSynchronization interface to specify afterBegin, beforeCompletion, and afterCompletion
+ * callbacks.
  */
 @Stateful
-public class ImplementingBean extends SessionSyncBeanBase implements SessionSyncIF, SessionSynchronization {}
+public class ImplementingBean extends SessionSyncBeanBase implements SessionSyncIF, SessionSynchronization {
+}

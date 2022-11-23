@@ -32,7 +32,8 @@ public class Store implements Serializable {
 
     private String name;
 
-    public Store() {}
+    public Store() {
+    }
 
     public Integer getId() {
         return id;

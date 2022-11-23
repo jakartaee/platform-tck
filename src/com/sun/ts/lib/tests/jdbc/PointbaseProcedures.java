@@ -23,9 +23,8 @@ import java.sql.*;
 /**
  * Stored procedures for output parameters.
  *
- * Note that if a null might occur, the Java class form is used rather than the
- * Java built-in form. i.e., Integer instead of int. This is so that the null
- * can be transmitted back to the caller. If we know it won't be null, we just
+ * Note that if a null might occur, the Java class form is used rather than the Java built-in form. i.e., Integer
+ * instead of int. This is so that the null can be transmitted back to the caller. If we know it won't be null, we just
  * use the built-in type directly.
  *
  **/
@@ -55,7 +54,8 @@ public class PointbaseProcedures {
             max_param.set(rs.getBigDecimal(1));
             min_param.set(rs.getBigDecimal(2));
             null_param.set(rs.getBigDecimal(3));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -83,7 +83,8 @@ public class PointbaseProcedures {
             max_param.set(rs.getBigDecimal(1));
             min_param.set(rs.getBigDecimal(2));
             null_param.set(rs.getBigDecimal(3));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -106,7 +107,8 @@ public class PointbaseProcedures {
             max_param.set(rs.getDouble(1));
             min_param.set(rs.getDouble(2));
             null_param.set(rs.getDouble(3));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -130,7 +132,8 @@ public class PointbaseProcedures {
             max_param.set(rs.getDouble(1));
             min_param.set(rs.getDouble(2));
             null_param.set(rs.getDouble(3));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -154,7 +157,8 @@ public class PointbaseProcedures {
             max_param.set(rs.getFloat(1));
             min_param.set(rs.getFloat(2));
             null_param.set(rs.getFloat(3));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -177,7 +181,8 @@ public class PointbaseProcedures {
             max_param.set(rs.getBoolean(1));
             min_param.set(rs.getBoolean(2));
             null_param.set(rs.getBoolean(3));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -201,7 +206,8 @@ public class PointbaseProcedures {
             max_param.set(rs.getShort(1));
             min_param.set(rs.getShort(2));
             null_param.set(rs.getShort(3));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
             throw new SQLException("Data not found");
         }
@@ -224,7 +230,8 @@ public class PointbaseProcedures {
             max_param.set(new Short(rs.getShort(1)));
             min_param.set(new Short(rs.getShort(2)));
             null_param.set(new Short(rs.getShort(3)));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -248,7 +255,8 @@ public class PointbaseProcedures {
             max_param.set(new Integer(rs.getInt(1)));
             min_param.set(new Integer(rs.getInt(2)));
             null_param.set(new Integer(rs.getInt(3)));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -271,18 +279,24 @@ public class PointbaseProcedures {
 
             String maxValue = rs.getString(1);
             // System.out.println("The Max Value is: " + maxValue);
-            if (rs.wasNull()) max_param.set(null);
-            else max_param.set(new Long(maxValue));
+            if (rs.wasNull())
+                max_param.set(null);
+            else
+                max_param.set(new Long(maxValue));
 
             String minValue = rs.getString(2);
             // System.out.println("The Min Value is: " + minValue);
-            if (rs.wasNull()) min_param.set(null);
-            else min_param.set(new Long(minValue));
+            if (rs.wasNull())
+                min_param.set(null);
+            else
+                min_param.set(new Long(minValue));
 
             String nullValue = rs.getString(3);
             // System.out.println("The Null Value is: " + nullValue);
-            if (rs.wasNull()) null_param.set(null);
-            else null_param.set(new Long(nullValue));
+            if (rs.wasNull())
+                null_param.set(null);
+            else
+                null_param.set(new Long(nullValue));
 
         } else {
 
@@ -304,7 +318,8 @@ public class PointbaseProcedures {
 
             coffee_param.set(rs.getString(1));
             null_param.set(rs.getString(2));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -326,7 +341,8 @@ public class PointbaseProcedures {
 
             coffee_param.set(rs.getString(1));
             null_param.set(rs.getString(2));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -365,7 +381,8 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             null_param.set(rs.getString(1));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -386,7 +403,8 @@ public class PointbaseProcedures {
 
             mfg_param.set(rs.getDate(1));
             null_param.set(rs.getDate(2));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -407,7 +425,8 @@ public class PointbaseProcedures {
 
             brk_param.set(rs.getTime(1));
             null_param.set(rs.getTime(2));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -429,7 +448,8 @@ public class PointbaseProcedures {
 
             in_param.set(rs.getTimestamp(1));
             null_param.set(rs.getTimestamp(2));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -563,8 +583,7 @@ public class PointbaseProcedures {
     }
 
     public void UpdCoffee_Proc(String type_param) throws SQLException {
-        PreparedStatement preparedstatement =
-                con.prepareStatement("update ctstable2 set PRICE=PRICE*20 where TYPE_ID=?");
+        PreparedStatement preparedstatement = con.prepareStatement("update ctstable2 set PRICE=PRICE*20 where TYPE_ID=?");
         preparedstatement.setString(1, type_param);
         preparedstatement.executeUpdate();
         preparedstatement.close();
@@ -594,14 +613,17 @@ public class PointbaseProcedures {
 
         PreparedStatement ps = con.prepareStatement("select price*2 from CTSTABLE2 where price=?");
 
-        if (price_param.isNull() == true) ps.setNull(1, Types.FLOAT);
-        else ps.setFloat(1, (float) price_param.get());
+        if (price_param.isNull() == true)
+            ps.setNull(1, Types.FLOAT);
+        else
+            ps.setFloat(1, (float) price_param.get());
 
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
 
             price_param.set(new Double(rs.getDouble(1)));
-            if (rs.wasNull()) price_param.set(null);
+            if (rs.wasNull())
+                price_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -614,8 +636,7 @@ public class PointbaseProcedures {
     }
 
     public void Coffee_Proc(BigDecimal bigdecimal) throws SQLException {
-        PreparedStatement preparedstatement =
-                con.prepareStatement("update CTSTABLE2 set PRICE=Price*2 where TYPE_ID=?");
+        PreparedStatement preparedstatement = con.prepareStatement("update CTSTABLE2 set PRICE=Price*2 where TYPE_ID=?");
         preparedstatement.setBigDecimal(1, bigdecimal);
         preparedstatement.executeUpdate();
         preparedstatement.close();
@@ -1184,7 +1205,8 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             inout_param.set(rs.getShort(1));
-            if (rs.wasNull()) inout_param.set(null);
+            if (rs.wasNull())
+                inout_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -1382,7 +1404,8 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             null_param.set(rs.getInt(1));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -1407,8 +1430,10 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             String maxValue = rs.getString(1);
-            if (rs.wasNull()) max_param.set(null);
-            else max_param.set(new Long(maxValue));
+            if (rs.wasNull())
+                max_param.set(null);
+            else
+                max_param.set(new Long(maxValue));
         } else {
 
             throw new SQLException("Data not found");
@@ -1433,8 +1458,10 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             String minValue = rs.getString(1);
-            if (rs.wasNull()) min_param.set(null);
-            else min_param.set(new Long(minValue));
+            if (rs.wasNull())
+                min_param.set(null);
+            else
+                min_param.set(new Long(minValue));
 
         } else {
 
@@ -1460,8 +1487,10 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             String nullValue = rs.getString(1);
-            if (rs.wasNull()) null_param.set(null);
-            else null_param.set(new Long(nullValue));
+            if (rs.wasNull())
+                null_param.set(null);
+            else
+                null_param.set(new Long(nullValue));
 
         } else {
 
@@ -1487,8 +1516,10 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             String nullValue = rs.getString(1);
-            if (rs.wasNull()) null_param.set(null);
-            else null_param.set(new Long(nullValue));
+            if (rs.wasNull())
+                null_param.set(null);
+            else
+                null_param.set(new Long(nullValue));
 
         } else {
 
@@ -1538,7 +1569,8 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             null_param.set(rs.getString(1));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -1587,7 +1619,8 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             null_param.set(rs.getString(1));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -1684,7 +1717,8 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             null_param.set(rs.getDate(1));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -1735,7 +1769,8 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             null_param.set(rs.getTime(1));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -1785,7 +1820,8 @@ public class PointbaseProcedures {
         if (rs.next()) {
 
             null_param.set(rs.getTimestamp(1));
-            if (rs.wasNull()) null_param.set(null);
+            if (rs.wasNull())
+                null_param.set(null);
         } else {
 
             throw new SQLException("Data not found");
@@ -2275,8 +2311,7 @@ public class PointbaseProcedures {
      * public void Bigint_In_Min (BigDecimal in_param) throws SQLException {
      *
      *
-     * PreparedStatement ps =
-     * con.prepareStatement("update Bigint_Tab set MIN_VAL=?");
+     * PreparedStatement ps = con.prepareStatement("update Bigint_Tab set MIN_VAL=?");
      *
      * ps.setLong(1,in_param.longValue()); ps.executeUpdate();
      *
@@ -2299,8 +2334,7 @@ public class PointbaseProcedures {
      * public void Bigint_In_Null (BigDecimal in_param) throws SQLException {
      *
      *
-     * PreparedStatement ps =
-     * con.prepareStatement("update Bigint_Tab set NULL_VAL=?");
+     * PreparedStatement ps = con.prepareStatement("update Bigint_Tab set NULL_VAL=?");
      *
      * ps.setLong(1,in_param.longValue()); ps.executeUpdate();
      *

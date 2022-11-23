@@ -44,28 +44,26 @@ public class FormatFilter implements Filter {
     private FilterConfig _config = null;
 
     /** Creates new FormatFilter */
-    public FormatFilter() {}
+    public FormatFilter() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * Called by the container to initialize this filter.
      *
-     * @param config
-     *          filter configuration.
+     * @param config filter configuration.
      */
     public void init(FilterConfig config) {
         _config = config;
     }
 
     /**
-     * When called by the container, the current request and response are wrapped
-     * by an instance of FormatRequestWrapper and FormatResponseWrapper
-     * respectively. Doing this allows the "logging" of certain events that must
-     * take place when using certain formatting actions.
+     * When called by the container, the current request and response are wrapped by an instance of FormatRequestWrapper and
+     * FormatResponseWrapper respectively. Doing this allows the "logging" of certain events that must take place when using
+     * certain formatting actions.
      */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {

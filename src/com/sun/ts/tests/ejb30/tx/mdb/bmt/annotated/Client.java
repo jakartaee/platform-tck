@@ -54,21 +54,17 @@ public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
 
     /*
      * @testName: test1
      *
-     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235; EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
      *
-     * @test_Strategy: use bean managed transaction annotation at type level The
-     * transaction is rolled back in bean's onMessage, so the client should not
-     * get any response from the bean. Note that this message should have been
-     * consumed by the bean, because the message receipt is not part of the
-     * transaction that has been rolled back.
+     * @test_Strategy: use bean managed transaction annotation at type level The transaction is rolled back in bean's
+     * onMessage, so the client should not get any response from the bean. Note that this message should have been consumed
+     * by the bean, because the message receipt is not part of the transaction that has been rolled back.
      */
     public void test1() throws Fault {
         sendReceiveNegative("test1", 0);

@@ -28,9 +28,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-@ServerEndpoint(
-        value = "/binarystreamencoder",
-        encoders = {ThrowingBinaryStreamEncoder.class})
+@ServerEndpoint(value = "/binarystreamencoder", encoders = { ThrowingBinaryStreamEncoder.class })
 public class WSCBinaryStreamEncoderServer {
 
     @OnMessage

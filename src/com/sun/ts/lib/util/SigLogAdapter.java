@@ -21,12 +21,10 @@
 package com.sun.ts.lib.util;
 
 /**
- * This class acts as an adapter between the logging API used in the API check
- * utility and the logginf API available in the CTS harness. The API check
- * utility uses a PrintWriter to log messages. The parts of the PrintWriter API
- * used by the API check utility will be translated to TestUtil calls in this
- * class. The SigLogIntf will capture the parts of the PrintWriter API that need
- * to be reimplemented so API check can fit into the CTS test framework.
+ * This class acts as an adapter between the logging API used in the API check utility and the logginf API available in
+ * the CTS harness. The API check utility uses a PrintWriter to log messages. The parts of the PrintWriter API used by
+ * the API check utility will be translated to TestUtil calls in this class. The SigLogIntf will capture the parts of
+ * the PrintWriter API that need to be reimplemented so API check can fit into the CTS test framework.
  */
 public class SigLogAdapter implements SigLogIntf {
 
@@ -71,7 +69,7 @@ public class SigLogAdapter implements SigLogIntf {
     }
 
     public void print(char c) {
-        char[] chars = new char[] {c};
+        char[] chars = new char[] { c };
         print(new String(chars));
     }
 

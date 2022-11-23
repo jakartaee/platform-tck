@@ -57,15 +57,12 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: staticFieldELResolverTest
      *
-     * @assertion_ids: EL:JAVADOC:330; EL:JAVADOC:331; EL:JAVADOC:332;
-     *                 EL:JAVADOC:335; EL:JAVADOC:338; EL:JAVADOC:341;
-     *                 EL:JAVADOC:343; EL:JAVADOC:346; EL:JAVADOC:189;
-     *                 EL:JAVADOC:204
+     * @assertion_ids: EL:JAVADOC:330; EL:JAVADOC:331; EL:JAVADOC:332; EL:JAVADOC:335; EL:JAVADOC:338; EL:JAVADOC:341;
+     * EL:JAVADOC:343; EL:JAVADOC:346; EL:JAVADOC:189; EL:JAVADOC:204
      *
      *
-     * @test_Strategy: Verify the following method calls work as expected:
-     *                 getValue() getType() setValue() isReadOnly()
-     *                 getCommonPropertyType() getFeatureDescriptors()
+     * @test_Strategy: Verify the following method calls work as expected: getValue() getType() setValue() isReadOnly()
+     * getCommonPropertyType() getFeatureDescriptors()
      */
     public void staticFieldELResolverTest() throws Fault {
         StringBuffer buf = new StringBuffer();
@@ -170,8 +167,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:339; EL:JAVADOC:189; EL:JAVADOC:204
      *
-     * @test_Strategy: Verify that the invoke() method throws
-     *                 MethodNotFoundException if no suitable method can be found.
+     * @test_Strategy: Verify that the invoke() method throws MethodNotFoundException if no suitable method can be found.
      */
     public void staticFieldResolverInvokeMNFETest() throws Fault {
         StringBuffer buf = new StringBuffer();
@@ -182,8 +178,8 @@ public class ELClient extends ServiceEETest {
         elm.addELResolver(resolver);
         ELContext context = elm.getELContext();
 
-        Class<?>[] types = {String.class, String.class};
-        String[] values = {"Doug", "Donahue"};
+        Class<?>[] types = { String.class, String.class };
+        String[] values = { "Doug", "Donahue" };
 
         try {
             pass = ResolverTest.testELResolverInvoke(
@@ -211,8 +207,7 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:338; EL:JAVADOC:189; EL:JAVADOC:204
      *
-     * @test_Strategy: Verify that API calls work as expected for
-     *                 BeanNameELResolver.invoke().
+     * @test_Strategy: Verify that API calls work as expected for BeanNameELResolver.invoke().
      */
     public void staticFieldELResolverInvokeTest() throws Fault {
         StringBuffer buf = new StringBuffer();
@@ -223,8 +218,8 @@ public class ELClient extends ServiceEETest {
         elm.addELResolver(resolver);
         ELContext context = elm.getELContext();
 
-        Class<?>[] types = {String.class};
-        String[] values = {"Ender"};
+        Class<?>[] types = { String.class };
+        String[] values = { "Ender" };
 
         try {
             pass = ResolverTest.testELResolverInvoke(
@@ -251,13 +246,11 @@ public class ELClient extends ServiceEETest {
     /**
      * @testName: staticFieldELResolverNPETest
      *
-     * @assertion_ids: EL:JAVADOC:333; EL:JAVADOC:336; EL:JAVADOC:342;
-     *                 EL:JAVADOC:344; EL:JAVADOC:189
+     * @assertion_ids: EL:JAVADOC:333; EL:JAVADOC:336; EL:JAVADOC:342; EL:JAVADOC:344; EL:JAVADOC:189
      *
-     * @test_Strategy: Verify that the following methods throw a
-     *                 NullPointerException, if context is null:
+     * @test_Strategy: Verify that the following methods throw a NullPointerException, if context is null:
      *
-     *                 getType() getValue() isReadOnly() setValue()
+     * getType() getValue() isReadOnly() setValue()
      */
     public void staticFieldELResolverNPETest() throws Fault {
         boolean pass = false;
@@ -286,10 +279,8 @@ public class ELClient extends ServiceEETest {
      *
      * @assertion_ids: EL:JAVADOC:334; EL:JAVADOC:337
      *
-     * @test_Strategy: Verify that the invoke() method throws
-     *                 PropertyNotFoundException the specified class does not
-     *                 exist, or if the field is not a public static filed of the
-     *                 class, or if the field is inaccessible.
+     * @test_Strategy: Verify that the invoke() method throws PropertyNotFoundException the specified class does not exist,
+     * or if the field is not a public static filed of the class, or if the field is inaccessible.
      */
     public void staticFieldResolverInvokePNFETest() throws Fault {
 

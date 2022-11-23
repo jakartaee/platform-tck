@@ -34,8 +34,7 @@ import java.util.Map;
 
 public class EntityManagerImpl implements jakarta.persistence.EntityManager {
     /**
-     * Store if this entity manager has been closed for test
-     * closeAfterCloseCausesISException
+     * Store if this entity manager has been closed for test closeAfterCloseCausesISException
      */
     protected boolean isOpen;
 
@@ -158,7 +157,8 @@ public class EntityManagerImpl implements jakarta.persistence.EntityManager {
     }
 
     @Override
-    public void detach(Object arg0) {}
+    public void detach(Object arg0) {
+    }
 
     @Override
     public <T> T find(Class<T> arg0, Object arg1) {
@@ -181,7 +181,8 @@ public class EntityManagerImpl implements jakarta.persistence.EntityManager {
     }
 
     @Override
-    public void flush() {}
+    public void flush() {
+    }
 
     @Override
     public CriteriaBuilder getCriteriaBuilder() {
@@ -244,13 +245,16 @@ public class EntityManagerImpl implements jakarta.persistence.EntityManager {
     }
 
     @Override
-    public void joinTransaction() {}
+    public void joinTransaction() {
+    }
 
     @Override
-    public void lock(Object arg0, LockModeType arg1) {}
+    public void lock(Object arg0, LockModeType arg1) {
+    }
 
     @Override
-    public void lock(Object arg0, LockModeType arg1, Map<String, Object> arg2) {}
+    public void lock(Object arg0, LockModeType arg1, Map<String, Object> arg2) {
+    }
 
     @Override
     public <T> T merge(T arg0) {
@@ -258,28 +262,36 @@ public class EntityManagerImpl implements jakarta.persistence.EntityManager {
     }
 
     @Override
-    public void persist(Object arg0) {}
+    public void persist(Object arg0) {
+    }
 
     @Override
-    public void refresh(Object arg0) {}
+    public void refresh(Object arg0) {
+    }
 
     @Override
-    public void refresh(Object arg0, Map<String, Object> arg1) {}
+    public void refresh(Object arg0, Map<String, Object> arg1) {
+    }
 
     @Override
-    public void refresh(Object arg0, LockModeType arg1) {}
+    public void refresh(Object arg0, LockModeType arg1) {
+    }
 
     @Override
-    public void refresh(Object arg0, LockModeType arg1, Map<String, Object> arg2) {}
+    public void refresh(Object arg0, LockModeType arg1, Map<String, Object> arg2) {
+    }
 
     @Override
-    public void remove(Object arg0) {}
+    public void remove(Object arg0) {
+    }
 
     @Override
-    public void setFlushMode(FlushModeType arg0) {}
+    public void setFlushMode(FlushModeType arg0) {
+    }
 
     @Override
-    public void setProperty(String arg0, Object arg1) {}
+    public void setProperty(String arg0, Object arg1) {
+    }
 
     @Override
     public <T> T unwrap(Class<T> arg0) {
@@ -306,8 +318,7 @@ public class EntityManagerImpl implements jakarta.persistence.EntityManager {
     }
 
     /**
-     * verify if this entity manager has been closed for test
-     * closeAfterCloseCausesISException
+     * verify if this entity manager has been closed for test closeAfterCloseCausesISException
      */
     public void verifyOpen() {
         if (!this.isOpen /* || !this.factory.isOpen() */) {

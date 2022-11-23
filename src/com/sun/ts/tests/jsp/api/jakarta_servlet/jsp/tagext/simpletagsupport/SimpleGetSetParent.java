@@ -41,8 +41,8 @@ public class SimpleGetSetParent extends SimpleTagSupport {
     }
 
     /**
-     * Validates that getParent() returns the expected result. This indirectly
-     * ensures that the container called setParent().
+     * Validates that getParent() returns the expected result. This indirectly ensures that the container called
+     * setParent().
      *
      * @throws JspException
      * @throws IOException

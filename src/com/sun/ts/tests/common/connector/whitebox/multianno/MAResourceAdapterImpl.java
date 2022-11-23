@@ -62,7 +62,8 @@ public class MAResourceAdapterImpl implements ResourceAdapter, Serializable {
                     myStart(bsc);
                 }
 
-                public void release() {}
+                public void release() {
+                }
             });
         } catch (jakarta.resource.spi.work.WorkException we) {
             throw new ResourceAdapterInternalException();
@@ -156,9 +157,11 @@ public class MAResourceAdapterImpl implements ResourceAdapter, Serializable {
             return false;
         }
 
-        if (!Util.isEqual(this.raName, that.getRaName())) return false;
+        if (!Util.isEqual(this.raName, that.getRaName()))
+            return false;
 
-        if (!Util.isEqual(this.overRide, that.getOverRide())) return false;
+        if (!Util.isEqual(this.overRide, that.getOverRide()))
+            return false;
 
         return true;
     }

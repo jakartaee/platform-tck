@@ -45,11 +45,9 @@ public class TestConstants {
 
     public static final String ADD_NUMBERS6_OUT_ACTION = "http://example.com/AddNumbersPortType/addNumbers6Response";
 
-    public static final String ADD_NUMBERS_ADDNUMBERS_ACTION =
-            "http://example.com/AddNumbersPortType/addNumbers/Fault/addFault";
+    public static final String ADD_NUMBERS_ADDNUMBERS_ACTION = "http://example.com/AddNumbersPortType/addNumbers/Fault/addFault";
 
-    public static final String ADD_NUMBERS_TOOBIGNUMBERS_ACTION =
-            "http://example.com/AddNumbersPortType/addNumbers/Fault/tooBigFault";
+    public static final String ADD_NUMBERS_TOOBIGNUMBERS_ACTION = "http://example.com/AddNumbersPortType/addNumbers/Fault/tooBigFault";
 
     public static final String ADD_NUMBERS2_ADDNUMBERS_ACTION = "add2fault";
 
@@ -57,16 +55,13 @@ public class TestConstants {
 
     public static final String ADD_NUMBERS3_ADDNUMBERS_ACTION = "add3fault";
 
-    public static final String ADD_NUMBERS3_TOOBIGNUMBERS_ACTION =
-            "http://example.com/AddNumbersPortType/addNumbers3/Fault/tooBig3Fault";
+    public static final String ADD_NUMBERS3_TOOBIGNUMBERS_ACTION = "http://example.com/AddNumbersPortType/addNumbers3/Fault/tooBig3Fault";
 
-    public static final String ADD_NUMBERS4_ADDNUMBERS_ACTION =
-            "http://example.com/AddNumbersPortType/addNumbers4/Fault/add4Fault";
+    public static final String ADD_NUMBERS4_ADDNUMBERS_ACTION = "http://example.com/AddNumbersPortType/addNumbers4/Fault/add4Fault";
 
     public static final String ADD_NUMBERS4_TOOBIGNUMBERS_ACTION = "toobig4fault";
 
     public static final String ADD_NUMBERS5_ADDNUMBERS_ACTION = "fault5";
 
-    public static final String ADD_NUMBERS6_ADDNUMBERS_ACTION =
-            "http://example.com/AddNumbersPortType/addNumbers6/Fault/add6Fault";
+    public static final String ADD_NUMBERS6_ADDNUMBERS_ACTION = "http://example.com/AddNumbersPortType/addNumbers6/Fault/add6Fault";
 }

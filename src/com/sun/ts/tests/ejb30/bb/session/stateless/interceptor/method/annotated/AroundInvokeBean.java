@@ -34,7 +34,7 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 @Stateless(name = "AroundInvokeBean")
-@Remote({AroundInvokeIF.class})
+@Remote({ AroundInvokeIF.class })
 // This bean must use cmt, since it uses setRollbackOnly
 @TransactionManagement(TransactionManagementType.CONTAINER)
 // @todo redundant implements
@@ -52,8 +52,7 @@ public class AroundInvokeBean extends AroundInvokeBase implements AroundInvokeIF
         TLogger.log("Creating AroundInvokeTestMDBImpl with: ejbContext="
                 + ejbContext + ";" + " bean=" + this + ", callerPrincipal="
                 + ejbContext.getCallerPrincipal());
-        AroundInvokeTestImpl helper =
-                new AroundInvokeTestImpl(this, getEJBContext().getCallerPrincipal());
+        AroundInvokeTestImpl helper = new AroundInvokeTestImpl(this, getEJBContext().getCallerPrincipal());
         return helper.intercept(ctx);
     }
 

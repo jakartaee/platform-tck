@@ -59,26 +59,17 @@ public class Client extends EETest {
 
     @Addressing
     @RespectBinding(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefrespbindandaddrcombtestport1",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestport1", type = Echo.class, value = EchoService.class)
     static Echo port1 = null;
 
     @Addressing(enabled = true, required = true)
     @RespectBinding(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefrespbindandaddrcombtestport2",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestport2", type = Echo.class, value = EchoService.class)
     static Echo port2 = null;
 
     @Addressing(enabled = false)
     @RespectBinding(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefrespbindandaddrcombtestport3",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestport3", type = Echo.class, value = EchoService.class)
     static Echo port3 = null;
 
     @WebServiceRef(name = "service/wsejbwsrefrespbindandaddrcombtestservice")
@@ -103,8 +94,10 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -140,13 +133,12 @@ public class Client extends EETest {
     /*
      * @testName: VerifyAddrHeadersExistForEnabledRequiredPort
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4004; WS4EE:SPEC:4015;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4004;
+     * WS4EE:SPEC:4015;
      *
-     * @test_Strategy: Verify Addressing Headers MUST exist on both SOAP request
-     * and SOAP response for appclient, servlet, and ejb containers. Addressing is
-     * Enabled/Required on client with RespectBinding equal true and the wsdl
-     * policy is enabled=true,required=true.
+     * @test_Strategy: Verify Addressing Headers MUST exist on both SOAP request and SOAP response for appclient, servlet,
+     * and ejb containers. Addressing is Enabled/Required on client with RespectBinding equal true and the wsdl policy is
+     * enabled=true,required=true.
      */
     public void VerifyAddrHeadersExistForEnabledRequiredPort() throws Fault {
         boolean pass = true;
@@ -180,7 +172,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
-            } else TestUtil.logMsg("Addressing Headers Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers Exist (Expected)");
         } catch (Exception e) {
             // TestUtil.printStackTrace(e);
             TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
@@ -195,25 +188,26 @@ public class Client extends EETest {
             if (!passEjb) {
                 TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
                 pass = false;
-            } else TestUtil.logMsg("Addressing Headers Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers Exist (Expected)");
         } catch (Exception e) {
             // TestUtil.printStackTrace(e);
             TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyAddrHeadersExistForEnabledRequiredPort failed");
+        if (!pass)
+            throw new Fault("VerifyAddrHeadersExistForEnabledRequiredPort failed");
     }
 
     /*
      * @testName: VerifyFaultConditionOnPort
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4004; WS4EE:SPEC:4015;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4004;
+     * WS4EE:SPEC:4015;
      *
-     * @test_Strategy: Verify SOAPFaultException case for appclient, servlet, and
-     * ejb containers. Addressing is Disabled on client with RespectBinding equal
-     * true and the wsdl policy is enabled=true,required=true. Expect a
-     * SOAPFaultException with MessageAddressingHeaderRequired fault code.
+     * @test_Strategy: Verify SOAPFaultException case for appclient, servlet, and ejb containers. Addressing is Disabled on
+     * client with RespectBinding equal true and the wsdl policy is enabled=true,required=true. Expect a SOAPFaultException
+     * with MessageAddressingHeaderRequired fault code.
      */
     public void VerifyFaultConditionOnPort() throws Fault {
         boolean pass = true;
@@ -274,7 +268,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("VerifyFaultCondition (Unexpected)");
-            } else TestUtil.logMsg("VerifyFaultCondition (Expected)");
+            } else
+                TestUtil.logMsg("VerifyFaultCondition (Expected)");
         } catch (Exception e) {
             // TestUtil.printStackTrace(e);
             TestUtil.logErr("Caught Exception: " + e.getMessage());
@@ -289,12 +284,14 @@ public class Client extends EETest {
             if (!passEjb) {
                 TestUtil.logErr("VerifyFaultCondition (Unexpected)");
                 pass = false;
-            } else TestUtil.logMsg("VerifyFaultCondition (Expected)");
+            } else
+                TestUtil.logMsg("VerifyFaultCondition (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Caught Exception: " + e.getMessage());
             // TestUtil.printStackTrace(e);
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyFaultConditionOnPort failed");
+        if (!pass)
+            throw new Fault("VerifyFaultConditionOnPort failed");
     }
 }

@@ -140,8 +140,10 @@ public abstract class BeanEJB implements EntityBean {
 
         Collection b1 = aOne.getB();
 
-        if (b1.isEmpty()) return true;
-        else return false;
+        if (b1.isEmpty())
+            return true;
+        else
+            return false;
     }
 
     public Collection getBInfoFromA() {
@@ -299,15 +301,15 @@ public abstract class BeanEJB implements EntityBean {
             setB1(b1);
 
             switch (flag) {
-                case NO_RELATION_SET:
-                    break;
-                case NULL_RELATION_SET:
-                    a1.setB(null);
-                    break;
-                case RELATION_SET:
-                    c = a1.getB();
-                    c.add(b1);
-                    break;
+            case NO_RELATION_SET:
+                break;
+            case NULL_RELATION_SET:
+                a1.setB(null);
+                break;
+            case RELATION_SET:
+                c = a1.getB();
+                c.add(b1);
+                break;
             }
 
         } catch (Exception e) {

@@ -31,15 +31,14 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * This validator will, loosely, validate that a jsp:plugin action does not
- * generate any output.
+ * This validator will, loosely, validate that a jsp:plugin action does not generate any output.
  */
 public class JspPluginValidator implements ValidationStrategy {
     private static final String NL = System.getProperty("line.separartor", "\n");
 
     /**
-     * A map to provided a relation ship between HTML spec'd attributes and the
-     * alternate attributes suggested by the Java Plugin documentation.
+     * A map to provided a relation ship between HTML spec'd attributes and the alternate attributes suggested by the Java
+     * Plugin documentation.
      */
     private static HashMap<String, String> attributeMap = new HashMap<String, String>();
 
@@ -54,12 +53,12 @@ public class JspPluginValidator implements ValidationStrategy {
     /**
      * Creates a new JspPluginValidator instance.
      */
-    public JspPluginValidator() {}
+    public JspPluginValidator() {
+    }
 
     /**
-     * Validates the response from the search using a string or series of strings
-     * obtained from the WebTestCase. The order and case of the Strings found in
-     * the response are not important.
+     * Validates the response from the search using a string or series of strings obtained from the WebTestCase. The order
+     * and case of the Strings found in the response are not important.
      *
      * @param testCase
      * @return
@@ -146,10 +145,8 @@ public class JspPluginValidator implements ValidationStrategy {
     /**
      * Scan the response for anything that the test doesn't expect.
      *
-     * @param response
-     *          - the server's response
-     * @param unexpectedSearchStrings
-     *          - a List of strings to search for
+     * @param response - the server's response
+     * @param unexpectedSearchStrings - a List of strings to search for
      * @return false if none of the strings are found or true on the first match
      */
     private static boolean scanForUnexpectedValues(String response, List<String> unexpectedSearchStrings) {
@@ -170,26 +167,20 @@ public class JspPluginValidator implements ValidationStrategy {
     }
 
     /**
-     * Scan the plugin attributes or other data aside from OBJECT or EMBED tags.
-     * The search works as follows: - If the search string doesn't contain an
-     * equal ('=') sign, then do an indexOf against the response body using the
-     * search string as the argument. - If the search string contains an equal
-     * ('=') sign, then tokenize the search string to get the name and the value.
-     * Check to see if the name token and the next token being checked are the
-     * same. If they are, set found to true. If they aren't the same, check to see
-     * if this name has an alternate name. If it does, use the altername name and
-     * check to see if it's equal to the current token. If they are, set found to
-     * true. - If found is false, then add the search string that couldn't be
-     * found to a list of search misses to be displayed after the loop completes.
+     * Scan the plugin attributes or other data aside from OBJECT or EMBED tags. The search works as follows: - If the
+     * search string doesn't contain an equal ('=') sign, then do an indexOf against the response body using the search
+     * string as the argument. - If the search string contains an equal ('=') sign, then tokenize the search string to get
+     * the name and the value. Check to see if the name token and the next token being checked are the same. If they are,
+     * set found to true. If they aren't the same, check to see if this name has an alternate name. If it does, use the
+     * altername name and check to see if it's equal to the current token. If they are, set found to true. - If found is
+     * false, then add the search string that couldn't be found to a list of search misses to be displayed after the loop
+     * completes.
      *
-     * @param response
-     *          - the server's response
-     * @param htmlTokens
-     *          - a tokenized version of the server's response
-     * @param searchStrings
-     *          - the strings to search for.
-     * @return a list containing the search strings that were not found. If all
-     *         search strings were found, then an empty list will be returned.
+     * @param response - the server's response
+     * @param htmlTokens - a tokenized version of the server's response
+     * @param searchStrings - the strings to search for.
+     * @return a list containing the search strings that were not found. If all search strings were found, then an empty
+     * list will be returned.
      */
     private static List<String> scanForExpectedValues(
             String response, String[] htmlTokens, List<String> searchStrings) {
@@ -233,14 +224,11 @@ public class JspPluginValidator implements ValidationStrategy {
     }
 
     /**
-     * Builds an array based of the StringTokenizer provided. If the method finds
-     * a sequence of tokens like: param name paramName value paramValue - or -
-     * param value paramValue name paramName It will not add the tokens 'param',
-     * 'name', or 'value', but will add the paramName and paraValue to the final
-     * token list (in that order).
+     * Builds an array based of the StringTokenizer provided. If the method finds a sequence of tokens like: param name
+     * paramName value paramValue - or - param value paramValue name paramName It will not add the tokens 'param', 'name',
+     * or 'value', but will add the paramName and paraValue to the final token list (in that order).
      *
-     * @param st
-     *          - the StringTokenizer to build the array from
+     * @param st - the StringTokenizer to build the array from
      * @return an array of String values based off the server's response
      */
     private static String[] prepareTokens(StringTokenizer st) {
@@ -270,8 +258,7 @@ public class JspPluginValidator implements ValidationStrategy {
     /**
      * Used for tokenizing the search strings configured by the test case.
      *
-     * @param nameValuePair
-     *          a search string in the format of 'name=value'
+     * @param nameValuePair a search string in the format of 'name=value'
      * @return a String array representation of the name value pair
      */
     private static String[] tokenizeNameValuePair(String nameValuePair) {
@@ -286,8 +273,7 @@ public class JspPluginValidator implements ValidationStrategy {
     /**
      * Returns the alternate attribute name for the provided name.
      *
-     * @param name
-     *          - the attribute name whose alternate name will be returned
+     * @param name - the attribute name whose alternate name will be returned
      * @return this name's alternate attribute name
      */
     private static String getAlternateAttributeName(String name) {
@@ -297,8 +283,7 @@ public class JspPluginValidator implements ValidationStrategy {
     /**
      * Determines if the provide name has an alternate name.
      *
-     * @param name
-     *          - the attribute name
+     * @param name - the attribute name
      * @return - true if the attribute name provided has an alternative.
      */
     private static boolean hasAlternateAttributeName(String name) {

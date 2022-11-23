@@ -29,8 +29,7 @@ import com.sun.ts.lib.util.TestUtil;
 import java.util.Properties;
 
 /**
- * The Utils class is used to hold common methods that can be used by various
- * JDBC tests.
+ * The Utils class is used to hold common methods that can be used by various JDBC tests.
  *
  * @author
  * @version 1
@@ -39,16 +38,12 @@ public class Utils extends ServiceEETest {
     private Properties props = null;
 
     /**
-     * This method is used to compare two floating point values for equality where
-     * equality does not mean EXACT equality, but instead means equal within a
-     * range where the range is specified by the passed in expectedUlp variable.
+     * This method is used to compare two floating point values for equality where equality does not mean EXACT equality,
+     * but instead means equal within a range where the range is specified by the passed in expectedUlp variable.
      *
-     * @param expected
-     *          - the 'golden' value we want to match
-     * @param obtained
-     *          - the value we are testing to see if it matches our expected value
-     * @return boolean True if expected and obtained are considered equal within a
-     *         range of some ulp value (expectedUlp).
+     * @param expected - the 'golden' value we want to match
+     * @param obtained - the value we are testing to see if it matches our expected value
+     * @return boolean True if expected and obtained are considered equal within a range of some ulp value (expectedUlp).
      */
     public static boolean isMatchingFloatingPointVal(Float expected, Double obtained) {
         return isMatchingFloatingPointVal(
@@ -56,16 +51,12 @@ public class Utils extends ServiceEETest {
     }
 
     /**
-     * This method is used to compare two floating point values for equality where
-     * equality does not mean EXACT equality, but instead means equal within a
-     * range where the range is specified by the passed in expectedUlp variable.
+     * This method is used to compare two floating point values for equality where equality does not mean EXACT equality,
+     * but instead means equal within a range where the range is specified by the passed in expectedUlp variable.
      *
-     * @param expected
-     *          - the 'golden' value we want to match
-     * @param obtained
-     *          - the value we are testing to see if it matches our expected value
-     * @return boolean True if expected and obtained are considered equal within a
-     *         range of some ulp value (expectedUlp).
+     * @param expected - the 'golden' value we want to match
+     * @param obtained - the value we are testing to see if it matches our expected value
+     * @return boolean True if expected and obtained are considered equal within a range of some ulp value (expectedUlp).
      */
     public static boolean isMatchingFloatingPointVal(Double expected, Float obtained) {
         return isMatchingFloatingPointVal(
@@ -73,16 +64,12 @@ public class Utils extends ServiceEETest {
     }
 
     /**
-     * This method is used to compare two floating point values for equality where
-     * equality does not mean EXACT equality, but instead means equal within a
-     * range where the range is specified by the passed in expectedUlp variable.
+     * This method is used to compare two floating point values for equality where equality does not mean EXACT equality,
+     * but instead means equal within a range where the range is specified by the passed in expectedUlp variable.
      *
-     * @param expected
-     *          - the 'golden' value we want to match
-     * @param obtained
-     *          - the value we are testing to see if it matches our expected value
-     * @return boolean True if expected and obtained are considered equal within a
-     *         range of some ulp value (expectedUlp).
+     * @param expected - the 'golden' value we want to match
+     * @param obtained - the value we are testing to see if it matches our expected value
+     * @return boolean True if expected and obtained are considered equal within a range of some ulp value (expectedUlp).
      */
     public static boolean isMatchingFloatingPointVal(Float expected, Float obtained) {
 
@@ -93,16 +80,12 @@ public class Utils extends ServiceEETest {
     }
 
     /**
-     * This method is used to compare two floating point values for equality where
-     * equality does not mean EXACT equality, but instead means equal within a
-     * range where the range is specified by the passed in expectedUlp variable.
+     * This method is used to compare two floating point values for equality where equality does not mean EXACT equality,
+     * but instead means equal within a range where the range is specified by the passed in expectedUlp variable.
      *
-     * @param expected
-     *          - the 'golden' value we want to match
-     * @param obtained
-     *          - the value we are testing to see if it matches our expected value
-     * @return boolean True if expected and obtained are considered equal within a
-     *         range of some ulp value (expectedUlp).
+     * @param expected - the 'golden' value we want to match
+     * @param obtained - the value we are testing to see if it matches our expected value
+     * @return boolean True if expected and obtained are considered equal within a range of some ulp value (expectedUlp).
      */
     public static boolean isMatchingFloatingPointVal(Double expected, Double obtained) {
 
@@ -113,21 +96,15 @@ public class Utils extends ServiceEETest {
     }
 
     /**
-     * This method is used to compare two floating point values for equality where
-     * equality does not mean EXACT equality, but instead means equal within a
-     * range where the range is specified by the passed in expectedUlp variable.
+     * This method is used to compare two floating point values for equality where equality does not mean EXACT equality,
+     * but instead means equal within a range where the range is specified by the passed in expectedUlp variable.
      *
-     * @param expected
-     *          - the 'golden' value we want to match
-     * @param obtained
-     *          - the value we are testing to see if it matches our expected value
-     * @param expectedUlp
-     *          - the 'ulp' (or margin of round off error) that we are allowed to
-     *          use in our comparisons such that if expected and obtained are
-     *          equal OR fall within a range of (+) or (-) expectedUlp of each
-     *          other then we are considered equal.
-     * @return boolean True if expected and obtained are considered equal within a
-     *         range of some ulp value (expectedUlp).
+     * @param expected - the 'golden' value we want to match
+     * @param obtained - the value we are testing to see if it matches our expected value
+     * @param expectedUlp - the 'ulp' (or margin of round off error) that we are allowed to use in our comparisons such that
+     * if expected and obtained are equal OR fall within a range of (+) or (-) expectedUlp of each other then we are
+     * considered equal.
+     * @return boolean True if expected and obtained are considered equal within a range of some ulp value (expectedUlp).
      */
     public static boolean isMatchingFloatingPointVal(Double expected, Double obtained, double expectedUlp) {
         boolean rval = false;
@@ -161,18 +138,14 @@ public class Utils extends ServiceEETest {
 
     /**
      * This method is taken from Joe Darcys floating point work in:
-     * /java/re/jdk/7/latest/ws/j2se/test/closed/java/lang/Math/Tests.java This
-     * method is doing the actual comparisons using an ulp value.
+     * /java/re/jdk/7/latest/ws/j2se/test/closed/java/lang/Math/Tests.java This method is doing the actual comparisons using
+     * an ulp value.
      *
-     * @param expected
-     *          - the 'golden' value we want to match
-     * @param result
-     *          - the value we are testing to see if it matches our expected value
-     * @param ulps
-     *          - the 'ulp' (or margin of round off error) that we are allowed to
-     *          use in our comparisons such that if expected and obtained are
-     *          equal OR fall within a range of (+) or (-) expectedUlp of each
-     *          other then we are considered equal.
+     * @param expected - the 'golden' value we want to match
+     * @param result - the value we are testing to see if it matches our expected value
+     * @param ulps - the 'ulp' (or margin of round off error) that we are allowed to use in our comparisons such that if
+     * expected and obtained are equal OR fall within a range of (+) or (-) expectedUlp of each other then we are considered
+     * equal.
      * @return 0 if the result and expected values are considered equal.
      */
     public static int testUlpCore(double result, double expected, double ulps) {

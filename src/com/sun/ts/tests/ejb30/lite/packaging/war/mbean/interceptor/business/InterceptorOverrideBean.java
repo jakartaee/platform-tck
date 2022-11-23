@@ -51,7 +51,7 @@ public class InterceptorOverrideBean extends InterceptorBeanBase implements Inte
     }
 
     @Override
-    @Interceptors({Interceptor1.class})
+    @Interceptors({ Interceptor1.class })
     // Interceptor1 is declared as a default interceptor in ejb-jar.xml, excluded
     // at class-level, and then reinstated as a method-level interceptor
     public void overrideBeanInterceptorMethod2(List<String> history) {

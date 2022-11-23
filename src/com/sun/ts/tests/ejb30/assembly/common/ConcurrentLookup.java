@@ -27,16 +27,16 @@ import java.util.Vector;
 import javax.naming.NamingException;
 
 /**
- * Multiple threads performing lookup of EJB and DataSource, and each thread has
- * its own instance of InitialContext. See glassfish issue
- * https://glassfish.dev.java.net/issues/show_bug.cgi?id=2672
+ * Multiple threads performing lookup of EJB and DataSource, and each thread has its own instance of InitialContext. See
+ * glassfish issue https://glassfish.dev.java.net/issues/show_bug.cgi?id=2672
  */
 public class ConcurrentLookup {
     private static final Integer DEFAULT_LOOKUP_COUNT = 10;
 
     private Vector lookupResults = new Vector();
 
-    public ConcurrentLookup() {}
+    public ConcurrentLookup() {
+    }
 
     public String concurrentLookup(String shortLookupName, Integer count) throws TestFailedException {
         if (count == null) {

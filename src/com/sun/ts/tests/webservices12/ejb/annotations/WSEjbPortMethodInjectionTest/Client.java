@@ -70,8 +70,10 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -81,7 +83,8 @@ public class Client extends EETest {
             if (pass) {
                 TestUtil.logMsg("Test port method injection");
                 TestUtil.logMsg("port=" + port);
-                if (port != null) JAXWS_Util.dumpTargetEndpointAddress(port);
+                if (port != null)
+                    JAXWS_Util.dumpTargetEndpointAddress(port);
             }
         } catch (Exception e) {
             throw new Fault("setup failed:", e);
@@ -105,21 +108,22 @@ public class Client extends EETest {
     /*
      * @testName: WSEjbPortMethodInjectionTest
      *
-     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42;
-     * WS4EE:SPEC:43; WS4EE:SPEC:44; WS4EE:SPEC:51; WS4EE:SPEC:109;
-     * WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155;
-     * WS4EE:SPEC:171; WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002;
-     * WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
+     * @assertion_ids: WS4EE:SPEC:37; WS4EE:SPEC:39; WS4EE:SPEC:41; WS4EE:SPEC:42; WS4EE:SPEC:43; WS4EE:SPEC:44;
+     * WS4EE:SPEC:51; WS4EE:SPEC:109; WS4EE:SPEC:145; WS4EE:SPEC:148; WS4EE:SPEC:149; WS4EE:SPEC:155; WS4EE:SPEC:171;
+     * WS4EE:SPEC:184; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:115; WS4EE:SPEC:213; WS4EE:SPEC:187;
      *
      * @test_Strategy: Test that port method injection works.
      */
     public void WSEjbPortMethodInjectionTest() throws Fault {
         TestUtil.logMsg("WSEjbPortMethodInjectionTest");
         try {
-            if (port == null) throw new RuntimeException("Port method injection failed: port=null");
+            if (port == null)
+                throw new RuntimeException("Port method injection failed: port=null");
             String txt = port.hello("Hello There!");
-            if (txt.equals("WebSvcTest-Hello Hello There!")) TestUtil.logMsg("WSEjbPortMethodInjectionTest passed");
-            else throw new RuntimeException("Msg returned from hello() incorrect");
+            if (txt.equals("WebSvcTest-Hello Hello There!"))
+                TestUtil.logMsg("WSEjbPortMethodInjectionTest passed");
+            else
+                throw new RuntimeException("Msg returned from hello() incorrect");
         } catch (Throwable t) {
             throw new Fault("WSEjbPortMethodInjectionTest failed");
         }

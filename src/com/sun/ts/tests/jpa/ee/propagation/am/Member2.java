@@ -37,7 +37,8 @@ public class Member2 implements java.io.Serializable {
 
     private BigInteger donation;
 
-    public Member2() {}
+    public Member2() {
+    }
 
     public Member2(int memberId, String memberName, boolean duesPaid) {
         this.memberId = memberId;

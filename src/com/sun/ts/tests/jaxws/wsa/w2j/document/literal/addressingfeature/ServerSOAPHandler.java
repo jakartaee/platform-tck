@@ -131,7 +131,8 @@ public class ServerSOAPHandler extends WsaBaseSOAPHandler {
         String testName = (String) context.get("test.name");
         TestUtil.logMsg("ServerSOAPHandler.getAction(): testName=" + testName);
         System.out.println("ServerSOAPHandler.getAction(): testName=" + testName);
-        if (testName == null) return super.getAction(context);
+        if (testName == null)
+            return super.getAction(context);
         /* Headers MAY be present on SOAPRequest */
         else if (testName.equals("ClientEnabledNotREQServerEnabledREQ")
                 || testName.equals("ClientEnabledNotREQServerEnabledNotREQ")
@@ -153,7 +154,8 @@ public class ServerSOAPHandler extends WsaBaseSOAPHandler {
             return super.getActionDoesNotExist(context);
         }
         /* Fault case just return null */
-        else return null;
+        else
+            return null;
     }
 
     protected String whichHandler() {

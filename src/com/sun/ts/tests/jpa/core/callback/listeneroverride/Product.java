@@ -33,7 +33,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "PRODUCT_TABLE")
 // @EntityListeners({ListenerB.class, ListenerC.class})
-@EntityListeners({ListenerC.class, ListenerB.class})
+@EntityListeners({ ListenerC.class, ListenerB.class })
 public class Product extends CallbackStatusImpl implements java.io.Serializable, CallbackStatusIF {
     private String id;
 

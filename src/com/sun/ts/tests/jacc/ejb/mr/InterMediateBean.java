@@ -37,11 +37,11 @@ import java.util.logging.Logger;
 // @Remote({InterMediate.class})
 
 // Set EJB References
-@EJBs({@EJB(name = "TargetBean", beanName = "TargetBean", beanInterface = Target.class)})
+@EJBs({ @EJB(name = "TargetBean", beanName = "TargetBean", beanInterface = Target.class) })
 @TransactionManagement(TransactionManagementType.CONTAINER)
-@DeclareRoles({"Administrator", "Employee", "Manager"})
+@DeclareRoles({ "Administrator", "Employee", "Manager" })
 @RunAs("Manager")
-@RolesAllowed({"Administrator", "Employee", "Manager"})
+@RolesAllowed({ "Administrator", "Employee", "Manager" })
 public class InterMediateBean implements InterMediate {
     // Lookup TargetBean and save the reference in ejb1
     @EJB(beanName = "TargetBean")
@@ -59,7 +59,7 @@ public class InterMediateBean implements InterMediate {
 
     private String password = "";
 
-    @RolesAllowed({"Administrator", "Employee", "Manager"})
+    @RolesAllowed({ "Administrator", "Employee", "Manager" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public void initLogging(java.util.Properties p) {
         logger = Helper.getLogger();
@@ -70,17 +70,19 @@ public class InterMediateBean implements InterMediate {
         sctx = sc;
     }
 
-    @RolesAllowed({"Administrator", "Employee", "Manager"})
+    @RolesAllowed({ "Administrator", "Employee", "Manager" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean IsCallerB1(String caller) {
         String name = sctx.getCallerPrincipal().getName();
         logMsg("IsCallerB1: " + name);
 
-        if (name.indexOf(caller) < 0) return false;
-        else return true;
+        if (name.indexOf(caller) < 0)
+            return false;
+        else
+            return true;
     }
 
-    @RolesAllowed({"Administrator", "Employee", "Manager"})
+    @RolesAllowed({ "Administrator", "Employee", "Manager" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean IsCallerB2(String caller, java.util.Properties p) {
         try {
@@ -94,7 +96,7 @@ public class InterMediateBean implements InterMediate {
         }
     }
 
-    @RolesAllowed({"Administrator", "Employee", "Manager"})
+    @RolesAllowed({ "Administrator", "Employee", "Manager" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean InRole(String role, java.util.Properties p) {
         try {
@@ -108,7 +110,7 @@ public class InterMediateBean implements InterMediate {
         }
     }
 
-    @RolesAllowed({"Administrator", "Employee", "Manager"})
+    @RolesAllowed({ "Administrator", "Employee", "Manager" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean EjbNotAuthz(java.util.Properties p) {
         try {
@@ -127,9 +129,10 @@ public class InterMediateBean implements InterMediate {
         }
     }
 
-    private void cleanup(Target ejbref) {}
+    private void cleanup(Target ejbref) {
+    }
 
-    @RolesAllowed({"Administrator", "Employee", "Manager"})
+    @RolesAllowed({ "Administrator", "Employee", "Manager" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean EjbIsAuthz(java.util.Properties p) {
         logMsg("In InterMediateBean.EjbIsAuthz method");
@@ -137,7 +140,8 @@ public class InterMediateBean implements InterMediate {
             // ejb1.initLogging(p);
             boolean result = ejb1.EjbIsAuthz();
 
-            if (!result) return false;
+            if (!result)
+                return false;
 
         } catch (Exception e) {
             logMsg("Caught Unexpected exception e.getMessage()");
@@ -146,7 +150,7 @@ public class InterMediateBean implements InterMediate {
         return true;
     }
 
-    @RolesAllowed({"Administrator", "Employee", "Manager"})
+    @RolesAllowed({ "Administrator", "Employee", "Manager" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean EjbSecRoleRef(String role, java.util.Properties p) {
         logMsg("In InterMediateBean.EjbSecRoleRef method");
@@ -154,7 +158,8 @@ public class InterMediateBean implements InterMediate {
             // ejb1.initLogging(p);
             boolean result = ejb1.EjbSecRoleRef(role);
 
-            if (!result) return false;
+            if (!result)
+                return false;
             return true;
         } catch (Exception e) {
             logMsg("Caught Unexpected exception e.getMessage()");
@@ -162,7 +167,7 @@ public class InterMediateBean implements InterMediate {
         }
     }
 
-    @RolesAllowed({"Administrator", "Employee", "Manager"})
+    @RolesAllowed({ "Administrator", "Employee", "Manager" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean uncheckedTest(java.util.Properties p) {
         logMsg("In InterMediateBean.uncheckedTest method");
@@ -176,7 +181,7 @@ public class InterMediateBean implements InterMediate {
         }
     }
 
-    @RolesAllowed({"Administrator", "Employee", "Manager"})
+    @RolesAllowed({ "Administrator", "Employee", "Manager" })
     @TransactionAttribute(TransactionAttributeType.NEVER)
     public boolean excludeTest(java.util.Properties p) {
         logMsg("In InterMediateBean.excludeTest method");

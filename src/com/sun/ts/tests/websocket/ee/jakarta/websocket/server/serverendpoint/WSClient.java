@@ -56,7 +56,7 @@ public class WSClient extends WebSocketCommonClient {
      * @test_Strategy: Default: ServerEndpointConfig.Configurator.class
      */
     public void getDefaultConfiguratorTest() throws Fault {
-        String[] sequence = {"default", "encoded", "decoded", "subprotocoled"};
+        String[] sequence = { "default", "encoded", "decoded", "subprotocoled" };
         invokeDefaults(sequence, "configurator", Configurator.class.getName());
     }
 
@@ -68,7 +68,7 @@ public class WSClient extends WebSocketCommonClient {
      * @test_Strategy: Default: {}
      */
     public void getDefaultEncodersTest() throws Fault {
-        String[] sequence = {"default", "configured", "decoded", "subprotocoled"};
+        String[] sequence = { "default", "configured", "decoded", "subprotocoled" };
         invokeDefaults(sequence, "encoders", "{}");
     }
 
@@ -80,7 +80,7 @@ public class WSClient extends WebSocketCommonClient {
      * @test_Strategy: Default: {}
      */
     public void getDefaultDecodersTest() throws Fault {
-        String[] sequence = {"default", "encoded", "configured", "subprotocoled"};
+        String[] sequence = { "default", "encoded", "configured", "subprotocoled" };
         invokeDefaults(sequence, "decoders", "{}");
     }
 
@@ -92,7 +92,7 @@ public class WSClient extends WebSocketCommonClient {
      * @test_Strategy: Default: {}
      */
     public void getDefaultSubprotocolsTest() throws Fault {
-        String[] sequence = {"default", "encoded", "configured", "decoded"};
+        String[] sequence = { "default", "encoded", "configured", "decoded" };
         invokeDefaults(sequence, "subprotocols", "{}");
     }
 
@@ -104,7 +104,7 @@ public class WSClient extends WebSocketCommonClient {
      * @test_Strategy: Default: {}
      */
     public void getDefaultValueTest() throws Fault {
-        String[] sequence = {"default", "encoded", "configured", "decoded", "subprotocoled"};
+        String[] sequence = { "default", "encoded", "configured", "decoded", "subprotocoled" };
         invokeValues(sequence, "value");
     }
 
@@ -113,8 +113,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:190;
      *
-     * @test_Strategy: The ordered array of encoder classes this endpoint will
-     * use.
+     * @test_Strategy: The ordered array of encoder classes this endpoint will use.
      */
     public void getEncodersTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest("encoded"));
@@ -131,8 +130,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:189;
      *
-     * @test_Strategy: The ordered array of decoder classes this endpoint will
-     * use.
+     * @test_Strategy: The ordered array of decoder classes this endpoint will use.
      */
     public void getDecodersTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest("decoded"));
@@ -149,8 +147,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:191;
      *
-     * @test_Strategy: The ordered array of web socket protocols this endpoint
-     * supports.
+     * @test_Strategy: The ordered array of web socket protocols this endpoint supports.
      */
     public void getSubprotocolsTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest("subprotocoled"));
@@ -166,8 +163,8 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:188;
      *
-     * @test_Strategy: The optional custom configurator class that the developer
-     * would like to use to further configure new instances of this endpoint.
+     * @test_Strategy: The optional custom configurator class that the developer would like to use to further configure new
+     * instances of this endpoint.
      */
     public void getConfiguratorTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest("configured"));
@@ -181,8 +178,7 @@ public class WSClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:JAVADOC:188;
      *
-     * @test_Strategy: The implementation creates a new instance of the
-     * configurator per logical endpoint.
+     * @test_Strategy: The implementation creates a new instance of the configurator per logical endpoint.
      */
     public void countConfigurationInstancesTest() throws Fault {
         setProperty(Property.REQUEST, buildRequest("countone"));

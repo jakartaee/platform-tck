@@ -39,8 +39,7 @@ public class BodyContentWriteOutTag extends BodyTagSupport {
      * Validates the behavior of BodyContent.writeOut().
      *
      * @return SKIP_BODY
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doAfterBody() throws JspException {
         JspTestUtil.debug("[BodyContentWriteOutTag] in doAfterBody()");

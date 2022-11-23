@@ -36,10 +36,7 @@ public abstract class ClientBase extends EETest implements Constants {
 
     protected Properties props;
 
-    @EJB(
-            name = "ejb/injected-EjbLink1Bean",
-            beanName = "one_ejb.jar#EjbLink1Bean",
-            description = "this one is not declared in descriptor")
+    @EJB(name = "ejb/injected-EjbLink1Bean", beanName = "one_ejb.jar#EjbLink1Bean", description = "this one is not declared in descriptor")
     private static EjbLinkIF injectedBean1;
 
     // 2 remote beans directly accessed by client
@@ -81,8 +78,8 @@ public abstract class ClientBase extends EETest implements Constants {
     }
 
     /**
-     * Removes all beans used in this client. It should only be used by sfsb,
-     * though other bean types may also have a remove business method.
+     * Removes all beans used in this client. It should only be used by sfsb, though other bean types may also have a remove
+     * business method.
      */
     protected void remove() {
         if (getBean1() != null) {
@@ -106,7 +103,8 @@ public abstract class ClientBase extends EETest implements Constants {
         }
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * testName: callBean1
@@ -181,9 +179,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: callBean2Bean1Local
      *
-     * @test_Strategy: bean1 packaged in jar1, bean2 and bean3 packaged in jar2.
-     * Bean2 should be able to locally access bean1. <ejb-local-ref> is declared
-     * in two_ejb.xml
+     * @test_Strategy: bean1 packaged in jar1, bean2 and bean3 packaged in jar2. Bean2 should be able to locally access
+     * bean1. <ejb-local-ref> is declared in two_ejb.xml
      *
      */
     public void callBean2Bean1Local() throws Fault {
@@ -197,8 +194,7 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: callInjectedBean1
      *
-     * @test_Strategy: inject bean1, using fully qualified bean name
-     * (<ejb-jar-name>#<bean-name>)
+     * @test_Strategy: inject bean1, using fully qualified bean name (<ejb-jar-name>#<bean-name>)
      *
      */
     public void callInjectedBean1() throws Fault {

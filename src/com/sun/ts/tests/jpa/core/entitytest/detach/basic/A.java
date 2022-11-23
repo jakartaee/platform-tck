@@ -77,8 +77,10 @@ public class A implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof A)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof A))
+            return false;
 
         A o1 = (A) o;
 

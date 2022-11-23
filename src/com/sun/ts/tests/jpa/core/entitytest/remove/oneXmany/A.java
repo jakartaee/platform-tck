@@ -68,10 +68,7 @@ public class A implements java.io.Serializable {
     // ===========================================================
     // relationship fields
 
-    @OneToMany(
-            targetEntity = com.sun.ts.tests.jpa.core.entitytest.remove.oneXmany.B.class,
-            mappedBy = "a1",
-            cascade = CascadeType.REMOVE)
+    @OneToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.remove.oneXmany.B.class, mappedBy = "a1", cascade = CascadeType.REMOVE)
     protected Collection bCol = new java.util.ArrayList();
 
     // =======================================================================

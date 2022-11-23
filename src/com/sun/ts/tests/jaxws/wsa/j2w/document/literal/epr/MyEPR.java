@@ -26,5 +26,6 @@ import com.sun.ts.lib.util.*;
 
 public class MyEPR extends jakarta.xml.ws.EndpointReference {
 
-    public void writeTo(javax.xml.transform.Result result) {}
+    public void writeTo(javax.xml.transform.Result result) {
+    }
 }

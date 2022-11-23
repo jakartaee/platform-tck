@@ -51,8 +51,7 @@ public class MDBClient extends Client {
     /*
      * Test setup:
      *
-     * @class.setup_props: jms_timeout, in milliseconds - how long to wait on
-     * synchronous receive; user; password;
+     * @class.setup_props: jms_timeout, in milliseconds - how long to wait on synchronous receive; user; password;
      */
     public void setup(String[] args, Properties p) throws Fault {
 
@@ -76,13 +75,11 @@ public class MDBClient extends Client {
     /*
      * @testName: Test1
      *
-     * @assertion_ids: JMS:SPEC:13; JMS:SPEC:129; JMS:SPEC:246.10;
-     * JMS:JAVADOC:371; EJB:SPEC:586.1; EJB:SPEC:586.1.1; EJB:SPEC:583.2;
-     * EJB:SPEC:583.2.1;
+     * @assertion_ids: JMS:SPEC:13; JMS:SPEC:129; JMS:SPEC:246.10; JMS:JAVADOC:371; EJB:SPEC:586.1; EJB:SPEC:586.1.1;
+     * EJB:SPEC:583.2; EJB:SPEC:583.2.1;
      *
-     * @test_Strategy: Send a test message to a container managed queue. The mdb
-     * tests if this is the first time this message was received by checking the
-     * JMSRedelivered flag. Rollback the msg. Second time the msg is received is a
+     * @test_Strategy: Send a test message to a container managed queue. The mdb tests if this is the first time this
+     * message was received by checking the JMSRedelivered flag. Rollback the msg. Second time the msg is received is a
      * pass! If the message is not requeued and received again this is a failure.
      */
 
@@ -111,15 +108,12 @@ public class MDBClient extends Client {
     /*
      * @testName: Test2
      *
-     * @assertion_ids: EJB:SPEC:586.1; EJB:SPEC:586.1.1; EJB:SPEC:583.2;
-     * EJB:SPEC:583.2.1; JMS:SPEC:13; JMS:SPEC:129; JMS:SPEC:246.10;
-     * JMS:JAVADOC:371;
+     * @assertion_ids: EJB:SPEC:586.1; EJB:SPEC:586.1.1; EJB:SPEC:583.2; EJB:SPEC:583.2.1; JMS:SPEC:13; JMS:SPEC:129;
+     * JMS:SPEC:246.10; JMS:JAVADOC:371;
      *
-     * @test_Strategy: Send a test message to a container managed topic. The mdb
-     * tests if this is the first time this message was received by checking the
-     * JMSRedelivered flag. Send a msg, rollback. Second time the msg is received
-     * is a pass! If the message is not requeued and received again this is a
-     * failure.
+     * @test_Strategy: Send a test message to a container managed topic. The mdb tests if this is the first time this
+     * message was received by checking the JMSRedelivered flag. Send a msg, rollback. Second time the msg is received is a
+     * pass! If the message is not requeued and received again this is a failure.
      */
     public void Test2() throws Fault {
         String TestCase = "xaTest2";
@@ -148,9 +142,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:509; EJB:SPEC:510;
      *
-     * @test_Strategy: Send a test message to a container managed queue. Check
-     * rollback status with getRollbackOnly Should be false for not set for
-     * rollback! If not test fails
+     * @test_Strategy: Send a test message to a container managed queue. Check rollback status with getRollbackOnly Should
+     * be false for not set for rollback! If not test fails
      *
      */
     public void Test3() throws Fault {
@@ -178,8 +171,7 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:511;
      *
-     * @test_Strategy: Send a test message to a bean managed queue. Check the
-     * transaction status.
+     * @test_Strategy: Send a test message to a bean managed queue. Check the transaction status.
      *
      */
     public void Test4() throws Fault {
@@ -208,9 +200,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:543; EJB:SPEC:543.1;
      *
-     * @test_Strategy: Invoke an bmt mdb by writing to MDB_QUEUE_BMT. mdb begins a
-     * transaction, sends a msg to MDB_QUEUE. mdb commits. Verify that MDB_QUEUE
-     * has the msg sent. .
+     * @test_Strategy: Invoke an bmt mdb by writing to MDB_QUEUE_BMT. mdb begins a transaction, sends a msg to MDB_QUEUE.
+     * mdb commits. Verify that MDB_QUEUE has the msg sent. .
      *
      */
     public void Test5() throws Fault {
@@ -239,9 +230,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:543; EJB:SPEC:543.1;
      *
-     * @test_Strategy: Invoke an bmt mdb by writing to MDB_DURABLE_BMT. mdb begins
-     * a transaction, sends a msg to MDB_QUEUE_REPLY. mdb commits. Verify that
-     * MDB_QUEUE_REPLY has the msg sent.
+     * @test_Strategy: Invoke an bmt mdb by writing to MDB_DURABLE_BMT. mdb begins a transaction, sends a msg to
+     * MDB_QUEUE_REPLY. mdb commits. Verify that MDB_QUEUE_REPLY has the msg sent.
      *
      */
     public void Test6() throws Fault {
@@ -267,14 +257,12 @@ public class MDBClient extends Client {
     /*
      * @testName: Test7
      *
-     * @assertion_ids: JMS:SPEC:13; JMS:SPEC:129; JMS:SPEC:246.10;
-     * JMS:JAVADOC:371; EJB:SPEC:586.1; EJB:SPEC:586.1.1; EJB:SPEC:583.2;
-     * EJB:SPEC:583.2.1;
+     * @assertion_ids: JMS:SPEC:13; JMS:SPEC:129; JMS:SPEC:246.10; JMS:JAVADOC:371; EJB:SPEC:586.1; EJB:SPEC:586.1.1;
+     * EJB:SPEC:583.2; EJB:SPEC:583.2.1;
      *
-     * @test_Strategy: Send a test message to a container managed topic. The mdb
-     * tests if this is the first time this message was received by checking the
-     * JMSRedelivered flag. Second time the msg is received is a a pass! If the
-     * message is not requeued and received again this is a failure.
+     * @test_Strategy: Send a test message to a container managed topic. The mdb tests if this is the first time this
+     * message was received by checking the JMSRedelivered flag. Second time the msg is received is a a pass! If the message
+     * is not requeued and received again this is a failure.
      */
     public void Test7() throws Fault {
         String TestCase = "xaTest7";
@@ -303,9 +291,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:547.2;
      *
-     * @test_Strategy: Invoke an bmt mdb by writing to MDB_QUEUE_BMT. mdb begins a
-     * transaction, sends a msg to MDB_QUEUE. then rollsback. Verify the 2nd msg
-     * is received.
+     * @test_Strategy: Invoke an bmt mdb by writing to MDB_QUEUE_BMT. mdb begins a transaction, sends a msg to MDB_QUEUE.
+     * then rollsback. Verify the 2nd msg is received.
      *
      *
      */
@@ -335,9 +322,8 @@ public class MDBClient extends Client {
      *
      * @assertion_ids: EJB:SPEC:547.2;
      *
-     * @test_Strategy: Invoke an bmt mdb by writing to MDB_DURABLE_BMT. mdb begins
-     * a transaction, sends a msg to MDB_QUEUE_REPLY. then rollsback. Send msg and
-     * commits. Verify the 2nd msg is received.
+     * @test_Strategy: Invoke an bmt mdb by writing to MDB_DURABLE_BMT. mdb begins a transaction, sends a msg to
+     * MDB_QUEUE_REPLY. then rollsback. Send msg and commits. Verify the 2nd msg is received.
      *
      *
      */
@@ -365,14 +351,12 @@ public class MDBClient extends Client {
     /*
      * @testName: Test10
      *
-     * @assertion_ids: JMS:SPEC:13; JMS:SPEC:129; JMS:SPEC:246.10;
-     * JMS:JAVADOC:371; EJB:SPEC:586.1; EJB:SPEC:586.1.1; EJB:SPEC:583.2;
-     * EJB:SPEC:583.2.1;
+     * @assertion_ids: JMS:SPEC:13; JMS:SPEC:129; JMS:SPEC:246.10; JMS:JAVADOC:371; EJB:SPEC:586.1; EJB:SPEC:586.1.1;
+     * EJB:SPEC:583.2; EJB:SPEC:583.2.1;
      *
-     * @test_Strategy: Send a test message to a container managed queue. The mdb
-     * tests if this is the first time this message was received by checking the
-     * JMSRedelivered flag. Send a msg, rollback. send a second message, pass if
-     * 2nd msg received.
+     * @test_Strategy: Send a test message to a container managed queue. The mdb tests if this is the first time this
+     * message was received by checking the JMSRedelivered flag. Send a msg, rollback. send a second message, pass if 2nd
+     * msg received.
      *
      *
      */

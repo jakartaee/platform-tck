@@ -23,4 +23,5 @@ package com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean;
 import jakarta.ejb.Local;
 
 @Local
-public interface CSingletonIF extends CommonSingletonIF {}
+public interface CSingletonIF extends CommonSingletonIF {
+}

@@ -22,12 +22,7 @@ package com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R273X;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "W2JRLR273XTest2Port",
-        serviceName = "W2JRLR273XTestService",
-        targetNamespace = "http://w2jrlr273Xtestservice.org/W2JRLR273XTestService.wsdl",
-        wsdlLocation = "WEB-INF/wsdl/W2JRLR273XTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R273X.W2JRLR273XTest2")
+@WebService(portName = "W2JRLR273XTest2Port", serviceName = "W2JRLR273XTestService", targetNamespace = "http://w2jrlr273Xtestservice.org/W2JRLR273XTestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JRLR273XTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R273X.W2JRLR273XTest2")
 public class W2JRLR273XTest2Impl implements W2JRLR273XTest2 {
     public FooBar echoFooBar(FooBar fb) {
         return fb;

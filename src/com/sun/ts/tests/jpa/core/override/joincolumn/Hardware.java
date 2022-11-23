@@ -33,15 +33,16 @@ public class Hardware implements Serializable {
 
     @ManyToOne()
     @JoinColumns({
-        @JoinColumn(name = "cubedID", referencedColumnName = "id"),
-        @JoinColumn(name = "location", referencedColumnName = "location")
+            @JoinColumn(name = "cubedID", referencedColumnName = "id"),
+            @JoinColumn(name = "location", referencedColumnName = "location")
     })
     private Cubicle cubicle;
 
     @Column(name = "CODE")
     private String salesCode;
 
-    public Hardware() {}
+    public Hardware() {
+    }
 
     public Cubicle getCubicle() {
         return cubicle;

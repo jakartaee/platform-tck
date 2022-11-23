@@ -152,8 +152,10 @@ public class MyJsonProvider extends JsonProvider {
     public JsonParser createParser(InputStream in) {
         TestUtil.logTrace("public JsonParser createParser(InputStream)");
         addCalls("public JsonParser createParser(InputStream)");
-        if (in == null) throw exception;
-        else return new MyJsonParser(in);
+        if (in == null)
+            throw exception;
+        else
+            return new MyJsonParser(in);
     }
 
     @Override

@@ -25,7 +25,8 @@ import jakarta.ejb.TransactionAttributeType;
 
 public abstract class FBeanBase implements TxRemoteIF, TxLocalIF {
 
-    public FBeanBase() {}
+    public FBeanBase() {
+    }
 
     @TransactionAttribute(TransactionAttributeType.MANDATORY)
     public String foo() {

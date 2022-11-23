@@ -29,7 +29,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -63,8 +64,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -101,8 +101,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -141,8 +140,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -181,8 +179,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -221,8 +218,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -263,8 +259,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -305,8 +300,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -348,8 +342,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -389,8 +382,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -431,8 +423,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -473,8 +464,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -519,8 +509,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(
@@ -564,8 +553,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            ManagedType<B> mTypeB =
-                    metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
+            ManagedType<B> mTypeB = metaModel.managedType(com.sun.ts.tests.jpa.core.metamodelapi.singularattribute.B.class);
             if (mTypeB != null) {
                 TestUtil.logTrace("Obtained Non-null ManagedType");
                 SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute(

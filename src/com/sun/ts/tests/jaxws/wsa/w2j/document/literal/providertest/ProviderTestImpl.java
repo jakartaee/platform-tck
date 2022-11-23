@@ -31,11 +31,7 @@ import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamSource;
 
-@WebServiceProvider(
-        serviceName = "ProviderTestService",
-        portName = "ProviderTestPort",
-        targetNamespace = "http://providertestservice.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/ProviderTestService.wsdl")
+@WebServiceProvider(serviceName = "ProviderTestService", portName = "ProviderTestPort", targetNamespace = "http://providertestservice.org/wsdl", wsdlLocation = "WEB-INF/wsdl/ProviderTestService.wsdl")
 @BindingType(value = "http://schemas.xmlsoap.org/wsdl/soap/http")
 @Addressing(enabled = true)
 @MTOM(enabled = true)

@@ -38,8 +38,8 @@ public class XMLLangHandler implements SOAPHandler<SOAPMessageContext> {
         return new HashSet<QName>();
     }
 
-    public void init(java.util.Map<String, Object> config) {}
-    ;
+    public void init(java.util.Map<String, Object> config) {
+    };
 
     public boolean handleFault(SOAPMessageContext context) {
         System.out.println("HANDLER: XMLLangHandler.handleFault() BEGIN");
@@ -56,14 +56,13 @@ public class XMLLangHandler implements SOAPHandler<SOAPMessageContext> {
         }
         System.out.println("HANDLER: XMLLangHandler.handleFault() END");
         return true;
-    }
-    ;
+    };
 
-    public void destroy() {}
-    ;
+    public void destroy() {
+    };
 
-    public void close(MessageContext context) {}
-    ;
+    public void close(MessageContext context) {
+    };
 
     public boolean handleMessage(SOAPMessageContext context) {
         if (Handler_Util.getDirection(context).equals(Constants.OUTBOUND)) {
@@ -77,9 +76,9 @@ public class XMLLangHandler implements SOAPHandler<SOAPMessageContext> {
     private void addXMLLangAttribute(SOAPMessageContext context) throws SOAPException {
 
         Iterator children;
-        SOAPElement fault =
-                context.getMessage().getSOAPPart().getEnvelope().getBody().getFault();
-        if (fault == null) return;
+        SOAPElement fault = context.getMessage().getSOAPPart().getEnvelope().getBody().getFault();
+        if (fault == null)
+            return;
         children = fault.getChildElements();
         SOAPElement child;
         while (children.hasNext()) {

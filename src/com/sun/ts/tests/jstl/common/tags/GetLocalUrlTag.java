@@ -43,15 +43,13 @@ public class GetLocalUrlTag extends jakarta.servlet.jsp.tagext.TagSupport {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * Sets the name of the exported variable.
      *
-     * @param var
-     *          variable name to associate the URL result with.
+     * @param var variable name to associate the URL result with.
      */
     public void setVar(String var) {
         _var = var;
@@ -60,16 +58,14 @@ public class GetLocalUrlTag extends jakarta.servlet.jsp.tagext.TagSupport {
     /**
      * Sets the path of the requested resource.
      *
-     * @param path
-     *          Path of the requested resource.
+     * @param path Path of the requested resource.
      */
     public void setPath(String path) {
         _path = path;
     }
 
     /**
-     * Creates a new URL based on the server where the tag is running and the path
-     * as specified by the user.
+     * Creates a new URL based on the server where the tag is running and the path as specified by the user.
      *
      * @return EVAL_PAGE
      */

@@ -22,12 +22,7 @@ package com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709;
 
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "W2JDLR2709TestPort",
-        serviceName = "W2JDLR2709TestService",
-        targetNamespace = "http://w2jdlr2709testservice.org/W2JDLR2709TestService.wsdl",
-        wsdlLocation = "WEB-INF/wsdl/W2JDLR2709TestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709.W2JDLR2709Test")
+@WebService(portName = "W2JDLR2709TestPort", serviceName = "W2JDLR2709TestService", targetNamespace = "http://w2jdlr2709testservice.org/W2JDLR2709TestService.wsdl", wsdlLocation = "WEB-INF/wsdl/W2JDLR2709TestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709.W2JDLR2709Test")
 public class W2JDLR2709TestImpl implements W2JDLR2709Test {
     public String echoString(String str) {
         return str;

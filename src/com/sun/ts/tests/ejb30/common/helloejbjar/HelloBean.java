@@ -33,5 +33,6 @@ public class HelloBean extends HelloBeanBase implements HelloRemoteIF, HelloLoca
 
     // implement 2 intf are needed so appserver can infer its remote and local
     // intf.
-    public HelloBean() {}
+    public HelloBean() {
+    }
 }

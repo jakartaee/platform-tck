@@ -88,23 +88,19 @@ public class Client extends ServiceEETest {
 
     static AddNumbersService service = null;
 
-    String invalidCardinality =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><Action xmlns=\"http://www.w3.org/2005/08/addressing\">inputAction</Action><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{3}</Address></ReplyTo></S:Header><S:Body><ns1:addNumbers2 xmlns:ns1=\"http://example.com\"><number1>10</number1><number2>10</number2><testName>invalidCardinality</testName></ns1:addNumbers2></S:Body></S:Envelope>";
+    String invalidCardinality = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><Action xmlns=\"http://www.w3.org/2005/08/addressing\">inputAction</Action><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{3}</Address></ReplyTo></S:Header><S:Body><ns1:addNumbers2 xmlns:ns1=\"http://example.com\"><number1>10</number1><number2>10</number2><testName>invalidCardinality</testName></ns1:addNumbers2></S:Body></S:Envelope>";
 
-    String actionMismatch =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><Action xmlns=\"http://www.w3.org/2005/08/addressing\">inputAction</Action><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo></S:Header><S:Body><ns1:addNumbers2 xmlns:ns1=\"http://example.com\"><number1>10</number1><number2>10</number2><testName>actionMismatch</testName></ns1:addNumbers2></S:Body></S:Envelope>";
+    String actionMismatch = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><Action xmlns=\"http://www.w3.org/2005/08/addressing\">inputAction</Action><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo></S:Header><S:Body><ns1:addNumbers2 xmlns:ns1=\"http://example.com\"><number1>10</number1><number2>10</number2><testName>actionMismatch</testName></ns1:addNumbers2></S:Body></S:Envelope>";
 
-    String actionNotSupported =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><Action xmlns=\"http://www.w3.org/2005/08/addressing\">ActionNotSupported</Action><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo></S:Header><S:Body><ns1:addNumbers2 xmlns:ns1=\"http://example.com\"><number1>10</number1><number2>10</number2><testName>actionNotSupported</testName></ns1:addNumbers2></S:Body></S:Envelope>";
+    String actionNotSupported = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><Action xmlns=\"http://www.w3.org/2005/08/addressing\">ActionNotSupported</Action><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo></S:Header><S:Body><ns1:addNumbers2 xmlns:ns1=\"http://example.com\"><number1>10</number1><number2>10</number2><testName>actionNotSupported</testName></ns1:addNumbers2></S:Body></S:Envelope>";
 
-    String missingActionHeader =
-            "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo></S:Header><S:Body><ns1:addNumbers2 xmlns:ns1=\"http://example.com\"><number1>10</number1><number2>10</number2><testName>missingActionHeader</testName></ns1:addNumbers2></S:Body></S:Envelope>";
+    String missingActionHeader = "<?xml version=\"1.0\" ?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\"><S:Header><To xmlns=\"http://www.w3.org/2005/08/addressing\">{0}</To><MessageID xmlns=\"http://www.w3.org/2005/08/addressing\">uuid:{1}</MessageID><ReplyTo xmlns=\"http://www.w3.org/2005/08/addressing\"><Address>{2}</Address></ReplyTo></S:Header><S:Body><ns1:addNumbers2 xmlns:ns1=\"http://example.com\"><number1>10</number1><number2>10</number2><testName>missingActionHeader</testName></ns1:addNumbers2></S:Body></S:Envelope>";
 
     private static AddressingFeature ENABLED_ADDRESSING_FEATURE = new AddressingFeature(true, true);
 
     private static AddressingFeature DISABLED_ADDRESSING_FEATURE = new AddressingFeature(false);
 
-    private WebServiceFeature[] enabledRequiredwsf = {ENABLED_ADDRESSING_FEATURE};
+    private WebServiceFeature[] enabledRequiredwsf = { ENABLED_ADDRESSING_FEATURE };
 
     private Dispatch<SOAPMessage> createDispatchSOAPMessage(QName port) throws Exception {
         return service.createDispatch(
@@ -161,8 +157,10 @@ public class Client extends ServiceEETest {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -201,15 +199,12 @@ public class Client extends ServiceEETest {
     /*
      * @testName: testDefaultRequestResponseAction
      *
-     * @assertion_ids: WSACORE:SPEC:2001; WSACORE:SPEC:3002; WSACORE:SPEC:3003;
-     * WSACORE:SPEC:3003.1; WSACORE:SPEC:3003.2; WSACORE:SPEC:3003.3;
-     * WSACORE:SPEC:3005; WSACORE:SPEC:3007; WSACORE:SPEC:3009; WSACORE:SPEC:3010;
-     * WSACORE:SPEC:3010.1; WSACORE:SPEC:3010.2; WSACORE:SPEC:3017;
-     * WSACORE:SPEC:3022; WSACORE:SPEC:3022.2; WSACORE:SPEC:3022.2.1;
-     * WSACORE:SPEC:3002.2.2; WSACORE:SPEC:3023; WSACORE:SPEC:3023.1;
-     * WSACORE:SPEC:3023.1.1; WSACORE:SPEC:3023.1.2; WSACORE:SPEC:3023.4;
-     * WSACORE:SPEC:3023.4.1; WSASB:SPEC:5000; WSASB:SPEC:6000; WSAMD:SPEC:4001;
-     * WSAMD:SPEC:4001.1; WSAMD:SPEC:5001;
+     * @assertion_ids: WSACORE:SPEC:2001; WSACORE:SPEC:3002; WSACORE:SPEC:3003; WSACORE:SPEC:3003.1; WSACORE:SPEC:3003.2;
+     * WSACORE:SPEC:3003.3; WSACORE:SPEC:3005; WSACORE:SPEC:3007; WSACORE:SPEC:3009; WSACORE:SPEC:3010; WSACORE:SPEC:3010.1;
+     * WSACORE:SPEC:3010.2; WSACORE:SPEC:3017; WSACORE:SPEC:3022; WSACORE:SPEC:3022.2; WSACORE:SPEC:3022.2.1;
+     * WSACORE:SPEC:3002.2.2; WSACORE:SPEC:3023; WSACORE:SPEC:3023.1; WSACORE:SPEC:3023.1.1; WSACORE:SPEC:3023.1.2;
+     * WSACORE:SPEC:3023.4; WSACORE:SPEC:3023.4.1; WSASB:SPEC:5000; WSASB:SPEC:6000; WSAMD:SPEC:4001; WSAMD:SPEC:4001.1;
+     * WSAMD:SPEC:5001;
      *
      * @test_Strategy: Test default action pattern for WSDL input/output
      *
@@ -227,20 +222,18 @@ public class Client extends ServiceEETest {
             throw new Fault("testDefaultRequestResponseAction failed", e);
         }
 
-        if (!pass) throw new Fault("testDefaultRequestResponseAction failed");
+        if (!pass)
+            throw new Fault("testDefaultRequestResponseAction failed");
     }
 
     /*
      * @testName: testExplicitRequestResponseAction
      *
-     * @assertion_ids: WSACORE:SPEC:2001; WSACORE:SPEC:3002; WSACORE:SPEC:3003;
-     * WSACORE:SPEC:3003.1; WSACORE:SPEC:3003.2; WSACORE:SPEC:3003.3;
-     * WSACORE:SPEC:3005; WSACORE:SPEC:3007; WSACORE:SPEC:3009; WSACORE:SPEC:3010;
-     * WSACORE:SPEC:3010.1; WSACORE:SPEC:3010.2; WSACORE:SPEC:3017;
-     * WSACORE:SPEC:3022; WSACORE:SPEC:3022.2; WSACORE:SPEC:3022.2.1;
-     * WSACORE:SPEC:3002.2.2; WSACORE:SPEC:3023; WSACORE:SPEC:3023.1;
-     * WSACORE:SPEC:3023.1.1; WSACORE:SPEC:3023.1.2; WSACORE:SPEC:3023.4;
-     * WSACORE:SPEC:3023.4.1; WSASB:SPEC:5000; WSASB:SPEC:6000;
+     * @assertion_ids: WSACORE:SPEC:2001; WSACORE:SPEC:3002; WSACORE:SPEC:3003; WSACORE:SPEC:3003.1; WSACORE:SPEC:3003.2;
+     * WSACORE:SPEC:3003.3; WSACORE:SPEC:3005; WSACORE:SPEC:3007; WSACORE:SPEC:3009; WSACORE:SPEC:3010; WSACORE:SPEC:3010.1;
+     * WSACORE:SPEC:3010.2; WSACORE:SPEC:3017; WSACORE:SPEC:3022; WSACORE:SPEC:3022.2; WSACORE:SPEC:3022.2.1;
+     * WSACORE:SPEC:3002.2.2; WSACORE:SPEC:3023; WSACORE:SPEC:3023.1; WSACORE:SPEC:3023.1.1; WSACORE:SPEC:3023.1.2;
+     * WSACORE:SPEC:3023.4; WSACORE:SPEC:3023.4.1; WSASB:SPEC:5000; WSASB:SPEC:6000;
      *
      * @test_Strategy: Test explicit action pattern for WSDL input/output
      *
@@ -258,19 +251,18 @@ public class Client extends ServiceEETest {
             throw new Fault("testExplicitRequestResponseAction failed", e);
         }
 
-        if (!pass) throw new Fault("testExplicitRequestResponseAction failed");
+        if (!pass)
+            throw new Fault("testExplicitRequestResponseAction failed");
     }
 
     /*
      * @testName: testMessageAddressingHeaderRequiredFault
      *
-     * @assertion_ids: WSASB:SPEC:6005; WSASB:SPEC:6006; WSASB:SPEC:6013;
-     * WSASB:SPEC:6004.4; WSASB:SPEC:6004.1; WSASB:SPEC:6004.2; WSASB:SPEC:6001;
+     * @assertion_ids: WSASB:SPEC:6005; WSASB:SPEC:6006; WSASB:SPEC:6013; WSASB:SPEC:6004.4; WSASB:SPEC:6004.1;
+     * WSASB:SPEC:6004.2; WSASB:SPEC:6001;
      *
-     * @test_Strategy: Send a message that doesn't contain wsa:Action header.
-     * Expect MessageAddressingHeaderRequired fault. Cannot test missing wsa:To,
-     * wsa:ReplyTo, or wsa:MessageID headers as these are optional in WSA Core
-     * Spec.
+     * @test_Strategy: Send a message that doesn't contain wsa:Action header. Expect MessageAddressingHeaderRequired fault.
+     * Cannot test missing wsa:To, wsa:ReplyTo, or wsa:MessageID headers as these are optional in WSA Core Spec.
      */
     public void testMessageAddressingHeaderRequiredFault() throws Fault {
         TestUtil.logMsg("testMessageAddressingHeaderRequiredFault");
@@ -279,8 +271,7 @@ public class Client extends ServiceEETest {
         SOAPMessage response = null;
         Dispatch<SOAPMessage> dispatchSM;
         try {
-            String soapmsg =
-                    MessageFormat.format(missingActionHeader, url, UUID.randomUUID(), WsaSOAPUtils.getAddrVerAnonUri());
+            String soapmsg = MessageFormat.format(missingActionHeader, url, UUID.randomUUID(), WsaSOAPUtils.getAddrVerAnonUri());
             dispatchSM = createDispatchSOAPMessage(PORT_QNAME);
             SOAPMessage request = JAXWS_Util.makeSOAPMessage(soapmsg);
             TestUtil.logMsg("Dumping SOAP Request ...");
@@ -320,18 +311,18 @@ public class Client extends ServiceEETest {
             TestUtil.printStackTrace(e);
             throw new Fault("testMessageAddressingHeaderRequiredFault failed", e);
         }
-        if (!pass) throw new Fault("testMessageAddressingHeaderRequiredFault failed");
+        if (!pass)
+            throw new Fault("testMessageAddressingHeaderRequiredFault failed");
     }
 
     /*
      * @testName: testInvalidCardinalityFault
      *
-     * @assertion_ids: WSASB:SPEC:6005; WSASB:SPEC:6006; WSASB:SPEC:6013;
-     * WSASB:SPEC:6012.3; WSASB:SPEC:6004.4; WSASB:SPEC:6004.1; WSASB:SPEC:6004.2;
-     * WSASB:SPEC:6001;
+     * @assertion_ids: WSASB:SPEC:6005; WSASB:SPEC:6006; WSASB:SPEC:6013; WSASB:SPEC:6012.3; WSASB:SPEC:6004.4;
+     * WSASB:SPEC:6004.1; WSASB:SPEC:6004.2; WSASB:SPEC:6001;
      *
-     * @test_Strategy: Test for InvalidCardinality fault. Send a message that
-     * contains two wsa:ReplyTo headers. Expect an InvalidCardinality fault.
+     * @test_Strategy: Test for InvalidCardinality fault. Send a message that contains two wsa:ReplyTo headers. Expect an
+     * InvalidCardinality fault.
      */
     public void testInvalidCardinalityFault() throws Fault {
         TestUtil.logMsg("testInvalidCardinalityFault");
@@ -391,18 +382,17 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
             throw new Fault("testInvalidCardinalityFault failed", e);
         }
-        if (!pass) throw new Fault("testInvalidCardinalityFault failed");
+        if (!pass)
+            throw new Fault("testInvalidCardinalityFault failed");
     }
 
     /*
      * @testName: testActionMismatchOrActionNotSupportedFaultCase1
      *
-     * @assertion_ids: WSASB:SPEC:6005; WSASB:SPEC:6006; WSASB:SPEC:6015;
-     * WSASB:SPEC:6004.4; WSASB:SPEC:6004.1; WSASB:SPEC:6004.2; WSASB:SPEC:6001;
-     * JAXWS:SPEC:10027;
+     * @assertion_ids: WSASB:SPEC:6005; WSASB:SPEC:6006; WSASB:SPEC:6015; WSASB:SPEC:6004.4; WSASB:SPEC:6004.1;
+     * WSASB:SPEC:6004.2; WSASB:SPEC:6001; JAXWS:SPEC:10027;
      *
-     * @test_Strategy: Test for ActionMismatch or ActionNotSupportedfault. Set the
-     * SOAPACTIONURI to a wrong value.
+     * @test_Strategy: Test for ActionMismatch or ActionNotSupportedfault. Set the SOAPACTIONURI to a wrong value.
      *
      */
     public void testActionMismatchOrActionNotSupportedFaultCase1() throws Fault {
@@ -411,8 +401,7 @@ public class Client extends ServiceEETest {
         SOAPMessage response = null;
         Dispatch<SOAPMessage> dispatchSM;
         try {
-            String soapmsg =
-                    MessageFormat.format(actionMismatch, url, UUID.randomUUID(), WsaSOAPUtils.getAddrVerAnonUri());
+            String soapmsg = MessageFormat.format(actionMismatch, url, UUID.randomUUID(), WsaSOAPUtils.getAddrVerAnonUri());
             dispatchSM = createDispatchSOAPMessage(PORT_QNAME);
             JAXWS_Util.setSOAPACTIONURI(dispatchSM, "ActionMismatch");
             SOAPMessage request = JAXWS_Util.makeSOAPMessage(soapmsg);
@@ -453,18 +442,17 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
             throw new Fault("testActionMismatchOrActionNotSupportedFaultCase1 failed", e);
         }
-        if (!pass) throw new Fault("testActionMismatchOrActionNotSupportedFaultCase1 failed");
+        if (!pass)
+            throw new Fault("testActionMismatchOrActionNotSupportedFaultCase1 failed");
     }
 
     /*
      * @testName: testActionMismatchOrActionNotSupportedFaultCase2
      *
-     * @assertion_ids: WSASB:SPEC:6005; WSASB:SPEC:6006; WSASB:SPEC:6015;
-     * WSASB:SPEC:6004.4; WSASB:SPEC:6004.1; WSASB:SPEC:6004.2; WSASB:SPEC:6001;
-     * JAXWS:SPEC:10027;
+     * @assertion_ids: WSASB:SPEC:6005; WSASB:SPEC:6006; WSASB:SPEC:6015; WSASB:SPEC:6004.4; WSASB:SPEC:6004.1;
+     * WSASB:SPEC:6004.2; WSASB:SPEC:6001; JAXWS:SPEC:10027;
      *
-     * @test_Strategy: Test for ActionMismatch or ActionNotSupportedfault. Set the
-     * SOAPACTIONURI to a wrong value.
+     * @test_Strategy: Test for ActionMismatch or ActionNotSupportedfault. Set the SOAPACTIONURI to a wrong value.
      *
      */
     public void testActionMismatchOrActionNotSupportedFaultCase2() throws Fault {
@@ -473,8 +461,7 @@ public class Client extends ServiceEETest {
         SOAPMessage response = null;
         Dispatch<SOAPMessage> dispatchSM;
         try {
-            String soapmsg =
-                    MessageFormat.format(actionNotSupported, url, UUID.randomUUID(), WsaSOAPUtils.getAddrVerAnonUri());
+            String soapmsg = MessageFormat.format(actionNotSupported, url, UUID.randomUUID(), WsaSOAPUtils.getAddrVerAnonUri());
             dispatchSM = createDispatchSOAPMessage(PORT_QNAME);
             JAXWS_Util.setSOAPACTIONURI(dispatchSM, "ActionNotSupported1");
             SOAPMessage request = JAXWS_Util.makeSOAPMessage(soapmsg);
@@ -515,18 +502,17 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
             throw new Fault("testActionMismatchOrActionNotSupportedFaultCase2 failed", e);
         }
-        if (!pass) throw new Fault("testActionMismatchOrActionNotSupportedFaultCase2 failed");
+        if (!pass)
+            throw new Fault("testActionMismatchOrActionNotSupportedFaultCase2 failed");
     }
 
     /*
      * @testName: testActionMismatchOrActionNotSupportedFaultCase3
      *
-     * @assertion_ids: WSASB:SPEC:6005; WSASB:SPEC:6006; WSASB:SPEC:6015;
-     * WSASB:SPEC:6004.4; WSASB:SPEC:6004.1; WSASB:SPEC:6004.2; WSASB:SPEC:6001;
-     * JAXWS:SPEC:10027;
+     * @assertion_ids: WSASB:SPEC:6005; WSASB:SPEC:6006; WSASB:SPEC:6015; WSASB:SPEC:6004.4; WSASB:SPEC:6004.1;
+     * WSASB:SPEC:6004.2; WSASB:SPEC:6001; JAXWS:SPEC:10027;
      *
-     * @test_Strategy: Test for ActionMismatch or ActionNotSupportedfault. Set the
-     * SOAPACTIONURI to a wrong value.
+     * @test_Strategy: Test for ActionMismatch or ActionNotSupportedfault. Set the SOAPACTIONURI to a wrong value.
      *
      */
     public void testActionMismatchOrActionNotSupportedFaultCase3() throws Fault {
@@ -567,6 +553,7 @@ public class Client extends ServiceEETest {
             TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
             throw new Fault("testActionMismatchOrActionNotSupportedFaultCase3 failed", e);
         }
-        if (!pass) throw new Fault("testActionMismatchOrActionNotSupportedFaultCase3 failed");
+        if (!pass)
+            throw new Fault("testActionMismatchOrActionNotSupportedFaultCase3 failed");
     }
 }

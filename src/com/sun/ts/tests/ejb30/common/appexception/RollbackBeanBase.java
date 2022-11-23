@@ -38,10 +38,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RollbackBeanBase implements RollbackIF {
-    @EJB(
-            beanName = "AppExceptionBean",
-            description =
-                    "just to see if descripton field works or not.  It should map to <ejb-ref>/<description> xml element.")
+    @EJB(beanName = "AppExceptionBean", description = "just to see if descripton field works or not.  It should map to <ejb-ref>/<description> xml element.")
     protected AppExceptionIF appExceptionBean;
 
     @EJB(beanName = "AppExceptionBean")

@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -56,14 +54,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: querySemicolonInclude
      *
-     * @assertion_ids: Servlet:SPEC:76.1; Servlet:SPEC:76.2; Servlet:SPEC:76.3;
-     * Servlet:SPEC:76.4; Servlet:SPEC:76.5;
+     * @assertion_ids: Servlet:SPEC:76.1; Servlet:SPEC:76.2; Servlet:SPEC:76.3; Servlet:SPEC:76.4; Servlet:SPEC:76.5;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and IncludedServlet; 2. In
-     * TestServlet, get RequestDispatcher by using
-     * ServletContext.getRequestDispatcher(path), with special character ";" in
-     * path as part of query string, and access IncludedServlet using
-     * RequestDispatcher.include. 3. Verify that IncludedServlet is invoked.
+     * @test_Strategy: 1. Create servlets TestServlet and IncludedServlet; 2. In TestServlet, get RequestDispatcher by using
+     * ServletContext.getRequestDispatcher(path), with special character ";" in path as part of query string, and access
+     * IncludedServlet using RequestDispatcher.include. 3. Verify that IncludedServlet is invoked.
      */
 
     public void querySemicolonInclude() throws Fault {
@@ -74,14 +69,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: querySemicolonForward
      *
-     * @assertion_ids: Servlet:SPEC:76.1; Servlet:SPEC:76.2; Servlet:SPEC:76.3;
-     * Servlet:SPEC:76.4; Servlet:SPEC:76.5;
+     * @assertion_ids: Servlet:SPEC:76.1; Servlet:SPEC:76.2; Servlet:SPEC:76.3; Servlet:SPEC:76.4; Servlet:SPEC:76.5;
      *
-     * @test_Strategy: 1. Create servlets TestServlet and IncludedServlet; 2. In
-     * TestServlet, get RequestDispatcher by using
-     * ServletContext.getRequestDispatcher(path), with special character ";" in
-     * path as part of query string, and access IncludedServlet using
-     * RequestDispatcher.forward. 3. Verify that IncludedServlet is invoked.
+     * @test_Strategy: 1. Create servlets TestServlet and IncludedServlet; 2. In TestServlet, get RequestDispatcher by using
+     * ServletContext.getRequestDispatcher(path), with special character ";" in path as part of query string, and access
+     * IncludedServlet using RequestDispatcher.forward. 3. Verify that IncludedServlet is invoked.
      */
 
     public void querySemicolonForward() throws Fault {

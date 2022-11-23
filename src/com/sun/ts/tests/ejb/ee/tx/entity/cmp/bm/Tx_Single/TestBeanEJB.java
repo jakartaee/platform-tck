@@ -163,7 +163,8 @@ public class TestBeanEJB implements SessionBean {
 
             tempName1 = beanRef2.getBrandName();
 
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             if (b1) {
@@ -250,7 +251,8 @@ public class TestBeanEJB implements SessionBean {
 
             tempName1 = beanRef2.getBrandName();
 
-            if (tempName1.equals(origName1)) b1 = true;
+            if (tempName1.equals(origName1))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             if (b1) {
@@ -335,7 +337,8 @@ public class TestBeanEJB implements SessionBean {
             TestUtil.logMsg("Verifying the transaction is commited.");
             tempName1 = beanRef3.getBrandName();
 
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logMsg("Instance Brand Name is " + tempName1);
 
             if (b1) {
@@ -417,7 +420,8 @@ public class TestBeanEJB implements SessionBean {
             TestUtil.logMsg("Verifying the transaction is rolled back.");
             tempName1 = beanRef3.getBrandName();
 
-            if (tempName1.equals(origName1)) b1 = true;
+            if (tempName1.equals(origName1))
+                b1 = true;
             TestUtil.logMsg("Instance Brand Name is " + tempName1);
 
             if (b1) {
@@ -496,11 +500,13 @@ public class TestBeanEJB implements SessionBean {
             beanRef2 = (TxECMPBean) beanHome.findByPrimaryKey(origKey1);
 
             tempName1 = beanRef2.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logMsg("Brand Name is " + tempName1);
 
             tempPrice1 = beanRef2.getPrice();
-            if (tempPrice1 == expPrice) b2 = true;
+            if (tempPrice1 == expPrice)
+                b2 = true;
             TestUtil.logMsg("Price is " + tempPrice1);
 
             if (!b1) {
@@ -588,11 +594,13 @@ public class TestBeanEJB implements SessionBean {
             beanRef2 = (TxECMPBean) beanHome.findByPrimaryKey(origKey1);
 
             tempName1 = beanRef2.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logMsg("Brand Name is " + tempName1);
 
             tempPrice1 = beanRef2.getPrice();
-            if (tempPrice1 == expPrice) b2 = true;
+            if (tempPrice1 == expPrice)
+                b2 = true;
             TestUtil.logMsg("Price is " + tempPrice1);
 
             if (b1 && b2) {

@@ -92,11 +92,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:248; EJB:SPEC:298; JavaEE:SPEC:10004
      *
-     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a
-     * transaction with the transaction attribute set to Required. Update the data
-     * and ensure that the update is visible within the transaction context by
-     * invoking a finder method with associated EJB-QL. Commit the transaction and
-     * verify the commit was successful.
+     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a transaction with the transaction attribute set
+     * to Required. Update the data and ensure that the update is visible within the transaction context by invoking a
+     * finder method with associated EJB-QL. Commit the transaction and verify the commit was successful.
      */
 
     public void txTest1() throws Fault {
@@ -111,8 +109,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean: txTest1");
             testResult = beanRef.txTest1();
 
-            if (!testResult) throw new Fault("txTest1 failed");
-            else logMsg("txTest1 passed");
+            if (!testResult)
+                throw new Fault("txTest1 failed");
+            else
+                logMsg("txTest1 passed");
         } catch (Exception e) {
             throw new Fault("txTest1 failed", e);
         } finally {
@@ -129,11 +129,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:248; JavaEE:SPEC:10004
      *
-     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a
-     * transaction with the transaction attribute set to Required. Update the data
-     * and ensure that the update is visible within the transaction context by
-     * invoking a finder method with associated EJB-QL. Rollback the transaction
-     * and verify the rollback was successful.
+     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a transaction with the transaction attribute set
+     * to Required. Update the data and ensure that the update is visible within the transaction context by invoking a
+     * finder method with associated EJB-QL. Rollback the transaction and verify the rollback was successful.
      *
      */
 
@@ -149,8 +147,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean: txTest2");
             testResult = beanRef.txTest2();
 
-            if (!testResult) throw new Fault("txTest2 failed");
-            else logMsg("txTest2 passed");
+            if (!testResult)
+                throw new Fault("txTest2 failed");
+            else
+                logMsg("txTest2 passed");
         } catch (Exception e) {
             throw new Fault("txTest2 failed", e);
         } finally {
@@ -167,11 +167,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:248; JavaEE:SPEC:10004
      *
-     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a
-     * transaction with the transaction attribute set to RequiresNew. Update the
-     * data and ensure that the update is visible within the transaction context
-     * by invoking a finder method with associated EJB-QL. Commit the transaction
-     * and verify the commit was successful.
+     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a transaction with the transaction attribute set
+     * to RequiresNew. Update the data and ensure that the update is visible within the transaction context by invoking a
+     * finder method with associated EJB-QL. Commit the transaction and verify the commit was successful.
      *
      */
 
@@ -187,8 +185,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean: txTest3");
             testResult = beanRef.txTest3();
 
-            if (!testResult) throw new Fault("txTest3 failed");
-            else logMsg("txTest3 passed");
+            if (!testResult)
+                throw new Fault("txTest3 failed");
+            else
+                logMsg("txTest3 passed");
         } catch (Exception e) {
             throw new Fault("txTest3 failed", e);
         } finally {
@@ -205,11 +205,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:248; JavaEE:SPEC:10004
      *
-     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a
-     * transaction with the transaction attribute set to RequiresNew. Update the
-     * data and ensure that the update is visible within the transaction context
-     * by invoking a finder method with associated EJB-QL. Rollback the
-     * transaction and verify the rollback was successful.
+     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a transaction with the transaction attribute set
+     * to RequiresNew. Update the data and ensure that the update is visible within the transaction context by invoking a
+     * finder method with associated EJB-QL. Rollback the transaction and verify the rollback was successful.
      *
      */
 
@@ -225,8 +223,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean: txTest4");
             testResult = beanRef.txTest4();
 
-            if (!testResult) throw new Fault("txTest4 failed");
-            else logMsg("txTest4 passed");
+            if (!testResult)
+                throw new Fault("txTest4 failed");
+            else
+                logMsg("txTest4 passed");
         } catch (Exception e) {
             throw new Fault("txTest4 failed", e);
         } finally {
@@ -243,11 +243,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:248
      *
-     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a
-     * transaction with the transaction attribute set to Mandatory. Update the
-     * data and ensure that the update is visible within the transaction context
-     * by invoking a finder method with associated EJB-QL. Commit the transaction
-     * and verify the commit was successful.
+     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a transaction with the transaction attribute set
+     * to Mandatory. Update the data and ensure that the update is visible within the transaction context by invoking a
+     * finder method with associated EJB-QL. Commit the transaction and verify the commit was successful.
      *
      */
 
@@ -263,8 +261,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean: txTest5");
             testResult = beanRef.txTest5();
 
-            if (!testResult) throw new Fault("txTest5 failed");
-            else logMsg("txTest5 passed");
+            if (!testResult)
+                throw new Fault("txTest5 failed");
+            else
+                logMsg("txTest5 passed");
         } catch (Exception e) {
             throw new Fault("txTest5 failed", e);
         } finally {
@@ -281,11 +281,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:248
      *
-     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a
-     * transaction with the transaction attribute set to Mandatory. Update the
-     * data and ensure that the update is visible within the transaction context
-     * by invoking a finder method with associated EJB-QL. Rollback the
-     * transaction and verify the rollback was successful.
+     * @test_Strategy: Create an instance of a CMP 2.0 entity bean. Begin a transaction with the transaction attribute set
+     * to Mandatory. Update the data and ensure that the update is visible within the transaction context by invoking a
+     * finder method with associated EJB-QL. Rollback the transaction and verify the rollback was successful.
      *
      */
 
@@ -301,8 +299,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean: txTest6");
             testResult = beanRef.txTest6();
 
-            if (!testResult) throw new Fault("txTest6 failed");
-            else logMsg("txTest6 passed");
+            if (!testResult)
+                throw new Fault("txTest6 failed");
+            else
+                logMsg("txTest6 passed");
         } catch (Exception e) {
             throw new Fault("txTest6 failed", e);
         } finally {
@@ -330,7 +330,8 @@ public class Client extends EETest {
                 while (i1.hasNext()) {
                     Object o = i1.next();
                     TxCommonBean tRef = (TxCommonBean) PortableRemoteObject.narrow(o, TxCommonBean.class);
-                    for (int l = 0; l < c1.size(); l++) tRef.remove();
+                    for (int l = 0; l < c1.size(); l++)
+                        tRef.remove();
                 }
             } else {
                 TestUtil.logTrace("No entity data to clean up");

@@ -30,9 +30,8 @@ public class Client extends AbstractUrlClient {
     public static final String SERVLET_NAME = "TestServlet";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -41,8 +40,7 @@ public class Client extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setServletName(SERVLET_NAME);
@@ -57,8 +55,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: noMethodStateless
      *
-     * @test_Strategy: httpclient -> servlet -> (remote + local)SLSB with no
-     * business methods
+     * @test_Strategy: httpclient -> servlet -> (remote + local)SLSB with no business methods
      */
     public void noMethodStateless() throws Fault {
         TEST_PROPS.setProperty(APITEST, "noMethodStateless");
@@ -68,8 +65,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: noMethodStateful
      *
-     * @test_Strategy: httpclient -> servlet -> (remote + local)SFSB with no
-     * business methods
+     * @test_Strategy: httpclient -> servlet -> (remote + local)SFSB with no business methods
      */
     public void noMethodStateful() throws Fault {
         TEST_PROPS.setProperty(APITEST, "noMethodStateful");

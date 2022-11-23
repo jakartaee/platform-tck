@@ -54,8 +54,7 @@ public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
 
     /*
@@ -63,8 +62,7 @@ public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase
      *
      * @assertion_ids: EJB:JAVADOC:130; EJB:JAVADOC:131
      *
-     * @test_Strategy: java.io.Serializable, java.io.Externalizable, and
-     * jakarta.ejb.* interfaces should not be considered when determining the
-     * messaging type.
+     * @test_Strategy: java.io.Serializable, java.io.Externalizable, and jakarta.ejb.* interfaces should not be considered
+     * when determining the messaging type.
      */
 }

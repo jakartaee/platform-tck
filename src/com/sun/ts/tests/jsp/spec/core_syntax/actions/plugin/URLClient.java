@@ -31,9 +31,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -42,8 +41,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -62,13 +60,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: jspPluginTest
      *
-     * @assertion_ids: JSP:SPEC:167.4;JSP:SPEC:167.5;JSP:SPEC:167.6;
-     * JSP:SPEC:167.8;JSP:SPEC:167.9;JSP:SPEC:167.10;
-     * JSP:SPEC:167.11;JSP:SPEC:167.12;JSP:SPEC:167.13;
-     * JSP:SPEC:167.15;JSP:SPEC:167.16;JSP:SPEC:167.17; JSP:SPEC:167.18
+     * @assertion_ids: JSP:SPEC:167.4;JSP:SPEC:167.5;JSP:SPEC:167.6; JSP:SPEC:167.8;JSP:SPEC:167.9;JSP:SPEC:167.10;
+     * JSP:SPEC:167.11;JSP:SPEC:167.12;JSP:SPEC:167.13; JSP:SPEC:167.15;JSP:SPEC:167.16;JSP:SPEC:167.17; JSP:SPEC:167.18
      *
-     * @test_Strategy: Validate, rather loosely as the output will be
-     * implementation dependent, the output of a jsp:plugin action.
+     * @test_Strategy: Validate, rather loosely as the output will be implementation dependent, the output of a jsp:plugin
+     * action.
      */
     public void jspPluginTest() throws Fault {
         TEST_PROPS.setProperty(STRATEGY, "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
@@ -104,8 +100,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:167.15.1;JSP:SPEC:167.9.1
      *
-     * @test_Strategy: Validate that the only the height and width attributes of
-     * jsp:plugin accept RT and EL Expressions.
+     * @test_Strategy: Validate that the only the height and width attributes of jsp:plugin accept RT and EL Expressions.
      */
     public void jspPluginDynamicAttributesTest() throws Fault {
         TEST_PROPS.setProperty(STRATEGY, "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
@@ -291,8 +286,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:167.2.2
      *
-     * @test_Strategy: Validate that if the jsp:params action is not nested within
-     * a jsp:plugin action, a translation-time error will occur.
+     * @test_Strategy: Validate that if the jsp:params action is not nested within a jsp:plugin action, a translation-time
+     * error will occur.
      */
     public void jspParamsUsageContextTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_plugin_web/JspParamsUsageContextTest.jsp HTTP/1.1");
@@ -308,9 +303,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:167.3.2
      *
-     * @test_Strategy: Validate that if the jsp:fallback action is used in a
-     * context other than a nested child of the jsp:plugin action, a
-     * translation-time error is generated.
+     * @test_Strategy: Validate that if the jsp:fallback action is used in a context other than a nested child of the
+     * jsp:plugin action, a translation-time error is generated.
      */
     public void jspFallbackUsageContextTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_plugin_web/JspFallbackUsageContextTest.jsp HTTP/1.1");
@@ -326,8 +320,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:167.3.2
      *
-     * @test_Strategy: Validate the body of the jsp:fallback action can be
-     * supplied using the jsp:body action.
+     * @test_Strategy: Validate the body of the jsp:fallback action can be supplied using the jsp:body action.
      */
     public void jspFallbackBodyTest() throws Fault {
         TEST_PROPS.setProperty(STRATEGY, "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
@@ -345,8 +338,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:167.21
      *
-     * @test_Strategy: Validate the body of the jsp:params action can be supplied
-     * using the jsp:body action.
+     * @test_Strategy: Validate the body of the jsp:params action can be supplied using the jsp:body action.
      */
     public void jspParamsBodyTest() throws Fault {
         TEST_PROPS.setProperty(STRATEGY, "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");
@@ -364,8 +356,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:167.4.1
      *
-     * @test_Strategy: Validate that if the type attribute is provided a value
-     * other than 'bean', or 'applet' that a translation error occurs.
+     * @test_Strategy: Validate that if the type attribute is provided a value other than 'bean', or 'applet' that a
+     * translation error occurs.
      */
     public void jspPluginInvalidTypeTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_core_act_plugin_web/JspPluginInvalidTypeTest.jsp HTTP/1.1");
@@ -381,8 +373,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:167.20
      *
-     * @test_Strategy: Validate the attributes of the jsp:plugin action can be
-     * described by the jsp:attribute action.
+     * @test_Strategy: Validate the attributes of the jsp:plugin action can be described by the jsp:attribute action.
      */
     public void jspPluginJspAttributeTest() throws Fault {
         TEST_PROPS.setProperty(STRATEGY, "com.sun.ts.tests.jsp.spec.core_syntax.actions.plugin.JspPluginValidator");

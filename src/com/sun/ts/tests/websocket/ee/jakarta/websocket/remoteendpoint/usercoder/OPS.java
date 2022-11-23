@@ -28,14 +28,14 @@ public enum OPS {
 
     public static Object[] getClientEntities() {
         return new Object[] {
-            CoderSuperClass.BOOL,
-            CoderSuperClass.CHAR,
-            CoderSuperClass.NUMERIC.byteValue(),
-            CoderSuperClass.NUMERIC.shortValue(),
-            CoderSuperClass.NUMERIC.intValue(),
-            CoderSuperClass.NUMERIC.longValue(),
-            CoderSuperClass.NUMERIC.floatValue(),
-            CoderSuperClass.NUMERIC.doubleValue()
+                CoderSuperClass.BOOL,
+                CoderSuperClass.CHAR,
+                CoderSuperClass.NUMERIC.byteValue(),
+                CoderSuperClass.NUMERIC.shortValue(),
+                CoderSuperClass.NUMERIC.intValue(),
+                CoderSuperClass.NUMERIC.longValue(),
+                CoderSuperClass.NUMERIC.floatValue(),
+                CoderSuperClass.NUMERIC.doubleValue()
         };
     }
 }

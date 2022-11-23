@@ -24,9 +24,10 @@ import com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.Cla
 import jakarta.ejb.Stateful;
 
 /**
- * All @AccessTimeout metadata are specified in superclass (either class-level
- * or method-level or method-level overriding class-level).
+ * All @AccessTimeout metadata are specified in superclass (either class-level or method-level or method-level
+ * overriding class-level).
  */
 @Stateful
 public class AnnotatedSuperClassAccessTimeoutBean extends ClassLevelAnnotatedAccessTimeoutBeanBase
-        implements AccessTimeoutIF {}
+        implements AccessTimeoutIF {
+}

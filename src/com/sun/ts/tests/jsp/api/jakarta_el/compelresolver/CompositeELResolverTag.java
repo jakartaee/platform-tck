@@ -38,7 +38,8 @@ public class CompositeELResolverTag extends SimpleTagSupport {
         try {
             boolean pass = ResolverTest.testCompositeELResolver(context, compResolver, buf);
             out.println(buf.toString());
-            if (pass == true) out.println("Test PASSED");
+            if (pass == true)
+                out.println("Test PASSED");
         } catch (Throwable t) {
             out.println(buf.toString());
             JspTestUtil.handleThrowable(t, out, "CompositeELResolverTag");

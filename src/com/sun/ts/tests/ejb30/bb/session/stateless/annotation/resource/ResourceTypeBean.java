@@ -49,33 +49,25 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 @Stateless(name = "ResourceTypeBean")
-@Remote({ResourceIF.class})
+@Remote({ ResourceIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 @Resources({
-    @Resource(description = "user transaction", name = "myUserTransaction", type = UserTransaction.class),
-    @Resource(
-            name = "dataSource",
-            type = DataSource.class,
-            shareable = true,
-            authenticationType = AuthenticationType.CONTAINER,
-            description = "<resource-ref>"),
-    @Resource(name = "myDataSource2", type = DataSource.class, authenticationType = AuthenticationType.CONTAINER),
-    @Resource(name = "mailSession", type = Session.class),
-    @Resource(name = "url", type = URL.class),
-    @Resource(name = "queueConnectionFactory", type = QueueConnectionFactory.class),
-    @Resource(name = "topicConnectionFactory", type = TopicConnectionFactory.class),
-    @Resource(name = "connectionFactoryQ", type = ConnectionFactory.class),
-    @Resource(name = "destinationQ", type = Queue.class),
-    @Resource(name = "destinationT", type = Topic.class),
-    @Resource(name = "connectionFactoryT", type = ConnectionFactory.class),
-    @Resource(name = "queue", type = Queue.class),
-    @Resource(name = "topic", type = Topic.class),
-    @Resource(
-            name = "myTransactionSynchronizationRegistry",
-            type = TransactionSynchronizationRegistry.class,
-            description = "TransactionSynchronizationRegistry type-level injection"),
-    @Resource(name = "myTimerService", type = TimerService.class, description = "TimerService type-level injection"),
-    @Resource(name = "dog", type = Dog.class, description = "a custom resouce")
+        @Resource(description = "user transaction", name = "myUserTransaction", type = UserTransaction.class),
+        @Resource(name = "dataSource", type = DataSource.class, shareable = true, authenticationType = AuthenticationType.CONTAINER, description = "<resource-ref>"),
+        @Resource(name = "myDataSource2", type = DataSource.class, authenticationType = AuthenticationType.CONTAINER),
+        @Resource(name = "mailSession", type = Session.class),
+        @Resource(name = "url", type = URL.class),
+        @Resource(name = "queueConnectionFactory", type = QueueConnectionFactory.class),
+        @Resource(name = "topicConnectionFactory", type = TopicConnectionFactory.class),
+        @Resource(name = "connectionFactoryQ", type = ConnectionFactory.class),
+        @Resource(name = "destinationQ", type = Queue.class),
+        @Resource(name = "destinationT", type = Topic.class),
+        @Resource(name = "connectionFactoryT", type = ConnectionFactory.class),
+        @Resource(name = "queue", type = Queue.class),
+        @Resource(name = "topic", type = Topic.class),
+        @Resource(name = "myTransactionSynchronizationRegistry", type = TransactionSynchronizationRegistry.class, description = "TransactionSynchronizationRegistry type-level injection"),
+        @Resource(name = "myTimerService", type = TimerService.class, description = "TimerService type-level injection"),
+        @Resource(name = "dog", type = Dog.class, description = "a custom resouce")
 })
 public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
 
@@ -146,9 +138,11 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
         return "dog";
     } // as defined in type-level injection
 
-    public ResourceTypeBean() {}
+    public ResourceTypeBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     protected jakarta.ejb.EJBContext getEJBContext() {
         return sessionContext;
@@ -208,8 +202,7 @@ public class ResourceTypeBean extends ResourceBeanBase implements ResourceIF {
 
     protected TransactionSynchronizationRegistry getTransactionSynchronizationRegistry() {
         try {
-            return (TransactionSynchronizationRegistry)
-                    ServiceLocator.lookup(TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME);
+            return (TransactionSynchronizationRegistry) ServiceLocator.lookup(TRANSACTION_SYNCHRONIZATION_REGISTRY_JNDI_NAME);
         } catch (NamingException e) {
             e.printStackTrace();
         }

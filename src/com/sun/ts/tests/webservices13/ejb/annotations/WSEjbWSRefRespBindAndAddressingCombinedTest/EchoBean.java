@@ -21,13 +21,7 @@ import jakarta.jws.WebService;
 import jakarta.xml.ws.Holder;
 import jakarta.xml.ws.RespectBinding;
 
-@WebService(
-        portName = "EchoPort",
-        serviceName = "EchoService",
-        targetNamespace = "http://Echo.org",
-        wsdlLocation = "META-INF/wsdl/EchoService.wsdl",
-        endpointInterface =
-                "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefRespBindAndAddressingCombinedTest.Echo")
+@WebService(portName = "EchoPort", serviceName = "EchoService", targetNamespace = "http://Echo.org", wsdlLocation = "META-INF/wsdl/EchoService.wsdl", endpointInterface = "com.sun.ts.tests.webservices13.ejb.annotations.WSEjbWSRefRespBindAndAddressingCombinedTest.Echo")
 @Stateless(name = "WSEjbWSRefRespBindAndAddressingCombinedTest")
 @RespectBinding(enabled = true)
 public class EchoBean {

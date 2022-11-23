@@ -27,9 +27,7 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/textencoder",
-        encoders = {ThrowingTextEncoder.class})
+@ServerEndpoint(value = "/textencoder", encoders = { ThrowingTextEncoder.class })
 public class WSCTextEncoderServer {
 
     @OnMessage

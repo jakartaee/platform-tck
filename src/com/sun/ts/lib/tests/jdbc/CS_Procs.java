@@ -22,9 +22,8 @@ import java.sql.*;
 /**
  * Stored procedures for output parameters.
  *
- * Note that if a null might occur, the Java class form is used rather than the
- * Java built-in form. i.e., Integer instead of int. This is so that the null
- * can be transmitted back to the caller. If we know it won't be null, we just
+ * Note that if a null might occur, the Java class form is used rather than the Java built-in form. i.e., Integer
+ * instead of int. This is so that the null can be transmitted back to the caller. If we know it won't be null, we just
  * use the built-in type directly.
  *
  **/
@@ -94,7 +93,8 @@ public class CS_Procs {
             max_param[0] = rs.getDouble(1);
             min_param[0] = rs.getDouble(2);
             null_param[0] = rs.getBigDecimal(3);
-            if (rs.wasNull()) null_param[0] = null;
+            if (rs.wasNull())
+                null_param[0] = null;
         } else {
 
             throw new SQLException("Data not found");
@@ -119,7 +119,8 @@ public class CS_Procs {
             max_param[0] = rs.getDouble(1);
             min_param[0] = rs.getDouble(2);
             null_param[0] = rs.getBigDecimal(3);
-            if (rs.wasNull()) null_param[0] = null;
+            if (rs.wasNull())
+                null_param[0] = null;
         } else {
 
             throw new SQLException("Data not found");
@@ -144,7 +145,8 @@ public class CS_Procs {
             max_param[0] = rs.getFloat(1);
             min_param[0] = rs.getFloat(2);
             null_param[0] = rs.getBigDecimal(3);
-            if (rs.wasNull()) null_param[0] = null;
+            if (rs.wasNull())
+                null_param[0] = null;
         } else {
 
             throw new SQLException("Data not found");
@@ -168,7 +170,8 @@ public class CS_Procs {
             max_param[0] = rs.getBoolean(1);
             min_param[0] = rs.getBoolean(2);
             null_param[0] = rs.getBigDecimal(3);
-            if (rs.wasNull()) null_param[0] = null;
+            if (rs.wasNull())
+                null_param[0] = null;
         } else {
 
             throw new SQLException("Data not found");
@@ -194,7 +197,8 @@ public class CS_Procs {
             max_param[0] = rs.getShort(1);
             min_param[0] = rs.getShort(2);
             null_param[0] = rs.getBigDecimal(3);
-            if (rs.wasNull()) null_param[0] = null;
+            if (rs.wasNull())
+                null_param[0] = null;
         } else {
             throw new SQLException("Data not found");
         }
@@ -218,7 +222,8 @@ public class CS_Procs {
             max_param[0] = rs.getInt(1);
             min_param[0] = rs.getInt(2);
             null_param[0] = rs.getBigDecimal(3);
-            if (rs.wasNull()) null_param[0] = null;
+            if (rs.wasNull())
+                null_param[0] = null;
         } else {
 
             throw new SQLException("Data not found");
@@ -243,7 +248,8 @@ public class CS_Procs {
             max_param[0] = rs.getInt(1);
             min_param[0] = rs.getInt(2);
             null_param[0] = rs.getBigDecimal(3);
-            if (rs.wasNull()) null_param[0] = null;
+            if (rs.wasNull())
+                null_param[0] = null;
         } else {
 
             throw new SQLException("Data not found");
@@ -268,7 +274,8 @@ public class CS_Procs {
             max_param[0] = rs.getLong(1);
             min_param[0] = rs.getLong(2);
             null_param[0] = rs.getBigDecimal(3);
-            if (rs.wasNull()) null_param[0] = null;
+            if (rs.wasNull())
+                null_param[0] = null;
         } else {
 
             throw new SQLException("Data not found");

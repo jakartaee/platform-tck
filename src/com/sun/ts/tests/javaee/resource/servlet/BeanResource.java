@@ -24,8 +24,8 @@ import jakarta.mail.Session;
 public class BeanResource {
 
     /*
-     * Since this bean is app-scoped, these resource references need to have a
-     * name in the java:app namespace; we can't use the default name.
+     * Since this bean is app-scoped, these resource references need to have a name in the java:app namespace; we can't use
+     * the default name.
      */
 
     @Resource(name = "java:app/env/compSession", lookup = "java:comp/env/ResourceCompTestServlet_MailSession")

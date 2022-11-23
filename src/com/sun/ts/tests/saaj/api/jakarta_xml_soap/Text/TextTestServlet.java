@@ -159,11 +159,13 @@ public class TextTestServlet extends HttpServlet {
             TestUtil.logMsg("get child elements");
             Iterator iterator = se.getChildElements();
             Node n = null;
-            if (!iterator.hasNext()) TestUtil.logMsg("no child elements");
+            if (!iterator.hasNext())
+                TestUtil.logMsg("no child elements");
             while (iterator.hasNext()) {
                 n = (Node) iterator.next();
                 TestUtil.logMsg("Node is: " + n);
-                if (n instanceof Text) break;
+                if (n instanceof Text)
+                    break;
             }
 
             if (!(n instanceof Text)) {
@@ -185,8 +187,10 @@ public class TextTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -207,11 +211,13 @@ public class TextTestServlet extends HttpServlet {
             TestUtil.logMsg("get child elements");
             Iterator iterator = se.getChildElements();
             Node n = null;
-            if (!iterator.hasNext()) TestUtil.logMsg("no child elements");
+            if (!iterator.hasNext())
+                TestUtil.logMsg("no child elements");
             while (iterator.hasNext()) {
                 n = (Node) iterator.next();
                 TestUtil.logMsg("Node is: " + n);
-                if (n instanceof Text) break;
+                if (n instanceof Text)
+                    break;
             }
 
             if (!(n instanceof Text)) {
@@ -233,8 +239,10 @@ public class TextTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

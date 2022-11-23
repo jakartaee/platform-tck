@@ -41,7 +41,8 @@ public class Insurance implements java.io.Serializable {
 
     private List<Employee> employees;
 
-    public Insurance() {}
+    public Insurance() {
+    }
 
     public Insurance(int id, String carrier) {
         this.id = id;

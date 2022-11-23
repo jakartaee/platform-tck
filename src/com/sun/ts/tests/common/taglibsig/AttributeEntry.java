@@ -36,7 +36,8 @@ public class AttributeEntry {
 
     private String required = "false";
 
-    public AttributeEntry() {}
+    public AttributeEntry() {
+    }
 
     public String getName() {
         return name;

@@ -52,8 +52,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -78,9 +77,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:473
      *
-     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server.
-     * Call loopback test on same bean. Verify the Container allows the loopback
-     * call. Self referential test.
+     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server. Call loopback test on same bean. Verify
+     * the Container allows the loopback call. Self referential test.
      *
      */
 
@@ -91,7 +89,8 @@ public class Client extends EETest {
             beanRef = (TestBean) beanHome.create(props, 2, "coffee-2", 2);
             logMsg("Calling loopback test via same bean");
             boolean pass = beanRef.loopBackSameBean();
-            if (!pass) throw new Fault("test2 failed");
+            if (!pass)
+                throw new Fault("test2 failed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {
@@ -108,9 +107,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:473
      *
-     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server.
-     * Verify the Container allows the loopback call. This test uses another bean
-     * instance.
+     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server. Verify the Container allows the loopback
+     * call. This test uses another bean instance.
      *
      */
 
@@ -132,7 +130,8 @@ public class Client extends EETest {
 
             logMsg("Calling loopback test via different bean");
             boolean pass = beanRef.loopBackAnotherBean(loopRef);
-            if (!pass) throw new Fault("test3 failed");
+            if (!pass)
+                throw new Fault("test3 failed");
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         } finally {

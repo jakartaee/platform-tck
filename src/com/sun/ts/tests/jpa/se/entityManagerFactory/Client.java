@@ -31,7 +31,8 @@ public class Client extends PMClientBase {
 
     Properties props = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -91,8 +92,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:536;
      *
-     * @test_Strategy: Close the EntityManagerFactory, then call
-     * emf.getMetaModel()
+     * @test_Strategy: Close the EntityManagerFactory, then call emf.getMetaModel()
      */
     @SetupMethod(name = "setupNoData")
     @CleanupMethod(name = "cleanupNoData")
@@ -122,8 +122,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1291; PERSISTENCE:SPEC:1914;
      *
-     * @test_Strategy: Instantiate createEntityManagerFactory when there is no
-     * Bean Validation provider present in the environment
+     * @test_Strategy: Instantiate createEntityManagerFactory when there is no Bean Validation provider present in the
+     * environment
      */
     @SetupMethod(name = "setupNoData")
     @CleanupMethod(name = "cleanupNoSuper")
@@ -161,8 +161,7 @@ public class Client extends PMClientBase {
         boolean pass = false;
 
         try {
-            EntityManagerFactory emf =
-                    Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties());
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties());
             if (emf != null) {
                 TestUtil.logTrace("Received non-null EntityManagerFactory");
                 pass = true;

@@ -21,8 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Utility class used to enforce accessibility of a module when using Reflection
- * API.
+ * Utility class used to enforce accessibility of a module when using Reflection API.
  *
  * @author Miroslav Kos (miroslav.kos at oracle.com)
  */
@@ -61,25 +60,25 @@ public class Modules {
     /**
      * This method uses jdk9 specific API. For all the JDKs <= 8 empty.
      *
-     * @param sourceClass
-     *          class (current module) usinf Core Reflection API
-     * @param targetClass
-     *          class to be accessed via Core Reflection
+     * @param sourceClass class (current module) usinf Core Reflection API
+     * @param targetClass class to be accessed via Core Reflection
      */
     public static void ensureReadable(Class<?> sourceClass, Class<?> targetClass) {
-        if (initializationFailed) return;
+        if (initializationFailed)
+            return;
         Object targetModule = getModule(targetClass);
         Object sourceModule = getModule(sourceClass);
         if (!canRead(sourceModule, targetModule)) {
             logger.log(Level.FINE, "Adding module [{0}] to module [{1}]'s reads", new Object[] {
-                getName(targetModule), getName(sourceModule)
+                    getName(targetModule), getName(sourceModule)
             });
             addReads(sourceModule, targetModule);
         }
     }
 
     private static void addReads(Object sourceModule, Object targetModule) {
-        if (sourceModule == null) return;
+        if (sourceModule == null)
+            return;
         try {
             ADD_READS.invoke(sourceModule, targetModule);
         } catch (Exception e) {
@@ -88,7 +87,8 @@ public class Modules {
     }
 
     private static Object getModule(Class<?> targetClass) {
-        if (targetClass == null) return null;
+        if (targetClass == null)
+            return null;
         try {
             return GET_MODULE.invoke(targetClass);
         } catch (Exception e) {
@@ -97,7 +97,8 @@ public class Modules {
     }
 
     private static Object getName(Object module) {
-        if (module == null) return "<anonymous-module>";
+        if (module == null)
+            return "<anonymous-module>";
         try {
             return GET_NAME.invoke(module);
         } catch (Exception e) {
@@ -106,7 +107,8 @@ public class Modules {
     }
 
     private static boolean canRead(Object sourceModule, Object targetModule) {
-        if (sourceModule == null) return true;
+        if (sourceModule == null)
+            return true;
         try {
             return (Boolean) CAN_READ.invoke(sourceModule, targetModule);
         } catch (Exception e) {

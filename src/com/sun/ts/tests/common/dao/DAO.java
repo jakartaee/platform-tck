@@ -23,8 +23,7 @@ package com.sun.ts.tests.common.dao;
 /**
  * Data Access Object
  *
- * Abstract functionalities shared by all DAOs (independatly of the back-end and
- * the persitent data schema).
+ * Abstract functionalities shared by all DAOs (independatly of the back-end and the persitent data schema).
  */
 public interface DAO extends java.io.Serializable {
 
@@ -35,17 +34,14 @@ public interface DAO extends java.io.Serializable {
     public static final int STANDARD_POLICY = 2;
 
     /**
-     * Initialize external resources. Must be called before calling calling any
-     * other method on a DAO.
+     * Initialize external resources. Must be called before calling calling any other method on a DAO.
      */
     public void startSession() throws DAOException;
 
     /**
-     * Release external resources (they can be reinitialized later by calling
-     * startSession()). If the DAO is used from an EJB, the EJB code must make
-     * sure to close the session before any serialization of the EJB occurs.
-     * Typically and EJB will start a new session when entering an EJB callback
-     * and close it before exiting the callback.
+     * Release external resources (they can be reinitialized later by calling startSession()). If the DAO is used from an
+     * EJB, the EJB code must make sure to close the session before any serialization of the EJB occurs. Typically and EJB
+     * will start a new session when entering an EJB callback and close it before exiting the callback.
      */
     public void stopSession();
 

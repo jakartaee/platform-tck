@@ -37,10 +37,8 @@ public class SimpleExcTag extends SimpleTagSupport implements DynamicAttributes 
     /**
      * If called, it will fail the test.
      *
-     * @throws JspException
-     *           not thrown
-     * @throws IOException
-     *           not thrown
+     * @throws JspException not thrown
+     * @throws IOException not thrown
      */
     public void doTag() throws JspException, IOException {
         this.getJspContext()
@@ -52,14 +50,10 @@ public class SimpleExcTag extends SimpleTagSupport implements DynamicAttributes 
     /**
      * Throws a JspException.
      *
-     * @param uri
-     *          - the namespace of the attribute (if any)
-     * @param localName
-     *          - the name of the attribute
-     * @param value
-     *          - the value of the attribute
-     * @throws JspException
-     *           if an error occurs
+     * @param uri - the namespace of the attribute (if any)
+     * @param localName - the name of the attribute
+     * @param value - the value of the attribute
+     * @throws JspException if an error occurs
      */
     public void setDynamicAttribute(String uri, String localName, Object value) throws JspException {
         throw new JspException("JspException");

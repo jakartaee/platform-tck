@@ -45,8 +45,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The prepStmtClient1 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The prepStmtClient1 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -90,14 +89,11 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -106,7 +102,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 sqlp = p;
 
@@ -140,15 +137,12 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetMetaData
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:712;
-     * JDBC:JAVADOC:713; JDBC:JAVADOC:1143; JDBC:JAVADOC:1144; JavaEE:SPEC:186;
-     * JavaEE:SPEC:186.2;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:712; JDBC:JAVADOC:713; JDBC:JAVADOC:1143; JDBC:JAVADOC:1144;
+     * JavaEE:SPEC:186; JavaEE:SPEC:186.2;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the getMetaData() method and get the number of columns
-     * using getColumnCount() method of ResultSetMetaData.Execute a query using
-     * executeQuery() method and get the number of columns. Both the values should
-     * be equal or it should throw an SQL exception.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the getMetaData() method
+     * and get the number of columns using getColumnCount() method of ResultSetMetaData.Execute a query using executeQuery()
+     * method and get the number of columns. Both the values should be equal or it should throw an SQL exception.
      *
      */
 
@@ -195,7 +189,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
                             "getMetaData Method does not return a valid ResultSetMetaData",
                             "Call to getMetaData Method is Failed!");
                 }
-            } else msg.setMsg("Call to getMetaData Method is Passed");
+            } else
+                msg.setMsg("Call to getMetaData Method is Passed");
             msg.printTestMsg();
             msg.printOutputMsg();
 
@@ -207,7 +202,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null)
+                    rs.close();
                 pstmt.close();
             } catch (Exception e) {
             }
@@ -217,15 +213,13 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testClearParameters
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:690;
-     * JDBC:JAVADOC:691; JDBC:JAVADOC:1143; JDBC:JAVADOC:1144; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:690; JDBC:JAVADOC:691; JDBC:JAVADOC:1143; JDBC:JAVADOC:1144;
+     * JavaEE:SPEC:186;
      *
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Set the value for the IN parameter of the Prepared Statement
-     * object. Call the clearParameters() method.Call the executeQuery() method to
-     * check if the call to clearParameters() clears the IN parameter set by the
-     * Prepared Statement object.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Set the value for the IN
+     * parameter of the Prepared Statement object. Call the clearParameters() method.Call the executeQuery() method to check
+     * if the call to clearParameters() clears the IN parameter set by the Prepared Statement object.
      */
 
     public void testClearParameters() throws Fault {
@@ -264,7 +258,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (reSet != null) reSet.close();
+                if (reSet != null)
+                    reSet.close();
                 pstmt.close();
             } catch (Exception e) {
             }
@@ -274,14 +269,12 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecute01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:698; JDBC:JAVADOC:699;
-     * JDBC:JAVADOC:1143; JDBC:JAVADOC:1144; JavaEE:SPEC:182; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:698; JDBC:JAVADOC:699; JDBC:JAVADOC:1143; JDBC:JAVADOC:1144;
+     * JavaEE:SPEC:182; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Set the value for the IN parameter of the Prepared Statement
-     * object. Execute the precompiled SQL Statement of deleting a row. It should
-     * return a boolean value and the value should be equal to false. (See JDK
-     * 1.2.2 API documentation)
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Set the value for the IN
+     * parameter of the Prepared Statement object. Execute the precompiled SQL Statement of deleting a row. It should return
+     * a boolean value and the value should be equal to false. (See JDK 1.2.2 API documentation)
      *
      */
 
@@ -321,13 +314,12 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecute03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:698; JDBC:JAVADOC:699;
-     * JDBC:JAVADOC:1143; JDBC:JAVADOC:1144; JavaEE:SPEC:182; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:698; JDBC:JAVADOC:699; JDBC:JAVADOC:1143; JDBC:JAVADOC:1144;
+     * JavaEE:SPEC:182; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the precompiled SQL Statement by calling execute() method
-     * without setting the parameters.An SQL Exception must be thrown. (See JDK
-     * 1.2.2 API documentation)
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the precompiled SQL
+     * Statement by calling execute() method without setting the parameters.An SQL Exception must be thrown. (See JDK 1.2.2
+     * API documentation)
      *
      */
 
@@ -372,13 +364,11 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteQuery01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:652; JDBC:JAVADOC:653;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:652; JDBC:JAVADOC:653; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Set the value for the IN parameter of the Prepared Statement
-     * object. Execute the precompiled SQL Statement by calling executeQuery()
-     * method. It should return a ResultSet object.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Set the value for the IN
+     * parameter of the Prepared Statement object. Execute the precompiled SQL Statement by calling executeQuery() method.
+     * It should return a ResultSet object.
      *
      */
 
@@ -410,7 +400,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (reSet != null) reSet.close();
+                if (reSet != null)
+                    reSet.close();
                 pstmt.close();
             } catch (Exception e) {
             }
@@ -420,14 +411,11 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteQuery02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:652; JDBC:JAVADOC:653;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:652; JDBC:JAVADOC:653; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Set the value for the IN parameter of the Prepared Statement
-     * object. Execute the precompiled SQL Statement by calling executeQuery()
-     * method with a non existent row. A call to ResultSet.next() should return a
-     * false value.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Set the value for the IN
+     * parameter of the Prepared Statement object. Execute the precompiled SQL Statement by calling executeQuery() method
+     * with a non existent row. A call to ResultSet.next() should return a false value.
      */
 
     public void testExecuteQuery02() throws Fault {
@@ -460,7 +448,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (reSet != null) reSet.close();
+                if (reSet != null)
+                    reSet.close();
                 pstmt.close();
             } catch (Exception e) {
             }
@@ -470,12 +459,10 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteQuery03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:652; JDBC:JAVADOC:653;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:652; JDBC:JAVADOC:653; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the precompiled SQL Statement by calling executeQuery()
-     * method without setting the parameters. It should throw a SQL Exception.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the precompiled SQL
+     * Statement by calling executeQuery() method without setting the parameters. It should throw a SQL Exception.
      */
 
     public void testExecuteQuery03() throws Fault {
@@ -512,7 +499,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (reSet != null) reSet.close();
+                if (reSet != null)
+                    reSet.close();
                 pstmt.close();
             } catch (Exception e) {
             }
@@ -522,14 +510,12 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteUpdate01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:654; JDBC:JAVADOC:655;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:654; JDBC:JAVADOC:655; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Set the value for the IN parameter of the PreparedStatement
-     * object. Execute the precompiled SQL Statement by calling executeUpdate()
-     * method. It should return an integer value indicating the number of rows
-     * that were affected. (The value could be zero if zero rows are affected).
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Set the value for the IN
+     * parameter of the PreparedStatement object. Execute the precompiled SQL Statement by calling executeUpdate() method.
+     * It should return an integer value indicating the number of rows that were affected. (The value could be zero if zero
+     * rows are affected).
      */
 
     public void testExecuteUpdate01() throws Fault {
@@ -569,13 +555,11 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteUpdate02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:654; JDBC:JAVADOC:655;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:654; JDBC:JAVADOC:655; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Set the value for the IN parameter of the Prepared Statement
-     * object. Execute the precompiled SQL Statement by calling executeUpdate()
-     * method with a non existent row. It should return an Integer value.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Set the value for the IN
+     * parameter of the Prepared Statement object. Execute the precompiled SQL Statement by calling executeUpdate() method
+     * with a non existent row. It should return an Integer value.
      */
 
     public void testExecuteUpdate02() throws Fault {
@@ -615,12 +599,10 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testExecuteUpdate03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:654; JDBC:JAVADOC:655;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:654; JDBC:JAVADOC:655; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the precompiled SQL Statement without setting the IN
-     * parameter. It should throw an SQL exception.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the precompiled SQL
+     * Statement without setting the IN parameter. It should throw an SQL exception.
      */
 
     public void testExecuteUpdate03() throws Fault {
@@ -665,16 +647,12 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetBigDecimal01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:672; JDBC:JAVADOC:673;
-     * JDBC:JAVADOC:454; JDBC:JAVADOC:455; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:672; JDBC:JAVADOC:673; JDBC:JAVADOC:454; JDBC:JAVADOC:455; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the precompiled.SQL Statement by calling the
-     * setBigDecimal(int parameterindex, BigDecimal x) method for updating the
-     * value of column MIN_VAL in Numeric_Tab.Check first the return value of
-     * executeUpdate() method used is equal to 1. Call the
-     * ResultSet.getBigDecimal(int columnIndex)method. Check if returns the
-     * BigDecimal Value that has been set.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the precompiled.SQL
+     * Statement by calling the setBigDecimal(int parameterindex, BigDecimal x) method for updating the value of column
+     * MIN_VAL in Numeric_Tab.Check first the return value of executeUpdate() method used is equal to 1. Call the
+     * ResultSet.getBigDecimal(int columnIndex)method. Check if returns the BigDecimal Value that has been set.
      */
 
     public void testSetBigDecimal01() throws Fault {
@@ -726,7 +704,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null)
+                    rs.close();
                 pstmt.close();
                 rsSch.dropTab("Numeric_Tab", conn);
             } catch (Exception e) {
@@ -737,15 +716,12 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetBigDecimal02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:672; JDBC:JAVADOC:673;
-     * JDBC:JAVADOC:454; JDBC:JAVADOC:455; JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:672; JDBC:JAVADOC:673; JDBC:JAVADOC:454; JDBC:JAVADOC:455; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the precompiled SQL Statement by calling the
-     * setBigDecimal(int parameterindex, BigDecimal x) method for updating the
-     * value of column NULL_VAL in Numeric_Tab. Call the
-     * ResultSet.getBigDecimal(int columnIndex) method. Check if returns the
-     * BigDecimal Value that has been set.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the precompiled SQL
+     * Statement by calling the setBigDecimal(int parameterindex, BigDecimal x) method for updating the value of column
+     * NULL_VAL in Numeric_Tab. Call the ResultSet.getBigDecimal(int columnIndex) method. Check if returns the BigDecimal
+     * Value that has been set.
      */
     public void testSetBigDecimal02() throws Fault {
         BigDecimal maxBigDecimalVal = null;
@@ -793,7 +769,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null)
+                    rs.close();
                 pstmt.close();
                 rsSch.dropTab("Numeric_Tab", conn);
             } catch (Exception e) {
@@ -804,14 +781,12 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetBoolean01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:658; JDBC:JAVADOC:659;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:658; JDBC:JAVADOC:659; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the precompiled SQL Statement by calling the
-     * setBoolean(int parameterIndex, boolean x) to set MAX_VAL column of Bit_tab
-     * with the MIN_VAL of Bit_Tab. Call the ResultSet.getBoolean(int columnIndex)
-     * method to check if it returns the boolean Value that has been set.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the precompiled SQL
+     * Statement by calling the setBoolean(int parameterIndex, boolean x) to set MAX_VAL column of Bit_tab with the MIN_VAL
+     * of Bit_Tab. Call the ResultSet.getBoolean(int columnIndex) method to check if it returns the boolean Value that has
+     * been set.
      *
      */
     public void testSetBoolean01() throws Fault {
@@ -856,7 +831,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null)
+                    rs.close();
                 pstmt.close();
                 rsSch.dropTab("Bit_Tab", conn);
             } catch (Exception e) {
@@ -867,14 +843,12 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetBoolean02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:658; JDBC:JAVADOC:659;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:658; JDBC:JAVADOC:659; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the precompiled SQL Statement by calling the method
-     * setBoolean(int parameterIndex, boolean x) to set NULL_VAL column of Bit_tab
-     * with the Max_Val of Bit_Tab. Call the ResultSet.getBoolean(int columnIndex)
-     * method to check if it returns the boolean Value that has been set.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the precompiled SQL
+     * Statement by calling the method setBoolean(int parameterIndex, boolean x) to set NULL_VAL column of Bit_tab with the
+     * Max_Val of Bit_Tab. Call the ResultSet.getBoolean(int columnIndex) method to check if it returns the boolean Value
+     * that has been set.
      */
     public void testSetBoolean02() throws Fault {
         boolean bmaxBooleanVal;
@@ -918,7 +892,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null)
+                    rs.close();
                 pstmt.close();
                 rsSch.dropTab("Bit_Tab", conn);
             } catch (Exception e) {
@@ -929,14 +904,11 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetByte01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:660; JDBC:JAVADOC:661;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:660; JDBC:JAVADOC:661; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the precompiled SQL Statement by calling the setByte(int
-     * parameterindex, byte x) method for updating MAX_VAL column of Tinyint_Tab.
-     * Call the ResultSet.getByte(int columnIndex) method to check if it returns
-     * the byte Value that has been set.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the precompiled SQL
+     * Statement by calling the setByte(int parameterindex, byte x) method for updating MAX_VAL column of Tinyint_Tab. Call
+     * the ResultSet.getByte(int columnIndex) method to check if it returns the byte Value that has been set.
      */
     public void testSetByte01() throws Fault {
         byte bminByteVal = 0;
@@ -982,7 +954,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null)
+                    rs.close();
                 pstmt.close();
                 rsSch.dropTab("Tinyint_Tab", conn);
             } catch (Exception e) {
@@ -993,14 +966,11 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetByte02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:660; JDBC:JAVADOC:661;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:660; JDBC:JAVADOC:661; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database. Execute the precompiled SQL Statement by calling the setByte(int
-     * parameterindex, byte x) method for updating NULL_VAL column of Tinyint_Tab.
-     * Call the ResultSet.getByte(int columnIndex) method,to check if it returns
-     * the byte Value that has been set.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database. Execute the precompiled SQL
+     * Statement by calling the setByte(int parameterindex, byte x) method for updating NULL_VAL column of Tinyint_Tab. Call
+     * the ResultSet.getByte(int columnIndex) method,to check if it returns the byte Value that has been set.
      */
 
     public void testSetByte02() throws Fault {
@@ -1048,7 +1018,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null)
+                    rs.close();
                 pstmt.close();
                 rsSch.dropTab("Tinyint_Tab", conn);
             } catch (Exception e) {
@@ -1059,14 +1030,11 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetFloat01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:668; JDBC:JAVADOC:669;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:668; JDBC:JAVADOC:669; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database execute the precompiled SQL Statement by calling the setFloat(int
-     * parameterindex, float x) method for updating the MAX_VAL column of
-     * Float_Tab. Call the ResultSet.getFloat(int columnIndex) method to check if
-     * it returns the float Value that has been set.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database execute the precompiled SQL
+     * Statement by calling the setFloat(int parameterindex, float x) method for updating the MAX_VAL column of Float_Tab.
+     * Call the ResultSet.getFloat(int columnIndex) method to check if it returns the float Value that has been set.
      *
      */
 
@@ -1114,7 +1082,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null)
+                    rs.close();
                 pstmt.close();
                 rsSch.dropTab("Float_Tab", conn);
             } catch (Exception e) {
@@ -1125,14 +1094,11 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetFloat02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:668; JDBC:JAVADOC:669;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:668; JDBC:JAVADOC:669; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database execute the precompiled SQL Statement by calling the setFloat(int
-     * parameterindex, float x) method for updating the NULL_VAL column of
-     * Float_Tab. Call the ResultSet.getFloat(int columnIndex) method to check if
-     * it returns the float Value that has been set.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database execute the precompiled SQL
+     * Statement by calling the setFloat(int parameterindex, float x) method for updating the NULL_VAL column of Float_Tab.
+     * Call the ResultSet.getFloat(int columnIndex) method to check if it returns the float Value that has been set.
      *
      */
     public void testSetFloat02() throws Fault {
@@ -1180,7 +1146,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null)
+                    rs.close();
                 pstmt.close();
                 rsSch.dropTab("Float_Tab", conn);
             } catch (Exception e) {
@@ -1191,14 +1158,11 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSetInt01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:664; JDBC:JAVADOC:665;
-     * JavaEE:SPEC:186;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:JAVADOC:664; JDBC:JAVADOC:665; JavaEE:SPEC:186;
      *
-     * @test_Strategy: Get a PreparedStatement object from the connection to the
-     * database execute the precompiled SQL Statement by calling the setInt(int
-     * parameterindex, int x) method for updating the MAX_VAL column of
-     * Integer_Tab. Call the ResultSet.getInt(int columnIndex) method to check if
-     * it returns the integer Value that has been set.
+     * @test_Strategy: Get a PreparedStatement object from the connection to the database execute the precompiled SQL
+     * Statement by calling the setInt(int parameterindex, int x) method for updating the MAX_VAL column of Integer_Tab.
+     * Call the ResultSet.getInt(int columnIndex) method to check if it returns the integer Value that has been set.
      *
      */
     public void testSetInt01() throws Fault {
@@ -1245,7 +1209,8 @@ public class prepStmtClient1 extends ServiceEETest implements Serializable {
 
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null)
+                    rs.close();
                 pstmt.close();
                 rsSch.dropTab("Integer_Tab", conn);
             } catch (Exception e) {

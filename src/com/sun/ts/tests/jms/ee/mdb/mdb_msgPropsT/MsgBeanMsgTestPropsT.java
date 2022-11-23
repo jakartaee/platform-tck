@@ -82,8 +82,7 @@ public class MsgBeanMsgTestPropsT implements MessageDrivenBean, MessageListener 
 
     public MsgBeanMsgTestPropsT() {
         TestUtil.logTrace("@MsgBeanMsgTestPropsT()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("jms.ee.mdb.mdb_msgPropsT  - @MsgBeanMsgTestPropsT-ejbCreate() !!");
@@ -245,7 +244,8 @@ public class MsgBeanMsgTestPropsT implements MessageDrivenBean, MessageListener 
             while (e.hasMoreElements()) {
                 key = (String) e.nextElement();
                 TestUtil.logTrace("+++++++   Property Name is: " + key);
-                if (key.indexOf("JMS") != 0) i++;
+                if (key.indexOf("JMS") != 0)
+                    i++;
             }
 
             // set Count for properties to pass + 1 for count itself
@@ -382,7 +382,8 @@ public class MsgBeanMsgTestPropsT implements MessageDrivenBean, MessageListener 
             do {
                 String tmp = (String) propertyNames.nextElement();
                 TestUtil.logTrace("+++++++   Property Name is: " + tmp);
-                if (tmp.indexOf("JMS") != 0) i++;
+                if (tmp.indexOf("JMS") != 0)
+                    i++;
             } while (propertyNames.hasMoreElements());
 
             if (i == numPropertyNames) {
@@ -470,41 +471,29 @@ public class MsgBeanMsgTestPropsT implements MessageDrivenBean, MessageListener 
             // } catch (java.lang.NullPointerException np) {
             // TestUtil.logTrace("Pass: NullPointerException as expected ");}
             /*
-             * try { byte value = messageReceived.getByteProperty("TESTDUMMY");
-             * TestUtil.
-             * logMsg("Error: NullPointerException should have occurred for getByteProperty"
-             * ); pass = false; } catch (java.lang.NullPointerException np) {
-             * TestUtil.logTrace("Pass: NullPointerException as expected ");}
+             * try { byte value = messageReceived.getByteProperty("TESTDUMMY"); TestUtil.
+             * logMsg("Error: NullPointerException should have occurred for getByteProperty" ); pass = false; } catch
+             * (java.lang.NullPointerException np) { TestUtil.logTrace("Pass: NullPointerException as expected ");}
              *
-             * try { short value = messageReceived.getShortProperty("TESTDUMMY");
-             * TestUtil.
-             * logMsg("Error: NullPointerException should have occurred for getShortProperty"
-             * ); pass = false; } catch (java.lang.NullPointerException np) {
-             * TestUtil.logTrace("Pass: NullPointerException as expected ");}
+             * try { short value = messageReceived.getShortProperty("TESTDUMMY"); TestUtil.
+             * logMsg("Error: NullPointerException should have occurred for getShortProperty" ); pass = false; } catch
+             * (java.lang.NullPointerException np) { TestUtil.logTrace("Pass: NullPointerException as expected ");}
              *
-             * try { int value = messageReceived.getIntProperty("TESTDUMMY");
-             * TestUtil.
-             * logMsg("Error: NullPointerException should have occurred for getIntProperty"
-             * ); pass = false; } catch (java.lang.NullPointerException np) {
-             * TestUtil.logTrace("Pass: NullPointerException as expected ");}
+             * try { int value = messageReceived.getIntProperty("TESTDUMMY"); TestUtil.
+             * logMsg("Error: NullPointerException should have occurred for getIntProperty" ); pass = false; } catch
+             * (java.lang.NullPointerException np) { TestUtil.logTrace("Pass: NullPointerException as expected ");}
              *
-             * try { long value = messageReceived.getLongProperty("TESTDUMMY");
-             * TestUtil.
-             * logMsg("Error: NullPointerException should have occurred for getLongProperty"
-             * ); pass = false; } catch (java.lang.NullPointerException np) {
-             * TestUtil.logTrace("Pass: NullPointerException as expected ");}
+             * try { long value = messageReceived.getLongProperty("TESTDUMMY"); TestUtil.
+             * logMsg("Error: NullPointerException should have occurred for getLongProperty" ); pass = false; } catch
+             * (java.lang.NullPointerException np) { TestUtil.logTrace("Pass: NullPointerException as expected ");}
              *
-             * try { float value = messageReceived.getFloatProperty("TESTDUMMY");
-             * TestUtil.
-             * logMsg("Error: NullPointerException should have occurred for getFloatProperty"
-             * ); pass = false; } catch (java.lang.NullPointerException np) {
-             * TestUtil.logTrace("Pass: NullPointerException as expected ");}
+             * try { float value = messageReceived.getFloatProperty("TESTDUMMY"); TestUtil.
+             * logMsg("Error: NullPointerException should have occurred for getFloatProperty" ); pass = false; } catch
+             * (java.lang.NullPointerException np) { TestUtil.logTrace("Pass: NullPointerException as expected ");}
              *
-             * try { double value = messageReceived.getDoubleProperty("TESTDUMMY");
-             * TestUtil.
-             * logMsg("Error: NullPointerException should have occurred for getDoubleProperty"
-             * ); pass = false; } catch (java.lang.NullPointerException np) {
-             * TestUtil.logTrace("Pass: NullPointerException as expected ");}
+             * try { double value = messageReceived.getDoubleProperty("TESTDUMMY"); TestUtil.
+             * logMsg("Error: NullPointerException should have occurred for getDoubleProperty" ); pass = false; } catch
+             * (java.lang.NullPointerException np) { TestUtil.logTrace("Pass: NullPointerException as expected ");}
              *
              */
             // --------------------------------------------------------------------------------
@@ -1515,8 +1504,7 @@ public class MsgBeanMsgTestPropsT implements MessageDrivenBean, MessageListener 
     }
 
     /*
-     * Description: send test results to response queue (MDB_QUEUE_REPLY) for
-     * verification
+     * Description: send test results to response queue (MDB_QUEUE_REPLY) for verification
      */
     private void sendTestResults(String testCase, boolean results) {
         TextMessage msg = null;
@@ -1528,8 +1516,10 @@ public class MsgBeanMsgTestPropsT implements MessageDrivenBean, MessageListener 
             msg = qSession.createTextMessage();
             msg.setStringProperty("TestCase", testCase);
             msg.setText(testCase);
-            if (results) msg.setStringProperty("Status", "Pass");
-            else msg.setStringProperty("Status", "Fail");
+            if (results)
+                msg.setStringProperty("Status", "Pass");
+            else
+                msg.setStringProperty("Status", "Fail");
 
             TestUtil.logTrace("Sending response message");
             TestUtil.logTrace("==================================Test Results from: " + testCase);

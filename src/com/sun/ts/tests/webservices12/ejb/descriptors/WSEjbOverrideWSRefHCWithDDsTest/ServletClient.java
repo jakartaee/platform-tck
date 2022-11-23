@@ -33,10 +33,7 @@ public class ServletClient extends HttpServlet {
 
     private static final boolean debug = false;
 
-    @WebServiceRef(
-            name = "service/wsejboverridewsrefhcwithddstest",
-            type = java.lang.Object.class,
-            value = jakarta.xml.ws.Service.class)
+    @WebServiceRef(name = "service/wsejboverridewsrefhcwithddstest", type = java.lang.Object.class, value = jakarta.xml.ws.Service.class)
     HelloService service = null;
 
     private Hello port;
@@ -98,8 +95,10 @@ public class ServletClient extends HttpServlet {
             } else {
                 System.out.println("ServerSide Handler CallBacks (correct)");
             }
-            if (pass) p.setProperty("TESTRESULT", "pass");
-            else p.setProperty("TESTRESULT", "fail");
+            if (pass)
+                p.setProperty("TESTRESULT", "pass");
+            else
+                p.setProperty("TESTRESULT", "fail");
             p.list(out);
         } catch (Exception e) {
             System.err.println("doGet Exception: " + e);

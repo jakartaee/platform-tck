@@ -39,8 +39,7 @@ import java.util.Properties;
  * JMS TS tests. Testing method calls on closed QueueConnection objects.
  */
 public class ClosedQueueConnectionTests extends ServiceEETest {
-    private static final String TestName =
-            "com.sun.ts.tests.jms.core.appclient.closedQueueConnection.ClosedQueueConnectionTests";
+    private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedQueueConnection.ClosedQueueConnectionTests";
 
     private static final String testDir = System.getProperty("user.dir");
 
@@ -82,11 +81,9 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /**
-     * Used by tests that need a closed connection for testing. Passes any
-     * exceptions up to caller.
+     * Used by tests that need a closed connection for testing. Passes any exceptions up to caller.
      *
-     * @param int
-     *          The type of session that needs to be created and closed
+     * @param int The type of session that needs to be created and closed
      */
     private void createAndCloseConnection(int type) throws Exception {
         if ((type == JmsTool.QUEUE) || (type == JmsTool.TX_QUEUE)) {
@@ -104,10 +101,9 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -150,8 +146,8 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -174,11 +170,9 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
     /*
      * @testName: closedQueueConnectionSetClientIDTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-     * JMS:JAVADOC:514;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526; JMS:JAVADOC:514;
      *
-     * @test_Strategy: Close default Connection and call setClientID() method on
-     * it. Check for IllegalStateException.
+     * @test_Strategy: Close default Connection and call setClientID() method on it. Check for IllegalStateException.
      */
     public void closedQueueConnectionSetClientIDTest() throws Fault {
         boolean passed = false;
@@ -207,11 +201,10 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
     /*
      * @testName: closedQueueConnectionSetExceptionListenerTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-     * JMS:JAVADOC:520; JMS:JAVADOC:483;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526; JMS:JAVADOC:520; JMS:JAVADOC:483;
      *
-     * @test_Strategy: Close default Connection and call the setExceptionListener
-     * method on it. Check for IllegalStateException.
+     * @test_Strategy: Close default Connection and call the setExceptionListener method on it. Check for
+     * IllegalStateException.
      */
     public void closedQueueConnectionSetExceptionListenerTest() throws Fault {
         boolean passed = false;
@@ -222,7 +215,8 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
             try {
                 ExceptionListener foo = new ExceptionListener() {
 
-                    public void onException(JMSException jmsE) {}
+                    public void onException(JMSException jmsE) {
+                    }
                 };
 
                 tool.getDefaultQueueConnection().setExceptionListener(foo);
@@ -245,12 +239,10 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
     /*
      * @testName: closedQueueConnectionGetMessageListenerTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-     * JMS:JAVADOC:328;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526; JMS:JAVADOC:328;
      *
-     * @test_Strategy: Close default receiver and call the getMessageListener()
-     * method on the QueueReceiver associated with it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call the getMessageListener() method on the QueueReceiver associated with
+     * it. Check for IllegalStateException.
      */
     public void closedQueueConnectionGetMessageListenerTest() throws Fault {
         boolean passed = false;
@@ -280,12 +272,10 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
     /*
      * @testName: closedQueueConnectionSetMessageListenerTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-     * JMS:JAVADOC:330; JMS:JAVADOC:325;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526; JMS:JAVADOC:330; JMS:JAVADOC:325;
      *
-     * @test_Strategy: Close default receiver and call the setMessageListener
-     * method on the QueueReceiver associated with it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default receiver and call the setMessageListener method on the QueueReceiver associated with
+     * it. Check for IllegalStateException.
      */
     public void closedQueueConnectionSetMessageListenerTest() throws Fault {
         boolean passed = false;
@@ -296,7 +286,8 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
             try {
                 MessageListener foo = new MessageListener() {
 
-                    public void onMessage(Message m) {}
+                    public void onMessage(Message m) {
+                    }
                 };
 
                 tool.getDefaultQueueReceiver().setMessageListener(foo);
@@ -319,11 +310,10 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
     /*
      * @testName: closedQueueConnectionGetExceptionListenerTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-     * JMS:JAVADOC:518;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526; JMS:JAVADOC:518;
      *
-     * @test_Strategy: Close default Connection and call the
-     * getExceptionListener() method on it. Check for IllegalStateException.
+     * @test_Strategy: Close default Connection and call the getExceptionListener() method on it. Check for
+     * IllegalStateException.
      */
     public void closedQueueConnectionGetExceptionListenerTest() throws Fault {
         boolean passed = false;
@@ -353,11 +343,9 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
     /*
      * @testName: closedQueueConnectionStopTest
      *
-     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-     * JMS:JAVADOC:524;
+     * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526; JMS:JAVADOC:524;
      *
-     * @test_Strategy: Close default Connection and call the stop method on it.
-     * Check for IllegalStateException.
+     * @test_Strategy: Close default Connection and call the stop method on it. Check for IllegalStateException.
      */
     public void closedQueueConnectionStopTest() throws Fault {
         boolean passed = false;
@@ -388,9 +376,8 @@ public class ClosedQueueConnectionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:106; JMS:JAVADOC:794;
      *
-     * @test_Strategy: Send and receive single message. Close the queue
-     * connection, call acknowledge, then verify that IllegalStateException is
-     * thrown.
+     * @test_Strategy: Send and receive single message. Close the queue connection, call acknowledge, then verify that
+     * IllegalStateException is thrown.
      */
     public void closedQueueConnectionAckTest() throws Fault {
         boolean pass = true;

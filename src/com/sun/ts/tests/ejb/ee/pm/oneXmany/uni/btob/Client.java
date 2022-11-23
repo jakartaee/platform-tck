@@ -49,8 +49,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -80,12 +79,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:232.1
      *
-     * @test_Strategy: A 1xmany uni-directional relationship between entitybean
-     * objects. Create a 1xmany uni-directional relationship between entitybean
-     * objects. Do not set the relationship fields. The results should be set to
-     * empty or null. Deploy EAR on the J2EE server. Ensure the entity beans were
-     * created and that the persistence manager has null settings for the
-     * relationship fields not set.
+     * @test_Strategy: A 1xmany uni-directional relationship between entitybean objects. Create a 1xmany uni-directional
+     * relationship between entitybean objects. Do not set the relationship fields. The results should be set to empty or
+     * null. Deploy EAR on the J2EE server. Ensure the entity beans were created and that the persistence manager has null
+     * settings for the relationship fields not set.
      */
 
     public void btob_1xM_uni_test0() throws Fault {
@@ -100,7 +97,8 @@ public class Client extends EETest {
             bRef.init(props);
 
             // Uni-Directional relationship fields should be empty or null for beans
-            if (bRef.test0()) TestUtil.logMsg("relationship fields are empty or null - expected");
+            if (bRef.test0())
+                TestUtil.logMsg("relationship fields are empty or null - expected");
             else {
                 TestUtil.logErr("relationship fields are not empty or null - unexpected");
                 pass = false;
@@ -117,7 +115,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_uni_test0 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_uni_test0 failed");
     }
 
     /*
@@ -125,9 +124,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:215
      *
-     * @test_Strategy: A 1xmany uni-directional relationship between entitybean
-     * objects. If the cmr-fields are set to null than they should be set to empty
-     * or null by default by the persistence manager. For a collection expect
+     * @test_Strategy: A 1xmany uni-directional relationship between entitybean objects. If the cmr-fields are set to null
+     * than they should be set to empty or null by default by the persistence manager. For a collection expect
      * IllegalArgumentException if set.
      *
      */
@@ -156,7 +154,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_uni_test0b failed");
+        if (!pass)
+            throw new Fault("btob_1xM_uni_test0b failed");
     }
 
     /*
@@ -164,11 +163,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:206; EJB:SPEC:164; EJB:SPEC:165; EJB:SPEC:169
      *
-     * @test_Strategy: A 1xmany uni-directional relationship between entitybean
-     * objects. Create a 1xmany uni-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Perform the relationship assignment
-     * per assertion tag. Ensure the proper relationship results are correct after
-     * the assignment by the persistence manager.
+     * @test_Strategy: A 1xmany uni-directional relationship between entitybean objects. Create a 1xmany uni-directional
+     * relationship between entitybean objects. Deploy EAR on the J2EE server. Perform the relationship assignment per
+     * assertion tag. Ensure the proper relationship results are correct after the assignment by the persistence manager.
      *
      */
 
@@ -201,7 +198,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_uni_test1 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_uni_test1 failed");
     }
 
     /*
@@ -209,11 +207,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:206.1
      *
-     * @test_Strategy: A 1xmany uni-directional relationship between entitybean
-     * objects. Create a 1xmany uni-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Perform the relationship assignment
-     * per assertion tag. Ensure the proper relationship results are correct after
-     * the assignment by the persistence manager.
+     * @test_Strategy: A 1xmany uni-directional relationship between entitybean objects. Create a 1xmany uni-directional
+     * relationship between entitybean objects. Deploy EAR on the J2EE server. Perform the relationship assignment per
+     * assertion tag. Ensure the proper relationship results are correct after the assignment by the persistence manager.
      *
      */
 
@@ -246,7 +242,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_uni_test2 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_uni_test2 failed");
     }
 
     /*
@@ -254,11 +251,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:206.2
      *
-     * @test_Strategy: A 1xmany uni-directional relationship between entitybean
-     * objects. Create a 1xmany uni-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Perform the relationship assignment
-     * per assertion tag. Ensure the proper relationship results are correct after
-     * the assignment by the persistence manager.
+     * @test_Strategy: A 1xmany uni-directional relationship between entitybean objects. Create a 1xmany uni-directional
+     * relationship between entitybean objects. Deploy EAR on the J2EE server. Perform the relationship assignment per
+     * assertion tag. Ensure the proper relationship results are correct after the assignment by the persistence manager.
      *
      */
 
@@ -291,7 +286,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_uni_test3 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_uni_test3 failed");
     }
 
     /*
@@ -299,11 +295,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:201
      *
-     * @test_Strategy: A 1xmany uni-directional relationship between entitybean
-     * objects. Create a 1xmany uni-directional relationship between entitybean
-     * objects. Deploy EAR on the J2EE server. Ensure the entity beans were
-     * created and that the persistence manager is handling getting/setting of
-     * data. Ensure uni-directional data access from both entitybean objects.
+     * @test_Strategy: A 1xmany uni-directional relationship between entitybean objects. Create a 1xmany uni-directional
+     * relationship between entitybean objects. Deploy EAR on the J2EE server. Ensure the entity beans were created and that
+     * the persistence manager is handling getting/setting of data. Ensure uni-directional data access from both entitybean
+     * objects.
      *
      */
 
@@ -343,6 +338,7 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("btob_1xM_uni_test4 failed");
+        if (!pass)
+            throw new Fault("btob_1xM_uni_test4 failed");
     }
 }

@@ -26,9 +26,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: isPostConstructCalledTest
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o verify callback methods in handler class are invoked o
-     * callback methods may, in some cases, named as ejbCreate, ejbRemove
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o verify callback methods in
+     * handler class are invoked o callback methods may, in some cases, named as ejbCreate, ejbRemove
      */
     public void isPostConstructCalledTest() throws Fault {
         sendReceive();
@@ -37,9 +36,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: isInjectionDoneTest
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o Resource o verify dependency injection has not occurred when
-     * callback method is called
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o Resource o verify dependency
+     * injection has not occurred when callback method is called
      */
     public void isInjectionDoneTest() throws Fault {
         sendReceive();
@@ -48,9 +46,8 @@ public abstract class MDBClientBase extends com.sun.ts.tests.ejb30.common.messag
     /*
      * testName: isPostConstructOrPreDestroyCalledTest
      *
-     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o
-     * PreDestroy o apply two/four callback annotations on the same method o
-     * callback methods may use arbitrary names
+     * @test_Strategy: o using annotations: o CallbackListener o PostConstruct o PreDestroy o apply two/four callback
+     * annotations on the same method o callback methods may use arbitrary names
      */
     public void isPostConstructOrPreDestroyCalledTest() throws Fault {
         sendReceive();

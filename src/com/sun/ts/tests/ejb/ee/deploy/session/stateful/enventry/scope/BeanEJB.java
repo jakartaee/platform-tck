@@ -26,13 +26,10 @@ import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 public class BeanEJB extends StatefulWrapper {
 
     /**
-     * Lookup a String env entry named 'name' and compare its runtime value with
-     * 'ref'.
+     * Lookup a String env entry named 'name' and compare its runtime value with 'ref'.
      *
-     * @param name
-     *          StringJNDI name of the nev entry to lookup.
-     * @param ref
-     *          String Reference value for this env entry (the one in DD).
+     * @param name StringJNDI name of the nev entry to lookup.
+     * @param ref String Reference value for this env entry (the one in DD).
      *
      * @return True if runtime value and reference matches. False otherwise.
      */

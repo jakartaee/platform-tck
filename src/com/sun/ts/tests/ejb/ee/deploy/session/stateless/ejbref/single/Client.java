@@ -45,8 +45,7 @@ public class Client extends EETest {
     }
 
     /**
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -73,16 +72,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing
-     *                 another Stateless Session bean (StatelessInternal) part of
-     *                 the same JAR file. The EJB reference is declared without
-     *                 using the optional ejb-link element in the DD.
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing another Stateless Session bean
+     * (StatelessInternal) part of the same JAR file. The EJB reference is declared without using the optional ejb-link
+     * element in the DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the EJB
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 StatelessInternal beans (to check that the EJB reference
-     *                 was resolved consistently with the DD).
+     * Check at runtime that TestBean can do a lookup for the EJB reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in StatelessInternal beans (to check that the EJB reference was resolved
+     * consistently with the DD).
      */
     public void testStatelessInternal() throws Fault {
         boolean pass;
@@ -110,16 +106,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing
-     *                 another Stateless Session bean (StatelessExternal) part of
-     *                 another JAR file. The EJB reference is declared without
-     *                 using the optional ejb-link element in the DD.
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing another Stateless Session bean
+     * (StatelessExternal) part of another JAR file. The EJB reference is declared without using the optional ejb-link
+     * element in the DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the EJB
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 StatelessExternal beans (to check that the EJB reference
-     *                 was resolved consistently with the DD).
+     * Check at runtime that TestBean can do a lookup for the EJB reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in StatelessExternal beans (to check that the EJB reference was resolved
+     * consistently with the DD).
      */
     public void testStatelessExternal() throws Fault {
         boolean pass;
@@ -147,16 +140,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-     *                 Stateful Session bean (StatefulInternal) which is part of
-     *                 the same JAR file. The EJB reference is declared without
-     *                 using the optional ejb-link element in the DD.
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a Stateful Session bean (StatefulInternal)
+     * which is part of the same JAR file. The EJB reference is declared without using the optional ejb-link element in the
+     * DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the EJB
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 StatefulInternal beans (to check that the EJB reference was
-     *                 resolved consistently with the DD).
+     * Check at runtime that TestBean can do a lookup for the EJB reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in StatefulInternal beans (to check that the EJB reference was resolved
+     * consistently with the DD).
      */
     public void testStatefulInternal() throws Fault {
         boolean pass;
@@ -185,16 +175,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-     *                 Stateful Session bean (StatefulExternal) which is part of
-     *                 another JAR file. The EJB reference is declared without
-     *                 using the optional ejb-link element in the DD.
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a Stateful Session bean (StatefulExternal)
+     * which is part of another JAR file. The EJB reference is declared without using the optional ejb-link element in the
+     * DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the EJB
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 StatefulExternal beans (to check that the EJB reference was
-     *                 resolved consistently with the DD).
+     * Check at runtime that TestBean can do a lookup for the EJB reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in StatefulExternal beans (to check that the EJB reference was resolved
+     * consistently with the DD).
      */
     public void testStatefulExternal() throws Fault {
         boolean pass;
@@ -223,16 +210,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-     *                 BMP Entity bean (BMPInternal) which is part of the same JAR
-     *                 file. The EJB reference is declared without using the
-     *                 optional ejb-link element in the DD.
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a BMP Entity bean (BMPInternal) which is part
+     * of the same JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the EJB
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in BMPInternal
-     *                 beans (to check that the EJB reference was resolved
-     *                 consistently with the DD).
+     * Check at runtime that TestBean can do a lookup for the EJB reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in BMPInternal beans (to check that the EJB reference was resolved
+     * consistently with the DD).
      */
     public void testBMPInternal() throws Fault {
         boolean pass;
@@ -260,16 +243,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-     *                 BMP Entity bean (BMPExternal) which is part of another JAR
-     *                 file. The EJB reference is declared without using the
-     *                 optional ejb-link element in the DD.
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a BMP Entity bean (BMPExternal) which is part
+     * of another JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the EJB
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in BMPExternal
-     *                 beans (to check that the EJB reference was resolved
-     *                 consistently with the DD).
+     * Check at runtime that TestBean can do a lookup for the EJB reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in BMPExternal beans (to check that the EJB reference was resolved
+     * consistently with the DD).
      */
     public void testBMPExternal() throws Fault {
         boolean pass;
@@ -297,16 +276,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-     *                 CMP 1.1 Entity bean (CMP11Internal) which is part of the
-     *                 same JAR file. The EJB reference is declared without using
-     *                 the optional ejb-link element in the DD.
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a CMP 1.1 Entity bean (CMP11Internal) which is
+     * part of the same JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the EJB
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 CMP11Internal beans (to check that the EJB reference was
-     *                 resolved consistently with the DD).
+     * Check at runtime that TestBean can do a lookup for the EJB reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in CMP11Internal beans (to check that the EJB reference was resolved
+     * consistently with the DD).
      */
     public void testCMP11Internal() throws Fault {
         boolean pass = false;
@@ -334,16 +309,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-     *                 CMP 1.1 Entity bean (CMP11External) part of another JAR
-     *                 file. The EJB reference is declared without using the
-     *                 optional ejb-link element in the DD.
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a CMP 1.1 Entity bean (CMP11External) part of
+     * another JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the EJB
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 CMP11External beans (to check that the EJB reference was
-     *                 resolved consistently with the DD).
+     * Check at runtime that TestBean can do a lookup for the EJB reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in CMP11External beans (to check that the EJB reference was resolved
+     * consistently with the DD).
      */
     public void testCMP11External() throws Fault {
         boolean pass = false;
@@ -371,16 +342,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-     *                 CMP 2.0 Entity bean (CMP20Internal) which is part of the
-     *                 same JAR file. The EJB reference is declared without using
-     *                 the optional ejb-link element in the DD.
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a CMP 2.0 Entity bean (CMP20Internal) which is
+     * part of the same JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the EJB
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 CMP20Internal beans (to check that the EJB reference was
-     *                 resolved consistently with the DD).
+     * Check at runtime that TestBean can do a lookup for the EJB reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in CMP20Internal beans (to check that the EJB reference was resolved
+     * consistently with the DD).
      */
     public void testCMP20Internal() throws Fault {
         boolean pass = false;
@@ -408,16 +375,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:765
      *
-     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-     *                 CMP 2.0 Entity bean (CMP20External) which is part of
-     *                 another JAR file. The EJB reference is declared without
-     *                 using the optional ejb-link element in the DD.
+     * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a CMP 2.0 Entity bean (CMP20External) which is
+     * part of another JAR file. The EJB reference is declared without using the optional ejb-link element in the DD.
      *
-     *                 Check at runtime that TestBean can do a lookup for the EJB
-     *                 reference and use it to create a bean. Then invoke on that
-     *                 instance a business method to be found only in
-     *                 CMP20External beans (to check that the EJB reference was
-     *                 resolved consistently with the DD).
+     * Check at runtime that TestBean can do a lookup for the EJB reference and use it to create a bean. Then invoke on that
+     * instance a business method to be found only in CMP20External beans (to check that the EJB reference was resolved
+     * consistently with the DD).
      */
     public void testCMP20External() throws Fault {
         boolean pass = false;

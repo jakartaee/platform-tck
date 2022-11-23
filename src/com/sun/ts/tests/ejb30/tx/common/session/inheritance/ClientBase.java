@@ -28,8 +28,7 @@ public abstract class ClientBase extends AbstractUrlClient {
     protected String SERVLET_NAME = "TestServlet";
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setServletName(SERVLET_NAME);

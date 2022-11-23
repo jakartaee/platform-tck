@@ -37,15 +37,13 @@ public class JSPSigTest extends SigTest {
     /***** Abstract Method Implementation *****/
 
     /**
-     * Returns a list of strings where each string represents a package name. Each
-     * package name will have it's signature tested by the signature test
-     * framework.
+     * Returns a list of strings where each string represents a package name. Each package name will have it's signature
+     * tested by the signature test framework.
      *
-     * @return String[] The names of the packages whose signatures should be
-     *         verified.
+     * @return String[] The names of the packages whose signatures should be verified.
      */
     protected String[] getPackages() {
-        return new String[] {"jakarta.servlet.jsp", "jakarta.servlet.jsp.el", "jakarta.servlet.jsp.tagext"};
+        return new String[] { "jakarta.servlet.jsp", "jakarta.servlet.jsp.el", "jakarta.servlet.jsp.tagext" };
     }
 
     /***** Boilerplate Code *****/
@@ -60,18 +58,16 @@ public class JSPSigTest extends SigTest {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         return super.run(args, out, err);
     }
 
     /*
-     * The following comments are specified in the base class that defines the
-     * signature tests. This is done so the test finders will find the right class
-     * to run. The implementation of these methods is inherited from the super
-     * class which is part of the signature test framework.
+     * The following comments are specified in the base class that defines the signature tests. This is done so the test
+     * finders will find the right class to run. The implementation of these methods is inherited from the super class which
+     * is part of the signature test framework.
      */
 
     // NOTE: If the API under test is not part of your testing runtime
@@ -89,12 +85,10 @@ public class JSPSigTest extends SigTest {
     /*
      * @testName: signatureTest
      *
-     * @assertion: A JSP container must implement the required classes and APIs
-     * specified in the JSP Specification.
+     * @assertion: A JSP container must implement the required classes and APIs specified in the JSP Specification.
      *
-     * @test_Strategy: Using reflection, gather the implementation specific
-     * classes and APIs. Compare these results with the expected (required)
-     * classes and APIs.
+     * @test_Strategy: Using reflection, gather the implementation specific classes and APIs. Compare these results with the
+     * expected (required) classes and APIs.
      *
      */
 

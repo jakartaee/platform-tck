@@ -47,8 +47,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -79,10 +78,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:181
      *
-     * @test_Strategy: A 1x1 bi-directional relationship between entitybean
-     * objects. Create a 1x1 bi-directional relationship between entitybean
-     * objects. Perform delete of entitybean object. Deploy it on the J2EE server.
-     * Ensure that the delete of entitybean object succeeded.
+     * @test_Strategy: A 1x1 bi-directional relationship between entitybean objects. Create a 1x1 bi-directional
+     * relationship between entitybean objects. Perform delete of entitybean object. Deploy it on the J2EE server. Ensure
+     * that the delete of entitybean object succeeded.
      */
 
     public void delete_1x1_bi_test1() throws Fault {
@@ -98,7 +96,8 @@ public class Client extends EETest {
             b.init(props);
 
             // Check delete of entitybean object
-            if (b.test1()) TestUtil.logMsg("delete of entitybean object passed");
+            if (b.test1())
+                TestUtil.logMsg("delete of entitybean object passed");
             else {
                 TestUtil.logErr("delete of entitybean object failed");
                 pass = false;
@@ -115,7 +114,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("delete_1x1_bi_test1 failed");
+        if (!pass)
+            throw new Fault("delete_1x1_bi_test1 failed");
     }
 
     /*
@@ -123,10 +123,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:176.1
      *
-     * @test_Strategy: A 1x1 bi-directional relationship between entitybean
-     * objects. Create a 1x1 bi-directional relationship between entitybean
-     * objects. Perform delete of entitybean object. Deploy it on the J2EE server.
-     * Ensure that the accessor methods for the relationships returns null.
+     * @test_Strategy: A 1x1 bi-directional relationship between entitybean objects. Create a 1x1 bi-directional
+     * relationship between entitybean objects. Perform delete of entitybean object. Deploy it on the J2EE server. Ensure
+     * that the accessor methods for the relationships returns null.
      *
      */
 
@@ -143,7 +142,8 @@ public class Client extends EETest {
             b.init(props);
 
             // Check if accessor methods for the relationships returns null
-            if (b.test2()) TestUtil.logMsg("accessor methods for relationships returns null passed");
+            if (b.test2())
+                TestUtil.logMsg("accessor methods for relationships returns null passed");
             else {
                 TestUtil.logErr("accessor methods for relationships returns not null failed");
                 pass = false;
@@ -160,7 +160,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("delete_1x1_bi_test2 failed");
+        if (!pass)
+            throw new Fault("delete_1x1_bi_test2 failed");
     }
 
     /*
@@ -168,11 +169,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:178
      *
-     * @test_Strategy: A 1x1 bi-directional relationship between entitybean
-     * objects. Create a 1x1 bi-directional relationship between entitybean
-     * objects. Perform delete of entitybean object. Deploy it on the J2EE server.
-     * Ensure that the Persistence Manager throws jakarta.ejb.EJBException when
-     * trying to invoke an accessor method on a deleted entitybean object.
+     * @test_Strategy: A 1x1 bi-directional relationship between entitybean objects. Create a 1x1 bi-directional
+     * relationship between entitybean objects. Perform delete of entitybean object. Deploy it on the J2EE server. Ensure
+     * that the Persistence Manager throws jakarta.ejb.EJBException when trying to invoke an accessor method on a deleted
+     * entitybean object.
      *
      */
 
@@ -189,7 +189,8 @@ public class Client extends EETest {
             b.init(props);
 
             // Check that PM throws jakarta.ejb.EJBException
-            if (b.test3()) TestUtil.logMsg("pm does throw EJBException passed");
+            if (b.test3())
+                TestUtil.logMsg("pm does throw EJBException passed");
             else {
                 TestUtil.logErr("pm does not throw EJBException failed");
                 pass = false;
@@ -206,7 +207,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("delete_1x1_bi_test3 failed");
+        if (!pass)
+            throw new Fault("delete_1x1_bi_test3 failed");
     }
 
     /*
@@ -214,12 +216,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:179
      *
-     * @test_Strategy: A 1x1 bi-directional relationship between entitybean
-     * objects. Create a 1x1 bi-directional relationship between entitybean
-     * objects. Perform delete of entitybean object. Deploy it on the J2EE server.
-     * Ensure that the Persistence Manager throws
-     * java.lang.IllegalArgumentException when trying to assign a deleted object
-     * as the value of a cmr-field.
+     * @test_Strategy: A 1x1 bi-directional relationship between entitybean objects. Create a 1x1 bi-directional
+     * relationship between entitybean objects. Perform delete of entitybean object. Deploy it on the J2EE server. Ensure
+     * that the Persistence Manager throws java.lang.IllegalArgumentException when trying to assign a deleted object as the
+     * value of a cmr-field.
      *
      */
 
@@ -236,7 +236,8 @@ public class Client extends EETest {
             b.init(props);
 
             // Check that PM throws java.lang.IllegalArgumentException
-            if (b.test4()) TestUtil.logMsg("pm does throw IllegalArgumentException passed");
+            if (b.test4())
+                TestUtil.logMsg("pm does throw IllegalArgumentException passed");
             else {
                 TestUtil.logErr("pm does not throw IllegalArgumentException failed");
                 pass = false;
@@ -253,6 +254,7 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("delete_1x1_bi_test4 failed");
+        if (!pass)
+            throw new Fault("delete_1x1_bi_test4 failed");
     }
 }

@@ -29,7 +29,7 @@ import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-@ClientEndpoint(subprotocols = {StringUtil.WEBSOCKET_SUBPROTOCOLS_1, StringUtil.WEBSOCKET_SUBPROTOCOLS_2})
+@ClientEndpoint(subprotocols = { StringUtil.WEBSOCKET_SUBPROTOCOLS_1, StringUtil.WEBSOCKET_SUBPROTOCOLS_2 })
 public class WSCMatchedSubprotocolClientEndpoint extends AnnotatedClientEndpoint<String> {
 
     public WSCMatchedSubprotocolClientEndpoint() {

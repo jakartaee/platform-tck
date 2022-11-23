@@ -51,7 +51,8 @@ public abstract class JACCEntityBean implements EntityBean {
         return null;
     }
 
-    public void ejbPostCreate(String arg1, int arg2, long arg3) throws CreateException {}
+    public void ejbPostCreate(String arg1, int arg2, long arg3) throws CreateException {
+    }
 
     public void setEntityContext(EntityContext ctx) {
         context = ctx;
@@ -72,15 +73,20 @@ public abstract class JACCEntityBean implements EntityBean {
         this.context = null;
     }
 
-    public void ejbRemove() {}
+    public void ejbRemove() {
+    }
 
-    public void ejbLoad() {}
+    public void ejbLoad() {
+    }
 
-    public void ejbStore() {}
+    public void ejbStore() {
+    }
 
-    public void ejbPassivate() {}
+    public void ejbPassivate() {
+    }
 
-    public void ejbActivate() {}
+    public void ejbActivate() {
+    }
 
     // Get Arg1
     public abstract String getArg1();

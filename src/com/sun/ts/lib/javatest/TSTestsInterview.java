@@ -29,18 +29,15 @@ import com.sun.javatest.TestResultTable;
 import com.sun.javatest.WorkDirectory;
 
 /**
- * This interview collects the "initial files" parameter. It is normally used as
- * one of a series of sub-interviews that collect the parameter information for
- * a test run.
+ * This interview collects the "initial files" parameter. It is normally used as one of a series of sub-interviews that
+ * collect the parameter information for a test run.
  */
 public class TSTestsInterview extends Interview implements Parameters.MutableTestsParameters {
     /**
      * Create an interview.
      *
-     * @param parent
-     *          The parent interview of which this is a child.
-     * @throws Interview.Fault
-     *           if there is a problem while creating the interview.
+     * @param parent The parent interview of which this is a child.
+     * @throws Interview.Fault if there is a problem while creating the interview.
      */
     public TSTestsInterview(InterviewParameters parent) throws Interview.Fault {
         super(parent, "tests");
@@ -53,18 +50,19 @@ public class TSTestsInterview extends Interview implements Parameters.MutableTes
     /**
      * Get the initial files from the interview.
      *
-     * @return a list of initial files to be read, to determine the tests to be
-     *         selected
+     * @return a list of initial files to be read, to determine the tests to be selected
      * @see #setTests
      */
     public String[] getTests() {
         if (qNeedTests.getValue() == YesNoQuestion.YES) {
             return qTests.getValue();
-        } else return null;
+        } else
+            return null;
     }
 
     public void setTests(String[] tests) {
-        if (tests == null) setTestsMode(ALL_TESTS);
+        if (tests == null)
+            setTestsMode(ALL_TESTS);
         else {
             setTestsMode(SPECIFIED_TESTS);
             setSpecifiedTests(tests);
@@ -77,16 +75,16 @@ public class TSTestsInterview extends Interview implements Parameters.MutableTes
 
     public void setTestsMode(int mode) {
         switch (mode) {
-            case ALL_TESTS:
-                qNeedTests.setValue(YesNoQuestion.NO);
-                break;
+        case ALL_TESTS:
+            qNeedTests.setValue(YesNoQuestion.NO);
+            break;
 
-            case SPECIFIED_TESTS:
-                qNeedTests.setValue(YesNoQuestion.YES);
-                break;
+        case SPECIFIED_TESTS:
+            qNeedTests.setValue(YesNoQuestion.YES);
+            break;
 
-            default:
-                throw new IllegalArgumentException();
+        default:
+            throw new IllegalArgumentException();
         }
     }
 
@@ -108,9 +106,12 @@ public class TSTestsInterview extends Interview implements Parameters.MutableTes
         }
 
         protected Question getNext() {
-            if (value == null) return null;
-            else if (value == YES) return qTests;
-            else return qEnd;
+            if (value == null)
+                return null;
+            else if (value == YES)
+                return qTests;
+            else
+                return qEnd;
         }
     };
 
@@ -124,46 +125,66 @@ public class TSTestsInterview extends Interview implements Parameters.MutableTes
         }
 
         public int getChildCount(Object node) {
-            if (node == null) throw new NullPointerException();
-            else if (node instanceof TestResultTable.TreeNode) return ((TestResultTable.TreeNode) node).getChildCount();
-            else if (node instanceof TestResult) return 0;
-            else throw new IllegalArgumentException();
+            if (node == null)
+                throw new NullPointerException();
+            else if (node instanceof TestResultTable.TreeNode)
+                return ((TestResultTable.TreeNode) node).getChildCount();
+            else if (node instanceof TestResult)
+                return 0;
+            else
+                throw new IllegalArgumentException();
         }
 
         public Object getChild(Object node, int index) {
-            if (node == null) throw new NullPointerException();
-            else if (node instanceof TestResultTable.TreeNode) return ((TestResultTable.TreeNode) node).getChild(index);
-            else if (node instanceof TestResult) return null;
-            else throw new IllegalArgumentException();
+            if (node == null)
+                throw new NullPointerException();
+            else if (node instanceof TestResultTable.TreeNode)
+                return ((TestResultTable.TreeNode) node).getChild(index);
+            else if (node instanceof TestResult)
+                return null;
+            else
+                throw new IllegalArgumentException();
         }
 
         public String getName(Object node) {
-            if (node == null) throw new NullPointerException();
-            else if (node instanceof TestResultTable.TreeNode) return ((TestResultTable.TreeNode) node).getName();
+            if (node == null)
+                throw new NullPointerException();
+            else if (node instanceof TestResultTable.TreeNode)
+                return ((TestResultTable.TreeNode) node).getName();
             else if (node instanceof TestResult) {
                 TestResult tr = (TestResult) node;
                 String fullName = tr.getTestName();
                 int lastSlash = fullName.lastIndexOf("/");
                 return (lastSlash == -1 ? fullName : fullName.substring(lastSlash + 1));
 
-            } else throw new IllegalArgumentException();
+            } else
+                throw new IllegalArgumentException();
         }
 
         public String getPath(Object node) {
-            if (node == null) throw new NullPointerException();
-            else if (node instanceof TestResult) return ((TestResult) node).getTestName();
+            if (node == null)
+                throw new NullPointerException();
+            else if (node instanceof TestResult)
+                return ((TestResult) node).getTestName();
             else if (node instanceof TestResultTable.TreeNode) {
                 TestResultTable.TreeNode tn = (TestResultTable.TreeNode) node;
-                if (tn.isRoot()) return tn.getName();
-                else return getPath(tn.getParent() + "/" + tn.getName());
-            } else throw new IllegalArgumentException();
+                if (tn.isRoot())
+                    return tn.getName();
+                else
+                    return getPath(tn.getParent() + "/" + tn.getName());
+            } else
+                throw new IllegalArgumentException();
         }
 
         public boolean isLeaf(Object node) {
-            if (node == null) throw new NullPointerException();
-            else if (node instanceof TestResult) return true;
-            else if (node instanceof TestResultTable.TreeNode) return false;
-            else throw new IllegalArgumentException();
+            if (node == null)
+                throw new NullPointerException();
+            else if (node instanceof TestResult)
+                return true;
+            else if (node instanceof TestResultTable.TreeNode)
+                return false;
+            else
+                throw new IllegalArgumentException();
         }
     };
 
@@ -178,20 +199,24 @@ public class TSTestsInterview extends Interview implements Parameters.MutableTes
             // a pseudo-name in the saved value for "ALL"
             /*
              * if (value == null || value.length == 0) return null; else
-             */ if (cachedTestsError != null) return cachedTestsError;
-            else return qEnd;
+             */ if (cachedTestsError != null)
+                return cachedTestsError;
+            else
+                return qEnd;
         }
     };
 
     private void validateTests() {
         String[] tests = qTests.getValue();
-        if (equal(tests, cachedTestsValue)) return;
+        if (equal(tests, cachedTestsValue))
+            return;
 
         cachedTestsValue = tests;
         cachedTestsError = null; // default
 
         WorkDirectory wd = parent.getWorkDirectory();
-        if (wd == null) return;
+        if (wd == null)
+            return;
 
         TestResultTable trt = wd.getTestResultTable();
         if (tests == null || tests.length == 0) {
@@ -204,7 +229,7 @@ public class TSTestsInterview extends Interview implements Parameters.MutableTes
             for (int i = 0; i < tests.length; i++) {
                 if (!trt.validatePath(tests[i])) {
                     cachedTestsError = qBadTestsError;
-                    cachedTestsErrorArgs = new Object[] {tests[i]};
+                    cachedTestsErrorArgs = new Object[] { tests[i] };
                     return;
                 }
             }
@@ -234,12 +259,15 @@ public class TSTestsInterview extends Interview implements Parameters.MutableTes
     // ----------------------------------------------------------------------------
 
     private static boolean equal(String[] s1, String[] s2) {
-        if (s1 == null || s2 == null) return (s1 == s2);
+        if (s1 == null || s2 == null)
+            return (s1 == s2);
 
-        if (s1.length != s2.length) return false;
+        if (s1.length != s2.length)
+            return false;
 
         for (int i = 0; i < s1.length; i++) {
-            if (s1[i] != s2[i]) return false;
+            if (s1[i] != s2[i])
+                return false;
         }
 
         return true;

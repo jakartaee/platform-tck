@@ -43,7 +43,8 @@ public class ShortClass_Field implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public ShortClass_Field() {}
+    public ShortClass_Field() {
+    }
 
     public ShortClass_Field(String id) {
         this.id = id;

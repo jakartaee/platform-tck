@@ -29,8 +29,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
- * All @AccessTimeout metadata are specified in bean class itself at method
- * level.
+ * All @AccessTimeout metadata are specified in bean class itself at method level.
  */
 @Stateful(mappedName = "stateful-concurrency-accesstimeout-annotated-BeanClassMethodLevelAccessTimeoutBean")
 @Remote(AccessTimeoutRemoteIF.class)

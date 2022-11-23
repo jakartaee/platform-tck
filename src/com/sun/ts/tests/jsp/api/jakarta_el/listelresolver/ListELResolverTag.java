@@ -43,7 +43,8 @@ public class ListELResolverTag extends SimpleTagSupport {
             boolean pass = ResolverTest.testELResolver(
                     context, listResolver, superheroes, Integer.valueOf(1), "Kryptonite", buf, false);
             out.println(buf.toString());
-            if (pass == true) out.println("Test PASSED");
+            if (pass == true)
+                out.println("Test PASSED");
 
         } catch (Throwable t) {
             out.println("buffer is " + buf.toString());

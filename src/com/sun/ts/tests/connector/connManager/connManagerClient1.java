@@ -61,8 +61,7 @@ public class connManagerClient1 extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: whitebox-tx; whitebox-notx; whitebox-xa;
-     * whitebox-anno_no_md; whitebox-multianno;
+     * @class.setup_props: whitebox-tx; whitebox-notx; whitebox-xa; whitebox-anno_no_md; whitebox-multianno;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -101,14 +100,12 @@ public class connManagerClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testcheckConnectionManager
      *
-     * @assertion_ids: Connector:SPEC:20; Connector:SPEC:34; Connector:JAVADOC:6;
-     * Connector:JAVADOC:27; Connector:JAVADOC:141; Connector:JAVADOC:187;
+     * @assertion_ids: Connector:SPEC:20; Connector:SPEC:34; Connector:JAVADOC:6; Connector:JAVADOC:27;
+     * Connector:JAVADOC:141; Connector:JAVADOC:187;
      *
-     * @test_Strategy: The TSDataSource file has method checkConnectionManager
-     * which returns true if ConnectionManager is Serializable and false if it is
-     * not. If true is returned then test passes else test fails. Also, we assume
-     * that since we can establish connections, we must successfully meet the
-     * listed JAVADOC assertions.
+     * @test_Strategy: The TSDataSource file has method checkConnectionManager which returns true if ConnectionManager is
+     * Serializable and false if it is not. If true is returned then test passes else test fails. Also, we assume that since
+     * we can establish connections, we must successfully meet the listed JAVADOC assertions.
      */
     public void testcheckConnectionManager() throws Fault {
         try {
@@ -128,21 +125,17 @@ public class connManagerClient1 extends ServiceEETest implements Serializable {
     /*
      * @testName: testTransactionSupportLevels
      *
-     * @assertion_ids: Connector:SPEC:52; Connector:SPEC:55; Connector:SPEC:287;
-     * Connector:SPEC:300;
+     * @assertion_ids: Connector:SPEC:52; Connector:SPEC:55; Connector:SPEC:287; Connector:SPEC:300;
      *
      *
-     * @test_Strategy: Test that the Appserver supports the loading and execution
-     * of RA's w/ all levels of transaction support. This includes: NoTransaction,
-     * LocalTransaction, and XATransaction. For our test, we assume that if we can
-     * connect to our RA's that test each of these areas, then the assertion is
-     * passed. We also want to verify the support of transactions from annotation
-     * based RA. For this latter test, we check we can connect to whitebox_anno
-     * which tests LocalTransaction and multianno which has NoTransaction.
+     * @test_Strategy: Test that the Appserver supports the loading and execution of RA's w/ all levels of transaction
+     * support. This includes: NoTransaction, LocalTransaction, and XATransaction. For our test, we assume that if we can
+     * connect to our RA's that test each of these areas, then the assertion is passed. We also want to verify the support
+     * of transactions from annotation based RA. For this latter test, we check we can connect to whitebox_anno which tests
+     * LocalTransaction and multianno which has NoTransaction.
      *
-     * Also, because we are able to establish a connection to rars that use diff
-     * version of dtd's and schema, we can assume the testing of assertion
-     * Connector:SPEC:287.
+     * Also, because we are able to establish a connection to rars that use diff version of dtd's and schema, we can assume
+     * the testing of assertion Connector:SPEC:287.
      *
      */
     public void testTransactionSupportLevels() throws Fault {

@@ -48,9 +48,11 @@ public class SimplePrincipal implements Principal, java.io.Serializable {
 
         SimplePrincipal that = (SimplePrincipal) obj;
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.name, that.getName())) return false;
+        if (!Util.isEqual(this.name, that.getName()))
+            return false;
 
         return true;
     }

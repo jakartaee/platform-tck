@@ -54,8 +54,7 @@ public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
 
     /*
@@ -63,14 +62,11 @@ public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase
      *
      * @assertion_ids: EJB:SPEC:778; EJB:SPEC:779; EJB:SPEC:780
      *
-     * @test_Strategy: test message destination related elements in deployment
-     * descriptors: message-destination, message-destination-ref,
-     * message-destination-link
+     * @test_Strategy: test message destination related elements in deployment descriptors: message-destination,
+     * message-destination-ref, message-destination-link
      *
-     * This test directory (optional) uses message-destination linking mechanism,
-     * which is declared in ejb-jar.xml and application-client.xml and deployment
-     * plans. Message destination type (queue or topic) is not specified. This
-     * configuration should work since this piece of information, whether declared
-     * in descriptor or annotation, is optional.
+     * This test directory (optional) uses message-destination linking mechanism, which is declared in ejb-jar.xml and
+     * application-client.xml and deployment plans. Message destination type (queue or topic) is not specified. This
+     * configuration should work since this piece of information, whether declared in descriptor or annotation, is optional.
      */
 }

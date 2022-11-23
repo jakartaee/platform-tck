@@ -26,7 +26,8 @@ import java.net.URL;
 
 public class Util {
 
-    private Util() {}
+    private Util() {
+    }
 
     public static void verifyGetResource(Class cls, String name, URL expected) throws TestFailedException {
         URL url = cls.getResource(name);

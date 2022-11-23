@@ -37,7 +37,7 @@ import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
 
 @Stateless()
-@Remote({TestIF.class})
+@Remote({ TestIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class TestBean extends TestBeanBase implements TestIF {
 

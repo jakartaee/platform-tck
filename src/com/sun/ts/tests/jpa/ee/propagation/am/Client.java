@@ -60,19 +60,15 @@ public class Client extends EETest {
     /*
      * @testName: test1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:684; PERSISTENCE:SPEC:842;
-     * PERSISTENCE:SPEC:850; PERSISTENCE:SPEC:852; PERSISTENCE:SPEC:853;
-     * PERSISTENCE:SPEC:859; PERSISTENCE:SPEC:879; PERSISTENCE:SPEC:880;
-     * PERSISTENCE:SPEC:885; PERSISTENCE:JAVADOC:58; PERSISTENCE:SPEC:1024
+     * @assertion_ids: PERSISTENCE:SPEC:684; PERSISTENCE:SPEC:842; PERSISTENCE:SPEC:850; PERSISTENCE:SPEC:852;
+     * PERSISTENCE:SPEC:853; PERSISTENCE:SPEC:859; PERSISTENCE:SPEC:879; PERSISTENCE:SPEC:880; PERSISTENCE:SPEC:885;
+     * PERSISTENCE:JAVADOC:58; PERSISTENCE:SPEC:1024
      *
-     * @test_Strategy: When an application-managed entity manager is used, the
-     * application interacts directly with the persistence provider's entity
-     * manager factory to manage the entity manager life cycle and to obtain and
-     * destroy persistence contexts. All such application-managed pcs are extended
-     * in scope and may span multiple transactions.
+     * @test_Strategy: When an application-managed entity manager is used, the application interacts directly with the
+     * persistence provider's entity manager factory to manage the entity manager life cycle and to obtain and destroy
+     * persistence contexts. All such application-managed pcs are extended in scope and may span multiple transactions.
      *
-     * Inject entity manager factory, but open and close each entity manager
-     * within the business method.
+     * Inject entity manager factory, but open and close each entity manager within the business method.
      */
 
     public void test1() throws Fault {
@@ -91,7 +87,8 @@ public class Client extends EETest {
             TestUtil.logErr("Unexpected Exception :", e);
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -99,14 +96,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: PERSISTENCE:SPEC:880
      *
-     * @test_Strategy: When an application-managed entity manager is used, the
-     * application interacts directly with the persistence provider's entity
-     * manager factory to manage the entity manager life cycle and to obtain and
-     * destroy persistence contexts. All such application-managed pcs are extended
-     * in scope and may span multiple transactions.
+     * @test_Strategy: When an application-managed entity manager is used, the application interacts directly with the
+     * persistence provider's entity manager factory to manage the entity manager life cycle and to obtain and destroy
+     * persistence contexts. All such application-managed pcs are extended in scope and may span multiple transactions.
      *
-     * Inject entity manager factory, but open and close each entity manager
-     * within the business method.
+     * Inject entity manager factory, but open and close each entity manager within the business method.
      *
      */
 
@@ -125,19 +119,18 @@ public class Client extends EETest {
             TestUtil.logErr("Unexpected Exception :", e);
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
      * @testName: test3
      *
-     * @assertion_ids: PERSISTENCE:SPEC:692; PERSISTENCE:JAVADOC:140;
-     * PERSISTENCE:JAVADOC:52
+     * @assertion_ids: PERSISTENCE:SPEC:692; PERSISTENCE:JAVADOC:140; PERSISTENCE:JAVADOC:52
      *
-     * @test_Strategy: The persistence providers implementation of the merge
-     * operation must examine the version attribute when an entity is being merged
-     * and throw an OptimisticLockException if is discovered that the object being
-     * merged is a stale copy of the entity.
+     * @test_Strategy: The persistence providers implementation of the merge operation must examine the version attribute
+     * when an entity is being merged and throw an OptimisticLockException if is discovered that the object being merged is
+     * a stale copy of the entity.
      *
      */
 
@@ -154,7 +147,8 @@ public class Client extends EETest {
             TestUtil.logErr("Unexpected Exception :", e);
         }
 
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -162,16 +156,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: PERSISTENCE:SPEC:886; PERSISTENCE:SPEC:881
      *
-     * @test_Strategy: When a JTA application-managed entity manager is used, if
-     * the entity manager is created outside the scope of a current JTA
-     * transaction, it is the responsibility of the application to associate the
-     * entity manager with the transaction (if desired) by calling
-     * EntityManager.joinTransaction.
+     * @test_Strategy: When a JTA application-managed entity manager is used, if the entity manager is created outside the
+     * scope of a current JTA transaction, it is the responsibility of the application to associate the entity manager with
+     * the transaction (if desired) by calling EntityManager.joinTransaction.
      *
-     * The enitity manager factory is injected into the stateful session bean. The
-     * entity manager is obtained in the PostConstruct method of bean and closed
-     * with when the bean is removed by a business method annotated with the
-     * Remove annotation.
+     * The enitity manager factory is injected into the stateful session bean. The entity manager is obtained in the
+     * PostConstruct method of bean and closed with when the bean is removed by a business method annotated with the Remove
+     * annotation.
      *
      */
 
@@ -188,7 +179,8 @@ public class Client extends EETest {
             TestUtil.logErr("Unexpected Exception :", e);
         }
 
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
@@ -196,8 +188,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:164; PERSISTENCE:SPEC:2420;
      *
-     * @test_Strategy: Test the @PersistenceUnits and verify that a managed entity
-     * from one PU is not accessible in the other PU and visa versa.
+     * @test_Strategy: Test the @PersistenceUnits and verify that a managed entity from one PU is not accessible in the
+     * other PU and visa versa.
      */
 
     public void test5() throws Fault {
@@ -212,7 +204,8 @@ public class Client extends EETest {
             TestUtil.logErr("Unexpected Exception :", e);
         }
 
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     public void cleanup() throws Fault {

@@ -51,17 +51,15 @@ public class APIValidator extends TagLibraryValidator {
     /**
      * Default constructor
      */
-    public APIValidator() {}
+    public APIValidator() {
+    }
 
     /**
      * Validates the interaction between the TLV class, and the container.
      *
-     * @param prefix
-     *          - the taglib prefix
-     * @param uri
-     *          - the taglib URI
-     * @param pageData
-     *          - PageData object
+     * @param prefix - the taglib prefix
+     * @param uri - the taglib URI
+     * @param pageData - PageData object
      * @return - Null or an Empty array of ValidationMessages.
      */
     public ValidationMessage[] validate(String prefix, String uri, PageData pageData) {
@@ -131,8 +129,7 @@ public class APIValidator extends TagLibraryValidator {
     /**
      * Called by the container to set this TLV's initialization parameters.
      *
-     * @param map
-     *          - map containing the parameters
+     * @param map - map containing the parameters
      */
     public void setInitParameters(Map map) {
         super.setInitParameters(map);

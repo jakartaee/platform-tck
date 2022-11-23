@@ -37,7 +37,8 @@ public class JACCSessionBean implements SessionBean {
 
     private SessionContext context;
 
-    public JACCSessionBean() {}
+    public JACCSessionBean() {
+    }
 
     public void ejbCreate(String arg1, int arg2, long arg3) throws RemoteException {
         this.arg1 = arg1;
@@ -49,11 +50,14 @@ public class JACCSessionBean implements SessionBean {
         this.context = sc;
     }
 
-    public void ejbRemove() throws RemoteException {}
+    public void ejbRemove() throws RemoteException {
+    }
 
-    public void ejbActivate() throws RemoteException {}
+    public void ejbActivate() throws RemoteException {
+    }
 
-    public void ejbPassivate() throws RemoteException {}
+    public void ejbPassivate() throws RemoteException {
+    }
 
     public String getArg1() throws RemoteException {
         return this.arg1;
@@ -71,7 +75,8 @@ public class JACCSessionBean implements SessionBean {
         String callerName = null;
         Principal callerPrincipal = context.getCallerPrincipal();
 
-        if (callerPrincipal != null) callerName = callerPrincipal.getName();
+        if (callerPrincipal != null)
+            callerName = callerPrincipal.getName();
 
         // invoke isCallerInRole() for the following tests
         // EJBRoleRefPermissionEquals() and

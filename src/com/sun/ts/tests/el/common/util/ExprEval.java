@@ -41,36 +41,39 @@ import java.util.Hashtable;
 public final class ExprEval {
 
     // Suppress default constructor for non-instantiability
-    private ExprEval() {}
+    private ExprEval() {
+    }
 
     public static String buildElExpr(boolean deferred, String operation) {
 
         String sandwich = null;
-        if (operation == null) sandwich = "{A}";
-        else if ("unary_minus".equals(operation)) sandwich = "{-A}";
-        else if ("unary_not".equals(operation)) sandwich = "{not A}";
-        else if ("unary_bang".equals(operation)) sandwich = "{! A}";
-        else if ("empty".equals(operation)) sandwich = "{empty A}";
-        else if ("conditional".equals(operation)) sandwich = "{A " + "?" + "B" + ":" + " C}";
+        if (operation == null)
+            sandwich = "{A}";
+        else if ("unary_minus".equals(operation))
+            sandwich = "{-A}";
+        else if ("unary_not".equals(operation))
+            sandwich = "{not A}";
+        else if ("unary_bang".equals(operation))
+            sandwich = "{! A}";
+        else if ("empty".equals(operation))
+            sandwich = "{empty A}";
+        else if ("conditional".equals(operation))
+            sandwich = "{A " + "?" + "B" + ":" + " C}";
         else // binary operation
-        sandwich = "{A " + operation + " B}";
+            sandwich = "{A " + operation + " B}";
 
         return (deferred) ? "#" + sandwich : "$" + sandwich;
     }
 
     /**
-     * Evaluates the ValueExpression expression relative to the provided context
-     * and resolverType, then returns the resulting value.
+     * Evaluates the ValueExpression expression relative to the provided context and resolverType, then returns the
+     * resulting value.
      *
-     * @param exprStr
-     *          - the String for the expression to be evaluated e.g. "${A + B}"
-     * @param nameVals
-     *          - an array of NameValuePair objects, each of which contains an
-     *          expression variable and the value to which it is to be set.
-     * @param expectedClass
-     *          - the type of the result produced by evaluating the expression.
-     * @param resolverType
-     *          - The type of ELResolver to use for expression resolution.
+     * @param exprStr - the String for the expression to be evaluated e.g. "${A + B}"
+     * @param nameVals - an array of NameValuePair objects, each of which contains an expression variable and the value to
+     * which it is to be set.
+     * @param expectedClass - the type of the result produced by evaluating the expression.
+     * @param resolverType - The type of ELResolver to use for expression resolution.
      *
      * @return - The result of the expression evaluation.
      *
@@ -117,18 +120,13 @@ public final class ExprEval {
     }
 
     /**
-     * Evaluates the ValueExpression expression relative to the provided context
-     * and the resolverType of
-     * com.sun.ts.tests.el.common.elresolver.VariableELResolver, then returns the
-     * resulting value.
+     * Evaluates the ValueExpression expression relative to the provided context and the resolverType of
+     * com.sun.ts.tests.el.common.elresolver.VariableELResolver, then returns the resulting value.
      *
-     * @param exprStr
-     *          - the String for the expression to be evaluated e.g. "${A + B}"
-     * @param nameVals
-     *          - an array of NameValuePair Objects, each of which contains an
-     *          expression variable and the value to which it is to be set
-     * @param expectedClass
-     *          - the type of the result produced by evaluating the expression.
+     * @param exprStr - the String for the expression to be evaluated e.g. "${A + B}"
+     * @param nameVals - an array of NameValuePair Objects, each of which contains an expression variable and the value to
+     * which it is to be set
+     * @param expectedClass - the type of the result produced by evaluating the expression.
      *
      * @return - The result of the expression evaluation.
      *
@@ -145,14 +143,10 @@ public final class ExprEval {
     /**
      * Used to evaluate MethodExpression()
      *
-     * @param exprStr
-     *          - Expression to be parsed as a MethodExpression.
-     * @param params
-     *          - Parameters to pass to the method, or null if no parameters.
-     * @param expectedClass
-     *          - Expected return type.
-     * @param resolverType
-     *          - ELResolver to use for expression resolution.
+     * @param exprStr - Expression to be parsed as a MethodExpression.
+     * @param params - Parameters to pass to the method, or null if no parameters.
+     * @param expectedClass - Expected return type.
+     * @param resolverType - ELResolver to use for expression resolution.
      *
      * @return - the result of the method invocation.
      *
@@ -176,12 +170,9 @@ public final class ExprEval {
     }
 
     /**
-     * @param exprStr
-     *          - Expression to be parsed.
-     * @param exprVal
-     *          - The value passed to ValueExpression.setValue().
-     * @param expectedClass
-     *          - Expected return type.
+     * @param exprStr - Expression to be parsed.
+     * @param exprVal - The value passed to ValueExpression.setValue().
+     * @param expectedClass - Expected return type.
      *
      * @return - the result of the method invocation.
      *
@@ -208,18 +199,12 @@ public final class ExprEval {
     }
 
     /**
-     * Parse a ValueExpression once, evaluate it many times, while adding Context
-     * Objects to the ELContext one at a time.
+     * Parse a ValueExpression once, evaluate it many times, while adding Context Objects to the ELContext one at a time.
      *
-     * @param exprStr
-     *          - Expression to be parsed.
-     * @param exprVal
-     *          - The value passed to ValueExpression.setValue().
-     * @param expectedClass
-     *          - Expected return type.
-     * @param contextobj
-     *          - a Hashtable of context objects in the form of key=Class,
-     *          value=value.
+     * @param exprStr - Expression to be parsed.
+     * @param exprVal - The value passed to ValueExpression.setValue().
+     * @param expectedClass - Expected return type.
+     * @param contextobj - a Hashtable of context objects in the form of key=Class, value=value.
      * @throws jakarta.el.ELException
      * @throws jakarta.el.PropertyNotFoundException
      * @throws jakarta.el.PropertyNotWritableException

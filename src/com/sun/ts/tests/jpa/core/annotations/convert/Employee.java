@@ -42,7 +42,8 @@ public class Employee implements java.io.Serializable {
     @Column(name = "SALARY")
     private String salary;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(int id, String firstName, String lastName, String salary) {
         this.id = id;
@@ -89,8 +90,10 @@ public class Employee implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Employee)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Employee))
+            return false;
 
         Employee o1 = (Employee) o;
 

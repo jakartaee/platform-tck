@@ -250,8 +250,7 @@ public class LogicalHandlerBase implements jakarta.xml.ws.handler.LogicalHandler
                 HandlerTracker.reportProperties(this, direction, "MessageContext.HTTP_RESPONSE_CODE", "null");
             }
 
-            Map<String, List<String>> m2 =
-                    (Map<String, List<String>>) context.get(LogicalMessageContext.HTTP_REQUEST_HEADERS);
+            Map<String, List<String>> m2 = (Map<String, List<String>>) context.get(LogicalMessageContext.HTTP_REQUEST_HEADERS);
             StringBuffer sb = new StringBuffer();
             cnt = 0;
             iterator = null;
@@ -429,8 +428,8 @@ public class LogicalHandlerBase implements jakarta.xml.ws.handler.LogicalHandler
             // set a property that the everyone will add to.
 
             if (whichHandlerType.equals("Client")) {
-                HandlerTracker.reportGet(this, whichHandlerType + "To" + whichHandlerType + "Prop", (String)
-                        context.get(whichHandlerType + "To" + whichHandlerType + "Prop"));
+                HandlerTracker.reportGet(this, whichHandlerType + "To" + whichHandlerType + "Prop",
+                        (String) context.get(whichHandlerType + "To" + whichHandlerType + "Prop"));
 
                 String tmp = (String) context.get(whichHandlerType + "To" + whichHandlerType + "Prop");
                 tmp = tmp + whichDirection + whichHandlerType + "LogicalHandler2";
@@ -447,8 +446,8 @@ public class LogicalHandlerBase implements jakarta.xml.ws.handler.LogicalHandler
                 // server
                 String tmp = "";
                 if (direction.equals(Constants.OUTBOUND)) {
-                    HandlerTracker.reportGet(this, "Handler" + whichHandlerType + "HandlerProp", (String)
-                            context.get("Handler" + whichHandlerType + "HandlerProp"));
+                    HandlerTracker.reportGet(this, "Handler" + whichHandlerType + "HandlerProp",
+                            (String) context.get("Handler" + whichHandlerType + "HandlerProp"));
 
                     tmp = (String) context.get("Handler" + whichHandlerType + "HandlerProp");
                 }
@@ -510,13 +509,11 @@ public class LogicalHandlerBase implements jakarta.xml.ws.handler.LogicalHandler
 
             } else if (direction.equals(Constants.INBOUND)) {
                 HandlerTracker.reportGet(
-                        this, whichDirection + whichHandlerType + "LogicalCrossHandlerPropSetByHandler3", (String)
-                                context.get(
-                                        whichDirection + whichHandlerType + "LogicalCrossHandlerPropSetByHandler3"));
+                        this, whichDirection + whichHandlerType + "LogicalCrossHandlerPropSetByHandler3", (String) context.get(
+                                whichDirection + whichHandlerType + "LogicalCrossHandlerPropSetByHandler3"));
                 HandlerTracker.reportGet(
-                        this, whichDirection + whichHandlerType + "LogicalMessageScopeAppPropSetByHandler3", (String)
-                                context.get(
-                                        whichDirection + whichHandlerType + "LogicalMessageScopeAppPropSetByHandler3"));
+                        this, whichDirection + whichHandlerType + "LogicalMessageScopeAppPropSetByHandler3", (String) context.get(
+                                whichDirection + whichHandlerType + "LogicalMessageScopeAppPropSetByHandler3"));
                 HandlerTracker.reportGet(
                         this,
                         whichDirection + whichHandlerType + "LogicalMessageScopeHandlerPropSetByHandler3",
@@ -536,7 +533,7 @@ public class LogicalHandlerBase implements jakarta.xml.ws.handler.LogicalHandler
                         this,
                         whichDirection + whichHandlerType + "LogicalMessageScopeHandlerPropSetByHandler3",
                         context.getScope(whichDirection + whichHandlerType
-                                        + "LogicalMessageScopeHandlerPropSetByHandler3")
+                                + "LogicalMessageScopeHandlerPropSetByHandler3")
                                 .toString());
             }
             HandlerTracker.reportComment(this, "EndMessageContextCallbackInvocations");
@@ -547,13 +544,11 @@ public class LogicalHandlerBase implements jakarta.xml.ws.handler.LogicalHandler
                 TestUtil.logTrace("whichHandlerType=" + whichHandlerType);
                 // get a property that was set by the endpoint
                 HandlerTracker.reportGet(
-                        this, whichDirection + whichHandlerType + "LogicalCrossHandlerPropSetByHandler1", (String)
-                                context.get(
-                                        whichDirection + whichHandlerType + "LogicalCrossHandlerPropSetByHandler1"));
+                        this, whichDirection + whichHandlerType + "LogicalCrossHandlerPropSetByHandler1", (String) context.get(
+                                whichDirection + whichHandlerType + "LogicalCrossHandlerPropSetByHandler1"));
                 HandlerTracker.reportGet(
-                        this, whichDirection + whichHandlerType + "LogicalMessageScopeAppPropSetByHandler1", (String)
-                                context.get(
-                                        whichDirection + whichHandlerType + "LogicalMessageScopeAppPropSetByHandler1"));
+                        this, whichDirection + whichHandlerType + "LogicalMessageScopeAppPropSetByHandler1", (String) context.get(
+                                whichDirection + whichHandlerType + "LogicalMessageScopeAppPropSetByHandler1"));
                 HandlerTracker.reportGet(
                         this,
                         whichDirection + whichHandlerType + "LogicalMessageScopeHandlerPropSetByHandler1",
@@ -574,7 +569,7 @@ public class LogicalHandlerBase implements jakarta.xml.ws.handler.LogicalHandler
                         this,
                         whichDirection + whichHandlerType + "LogicalMessageScopeHandlerPropSetByHandler1",
                         context.getScope(whichDirection + whichHandlerType
-                                        + "LogicalMessageScopeHandlerPropSetByHandler1")
+                                + "LogicalMessageScopeHandlerPropSetByHandler1")
                                 .toString());
 
             } else if (direction.equals(Constants.INBOUND)) {

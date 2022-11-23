@@ -88,8 +88,7 @@ public class Client extends EETest {
     /*
      * @class.setup_props:
      *
-     * jms_timeout; user; password; harness.log.traceflag; harness.log.port;
-     * generateSQL;
+     * jms_timeout; user; password; harness.log.traceflag; harness.log.port; generateSQL;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -264,8 +263,7 @@ public class Client extends EETest {
     }
 
     /**
-     * Use this method at cleanup time to remove any messages that have remained
-     * on the queue.
+     * Use this method at cleanup time to remove any messages that have remained on the queue.
      *
      */
     public void flushQueue() throws Exception {
@@ -286,10 +284,14 @@ public class Client extends EETest {
                     TestUtil.logMsg("**** Flushed TextMessage =" + ((TextMessage) msg).getText() + " ****");
                 } else {
                     String msgType = "Message";
-                    if (msg instanceof BytesMessage) msgType = "BytesMessage";
-                    else if (msg instanceof MapMessage) msgType = "MapMessage";
-                    else if (msg instanceof ObjectMessage) msgType = "ObjectMessage";
-                    else if (msg instanceof StreamMessage) msgType = "StreamMessage";
+                    if (msg instanceof BytesMessage)
+                        msgType = "BytesMessage";
+                    else if (msg instanceof MapMessage)
+                        msgType = "MapMessage";
+                    else if (msg instanceof ObjectMessage)
+                        msgType = "ObjectMessage";
+                    else if (msg instanceof StreamMessage)
+                        msgType = "StreamMessage";
                     TestUtil.logMsg("**** Flushed Message of type " + msgType + " ****");
                 }
                 numMsgsFlushed++;

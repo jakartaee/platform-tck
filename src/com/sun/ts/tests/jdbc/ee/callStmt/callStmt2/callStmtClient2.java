@@ -41,8 +41,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 /**
- * The callStmtClient2 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The callStmtClient2 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -77,14 +76,11 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -92,7 +88,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
 
                 if (drManager.equals("yes")) {
@@ -118,15 +115,12 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTime01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1263;
-     * JDBC:JAVADOC:1264; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1263; JDBC:JAVADOC:1264; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getTime(int
-     * parameterIndex) method to retrieve a Time value from Time_Tab. Extract the
-     * the same Time value from the tssql.stmt file.Compare this value with the
-     * value returned by the getTime(int parameterIndex).Both the values should be
-     * equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getTime(int parameterIndex) method to retrieve a Time value from Time_Tab. Extract the the same Time value
+     * from the tssql.stmt file.Compare this value with the value returned by the getTime(int parameterIndex).Both the
+     * values should be equal.
      */
     public void testGetTime01() throws Fault {
         Time oRetVal = null;
@@ -153,7 +147,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             maxTimeVal = Time.valueOf(sRetStr);
 
             msg.addOutputMsg("" + maxTimeVal, "" + oRetVal);
-            if (oRetVal.equals(maxTimeVal)) msg.setMsg("getTime returns the Break Time");
+            if (oRetVal.equals(maxTimeVal))
+                msg.setMsg("getTime returns the Break Time");
             else {
                 msg.printTestError("getTime() did not return the proper Break Time", "Call to getTime Failed!");
             }
@@ -181,13 +176,10 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTime02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1263;
-     * JDBC:JAVADOC:1264; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1263; JDBC:JAVADOC:1264; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getTime(int
-     * parameterIndex) method to retrieve the null value from Time_Tab.Check if it
-     * returns null.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getTime(int parameterIndex) method to retrieve the null value from Time_Tab.Check if it returns null.
      */
     public void testGetTime02() throws Fault {
         try {
@@ -206,7 +198,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             Time oRetVal = cstmt.getTime(2);
             msg.addOutputMsg("null", "" + oRetVal);
 
-            if (oRetVal == null) msg.setMsg("getTime returns the null value");
+            if (oRetVal == null)
+                msg.setMsg("getTime returns the null value");
             else {
                 msg.printTestError("getTime() did not return the null value", "Call to getTime Failed!");
             }
@@ -234,15 +227,12 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTime03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1283;
-     * JDBC:JAVADOC:1284; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1283; JDBC:JAVADOC:1284; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getTime(int
-     * parameterIndex,Calander cal) method to retrieve a Time value from Time_tab.
-     * Extract the same Time value from the tssql.stmt file.Compare this value
-     * with the value returned by the getTime(int parameterIndex,Calander cal).
-     * Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getTime(int parameterIndex,Calander cal) method to retrieve a Time value from Time_tab. Extract the same
+     * Time value from the tssql.stmt file.Compare this value with the value returned by the getTime(int
+     * parameterIndex,Calander cal). Both the values should be equal.
      */
     public void testGetTime03() throws Fault {
         Time oRetVal = null;
@@ -271,7 +261,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.equals(maxTimeVal)) msg.setMsg("getTime returns the Break Time" + oRetVal.toString());
+            if (oRetVal.equals(maxTimeVal))
+                msg.setMsg("getTime returns the Break Time" + oRetVal.toString());
             else {
                 msg.printTestError("getTime() did not return the proper Break Time", "Call to getTime Failed!");
             }
@@ -299,13 +290,11 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTime04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1283;
-     * JDBC:JAVADOC:1284; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1283; JDBC:JAVADOC:1284; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getTime(int
-     * parameterIndex,Calender cal) method to retrieve the null value from
-     * Time_Tab. Check if it returns null.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getTime(int parameterIndex,Calender cal) method to retrieve the null value from Time_Tab. Check if it
+     * returns null.
      */
     public void testGetTime04() throws Fault {
         try {
@@ -328,7 +317,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg("null", "" + oRetVal);
 
-            if (oRetVal == null) msg.setMsg("getTime returns the null value");
+            if (oRetVal == null)
+                msg.setMsg("getTime returns the null value");
             else {
                 msg.printTestError("getTime() did not return the null value", "Call to getTime Failed!");
             }
@@ -356,15 +346,12 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTimestamp01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1265;
-     * JDBC:JAVADOC:1266; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1265; JDBC:JAVADOC:1266; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getTimestamp(int
-     * parameterIndex) method to retrieve a Timestamp value from Timestamp_Tab.
-     * Extract the the same Timestamp value from the tssql.stmt file.Compare this
-     * value with the value returned by the getTimestamp(int parameterIndex) Both
-     * the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getTimestamp(int parameterIndex) method to retrieve a Timestamp value from Timestamp_Tab. Extract the the
+     * same Timestamp value from the tssql.stmt file.Compare this value with the value returned by the getTimestamp(int
+     * parameterIndex) Both the values should be equal.
      */
     public void testGetTimestamp01() throws Fault {
         Timestamp oRetVal = null;
@@ -390,7 +377,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             maxTimestampVal = Timestamp.valueOf(sRetStr);
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.equals(maxTimestampVal)) msg.setMsg("getTimestamp returns the In Time");
+            if (oRetVal.equals(maxTimestampVal))
+                msg.setMsg("getTimestamp returns the In Time");
             else {
                 msg.printTestError("getTimestamp() did not return the proper In Time", "Call to getTimestamp Failed!");
             }
@@ -418,13 +406,11 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTimestamp02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1265;
-     * JDBC:JAVADOC:1266; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1265; JDBC:JAVADOC:1266; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getTimestamp(int
-     * parameterIndex) method to retrieve the null value from Timestamp_Tab. Check
-     * if it returns null.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getTimestamp(int parameterIndex) method to retrieve the null value from Timestamp_Tab. Check if it returns
+     * null.
      */
     public void testGetTimestamp02() throws Fault {
         try {
@@ -442,7 +428,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             msg.setMsg("invoke getTimestamp method");
             Timestamp oRetVal = cstmt.getTimestamp(2);
             msg.addOutputMsg("null", "" + oRetVal);
-            if (oRetVal == null) msg.setMsg("getTimestamp returns the null value");
+            if (oRetVal == null)
+                msg.setMsg("getTimestamp returns the null value");
             else {
                 msg.printTestError("getTimestamp() did not return the null value", "Call to getTimestamp Failed!");
             }
@@ -470,15 +457,12 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTimestamp03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1285;
-     * JDBC:JAVADOC:1286; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1285; JDBC:JAVADOC:1286; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getTimestamp(int
-     * parameterIndex,Calender cal) method to retrieve a Timestamp value from
-     * Timestamp_Tab. Extract the the same Timestamp value from the tssql.stmt
-     * file.Compare this value with the value returned by the getTimestamp(int
-     * parameterIndex, Calender cal) Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getTimestamp(int parameterIndex,Calender cal) method to retrieve a Timestamp value from Timestamp_Tab.
+     * Extract the the same Timestamp value from the tssql.stmt file.Compare this value with the value returned by the
+     * getTimestamp(int parameterIndex, Calender cal) Both the values should be equal.
      */
     public void testGetTimestamp03() throws Fault {
         Timestamp oRetVal = null;
@@ -506,7 +490,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             maxTimestampVal = Timestamp.valueOf(sRetStr);
             msg.addOutputMsg("" + maxTimestampVal, oRetVal.toString());
 
-            if (oRetVal.equals(maxTimestampVal)) msg.setMsg("getTimestamp returns the In Time");
+            if (oRetVal.equals(maxTimestampVal))
+                msg.setMsg("getTimestamp returns the In Time");
             else {
                 msg.printTestError("getTimestamp() did not return the proper In Time", "Call to getTimestamp Failed!");
             }
@@ -534,13 +519,11 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetTimestamp04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1285;
-     * JDBC:JAVADOC:1286; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1285; JDBC:JAVADOC:1286; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getTimestamp(int
-     * parameterIndex,Calender cal) method to retrieve the null value from
-     * Timestamp_Tab. Check if it returns null.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getTimestamp(int parameterIndex,Calender cal) method to retrieve the null value from Timestamp_Tab. Check if
+     * it returns null.
      */
     public void testGetTimestamp04() throws Fault {
         try {
@@ -561,7 +544,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             msg.setMsg("invoke getTimestamp method");
             Timestamp oRetVal = cstmt.getTimestamp(2, oCalDefault);
             msg.addOutputMsg("null", "" + oRetVal);
-            if (oRetVal == null) msg.setMsg("getTimestamp returns the null value");
+            if (oRetVal == null)
+                msg.setMsg("getTimestamp returns the null value");
             else {
                 msg.printTestError("getTimestamp() did not return the null value", "Call to getTimestamp Failed!");
             }
@@ -589,15 +573,12 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetDate01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1261;
-     * JDBC:JAVADOC:1262; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1261; JDBC:JAVADOC:1262; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getDate(int
-     * parameterIndex) method to retrieve a Date value from Date_Tab. Extract the
-     * the same Date value from the tssql.stmt file.Compare this value with the
-     * value returned by the getDate(int parameterIndex).Both the values should be
-     * equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getDate(int parameterIndex) method to retrieve a Date value from Date_Tab. Extract the the same Date value
+     * from the tssql.stmt file.Compare this value with the value returned by the getDate(int parameterIndex).Both the
+     * values should be equal.
      */
     public void testGetDate01() throws Fault {
         try {
@@ -623,7 +604,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.toString().equals(oExtVal.toString())) msg.setMsg("getDate returns the Date");
+            if (oRetVal.toString().equals(oExtVal.toString()))
+                msg.setMsg("getDate returns the Date");
             else {
                 msg.printTestError("getDate() did not return the proper Manufacturing Date", "Call to getDate Failed!");
             }
@@ -651,13 +633,10 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetDate02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1261;
-     * JDBC:JAVADOC:1262; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1261; JDBC:JAVADOC:1262; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getDate(int
-     * parameterIndex) method to retrieve the null value from Date_Tab. Check if
-     * it returns null.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getDate(int parameterIndex) method to retrieve the null value from Date_Tab. Check if it returns null.
      */
     public void testGetDate02() throws Fault {
         try {
@@ -675,7 +654,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             msg.setMsg("invoke getDate method");
             java.sql.Date oRetVal = cstmt.getDate(2);
             msg.addOutputMsg("null", "" + oRetVal);
-            if (oRetVal == null) msg.setMsg("getDate returns the null value");
+            if (oRetVal == null)
+                msg.setMsg("getDate returns the null value");
             else {
                 msg.printTestError("getDate() did not return the null value", "Call to getDate Failed!");
             }
@@ -703,14 +683,11 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetDate03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1281;
-     * JDBC:JAVADOC:1282; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1281; JDBC:JAVADOC:1282; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getDate(int
-     * parameterIndex,Calender cal) method to retrieve a Date value from
-     * Date_Tab.Extract the the same Date value from the tssql.stmt file.Compare
-     * this value with the value returned by the getDate(int parameterIndex,
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getDate(int parameterIndex,Calender cal) method to retrieve a Date value from Date_Tab.Extract the the same
+     * Date value from the tssql.stmt file.Compare this value with the value returned by the getDate(int parameterIndex,
      * Calender cal) Both the values should be equal.
      */
     public void testGetDate03() throws Fault {
@@ -738,7 +715,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.toString().equals(oExtVal.toString())) msg.setMsg("getDate returns the Manufacturing Date");
+            if (oRetVal.toString().equals(oExtVal.toString()))
+                msg.setMsg("getDate returns the Manufacturing Date");
             else {
                 msg.printTestError("getDate() did not return the proper In Time", "Call to getDate Failed!");
             }
@@ -766,13 +744,11 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetDate04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1281;
-     * JDBC:JAVADOC:1282; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1281; JDBC:JAVADOC:1282; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getDate(int
-     * parameterIndex, Calender cal) method to retrieve the null value from
-     * Date_Tab. Check if it returns null.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getDate(int parameterIndex, Calender cal) method to retrieve the null value from Date_Tab. Check if it
+     * returns null.
      */
     public void testGetDate04() throws Fault {
         try {
@@ -794,7 +770,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             java.sql.Date oRetVal = cstmt.getDate(2, oCalDefault);
             msg.addOutputMsg("null", "" + oRetVal);
 
-            if (oRetVal == null) msg.setMsg("getDate returns the null value");
+            if (oRetVal == null)
+                msg.setMsg("getDate returns the null value");
             else {
                 msg.printTestError("getDate() did not return the null value", "Call to getDate Failed!");
             }
@@ -822,15 +799,12 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245;
-     * JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245; JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getByte(int
-     * parameterIndex) method to retrieve the maximum value from Tinyint_Tab.
-     * Extract the maximum value from the tssql.stmt file.Compare this value with
-     * the value returned by the getByte(int parameterIndex).Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getByte(int parameterIndex) method to retrieve the maximum value from Tinyint_Tab. Extract the maximum value
+     * from the tssql.stmt file.Compare this value with the value returned by the getByte(int parameterIndex).Both the
+     * values should be equal.
      */
     public void testGetByte01() throws Fault {
         Byte oRetVal = null;
@@ -857,7 +831,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.equals(maxByteVal)) msg.setMsg("getByte returns the Maximum Value" + oRetVal.toString());
+            if (oRetVal.equals(maxByteVal))
+                msg.setMsg("getByte returns the Maximum Value" + oRetVal.toString());
             else {
                 msg.printTestError("getByte() did not return the Maximum Value", "Call to getByte Failed!");
             }
@@ -885,15 +860,12 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245;
-     * JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245; JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getByte(int
-     * parameterIndex) method to retrieve the minimum value from Tinyint_Tab.
-     * Extract the minimum value from the tssql.stmt file.Compare this value with
-     * the value returned by the getByte(int parameterIndex).Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getByte(int parameterIndex) method to retrieve the minimum value from Tinyint_Tab. Extract the minimum value
+     * from the tssql.stmt file.Compare this value with the value returned by the getByte(int parameterIndex).Both the
+     * values should be equal.
      */
     public void testGetByte02() throws Fault {
         Byte oRetVal = null;
@@ -920,7 +892,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.equals(minByteVal)) msg.setMsg("getByte returns the Minimum Value" + oRetVal.toString());
+            if (oRetVal.equals(minByteVal))
+                msg.setMsg("getByte returns the Minimum Value" + oRetVal.toString());
             else {
                 msg.printTestError("getByte() did not return the Minimum Value", "Call to getByte Failed!");
             }
@@ -948,13 +921,10 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetByte03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245;
-     * JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1245; JDBC:JAVADOC:1246; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getByte(int
-     * parameterIndex) method to retrieve the null value from Tinyint_Tab.Check if
-     * it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getByte(int parameterIndex) method to retrieve the null value from Tinyint_Tab.Check if it returns null
      */
     public void testGetByte03() throws Fault {
         try {
@@ -974,7 +944,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             byte yRetVal = cstmt.getByte(3);
             msg.addOutputMsg("0", Byte.toString(yRetVal));
 
-            if (yRetVal == 0) msg.setMsg("getByte returns the Null Value");
+            if (yRetVal == 0)
+                msg.setMsg("getByte returns the Null Value");
             else {
                 msg.printTestError("getByte() did not return the Null Value", "Call to getByte Failed!");
             }
@@ -1002,15 +973,12 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetDouble01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
-     * JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255; JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getDouble(int
-     * parameterIndex) method to retrieve the maximum value of Double_Tab. Extract
-     * the maximum value from the tssql.stmt file.Compare this value with the
-     * value returned by the getDouble(int parameterIndex). Both the values should
-     * be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getDouble(int parameterIndex) method to retrieve the maximum value of Double_Tab. Extract the maximum value
+     * from the tssql.stmt file.Compare this value with the value returned by the getDouble(int parameterIndex). Both the
+     * values should be equal.
      */
     public void testGetDouble01() throws Fault {
         Double oRetVal = null;
@@ -1038,7 +1006,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.equals(maxDoubleVal)) msg.setMsg("getDouble returns the Maximum Value");
+            if (oRetVal.equals(maxDoubleVal))
+                msg.setMsg("getDouble returns the Maximum Value");
             else {
                 msg.printTestError("getDouble() did not return the Maximum Value", "Call to getDouble Failed!");
             }
@@ -1066,15 +1035,12 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetDouble02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
-     * JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255; JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getDouble(int
-     * parameterIndex) method to retrieve the minimum value from Double_Tab.
-     * Extract the minimum value from the tssql.stmt file.Compare this value with
-     * the value returned by the getDouble(int parameterIndex). Both the values
-     * should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getDouble(int parameterIndex) method to retrieve the minimum value from Double_Tab. Extract the minimum
+     * value from the tssql.stmt file.Compare this value with the value returned by the getDouble(int parameterIndex). Both
+     * the values should be equal.
      */
     public void testGetDouble02() throws Fault {
         Double oRetVal = null;
@@ -1102,7 +1068,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
 
-            if (oRetVal.equals(minDoubleVal)) msg.setMsg("getDouble returns the Minimum Value" + oRetVal.toString());
+            if (oRetVal.equals(minDoubleVal))
+                msg.setMsg("getDouble returns the Minimum Value" + oRetVal.toString());
             else {
                 msg.printTestError("getDouble() did not return the Minimum Value", "Call to getDouble Failed!");
             }
@@ -1130,13 +1097,10 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetDouble03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255;
-     * JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1255; JDBC:JAVADOC:1256; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getDouble(int
-     * parameterIndex) method to retrieve the null value from Double_Tab.Check if
-     * it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getDouble(int parameterIndex) method to retrieve the null value from Double_Tab.Check if it returns null
      */
     public void testGetDouble03() throws Fault {
         try {
@@ -1158,7 +1122,8 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             msg.addOutputMsg("0.0", new Double(dRetVal).toString());
             ;
 
-            if (dRetVal == 0) msg.setMsg("getDouble returns the Null Value");
+            if (dRetVal == 0)
+                msg.setMsg("getDouble returns the Null Value");
             else {
                 msg.printTestError("getDouble() did not return the Null Value", "Call to getDouble Failed!");
             }
@@ -1186,13 +1151,11 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
     /*
      * @testName: testWasNull
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1239;
-     * JDBC:JAVADOC:1240; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1239; JDBC:JAVADOC:1240; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Execute the stored procedure and call the getInt(int
-     * parameterIndex) method to retrieve the null value from Integer_Tab. Check
-     * if it returns null using the method wasNull().
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Execute the stored procedure and
+     * call the getInt(int parameterIndex) method to retrieve the null value from Integer_Tab. Check if it returns null
+     * using the method wasNull().
      */
     public void testWasNull() throws Fault {
         try {
@@ -1212,8 +1175,10 @@ public class callStmtClient2 extends ServiceEETest implements Serializable {
             int nRetVal = cstmt.getInt(3);
             msg.setMsg("execute the method cstmt.wasNull");
 
-            if (cstmt.wasNull()) msg.setMsg("The last OUT parameter read had the value of SQL NULL");
-            else msg.printTestError("The last OUT parameter read did not have the value of SQL NULL", " ");
+            if (cstmt.wasNull())
+                msg.setMsg("The last OUT parameter read had the value of SQL NULL");
+            else
+                msg.printTestError("The last OUT parameter read did not have the value of SQL NULL", " ");
 
             msg.printTestMsg();
             msg.printOutputMsg();

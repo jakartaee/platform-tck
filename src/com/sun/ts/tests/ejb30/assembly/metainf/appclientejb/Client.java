@@ -40,8 +40,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: include a directory in addition to jars in Class-Path
-     * attribute of MANIFEST.MF
+     * @test_Strategy: include a directory in addition to jars in Class-Path attribute of MANIFEST.MF
      */
     public void dirUsedInClassPath() {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -58,8 +57,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: include a directory in addition to jars in Class-Path
-     * attribute of MANIFEST.MF
+     * @test_Strategy: include a directory in addition to jars in Class-Path attribute of MANIFEST.MF
      */
     public void dirUsedInClassPathEJB() {
         String e = remoteAssemblyBean.dirUsedInClassPath();
@@ -71,8 +69,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Multiple threads doing InitialContext lookup of a ejb-ref
-     * helloBean2
+     * @test_Strategy: Multiple threads doing InitialContext lookup of a ejb-ref helloBean2
      */
     public void concurrentLookupHelloBean() throws TestFailedException {
         for (int i = 0; i < 2; i++) {
@@ -86,8 +83,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: Multiple threads doing InitialContext lookup of a
-     * datasource
+     * @test_Strategy: Multiple threads doing InitialContext lookup of a datasource
      */
     public void concurrentLookupDataSource() throws TestFailedException {
         for (int i = 0; i < 2; i++) {
@@ -101,8 +97,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: PostConstruct method must be invoked even when it's in a
-     * superclass not packaged in appclient-client.jar
+     * @test_Strategy: PostConstruct method must be invoked even when it's in a superclass not packaged in
+     * appclient-client.jar
      */
 
     /*
@@ -118,10 +114,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-     * deployed separately. It client view jar is packaged inside current ear and
-     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-     * helloBean
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and deployed separately. It client view jar is
+     * packaged inside current ear and referenced by both appclient and ejb jar thru MANIFEST.MF appclient -> helloBean
      */
 
     /*
@@ -129,10 +123,9 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: hello ejb is packaged as a standalone ejb module and
-     * deployed separately. It client view jar is packaged inside current ear and
-     * referenced by both appclient and ejb jar thru MANIFEST.MF appclient ->
-     * assemblyBean -> helloBean
+     * @test_Strategy: hello ejb is packaged as a standalone ejb module and deployed separately. It client view jar is
+     * packaged inside current ear and referenced by both appclient and ejb jar thru MANIFEST.MF appclient -> assemblyBean
+     * -> helloBean
      */
 
 }

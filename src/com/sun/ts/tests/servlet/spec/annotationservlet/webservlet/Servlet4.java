@@ -29,11 +29,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 
-@WebServlet(
-        urlPatterns = "/Servlet4URL/*",
-        asyncSupported = true,
-        initParams = {@WebInitParam(name = "name1", value = "value1"), @WebInitParam(name = "name2", value = "value2")},
-        name = "Servlet4")
+@WebServlet(urlPatterns = "/Servlet4URL/*", asyncSupported = true, initParams = { @WebInitParam(name = "name1", value = "value1"),
+        @WebInitParam(name = "name2", value = "value2") }, name = "Servlet4")
 public class Servlet4 extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

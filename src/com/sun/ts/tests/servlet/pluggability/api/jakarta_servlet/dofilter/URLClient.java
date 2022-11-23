@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setContextRoot("/servlet_plu_dofilter_web");
@@ -58,11 +56,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:54; Servlet:SPEC:59;
      *
-     * @test_Strategy: 1. Create two servlets - TestServlet, ForwardedServlet 2.
-     * Invoke ForwardedServlet using forward in TestServlet 3. Map a filter
-     * WrapResponseFilter with dispatcher value set to FORWARD 4. In the filter,
-     * wrap the response with custom implementation of ServletResponse
-     * CTSResponseWrapper 5. Verify that filter is properly invoked.
+     * @test_Strategy: 1. Create two servlets - TestServlet, ForwardedServlet 2. Invoke ForwardedServlet using forward in
+     * TestServlet 3. Map a filter WrapResponseFilter with dispatcher value set to FORWARD 4. In the filter, wrap the
+     * response with custom implementation of ServletResponse CTSResponseWrapper 5. Verify that filter is properly invoked.
      */
     public void wrapResponseTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "wrapResponseTest");

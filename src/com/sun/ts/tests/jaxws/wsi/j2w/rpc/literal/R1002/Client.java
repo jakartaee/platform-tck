@@ -36,8 +36,7 @@ public class Client extends ServiceEETest {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -68,8 +67,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSI:SPEC:R1002; JAXWS:SPEC:10010;
      *
-     * @test_Strategy: Make a request that generates a soap:Fault with a detail
-     *                 element with no children.
+     * @test_Strategy: Make a request that generates a soap:Fault with a detail element with no children.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -92,8 +90,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSI:SPEC:R1002; JAXWS:SPEC:10010;
      *
-     * @test_Strategy: Make a request that generates a soap:Fault with a detail
-     *                 element with qualified children.
+     * @test_Strategy: Make a request that generates a soap:Fault with a detail element with qualified children.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */
@@ -116,8 +113,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: WSI:SPEC:R1002; JAXWS:SPEC:10010;
      *
-     * @test_Strategy: Make a request that generates a soap:Fault with a detail
-     *                 element with unqualified children.
+     * @test_Strategy: Make a request that generates a soap:Fault with a detail element with unqualified children.
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

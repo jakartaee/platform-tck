@@ -76,8 +76,7 @@ import java.io.PrintWriter;
 public class DoInit1TestServlet extends CoreServletTest {
 
     /**
-     * We will throw UnavailableException from inside init The Servlet should not
-     * be initialized
+     * We will throw UnavailableException from inside init The Servlet should not be initialized
      */
     public void init(ServletConfig sc) throws ServletException {
         // throw new UnavailableException(this,"Negative Init Test");

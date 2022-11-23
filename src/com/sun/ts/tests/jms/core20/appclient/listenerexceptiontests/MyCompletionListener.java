@@ -138,10 +138,12 @@ public class MyCompletionListener implements CompletionListener {
             try {
                 if (tMsg.getText().equals("Call connection close method")) {
                     TestUtil.logMsg("Calling Connection.close() MUST throw IllegalStateException");
-                    if (connection != null) connection.close();
+                    if (connection != null)
+                        connection.close();
                 } else if (tMsg.getText().equals("Call session close method")) {
                     TestUtil.logMsg("Calling Session.close() MUST throw IllegalStateException");
-                    if (session != null) session.close();
+                    if (session != null)
+                        session.close();
                 }
             } catch (jakarta.jms.IllegalStateException e) {
                 TestUtil.logMsg("onCompletion(): Caught expected IllegalStateException");

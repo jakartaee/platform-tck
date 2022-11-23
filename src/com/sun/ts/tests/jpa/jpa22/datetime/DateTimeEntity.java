@@ -35,34 +35,16 @@ import java.time.OffsetTime;
 @Table(name = "JPA22_DT_DATE_TIME_ENTITY")
 // Query on exact value match.
 @NamedQuery(name = "DateTimeEntity.findByLocalDate", query = "SELECT e FROM DateTimeEntity e WHERE e.localDate = :date")
-@NamedQuery(
-        name = "DateTimeEntity.findByLocalTime",
-        query = "SELECT e FROM DateTimeEntity e WHERE e.localTimeAttr = :time")
-@NamedQuery(
-        name = "DateTimeEntity.findByLocalDateTime",
-        query = "SELECT e FROM DateTimeEntity e WHERE e.localDateTime = :dateTime")
-@NamedQuery(
-        name = "DateTimeEntity.findByOffsetTime",
-        query = "SELECT e FROM DateTimeEntity e WHERE e.offsetTime = :time")
-@NamedQuery(
-        name = "DateTimeEntity.findByOffsetDateTime",
-        query = "SELECT e FROM DateTimeEntity e WHERE e.offsetDateTime = :dateTime")
+@NamedQuery(name = "DateTimeEntity.findByLocalTime", query = "SELECT e FROM DateTimeEntity e WHERE e.localTimeAttr = :time")
+@NamedQuery(name = "DateTimeEntity.findByLocalDateTime", query = "SELECT e FROM DateTimeEntity e WHERE e.localDateTime = :dateTime")
+@NamedQuery(name = "DateTimeEntity.findByOffsetTime", query = "SELECT e FROM DateTimeEntity e WHERE e.offsetTime = :time")
+@NamedQuery(name = "DateTimeEntity.findByOffsetDateTime", query = "SELECT e FROM DateTimeEntity e WHERE e.offsetDateTime = :dateTime")
 // Query on values range match.
-@NamedQuery(
-        name = "DateTimeEntity.findLocalDateRange",
-        query = "SELECT e FROM DateTimeEntity e WHERE e.localDate > :min AND e.localDate < :max")
-@NamedQuery(
-        name = "DateTimeEntity.findLocalTimeRange",
-        query = "SELECT e FROM DateTimeEntity e WHERE e.localTimeAttr > :min AND e.localTimeAttr < :max")
-@NamedQuery(
-        name = "DateTimeEntity.findLocalDateTimeRange",
-        query = "SELECT e FROM DateTimeEntity e WHERE e.localDateTime > :min AND e.localDateTime < :max")
-@NamedQuery(
-        name = "DateTimeEntity.findOffsetTimeRange",
-        query = "SELECT e FROM DateTimeEntity e WHERE e.offsetTime > :min AND e.offsetTime < :max")
-@NamedQuery(
-        name = "DateTimeEntity.findOffsetDateTimeRange",
-        query = "SELECT e FROM DateTimeEntity e WHERE e.offsetDateTime > :min AND e.offsetDateTime < :max")
+@NamedQuery(name = "DateTimeEntity.findLocalDateRange", query = "SELECT e FROM DateTimeEntity e WHERE e.localDate > :min AND e.localDate < :max")
+@NamedQuery(name = "DateTimeEntity.findLocalTimeRange", query = "SELECT e FROM DateTimeEntity e WHERE e.localTimeAttr > :min AND e.localTimeAttr < :max")
+@NamedQuery(name = "DateTimeEntity.findLocalDateTimeRange", query = "SELECT e FROM DateTimeEntity e WHERE e.localDateTime > :min AND e.localDateTime < :max")
+@NamedQuery(name = "DateTimeEntity.findOffsetTimeRange", query = "SELECT e FROM DateTimeEntity e WHERE e.offsetTime > :min AND e.offsetTime < :max")
+@NamedQuery(name = "DateTimeEntity.findOffsetDateTimeRange", query = "SELECT e FROM DateTimeEntity e WHERE e.offsetDateTime > :min AND e.offsetDateTime < :max")
 public class DateTimeEntity implements java.io.Serializable {
     private static final long serialVersionUID = 22L;
 
@@ -88,27 +70,20 @@ public class DateTimeEntity implements java.io.Serializable {
     private OffsetDateTime offsetDateTime;
 
     /**
-     * Creates an instance of Java 9 date and time entity. Entity attributes are
-     * not initialized.
+     * Creates an instance of Java 9 date and time entity. Entity attributes are not initialized.
      */
-    public DateTimeEntity() {}
+    public DateTimeEntity() {
+    }
 
     /**
-     * Creates an instance of Java 9 date and time entity. Entity attributes are
-     * initialized using provided values.
+     * Creates an instance of Java 9 date and time entity. Entity attributes are initialized using provided values.
      *
-     * @param id
-     *          date and time entity primary key
-     * @param localDate
-     *          Java 8 LocalDate attribute
-     * @param localTime
-     *          Java 8 LocalTime attribute
-     * @param localDateTime
-     *          Java 8 LocalDateTime attribute
-     * @param offsetTime
-     *          Java 8 OffsetTime attribute
-     * @param offsetDateTime
-     *          Java 8 OffsetDateTime attribute
+     * @param id date and time entity primary key
+     * @param localDate Java 8 LocalDate attribute
+     * @param localTime Java 8 LocalTime attribute
+     * @param localDateTime Java 8 LocalDateTime attribute
+     * @param offsetTime Java 8 OffsetTime attribute
+     * @param offsetDateTime Java 8 OffsetDateTime attribute
      */
     public DateTimeEntity(
             Long id,
@@ -140,8 +115,7 @@ public class DateTimeEntity implements java.io.Serializable {
     /**
      * Set entity primary key.
      *
-     * @param id
-     *          primary key to set
+     * @param id primary key to set
      */
     public void setId(Long id) {
         this.id = id;
@@ -159,8 +133,7 @@ public class DateTimeEntity implements java.io.Serializable {
     /**
      * Set Java 8 LocalDate attribute.
      *
-     * @param localDate
-     *          LocalDate attribute to set
+     * @param localDate LocalDate attribute to set
      */
     void setLocalDate(java.time.LocalDate localDate) {
         this.localDate = localDate;
@@ -178,8 +151,7 @@ public class DateTimeEntity implements java.io.Serializable {
     /**
      * Set Java 8 LocalTime attribute.
      *
-     * @param localTime
-     *          LocalTime attribute to set
+     * @param localTime LocalTime attribute to set
      */
     void setLocalTime(java.time.LocalTime localTime) {
         this.localTimeAttr = localTime;
@@ -197,8 +169,7 @@ public class DateTimeEntity implements java.io.Serializable {
     /**
      * Get Java 8 LocalDateTime attribute.
      *
-     * @param localDateTime
-     *          LocalDateTime attribute to set
+     * @param localDateTime LocalDateTime attribute to set
      */
     void setLocalDateTime(java.time.LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
@@ -216,8 +187,7 @@ public class DateTimeEntity implements java.io.Serializable {
     /**
      * Set Java 8 OffsetTime attribute.
      *
-     * @param offsetTime
-     *          OffsetTime attribute to set
+     * @param offsetTime OffsetTime attribute to set
      */
     void setOffsetTime(java.time.OffsetTime offsetTime) {
         this.offsetTime = offsetTime;
@@ -235,8 +205,7 @@ public class DateTimeEntity implements java.io.Serializable {
     /**
      * Set Java 8 OffsetDateTime attribute.
      *
-     * @param offsetDateTime
-     *          OffsetDateTime attribute to set
+     * @param offsetDateTime OffsetDateTime attribute to set
      */
     void setOffsetDateTime(java.time.OffsetDateTime offsetDateTime) {
         this.offsetDateTime = offsetDateTime;

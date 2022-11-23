@@ -120,8 +120,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     static WSIDLSwaTestService service = null;
 
     /***********************************************************************
-     * All the test cases in this file test all of the assertions specified in the
-     * WSI Attachment Profile 1.0 specification.
+     * All the test cases in this file test all of the assertions specified in the WSI Attachment Profile 1.0 specification.
      **********************************************************************/
     private void getTestURLs() throws Exception {
         TestUtil.logMsg("Get URL's used by the test");
@@ -145,8 +144,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     private SwaTestClient2 client2;
 
     private void getPortStandalone() throws Exception {
-        port = (SwaTest1)
-                JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, WSIDLSwaTestService.class, PORT_QNAME, SwaTest1.class);
+        port = (SwaTest1) JAXWS_Util.getPort(wsdlurl, SERVICE_QNAME, WSIDLSwaTestService.class, PORT_QNAME, SwaTest1.class);
         JAXWS_Util.setTargetEndpointAddress(port, surl);
     }
 
@@ -189,8 +187,10 @@ public class Client extends ServiceEETest implements SOAPRequests {
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
 
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
 
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
@@ -250,14 +250,11 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /*
      * @testName: GetMultipleAttachmentsTest
      *
-     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909;
-     * WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931; WSI:SPEC:R2921;
-     * WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011;
-     * WSI:SPEC:R2927; JAXWS:SPEC:2051; JAXWS:SPEC:2052; JAXWS:SPEC:2053;
-     * WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909; WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931;
+     * WSI:SPEC:R2921; WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011; WSI:SPEC:R2927; JAXWS:SPEC:2051;
+     * JAXWS:SPEC:2052; JAXWS:SPEC:2053; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Get multiple attachments. Multiple attachments should be
-     * returned in the soap response.
+     * @test_Strategy: Get multiple attachments. Multiple attachments should be returned in the soap response.
      *
      */
     public void GetMultipleAttachmentsTest() throws Fault {
@@ -275,27 +272,26 @@ public class Client extends ServiceEETest implements SOAPRequests {
             Holder<jakarta.activation.DataHandler> attach2 = new Holder<jakarta.activation.DataHandler>();
             Holder<OutputResponse> response = new Holder<OutputResponse>();
             port.getMultipleAttachments(request, response, attach1, attach2);
-            if (!ValidateRequestResponseAttachmentsGetTestCase(request, response.value, attach1, attach2)) pass = false;
+            if (!ValidateRequestResponseAttachmentsGetTestCase(request, response.value, attach1, attach2))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("GetMultipleAttachmentsTest failed", e);
         }
-        if (!pass) throw new Fault("GetMultipleAttachmentsTest failed");
+        if (!pass)
+            throw new Fault("GetMultipleAttachmentsTest failed");
     }
 
     /*
      * @testName: PutMultipleAttachmentsTest
      *
-     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909;
-     * WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931; WSI:SPEC:R2921;
-     * WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011;
-     * WSI:SPEC:R2927; JAXWS:SPEC:2051; JAXWS:SPEC:2052; JAXWS:SPEC:2053;
-     * WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909; WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931;
+     * WSI:SPEC:R2921; WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011; WSI:SPEC:R2927; JAXWS:SPEC:2051;
+     * JAXWS:SPEC:2052; JAXWS:SPEC:2053; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Put multiple attachments. Multiple attachments should be
-     * sent in the soap request and a status result is returned in the soap
-     * response.
+     * @test_Strategy: Put multiple attachments. Multiple attachments should be sent in the soap request and a status result
+     * is returned in the soap response.
      *
      */
     public void PutMultipleAttachmentsTest() throws Fault {
@@ -321,20 +317,19 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("PutMultipleAttachmentsTest failed", e);
         }
 
-        if (!pass) throw new Fault("PutMultipleAttachmentsTest failed");
+        if (!pass)
+            throw new Fault("PutMultipleAttachmentsTest failed");
     }
 
     /*
      * @testName: EchoMultipleAttachmentsTest
      *
-     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909;
-     * WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931; WSI:SPEC:R2921;
-     * WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011;
-     * WSI:SPEC:R2927; JAXWS:SPEC:2051; JAXWS:SPEC:2052; JAXWS:SPEC:2053;
-     * WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909; WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931;
+     * WSI:SPEC:R2921; WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011; WSI:SPEC:R2927; JAXWS:SPEC:2051;
+     * JAXWS:SPEC:2052; JAXWS:SPEC:2053; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Echo multiple attachments. Multiple attachments should be
-     * sent in the soap request and returned in the soap response.
+     * @test_Strategy: Echo multiple attachments. Multiple attachments should be sent in the soap request and returned in
+     * the soap response.
      *
      */
     public void EchoMultipleAttachmentsTest() throws Fault {
@@ -351,24 +346,25 @@ public class Client extends ServiceEETest implements SOAPRequests {
             attach2.value = dh2;
             TestUtil.logMsg("Echo 2 attachments (text/plain) and (text/html)");
             OutputResponse response = port.echoMultipleAttachments(request, attach1, attach2);
-            if (!ValidateRequestResponseAttachmentsEchoTestCase(request, response, attach1, attach2)) pass = false;
+            if (!ValidateRequestResponseAttachmentsEchoTestCase(request, response, attach1, attach2))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("EchoMultipleAttachmentsTest failed", e);
         }
 
-        if (!pass) throw new Fault("EchoMultipleAttachmentsTest failed");
+        if (!pass)
+            throw new Fault("EchoMultipleAttachmentsTest failed");
     }
 
     /*
      * @testName: EchoNoAttachmentsTest
      *
-     * @assertion_ids: WSI:SPEC:R2917; JAXWS:SPEC:10011; WSI:SPEC:R2902;
-     * WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2917; JAXWS:SPEC:10011; WSI:SPEC:R2902; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Echo no attachments. No attachments should be sent in the
-     * soap request or returned in the soap response.
+     * @test_Strategy: Echo no attachments. No attachments should be sent in the soap request or returned in the soap
+     * response.
      *
      */
     public void EchoNoAttachmentsTest() throws Fault {
@@ -392,23 +388,20 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("EchoNoAttachmentsTest failed", e);
         }
 
-        if (!pass) throw new Fault("EchoNoAttachmentsTest failed");
+        if (!pass)
+            throw new Fault("EchoNoAttachmentsTest failed");
     }
 
     /*
      * @testName: EchoAllAttachmentTypesTest
      *
-     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909;
-     * WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931; WSI:SPEC:R2921;
-     * WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011;
-     * WSI:SPEC:R2927; WSI:SPEC:R2912; WSI:SPEC:R2908; WSI:SPEC:R2903;
-     * WSI:SPEC:R2904; WSI:SPEC:R2941; WSI:SPEC:R2922; WSI:SPEC:R2902;
-     * WSI:SPEC:R2916; WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2901; WSI:SPEC:R2907; WSI:SPEC:R2909; WSI:SPEC:R2910; WSI:SPEC:R2911; WSI:SPEC:R2931;
+     * WSI:SPEC:R2921; WSI:SPEC:R2926; WSI:SPEC:R2929; WSI:SPEC:R2946; JAXWS:SPEC:10011; WSI:SPEC:R2927; WSI:SPEC:R2912;
+     * WSI:SPEC:R2908; WSI:SPEC:R2903; WSI:SPEC:R2904; WSI:SPEC:R2941; WSI:SPEC:R2922; WSI:SPEC:R2902; WSI:SPEC:R2916;
+     * WSI:SPEC:R9801;
      *
-     * @test_Strategy: Echo all attachment types. Attachments for each supported
-     * mime type is sent in the soap request and then returned in the soap
-     * response. This test sends and returns attachments for all the supported
-     * mime types.
+     * @test_Strategy: Echo all attachment types. Attachments for each supported mime type is sent in the soap request and
+     * then returned in the soap response. This test sends and returns attachments for all the supported mime types.
      *
      */
     public void EchoAllAttachmentTypesTest() throws Fault {
@@ -436,28 +429,27 @@ public class Client extends ServiceEETest implements SOAPRequests {
             attach4.value = javax.imageio.ImageIO.read(url4);
             attach5.value = javax.imageio.ImageIO.read(url5);
             VoidRequest request = new VoidRequest();
-            OutputResponseAll response =
-                    port.echoAllAttachmentTypes(request, attach1, attach2, attach3, attach4, attach5);
+            OutputResponseAll response = port.echoAllAttachmentTypes(request, attach1, attach2, attach3, attach4, attach5);
             if (!ValidateRequestResponseAttachmentsEchoAllTestCase(
-                    request, response, attach1, attach2, attach3, attach4, attach5)) pass = false;
+                    request, response, attach1, attach2, attach3, attach4, attach5))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);
             throw new Fault("EchoAllAttachmentTypesTest failed", e);
         }
 
-        if (!pass) throw new Fault("EchoAllAttachmentTypesTest failed");
+        if (!pass)
+            throw new Fault("EchoAllAttachmentTypesTest failed");
     }
 
     /*
      * @testName: EchoAttachmentsAndThrowAFaultTest
      *
-     * @assertion_ids: WSI:SPEC:R2913; WSI:SPEC:R2920; WSI:SPEC:R2930;
-     * WSI:SPEC:R2946; JAXWS:SPEC:10011; WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2913; WSI:SPEC:R2920; WSI:SPEC:R2930; WSI:SPEC:R2946; JAXWS:SPEC:10011; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Echo attachments and throw back a soap fault. Multiple
-     * attachments should be sent in the soap request and the endpoint should
-     * throw back a soap fault.
+     * @test_Strategy: Echo attachments and throw back a soap fault. Multiple attachments should be sent in the soap request
+     * and the endpoint should throw back a soap fault.
      *
      */
     public void EchoAttachmentsAndThrowAFaultTest() throws Fault {
@@ -483,17 +475,17 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("EchoAttachmentsAndThrowAFaultTest failed", e);
         }
 
-        if (!pass) throw new Fault("EchoAttachmentsAndThrowAFaultTest failed");
+        if (!pass)
+            throw new Fault("EchoAttachmentsAndThrowAFaultTest failed");
     }
 
     /*
      * @testName: EchoAttachmentsWithHeaderTest
      *
-     * @assertion_ids: WSI:SPEC:R2905; WSI:SPEC:2906; WSI:SPEC:R2946;
-     * JAXWS:SPEC:1011; WSI:SPEC:R2906; WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2905; WSI:SPEC:2906; WSI:SPEC:R2946; JAXWS:SPEC:1011; WSI:SPEC:R2906; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Send a header with attachments using the soapbind:header
-     * element which must be a child of the root part mime:part element.
+     * @test_Strategy: Send a header with attachments using the soapbind:header element which must be a child of the root
+     * part mime:part element.
      *
      */
     public void EchoAttachmentsWithHeaderTest() throws Fault {
@@ -520,17 +512,16 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("EchoAttachmentsWithHeaderTest failed", e);
         }
 
-        if (!pass) throw new Fault("EchoAttachmentsWithHeaderTest failed");
+        if (!pass)
+            throw new Fault("EchoAttachmentsWithHeaderTest failed");
     }
 
     /*
      * @testName: EchoAttachmentsWithHeaderAndThrowAFaultTest
      *
-     * @assertion_ids: WSI:SPEC:R2905; WSI:SPEC:2906; WSI:SPEC:2913;
-     * WSI:SPEC:R2946; JAXWS:SPEC:10011;
+     * @assertion_ids: WSI:SPEC:R2905; WSI:SPEC:2906; WSI:SPEC:2913; WSI:SPEC:R2946; JAXWS:SPEC:10011;
      *
-     * @test_Strategy: Send a header with attachments and throw a fault back using
-     * the soapbind:fault element.
+     * @test_Strategy: Send a header with attachments and throw a fault back using the soapbind:fault element.
      */
     public void EchoAttachmentsWithHeaderAndThrowAFaultTest() throws Fault {
         TestUtil.logMsg("EchoAttachmentsWithHeaderAndThrowAFaultTest");
@@ -557,18 +548,17 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("EchoAttachmentsWithHeaderAndThrowAFaultTest failed", e);
         }
 
-        if (!pass) throw new Fault("EchoAttachmentsWithHeaderAndThrowAFaultTest failed");
+        if (!pass)
+            throw new Fault("EchoAttachmentsWithHeaderAndThrowAFaultTest failed");
     }
 
     /*
      * @testName: VerifyPutOfSOAPEnvelopesInAttachmentsTest
      *
-     * @assertion_ids: WSI:SPEC:R2919; JAXWS:SPEC:10011; WSI:SPEC:R2947
-     * WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2919; JAXWS:SPEC:10011; WSI:SPEC:R2947 WSI:SPEC:R9801;
      *
-     * @test_Strategy: Put multiple attachments. Multiple attachments should be
-     * sent in the soap request and a status results is returned in the soap
-     * response. The attachments contain SOAP Envelopes.
+     * @test_Strategy: Put multiple attachments. Multiple attachments should be sent in the soap request and a status
+     * results is returned in the soap response. The attachments contain SOAP Envelopes.
      *
      */
     public void VerifyPutOfSOAPEnvelopesInAttachmentsTest() throws Fault {
@@ -596,7 +586,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("VerifyPutOfSOAPEnvelopesInAttachmentsTest failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyPutOfSOAPEnvelopesInAttachmentsTest failed");
+        if (!pass)
+            throw new Fault("VerifyPutOfSOAPEnvelopesInAttachmentsTest failed");
     }
 
     /*
@@ -604,8 +595,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2915; JAXWS:SPEC:10011; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Test UTF8 encoding of the root part of a multipart/related
-     * message without attachments.
+     * @test_Strategy: Test UTF8 encoding of the root part of a multipart/related message without attachments.
      *
      */
     public void VerifyUTF8EncodingOfRootPartWithoutAttachments() throws Fault {
@@ -644,7 +634,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("VerifyUTF8EncodingOfRootPartWithoutAttachments failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyUTF8EncodingOfRootPartWithoutAttachments failed");
+        if (!pass)
+            throw new Fault("VerifyUTF8EncodingOfRootPartWithoutAttachments failed");
     }
 
     /*
@@ -652,8 +643,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2915; JAXWS:SPEC:10011;
      *
-     * @test_Strategy: Test UTF16 encoding of the root part of a multipart/related
-     * message without attachments.
+     * @test_Strategy: Test UTF16 encoding of the root part of a multipart/related message without attachments.
      *
      */
     public void VerifyUTF16EncodingOfRootPartWithoutAttachments() throws Fault {
@@ -681,17 +671,16 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("VerifyUTF16EncodingOfRootPartWithoutAttachments failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyUTF16EncodingOfRootPartWithoutAttachments failed");
+        if (!pass)
+            throw new Fault("VerifyUTF16EncodingOfRootPartWithoutAttachments failed");
     }
 
     /*
      * @testName: VerifyRequestContentTypeHttpHeaderWithAttachments
      *
-     * @assertion_ids: WSI:SPEC:R2925; WSI:SPEC:R2932; WSI:SPEC:R2945;
-     * JAXWS:SPEC:10011; WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2925; WSI:SPEC:R2932; WSI:SPEC:R2945; JAXWS:SPEC:10011; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Verify that the Content-Type HTTP header is correct in the
-     * SOAP request.
+     * @test_Strategy: Verify that the Content-Type HTTP header is correct in the SOAP request.
      *
      */
     public void VerifyRequestContentTypeHttpHeaderWithAttachments() throws Fault {
@@ -720,17 +709,16 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("VerifyRequestContentTypeHttpHeaderWithAttachments failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyRequestContentTypeHttpHeaderWithAttachments failed");
+        if (!pass)
+            throw new Fault("VerifyRequestContentTypeHttpHeaderWithAttachments failed");
     }
 
     /*
      * @testName: VerifyRequestContentTypeHttpHeaderWithoutAttachments
      *
-     * @assertion_ids: WSI:SPEC:R2917; WSI:SPEC:R2932; WSI:SPEC:R2945;
-     * JAXWS:SPEC:10011; WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2917; WSI:SPEC:R2932; WSI:SPEC:R2945; JAXWS:SPEC:10011; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Verify that the Content-Type HTTP header is correct in the
-     * SOAP request.
+     * @test_Strategy: Verify that the Content-Type HTTP header is correct in the SOAP request.
      *
      */
     public void VerifyRequestContentTypeHttpHeaderWithoutAttachments() throws Fault {
@@ -756,7 +744,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("VerifyRequestContentTypeHttpHeaderWithoutAttachments failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyRequestContentTypeHttpHeaderWithoutAttachments failed");
+        if (!pass)
+            throw new Fault("VerifyRequestContentTypeHttpHeaderWithoutAttachments failed");
     }
 
     /*
@@ -764,8 +753,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2925; JAXWS:SPEC:10011; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Verify that the Content-Type HTTP header is correct in the
-     * SOAP response.
+     * @test_Strategy: Verify that the Content-Type HTTP header is correct in the SOAP response.
      *
      */
     public void VerifyResponseContentTypeHttpHeaderWithAttachments() throws Fault {
@@ -785,13 +773,16 @@ public class Client extends ServiceEETest implements SOAPRequests {
             int statusCode = client1.getStatusCode();
             TestUtil.logMsg("HTTP header Content-Type = " + contentTypeHeader);
             String mediaType = null;
-            if (contentTypeHeader.indexOf("multipart/related") == -1) mediaType = "text/xml";
-            else mediaType = "multipart/related";
+            if (contentTypeHeader.indexOf("multipart/related") == -1)
+                mediaType = "text/xml";
+            else
+                mediaType = "multipart/related";
             if (contentTypeHeader.indexOf("multipart/related") == -1) {
                 TestUtil.logErr(
                         "HTTP header Content-Type is incorrect <got:" + mediaType + ", expected:multipart/related>");
                 pass = false;
-            } else TestUtil.logMsg("HTTP header Content-Type is correct: " + mediaType);
+            } else
+                TestUtil.logMsg("HTTP header Content-Type is correct: " + mediaType);
             if (statusCode < 200 || statusCode > 299) {
                 TestUtil.logErr("Unexpected HTTP status code of: " + statusCode);
                 pass = false;
@@ -800,7 +791,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("Unable to construct SOAP message request (R2925)", e);
         }
 
-        if (!pass) throw new Fault("VerifyResponseContentTypeHttpHeaderWithAttachments failed");
+        if (!pass)
+            throw new Fault("VerifyResponseContentTypeHttpHeaderWithAttachments failed");
     }
 
     /*
@@ -808,8 +800,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R2917; JAXWS:SPEC:10011; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Verify that the Content-Type HTTP header is correct in the
-     * SOAP response.
+     * @test_Strategy: Verify that the Content-Type HTTP header is correct in the SOAP response.
      *
      */
     public void VerifyResponseContentTypeHttpHeaderWithoutAttachments() throws Fault {
@@ -828,13 +819,16 @@ public class Client extends ServiceEETest implements SOAPRequests {
             int statusCode = client1.getStatusCode();
             TestUtil.logMsg("HTTP header Content-Type = " + contentTypeHeader);
             String mediaType = null;
-            if (contentTypeHeader.indexOf("multipart/related") == -1) mediaType = "text/xml";
-            else mediaType = "multipart/related";
+            if (contentTypeHeader.indexOf("multipart/related") == -1)
+                mediaType = "text/xml";
+            else
+                mediaType = "multipart/related";
             if (contentTypeHeader.indexOf("multipart/related") == -1 && contentTypeHeader.indexOf("text/xml") == -1) {
                 TestUtil.logErr("HTTP header Content-Type is incorrect <got:" + mediaType
                         + ", expected:multipart/related or text/xml>");
                 pass = false;
-            } else TestUtil.logMsg("HTTP header Content-Type is correct: " + mediaType);
+            } else
+                TestUtil.logMsg("HTTP header Content-Type is correct: " + mediaType);
             if (statusCode < 200 || statusCode > 299) {
                 TestUtil.logErr("Unexpected HTTP status code of: " + statusCode);
                 pass = false;
@@ -843,17 +837,16 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("Unable to construct SOAP message request (R2917)", e);
         }
 
-        if (!pass) throw new Fault("VerifyResponseContentTypeHttpHeaderWithoutAttachments failed");
+        if (!pass)
+            throw new Fault("VerifyResponseContentTypeHttpHeaderWithoutAttachments failed");
     }
 
     /*
      * @testName: VerifyRequestContentTransferEncodingMimeHeadersWithAttachments
      *
-     * @assertion_ids: WSI:SPEC:R2934; WSI:SPEC:R2935; JAXWS:SPEC:10011;
-     * WSI:SPEC:R9801;
+     * @assertion_ids: WSI:SPEC:R2934; WSI:SPEC:R2935; JAXWS:SPEC:10011; WSI:SPEC:R9801;
      *
-     * @test_Strategy: Verify that the Content-Transfer-Encoding mime header(s) if
-     * set is correct in the SOAP request.
+     * @test_Strategy: Verify that the Content-Transfer-Encoding mime header(s) if set is correct in the SOAP request.
      *
      */
     public void VerifyRequestContentTransferEncodingMimeHeadersWithAttachments() throws Fault {
@@ -887,7 +880,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
             throw new Fault("VerifyRequestContentTransferEncodingMimeHeadersWithAttachments failed", e);
         }
 
-        if (!pass) throw new Fault("VerifyRequestContentTransferEncodingMimeHeadersWithAttachments failed");
+        if (!pass)
+            throw new Fault("VerifyRequestContentTransferEncodingMimeHeadersWithAttachments failed");
     }
 
     /*******************************************************************************
@@ -935,12 +929,14 @@ public class Client extends ServiceEETest implements SOAPRequests {
             int count1 = AttachmentHelper.readTheData(is, data1, 4096);
             is = attach1.value.getInputStream();
             int count2 = AttachmentHelper.readTheData(is, data2, 4096);
-            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment1")) result = false;
+            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment1"))
+                result = false;
             is = dh2.getInputStream();
             count1 = AttachmentHelper.readTheData(is, data1, 4096);
             is = attach2.value.getInputStream();
             count2 = AttachmentHelper.readTheData(is, data2, 4096);
-            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment2")) result = false;
+            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment2"))
+                result = false;
             TestUtil.logMsg("The attachment contents are equal");
         } catch (Exception e) {
             result = false;
@@ -994,14 +990,16 @@ public class Client extends ServiceEETest implements SOAPRequests {
             int count1 = AttachmentHelper.readTheData(is, data1, 4096);
             is = attach1.value.getInputStream();
             int count2 = AttachmentHelper.readTheData(is, data2, 4096);
-            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment1")) result = false;
+            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment1"))
+                result = false;
 
             dh1 = new DataHandler(url2);
             is = dh1.getInputStream();
             count1 = AttachmentHelper.readTheData(is, data1, 4096);
             is = attach2.value.getInputStream();
             count2 = AttachmentHelper.readTheData(is, data2, 4096);
-            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment2")) result = false;
+            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment2"))
+                result = false;
         } catch (Exception e) {
             result = false;
             TestUtil.logErr("Caught unexpected exception: " + e.getMessage());
@@ -1055,13 +1053,15 @@ public class Client extends ServiceEETest implements SOAPRequests {
             int count1 = AttachmentHelper.readTheData(is, data1, 4096);
             is = attach1.value.getInputStream();
             int count2 = AttachmentHelper.readTheData(is, data2, 4096);
-            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment1")) result = false;
+            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment1"))
+                result = false;
             is = dh2.getInputStream();
             count1 = AttachmentHelper.readTheData(is, data1, 4096);
             data2 = new byte[4096];
             is = attach2.value.getInputStream();
             count2 = AttachmentHelper.readTheData(is, data2, 4096);
-            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment2")) result = false;
+            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment2"))
+                result = false;
             TestUtil.logMsg("The attachment contents are equal");
         } catch (Exception e) {
             result = false;
@@ -1103,14 +1103,16 @@ public class Client extends ServiceEETest implements SOAPRequests {
             int count1 = AttachmentHelper.readTheData(is, data1, 4096);
             is = attach1.value.getInputStream();
             int count2 = AttachmentHelper.readTheData(is, data2, 4096);
-            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment1")) result = false;
+            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment1"))
+                result = false;
 
             dh1 = new DataHandler(url2);
             is = dh1.getInputStream();
             count1 = AttachmentHelper.readTheData(is, data1, 4096);
             is = attach2.value.getInputStream();
             count2 = AttachmentHelper.readTheData(is, data2, 4096);
-            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment2")) result = false;
+            if (!AttachmentHelper.validateAttachmentData(count1, data1, count2, data2, "Attachment2"))
+                result = false;
 
             dh1 = new DataHandler(url3);
             StreamSource sr1 = new StreamSource(dh1.getInputStream());
@@ -1119,7 +1121,8 @@ public class Client extends ServiceEETest implements SOAPRequests {
             if (tmpStr != null) {
                 TestUtil.logErr(tmpStr);
                 result = false;
-            } else TestUtil.logMsg("Attachment3 xml content is equal in attachment");
+            } else
+                TestUtil.logMsg("Attachment3 xml content is equal in attachment");
 
             Image image1 = javax.imageio.ImageIO.read(url4);
             Image image2 = attach4.value;

@@ -65,8 +65,7 @@ public class MsgBeanToTopic implements MessageDrivenBean, MessageListener {
 
     public MsgBeanToTopic() {
         TestUtil.logTrace("@MsgBeanToTopic()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("@MsgBeanToTopic-ejbCreate() !!");

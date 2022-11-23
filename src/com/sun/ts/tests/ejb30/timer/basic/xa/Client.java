@@ -37,9 +37,8 @@ public class Client extends ClientBase {
     /*
      * @testName: persistCoffeeCreateTimerRollbackStateless
      *
-     * @test_Strategy: persist a coffee in the first business method. In the
-     * second business method, create a timer and try to persist the same coffee.
-     * It will cause the tx and timer creation to rollback.
+     * @test_Strategy: persist a coffee in the first business method. In the second business method, create a timer and try
+     * to persist the same coffee. It will cause the tx and timer creation to rollback.
      */
     public void persistCoffeeCreateTimerRollbackStateless() {
         persistCoffeeCreateTimerRollback(statelessXaTimerBean, "RollbackStateless");

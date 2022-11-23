@@ -21,9 +21,8 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class is used by the TS harness to figure out which test directories
- * contain tests which must be rebuilt using a vendor's tools and then run
- * against the Reference Implementation.
+ * This class is used by the TS harness to figure out which test directories contain tests which must be rebuilt using a
+ * vendor's tools and then run against the Reference Implementation.
  *
  * A singleton class not intended for concurrent access.
  *
@@ -46,7 +45,8 @@ public class RebuildableVerifier {
     // an uninitialized singleton instance
     private static RebuildableVerifier instance = new RebuildableVerifier();
 
-    private RebuildableVerifier() {}
+    private RebuildableVerifier() {
+    }
 
     public static RebuildableVerifier getInstance(File path) {
         if (instance == null) {

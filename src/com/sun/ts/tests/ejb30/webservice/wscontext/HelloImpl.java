@@ -32,7 +32,7 @@ public class HelloImpl {
     @Resource
     private WebServiceContext wsContext;
 
-    @RolesAllowed({"Administrator"})
+    @RolesAllowed({ "Administrator" })
     public String sayHelloProtected(String param) throws WebServiceException {
         String output = "";
 

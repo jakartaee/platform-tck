@@ -31,7 +31,7 @@ import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
 
 @Stateful(name = "NoTxAllowedBean")
-@Remote({NoTxAllowedIF.class})
+@Remote({ NoTxAllowedIF.class })
 public class NoTxAllowedBean implements NoTxAllowedIF, java.io.Serializable {
 
     @Resource(name = "ejbContext")
@@ -39,7 +39,8 @@ public class NoTxAllowedBean implements NoTxAllowedIF, java.io.Serializable {
 
     // ===================== business methods ===========================
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public void txSupports() throws com.sun.ts.tests.ejb30.common.helper.TestFailedException {

@@ -29,8 +29,7 @@ import jakarta.jms.TextMessage;
 import java.util.Enumeration;
 
 /**
- * JmsUtil is a final tool class that will provide support for common code for
- * jms tests.
+ * JmsUtil is a final tool class that will provide support for common code for jms tests.
  *
  * @author Irene Caruso
  *
@@ -59,13 +58,10 @@ public final class JmsUtil {
     private static String hPort = null;
 
     /**
-     * used by jms tests to pass cts properties object to mdb to initialize cts
-     * logging mechanism
+     * used by jms tests to pass cts properties object to mdb to initialize cts logging mechanism
      *
-     * @param p
-     *          the Properties object
-     * @param msg
-     *          the JMS Message object
+     * @param p the Properties object
+     * @param msg the JMS Message object
      *
      */
     public static void addPropsToMessage(Message msg, java.util.Properties p) {
@@ -88,7 +84,8 @@ public final class JmsUtil {
             hostname = p.getProperty("harness.host");
             TestUtil.logTrace("Hostname " + hostname);
             if (hostname == null) {
-                if (hHost != null) msg.setStringProperty("harnesshost", hHost);
+                if (hHost != null)
+                    msg.setStringProperty("harnesshost", hHost);
                 else {
                     TestUtil.logTrace("addPropsToMsg: Hostname is null");
                     throw new Exception("Error getting hostname");
@@ -101,7 +98,8 @@ public final class JmsUtil {
             traceFlag = p.getProperty("harness.log.traceflag");
             TestUtil.logTrace("testFlag  " + traceFlag);
             if (traceFlag == null) {
-                if (hTrace != null) msg.setStringProperty("harnesslogtraceflag", hTrace);
+                if (hTrace != null)
+                    msg.setStringProperty("harnesslogtraceflag", hTrace);
                 else {
                     TestUtil.logTrace("addProps:traceflag is null");
                     throw new Exception("Error getting traceflag");
@@ -114,7 +112,8 @@ public final class JmsUtil {
             logPort = p.getProperty("harness.log.port");
             TestUtil.logTrace("logPort  " + logPort);
             if (logPort == null) {
-                if (hPort != null) msg.setStringProperty("harnesslogport", hPort);
+                if (hPort != null)
+                    msg.setStringProperty("harnesslogport", hPort);
                 else {
                     TestUtil.logTrace("addProps: logport is null");
                     throw new Exception("Error getting port");
@@ -145,13 +144,10 @@ public final class JmsUtil {
     }
 
     /**
-     * used by MDB onMessage() to extract cts properties from JMS Message to
-     * initialize cts logging mechanism
+     * used by MDB onMessage() to extract cts properties from JMS Message to initialize cts logging mechanism
      *
-     * @param p
-     *          the Properties object
-     * @param msg
-     *          the JMS Message object
+     * @param p the Properties object
+     * @param msg the JMS Message object
      *
      */
     public static void initHarnessProps(Message msg, java.util.Properties p) {
@@ -165,8 +161,10 @@ public final class JmsUtil {
             TestUtil.logTrace("initHarn: Hostname " + hostname);
             if (hostname == null) {
                 TestUtil.logTrace("intiHarn:Hostname is null");
-                if (cHost != null) p.put("harness.host", cHost);
-                else throw new Exception("Error getting hostname");
+                if (cHost != null)
+                    p.put("harness.host", cHost);
+                else
+                    throw new Exception("Error getting hostname");
             } else {
                 p.put("harness.host", hostname);
                 cHost = hostname;
@@ -176,8 +174,10 @@ public final class JmsUtil {
             TestUtil.logTrace("initHarn:traceflag " + traceflag);
             if (traceflag == null) {
                 TestUtil.logTrace("initHarn: is null");
-                if (cTrace != null) p.put("harness.log.traceflag", cTrace);
-                else throw new Exception("Error getting traceflag");
+                if (cTrace != null)
+                    p.put("harness.log.traceflag", cTrace);
+                else
+                    throw new Exception("Error getting traceflag");
             } else {
                 p.put("harness.log.traceflag", traceflag);
                 cTrace = traceflag;
@@ -187,8 +187,10 @@ public final class JmsUtil {
             TestUtil.logTrace("initHarn:logport " + logport);
             if (logport == null) {
                 TestUtil.logTrace("initHarn:logport is null");
-                if (cPort != null) p.put("harness.log.port", cPort);
-                else throw new Exception("Error getting port");
+                if (cPort != null)
+                    p.put("harness.log.port", cPort);
+                else
+                    throw new Exception("Error getting port");
             } else {
                 p.put("harness.log.port", logport);
                 cPort = logport;
@@ -199,7 +201,8 @@ public final class JmsUtil {
             String key = null;
             while (e.hasMoreElements()) {
                 key = (String) e.nextElement();
-                if (!key.startsWith("JMS")) p.put(key, msg.getStringProperty(key));
+                if (!key.startsWith("JMS"))
+                    p.put(key, msg.getStringProperty(key));
             }
 
             // now initialize the props
@@ -224,8 +227,10 @@ public final class JmsUtil {
             msg = qSession.createTextMessage();
             msg.setStringProperty("TestCase", testCase);
             msg.setText(testCase);
-            if (results) msg.setStringProperty("Status", "Pass");
-            else msg.setStringProperty("Status", "Fail");
+            if (results)
+                msg.setStringProperty("Status", "Pass");
+            else
+                msg.setStringProperty("Status", "Fail");
             TestUtil.logTrace("*@$#)@(@$#@($----Sending response message ");
             TestUtil.logTrace("*@$#)@(@ ----- status: " + msg.getStringProperty("Status"));
             TestUtil.logTrace("*@$#)@(@# -----test: " + msg.getStringProperty("TestCase"));

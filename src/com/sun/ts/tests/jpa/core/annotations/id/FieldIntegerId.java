@@ -37,7 +37,8 @@ public class FieldIntegerId implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public FieldIntegerId() {}
+    public FieldIntegerId() {
+    }
 
     public FieldIntegerId(Integer id, Integer integerData) {
 

@@ -88,8 +88,7 @@ public class Client extends ServiceEETest {
 
     private List<Handler> portHandlerChain = null;
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.doclithelloclient.HelloService.class;
 
     static HelloService service = null;
 
@@ -177,8 +176,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -215,13 +216,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: SetGetPayloadSourceTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:30; JAXWS:JAVADOC:32; JAXWS:SPEC:6002;
-     * WS4EE:SPEC:5005; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
-     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7002; JAXWS:SPEC:7008;
+     * @assertion_ids: JAXWS:JAVADOC:30; JAXWS:JAVADOC:32; JAXWS:SPEC:6002; WS4EE:SPEC:5005; JAXWS:SPEC:5000;
+     * JAXWS:SPEC:5001; JAXWS:SPEC:5002; JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7002; JAXWS:SPEC:7008;
      * JAXWS:SPEC:7009;
      *
-     * @test_Strategy: Test the various getPayload and setPayload methods in the
-     * handlers
+     * @test_Strategy: Test the various getPayload and setPayload methods in the handlers
      */
     public void SetGetPayloadSourceTest() throws Fault {
         TestUtil.logTrace("SetGetPayloadSourceTest");
@@ -230,8 +229,7 @@ public class Client extends ServiceEETest {
             pass = false;
         } else {
             try {
-                String expected =
-                        "client:OutboundClientLogicalHandler_getsetPayloadSource:InboundServerLogicalHandler_getsetPayloadSource:Hello3Impl:OutboundServerLogicalHandler_getsetPayloadSource:InboundClientLogicalHandler_getsetPayloadSource";
+                String expected = "client:OutboundClientLogicalHandler_getsetPayloadSource:InboundServerLogicalHandler_getsetPayloadSource:Hello3Impl:OutboundServerLogicalHandler_getsetPayloadSource:InboundClientLogicalHandler_getsetPayloadSource";
 
                 Hello3Request hello3Req = new Hello3Request();
                 hello3Req.setTestname("setgetPayloadSourceTest");
@@ -251,19 +249,18 @@ public class Client extends ServiceEETest {
                 e.printStackTrace();
             }
         }
-        if (!pass) throw new Fault("SetGetPayloadSourceTest failed");
+        if (!pass)
+            throw new Fault("SetGetPayloadSourceTest failed");
     }
 
     /*
      * @testName: SetGetPayloadJAXBContextTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:31; JAXWS:JAVADOC:33; JAXWS:SPEC:6002;
-     * WS4EE:SPEC:5005; JAXWS:SPEC:5000; JAXWS:SPEC:5001; JAXWS:SPEC:5002;
-     * JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7002; JAXWS:SPEC:7008;
+     * @assertion_ids: JAXWS:JAVADOC:31; JAXWS:JAVADOC:33; JAXWS:SPEC:6002; WS4EE:SPEC:5005; JAXWS:SPEC:5000;
+     * JAXWS:SPEC:5001; JAXWS:SPEC:5002; JAXWS:SPEC:5003; JAXWS:SPEC:7000; JAXWS:SPEC:7002; JAXWS:SPEC:7008;
      * JAXWS:SPEC:7009;
      *
-     * @test_Strategy: Test the various getPayload and setPayload methods in the
-     * handlers
+     * @test_Strategy: Test the various getPayload and setPayload methods in the handlers
      */
     public void SetGetPayloadJAXBContextTest() throws Fault {
         TestUtil.logTrace("SetGetPayloadJAXBContextTest");
@@ -272,8 +269,7 @@ public class Client extends ServiceEETest {
             pass = false;
         } else {
             try {
-                String expected =
-                        "client:OutboundClientLogicalHandler_getsetPayloadJAXBContext:InboundServerLogicalHandler_getsetPayloadJAXBContext:Hello3Impl:OutboundServerLogicalHandler_getsetPayloadJAXBContext:InboundClientLogicalHandler_getsetPayloadJAXBContext";
+                String expected = "client:OutboundClientLogicalHandler_getsetPayloadJAXBContext:InboundServerLogicalHandler_getsetPayloadJAXBContext:Hello3Impl:OutboundServerLogicalHandler_getsetPayloadJAXBContext:InboundClientLogicalHandler_getsetPayloadJAXBContext";
 
                 Hello3Request hello3Req = new Hello3Request();
                 hello3Req.setTestname("setgetPayloadJAXBContextTest");
@@ -293,6 +289,7 @@ public class Client extends ServiceEETest {
                 e.printStackTrace();
             }
         }
-        if (!pass) throw new Fault("SetGetPayloadJAXBContextTest failed");
+        if (!pass)
+            throw new Fault("SetGetPayloadJAXBContextTest failed");
     }
 }

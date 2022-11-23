@@ -35,7 +35,8 @@ public class PropertyBigIntegerId implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public PropertyBigIntegerId() {}
+    public PropertyBigIntegerId() {
+    }
 
     public PropertyBigIntegerId(BigInteger id, BigInteger bigInteger) {
 

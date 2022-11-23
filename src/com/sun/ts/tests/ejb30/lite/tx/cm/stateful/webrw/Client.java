@@ -27,10 +27,9 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.UserTransaction;
 
 /**
- * The difference between webrw and rw test directories is, in webrw directory,
- * the test client (web components) set the em, ut and txBean values in
- * testBean. This should work since this web component client share the same
- * naming environment as the target ejb.
+ * The difference between webrw and rw test directories is, in webrw directory, the test client (web components) set the
+ * em, ut and txBean values in testBean. This should work since this web component client share the same naming
+ * environment as the target ejb.
  */
 public class Client extends com.sun.ts.tests.ejb30.lite.tx.cm.common.RWClientBase {
     @PersistenceContext(unitName = "ejblite-pu")
@@ -84,8 +83,7 @@ public class Client extends com.sun.ts.tests.ejb30.lite.tx.cm.common.RWClientBas
     /*
      * @testName: postConstructTransaction
      *
-     * @test_Strategy: insert CoffeeEJBLite records in TestBean & TxBean's
-     * postConstruct methods, respectively using BMT & CMT, then check the
-     * existence of the records in test method postConstructTransaction
+     * @test_Strategy: insert CoffeeEJBLite records in TestBean & TxBean's postConstruct methods, respectively using BMT &
+     * CMT, then check the existence of the records in test method postConstructTransaction
      */
 }

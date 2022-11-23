@@ -27,8 +27,7 @@ import jakarta.interceptor.Interceptors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The purpose of this class is to verify various TimeUnit can be processed as
- * valid.
+ * The purpose of this class is to verify various TimeUnit can be processed as valid.
  */
 @Singleton(name = "TimeUnit")
 @Startup

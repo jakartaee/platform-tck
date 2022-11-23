@@ -36,7 +36,8 @@ public class FieldStringId implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public FieldStringId() {}
+    public FieldStringId() {
+    }
 
     public FieldStringId(String id, String name) {
 

@@ -66,8 +66,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
 
     public MsgBean() {
         TestUtil.logTrace("@MsgBean()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("jms.ee.mdb.mdb_msgTypesQ1  - @MsgBean-ejbCreate() !!");
@@ -230,12 +229,10 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * BytesMessage does not support the concept of a null stream and attempting
-     * to write a null into it must throw java.lang.NullPointerException. Jms
-     * Specification 1.0.2, Section 3.12
+     * BytesMessage does not support the concept of a null stream and attempting to write a null into it must throw
+     * java.lang.NullPointerException. Jms Specification 1.0.2, Section 3.12
      *
-     * create a byte message. Use writeObject to write a null. verify a
-     * java.lang.NullPointerException is thrown.
+     * create a byte message. Use writeObject to write a null. verify a java.lang.NullPointerException is thrown.
      *
      */
     private void bytesMsgNullStreamQTest() {
@@ -274,8 +271,10 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
             ok = false;
         }
         try {
-            if (ok) msg.setStringProperty("Status", "Pass");
-            else msg.setStringProperty("Status", "Fail");
+            if (ok)
+                msg.setStringProperty("Status", "Pass");
+            else
+                msg.setStringProperty("Status", "Fail");
             TestUtil.logTrace("Sending response message");
             mSender.send(msg);
         } catch (JMSException je) {
@@ -288,9 +287,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Creates a BytesMessage -. writes to the message using each
-     * type of method and as an object. Sends the message to MDB_QUEUE Msg
-     * verified by ejb.
+     * Description: Creates a BytesMessage -. writes to the message using each type of method and as an object. Sends the
+     * message to MDB_QUEUE Msg verified by ejb.
      *
      */
     private void bytesMessageQTestsFullMsgCreate() {
@@ -301,7 +299,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
             boolean pass = true;
             boolean booleanValue = false;
             byte byteValue = 127;
-            byte[] bytesValue = {127, -127, 1, 0};
+            byte[] bytesValue = { 127, -127, 1, 0 };
             char charValue = 'Z';
             double doubleValue = 6.02e23;
             float floatValue = 6.02e23f;
@@ -350,8 +348,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: reads and verifies BytesMessage created by
-     * bytesMessageQTestsFullMsgCreate
+     * Description: reads and verifies BytesMessage created by bytesMessageQTestsFullMsgCreate
      */
     private void bytesMessageQTestsFullMsg(jakarta.jms.BytesMessage msg) {
         TestUtil.logTrace("MsgBean - @bytesMessageQTestsFullMsg");
@@ -362,8 +359,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
             boolean pass = true;
             boolean booleanValue = false;
             byte byteValue = 127;
-            byte[] bytesValue = {127, -127, 1, 0};
-            byte[] bytesValueRecvd = {0, 0, 0, 0};
+            byte[] bytesValue = { 127, -127, 1, 0 };
+            byte[] bytesValueRecvd = { 0, 0, 0, 0 };
             char charValue = 'Z';
             double doubleValue = 6.02e23;
             float floatValue = 6.02e23f;
@@ -549,7 +546,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     private void mapMessageFullMsgQTestCreate() {
         boolean booleanValue = false;
         byte byteValue = 127;
-        byte[] bytesValue = {127, -127, 1, 0};
+        byte[] bytesValue = { 127, -127, 1, 0 };
         char charValue = 'Z';
         double doubleValue = 6.02e23;
         float floatValue = 6.02e23f;
@@ -604,7 +601,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
         boolean pass = true;
         boolean booleanValue = false;
         byte byteValue = 127;
-        byte[] bytesValue = {127, -127, 1, 0};
+        byte[] bytesValue = { 127, -127, 1, 0 };
         char charValue = 'Z';
         double doubleValue = 6.02e23;
         float floatValue = 6.02e23f;
@@ -801,8 +798,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Create a MapMessage -. use MapMessage method writeBoolean to
-     * write a boolean to the message.
+     * Description: Create a MapMessage -. use MapMessage method writeBoolean to write a boolean to the message.
      */
     private void mapMessageConversionQTestsBooleanCreate() {
         try {
@@ -834,8 +830,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Descripton: For MapMessages Verify the proper conversion support for
-     * boolean as in 3.11.3
+     * Descripton: For MapMessages Verify the proper conversion support for boolean as in 3.11.3
      */
     private void mapMessageConversionQTestsBoolean(jakarta.jms.MapMessage messageReceived) {
         String testCase = "mapMessageConversionQTestsBoolean";
@@ -1242,8 +1237,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a MapMessage -. use MapMessage method writeShort to
-     * write a short.
+     * Description: Create a MapMessage -. use MapMessage method writeShort to write a short.
      */
     public void mapMessageConversionQTestsShortCreate() {
         try {
@@ -1269,8 +1263,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: MapMessage -. Verify the proper conversion support as in
-     * 3.11.3
+     * Description: MapMessage -. Verify the proper conversion support as in 3.11.3
      */
     private void mapMessageConversionQTestsShort(jakarta.jms.MapMessage messageReceived) {
         String testCase = "mapMessageConversionQTestsShort";
@@ -1462,8 +1455,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a MapMessage -. use MapMessage method writeChar to
-     * write a char. Verify the proper conversion support as in 3.11.3
+     * Description: Create a MapMessage -. use MapMessage method writeChar to write a char. Verify the proper conversion
+     * support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsCharCreate() {
@@ -1490,8 +1483,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a MapMessage -. use MapMessage method writeInt to write
-     * an int. Verify the proper conversion support as in 3.11.3
+     * Description: Create a MapMessage -. use MapMessage method writeInt to write an int. Verify the proper conversion
+     * support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsIntCreate() {
@@ -1520,8 +1513,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a MapMessage -. use MapMessage method writeLong to
-     * write a long. Verify the proper conversion support as in 3.11.3
+     * Description: Create a MapMessage -. use MapMessage method writeLong to write a long. Verify the proper conversion
+     * support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsLongCreate() {
@@ -1550,8 +1543,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a MapMessage -. use MapMessage method writeFloat to
-     * write a float. Verify the proper conversion support as in 3.11.3
+     * Description: Create a MapMessage -. use MapMessage method writeFloat to write a float. Verify the proper conversion
+     * support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsFloatCreate() {
@@ -1580,8 +1573,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a MapMessage -. use MapMessage method writeDouble to
-     * write a double. Verify the proper conversion support as in 3.11.3
+     * Description: Create a MapMessage -. use MapMessage method writeDouble to write a double. Verify the proper conversion
+     * support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsDoubleCreate() {
@@ -1609,8 +1602,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: Create a MapMessage -. use MapMessage method writeString to
-     * write a string. Verify the proper conversion support as in 3.11.3
+     * Description: Create a MapMessage -. use MapMessage method writeString to write a string. Verify the proper conversion
+     * support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsStringCreate() {
@@ -1641,14 +1634,13 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Create a MapMessage -. use MapMessage method writeBytes to
-     * write a byte[] to the message. Verify the proper conversion support as in
-     * 3.11.3
+     * Description: Create a MapMessage -. use MapMessage method writeBytes to write a byte[] to the message. Verify the
+     * proper conversion support as in 3.11.3
      */
     private void mapMessageConversionQTestsBytesCreate() {
         try {
             MapMessage messageSent = null;
-            byte[] byteValues = {1, 2, 3};
+            byte[] byteValues = { 1, 2, 3 };
             boolean pass = true;
 
             messageSent = qSession.createMapMessage();
@@ -1672,9 +1664,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
 
     /*
      *
-     * Description: Create a MapMessage -. use MapMessage method setString to
-     * write a text string of "mytest string". Verify NumberFormatException is
-     * thrown
+     * Description: Create a MapMessage -. use MapMessage method setString to write a text string of "mytest string". Verify
+     * NumberFormatException is thrown
      *
      */
     private void mapMessageConversionQTestsInvFormatStringCreate() {
@@ -1704,8 +1695,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: use MapMessage method writeChar to write a char. Verify the
-     * proper conversion support as in 3.11.3
+     * Description: use MapMessage method writeChar to write a char. Verify the proper conversion support as in 3.11.3
      */
     private void mapMessageConversionQTestsChar(jakarta.jms.MapMessage messageReceived) {
         String testCase = "mapMessageConversionQTestsChar";
@@ -1886,8 +1876,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: use MapMessage method writeInt to write an int. Verify the
-     * proper conversion support as in 3.11.3
+     * Description: use MapMessage method writeInt to write an int. Verify the proper conversion support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsInt(jakarta.jms.MapMessage messageReceived) {
@@ -2077,8 +2066,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: use MapMessage method writeLong to write a long. Verify the
-     * proper conversion support as in 3.11.3
+     * Description: use MapMessage method writeLong to write a long. Verify the proper conversion support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsLong(jakarta.jms.MapMessage messageReceived) {
@@ -2265,8 +2253,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: use MapMessage method writeFloat to write a float. Verify the
-     * proper conversion support as in 3.11.3
+     * Description: use MapMessage method writeFloat to write a float. Verify the proper conversion support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsFloat(jakarta.jms.MapMessage messageReceived) {
@@ -2451,8 +2438,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: use MapMessage method writeDouble to write a double. Verify
-     * the proper conversion support as in 3.11.3
+     * Description: use MapMessage method writeDouble to write a double. Verify the proper conversion support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsDouble(jakarta.jms.MapMessage messageReceived) {
@@ -2635,8 +2621,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: use MapMessage method writeString to write a string. Verify
-     * the proper conversion support as in 3.11.3
+     * Description: use MapMessage method writeString to write a string. Verify the proper conversion support as in 3.11.3
      *
      */
     private void mapMessageConversionQTestsString(jakarta.jms.MapMessage messageReceived) {
@@ -2809,8 +2794,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
             TestUtil.logTrace("--");
             TestUtil.logTrace("Use getBoolean to read a string ");
             try {
-                if (messageReceived.getBoolean("myString2")
-                        == Boolean.valueOf(myString2).booleanValue()) {
+                if (messageReceived.getBoolean("myString2") == Boolean.valueOf(myString2).booleanValue()) {
                     TestUtil.logTrace("Pass: String to boolean ");
                 } else {
                     TestUtil.logTrace("Fail: wrong value returned");
@@ -2847,15 +2831,15 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: use MapMessage method writeBytes to write a byte[] to the
-     * message. Verify the proper conversion support as in 3.11.3
+     * Description: use MapMessage method writeBytes to write a byte[] to the message. Verify the proper conversion support
+     * as in 3.11.3
      */
     private void mapMessageConversionQTestsBytes(jakarta.jms.MapMessage messageReceived) {
         String testCase = "mapMessageConversionQTestsBytes";
 
         try {
 
-            byte[] byteValues = {1, 2, 3};
+            byte[] byteValues = { 1, 2, 3 };
             boolean pass = true;
 
             // now test conversions for boolean
@@ -3034,8 +3018,8 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: use MapMessage method setString to write a text string of
-     * "mytest string". Verify NumberFormatException is thrown
+     * Description: use MapMessage method setString to write a text string of "mytest string". Verify NumberFormatException
+     * is thrown
      *
      */
     private void mapMessageConversionQTestsInvFormatString(jakarta.jms.MapMessage messageReceived) {
@@ -3154,8 +3138,7 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
     }
 
     /*
-     * Description: send test results to response queue (MDB_QUEUE_REPLY) for
-     * verification
+     * Description: send test results to response queue (MDB_QUEUE_REPLY) for verification
      */
     private void sendTestResults(String testCase, boolean results) {
         TextMessage msg = null;
@@ -3167,8 +3150,10 @@ public class MsgBean implements MessageDrivenBean, MessageListener {
             msg = qSession.createTextMessage();
             msg.setStringProperty("TestCase", testCase);
             msg.setText(testCase);
-            if (results) msg.setStringProperty("Status", "Pass");
-            else msg.setStringProperty("Status", "Fail");
+            if (results)
+                msg.setStringProperty("Status", "Pass");
+            else
+                msg.setStringProperty("Status", "Fail");
 
             TestUtil.logTrace("Sending response message");
             TestUtil.logTrace("==================================Test Results from: " + testCase);

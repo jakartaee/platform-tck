@@ -34,8 +34,7 @@ public class Client extends ClientBase {
     /*
      * @testName: aroundTimeoutExceptionAsBusinessMethod
      *
-     * @test_Strategy: invoke the bean class' aroundTimeout method as a business
-     * method.
+     * @test_Strategy: invoke the bean class' aroundTimeout method as a business method.
      */
     public void aroundTimeoutExceptionAsBusinessMethod() throws Exception {
         try {
@@ -49,32 +48,29 @@ public class Client extends ClientBase {
     /*
      * @testName: allInterceptors
      *
-     * @test_Strategy: all interceptors at default and class-level should be
-     * invoked. //default interceptors 2, 1 //class-level interceptors 4, 3
-     * //method-level interceptors 6, 5
+     * @test_Strategy: all interceptors at default and class-level should be invoked. //default interceptors 2, 1
+     * //class-level interceptors 4, 3 //method-level interceptors 6, 5
      */
 
     /*
      * @testName: allInterceptorsOverride
      *
-     * @test_Strategy: For AroundTimeoutOverrideBean, interceptor-order in
-     * ejb-jar.xml is used to override the ordering of class-level interceptors.
-     * exclude-default-interceptors is also applied for AroundTimeoutOverrideBean.
+     * @test_Strategy: For AroundTimeoutOverrideBean, interceptor-order in ejb-jar.xml is used to override the ordering of
+     * class-level interceptors. exclude-default-interceptors is also applied for AroundTimeoutOverrideBean.
      */
 
     /*
      * @testName: allInterceptorsComplement
      *
-     * @test_Strategy: AroundTimeoutComplementBean's interceptors are also
-     * declared in ejb-jar.xml to complement the class-level interceptors.
-     * AroundTimeoutComplementBean excludes default interceptors.
+     * @test_Strategy: AroundTimeoutComplementBean's interceptors are also declared in ejb-jar.xml to complement the
+     * class-level interceptors. AroundTimeoutComplementBean excludes default interceptors.
      */
 
     /*
      * @testName: aroundTimeoutMethod
      *
-     * @test_Strategy: override @AroundTimeout method with @AroundTimeout method
-     * and verify that the superclass' @AroundTimeout is disabled, and subclass'
+     * @test_Strategy: override @AroundTimeout method with @AroundTimeout method and verify that the
+     * superclass' @AroundTimeout is disabled, and subclass'
      *
      * @AroundTimeout method is invoked
      */
@@ -82,15 +78,14 @@ public class Client extends ClientBase {
     /*
      * @testName: aroundTimeoutMethod2
      *
-     * @test_Strategy:override @AroundTimeout method with non-AroundTimeout method
-     * and verify that the superclass' @AroundTimeout is disabled
+     * @test_Strategy:override @AroundTimeout method with non-AroundTimeout method and verify that the
+     * superclass' @AroundTimeout is disabled
      */
 
     /*
      * @testName: aroundTimeoutException
      *
-     * @test_Strategy: Interceptor1 catches and suppresses the RuntimeException
-     * from bean class' AroundTimeout method.
+     * @test_Strategy: Interceptor1 catches and suppresses the RuntimeException from bean class' AroundTimeout method.
      */
 
     /*

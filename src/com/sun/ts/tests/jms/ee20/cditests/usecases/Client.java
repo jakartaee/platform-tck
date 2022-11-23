@@ -77,8 +77,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: jms_timeout; user; password; platform.mode;
-     * webServerHost; webServerPort;
+     * @class.setup_props: jms_timeout; user; password; platform.mode; webServerHost; webServerPort;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -137,14 +136,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: JMS:SPEC:277; JMS:SPEC:279; JMS:SPEC:280;
      *
-     * @test_Strategy: Use case A: Two methods on the same bean within separate
-     * transactions. A remote client obtains a reference to Bean1 and calls the
-     * methods method1a and method1b in turn.
+     * @test_Strategy: Use case A: Two methods on the same bean within separate transactions. A remote client obtains a
+     * reference to Bean1 and calls the methods method1a and method1b in turn.
      *
-     * Bean1 is a stateless session bean configured to use container managed
-     * transactions with the two business methods method1a and method1b. Each
-     * method is configured to require a transaction. The bean has an injected
-     * JMSContext. Each method uses the context to send a message.
+     * Bean1 is a stateless session bean configured to use container managed transactions with the two business methods
+     * method1a and method1b. Each method is configured to require a transaction. The bean has an injected JMSContext. Each
+     * method uses the context to send a message.
      */
     public void beanUseCaseA() throws Fault {
         boolean pass = true;
@@ -177,20 +174,17 @@ public class Client extends EETest {
      *
      * @assertion_ids: JMS:SPEC:277; JMS:SPEC:279; JMS:SPEC:280;
      *
-     * @test_Strategy: Use case B: Two methods on the same bean within the same
-     * transaction. A remote client obtains a reference to Bean1 and calls
-     * method2.
+     * @test_Strategy: Use case B: Two methods on the same bean within the same transaction. A remote client obtains a
+     * reference to Bean1 and calls method2.
      *
      * Consider two stateless session beans, Bean1 and Bean2.
      *
-     * Bean1 is configured to use container managed transactions and has a
-     * business method method2, which is configured to require a transaction. This
-     * invokes method2a and method2b on Bean2 in turn.
+     * Bean1 is configured to use container managed transactions and has a business method method2, which is configured to
+     * require a transaction. This invokes method2a and method2b on Bean2 in turn.
      *
-     * Bean2 is also configured to use container managed transactions and has the
-     * two business methods method2a and method2b which are configured to require
-     * a transaction. The bean has an injected JMSContext. Each method uses the
-     * context to send a message.
+     * Bean2 is also configured to use container managed transactions and has the two business methods method2a and method2b
+     * which are configured to require a transaction. The bean has an injected JMSContext. Each method uses the context to
+     * send a message.
      */
     public void beanUseCaseB() throws Fault {
         boolean pass = true;
@@ -222,21 +216,18 @@ public class Client extends EETest {
      *
      * @assertion_ids: JMS:SPEC:277; JMS:SPEC:279; JMS:SPEC:280;
      *
-     * @test_Strategy: Use case C: One bean which calls another within the same
-     * transaction transaction. A remote client obtains a reference to Bean1 and
-     * calls method3.
+     * @test_Strategy: Use case C: One bean which calls another within the same transaction transaction. A remote client
+     * obtains a reference to Bean1 and calls method3.
      *
      * Consider two stateless session beans, Bean1 and Bean2.
      *
-     * Bean1 is configured to use container managed transactions and has the
-     * business method method3, which is configured to require a transaction. The
-     * bean has an injected JMSContext. method3 uses this context to send a
-     * message and then invokes method3 on Bean2.
+     * Bean1 is configured to use container managed transactions and has the business method method3, which is configured to
+     * require a transaction. The bean has an injected JMSContext. method3 uses this context to send a message and then
+     * invokes method3 on Bean2.
      *
-     * Bean2 is also configured to use container-managed transactions and has the
-     * business method method3, which is also configured to require a transaction.
-     * The bean also has an injected JMSContext with identical annotations to
-     * Bean1. method3 simply uses this context to send a second message.
+     * Bean2 is also configured to use container-managed transactions and has the business method method3, which is also
+     * configured to require a transaction. The bean also has an injected JMSContext with identical annotations to Bean1.
+     * method3 simply uses this context to send a second message.
      */
     public void beanUseCaseC() throws Fault {
         boolean pass = true;
@@ -268,14 +259,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: JMS:SPEC:277; JMS:SPEC:279; JMS:SPEC:280;
      *
-     * @test_Strategy: Use case D: One bean which sends two messages within the
-     * same transaction. A remote client obtains a reference to Bean1 and calls
-     * method4.
+     * @test_Strategy: Use case D: One bean which sends two messages within the same transaction. A remote client obtains a
+     * reference to Bean1 and calls method4.
      *
-     * Bean1 is configured to use container managed transactions and has a
-     * business method method4 which is configured to require a transaction. The
-     * bean has an injected JMSContext. method4 uses this context to send two
-     * messages.
+     * Bean1 is configured to use container managed transactions and has a business method method4 which is configured to
+     * require a transaction. The bean has an injected JMSContext. method4 uses this context to send two messages.
      */
     public void beanUseCaseD() throws Fault {
         boolean pass = true;
@@ -307,13 +295,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: JMS:SPEC:277; JMS:SPEC:279; JMS:SPEC:280;
      *
-     * @test_Strategy: Use case E: One bean which sends two messages when there is
-     * no transaction.
+     * @test_Strategy: Use case E: One bean which sends two messages when there is no transaction.
      *
-     * Consider a stateless session bean Bean1. This is configured to use
-     * bean-managed transactions and has a business method method1. The bean has
-     * an injected JMSContext. method1 does not start a transaction and uses the
-     * context to send two messages.
+     * Consider a stateless session bean Bean1. This is configured to use bean-managed transactions and has a business
+     * method method1. The bean has an injected JMSContext. method1 does not start a transaction and uses the context to
+     * send two messages.
      *
      * A remote client obtains a reference to Bean1 and calls method1.
      */
@@ -347,20 +333,16 @@ public class Client extends EETest {
      *
      * @assertion_ids: JMS:SPEC:277; JMS:SPEC:279; JMS:SPEC:280;
      *
-     * @test_Strategy: Use case F: One bean which calls another when there is no
-     * transaction.
+     * @test_Strategy: Use case F: One bean which calls another when there is no transaction.
      *
      * Consider two stateless session beans, Bean1 and Bean2.
      *
-     * Bean1 is configured to use bean-managed transactions and has a business
-     * method method2. The bean has an injected JMSContext. method2 does not start
-     * a transaction, uses this context to send a message, and then invoke method2
-     * on Bean2.
+     * Bean1 is configured to use bean-managed transactions and has a business method method2. The bean has an injected
+     * JMSContext. method2 does not start a transaction, uses this context to send a message, and then invoke method2 on
+     * Bean2.
      *
-     * Bean2 is also configured to use bean-managed transactions and has a
-     * business method method2. The bean has an injected JMSContext. method2 does
-     * not start a transaction and simply uses this context to send a second
-     * message.
+     * Bean2 is also configured to use bean-managed transactions and has a business method method2. The bean has an injected
+     * JMSContext. method2 does not start a transaction and simply uses this context to send a second message.
      *
      * A remote client obtains a reference to Bean1 and calls method2.
      */
@@ -396,12 +378,10 @@ public class Client extends EETest {
      *
      * @test_Strategy: Use case G: One bean method which uses two transactions.
      *
-     * Consider a stateless session bean Bean1. This is configured to use
-     * bean-managed transactions and has a business method, method3. The bean has
-     * an injected JMSContext. method3 starts a transaction and uses the context
-     * to send two messages. It then commits the transaction and starts a second
-     * transaction. It then uses the context to send two further messages and
-     * finally commits the second transaction.
+     * Consider a stateless session bean Bean1. This is configured to use bean-managed transactions and has a business
+     * method, method3. The bean has an injected JMSContext. method3 starts a transaction and uses the context to send two
+     * messages. It then commits the transaction and starts a second transaction. It then uses the context to send two
+     * further messages and finally commits the second transaction.
      *
      * A remote client obtains a reference to Bean1 and calls method3.
      */
@@ -435,16 +415,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: JMS:SPEC:277; JMS:SPEC:279; JMS:SPEC:280;
      *
-     * @test_Strategy: Use case H. A bean which uses a context both outside and
-     * within a transaction.
+     * @test_Strategy: Use case H. A bean which uses a context both outside and within a transaction.
      *
-     * Consider a stateless session bean Bean1. This is configured to use
-     * bean-managed transactions and has a business method method4. The bean has
-     * an injected JMSContext. method4 does not start a transaction and uses the
-     * context variable to send two messages. It then starts a transaction and
-     * uses the context variable to send a third message. It then commits the
-     * transaction and uses the context variable to send a fourth and fifth more
-     * messages.
+     * Consider a stateless session bean Bean1. This is configured to use bean-managed transactions and has a business
+     * method method4. The bean has an injected JMSContext. method4 does not start a transaction and uses the context
+     * variable to send two messages. It then starts a transaction and uses the context variable to send a third message. It
+     * then commits the transaction and uses the context variable to send a fourth and fifth more messages.
      *
      * A remote client obtains a reference to Bean1 and calls method4.
      */
@@ -478,20 +454,18 @@ public class Client extends EETest {
      *
      * @assertion_ids: JMS:SPEC:277; JMS:SPEC:279; JMS:SPEC:280;
      *
-     * @test_Strategy: Use case J. Two separate container-managed transactions on
-     * the same thread, one suspended before the second is started
+     * @test_Strategy: Use case J. Two separate container-managed transactions on the same thread, one suspended before the
+     * second is started
      *
      * Consider two stateless session beans, Bean1 and Bean2.
      *
-     * Bean1 is configured to use container-managed transactions and has a
-     * business method method5, which is configured to require a transaction. The
-     * bean has an injected JMSContext. method5 uses this context to send a
-     * message and then invokes method5 on bean2. It then sends a further message.
+     * Bean1 is configured to use container-managed transactions and has a business method method5, which is configured to
+     * require a transaction. The bean has an injected JMSContext. method5 uses this context to send a message and then
+     * invokes method5 on bean2. It then sends a further message.
      *
-     * Bean2 is also configured to use container-managed transactions and has a
-     * business method method5, which is configured to require a new transaction.
-     * The bean has an injected JMSContext. method5 simply uses this context to
-     * send a message.
+     * Bean2 is also configured to use container-managed transactions and has a business method method5, which is configured
+     * to require a new transaction. The bean has an injected JMSContext. method5 simply uses this context to send a
+     * message.
      *
      * A remote client obtains a reference to Bean1 and calls method5.
      */
@@ -525,24 +499,21 @@ public class Client extends EETest {
      *
      * @assertion_ids: JMS:SPEC:277; JMS:SPEC:279; JMS:SPEC:280;
      *
-     * @test_Strategy: Use case K. One bean which calls another within the same
-     * transaction, but using different connection factories
+     * @test_Strategy: Use case K. One bean which calls another within the same transaction, but using different connection
+     * factories
      *
-     * (Note that this use case is identical to use case C except that the two
-     * beans specify different connection factories).
+     * (Note that this use case is identical to use case C except that the two beans specify different connection
+     * factories).
      *
      * Consider two stateless session beans, Bean1 and Bean2
      *
-     * Bean1 is configured to use container-managed transactions and has a
-     * business method method6, which is configured to require a transaction. The
-     * bean has an injected JMSContext. method6 uses this context to send a
-     * message and then invokes method6 on Bean2.
+     * Bean1 is configured to use container-managed transactions and has a business method method6, which is configured to
+     * require a transaction. The bean has an injected JMSContext. method6 uses this context to send a message and then
+     * invokes method6 on Bean2.
      *
-     * Bean2 is also configured to use container-managed transactions and has a
-     * business method method6, which is also configured to require a transaction.
-     * The bean also has an injected JMSContext to Bean1, but specifies a
-     * different connection factory. method6 simply uses this context to send a
-     * second message.
+     * Bean2 is also configured to use container-managed transactions and has a business method method6, which is also
+     * configured to require a transaction. The bean also has an injected JMSContext to Bean1, but specifies a different
+     * connection factory. method6 simply uses this context to send a second message.
      *
      * A remote client obtains a reference to Bean1 and calls method6
      */

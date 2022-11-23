@@ -94,11 +94,14 @@ public class ClientSOAPHandler extends WsaBaseSOAPHandler {
     protected String getAction(SOAPMessageContext context) throws SOAPException {
         String testName = (String) context.get("test.name");
         TestUtil.logMsg("ClientSOAPHandler.getAction(): testName=" + testName);
-        if (testName == null) return super.getAction(context);
-        else if (testName.equals("VerifyAddrHeadersExistForRequiredEchoPort")) return super.getAction(context);
+        if (testName == null)
+            return super.getAction(context);
+        else if (testName.equals("VerifyAddrHeadersExistForRequiredEchoPort"))
+            return super.getAction(context);
         else if (testName.equals("VerifyAddrHeadersDoNotExistForDisabledEchoPort")) {
             return super.getActionDoesNotExist(context);
-        } else return null;
+        } else
+            return null;
     }
 
     protected String whichHandler() {

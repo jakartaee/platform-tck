@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:28; JSTL:SPEC:28.1; JSTL:SPEC:28.1.1
      *
-     * @testStrategy: Validate value can accept both String representations of
-     * locales as well as instances of java.util.Locale.
+     * @testStrategy: Validate value can accept both String representations of locales as well as instances of
+     * java.util.Locale.
      */
     public void positiveSetLocaleValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetLocaleValueTest");
@@ -79,9 +77,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:28.2; JSTL:SPEC:28.2.1
      *
-     * @testStrategy: Validate that variant can accept both dynamic and static
-     * values as well as validate that the jakarta.servlet.jsp.jstl.fmt.locale
-     * scoped variable is set with the proper value.
+     * @testStrategy: Validate that variant can accept both dynamic and static values as well as validate that the
+     * jakarta.servlet.jsp.jstl.fmt.locale scoped variable is set with the proper value.
      */
     public void positiveSetLocaleVariantTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetLocaleVariantTest");
@@ -93,8 +90,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:28.6
      *
-     * @testStrategy: Validate that if value is provided with a null or empty
-     * value that the runtime default locale is used.
+     * @testStrategy: Validate that if value is provided with a null or empty value that the runtime default locale is used.
      */
     public void positiveSetLocaleValueNullEmptyTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetLocaleValueNullEmptyTest");
@@ -104,13 +100,12 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveSetLocaleScopeTest
      *
-     * @assertion_ids: JSTL:SPEC:28.1.2; JSTL:SPEC:28.3; JSTL:SPEC:28.3.1;
-     * JSTL:SPEC:28.3.2; JSTL:SPEC:28.3.3; JSTL:SPEC:28.3.4; JSTL:SPEC:28.4
+     * @assertion_ids: JSTL:SPEC:28.1.2; JSTL:SPEC:28.3; JSTL:SPEC:28.3.1; JSTL:SPEC:28.3.2; JSTL:SPEC:28.3.3;
+     * JSTL:SPEC:28.3.4; JSTL:SPEC:28.4
      *
-     * @testStrategy: Validate the behvior of the action with regards to scope. If
-     * scope is specified, verify the jakarta.servlet.jsp.jstl.fmt.locale
-     * configuration variable is in the expected scope. If scope is not specifed,
-     * verify that it is in the page scope.
+     * @testStrategy: Validate the behvior of the action with regards to scope. If scope is specified, verify the
+     * jakarta.servlet.jsp.jstl.fmt.locale configuration variable is in the expected scope. If scope is not specifed, verify
+     * that it is in the page scope.
      */
     public void positiveSetLocaleScopeTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetLocaleScopeTest");
@@ -122,11 +117,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:108
      *
-     * @testStrategy: Validate that browser-based locales from an HTTP client are
-     * not considered if the jakarta.servlet. jsp.jstl.fmt.locale attribute is
-     * present. The client will send it's preferred locales of fr and sw, but the
-     * page will be set to en_US. The en resources bundle should be used and not
-     * the sw bundle.
+     * @testStrategy: Validate that browser-based locales from an HTTP client are not considered if the jakarta.servlet.
+     * jsp.jstl.fmt.locale attribute is present. The client will send it's preferred locales of fr and sw, but the page will
+     * be set to en_US. The en resources bundle should be used and not the sw bundle.
      */
     public void positiveSetLocaleOverrideTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveSetLocaleOverrideTest");
@@ -141,10 +134,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:28.7
      *
-     * @testStrategy: Validate that if the value attribute is provided a Locale
-     * object, and the variant attribute is specified (using an invalid value),
-     * that the variant is ignored and the expected locale of en_US is returned by
-     * the test.
+     * @testStrategy: Validate that if the value attribute is provided a Locale object, and the variant attribute is
+     * specified (using an invalid value), that the variant is ignored and the expected locale of en_US is returned by the
+     * test.
      */
     public void positiveSetLocaleVariantIgnoreTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveSetLocaleVariantIgnoreTest");

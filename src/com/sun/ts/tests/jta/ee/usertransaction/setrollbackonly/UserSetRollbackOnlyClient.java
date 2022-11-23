@@ -32,8 +32,8 @@ import java.io.Serializable;
 import java.util.Properties;
 
 /**
- * The UserSetRollbackOnlyClient class tests setRollbackOnly() method of
- * UserTransaction interface using Sun's J2EE Reference Implementation.
+ * The UserSetRollbackOnlyClient class tests setRollbackOnly() method of UserTransaction interface using Sun's J2EE
+ * Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -79,8 +79,7 @@ public class UserSetRollbackOnlyClient extends ServiceEETest implements Serializ
     /**
      * @testName: testUserSetRollbackOnly001
      * @assertion_ids: JTA:JAVADOC:36
-     * @test_Strategy: Without starting the User Transaction call
-     *                 setRollbackOnly() on User Transaction.
+     * @test_Strategy: Without starting the User Transaction call setRollbackOnly() on User Transaction.
      */
     public void testUserSetRollbackOnly001() throws Fault {
         // TestCase id :- 4.5.1
@@ -115,9 +114,8 @@ public class UserSetRollbackOnlyClient extends ServiceEETest implements Serializ
     /**
      * @testName: testUserSetRollbackOnly002
      * @assertion_ids: JTA:JAVADOC:35
-     * @test_Strategy: Start the UserTransaction.Call setRollbackOnly() on User
-     *                 Transaction to mark the transaction for rollback only.Then
-     *                 check the status of User Transaction.
+     * @test_Strategy: Start the UserTransaction.Call setRollbackOnly() on User Transaction to mark the transaction for
+     * rollback only.Then check the status of User Transaction.
      */
     public void testUserSetRollbackOnly002() throws Fault {
         // TestCase id :- 4.5.2
@@ -183,9 +181,8 @@ public class UserSetRollbackOnlyClient extends ServiceEETest implements Serializ
     /**
      * @testName: testUserSetRollbackOnly003
      * @assertion_ids: JTA:JAVADOC:36
-     * @test_Strategy: Start the User Transaction.Call commit() on User
-     *                 Transaction.Check the status of the User Transaction.Call
-     *                 setRollbackOnly() on User Transaction.
+     * @test_Strategy: Start the User Transaction.Call commit() on User Transaction.Check the status of the User
+     * Transaction.Call setRollbackOnly() on User Transaction.
      */
     public void testUserSetRollbackOnly003() throws Fault {
         // TestCase id :- 4.5.3
@@ -233,9 +230,8 @@ public class UserSetRollbackOnlyClient extends ServiceEETest implements Serializ
     /**
      * @testName: testUserSetRollbackOnly004
      * @assertion_ids: JTA:JAVADOC:36
-     * @test_Strategy: Start the User Transaction.Call rollback() on User
-     *                 Transaction.Check the status of the User Transaction.Call
-     *                 setRollbackOnly() on User Transaction.
+     * @test_Strategy: Start the User Transaction.Call rollback() on User Transaction.Check the status of the User
+     * Transaction.Call setRollbackOnly() on User Transaction.
      */
     public void testUserSetRollbackOnly004() throws Fault {
         // TestCase id :- 4.5.4

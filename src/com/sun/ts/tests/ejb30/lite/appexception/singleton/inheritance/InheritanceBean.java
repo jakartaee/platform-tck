@@ -27,4 +27,5 @@ import jakarta.ejb.TransactionManagementType;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)
-public class InheritanceBean extends InheritanceBeanBase implements InheritanceIF {}
+public class InheritanceBean extends InheritanceBeanBase implements InheritanceIF {
+}

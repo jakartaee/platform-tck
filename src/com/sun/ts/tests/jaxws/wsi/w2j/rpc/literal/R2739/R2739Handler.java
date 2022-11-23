@@ -42,19 +42,18 @@ public class R2739Handler implements SOAPHandler<SOAPMessageContext> {
         return s;
     }
 
-    public void init(java.util.Map<String, Object> config) {}
-    ;
+    public void init(java.util.Map<String, Object> config) {
+    };
 
     public boolean handleFault(SOAPMessageContext context) {
         return true;
-    }
-    ;
+    };
 
-    public void destroy() {}
-    ;
+    public void destroy() {
+    };
 
-    public void close(MessageContext context) {}
-    ;
+    public void close(MessageContext context) {
+    };
 
     public boolean handleMessage(SOAPMessageContext context) {
         System.out.println("HANDLER: R2739Handler.handleMessage() BEGIN");

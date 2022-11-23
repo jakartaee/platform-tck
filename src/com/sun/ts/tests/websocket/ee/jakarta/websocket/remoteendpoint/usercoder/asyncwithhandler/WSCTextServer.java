@@ -32,18 +32,16 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/text",
-        encoders = {
-            TextCoderBool.class,
-            TextCoderByte.class,
-            TextCoderChar.class,
-            TextCoderDouble.class,
-            TextCoderInt.class,
-            TextCoderLong.class,
-            TextCoderFloat.class,
-            TextCoderShort.class
-        })
+@ServerEndpoint(value = "/text", encoders = {
+        TextCoderBool.class,
+        TextCoderByte.class,
+        TextCoderChar.class,
+        TextCoderDouble.class,
+        TextCoderInt.class,
+        TextCoderLong.class,
+        TextCoderFloat.class,
+        TextCoderShort.class
+})
 public class WSCTextServer extends WSCCommonServer {
 
     @Override

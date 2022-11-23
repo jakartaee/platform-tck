@@ -26,19 +26,15 @@ public interface TestConstants {
 
     public static final String GOT_WRONG_RESULT = "expected %d, but got %d";
 
-    public static final String ONE_REMOTE_ANNOTATION_ON_INTERFACE_TEST_JNDI =
-            "java:module/OneRemoteAnnotationOnInterfaceBean!com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2";
+    public static final String ONE_REMOTE_ANNOTATION_ON_INTERFACE_TEST_JNDI = "java:module/OneRemoteAnnotationOnInterfaceBean!com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2";
 
-    public static final String ONE_REMOTE_ANNOTATION_ON_EJB_TEST_JNDI =
-            "java:module/OneRemoteAnnotationOnEjbBean!com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2";
+    public static final String ONE_REMOTE_ANNOTATION_ON_EJB_TEST_JNDI = "java:module/OneRemoteAnnotationOnEjbBean!com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2";
 
-    public static final String NO_INTERFACE_VIEW_TEST_IF2_JNDI =
-            "java:module/NoInterfaceViewBean!com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2";
+    public static final String NO_INTERFACE_VIEW_TEST_IF2_JNDI = "java:module/NoInterfaceViewBean!com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2";
 
     public static final String NO_INTERFACE_VIEW_TEST_BEAN_JNDI = "java:module/NoInterfaceViewBean";
 
-    public static final String LOCAL_DD_TEST_JNDI =
-            "java:module/LocalDDBean!com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2";
+    public static final String LOCAL_DD_TEST_JNDI = "java:module/LocalDDBean!com.sun.ts.tests.ejb32.relaxedclientview.common.NormalInterface2";
 
     public static final String JNDI_SHOULD_NOT_BE_FOUND = "jndi %s should not be found";
 

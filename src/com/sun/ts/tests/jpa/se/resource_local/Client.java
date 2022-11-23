@@ -66,8 +66,7 @@ public class Client extends PMClientBase {
     /*
      * @testName: test1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:859; PERSISTENCE:SPEC:860;
-     * PERSISTENCE:JAVADOC:66; PERSISTENCE:JAVADOC:59
+     * @assertion_ids: PERSISTENCE:SPEC:859; PERSISTENCE:SPEC:860; PERSISTENCE:JAVADOC:66; PERSISTENCE:JAVADOC:59
      *
      * @test_Strategy: EntityTransactionInterface
      *
@@ -98,7 +97,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -139,7 +139,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -197,7 +198,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -238,14 +240,14 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
      * @testName: test5
      *
-     * @assertion_ids: PERSISTENCE:SPEC:860; PERSISTENCE:JAVADOC:67;
-     * PERSISTENCE:JAVADOC:190; PERSISTENCE:JAVADOC:185
+     * @assertion_ids: PERSISTENCE:SPEC:860; PERSISTENCE:JAVADOC:67; PERSISTENCE:JAVADOC:190; PERSISTENCE:JAVADOC:185
      *
      * @test_Strategy: EntityTransactionInterface
      *
@@ -281,7 +283,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     /*
@@ -334,7 +337,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test6 failed");
+        if (!pass)
+            throw new Fault("test6 failed");
     }
 
     /*
@@ -344,8 +348,7 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy: EntityTransactionInterface
      *
-     * setRollbackOnly() marks the current transaction so the only outcome is for
-     * the transaction to be rolled back
+     * setRollbackOnly() marks the current transaction so the only outcome is for the transaction to be rolled back
      */
 
     public void test7() throws Fault {
@@ -381,7 +384,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test7 failed");
+        if (!pass)
+            throw new Fault("test7 failed");
     }
 
     /*
@@ -423,7 +427,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test8 failed");
+        if (!pass)
+            throw new Fault("test8 failed");
     }
 
     /*
@@ -433,9 +438,8 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy: EntityTransactionInterface
      *
-     * getRollbackOnly determines if the current transaction has been marked for
-     * rollback test getRollbackOnly when isActive() is true and TX has been
-     * marked for rollback, so getRollbackOnly will return true
+     * getRollbackOnly determines if the current transaction has been marked for rollback test getRollbackOnly when
+     * isActive() is true and TX has been marked for rollback, so getRollbackOnly will return true
      */
 
     public void test9() throws Fault {
@@ -470,7 +474,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test9 failed");
+        if (!pass)
+            throw new Fault("test9 failed");
     }
 
     /*
@@ -511,7 +516,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test10 failed");
+        if (!pass)
+            throw new Fault("test10 failed");
     }
 
     /*
@@ -519,9 +525,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:860; PERSISTENCE:JAVADOC:68
      *
-     * @test_Strategy: EntityTransactionInterface test getRollbackOnly when
-     * isActive() is true and TX has not been marked for rollback, so
-     * getRollbackOnly will return false
+     * @test_Strategy: EntityTransactionInterface test getRollbackOnly when isActive() is true and TX has not been marked
+     * for rollback, so getRollbackOnly will return false
      *
      */
 
@@ -556,19 +561,18 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test11 failed");
+        if (!pass)
+            throw new Fault("test11 failed");
     }
 
     /*
      * @testName: test12
      *
-     * @assertion_ids: PERSISTENCE:SPEC:860; PERSISTENCE:JAVADOC:69;
-     * PERSISTENCE:JAVADOC:157
+     * @assertion_ids: PERSISTENCE:SPEC:860; PERSISTENCE:JAVADOC:69; PERSISTENCE:JAVADOC:157
      *
      * @test_Strategy: EntityTransactionInterface
      *
-     * isActive() indicates whether a transaction is in progress Try when TX is
-     * active
+     * isActive() indicates whether a transaction is in progress Try when TX is active
      */
 
     public void test12() throws Fault {
@@ -598,7 +602,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test12 failed");
+        if (!pass)
+            throw new Fault("test12 failed");
     }
 
     /*
@@ -608,8 +613,7 @@ public class Client extends PMClientBase {
      *
      * @test_Strategy: EntityTransactionInterface
      *
-     * isActive() indicates whether a transaction is in progress Try when TX is
-     * not active
+     * isActive() indicates whether a transaction is in progress Try when TX is not active
      */
 
     public void test13() throws Fault {
@@ -635,20 +639,19 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test13 failed");
+        if (!pass)
+            throw new Fault("test13 failed");
     }
 
     /*
      * @testName: test14
      *
-     * @assertion_ids: PERSISTENCE:SPEC:860; PERSISTENCE:JAVADOC:72;
-     * PERSISTENCE:SPEC:741
+     * @assertion_ids: PERSISTENCE:SPEC:860; PERSISTENCE:JAVADOC:72; PERSISTENCE:SPEC:741
      *
      * @test_Strategy: EntityTransactionInterface
      *
-     * When a resource-local entity manager is used, and the persistence provider
-     * runtime throws an exception defined to cause a transaction rollback, it
-     * must mark the transaction for rollback.
+     * When a resource-local entity manager is used, and the persistence provider runtime throws an exception defined to
+     * cause a transaction rollback, it must mark the transaction for rollback.
      */
 
     public void test14() throws Fault {
@@ -690,18 +693,17 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test14 failed");
+        if (!pass)
+            throw new Fault("test14 failed");
     }
 
     /*
      * @testName: test15
      *
-     * @assertion_ids: PERSISTENCE:SPEC:882; PERSISTENCE:JAVADOC:48;
-     * PERSISTENCE:JAVADOC:49
+     * @assertion_ids: PERSISTENCE:SPEC:882; PERSISTENCE:JAVADOC:48; PERSISTENCE:JAVADOC:49
      *
-     * @test_Strategy: After the close method has been invoked, all methods on the
-     * EntityManager instance will throw the IllegalStateException except for
-     * getTransaction.
+     * @test_Strategy: After the close method has been invoked, all methods on the EntityManager instance will throw the
+     * IllegalStateException except for getTransaction.
      *
      *
      */
@@ -745,12 +747,12 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("test15 failed");
+        if (!pass)
+            throw new Fault("test15 failed");
     }
 
     /*
-     * @testName:
-     * createEntityManagerSynchronizationTypeMapIllegalStateExceptionTest
+     * @testName: createEntityManagerSynchronizationTypeMapIllegalStateExceptionTest
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:3319;
      *

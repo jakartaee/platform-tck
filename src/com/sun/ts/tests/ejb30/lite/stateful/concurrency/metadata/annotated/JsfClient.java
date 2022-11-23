@@ -29,18 +29,9 @@ import jakarta.ejb.EJBs;
 import java.io.Serializable;
 
 @EJBs({
-    @EJB(
-            name = containerConcurrencyBeanNoInterface,
-            beanName = "ContainerConcurrencyBean",
-            beanInterface = ContainerConcurrencyBean.class),
-    @EJB(
-            name = defaultConcurrencyBeanNoInterface,
-            beanName = "DefaultConcurrencyBean",
-            beanInterface = DefaultConcurrencyBean.class),
-    @EJB(
-            name = notAllowedConcurrencyBeanNoInterface,
-            beanName = "NotAllowedConcurrencyBean",
-            beanInterface = NotAllowedConcurrencyBean.class)
+        @EJB(name = containerConcurrencyBeanNoInterface, beanName = "ContainerConcurrencyBean", beanInterface = ContainerConcurrencyBean.class),
+        @EJB(name = defaultConcurrencyBeanNoInterface, beanName = "DefaultConcurrencyBean", beanInterface = DefaultConcurrencyBean.class),
+        @EJB(name = notAllowedConcurrencyBeanNoInterface, beanName = "NotAllowedConcurrencyBean", beanInterface = NotAllowedConcurrencyBean.class)
 })
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped

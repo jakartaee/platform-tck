@@ -29,7 +29,8 @@ public class NoCallBackListener implements java.io.Serializable {
 
     private Long id;
 
-    public NoCallBackListener() {}
+    public NoCallBackListener() {
+    }
 
     @Id
     @Column(name = "ID")

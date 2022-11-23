@@ -34,11 +34,9 @@ import java.io.PrintWriter;
  * the page unprotected.
  *
  */
-@DeclareRoles({"Administrator", "Manager", "VP", "Employee"})
+@DeclareRoles({ "Administrator", "Manager", "VP", "Employee" })
 @ServletSecurity(@HttpConstraint(transportGuarantee = TransportGuarantee.NONE))
-@WebServlet(
-        name = "UnProtectedAnnoTest",
-        urlPatterns = {"/UnProtectedAnnoTest"})
+@WebServlet(name = "UnProtectedAnnoTest", urlPatterns = { "/UnProtectedAnnoTest" })
 public class UnProtectedAnnoTestServlet extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,7 +44,8 @@ public class UnProtectedAnnoTestServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         if (request.getUserPrincipal() == null)
             out.println("The user principal is: " + request.getUserPrincipal() + "<BR>");
-        else out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
+        else
+            out.println("The user principal is: " + request.getUserPrincipal().getName() + "<BR>");
 
         // Output whether the user is in any of the known or an unknown role.
         // Surround these with !'s so they are easier to search for.

@@ -69,17 +69,16 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     public abstract void setInterface2(Async2IF interface2);
 
     /**
-     * Used to verify the status of bean instances after the async business method
-     * throws RuntimeException or Error. For singleton, the same bean instance is
-     * retained; for stateless, it should be a different bean instance; for
-     * stateful, any subsequent access should result in
-     * jakarta.ejb.NoSuchEJBException.
+     * Used to verify the status of bean instances after the async business method throws RuntimeException or Error. For
+     * singleton, the same bean instance is retained; for stateless, it should be a different bean instance; for stateful,
+     * any subsequent access should result in jakarta.ejb.NoSuchEJBException.
      *
      * @param b
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    protected void assertBeanInstances(AsyncIF b) throws ExecutionException, InterruptedException {}
+    protected void assertBeanInstances(AsyncIF b) throws ExecutionException, InterruptedException {
+    }
 
     @Override
     public void setup(String[] args, Properties p) {
@@ -97,16 +96,14 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
         beans[1] = (AsyncIF) lookup("interface2", "Async2Bean", Async2IF.class);
         beans[2] = (AsyncIF) lookup("noInterface", "AsyncBean", null);
 
-        annotatedMethodsLocal[0] = (AsyncAnnotatedMethodsCommonIF)
-                lookup("annotatedMethodsIF", "AsyncAnnotatedMethodsBean", AsyncAnnotatedMethodsIF.class);
+        annotatedMethodsLocal[0] = (AsyncAnnotatedMethodsCommonIF) lookup("annotatedMethodsIF", "AsyncAnnotatedMethodsBean", AsyncAnnotatedMethodsIF.class);
     }
 
     /*
      * testName: addAway
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method returns void, and updates the result in
-     * a singleton, which is retrieved by the client.
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method returns void,
+     * and updates the result in a singleton, which is retrieved by the client.
      */
     public void addAway() {
         for (int i = 0; i < beans.length; i++) {
@@ -120,10 +117,9 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     /*
      * testName: voidRuntimeException
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method throws RuntimeException, which is not
-     * visible to the client, and no effect on client execution. Also verify that
-     * stateless bean instance is discarded after such a RuntimeException.
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method throws
+     * RuntimeException, which is not visible to the client, and no effect on client execution. Also verify that stateless
+     * bean instance is discarded after such a RuntimeException.
      */
 
     public void voidRuntimeException() throws InterruptedException, ExecutionException {
@@ -140,10 +136,9 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     /*
      * testName: futureRuntimeException
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method with Future return type throws
-     * RuntimeException, which is retrieved with Future.get(). Also verify that
-     * stateless bean instance is discarded after such a RuntimeException.
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method with Future
+     * return type throws RuntimeException, which is retrieved with Future.get(). Also verify that stateless bean instance
+     * is discarded after such a RuntimeException.
      */
 
     public void futureRuntimeException() throws InterruptedException, ExecutionException {
@@ -162,10 +157,9 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     /*
      * testName: futureError
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method with Future return type throws
-     * AssertionError, which is retrieved with Future.get(). Also verify that
-     * stateless bean instance is discarded after such an Error.
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method with Future
+     * return type throws AssertionError, which is retrieved with Future.get(). Also verify that stateless bean instance is
+     * discarded after such an Error.
      */
 
     public void futureError() throws InterruptedException, ExecutionException {
@@ -185,9 +179,8 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     /*
      * testName: futureException
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method with Future return type throws checked
-     * Exception, which is retrieved with Future.get().
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method with Future
+     * return type throws checked Exception, which is retrieved with Future.get().
      */
 
     public void futureException() throws InterruptedException, ExecutionException {
@@ -230,8 +223,8 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     /*
      * testName: addReturn
      *
-     * @test_Strategy: asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method returns Future.
+     * @test_Strategy: asynchronous invocations on stateless, stateful, and singleton. The asynchronous method returns
+     * Future.
      */
 
     public void addReturn() throws InterruptedException, ExecutionException {
@@ -244,10 +237,9 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     /*
      * testName: addSyncThrowException
      *
-     * @test_Strategy: Some methods on the interface are annotated as async and
-     * some are not. synchronous/blocking invocations on stateless, stateful, and
-     * singleton. The synchronous method throws TestFailedException, which should
-     * be received by client.
+     * @test_Strategy: Some methods on the interface are annotated as async and some are not. synchronous/blocking
+     * invocations on stateless, stateful, and singleton. The synchronous method throws TestFailedException, which should be
+     * received by client.
      */
 
     public void addSyncThrowException() {
@@ -265,9 +257,8 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     /*
      * testName: addSyncReturn
      *
-     * @test_Strategy: Some methods on the interface are annotated as async and
-     * some are not. synchronous/blocking invocations on stateless, stateful, and
-     * singleton. The synchronous method should block for the return value.
+     * @test_Strategy: Some methods on the interface are annotated as async and some are not. synchronous/blocking
+     * invocations on stateless, stateful, and singleton. The synchronous method should block for the return value.
      */
 
     public void addSyncReturn() {
@@ -290,9 +281,8 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     /*
      * testName: addReturnWaitMillis
      *
-     * @test_Strategy: Some methods on the interface are annotated as async and
-     * some are not. Asynchronous invocations on stateless, stateful, and
-     * singleton. The asynchronous method should return immediately.
+     * @test_Strategy: Some methods on the interface are annotated as async and some are not. Asynchronous invocations on
+     * stateless, stateful, and singleton. The asynchronous method should return immediately.
      */
 
     public void addReturnWaitMillis() throws ExecutionException, InterruptedException, TimeoutException {
@@ -322,14 +312,11 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     /*
      * testName: cancelMayInterruptIfRunningFalse
      *
-     * @test_Strategy: cancel an async invocation with mayInterruptIfRunning set
-     * to true or false. If the client's cancel request is sent before the
-     * previous async method is dispatched, the async method will not be executed.
-     * So need to make sure the cancel request is not sent until the bean has
-     * started processing the first async method.
+     * @test_Strategy: cancel an async invocation with mayInterruptIfRunning set to true or false. If the client's cancel
+     * request is sent before the previous async method is dispatched, the async method will not be executed. So need to
+     * make sure the cancel request is not sent until the bean has started processing the first async method.
      *
-     * The bean method also needs to wait for the client's cancel request, and
-     * then call SessionContext.wasCancelCalled.
+     * The bean method also needs to wait for the client's cancel request, and then call SessionContext.wasCancelCalled.
      */
     public void cancelMayInterruptIfRunningFalse() throws ExecutionException, InterruptedException, TimeoutException {
         cancelMayInterruptIfRunning(false);
@@ -352,7 +339,7 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     public void passByValueOrReference() {
         final String a = "a", b = "b";
         for (int i = 0; i <= 2; i++) { // local invocations
-            final String[] params = {a, b};
+            final String[] params = { a, b };
             beans[i].passByValueOrReference(params);
             assertNotEquals(beans[i].toString(), a, params[0]);
             assertNotEquals(beans[i].toString(), b, params[1]);
@@ -367,7 +354,7 @@ public abstract class AnnotatedClientBase extends AsyncClientBase {
     public void passByValueOrReferenceAsync() throws InterruptedException, ExecutionException {
         final String a = "a", b = "b";
         for (int i = 0; i <= 2; i++) { // local invocations
-            final String[] params = {a, b};
+            final String[] params = { a, b };
             beans[i].passByValueOrReferenceAsync(params).get();
             assertNotEquals(beans[i].toString(), a, params[0]);
             assertNotEquals(beans[i].toString(), b, params[1]);

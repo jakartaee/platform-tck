@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 
-@WebServlet(value = {"/Servlet2URL1", "/Servlet2URL2", "/test/*", "*.html"})
+@WebServlet(value = { "/Servlet2URL1", "/Servlet2URL2", "/test/*", "*.html" })
 public class Servlet2 extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -34,12 +34,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Enumeration;
 
-@WebFilter(
-        filterName = "filter2",
-        dispatcherTypes = {DispatcherType.FORWARD},
-        servletNames = {"servlet1"},
-        value = {"/Servlet1"},
-        initParams = {@WebInitParam(name = "name1", value = "value1"), @WebInitParam(name = "name2", value = "value2")})
+@WebFilter(filterName = "filter2", dispatcherTypes = { DispatcherType.FORWARD }, servletNames = { "servlet1" }, value = { "/Servlet1" }, initParams = {
+        @WebInitParam(name = "name1", value = "value1"), @WebInitParam(name = "name2", value = "value2") })
 public final class TestFilter2 implements Filter {
 
     private FilterConfig filterConfig = null;
@@ -53,13 +49,12 @@ public final class TestFilter2 implements Filter {
             StaticLog.add("FILTER2_INVOKED");
             StaticLog.add("FilterName=" + filterConfig.getFilterName());
 
-            for (Enumeration names = filterConfig.getInitParameterNames(); names.hasMoreElements(); ) {
+            for (Enumeration names = filterConfig.getInitParameterNames(); names.hasMoreElements();) {
                 String name = (String) names.nextElement();
                 StaticLog.add("PName=" + name + " PVALUE=" + filterConfig.getInitParameter(name));
             }
             StaticLog.add("AsyncSupport=" + request.isAsyncSupported());
-            FilterRegistration fr =
-                    filterConfig.getServletContext().getFilterRegistration(filterConfig.getFilterName());
+            FilterRegistration fr = filterConfig.getServletContext().getFilterRegistration(filterConfig.getFilterName());
             Collection<String> mapping = fr.getServletNameMappings();
             for (String url : mapping) {
                 StaticLog.add("URL=" + url);
@@ -70,7 +65,8 @@ public final class TestFilter2 implements Filter {
         chain.doFilter(request, response);
     }
 
-    public void destroy() {}
+    public void destroy() {
+    }
 
     public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;

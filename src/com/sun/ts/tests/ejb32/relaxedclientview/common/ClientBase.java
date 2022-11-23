@@ -46,9 +46,11 @@ public class ClientBase extends EETest implements TestConstants {
         s.exit();
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
-    public void setup(String[] args, Properties p) throws Fault {}
+    public void setup(String[] args, Properties p) throws Fault {
+    }
 
     /*
      * testName: noAnnotationTest
@@ -93,8 +95,7 @@ public class ClientBase extends EETest implements TestConstants {
     /*
      * testName: oneRemoteAnnotationOnInterfaceTest
      *
-     * @test_Strategy: a remote annotation on one interface and another interface
-     * has nothing
+     * @test_Strategy: a remote annotation on one interface and another interface has nothing
      */
     public void oneRemoteAnnotationOnInterfaceTest() throws TestFailedException {
         int result = oneRemoteAnnotationOnInterface1.businessMethod1();
@@ -109,8 +110,7 @@ public class ClientBase extends EETest implements TestConstants {
     /*
      * testName: oneRemoteAnnotationOnEjbTest
      *
-     * @test_Strategy: a remote annotation on ejb for one interface and another
-     * interface has nothing
+     * @test_Strategy: a remote annotation on ejb for one interface and another interface has nothing
      */
     public void oneRemoteAnnotationOnEjbTest() throws TestFailedException {
         int result = oneRemoteAnnotationOnEjb1.businessMethod1();
@@ -125,8 +125,7 @@ public class ClientBase extends EETest implements TestConstants {
     /*
      * testName: noInterfaceViewTest
      *
-     * @test_Strategy: an ejb has no interface view, so all business interfaces
-     * must be explicitly designated
+     * @test_Strategy: an ejb has no interface view, so all business interfaces must be explicitly designated
      */
     public void noInterfaceViewTest() throws TestFailedException {
         TLogger.log(helperSingleton.noInterfaceViewTest());

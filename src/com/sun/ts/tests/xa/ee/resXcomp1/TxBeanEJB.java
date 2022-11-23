@@ -311,7 +311,8 @@ public class TxBeanEJB implements SessionBean {
     public void listTableData(Vector dbResults) {
         TestUtil.logTrace("listTableData");
         try {
-            if (dbResults.isEmpty()) TestUtil.logTrace("Empty vector!!!");
+            if (dbResults.isEmpty())
+                TestUtil.logTrace("Empty vector!!!");
             else {
                 for (int j = 0; j < dbResults.size(); j++)
                     TestUtil.logTrace(dbResults.elementAt(j).toString());

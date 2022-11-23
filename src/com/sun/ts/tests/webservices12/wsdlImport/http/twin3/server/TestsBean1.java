@@ -19,12 +19,7 @@ package com.sun.ts.tests.webservices12.wsdlImport.http.twin3.server;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "Tests1Port",
-        serviceName = "Twin3HttpSvc1",
-        targetNamespace = "http://Twin3HttpSvc1.org/wsdl",
-        wsdlLocation = "META-INF/wsdl/svc1/Twin3HttpSvc1.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.twin3.server.Tests1")
+@WebService(portName = "Tests1Port", serviceName = "Twin3HttpSvc1", targetNamespace = "http://Twin3HttpSvc1.org/wsdl", wsdlLocation = "META-INF/wsdl/svc1/Twin3HttpSvc1.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.twin3.server.Tests1")
 @Stateless(name = "StatelessTestBean1")
 public class TestsBean1 {
     public String invokeTest1() {

@@ -161,12 +161,15 @@ public class TestBeanEJB implements SessionBean {
             dbResults = beanRef.getResults(tName);
 
             TestUtil.logTrace("Verifying the test results");
-            if (!dbResults.contains(new Integer(tRng))) b2 = true;
+            if (!dbResults.contains(new Integer(tRng)))
+                b2 = true;
 
             for (int i = 1; i <= size; i++) {
-                if (i == tRng) continue;
+                if (i == tRng)
+                    continue;
                 else {
-                    if (dbResults.contains(new Integer(i))) b3 = true;
+                    if (dbResults.contains(new Integer(i)))
+                        b3 = true;
                     else {
                         b3 = false;
                         break;
@@ -175,7 +178,8 @@ public class TestBeanEJB implements SessionBean {
             }
             beanRef.destroyData(tName);
 
-            if (b1 && b2 && b3) testResult = true;
+            if (b1 && b2 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             try {
@@ -257,7 +261,8 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Verifying the test results");
             for (int i = 1; i <= size; i++) {
-                if (dbResults.contains(new Integer(i))) b3 = true;
+                if (dbResults.contains(new Integer(i)))
+                    b3 = true;
                 else {
                     b3 = false;
                     break;
@@ -267,7 +272,8 @@ public class TestBeanEJB implements SessionBean {
             beanRef2.destroyData(tName);
             ut.commit();
 
-            if (b1 && b3) testResult = true;
+            if (b1 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             try {
@@ -349,7 +355,8 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Verifying the test results");
             for (int i = 1; i <= size; i++) {
-                if (dbResults.contains(new Integer(i))) b3 = true;
+                if (dbResults.contains(new Integer(i)))
+                    b3 = true;
                 else {
                     b3 = false;
                     break;
@@ -359,7 +366,8 @@ public class TestBeanEJB implements SessionBean {
             beanRef2.destroyData(tName);
             ut.commit();
 
-            if (b1 && b3) testResult = true;
+            if (b1 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             try {
@@ -441,7 +449,8 @@ public class TestBeanEJB implements SessionBean {
 
             TestUtil.logTrace("Verifying the test results");
             for (int i = 1; i <= size; i++) {
-                if (dbResults.contains(new Integer(i))) b3 = true;
+                if (dbResults.contains(new Integer(i)))
+                    b3 = true;
                 else {
                     b3 = false;
                     break;
@@ -451,7 +460,8 @@ public class TestBeanEJB implements SessionBean {
             beanRef2.destroyData(tName);
             ut.commit();
 
-            if (b1 && b3) testResult = true;
+            if (b1 && b3)
+                testResult = true;
 
         } catch (Exception e) {
             try {

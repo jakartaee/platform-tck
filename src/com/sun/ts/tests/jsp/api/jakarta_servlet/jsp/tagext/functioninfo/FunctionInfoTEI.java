@@ -25,23 +25,22 @@ import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 import jakarta.servlet.jsp.tagext.FunctionInfo;
 
 /**
- * A TagExtraInfo implementation to validate the methods of
- * jakarta.servlet.jsp.tagext.FunctionInfo.
+ * A TagExtraInfo implementation to validate the methods of jakarta.servlet.jsp.tagext.FunctionInfo.
  */
 public class FunctionInfoTEI extends BaseTCKExtraInfo {
 
     /**
      * Default constructor.
      */
-    public FunctionInfoTEI() {}
+    public FunctionInfoTEI() {
+    }
 
     // ------------------------------------------- Test Definitions ----------
 
     /**
      * Validate the behavior of FunctionInfo.getName().
      *
-     * @return null if the test passes, otherwise a String describing the cause of
-     *         failure.
+     * @return null if the test passes, otherwise a String describing the cause of failure.
      */
     public String getName() {
         debug("in getName()");
@@ -51,12 +50,10 @@ public class FunctionInfoTEI extends BaseTCKExtraInfo {
             if (info.length == 1) {
                 String name = info[0].getName().trim();
                 if (!"upperCase".equals(name)) {
-                    message =
-                            "Test FAILED.  FunctionInfo.getName() returned " + "'" + name + "', expected: 'upperCase'";
+                    message = "Test FAILED.  FunctionInfo.getName() returned " + "'" + name + "', expected: 'upperCase'";
                 }
             } else {
-                message =
-                        "Test FAILED.  FunctionInfo array length was " + info.length + ", expected the length to be 1.";
+                message = "Test FAILED.  FunctionInfo array length was " + info.length + ", expected the length to be 1.";
             }
         } else {
             message = "Test FAILED.  FunctionInfo was null.";
@@ -67,8 +64,7 @@ public class FunctionInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validate the behavior of FunctionInfo.getFunctionClass().
      *
-     * @return null if the test passes, otherwise a String describing the cause of
-     *         failure.
+     * @return null if the test passes, otherwise a String describing the cause of failure.
      */
     public String getFunctionClass() {
         debug("in getFunctionClass()");
@@ -83,8 +79,7 @@ public class FunctionInfoTEI extends BaseTCKExtraInfo {
                             + "'.  Received: '" + clazz + "'";
                 }
             } else {
-                message =
-                        "Test FAILED.  FunctionInfo array length was " + info.length + ", expected the length to be 1.";
+                message = "Test FAILED.  FunctionInfo array length was " + info.length + ", expected the length to be 1.";
             }
         } else {
             message = "Test FAILED.  FunctionInfo was null.";
@@ -95,8 +90,7 @@ public class FunctionInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validate the behavior of FunctionInfo.getFunctionSignature().
      *
-     * @return null if the test passes, otherwise a String describing the cause of
-     *         failure.
+     * @return null if the test passes, otherwise a String describing the cause of failure.
      */
     public String getFunctionSignature() {
         debug("in getFunctionSignature()");
@@ -111,8 +105,7 @@ public class FunctionInfoTEI extends BaseTCKExtraInfo {
                             + "'.  Received: '" + sig + "'";
                 }
             } else {
-                message =
-                        "Test FAILED.  FunctionInfo array length was " + info.length + ", expected the length to be 1.";
+                message = "Test FAILED.  FunctionInfo array length was " + info.length + ", expected the length to be 1.";
             }
         } else {
             message = "Test FAILED.  FunctionInfo was null.";
@@ -121,11 +114,9 @@ public class FunctionInfoTEI extends BaseTCKExtraInfo {
     }
 
     /**
-     * Utility method that calls JspTestUtil.debug after prepending this class
-     * name to the message.
+     * Utility method that calls JspTestUtil.debug after prepending this class name to the message.
      *
-     * @param message
-     *          - a debug message
+     * @param message - a debug message
      */
     private static void debug(String message) {
         JspTestUtil.debug("[FunctionInfoTEI] " + message);

@@ -43,8 +43,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The batUpdExceptClient class tests methods of BatchUpdateException using
- * Sun's J2EE Reference Implementation.
+ * The batUpdExceptClient class tests methods of BatchUpdateException using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -53,10 +52,8 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
     private static final String testName = "jdbc.ee.exception.batUpdExcept";
 
     /*
-     * used by testGetUpdateCounts to represent: 1. number of entries in the
-     * attempted batch 2. updateCount array offset that will fail 3. Status to be
-     * returned in the updatecount array offset if the driver continues after the
-     * failure.
+     * used by testGetUpdateCounts to represent: 1. number of entries in the attempted batch 2. updateCount array offset
+     * that will fail 3. Status to be returned in the updatecount array offset if the driver continues after the failure.
      */
     private static final int MAXUPDATECOUNT_ENTRIES = 4;
 
@@ -114,14 +111,11 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -129,7 +123,8 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
         try {
             try {
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sUrl = p.getProperty("db1", "");
                 sUsr = p.getProperty("user1", "");
                 sPass = p.getProperty("password1", "");
@@ -190,14 +185,11 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:121;
      *
-     * @test_Strategy: Get a Statement object and call the addBatch() method with
-     * 4 SQL statements ,out of which first 3 statements are insert,update and
-     * delete statements followed by a select statement and call the
-     * executeBatch() method. This causes a BatchUpdateException being thrown and
-     * getUpdateCounts() method on this BatchUpdateException object should return
-     * an integer array of length 3 with each value indicating the number of
-     * corressponding rows affected by execution of 3 SQL statements in the same
-     * order as added to the batch.
+     * @test_Strategy: Get a Statement object and call the addBatch() method with 4 SQL statements ,out of which first 3
+     * statements are insert,update and delete statements followed by a select statement and call the executeBatch() method.
+     * This causes a BatchUpdateException being thrown and getUpdateCounts() method on this BatchUpdateException object
+     * should return an integer array of length 3 with each value indicating the number of corressponding rows affected by
+     * execution of 3 SQL statements in the same order as added to the batch.
      *
      */
 
@@ -261,9 +253,8 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
     }
 
     /*
-     * The methods adds the SQL statements to Statement object using addBatch()
-     * method and sets the initialisation counter to the number of statements
-     * added to the batch.
+     * The methods adds the SQL statements to Statement object using addBatch() method and sets the initialisation counter
+     * to the number of statements added to the batch.
      */
     public void loading(Statement stmt)
             throws java.sql.BatchUpdateException, java.sql.SQLException, java.lang.Exception {
@@ -321,9 +312,8 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:120;
      *
-     * @test_Strategy: This method constructs a BatchUpdateException Object with
-     * no arguments and for that object the reason, SQLState,ErrorCode and
-     * updateCounts are checked for default values.
+     * @test_Strategy: This method constructs a BatchUpdateException Object with no arguments and for that object the
+     * reason, SQLState,ErrorCode and updateCounts are checked for default values.
      */
 
     public void testBatchUpdateException01() throws Fault {
@@ -357,9 +347,8 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:119;
      *
-     * @test_Strategy: This method constructs a BatchUpdateException Object with
-     * one argument and for that object the reason, SQLState,ErrorCode are checked
-     * for default values.The updateCount array is checked for whatever is been
+     * @test_Strategy: This method constructs a BatchUpdateException Object with one argument and for that object the
+     * reason, SQLState,ErrorCode are checked for default values.The updateCount array is checked for whatever is been
      * assigned while creating the new instance.
      */
 
@@ -398,10 +387,9 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:118;
      *
-     * @test_Strategy: This method constructs a BatchUpdateException Object with
-     * two arguments and for that object. SQLState,ErrorCode are checked for
-     * default values.The reason and updateCount array is checked for whatever is
-     * been assigned while creating the new instance.
+     * @test_Strategy: This method constructs a BatchUpdateException Object with two arguments and for that object.
+     * SQLState,ErrorCode are checked for default values.The reason and updateCount array is checked for whatever is been
+     * assigned while creating the new instance.
      */
 
     public void testBatchUpdateException03() throws Fault {
@@ -444,10 +432,9 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:117;
      *
-     * @test_Strategy: This method constructs a BatchUpdateException Object with
-     * three arguments and for that object. ErrorCode is checked for default
-     * values.The reason,SQLState and updateCount array is checked for whatever is
-     * been assigned while creating the new instance.
+     * @test_Strategy: This method constructs a BatchUpdateException Object with three arguments and for that object.
+     * ErrorCode is checked for default values.The reason,SQLState and updateCount array is checked for whatever is been
+     * assigned while creating the new instance.
      */
 
     public void testBatchUpdateException04() throws Fault {
@@ -492,9 +479,8 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:SPEC:6; JDBC:JAVADOC:116;
      *
-     * @test_Strategy: This method constructs a BatchUpdateException Object with
-     * four arguments The reason,SQLState ,ErrorCode and updateCount array is
-     * checked for whatever is been assigned while creating the new instance.
+     * @test_Strategy: This method constructs a BatchUpdateException Object with four arguments The reason,SQLState
+     * ,ErrorCode and updateCount array is checked for whatever is been assigned while creating the new instance.
      */
 
     public void testBatchUpdateException05() throws Fault {
@@ -529,14 +515,14 @@ public class batUpdExceptClient extends ServiceEETest implements Serializable {
     }
 
     /*
-     * This method is used for checking each element of the updateCount array and
-     * the Return array.It returns true if all elements matches or else it returns
-     * false .
+     * This method is used for checking each element of the updateCount array and the Return array.It returns true if all
+     * elements matches or else it returns false .
      */
     public boolean checkForUpdateCount(int[] retVal) {
         for (int i = 0; i < retVal.length; i++) {
             msg.setMsg("IntialVal : " + updateCount[i] + " ReturnVal :" + retVal[i]);
-            if (updateCount[i] != retVal[i]) return false;
+            if (updateCount[i] != retVal[i])
+                return false;
         }
 
         return true;

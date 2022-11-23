@@ -58,8 +58,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:151;
      *
-     * @test_Strategy: Create instance via RespectBindingFeature() constructor.
-     * Verify RespectBindingFeature object created successfully.
+     * @test_Strategy: Create instance via RespectBindingFeature() constructor. Verify RespectBindingFeature object created
+     * successfully.
      */
     public void RespectBindingFeatureConstructorTest() throws Fault {
         TestUtil.logTrace("RespectBindingFeatureConstructorTest");
@@ -95,8 +95,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:152;
      *
-     * @test_Strategy: Create instance via RespectBindingFeature(true)
-     * constructor. Verify RespectBindingFeature object created successfully.
+     * @test_Strategy: Create instance via RespectBindingFeature(true) constructor. Verify RespectBindingFeature object
+     * created successfully.
      */
     public void RespectBindingFeatureConstructorTest2() throws Fault {
         TestUtil.logTrace("RespectBindingFeatureConstructorTest2");
@@ -132,8 +132,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:152;
      *
-     * @test_Strategy: Create instance via RespectBindingFeature(false)
-     * constructor. Verify RespectBindingFeature object created successfully.
+     * @test_Strategy: Create instance via RespectBindingFeature(false) constructor. Verify RespectBindingFeature object
+     * created successfully.
      */
     public void RespectBindingFeatureConstructorTest3() throws Fault {
         TestUtil.logTrace("RespectBindingFeatureConstructorTest2");
@@ -170,8 +170,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:150;
      *
-     * @test_Strategy: Test getting the unique identifier for this
-     * RespectBindingFeature object. Verify value returned is set correctly.
+     * @test_Strategy: Test getting the unique identifier for this RespectBindingFeature object. Verify value returned is
+     * set correctly.
      */
     public void getIDTest() throws Fault {
         TestUtil.logTrace("getIDTest");
@@ -211,8 +211,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:161;
      *
-     * @test_Strategy: Test setting isEnabled of RespectBindingFeature object. Get
-     * enabled value and verify value returned is set correctly.
+     * @test_Strategy: Test setting isEnabled of RespectBindingFeature object. Get enabled value and verify value returned
+     * is set correctly.
      */
     public void isEnabledTest() throws Fault {
         TestUtil.logTrace("isEnabledTest");

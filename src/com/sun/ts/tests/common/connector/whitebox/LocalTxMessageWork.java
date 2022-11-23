@@ -52,12 +52,10 @@ public class LocalTxMessageWork implements Work, WorkContextProvider {
     private BootstrapContext ctx = null;
 
     /*
-     * XXXX private WorkManager wm = null; private XATerminator xa; private String
-     * sicUser = ""; // this should correspond to ts.jte's 'user' property private
-     * String sicPwd = ""; // this should correspond to ts.jte's 'password'
-     * property private String eisUser = ""; // this should correspond to ts.jte's
-     * 'user1' property private String eisPwd = ""; // this should correspond to
-     * ts.jte's 'password' property
+     * XXXX private WorkManager wm = null; private XATerminator xa; private String sicUser = ""; // this should correspond
+     * to ts.jte's 'user' property private String sicPwd = ""; // this should correspond to ts.jte's 'password' property
+     * private String eisUser = ""; // this should correspond to ts.jte's 'user1' property private String eisPwd = ""; //
+     * this should correspond to ts.jte's 'password' property
      */
     private final String SICFAIL = "mdb not executed with proper SIC principal";
 
@@ -68,10 +66,8 @@ public class LocalTxMessageWork implements Work, WorkContextProvider {
         this.name = name;
 
         /*
-         * XXXX this.sicUser = System.getProperty("j2eelogin.name"); this.sicPwd =
-         * System.getProperty("j2eelogin.password"); this.eisUser =
-         * System.getProperty("eislogin.name"); this.eisPwd =
-         * System.getProperty("eislogin.password");
+         * XXXX this.sicUser = System.getProperty("j2eelogin.name"); this.sicPwd = System.getProperty("j2eelogin.password");
+         * this.eisUser = System.getProperty("eislogin.name"); this.eisPwd = System.getProperty("eislogin.password");
          */
         debug("LocalTxMessageWork.constructor");
     }
@@ -84,13 +80,11 @@ public class LocalTxMessageWork implements Work, WorkContextProvider {
     }
 
     /*
-     * This is a privaet convenience method that is use for sending a message that
-     * contains some role information to the mdb. The mdb will be looking for a
-     * msg that begins with the string "ROLE". Once the mdb encounters this msg,
-     * it will perform a specific test and then send back a response to us via a
-     * AppException that we will want to log. This method is used to assist with
-     * checking assertions Connector:SPEC:232 and Connector:SPEC:233. (This is
-     * used in conjunction with connector/mdb/MessageBean.java)
+     * This is a privaet convenience method that is use for sending a message that contains some role information to the
+     * mdb. The mdb will be looking for a msg that begins with the string "ROLE". Once the mdb encounters this msg, it will
+     * perform a specific test and then send back a response to us via a AppException that we will want to log. This method
+     * is used to assist with checking assertions Connector:SPEC:232 and Connector:SPEC:233. (This is used in conjunction
+     * with connector/mdb/MessageBean.java)
      */
     private void doSICMsgCheck(MessageEndpoint ep, Method onMessage) {
 
@@ -260,7 +254,7 @@ public class LocalTxMessageWork implements Work, WorkContextProvider {
         Method onMessageMethod = null;
         try {
             Class msgListenerClass = TSMessageListenerInterface.class;
-            Class[] paramTypes = {java.lang.String.class};
+            Class[] paramTypes = { java.lang.String.class };
             onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
 
         } catch (NoSuchMethodException ex) {
@@ -289,7 +283,8 @@ public class LocalTxMessageWork implements Work, WorkContextProvider {
     }
 
     @Override
-    public void release() {}
+    public void release() {
+    }
 
     public void stop() {
         this.stop = true;

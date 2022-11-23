@@ -37,8 +37,7 @@ import java.util.Properties;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The scalarClient1 class tests methods of scalar Functions interface using
- * Sun's J2EE Reference Implementation.
+ * The scalarClient1 class tests methods of scalar Functions interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -75,14 +74,11 @@ public class scalarClient1 extends ServiceEETest {
     /* Test setup: */
 
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -91,7 +87,8 @@ public class scalarClient1 extends ServiceEETest {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 if (drManager.equals("yes")) {
                     logTrace("Using DriverManager");
@@ -120,9 +117,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call executeQuery(String)
-     * method. The query contains the concat scalar function. It should return the
-     * concatenated string.
+     * @test_Strategy: Get a Statement object and call executeQuery(String) method. The query contains the concat scalar
+     * function. It should return the concatenated string.
      *
      */
     public void testConcat() throws Fault {
@@ -151,8 +147,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a statement object and call executeQuery method. The
-     * query contains the ascii function call. It should return an integer.
+     * @test_Strategy: Get a statement object and call executeQuery method. The query contains the ascii function call. It
+     * should return an integer.
      *
      *
      */
@@ -198,9 +194,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function insert. It should return a
-     * string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * insert. It should return a string.
      *
      */
     public void testInsert() throws Fault {
@@ -245,8 +240,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statment object and call the method executeQuery. The
-     * query contains a call to the function lcase. It should return a string.
+     * @test_Strategy: Get a Statment object and call the method executeQuery. The query contains a call to the function
+     * lcase. It should return a string.
      *
      *
      */
@@ -292,8 +287,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function left. It should return a string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * left. It should return a string.
      *
      *
      */
@@ -339,9 +334,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function length. It should return a
-     * number.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * length. It should return a number.
      *
      *
      */
@@ -372,9 +366,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function locate. It should return an
-     * integer.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * locate. It should return an integer.
      *
      */
     public void testLocate01() throws Fault {
@@ -404,8 +397,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function ltrim. It should return a string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * ltrim. It should return a string.
      *
      */
     public void testLtrim() throws Fault {
@@ -452,9 +445,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function repeat. It should return a
-     * string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * repeat. It should return a string.
      *
      */
     public void testRepeat() throws Fault {
@@ -499,8 +491,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function right. It should return a string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * right. It should return a string.
      *
      */
     public void testRight() throws Fault {
@@ -544,8 +536,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function rtrim. It should return a string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * rtrim. It should return a string.
      *
      *
      */
@@ -592,9 +584,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function soundex. It should return a
-     * string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * soundex. It should return a string.
      *
      */
     public void testSoundex() throws Fault {
@@ -638,8 +629,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function space. It should return a string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * space. It should return a string.
      *
      */
     public void testSpace() throws Fault {
@@ -683,9 +674,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JavaEE:SPEC:181; JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function substring. It should return a
-     * string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * substring. It should return a string.
      *
      */
     public void testSubstring() throws Fault {
@@ -715,8 +705,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function ucase. It should return a string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * ucase. It should return a string.
      *
      */
     public void testUcase() throws Fault {
@@ -762,9 +752,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function char. It should return a
-     * character.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * char. It should return a character.
      *
      */
     public void testChar() throws Fault {
@@ -810,9 +799,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function replace. It should return a
-     * string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * replace. It should return a string.
      *
      */
     public void testReplace() throws Fault {
@@ -858,8 +846,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function user. It should return a string.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * user. It should return a string.
      *
      */
     public void testUser() throws Fault {
@@ -903,8 +891,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function ifnull.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * ifnull.
      *
      */
     public void testIfNull() throws Fault {
@@ -949,9 +937,8 @@ public class scalarClient1 extends ServiceEETest {
      *
      * @assertion_ids: JDBC:SPEC:4; JDBC:SPEC:27;
      *
-     * @test_Strategy: Get a Statement object and call the method executeQuery.
-     * The query contains a call to the function sin. It should return a numerical
-     * value.
+     * @test_Strategy: Get a Statement object and call the method executeQuery. The query contains a call to the function
+     * sin. It should return a numerical value.
      */
     public void testSin() throws Fault {
         boolean isFuncFound = false;

@@ -66,11 +66,14 @@ public class FetchLogClient extends EETest {
         boolean pass = true;
         try {
             logFileLocation = p.getProperty("log.file.location");
-            if (logFileLocation == null) pass = false;
+            if (logFileLocation == null)
+                pass = false;
 
             webServerHost = p.getProperty("webServerHost");
-            if (webServerHost == null) pass = false;
-            else if (webServerHost.equals("")) pass = false;
+            if (webServerHost == null)
+                pass = false;
+            else if (webServerHost.equals(""))
+                pass = false;
 
             try {
                 webServerPort = Integer.parseInt(p.getProperty("webServerPort"));
@@ -94,13 +97,13 @@ public class FetchLogClient extends EETest {
         }
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
      * testName: fetchLogClientTest
      *
-     * @assertion: This is a sample test used for fetching log messages created by
-     *             TSlogger.
+     * @assertion: This is a sample test used for fetching log messages created by TSlogger.
      */
     public void fetchLogClientTest() throws Fault {
 
@@ -193,10 +196,14 @@ public class FetchLogClient extends EETest {
         TestUtil.logMsg("seqence no  =" + rec.getSequenceNumber());
         TestUtil.logMsg("ContextId   =" + rec.getContextId());
         TestUtil.logMsg("Message     =" + rec.getMessage());
-        if (rec.getClassName() != null) TestUtil.logMsg("Class name  =" + rec.getClassName());
-        if (rec.getMethodName() != null) TestUtil.logMsg("Method name =" + rec.getMethodName());
-        if (rec.getLevel() != null) TestUtil.logMsg("Level        =" + rec.getLevel());
-        if (rec.getThrown() != null) TestUtil.logMsg("Thrown       =" + rec.getThrown());
+        if (rec.getClassName() != null)
+            TestUtil.logMsg("Class name  =" + rec.getClassName());
+        if (rec.getMethodName() != null)
+            TestUtil.logMsg("Method name =" + rec.getMethodName());
+        if (rec.getLevel() != null)
+            TestUtil.logMsg("Level        =" + rec.getLevel());
+        if (rec.getThrown() != null)
+            TestUtil.logMsg("Thrown       =" + rec.getThrown());
         TestUtil.logMsg("");
     }
 }

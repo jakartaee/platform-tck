@@ -74,8 +74,7 @@ public class Client extends ClientBase {
     /*
      * @testName: removeBean
      *
-     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125;
-     * EJB:JAVADOC:147
+     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125; EJB:JAVADOC:147
      *
      * @test_Strategy:
      *
@@ -84,8 +83,7 @@ public class Client extends ClientBase {
     /*
      * @testName: removeBean2
      *
-     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125;
-     * EJB:JAVADOC:147
+     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125; EJB:JAVADOC:147
      *
      * @test_Strategy:
      *
@@ -94,8 +92,7 @@ public class Client extends ClientBase {
     /*
      * @testName: testBeanremoveBean
      *
-     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125;
-     * EJB:JAVADOC:147
+     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125; EJB:JAVADOC:147
      *
      * @test_Strategy:
      *
@@ -104,19 +101,16 @@ public class Client extends ClientBase {
     /*
      * @testName: testBeanremoveBeanRemote
      *
-     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125;
-     * EJB:JAVADOC:147
+     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125; EJB:JAVADOC:147
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF.
      *
      */
 
     /*
      * @testName: testBeanremoveBean2
      *
-     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125;
-     * EJB:JAVADOC:147
+     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125; EJB:JAVADOC:147
      *
      * @test_Strategy:
      *
@@ -124,11 +118,9 @@ public class Client extends ClientBase {
     /*
      * @testName: testBeanremoveBean2Remote
      *
-     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125;
-     * EJB:JAVADOC:147
+     * @assertion_ids: EJB:JAVADOC:148; EJB:JAVADOC:126; EJB:JAVADOC:125; EJB:JAVADOC:147
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF2.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF2.
      *
      */
     /*
@@ -160,8 +152,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF.
      *
      */
 
@@ -178,8 +169,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: client remotely invokes testBean, which remotely invokes
-     * RemoveBean via RemoteIF2.
+     * @test_Strategy: client remotely invokes testBean, which remotely invokes RemoveBean via RemoteIF2.
      *
      */
 
@@ -204,8 +194,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: a bean must always be removed after a system exception,
-     * even though the remove method is retainIfException true.
+     * @test_Strategy: a bean must always be removed after a system exception, even though the remove method is
+     * retainIfException true.
      *
      */
     /*

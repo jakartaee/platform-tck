@@ -88,25 +88,23 @@ public class Client extends EETest {
         }
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
      * @testName: EJBMethodPermissionTest
      *
-     * @assertion_ids: JACC:SPEC:27; JACC:SPEC:28; JACC:SPEC:48; JACC:SPEC:47;
-     *                 JACC:SPEC:81;
+     * @assertion_ids: JACC:SPEC:27; JACC:SPEC:28; JACC:SPEC:48; JACC:SPEC:47; JACC:SPEC:81;
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Deploy the application.
+     * 2. Deploy the application.
      *
-     *                 3. During deployment, appserver generates permissions for
-     *                 the J2EE components based on the given deployment
-     *                 descriptor
+     * 3. During deployment, appserver generates permissions for the J2EE components based on the given deployment
+     * descriptor
      *
-     *                 4. Retrieve server side logs and verify the generated
-     *                 permissions matches the expected permission collection
+     * 4. Retrieve server side logs and verify the generated permissions matches the expected permission collection
      *
      */
     public void EJBMethodPermissionTest() throws Fault {
@@ -119,8 +117,7 @@ public class Client extends EETest {
 
         // step 1: retrieve server generated unchecked policy statements
         // Get "addToRole" WebResourcePermissions
-        Permissions addToRoleEJBMethodPermissions =
-                logProcessor.getSpecificPermissions(addToRolePermissions, "EJBMethodPermission");
+        Permissions addToRoleEJBMethodPermissions = logProcessor.getSpecificPermissions(addToRolePermissions, "EJBMethodPermission");
 
         TestUtil.logMsg("Server generated addToRole EJBMethodPermissions");
         logProcessor.printPermissionCollection(addToRoleEJBMethodPermissions);
@@ -150,13 +147,10 @@ public class Client extends EETest {
     /**
      * @testName: EJBMethodPermissionAddToRole
      *
-     * @assertion_ids: JACC:SPEC:27; JACC:SPEC:28; JACC:SPEC:48; JACC:SPEC:49;
-     *                 JACC:SPEC:134;
+     * @assertion_ids: JACC:SPEC:27; JACC:SPEC:28; JACC:SPEC:48; JACC:SPEC:49; JACC:SPEC:134;
      *
-     * @test_Strategy: This will test JACC (v1.5) spec section 3.1.5.1 statement
-     *                 that addToRole must be called for each role-name that
-     *                 exists within method-permission. (addToRole MAY be called
-     *                 for the "**" role)
+     * @test_Strategy: This will test JACC (v1.5) spec section 3.1.5.1 statement that addToRole must be called for each
+     * role-name that exists within method-permission. (addToRole MAY be called for the "**" role)
      *
      */
     public void EJBMethodPermissionAddToRole() throws Fault {
@@ -241,19 +235,15 @@ public class Client extends EETest {
     /**
      * @testName: EJBRoleRefPermission
      *
-     * @assertion_ids: JACC:SPEC:135; JACC:SPEC:51; JACC:SPEC:52; JACC:SPEC:27;
-     *                 JACC:SPEC:28;
+     * @assertion_ids: JACC:SPEC:135; JACC:SPEC:51; JACC:SPEC:52; JACC:SPEC:27; JACC:SPEC:28;
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ). 2.
-     *                 Deploy the application.
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ). 2. Deploy the application.
      *
-     *                 3. During deployment, appserver generates permissions for
-     *                 the J2EE components based on the given deployment
-     *                 descriptor
+     * 3. During deployment, appserver generates permissions for the J2EE components based on the given deployment
+     * descriptor
      *
-     *                 4. Retrieve server side logs and verify the generated
-     *                 permissions matches the expected permission collection
+     * 4. Retrieve server side logs and verify the generated permissions matches the expected permission collection
      */
     public void EJBRoleRefPermission() throws Fault {
         boolean verified = false;
@@ -265,8 +255,7 @@ public class Client extends EETest {
         // 3) verify expected policy statements with generated policy statements
 
         // Get "addToRole" WebRoleRefPermissions
-        Permissions addToRoleEJBRoleRefPermissions =
-                logProcessor.getSpecificPermissions(addToRolePermissions, "EJBRoleRefPermission");
+        Permissions addToRoleEJBRoleRefPermissions = logProcessor.getSpecificPermissions(addToRolePermissions, "EJBRoleRefPermission");
 
         TestUtil.logMsg("Server generated addToRole EJBRoleRefPermissions");
         logProcessor.printPermissionCollection(addToRoleEJBRoleRefPermissions);
@@ -297,22 +286,18 @@ public class Client extends EETest {
      *
      * @assertion_ids: JACC:JAVADOC:4;
      *
-     * @test_Strategy: 1. When we deploy the applications defined in
-     *                 toolsContracts, the equals() and hashcode() method will be
-     *                 called on all JACC Permission classes. ( i.e
-     *                 EJBMethodPermission, EJBRoleRefPermission,
-     *                 WebResourcePermission, WebRoleRefPermission,
-     *                 WebUserDataPermission)
+     * @test_Strategy: 1. When we deploy the applications defined in toolsContracts, the equals() and hashcode() method will
+     * be called on all JACC Permission classes. ( i.e EJBMethodPermission, EJBRoleRefPermission, WebResourcePermission,
+     * WebRoleRefPermission, WebUserDataPermission)
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify the result of EJBMethodPermission.equals()
+     * 2. Use FetchLog servlet to read the server side log and verify the result of EJBMethodPermission.equals()
      *
      *
      */
     public void EJBMethodPermissionEquals() throws Fault {
         boolean verified = false;
 
-        String tempArgs[] = {"EJBMethodPermission.equals() : PASSED"};
+        String tempArgs[] = { "EJBMethodPermission.equals() : PASSED" };
 
         // verify the log contains the required string.
         verified = logProcessor.verifyLogContains(tempArgs);
@@ -329,22 +314,18 @@ public class Client extends EETest {
      *
      * @assertion_ids: JACC:JAVADOC:9;
      *
-     * @test_Strategy: 1. When we deploy the applications defined in
-     *                 toolsContracts, the equals() and hashcode() method will be
-     *                 called on all JACC Permission classes. ( i.e
-     *                 EJBMethodPermission, EJBRoleRefPermission,
-     *                 WebResourcePermission, WebRoleRefPermission,
-     *                 WebUserDataPermission)
+     * @test_Strategy: 1. When we deploy the applications defined in toolsContracts, the equals() and hashcode() method will
+     * be called on all JACC Permission classes. ( i.e EJBMethodPermission, EJBRoleRefPermission, WebResourcePermission,
+     * WebRoleRefPermission, WebUserDataPermission)
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify the result of EJBRoleRefPermission.equals()
+     * 2. Use FetchLog servlet to read the server side log and verify the result of EJBRoleRefPermission.equals()
      *
      *
      */
     public void EJBRoleRefPermissionEquals() throws Fault {
         boolean verified = false;
 
-        String tempArgs[] = {"EJBRoleRefPermission.equals() : PASSED"};
+        String tempArgs[] = { "EJBRoleRefPermission.equals() : PASSED" };
 
         // verify the log contains the required string.
         verified = logProcessor.verifyLogContains(tempArgs);
@@ -361,21 +342,17 @@ public class Client extends EETest {
      *
      * @assertion_ids: JACC:JAVADOC:6;
      *
-     * @test_Strategy: 1. When we deploy the applications defined in
-     *                 toolsContracts, the equals() and hashcode() method will be
-     *                 called on all JACC Permission classes. ( i.e
-     *                 EJBMethodPermission, EJBRoleRefPermission,
-     *                 WebResourcePermission, WebRoleRefPermission,
-     *                 WebUserDataPermission)
+     * @test_Strategy: 1. When we deploy the applications defined in toolsContracts, the equals() and hashcode() method will
+     * be called on all JACC Permission classes. ( i.e EJBMethodPermission, EJBRoleRefPermission, WebResourcePermission,
+     * WebRoleRefPermission, WebUserDataPermission)
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify the result of EJBMethodPermission.hashCode()
+     * 2. Use FetchLog servlet to read the server side log and verify the result of EJBMethodPermission.hashCode()
      *
      */
     public void EJBMethodPermissionHashCode() throws Fault {
         boolean verified = false;
 
-        String tempArgs[] = {"EJBMethodPermission.hashCode() : PASSED"};
+        String tempArgs[] = { "EJBMethodPermission.hashCode() : PASSED" };
 
         // verify the log contains the required string.
         verified = logProcessor.verifyLogContains(tempArgs);
@@ -392,22 +369,18 @@ public class Client extends EETest {
      *
      * @assertion_ids: JACC:JAVADOC:11;
      *
-     * @test_Strategy: 1. When we deploy the applications defined in
-     *                 toolsContracts, the equals() and hashcode() method will be
-     *                 called on all JACC Permission classes. ( i.e
-     *                 EJBMethodPermission, EJBRoleRefPermission,
-     *                 WebResourcePermission, WebRoleRefPermission,
-     *                 WebUserDataPermission)
+     * @test_Strategy: 1. When we deploy the applications defined in toolsContracts, the equals() and hashcode() method will
+     * be called on all JACC Permission classes. ( i.e EJBMethodPermission, EJBRoleRefPermission, WebResourcePermission,
+     * WebRoleRefPermission, WebUserDataPermission)
      *
-     *                 2. Use FetchLog servlet to read the server side log and
-     *                 verify the result of EJBRoleRefPermission.hashCode()
+     * 2. Use FetchLog servlet to read the server side log and verify the result of EJBRoleRefPermission.hashCode()
      *
      *
      */
     public void EJBRoleRefPermissionHashCode() throws Fault {
         boolean verified = false;
 
-        String tempArgs[] = {"EJBRoleRefPermission.hashCode() : PASSED"};
+        String tempArgs[] = { "EJBRoleRefPermission.hashCode() : PASSED" };
 
         // verify the log contains the required string.
         verified = logProcessor.verifyLogContains(tempArgs);

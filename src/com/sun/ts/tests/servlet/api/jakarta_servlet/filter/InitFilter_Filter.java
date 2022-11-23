@@ -103,7 +103,8 @@ public final class InitFilter_Filter implements Filter {
     }
 
     // remove the filter
-    public void destroy() {}
+    public void destroy() {
+    }
 
     // initialize the filter configuration object for this filter.
 

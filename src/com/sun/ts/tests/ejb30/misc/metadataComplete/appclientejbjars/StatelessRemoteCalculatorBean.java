@@ -33,15 +33,16 @@ import jakarta.interceptor.Interceptors;
 
 // annotations to be ignored
 @Stateless(name = "StatelessRemoteCalculatorBean")
-@Remote({RemoteCalculator.class})
-@Interceptors({InterceptorNotUsed.class})
+@Remote({ RemoteCalculator.class })
+@Interceptors({ InterceptorNotUsed.class })
 @ExcludeDefaultInterceptors
 public class StatelessRemoteCalculatorBean extends RemoteCalculatorBean0 implements RemoteCalculator {
 
     @Resource(name = "sessionContext") // to be ignored
     private SessionContext sessionContext;
 
-    public StatelessRemoteCalculatorBean() {}
+    public StatelessRemoteCalculatorBean() {
+    }
 
     protected EJBContext getEJBContext() {
         return sessionContext;

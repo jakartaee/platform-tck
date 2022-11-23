@@ -68,8 +68,7 @@ public class ClientLogicalHandler6 extends LogicalHandlerBase {
             if (direction.equals(Constants.OUTBOUND)) {
                 if (Handler_Util.checkForMsg(this, context, "ClientLogicalOutboundHandleFaultFalseTest")) {
                     HandlerTracker.reportComment(this, "Throwing an outbound SOAPFaultException");
-                    String faultString =
-                            "ClientLogicalHandler6.handleMessage throws SOAPFaultException for ClientLogicalOutboundHandleFaultFalseTest";
+                    String faultString = "ClientLogicalHandler6.handleMessage throws SOAPFaultException for ClientLogicalOutboundHandleFaultFalseTest";
                     try {
                         name = SOAPFactory.newInstance().createName("somefaultentry");
                         sf = JAXWS_Util.createSOAPFault("soap11", FAULTCODE, FAULTACTOR, faultString, name);
@@ -83,8 +82,7 @@ public class ClientLogicalHandler6 extends LogicalHandlerBase {
                 } else if (Handler_Util.checkForMsg(
                         this, context, "ClientLogicalOutboundHandleFaultThrowsSOAPFaultExceptionTest")) {
                     HandlerTracker.reportComment(this, "Throwing an outbound SOAPFaultException");
-                    String faultString =
-                            "ClientLogicalHandler6.handleMessage throws SOAPFaultException for ClientLogicalOutboundHandleFaultThrowsSOAPFaultExceptionTest";
+                    String faultString = "ClientLogicalHandler6.handleMessage throws SOAPFaultException for ClientLogicalOutboundHandleFaultThrowsSOAPFaultExceptionTest";
                     try {
                         name = SOAPFactory.newInstance().createName("somefaultentry");
                         sf = JAXWS_Util.createSOAPFault("soap11", FAULTCODE, FAULTACTOR, faultString, name);
@@ -98,8 +96,7 @@ public class ClientLogicalHandler6 extends LogicalHandlerBase {
                 } else if (Handler_Util.checkForMsg(
                         this, context, "ClientLogicalOutboundHandleFaultThrowsRuntimeExceptionTest")) {
                     HandlerTracker.reportComment(this, "Throwing an outbound SOAPFaultException");
-                    String faultString =
-                            "ClientLogicalHandler6.handleMessage throws SOAPFaultException for ClientLogicalOutboundHandleFaultThrowsRuntimeExceptionTest";
+                    String faultString = "ClientLogicalHandler6.handleMessage throws SOAPFaultException for ClientLogicalOutboundHandleFaultThrowsRuntimeExceptionTest";
                     try {
                         name = SOAPFactory.newInstance().createName("somefaultentry");
                         sf = JAXWS_Util.createSOAPFault("soap11", FAULTCODE, FAULTACTOR, faultString, name);

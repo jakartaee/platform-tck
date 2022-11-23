@@ -93,8 +93,7 @@ public class QueueTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -165,9 +164,8 @@ public class QueueTests extends ServiceEETest {
     /*
      * @testName: emptyMsgsQueueTest
      *
-     * @assertion_ids: JMS:SPEC:85; JMS:SPEC:88; JMS:JAVADOC:198; JMS:JAVADOC:334;
-     * JMS:JAVADOC:301; JMS:JAVADOC:209; JMS:JAVADOC:211; JMS:JAVADOC:213;
-     * JMS:JAVADOC:215; JMS:JAVADOC:217; JMS:JAVADOC:219; JMS:JAVADOC:221;
+     * @assertion_ids: JMS:SPEC:85; JMS:SPEC:88; JMS:JAVADOC:198; JMS:JAVADOC:334; JMS:JAVADOC:301; JMS:JAVADOC:209;
+     * JMS:JAVADOC:211; JMS:JAVADOC:213; JMS:JAVADOC:215; JMS:JAVADOC:217; JMS:JAVADOC:219; JMS:JAVADOC:221;
      * JMS:JAVADOC:223;
      *
      * @test_Strategy: Send and receive empty messages of each type.
@@ -249,11 +247,10 @@ public class QueueTests extends ServiceEETest {
     /*
      * @testName: autoAckQueueTest
      *
-     * @assertion_ids: JMS:SPEC:132; JMS:JAVADOC:198; JMS:JAVADOC:334;
-     * JMS:JAVADOC:235;
+     * @assertion_ids: JMS:SPEC:132; JMS:JAVADOC:198; JMS:JAVADOC:334; JMS:JAVADOC:235;
      *
-     * @test_Strategy: Send two messages to a queue. Receive the first message and
-     * call session.recover(). Attempt to receive the second message.
+     * @test_Strategy: Send two messages to a queue. Receive the first message and call session.recover(). Attempt to
+     * receive the second message.
      */
     public void autoAckQueueTest() throws Fault {
         try {
@@ -304,11 +301,9 @@ public class QueueTests extends ServiceEETest {
     /*
      * @testName: simpleSendReceiveQueueTest
      *
-     * @assertion_ids: JMS:SPEC:138; JMS:JAVADOC:198; JMS:JAVADOC:334;
-     * JMS:JAVADOC:122;
+     * @assertion_ids: JMS:SPEC:138; JMS:JAVADOC:198; JMS:JAVADOC:334; JMS:JAVADOC:122;
      *
-     * @test_Strategy: Send and receive single message to verify that Queues are
-     * working.
+     * @test_Strategy: Send and receive single message to verify that Queues are working.
      */
     public void simpleSendReceiveQueueTest() throws Fault {
         try {
@@ -343,11 +338,10 @@ public class QueueTests extends ServiceEETest {
     /*
      * @testName: messageOrderQueueTest
      *
-     * @assertion_ids: JMS:SPEC:146; JMS:SPEC:147; JMS:JAVADOC:198;
-     * JMS:JAVADOC:122; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:SPEC:146; JMS:SPEC:147; JMS:JAVADOC:198; JMS:JAVADOC:122; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Send messages to a queue and receive them verify that the
-     * text of each matches the order of the text in the sent messages.
+     * @test_Strategy: Send messages to a queue and receive them verify that the text of each matches the order of the text
+     * in the sent messages.
      */
     public void messageOrderQueueTest() throws Fault {
         try {
@@ -392,10 +386,9 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:144; JMS:JAVADOC:194;
      *
-     * @test_Strategy: Create temporary queue and a separate QueueSession. Try to
-     * create a receiver for the temporary queue from the new session, which
-     * should throw a JMSException. Also sends a blank message to verify that the
-     * temporary queue is working.
+     * @test_Strategy: Create temporary queue and a separate QueueSession. Try to create a receiver for the temporary queue
+     * from the new session, which should throw a JMSException. Also sends a blank message to verify that the temporary
+     * queue is working.
      */
     public void temporaryQueueNotConsumableTest() throws Fault {
         boolean passed = false;
@@ -432,7 +425,8 @@ public class QueueTests extends ServiceEETest {
             TestUtil.logMsg("Attempt to create receiver for TemporaryQueue from another Session");
             try {
                 QueueReceiver newQReceiver = newQSess.createReceiver(tempQ);
-                if (newQReceiver != null) TestUtil.logTrace("newQReceiver=" + newQReceiver);
+                if (newQReceiver != null)
+                    TestUtil.logTrace("newQReceiver=" + newQReceiver);
             } catch (JMSException e) {
                 TestUtil.logMsg("Received expected JMSException -- GOOD");
                 passed = true;
@@ -455,9 +449,8 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:146; JMS:SPEC:147; JMS:JAVADOC:186;
      *
-     * @test_Strategy: Send two messages to a queue and receive the second one
-     * using a message selector. Verify that the first message is still in the
-     * queue by receiving with a different receiver.
+     * @test_Strategy: Send two messages to a queue and receive the second one using a message selector. Verify that the
+     * first message is still in the queue by receiving with a different receiver.
      */
     public void messageSelectorMsgRemainsOnQueueTest() throws Fault {
         boolean pass = true;
@@ -472,8 +465,7 @@ public class QueueTests extends ServiceEETest {
             // create receiver with message selector (close default receiver)
             TestUtil.logMsg("Creating receiver with message selector");
             tool.getDefaultQueueReceiver().close();
-            QueueReceiver qSelectiveReceiver =
-                    tool.getDefaultQueueSession().createReceiver(tool.getDefaultQueue(), "TEST = 'test'");
+            QueueReceiver qSelectiveReceiver = tool.getDefaultQueueSession().createReceiver(tool.getDefaultQueue(), "TEST = 'test'");
 
             // start connection
             tool.getDefaultQueueConnection().start();
@@ -516,7 +508,8 @@ public class QueueTests extends ServiceEETest {
                 TestUtil.logMsg("Corrected Message left on Queue is received");
             }
 
-            if (!pass) throw new Fault("messageSelectorMsgRemainsOnQueueTest Failed!!");
+            if (!pass)
+                throw new Fault("messageSelectorMsgRemainsOnQueueTest Failed!!");
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new Fault("messageSelectorMsgRemainsOnQueueTest failed");
@@ -528,9 +521,8 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:38; JMS:JAVADOC:186;
      *
-     * @test_Strategy: Create receiver with a message selector that uses a message
-     * header. Send two messages, one that has the proper header and one that
-     * doesn't, and try to receive only matching message.
+     * @test_Strategy: Create receiver with a message selector that uses a message header. Send two messages, one that has
+     * the proper header and one that doesn't, and try to receive only matching message.
      */
     public void msgSelectorMsgHeaderQueueTest() throws Fault {
         boolean pass = true;
@@ -543,8 +535,7 @@ public class QueueTests extends ServiceEETest {
             // create receiver with message selector (close default receiver)
             TestUtil.logMsg("Creating receiver with message selector");
             tool.getDefaultQueueReceiver().close();
-            QueueReceiver qSelectiveReceiver =
-                    tool.getDefaultQueueSession().createReceiver(tool.getDefaultQueue(), "JMSType = 'test_message'");
+            QueueReceiver qSelectiveReceiver = tool.getDefaultQueueSession().createReceiver(tool.getDefaultQueue(), "JMSType = 'test_message'");
 
             // start connection
             tool.getDefaultQueueConnection().start();
@@ -590,7 +581,8 @@ public class QueueTests extends ServiceEETest {
                 TestUtil.logErr("Received incorrect message");
             }
 
-            if (!pass) throw new Fault("msgSelectorMsgHeaderQueueTest failed!!");
+            if (!pass)
+                throw new Fault("msgSelectorMsgHeaderQueueTest failed!!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -601,14 +593,12 @@ public class QueueTests extends ServiceEETest {
     /*
      * @testName: queueBrowserMsgsRemainOnQueueTest
      *
-     * @assertion_ids: JMS:JAVADOC:186; JMS:JAVADOC:221; JMS:JAVADOC:411;
-     * JMS:JAVADOC:425; JMS:JAVADOC:120; JMS:JAVADOC:190; JMS:JAVADOC:282;
-     * JMS:JAVADOC:284; JMS:SPEC:148; JMS:SPEC:149; JMS:JAVADOC:122;
+     * @assertion_ids: JMS:JAVADOC:186; JMS:JAVADOC:221; JMS:JAVADOC:411; JMS:JAVADOC:425; JMS:JAVADOC:120; JMS:JAVADOC:190;
+     * JMS:JAVADOC:282; JMS:JAVADOC:284; JMS:SPEC:148; JMS:SPEC:149; JMS:JAVADOC:122;
      *
-     * @test_Strategy: 1. Create a Queue and send x messages to it. 2. Create a
-     * QueueReceiver with a message selector so that only last message received.
-     * 3. Create a QueueBrowser to browse the queue. 4. Then create another
-     * QueueReceiver to verify all x messages can be received from the Queue.
+     * @test_Strategy: 1. Create a Queue and send x messages to it. 2. Create a QueueReceiver with a message selector so
+     * that only last message received. 3. Create a QueueBrowser to browse the queue. 4. Then create another QueueReceiver
+     * to verify all x messages can be received from the Queue.
      */
     public void queueBrowserMsgsRemainOnQueueTest() throws Fault {
         try {
@@ -621,8 +611,7 @@ public class QueueTests extends ServiceEETest {
             // create QueueConnection
             tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
             tool.getDefaultQueueReceiver().close();
-            lastMessageReceiver =
-                    tool.getDefaultQueueSession().createReceiver(tool.getDefaultQueue(), "lastMessage = TRUE");
+            lastMessageReceiver = tool.getDefaultQueueSession().createReceiver(tool.getDefaultQueue(), "lastMessage = TRUE");
             tool.getDefaultQueueConnection().start();
 
             // send "numMessages" messages to queue plus end of stream message
@@ -694,9 +683,8 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:150;
      *
-     * @test_Strategy: Create a queue with no receiver and send messages to it.
-     * Create a new session with a receiver for the queue and verify that the
-     * messages can still be received.
+     * @test_Strategy: Create a queue with no receiver and send messages to it. Create a new session with a receiver for the
+     * queue and verify that the messages can still be received.
      */
     public void inactiveClientReceiveQueueTest() throws Fault {
         try {
@@ -741,11 +729,10 @@ public class QueueTests extends ServiceEETest {
     /*
      * @testName: msgProducerNullDestinationQueueTest
      *
-     * @assertion_ids: JMS:SPEC:139; JMS:JAVADOC:188; JMS:JAVADOC:186;
-     * JMS:JAVADOC:198;
+     * @assertion_ids: JMS:SPEC:139; JMS:JAVADOC:188; JMS:JAVADOC:186; JMS:JAVADOC:198;
      *
-     * @test_Strategy: Create a q sender, specifying null for the destination send
-     * the message to the default destination and then verify receiving it
+     * @test_Strategy: Create a q sender, specifying null for the destination send the message to the default destination
+     * and then verify receiving it
      */
     public void msgProducerNullDestinationQueueTest() throws Fault {
         boolean pass = true;
@@ -818,9 +805,8 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:127; JMS:SPEC:128; JMS:JAVADOC:122;
      *
-     * @test_Strategy: Send non persistent messages to a queue and receive them.
-     * Verify that the text of each matches the order of the text in the sent
-     * messages.
+     * @test_Strategy: Send non persistent messages to a queue and receive them. Verify that the text of each matches the
+     * order of the text in the sent messages.
      */
     public void messageOrderDeliveryModeQueueTest() throws Fault {
         try {
@@ -868,13 +854,11 @@ public class QueueTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:144; JMS:JAVADOC:262; JMS:JAVADOC:126;
      *
-     * @test_Strategy: 1. Create a TemporaryQueue from a Session. Send a
-     * TextMessage and Receive it using the TemporaryQueue. Verify the Message
-     * received correctly. 2. Try to delete the TemporaryQueue without closing
-     * MessageConsumer, verify that JMSException is thrown. 3. Close the
-     * MessageConsumer, verify that the TemporaryQueue can be deleted. 4. Try to
-     * create a MessageConsumer using Session from a different Connection, verify
-     * that JMSException is thrown.
+     * @test_Strategy: 1. Create a TemporaryQueue from a Session. Send a TextMessage and Receive it using the
+     * TemporaryQueue. Verify the Message received correctly. 2. Try to delete the TemporaryQueue without closing
+     * MessageConsumer, verify that JMSException is thrown. 3. Close the MessageConsumer, verify that the TemporaryQueue can
+     * be deleted. 4. Try to create a MessageConsumer using Session from a different Connection, verify that JMSException is
+     * thrown.
      */
     public void tempQueueTests() throws Fault {
         boolean pass = true;
@@ -946,14 +930,16 @@ public class QueueTests extends ServiceEETest {
             TestUtil.logMsg("Attempt to create MessageConsumer for TemporaryQueue from another Connection");
             try {
                 MessageConsumer newReceiver = newSess.createConsumer(tempQ);
-                if (newReceiver != null) TestUtil.logTrace("newReceiver=" + newReceiver);
+                if (newReceiver != null)
+                    TestUtil.logTrace("newReceiver=" + newReceiver);
                 logTrace("FAIL: expected IllegalStateException");
                 TestUtil.logErr("Didn't throw expected JMSException calling Session.createConsumer(TemporaryQueue)");
             } catch (JMSException e) {
                 TestUtil.logTrace("Received expected JMSException from createConsumer.");
             }
 
-            if (!pass) throw new Fault(testName + " failed");
+            if (!pass)
+                throw new Fault(testName + " failed");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);

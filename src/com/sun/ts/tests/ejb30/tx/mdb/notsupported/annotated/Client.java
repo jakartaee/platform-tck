@@ -54,18 +54,15 @@ public class Client extends com.sun.ts.tests.ejb30.bb.mdb.dest.common.ClientBase
     }
 
     /*
-     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag;
-     * harness.log.port;
+     * @class.setup_props: jms_timeout; user; password; harness.log.traceflag; harness.log.port;
      */
 
     /*
      * @testName: test1
      *
-     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235;
-     * EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
+     * @assertion_ids: EJB:JAVADOC:233; EJB:JAVADOC:234; EJB:JAVADOC:235; EJB:JAVADOC:236; EJB:JAVADOC:237; EJB:JAVADOC:238
      *
-     * @test_Strategy: use transaction attribute NOT_SUPPORTED annotation at type
-     * level
+     * @test_Strategy: use transaction attribute NOT_SUPPORTED annotation at type level
      *
      */
 }

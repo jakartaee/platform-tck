@@ -60,21 +60,18 @@ public class JdkLoggingFilter extends Formatter implements ClientRequestFilter, 
     private boolean printEntity = true;
 
     /**
-     * Create a logging filter logging the request and response to a default JDK
-     * logger, named as the fully qualified class name of this class.
+     * Create a logging filter logging the request and response to a default JDK logger, named as the fully qualified class
+     * name of this class.
      */
     public JdkLoggingFilter(boolean printEntity) {
         this(LOGGER, printEntity);
     }
 
     /**
-     * Create a logging filter with custom logger and custom settings of entity
-     * logging.
+     * Create a logging filter with custom logger and custom settings of entity logging.
      *
-     * @param logger
-     *          the logger to log requests and responses.
-     * @param printEntity
-     *          if true, entity will be logged as well.
+     * @param logger the logger to log requests and responses.
+     * @param printEntity if true, entity will be logged as well.
      */
     public JdkLoggingFilter(Logger logger, boolean printEntity) {
         this.logger = logger;
@@ -85,7 +82,8 @@ public class JdkLoggingFilter extends Formatter implements ClientRequestFilter, 
         handler.setFormatter(this);
 
         // Set handler only once
-        if (logger.getHandlers().length == 0) logger.addHandler(handler);
+        if (logger.getHandlers().length == 0)
+            logger.addHandler(handler);
     }
 
     @Override
@@ -104,7 +102,8 @@ public class JdkLoggingFilter extends Formatter implements ClientRequestFilter, 
         MultivaluedMap<String, Object> headers = requestContext.getHeaders();
         StringBuilder sb = new StringBuilder().append(REQUEST_PREFIX);
         for (String header : JaxrsCommonClient.getMetadata(headers)) {
-            if (sb.length() > REQUEST_PREFIX.length()) sb.append(", ");
+            if (sb.length() > REQUEST_PREFIX.length())
+                sb.append(", ");
             sb.append(header);
         }
         log(sb);
@@ -128,9 +127,10 @@ public class JdkLoggingFilter extends Formatter implements ClientRequestFilter, 
 
     private static byte[] linesToBytes(List<String> lines) {
         StringBuilder sb = new StringBuilder();
-        for (Iterator<String> i = lines.iterator(); i.hasNext(); ) {
+        for (Iterator<String> i = lines.iterator(); i.hasNext();) {
             sb.append(i.next());
-            if (i.hasNext()) sb.append("\n");
+            if (i.hasNext())
+                sb.append("\n");
         }
         return sb.toString().getBytes();
     }
@@ -140,12 +140,14 @@ public class JdkLoggingFilter extends Formatter implements ClientRequestFilter, 
         List<String> lines = new LinkedList<String>();
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
-        while ((entity = br.readLine()) != null) lines.add(entity);
+        while ((entity = br.readLine()) != null)
+            lines.add(entity);
         return lines;
     }
 
     private void log(StringBuilder b) {
-        if (logger != null) logger.info(b.append("\n").toString());
+        if (logger != null)
+            logger.info(b.append("\n").toString());
     }
 
     private void log(String prefix, List<String> rows) {
@@ -184,12 +186,14 @@ public class JdkLoggingFilter extends Formatter implements ClientRequestFilter, 
             } else {
                 StringBuilder sb2 = new StringBuilder();
                 for (String s : val) {
-                    if (sb2.length() != 0) sb2.append(',');
+                    if (sb2.length() != 0)
+                        sb2.append(',');
                     sb2.append(s);
                 }
                 sb.append(prefix).append(header).append(": ").append(sb2.toString());
             }
-            if (sb.length() != 0) log(sb);
+            if (sb.length() != 0)
+                log(sb);
         }
     }
 

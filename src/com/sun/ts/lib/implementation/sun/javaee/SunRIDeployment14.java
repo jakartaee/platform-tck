@@ -30,9 +30,8 @@ import java.net.*;
 import java.util.*;
 
 /**
- * This particular implementation uses the deploy/undeploy semantics of Sun's
- * Java EE reference implementation. This is a utility class used by both
- * SunRIDeployment and SunRIPortingServer.
+ * This particular implementation uses the deploy/undeploy semantics of Sun's Java EE reference implementation. This is
+ * a utility class used by both SunRIDeployment and SunRIPortingServer.
  *
  * @author Kyle Grucci
  */
@@ -133,10 +132,9 @@ public class SunRIDeployment14 {
     }
 
     /**
-     * This method is called by the test harness to deploy an .ear file into Sun
-     * 's Java EE reference implementation. We extract such info as the app
-     * earfile from the provided deployment information. The following properties
-     * are available for this method's use:
+     * This method is called by the test harness to deploy an .ear file into Sun 's Java EE reference implementation. We
+     * extract such info as the app earfile from the provided deployment information. The following properties are available
+     * for this method's use:
      * <p>
      * generateSQL - "true" if SQL is to be generated for CMP beans
      * <p>
@@ -146,13 +144,10 @@ public class SunRIDeployment14 {
      *
      * All additional information is queryable from the DeploymentInfo interface.
      *
-     * @param info
-     *          Object containing necessary deployment info.
-     * @return This method should return a string which is formatted such that it
-     *         can be appended to the classpath. This implementation returns the
-     *         fully qualified path to a jar file, which contains the generated
-     *         ejb stub classes, which are used by any appclient tests (tests
-     *         whose client directly uses an ejb).
+     * @param info Object containing necessary deployment info.
+     * @return This method should return a string which is formatted such that it can be appended to the classpath. This
+     * implementation returns the fully qualified path to a jar file, which contains the generated ejb stub classes, which
+     * are used by any appclient tests (tests whose client directly uses an ejb).
      */
     public String deploy(DeploymentInfo info) throws TSDeploymentException {
         Application toDeploy = null;
@@ -188,7 +183,8 @@ public class SunRIDeployment14 {
         String sClientJarName = sApp.substring(sApp.lastIndexOf(File.separator) + 1, sApp.lastIndexOf(".") + 1) + "jar";
 
         // set RI specific runtime info for our app
-        if (sRunTimeFiles != null) sRunTimeFileArray = setRunTimeInfo(sRunTimeFiles, sApp);
+        if (sRunTimeFiles != null)
+            sRunTimeFileArray = setRunTimeInfo(sRunTimeFiles, sApp);
 
         // create the clientclasses directory (if it doesn't exist)
         clientClassesFile = new File(sTSDeploymentDir + File.separator + sClientJarName);
@@ -212,8 +208,7 @@ public class SunRIDeployment14 {
         try {
 
             fRIEarFile = new File(sRIAppName);
-            sApplicationName =
-                    com.sun.enterprise.deployment.archivist.ApplicationArchivist.getApplicationName(fRIEarFile);
+            sApplicationName = com.sun.enterprise.deployment.archivist.ApplicationArchivist.getApplicationName(fRIEarFile);
             TestUtil.logHarness("Just got app named:  " + sApplicationName);
         } catch (Exception ioe) {
             System.err.println(ioe.getMessage());
@@ -263,16 +258,13 @@ public class SunRIDeployment14 {
     }
 
     /**
-     * This method is called by the test harness to check whether or not an
-     * application ear is deployed. This information is used to determine whether
-     * or not the harness needs to undeploy it. The following properties are
-     * available for this method's use:
+     * This method is called by the test harness to check whether or not an application ear is deployed. This information is
+     * used to determine whether or not the harness needs to undeploy it. The following properties are available for this
+     * method's use:
      *
-     * ear_file - the fully qualified application (.ear file) deployment_host -
-     * the host where this app is deployed
+     * ear_file - the fully qualified application (.ear file) deployment_host - the host where this app is deployed
      *
-     * @param p
-     *          Properties specific to the currently running test
+     * @param p Properties specific to the currently running test
      * @return True if the app is deployed. False if not.
      */
     public boolean isDeployed(Properties p) throws TSDeploymentException {
@@ -325,15 +317,12 @@ public class SunRIDeployment14 {
     }
 
     /**
-     * This method is called by test harness to undeploy an .ear file from Sun's
-     * Java EE reference implementation. We extract such info as host and app from
-     * these props. The following properties are available for this method 's use:
+     * This method is called by test harness to undeploy an .ear file from Sun's Java EE reference implementation. We
+     * extract such info as host and app from these props. The following properties are available for this method 's use:
      *
-     * ear_file - the fully qualified application (.ear file) deployment_host -
-     * the host to undeploy this app from
+     * ear_file - the fully qualified application (.ear file) deployment_host - the host to undeploy this app from
      *
-     * @param p
-     *          Properties specific to the currently running test
+     * @param p Properties specific to the currently running test
      */
     public void undeploy(Properties p) throws TSDeploymentException {
         String sDeployHost = p.getProperty("deployment_host");
@@ -352,7 +341,8 @@ public class SunRIDeployment14 {
                     if (fclientFiles[ii].delete())
                         Log.println(
                                 "Old Client Jar file, " + fclientFiles[ii].getName() + ", was successfully deleted.");
-                    else Log.println("Failed to delete old Client Jar file, " + fclientFiles[ii].getName() + ".");
+                    else
+                        Log.println("Failed to delete old Client Jar file, " + fclientFiles[ii].getName() + ".");
                 }
             }
         }
@@ -394,16 +384,13 @@ public class SunRIDeployment14 {
     }
 
     /**
-     * This method is called to deploy a connector (.rar file) to Sun's Java EE
-     * reference implementation. We extract such info as deployment_host and
-     * rar_file from these props. The following properties are available for this
-     * method's use:
+     * This method is called to deploy a connector (.rar file) to Sun's Java EE reference implementation. We extract such
+     * info as deployment_host and rar_file from these props. The following properties are available for this method's use:
      *
-     * rar_file - the fully qualified connector file (.rar file) deployment_host -
-     * the host name of the machine to deploy it to
+     * rar_file - the fully qualified connector file (.rar file) deployment_host - the host name of the machine to deploy it
+     * to
      *
-     * @param p
-     *          Properties specific to the currently running test
+     * @param p Properties specific to the currently running test
      */
     public void deployConnector(Properties p) throws TSDeploymentException {
         String sDeployHost = p.getProperty("deployment_host");
@@ -530,16 +517,14 @@ public class SunRIDeployment14 {
     }
 
     /**
-     * This method is called to undeploy a connector (.rar file) from Sun's Java
-     * EE reference implementation. We extract such info as deployment_host and
-     * rar_file from these props. The following properties are available for this
-     * method's use:
+     * This method is called to undeploy a connector (.rar file) from Sun's Java EE reference implementation. We extract
+     * such info as deployment_host and rar_file from these props. The following properties are available for this method's
+     * use:
      *
-     * rar_file - the fully qualified connector file (.rar file) deployment_host -
-     * the host name of the machine to undeploy it from
+     * rar_file - the fully qualified connector file (.rar file) deployment_host - the host name of the machine to undeploy
+     * it from
      *
-     * @param p
-     *          Properties specific to the currently running test
+     * @param p Properties specific to the currently running test
      */
     public void undeployConnector(Properties p) throws TSDeploymentException {
         String sDeployHost = p.getProperty("deployment_host");
@@ -585,16 +570,14 @@ public class SunRIDeployment14 {
     }
 
     /**
-     * This method is called to check to see if a given connector (.rar file) is
-     * deployed on Sun's Java EE reference implementation. We extract such info as
-     * deployment_host and rar_file from these props. The following properties are
+     * This method is called to check to see if a given connector (.rar file) is deployed on Sun's Java EE reference
+     * implementation. We extract such info as deployment_host and rar_file from these props. The following properties are
      * available for this method's use:
      *
-     * rar_file - the fully qualified connector file (.rar file) deployment_host -
-     * the host name of the machine to deploy it to
+     * rar_file - the fully qualified connector file (.rar file) deployment_host - the host name of the machine to deploy it
+     * to
      *
-     * @param p
-     *          Properties specific to the currently running test
+     * @param p Properties specific to the currently running test
      * @return True if the app is deployed. False if not.
      */
     public boolean isConnectorDeployed(Properties p) throws TSDeploymentException {
@@ -631,19 +614,15 @@ public class SunRIDeployment14 {
     }
 
     /**
-     * This method is called by the test harness to get any additional test
-     * specific arguments that must be passed to the application client container
-     * class, which is specified in the ts.jte file in the given environment
-     * (command.testExecuteAppClient property). The additional args should be
-     * appended to the value of (p.getProperty("executeArgs");), and returned. The
-     * following properties are available for this method's use:
+     * This method is called by the test harness to get any additional test specific arguments that must be passed to the
+     * application client container class, which is specified in the ts.jte file in the given environment
+     * (command.testExecuteAppClient property). The additional args should be appended to the value of
+     * (p.getProperty("executeArgs");), and returned. The following properties are available for this method's use:
      *
      * executeArgs - the current executeArgs as specified in the jte file
      *
-     * @param p
-     *          Properties specific to the currently running test
-     * @return This method should return a string which represents all executeArgs
-     *         to be used.
+     * @param p Properties specific to the currently running test
+     * @return This method should return a string which represents all executeArgs to be used.
      */
     public String getAppClientArgs(Properties p) {
         String executeArgs = p.getProperty("executeArgs");
@@ -653,11 +632,9 @@ public class SunRIDeployment14 {
         String sClientClasspath = chooseValidStub(sEarName, p.getProperty("clientClasspath"));
 
         if (executeArgs == null)
-            executeArgs =
-                    "-client " + sRIAppName + " -name " + p.getProperty("client_name") + " -stubs " + sClientClasspath;
+            executeArgs = "-client " + sRIAppName + " -name " + p.getProperty("client_name") + " -stubs " + sClientClasspath;
         else
-            executeArgs +=
-                    " -client " + sRIAppName + " -name " + p.getProperty("client_name") + " -stubs " + sClientClasspath;
+            executeArgs += " -client " + sRIAppName + " -name " + p.getProperty("client_name") + " -stubs " + sClientClasspath;
 
         // reset the property to nothing so it isn't added to the classpath
         p.put("clientClasspath", "");
@@ -719,7 +696,7 @@ public class SunRIDeployment14 {
         // SunRIDeployment.getInteropJNDINames*****");
         // TestUtil.logHarnessDebug("***************************************************************************************");
 
-        for (Enumeration e = htJNDIRefs.keys(); e.hasMoreElements(); ) {
+        for (Enumeration e = htJNDIRefs.keys(); e.hasMoreElements();) {
             String sKey = (String) e.nextElement();
 
             TestUtil.logHarnessDebug("Original value:  " + sKey);
@@ -746,19 +723,13 @@ public class SunRIDeployment14 {
     }
 
     /**
-     * chooses a stub jar that belongs to the current vehicle test ear from a list
-     * of stub jars separated by file.pathSeparator. This step is necessary for
-     * vehicle tests only where multiple stub jars have been appended to the
-     * clientClasspath. RI appclient container takes runtime info from the first
-     * element in the stubs argument.
+     * chooses a stub jar that belongs to the current vehicle test ear from a list of stub jars separated by
+     * file.pathSeparator. This step is necessary for vehicle tests only where multiple stub jars have been appended to the
+     * clientClasspath. RI appclient container takes runtime info from the first element in the stubs argument.
      *
-     * @param earName
-     *          name of the ear file, not the full path. For example,
-     *          testConn_ejb_vehicle.ear
-     * @param clientcp
-     *          client classpath (a list of stub jars)
-     * @return full path to a single stub jar that belongs to the current vehicle
-     *         test ear
+     * @param earName name of the ear file, not the full path. For example, testConn_ejb_vehicle.ear
+     * @param clientcp client classpath (a list of stub jars)
+     * @return full path to a single stub jar that belongs to the current vehicle test ear
      *
      */
     protected String chooseValidStub(String earName, String clientcp) {

@@ -17,8 +17,7 @@
 package com.sun.ts.lib.util;
 
 /**
- * This class contains additional constants documenting limits of the
- * <code>float</code> type.
+ * This class contains additional constants documenting limits of the <code>float</code> type.
  *
  * @author Joseph D. Darcy
  */
@@ -26,7 +25,8 @@ public class FloatConsts {
     /**
      * Don't let anyone instantiate this class.
      */
-    private FloatConsts() {}
+    private FloatConsts() {
+    }
 
     public static final float POSITIVE_INFINITY = java.lang.Float.POSITIVE_INFINITY;
 
@@ -39,34 +39,31 @@ public class FloatConsts {
     public static final float MIN_VALUE = java.lang.Float.MIN_VALUE;
 
     /**
-     * A constant holding the smallest positive normal value of type
-     * <code>float</code>, 2<sup>-126</sup>. It is equal to the value returned by
-     * <code>Float.intBitsToFloat(0x00800000)</code>.
+     * A constant holding the smallest positive normal value of type <code>float</code>, 2<sup>-126</sup>. It is equal to
+     * the value returned by <code>Float.intBitsToFloat(0x00800000)</code>.
      */
     public static final float MIN_NORMAL = 1.17549435E-38f;
 
     /**
-     * The number of logical bits in the significand of a <code>float</code>
-     * number, including the implicit bit.
+     * The number of logical bits in the significand of a <code>float</code> number, including the implicit bit.
      */
     public static final int SIGNIFICAND_WIDTH = 24;
 
     /**
-     * Maximum exponent a finite <code>float</code> number may have. It is equal
-     * to the value returned by <code>Math.ilogb(Float.MAX_VALUE)</code>.
+     * Maximum exponent a finite <code>float</code> number may have. It is equal to the value returned by
+     * <code>Math.ilogb(Float.MAX_VALUE)</code>.
      */
     public static final int MAX_EXPONENT = 127;
 
     /**
-     * Minimum exponent a normalized <code>float</code> number may have. It is
-     * equal to the value returned by <code>Math.ilogb(Float.MIN_NORMAL)</code>.
+     * Minimum exponent a normalized <code>float</code> number may have. It is equal to the value returned by
+     * <code>Math.ilogb(Float.MIN_NORMAL)</code>.
      */
     public static final int MIN_EXPONENT = -126;
 
     /**
-     * The exponent the smallest positive <code>float</code> subnormal value would
-     * have if it could be normalized. It is equal to the value returned by
-     * <code>FpUtils.ilogb(Float.MIN_VALUE)</code>.
+     * The exponent the smallest positive <code>float</code> subnormal value would have if it could be normalized. It is
+     * equal to the value returned by <code>FpUtils.ilogb(Float.MIN_VALUE)</code>.
      */
     public static final int MIN_SUB_EXPONENT = MIN_EXPONENT - (SIGNIFICAND_WIDTH - 1);
 

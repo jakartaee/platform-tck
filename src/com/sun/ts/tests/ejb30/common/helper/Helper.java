@@ -28,7 +28,8 @@ import java.util.logging.Logger;
 public final class Helper {
     private static Logger logger = Logger.getLogger("com.sun.ts.tests.ejb30");
 
-    private Helper() {}
+    private Helper() {
+    }
 
     public static Logger getLogger() {
         return logger;
@@ -52,16 +53,14 @@ public final class Helper {
     }
 
     /**
-     * Similar to JUnit Assert, but this class appends message to both true and
-     * false outcome. This class also makes use of autoboxing to handle
-     * primitives.
+     * Similar to JUnit Assert, but this class appends message to both true and false outcome. This class also makes use of
+     * autoboxing to handle primitives.
      *
      * @param messagePrefix
      * @param expected
      * @param actual
      * @return a String showing a true outcome
-     * @throws java.lang.RuntimeException
-     *           if comparison is false
+     * @throws java.lang.RuntimeException if comparison is false
      */
     public static String assertEquals(final String messagePrefix, final Object expected, final Object actual)
             throws RuntimeException {
@@ -162,7 +161,8 @@ public final class Helper {
             logger.finer("Begin busy wait " + millis + " milliseconds");
         }
         long end = System.currentTimeMillis() + millis;
-        do {} while (System.currentTimeMillis() < end);
+        do {
+        } while (System.currentTimeMillis() < end);
         if (logger.isLoggable(Level.FINER)) {
             logger.finer("Finished busy wait " + millis + " milliseconds");
         }

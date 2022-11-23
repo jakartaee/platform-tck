@@ -49,7 +49,7 @@ public class NameValuePair {
         NameValuePair value1 = new NameValuePair("A", a);
         NameValuePair value2 = new NameValuePair("B", b);
 
-        NameValuePair values[] = {value1, value2};
+        NameValuePair values[] = { value1, value2 };
 
         return values;
     }
@@ -61,7 +61,7 @@ public class NameValuePair {
 
         NameValuePair value1 = new NameValuePair("A", a);
 
-        NameValuePair value[] = {value1};
+        NameValuePair value[] = { value1 };
 
         return value;
     }
@@ -75,7 +75,7 @@ public class NameValuePair {
         NameValuePair value2 = new NameValuePair("B", b);
         NameValuePair value3 = new NameValuePair("C", c);
 
-        NameValuePair values[] = {value1, value2, value3};
+        NameValuePair values[] = { value1, value2, value3 };
 
         return values;
     }

@@ -34,7 +34,8 @@ public class Department implements Serializable {
 
     private List<Employee> employees = new ArrayList<Employee>();
 
-    public Department() {}
+    public Department() {
+    }
 
     public Long getId() {
         return id;

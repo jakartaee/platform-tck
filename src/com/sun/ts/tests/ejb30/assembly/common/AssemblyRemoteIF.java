@@ -23,4 +23,5 @@ package com.sun.ts.tests.ejb30.assembly.common;
 import jakarta.ejb.Remote;
 
 @Remote
-public interface AssemblyRemoteIF extends AssemblyCommonIF {}
+public interface AssemblyRemoteIF extends AssemblyCommonIF {
+}

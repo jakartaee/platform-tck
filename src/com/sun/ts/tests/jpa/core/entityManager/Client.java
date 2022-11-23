@@ -61,7 +61,8 @@ public class Client extends PMClientBase {
 
     static final String POSTGRESQL = "postgresql";
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -178,7 +179,8 @@ public class Client extends PMClientBase {
                 rsnum++;
             } else {
                 rowsAffected = spq.getUpdateCount();
-                if (rowsAffected >= 0) TestUtil.logTrace("rowsAffected:" + rowsAffected);
+                if (rowsAffected >= 0)
+                    TestUtil.logTrace("rowsAffected:" + rowsAffected);
             }
             results = spq.hasMoreResults();
             TestUtil.logTrace("Results:" + results);
@@ -271,13 +273,12 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:2517;
      *
-     * @test_Strategy: Create EntityManager in try with resources block
-     * and verify whether it's open inside and outside of the try block.
+     * @test_Strategy: Create EntityManager in try with resources block and verify whether it's open inside and outside of
+     * the try block.
      */
     public void autoCloseableTest() throws Fault {
         EntityManager em = null;
-        try (final EntityManagerFactory emfLocal =
-                Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
+        try (final EntityManagerFactory emfLocal = Persistence.createEntityManagerFactory(getPersistenceUnitName(), getPersistenceUnitProperties())) {
             try (final EntityManager emLocal = emfLocal.createEntityManager()) {
                 em = emLocal;
                 if (em == null) {
@@ -397,8 +398,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: persistExceptionsTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:31; PERSISTENCE:JAVADOC:506;
-     * PERSISTENCE:JAVADOC:507; PERSISTENCE:SPEC:618.1; PERSISTENCE:SPEC:618.2
+     * @assertion_ids: PERSISTENCE:JAVADOC:31; PERSISTENCE:JAVADOC:506; PERSISTENCE:JAVADOC:507; PERSISTENCE:SPEC:618.1;
+     * PERSISTENCE:SPEC:618.2
      *
      * @test_Strategy: Call EntityManager.persist()
      */
@@ -929,8 +930,7 @@ public class Client extends PMClientBase {
     }
 
     /*
-     * @testName:
-     * refreshNonManagedObjectLockModeTypeMapIllegalArgumentExceptionTest
+     * @testName: refreshNonManagedObjectLockModeTypeMapIllegalArgumentExceptionTest
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:521
      *
@@ -1013,8 +1013,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:458
      *
-     * @test_Strategy: Call EntityManager.contains() method passing an Object that
-     * is not an Entity
+     * @test_Strategy: Call EntityManager.contains() method passing an Object that is not an Entity
      */
     public void containsIllegalArgumentException() throws Fault {
         boolean pass = false;
@@ -1050,13 +1049,10 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:459; PERSISTENCE:JAVADOC:460
      *
-     * @test_Strategy: Call EntityManager.createNamedQuery() with a query string
-     * that is invalid, verify IllegalArgumentException is thrown Call
-     * EntityManager.createNamedQuery() with a TypedQuery string that is invalid,
-     * verify IllegalArgumentException is thrown. Call
-     * EntityManager.createNamedQuery() with a TypedQuery string with a result
-     * type not assignable to the specified type, verify IllegalArgumentException
-     * is thrown.
+     * @test_Strategy: Call EntityManager.createNamedQuery() with a query string that is invalid, verify
+     * IllegalArgumentException is thrown Call EntityManager.createNamedQuery() with a TypedQuery string that is invalid,
+     * verify IllegalArgumentException is thrown. Call EntityManager.createNamedQuery() with a TypedQuery string with a
+     * result type not assignable to the specified type, verify IllegalArgumentException is thrown.
      */
     public void createNamedQueryIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false, pass2 = false;
@@ -1100,16 +1096,13 @@ public class Client extends PMClientBase {
     /*
      * @testName: createQueryIllegalArgumentExceptionTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:461; PERSISTENCE:JAVADOC:463;
-     * PERSISTENCE:JAVADOC:462; PERSISTENCE:SPEC:609; PERSISTENCE:SPEC:1372;
+     * @assertion_ids: PERSISTENCE:JAVADOC:461; PERSISTENCE:JAVADOC:463; PERSISTENCE:JAVADOC:462; PERSISTENCE:SPEC:609;
+     * PERSISTENCE:SPEC:1372;
      *
-     * @test_Strategy: Call EntityManager.createQuery(String) with a query string
-     * that is invalid, verify IllegalArgumentException is thrown Call
-     * EntityManager.createQuery(String, Class) with a TypedQuery string with a
-     * result type not assignable to the specified type, verify
-     * IllegalArgumentException is thrown. Call
-     * EntityManager.createQuery(CriteriaQuery) with an invalid CriteriaQuery
-     * verify IllegalArgumentException is thrown.*
+     * @test_Strategy: Call EntityManager.createQuery(String) with a query string that is invalid, verify
+     * IllegalArgumentException is thrown Call EntityManager.createQuery(String, Class) with a TypedQuery string with a
+     * result type not assignable to the specified type, verify IllegalArgumentException is thrown. Call
+     * EntityManager.createQuery(CriteriaQuery) with an invalid CriteriaQuery verify IllegalArgumentException is thrown.*
      */
     public void createQueryIllegalArgumentExceptionTest() throws Fault {
         boolean pass1 = false, pass2 = false, pass3 = false;
@@ -1177,8 +1170,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:464
      *
-     * @test_Strategy: Call EntityManager.detach(String), verify
-     * IllegalArgumentException is thrown
+     * @test_Strategy: Call EntityManager.detach(String), verify IllegalArgumentException is thrown
      */
     public void detachIllegalArgumentExceptionTest() throws Fault {
         boolean pass = false;
@@ -1236,8 +1228,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:330;
      *
-     * @test_Strategy: Get a MetaModel Object from the EntityManager an make sure
-     * it is not null
+     * @test_Strategy: Get a MetaModel Object from the EntityManager an make sure it is not null
      */
     public void emGetMetamodelTest() throws Fault {
         boolean pass = false;
@@ -1262,8 +1253,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:336;
      *
-     * @test_Strategy: Set a standard property in the EntityManager and retrieve
-     * it.
+     * @test_Strategy: Set a standard property in the EntityManager and retrieve it.
      */
     public void setPropertyTest() throws Fault {
         boolean foundKey = false;
@@ -1331,8 +1321,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:327; PERSISTENCE:SPEC:1702;
      *
-     * @test_Strategy: access EntityManager.getCriteriaBuilder and verify it can
-     * be used to create a query
+     * @test_Strategy: access EntityManager.getCriteriaBuilder and verify it can be used to create a query
      *
      */
     public void getCriteriaBuilderTest() throws Fault {
@@ -1487,7 +1476,7 @@ public class Client extends PMClientBase {
         boolean pass = false;
         getEntityTransaction().begin();
         try {
-            Class[] cArray = {Employee.class};
+            Class[] cArray = { Employee.class };
             StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", cArray);
             if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
                 TestUtil.logTrace("register refcursor parameter");
@@ -1520,8 +1509,7 @@ public class Client extends PMClientBase {
     }
 
     /*
-     * @testName:
-     * createStoredProcedureQueryStringClassArrayIllegalArgumentExceptionTest
+     * @testName: createStoredProcedureQueryStringClassArrayIllegalArgumentExceptionTest
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1523
      *
@@ -1530,7 +1518,7 @@ public class Client extends PMClientBase {
      */
     public void createStoredProcedureQueryStringClassArrayIllegalArgumentExceptionTest() throws Fault {
         boolean pass = false;
-        Class[] cArray = {Integer.class};
+        Class[] cArray = { Integer.class };
         StringBuilder msg = new StringBuilder();
         try {
             StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("DOESNOTEXIST", cArray);
@@ -1574,9 +1562,8 @@ public class Client extends PMClientBase {
         getEntityTransaction().begin();
         clearCache();
         try {
-            String[] sArray = {"id-firstname-lastname"};
-            StoredProcedureQuery spq =
-                    getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS", sArray);
+            String[] sArray = { "id-firstname-lastname" };
+            StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS", sArray);
             spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
             if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
                 TestUtil.logTrace("register refcursor parameter");
@@ -1609,8 +1596,7 @@ public class Client extends PMClientBase {
     }
 
     /*
-     * @testName:
-     * createStoredProcedureQueryStringStringArrayIllegalArgumentExceptionTest
+     * @testName: createStoredProcedureQueryStringStringArrayIllegalArgumentExceptionTest
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1525
      *
@@ -1621,7 +1607,7 @@ public class Client extends PMClientBase {
         boolean pass = false;
         StringBuilder msg = new StringBuilder();
         try {
-            String[] sArray = {"doesnotexist"};
+            String[] sArray = { "doesnotexist" };
             StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("DOESNOTEXIST", sArray);
             msg.append("Did not throw IllegalArgumentException");
             try {
@@ -1650,10 +1636,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: createNamedStoredProcedureQueryStringTest
      *
-     * @assertion_ids: PERSISTENCE:JAVADOC:1514; PERSISTENCE:JAVADOC:1530;
-     * PERSISTENCE:JAVADOC:1532; PERSISTENCE:JAVADOC:1533;
-     * PERSISTENCE:JAVADOC:1534; PERSISTENCE:JAVADOC:1541;
-     * PERSISTENCE:JAVADOC:1543;
+     * @assertion_ids: PERSISTENCE:JAVADOC:1514; PERSISTENCE:JAVADOC:1530; PERSISTENCE:JAVADOC:1532;
+     * PERSISTENCE:JAVADOC:1533; PERSISTENCE:JAVADOC:1534; PERSISTENCE:JAVADOC:1541; PERSISTENCE:JAVADOC:1543;
      *
      * @test_Strategy:
      *
@@ -1698,8 +1682,7 @@ public class Client extends PMClientBase {
     }
 
     /*
-     * @testName:
-     * createNamedStoredProcedureQueryStringIllegalArgumentExceptionTest
+     * @testName: createNamedStoredProcedureQueryStringIllegalArgumentExceptionTest
      *
      * @assertion_ids: PERSISTENCE:JAVADOC:1515
      *

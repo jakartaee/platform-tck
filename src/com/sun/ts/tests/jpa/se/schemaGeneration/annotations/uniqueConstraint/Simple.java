@@ -23,12 +23,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(
-        name = "SCHEMAGENSIMPLE",
-        uniqueConstraints =
-                @UniqueConstraint(
-                        name = "MYUNIQUECONSTRAINT",
-                        columnNames = {"ID", "NAME"}))
+@Table(name = "SCHEMAGENSIMPLE", uniqueConstraints = @UniqueConstraint(name = "MYUNIQUECONSTRAINT", columnNames = { "ID", "NAME" }))
 public class Simple implements java.io.Serializable {
 
     // ===========================================================
@@ -39,7 +34,8 @@ public class Simple implements java.io.Serializable {
 
     // ===========================================================
     // constructors
-    public Simple() {}
+    public Simple() {
+    }
 
     public Simple(int id) {
         this.id = id;
@@ -77,8 +73,10 @@ public class Simple implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Simple)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Simple))
+            return false;
 
         Simple o1 = (Simple) o;
 

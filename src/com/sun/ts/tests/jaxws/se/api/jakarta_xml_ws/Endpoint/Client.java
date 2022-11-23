@@ -108,8 +108,7 @@ public class Client extends ServiceEETest {
 
     private int javaseServerPort;
 
-    private String helloReq =
-            "<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S='http://schemas.xmlsoap.org/soap/envelope/'><S:Body><ns2:hello xmlns:ns2='http://helloservice.org/wsdl'><arg0>you</arg0></ns2:hello><S:Body></S:Envelope>";
+    private String helloReq = "<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S='http://schemas.xmlsoap.org/soap/envelope/'><S:Body><ns2:hello xmlns:ns2='http://helloservice.org/wsdl'><arg0>you</arg0></ns2:hello><S:Body></S:Envelope>";
 
     private EndpointReference epr = null;
 
@@ -187,8 +186,7 @@ public class Client extends ServiceEETest {
     /*
      * @class.testArgs: -ap jaxws-url-props.dat
      *
-     * @class.setup_props: webServerHost; webServerPort; platform.mode;
-     * http.server.supports.endpoint.publish; ts.home;
+     * @class.setup_props: webServerHost; webServerPort; platform.mode; http.server.supports.endpoint.publish; ts.home;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -197,8 +195,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -216,7 +216,8 @@ public class Client extends ServiceEETest {
             }
             getTestURLs();
             endpoint = Endpoint.create(SOAPBinding.SOAP11HTTP_BINDING, IMPLEMENTOR);
-            if (endpoint == null) throw new Fault("setup failed, unable to create endpoint");
+            if (endpoint == null)
+                throw new Fault("setup failed, unable to create endpoint");
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new Fault("setup failed:", e);
@@ -255,7 +256,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createTest failed", e);
         }
 
-        if (!pass) throw new Fault("createTest failed");
+        if (!pass)
+            throw new Fault("createTest failed");
     }
 
     /*
@@ -280,7 +282,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("createTest2 failed");
+        if (!pass)
+            throw new Fault("createTest2 failed");
     }
 
     /*
@@ -309,7 +312,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getBindingTest failed", e);
         }
 
-        if (!pass) throw new Fault("getBindingTest failed");
+        if (!pass)
+            throw new Fault("getBindingTest failed");
     }
 
     /*
@@ -338,7 +342,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getImplementorTest failed", e);
         }
 
-        if (!pass) throw new Fault("getImplementorTest failed");
+        if (!pass)
+            throw new Fault("getImplementorTest failed");
     }
 
     public void collectMetadata(File wsdlDirFile, List<File> metadataFile) {
@@ -362,9 +367,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: publishTest2
      *
-     * @assertion_ids: JAXWS:JAVADOC:21; JAXWS:JAVADOC:27; JAXWS:SPEC:5005;
-     * JAXWS:SPEC:5007; JAXWS:SPEC:5008; JAXWS:SPEC:5017; JAXWS:SPEC:5018;
-     * JAXWS:SPEC:5019; JAXWS:SPEC:5020; JAXWS:SPEC:5021;
+     * @assertion_ids: JAXWS:JAVADOC:21; JAXWS:JAVADOC:27; JAXWS:SPEC:5005; JAXWS:SPEC:5007; JAXWS:SPEC:5008;
+     * JAXWS:SPEC:5017; JAXWS:SPEC:5018; JAXWS:SPEC:5019; JAXWS:SPEC:5020; JAXWS:SPEC:5021;
      *
      * @test_Strategy:
      */
@@ -378,7 +382,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             } else if (modeProperty.equals("standalone") && endpointPublishSupport) {
                 TestUtil.logMsg("invoke hello operation of published endpoint");
-                if (makeHTTPRequest(helloReq, url)) TestUtil.logMsg("Successful invocation of published endpoint");
+                if (makeHTTPRequest(helloReq, url))
+                    TestUtil.logMsg("Successful invocation of published endpoint");
                 else {
                     TestUtil.logErr("Unsuccessful invocation of published endpoint");
                     pass = false;
@@ -392,15 +397,15 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("publishTest2 failed");
+        if (!pass)
+            throw new Fault("publishTest2 failed");
     }
 
     /*
      * @testName: publishTest3
      *
-     * @assertion_ids: JAXWS:JAVADOC:22; JAXWS:JAVADOC:27; JAXWS:JAVADOC:114;
-     * JAXWS:SPEC:5004; JAXWS:SPEC:6002; JAXWS:SPEC:5005; JAXWS:SPEC:5007;
-     * JAXWS:SPEC:5008; JAXWS:SPEC:5017; JAXWS:SPEC:5018; JAXWS:SPEC:5019;
+     * @assertion_ids: JAXWS:JAVADOC:22; JAXWS:JAVADOC:27; JAXWS:JAVADOC:114; JAXWS:SPEC:5004; JAXWS:SPEC:6002;
+     * JAXWS:SPEC:5005; JAXWS:SPEC:5007; JAXWS:SPEC:5008; JAXWS:SPEC:5017; JAXWS:SPEC:5018; JAXWS:SPEC:5019;
      * JAXWS:SPEC:5020; JAXWS:SPEC:5021;
      *
      * @test_Strategy:
@@ -415,7 +420,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             } else if (modeProperty.equals("standalone") && endpointPublishSupport) {
                 TestUtil.logMsg("invoke hello operation of published endpoint");
-                if (makeHTTPRequest(helloReq, url)) TestUtil.logMsg("Successful invocation of published endpoint");
+                if (makeHTTPRequest(helloReq, url))
+                    TestUtil.logMsg("Successful invocation of published endpoint");
                 else {
                     TestUtil.logErr("Unsuccessful invocation of published endpoint");
                     pass = false;
@@ -429,15 +435,15 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("publishTest3 failed");
+        if (!pass)
+            throw new Fault("publishTest3 failed");
     }
 
     /*
      * @testName: stopTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:21; JAXWS:JAVADOC:27; JAXWS:SPEC:5005;
-     * JAXWS:SPEC:5007; JAXWS:SPEC:5008; JAXWS:SPEC:5017; JAXWS:SPEC:5018;
-     * JAXWS:SPEC:5019; JAXWS:SPEC:5020; JAXWS:SPEC:5021;
+     * @assertion_ids: JAXWS:JAVADOC:21; JAXWS:JAVADOC:27; JAXWS:SPEC:5005; JAXWS:SPEC:5007; JAXWS:SPEC:5008;
+     * JAXWS:SPEC:5017; JAXWS:SPEC:5018; JAXWS:SPEC:5019; JAXWS:SPEC:5020; JAXWS:SPEC:5021;
      *
      * @test_Strategy:
      */
@@ -451,7 +457,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             } else if (modeProperty.equals("standalone") && endpointPublishSupport) {
                 TestUtil.logMsg("invoke hello operation of published endpoint");
-                if (makeHTTPRequest(helloReq, url)) TestUtil.logMsg("Successful invocation of published endpoint");
+                if (makeHTTPRequest(helloReq, url))
+                    TestUtil.logMsg("Successful invocation of published endpoint");
                 else {
                     TestUtil.logErr("Unsuccessful invocation of published endpoint");
                     pass = false;
@@ -461,7 +468,8 @@ public class Client extends ServiceEETest {
                 if (makeHTTPRequest(helloReq, url)) {
                     TestUtil.logErr("Successful invocation of a stopped endpoint - unexpected ");
                     pass = false;
-                } else TestUtil.logMsg("Unsuccessful invocation of a stopped endpoint - expected ");
+                } else
+                    TestUtil.logMsg("Unsuccessful invocation of a stopped endpoint - expected ");
             }
         } catch (Exception e) {
             if (modeProperty.equals("standalone") && endpointPublishSupport) {
@@ -470,7 +478,8 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("stopTest failed");
+        if (!pass)
+            throw new Fault("stopTest failed");
     }
 
     /*
@@ -488,7 +497,8 @@ public class Client extends ServiceEETest {
             if (isPub) {
                 TestUtil.logErr("Endpoint is published - unexpected");
                 pass = false;
-            } else TestUtil.logMsg("Endpoint is not published - expected");
+            } else
+                TestUtil.logMsg("Endpoint is not published - expected");
             endpoint.publish(url);
             if (modeProperty.equals("jakartaEE") || !endpointPublishSupport) {
                 TestUtil.logErr("expected exception when endpoint publish not supported");
@@ -498,7 +508,8 @@ public class Client extends ServiceEETest {
                 if (!isPub) {
                     TestUtil.logErr("Endpoint is not published - unexpected");
                     pass = false;
-                } else TestUtil.logMsg("Endpoint is published - expected");
+                } else
+                    TestUtil.logMsg("Endpoint is published - expected");
             }
         } catch (Exception e) {
             if (modeProperty.equals("standalone") && endpointPublishSupport) {
@@ -507,7 +518,8 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("isPublishedTest failed");
+        if (!pass)
+            throw new Fault("isPublishedTest failed");
     }
 
     /*
@@ -533,14 +545,14 @@ public class Client extends ServiceEETest {
             throw new Fault("GetSetPropertiesTest failed", e);
         }
 
-        if (!pass) throw new Fault("GetSetPropertiesTest failed");
+        if (!pass)
+            throw new Fault("GetSetPropertiesTest failed");
     }
 
     /*
      * @testName: GetSetExecutorTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:16; JAXWS:JAVADOC:24; JAXWS:SPEC:5011;
-     * JAXWS:SPEC:5012;
+     * @assertion_ids: JAXWS:JAVADOC:16; JAXWS:JAVADOC:24; JAXWS:SPEC:5011; JAXWS:SPEC:5012;
      *
      * @test_Strategy:
      */
@@ -562,14 +574,14 @@ public class Client extends ServiceEETest {
             throw new Fault("GetSetExecutorTest failed", e);
         }
 
-        if (!pass) throw new Fault("GetSetExecutorTest failed");
+        if (!pass)
+            throw new Fault("GetSetExecutorTest failed");
     }
 
     /*
      * @testName: GetSetMetaDataTest
      *
-     * @assertion_ids: JAXWS:JAVADOC:18; JAXWS:JAVADOC:25; JAXWS:SPEC:5010;
-     * JAXWS:SPEC:5011;
+     * @assertion_ids: JAXWS:JAVADOC:18; JAXWS:JAVADOC:25; JAXWS:SPEC:5010; JAXWS:SPEC:5011;
      *
      * @test_Strategy:
      */
@@ -597,7 +609,8 @@ public class Client extends ServiceEETest {
                     TestUtil.logMsg("Publishing endpoint to url: " + url);
                     endpoint.publish(url);
                     TestUtil.logMsg("Invoking published endpoint");
-                    if (makeHTTPRequest(helloReq, url)) TestUtil.logMsg("Successful invocation of published endpoint");
+                    if (makeHTTPRequest(helloReq, url))
+                        TestUtil.logMsg("Successful invocation of published endpoint");
                     else {
                         TestUtil.logMsg("Unsuccessful invocation of published endpoint");
                         pass = false;
@@ -641,7 +654,8 @@ public class Client extends ServiceEETest {
             throw new Fault("GetSetMetaDataTest failed", e);
         }
 
-        if (!pass) throw new Fault("GetSetMetaDataTest failed");
+        if (!pass)
+            throw new Fault("GetSetMetaDataTest failed");
     }
 
     /*
@@ -669,8 +683,10 @@ public class Client extends ServiceEETest {
                 if (epr == null) {
                     TestUtil.logErr("getEndpointReference() returned null");
                     pass = false;
-                } else TestUtil.logMsg("getEndpointReference() returned EndpointReference object: " + epr);
-                if (epr instanceof W3CEndpointReference) TestUtil.logMsg("epr instanceof W3CEndpointReference");
+                } else
+                    TestUtil.logMsg("getEndpointReference() returned EndpointReference object: " + epr);
+                if (epr instanceof W3CEndpointReference)
+                    TestUtil.logMsg("epr instanceof W3CEndpointReference");
                 else {
                     TestUtil.logErr("epr not instanceof W3CEndpointReference");
                     pass = false;
@@ -683,7 +699,8 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("getEndpointReferenceParamsTest failed");
+        if (!pass)
+            throw new Fault("getEndpointReferenceParamsTest failed");
     }
 
     /*
@@ -711,8 +728,10 @@ public class Client extends ServiceEETest {
                 if (epr == null) {
                     TestUtil.logErr("getEndpointReference() returned null");
                     pass = false;
-                } else TestUtil.logMsg("getEndpointReference() returned EndpointReference object: " + epr);
-                if (epr instanceof W3CEndpointReference) TestUtil.logMsg("epr instanceof W3CEndpointReference");
+                } else
+                    TestUtil.logMsg("getEndpointReference() returned EndpointReference object: " + epr);
+                if (epr instanceof W3CEndpointReference)
+                    TestUtil.logMsg("epr instanceof W3CEndpointReference");
                 else {
                     TestUtil.logErr("epr not instanceof W3CEndpointReference");
                     pass = false;
@@ -725,6 +744,7 @@ public class Client extends ServiceEETest {
             }
         }
 
-        if (!pass) throw new Fault("getEndpointReferenceClassTest failed");
+        if (!pass)
+            throw new Fault("getEndpointReferenceClassTest failed");
     }
 }

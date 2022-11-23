@@ -24,9 +24,8 @@ import com.sun.ts.lib.deliverable.*;
 import java.io.*;
 
 /**
- * This is a factory class for creating instances of TSDeploymentInterface. The
- * implementation classes used are determined by the values of the porting
- * package properties in TS_HOME/bin/ts.jte.
+ * This is a factory class for creating instances of TSDeploymentInterface. The implementation classes used are
+ * determined by the values of the porting package properties in TS_HOME/bin/ts.jte.
  *
  * @author Kyle Grucci
  */

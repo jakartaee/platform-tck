@@ -29,11 +29,9 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 /**
- * To add a new test for interceptors: o add xxxTest() to ClientBase.java and
- * Client.java o add xxxTest(...) to bean interface, bean base, and bean class o
- * add xxxTest(InvocationContext ctx) to AroundInvokeTestImpl.java o add in
- * AroundInvokeTestImpl.intercept(): xxxTest(ctx) o add to Constants.java:
- * public static final String..
+ * To add a new test for interceptors: o add xxxTest() to ClientBase.java and Client.java o add xxxTest(...) to bean
+ * interface, bean base, and bean class o add xxxTest(InvocationContext ctx) to AroundInvokeTestImpl.java o add in
+ * AroundInvokeTestImpl.intercept(): xxxTest(ctx) o add to Constants.java: public static final String..
  */
 // @todo res lookup thru EJBContext
 // @todo programming restrictions for interceptors
@@ -47,11 +45,12 @@ public abstract class ClientBase extends EETest implements Constants {
         props = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
-     * Removes all beans used in this client. It should only be used by sfsb,
-     * though other bean types may also have a remove business method.
+     * Removes all beans used in this client. It should only be used by sfsb, though other bean types may also have a remove
+     * business method.
      */
     protected void remove() {
         if (getBean() != null) {
@@ -68,8 +67,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: getBeanTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void getBeanTest() throws Fault {
         try {
@@ -82,8 +81,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: getParametersTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void getParametersTest() throws Fault {
         String expected = OLD_PARAM_VALUE;
@@ -104,9 +103,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: getParametersEmptyTest
      *
-     * @test_Strategy: o no parameters in business method.
-     * InvocationContext.getParameters() should return null or Object[]{}; This is
-     * verified in interceptor method.
+     * @test_Strategy: o no parameters in business method. InvocationContext.getParameters() should return null or
+     * Object[]{}; This is verified in interceptor method.
      */
     public void getParametersEmptyTest() throws Fault {
         try {
@@ -119,8 +117,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: setParametersTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void setParametersTest() throws Fault {
         String expected = NEW_PARAM_VALUE;
@@ -138,8 +136,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: getContextDataTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void getContextDataTest() throws Fault {
         try {
@@ -152,8 +150,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: getMethodTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void getMethodTest() throws Fault {
         try {
@@ -166,8 +164,7 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: txRollbackOnlyTest
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only before
-     * proceed();
+     * @test_Strategy: o interceptor marks a tx to be rollback only before proceed();
      */
     public void txRollbackOnlyTest() throws Fault {
         try {
@@ -182,8 +179,7 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: txRollbackOnlyAfterTest
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only after
-     * proceed();
+     * @test_Strategy: o interceptor marks a tx to be rollback only after proceed();
      */
     public void txRollbackOnlyAfterTest() throws Fault {
         try {
@@ -205,8 +201,7 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: sameSecContextTest
      *
-     * @test_Strategy: o interceptor method occurs with the same security context
-     * as the business method
+     * @test_Strategy: o interceptor method occurs with the same security context as the business method
      */
     public void sameSecContextTest() throws Fault {
         boolean expected = true;
@@ -233,8 +228,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: exceptionTest
      *
-     * @test_Strategy: o using @AroundInvoke annotation in bean class o test
-     * InvocationContext methods o interceptor method can throw exceptions
+     * @test_Strategy: o using @AroundInvoke annotation in bean class o test InvocationContext methods o interceptor method
+     * can throw exceptions
      */
     public void exceptionTest() throws Fault {
         String expected = null;
@@ -254,8 +249,7 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: suppressExceptionTest
      *
-     * @test_Strategy: o the checked exception throwb by the business method can
-     * be supressed by the interceptor.
+     * @test_Strategy: o the checked exception throwb by the business method can be supressed by the interceptor.
      */
     public void suppressExceptionTest() throws Fault {
         try {
@@ -270,9 +264,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: runtimeExceptionTest
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only before
-     * proceed(), by runtime exception o bean instance is no longer usable after
-     * this test
+     * @test_Strategy: o interceptor marks a tx to be rollback only before proceed(), by runtime exception o bean instance
+     * is no longer usable after this test
      */
     public void runtimeExceptionTest() throws Fault {
         try {
@@ -296,9 +289,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: runtimeExceptionAfterTest
      *
-     * @test_Strategy: o interceptor marks a tx to be rollback only after
-     * proceed(), by runtime exception o bean instance is no longer usable after
-     * this test
+     * @test_Strategy: o interceptor marks a tx to be rollback only after proceed(), by runtime exception o bean instance is
+     * no longer usable after this test
      */
     public void runtimeExceptionAfterTest() throws Fault {
         try {
@@ -343,8 +335,7 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: sameInvocationContextTest
      *
-     * @test_Strategy: o the same instance of InvocationContext is passed to all
-     * interceptors
+     * @test_Strategy: o the same instance of InvocationContext is passed to all interceptors
      */
     public void sameInvocationContextTest() throws Fault {
         try {
@@ -359,9 +350,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: methodLevelInterceptorMixedTest
      *
-     * @test_Strategy: o method level interceptors may be specified
-     * with @Interceptors or in descriptor. The one specified in descriptor is
-     * invoked after the ones specified with annotations.
+     * @test_Strategy: o method level interceptors may be specified with @Interceptors or in descriptor. The one specified
+     * in descriptor is invoked after the ones specified with annotations.
      */
     public void methodLevelInterceptorMixedTest() throws CalculatorException {
         String firstMethodInterceptor = "InterceptorNoat1";
@@ -385,10 +375,9 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: methodLevelClassLevelInterceptorMixedTest
      *
-     * @test_Strategy: o method level interceptors may be specified
-     * with @Interceptors or in descriptor. The one specified in descriptor is
-     * invoked after the ones specified with annotations. Default interceptors are
-     * excluded, but class level interceptors are included.
+     * @test_Strategy: o method level interceptors may be specified with @Interceptors or in descriptor. The one specified
+     * in descriptor is invoked after the ones specified with annotations. Default interceptors are excluded, but class
+     * level interceptors are included.
      */
     public void methodLevelClassLevelInterceptorMixedTest() throws CalculatorException {
         String firstMethodInterceptor = "Interceptor1";
@@ -418,8 +407,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: repeatedInterceptors
      *
-     * @test_Strategy: o method level interceptors may be specified
-     * with @Interceptors or in descriptor. Interceptors are additive.
+     * @test_Strategy: o method level interceptors may be specified with @Interceptors or in descriptor. Interceptors are
+     * additive.
      */
     public void repeatedInterceptors() throws CalculatorException {
         String firstMethodInterceptor = "InterceptorNoat1";
@@ -457,9 +446,8 @@ public abstract class ClientBase extends EETest implements Constants {
     /*
      * testName: interceptorOrderingOverride
      *
-     * @test_Strategy: o method level interceptors may be specified
-     * with @Interceptors or in descriptor. Interceptor order may be overridden
-     * with <interceptor-order>
+     * @test_Strategy: o method level interceptors may be specified with @Interceptors or in descriptor. Interceptor order
+     * may be overridden with <interceptor-order>
      */
     public void interceptorOrderingOverride() throws CalculatorException {
         String firstMethodInterceptor = "InterceptorNoat1";

@@ -25,9 +25,7 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(
-        value = "/binarystreamencoder",
-        encoders = {InitDestroyBinaryStreamEncoder.class})
+@ServerEndpoint(value = "/binarystreamencoder", encoders = { InitDestroyBinaryStreamEncoder.class })
 public class WSCIDBinaryStreamEncoderServer {
 
     @OnMessage

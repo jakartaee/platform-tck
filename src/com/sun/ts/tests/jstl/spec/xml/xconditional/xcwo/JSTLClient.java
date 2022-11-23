@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,15 +64,12 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:71; JSTL:SPEC:71.3; JSTL:SPEC:71.2
      *
-     * @testStrategy: Validate the following: - The first c:when action that
-     * evaluates to true will process it's body content. Subsequent when action
-     * that evaluate to true will not be processed. - Validate that if a when
-     * action evaluates to true, it's body content is processed and that the body
-     * content of an c:otherwise action is not. - Validate that if no c:when
-     * action evaluates to true, and no c:otherwise action is present, nothing is
-     * written to the current JspWriter. - Validate that if no c:when action
-     * evaluates to true, and an c:otherwise action is present, the body content
-     * of the action is processed.
+     * @testStrategy: Validate the following: - The first c:when action that evaluates to true will process it's body
+     * content. Subsequent when action that evaluate to true will not be processed. - Validate that if a when action
+     * evaluates to true, it's body content is processed and that the body content of an c:otherwise action is not. -
+     * Validate that if no c:when action evaluates to true, and no c:otherwise action is present, nothing is written to the
+     * current JspWriter. - Validate that if no c:when action evaluates to true, and an c:otherwise action is present, the
+     * body content of the action is processed.
      */
     public void positiveCWOTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveCWOTest");
@@ -86,9 +81,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:71.5; JSTL:SPEC:71.5.5; JSTL:SPEC:71.5.4
      *
-     * @testStrategy: Validate that the CWO action behaves as expected if
-     * whitespace is intermixed with choose's nested when and otherwise actions.
-     * No translation error should occur.
+     * @testStrategy: Validate that the CWO action behaves as expected if whitespace is intermixed with choose's nested when
+     * and otherwise actions. No translation error should occur.
      */
     public void positiveCWOWhiteSpaceTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveCWOWhiteSpaceTest");
@@ -100,8 +94,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:71; JSTL:SPEC:71.6.4
      *
-     * @testStrategy: Validate that a fatal translation error occurs if the choose
-     * action has no nested when actions.
+     * @testStrategy: Validate that a fatal translation error occurs if the choose action has no nested when actions.
      */
     public void negativeCWONoWhenActionsTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeCWONoWhenActionsTest");
@@ -115,8 +108,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:71; JSTL:SPEC:71.7
      *
-     * @testStrategy: Validate that a fatal translation error occurs if otherwise
-     * appears before when or if when appears after otherwise.
+     * @testStrategy: Validate that a fatal translation error occurs if otherwise appears before when or if when appears
+     * after otherwise.
      */
     public void negativeCWOWhenBeforeOtherwiseTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenBeforeOtherwiseTest");
@@ -130,8 +123,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:71; JSTL:SPEC:71.5.6
      *
-     * @testStrategy: Validate a fatal translation error occurs if a when action
-     * has no choose as an immediate parent.
+     * @testStrategy: Validate a fatal translation error occurs if a when action has no choose as an immediate parent.
      */
     public void negativeCWOWhenNoParentTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenNoParentTest");
@@ -145,8 +137,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:71; JSTL:SPEC:71.5.6
      *
-     * @testStrategy: Validate a fatal translation error occurs if an otherwise
-     * action has no choose as an immediate parent.
+     * @testStrategy: Validate a fatal translation error occurs if an otherwise action has no choose as an immediate parent.
      */
     public void negativeCWOOtherwiseNoParentTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeCWOOtherwiseNoParentTest");
@@ -160,8 +151,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:71; JSTL:SPEC:71.5.6
      *
-     * @testStrategy: Validate that a fatal translation error occurs if a nested
-     * when action has no select attribute.
+     * @testStrategy: Validate that a fatal translation error occurs if a nested when action has no select attribute.
      */
     public void negativeCWOWhenSelectReqAttrTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenSelectReqAttrTest");
@@ -175,9 +165,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:71; JSTL:SPEC:71.5.6
      *
-     * @testStrategy: Validate that if the XPath expression provided to select of
-     * the when action fails to evaluated an instance of
-     * jakarta.servlet.jsp.JspException is thrown.
+     * @testStrategy: Validate that if the XPath expression provided to select of the when action fails to evaluated an
+     * instance of jakarta.servlet.jsp.JspException is thrown.
      */
     public void negativeCWOWhenSelectFailureTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeCWOWhenSelectFailureTest");

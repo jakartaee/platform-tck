@@ -36,16 +36,12 @@ import java.io.PrintWriter;
  * ServletSecTestServlet uses DD for configuring its security constraints.
  */
 
-@DeclareRoles({"Administrator", "Manager", "Employee"})
-@ServletSecurity(
-        value = @HttpConstraint(EmptyRoleSemantic.DENY),
-        httpMethodConstraints = {
-            @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-            @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
-        })
-@WebServlet(
-        name = "ServletSecAnnoTestLogicalName",
-        urlPatterns = {"/ServletSecAnnoTest"})
+@DeclareRoles({ "Administrator", "Manager", "Employee" })
+@ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.DENY), httpMethodConstraints = {
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")
+})
+@WebServlet(name = "ServletSecAnnoTestLogicalName", urlPatterns = { "/ServletSecAnnoTest" })
 public class ServletSecAnnoTestServlet extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

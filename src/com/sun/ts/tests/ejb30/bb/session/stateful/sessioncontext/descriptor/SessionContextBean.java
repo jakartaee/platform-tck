@@ -48,16 +48,19 @@ public class SessionContextBean extends SessionContextBeanBase
         return sessionContext;
     }
 
-    public SessionContextBean() {}
+    public SessionContextBean() {
+    }
 
     @Remove(retainIfException = false)
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
     // optional ejbCreate() method because this bean has RemoteHome
     // it may throw any application exception, and possibly CreateException
     //////////////////////////////////////////////////////////////////////
-    public void ejbCreate() throws TestFailedException {}
+    public void ejbCreate() throws TestFailedException {
+    }
 
     @Init
     public void create() {

@@ -33,15 +33,11 @@ import jakarta.jms.MessageListener;
 // This MDB implements jakarta.jms.MessageListener interface, so no need to
 // use annotation element messageListenerInterface, nor descritpor element
 // messaging-type
-@MessageDriven(
-        name = "ActivationConfigBean",
-        activationConfig = {
-            @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue"),
-            @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Dups-ok-acknowledge"),
-            @ActivationConfigProperty(
-                    propertyName = "messageSelector",
-                    propertyValue = "COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum < 1")
-        })
+@MessageDriven(name = "ActivationConfigBean", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue"),
+        @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Dups-ok-acknowledge"),
+        @ActivationConfigProperty(propertyName = "messageSelector", propertyValue = "COM_SUN_JMS_TESTNAME='test1' AND TestCaseNum < 1")
+})
 @TransactionManagement(TransactionManagementType.BEAN)
 public class ActivationConfigBean extends ActivationConfigBeanBase implements MessageListener {
     @Resource(name = "mdc")

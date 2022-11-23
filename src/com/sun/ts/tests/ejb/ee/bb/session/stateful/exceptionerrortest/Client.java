@@ -80,9 +80,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:632.1
      *
-     * @test_Strategy: Create a stateful Session Bean (NotSupported). Call a
-     * business method which throws an application exception. Verify application
-     * exception received in client.
+     * @test_Strategy: Create a stateful Session Bean (NotSupported). Call a business method which throws an application
+     * exception. Verify application exception received in client.
      */
 
     public void test1() throws Fault {
@@ -100,7 +99,8 @@ public class Client extends EETest {
                 if (!e.getMessage().equals("an application exception")) {
                     pass = false;
                     TestUtil.logErr("application exception message not same");
-                } else TestUtil.logMsg("application exception message same");
+                } else
+                    TestUtil.logMsg("application exception message same");
             } catch (Exception e) {
                 TestUtil.logErr("unexpected exception: " + e);
                 TestUtil.printStackTrace(e);
@@ -110,8 +110,10 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         }
-        if (!pass) throw new Fault("test1 failed");
-        else TestUtil.logMsg("test1 passed");
+        if (!pass)
+            throw new Fault("test1 failed");
+        else
+            TestUtil.logMsg("test1 passed");
     }
 
     /*
@@ -119,10 +121,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:633.2; EJB:SPEC:633.3
      *
-     * @test_Strategy: Create a stateful Session Bean (NotSupported). Deploy it on
-     * the J2EE server. Call a business method which throws an unchecked
-     * exception. Verify all the instance was discarded and RemoteException is
-     * thrown.
+     * @test_Strategy: Create a stateful Session Bean (NotSupported). Deploy it on the J2EE server. Call a business method
+     * which throws an unchecked exception. Verify all the instance was discarded and RemoteException is thrown.
      */
 
     public void test2() throws Fault {
@@ -153,8 +153,10 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         }
-        if (!pass) throw new Fault("test2 failed");
-        else TestUtil.logMsg("test2 passed");
+        if (!pass)
+            throw new Fault("test2 failed");
+        else
+            TestUtil.logMsg("test2 passed");
     }
 
     /*
@@ -162,8 +164,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:11
      *
-     * @test_Strategy: Create a stateful Session Bean (NotSupported). Deploy it on
-     * the J2EE server. Upon creation in ejbCreate throw a CreateException
+     * @test_Strategy: Create a stateful Session Bean (NotSupported). Deploy it on the J2EE server. Upon creation in
+     * ejbCreate throw a CreateException
      */
 
     public void test4() throws Fault {
@@ -180,7 +182,8 @@ public class Client extends EETest {
                 if (!e.getMessage().equals("a create exception")) {
                     pass = false;
                     TestUtil.logErr("create exception message not same");
-                } else TestUtil.logErr("create exception message same");
+                } else
+                    TestUtil.logErr("create exception message same");
             } catch (Exception e) {
                 TestUtil.logErr("unexpected exception: " + e);
                 TestUtil.printStackTrace(e);
@@ -202,8 +205,10 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         }
-        if (!pass) throw new Fault("test4 failed");
-        else TestUtil.logMsg("test4 passed");
+        if (!pass)
+            throw new Fault("test4 failed");
+        else
+            TestUtil.logMsg("test4 passed");
     }
 
     /*
@@ -211,9 +216,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:633.2; EJB:SPEC:633.3
      *
-     * @test_Strategy: Create a stateful session bean. Deploy it on the J2EE
-     * server. Call a business method which throws an unchecked exception. Verify
-     * all the instance was discarded and RemoteException is thrown.
+     * @test_Strategy: Create a stateful session bean. Deploy it on the J2EE server. Call a business method which throws an
+     * unchecked exception. Verify all the instance was discarded and RemoteException is thrown.
      *
      */
 
@@ -245,8 +249,10 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test5 failed", e);
         }
-        if (!pass) throw new Fault("test5 failed");
-        else TestUtil.logMsg("test5 passed");
+        if (!pass)
+            throw new Fault("test5 failed");
+        else
+            TestUtil.logMsg("test5 passed");
     }
 
     /*
@@ -254,9 +260,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:633.2; EJB:SPEC:633.3
      *
-     * @test_Strategy: Create a stateful Session Bean (NotSupported). Deploy it on
-     * the J2EE server. Call a business method which throws an logError. Verify an
-     * exception was thrown and the instance was discarded.
+     * @test_Strategy: Create a stateful Session Bean (NotSupported). Deploy it on the J2EE server. Call a business method
+     * which throws an logError. Verify an exception was thrown and the instance was discarded.
      */
 
     public void test6() throws Fault {
@@ -287,8 +292,10 @@ public class Client extends EETest {
         } catch (Exception e) {
             throw new Fault("test6 failed", e);
         }
-        if (!pass) throw new Fault("test6 failed");
-        else TestUtil.logMsg("test6 passed");
+        if (!pass)
+            throw new Fault("test6 failed");
+        else
+            TestUtil.logMsg("test6 passed");
     }
 
     public void cleanup() throws Fault {

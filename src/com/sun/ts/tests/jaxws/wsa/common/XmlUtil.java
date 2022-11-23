@@ -43,31 +43,36 @@ public class XmlUtil {
 
     public static String getPrefix(String s) {
         int i = s.indexOf(':');
-        if (i == -1) return null;
+        if (i == -1)
+            return null;
         return s.substring(0, i);
     }
 
     public static String getLocalPart(String s) {
         int i = s.indexOf(':');
-        if (i == -1) return s;
+        if (i == -1)
+            return s;
         return s.substring(i + 1);
     }
 
     public static String getAttributeOrNull(Element e, String name) {
         Attr a = e.getAttributeNode(name);
-        if (a == null) return null;
+        if (a == null)
+            return null;
         return a.getValue();
     }
 
     public static String getAttributeNSOrNull(Element e, String name, String nsURI) {
         Attr a = e.getAttributeNodeNS(nsURI, name);
-        if (a == null) return null;
+        if (a == null)
+            return null;
         return a.getValue();
     }
 
     public static String getAttributeNSOrNull(Element e, QName name) {
         Attr a = e.getAttributeNodeNS(name.getNamespaceURI(), name.getLocalPart());
-        if (a == null) return null;
+        if (a == null)
+            return null;
         return a.getValue();
     }
 
@@ -92,17 +97,22 @@ public class XmlUtil {
         StringBuffer sb = new StringBuffer();
 
         NodeList children = node.getChildNodes();
-        if (children.getLength() == 0) return null;
+        if (children.getLength() == 0)
+            return null;
 
         for (int i = 0; i < children.getLength(); ++i) {
             Node n = children.item(i);
 
-            if (n instanceof Text) sb.append(n.getNodeValue());
+            if (n instanceof Text)
+                sb.append(n.getNodeValue());
             else if (n instanceof EntityReference) {
                 String s = getTextForNode(n);
-                if (s == null) return null;
-                else sb.append(s);
-            } else return null;
+                if (s == null)
+                    return null;
+                else
+                    sb.append(s);
+            } else
+                return null;
         }
 
         return sb.toString();

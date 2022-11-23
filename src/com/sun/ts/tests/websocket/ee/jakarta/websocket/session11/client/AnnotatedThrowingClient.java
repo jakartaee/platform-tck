@@ -47,40 +47,40 @@ public class AnnotatedThrowingClient extends AnnotatedClientEndpoint<String> {
     @OnOpen
     public void onOpen(Session session, EndpointConfig config) {
         switch (typeEnum) {
-            case PONG:
+        case PONG:
+            session.addMessageHandler(PongMessage.class, new PongMessageHandler(clientEndpoint));
+            try {
                 session.addMessageHandler(PongMessage.class, new PongMessageHandler(clientEndpoint));
-                try {
-                    session.addMessageHandler(PongMessage.class, new PongMessageHandler(clientEndpoint));
-                } catch (RuntimeException e) {
-                    thrown = e;
-                }
-                break;
-            case READER:
+            } catch (RuntimeException e) {
+                thrown = e;
+            }
+            break;
+        case READER:
+            session.addMessageHandler(Reader.class, new ReaderMessageHandler(clientEndpoint));
+            try {
                 session.addMessageHandler(Reader.class, new ReaderMessageHandler(clientEndpoint));
-                try {
-                    session.addMessageHandler(Reader.class, new ReaderMessageHandler(clientEndpoint));
-                } catch (RuntimeException e) {
-                    thrown = e;
-                }
-                break;
-            case INPUTSTREAM:
+            } catch (RuntimeException e) {
+                thrown = e;
+            }
+            break;
+        case INPUTSTREAM:
+            session.addMessageHandler(InputStream.class, new InputStreamMessageHandler(clientEndpoint));
+            try {
                 session.addMessageHandler(InputStream.class, new InputStreamMessageHandler(clientEndpoint));
-                try {
-                    session.addMessageHandler(InputStream.class, new InputStreamMessageHandler(clientEndpoint));
-                } catch (RuntimeException e) {
-                    thrown = e;
-                }
-                break;
-            case STRING_PARTIAL:
+            } catch (RuntimeException e) {
+                thrown = e;
+            }
+            break;
+        case STRING_PARTIAL:
+            session.addMessageHandler(String.class, new StringPartialMessageHandler(clientEndpoint));
+            try {
                 session.addMessageHandler(String.class, new StringPartialMessageHandler(clientEndpoint));
-                try {
-                    session.addMessageHandler(String.class, new StringPartialMessageHandler(clientEndpoint));
-                } catch (RuntimeException e) {
-                    thrown = e;
-                }
-                break;
-            default:
-                break;
+            } catch (RuntimeException e) {
+                thrown = e;
+            }
+            break;
+        default:
+            break;
         }
         super.onOpen(session, config);
     }

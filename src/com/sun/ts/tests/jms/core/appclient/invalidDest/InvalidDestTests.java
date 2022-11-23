@@ -66,10 +66,9 @@ public class InvalidDestTests extends ServiceEETest {
     /*
      * setup() is called before each test
      *
-     * Creates Administrator object and deletes all previous Destinations.
-     * Individual tests create the JmsTool object with one default Queue and/or
-     * Topic Connection, as well as a default Queue and Topic. Tests that require
-     * multiple Destinations create the extras within the test
+     * Creates Administrator object and deletes all previous Destinations. Individual tests create the JmsTool object with
+     * one default Queue and/or Topic Connection, as well as a default Queue and Topic. Tests that require multiple
+     * Destinations create the extras within the test
      *
      *
      * @class.setup_props: jms_timeout; user; password; platform.mode;
@@ -110,25 +109,24 @@ public class InvalidDestTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /* Tests */
     /*
      * @testName: invalidDestinationTests
      *
-     * @assertion_ids: JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510;
-     * JMS:JAVADOC:638; JMS:JAVADOC:639; JMS:JAVADOC:641; JMS:JAVADOC:643;
-     * JMS:JAVADOC:644; JMS:JAVADOC:646; JMS:JAVADOC:647; JMS:JAVADOC:649;
+     * @assertion_ids: JMS:JAVADOC:502; JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:638; JMS:JAVADOC:639; JMS:JAVADOC:641;
+     * JMS:JAVADOC:643; JMS:JAVADOC:644; JMS:JAVADOC:646; JMS:JAVADOC:647; JMS:JAVADOC:649;
      *
-     * @test_Strategy: 1. Create a Session with Topic Configuration, using a null
-     * Destination/Topic to verify InvalidDestinationException is thrown with
-     * various methods
+     * @test_Strategy: 1. Create a Session with Topic Configuration, using a null Destination/Topic to verify
+     * InvalidDestinationException is thrown with various methods
      */
 
     public void invalidDestinationTests() throws Fault {
@@ -189,7 +187,8 @@ public class InvalidDestTests extends ServiceEETest {
                 logErr("Error closing new Connection", ex);
             }
 
-            if (pass != true) throw new Fault("invalidDestinationTests");
+            if (pass != true)
+                throw new Fault("invalidDestinationTests");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);

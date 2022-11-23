@@ -28,8 +28,10 @@ import jakarta.ejb.SessionBean;
 // @Stateful(name="SessionBeanLocalBean")
 public class SessionBeanLocalBean extends SessionBeanLocalBeanBase implements BusinessLocalIF1, SessionBean {
 
-    public SessionBeanLocalBean() {}
+    public SessionBeanLocalBean() {
+    }
 
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 }

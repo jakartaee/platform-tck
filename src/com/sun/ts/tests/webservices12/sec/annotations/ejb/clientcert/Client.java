@@ -85,8 +85,8 @@ public class Client extends EETest {
     /*
      * @testName: sayHelloProtected
      *
-     * @assertion_ids: JAXWS:SPEC:4005; JAXWS:SPEC:7000; JAXWS:SPEC:7010;
-     * JAXWS:SPEC:7011; JavaEE:SPEC:10087; WS4EE:SPEC:9000
+     * @assertion_ids: JAXWS:SPEC:4005; JAXWS:SPEC:7000; JAXWS:SPEC:7010; JAXWS:SPEC:7011; JavaEE:SPEC:10087;
+     * WS4EE:SPEC:9000
      *
      * @test_Strategy:
      */
@@ -115,8 +115,7 @@ public class Client extends EETest {
     /*
      * @testName: sayHelloPermitAll
      *
-     * @assertion_ids: JAXWS:SPEC:7010; JAXWS:SPEC:7011; JavaEE:SPEC:10087;
-     * WS4EE:SPEC:9000
+     * @assertion_ids: JAXWS:SPEC:7010; JAXWS:SPEC:7011; JavaEE:SPEC:10087; WS4EE:SPEC:9000
      *
      * @test_Strategy:
      */
@@ -145,8 +144,7 @@ public class Client extends EETest {
     /*
      * @testName: sayHelloDenyAll
      *
-     * @assertion_ids: JAXWS:SPEC:6005; JAXWS:SPEC:7010; JAXWS:SPEC:7011;
-     * JavaEE:SPEC:10087; WS4EE:SPEC:9000
+     * @assertion_ids: JAXWS:SPEC:6005; JAXWS:SPEC:7010; JAXWS:SPEC:7011; JavaEE:SPEC:10087; WS4EE:SPEC:9000
      *
      * @test_Strategy:
      */

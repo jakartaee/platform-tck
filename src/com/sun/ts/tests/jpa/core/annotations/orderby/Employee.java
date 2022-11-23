@@ -51,7 +51,8 @@ public class Employee implements java.io.Serializable {
 
     private Insurance insurance;
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(int id, String firstName, String lastName, float salary) {
         this.id = id;

@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 
 public class URLClient extends AbstractUrlClient {
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -59,10 +57,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that the container properly creates a JSP Context
-     * wrapper, an instance of PageContext, for the tag file. Validate that this
-     * wrapper is not the same JspContext as that of the invoking page (this
-     * includes validate of the jspContext scripting variable).
+     * @test_Strategy: Validate that the container properly creates a JSP Context wrapper, an instance of PageContext, for
+     * the tag file. Validate that this wrapper is not the same JspContext as that of the invoking page (this includes
+     * validate of the jspContext scripting variable).
      */
     public void jspTagSemanticsJspContextWrapperTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -77,13 +74,11 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate the following: - the container presents the Tag
-     * file with a clean page context. - the container provides the Tag file
-     * access with to the same request, session, and application scope as that of
-     * the invoking context. - Any changes to the page scope in the wrapper
-     * context are not reflected in the invoking context. - Any changes to the
-     * request, session, or application scopes of the wrapping context are
-     * synchronized with the invoking context.
+     * @test_Strategy: Validate the following: - the container presents the Tag file with a clean page context. - the
+     * container provides the Tag file access with to the same request, session, and application scope as that of the
+     * invoking context. - Any changes to the page scope in the wrapper context are not reflected in the invoking context. -
+     * Any changes to the request, session, or application scopes of the wrapping context are synchronized with the invoking
+     * context.
      */
     public void jspTagSemanticsJspContextWrapperScopesTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_tagfile_semantics_web/JspTagSemanticsScopesTest.jsp HTTP/1.1");
@@ -97,10 +92,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that a page scoped variable is created for each
-     * declared and specified attribute defined by the tag. The variable name must
-     * be the same as the attribute name and the variable value must be the same
-     * as provided at invocation time.
+     * @test_Strategy: Validate that a page scoped variable is created for each declared and specified attribute defined by
+     * the tag. The variable name must be the same as the attribute name and the variable value must be the same as provided
+     * at invocation time.
      */
     public void jspTagSemanticsDeclaredAttributesTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -115,9 +109,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that if an attribute is declared as optional, and
-     * that attribute is not specified at invocation time, no page scoped variable
-     * is created.
+     * @test_Strategy: Validate that if an attribute is declared as optional, and that attribute is not specified at
+     * invocation time, no page scoped variable is created.
      */
     public void jspTagSemanticsAttributeNotSpecifiedTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -147,9 +140,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Upon return from the RequestDispather.forward method, the
-     * generated tag handler must stop processing of the tag file and throw
-     * java.servlet.jsp.SkipPageException.
+     * @test_Strategy: Upon return from the RequestDispather.forward method, the generated tag handler must stop processing
+     * of the tag file and throw java.servlet.jsp.SkipPageException.
      */
 
     public void semanticsJspForwardTest() throws Fault {
@@ -165,9 +157,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: invokes a simple tag handler which throws SkipPageException
-     * in the doTag method, the generated tag handler must terminate and
-     * SkipPageException must be thrown.
+     * @test_Strategy: invokes a simple tag handler which throws SkipPageException in the doTag method, the generated tag
+     * handler must terminate and SkipPageException must be thrown.
      */
 
     public void semanticsInvokeSimpleTagTest() throws Fault {

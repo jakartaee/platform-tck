@@ -30,8 +30,8 @@ import jakarta.ejb.Stateless;
 import jakarta.interceptor.Interceptors;
 
 @Stateless(name = "Callback2Bean")
-@Remote({Callback2IF.class})
-@Interceptors({StatelessCallbackListener2.class})
+@Remote({ Callback2IF.class })
+@Interceptors({ StatelessCallbackListener2.class })
 public class Callback2Bean extends Callback2BeanBase implements Callback2IF {
     private boolean postConstructOrPreDestroyCalled;
 

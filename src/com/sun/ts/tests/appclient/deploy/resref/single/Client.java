@@ -40,8 +40,7 @@ public class Client extends EETest {
     }
 
     /**
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     *                     webServerHost; webServerPort;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; webServerHost; webServerPort;
      */
     public void setup(String[] args, Properties props) throws Fault {
         this.props = props;
@@ -58,12 +57,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:10125
      *
-     * @test_Strategy: Package an application client declaring a resource
-     *                 reference for a javax.sql.Datasource.
+     * @test_Strategy: Package an application client declaring a resource reference for a javax.sql.Datasource.
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup the datasource. - We can use it to open a DB
-     *                 connection.
+     * Check that: - We can deploy the application. - We can lookup the datasource. - We can use it to open a DB connection.
      */
     public void testDatasource() throws Fault {
         boolean pass;
@@ -84,12 +80,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:10125
      *
-     * @test_Strategy: Package an application client declaring a resource
-     *                 reference for a java.net.URL.
+     * @test_Strategy: Package an application client declaring a resource reference for a java.net.URL.
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup the URL. - We can use this URL factory to open a
-     *                 connection to a HTML page bundled in the application.
+     * Check that: - We can deploy the application. - We can lookup the URL. - We can use this URL factory to open a
+     * connection to a HTML page bundled in the application.
      */
     public void testURL() throws Fault {
         boolean pass;
@@ -110,11 +104,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:10125
      *
-     * @test_Strategy: Package an application client declaring a resource
-     *                 reference for a jakarta.jms.QueueConnectionFactory.
+     * @test_Strategy: Package an application client declaring a resource reference for a
+     * jakarta.jms.QueueConnectionFactory.
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup the JMS Queue Connection Factory.
+     * Check that: - We can deploy the application. - We can lookup the JMS Queue Connection Factory.
      */
     public void testQueue() throws Fault {
         boolean pass;
@@ -135,11 +128,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:10125
      *
-     * @test_Strategy: Package an application client declaring a resource
-     *                 reference for a jakarta.jms.TopicConnectionFactory.
+     * @test_Strategy: Package an application client declaring a resource reference for a
+     * jakarta.jms.TopicConnectionFactory.
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup the JMS Topic Connection Factory.
+     * Check that: - We can deploy the application. - We can lookup the JMS Topic Connection Factory.
      */
     public void testTopic() throws Fault {
         boolean pass;
@@ -160,12 +152,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:10125
      *
-     * @test_Strategy: Package an application client declaring a resource
-     *                 reference for all the standard resource manager connection
-     *                 factory types.
+     * @test_Strategy: Package an application client declaring a resource reference for all the standard resource manager
+     * connection factory types.
      *
-     *                 Check that: - We can deploy the application. - We can
-     *                 lookup all the declared resource factories.
+     * Check that: - We can deploy the application. - We can lookup all the declared resource factories.
      */
     public void testAll() throws Fault {
         try {

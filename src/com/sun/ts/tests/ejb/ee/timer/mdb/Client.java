@@ -72,9 +72,8 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * user; password; harness.log.traceflag; harness.log.port; ejb_timeout;
-     * ejb_wait;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; user; password; harness.log.traceflag;
+     * harness.log.port; ejb_timeout; ejb_wait;
      */
     public void setup(String[] args, Properties p) throws Fault {
         logMsg("Setup tests");
@@ -105,18 +104,15 @@ public class Client extends EETest {
     /*
      * @testName: getInfoStrAndCancelSingleEventTest
      *
-     * @assertion_ids: EJB:SPEC:832.1; EJB:SPEC:832.3; EJB:SPEC:834; EJB:SPEC:835;
-     * EJB:SPEC:836; EJB:SPEC:837.1; EJB:SPEC:839; EJB:SPEC:846; EJB:SPEC:10506;
-     * EJB:JAVADOC:27; EJB:JAVADOC:214; EJB:JAVADOC:197; EJB:JAVADOC:210;
+     * @assertion_ids: EJB:SPEC:832.1; EJB:SPEC:832.3; EJB:SPEC:834; EJB:SPEC:835; EJB:SPEC:836; EJB:SPEC:837.1;
+     * EJB:SPEC:839; EJB:SPEC:846; EJB:SPEC:10506; EJB:JAVADOC:27; EJB:JAVADOC:214; EJB:JAVADOC:197; EJB:JAVADOC:210;
      * EJB:JAVADOC:198; EJB:JAVADOC:190
      *
-     * @test_Strategy: Create a message-driven bean implementing the TimedObject
-     * interface. Create a single-event timer for the bean using a String for the
-     * info parameter. Call the timer's getInfo() method. Verify that the info
-     * returned is identical to that used to create the timer. Call the timer's
-     * cancel() method. Verify that no exception occurs. API tested:
-     * EJBContext.getTimerService() TimerService.createTimer(long, Serializable)
-     * Timer.getHandle() TimerHandle.getTimer() Timer.getInfo() Timer.cancel()
+     * @test_Strategy: Create a message-driven bean implementing the TimedObject interface. Create a single-event timer for
+     * the bean using a String for the info parameter. Call the timer's getInfo() method. Verify that the info returned is
+     * identical to that used to create the timer. Call the timer's cancel() method. Verify that no exception occurs. API
+     * tested: EJBContext.getTimerService() TimerService.createTimer(long, Serializable) Timer.getHandle()
+     * TimerHandle.getTimer() Timer.getInfo() Timer.cancel()
      */
     public void getInfoStrAndCancelSingleEventTest() throws Fault {
         try {
@@ -132,7 +128,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("getInfoStrAndCancelSingleEventTest failed");
-            } else logMsg("getInfoStrAndCancelSingleEventTest passed");
+            } else
+                logMsg("getInfoStrAndCancelSingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("getInfoStrAndCancelSingleEventTest failed", e);
         } finally {
@@ -147,17 +144,14 @@ public class Client extends EETest {
     /*
      * @testName: getInfoClassAndCancelSingleEventTest
      *
-     * @assertion_ids: EJB:SPEC:832.1; EJB:SPEC:832.3; EJB:SPEC:834; EJB:SPEC:835;
-     * EJB:SPEC:836; EJB:SPEC:837.1; EJB:SPEC:839; EJB:SPEC:846; EJB:SPEC:10506;
+     * @assertion_ids: EJB:SPEC:832.1; EJB:SPEC:832.3; EJB:SPEC:834; EJB:SPEC:835; EJB:SPEC:836; EJB:SPEC:837.1;
+     * EJB:SPEC:839; EJB:SPEC:846; EJB:SPEC:10506;
      *
-     * @test_Strategy: Create a message-driven bean implementing the TimedObject
-     * interface. Create a single-event timer for the bean using an
-     * application-specific class for the info parameter. Call the timer's
-     * getInfo() method. Verify that the object returned is identical to that used
-     * to create the timer. Call the timer's cancel() method. Verify that no
-     * exception occurs. API tested: TimerService.createTimer(long, long,
-     * Serializable) Timer.getHandle() TimerHandle.getTimer() Timer.getInfo()
-     * Timer.cancel()
+     * @test_Strategy: Create a message-driven bean implementing the TimedObject interface. Create a single-event timer for
+     * the bean using an application-specific class for the info parameter. Call the timer's getInfo() method. Verify that
+     * the object returned is identical to that used to create the timer. Call the timer's cancel() method. Verify that no
+     * exception occurs. API tested: TimerService.createTimer(long, long, Serializable) Timer.getHandle()
+     * TimerHandle.getTimer() Timer.getInfo() Timer.cancel()
      */
     public void getInfoClassAndCancelSingleEventTest() throws Fault {
         try {
@@ -173,7 +167,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("getInfoClassAndCancelSingleEventTest failed");
-            } else logMsg("getInfoClassAndCancelSingleEventTest passed");
+            } else
+                logMsg("getInfoClassAndCancelSingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("getInfoClassAndCancelSingleEventTest failed", e);
         } finally {
@@ -190,11 +185,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:858; EJB:JAVADOC:189; EJB:SPEC:10506
      *
-     * @test_Strategy: Create a bean implementing the TimedObject interface. In
-     * the ejbTimeout method, invoke a JMS send. Create a single-event timer. In
-     * the application client, block on a JMS receive for a period longer than the
-     * timer's duration. Verify that the message from ejbTimeout was received. API
-     * tested: TimerService.createTimer(long, Serializable) Timer.getHandle()
+     * @test_Strategy: Create a bean implementing the TimedObject interface. In the ejbTimeout method, invoke a JMS send.
+     * Create a single-event timer. In the application client, block on a JMS receive for a period longer than the timer's
+     * duration. Verify that the message from ejbTimeout was received. API tested: TimerService.createTimer(long,
+     * Serializable) Timer.getHandle()
      */
     public void verifyTimeoutCallSingleEventTest() throws Fault {
 
@@ -211,7 +205,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("verifyTimeoutCallSingleEventTest failed");
-            } else logMsg("verifyTimeoutCallSingleEventTest passed");
+            } else
+                logMsg("verifyTimeoutCallSingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("verifyTimeoutCallSingleEventTest failed", e);
         } finally {
@@ -228,12 +223,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:827; EJB:JAVADOC:189; EJB:SPEC:10506
      *
-     * @test_Strategy: Create a bean implementing the TimedObject interface with a
-     * run-as security identity. Create a bean with a checked method that permits
-     * the identity. In the ejbTimeout method, call the checked method. Report the
-     * results of the call with a JMS send(). Create a single-event timer. In the
-     * application client, block on a JMS receive for a period longer than the
-     * timer's duration. Check the result in the message. API tested:
+     * @test_Strategy: Create a bean implementing the TimedObject interface with a run-as security identity. Create a bean
+     * with a checked method that permits the identity. In the ejbTimeout method, call the checked method. Report the
+     * results of the call with a JMS send(). Create a single-event timer. In the application client, block on a JMS receive
+     * for a period longer than the timer's duration. Check the result in the message. API tested:
      * TimerService.createTimer(long, Serializable) Timer.getHandle()
      */
     public void checkedMethodAccessSingleEventTest() throws Fault {
@@ -251,7 +244,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("checkedMethodAccessSingleEventTest failed");
-            } else logMsg("checkedMethodAccessSingleEventTest passed");
+            } else
+                logMsg("checkedMethodAccessSingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("checkedMethodAccessSingleEventTest failed", e);
         } finally {
@@ -268,17 +262,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:848; EJB:JAVADOC:230; EJB:SPEC:10506
      *
-     * @test_Strategy: Create a message-driven bean implementing the TimedObject
-     * interface. In the ejbTimeout method, execute a JMS send(). Create an entity
-     * bean with a flag that is set with a method that uses the RequiresNew
-     * transaction attribute. The flag is initialized unset. Create a single-event
-     * timer within a transaction context. Mark the transaction for rollback. When
-     * the transaction is reinvoked, check the value of the flag to verify that
-     * the rollback occurred as expected. In the application client, block on a
-     * JMS receive for a period longer than the timer's duration. Verify that the
-     * message from ejbTimeout was not received. Verify that the timer no longer
-     * exists. API tested: TimerService.createTimer(long, Serializable)
-     * TimerService.getTimers()
+     * @test_Strategy: Create a message-driven bean implementing the TimedObject interface. In the ejbTimeout method,
+     * execute a JMS send(). Create an entity bean with a flag that is set with a method that uses the RequiresNew
+     * transaction attribute. The flag is initialized unset. Create a single-event timer within a transaction context. Mark
+     * the transaction for rollback. When the transaction is reinvoked, check the value of the flag to verify that the
+     * rollback occurred as expected. In the application client, block on a JMS receive for a period longer than the timer's
+     * duration. Verify that the message from ejbTimeout was not received. Verify that the timer no longer exists. API
+     * tested: TimerService.createTimer(long, Serializable) TimerService.getTimers()
      */
     public void rollbackTxOnCreationSingleEventTest() throws Fault {
 
@@ -308,8 +298,10 @@ public class Client extends EETest {
             sendMdbMessage(qSender, 0, "verifyTimerIsGone");
             message = TimerImpl.getMessage(qReceiver, messageTimeout);
             testResult = message.equals(TimerImpl.NOTIMER_FOUND);
-            if (!testResult) throw new Fault("rollbackTxOnCreationSingleEventTest failed");
-            else logMsg("rollbackTxOnCreationSingleEventTest passed");
+            if (!testResult)
+                throw new Fault("rollbackTxOnCreationSingleEventTest failed");
+            else
+                logMsg("rollbackTxOnCreationSingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("rollbackTxOnCreationSingleEventTest failed", e);
         } finally {
@@ -326,17 +318,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:850; EJB:JAVADOC:189; EJB:SPEC:10506
      *
-     * @test_Strategy: Create a message-driven cmt bean implementing the
-     * TimedObject interface with the transaction attribute of the ejbTimeout
-     * method set to RequiresNew. Create an entity bean to store a flag to
-     * indicate whether the ejbTimeout method has been called. The bean has remote
-     * methods with the transaction attribute RequiresNew for getting and setting
-     * the flag. Create a single-event timer and unset the flag. In the ejbTimeout
-     * method, get the value of the flag. If the flag is not set, set it (in a
-     * separate transaction) and mark the transaction for rollback. If the flag is
-     * set, send a JMS message. In the application client, block on a JMS receive
-     * for a period longer than the timer's duration. Verify that the message from
-     * ejbTimeout was received. API tested: TimerService.createTimer(long,
+     * @test_Strategy: Create a message-driven cmt bean implementing the TimedObject interface with the transaction
+     * attribute of the ejbTimeout method set to RequiresNew. Create an entity bean to store a flag to indicate whether the
+     * ejbTimeout method has been called. The bean has remote methods with the transaction attribute RequiresNew for getting
+     * and setting the flag. Create a single-event timer and unset the flag. In the ejbTimeout method, get the value of the
+     * flag. If the flag is not set, set it (in a separate transaction) and mark the transaction for rollback. If the flag
+     * is set, send a JMS message. In the application client, block on a JMS receive for a period longer than the timer's
+     * duration. Verify that the message from ejbTimeout was received. API tested: TimerService.createTimer(long,
      * Serializable);
      */
     public void ejbTimeoutRetrySingleEventTest() throws Fault {
@@ -354,7 +342,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("ejbTimeoutRetrySingleEventTest failed");
-            } else logMsg("ejbTimeoutRetrySingleEventTest passed");
+            } else
+                logMsg("ejbTimeoutRetrySingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("ejbTimeoutRetrySingleEventTest failed", e);
         } finally {
@@ -369,20 +358,15 @@ public class Client extends EETest {
     /*
      * @testName: rollbackTxInEjbTimeoutSingleEventTest
      *
-     * @assertion_ids: EJB:SPEC:864.1; EJB:SPEC:864.2; EJB:JAVADOC:189;
-     * EJB:SPEC:10506
+     * @assertion_ids: EJB:SPEC:864.1; EJB:SPEC:864.2; EJB:JAVADOC:189; EJB:SPEC:10506
      *
-     * @test_Strategy: Create a message-driven cmt bean implementing the
-     * TimedObject interface. Create an entity bean with two flags; one flag is
-     * set with a Requires method, the other with RequiresNew. Both flags are
-     * initialized unset. Create a single-event timer. In a transaction context in
-     * the ejbTimeout method, set both flags, and cause the transaction to be
-     * rolled back. When the ejbTimeout method is retried, verify that the
-     * transaction has been rolled back if the RequiresNew flag is set and the
-     * Requires flag is unset. In the application client, block on a JMS receive
-     * for a period longer than the timer's duration. Verify that the correct
-     * message from ejbTimeout was received. API tested:
-     * TimerService.createTimer(long, Serializable);
+     * @test_Strategy: Create a message-driven cmt bean implementing the TimedObject interface. Create an entity bean with
+     * two flags; one flag is set with a Requires method, the other with RequiresNew. Both flags are initialized unset.
+     * Create a single-event timer. In a transaction context in the ejbTimeout method, set both flags, and cause the
+     * transaction to be rolled back. When the ejbTimeout method is retried, verify that the transaction has been rolled
+     * back if the RequiresNew flag is set and the Requires flag is unset. In the application client, block on a JMS receive
+     * for a period longer than the timer's duration. Verify that the correct message from ejbTimeout was received. API
+     * tested: TimerService.createTimer(long, Serializable);
      */
     public void rollbackTxInEjbTimeoutSingleEventTest() throws Fault {
 
@@ -399,7 +383,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("rollbackTxInEjbTimeoutSingleEventTest failed");
-            } else logMsg("rollbackTxInEjbTimeoutSingleEventTest passed");
+            } else
+                logMsg("rollbackTxInEjbTimeoutSingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("rollbackTxInEjbTimeoutSingleEventTest failed", e);
         } finally {
@@ -416,10 +401,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:852.1; EJB:SPEC:10506
      *
-     * @test_Strategy: Create a message-driven bean implementing the TimedObject
-     * interface. Create a single-event timer and get the timer handle. Verify
-     * that the timer handle is serializable. API tested:
-     * TimerService.createTimer(long, Serializable) Timer.getHandle()
+     * @test_Strategy: Create a message-driven bean implementing the TimedObject interface. Create a single-event timer and
+     * get the timer handle. Verify that the timer handle is serializable. API tested: TimerService.createTimer(long,
+     * Serializable) Timer.getHandle()
      */
     public void checkSerializationSingleEventTest() throws Fault {
 
@@ -436,7 +420,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("checkSerializationSingleEventTest failed");
-            } else logMsg("checkSerializationSingleEventTest passed");
+            } else
+                logMsg("checkSerializationSingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("checkSerializationSingleEventTest failed", e);
         } finally {
@@ -451,15 +436,12 @@ public class Client extends EETest {
     /*
      * @testName: checkSerializationInEjbTimeoutSingleEventTest
      *
-     * @assertion_ids: EJB:SPEC:845; EJB:SPEC:847; EJB:SPEC:852.1; EJB:SPEC:852.2;
-     * EJB:JAVADOC:189; EJB:SPEC:10506
+     * @assertion_ids: EJB:SPEC:845; EJB:SPEC:847; EJB:SPEC:852.1; EJB:SPEC:852.2; EJB:JAVADOC:189; EJB:SPEC:10506
      *
-     * @test_Strategy: Create a message-driven bean implementing the TimedObject
-     * interface. Create a single-event timer. In the ejbTimeout method, get the
-     * timer handle. Serialize and deserialize the handle. Use the handle to get a
-     * reference to a timer, and verify that the timer is identical to the one
-     * created. API tested: TimerService.createTimer(long, Serializable)
-     * Timer.getHandle() Timer.equals(Timer)
+     * @test_Strategy: Create a message-driven bean implementing the TimedObject interface. Create a single-event timer. In
+     * the ejbTimeout method, get the timer handle. Serialize and deserialize the handle. Use the handle to get a reference
+     * to a timer, and verify that the timer is identical to the one created. API tested: TimerService.createTimer(long,
+     * Serializable) Timer.getHandle() Timer.equals(Timer)
      */
     public void checkSerializationInEjbTimeoutSingleEventTest() throws Fault {
 
@@ -476,7 +458,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("checkSerializationInEjbTimeoutSingleEventTest failed");
-            } else logMsg("checkSerializationInEjbTimeoutSingleEventTest passed");
+            } else
+                logMsg("checkSerializationInEjbTimeoutSingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("checkSerializationInEjbTimeoutSingleEventTest failed", e);
         } finally {
@@ -493,17 +476,13 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:849; EJB:JAVADOC:189; EJB:SPEC:10506
      *
-     * @test_Strategy: Create a message-driven bean implementing the TimedObject
-     * interface. In the ejbTimeout method, send a JMS message. Create an entity
-     * bean with a flag that is set with a method that uses the RequiresNew
-     * transaction attribute. The flag is initialized unset. Create a single-event
-     * timer within a transaction context. In a separate transaction, cancel the
-     * timer and set the flag. Mark the transaction for rollback. When the
-     * transaction is reinvoked, check the value of the flag to verify that the
-     * rollback occurred as expected. In the application client, block on a JMS
-     * receive for a period longer than the timer's duration. Verify that the
-     * message is received. API tested: TimerService.createTimer(long,
-     * Serializable) Timer.getHandle() TimerHandle.getTimer()
+     * @test_Strategy: Create a message-driven bean implementing the TimedObject interface. In the ejbTimeout method, send a
+     * JMS message. Create an entity bean with a flag that is set with a method that uses the RequiresNew transaction
+     * attribute. The flag is initialized unset. Create a single-event timer within a transaction context. In a separate
+     * transaction, cancel the timer and set the flag. Mark the transaction for rollback. When the transaction is reinvoked,
+     * check the value of the flag to verify that the rollback occurred as expected. In the application client, block on a
+     * JMS receive for a period longer than the timer's duration. Verify that the message is received. API tested:
+     * TimerService.createTimer(long, Serializable) Timer.getHandle() TimerHandle.getTimer()
      */
     public void cancelAndRollbackSingleEventTest() throws Fault {
 
@@ -526,7 +505,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("cancelAndRollbackSingleEventTest failed");
-            } else logMsg("cancelAndRollbackSingleEventTest passed");
+            } else
+                logMsg("cancelAndRollbackSingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("cancelAndRollbackSingleEventTest failed", e);
         } finally {
@@ -544,13 +524,11 @@ public class Client extends EETest {
      * @assertion_ids: EJB:SPEC:863.1; EJB:SPEC:10506; EJB:JAVADOC:189
      *
      *
-     * @test_Strategy: Create a message-driven bean implementing the TimedObject
-     * interface. In the ejbTimeout method, send a JMS message. Create a
-     * single-event timer. In the application client, block on a JMS receive for a
-     * period longer than the timer's duration. Verify that the message is
-     * received. Verify that the timer is gone by checking that no timers exist.
-     * API tested: TimerService.createTimer(long, Serializable) Note:
-     * EJB:SPEC:863.2 is not testable for message- driven beans.
+     * @test_Strategy: Create a message-driven bean implementing the TimedObject interface. In the ejbTimeout method, send a
+     * JMS message. Create a single-event timer. In the application client, block on a JMS receive for a period longer than
+     * the timer's duration. Verify that the message is received. Verify that the timer is gone by checking that no timers
+     * exist. API tested: TimerService.createTimer(long, Serializable) Note: EJB:SPEC:863.2 is not testable for message-
+     * driven beans.
      */
     public void goneOnExpirationSingleEventTest() throws Fault {
 
@@ -581,7 +559,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("goneOnExpirationSingleEventTest failed");
-            } else logMsg("goneOnExpirationSingleEventTest passed");
+            } else
+                logMsg("goneOnExpirationSingleEventTest passed");
         } catch (Exception e) {
             throw new Fault("goneOnExpirationSingleEventTest failed", e);
         } finally {
@@ -598,14 +577,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:867.1; EJB:SPEC:10506
      *
-     * @test_Strategy: Create a message-driven bean implementing the TimedObject
-     * interface. In the ejbTimeout method, send a JMS message. Create an interval
-     * timer within a transaction. In a separate transaction, cancel the timer
-     * Verify that the timer is gone by checking that no timers exist. In the
-     * application client, block on a JMS receive for a period longer than the
-     * timer's duration. Verify that no message is received. API tested:
-     * TimerService.createTimer(long, long, Serializable) Timer.cancel() Note:
-     * EJB:SPEC:867.2 is not testable for message- driven beans.
+     * @test_Strategy: Create a message-driven bean implementing the TimedObject interface. In the ejbTimeout method, send a
+     * JMS message. Create an interval timer within a transaction. In a separate transaction, cancel the timer Verify that
+     * the timer is gone by checking that no timers exist. In the application client, block on a JMS receive for a period
+     * longer than the timer's duration. Verify that no message is received. API tested: TimerService.createTimer(long,
+     * long, Serializable) Timer.cancel() Note: EJB:SPEC:867.2 is not testable for message- driven beans.
      */
     public void goneOnCancellationIntervalTest() throws Fault {
 
@@ -635,7 +611,8 @@ public class Client extends EETest {
             if (!testResult) {
                 logMsg(message);
                 throw new Fault("goneOnCancellationIntervalTest failed");
-            } else logMsg("goneOnCancellationIntervalTest passed");
+            } else
+                logMsg("goneOnCancellationIntervalTest passed");
         } catch (Exception e) {
             throw new Fault("goneOnCancellationIntervalTest failed", e);
         } finally {

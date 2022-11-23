@@ -22,7 +22,8 @@ public class Customer implements java.io.Serializable {
 
     private String name;
 
-    public Customer() {}
+    public Customer() {
+    }
 
     public Customer(String id, String name) {
         this.id = id;

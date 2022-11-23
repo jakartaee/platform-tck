@@ -58,7 +58,8 @@ public class DBSupport implements java.io.Serializable {
     public void initDB(boolean initTab, boolean popTab) throws Exception {
         TestUtil.logTrace("initDB");
 
-        if (!initTab) return;
+        if (!initTab)
+            return;
 
         // Make the JDBC DB connection
         TestUtil.logTrace("Perform JDBC connection ...");
@@ -82,14 +83,16 @@ public class DBSupport implements java.io.Serializable {
             // do nothing if table does not exist
         } finally {
             try {
-                if (stmt != null) stmt.close();
+                if (stmt != null)
+                    stmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
             }
         }
 
-        if (popTab) populateTable();
+        if (popTab)
+            populateTable();
     }
 
     private void lookupDataSource() throws Exception {
@@ -147,7 +150,8 @@ public class DBSupport implements java.io.Serializable {
             throw new Exception("Exception caught in getAccount");
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -190,7 +194,8 @@ public class DBSupport implements java.io.Serializable {
             throw e;
         } finally {
             try {
-                if (stmt != null) stmt.close();
+                if (stmt != null)
+                    stmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -211,7 +216,8 @@ public class DBSupport implements java.io.Serializable {
             throw new Exception("Exception caught in updateAccount");
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -232,7 +238,8 @@ public class DBSupport implements java.io.Serializable {
             throw new Exception("Exception caught in updateAccount");
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -290,7 +297,8 @@ public class DBSupport implements java.io.Serializable {
             throw new Exception("Exception caught in getAllAccounts");
         } finally {
             try {
-                if (stmt != null) stmt.close();
+                if (stmt != null)
+                    stmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -316,7 +324,8 @@ public class DBSupport implements java.io.Serializable {
             throw new Exception("Exception caught in insert");
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -342,7 +351,8 @@ public class DBSupport implements java.io.Serializable {
             throw new Exception("Exception caught in delete");
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);
@@ -357,14 +367,17 @@ public class DBSupport implements java.io.Serializable {
             pStmt = con.prepareStatement(sqlString);
             pStmt.setInt(1, acct);
             ResultSet result = pStmt.executeQuery();
-            if (!result.next()) return false;
-            else return true;
+            if (!result.next())
+                return false;
+            else
+                return true;
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
             throw new Exception("Exception caught in getAccount");
         } finally {
             try {
-                if (pStmt != null) pStmt.close();
+                if (pStmt != null)
+                    pStmt.close();
                 closeDBConnection();
             } catch (SQLException e) {
                 TestUtil.printStackTrace(e);

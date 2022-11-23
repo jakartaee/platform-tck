@@ -44,9 +44,8 @@ public class WSCClient extends WebSocketCommonClient {
      *
      * @assertion_ids: WebSocket:SPEC:WSC-2.1.5-1;
      *
-     * @test_Strategy: If the close was initiated by the local container, for
-     * example if the local container determines the session has timed out, the
-     * local implementation must use the websocket protocol close code 1006
+     * @test_Strategy: If the close was initiated by the local container, for example if the local container determines the
+     * session has timed out, the local implementation must use the websocket protocol close code 1006
      */
     public void connectionHasBeenClosedWithStatus1006AfterTimeoutTest() throws Fault {
         boolean closed = false;

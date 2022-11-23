@@ -142,8 +142,7 @@ public class Client extends ServiceEETest {
     }
 
     /*
-     * setupGlobalVarsT() for Topic with normal connection factory (clientid not
-     * set)
+     * setupGlobalVarsT() for Topic with normal connection factory (clientid not set)
      */
     public void setupGlobalVarsT() throws Exception {
         cf = toolT.getConnectionFactory();
@@ -158,8 +157,7 @@ public class Client extends ServiceEETest {
     }
 
     /*
-     * setupGlobalVarsT2() for Topic with durable connection factory (clientid
-     * set)
+     * setupGlobalVarsT2() for Topic with durable connection factory (clientid set)
      */
     public void setupGlobalVarsT2() throws Exception {
         cf = toolT2.getConnectionFactory();
@@ -230,14 +228,16 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Closing default Connection");
             toolQ.getDefaultConnection().close();
             toolT.getDefaultConnection().close();
-            if (toolT2 != null) toolT2.getDefaultConnection().close();
+            if (toolT2 != null)
+                toolT2.getDefaultConnection().close();
             if (queueTest) {
                 TestUtil.logMsg("Flush any messages left on Queue");
                 toolQ.flushDestination();
             }
             toolQ.closeAllResources();
             toolT.closeAllResources();
-            if (toolT2 != null) toolT2.closeAllResources();
+            if (toolT2 != null)
+                toolT2.closeAllResources();
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
             throw new Fault("cleanup failed!", e);
@@ -290,23 +290,17 @@ public class Client extends ServiceEETest {
     /*
      * @testName: sendRecvMsgsOfEachMsgTypeTopicTest
      *
-     * @assertion_ids: JMS:JAVADOC:209; JMS:JAVADOC:212; JMS:JAVADOC:213;
-     * JMS:JAVADOC:215; JMS:JAVADOC:217; JMS:JAVADOC:219; JMS:JAVADOC:221;
-     * JMS:JAVADOC:223; JMS:JAVADOC:242; JMS:JAVADOC:317; JMS:JAVADOC:504;
-     * JMS:JAVADOC:510;
+     * @assertion_ids: JMS:JAVADOC:209; JMS:JAVADOC:212; JMS:JAVADOC:213; JMS:JAVADOC:215; JMS:JAVADOC:217; JMS:JAVADOC:219;
+     * JMS:JAVADOC:221; JMS:JAVADOC:223; JMS:JAVADOC:242; JMS:JAVADOC:317; JMS:JAVADOC:504; JMS:JAVADOC:510;
      *
-     * @test_Strategy: Send and receive messages of each message type: Message,
-     * BytesMessage, MapMessage, ObjectMessage, StreamMessage, TextMessage. Tests
-     * the following API's
+     * @test_Strategy: Send and receive messages of each message type: Message, BytesMessage, MapMessage, ObjectMessage,
+     * StreamMessage, TextMessage. Tests the following API's
      *
-     * ConnectionFactory.createConnection(String, String)
-     * Connection.createSession(boolean, int) Session.createMessage()
-     * Session.createBytesMessage() Session.createMapMessage()
-     * Session.createObjectMessage() Session.createObjectMessage(Serializable
-     * object) Session.createStreamMessage() Session.createTextMessage()
-     * Session.createTextMessage(String) Session.createConsumer(Destination)
-     * Session.createProducer(Destination) MessageProducer.send(Message)
-     * MessageConsumer.receive(long timeout)
+     * ConnectionFactory.createConnection(String, String) Connection.createSession(boolean, int) Session.createMessage()
+     * Session.createBytesMessage() Session.createMapMessage() Session.createObjectMessage()
+     * Session.createObjectMessage(Serializable object) Session.createStreamMessage() Session.createTextMessage()
+     * Session.createTextMessage(String) Session.createConsumer(Destination) Session.createProducer(Destination)
+     * MessageProducer.send(Message) MessageConsumer.receive(long timeout)
      */
     public void sendRecvMsgsOfEachMsgTypeTopicTest() throws Fault {
         boolean pass = true;
@@ -527,8 +521,7 @@ public class Client extends ServiceEETest {
      *
      * Session.createTemporaryTopic().
      *
-     * Send and receive a TextMessage to temporary topic. Compare send and recv
-     * message for equality.
+     * Send and receive a TextMessage to temporary topic. Compare send and recv message for equality.
      */
     public void createTemporayTopicTest() throws Fault {
         boolean pass = true;
@@ -643,7 +636,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getTransactedTopicTest", e);
         } finally {
             try {
-                if (session != null) session.close();
+                if (session != null)
+                    session.close();
             } catch (Exception e) {
             }
         }
@@ -664,7 +658,8 @@ public class Client extends ServiceEETest {
                 throw new Fault("getTransactedTopicTest", e);
             } finally {
                 try {
-                    if (session != null) session.close();
+                    if (session != null)
+                        session.close();
                 } catch (Exception e) {
                 }
             }
@@ -707,7 +702,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getAcknowledgeModeTopicTest", e);
         } finally {
             try {
-                if (session != null) session.close();
+                if (session != null)
+                    session.close();
             } catch (Exception e) {
             }
         }
@@ -728,7 +724,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getAcknowledgeModeTopicTest", e);
         } finally {
             try {
-                if (session != null) session.close();
+                if (session != null)
+                    session.close();
             } catch (Exception e) {
             }
         }
@@ -750,7 +747,8 @@ public class Client extends ServiceEETest {
                 throw new Fault("getAcknowledgeModeTopicTest", e);
             } finally {
                 try {
-                    if (session != null) session.close();
+                    if (session != null)
+                        session.close();
                 } catch (Exception e) {
                 }
             }
@@ -764,23 +762,19 @@ public class Client extends ServiceEETest {
     /*
      * @testName: createConsumerProducerTopicTest
      *
-     * @assertion_ids: JMS:JAVADOC:244; JMS:JAVADOC:246; JMS:JAVADOC:248;
-     * JMS:JAVADOC:224; JMS:JAVADOC:242; JMS:JAVADOC:221; JMS:JAVADOC:504;
-     * JMS:JAVADOC:510; JMS:JAVADOC:597; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:JAVADOC:244; JMS:JAVADOC:246; JMS:JAVADOC:248; JMS:JAVADOC:224; JMS:JAVADOC:242; JMS:JAVADOC:221;
+     * JMS:JAVADOC:504; JMS:JAVADOC:510; JMS:JAVADOC:597; JMS:JAVADOC:334;
      *
      * @test_Strategy: Test the following APIs:
      *
-     * ConnectionFactory.createConnection(String, String)
-     * Connection.createSession(boolean, int) Session.createTextMessage(String)
-     * Session.createConsumer(Destination) Session.createConsumer(Destination,
-     * String) Session.createConsumer(Destination, String, boolean)
-     * Session.createProducer(Destination) MessageProducer.send(Message)
-     * MessageConsumer.receive(long timeout)
+     * ConnectionFactory.createConnection(String, String) Connection.createSession(boolean, int)
+     * Session.createTextMessage(String) Session.createConsumer(Destination) Session.createConsumer(Destination, String)
+     * Session.createConsumer(Destination, String, boolean) Session.createProducer(Destination)
+     * MessageProducer.send(Message) MessageConsumer.receive(long timeout)
      *
-     * 1. Create a MessageConsumer with selector to consumer just the last message
-     * in the Topic with boolproperty (lastMessage=TRUE). 2. Create a
-     * MessageConsumer again to consume all the messages in the Topic. 3. Send x
-     * text messages to a Topic. 4. Verify that both consumers work as expected.
+     * 1. Create a MessageConsumer with selector to consumer just the last message in the Topic with boolproperty
+     * (lastMessage=TRUE). 2. Create a MessageConsumer again to consume all the messages in the Topic. 3. Send x text
+     * messages to a Topic. 4. Verify that both consumers work as expected.
      */
     public void createConsumerProducerTopicTest() throws Fault {
         boolean pass = true;
@@ -820,7 +814,8 @@ public class Client extends ServiceEETest {
             }
 
             TestUtil.logMsg("Consume messages with selective consumer which has boolproperty (lastMessage=TRUE)");
-            if (consumerSelect != null) tempMsg = (TextMessage) consumerSelect.receive(timeout);
+            if (consumerSelect != null)
+                tempMsg = (TextMessage) consumerSelect.receive(timeout);
             if (tempMsg == null) {
                 TestUtil.logErr("MessageConsumer.receive() returned NULL");
                 TestUtil.logErr("Message " + numMessages + " missing from Topic");
@@ -834,7 +829,8 @@ public class Client extends ServiceEETest {
 
             // Try to receive one more message (should return null)
             TestUtil.logMsg("Make sure selective consumer receives no more messages");
-            if (consumerSelect != null) tempMsg = (TextMessage) consumerSelect.receive(timeout);
+            if (consumerSelect != null)
+                tempMsg = (TextMessage) consumerSelect.receive(timeout);
             if (tempMsg != null) {
                 TestUtil.logErr(
                         "MessageConsumer.receive() returned a message [" + tempMsg.getText() + "] (Expected NULL)");
@@ -845,7 +841,8 @@ public class Client extends ServiceEETest {
             }
 
             try {
-                if (consumerSelect != null) consumerSelect.close();
+                if (consumerSelect != null)
+                    consumerSelect.close();
             } catch (Exception e) {
             }
 
@@ -878,7 +875,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createConsumerProducerTopicTest");
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -893,19 +891,16 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:254;
      *
-     * @test_Strategy: Creates a durable subscription with the specified name on
-     * the specified topic, and creates a TopicSubscriber on that durable
-     * subscription.
+     * @test_Strategy: Creates a durable subscription with the specified name on the specified topic, and creates a
+     * TopicSubscriber on that durable subscription.
      *
-     * This uses a connection factory WITH client identifier set. The client
-     * identifer MUST be set for this API.
+     * This uses a connection factory WITH client identifier set. The client identifer MUST be set for this API.
      *
      * Tests the following API method:
      *
      * Session.createDurableSubscriber(Topic, String)
      *
-     * 1. Send a text message to a Topic. 2. Consume message via the
-     * TopicSubscriber created.
+     * 1. Send a text message to a Topic. 2. Consume message via the TopicSubscriber created.
      */
     public void createDurableSubscriberTopicTest1() throws Fault {
         boolean pass = true;
@@ -967,23 +962,19 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:256;
      *
-     * @test_Strategy: Creates a durable subscription with the specified name on
-     * the specified topic, and creates a TopicSubscriber on that durable
-     * subscription, specifying a message selector and whether messages published
-     * by its own connection should be delivered to it.
+     * @test_Strategy: Creates a durable subscription with the specified name on the specified topic, and creates a
+     * TopicSubscriber on that durable subscription, specifying a message selector and whether messages published by its own
+     * connection should be delivered to it.
      *
-     * This uses a connection factory WITH client identifier set. The client
-     * identifer MUST be set for this API.
+     * This uses a connection factory WITH client identifier set. The client identifer MUST be set for this API.
      *
      * Tests the following API method:
      *
      * Session.createDurableSubscriber(Topic,String,String,boolean)
      *
-     * 1 Create a durable subscriber on the specified topic, and create a
-     * TopicSubscriber with the specified message selector 2 Send a number of
-     * messages to the destination 3 Test both noLocal=true and noLocal=false
-     * cases 4 Verify message with specified selector received by listener in the
-     * noLocal=false case only.
+     * 1 Create a durable subscriber on the specified topic, and create a TopicSubscriber with the specified message
+     * selector 2 Send a number of messages to the destination 3 Test both noLocal=true and noLocal=false cases 4 Verify
+     * message with specified selector received by listener in the noLocal=false case only.
      *
      */
     public void createDurableSubscriberTopicTest2() throws Fault {
@@ -1096,25 +1087,20 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1087;
      *
-     * @test_Strategy: Creates a durable subscription with the specified name on
-     * the specified topic, and creates a MessageConsumer on that durable
-     * subscription.
+     * @test_Strategy: Creates a durable subscription with the specified name on the specified topic, and creates a
+     * MessageConsumer on that durable subscription.
      *
-     * This uses a connection factory WITH client identifier set. The client
-     * identifer MUST be set for this API.
+     * This uses a connection factory WITH client identifier set. The client identifer MUST be set for this API.
      *
      * Tests the following API method:
      *
      * Session.createDurableConsumer(Topic, String)
      *
-     * 1. Create a durable subscription with the specified name on the specified
-     * topic and create a durable MessageConsumer on that durable subscription.
-     * This uses a connection factory WITH client identifier set. 2. Send
-     * TextMessage (message1) to the Topic. 3. Consume message via MessageConsumer
-     * created. Verify message1 received. 4. Close consumer. 5. Send another
-     * TextMessage (message2) to the Topic. 6. Recreate the durable
-     * MessageConsumer on that durable subscription. 7. Consume message via
-     * MessageConsumer created. Verify message2 received.
+     * 1. Create a durable subscription with the specified name on the specified topic and create a durable MessageConsumer
+     * on that durable subscription. This uses a connection factory WITH client identifier set. 2. Send TextMessage
+     * (message1) to the Topic. 3. Consume message via MessageConsumer created. Verify message1 received. 4. Close consumer.
+     * 5. Send another TextMessage (message2) to the Topic. 6. Recreate the durable MessageConsumer on that durable
+     * subscription. 7. Consume message via MessageConsumer created. Verify message2 received.
      */
     public void createDurableConsumerTopicTest1() throws Fault {
         boolean pass = true;
@@ -1202,25 +1188,20 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1090;
      *
-     * @test_Strategy: Creates a durable subscription with the specified name on
-     * the specified topic, and creates a MessageConsumer on that durable
-     * subscription, specifying a message selector and whether messages published
-     * by its own connection should be delivered to it.
+     * @test_Strategy: Creates a durable subscription with the specified name on the specified topic, and creates a
+     * MessageConsumer on that durable subscription, specifying a message selector and whether messages published by its own
+     * connection should be delivered to it.
      *
-     * This uses a connection factory WITH client identifier set. The client
-     * identifer MUST be set for this API.
+     * This uses a connection factory WITH client identifier set. The client identifer MUST be set for this API.
      *
      * Tests the following API method:
      *
      * Session.createDurableConsumer(Topic,String,String,boolean)
      *
-     * 1. Create a durable subscription with the specified name on the specified
-     * topic and create a durable MessageConsumer on that durable subscription
-     * specifing a message selector and whether messages published by its own
-     * connection should be delivered to it. 2. Send a number of messages to the
-     * Topic. 3. Test both noLocal=true and noLocal=false cases. 4. Verify message
-     * with specified selector received by MessageConsumer in the noLocal=false
-     * case only.
+     * 1. Create a durable subscription with the specified name on the specified topic and create a durable MessageConsumer
+     * on that durable subscription specifing a message selector and whether messages published by its own connection should
+     * be delivered to it. 2. Send a number of messages to the Topic. 3. Test both noLocal=true and noLocal=false cases. 4.
+     * Verify message with specified selector received by MessageConsumer in the noLocal=false case only.
      *
      */
     public void createDurableConsumerTopicTest2() throws Fault {
@@ -1329,23 +1310,19 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1163; JMS:SPEC:269;
      *
-     * @test_Strategy: Creates a shared non-durable subscription with the
-     * specified name on the specified topic, and creates a MessageConsumer on
-     * that subscription.
+     * @test_Strategy: Creates a shared non-durable subscription with the specified name on the specified topic, and creates
+     * a MessageConsumer on that subscription.
      *
      * Tests the following API method:
      *
      * Session.createSharedConsumer(Topic, String)
      *
-     * 1. Creates a shared non-durable subscription with the specified name on the
-     * specified topic, and creates a MessageConsumer on that subscription. 2.
-     * Create a second MessageConsumer on that subscription. 3. Send a text
-     * message to the Topic. 4. Consume message via the first MessageConsumer and
-     * message should be received. 5. Attempt to consume message via second
-     * MessageConsumer and no message should be received. 6. Re-Send a text
-     * message to the Topic. 7. Consume message via the second MessageConsumer and
-     * message should be received. 8. Attempt to consume message via first
-     * MessageConsumer and no message should be received.
+     * 1. Creates a shared non-durable subscription with the specified name on the specified topic, and creates a
+     * MessageConsumer on that subscription. 2. Create a second MessageConsumer on that subscription. 3. Send a text message
+     * to the Topic. 4. Consume message via the first MessageConsumer and message should be received. 5. Attempt to consume
+     * message via second MessageConsumer and no message should be received. 6. Re-Send a text message to the Topic. 7.
+     * Consume message via the second MessageConsumer and message should be received. 8. Attempt to consume message via
+     * first MessageConsumer and no message should be received.
      */
     public void createSharedConsumerTopicTest1() throws Fault {
         boolean pass = true;
@@ -1391,7 +1368,8 @@ public class Client extends ServiceEETest {
             actTextMessage = (TextMessage) consumer2.receive(timeout);
             if (actTextMessage != null) {
                 throw new Fault("Did receive TextMessage - unexpected.");
-            } else TestUtil.logMsg("Did not receive TextMessage - expected.");
+            } else
+                TestUtil.logMsg("Did not receive TextMessage - expected.");
 
             TestUtil.logMsg("Send another message to Topic");
             expTextMessage = session.createTextMessage(message);
@@ -1418,7 +1396,8 @@ public class Client extends ServiceEETest {
             actTextMessage = (TextMessage) consumer.receive(timeout);
             if (actTextMessage != null) {
                 throw new Fault("Did receive TextMessage - unexpected.");
-            } else TestUtil.logMsg("Did not receive TextMessage - expected.");
+            } else
+                TestUtil.logMsg("Did not receive TextMessage - expected.");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
@@ -1426,8 +1405,10 @@ public class Client extends ServiceEETest {
             throw new Fault("createSharedConsumerTopicTest1", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
-                if (consumer2 != null) consumer2.close();
+                if (consumer != null)
+                    consumer.close();
+                if (consumer2 != null)
+                    consumer2.close();
             } catch (Exception e) {
                 TestUtil.logMsg("Ignoring exception closing consumers: " + e);
             }
@@ -1443,24 +1424,20 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1167; JMS:SPEC:269; JMS:SPEC:270;
      *
-     * @test_Strategy: Creates a shared non-durable subscription with the
-     * specified name on the specified topic, and creates a MessageConsumer on
-     * that subscription, specifying a message selector.
+     * @test_Strategy: Creates a shared non-durable subscription with the specified name on the specified topic, and creates
+     * a MessageConsumer on that subscription, specifying a message selector.
      *
      * Tests the following API method:
      *
      * Session.createSharedConsumer(Topic, String, String)
      *
-     * 1. Create a shared non-durable subscription with the specified name on the
-     * specified topic, and creates a MessageConsumer on that subscription,
-     * specifying a message selector. 2. Create a second MessageConsumer on that
-     * subscription. 3. Send a text message to the Topic. 4. Consume message via
-     * first MessageConsumer and message selector and message should be received.
-     * 5. Attempt to consume message via second MessageConsumer and message
-     * selector and no message received. 6. Re-Send a text message to the Topic.
-     * 7. Consume message via second MessageConsumer and message selector and
-     * message should be received. 8. Attempt to consume message via first
-     * MessageConsumer and message selector and no message received.
+     * 1. Create a shared non-durable subscription with the specified name on the specified topic, and creates a
+     * MessageConsumer on that subscription, specifying a message selector. 2. Create a second MessageConsumer on that
+     * subscription. 3. Send a text message to the Topic. 4. Consume message via first MessageConsumer and message selector
+     * and message should be received. 5. Attempt to consume message via second MessageConsumer and message selector and no
+     * message received. 6. Re-Send a text message to the Topic. 7. Consume message via second MessageConsumer and message
+     * selector and message should be received. 8. Attempt to consume message via first MessageConsumer and message selector
+     * and no message received.
      */
     public void createSharedConsumerTopicTest2() throws Fault {
         boolean pass = true;
@@ -1514,7 +1491,8 @@ public class Client extends ServiceEETest {
             actTextMessage = (TextMessage) consumer2.receive(timeout);
             if (actTextMessage != null) {
                 throw new Fault("Did receive TextMessage - unexpected.");
-            } else TestUtil.logMsg("Did not receive TextMessage - expected.");
+            } else
+                TestUtil.logMsg("Did not receive TextMessage - expected.");
 
             // send "numMessages" messages to Topic
             TestUtil.logMsg("Send " + numMessages + " to Topic");
@@ -1548,7 +1526,8 @@ public class Client extends ServiceEETest {
             actTextMessage = (TextMessage) consumer.receive(timeout);
             if (actTextMessage != null) {
                 throw new Fault("Did receive TextMessage - unexpected.");
-            } else TestUtil.logMsg("Did not receive TextMessage - expected.");
+            } else
+                TestUtil.logMsg("Did not receive TextMessage - expected.");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
@@ -1556,8 +1535,10 @@ public class Client extends ServiceEETest {
             throw new Fault("createSharedConsumerTopicTest2", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
-                if (consumer2 != null) consumer2.close();
+                if (consumer != null)
+                    consumer.close();
+                if (consumer2 != null)
+                    consumer2.close();
             } catch (Exception e) {
                 TestUtil.logMsg("Ignoring exception closing consumers: " + e);
             }
@@ -1573,9 +1554,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1393;
      *
-     * @test_Strategy: Creates a shared durable subscription with the specified
-     * name on the specified topic and creates a JMSConsumer on that durable
-     * subscription.
+     * @test_Strategy: Creates a shared durable subscription with the specified name on the specified topic and creates a
+     * JMSConsumer on that durable subscription.
      *
      * This uses a connection factory WITH client identifier set.
      *
@@ -1583,14 +1563,11 @@ public class Client extends ServiceEETest {
      *
      * Session.createSharedDurableConsumer(Topic, String)
      *
-     * 1. Create a shared durable subscription with the specified name on the
-     * specified topic and create a durable JMSConsumer on that durable
-     * subscription. This uses a connection factory WITH client identifier set. 2.
-     * Create a 2nd JMSConsumer for it. 3. Send TextMessage (message1) to the
-     * Topic. 3. Consume message via 1st JMSConsumer created. Verify message1
-     * received. 4. Close 1st consumer. 5. Send another TextMessage (message2) to
-     * the Topic. 6. Consume message via 2nd JMSConsumer created. Verify message2
-     * received.
+     * 1. Create a shared durable subscription with the specified name on the specified topic and create a durable
+     * JMSConsumer on that durable subscription. This uses a connection factory WITH client identifier set. 2. Create a 2nd
+     * JMSConsumer for it. 3. Send TextMessage (message1) to the Topic. 3. Consume message via 1st JMSConsumer created.
+     * Verify message1 received. 4. Close 1st consumer. 5. Send another TextMessage (message2) to the Topic. 6. Consume
+     * message via 2nd JMSConsumer created. Verify message2 received.
      */
     public void createSharedDurableConsumerTopicTest1() throws Fault {
         boolean pass = true;
@@ -1691,7 +1668,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createSharedDurableConsumerTopicTest1", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
                 cleanupSubscription(consumer2, session, durableSubscriptionName);
                 toolT2.getDefaultConnection().close();
                 toolT2.closeAllResources();
@@ -1710,10 +1688,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1396;
      *
-     * @test_Strategy: Creates a shared durable subscription with the specified
-     * name on the specified topic and creates a JMSConsumer on that durable
-     * subscription, specifying a message selector and whether messages published
-     * by its own connection should be delivered to it.
+     * @test_Strategy: Creates a shared durable subscription with the specified name on the specified topic and creates a
+     * JMSConsumer on that durable subscription, specifying a message selector and whether messages published by its own
+     * connection should be delivered to it.
      *
      * This uses a connection factory WITH client identifier set.
      *
@@ -1721,12 +1698,10 @@ public class Client extends ServiceEETest {
      *
      * Session.createSharedDurableConsumer(Topic,String,String)
      *
-     * 1. Create a shared durable subscription with the specified name on the
-     * specified topic and create a durable JMSConsumer on that durable
-     * subscription specifing a message selector and whether messages published by
-     * its own connection should be delivered to it. This uses a connection
-     * factory WITH client identifier set. 2. Create a 2nd JMSConsumer for it. 3.
-     * Send a number of messages to the Topic.
+     * 1. Create a shared durable subscription with the specified name on the specified topic and create a durable
+     * JMSConsumer on that durable subscription specifing a message selector and whether messages published by its own
+     * connection should be delivered to it. This uses a connection factory WITH client identifier set. 2. Create a 2nd
+     * JMSConsumer for it. 3. Send a number of messages to the Topic.
      *
      */
     public void createSharedDurableConsumerTopicTest2() throws Fault {
@@ -1785,7 +1760,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createSharedDurableConsumerTopicTest2", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
                 cleanupSubscription(consumer2, session, durableSubscriptionName);
                 toolT2.getDefaultConnection().close();
                 toolT2.closeAllResources();
@@ -1804,9 +1780,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1393;
      *
-     * @test_Strategy: Creates a shared durable subscription with the specified
-     * name on the specified topic and creates a JMSConsumer on that durable
-     * subscription.
+     * @test_Strategy: Creates a shared durable subscription with the specified name on the specified topic and creates a
+     * JMSConsumer on that durable subscription.
      *
      * This uses a connection factory WITH client identifier unset.
      *
@@ -1814,14 +1789,11 @@ public class Client extends ServiceEETest {
      *
      * Session.createSharedDurableConsumer(Topic, String)
      *
-     * 1. Create a shared durable subscription with the specified name on the
-     * specified topic and create a durable JMSConsumer on that durable
-     * subscription. This uses a connection factory WITH client identifier unset.
-     * 2. Create a 2nd JMSConsumer for it. 3. Send TextMessage (message1) to the
-     * Topic. 3. Consume message via 1st JMSConsumer created. Verify message1
-     * received. 4. Close 1st consumer. 5. Send another TextMessage (message2) to
-     * the Topic. 6. Consume message via 2nd JMSConsumer created. Verify message2
-     * received.
+     * 1. Create a shared durable subscription with the specified name on the specified topic and create a durable
+     * JMSConsumer on that durable subscription. This uses a connection factory WITH client identifier unset. 2. Create a
+     * 2nd JMSConsumer for it. 3. Send TextMessage (message1) to the Topic. 3. Consume message via 1st JMSConsumer created.
+     * Verify message1 received. 4. Close 1st consumer. 5. Send another TextMessage (message2) to the Topic. 6. Consume
+     * message via 2nd JMSConsumer created. Verify message2 received.
      */
     public void createSharedDurableConsumerTopicTest3() throws Fault {
         boolean pass = true;
@@ -1916,7 +1888,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createSharedDurableConsumerTopicTest3", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
                 cleanupSubscription(consumer2, session, durableSubscriptionName);
             } catch (Exception e) {
             }
@@ -1930,21 +1903,15 @@ public class Client extends ServiceEETest {
     /*
      * @testName: invalidDestinationExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:1089; JMS:JAVADOC:1092; JMS:JAVADOC:643;
-     * JMS:JAVADOC:644; JMS:JAVADOC:1165; JMS:JAVADOC:1169; JMS:JAVADOC:1395;
-     * JMS:JAVADOC:1398;
+     * @assertion_ids: JMS:JAVADOC:1089; JMS:JAVADOC:1092; JMS:JAVADOC:643; JMS:JAVADOC:644; JMS:JAVADOC:1165;
+     * JMS:JAVADOC:1169; JMS:JAVADOC:1395; JMS:JAVADOC:1398;
      *
-     * @test_Strategy: Pass an invalid topic and test for
-     * InvalidDestinationException.
+     * @test_Strategy: Pass an invalid topic and test for InvalidDestinationException.
      *
-     * Session.createDurableSubscriber(Topic, String)
-     * Session.createDurableSubscriber(Topic, String, String, boolean)
-     * Session.createDurableConsumer(Topic, String)
-     * Session.createDurableConsumer(Topic, String, String, boolean)
-     * Session.createSharedConsumer(Topic, String)
-     * Session.createSharedConsumer(Topic, String, String)
-     * Session.createSharedDurableConsumer(Topic, String)
-     * Session.createSharedDurableConsumer(Topic, String, String)
+     * Session.createDurableSubscriber(Topic, String) Session.createDurableSubscriber(Topic, String, String, boolean)
+     * Session.createDurableConsumer(Topic, String) Session.createDurableConsumer(Topic, String, String, boolean)
+     * Session.createSharedConsumer(Topic, String) Session.createSharedConsumer(Topic, String, String)
+     * Session.createSharedDurableConsumer(Topic, String) Session.createSharedDurableConsumer(Topic, String, String)
      */
     public void invalidDestinationExceptionTests() throws Fault {
         boolean pass = true;
@@ -2072,14 +2039,11 @@ public class Client extends ServiceEETest {
     /*
      * @testName: invalidSelectorExceptionTopicTests
      *
-     * @assertion_ids: JMS:JAVADOC:1093; JMS:JAVADOC:1399; JMS:JAVADOC:1166;
-     * JMS:JAVADOC:1170;
+     * @assertion_ids: JMS:JAVADOC:1093; JMS:JAVADOC:1399; JMS:JAVADOC:1166; JMS:JAVADOC:1170;
      *
-     * @test_Strategy: Pass an invalid selector and test for
-     * InvalidSelectorException.
+     * @test_Strategy: Pass an invalid selector and test for InvalidSelectorException.
      *
-     * Session.createDurableConsumer(Topic, String, String, boolean)
-     * Session.createSharedConsumer(Topic, String, String)
+     * Session.createDurableConsumer(Topic, String, String, boolean) Session.createSharedConsumer(Topic, String, String)
      * Session.createSharedDurableConsumer(Topic, String, String)
      */
     public void invalidSelectorExceptionTopicTests() throws Fault {
@@ -2144,29 +2108,24 @@ public class Client extends ServiceEETest {
     /*
      * @testName: illegalStateExceptionTests
      *
-     * @assertion_ids: JMS:SPEC:185.9; JMS:SPEC:185.10; JMS:SPEC:185;
-     * JMS:JAVADOC:1349; JMS:JAVADOC:1350; JMS:JAVADOC:1390; JMS:JAVADOC:1391;
+     * @assertion_ids: JMS:SPEC:185.9; JMS:SPEC:185.10; JMS:SPEC:185; JMS:JAVADOC:1349; JMS:JAVADOC:1350; JMS:JAVADOC:1390;
+     * JMS:JAVADOC:1391;
      *
-     * @test_Strategy: Create a QueueSession and call Topic specific methods
-     * inherited from Session, and verify that jakarta.jms.IllegalStateException is
-     * thrown.
+     * @test_Strategy: Create a QueueSession and call Topic specific methods inherited from Session, and verify that
+     * jakarta.jms.IllegalStateException is thrown.
      *
      * Call the following topic methods on a QueueSession:
      *
-     * QueueSession.createDurableConsumer(Topic, String)
-     * QueueSession.createDurableConsumer(Topic, String, String, boolean)
-     * QueueSession.createSharedConsumer(Topic, String)
-     * QueueSession.createSharedConsumer(Topic, String, String)
-     * QueueSession.createSharedDurableConsumer(Topic, String)
-     * QueueSession.createSharedDurableConsumer(Topic, String, String)
+     * QueueSession.createDurableConsumer(Topic, String) QueueSession.createDurableConsumer(Topic, String, String, boolean)
+     * QueueSession.createSharedConsumer(Topic, String) QueueSession.createSharedConsumer(Topic, String, String)
+     * QueueSession.createSharedDurableConsumer(Topic, String) QueueSession.createSharedDurableConsumer(Topic, String,
+     * String)
      *
-     * Test jakarta.jms.IllegalStateException from the following API's. Also test
-     * when nolocal=true and client id is not set.
+     * Test jakarta.jms.IllegalStateException from the following API's. Also test when nolocal=true and client id is not
+     * set.
      *
-     * Session.createDurableSubscriber(Topic, String)
-     * Session.createDurableSubscriber(Topic, String, String, boolean)
-     * Session.createDurableConsumer(Topic, String)
-     * Session.createDurableConsumer(Topic, String, String, boolean)
+     * Session.createDurableSubscriber(Topic, String) Session.createDurableSubscriber(Topic, String, String, boolean)
+     * Session.createDurableConsumer(Topic, String) Session.createDurableConsumer(Topic, String, String, boolean)
      */
     public void illegalStateExceptionTests() throws Fault {
         JmsTool toolq = null;
@@ -2365,21 +2324,16 @@ public class Client extends ServiceEETest {
     /*
      * @testName: jMSExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:1091; JMS:JAVADOC:257; JMS:JAVADOC:1090;
-     * JMS:JAVADOC:1164; JMS:JAVADOC:1168; JMS:JAVADOC:1394; JMS:JAVADOC:1397;
+     * @assertion_ids: JMS:JAVADOC:1091; JMS:JAVADOC:257; JMS:JAVADOC:1090; JMS:JAVADOC:1164; JMS:JAVADOC:1168;
+     * JMS:JAVADOC:1394; JMS:JAVADOC:1397;
      *
      * @test_Strategy: Test JMSException conditions from various API methods.
      *
-     * TopicSession.createDurableSubscriber(Topic, String)
-     * TopicSession.createDurableSubscriber(Topic, String. String, boolean)
-     * Session.createDurableSubscriber(Topic, String)
-     * Session.createDurableSubscriber(Topic, String. String, boolean)
-     * Session.createDurableConsumer(Topic, String)
-     * Session.createDurableConsumer(Topic, String. String, boolean)
-     * Session.createSharedConsumer(Topic, String)
-     * Session.createSharedConsumer(Topic, String, String)
-     * Session.createSharedDurableConsumer(Topic, String)
-     * Session.createSharedDurableConsumer(Topic, String. String)
+     * TopicSession.createDurableSubscriber(Topic, String) TopicSession.createDurableSubscriber(Topic, String. String,
+     * boolean) Session.createDurableSubscriber(Topic, String) Session.createDurableSubscriber(Topic, String. String,
+     * boolean) Session.createDurableConsumer(Topic, String) Session.createDurableConsumer(Topic, String. String, boolean)
+     * Session.createSharedConsumer(Topic, String) Session.createSharedConsumer(Topic, String, String)
+     * Session.createSharedDurableConsumer(Topic, String) Session.createSharedDurableConsumer(Topic, String. String)
      */
     public void jMSExceptionTests() throws Fault {
         boolean pass = true;
@@ -2399,8 +2353,7 @@ public class Client extends ServiceEETest {
                 TestUtil.logMsg(
                         "Create a Durable TopicSubscriber with noLocal=true and clientid unset (expect JMSException");
                 TestUtil.logMsg("Calling TopicSession.createDurableSubscriber(Topic, String, String, boolean)");
-                subscriber =
-                        toolt.getDefaultTopicSession().createDurableSubscriber(topic, "mySub1", "TEST = 'test'", true);
+                subscriber = toolt.getDefaultTopicSession().createDurableSubscriber(topic, "mySub1", "TEST = 'test'", true);
                 pass = false;
                 TestUtil.logErr("TopicSession.createDurableSubscriber(Topic, String, String, boolean) "
                         + "didn't throw expected JMSException.");
@@ -2412,7 +2365,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             } finally {
                 try {
-                    if (subscriber != null) subscriber.close();
+                    if (subscriber != null)
+                        subscriber.close();
                     toolt.getDefaultTopicConnection().close();
                 } catch (Exception e) {
                     TestUtil.logErr("Caught unexpected exception: " + e);
@@ -2436,7 +2390,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             } finally {
                 try {
-                    if (consumer != null) consumer.close();
+                    if (consumer != null)
+                        consumer.close();
                 } catch (Exception e) {
                     TestUtil.logErr("Caught unexpected exception: " + e);
                     pass = false;
@@ -2460,7 +2415,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             } finally {
                 try {
-                    if (subscriber != null) subscriber.close();
+                    if (subscriber != null)
+                        subscriber.close();
                 } catch (Exception e) {
                     TestUtil.logErr("Caught unexpected exception: " + e);
                     pass = false;
@@ -2505,8 +2461,10 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (subscriber != null) subscriber.close();
-                if (subscriber2 != null) subscriber2.close();
+                if (subscriber != null)
+                    subscriber.close();
+                if (subscriber2 != null)
+                    subscriber2.close();
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
             }
@@ -2536,8 +2494,10 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (subscriber != null) subscriber.close();
-                if (subscriber2 != null) subscriber2.close();
+                if (subscriber != null)
+                    subscriber.close();
+                if (subscriber2 != null)
+                    subscriber2.close();
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
             }
@@ -2565,8 +2525,10 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer != null) consumer.close();
-                if (consumer2 != null) consumer2.close();
+                if (consumer != null)
+                    consumer.close();
+                if (consumer2 != null)
+                    consumer2.close();
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
             }
@@ -2594,8 +2556,10 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer != null) consumer.close();
-                if (consumer2 != null) consumer2.close();
+                if (consumer != null)
+                    consumer.close();
+                if (consumer2 != null)
+                    consumer2.close();
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
             }
@@ -2624,7 +2588,8 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer2 != null) consumer2.close();
+                if (consumer2 != null)
+                    consumer2.close();
                 cleanupSubscription(consumer, session, "dummySubSJMSException");
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
@@ -2653,7 +2618,8 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer2 != null) consumer2.close();
+                if (consumer2 != null)
+                    consumer2.close();
                 cleanupSubscription(consumer, session, "dummySubDJMSException");
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
@@ -2682,7 +2648,8 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer2 != null) consumer2.close();
+                if (consumer2 != null)
+                    consumer2.close();
                 cleanupSubscription(consumer, session, "dummySubSDJMSException");
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
@@ -2713,7 +2680,8 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer2 != null) consumer2.close();
+                if (consumer2 != null)
+                    consumer2.close();
                 cleanupSubscription(consumer, session, "dummySubDJMSException");
                 toolT.getDefaultConnection().close();
                 toolT.closeAllResources();
@@ -2730,23 +2698,17 @@ public class Client extends ServiceEETest {
     /*
      * @testName: sendAndRecvMsgsOfEachMsgTypeQueueTest
      *
-     * @assertion_ids: JMS:JAVADOC:209; JMS:JAVADOC:212; JMS:JAVADOC:213;
-     * JMS:JAVADOC:215; JMS:JAVADOC:217; JMS:JAVADOC:219; JMS:JAVADOC:221;
-     * JMS:JAVADOC:223; JMS:JAVADOC:242; JMS:JAVADOC:317; JMS:JAVADOC:504;
-     * JMS:JAVADOC:510;
+     * @assertion_ids: JMS:JAVADOC:209; JMS:JAVADOC:212; JMS:JAVADOC:213; JMS:JAVADOC:215; JMS:JAVADOC:217; JMS:JAVADOC:219;
+     * JMS:JAVADOC:221; JMS:JAVADOC:223; JMS:JAVADOC:242; JMS:JAVADOC:317; JMS:JAVADOC:504; JMS:JAVADOC:510;
      *
-     * @test_Strategy: Send and receive messages of each message type: Message,
-     * BytesMessage, MapMessage, ObjectMessage, StreamMessage, TextMessage. Tests
-     * the following API's
+     * @test_Strategy: Send and receive messages of each message type: Message, BytesMessage, MapMessage, ObjectMessage,
+     * StreamMessage, TextMessage. Tests the following API's
      *
-     * ConnectionFactory.createConnection(String, String)
-     * Connection.createSession(boolean, int) Session.createMessage()
-     * Session.createBytesMessage() Session.createMapMessage()
-     * Session.createObjectMessage() Session.createObjectMessage(Serializable
-     * object) Session.createStreamMessage() Session.createTextMessage()
-     * Session.createTextMessage(String) Session.createConsumer(Destination)
-     * Session.createProducer(Destination) MessageProducer.send(Message)
-     * MessageConsumer.receive(long timeout)
+     * ConnectionFactory.createConnection(String, String) Connection.createSession(boolean, int) Session.createMessage()
+     * Session.createBytesMessage() Session.createMapMessage() Session.createObjectMessage()
+     * Session.createObjectMessage(Serializable object) Session.createStreamMessage() Session.createTextMessage()
+     * Session.createTextMessage(String) Session.createConsumer(Destination) Session.createProducer(Destination)
+     * MessageProducer.send(Message) MessageConsumer.receive(long timeout)
      */
     public void sendAndRecvMsgsOfEachMsgTypeQueueTest() throws Fault {
         boolean pass = true;
@@ -2967,8 +2929,7 @@ public class Client extends ServiceEETest {
      *
      * Session.createTemporaryQueue().
      *
-     * Send and receive a TextMessage to temporary queue. Compare send and recv
-     * message for equality.
+     * Send and receive a TextMessage to temporary queue. Compare send and recv message for equality.
      */
     public void createTemporayQueueTest() throws Fault {
         boolean pass = true;
@@ -3003,7 +2964,8 @@ public class Client extends ServiceEETest {
             // Receive TextMessage from temporary queue
             TestUtil.logMsg("Receive TextMessage from temporaty queue");
             TextMessage tMsgRecv = null;
-            if (tConsumer != null) tMsgRecv = (TextMessage) tConsumer.receive(timeout);
+            if (tConsumer != null)
+                tMsgRecv = (TextMessage) tConsumer.receive(timeout);
             if (tMsgRecv == null) {
                 throw new Fault("Did not receive TextMessage");
             }
@@ -3028,7 +2990,8 @@ public class Client extends ServiceEETest {
             }
 
             try {
-                if (tConsumer != null) tConsumer.close();
+                if (tConsumer != null)
+                    tConsumer.close();
             } catch (Exception e) {
             }
 
@@ -3060,9 +3023,8 @@ public class Client extends ServiceEETest {
      *
      * Session.createBrowser(Queue) Session.createBrowser(Queue, String)
      *
-     * 1. Send x text messages to a Queue. 2. Create a QueueBrowser with selector
-     * to browse just the last message in the Queue. 3. Create a QueueBrowser
-     * again to browse all the messages in the queue.
+     * 1. Send x text messages to a Queue. 2. Create a QueueBrowser with selector to browse just the last message in the
+     * Queue. 3. Create a QueueBrowser again to browse all the messages in the queue.
      */
     public void createQueueBrowserTest() throws Fault {
         boolean pass = true;
@@ -3146,7 +3108,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createQueueBrowserTest");
         } finally {
             try {
-                if (qBrowser != null) qBrowser.close();
+                if (qBrowser != null)
+                    qBrowser.close();
             } catch (Exception e) {
             }
         }
@@ -3187,7 +3150,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getTransactedQueueTest", e);
         } finally {
             try {
-                if (session != null) session.close();
+                if (session != null)
+                    session.close();
             } catch (Exception e) {
             }
         }
@@ -3208,7 +3172,8 @@ public class Client extends ServiceEETest {
                 throw new Fault("getTransactedQueueTest", e);
             } finally {
                 try {
-                    if (session != null) session.close();
+                    if (session != null)
+                        session.close();
                 } catch (Exception e) {
                 }
             }
@@ -3251,7 +3216,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getAcknowledgeModeTopicTest", e);
         } finally {
             try {
-                if (session != null) session.close();
+                if (session != null)
+                    session.close();
             } catch (Exception e) {
             }
         }
@@ -3272,7 +3238,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getAcknowledgeModeTopicTest", e);
         } finally {
             try {
-                if (session != null) session.close();
+                if (session != null)
+                    session.close();
             } catch (Exception e) {
             }
         }
@@ -3294,7 +3261,8 @@ public class Client extends ServiceEETest {
                 throw new Fault("getAcknowledgeModeTopicTest", e);
             } finally {
                 try {
-                    if (session != null) session.close();
+                    if (session != null)
+                        session.close();
                 } catch (Exception e) {
                 }
             }
@@ -3308,22 +3276,18 @@ public class Client extends ServiceEETest {
     /*
      * @testName: createConsumerProducerQueueTest
      *
-     * @assertion_ids: JMS:JAVADOC:221; JMS:JAVADOC:242; JMS:JAVADOC:244;
-     * JMS:JAVADOC:246; JMS:JAVADOC:248; JMS:JAVADOC:504; JMS:JAVADOC:510;
-     * JMS:JAVADOC:597; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:JAVADOC:221; JMS:JAVADOC:242; JMS:JAVADOC:244; JMS:JAVADOC:246; JMS:JAVADOC:248; JMS:JAVADOC:504;
+     * JMS:JAVADOC:510; JMS:JAVADOC:597; JMS:JAVADOC:334;
      *
      * @test_Strategy: Test the following APIs:
      *
-     * ConnectionFactory.createConnection(String, String)
-     * Connection.createSession(boolean, int) Session.createTextMessage(String)
-     * Session.createConsumer(Destination) Session.createConsumer(Destination,
-     * String) Session.createConsumer(Destination, String, boolean)
-     * Session.createProducer(Destination) MessageProducer.send(Message)
-     * MessageConsumer.receive(long timeout)
+     * ConnectionFactory.createConnection(String, String) Connection.createSession(boolean, int)
+     * Session.createTextMessage(String) Session.createConsumer(Destination) Session.createConsumer(Destination, String)
+     * Session.createConsumer(Destination, String, boolean) Session.createProducer(Destination)
+     * MessageProducer.send(Message) MessageConsumer.receive(long timeout)
      *
-     * 1. Send x text messages to a Queue. 2. Create a MessageConsumer with
-     * selector to consume just the last message in the Queue. 3. Create a
-     * MessageConsumer again to consume the rest of the messages in the Queue.
+     * 1. Send x text messages to a Queue. 2. Create a MessageConsumer with selector to consume just the last message in the
+     * Queue. 3. Create a MessageConsumer again to consume the rest of the messages in the Queue.
      */
     public void createConsumerProducerQueueTest() throws Fault {
         boolean pass = true;
@@ -3357,7 +3321,8 @@ public class Client extends ServiceEETest {
             consumer = session.createConsumer(destination, "lastMessage=TRUE");
 
             TestUtil.logMsg("Consume messages with selective consumer which has boolproperty (lastMessage=TRUE)");
-            if (consumer != null) tempMsg = (TextMessage) consumer.receive(timeout);
+            if (consumer != null)
+                tempMsg = (TextMessage) consumer.receive(timeout);
             if (tempMsg == null) {
                 TestUtil.logErr("MessageConsumer.receive() returned NULL");
                 TestUtil.logErr("Message " + numMessages + " missing from Queue");
@@ -3371,7 +3336,8 @@ public class Client extends ServiceEETest {
 
             // Try to receive one more message (should return null)
             TestUtil.logMsg("Make sure selective consumer receives no more messages");
-            if (consumer != null) tempMsg = (TextMessage) consumer.receive(timeout);
+            if (consumer != null)
+                tempMsg = (TextMessage) consumer.receive(timeout);
             if (tempMsg != null) {
                 TestUtil.logErr("MessageConsumer.receive() returned NULL");
                 TestUtil.logErr("MessageConsumer with selector should have returned just 1 message");
@@ -3379,7 +3345,8 @@ public class Client extends ServiceEETest {
             }
 
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
 
@@ -3413,7 +3380,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createConsumerProducerQueueTest");
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }

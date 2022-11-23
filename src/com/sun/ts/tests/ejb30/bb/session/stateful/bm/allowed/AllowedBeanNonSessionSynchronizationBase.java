@@ -25,8 +25,7 @@ import com.sun.ts.tests.ejb30.common.allowed.stateful.StatefulAllowedBeanBase;
 // does not implement SessionSynchronization, though it does implement all methods in
 // SessionSynchronization.  These methods must not be called.
 public class AllowedBeanNonSessionSynchronizationBase extends StatefulAllowedBeanBase {
-    private static final String msg =
-            "This class does not implement SessionSynchronization, and this method must not be called: ";
+    private static final String msg = "This class does not implement SessionSynchronization, and this method must not be called: ";
 
     public void afterCompletion(boolean param) {
         throw new IllegalStateException(msg + this);

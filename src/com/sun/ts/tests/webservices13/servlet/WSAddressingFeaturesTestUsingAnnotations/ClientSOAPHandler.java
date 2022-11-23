@@ -123,7 +123,8 @@ public class ClientSOAPHandler extends WsaBaseSOAPHandler {
             } catch (Exception e) {
                 return null;
             }
-        } else return null;
+        } else
+            return null;
     }
 
     protected String whichHandler() {

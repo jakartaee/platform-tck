@@ -27,11 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * env-entry declared in all web.xml and ejb-jar.xml. Verify that env-entry
- * declared in web.xml are accessible in EJB; env-entry declared in all EJBs are
- * accessible in web; env-entry declared in one EJB are accessible to other
- * EJBs; the default name for @Resource injections are bound to FQC/fieldName,
- * not fieldName.
+ * env-entry declared in all web.xml and ejb-jar.xml. Verify that env-entry declared in web.xml are accessible in EJB;
+ * env-entry declared in all EJBs are accessible in web; env-entry declared in one EJB are accessible to other EJBs; the
+ * default name for @Resource injections are bound to FQC/fieldName, not fieldName.
  */
 public class Client extends EJBLiteClientBase {
 
@@ -50,25 +48,19 @@ public class Client extends EJBLiteClientBase {
     @Resource(name = "myChar")
     private char myChar;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myString",
-            description = "declared in ejb-jar.xml#OneBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myString", description = "declared in ejb-jar.xml#OneBean")
     private String myStringFromOne;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.OneBean/myChar")
     private char myCharFromOne;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myString",
-            description = "declared in ejb-jar.xml#TwoBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myString", description = "declared in ejb-jar.xml#TwoBean")
     private String myStringFromTwo;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.TwoBean/myChar")
     private char myCharFromTwo;
 
-    @Resource(
-            lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myString",
-            description = "declared in ejb-jar.xml#ThreeBean")
+    @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myString", description = "declared in ejb-jar.xml#ThreeBean")
     private String myStringFromThree;
 
     @Resource(lookup = "java:comp/env/com.sun.ts.tests.ejb30.lite.packaging.war.enventry.ThreeBean/myChar")
@@ -86,8 +78,7 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: injectedIntoClient
      *
-     * @test_Strategy: verify env-entry declared in web.xml and ejb-jar.xml and
-     * injected into Client class.
+     * @test_Strategy: verify env-entry declared in web.xml and ejb-jar.xml and injected into Client class.
      */
     public void injectedIntoClient() {
         verify();
@@ -96,8 +87,7 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: injectedIntoOneBean
      *
-     * @test_Strategy: verify env-entry declared in web.xml and ejb-jar.xml and
-     * injected into OneBean.
+     * @test_Strategy: verify env-entry declared in web.xml and ejb-jar.xml and injected into OneBean.
      */
     public void injectedIntoOneBean() {
         appendReason(one.getInjectionRecords());
@@ -107,8 +97,7 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: injectedIntoTwoBean
      *
-     * @test_Strategy: verify env-entry declared in web.xml and ejb-jar.xml and
-     * injected into TwoBean.
+     * @test_Strategy: verify env-entry declared in web.xml and ejb-jar.xml and injected into TwoBean.
      */
     public void injectedIntoTwoBean() {
         appendReason(two.getInjectionRecords());
@@ -118,8 +107,7 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: injectedIntoThreeBean
      *
-     * @test_Strategy: verify env-entry declared in web.xml and ejb-jar.xml and
-     * injected into ThreeBean.
+     * @test_Strategy: verify env-entry declared in web.xml and ejb-jar.xml and injected into ThreeBean.
      */
     public void injectedIntoThreeBean() {
         appendReason(three.getInjectionRecords());
@@ -129,30 +117,23 @@ public class Client extends EJBLiteClientBase {
     /*
      * @testName: injectedIntoOneBeanInterceptors
      *
-     * @test_Strategy: verify env-entry declared in web.xml and ejb-jar.xml and
-     * injected into 4 interceptors associated with OneBean. Interceptor0 is
-     * declared as the default interceptor for all beans in ejb-jar.xml.
-     * Interceptor1 and Interceptor2 are class-level interceptors via annotation.
-     * Interceptor3 is a method-level interceptor annotated on
+     * @test_Strategy: verify env-entry declared in web.xml and ejb-jar.xml and injected into 4 interceptors associated with
+     * OneBean. Interceptor0 is declared as the default interceptor for all beans in ejb-jar.xml. Interceptor1 and
+     * Interceptor2 are class-level interceptors via annotation. Interceptor3 is a method-level interceptor annotated on
      * BeanBase.getInjectionStatus and BeanBase.getInjectionRecords methods.
      *
-     * This test verifies that: 1. env-entry declared in web.xml and ejb-jar.xml
-     * are visible to interceptors, including default interceptors and class-level
-     * interceptors. 2. injections in interceptors should have ocurred when
-     * PostConstruct is called. 3. PostConstruct on the superclass of an
-     * interceptor is called before PostConstruct on interceptor class itself. 4.
-     * default name for an injection field is <FQN>/<field-name>, used in
-     * InterceptorBase.myStringComponent. 5. env-entry injections into
-     * method-level interceptors are performed properly.
+     * This test verifies that: 1. env-entry declared in web.xml and ejb-jar.xml are visible to interceptors, including
+     * default interceptors and class-level interceptors. 2. injections in interceptors should have ocurred when
+     * PostConstruct is called. 3. PostConstruct on the superclass of an interceptor is called before PostConstruct on
+     * interceptor class itself. 4. default name for an injection field is <FQN>/<field-name>, used in
+     * InterceptorBase.myStringComponent. 5. env-entry injections into method-level interceptors are performed properly.
      *
-     * This test does not verify the order of interception (i.e., if Interceptor0
-     * is triggered before Interceptor1) at request time. The focus of these tests
-     * is that injections into interceptors and their superclass are supported,
-     * and that superclass PostConstruct is called before subclass PostConstruct.
+     * This test does not verify the order of interception (i.e., if Interceptor0 is triggered before Interceptor1) at
+     * request time. The focus of these tests is that injections into interceptors and their superclass are supported, and
+     * that superclass PostConstruct is called before subclass PostConstruct.
      *
-     * For method-level interceptors there is no way to verify injection result in
-     * a PostConstruct method.This can only be done in the context of a business
-     * method.
+     * For method-level interceptors there is no way to verify injection result in a PostConstruct method.This can only be
+     * done in the context of a business method.
      *
      */
     public void injectedIntoOneBeanInterceptors() {
@@ -201,7 +182,7 @@ public class Client extends EJBLiteClientBase {
      * @test_Strategy:
      */
     public void appNameModuleNameFromEJB() {
-        BeanBase[] beans = {one, two, three};
+        BeanBase[] beans = { one, two, three };
         for (BeanBase b : beans) {
             appendReason(b.appNameModuleName(getModuleName()));
         }

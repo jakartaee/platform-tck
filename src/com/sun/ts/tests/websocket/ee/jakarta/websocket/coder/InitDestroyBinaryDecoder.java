@@ -38,8 +38,7 @@ public class InitDestroyBinaryDecoder extends StringBeanBinaryDecoder {
     public StringBean decode(ByteBuffer arg0) throws DecodeException {
         Logger.onCode(getClass());
         return super.decode(arg0);
-    }
-    ;
+    };
 
     @Override
     public boolean willDecode(ByteBuffer arg0) {

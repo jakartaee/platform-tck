@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,7 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:45; JSTL:SPEC:45.1; JSTL:SPEC:45.1.1
      *
-     * @testStrategy: Validate that setting the value of the requestEncoding
-     * action correctly sets the encoding of the page.
+     * @testStrategy: Validate that setting the value of the requestEncoding action correctly sets the encoding of the page.
      */
     public void positiveReqEncodingValueTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveReqEncodingValueTest");
@@ -79,11 +76,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:45.4.1
      *
-     * @testStrategy : Validate that if a Content-Type header is present in the
-     * client's request, the request encoding is properly set to the value
-     * provided by the header. Validation will be by calling
-     * getCharacterEncoding() against the request object after the action has been
-     * called.
+     * @testStrategy : Validate that if a Content-Type header is present in the client's request, the request encoding is
+     * properly set to the value provided by the header. Validation will be by calling getCharacterEncoding() against the
+     * request object after the action has been called.
      */
     public void positiveContentTypeEncodingTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "positiveContentTypeEncodingTest");
@@ -98,12 +93,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:45.4.2
      *
-     * @testStrategy: Validate that if no Content-Type header is sent by the
-     * client, that the value of the scoped variable,
-     * jakarta.servlet.jsp.jstl.fmt.request.charset, is used to set the character
-     * encoding of the request. Validation will be by calling
-     * getCharacterEncoding() against the request object after the action has been
-     * called.
+     * @testStrategy: Validate that if no Content-Type header is sent by the client, that the value of the scoped variable,
+     * jakarta.servlet.jsp.jstl.fmt.request.charset, is used to set the character encoding of the request. Validation will
+     * be by calling getCharacterEncoding() against the request object after the action has been called.
      */
     public void positiveScopedAttrEncodingTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveScopedAttrEncodingTest");
@@ -115,12 +107,9 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:45.4.3
      *
-     * @testStrategy: Validate that if no Content-Type header is sent by the
-     * client, and the scoped variable,
-     * jakarta.servlet.jsp.jstl.fmt.request.charset, is not present, the default
-     * encoding of ISO-8859-1 is used. Validation will be by calling
-     * getCharacterEncoding() against the request object after the action has been
-     * called.
+     * @testStrategy: Validate that if no Content-Type header is sent by the client, and the scoped variable,
+     * jakarta.servlet.jsp.jstl.fmt.request.charset, is not present, the default encoding of ISO-8859-1 is used. Validation
+     * will be by calling getCharacterEncoding() against the request object after the action has been called.
      */
     public void positiveDefaultEncodingTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveDefaultEncodingTest");

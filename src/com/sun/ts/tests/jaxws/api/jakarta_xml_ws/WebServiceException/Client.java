@@ -56,8 +56,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:72;
      *
-     * @test_Strategy: Create instance via WebServiceException() constructor.
-     * Verify WebServiceException object created successfully.
+     * @test_Strategy: Create instance via WebServiceException() constructor. Verify WebServiceException object created
+     * successfully.
      */
     public void WebServiceExceptionConstructorTest1() throws Fault {
         TestUtil.logTrace("WebServiceExceptionConstructorTest1");
@@ -77,7 +77,8 @@ public class Client extends ServiceEETest {
             throw new Fault("WebServiceExceptionConstructorTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("WebServiceExceptionConstructorTest1 failed");
+        if (!pass)
+            throw new Fault("WebServiceExceptionConstructorTest1 failed");
     }
 
     /*
@@ -85,8 +86,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:74;
      *
-     * @test_Strategy: Create instance via WebServiceException(String, Throwable).
-     * Verify WebServiceException object created successfully.
+     * @test_Strategy: Create instance via WebServiceException(String, Throwable). Verify WebServiceException object created
+     * successfully.
      */
     public void WebServiceExceptionConstructorTest2() throws Fault {
         TestUtil.logTrace("WebServiceExceptionConstructorTest2");
@@ -99,7 +100,8 @@ public class Client extends ServiceEETest {
             if (e != null) {
                 TestUtil.logMsg("WebServiceException object created successfully");
                 String msg = e.getMessage();
-                if (msg.equals(detailMsg)) TestUtil.logMsg("detail message match: " + detailMsg);
+                if (msg.equals(detailMsg))
+                    TestUtil.logMsg("detail message match: " + detailMsg);
                 else {
                     TestUtil.logErr("detail message mismatch - expected: " + detailMsg + ", received: " + msg);
                     pass = false;
@@ -114,7 +116,8 @@ public class Client extends ServiceEETest {
             throw new Fault("WebServiceExceptionConstructorTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("WebServiceExceptionConstructorTest2 failed");
+        if (!pass)
+            throw new Fault("WebServiceExceptionConstructorTest2 failed");
     }
 
     /*
@@ -122,8 +125,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:73;
      *
-     * @test_Strategy: Create instance via WebServiceException(String). Verify
-     * WebServiceException object created successfully.
+     * @test_Strategy: Create instance via WebServiceException(String). Verify WebServiceException object created
+     * successfully.
      */
     public void WebServiceExceptionConstructorTest3() throws Fault {
         TestUtil.logTrace("WebServiceExceptionConstructorTest3");
@@ -135,7 +138,8 @@ public class Client extends ServiceEETest {
             if (e != null) {
                 TestUtil.logMsg("WebServiceException object created successfully");
                 String msg = e.getMessage();
-                if (msg.equals(detailMsg)) TestUtil.logMsg("detail message match: " + detailMsg);
+                if (msg.equals(detailMsg))
+                    TestUtil.logMsg("detail message match: " + detailMsg);
                 else {
                     TestUtil.logErr("detail message mismatch - expected: " + detailMsg + ", received: " + msg);
                     pass = false;
@@ -150,7 +154,8 @@ public class Client extends ServiceEETest {
             throw new Fault("WebServiceExceptionConstructorTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("WebServiceExceptionConstructorTest3 failed");
+        if (!pass)
+            throw new Fault("WebServiceExceptionConstructorTest3 failed");
     }
 
     /*
@@ -158,8 +163,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:75;
      *
-     * @test_Strategy: Create instance via WebServiceException(Throwable). Verify
-     * WebServiceException object created successfully.
+     * @test_Strategy: Create instance via WebServiceException(Throwable). Verify WebServiceException object created
+     * successfully.
      */
     public void WebServiceExceptionConstructorTest4() throws Fault {
         TestUtil.logTrace("WebServiceExceptionConstructorTest4");
@@ -180,6 +185,7 @@ public class Client extends ServiceEETest {
             throw new Fault("WebServiceExceptionConstructorTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("WebServiceExceptionConstructorTest4 failed");
+        if (!pass)
+            throw new Fault("WebServiceExceptionConstructorTest4 failed");
     }
 }

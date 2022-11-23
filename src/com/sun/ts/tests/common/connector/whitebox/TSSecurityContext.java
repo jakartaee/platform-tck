@@ -168,27 +168,20 @@ public class TSSecurityContext extends SecurityContext {
     }
 
     /*
-     * This is used to help verify assertion Connector:SPEC:229, which states a
-     * couple requirements with the following being focused on within this method:
-     * "The following conditions are applicable to the application server provider
-     * while calling the setupSecurityContext method: the CallbackHandler
-     * implementation passed as the argument handler to setupSecurityContext must
-     * support the following JSR-196 Callbacks: CallerPrincipalCallback,
-     * GroupPrincipalCallback, and PasswordValidationCallback"
+     * This is used to help verify assertion Connector:SPEC:229, which states a couple requirements with the following being
+     * focused on within this method: "The following conditions are applicable to the application server provider while
+     * calling the setupSecurityContext method: the CallbackHandler implementation passed as the argument handler to
+     * setupSecurityContext must support the following JSR-196 Callbacks: CallerPrincipalCallback, GroupPrincipalCallback,
+     * and PasswordValidationCallback"
      *
-     * Mostly, this is here to verify that the 3 main callbacks are supported by
-     * the vendors app server and that they can be used with a a couple different
-     * scenarios (eg. calling some but not all callbacks, or using null
-     * principals, etc)
+     * Mostly, this is here to verify that the 3 main callbacks are supported by the vendors app server and that they can be
+     * used with a a couple different scenarios (eg. calling some but not all callbacks, or using null principals, etc)
      *
-     * Related notes on testing callbacks: 1. must call CPC after PVC (CPC and PVC
-     * should use same user identities) 2. PVC is for case-1 security only (not
-     * case-2 of mapping) 3. It's not spec required but recommended we call CPC
-     * after GPC though there is allowance for a spec optimization which would
-     * allow calling GPC without CPC but its a somewhat controversial optimization
-     * so for now, if you have a GPC, you should follow with a CPC 4. CPC can be
-     * alone 5. if CPC is called, it basically trumps PVC/GPC so it shouldnt even
-     * matter what is in PVC/GPC.
+     * Related notes on testing callbacks: 1. must call CPC after PVC (CPC and PVC should use same user identities) 2. PVC
+     * is for case-1 security only (not case-2 of mapping) 3. It's not spec required but recommended we call CPC after GPC
+     * though there is allowance for a spec optimization which would allow calling GPC without CPC but its a somewhat
+     * controversial optimization so for now, if you have a GPC, you should follow with a CPC 4. CPC can be alone 5. if CPC
+     * is called, it basically trumps PVC/GPC so it shouldnt even matter what is in PVC/GPC.
      *
      */
     public void doCallbackVerification(CallbackHandler callbackHandler, Subject execSubject, Subject serviceSubject) {
@@ -197,7 +190,7 @@ public class TSSecurityContext extends SecurityContext {
         PasswordValidationCallback pvc = null;
         GroupPrincipalCallback gpc = null;
         CallerPrincipalCallback cpc = null;
-        String[] gpcGroups = {"phakegrp1", "phakegrp2"};
+        String[] gpcGroups = { "phakegrp1", "phakegrp2" };
 
         debug("doCallbackVerification():  translationRequired = " + translationRequired);
 
@@ -308,19 +301,14 @@ public class TSSecurityContext extends SecurityContext {
 
     /*
      *
-     * The executionSubject arg must be non-null and it must not be read-only. It
-     * is expected that this method will populate this executionSubject with
-     * principals and credentials that would be flown into the application server.
+     * The executionSubject arg must be non-null and it must not be read-only. It is expected that this method will populate
+     * this executionSubject with principals and credentials that would be flown into the application server.
      *
-     * The serviceSubject argument may be null. If it is not null, it must not be
-     * read-only. (from ee spec, section 16.4.1) Note: this differs from javadoc
-     * comments and insuch case, spec takes precedence. The serviceSubject
-     * represents the application server and it may be used by the Work
-     * implementation to retrieve Principals and credentials necessary to
-     * establish a connection to the EIS (in the cause of mutual-auth like
-     * scenarios). If the Subject is not null, the Work implementation may collect
-     * the server cred as necessary, by using the callback handler passed to them
-     * .
+     * The serviceSubject argument may be null. If it is not null, it must not be read-only. (from ee spec, section 16.4.1)
+     * Note: this differs from javadoc comments and insuch case, spec takes precedence. The serviceSubject represents the
+     * application server and it may be used by the Work implementation to retrieve Principals and credentials necessary to
+     * establish a connection to the EIS (in the cause of mutual-auth like scenarios). If the Subject is not null, the Work
+     * implementation may collect the server cred as necessary, by using the callback handler passed to them .
      */
     @Override
     public void setupSecurityContext(CallbackHandler callbackHandler, Subject execSubject, Subject serviceSubject) {
@@ -335,8 +323,8 @@ public class TSSecurityContext extends SecurityContext {
     }
 
     /*
-     * this method is used to perform a simple validation that the callbackHandler
-     * is spec compliant per assertion Connector:SPEC:229
+     * this method is used to perform a simple validation that the callbackHandler is spec compliant per assertion
+     * Connector:SPEC:229
      */
     private void validateCallbackHandler(CallbackHandler callbackHandler) {
         String str = "";
@@ -352,8 +340,8 @@ public class TSSecurityContext extends SecurityContext {
     }
 
     /*
-     * this method is used to perform a simple validation that the execSubject is
-     * spec compliant per assertion Connector:SPEC:230
+     * this method is used to perform a simple validation that the execSubject is spec compliant per assertion
+     * Connector:SPEC:230
      */
     private void validateExecSubject(Subject execSubject) {
         String str = "";
@@ -368,8 +356,8 @@ public class TSSecurityContext extends SecurityContext {
     }
 
     /*
-     * this method is used to perform a simple validation that the serviceSubject
-     * is spec compliant per assertion Connector:SPEC:231
+     * this method is used to perform a simple validation that the serviceSubject is spec compliant per assertion
+     * Connector:SPEC:231
      */
     private void validateServiceSubject(Subject serviceSubject) {
         String str = "";

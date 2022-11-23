@@ -28,5 +28,6 @@ import jakarta.ejb.Stateless;
 @Stateless()
 public class DBean extends DBeanBase implements TxRemoteIF, TxLocalIF {
 
-    public DBean() {}
+    public DBean() {
+    }
 }

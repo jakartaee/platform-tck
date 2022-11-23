@@ -29,9 +29,8 @@ import jakarta.websocket.DeploymentException;
  *                     tslib.name;
  */
 /**
- * @OnMessage Java primitive or class equivalent to receive the whole message
- *            converted to that type. This test checks the Bigdecimal is out of
- *            this scope.
+ * @OnMessage Java primitive or class equivalent to receive the whole message converted to that type. This test checks
+ * the Bigdecimal is out of this scope.
  * @since 1.11
  */
 public class WSCClient extends NegativeDeploymentClient {
@@ -49,27 +48,22 @@ public class WSCClient extends NegativeDeploymentClient {
     /*
      * @testName: bigDecimalOnMessageTest
      *
-     * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.7-1;
-     * WebSocket:SPEC:WSC-5.2.1-4;
+     * @assertion_ids: WebSocket:SPEC:WSC-5.2.1-3;WebSocket:SPEC:WSC-4.7-1; WebSocket:SPEC:WSC-5.2.1-4;
      *
-     * @test_Strategy: In both cases, a deployment error raised during the
-     * deployment process must halt the deployment of the application, any well
-     * formed endpoints deployed prior to the error being raised must be removed
-     * from service and no more websocket endpoints from that application may be
-     * deployed by the container, even if they are valid.
+     * @test_Strategy: In both cases, a deployment error raised during the deployment process must halt the deployment of
+     * the application, any well formed endpoints deployed prior to the error being raised must be removed from service and
+     * no more websocket endpoints from that application may be deployed by the container, even if they are valid.
      *
-     * Any method annotated with @OnMessage that does not conform to the forms
-     * defied therein is invalid. The websocket implementation must not deploy
-     * such an endpoint and must raise a deployment error if an attempt is made to
-     * deploy such an annotated endpoint. [WSC-4.7-1]
+     * Any method annotated with @OnMessage that does not conform to the forms defied therein is invalid. The websocket
+     * implementation must not deploy such an endpoint and must raise a deployment error if an attempt is made to deploy
+     * such an annotated endpoint. [WSC-4.7-1]
      *
-     * If the deployment error occurs under the programmatic control of the
-     * developer, for example, when using the WebSocketContainer API to deploy a
-     * client endpoint, deployment errors must be reported by the container to the
+     * If the deployment error occurs under the programmatic control of the developer, for example, when using the
+     * WebSocketContainer API to deploy a client endpoint, deployment errors must be reported by the container to the
      * developer by using an instance of the DeploymentException. [WSC-5.2.1-4]
      *
-     * To check the test fails when deployment pass, switch BigDecimal argument
-     * with String in @OnMessage of OnMessageClientEndpoint
+     * To check the test fails when deployment pass, switch BigDecimal argument with String in @OnMessage of
+     * OnMessageClientEndpoint
      */
     public void bigDecimalOnMessageTest() throws Fault {
         setEntity("anything");
@@ -90,7 +84,8 @@ public class WSCClient extends NegativeDeploymentClient {
             logMsg("--\n\n");
             logMsg("DeploymentException has been thrown as expected");
         }
-        if (!thrown) super.throwDeploymentDidNotFail();
+        if (!thrown)
+            super.throwDeploymentDidNotFail();
 
         boolean isSession = false;
         try {

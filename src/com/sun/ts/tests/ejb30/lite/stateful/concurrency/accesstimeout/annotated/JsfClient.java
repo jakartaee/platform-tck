@@ -26,22 +26,10 @@ import jakarta.ejb.EJBs;
 import java.io.Serializable;
 
 @EJBs({
-    @EJB(
-            name = AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanLocal,
-            beanName = "BeanClassMethodLevelOverrideAccessTimeoutBean",
-            beanInterface = AccessTimeoutIF.class),
-    @EJB(
-            name = AccessTimeoutIF.beanClassMethodLevelAccessTimeoutBeanLocal,
-            beanName = "BeanClassMethodLevelAccessTimeoutBean",
-            beanInterface = AccessTimeoutIF.class),
-    @EJB(
-            name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal,
-            beanName = "BeanClassLevelAccessTimeoutBean",
-            beanInterface = AccessTimeoutIF.class),
-    @EJB(
-            name = AccessTimeoutIF.annotatedSuperClassAccessTimeoutBeanLocal,
-            beanName = "AnnotatedSuperClassAccessTimeoutBean",
-            beanInterface = AccessTimeoutIF.class)
+        @EJB(name = AccessTimeoutIF.beanClassMethodLevelOverrideAccessTimeoutBeanLocal, beanName = "BeanClassMethodLevelOverrideAccessTimeoutBean", beanInterface = AccessTimeoutIF.class),
+        @EJB(name = AccessTimeoutIF.beanClassMethodLevelAccessTimeoutBeanLocal, beanName = "BeanClassMethodLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class),
+        @EJB(name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal, beanName = "BeanClassLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class),
+        @EJB(name = AccessTimeoutIF.annotatedSuperClassAccessTimeoutBeanLocal, beanName = "AnnotatedSuperClassAccessTimeoutBean", beanInterface = AccessTimeoutIF.class)
 })
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped

@@ -59,7 +59,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
         Element elm = findServiceElement(document, serviceQName);
 
-        if (elm == null) return null;
+        if (elm == null)
+            return null;
 
         Element portElement = findPortElement(document, elm, portQName);
 
@@ -123,11 +124,11 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
         short nodeType = node.getNodeType();
 
         switch (nodeType) {
-            case Node.DOCUMENT_NODE:
-                return ((Document) node).getDocumentElement().getChildNodes();
+        case Node.DOCUMENT_NODE:
+            return ((Document) node).getDocumentElement().getChildNodes();
 
-            case Node.ELEMENT_NODE:
-                return ((Element) node).getChildNodes();
+        case Node.ELEMENT_NODE:
+            return ((Element) node).getChildNodes();
         }
 
         return null;
@@ -138,7 +139,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
         NodeList nodeList = null;
 
-        if (document == null) return null;
+        if (document == null)
+            return null;
 
         nodeList = operationElement.getChildNodes();
 
@@ -146,13 +148,15 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node node = nodeList.item(i);
 
-            if (!(node instanceof Element)) continue;
+            if (!(node instanceof Element))
+                continue;
             Element inputOperationElement = (Element) nodeList.item(i);
 
             TestUtil.logMsg("inputOperationElement  : " + inputOperationElement);
 
             if (new QName(inputOperationElement.getNamespaceURI(), inputOperationElement.getLocalName())
-                    .equals(new QName(WSDL_NS, direction))) return inputOperationElement;
+                    .equals(new QName(WSDL_NS, direction)))
+                return inputOperationElement;
         }
 
         return null;
@@ -161,7 +165,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
     public static Element findMessageElement(
             Document document, QName portTypeName, QName operationQName, String direction) throws Exception {
 
-        if (document == null) return null;
+        if (document == null)
+            return null;
 
         String elementTargetNS;
         NodeList importList = null;
@@ -173,15 +178,18 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
         portTypeElement = findPortTypeElement(document, portTypeName);
 
-        if (portTypeElement == null) return null;
+        if (portTypeElement == null)
+            return null;
 
         operationElement = findPortTypeOperationElement(portTypeElement, operationQName);
 
-        if (operationElement == null) return null;
+        if (operationElement == null)
+            return null;
 
         messageQName = findMessageQName(operationElement, direction);
 
-        if (messageQName == null) return null;
+        if (messageQName == null)
+            return null;
 
         NodeList nodeList = document.getDocumentElement().getChildNodes();
 
@@ -190,11 +198,13 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
         for (int i = 0; i < nodeList.getLength(); i++) {
 
             Node node = nodeList.item(i);
-            if (!(node instanceof Element)) continue;
+            if (!(node instanceof Element))
+                continue;
             Element messageElement = (Element) node;
 
             if (!new QName(messageElement.getNamespaceURI(), messageElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "message"))) continue;
+                    .equals(new QName(WSDL_NS, "message")))
+                continue;
 
             String message = messageElement.getAttribute("name");
 
@@ -213,16 +223,19 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node importNode = nodeList.item(k);
 
-            if (!(importNode instanceof Element)) continue;
+            if (!(importNode instanceof Element))
+                continue;
 
             Element importElement = (Element) importNode;
 
             if (!new QName(importElement.getNamespaceURI(), importElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "import"))) continue;
+                    .equals(new QName(WSDL_NS, "import")))
+                continue;
 
             Attr locationAtt = importElement.getAttributeNode("location");
 
-            if (locationAtt != null) importUrl = locationAtt.getValue();
+            if (locationAtt != null)
+                importUrl = locationAtt.getValue();
 
             TestUtil.logMsg(" ImportedUrl : " + importUrl);
 
@@ -238,7 +251,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
     public static QName findMessageQName(Node operation, String direction) throws Exception {
 
-        if (operation == null) return null;
+        if (operation == null)
+            return null;
 
         NodeList nodeList = null;
         NodeList importList = null;
@@ -250,25 +264,27 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
         short nodeType = operation.getNodeType();
 
         switch (nodeType) {
-            case Node.DOCUMENT_NODE:
-                nodeList = ((Document) operation).getDocumentElement().getChildNodes();
+        case Node.DOCUMENT_NODE:
+            nodeList = ((Document) operation).getDocumentElement().getChildNodes();
 
-                break;
+            break;
 
-            case Node.ELEMENT_NODE:
-                nodeList = ((Element) operation).getChildNodes();
-                break;
+        case Node.ELEMENT_NODE:
+            nodeList = ((Element) operation).getChildNodes();
+            break;
         }
 
         for (int i = 0; i < nodeList.getLength(); i++) {
 
             Node node = nodeList.item(i);
 
-            if (!(node instanceof Element)) continue;
+            if (!(node instanceof Element))
+                continue;
             Element messageElement = (Element) nodeList.item(i);
 
             if (!new QName(messageElement.getNamespaceURI(), messageElement.getLocalName())
-                    .equals(new QName(WSDL_NS, direction))) continue;
+                    .equals(new QName(WSDL_NS, direction)))
+                continue;
 
             messageAttribute = messageElement.getAttributeNode("message");
 
@@ -286,16 +302,19 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node importNode = nodeList.item(k);
 
-            if (!(importNode instanceof Element)) continue;
+            if (!(importNode instanceof Element))
+                continue;
 
             Element importElement = (Element) importNode;
 
             if (!new QName(importElement.getNamespaceURI(), importElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "import"))) continue;
+                    .equals(new QName(WSDL_NS, "import")))
+                continue;
 
             Attr locationAtt = importElement.getAttributeNode("location");
 
-            if (locationAtt != null) importUrl = locationAtt.getValue();
+            if (locationAtt != null)
+                importUrl = locationAtt.getValue();
 
             TestUtil.logMsg(" ImportedUrl : " + importUrl);
 
@@ -332,11 +351,13 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
                     Node node = nodeList.item(i);
 
-                    if (!(node instanceof Element)) continue;
+                    if (!(node instanceof Element))
+                        continue;
                     Element operationElement = (Element) nodeList.item(i);
 
                     if (!new QName(operationElement.getNamespaceURI(), operationElement.getLocalName())
-                            .equals(new QName(WSDL_NS, "operation"))) continue;
+                            .equals(new QName(WSDL_NS, "operation")))
+                        continue;
 
                     String operation = operationElement.getAttribute("name");
                     QName operationQName = new QName(elementTargetNS, operation);
@@ -344,7 +365,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
                     TestUtil.logMsg(" operation : " + operationQName);
                     TestUtil.logMsg(" Expected operation : " + operationName);
 
-                    if (operationName.equals(operationQName)) return operationElement;
+                    if (operationName.equals(operationQName))
+                        return operationElement;
                 }
             }
         }
@@ -360,7 +382,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
     public static Element findPartElement(Document document, Element messageElement, QName partName, boolean byElement)
             throws Exception {
 
-        if (document == null) return null;
+        if (document == null)
+            return null;
 
         String elementTargetNS;
         NodeList importList = null;
@@ -374,11 +397,13 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
         for (int i = 0; i < nodeList.getLength(); i++) {
 
             Node node = nodeList.item(i);
-            if (!(node instanceof Element)) continue;
+            if (!(node instanceof Element))
+                continue;
             Element partElement = (Element) node;
 
             if (!new QName(partElement.getNamespaceURI(), partElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "part"))) continue;
+                    .equals(new QName(WSDL_NS, "part")))
+                continue;
 
             QName partQName = null;
             String part = null;
@@ -407,16 +432,19 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node importNode = nodeList.item(k);
 
-            if (!(importNode instanceof Element)) continue;
+            if (!(importNode instanceof Element))
+                continue;
 
             Element importElement = (Element) importNode;
 
             if (!new QName(importElement.getNamespaceURI(), importElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "import"))) continue;
+                    .equals(new QName(WSDL_NS, "import")))
+                continue;
 
             Attr locationAtt = importElement.getAttributeNode("location");
 
-            if (locationAtt != null) importUrl = locationAtt.getValue();
+            if (locationAtt != null)
+                importUrl = locationAtt.getValue();
 
             TestUtil.logMsg(" ImportedUrl : " + importUrl);
 
@@ -432,7 +460,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
     public static Element findPortElement(Document document, Element serviceElement, QName portName) throws Exception {
 
-        if (document == null) return null;
+        if (document == null)
+            return null;
 
         String elementTargetNS;
 
@@ -449,7 +478,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
                         && element.getNamespaceURI().equals(serviceElement.getNamespaceURI())) {
                     String name = element.getAttribute("name");
                     QName portQName = new QName(elementTargetNS, name.substring(name.indexOf(":") + 1));
-                    if (portQName.equals(portName)) return element;
+                    if (portQName.equals(portName))
+                        return element;
                 }
             }
         }
@@ -459,7 +489,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
     public static Element findPortTypeElement(Document document, QName portTypeName) throws Exception {
 
-        if (document == null) return null;
+        if (document == null)
+            return null;
 
         NodeList importList = null;
         String importUrl = null;
@@ -472,11 +503,13 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
         for (int i = 0; i < nodeList.getLength(); i++) {
 
             Node node = nodeList.item(i);
-            if (!(node instanceof Element)) continue;
+            if (!(node instanceof Element))
+                continue;
             Element portTypeElement = (Element) node;
 
             if (!new QName(portTypeElement.getNamespaceURI(), portTypeElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "portType"))) continue;
+                    .equals(new QName(WSDL_NS, "portType")))
+                continue;
 
             String portType = portTypeElement.getAttribute("name");
 
@@ -500,16 +533,19 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node importNode = nodeList.item(k);
 
-            if (!(importNode instanceof Element)) continue;
+            if (!(importNode instanceof Element))
+                continue;
 
             Element importElement = (Element) importNode;
 
             if (!new QName(importElement.getNamespaceURI(), importElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "import"))) continue;
+                    .equals(new QName(WSDL_NS, "import")))
+                continue;
 
             Attr locationAtt = importElement.getAttributeNode("location");
 
-            if (locationAtt != null) importUrl = locationAtt.getValue();
+            if (locationAtt != null)
+                importUrl = locationAtt.getValue();
 
             TestUtil.logMsg(" ImportedUrl : " + importUrl);
 
@@ -525,7 +561,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
     public static Element findPortTypeOperationElement(Node portType, QName operationQName) throws Exception {
 
-        if (portType == null) return null;
+        if (portType == null)
+            return null;
 
         NodeList nodeList = null;
         NodeList importList = null;
@@ -537,16 +574,16 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
         short nodeType = portType.getNodeType();
 
         switch (nodeType) {
-            case Node.DOCUMENT_NODE:
-                nodeList = ((Document) portType).getDocumentElement().getChildNodes();
-                document = (Document) portType;
+        case Node.DOCUMENT_NODE:
+            nodeList = ((Document) portType).getDocumentElement().getChildNodes();
+            document = (Document) portType;
 
-                break;
+            break;
 
-            case Node.ELEMENT_NODE:
-                nodeList = ((Element) portType).getChildNodes();
+        case Node.ELEMENT_NODE:
+            nodeList = ((Element) portType).getChildNodes();
 
-                document = ((Element) portType).getOwnerDocument();
+            document = ((Element) portType).getOwnerDocument();
         }
 
         elementTargetNS = getTargetNamespace(document);
@@ -555,11 +592,13 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node node = nodeList.item(i);
 
-            if (!(node instanceof Element)) continue;
+            if (!(node instanceof Element))
+                continue;
             Element operationElement = (Element) nodeList.item(i);
 
             if (!new QName(operationElement.getNamespaceURI(), operationElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "operation"))) continue;
+                    .equals(new QName(WSDL_NS, "operation")))
+                continue;
 
             String operation = operationElement.getAttribute("name");
 
@@ -581,16 +620,19 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node importNode = nodeList.item(k);
 
-            if (!(importNode instanceof Element)) continue;
+            if (!(importNode instanceof Element))
+                continue;
 
             Element importElement = (Element) importNode;
 
             if (!new QName(importElement.getNamespaceURI(), importElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "import"))) continue;
+                    .equals(new QName(WSDL_NS, "import")))
+                continue;
 
             Attr locationAtt = importElement.getAttributeNode("location");
 
-            if (locationAtt != null) importUrl = locationAtt.getValue();
+            if (locationAtt != null)
+                importUrl = locationAtt.getValue();
 
             TestUtil.logMsg(" ImportedUrl : " + importUrl);
 
@@ -608,7 +650,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
     public static Element findServiceElement(Document document, QName serviceName) throws Exception {
 
-        if (document == null) return null;
+        if (document == null)
+            return null;
 
         String elementTargetNS = null;
         NodeList importList = null;
@@ -622,11 +665,13 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
         for (int i = 0; i < nodeList.getLength(); i++) {
 
             Node node = nodeList.item(i);
-            if (!(node instanceof Element)) continue;
+            if (!(node instanceof Element))
+                continue;
             Element serviceElement = (Element) node;
 
             if (!new QName(serviceElement.getNamespaceURI(), serviceElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "service"))) continue;
+                    .equals(new QName(WSDL_NS, "service")))
+                continue;
 
             String service = serviceElement.getAttribute("name");
             QName serviceQName = new QName(elementTargetNS, service.substring(service.indexOf(":") + 1));
@@ -644,16 +689,19 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node importNode = nodeList.item(k);
 
-            if (!(importNode instanceof Element)) continue;
+            if (!(importNode instanceof Element))
+                continue;
 
             Element importElement = (Element) importNode;
 
             if (!new QName(importElement.getNamespaceURI(), importElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "import"))) continue;
+                    .equals(new QName(WSDL_NS, "import")))
+                continue;
 
             Attr locationAtt = importElement.getAttributeNode("location");
 
-            if (locationAtt != null) importUrl = locationAtt.getValue();
+            if (locationAtt != null)
+                importUrl = locationAtt.getValue();
 
             TestUtil.logMsg(" ImportedUrl : " + importUrl);
 
@@ -671,7 +719,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
     public static Element findSoapBindingElement(Document document, QName bindingName) throws Exception {
 
-        if (document == null) return null;
+        if (document == null)
+            return null;
 
         NodeList importList = null;
         String importUrl = null;
@@ -685,11 +734,13 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
         for (int i = 0; i < nodeList.getLength(); i++) {
 
             Node node = nodeList.item(i);
-            if (!(node instanceof Element)) continue;
+            if (!(node instanceof Element))
+                continue;
             Element bindingElement = (Element) nodeList.item(i);
 
             if (!new QName(bindingElement.getNamespaceURI(), bindingElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "binding"))) continue;
+                    .equals(new QName(WSDL_NS, "binding")))
+                continue;
 
             String binding = bindingElement.getAttribute("name");
 
@@ -711,16 +762,19 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node importNode = nodeList.item(k);
 
-            if (!(importNode instanceof Element)) continue;
+            if (!(importNode instanceof Element))
+                continue;
 
             Element importElement = (Element) importNode;
 
             if (!new QName(importElement.getNamespaceURI(), importElement.getLocalName())
-                    .equals(new QName(WSDL_NS, "import"))) continue;
+                    .equals(new QName(WSDL_NS, "import")))
+                continue;
 
             Attr locationAtt = importElement.getAttributeNode("location");
 
-            if (locationAtt != null) importUrl = locationAtt.getValue();
+            if (locationAtt != null)
+                importUrl = locationAtt.getValue();
 
             TestUtil.logMsg(" ImportedUrl : " + importUrl);
 
@@ -748,7 +802,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
         Element operation = null;
         QName messageQName = null;
 
-        if (document == null) return null;
+        if (document == null)
+            return null;
 
         Element element = findInputOutputOperationElement(document, operationElement, direction);
 
@@ -758,13 +813,15 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node node = nodeList.item(i);
 
-            if (!(node instanceof Element)) continue;
+            if (!(node instanceof Element))
+                continue;
             Element headerElement = (Element) nodeList.item(i);
 
             TestUtil.logMsg("headerElement  : " + headerElement);
 
             if (!new QName(headerElement.getNamespaceURI(), headerElement.getLocalName())
-                    .equals(new QName(SOAP_NS, "header"))) continue;
+                    .equals(new QName(SOAP_NS, "header")))
+                continue;
 
             String part = headerElement.getAttribute("part");
 
@@ -772,21 +829,25 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             portTypeElement = findPortTypeElement(document, portTypeQName);
 
-            if (portTypeElement == null) return null;
+            if (portTypeElement == null)
+                return null;
 
             operation = findPortTypeOperationElement(portTypeElement, operationQName);
 
-            if (operation == null) return null;
+            if (operation == null)
+                return null;
 
             messageQName = findMessageQName(operation, direction);
 
-            if (messageQName == null) return null;
+            if (messageQName == null)
+                return null;
 
             QName messageName = createQName(headerElement, message);
 
             TestUtil.logMsg(" partName = " + part + " MessageQname = " + messageQName);
 
-            if (part.equals(partName) && messageQName.equals(messageName)) return headerElement;
+            if (part.equals(partName) && messageQName.equals(messageName))
+                return headerElement;
         }
 
         return null;
@@ -797,7 +858,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
         NodeList nodeList = null;
 
-        if (document == null) return null;
+        if (document == null)
+            return null;
 
         nodeList = operationElement.getChildNodes();
 
@@ -805,17 +867,20 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             Node node = nodeList.item(i);
 
-            if (!(node instanceof Element)) continue;
+            if (!(node instanceof Element))
+                continue;
             Element soapOperationElement = (Element) nodeList.item(i);
 
             TestUtil.logMsg("soapOperationElement  : " + soapOperationElement);
 
             if (!new QName(soapOperationElement.getNamespaceURI(), soapOperationElement.getLocalName())
-                    .equals(new QName(SOAP_NS, "operation"))) continue;
+                    .equals(new QName(SOAP_NS, "operation")))
+                continue;
 
             String action = soapOperationElement.getAttribute("soapAction");
 
-            if (soapAction.equals(action)) return soapOperationElement;
+            if (soapAction.equals(action))
+                return soapOperationElement;
         }
 
         return null;
@@ -831,7 +896,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
             elementTargetNS = rootElement.getAttribute("targetNamespace");
 
-            if (elementTargetNS == null) elementTargetNS = getDefaultNamespace(rootElement);
+            if (elementTargetNS == null)
+                elementTargetNS = getDefaultNamespace(rootElement);
         }
 
         return elementTargetNS == null ? "" : elementTargetNS;
@@ -851,8 +917,10 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
     public static Document getDocument(String location, URL context) throws Exception {
 
         URL url;
-        if (location.startsWith("http")) url = new URL(location);
-        else url = new URL(context, location);
+        if (location.startsWith("http"))
+            url = new URL(location);
+        else
+            url = new URL(context, location);
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true);
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -862,10 +930,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
     /**
      * returns the namespace for the prefix.
      *
-     * @param prefix
-     *          prefix
-     * @param element
-     *          element from which to findout the namespace.
+     * @param prefix prefix
+     * @param element element from which to findout the namespace.
      * @return namespace for this prefix. null if this prefix is not defined.
      */
     private static String getNamespace(String prefix, Element element) {
@@ -878,8 +944,10 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
             }
 
             Node parent = element.getParentNode();
-            if (parent instanceof Element) element = (Element) parent;
-            else element = null;
+            if (parent instanceof Element)
+                element = (Element) parent;
+            else
+                element = null;
         } while (element != null);
 
         return null;
@@ -892,7 +960,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
     public static Element getElement(Node[] nodes) throws Exception {
 
         for (int i = 0; i < nodes.length; i++) {
-            if (nodes[i] instanceof Element) return ((Element) nodes[i]);
+            if (nodes[i] instanceof Element)
+                return ((Element) nodes[i]);
         }
         return null;
     }
@@ -900,7 +969,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
     public static Document getDocument(Node[] nodes) throws Exception {
 
         for (int i = 0; i < nodes.length; i++) {
-            if (nodes[i] instanceof Document) return ((Document) nodes[i]);
+            if (nodes[i] instanceof Document)
+                return ((Document) nodes[i]);
         }
         return null;
     }
@@ -915,7 +985,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
                 wrapperElement = DescriptionUtils.getNamedChildElement(
                         schemaDocs[i].getDocumentElement(), XSD_NAMESPACE_URI, XSD_ELEMENT_LOCAL_NAME, messageName);
                 if (wrapperElement == null) {
-                    if (schemaDocs[i].getDocumentURI() != null) baseURL = new URL(schemaDocs[i].getDocumentURI());
+                    if (schemaDocs[i].getDocumentURI() != null)
+                        baseURL = new URL(schemaDocs[i].getDocumentURI());
                     return getWrapperElement(schemaDocs[i], ns, baseURL, messageName);
                 } else {
                     aList.add(wrapperElement);
@@ -940,7 +1011,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
         if (type != null) {
             QName typeQName = createQName(element, type);
             nodes = getComplexTypeElementAndDocFromTypes(doc, baseURL, typeQName);
-            if (nodes == null) nodes = getComplexTypeElementAndDoc(doc, baseURL, typeQName);
+            if (nodes == null)
+                nodes = getComplexTypeElementAndDoc(doc, baseURL, typeQName);
         } else if (ref != null) {
 
             // ref needs to be handeled.
@@ -961,7 +1033,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
             TestUtil.logMsg("Trying to find ComplexType" + qName);
             for (int i = 0; i < schemas.length; i++) {
                 nameSpace = schemas[i].getAttribute(XSD_TARGETNAMESPACE_ATTR);
-                if (!schemas[i].getAttribute(XSD_TARGETNAMESPACE_ATTR).equals((qName.getNamespaceURI()))) continue;
+                if (!schemas[i].getAttribute(XSD_TARGETNAMESPACE_ATTR).equals((qName.getNamespaceURI())))
+                    continue;
                 elements = DescriptionUtils.getChildElements(schemas[i], XSD_NAMESPACE_URI, XSD_COMPLEXTYPE_LOCAL_NAME);
 
                 for (int j = 0; j < elements.length; j++) {
@@ -1044,8 +1117,7 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
     public static Node[] getParameterElement(Document doc, URL baseURL, QName qName) throws Exception {
 
         ArrayList alist = new ArrayList();
-        Element[] elements =
-                DescriptionUtils.getChildElements(doc.getDocumentElement(), XSD_NAMESPACE_URI, XSD_ELEMENT_LOCAL_NAME);
+        Element[] elements = DescriptionUtils.getChildElements(doc.getDocumentElement(), XSD_NAMESPACE_URI, XSD_ELEMENT_LOCAL_NAME);
         for (int i = 0; i < elements.length; i++) {
             String nameAttr = elements[i].getAttribute(XSD_NAME_ATTR);
             if (nameAttr != null) {
@@ -1099,7 +1171,8 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
                 String targetNameSpace = schemas[i].getAttribute(XSD_TARGETNAMESPACE_ATTR);
                 for (int j = 0; j < elements.length; j++) {
                     if (elements[j].getAttribute(XSD_NAME_ATTR).equals(qName.getLocalPart())
-                            && targetNameSpace.equals(qName.getNamespaceURI())) return elements[j];
+                            && targetNameSpace.equals(qName.getNamespaceURI()))
+                        return elements[j];
                 }
             }
         }
@@ -1113,8 +1186,10 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
     public static Element getTypes(Document document, URL baseURL) {
         Element[] children = DescriptionUtils.getChildElements(
                 document.getDocumentElement(), WSDL_NAMESPACE_URI, WSDL_TYPES_LOCAL_NAME);
-        if (children.length != 0) return children[0];
-        else return getTypesFromImports(document, baseURL);
+        if (children.length != 0)
+            return children[0];
+        else
+            return getTypesFromImports(document, baseURL);
     }
 
     public static Element getTypesFromImports(Document document, URL baseURL) {
@@ -1124,9 +1199,11 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
             String namespace = imports[i].getAttribute(WSDL_NAMESPACE_ATTR);
             try {
                 Document newDoc = DescriptionUtils.getDocumentFromLocation(location, baseURL);
-                if (newDoc.getDocumentURI() != null) baseURL = new URL(newDoc.getDocumentURI());
+                if (newDoc.getDocumentURI() != null)
+                    baseURL = new URL(newDoc.getDocumentURI());
                 Element element = getTypes(newDoc, baseURL);
-                if (element != null) return element;
+                if (element != null)
+                    return element;
             } catch (Exception e) {
                 e.printStackTrace(System.err);
                 break;
@@ -1172,10 +1249,13 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
 
     public static boolean checkQNamesEquals(String[] names1, String[] names2) {
 
-        if (names1 == null && names2 == null) return true;
-        if (names1 == null || names2 == null) return false;
+        if (names1 == null && names2 == null)
+            return true;
+        if (names1 == null || names2 == null)
+            return false;
 
-        if (names1.length != names2.length) return false;
+        if (names1.length != names2.length)
+            return false;
 
         for (int i = 0; i < names1.length; i++) {
             if (!names1[i].trim().equals(names2[i].trim())) {
@@ -1189,15 +1269,11 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
     /**
      * create a QName from an attribute value.
      *
-     * @param element
-     *          element form which to resolve the namespace from the prefix.
-     * @param value
-     *          qname value like "prefix:value"
-     * @param value
-     *          qname value like "prefix:value"
+     * @param element element form which to resolve the namespace from the prefix.
+     * @param value qname value like "prefix:value"
+     * @param value qname value like "prefix:value"
      * @return QName created form the prefix
-     * @throws Exception
-     *           failed to find namespace for the specified prefix.
+     * @throws Exception failed to find namespace for the specified prefix.
      */
     public static QName createQName(Element element, String value) throws Exception {
 
@@ -1240,22 +1316,23 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
             }
         }
 
-        if (alist.size() == 0) return null;
-        else return (Document[]) alist.toArray(new Document[alist.size()]);
+        if (alist.size() == 0)
+            return null;
+        else
+            return (Document[]) alist.toArray(new Document[alist.size()]);
     }
 
     /**
      * returns the namespace for the prefix.
      *
-     * @param prefix
-     *          prefix
-     * @param element
-     *          element from which to findout the namespace.
+     * @param prefix prefix
+     * @param element element from which to findout the namespace.
      * @return namespace for this prefix. null if this prefix is not defined.
      */
     public static String getNamespaceOfPrefix(Element element, String prefix) {
         String namespace = null;
-        if (prefix == null) return getDefaultNamespace(element);
+        if (prefix == null)
+            return getDefaultNamespace(element);
         do {
             namespace = element.getAttribute("xmlns:" + prefix);
             if (namespace != null && !namespace.equals("")) {
@@ -1263,8 +1340,10 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
             }
 
             Node parent = element.getParentNode();
-            if (parent instanceof Element) element = (Element) parent;
-            else element = null;
+            if (parent instanceof Element)
+                element = (Element) parent;
+            else
+                element = null;
         } while (element != null);
 
         return null;
@@ -1273,8 +1352,7 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
     /**
      * Returns the default namespace for the element, or null if there is none.
      *
-     * @param element
-     *          element for which to return default ns.
+     * @param element element for which to return default ns.
      * @return default namespace, or null.
      */
     public static String getDefaultNamespace(Element element) {
@@ -1296,8 +1374,10 @@ public class WsdlUtils implements DescriptionConstants, SOAPConstants, SchemaCon
             }
 
             Node parent = element.getParentNode();
-            if (parent instanceof Element) element = (Element) parent;
-            else element = null;
+            if (parent instanceof Element)
+                element = (Element) parent;
+            else
+                element = null;
         } while (element != null);
 
         return null;

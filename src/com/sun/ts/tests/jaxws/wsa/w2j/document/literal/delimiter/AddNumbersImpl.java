@@ -25,12 +25,7 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.util.*;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "AddNumbersPort",
-        serviceName = "AddNumbersService",
-        targetNamespace = "urn:example.com",
-        wsdlLocation = "WEB-INF/wsdl/WSAW2JDLDelimiterTest.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.delimiter.AddNumbersPortType")
+@WebService(portName = "AddNumbersPort", serviceName = "AddNumbersService", targetNamespace = "urn:example.com", wsdlLocation = "WEB-INF/wsdl/WSAW2JDLDelimiterTest.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsa.w2j.document.literal.delimiter.AddNumbersPortType")
 public class AddNumbersImpl implements AddNumbersPortType {
 
     public int addNumbers(int number1, int number2) throws AddNumbersFault_Exception {

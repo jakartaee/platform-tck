@@ -31,8 +31,7 @@ public class QueueCode {
     private static final String prefix = "java:comp/env/jms/";
 
     /*
-     * JNDI lookup names for resource manager connection factories. They differ
-     * only by case.
+     * JNDI lookup names for resource manager connection factories. They differ only by case.
      */
     protected static final String resLookup = prefix + "myFactory";
 

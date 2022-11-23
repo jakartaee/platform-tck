@@ -126,8 +126,7 @@ public abstract class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: ejbPostConstructRecords
      *
-     * @test_Strategy: verify all env-entry are injected properly by the time
-     * post-construct method is invoked.
+     * @test_Strategy: verify all env-entry are injected properly by the time post-construct method is invoked.
      */
     public void ejbPostConstructRecords() {
         appendReason(envEntryBean.getPostConstructRecords());
@@ -136,8 +135,8 @@ public abstract class JsfClientBase extends EJBLiteJsfClientBase {
     /*
      * testName: clientPostConstructRecords
      *
-     * @test_Strategy: verify all env-entry injected into ejb can also be looked
-     * up from web client. In embeddable usage, this test is noop.
+     * @test_Strategy: verify all env-entry injected into ejb can also be looked up from web client. In embeddable usage,
+     * this test is noop.
      */
     public void clientPostConstructRecords() {
         appendReason(postConstructRecords);

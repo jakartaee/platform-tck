@@ -98,8 +98,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a byte primitive
      *
-     * @param b
-     *          - a byte primitive
+     * @param b - a byte primitive
      */
     public void setBytePrim(byte b) {
         this.b = b;
@@ -117,8 +116,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a char primitive.
      *
-     * @param c
-     *          - a char primitive
+     * @param c - a char primitive
      */
     public void setCharPrim(char c) {
         this.c = c;
@@ -136,8 +134,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a short primitive.
      *
-     * @param s
-     *          - a short primitive
+     * @param s - a short primitive
      */
     public void setShortPrim(short s) {
         this.s = s;
@@ -155,8 +152,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets an int primitive
      *
-     * @param i
-     *          - an int primitive
+     * @param i - an int primitive
      */
     public void setIntPrim(int i) {
         this.i = i;
@@ -174,8 +170,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a long primitive.
      *
-     * @param l
-     *          - a long primitive
+     * @param l - a long primitive
      */
     public void setLongPrim(long l) {
         this.l = l;
@@ -193,8 +188,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a float primitive.
      *
-     * @param f
-     *          - a float primitive
+     * @param f - a float primitive
      */
     public void setFloatPrim(float f) {
         this.f = f;
@@ -212,8 +206,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a double primitive.
      *
-     * @param d
-     *          - a double primitive
+     * @param d - a double primitive
      */
     public void setDoublePrim(double d) {
         this.d = d;
@@ -222,8 +215,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a boolean primitive.
      *
-     * @param b
-     *          - a boolean primitive
+     * @param b - a boolean primitive
      */
     public void setBooleanPrim(boolean b) {
         this.bool = b;
@@ -250,8 +242,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a Byte.
      *
-     * @param bb
-     *          - a Byte
+     * @param bb - a Byte
      */
     public void setBite(Byte bb) {
         this.bb = bb;
@@ -269,8 +260,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a Character.
      *
-     * @param cc
-     *          - a Character
+     * @param cc - a Character
      */
     public void setChr(Character cc) {
         this.cc = cc;
@@ -288,8 +278,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a Short.
      *
-     * @param ss
-     *          - a Short
+     * @param ss - a Short
      */
     public void setShrt(Short ss) {
         this.ss = ss;
@@ -307,8 +296,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets an Integer.
      *
-     * @param ii
-     *          - an Integer
+     * @param ii - an Integer
      */
     public void setInti(Integer ii) {
         this.ii = ii;
@@ -326,8 +314,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a Long.
      *
-     * @param ll
-     *          - a Long
+     * @param ll - a Long
      */
     public void setLng(Long ll) {
         this.ll = ll;
@@ -345,8 +332,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a Float.
      *
-     * @param ff
-     *          - a Float
+     * @param ff - a Float
      */
     public void setFlote(Float ff) {
         this.ff = ff;
@@ -364,8 +350,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a Double.
      *
-     * @param dd
-     *          - a Double
+     * @param dd - a Double
      */
     public void setDble(Double dd) {
         this.dd = dd;
@@ -374,8 +359,7 @@ public class TypeBean implements Serializable {
     /**
      * Sets a Boolean.
      *
-     * @param b
-     *          - a Boolean
+     * @param b - a Boolean
      */
     public void setBooln(Boolean b) {
         this.bbool = b;

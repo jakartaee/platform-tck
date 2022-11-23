@@ -23,4 +23,5 @@ import jakarta.ejb.Singleton;
 
 @Singleton
 @Local(TimerIF.class)
-public class TimersSingletonBean extends TimerBeanBase {}
+public class TimersSingletonBean extends TimerBeanBase {
+}

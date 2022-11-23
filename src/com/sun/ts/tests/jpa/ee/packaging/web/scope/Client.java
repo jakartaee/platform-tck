@@ -31,9 +31,8 @@ public class Client extends AbstractUrlClient {
     public static final String CONTEXT_ROOT = "/jpa_ee_packaging_web_scope";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -42,8 +41,7 @@ public class Client extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setServletName(SERVLET_NAME);
@@ -58,16 +56,13 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: test1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:894; PERSISTENCE:SPEC:898;
-     * PERSISTENCE:SPEC:900; PERSISTENCE:SPEC:902
+     * @assertion_ids: PERSISTENCE:SPEC:894; PERSISTENCE:SPEC:898; PERSISTENCE:SPEC:900; PERSISTENCE:SPEC:902
      *
-     * @test_Strategy: In JavaEE environments, the root of the persistence unit
-     * may be the WEB-INF classes directory of a WAR file. The persistence.xml
-     * file is therefore contained in the resided in the WEB-INF/classes/META-INF
-     * directory.
+     * @test_Strategy: In JavaEE environments, the root of the persistence unit may be the WEB-INF classes directory of a
+     * WAR file. The persistence.xml file is therefore contained in the resided in the WEB-INF/classes/META-INF directory.
      *
-     * A container mananaged entity managed is obtained by the application through
-     * direct lookup of the entity manager in the JNDI namespace.
+     * A container mananaged entity managed is obtained by the application through direct lookup of the entity manager in
+     * the JNDI namespace.
      *
      * Client -> SERVLET -> ENTITY -> DB
      *

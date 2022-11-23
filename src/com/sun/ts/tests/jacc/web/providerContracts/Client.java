@@ -68,8 +68,7 @@ public class Client extends ServiceEETest {
     }
 
     /**
-     * @class.setup_props: log.file.location; webServerHost; webServerPort;
-     *                     authuser; authpassword;
+     * @class.setup_props: log.file.location; webServerHost; webServerPort; authuser; authpassword;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -102,32 +101,25 @@ public class Client extends ServiceEETest {
     /**
      * @testName: WildCardAuthConstraint
      *
-     * @assertion_ids: JACC:SPEC:35; JACC:SPEC:10; JACC:JAVADOC:19;
-     *                 JACC:JAVADOC:25; JACC:JAVADOC:26; JACC:JAVADOC:27;
-     *                 JACC:JAVADOC:30; JACC:JAVADOC:31; JACC:SPEC:129;
+     * @assertion_ids: JACC:SPEC:35; JACC:SPEC:10; JACC:JAVADOC:19; JACC:JAVADOC:25; JACC:JAVADOC:26; JACC:JAVADOC:27;
+     * JACC:JAVADOC:30; JACC:JAVADOC:31; JACC:SPEC:129;
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Deploy a jsp AccessToAll.jsp which contains a wildcard
-     *                 auth constraint (i.e "*" as shown below) in its security
-     *                 constraint. <auth-constraint> <role-name>*</role-name>
-     *                 </auth-constraint>
+     * 2. Deploy a jsp AccessToAll.jsp which contains a wildcard auth constraint (i.e "*" as shown below) in its security
+     * constraint. <auth-constraint> <role-name>*</role-name> </auth-constraint>
      *
-     *                 3. Access the jsp /AccessToAll.jsp from the client.
+     * 3. Access the jsp /AccessToAll.jsp from the client.
      *
-     *                 4. Make sure the login user javajoe is able to access the
-     *                 jsp /AccessToAll.jsp
+     * 4. Make sure the login user javajoe is able to access the jsp /AccessToAll.jsp
      *
-     *                 4. Make sure the login user is mapped to all roles defined
-     *                 in the application (i.e. ADM, EMP and MGR) i.e a)
-     *                 isUserInRole("ADM") should return true and b)
-     *                 isUserInRole("MGR") should return true and c)
-     *                 isUserInRole("EMP") should return true
+     * 4. Make sure the login user is mapped to all roles defined in the application (i.e. ADM, EMP and MGR) i.e a)
+     * isUserInRole("ADM") should return true and b) isUserInRole("MGR") should return true and c) isUserInRole("EMP")
+     * should return true
      *
-     *                 5. Make sure the login user is not in the role that is not
-     *                 defined in the application. i.e isUserInRole("VP") should
-     *                 return false
+     * 5. Make sure the login user is not in the role that is not defined in the application. i.e isUserInRole("VP") should
+     * return false
      */
     public void WildCardAuthConstraint() throws Fault {
 
@@ -156,7 +148,7 @@ public class Client extends ServiceEETest {
 
             String cookies = null;
 
-            for (int i = 0; ; i++) {
+            for (int i = 0;; i++) {
                 String header = urlConn.getHeaderField(i);
                 // TestUtil.logMsg("Header "+i+"= "+header);
 
@@ -237,24 +229,20 @@ public class Client extends ServiceEETest {
     /**
      * @testName: PermissionsToRole
      *
-     * @assertion_ids: JACC:SPEC:65; JACC:SPEC:10; JACC:JAVADOC:19;
-     *                 JACC:JAVADOC:25; JACC:JAVADOC:26; JACC:JAVADOC:27;
-     *                 JACC:JAVADOC:30; JACC:JAVADOC:31
+     * @assertion_ids: JACC:SPEC:65; JACC:SPEC:10; JACC:JAVADOC:19; JACC:JAVADOC:25; JACC:JAVADOC:26; JACC:JAVADOC:27;
+     * JACC:JAVADOC:30; JACC:JAVADOC:31
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. Deploy a jsp secured.jsp which is accessible by a role
-     *                 Administrator.
+     * 2. Deploy a jsp secured.jsp which is accessible by a role Administrator.
      *
-     *                 3. Assign javajoe to role Administrator and access the jsp
+     * 3. Assign javajoe to role Administrator and access the jsp
      *
-     *                 4. If javajoe can access secured.jsp this implies all users
-     *                 mapped to Administrator can access secured.jsp
+     * 4. If javajoe can access secured.jsp this implies all users mapped to Administrator can access secured.jsp
      *
-     *                 Note: Invoking PermissionsToRole assumes that the
-     *                 TSProvider was alreaded loaded and this triggers indirectly
-     *                 invoking other JAVADOC APIs
+     * Note: Invoking PermissionsToRole assumes that the TSProvider was alreaded loaded and this triggers indirectly
+     * invoking other JAVADOC APIs
      */
     public void PermissionsToRole() throws Fault {
 
@@ -283,7 +271,7 @@ public class Client extends ServiceEETest {
 
             String cookies = null;
 
-            for (int i = 0; ; i++) {
+            for (int i = 0;; i++) {
                 String header = urlConn.getHeaderField(i);
                 // TestUtil.logMsg("Header "+i+"= "+header);
 
@@ -326,24 +314,18 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:SPEC:128;
      *
-     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide
-     *                 for Registering TS Provider with your AppServer ).
+     * @test_Strategy: 1. Register TS provider with the AppServer. (See User guide for Registering TS Provider with your
+     * AppServer ).
      *
-     *                 2. deploy contents of this test dir (this test is most
-     *                 concnerned with deployment of anyauthuser.jsp which
-     *                 specifies role "**" in the auth-constraint element. This
-     *                 should cause a WebResourcePermission to be added to the
-     *                 "**" role.)
+     * 2. deploy contents of this test dir (this test is most concnerned with deployment of anyauthuser.jsp which specifies
+     * role "**" in the auth-constraint element. This should cause a WebResourcePermission to be added to the "**" role.)
      *
-     *                 3. attempt to access the deployed anyauthuser.jsp
+     * 3. attempt to access the deployed anyauthuser.jsp
      *
-     *                 4. At this point, there should be an entry in the
-     *                 JACCLog.txt file that begins with "MSG_TAG" and it shold
-     *                 contain a message about the WebResourcePermission being
-     *                 added for role "**" with page anyauthuser being referenced.
-     *                 We will parse the entries of the JACCLog.txt and search for
-     *                 our string info that indicates proper message info was
-     *                 dumped for the servlet that had an auth-constraint = "**".
+     * 4. At this point, there should be an entry in the JACCLog.txt file that begins with "MSG_TAG" and it shold contain a
+     * message about the WebResourcePermission being added for role "**" with page anyauthuser being referenced. We will
+     * parse the entries of the JACCLog.txt and search for our string info that indicates proper message info was dumped for
+     * the servlet that had an auth-constraint = "**".
      *
      */
     public void anyAuthUserWebResPermAddedToRole() throws Fault {
@@ -399,9 +381,8 @@ public class Client extends ServiceEETest {
     }
 
     /*
-     * Convenience method that will establish a url connections and perform a
-     * get/post request. A username and password will be passed in the request
-     * header and they will be encoded using the BASE64Encoder class.
+     * Convenience method that will establish a url connections and perform a get/post request. A username and password will
+     * be passed in the request header and they will be encoded using the BASE64Encoder class.
      */
     private int invokeServlet(String sContext, String requestMethod) {
         int code = 200;
@@ -443,10 +424,9 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Got response string of: " + str);
 
             /*
-             * // DEBUG AID InputStream content = (InputStream)conn.getInputStream();
-             * BufferedReader in = new BufferedReader(new InputStreamReader(content));
-             * try { String line; while ((line = in.readLine()) != null) {
-             * TestUtil.logMsg(line); } } finally { in.close(); }
+             * // DEBUG AID InputStream content = (InputStream)conn.getInputStream(); BufferedReader in = new BufferedReader(new
+             * InputStreamReader(content)); try { String line; while ((line = in.readLine()) != null) { TestUtil.logMsg(line); } }
+             * finally { in.close(); }
              */
         } catch (Exception e) {
             TestUtil.logMsg("Abnormal return status encountered while invoking " + sContext);

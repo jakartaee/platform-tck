@@ -33,7 +33,9 @@ public class SerializableLocalBean extends BusinessLocal1Base implements Busines
     @Resource
     private SessionContext sessionContext;
 
-    public SerializableLocalBean() {}
+    public SerializableLocalBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 }

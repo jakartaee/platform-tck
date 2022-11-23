@@ -62,33 +62,33 @@ public class Password {
             boolean done = false;
             while (!done) {
                 switch (c = in.read()) {
-                    case -1:
-                    case '\n':
+                case -1:
+                case '\n':
+                    done = true;
+                    break;
+
+                case '\r':
+                    int c2 = in.read();
+                    if ((c2 != '\n') && (c2 != -1)) {
+                        if (!(in instanceof PushbackInputStream)) {
+                            in = new PushbackInputStream(in);
+                        }
+                        ((PushbackInputStream) in).unread(c2);
+                    } else {
                         done = true;
                         break;
+                    }
 
-                    case '\r':
-                        int c2 = in.read();
-                        if ((c2 != '\n') && (c2 != -1)) {
-                            if (!(in instanceof PushbackInputStream)) {
-                                in = new PushbackInputStream(in);
-                            }
-                            ((PushbackInputStream) in).unread(c2);
-                        } else {
-                            done = true;
-                            break;
-                        }
-
-                    default:
-                        if (--room < 0) {
-                            buf = new char[offset + 128];
-                            room = buf.length - offset - 1;
-                            System.arraycopy(lineBuffer, 0, buf, 0, offset);
-                            Arrays.fill(lineBuffer, ' ');
-                            lineBuffer = buf;
-                        }
-                        buf[offset++] = (char) c;
-                        break;
+                default:
+                    if (--room < 0) {
+                        buf = new char[offset + 128];
+                        room = buf.length - offset - 1;
+                        System.arraycopy(lineBuffer, 0, buf, 0, offset);
+                        Arrays.fill(lineBuffer, ' ');
+                        lineBuffer = buf;
+                    }
+                    buf[offset++] = (char) c;
+                    break;
                 }
             }
 
@@ -114,8 +114,7 @@ public class Password {
     /**
      * Change a password read from Console.readPassword() into its original bytes.
      *
-     * @param pass
-     *          a char[]
+     * @param pass a char[]
      * @return its byte[] format, similar to new String(pass).getBytes()
      */
     private static byte[] convertToBytes(char[] pass) {

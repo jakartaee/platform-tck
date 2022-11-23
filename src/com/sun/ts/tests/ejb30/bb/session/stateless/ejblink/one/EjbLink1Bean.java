@@ -34,16 +34,18 @@ import jakarta.ejb.Stateless;
 import javax.naming.NamingException;
 
 @Stateless(name = "EjbLink1Bean")
-@Remote({EjbLinkIF.class})
+@Remote({ EjbLinkIF.class })
 @Local(EjbLinkLocalIF.class)
 public class EjbLink1Bean extends EjbLinkBeanBase implements EjbLinkIF, EjbLinkLocalIF, Constants {
 
     @Resource
     private SessionContext sessionContext;
 
-    public EjbLink1Bean() {}
+    public EjbLink1Bean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
     public void callOne() throws TestFailedException {

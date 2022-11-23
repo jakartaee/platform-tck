@@ -43,43 +43,41 @@ public class JsfClient extends JsfClientBase implements Serializable {
     /*
      * @testName: lockedSum1
      *
-     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-     * singleton with container-managed concurrency. Expecting correct sum result.
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a singleton with container-managed
+     * concurrency. Expecting correct sum result.
      */
     /*
      * @testName: lockedSumFromInterceptors1
      *
-     * @test_Strategy: spawn multiple threads, invoke synchronized methods of
-     * interceptors with container-managed concurrency. Expecting correct sum
-     * result.
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of interceptors with container-managed
+     * concurrency. Expecting correct sum result.
      */
 
     /*
      * @testName: lockedLinkedList1
      *
-     * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
-     * container-managed concurrency. Expecting correct data in the LinkedList.
+     * @test_Strategy: spawn multiple threads, invoke methods of a singleton with container-managed concurrency. Expecting
+     * correct data in the LinkedList.
      */
 
     /*
      * @testName: lockedSum2
      *
-     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a
-     * singleton with container-managed concurrency. Expecting correct sum result.
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of a singleton with container-managed
+     * concurrency. Expecting correct sum result.
      */
     /*
      * @testName: lockedSumFromInterceptors2
      *
-     * @test_Strategy: spawn multiple threads, invoke synchronized methods of
-     * interceptors with container-managed concurrency. Expecting correct sum
-     * result.
+     * @test_Strategy: spawn multiple threads, invoke synchronized methods of interceptors with container-managed
+     * concurrency. Expecting correct sum result.
      */
 
     /*
      * @testName: lockedLinkedList2
      *
-     * @test_Strategy: spawn multiple threads, invoke methods of a singleton with
-     * container-managed concurrency. Expecting correct data in the LinkedList.
+     * @test_Strategy: spawn multiple threads, invoke methods of a singleton with container-managed concurrency. Expecting
+     * correct data in the LinkedList.
      */
 
 }

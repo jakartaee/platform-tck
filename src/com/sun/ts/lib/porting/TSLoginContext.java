@@ -22,9 +22,8 @@ package com.sun.ts.lib.porting;
 import com.sun.ts.lib.util.*;
 
 /**
- * TSLoginContext provides the implementation specific code for allowing a
- * program to login as a specific user. This class is implemented as a wrapper
- * class around Sun's login implementation code.
+ * TSLoginContext provides the implementation specific code for allowing a program to login as a specific user. This
+ * class is implemented as a wrapper class around Sun's login implementation code.
  */
 public class TSLoginContext implements TSLoginContextInterface {
     private TSLoginContextInterface ctsLogin = null;
@@ -49,10 +48,8 @@ public class TSLoginContext implements TSLoginContextInterface {
     /**
      * Performs the login functionality.
      *
-     * @param usr
-     *          the username to login
-     * @param pwd
-     *          the password of user
+     * @param usr the username to login
+     * @param pwd the password of user
      */
     public void login(String usr, String pwd) throws Exception {
         if (ctsLogin == null) {
@@ -64,11 +61,9 @@ public class TSLoginContext implements TSLoginContextInterface {
     /**
      * This login method is used for certificate based login
      *
-     * Note: This method also uses keystore and keystore password from the TS
-     * configuration file
+     * Note: This method also uses keystore and keystore password from the TS configuration file
      *
-     * @param useralias
-     *          - alias is used to pick up the certificate from keystore
+     * @param useralias - alias is used to pick up the certificate from keystore
      */
     public void login(String useralias) throws Exception {
         if (ctsLogin == null) {
@@ -80,12 +75,9 @@ public class TSLoginContext implements TSLoginContextInterface {
     /**
      * This login method is used for certificate based login
      *
-     * @param useralias
-     *          - alias used to pickup the certificate from keystore
-     * @param keystore
-     *          - keystore file
-     * @param keyPass
-     *          - keystore password
+     * @param useralias - alias used to pickup the certificate from keystore
+     * @param keystore - keystore file
+     * @param keyPass - keystore password
      */
     public void login(String useralias, String keystore, String keyPass) throws Exception {
         if (ctsLogin == null) {

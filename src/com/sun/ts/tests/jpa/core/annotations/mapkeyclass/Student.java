@@ -35,7 +35,8 @@ public class Student implements java.io.Serializable {
 
     String studentName;
 
-    public Student() {}
+    public Student() {
+    }
 
     public Student(int id) {
         this.id = id;
@@ -47,17 +48,13 @@ public class Student implements java.io.Serializable {
     }
 
     /*
-     * students and semesters are many-many enrollment is really a
-     * Map<Course,Semester>, but generics aren't used due to testing
-     * of @MapKeyClass enrollment contains past and present student enrollments
+     * students and semesters are many-many enrollment is really a Map<Course,Semester>, but generics aren't used due to
+     * testing of @MapKeyClass enrollment contains past and present student enrollments
      */
     @ManyToMany(targetEntity = com.sun.ts.tests.jpa.core.annotations.mapkeyclass.Semester.class)
     @MapKeyClass(com.sun.ts.tests.jpa.core.annotations.mapkeyclass.Course.class)
-    @MapKeyJoinColumns({@MapKeyJoinColumn(name = "ENROLLMENT_KEY")})
-    @JoinTable(
-            name = "ENROLLMENTS",
-            joinColumns = @JoinColumn(name = "STUDENT"),
-            inverseJoinColumns = @JoinColumn(name = "SEMESTER"))
+    @MapKeyJoinColumns({ @MapKeyJoinColumn(name = "ENROLLMENT_KEY") })
+    @JoinTable(name = "ENROLLMENTS", joinColumns = @JoinColumn(name = "STUDENT"), inverseJoinColumns = @JoinColumn(name = "SEMESTER"))
     Map enrollment;
 
     public Set<Course> getCourses() {

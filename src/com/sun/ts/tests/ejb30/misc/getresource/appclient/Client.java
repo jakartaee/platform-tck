@@ -44,7 +44,8 @@ public class Client extends EETest {
         props = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /*
      * @testName: getResourceNullParam

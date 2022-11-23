@@ -63,35 +63,33 @@ public class JsfClient extends com.sun.ts.tests.ejb30.lite.interceptor.common.bu
     /*
      * @testName: allInterceptors
      *
-     * @test_Strategy: all interceptors (Interceptor1-7) at default, class-level,
-     * and method-level should be invoked, as well as AroundInvoke methods on bean
-     * class.
+     * @test_Strategy: all interceptors (Interceptor1-7) at default, class-level, and method-level should be invoked, as
+     * well as AroundInvoke methods on bean class.
      */
     /*
      * @testName: excludeDefaultInterceptors
      *
-     * @test_Strategy: all interceptors except default interceptors should be
-     * invoked in the correct order.
+     * @test_Strategy: all interceptors except default interceptors should be invoked in the correct order.
      */
     @Override
     public void excludeDefaultInterceptors() {
         List<String> history = new ArrayList<String>();
         String[] expected = {
-            // default interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor2",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor1",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor3",
+                // default interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor2",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor1",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor3",
 
-            // class-level interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor5",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor4",
+                // class-level interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor5",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor4",
 
-            // method-level interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor6",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor7",
+                // method-level interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor6",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor7",
 
-            // AroundInvoke methods on bean superclass and bean class
-            "InterceptorBeanBase", "InterceptorBean"
+                // AroundInvoke methods on bean superclass and bean class
+                "InterceptorBeanBase", "InterceptorBean"
         };
         getBean().excludeDefaultInterceptors(history);
         appendReason(Helper.compareResultList(expected, history));
@@ -100,21 +98,20 @@ public class JsfClient extends com.sun.ts.tests.ejb30.lite.interceptor.common.bu
     /*
      * @testName: excludeClassInterceptors
      *
-     * @test_Strategy: all interceptors except class interceptors should be
-     * invoked in the correct order.
+     * @test_Strategy: all interceptors except class interceptors should be invoked in the correct order.
      */
     @Override
     public void excludeClassInterceptors() {
         List<String> history = new ArrayList<String>();
         String[] expected = {
-            // no default interceptors, no class interceptors
+                // no default interceptors, no class interceptors
 
-            // method-level interceptors
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor6",
-            "InterceptorBaseBase", "InterceptorBase", "Interceptor7",
+                // method-level interceptors
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor6",
+                "InterceptorBaseBase", "InterceptorBase", "Interceptor7",
 
-            // AroundInvoke methods on bean superclass and bean class
-            "InterceptorBeanBase", "InterceptorBean"
+                // AroundInvoke methods on bean superclass and bean class
+                "InterceptorBeanBase", "InterceptorBean"
         };
         getBean().excludeClassInterceptors(history);
         appendReason(Helper.compareResultList(expected, history));
@@ -123,35 +120,32 @@ public class JsfClient extends com.sun.ts.tests.ejb30.lite.interceptor.common.bu
     /*
      * @testName: overrideInterceptorMethod
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked, whether the overriding method is an interceptor method or not.
-     * This test also excludes default and class-level interceptors.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked, whether the overriding method is an
+     * interceptor method or not. This test also excludes default and class-level interceptors.
      */
     /*
      * @testName: overrideBeanInterceptorMethod
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with a non-interceptor method. This test also
-     * excludes default and class-level interceptors.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with a
+     * non-interceptor method. This test also excludes default and class-level interceptors.
      */
     /*
      * @testName: overrideBeanInterceptorMethod2
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with a non-interceptor method. This test also
-     * excludes default and declares no class-level interceptors.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with a
+     * non-interceptor method. This test also excludes default and declares no class-level interceptors.
      */
     /*
      * @testName: overrideBeanInterceptorMethod3
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with an interceptor method.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with an
+     * interceptor method.
      */
     /*
      * @testName: overrideBeanInterceptorMethod4
      *
-     * @test_Strategy: If an interceptor method is overridden, it is no longer
-     * invoked. This test override with an interceptor method.
+     * @test_Strategy: If an interceptor method is overridden, it is no longer invoked. This test override with an
+     * interceptor method.
      */
     /*
      * @testName: skipProceed

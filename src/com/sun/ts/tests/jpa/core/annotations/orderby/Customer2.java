@@ -52,7 +52,8 @@ public class Customer2 implements java.io.Serializable {
     @OrderBy("DESC")
     private List<String> phones = new ArrayList<String>();
 
-    public Customer2() {}
+    public Customer2() {
+    }
 
     public Customer2(String id) {
         this.id = id;

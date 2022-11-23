@@ -37,8 +37,7 @@ public class Client extends ClientBase {
     /*
      * @testName: defaultSchedule
      *
-     * @test_Strategy: verify a auto timer declared in ejb-jar.xml with default
-     * values in schedule
+     * @test_Strategy: verify a auto timer declared in ejb-jar.xml with default values in schedule
      */
     public void defaultSchedule() {
         Timer t = scheduleBean.findTimer(getTestName());
@@ -49,8 +48,7 @@ public class Client extends ClientBase {
     /*
      * @testName: schedule1
      *
-     * @test_Strategy: verify a auto timer declared in ejb-jar.xml with various
-     * values in schedule
+     * @test_Strategy: verify a auto timer declared in ejb-jar.xml with various values in schedule
      */
     public void schedule1() {
         schedule0();

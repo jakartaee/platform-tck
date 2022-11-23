@@ -163,23 +163,23 @@ public class DOMUtil {
             for (int i = 0; i < children.getLength(); i++) {
                 Node child = children.item(i);
                 switch (child.getNodeType()) {
-                    case Node.PROCESSING_INSTRUCTION_NODE:
-                        writer.writeProcessingInstruction(child.getNodeValue());
-                        break;
-                    case Node.DOCUMENT_TYPE_NODE:
-                        break;
-                    case Node.CDATA_SECTION_NODE:
-                        writer.writeCData(child.getNodeValue());
-                        break;
-                    case Node.COMMENT_NODE:
-                        writer.writeComment(child.getNodeValue());
-                        break;
-                    case Node.TEXT_NODE:
-                        writer.writeCharacters(child.getNodeValue());
-                        break;
-                    case Node.ELEMENT_NODE:
-                        serializeNode((Element) child, writer);
-                        break;
+                case Node.PROCESSING_INSTRUCTION_NODE:
+                    writer.writeProcessingInstruction(child.getNodeValue());
+                    break;
+                case Node.DOCUMENT_TYPE_NODE:
+                    break;
+                case Node.CDATA_SECTION_NODE:
+                    writer.writeCData(child.getNodeValue());
+                    break;
+                case Node.COMMENT_NODE:
+                    writer.writeComment(child.getNodeValue());
+                    break;
+                case Node.TEXT_NODE:
+                    writer.writeCharacters(child.getNodeValue());
+                    break;
+                case Node.ELEMENT_NODE:
+                    serializeNode((Element) child, writer);
+                    break;
                 }
             }
         }
@@ -206,15 +206,18 @@ public class DOMUtil {
         for (Node n = e.getFirstChild(); n != null; n = n.getNextSibling()) {
             if (n.getNodeType() == Node.ELEMENT_NODE) {
                 Element c = (Element) n;
-                if (c.getLocalName().equals(local) && c.getNamespaceURI().equals(nsUri)) return c;
+                if (c.getLocalName().equals(local) && c.getNamespaceURI().equals(nsUri))
+                    return c;
             }
         }
         return null;
     }
 
     private static String fixNull(String s) {
-        if (s == null) return "";
-        else return s;
+        if (s == null)
+            return "";
+        else
+            return s;
     }
 
     /**

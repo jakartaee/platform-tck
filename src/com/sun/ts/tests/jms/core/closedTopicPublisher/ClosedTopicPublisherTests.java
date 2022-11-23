@@ -68,8 +68,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -113,8 +112,8 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -134,11 +133,9 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
     /* Utility methods for tests */
 
     /**
-     * Used by tests that need a closed publisher for testing. Passes any
-     * exceptions up to caller.
+     * Used by tests that need a closed publisher for testing. Passes any exceptions up to caller.
      *
-     * @param int
-     *          The type of session that needs to be created and closed
+     * @param int The type of session that needs to be created and closed
      */
     private void createAndClosePublisher() throws Exception {
         tool = new JmsTool(JmsTool.TOPIC, jmsUser, jmsPassword, mode);
@@ -172,8 +169,8 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:303;
      *
-     * @test_Strategy: Cannot call getDeliveryMode() on closed publishers Close
-     * default publisher and call method on it. Check for IllegalStateException.
+     * @test_Strategy: Cannot call getDeliveryMode() on closed publishers Close default publisher and call method on it.
+     * Check for IllegalStateException.
      */
 
     public void closedTopicPublisherGetDeliveryModeTest() throws Fault {
@@ -206,8 +203,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:295;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherGetDisableMessageIDTest() throws Fault {
@@ -240,8 +236,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:299;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherGetDisableMessageTimestampTest() throws Fault {
@@ -274,8 +269,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:307;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherGetPriorityTest() throws Fault {
@@ -308,8 +302,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:311;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherGetTimeToLiveTest() throws Fault {
@@ -342,8 +335,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:301;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherSetDeliveryModeTest() throws Fault {
@@ -375,8 +367,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:293;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherSetDisableMessageIDTest() throws Fault {
@@ -408,8 +399,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:297;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherSetDisableMessageTimestampTest() throws Fault {
@@ -441,8 +431,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:305;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherSetPriorityTest() throws Fault {
@@ -474,8 +463,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:309;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherSetTimeToLiveTest() throws Fault {
@@ -507,8 +495,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:97;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherGetTopicTest() throws Fault {
@@ -541,8 +528,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:99;
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
 
     public void closedTopicPublisherPublish1Test() throws Fault {
@@ -575,8 +561,7 @@ public class ClosedTopicPublisherTests extends ServiceEETest {
      * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:101;
      *
      *
-     * @test_Strategy: Close default publisher and call method on it. Check for
-     * IllegalStateException.
+     * @test_Strategy: Close default publisher and call method on it. Check for IllegalStateException.
      */
     public void closedTopicPublisherPublish2Test() throws Fault {
         boolean passed = false;

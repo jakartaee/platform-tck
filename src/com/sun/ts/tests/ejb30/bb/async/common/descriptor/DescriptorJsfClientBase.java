@@ -70,16 +70,16 @@ public abstract class DescriptorJsfClientBase extends EJBLiteJsfClientBase {
 
     private DescriptorIF[] getAllBeans() {
         return new DescriptorIF[] {
-            getNoInterface(), getDescriptorIF(), getDescriptor2IF(), getDescriptorRemoteIF(), getDescriptor2RemoteIF()
+                getNoInterface(), getDescriptorIF(), getDescriptor2IF(), getDescriptorRemoteIF(), getDescriptor2RemoteIF()
         };
     }
 
     private DescriptorIF[] getRemoteBeans() {
-        return new DescriptorIF[] {getDescriptorRemoteIF(), getDescriptor2RemoteIF()};
+        return new DescriptorIF[] { getDescriptorRemoteIF(), getDescriptor2RemoteIF() };
     }
 
     private DescriptorIF[] getLocalBeans() {
-        return new DescriptorIF[] {getNoInterface(), getDescriptorIF(), getDescriptor2IF()};
+        return new DescriptorIF[] { getNoInterface(), getDescriptorIF(), getDescriptor2IF() };
     }
 
     /*

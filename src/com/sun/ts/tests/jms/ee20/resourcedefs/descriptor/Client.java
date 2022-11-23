@@ -135,10 +135,14 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("See <jms-connectionfactory> and <jms-destination> tags in DD's");
             TSNamingContext namingctx = new TSNamingContext();
             String prefix = null;
-            if (vehicle.equals("appclient")) prefix = "AppClient";
-            else if (vehicle.equals("ejb")) prefix = "EJB";
-            else if (vehicle.equals("servlet")) prefix = "Servlet";
-            else if (vehicle.equals("jsp")) prefix = "JSP";
+            if (vehicle.equals("appclient"))
+                prefix = "AppClient";
+            else if (vehicle.equals("ejb"))
+                prefix = "EJB";
+            else if (vehicle.equals("servlet"))
+                prefix = "Servlet";
+            else if (vehicle.equals("jsp"))
+                prefix = "JSP";
             TestUtil.logMsg("Lookup java:global/" + prefix + "MyTestConnectionFactory");
             cf = (ConnectionFactory) namingctx.lookup("java:global/" + prefix + "MyTestConnectionFactory");
             TestUtil.logMsg("Lookup java:app/" + prefix + "MyTestQueueConnectionFactory");
@@ -146,8 +150,7 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Lookup java:module/" + prefix + "MyTestTopicConnectionFactory");
             tcf = (TopicConnectionFactory) namingctx.lookup("java:module/" + prefix + "MyTestTopicConnectionFactory");
             TestUtil.logMsg("Lookup java:comp/env/jms/" + prefix + "MyTestDurableTopicConnectionFactory");
-            dtcf = (TopicConnectionFactory)
-                    namingctx.lookup("java:comp/env/jms/" + prefix + "MyTestDurableTopicConnectionFactory");
+            dtcf = (TopicConnectionFactory) namingctx.lookup("java:comp/env/jms/" + prefix + "MyTestDurableTopicConnectionFactory");
             TestUtil.logMsg("Lookup java:global/env/" + prefix + "MyTestQueue");
             queue = (Queue) namingctx.lookup("java:global/env/" + prefix + "MyTestQueue");
             TestUtil.logMsg("Lookup java:app/env/" + prefix + "MyTestTopic");
@@ -185,9 +188,11 @@ public class Client extends ServiceEETest {
                 }
                 consumerQ.close();
             }
-            if (consumerT != null) consumerT.close();
+            if (consumerT != null)
+                consumerT.close();
             TestUtil.logMsg("Close JMSContext Objects");
-            if (context != null) context.close();
+            if (context != null)
+                context.close();
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
             throw new Fault("cleanup failed!", e);
@@ -197,12 +202,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: sendAndRecvQueueTest
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Send and receive a message to/from a Queue.
      *
@@ -246,12 +249,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: sendAndRecvTopicTest
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Send and receive a message to/from a Topic.
      *
@@ -295,12 +296,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: checkClientIDOnDurableConnFactoryTest
      *
-     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327;
-     * JMS:JAVADOC:1330; JMS:JAVADOC:1331; JMS:JAVADOC:1332; JMS:JAVADOC:1333;
-     * JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
-     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344;
-     * JMS:JAVADOC:1345; JMS:JAVADOC:1346; JMS:JAVADOC:1347; JMS:JAVADOC:1348;
-     * JMS:JAVADOC:1451; JMS:JAVADOC:1452;
+     * @assertion_ids: JMS:JAVADOC:1324; JMS:JAVADOC:1325; JMS:JAVADOC:1327; JMS:JAVADOC:1330; JMS:JAVADOC:1331;
+     * JMS:JAVADOC:1332; JMS:JAVADOC:1333; JMS:JAVADOC:1334; JMS:JAVADOC:1335; JMS:JAVADOC:1336; JMS:JAVADOC:1338;
+     * JMS:JAVADOC:1339; JMS:JAVADOC:1342; JMS:JAVADOC:1343; JMS:JAVADOC:1344; JMS:JAVADOC:1345; JMS:JAVADOC:1346;
+     * JMS:JAVADOC:1347; JMS:JAVADOC:1348; JMS:JAVADOC:1451; JMS:JAVADOC:1452;
      *
      * @test_Strategy: Check client id setting on durable connection factory
      *
@@ -328,7 +327,8 @@ public class Client extends ServiceEETest {
             throw new Fault("checkClientIDOnDurableConnFactoryTest", e);
         } finally {
             try {
-                if (context != null) context.close();
+                if (context != null)
+                    context.close();
             } catch (Exception e) {
             }
         }

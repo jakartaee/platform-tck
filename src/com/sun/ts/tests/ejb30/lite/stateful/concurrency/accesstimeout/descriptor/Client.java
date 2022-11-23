@@ -28,31 +28,25 @@ import jakarta.ejb.EJBs;
 import java.util.List;
 
 @EJBs({
-    @EJB(
-            name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal,
-            beanName = "BeanClassLevelAccessTimeoutBean",
-            beanInterface = AccessTimeoutIF.class)
+        @EJB(name = AccessTimeoutIF.beanClassLevelAccessTimeoutBeanLocal, beanName = "BeanClassLevelAccessTimeoutBean", beanInterface = AccessTimeoutIF.class)
 })
 public class Client extends ClientBase {
     /*
      * @testName: beanClassLevel
      *
-     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their
-     * <access-timeout>
+     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their <access-timeout>
      */
 
     /*
      * @testName: beanClassLevel2
      *
-     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their
-     * <access-timeout>
+     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their <access-timeout>
      */
 
     /*
      * @testName: pingMethodInBeanSuperClass
      *
-     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their
-     * <access-timeout>
+     * @test_Strategy: ejb-jar.xml declares <concurrent-method> and their <access-timeout>
      */
     public void pingMethodInBeanSuperClass() throws Exception {
         final AccessTimeoutIF b = getBeanClassLevelAccessTimeoutBeanLocal();
@@ -67,8 +61,8 @@ public class Client extends ClientBase {
     /*
      * @testName: beanClassMethodLevel
      *
-     * @test_Strategy: beanClassMethodLevel is a concurrent method with default
-     * access-timeout. It is not declared in ejb-jar.xml with <concurrent-method>
+     * @test_Strategy: beanClassMethodLevel is a concurrent method with default access-timeout. It is not declared in
+     * ejb-jar.xml with <concurrent-method>
      */
     @Override
     public void beanClassMethodLevel() throws InterruptedException {

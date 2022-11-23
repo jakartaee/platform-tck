@@ -34,7 +34,8 @@ public class EventMonitorConfig implements ActivationSpec {
         this.category = category;
     }
 
-    public void validate() throws InvalidPropertyException {}
+    public void validate() throws InvalidPropertyException {
+    }
 
     public ResourceAdapter getResourceAdapter() {
         return resourceAdapter;

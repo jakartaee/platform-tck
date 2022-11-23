@@ -30,8 +30,7 @@ import jakarta.servlet.jsp.tagext.TagVariableInfo;
 import java.util.Arrays;
 
 /**
- * A TagExtraInfo implementation to validate the methods of
- * <tt>jakarta.servlet.jsp.tagext.TagInfo.</tt>
+ * A TagExtraInfo implementation to validate the methods of <tt>jakarta.servlet.jsp.tagext.TagInfo.</tt>
  */
 public class TagInfoTEI extends BaseTCKExtraInfo {
 
@@ -48,7 +47,8 @@ public class TagInfoTEI extends BaseTCKExtraInfo {
     /**
      * Default Constructor.
      */
-    public TagInfoTEI() {}
+    public TagInfoTEI() {
+    }
 
     // ------------------------------------------- Test Definitions ----------
 
@@ -130,9 +130,8 @@ public class TagInfoTEI extends BaseTCKExtraInfo {
     }
 
     /**
-     * Validates TagInfo.getTagExtraInfo(). This also indirectly validates
-     * TagInfo.setTagExtraInfo() as this must be called by container in order for
-     * getTagExtraInfo() to return anything valid.
+     * Validates TagInfo.getTagExtraInfo(). This also indirectly validates TagInfo.setTagExtraInfo() as this must be called
+     * by container in order for getTagExtraInfo() to return anything valid.
      *
      * @return null if the test passes, otherwise a String with a failure message.
      */
@@ -261,9 +260,8 @@ public class TagInfoTEI extends BaseTCKExtraInfo {
     }
 
     /**
-     * Validates TagInfo.getTagLibrary(). This also indirectly validates
-     * TagInfo.setTagLibrary() as this must be called by container in order for
-     * getTagLibrary() to return anything valid.
+     * Validates TagInfo.getTagLibrary(). This also indirectly validates TagInfo.setTagLibrary() as this must be called by
+     * container in order for getTagLibrary() to return anything valid.
      *
      * @return null if the test passes, otherwise a String with a failure message.
      */
@@ -473,16 +471,13 @@ public class TagInfoTEI extends BaseTCKExtraInfo {
                 if (null == tei0 && null == tei1) {
                     // both are null, and they are same
                 } else if (null == tei0 || null == tei1) {
-                    message =
-                            "Test FAILED. Invoking TagInfo.getTagExtraInfo() twice got a null and a non-null TagExtraInfo.";
+                    message = "Test FAILED. Invoking TagInfo.getTagExtraInfo() twice got a null and a non-null TagExtraInfo.";
                 } else if (!tei0.equals(tei1)) {
-                    message =
-                            "Test FAILED. Invoking TagInfo.getTagExtraInfo() twice and returned TagExtraInfo instances have different content. tei0:"
-                                    + tei0.toString() + "\n\ntei1:" + tei1.toString();
+                    message = "Test FAILED. Invoking TagInfo.getTagExtraInfo() twice and returned TagExtraInfo instances have different content. tei0:"
+                            + tei0.toString() + "\n\ntei1:" + tei1.toString();
                 }
             } catch (Throwable th) {
-                message =
-                        "Test FAILED. Throwable caught when invoking TagInfo.getTagExtraInfo() and TagInfo.setTagExtraInfo(TagExtraInfo).";
+                message = "Test FAILED. Throwable caught when invoking TagInfo.getTagExtraInfo() and TagInfo.setTagExtraInfo(TagExtraInfo).";
             }
         } else {
             message = "Test FAILED.  The TagInfo provided to test method was null";
@@ -508,16 +503,13 @@ public class TagInfoTEI extends BaseTCKExtraInfo {
                 if (null == tlib0 && null == tlib1) {
                     // both are null, and they are same
                 } else if (null == tlib0 || null == tlib1) {
-                    message =
-                            "Test FAILED. Invoking TagInfo.getTagLibrary() twice got a null and a non-null TagLibraryInfo.";
+                    message = "Test FAILED. Invoking TagInfo.getTagLibrary() twice got a null and a non-null TagLibraryInfo.";
                 } else if (!tlib0.equals(tlib1)) {
-                    message =
-                            "Test FAILED. Invoking TagInfo.getTagLibrary() twice and returned TagLibraryInfo instances have different content. tlib0:"
-                                    + tlib0.toString() + "\n\ntlib1:" + tlib1.toString();
+                    message = "Test FAILED. Invoking TagInfo.getTagLibrary() twice and returned TagLibraryInfo instances have different content. tlib0:"
+                            + tlib0.toString() + "\n\ntlib1:" + tlib1.toString();
                 }
             } catch (Throwable th) {
-                message =
-                        "Test FAILED. Throwable caught when invoking TagInfo.getTagLibrary() and TagInfo.setTagLibrary(TagLibraryInfo).";
+                message = "Test FAILED. Throwable caught when invoking TagInfo.getTagLibrary() and TagInfo.setTagLibrary(TagLibraryInfo).";
             }
         } else {
             message = "Test FAILED.  The TagInfo provided to test method was null";
@@ -526,11 +518,9 @@ public class TagInfoTEI extends BaseTCKExtraInfo {
     }
 
     /**
-     * Calls JspTestUtil.debug() and includes this class name in the debug
-     * message.
+     * Calls JspTestUtil.debug() and includes this class name in the debug message.
      *
-     * @param message
-     *          - debug message
+     * @param message - debug message
      */
     private static void debug(String message) {
         JspTestUtil.debug("[TagInfoTEI] " + message);

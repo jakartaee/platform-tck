@@ -171,7 +171,8 @@ public class TSeis {
         } catch (TSEISException tse) {
         }
 
-        if (datapresent) throw new TSEISException("Duplicate Key");
+        if (datapresent)
+            throw new TSEISException("Duplicate Key");
 
         DataElement de = new DataElement(key, value);
 

@@ -81,12 +81,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:589.2
      *
-     * @test_Strategy: setRollbackOnly with EJB - Required Create an instance of a
-     * stateful session Testbean bean. Create an instance of a stateless session
-     * TxBean (Required) bean. Perform a delete row operation to a table and force
-     * a rollback via EJBContext.setRollbackOnly(). Ensure the
-     * EJBContext.getRollbackOnly() status returns true. Ensure the transaction is
-     * rolledback.
+     * @test_Strategy: setRollbackOnly with EJB - Required Create an instance of a stateful session Testbean bean. Create an
+     * instance of a stateless session TxBean (Required) bean. Perform a delete row operation to a table and force a
+     * rollback via EJBContext.setRollbackOnly(). Ensure the EJBContext.getRollbackOnly() status returns true. Ensure the
+     * transaction is rolledback.
      */
     public void test1() throws Fault {
         try {
@@ -101,8 +99,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test1");
             testResult = beanRef.test1();
 
-            if (!testResult) throw new Fault("test1 failed");
-            else logMsg("test1 passed");
+            if (!testResult)
+                throw new Fault("test1 failed");
+            else
+                logMsg("test1 passed");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -119,12 +119,10 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:589.2
      *
-     * @test_Strategy: setRollbackOnly with EJB - RequiresNew Create an instance
-     * of a stateful session Testbean bean. Create an instance of a stateless
-     * session TxBean (RequiresNew) bean. Perform a delete row operation to a
-     * table and force a rollback via EJBContext.setRollbackOnly(). Ensure the
-     * EJBContext.getRollbackOnly() status returns true. Ensure the transaction is
-     * rolledback.
+     * @test_Strategy: setRollbackOnly with EJB - RequiresNew Create an instance of a stateful session Testbean bean. Create
+     * an instance of a stateless session TxBean (RequiresNew) bean. Perform a delete row operation to a table and force a
+     * rollback via EJBContext.setRollbackOnly(). Ensure the EJBContext.getRollbackOnly() status returns true. Ensure the
+     * transaction is rolledback.
      */
     public void test2() throws Fault {
         try {
@@ -139,8 +137,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test2");
             testResult = beanRef.test2();
 
-            if (!testResult) throw new Fault("test2 failed");
-            else logMsg("test2 passed");
+            if (!testResult)
+                throw new Fault("test2 failed");
+            else
+                logMsg("test2 passed");
         } catch (Exception e) {
             throw new Fault("test2 failed", e);
         } finally {
@@ -157,13 +157,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:589.2; EJB:SPEC:589.3
      *
-     * @test_Strategy: AppException and setRollbackOnly with EJB - Required Create
-     * an instance of a stateful session Testbean bean. Create an instance of a
-     * stateless session TxBean (Required) bean. Perform a delete row operation to
-     * a table and throw AppException and force a rollback via
-     * EJBContext.setRollbackOnly(). Ensure the EJBContext.getRollbackOnly()
-     * status returns true. Ensure the transaction is rolledback. Ensure the
-     * Client receives AppException.
+     * @test_Strategy: AppException and setRollbackOnly with EJB - Required Create an instance of a stateful session
+     * Testbean bean. Create an instance of a stateless session TxBean (Required) bean. Perform a delete row operation to a
+     * table and throw AppException and force a rollback via EJBContext.setRollbackOnly(). Ensure the
+     * EJBContext.getRollbackOnly() status returns true. Ensure the transaction is rolledback. Ensure the Client receives
+     * AppException.
      */
     public void test3() throws Fault {
         try {
@@ -178,8 +176,10 @@ public class Client extends EETest {
             logMsg("Execute TestBean:test3");
             testResult = beanRef.test3();
 
-            if (!testResult) throw new Fault("test3 failed");
-            else logMsg("test3 passed");
+            if (!testResult)
+                throw new Fault("test3 failed");
+            else
+                logMsg("test3 passed");
         } catch (Exception e) {
             throw new Fault("test3 failed", e);
         } finally {

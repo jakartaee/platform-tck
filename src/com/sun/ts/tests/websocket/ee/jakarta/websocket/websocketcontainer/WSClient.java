@@ -52,8 +52,7 @@ public class WSClient extends WebSocketCommonClient {
      * @test_Strategy:
      */
     public void simpleTest() throws Fault {
-        String expected =
-                "TCKTestServer opened|" + "TCKTestServer received: " + SENT_STRING_MESSAGE + "|TCKTestServer responds";
+        String expected = "TCKTestServer opened|" + "TCKTestServer received: " + SENT_STRING_MESSAGE + "|TCKTestServer responds";
         setCountDownLatchCount(3);
         setProperty(Property.REQUEST, buildRequest("TCKTestServer"));
         setProperty(Property.SEARCH_STRING, expected);

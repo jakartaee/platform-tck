@@ -73,7 +73,8 @@ public class PUServletVehicle extends ServletVehicle {
             e.printStackTrace();
         } finally {
             if (em != null) {
-                if (em.isOpen()) em.close();
+                if (em.isOpen())
+                    em.close();
             }
         }
 

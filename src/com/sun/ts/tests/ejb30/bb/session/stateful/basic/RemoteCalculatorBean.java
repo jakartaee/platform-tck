@@ -33,11 +33,11 @@ import jakarta.transaction.UserTransaction;
 import java.io.Serializable;
 
 /**
- * A stateful base calculator session bean class that implements
- * jakarta.ejb.SessionBean. ejbCreate method is optional and not implemented here.
+ * A stateful base calculator session bean class that implements jakarta.ejb.SessionBean. ejbCreate method is optional
+ * and not implemented here.
  */
 @Stateful(name = "RemoteCalculatorBean", description = "same as <description> element in ejb-jar.xml")
-@Remote({StatefulRemoteCalculator.class})
+@Remote({ StatefulRemoteCalculator.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 public class RemoteCalculatorBean extends BaseRemoteCalculator implements StatefulRemoteCalculator, Serializable {
 
@@ -47,7 +47,8 @@ public class RemoteCalculatorBean extends BaseRemoteCalculator implements Statef
     // injected in ejb-jar.xml with <resource-env-ref>
     private UserTransaction ut;
 
-    public RemoteCalculatorBean() {}
+    public RemoteCalculatorBean() {
+    }
 
     @Remove
     public void remoteThrowIt() throws CalculatorException {

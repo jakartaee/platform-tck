@@ -25,10 +25,9 @@ import jakarta.json.JsonValue;
  * $Id$
  */
 /**
- * {@see <a href="https://tools.ietf.org/html/rfc7396">RFC 7396</a>}: JavaScript
- * Object Notation (JSON) Merge Patch compatibility sample object.<br>
- * Object structure is defined in
- * {@see <a href="https://tools.ietf.org/html/rfc7396#section-3">RFC 7396: 3.
+ * {@see <a href="https://tools.ietf.org/html/rfc7396">RFC 7396</a>}: JavaScript Object Notation (JSON) Merge Patch
+ * compatibility sample object.<br>
+ * Object structure is defined in {@see <a href="https://tools.ietf.org/html/rfc7396#section-3">RFC 7396: 3.
  * Example</a>}.
  */
 public class MergeRFCObject {
@@ -69,7 +68,7 @@ public class MergeRFCObject {
 
     /** RFC 7396 sample JSON object source value for {@code /author}. */
     public static final JsonObject VAL_SRC_AUTHOR = SimpleValues.createSimpleObject(
-            new String[] {KEY_GIVEN_NAME, KEY_FAMILY_NAME}, new Object[] {VAL_SRC_GIVEN_NAME, VAL_SRC_FAMILY_NAME});
+            new String[] { KEY_GIVEN_NAME, KEY_FAMILY_NAME }, new Object[] { VAL_SRC_GIVEN_NAME, VAL_SRC_FAMILY_NAME });
 
     /** RFC 7396 sample JSON object source value for {@code /tags/0}. */
     public static final String VAL_SRC_TAGS_0 = "example";
@@ -78,8 +77,7 @@ public class MergeRFCObject {
     public static final String VAL_SRC_TAGS_1 = "sample";
 
     /** RFC 7396 sample JSON object source value for {@code /tags}. */
-    public static final JsonArray VAL_SRC_TAGS =
-            SimpleValues.createStringArray(new String[] {VAL_SRC_TAGS_0, VAL_SRC_TAGS_1});
+    public static final JsonArray VAL_SRC_TAGS = SimpleValues.createStringArray(new String[] { VAL_SRC_TAGS_0, VAL_SRC_TAGS_1 });
 
     /** RFC 7396 sample JSON object source value for {@code /content}. */
     public static final String VAL_SRC_CONTENT = "This will be unchanged";
@@ -89,8 +87,7 @@ public class MergeRFCObject {
     public static final String VAL_TRG_TITLE = "Hello!";
 
     /** RFC 7396 sample JSON object target value for {@code /author}. */
-    public static final JsonObject VAL_TRG_AUTHOR =
-            SimpleValues.createSimpleObject(new String[] {KEY_GIVEN_NAME}, new Object[] {VAL_SRC_GIVEN_NAME});
+    public static final JsonObject VAL_TRG_AUTHOR = SimpleValues.createSimpleObject(new String[] { KEY_GIVEN_NAME }, new Object[] { VAL_SRC_GIVEN_NAME });
 
     /** RFC 7396 sample JSON object target value for {@code /phoneNumber}. */
     public static final String VAL_TRG_PHONE_NUMBER = "+01-123-456-7890";
@@ -99,19 +96,17 @@ public class MergeRFCObject {
     public static final String VAL_TRG_TAGS_0 = "example";
 
     /** RFC 7396 sample JSON object target value for {@code /tags}. */
-    public static final JsonArray VAL_TRG_TAGS = SimpleValues.createStringArray(new String[] {VAL_TRG_TAGS_0});
+    public static final JsonArray VAL_TRG_TAGS = SimpleValues.createStringArray(new String[] { VAL_TRG_TAGS_0 });
 
     // Following values define JSON object patch values from RFC 7396: 3. Example
     /** RFC 7396 sample JSON object patch value for {@code /author/familyName}. */
     public static final JsonValue VAL_PATCH_FAMILY_NAME = JsonValue.NULL;
 
     /** RFC 7396 sample JSON object patch value for {@code /author}. */
-    public static final JsonObject VAL_PATCH_AUTHOR =
-            SimpleValues.createSimpleObject(new String[] {KEY_FAMILY_NAME}, new Object[] {VAL_PATCH_FAMILY_NAME});
+    public static final JsonObject VAL_PATCH_AUTHOR = SimpleValues.createSimpleObject(new String[] { KEY_FAMILY_NAME }, new Object[] { VAL_PATCH_FAMILY_NAME });
 
     /**
-     * Create {@see <a href="https://tools.ietf.org/html/rfc7396#section-3">RFC
-     * 7396 example</a>} source JSON object.
+     * Create {@see <a href="https://tools.ietf.org/html/rfc7396#section-3">RFC 7396 example</a>} source JSON object.
      *
      * @return Source object from example.
      */
@@ -125,8 +120,7 @@ public class MergeRFCObject {
     }
 
     /**
-     * Create {@see <a href="https://tools.ietf.org/html/rfc7396#section-3">RFC
-     * 7396 example</a>} target JSON object.
+     * Create {@see <a href="https://tools.ietf.org/html/rfc7396#section-3">RFC 7396 example</a>} target JSON object.
      *
      * @return Target object from example.
      */
@@ -141,8 +135,7 @@ public class MergeRFCObject {
     }
 
     /**
-     * Create {@see <a href="https://tools.ietf.org/html/rfc7396#section-3">RFC
-     * 7396 example</a>} patch JSON object.
+     * Create {@see <a href="https://tools.ietf.org/html/rfc7396#section-3">RFC 7396 example</a>} patch JSON object.
      *
      * @return Patch object from example.
      */

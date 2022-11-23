@@ -26,17 +26,15 @@ import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 import java.io.PrintWriter;
 
 public class Client extends AbstractUrlClient {
-    public static final String APP_MODULE_NAME_HEADER =
-            "appName: misc_jndi_earwar" + TestUtil.NEW_LINE + "moduleName: misc_jndi_earwar_web";
+    public static final String APP_MODULE_NAME_HEADER = "appName: misc_jndi_earwar" + TestUtil.NEW_LINE + "moduleName: misc_jndi_earwar_web";
 
     public static final String CONTEXT_ROOT = "/misc_jndi_earwar_web";
 
     public static final String SERVLET_NAME = "TestServlet";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -45,8 +43,7 @@ public class Client extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     @Override
     public Status run(String args[], PrintWriter out, PrintWriter pw) {
@@ -62,8 +59,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: globalJNDI
      *
-     * @test_Strategy: lookup portable global jndi names of various beans from
-     * servlet
+     * @test_Strategy: lookup portable global jndi names of various beans from servlet
      */
     public void globalJNDI() throws Fault {
         TEST_PROPS.setProperty(APITEST, "globalJNDI");
@@ -85,8 +81,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: appJNDI
      *
-     * @test_Strategy: lookup portable app jndi names of various beans from
-     * servlet
+     * @test_Strategy: lookup portable app jndi names of various beans from servlet
      */
     public void appJNDI() throws Fault {
         TEST_PROPS.setProperty(APITEST, "appJNDI");
@@ -108,8 +103,7 @@ public class Client extends AbstractUrlClient {
     /*
      * @testName: moduleJNDI
      *
-     * @test_Strategy: lookup portable module jndi names of various beans from
-     * servlet
+     * @test_Strategy: lookup portable module jndi names of various beans from servlet
      */
     public void moduleJNDI() throws Fault {
         TEST_PROPS.setProperty(APITEST, "moduleJNDI");

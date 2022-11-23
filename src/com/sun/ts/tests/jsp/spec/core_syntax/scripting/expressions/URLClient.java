@@ -27,9 +27,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -38,8 +37,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -61,8 +59,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:77
      *
-     * @test_Strategy: Validate that the container can correctly support a basic
-     * expression by validating the output returned.
+     * @test_Strategy: Validate that the container can correctly support a basic expression by validating the output
+     * returned.
      */
 
     public void positiveExprTest() throws Fault {
@@ -75,9 +73,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:5
      *
-     * @test_Strategy: Validate that an HTML stye comment with an embedded
-     * expression returns the value of the expression within the comment and that
-     * the HTML comment is treated as template text.
+     * @test_Strategy: Validate that an HTML stye comment with an embedded expression returns the value of the expression
+     * within the comment and that the HTML comment is treated as template text.
      */
 
     public void positiveExprCommentTest() throws Fault {
@@ -90,8 +87,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: PENDING
      *
-     * @test_Strategy: Validate that the container correctly handles different
-     * whitespace values with an expression element.
+     * @test_Strategy: Validate that the container correctly handles different whitespace values with an expression element.
      */
 
     public void positiveExprWhiteSpaceTest() throws Fault {

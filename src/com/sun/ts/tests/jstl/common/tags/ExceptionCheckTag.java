@@ -26,8 +26,7 @@ import jakarta.servlet.jsp.tagext.TagSupport;
 import jakarta.servlet.jsp.tagext.TryCatchFinally;
 
 /**
- * ExceptionCheckTag.java Simple tag to catch Exceptions thrown from nested
- * actions.
+ * ExceptionCheckTag.java Simple tag to catch Exceptions thrown from nested actions.
  */
 public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
 
@@ -76,15 +75,13 @@ public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
      * Sets the type of exception to check for.
      *
-     * @param exception
-     *          Exception class.
+     * @param exception Exception class.
      */
     public void setException(String exception) {
         this._exception = exception;
@@ -93,8 +90,7 @@ public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
     /**
      * Sets the type of root exception to check for.
      *
-     * @param rootException
-     *          Exception class.
+     * @param rootException Exception class.
      */
     public void setRootException(String rootException) {
         this._rootException = rootException;
@@ -103,8 +99,7 @@ public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
     /**
      * Sets the name of the variable to export.
      *
-     * @param Name
-     *          of the variable to export.
+     * @param Name of the variable to export.
      */
     public void setVar(String var) {
         this._varName = var;
@@ -122,8 +117,7 @@ public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
     /**
      * Sets the text that should be expected in the exception message.
      *
-     * @param exceptionText
-     *          text to search for
+     * @param exceptionText text to search for
      */
     public void setExceptionText(String exceptionText) {
         this._exceptionText = exceptionText.toLowerCase();
@@ -133,8 +127,7 @@ public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
      * <code>doStartTag</code> has been overridden to return EVAL_BODY_INCLUDE
      *
      * @return <code>EVAL_BODY_INCLUDE</code>
-     * @exception JspException
-     *              if an error occurs
+     * @exception JspException if an error occurs
      */
     public int doStartTag() throws JspException {
         return EVAL_BODY_INCLUDE;
@@ -156,8 +149,7 @@ public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
      * such.
      * </pre>
      *
-     * @param java.lang.Throwable
-     *          Exception caught from a nested action.
+     * @param java.lang.Throwable Exception caught from a nested action.
      */
     public void doCatch(java.lang.Throwable t) {
         StringBuffer sb = new StringBuffer(BUFFER_SIZE);
@@ -262,8 +254,7 @@ public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
     }
 
     /**
-     * Invoked in all cases after doEndTag() for any class implementing Tag,
-     * IterationTag or BodyTag.
+     * Invoked in all cases after doEndTag() for any class implementing Tag, IterationTag or BodyTag.
      */
     public void doFinally() {
         if (pageContext.getAttribute(_varName, PageContext.PAGE_SCOPE) == null) {
@@ -276,8 +267,8 @@ public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
     }
 
     /**
-     * <code>release</code> is called by the tag handler to release state. This
-     * method is invoked by the JSP page implementation object.
+     * <code>release</code> is called by the tag handler to release state. This method is invoked by the JSP page
+     * implementation object.
      */
     public void release() {
         _exception = null;

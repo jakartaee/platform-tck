@@ -32,7 +32,8 @@ public class CustomerXML implements java.io.Serializable {
 
     private List<String> phones = new ArrayList<String>();
 
-    public CustomerXML() {}
+    public CustomerXML() {
+    }
 
     public CustomerXML(String id) {
         this.id = id;

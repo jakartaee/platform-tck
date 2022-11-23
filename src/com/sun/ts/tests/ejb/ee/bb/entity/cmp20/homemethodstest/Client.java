@@ -55,8 +55,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -86,8 +85,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:127; EJB:SPEC:231; EJB:SPEC:128
      *
-     * @test_Strategy: Call the create method of an Entity Bean and verify it was
-     * successful.
+     * @test_Strategy: Call the create method of an Entity Bean and verify it was successful.
      */
 
     public void test1() throws Fault {
@@ -117,7 +115,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -125,8 +124,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:127; EJB:SPEC:231
      *
-     * @test_Strategy: Call the overloaded create method of an Entity Bean and
-     * verify it was successful.
+     * @test_Strategy: Call the overloaded create method of an Entity Bean and verify it was successful.
      */
 
     public void test2() throws Fault {
@@ -158,7 +156,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -166,8 +165,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:127; EJB:SPEC:231; EJB:SPEC:140
      *
-     * @test_Strategy: Call the createMETHOD method of an Entity Bean and verify
-     * it was successful.
+     * @test_Strategy: Call the createMETHOD method of an Entity Bean and verify it was successful.
      */
 
     public void test3() throws Fault {
@@ -197,7 +195,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -205,8 +204,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:127; EJB:SPEC:140; EJB:SPEC:128
      *
-     * @test_Strategy: Call the createMETHOD method of an Entity Bean and verify
-     * it was successful.
+     * @test_Strategy: Call the createMETHOD method of an Entity Bean and verify it was successful.
      */
 
     public void test4() throws Fault {
@@ -236,7 +234,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
@@ -244,8 +243,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:127; EJB:SPEC:231; EJB:SPEC:128
      *
-     * @test_Strategy: Call the createMETHOD method of an Entity Bean and verify
-     * it was successful.
+     * @test_Strategy: Call the createMETHOD method of an Entity Bean and verify it was successful.
      */
 
     public void test5() throws Fault {
@@ -275,7 +273,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
         }
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     /*
@@ -283,10 +282,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:141; EJB:SPEC:299; EJB:SPEC:307
      *
-     * @test_Strategy: An enity bean's home interface can define one or more home
-     * methods that the bean provider supplies for business logic that is not
-     * specific to an entity bean instance. Call the home method on different bean
-     * instances and verify the results.
+     * @test_Strategy: An enity bean's home interface can define one or more home methods that the bean provider supplies
+     * for business logic that is not specific to an entity bean instance. Call the home method on different bean instances
+     * and verify the results.
      */
 
     public void test6() throws Fault {
@@ -379,7 +377,8 @@ public class Client extends EETest {
                 TestUtil.printStackTrace(e);
             }
 
-            if (!pass) throw new Fault("test6 failed");
+            if (!pass)
+                throw new Fault("test6 failed");
         }
     }
 
@@ -399,7 +398,8 @@ public class Client extends EETest {
                 while (i1.hasNext()) {
                     Object o = i1.next();
                     TestBean bRef = (TestBean) PortableRemoteObject.narrow(o, TestBean.class);
-                    for (int l = 0; l < c1.size(); l++) bRef.remove();
+                    for (int l = 0; l < c1.size(); l++)
+                        bRef.remove();
                 }
             } else {
                 TestUtil.logTrace("No entity data to clean up");

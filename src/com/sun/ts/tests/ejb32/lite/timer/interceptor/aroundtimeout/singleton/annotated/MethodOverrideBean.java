@@ -24,9 +24,8 @@ import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * This class overrides the @AroundTimeout method in the superclass. The
- * overriding method in this class is also a @AroundTimeout method. Verifies
- * that the superclass' @AroundTimeout is disabled.
+ * This class overrides the @AroundTimeout method in the superclass. The overriding method in this class is also
+ * a @AroundTimeout method. Verifies that the superclass' @AroundTimeout is disabled.
  */
 @Singleton
 public class MethodOverrideBean extends MethodOverrideBeanBase implements AroundTimeoutIF {

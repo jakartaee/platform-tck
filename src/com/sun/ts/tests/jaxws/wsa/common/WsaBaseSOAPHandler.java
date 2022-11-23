@@ -43,21 +43,25 @@ import org.w3c.dom.NodeList;
 
 public class WsaBaseSOAPHandler implements SOAPHandler<SOAPMessageContext> {
 
-    public WsaBaseSOAPHandler() {}
+    public WsaBaseSOAPHandler() {
+    }
 
     public boolean handleMessage(SOAPMessageContext context) {
         boolean outbound = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
         if (outbound) {
             TestUtil.logMsg("Direction=outbound");
-            if (whichHandler().equals("ServerSOAPHandler")) System.out.println("Direction=outbound");
+            if (whichHandler().equals("ServerSOAPHandler"))
+                System.out.println("Direction=outbound");
         } else {
             TestUtil.logMsg("Direction=inbound");
-            if (whichHandler().equals("ServerSOAPHandler")) System.out.println("Direction=inbound");
+            if (whichHandler().equals("ServerSOAPHandler"))
+                System.out.println("Direction=inbound");
         }
         try {
             SOAPMessage msg = ((SOAPMessageContext) context).getMessage();
             JAXWS_Util.dumpSOAPMessage(msg, true);
-            if (whichHandler().equals("ServerSOAPHandler")) JAXWS_Util.dumpSOAPMessage(msg, false);
+            if (whichHandler().equals("ServerSOAPHandler"))
+                JAXWS_Util.dumpSOAPMessage(msg, false);
 
             SOAPBody soapBody = getSOAPBody(context);
             if (soapBody != null && soapBody.getFirstChild() != null) {
@@ -87,16 +91,19 @@ public class WsaBaseSOAPHandler implements SOAPHandler<SOAPMessageContext> {
         boolean outbound = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
         if (outbound) {
             TestUtil.logMsg("Direction=outbound");
-            if (whichHandler().equals("ServerSOAPHandler")) System.out.println("Direction=outbound");
+            if (whichHandler().equals("ServerSOAPHandler"))
+                System.out.println("Direction=outbound");
         } else {
             TestUtil.logMsg("Direction=inbound");
-            if (whichHandler().equals("ServerSOAPHandler")) System.out.println("Direction=inbound");
+            if (whichHandler().equals("ServerSOAPHandler"))
+                System.out.println("Direction=inbound");
         }
         if (!outbound) {
             try {
                 SOAPMessage msg = ((SOAPMessageContext) context).getMessage();
                 JAXWS_Util.dumpSOAPMessage(msg, true);
-                if (whichHandler().equals("ServerSOAPHandler")) JAXWS_Util.dumpSOAPMessage(msg, false);
+                if (whichHandler().equals("ServerSOAPHandler"))
+                    JAXWS_Util.dumpSOAPMessage(msg, false);
                 if (context.getMessage().getSOAPBody().getFault() != null) {
                     String detailName = null;
                     try {
@@ -121,7 +128,8 @@ public class WsaBaseSOAPHandler implements SOAPHandler<SOAPMessageContext> {
         return null;
     }
 
-    public void close(MessageContext messageContext) {}
+    public void close(MessageContext messageContext) {
+    }
 
     protected SOAPBody getSOAPBody(SOAPMessageContext context) throws SOAPException {
         SOAPBody soapBody = context.getMessage().getSOAPBody();
@@ -271,24 +279,32 @@ public class WsaBaseSOAPHandler implements SOAPHandler<SOAPMessageContext> {
         return testName;
     }
 
-    protected void checkFaultActions(String requestName, String detailName, String action) {}
+    protected void checkFaultActions(String requestName, String detailName, String action) {
+    }
 
-    protected void checkInboundAction(SOAPMessageContext context, String oper, String action) {}
-    ;
+    protected void checkInboundAction(SOAPMessageContext context, String oper, String action) {
+    };
 
-    protected void checkInboundTo(SOAPMessageContext context) {}
+    protected void checkInboundTo(SOAPMessageContext context) {
+    }
 
-    protected void checkInboundReplyTo(SOAPMessageContext context) {}
+    protected void checkInboundReplyTo(SOAPMessageContext context) {
+    }
 
-    protected void checkInboundMessageId(SOAPMessageContext context) {}
+    protected void checkInboundMessageId(SOAPMessageContext context) {
+    }
 
-    protected void checkInboundRelationship(SOAPMessageContext context) {}
+    protected void checkInboundRelationship(SOAPMessageContext context) {
+    }
 
-    protected void checkInboundRelatesTo(SOAPMessageContext context) {}
+    protected void checkInboundRelatesTo(SOAPMessageContext context) {
+    }
 
-    protected void processOutboundMessage(SOAPMessageContext context, String oper, String testName) {}
+    protected void processOutboundMessage(SOAPMessageContext context, String oper, String testName) {
+    }
 
-    protected void processInboundMessage(SOAPMessageContext context, String oper, String testName) {}
+    protected void processInboundMessage(SOAPMessageContext context, String oper, String testName) {
+    }
 
     protected String whichHandler() {
         return "WsaBaseSOAPHandler";
@@ -375,7 +391,8 @@ public class WsaBaseSOAPHandler implements SOAPHandler<SOAPMessageContext> {
 
     protected void checkActionDoesNotExist(String action) {
         TestUtil.logMsg(whichHandler() + ".checkActionDoesNotExist");
-        if (whichHandler().equals("ServerSOAPHandler")) System.out.println(whichHandler() + ".checkActionDoesNotExist");
+        if (whichHandler().equals("ServerSOAPHandler"))
+            System.out.println(whichHandler() + ".checkActionDoesNotExist");
         if (action != null) {
             throw new AddressingPropertyException("wsa:Action header exists (unexpected)");
         }
@@ -391,7 +408,8 @@ public class WsaBaseSOAPHandler implements SOAPHandler<SOAPMessageContext> {
         } catch (Exception e) {
             pass = true;
         }
-        if (!pass) throw new AddressingPropertyException("wsa:To header exists (unexpected)");
+        if (!pass)
+            throw new AddressingPropertyException("wsa:To header exists (unexpected)");
     }
 
     protected void checkInboundRelatesToDoesNotExist(SOAPMessageContext context) {
@@ -404,7 +422,8 @@ public class WsaBaseSOAPHandler implements SOAPHandler<SOAPMessageContext> {
         } catch (Exception e) {
             pass = true;
         }
-        if (!pass) throw new AddressingPropertyException("wsa:RelatesTo header exists (unexpected)");
+        if (!pass)
+            throw new AddressingPropertyException("wsa:RelatesTo header exists (unexpected)");
     }
 
     protected void checkInboundMessageIdDoesNotExist(SOAPMessageContext context) {
@@ -417,7 +436,8 @@ public class WsaBaseSOAPHandler implements SOAPHandler<SOAPMessageContext> {
         } catch (Exception e) {
             pass = true;
         }
-        if (!pass) throw new AddressingPropertyException("wsa:MessageId header exists (unexpected)");
+        if (!pass)
+            throw new AddressingPropertyException("wsa:MessageId header exists (unexpected)");
     }
 
     protected void checkInboundReplyToDoesNotExist(SOAPMessageContext context) {
@@ -430,6 +450,7 @@ public class WsaBaseSOAPHandler implements SOAPHandler<SOAPMessageContext> {
         } catch (Exception e) {
             pass = true;
         }
-        if (!pass) throw new AddressingPropertyException("wsa:ReplyTo header exists (unexpected)");
+        if (!pass)
+            throw new AddressingPropertyException("wsa:ReplyTo header exists (unexpected)");
     }
 }

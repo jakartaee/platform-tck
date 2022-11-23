@@ -31,7 +31,8 @@ public class DataTypes4 implements java.io.Serializable {
 
     private String stringData;
 
-    public DataTypes4() {}
+    public DataTypes4() {
+    }
 
     public DataTypes4(String stringData) {
         this.stringData = stringData;

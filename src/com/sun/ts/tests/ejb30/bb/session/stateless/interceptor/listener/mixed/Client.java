@@ -46,34 +46,31 @@ public class Client extends ClientBase {
     /*
      * @testName: methodLevelInterceptorMixedTest
      *
-     * @test_Strategy: o method level interceptors may be specified
-     * with @Interceptors or in descriptor. The one specified in descriptor is
-     * invoked after the ones specified with annotations. Both default
-     * interceptors and class level interceptors are excluded.
+     * @test_Strategy: o method level interceptors may be specified with @Interceptors or in descriptor. The one specified
+     * in descriptor is invoked after the ones specified with annotations. Both default interceptors and class level
+     * interceptors are excluded.
      */
 
     /*
      * @testName: methodLevelClassLevelInterceptorMixedTest
      *
-     * @test_Strategy: o method level interceptors may be specified
-     * with @Interceptors or in descriptor. The one specified in descriptor is
-     * invoked after the ones specified with annotations. Default interceptors are
-     * excluded, but class level interceptors are included.
+     * @test_Strategy: o method level interceptors may be specified with @Interceptors or in descriptor. The one specified
+     * in descriptor is invoked after the ones specified with annotations. Default interceptors are excluded, but class
+     * level interceptors are included.
      */
 
     /*
      * @testName: repeatedInterceptors
      *
-     * @test_Strategy: o method level interceptors may be specified
-     * with @Interceptors or in descriptor. Interceptors are additive.
+     * @test_Strategy: o method level interceptors may be specified with @Interceptors or in descriptor. Interceptors are
+     * additive.
      */
 
     /*
      * @testName: interceptorOrderingOverride
      *
-     * @test_Strategy: o method level interceptors may be specified
-     * with @Interceptors or in descriptor. Interceptor order may be overridden
-     * with <interceptor-order>
+     * @test_Strategy: o method level interceptors may be specified with @Interceptors or in descriptor. Interceptor order
+     * may be overridden with <interceptor-order>
      */
 
 }

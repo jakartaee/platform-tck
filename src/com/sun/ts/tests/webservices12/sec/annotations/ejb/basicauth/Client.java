@@ -72,8 +72,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
-     * authpassword;
+     * @class.setup_props: webServerHost; webServerPort; user; password; authuser; authpassword;
      */
     public void setup(String[] args, Properties p) throws Fault {
         props = p;
@@ -95,8 +94,8 @@ public class Client extends EETest {
     /*
      * @testName: sayHelloProtected
      *
-     * @assertion_ids: JAXWS:SPEC:4005; JAXWS:SPEC:7000; JAXWS:SPEC:7010;
-     * JAXWS:SPEC:7011; JavaEE:SPEC:10087; WS4EE:SPEC:9000
+     * @assertion_ids: JAXWS:SPEC:4005; JAXWS:SPEC:7000; JAXWS:SPEC:7010; JAXWS:SPEC:7011; JavaEE:SPEC:10087;
+     * WS4EE:SPEC:9000
      *
      * @test_Strategy:
      */
@@ -133,8 +132,7 @@ public class Client extends EETest {
     /*
      * @testName: sayHelloPermitAll
      *
-     * @assertion_ids: JAXWS:SPEC:7010; JAXWS:SPEC:7011; JavaEE:SPEC:10087;
-     * WS4EE:SPEC:9000
+     * @assertion_ids: JAXWS:SPEC:7010; JAXWS:SPEC:7011; JavaEE:SPEC:10087; WS4EE:SPEC:9000
      *
      * @test_Strategy:
      */
@@ -170,8 +168,7 @@ public class Client extends EETest {
     /*
      * @testName: sayHelloDenyAll
      *
-     * @assertion_ids: JAXWS:SPEC:6005; JAXWS:SPEC:7010; JAXWS:SPEC:7011;
-     * JavaEE:SPEC:10087; WS4EE:SPEC:9000
+     * @assertion_ids: JAXWS:SPEC:6005; JAXWS:SPEC:7010; JAXWS:SPEC:7011; JavaEE:SPEC:10087; WS4EE:SPEC:9000
      *
      * @test_Strategy:
      */
@@ -210,13 +207,12 @@ public class Client extends EETest {
     /*
      * @testName: sayHelloProtectedUnauthorizedUser
      *
-     * @assertion_ids: JAXWS:SPEC:4005; JAXWS:SPEC:7000; JAXWS:SPEC:7010;
-     * JAXWS:SPEC:7011; JavaEE:SPEC:10087; WS4EE:SPEC:9000
+     * @assertion_ids: JAXWS:SPEC:4005; JAXWS:SPEC:7000; JAXWS:SPEC:7010; JAXWS:SPEC:7011; JavaEE:SPEC:10087;
+     * WS4EE:SPEC:9000
      *
-     * @test_Strategy: This will test that a user/password which is valid in the
-     * system but which is NOT a member of the Administrator role will/should
-     * yeild an access denied error when an attempt is made to access a method
-     * that has Administrator role access restriction.
+     * @test_Strategy: This will test that a user/password which is valid in the system but which is NOT a member of the
+     * Administrator role will/should yeild an access denied error when an attempt is made to access a method that has
+     * Administrator role access restriction.
      */
     public void sayHelloProtectedUnauthorizedUser() throws Fault {
 

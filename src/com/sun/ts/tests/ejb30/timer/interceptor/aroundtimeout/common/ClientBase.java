@@ -50,27 +50,26 @@ public class ClientBase extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
     /*
      * testName: allInterceptors
      *
-     * @test_Strategy: all interceptors at default and class-level should be
-     * invoked. //default interceptors 2, 1 //class-level interceptors 4, 3
-     * //method-level interceptors 6, 5
+     * @test_Strategy: all interceptors at default and class-level should be invoked. //default interceptors 2, 1
+     * //class-level interceptors 4, 3 //method-level interceptors 6, 5
      */
     public void allInterceptors() {
         String[] expectedAroundTimeout = {
-            "InterceptorBase",
-            "Interceptor2",
-            "InterceptorBase",
-            "Interceptor1",
-            "InterceptorBase",
-            "Interceptor4",
-            "InterceptorBase",
-            "Interceptor3",
-            "InterceptorBase",
-            "Interceptor6",
-            "InterceptorBase",
-            "Interceptor5",
-            "AroundTimeoutBeanBase",
-            "AroundTimeoutBean",
-            "AroundTimeoutBeanBase.timeout"
+                "InterceptorBase",
+                "Interceptor2",
+                "InterceptorBase",
+                "Interceptor1",
+                "InterceptorBase",
+                "Interceptor4",
+                "InterceptorBase",
+                "Interceptor3",
+                "InterceptorBase",
+                "Interceptor6",
+                "InterceptorBase",
+                "Interceptor5",
+                "AroundTimeoutBeanBase",
+                "AroundTimeoutBean",
+                "AroundTimeoutBeanBase.timeout"
         };
         aroundTimeoutTest(aroundTimeoutBean, expectedAroundTimeout, true);
     }
@@ -78,23 +77,22 @@ public class ClientBase extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
     /*
      * testName: allInterceptorsOverride
      *
-     * @test_Strategy: For AroundTimeoutOverrideBean, interceptor-order in
-     * ejb-jar.xml is used to override the ordering of class-level interceptors.
-     * exclude-default-interceptors is also applied for AroundTimeoutOverrideBean.
+     * @test_Strategy: For AroundTimeoutOverrideBean, interceptor-order in ejb-jar.xml is used to override the ordering of
+     * class-level interceptors. exclude-default-interceptors is also applied for AroundTimeoutOverrideBean.
      */
     public void allInterceptorsOverride() {
         String[] expectedAroundTimeout = {
-            "InterceptorBase",
-            "Interceptor3",
-            "InterceptorBase",
-            "Interceptor4",
-            "InterceptorBase",
-            "Interceptor6",
-            "InterceptorBase",
-            "Interceptor5",
-            "AroundTimeoutBeanBase",
-            "AroundTimeoutOverrideBean",
-            "AroundTimeoutBeanBase.timeout"
+                "InterceptorBase",
+                "Interceptor3",
+                "InterceptorBase",
+                "Interceptor4",
+                "InterceptorBase",
+                "Interceptor6",
+                "InterceptorBase",
+                "Interceptor5",
+                "AroundTimeoutBeanBase",
+                "AroundTimeoutOverrideBean",
+                "AroundTimeoutBeanBase.timeout"
         };
         aroundTimeoutTest(aroundTimeoutOverrideBean, expectedAroundTimeout, true);
     }
@@ -102,27 +100,26 @@ public class ClientBase extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
     /*
      * testName: allInterceptorsComplement
      *
-     * @test_Strategy: AroundTimeoutComplementBean's interceptors are also
-     * declared in ejb-jar.xml to complement the class-level interceptors.
-     * AroundTimeoutComplementBean excludes default interceptors.
+     * @test_Strategy: AroundTimeoutComplementBean's interceptors are also declared in ejb-jar.xml to complement the
+     * class-level interceptors. AroundTimeoutComplementBean excludes default interceptors.
      */
     public void allInterceptorsComplement() {
         String[] expectedAroundTimeout = {
-            "InterceptorBase",
-            "Interceptor4",
-            "InterceptorBase",
-            "Interceptor3",
-            "InterceptorBase",
-            "Interceptor2",
-            "InterceptorBase",
-            "Interceptor1",
-            "InterceptorBase",
-            "Interceptor6",
-            "InterceptorBase",
-            "Interceptor5",
-            "AroundTimeoutBeanBase",
-            "AroundTimeoutComplementBean",
-            "AroundTimeoutBeanBase.timeout"
+                "InterceptorBase",
+                "Interceptor4",
+                "InterceptorBase",
+                "Interceptor3",
+                "InterceptorBase",
+                "Interceptor2",
+                "InterceptorBase",
+                "Interceptor1",
+                "InterceptorBase",
+                "Interceptor6",
+                "InterceptorBase",
+                "Interceptor5",
+                "AroundTimeoutBeanBase",
+                "AroundTimeoutComplementBean",
+                "AroundTimeoutBeanBase.timeout"
         };
         aroundTimeoutTest(aroundTimeoutComplementBean, expectedAroundTimeout, true);
     }
@@ -130,18 +127,17 @@ public class ClientBase extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
     /*
      * testName: aroundTimeoutMethod
      *
-     * @test_Strategy: override @AroundTimeout method with @AroundTimeout method
-     * and verify that the superclass' @AroundTimeout is disabled, and
-     * subclass' @AroundTimeout method is invoked
+     * @test_Strategy: override @AroundTimeout method with @AroundTimeout method and verify that the
+     * superclass' @AroundTimeout is disabled, and subclass' @AroundTimeout method is invoked
      */
     public void aroundTimeoutMethod() {
         String[] expectedAroundTimeout = {
-            "InterceptorBase",
-            "Interceptor2",
-            "InterceptorBase",
-            "Interceptor1",
-            "MethodOverrideBean",
-            "MethodOverrideBeanBase.timeout"
+                "InterceptorBase",
+                "Interceptor2",
+                "InterceptorBase",
+                "Interceptor1",
+                "MethodOverrideBean",
+                "MethodOverrideBeanBase.timeout"
         };
         aroundTimeoutTest(methodOverrideBean, expectedAroundTimeout, true);
     }
@@ -149,12 +145,12 @@ public class ClientBase extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
     /*
      * testName: aroundTimeoutMethod2
      *
-     * @test_Strategy:override @AroundTimeout method with non-AroundTimeout method
-     * and verify that the superclass' @AroundTimeout is disabled
+     * @test_Strategy:override @AroundTimeout method with non-AroundTimeout method and verify that the
+     * superclass' @AroundTimeout is disabled
      */
     public void aroundTimeoutMethod2() {
         String[] expectedAroundTimeout = {
-            "InterceptorBase", "Interceptor2", "InterceptorBase", "Interceptor1", "MethodOverrideBeanBase.timeout"
+                "InterceptorBase", "Interceptor2", "InterceptorBase", "Interceptor1", "MethodOverrideBeanBase.timeout"
         };
         aroundTimeoutTest(methodOverride2Bean, expectedAroundTimeout, true);
     }
@@ -162,17 +158,16 @@ public class ClientBase extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
     /*
      * testName: aroundTimeoutException
      *
-     * @test_Strategy: Interceptor1 catches and suppresses the RuntimeException
-     * from bean class' AroundTimeout method.
+     * @test_Strategy: Interceptor1 catches and suppresses the RuntimeException from bean class' AroundTimeout method.
      */
     public void aroundTimeoutException() {
         String[] expectedAroundTimeout = {
-            "InterceptorBase",
-            "Interceptor2",
-            "InterceptorBase",
-            "Interceptor1",
-            "AroundTimeoutExceptionBeanBase",
-            "RuntimeException"
+                "InterceptorBase",
+                "Interceptor2",
+                "InterceptorBase",
+                "Interceptor1",
+                "AroundTimeoutExceptionBeanBase",
+                "RuntimeException"
         };
         aroundTimeoutTest(getAroundTimeoutExceptionBean(), expectedAroundTimeout, false);
     }
@@ -180,15 +175,14 @@ public class ClientBase extends com.sun.ts.tests.ejb30.timer.common.ClientBase {
     /*
      * testName: invocationContextMethods
      *
-     * @test_Strategy: invokes various methods on InvocationContext
-     * inside @AroundTimeout method.
+     * @test_Strategy: invokes various methods on InvocationContext inside @AroundTimeout method.
      */
     public void invocationContextMethods() {
         String[] expectedAroundTimeout = {
-            // method-level interceptors on AroundTimeoutBeanBase.timeout
-            "InterceptorBase", "Interceptor6", "InterceptorBase", "Interceptor5",
-            "getMethod", "getParameters", "getTarget", "getContextData",
-            "setParameters", "AroundTimeoutBeanBase.timeout"
+                // method-level interceptors on AroundTimeoutBeanBase.timeout
+                "InterceptorBase", "Interceptor6", "InterceptorBase", "Interceptor5",
+                "getMethod", "getParameters", "getTarget", "getContextData",
+                "setParameters", "AroundTimeoutBeanBase.timeout"
         };
         aroundTimeoutTest(invocationContextMethodsBean, expectedAroundTimeout, true);
     }

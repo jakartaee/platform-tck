@@ -65,20 +65,22 @@ public class ExceptionTest extends ServiceEETest {
      * @exception Fault
      */
 
-    public void setup(String[] args, Properties p) throws Fault {}
+    public void setup(String[] args, Properties p) throws Fault {
+    }
 
     /* cleanup */
 
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /* Tests */
     /*
@@ -86,8 +88,7 @@ public class ExceptionTest extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1;
      *
-     * @test_Strategy: Construct TransactionRolledBackException(String, String)
-     * the correct message in it.
+     * @test_Strategy: Construct TransactionRolledBackException(String, String) the correct message in it.
      */
 
     public void transactionRolledBackExceptionTest1() throws Fault {
@@ -96,8 +97,7 @@ public class ExceptionTest extends ServiceEETest {
             String errorCode = "Serious";
             String cause = "Rollback operation not allowed.";
 
-            jakarta.jms.TransactionRolledBackException exceptionToTest =
-                    new TransactionRolledBackException(cause, errorCode);
+            jakarta.jms.TransactionRolledBackException exceptionToTest = new TransactionRolledBackException(cause, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -121,8 +121,7 @@ public class ExceptionTest extends ServiceEETest {
 
     public void transactionRolledBackExceptionTest2() throws Fault {
         try {
-            jakarta.jms.TransactionRolledBackException exceptionToTest =
-                    new TransactionRolledBackException("Rollback operation not allowed.");
+            jakarta.jms.TransactionRolledBackException exceptionToTest = new TransactionRolledBackException("Rollback operation not allowed.");
             try {
                 throw exceptionToTest;
             } catch (TransactionRolledBackException e) {
@@ -146,8 +145,7 @@ public class ExceptionTest extends ServiceEETest {
             String errorCode = "Warning";
             String cause = "Transaction is still in progress.";
 
-            jakarta.jms.TransactionInProgressException exceptionToTest =
-                    new TransactionInProgressException(cause, errorCode);
+            jakarta.jms.TransactionInProgressException exceptionToTest = new TransactionInProgressException(cause, errorCode);
             try {
                 throw exceptionToTest;
             } catch (TransactionInProgressException e) {
@@ -171,8 +169,7 @@ public class ExceptionTest extends ServiceEETest {
 
     public void testTransactionInProgressException2() throws Fault {
         try {
-            jakarta.jms.TransactionInProgressException exceptionToTest =
-                    new TransactionInProgressException("Transaction is still in progress.");
+            jakarta.jms.TransactionInProgressException exceptionToTest = new TransactionInProgressException("Transaction is still in progress.");
             try {
                 throw exceptionToTest;
             } catch (TransactionInProgressException e) {
@@ -222,8 +219,7 @@ public class ExceptionTest extends ServiceEETest {
 
     public void resourceAllocationExceptionTest2() throws Fault {
         try {
-            jakarta.jms.ResourceAllocationException exceptionToTest =
-                    new ResourceAllocationException("Cannot get the resource, " + "not enough heap space.");
+            jakarta.jms.ResourceAllocationException exceptionToTest = new ResourceAllocationException("Cannot get the resource, " + "not enough heap space.");
             try {
                 throw exceptionToTest;
             } catch (ResourceAllocationException e) {
@@ -248,8 +244,7 @@ public class ExceptionTest extends ServiceEETest {
             String errorCode = "Urgent";
             String cause = "Message just received";
 
-            jakarta.jms.MessageNotWriteableException exceptionToTest =
-                    new MessageNotWriteableException(cause, errorCode);
+            jakarta.jms.MessageNotWriteableException exceptionToTest = new MessageNotWriteableException(cause, errorCode);
 
             try {
                 throw exceptionToTest;
@@ -274,8 +269,7 @@ public class ExceptionTest extends ServiceEETest {
 
     public void testMessageNotWriteableException2() throws Fault {
         try {
-            jakarta.jms.MessageNotWriteableException exceptionToTest =
-                    new MessageNotWriteableException("Message just received");
+            jakarta.jms.MessageNotWriteableException exceptionToTest = new MessageNotWriteableException("Message just received");
             try {
                 throw exceptionToTest;
             } catch (MessageNotWriteableException e) {
@@ -325,8 +319,7 @@ public class ExceptionTest extends ServiceEETest {
 
     public void testMessageNotReadableException2() throws Fault {
         try {
-            jakarta.jms.MessageNotReadableException exceptionToTest =
-                    new MessageNotReadableException("Message is empty");
+            jakarta.jms.MessageNotReadableException exceptionToTest = new MessageNotReadableException("Message is empty");
             try {
                 throw exceptionToTest;
             } catch (MessageNotReadableException e) {
@@ -376,8 +369,7 @@ public class ExceptionTest extends ServiceEETest {
 
     public void testMessageFormatException2() throws Fault {
         try {
-            jakarta.jms.MessageFormatException exceptionToTest =
-                    new MessageFormatException("Cannot convert from int to char");
+            jakarta.jms.MessageFormatException exceptionToTest = new MessageFormatException("Cannot convert from int to char");
             try {
                 throw exceptionToTest;
             } catch (MessageFormatException e) {
@@ -634,8 +626,7 @@ public class ExceptionTest extends ServiceEETest {
 
     public void invalidDestinationExceptionTest2() throws Fault {
         try {
-            jakarta.jms.InvalidDestinationException exceptionToTest =
-                    new InvalidDestinationException("Destination is Null");
+            jakarta.jms.InvalidDestinationException exceptionToTest = new InvalidDestinationException("Destination is Null");
             try {
                 throw exceptionToTest;
             } catch (InvalidDestinationException e) {
@@ -736,8 +727,8 @@ public class ExceptionTest extends ServiceEETest {
     public void illegalStateExceptionTest2() throws Fault {
 
         try {
-            jakarta.jms.IllegalStateException exceptionToTest =
-                    new jakarta.jms.IllegalStateException("The operation is intended for Queue Configuration only.");
+            jakarta.jms.IllegalStateException exceptionToTest = new jakarta.jms.IllegalStateException(
+                    "The operation is intended for Queue Configuration only.");
             try {
                 throw exceptionToTest;
             } catch (jakarta.jms.IllegalStateException e) {

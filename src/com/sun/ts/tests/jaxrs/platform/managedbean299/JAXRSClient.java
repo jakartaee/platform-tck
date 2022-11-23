@@ -32,9 +32,8 @@ public class JAXRSClient extends JAXRSCommonClient {
     }
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         new JAXRSClient().run(args);
@@ -46,8 +45,8 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:50;
      *
-     * @test_Strategy: In a product that also supports JSR 299, implementations
-     * MUST similarly support use of JSR299-style managed beans
+     * @test_Strategy: In a product that also supports JSR 299, implementations MUST similarly support use of JSR299-style
+     * managed beans
      *
      * check root resource class is CDI managed bean
      */
@@ -62,9 +61,8 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:50;
      *
-     * @test_Strategy: In a product that also supports JSR 299, implementations
-     * MUST similarly support use of JSR299-style managed beans Application
-     * subclasses MUST be singletons or use application scope
+     * @test_Strategy: In a product that also supports JSR 299, implementations MUST similarly support use of JSR299-style
+     * managed beans Application subclasses MUST be singletons or use application scope
      *
      * check application subclass is CDI managed bean
      */
@@ -79,9 +77,8 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:50;
      *
-     * @test_Strategy: In a product that also supports JSR 299, implementations
-     * MUST similarly support use of JSR299-style managed beans Providers MUST be
-     * singletons or use application scope
+     * @test_Strategy: In a product that also supports JSR 299, implementations MUST similarly support use of JSR299-style
+     * managed beans Providers MUST be singletons or use application scope
      *
      * check Provider subclass is CDI managed bean
      */
@@ -96,11 +93,10 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.1;
      *
-     * @test_Strategy: The following additional requirements apply when using
-     * JSR299-style Managed Beans as resource classes:
+     * @test_Strategy: The following additional requirements apply when using JSR299-style Managed Beans as resource
+     * classes:
      *
-     * Field and property injection of JAX-RS resources MUST be performed prior to
-     * the container invoking any
+     * Field and property injection of JAX-RS resources MUST be performed prior to the container invoking any
      *
      * @PostConstruct annotated method
      */
@@ -115,11 +111,10 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.1;
      *
-     * @test_Strategy: The following additional requirements apply when using
-     * JSR299-style Managed Beans as Application subclasses:
+     * @test_Strategy: The following additional requirements apply when using JSR299-style Managed Beans as Application
+     * subclasses:
      *
-     * Field and property injection of JAX-RS resources MUST be performed prior to
-     * the container invoking any
+     * Field and property injection of JAX-RS resources MUST be performed prior to the container invoking any
      *
      * @PostConstruct annotated method
      */
@@ -134,11 +129,9 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.1;
      *
-     * @test_Strategy: The following additional requirements apply when using
-     * JSR299-style Managed Beans as providers:
+     * @test_Strategy: The following additional requirements apply when using JSR299-style Managed Beans as providers:
      *
-     * Field and property injection of JAX-RS resources MUST be performed prior to
-     * the container invoking any
+     * Field and property injection of JAX-RS resources MUST be performed prior to the container invoking any
      *
      * @PostConstruct annotated method
      */
@@ -153,14 +146,13 @@ public class JAXRSClient extends JAXRSCommonClient {
      *
      * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.3;
      *
-     * @test_Strategy: The following additional requirements apply when using
-     * JSR299-style Managed Beans as resource classes:
+     * @test_Strategy: The following additional requirements apply when using JSR299-style Managed Beans as resource
+     * classes:
      *
      * Implementations MUST NOT require use of @Inject or
      *
-     * @Resource to trigger injection of JAX-RS annotated fields or properties.
-     * Implementations MAY support such usage but SHOULD warn users about
-     * non-portability.
+     * @Resource to trigger injection of JAX-RS annotated fields or properties. Implementations MAY support such usage but
+     * SHOULD warn users about non-portability.
      */
     public void noInjectOrResourceKeywordTest() throws Fault {
         String req = buildRequest(Request.GET, "nokeyword;matrix=", String.valueOf(serialVersionUID));

@@ -28,7 +28,8 @@ public class Client extends PMClientBase {
 
     private Byte[] smallByteArray = null;
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -56,8 +57,7 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: Byte[]
+     * @test_Strategy: The persistent property of an entity may be of the following type: Byte[]
      *
      */
     public void lobTest() throws Fault {

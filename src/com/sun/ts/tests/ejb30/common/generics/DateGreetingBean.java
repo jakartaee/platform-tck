@@ -37,8 +37,7 @@ public class DateGreetingBean implements GenericGreetingIF<java.util.Date> {
     /*
      * (non-Javadoc)
      *
-     * @see
-     * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowed()
+     * @see com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowed()
      */
     @RolesAllowed("Administrator")
     public Date rolesAllowed(Date d) {
@@ -48,9 +47,7 @@ public class DateGreetingBean implements GenericGreetingIF<java.util.Date> {
     /*
      * (non-Javadoc)
      *
-     * @see
-     * com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowedNoArg(
-     * )
+     * @see com.sun.ts.tests.ejb30.common.generics.GenericGreetingIF#rolesAllowedNoArg( )
      */
     @RolesAllowed("Manager")
     public Date rolesAllowedNoArg() {

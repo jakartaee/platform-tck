@@ -38,7 +38,8 @@ public class StringPartialMessageHandler implements MessageHandler.Partial<Strin
     public void onMessage(String message, boolean finite) {
         sb.append(message);
         try {
-            if (finite) session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
+            if (finite)
+                session.getBasicRemote().sendText(HANDLER_SAYS + sb.toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

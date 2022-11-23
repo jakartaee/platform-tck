@@ -19,4 +19,5 @@ package com.sun.ts.tests.ejb30.bb.async.common.metadata;
 import jakarta.ejb.Remote;
 
 @Remote
-public interface PlainInterfaceTypeLevelRemoteIF extends PlainInterfaceTypeLevelIF {}
+public interface PlainInterfaceTypeLevelRemoteIF extends PlainInterfaceTypeLevelIF {
+}

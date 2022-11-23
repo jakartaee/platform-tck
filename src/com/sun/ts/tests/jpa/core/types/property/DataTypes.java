@@ -56,7 +56,8 @@ public class DataTypes implements java.io.Serializable {
 
     private Character[] charArrayData;
 
-    public DataTypes() {}
+    public DataTypes() {
+    }
 
     public DataTypes(
             Integer id,

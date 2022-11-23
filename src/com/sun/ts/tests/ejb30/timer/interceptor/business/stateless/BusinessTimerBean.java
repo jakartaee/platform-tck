@@ -30,7 +30,7 @@ import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
 
 @Stateless
-@Interceptors({Interceptor2.class})
+@Interceptors({ Interceptor2.class })
 public class BusinessTimerBean extends BusinessTimerBeanBase {
     @SuppressWarnings("unused")
     @AroundInvoke

@@ -34,7 +34,8 @@ public final class SRListener implements ServletRequestListener {
 
     // Public Methods
     @Override
-    public void requestDestroyed(ServletRequestEvent event) {}
+    public void requestDestroyed(ServletRequestEvent event) {
+    }
 
     @Override
     public void requestInitialized(ServletRequestEvent event) {

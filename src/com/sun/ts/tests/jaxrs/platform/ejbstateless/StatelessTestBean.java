@@ -23,12 +23,14 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
 
 @Stateless(name = "StatelessTestBean")
-@Local({StatelessLocalIF.class})
+@Local({ StatelessLocalIF.class })
 public class StatelessTestBean implements StatelessLocalIF {
 
-    public StatelessTestBean() {}
+    public StatelessTestBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     @Context
     private UriInfo ui;

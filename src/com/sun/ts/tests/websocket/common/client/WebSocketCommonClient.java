@@ -48,8 +48,8 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The property that is set after invoke(), to let know the cleanup of
-     * previous test should be performed so that more invocations are possible
+     * The property that is set after invoke(), to let know the cleanup of previous test should be performed so that more
+     * invocations are possible
      */
     boolean isTestCaseAfterInvocation;
 
@@ -109,15 +109,13 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     protected WebSocketTestCase testCase;
 
     /**
-     * disable logging stack trace of exception caused on invoke() for the tests
-     * that expects the exception to be thrown
+     * disable logging stack trace of exception caused on invoke() for the tests that expects the exception to be thrown
      */
     protected boolean logExceptionOnInvoke = true;
 
     /**
-     * Entity of type T, where T is the type of WebSocketTestCase, e.g. String by
-     * default. As websocket supports partial messages, this Entity is an array of
-     * objects; For whole message, only one Object in the array is used. When more
+     * Entity of type T, where T is the type of WebSocketTestCase, e.g. String by default. As websocket supports partial
+     * messages, this Entity is an array of objects; For whole message, only one Object in the array is used. When more
      * objects are utilized, partial message is being sent.
      */
     public class Entity {
@@ -128,7 +126,7 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
         }
 
         public Entity(Object entity) {
-            this(new Object[] {entity});
+            this(new Object[] { entity });
         }
 
         public boolean isInstance(Class<?> clazz) {
@@ -141,13 +139,15 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
 
         @SuppressWarnings("unchecked")
         public <T> T getEntityAt(Class<T> clazz, int index) {
-            if (ByteBuffer.class.isAssignableFrom(clazz)) return (T) cloneByteBuffer(index);
+            if (ByteBuffer.class.isAssignableFrom(clazz))
+                return (T) cloneByteBuffer(index);
             return (T) entities[index];
         }
 
         @SuppressWarnings("unchecked")
         public <T> T getEntityAt(int index) {
-            if (ByteBuffer.class.isInstance(entities[index])) return (T) cloneByteBuffer(index);
+            if (ByteBuffer.class.isInstance(entities[index]))
+                return (T) cloneByteBuffer(index);
             return (T) entities[index];
         }
 
@@ -167,8 +167,10 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
         public String toString() {
             StringBuilder sb = new StringBuilder();
             sb.append(entities.length);
-            if (entities.length == 1) sb.append(" part: ");
-            else sb.append(" parts: ");
+            if (entities.length == 1)
+                sb.append(" part: ");
+            else
+                sb.append(" parts: ");
             sb.append(objectsToStringWithDelimiter(", ", entities));
             return sb.toString();
         }
@@ -205,41 +207,42 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * Set property values to a given key if none exists, or adds all property
-     * values to a given key when one exists, unless the property is a content
+     * Set property values to a given key if none exists, or adds all property values to a given key when one exists, unless
+     * the property is a content
      */
     protected void setProperty(Property key, String... values) {
-        for (String singleValue : values) setProperty(key, singleValue);
+        for (String singleValue : values)
+            setProperty(key, singleValue);
     }
 
     /**
-     * Set property value to a given key if none exists, or adds a property value
-     * to a given key when one exists, unless the property is a content. When
-     * content, only the last single content is sent as a part of request
+     * Set property value to a given key if none exists, or adds a property value to a given key when one exists, unless the
+     * property is a content. When content, only the last single content is sent as a part of request
      */
     protected void setProperty(Property key, String value) {
         switch (key) {
-            case CONTENT:
-                setEntity(value);
-                break;
-            default:
-                String oldValue = TEST_PROPS.get(key);
-                if (oldValue == null) {
-                    TEST_PROPS.put(key, value);
-                } else {
-                    int len = value.length() + oldValue.length() + 1;
-                    StringBuilder combinedValue = new StringBuilder(len);
-                    combinedValue.append(oldValue).append("|").append(value);
-                    TEST_PROPS.put(key, combinedValue.toString());
-                }
-                break;
+        case CONTENT:
+            setEntity(value);
+            break;
+        default:
+            String oldValue = TEST_PROPS.get(key);
+            if (oldValue == null) {
+                TEST_PROPS.put(key, value);
+            } else {
+                int len = value.length() + oldValue.length() + 1;
+                StringBuilder combinedValue = new StringBuilder(len);
+                combinedValue.append(oldValue).append("|").append(value);
+                TEST_PROPS.put(key, combinedValue.toString());
+            }
+            break;
         }
     }
 
     protected String buildRequest(String... path) {
         StringBuilder sb = new StringBuilder();
         sb.append(getAbsoluteUrl()).append("/");
-        for (String segment : path) sb.append(segment);
+        for (String segment : path)
+            sb.append(segment);
         return sb.toString();
     }
 
@@ -258,31 +261,23 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     /**
      * Shortcut to invoke() when endpoint, content, and search is known
      *
-     * @param endpoint
-     *          the endpoint the request is built to go to.
-     * @param content
-     *          the content to be set as setEntity(content.name())
-     * @param search
-     *          a response would be searched for search.name()
-     * @throws Fault
-     *           when invocation fails
+     * @param endpoint the endpoint the request is built to go to.
+     * @param content the content to be set as setEntity(content.name())
+     * @param search a response would be searched for search.name()
+     * @throws Fault when invocation fails
      */
     protected <T extends Enum<T>> //
-            void invoke(String endpoint, Enum<T> content, Enum<T> search) throws Fault {
+    void invoke(String endpoint, Enum<T> content, Enum<T> search) throws Fault {
         invoke(endpoint, content.name(), search.name());
     }
 
     /**
      * Shortcut to invoke() when endpoint, content, and search is known
      *
-     * @param endpoint
-     *          the endpoint the request is built to go to.
-     * @param content
-     *          the content to be set as setEntity(content.name())
-     * @param search
-     *          a String the response would be searched for
-     * @throws Fault
-     *           when invocation fails
+     * @param endpoint the endpoint the request is built to go to.
+     * @param content the content to be set as setEntity(content.name())
+     * @param search a String the response would be searched for
+     * @throws Fault when invocation fails
      */
     protected //
     void invoke(String endpoint, Enum<?> content, String... search) throws Fault {
@@ -292,15 +287,10 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     /**
      * Shortcut to invoke() when endpoint, content, and search is known
      *
-     * @param endpoint
-     *          the endpoint the request is built to go to.
-     * @param content
-     *          the content to be set as setEntity(content)
-     * @param search
-     *          the content of a response to be searched, or "" when does not
-     *          matter
-     * @throws Fault
-     *           when invocation fails
+     * @param endpoint the endpoint the request is built to go to.
+     * @param content the content to be set as setEntity(content)
+     * @param search the content of a response to be searched, or "" when does not matter
+     * @throws Fault when invocation fails
      */
     protected void //
             invoke(String endpoint, Object content, String... search) throws Fault {
@@ -310,17 +300,11 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     /**
      * Shortcut to invoke() when endpoint, content, and search is known
      *
-     * @param endpoint
-     *          the endpoint the request is built to go to.
-     * @param content
-     *          the content to be set as setEntity(content)
-     * @param search
-     *          the content of a response to be searched, or "" when does not
-     *          matter
-     * @param cleanup
-     *          see {@link #invoke(boolean)}
-     * @throws Fault
-     *           when invocation fails
+     * @param endpoint the endpoint the request is built to go to.
+     * @param content the content to be set as setEntity(content)
+     * @param search the content of a response to be searched, or "" when does not matter
+     * @param cleanup see {@link #invoke(boolean)}
+     * @throws Fault when invocation fails
      */
     protected void //
             invoke(String endpoint, Object content, String[] search, boolean cleanup) throws Fault {
@@ -332,22 +316,16 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
 
     protected void //
             invoke(String endpoint, Object content, String search, boolean cleanup) throws Fault {
-        invoke(endpoint, content, new String[] {search}, cleanup);
+        invoke(endpoint, content, new String[] { search }, cleanup);
     }
 
     /**
-     * Shortcut to invokeAgain(cleanup) when endpoint, content, and search is
-     * known
+     * Shortcut to invokeAgain(cleanup) when endpoint, content, and search is known
      *
-     * @param content
-     *          the content to be set as setEntity(content)
-     * @param search
-     *          the content of a response to be searched, or "" when does not
-     *          matter
-     * @param cleanup
-     *          see {@link #invokeAgain(boolean)}
-     * @throws Fault
-     *           when invocation fails
+     * @param content the content to be set as setEntity(content)
+     * @param search the content of a response to be searched, or "" when does not matter
+     * @param cleanup see {@link #invokeAgain(boolean)}
+     * @throws Fault when invocation fails
      */
     protected void //
             invokeAgain(Object content, String search, boolean cleanup) throws Fault {
@@ -363,8 +341,7 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
      * the properties in TEST_PROPS will be cleared.
      * </PRE>
      *
-     * @throws Fault
-     *           If an error occurs during the test run
+     * @throws Fault If an error occurs during the test run
      */
     protected void invoke() throws Fault {
         invoke(true);
@@ -377,10 +354,8 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
      * the properties in TEST_PROPS will be cleared if cleanUp says so.
      * </PRE>
      *
-     * @throws Fault
-     *           If an error occurs during the test run
-     * @param cleanUp
-     *          Defines whether the test has ended
+     * @throws Fault If an error occurs during the test run
+     * @param cleanUp Defines whether the test has ended
      *
      */
     protected void invoke(boolean cleanUp) throws Fault {
@@ -388,10 +363,8 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * Invoke additional request with new entity and hold open
-     * {@link jakarta.websocket.Session} to a server {@link Endpoint}, the response
-     * is caught by client {@link Endpoint} set by current
-     * {@link WebSocketTestCase}
+     * Invoke additional request with new entity and hold open {@link jakarta.websocket.Session} to a server
+     * {@link Endpoint}, the response is caught by client {@link Endpoint} set by current {@link WebSocketTestCase}
      * <p/>
      *
      * @throws Fault
@@ -407,14 +380,10 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
      * the properties in TEST_PROPS will be cleared if cleanUp says so.
      * </PRE>
      *
-     * @throws Fault
-     *           If an error occurs during the test run
-     * @param cleanUp
-     *          Defines whether the test has ended
-     * @param again
-     *          the request to server endpoint is performed on currently
-     *          established session, when the session has not been closed after
-     *          previous {@link #invoke(false)};
+     * @throws Fault If an error occurs during the test run
+     * @param cleanUp Defines whether the test has ended
+     * @param again the request to server endpoint is performed on currently established session, when the session has not
+     * been closed after previous {@link #invoke(false)};
      */
     protected void invoke(boolean cleanUp, boolean again) throws Fault {
         TestUtil.logTrace("[WebSocketCommonClient] invoke");
@@ -435,9 +404,8 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * Executes test case for the first time, or once again on existing
-     * {@link WebSocketTestCase} and existing {@link Session} for a new
-     * {@link Entity}
+     * Executes test case for the first time, or once again on existing {@link WebSocketTestCase} and existing
+     * {@link Session} for a new {@link Entity}
      *
      * @param again
      * @throws TestFailureException
@@ -449,7 +417,8 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
             SendMessageCallback callback = new SendMessageCallback(entity);
             callback.onOpen(getSession(), null);
             testCase.awaitCountDown();
-        } else testCase.execute();
+        } else
+            testCase.execute();
     }
 
     private //
@@ -457,7 +426,8 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
         Throwable t = tfe.getRootCause();
         if (t != null && logExceptionOnInvoke) {
             TestUtil.logErr("Root cause of Failure: " + t.getMessage(), t);
-        } else logExceptionOnInvoke = true;
+        } else
+            logExceptionOnInvoke = true;
         fault(tfe, "[WebSocketCommonClient]", sTestCase, "failed!  Check output for cause of failure.");
     }
 
@@ -470,7 +440,8 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     protected void setTestProperties(WebSocketTestCase testCase) {
         TestUtil.logTrace("[WebSocketCommonClient] setTestProperties");
 
-        if (TEST_PROPS.get(Property.STATUS_CODE) == null) setProperty(Property.STATUS_CODE, "200");
+        if (TEST_PROPS.get(Property.STATUS_CODE) == null)
+            setProperty(Property.STATUS_CODE, "200");
         setWebTestCaseProperties(testCase);
     }
 
@@ -478,62 +449,63 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
         Property key = null;
         String value = null;
         // process the remainder of the properties
-        for (Enumeration<Property> e = TEST_PROPS.keys(); e.hasMoreElements(); ) {
+        for (Enumeration<Property> e = TEST_PROPS.keys(); e.hasMoreElements();) {
             key = e.nextElement();
             value = TEST_PROPS.get(key);
             switch (key) {
-                case BASIC_AUTH_USER:
-                    break;
-                case BASIC_AUTH_PASSWD:
-                    final String user = TEST_PROPS.get(Property.BASIC_AUTH_USER);
-                    final String password = TEST_PROPS.get(Property.BASIC_AUTH_PASSWD);
-                    Configurator configurator = new Configurator() {
-                        @Override
-                        public void beforeRequest(Map<String, List<String>> headers) {
-                            headers.putAll(basicAuthenticationAsHeaderMap(user, password));
-                            super.beforeRequest(headers);
-                        }
-                    };
-                    addClientConfigurator(configurator);
-                    break;
-                case CONTENT:
-                    setEntity(value);
-                    break;
-                case EXPECTED_HEADERS:
-                    testCase.addExpectedHeader(value);
-                    TEST_PROPS.remove(Property.EXPECTED_HEADERS);
-                    break;
-                case IGNORE_STATUS_CODE:
-                    testCase.setExpectedStatusCode("-1");
-                    break;
-                case REQUEST:
-                    break;
-                case SEARCH_STRING:
-                    value = testCase.getTextCaser().getCasedText(value);
-                    testCase.setResponseSearchString(value);
-                    TEST_PROPS.remove(Property.SEARCH_STRING);
-                    break;
-                case SEARCH_STRING_IGNORE_CASE:
-                    testCase.setResponseSearchStringIgnoreCase(value);
-                    TEST_PROPS.remove(Property.SEARCH_STRING_IGNORE_CASE);
-                    break;
-                case STATUS_CODE:
-                    if (value.contains("|")) testCase.setStrategy(CheckOneOfStatusesTokenizedValidator.class.getName());
-                    testCase.setExpectedStatusCode(value);
-                    break;
-                case UNEXPECTED_HEADERS:
-                    testCase.addUnexpectedHeader(value);
-                    TEST_PROPS.remove(Property.UNEXPECTED_HEADERS);
-                    break;
-                case UNEXPECTED_RESPONSE_MATCH:
-                    testCase.setUnexpectedResponseSearchString(value);
-                    TEST_PROPS.remove(Property.UNEXPECTED_RESPONSE_MATCH);
-                    break;
-                case UNORDERED_SEARCH_STRING:
-                    value = testCase.getTextCaser().getCasedText(value);
-                    testCase.setUnorderedSearchString(value);
-                    TEST_PROPS.remove(Property.UNORDERED_SEARCH_STRING);
-                    break;
+            case BASIC_AUTH_USER:
+                break;
+            case BASIC_AUTH_PASSWD:
+                final String user = TEST_PROPS.get(Property.BASIC_AUTH_USER);
+                final String password = TEST_PROPS.get(Property.BASIC_AUTH_PASSWD);
+                Configurator configurator = new Configurator() {
+                    @Override
+                    public void beforeRequest(Map<String, List<String>> headers) {
+                        headers.putAll(basicAuthenticationAsHeaderMap(user, password));
+                        super.beforeRequest(headers);
+                    }
+                };
+                addClientConfigurator(configurator);
+                break;
+            case CONTENT:
+                setEntity(value);
+                break;
+            case EXPECTED_HEADERS:
+                testCase.addExpectedHeader(value);
+                TEST_PROPS.remove(Property.EXPECTED_HEADERS);
+                break;
+            case IGNORE_STATUS_CODE:
+                testCase.setExpectedStatusCode("-1");
+                break;
+            case REQUEST:
+                break;
+            case SEARCH_STRING:
+                value = testCase.getTextCaser().getCasedText(value);
+                testCase.setResponseSearchString(value);
+                TEST_PROPS.remove(Property.SEARCH_STRING);
+                break;
+            case SEARCH_STRING_IGNORE_CASE:
+                testCase.setResponseSearchStringIgnoreCase(value);
+                TEST_PROPS.remove(Property.SEARCH_STRING_IGNORE_CASE);
+                break;
+            case STATUS_CODE:
+                if (value.contains("|"))
+                    testCase.setStrategy(CheckOneOfStatusesTokenizedValidator.class.getName());
+                testCase.setExpectedStatusCode(value);
+                break;
+            case UNEXPECTED_HEADERS:
+                testCase.addUnexpectedHeader(value);
+                TEST_PROPS.remove(Property.UNEXPECTED_HEADERS);
+                break;
+            case UNEXPECTED_RESPONSE_MATCH:
+                testCase.setUnexpectedResponseSearchString(value);
+                TEST_PROPS.remove(Property.UNEXPECTED_RESPONSE_MATCH);
+                break;
+            case UNORDERED_SEARCH_STRING:
+                value = testCase.getTextCaser().getCasedText(value);
+                testCase.setUnorderedSearchString(value);
+                TEST_PROPS.remove(Property.UNORDERED_SEARCH_STRING);
+                break;
             }
         }
     }
@@ -547,7 +519,7 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     protected <MSGTYPE> //
-            void setEndPointCase(Class<ClientEndpoint<MSGTYPE>> endpoint) {
+    void setEndPointCase(Class<ClientEndpoint<MSGTYPE>> endpoint) {
         getTestCase().setClientEndpoint(endpoint);
     }
 
@@ -568,11 +540,9 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * <code>cleanup</code> is called by the test harness to cleanup after text
-     * execution
+     * <code>cleanup</code> is called by the test harness to cleanup after text execution
      *
-     * @exception Fault
-     *              if an error occurs
+     * @exception Fault if an error occurs
      */
     public void cleanup() throws Fault {
         TEST_PROPS.clear();
@@ -599,12 +569,9 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     /**
      * <code>setup</code> is by the test harness to initialize the tests.
      *
-     * @param args
-     *          a <code>String[]</code> value
-     * @param p
-     *          a <code>Properties</code> value
-     * @exception Fault
-     *              if an error occurs
+     * @param args a <code>String[]</code> value
+     * @param p a <code>Properties</code> value
+     * @exception Fault if an error occurs
      */
     public void setup(String[] args, Properties p) throws Fault {
         TestUtil.logTrace("setup method WebSocketCommonClient");
@@ -645,29 +612,22 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     /**
      * Asserts that a condition is true.
      *
-     * @param condition
-     *          tested condition
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when conditionTrue is not met with message provided
+     * @param condition tested condition
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when conditionTrue is not met with message provided
      */
     public static void //
             assertTrue(boolean condition, Object... message) throws Fault {
-        if (!condition) fault(message);
+        if (!condition)
+            fault(message);
     }
 
     /**
      * Asserts that a condition is false.
      *
-     * @param condition
-     *          tested condition
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when condition is not false with message provided
+     * @param condition tested condition
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when condition is not false with message provided
      */
     public static void //
             assertFalse(boolean condition, Object... message) throws Fault {
@@ -675,58 +635,47 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * Asserts that two objects are equal. When instances of Comparable, such as
-     * String, compareTo is used.
+     * Asserts that two objects are equal. When instances of Comparable, such as String, compareTo is used.
      *
-     * @param first
-     *          first object
-     * @param second
-     *          second object
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when objects are not equal with message provided
+     * @param first first object
+     * @param second second object
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when objects are not equal with message provided
      */
     @SuppressWarnings("unchecked")
-    public static <T>
-            void //
-                    assertEquals(T first, T second, Object... message) throws Fault {
-        if (first == null && second == null) return;
+    public static <T> void //
+            assertEquals(T first, T second, Object... message) throws Fault {
+        if (first == null && second == null)
+            return;
         assertFalse(first == null && second != null, message);
         assertFalse(first != null && second == null, message);
-        if (first instanceof Comparable) assertTrue(((Comparable<T>) first).compareTo(second) == 0, message);
-        else assertTrue(first.equals(second), message);
+        if (first instanceof Comparable)
+            assertTrue(((Comparable<T>) first).compareTo(second) == 0, message);
+        else
+            assertTrue(first.equals(second), message);
     }
 
-    public static <T>
-            void //
-                    assertEqualsInt(int first, int second, Object... message) throws Fault {
+    public static <T> void //
+            assertEqualsInt(int first, int second, Object... message) throws Fault {
         assertTrue(first == second, message);
     }
 
-    public static <T>
-            void //
-                    assertEqualsLong(long first, long second, Object... message) throws Fault {
+    public static <T> void //
+            assertEqualsLong(long first, long second, Object... message) throws Fault {
         assertTrue(first == second, message);
     }
 
-    public static <T>
-            void //
-                    assertEqualsBool(boolean first, boolean second, Object... message) throws Fault {
+    public static <T> void //
+            assertEqualsBool(boolean first, boolean second, Object... message) throws Fault {
         assertTrue(first == second, message);
     }
 
     /**
      * Asserts that an object is null.
      *
-     * @param object
-     *          Assert that object is not null
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when condition is not met with message provided
+     * @param object Assert that object is not null
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when condition is not met with message provided
      */
     public static void //
             assertNull(Object object, Object... message) throws Fault {
@@ -736,13 +685,9 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     /**
      * Asserts that an object is not null.
      *
-     * @param object
-     *          Assert that object is not null
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when condition is not met with message provided
+     * @param object Assert that object is not null
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when condition is not met with message provided
      */
     public static void //
             assertNotNull(Object object, Object... message) throws Fault {
@@ -750,28 +695,21 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * Throws Fault with space separated objects[1],object[2],...,object[n]
-     * message
+     * Throws Fault with space separated objects[1],object[2],...,object[n] message
      *
-     * @param objects
-     *          objects whose toString() results will be added to Fault message
-     * @throws Fault
-     *           fault with space separated objects.toString values
+     * @param objects objects whose toString() results will be added to Fault message
+     * @throws Fault fault with space separated objects.toString values
      */
     public static void fault(Object... objects) throws Fault {
         throw new Fault(objectsToString(objects));
     }
 
     /**
-     * Throws Fault with space separated objects[1],object[2],...,object[n]
-     * message
+     * Throws Fault with space separated objects[1],object[2],...,object[n] message
      *
-     * @param t
-     *          Throwable to pass to Fault
-     * @param objects
-     *          objects whose toString() results will be added to Fault message
-     * @throws Fault
-     *           fault with space separated objects.toString values
+     * @param t Throwable to pass to Fault
+     * @param objects objects whose toString() results will be added to Fault message
+     * @throws Fault fault with space separated objects.toString values
      */
     public static void fault(Throwable t, Object... objects) throws Fault {
         throw new Fault(objectsToString(objects), t);
@@ -780,29 +718,21 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     /**
      * Assert that given substring is a substring of given string
      *
-     * @param string
-     *          the string to search substring in
-     * @param substring
-     *          the substring to be searched in a given string
-     * @param message
-     *          space separated message values to be thrown
-     * @throws Fault
-     *           throws
+     * @param string the string to search substring in
+     * @param substring the substring to be searched in a given string
+     * @param message space separated message values to be thrown
+     * @throws Fault throws
      */
     public static void assertContains(String string, String substring, Object... message) throws Fault {
         assertTrue(string.contains(substring), message);
     }
 
     /**
-     * Assert that given substring is a substring of given string, case
-     * insensitive
+     * Assert that given substring is a substring of given string, case insensitive
      *
-     * @param string
-     *          the string to search substring in
-     * @param substring
-     *          the substring to be searched in a given string
-     * @param message
-     *          space separated message values to be thrown
+     * @param string the string to search substring in
+     * @param substring the substring to be searched in a given string
+     * @param message space separated message values to be thrown
      * @throws Fault
      */
     public static void assertContainsIgnoreCase(String string, String substring, Object... message) throws Fault {
@@ -812,29 +742,21 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     /**
      * Assert that given substring is not a substring of given string
      *
-     * @param string
-     *          the string to search substring in
-     * @param substring
-     *          the substring to be searched in a given string
-     * @param message
-     *          space separated message values to be thrown
-     * @throws Fault
-     *           throws
+     * @param string the string to search substring in
+     * @param substring the substring to be searched in a given string
+     * @param message space separated message values to be thrown
+     * @throws Fault throws
      */
     public static void assertNotContains(String string, String substring, Object... message) throws Fault {
         assertFalse(string.contains(substring), message);
     }
 
     /**
-     * Assert that given substring is not a substring of given string, case
-     * insensitive
+     * Assert that given substring is not a substring of given string, case insensitive
      *
-     * @param string
-     *          the string to search substring in
-     * @param substring
-     *          the substring to be searched in a given string
-     * @param message
-     *          space separated message values to be thrown
+     * @param string the string to search substring in
+     * @param substring the substring to be searched in a given string
+     * @param message space separated message values to be thrown
      * @throws Fault
      */
     public static void assertNotContainsIgnoreCase(String string, String substring, Object... message) throws Fault {
@@ -844,12 +766,9 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     /**
      * Assert that given subtext.toString() subject is a substring of given text
      *
-     * @param text
-     *          the text.toString() object to search subtext.toString() in
-     * @param subtext
-     *          the subtext.toString() to be searched in a given text.toString()
-     * @param message
-     *          space separated message values to be thrown
+     * @param text the text.toString() object to search subtext.toString() in
+     * @param subtext the subtext.toString() to be searched in a given text.toString()
+     * @param message space separated message values to be thrown
      * @throws Fault
      */
     public static <T> void assertContains(T text, T subtext, Object... message) throws Fault {
@@ -857,15 +776,11 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * Assert that given subtext.toString() subject is a substring of given text,
-     * case insensitive
+     * Assert that given subtext.toString() subject is a substring of given text, case insensitive
      *
-     * @param text
-     *          the text.toString() object to search subtext.toString() in
-     * @param subtext
-     *          the subtext.toString() to be searched in a given text.toString()
-     * @param message
-     *          space separated message values to be thrown
+     * @param text the text.toString() object to search subtext.toString() in
+     * @param subtext the subtext.toString() to be searched in a given text.toString()
+     * @param message space separated message values to be thrown
      * @throws Fault
      */
     public static <T> void assertContainsIgnoreCase(T text, T subtext, Object... message) throws Fault {
@@ -898,11 +813,11 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     @SuppressWarnings("unchecked")
-    private static <T extends Throwable>
-            T //
-                    hasCause(Throwable parent, Class<? extends Throwable> cause) {
+    private static <T extends Throwable> T //
+            hasCause(Throwable parent, Class<? extends Throwable> cause) {
         while (parent != null) {
-            if (cause.isInstance(parent)) return (T) parent;
+            if (cause.isInstance(parent))
+                return (T) parent;
             parent = parent.getCause();
         }
         return null;
@@ -926,8 +841,7 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * @param objects
-     *          to be put in a sentence
+     * @param objects to be put in a sentence
      * @return objects in a single string , each object separated by " "
      */
     protected static String objectsToString(Object... objects) {
@@ -940,20 +854,21 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
             for (Object o : objects) {
                 if (o != null && o.getClass().isArray() && o.toString().startsWith("[L"))
                     sb.append(objectsToStringWithDelimiter(delimiter, (Object[]) o));
-                else sb.append(o).append(delimiter);
+                else
+                    sb.append(o).append(delimiter);
             }
         return sb.toString().trim();
     }
 
     /**
-     * Creates basic authentication header for given username and password, to be
-     * simply recalled in client Configurator, for instance
+     * Creates basic authentication header for given username and password, to be simply recalled in client Configurator,
+     * for instance
      *
      * <pre>
      * Configurator configurator = new Configurator() {
-     *   public void beforeRequest(Map&lt;String, List&lt;String&gt;&gt; headers) {
-     *     headers.putAll(basicAuthenticationAsHeaderMap(USER, PASSWORD));
-     *   };
+     *     public void beforeRequest(Map&lt;String, List&lt;String&gt;&gt; headers) {
+     *         headers.putAll(basicAuthenticationAsHeaderMap(USER, PASSWORD));
+     *     };
      * };
      * setClientConfigurator(configurator);
      * </pre>
@@ -986,8 +901,7 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     // ---------------------Callbacks ---------------------------------
     /**
      * <p>
-     * Possible cast to VI specific container, e.g. tyrus ClientManager and set
-     * properties for debug purposes.
+     * Possible cast to VI specific container, e.g. tyrus ClientManager and set properties for debug purposes.
      * </p>
      * <p>
      * For instance, to delay the connection timeout, use
@@ -997,13 +911,12 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
      * cm.getProperties().put(ClientProperties.HANDSHAKE_TIMEOUT, 500000);
      * </pre>
      *
-     * @param clientContainer
-     *          The container used for e.g.
-     *          {@link WebSocketContainer#connectToServer(Class, java.net.URI)}
-     *          </p>
+     * @param clientContainer The container used for e.g. {@link WebSocketContainer#connectToServer(Class, java.net.URI)}
+     * </p>
      */
     protected void //
-            setupWebSocketContainerBeforeConnect(WebSocketContainer clientContainer) {}
+            setupWebSocketContainerBeforeConnect(WebSocketContainer clientContainer) {
+    }
 
     // ---------------------Setters ---------------------------------
     /**
@@ -1020,32 +933,30 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * set ClientEndpoint class. This endpoint class can be overriden by client
-     * endpoint instance set by {@link #setClientEndpointInstance}
+     * set ClientEndpoint class. This endpoint class can be overriden by client endpoint instance set by
+     * {@link #setClientEndpointInstance}
      */
     protected void setClientEndpoint(Class<? extends ClientEndpoint<?>> endpoint) {
         getTestCase().setClientEndpoint(endpoint);
     }
 
     /**
-     * The ClientEndpoint instance. It holds precedence over ClientEndpoint class
-     * set by {@link #setClientEndpoint}
+     * The ClientEndpoint instance. It holds precedence over ClientEndpoint class set by {@link #setClientEndpoint}
      */
     protected void setClientEndpointInstance(ClientEndpoint<?> endpointInstance) {
         getTestCase().setClientEndpointInstance(endpointInstance);
     }
 
     /**
-     * The annotated client endpoint alternative to ClientEndpoint instance. It
-     * has precedence over ClientEndpoint class set by {@link #setClientEndpoint}
+     * The annotated client endpoint alternative to ClientEndpoint instance. It has precedence over ClientEndpoint class set
+     * by {@link #setClientEndpoint}
      */
     protected void setAnnotatedClientEndpoint(AnnotatedClientEndpoint<?> annotatedEndpoint) {
         getTestCase().setAnnotatedClientEndpoint(annotatedEndpoint);
     }
 
     /**
-     * Ensures given Configurator to be registered to any given or default
-     * ClientEndpointConfig
+     * Ensures given Configurator to be registered to any given or default ClientEndpointConfig
      */
     protected void //
             addClientConfigurator(Configurator configurator) {
@@ -1058,10 +969,8 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * This method sets the main {@link EndpointCallback} to be used by a test. If
-     * a callback is to be used in conjunction with default
-     * {@link SendMessageCallback}, use
-     * {@link #addClientCallback(EndpointCallback)} method.
+     * This method sets the main {@link EndpointCallback} to be used by a test. If a callback is to be used in conjunction
+     * with default {@link SendMessageCallback}, use {@link #addClientCallback(EndpointCallback)} method.
      * </p>
      * Note that when no entity is sent to a server, no clientCallback is used.
      */
@@ -1070,9 +979,8 @@ public abstract class WebSocketCommonClient extends ServiceEETest {
     }
 
     /**
-     * Add additional callback functionality to a main callback. The main callback
-     * could either be set by {@link #setClientCallback(EndpointCallback)} method
-     * or it is the default {@link SendMessageCallback} client callback.
+     * Add additional callback functionality to a main callback. The main callback could either be set by
+     * {@link #setClientCallback(EndpointCallback)} method or it is the default {@link SendMessageCallback} client callback.
      * </p>
      * Note that when no entity is sent to a server, no clientCallback is used.
      */

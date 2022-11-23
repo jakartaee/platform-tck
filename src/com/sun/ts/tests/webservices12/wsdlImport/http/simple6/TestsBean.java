@@ -19,12 +19,7 @@ package com.sun.ts.tests.webservices12.wsdlImport.http.simple6;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
-@WebService(
-        portName = "TestsPort",
-        serviceName = "Simple6HttpSvc",
-        targetNamespace = "http://Simple6HttpSvc.org/wsdl",
-        wsdlLocation = "META-INF/wsdl/std/svc/Simple6HttpSvc.wsdl",
-        endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.simple6.Tests")
+@WebService(portName = "TestsPort", serviceName = "Simple6HttpSvc", targetNamespace = "http://Simple6HttpSvc.org/wsdl", wsdlLocation = "META-INF/wsdl/std/svc/Simple6HttpSvc.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.wsdlImport.http.simple6.Tests")
 @Stateless(name = "WSSimple6Http")
 public class TestsBean {
 

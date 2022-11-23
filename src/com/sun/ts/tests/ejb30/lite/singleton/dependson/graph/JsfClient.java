@@ -63,12 +63,12 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: numOfInstances
      *
-     * @test_Strategy: verify one instance per singelton bean, using HistoryBean
-     * (a singleton bean) as a place to save each bean instance id.
+     * @test_Strategy: verify one instance per singelton bean, using HistoryBean (a singleton bean) as a place to save each
+     * bean instance id.
      */
     public void numOfInstances() {
         String[] beanNames = {
-            "SevenBean", "FiveBean", "ThreeBean", "ElevenBean", "EightBean", "TwoBean", "NineBean", "TenBean"
+                "SevenBean", "FiveBean", "ThreeBean", "ElevenBean", "EightBean", "TwoBean", "NineBean", "TenBean"
         };
         appendReason("one instance per singelton bean?");
         for (String beanName : beanNames) {

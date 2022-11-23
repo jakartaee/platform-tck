@@ -75,8 +75,7 @@ public class TestServlet extends GenericTCKServlet {
 
         PrintWriter pw = response.getWriter();
         boolean passed = false;
-        ServletRequestAttributeEvent sre =
-                new ServletRequestAttributeEvent(getServletContext(), request, "test", "value");
+        ServletRequestAttributeEvent sre = new ServletRequestAttributeEvent(getServletContext(), request, "test", "value");
         if (sre == null) {
             passed = false;
             pw.println("The constructor for ServletRequestEvent returned a null");
@@ -93,7 +92,7 @@ public class TestServlet extends GenericTCKServlet {
 
         StaticLog.clear();
 
-        String[] expected = {"AttributeAdded:addTest,Attribute1"};
+        String[] expected = { "AttributeAdded:addTest,Attribute1" };
 
         // the test
         request.setAttribute("addTest", "Attribute1");
@@ -119,7 +118,7 @@ public class TestServlet extends GenericTCKServlet {
 
         StaticLog.clear();
 
-        String[] expected = {"AttributeAdded:removeTest,Attribute1", "AttributeRemoved:removeTest,Attribute1"};
+        String[] expected = { "AttributeAdded:removeTest,Attribute1", "AttributeRemoved:removeTest,Attribute1" };
 
         // the test
         request.setAttribute("removeTest", "Attribute1");
@@ -146,7 +145,7 @@ public class TestServlet extends GenericTCKServlet {
 
         StaticLog.clear();
 
-        String[] expected = {"AttributeAdded:replacedTest,Attribute1", "AttributeReplaced:replacedTest,Attribute1"};
+        String[] expected = { "AttributeAdded:replacedTest,Attribute1", "AttributeReplaced:replacedTest,Attribute1" };
 
         // the test
         request.setAttribute("replacedTest", "Attribute1");

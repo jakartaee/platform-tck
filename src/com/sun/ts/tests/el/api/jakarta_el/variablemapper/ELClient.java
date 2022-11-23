@@ -46,15 +46,15 @@ public class ELClient extends ServiceEETest {
         this.testProps = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     /**
      * @testName: variableMapperTest
      *
      * @assertion_ids: EL:JAVADOC:37; EL:JAVADOC:116; EL:JAVADOC:117
-     * @test_Strategy: Validate the behavior of ELContext.getVariableMapper()
-     *                 VariableMapper.resolveVariable()
-     *                 VariableMapper.setVariable()
+     * @test_Strategy: Validate the behavior of ELContext.getVariableMapper() VariableMapper.resolveVariable()
+     * VariableMapper.setVariable()
      */
     public void variableMapperTest() throws Fault {
 
@@ -112,6 +112,7 @@ public class ELClient extends ServiceEETest {
                     + "Instead return value was " + vexp5 + TestUtil.NEW_LINE);
         }
 
-        if (!pass) throw new Fault(ELTestUtil.FAIL + buf.toString());
+        if (!pass)
+            throw new Fault(ELTestUtil.FAIL + buf.toString());
     }
 }

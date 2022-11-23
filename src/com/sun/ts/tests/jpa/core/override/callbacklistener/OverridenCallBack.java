@@ -27,7 +27,8 @@ public class OverridenCallBack implements java.io.Serializable {
 
     private Long id;
 
-    public OverridenCallBack() {}
+    public OverridenCallBack() {
+    }
 
     @Id
     public Long getId() {

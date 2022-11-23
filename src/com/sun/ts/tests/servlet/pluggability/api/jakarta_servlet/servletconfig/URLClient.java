@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -59,8 +57,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:7; Servlet:JAVADOC:266; Servlet:JAVADOC:261;
      *
-     * @test_Strategy: Set init parameters in the web.xml file and check for the
-     * enumerated values in the servlet.
+     * @test_Strategy: Set init parameters in the web.xml file and check for the enumerated values in the servlet.
      */
     public void getServletConfigInitParameterNamesTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getServletConfigInitParameterNames");
@@ -72,8 +69,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:7; Servlet:JAVADOC:266; Servlet:JAVADOC:259;
      *
-     * @test_Strategy: Set init parameters in the web.xml file and check for the
-     * value in the servlet.
+     * @test_Strategy: Set init parameters in the web.xml file and check for the value in the servlet.
      */
     public void getServletConfigInitParameterTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getServletConfigInitParameter");
@@ -85,9 +81,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:SPEC:7; Servlet:JAVADOC:266; Servlet:JAVADOC:260;
      *
-     * @test_Strategy: Set No init parameter anywhere named:
-     * "Nothing_is_set_for_Negative_compatibility_test_only" anywhere and check
-     * for the Verify that ServletConfig.getInitParameter(name) return null.
+     * @test_Strategy: Set No init parameter anywhere named: "Nothing_is_set_for_Negative_compatibility_test_only" anywhere
+     * and check for the Verify that ServletConfig.getInitParameter(name) return null.
      */
     public void getServletConfigInitParameterTestNull() throws Fault {
         TEST_PROPS.setProperty(APITEST, "getServletConfigInitParameterNull");
@@ -97,8 +92,7 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: getServletContextTest
      *
-     * @assertion_ids: Servlet:SPEC:7; Servlet:JAVADOC:266; Servlet:JAVADOC:258;
-     * Servlet:JAVADOC:219;
+     * @assertion_ids: Servlet:SPEC:7; Servlet:JAVADOC:266; Servlet:JAVADOC:258; Servlet:JAVADOC:219;
      *
      * @test_Strategy: Try to get the ServletContext for this servlet itself
      */

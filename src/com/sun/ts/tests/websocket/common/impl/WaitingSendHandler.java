@@ -23,8 +23,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * This SendHandler implementation is used to wait maximum given number of
- * seconds for SendResult and onResult method called
+ * This SendHandler implementation is used to wait maximum given number of seconds for SendResult and onResult method
+ * called
  *
  * The main goal is to pass SendHandler object to a caller code
  */
@@ -45,7 +45,8 @@ public class WaitingSendHandler implements SendHandler {
         }
         if (latch != null && latch.getCount() != 0)
             throw new IllegalStateException("onResult has not been called on time");
-        if (result == null) throw new IllegalStateException("SendResult is null");
+        if (result == null)
+            throw new IllegalStateException("SendResult is null");
         return result;
     }
 

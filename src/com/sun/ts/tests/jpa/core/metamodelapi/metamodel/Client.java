@@ -30,7 +30,8 @@ import java.util.Set;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public void setup(String[] args, Properties p) throws Fault {
         TestUtil.logTrace("setup");
@@ -306,8 +307,7 @@ public class Client extends PMClientBase {
         Metamodel metaModel = getEntityManager().getMetamodel();
         if (metaModel != null) {
             TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-            EntityType<Order> eTypeOrder =
-                    metaModel.entity(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order.class);
+            EntityType<Order> eTypeOrder = metaModel.entity(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Order.class);
             if (eTypeOrder != null) {
                 TestUtil.logTrace("Obtained Non-null EntityType");
                 Set<Attribute<Order, ?>> attribSet = eTypeOrder.getDeclaredAttributes();
@@ -381,8 +381,7 @@ public class Client extends PMClientBase {
             Metamodel metaModel = getEntityManager().getMetamodel();
             if (metaModel != null) {
                 TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-                EmbeddableType<Address> eTypeOrder =
-                        metaModel.embeddable(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address.class);
+                EmbeddableType<Address> eTypeOrder = metaModel.embeddable(com.sun.ts.tests.jpa.core.metamodelapi.metamodel.Address.class);
                 if (eTypeOrder != null) {
                     TestUtil.logTrace("Obtained Non-null EmbeddableType");
                     Set<Attribute<Address, ?>> attribSet = eTypeOrder.getDeclaredAttributes();

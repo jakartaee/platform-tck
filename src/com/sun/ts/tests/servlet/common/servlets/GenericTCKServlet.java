@@ -36,9 +36,8 @@ import java.lang.reflect.Method;
 /**
  * GenericTCKServlet.java
  *
- * Any test that would normally extend GenericServlet will instead extend this
- * class. This will provide a simple framework from invoking various tests
- * defined as methods within the servlet that extends this class.
+ * Any test that would normally extend GenericServlet will instead extend this class. This will provide a simple
+ * framework from invoking various tests defined as methods within the servlet that extends this class.
  *
  * Created: Wed Jul 31 20:57:16 2002
  *
@@ -48,21 +47,19 @@ import java.lang.reflect.Method;
 public abstract class GenericTCKServlet extends GenericServlet {
 
     /**
-     * <code>TEST_HEADER</code> is the constant for the <code>testname</code>
-     * header.
+     * <code>TEST_HEADER</code> is the constant for the <code>testname</code> header.
      */
     private static final String TEST_HEADER = "testname";
 
     /**
      * <code>TEST_ARGS</code> is an array of Classes used during reflection.
      */
-    private static final Class[] TEST_ARGS = {ServletRequest.class, ServletResponse.class};
+    private static final Class[] TEST_ARGS = { ServletRequest.class, ServletResponse.class };
 
     /**
      * <code>init</code> initializes the servlet.
      *
-     * @param config
-     *          - <code>ServletConfig</code>
+     * @param config - <code>ServletConfig</code>
      */
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -73,21 +70,17 @@ public abstract class GenericTCKServlet extends GenericServlet {
     }
 
     /**
-     * <code>invokeTest</code> uses reflection to invoke test methods in child
-     * classes of this particular class.
+     * <code>invokeTest</code> uses reflection to invoke test methods in child classes of this particular class.
      *
-     * @param req
-     *          - <code>ServletRequest</code>
-     * @param res
-     *          - <code>ServletResponse</code>
-     * @exception ServletException
-     *              if an error occurs
+     * @param req - <code>ServletRequest</code>
+     * @param res - <code>ServletResponse</code>
+     * @exception ServletException if an error occurs
      */
     protected void invokeTest(ServletRequest req, ServletResponse res) throws ServletException {
         String test = req.getParameter(TEST_HEADER);
         try {
             Method method = this.getClass().getMethod(test, TEST_ARGS);
-            method.invoke(this, new Object[] {req, res});
+            method.invoke(this, new Object[] { req, res });
         } catch (InvocationTargetException ite) {
             throw new ServletException(ite.getTargetException());
         } catch (NoSuchMethodException nsme) {

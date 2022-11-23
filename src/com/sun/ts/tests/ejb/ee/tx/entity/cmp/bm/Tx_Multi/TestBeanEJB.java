@@ -132,13 +132,15 @@ public class TestBeanEJB implements SessionBean {
                     + "commited the transaction to the instance and database level");
 
             tempName1 = beanRef.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             beanRef2 = (TxECMPBean) beanHome.findByPrimaryKey(pkey);
 
             tempName2 = beanRef2.getBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b1) {
@@ -201,7 +203,8 @@ public class TestBeanEJB implements SessionBean {
             beanRef2 = (TxECMPBean) beanHome.findByPrimaryKey(pkey);
 
             tempName = beanRef2.getBrandName();
-            if (!tempName.equals(expName)) b1 = true;
+            if (!tempName.equals(expName))
+                b1 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName);
 
             if (!b1) {
@@ -260,13 +263,15 @@ public class TestBeanEJB implements SessionBean {
                     + "commited the transaction to the instance and database level");
 
             tempName1 = beanRef.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             beanRef2 = (TxECMPBean) beanHome.findByPrimaryKey(pkey);
 
             tempName2 = beanRef2.getBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b1) {
@@ -329,13 +334,15 @@ public class TestBeanEJB implements SessionBean {
                     + "still commited the transaction to the instance and database level");
 
             tempName1 = beanRef.getBrandName();
-            if (tempName1.equals(expName)) b1 = true;
+            if (tempName1.equals(expName))
+                b1 = true;
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
 
             beanRef2 = (TxECMPBean) beanHome.findByPrimaryKey(pkey);
 
             tempName2 = beanRef2.getBrandName();
-            if (tempName2.equals(expName)) b2 = true;
+            if (tempName2.equals(expName))
+                b2 = true;
             TestUtil.logTrace("DB Brand Name is " + tempName2);
 
             if (!b1) {

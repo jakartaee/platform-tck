@@ -27,9 +27,8 @@ import com.sun.ts.tests.ejb30.common.callback.ClientBase;
 import jakarta.ejb.EJB;
 
 /**
- * A test client for callback methods. Note that since callback methods cannot
- * throw application exception, so we can only convey test result back to client
- * through the returned value.
+ * A test client for callback methods. Note that since callback methods cannot throw application exception, so we can
+ * only convey test result back to client through the returned value.
  */
 public class Client extends ClientBase {
     @EJB(beanName = "CallbackBean")
@@ -82,8 +81,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default/class/method interceptorsare configured
-     * for an ejb jar. Verifies they are invoked in the correct order.
+     * @test_Strategy: multiple default/class/method interceptorsare configured for an ejb jar. Verifies they are invoked in
+     * the correct order.
      *
      */
     /*
@@ -91,8 +90,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default/class/method interceptors are configured
-     * for an ejb jar. Verifies they are invoked in the correct order.
+     * @test_Strategy: multiple default/class/method interceptors are configured for an ejb jar. Verifies they are invoked
+     * in the correct order.
      *
      */
     /*
@@ -100,11 +99,11 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default interceptors are configured for an ejb
-     * jar, but they are excluded for this CallbackBean3 with
+     * @test_Strategy: multiple default interceptors are configured for an ejb jar, but they are excluded for this
+     * CallbackBean3 with
      *
-     * @ExcludethreeLevelInterceptorss on bean class. Verifies they are not
-     * invoked. class/method level interceptors should be invoked.
+     * @ExcludethreeLevelInterceptorss on bean class. Verifies they are not invoked. class/method level interceptors should
+     * be invoked.
      *
      */
     /*
@@ -112,12 +111,10 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default interceptors are configured for an ejb
-     * jar, but they are excluded for this CallbackBean4 with
-     * exclude-default-interceptors in ejb-jar.xml. Verifies they are not invoked.
-     * class/method level interceptors should be invoked. This test is the same as
-     * threeLevelInterceptorssForCallbackBean3 except this one uses descriptor to
-     * exclude default interceptors.
+     * @test_Strategy: multiple default interceptors are configured for an ejb jar, but they are excluded for this
+     * CallbackBean4 with exclude-default-interceptors in ejb-jar.xml. Verifies they are not invoked. class/method level
+     * interceptors should be invoked. This test is the same as threeLevelInterceptorssForCallbackBean3 except this one uses
+     * descriptor to exclude default interceptors.
      *
      */
     /*
@@ -125,8 +122,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: single default interceptors are configured for an ejb jar.
-     * Verifies only one default is invoked as well as class/method interceptors.
+     * @test_Strategy: single default interceptors are configured for an ejb jar. Verifies only one default is invoked as
+     * well as class/method interceptors.
      *
      */
 
@@ -135,8 +132,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default/class/method interceptorsare configured
-     * for an ejb jar. Verifies InvocationContext.getContextData().
+     * @test_Strategy: multiple default/class/method interceptorsare configured for an ejb jar. Verifies
+     * InvocationContext.getContextData().
      *
      */
     /*
@@ -144,8 +141,8 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default/class/method interceptors are configured
-     * for an ejb jar. Verifies InvocationContext.getContextData().
+     * @test_Strategy: multiple default/class/method interceptors are configured for an ejb jar. Verifies
+     * InvocationContext.getContextData().
      *
      */
     /*
@@ -153,32 +150,28 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default interceptors are configured for an ejb
-     * jar, but they are excluded for this CallbackBean3 with
+     * @test_Strategy: multiple default interceptors are configured for an ejb jar, but they are excluded for this
+     * CallbackBean3 with
      *
-     * @ExcludethreeLevelInvocationContextData on bean class. Verifies they are
-     * not invoked. class/method level interceptors should be invoked. Verifies
-     * InvocationContext.getContextData().
+     * @ExcludethreeLevelInvocationContextData on bean class. Verifies they are not invoked. class/method level interceptors
+     * should be invoked. Verifies InvocationContext.getContextData().
      */
     /*
      * @testName: threeLevelInvocationContextDataForCallbackBean4
      *
      * @assertion_ids:
      *
-     * @test_Strategy: multiple default interceptors are configured for an ejb
-     * jar, but they are excluded for this CallbackBean4 with
-     * exclude-default-interceptors in ejb-jar.xml. Verifies they are not invoked.
-     * class/method level interceptors should be invoked. Verifies
-     * InvocationContext.getContextData().
+     * @test_Strategy: multiple default interceptors are configured for an ejb jar, but they are excluded for this
+     * CallbackBean4 with exclude-default-interceptors in ejb-jar.xml. Verifies they are not invoked. class/method level
+     * interceptors should be invoked. Verifies InvocationContext.getContextData().
      */
     /*
      * @testName: threeLevelSingleDefaultInvocationContextJar
      *
      * @assertion_ids:
      *
-     * @test_Strategy: single default interceptors are configured for an ejb jar.
-     * Verifies only one default is invoked as well as class/method interceptors.
-     * Verifies InvocationContext.getContextData().
+     * @test_Strategy: single default interceptors are configured for an ejb jar. Verifies only one default is invoked as
+     * well as class/method interceptors. Verifies InvocationContext.getContextData().
      */
 
 }

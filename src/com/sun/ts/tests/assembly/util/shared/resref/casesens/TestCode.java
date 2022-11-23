@@ -33,8 +33,7 @@ public class TestCode {
     private static final String prefix = "java:comp/env/";
 
     /*
-     * JNDI lookup names for resource manager connection factories. They differ
-     * only by case.
+     * JNDI lookup names for resource manager connection factories. They differ only by case.
      */
     protected static final String res1Lookup = prefix + "Aloha";
 

@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -57,11 +55,9 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: forwardTest
      *
-     * @assertion_ids: Servlet:SPEC:80; Servlet:JAVADOC:230; Servlet:JAVADOC:272;
-     * Servlet:JAVADOC:274;
+     * @assertion_ids: Servlet:SPEC:80; Servlet:JAVADOC:230; Servlet:JAVADOC:272; Servlet:JAVADOC:274;
      *
-     * @test_Strategy: Create a servlet, get its RequestDispatcher and use it to
-     * forward to a servlet
+     * @test_Strategy: Create a servlet, get its RequestDispatcher and use it to forward to a servlet
      */
     public void forwardTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "forwardTest");
@@ -71,12 +67,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: forward_1Test
      *
-     * @assertion_ids: Servlet:SPEC:77; Servlet:SPEC:80; Servlet:JAVADOC:230;
-     * Servlet:JAVADOC:277;
+     * @assertion_ids: Servlet:SPEC:77; Servlet:SPEC:80; Servlet:JAVADOC:230; Servlet:JAVADOC:277;
      *
-     * @test_Strategy: A negative test for RequestDispatcher.forward() method.
-     * Create a servlet, print a string to the buffer, flush the buffer to commit
-     * the string, get its RequestDispatcher and use it to forward to a servlet.
+     * @test_Strategy: A negative test for RequestDispatcher.forward() method. Create a servlet, print a string to the
+     * buffer, flush the buffer to commit the string, get its RequestDispatcher and use it to forward to a servlet.
      */
     public void forward_1Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "forward_1Test");
@@ -88,8 +82,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:230; Servlet:JAVADOC:278;
      *
-     * @test_Strategy: Create a servlet, get its RequestDispatcher and use it to
-     * include a servlet
+     * @test_Strategy: Create a servlet, get its RequestDispatcher and use it to include a servlet
      */
     public void includeTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "includeTest");
@@ -101,11 +94,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:230; Servlet:JAVADOC:278;
      *
-     * @test_Strategy: A negative test for RequestDispatcher.include() test.
-     * Create a servlet, set its Content-Type to be 'text/html', get its
-     * RequestDispatcher and use it to include a servlet. The included servlet
-     * tries to change the Content-Type to be text/html. Test at the client side
-     * for correct Content-Type.
+     * @test_Strategy: A negative test for RequestDispatcher.include() test. Create a servlet, set its Content-Type to be
+     * 'text/html', get its RequestDispatcher and use it to include a servlet. The included servlet tries to change the
+     * Content-Type to be text/html. Test at the client side for correct Content-Type.
      */
     public void include_1Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "include_1Test");
@@ -116,13 +107,11 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: include_2Test
      *
-     * @assertion_ids: Servlet:SPEC:82; Servlet:SPEC:80; Servlet:JAVADOC:230;
-     * Servlet:JAVADOC:279;
+     * @assertion_ids: Servlet:SPEC:82; Servlet:SPEC:80; Servlet:JAVADOC:230; Servlet:JAVADOC:279;
      *
-     * @test_Strategy: A negative test for RequestDispatcher.include() method.
-     * Create a servlet with service() method throws ServletException. Use
-     * RequestDispatcher to include to this servlet. Verify that include() method
-     * throws ServletException.
+     * @test_Strategy: A negative test for RequestDispatcher.include() method. Create a servlet with service() method throws
+     * ServletException. Use RequestDispatcher to include to this servlet. Verify that include() method throws
+     * ServletException.
      */
     public void include_2Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "include_2Test");
@@ -132,13 +121,10 @@ public class URLClient extends AbstractUrlClient {
     /*
      * @testName: include_3Test
      *
-     * @assertion_ids: Servlet:SPEC:82; Servlet:SPEC:80; Servlet:JAVADOC:230;
-     * Servlet:JAVADOC:280;
+     * @assertion_ids: Servlet:SPEC:82; Servlet:SPEC:80; Servlet:JAVADOC:230; Servlet:JAVADOC:280;
      *
-     * @test_Strategy: A negative test for RequestDispatcher.include() method.
-     * Create a servlet with service() method throws IOException. Use
-     * RequestDispatcher to include to this servlet. Verify that include() method
-     * throws IOException.
+     * @test_Strategy: A negative test for RequestDispatcher.include() method. Create a servlet with service() method throws
+     * IOException. Use RequestDispatcher to include to this servlet. Verify that include() method throws IOException.
      */
     public void include_3Test() throws Fault {
         TEST_PROPS.setProperty(APITEST, "include_3Test");

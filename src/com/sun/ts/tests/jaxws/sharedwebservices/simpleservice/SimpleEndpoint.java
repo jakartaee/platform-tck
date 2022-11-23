@@ -21,10 +21,7 @@
 package com.sun.ts.tests.jaxws.sharedwebservices.simpleservice;
 
 @jakarta.jws.WebService(targetNamespace = "http://simpletestservice.org/wsdl")
-@jakarta.jws.soap.SOAPBinding(
-        style = jakarta.jws.soap.SOAPBinding.Style.RPC,
-        use = jakarta.jws.soap.SOAPBinding.Use.LITERAL,
-        parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
+@jakarta.jws.soap.SOAPBinding(style = jakarta.jws.soap.SOAPBinding.Style.RPC, use = jakarta.jws.soap.SOAPBinding.Use.LITERAL, parameterStyle = jakarta.jws.soap.SOAPBinding.ParameterStyle.WRAPPED)
 public interface SimpleEndpoint {
     public String helloWorld();
 
@@ -51,8 +48,6 @@ public interface SimpleEndpoint {
     @jakarta.jws.WebMethod(operationName = "holderOperation")
     @jakarta.jws.WebResult(name = "return", targetNamespace = "http://simpletestservice.org/wsdl")
     public java.lang.String holderOperation(
-            @jakarta.jws.WebParam(name = "arg0", mode = jakarta.jws.WebParam.Mode.INOUT)
-                    jakarta.xml.ws.Holder<java.lang.String> arg0,
-            @jakarta.jws.WebParam(name = "arg1", mode = jakarta.jws.WebParam.Mode.INOUT)
-                    jakarta.xml.ws.Holder<java.lang.String> arg1);
+            @jakarta.jws.WebParam(name = "arg0", mode = jakarta.jws.WebParam.Mode.INOUT) jakarta.xml.ws.Holder<java.lang.String> arg0,
+            @jakarta.jws.WebParam(name = "arg1", mode = jakarta.jws.WebParam.Mode.INOUT) jakarta.xml.ws.Holder<java.lang.String> arg1);
 }

@@ -150,15 +150,18 @@ public class DetailTestServlet extends HttpServlet {
             if (de == null) {
                 TestUtil.logErr("addDetailEntry() returned null");
                 pass = false;
-            } else TestUtil.logMsg("Successfully created DetailEntry object");
+            } else
+                TestUtil.logMsg("Successfully created DetailEntry object");
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -184,15 +187,18 @@ public class DetailTestServlet extends HttpServlet {
             if (de == null) {
                 TestUtil.logErr("addDetailEntry() returned null");
                 pass = false;
-            } else TestUtil.logMsg("Successfully created DetailEntry object");
+            } else
+                TestUtil.logMsg("Successfully created DetailEntry object");
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e);
             TestUtil.printStackTrace(e);
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 
@@ -232,8 +238,10 @@ public class DetailTestServlet extends HttpServlet {
                     DetailEntry de = (DetailEntry) i.next();
                     TestUtil.logMsg("Got DetailEntry = " + de.toString());
                     String s = de.getElementName().getLocalName();
-                    if (s.equals("GetLastTradePrice")) foundName1 = true;
-                    else if (s.equals("GetCurrentTradePrice")) foundName2 = true;
+                    if (s.equals("GetLastTradePrice"))
+                        foundName1 = true;
+                    else if (s.equals("GetCurrentTradePrice"))
+                        foundName2 = true;
                     else {
                         TestUtil.logErr("Unexpected DetailEntry of " + s);
                         pass = false;
@@ -250,8 +258,10 @@ public class DetailTestServlet extends HttpServlet {
             pass = false;
         }
         // Send response object and test result back to client
-        if (pass) resultProps.setProperty("TESTRESULT", "pass");
-        else resultProps.setProperty("TESTRESULT", "fail");
+        if (pass)
+            resultProps.setProperty("TESTRESULT", "pass");
+        else
+            resultProps.setProperty("TESTRESULT", "fail");
         resultProps.list(out);
     }
 }

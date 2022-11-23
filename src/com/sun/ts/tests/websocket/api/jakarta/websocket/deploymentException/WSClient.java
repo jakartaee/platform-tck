@@ -38,7 +38,8 @@ public class WSClient extends ServiceEETest {
      * @class.setup_props: webServerHost; webServerPort; ws_wait; ts_home;
      */
     @SuppressWarnings("unused")
-    public void setup(String[] args, Properties p) throws Fault {}
+    public void setup(String[] args, Properties p) throws Fault {
+    }
 
     /* Run test */
     /*
@@ -69,5 +70,6 @@ public class WSClient extends ServiceEETest {
         DeploymentException dex = new DeploymentException(reason, new Throwable("TCK_Test"));
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+    }
 }

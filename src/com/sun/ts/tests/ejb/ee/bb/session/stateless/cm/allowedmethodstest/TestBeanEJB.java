@@ -53,10 +53,10 @@ public class TestBeanEJB implements SessionBean, TimedObject {
     private UserTransaction ut;
 
     // These are the method tests
-    private static final String tests[] = {"ejbCreate", "setSessionContext", "businessMethod"};
+    private static final String tests[] = { "ejbCreate", "setSessionContext", "businessMethod" };
 
     // This is the results of the operation tests
-    private static final Properties methodList[] = {new Properties(), new Properties(), new Properties()};
+    private static final Properties methodList[] = { new Properties(), new Properties(), new Properties() };
 
     public void ejbCreate() throws CreateException {
         TestUtil.logTrace("ejbCreate");
@@ -154,7 +154,9 @@ public class TestBeanEJB implements SessionBean, TimedObject {
 
     private int testIndex(String s) {
         TestUtil.logTrace("testIndex");
-        for (int i = 0; i < tests.length; i++) if (s.equals(tests[i])) return i;
+        for (int i = 0; i < tests.length; i++)
+            if (s.equals(tests[i]))
+                return i;
         return -1;
     }
 
@@ -575,7 +577,8 @@ public class TestBeanEJB implements SessionBean, TimedObject {
                 if (name.indexOf(s) < 0) {
                     TestUtil.logErr("principal - expected: " + s + ", received: " + name);
                     return false;
-                } else return true;
+                } else
+                    return true;
             } else {
                 TestUtil.logErr("getCallerPrincipal() returned null reference");
                 return false;

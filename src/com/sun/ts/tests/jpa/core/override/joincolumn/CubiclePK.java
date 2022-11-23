@@ -24,7 +24,8 @@ public class CubiclePK implements Serializable {
 
     private String location;
 
-    public CubiclePK() {}
+    public CubiclePK() {
+    }
 
     public Integer getId() {
         return id;

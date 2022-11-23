@@ -21,8 +21,8 @@
 package com.sun.ts.tests.ejb30.common.calc;
 
 /**
- * An implementation class of <code>Calculator</code> interface. It forwards to
- * an instance of <code>NoInterfaceCalculator</code> for all operations.
+ * An implementation class of <code>Calculator</code> interface. It forwards to an instance of
+ * <code>NoInterfaceCalculator</code> for all operations.
  *
  * @author Cheng Fang
  */
@@ -31,7 +31,8 @@ public class BaseCalculator implements Calculator {
     private NoInterfaceCalculator calc = new NoInterfaceCalculator();
 
     /** Creates a new instance of BaseCalculator */
-    public BaseCalculator() {}
+    public BaseCalculator() {
+    }
 
     public int subtract(int a, int b) {
         return calc.subtract(a, b);
@@ -42,8 +43,7 @@ public class BaseCalculator implements Calculator {
     }
 
     /*
-     * Tests that the methods in business interface may throw arbitrary
-     * application exceptions.
+     * Tests that the methods in business interface may throw arbitrary application exceptions.
      *
      * @see com.sun.ts.tests.ejb30.common.calc.Calculator#throwIt()
      */

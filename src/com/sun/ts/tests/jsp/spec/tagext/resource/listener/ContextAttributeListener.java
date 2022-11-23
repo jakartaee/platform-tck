@@ -79,7 +79,8 @@ public final class ContextAttributeListener implements ServletContextAttributeLi
             if (!(DB1 instanceof DataSource)) {
                 passed = false;
                 pw.append("wrong type DataSource");
-            } else pw.append("passed DataSource");
+            } else
+                pw.append("passed DataSource");
         } else {
             passed = false;
             pw.append("DB1 is null");
@@ -89,7 +90,8 @@ public final class ContextAttributeListener implements ServletContextAttributeLi
             if (!(qcFactory instanceof jakarta.jms.QueueConnectionFactory)) {
                 passed = false;
                 pw.append("wrong type QueueConnectionFactory");
-            } else pw.append("passed QueueConnectionFactory");
+            } else
+                pw.append("passed QueueConnectionFactory");
         } else {
             passed = false;
             pw.append("qcFactory is null");
@@ -99,7 +101,8 @@ public final class ContextAttributeListener implements ServletContextAttributeLi
             if (!(tcFactory instanceof jakarta.jms.TopicConnectionFactory)) {
                 passed = false;
                 pw.append("wrong type TopicConnectionFactory");
-            } else pw.append("passed TopicConnectionFactory");
+            } else
+                pw.append("passed TopicConnectionFactory");
         } else {
             passed = false;
             pw.append("tcFactory is null");
@@ -109,7 +112,8 @@ public final class ContextAttributeListener implements ServletContextAttributeLi
             if (!(cFactory instanceof jakarta.jms.ConnectionFactory)) {
                 pw.append("wrong type ConnectionFactory");
                 passed = false;
-            } else pw.append("passed ConnectionFactory");
+            } else
+                pw.append("passed ConnectionFactory");
         } else {
             passed = false;
             pw.append("cFactory is null");
@@ -119,7 +123,8 @@ public final class ContextAttributeListener implements ServletContextAttributeLi
             if (!(myQueue instanceof jakarta.jms.Queue)) {
                 pw.append("wrong type Queue");
                 passed = false;
-            } else pw.append("passed Queue");
+            } else
+                pw.append("passed Queue");
         } else {
             passed = false;
             pw.append("myQueue is null");
@@ -129,7 +134,8 @@ public final class ContextAttributeListener implements ServletContextAttributeLi
             if (!(myTopic instanceof jakarta.jms.Topic)) {
                 pw.append("wrong type Topic");
                 passed = false;
-            } else pw.append("passed Topic");
+            } else
+                pw.append("passed Topic");
         } else {
             pw.append("myTopic is null");
             passed = false;
@@ -139,7 +145,8 @@ public final class ContextAttributeListener implements ServletContextAttributeLi
             if (!(mailSession instanceof jakarta.mail.Session)) {
                 passed = false;
                 pw.append("wrong type .Session");
-            } else pw.append("passed Session");
+            } else
+                pw.append("passed Session");
         } else {
             passed = false;
             pw.append("mailSession is null");
@@ -149,7 +156,8 @@ public final class ContextAttributeListener implements ServletContextAttributeLi
             if (!(myUrl instanceof java.net.URL)) {
                 passed = false;
                 pw.append("wrong type URL ");
-            } else pw.append("passed URL ");
+            } else
+                pw.append("passed URL ");
         } else {
             passed = false;
             pw.append("myUrl is null");

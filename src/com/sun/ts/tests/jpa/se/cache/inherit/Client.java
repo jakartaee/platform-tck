@@ -27,7 +27,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -53,9 +54,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1979; PERSISTENCE:SPEC:1980;
      *
-     * @test_Strategy: Using the xml shared-cache-mode element with a value of
-     * ENABLE_SELECTIVE persist some entities with various Cachable values and
-     * verify the behavior of whether or not each is retained or not in the cache.
+     * @test_Strategy: Using the xml shared-cache-mode element with a value of ENABLE_SELECTIVE persist some entities with
+     * various Cachable values and verify the behavior of whether or not each is retained or not in the cache.
      */
     public void subClassInheritsCacheableTrue() throws Fault {
         Cache cache;
@@ -144,9 +144,8 @@ public class Client extends PMClientBase {
      *
      * @assertion_ids: PERSISTENCE:SPEC:1979; PERSISTENCE:SPEC:1980;
      *
-     * @test_Strategy: Using the xml shared-cache-mode element with a value of
-     * ENABLE_SELECTIVE persist some entities with various Cachable values and
-     * verify the behavior of whether or not each is retained or not in the cache.
+     * @test_Strategy: Using the xml shared-cache-mode element with a value of ENABLE_SELECTIVE persist some entities with
+     * various Cachable values and verify the behavior of whether or not each is retained or not in the cache.
      */
     public void subClassInheritsCacheableFalse() throws Fault {
         Cache cache;

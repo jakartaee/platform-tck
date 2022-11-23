@@ -22,9 +22,7 @@ package com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations
 
 import jakarta.jws.WebService;
 
-@WebService(
-        endpointInterface =
-                "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations.J2WRLSharedEndpoint")
+@WebService(endpointInterface = "com.sun.ts.tests.jaxws.mapping.j2wmapping.rpc.literal.withoutannotations.J2WRLSharedEndpoint")
 public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {
     public String helloWorld() {
         return "hello world";
@@ -35,7 +33,7 @@ public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {
     }
 
     public String[] arrayOperation() {
-        return new String[] {"one", "two", "three"};
+        return new String[] { "one", "two", "three" };
     }
 
     public J2WRLSharedBean getBean() {
@@ -46,5 +44,6 @@ public class J2WRLSharedEndpointImpl implements J2WRLSharedEndpoint {
         return "success";
     }
 
-    public void oneWayOperation() {}
+    public void oneWayOperation() {
+    }
 }

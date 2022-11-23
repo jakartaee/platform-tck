@@ -57,7 +57,8 @@ public class Customer implements java.io.Serializable {
     @Convert(converter = CommaConverter.class)
     private List<String> phones = new ArrayList<String>();
 
-    public Customer() {}
+    public Customer() {
+    }
 
     public Customer(String id) {
         this.id = id;

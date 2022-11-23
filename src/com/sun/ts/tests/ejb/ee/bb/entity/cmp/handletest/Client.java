@@ -63,8 +63,7 @@ public class Client extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * generateSQL;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; generateSQL;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -90,8 +89,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:156
      *
-     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server.
-     * Obtain handle for the EJBObject and ensure it is serializable.
+     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server. Obtain handle for the EJBObject and
+     * ensure it is serializable.
      */
 
     public void test1() throws Fault {
@@ -109,7 +108,8 @@ public class Client extends EETest {
                 pass = false;
                 ;
                 logErr("getHandle() is not serializable");
-            } else logMsg("got handle and handle is serializable");
+            } else
+                logMsg("got handle and handle is serializable");
         } catch (Exception e) {
             throw new Fault("test1 failed", e);
         } finally {
@@ -120,7 +120,8 @@ public class Client extends EETest {
             }
         }
 
-        if (!pass) throw new Fault("test1 failed");
+        if (!pass)
+            throw new Fault("test1 failed");
     }
 
     /*
@@ -128,9 +129,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:155
      *
-     * @test_Strategy: Create a 1.1 CMP Entity Bean. Deploy it on the J2EE server.
-     * Obtain handle, serialize/deserialize handle, invoke bean object with
-     * deserialized handle.
+     * @test_Strategy: Create a 1.1 CMP Entity Bean. Deploy it on the J2EE server. Obtain handle, serialize/deserialize
+     * handle, invoke bean object with deserialized handle.
      */
 
     public void test2() throws Fault {
@@ -166,7 +166,8 @@ public class Client extends EETest {
             if (!beanRef.isIdentical(beanRef2)) {
                 logErr("bean references not equal - unexpected");
                 pass = false;
-            } else logMsg("bean references equal - expected");
+            } else
+                logMsg("bean references equal - expected");
 
             Object o1 = beanRef.getPrimaryKey();
             Object o2 = beanRef2.getPrimaryKey();
@@ -174,7 +175,8 @@ public class Client extends EETest {
             if (!o1.equals(o2)) {
                 logErr("bean primary key is not equal - unexpected");
                 pass = false;
-            } else logMsg("bean primary key is equal - expected");
+            } else
+                logMsg("bean primary key is equal - expected");
 
             logMsg("ping object via deserialized object reference");
             beanRef2.ping();
@@ -188,13 +190,16 @@ public class Client extends EETest {
             }
             try {
                 logMsg("closing object streams");
-                if (is != null) is.close();
-                if (os != null) os.close();
+                if (is != null)
+                    is.close();
+                if (os != null)
+                    os.close();
             } catch (Exception e) {
             }
         }
 
-        if (!pass) throw new Fault("test2 failed");
+        if (!pass)
+            throw new Fault("test2 failed");
     }
 
     /*
@@ -202,11 +207,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:158
      *
-     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server.
-     * Obtain handle, serialize/deserialize handle, invoke bean object with
-     * deserialized handle. The client should be able to access a bean instance
-     * but should be notified via an exception that the entity data does not
-     * exist.
+     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server. Obtain handle, serialize/deserialize
+     * handle, invoke bean object with deserialized handle. The client should be able to access a bean instance but should
+     * be notified via an exception that the entity data does not exist.
      */
 
     public void test3() throws Fault {
@@ -267,13 +270,16 @@ public class Client extends EETest {
             }
             try {
                 logMsg("closing object streams");
-                if (is != null) is.close();
-                if (os != null) os.close();
+                if (is != null)
+                    is.close();
+                if (os != null)
+                    os.close();
             } catch (Exception e) {
             }
         }
 
-        if (!pass) throw new Fault("test3 failed");
+        if (!pass)
+            throw new Fault("test3 failed");
     }
 
     /*
@@ -281,8 +287,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:126.5
      *
-     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server.
-     * Obtain handle and ensure it is serializable.
+     * @test_Strategy: Create a CMP 1.1 Entity Bean. Deploy it on the J2EE server. Obtain handle and ensure it is
+     * serializable.
      */
 
     public void test4() throws Fault {
@@ -297,12 +303,14 @@ public class Client extends EETest {
                 pass = false;
                 ;
                 logErr("getHomeHandle() is not serializable");
-            } else logMsg("got home handle and handle is serializable");
+            } else
+                logMsg("got home handle and handle is serializable");
         } catch (Exception e) {
             throw new Fault("test4 failed", e);
         }
 
-        if (!pass) throw new Fault("test4 failed");
+        if (!pass)
+            throw new Fault("test4 failed");
     }
 
     /*
@@ -310,9 +318,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:155
      *
-     * @test_Strategy: Deploy a CMP 1.1 Entity Bean on the J2EE server. Obtain
-     * home handle, serialize/deserialize handle, invoke bean home with
-     * deserialized handle.
+     * @test_Strategy: Deploy a CMP 1.1 Entity Bean on the J2EE server. Obtain home handle, serialize/deserialize handle,
+     * invoke bean home with deserialized handle.
      */
 
     public void test5() throws Fault {
@@ -336,8 +343,7 @@ public class Client extends EETest {
             HomeHandle deserializedHandle = (HomeHandle) is.readObject();
 
             logMsg("getEJBHome from HomeHandle");
-            TestBeanHome beanHome2 =
-                    (TestBeanHome) PortableRemoteObject.narrow(deserializedHandle.getEJBHome(), TestBeanHome.class);
+            TestBeanHome beanHome2 = (TestBeanHome) PortableRemoteObject.narrow(deserializedHandle.getEJBHome(), TestBeanHome.class);
             // create EJB instance
             logMsg("Create EJB instance from deserialized home handle");
             beanRef = (TestBean) beanHome2.create(props, 4, "coffee-4", 4);
@@ -357,13 +363,16 @@ public class Client extends EETest {
             }
             try {
                 logMsg("closing object streams");
-                if (is != null) is.close();
-                if (os != null) os.close();
+                if (is != null)
+                    is.close();
+                if (os != null)
+                    os.close();
             } catch (Exception e) {
             }
         }
 
-        if (!pass) throw new Fault("test5 failed");
+        if (!pass)
+            throw new Fault("test5 failed");
     }
 
     public void cleanup() throws Fault {

@@ -153,8 +153,8 @@ public class TransactionTests extends ServiceEETest {
     /*
      * cleanup() is called after each test
      *
-     * Closes the default connections that are created by setup(). Any separate
-     * connections made by individual tests should be closed by that test.
+     * Closes the default connections that are created by setup(). Any separate connections made by individual tests should
+     * be closed by that test.
      *
      * @exception Fault
      */
@@ -175,23 +175,30 @@ public class TransactionTests extends ServiceEETest {
                     logTrace("Cleanup of Queue and close receiver/sender");
                     flushQueue(qSession, qReceiver, bmtQ);
                     logTrace("Closing receiver and sender");
-                    if (qReceiver != null) qReceiver.close();
-                    if (qSender != null) qSender.close();
+                    if (qReceiver != null)
+                        qReceiver.close();
+                    if (qSender != null)
+                        qSender.close();
                     qReceiver = null;
                     qSender = null;
                 } else {
                     logTrace("Cleanup of Topic and close publisher");
-                    if (tPublisher != null) tPublisher.close();
+                    if (tPublisher != null)
+                        tPublisher.close();
                     tPublisher = null;
                 }
             } catch (Exception e) {
-                if (queueTest) logErr("Exception during cleanup of Queue", e);
-                else logErr("Exception during cleanup of Topic", e);
+                if (queueTest)
+                    logErr("Exception during cleanup of Queue", e);
+                else
+                    logErr("Exception during cleanup of Topic", e);
             }
             try {
                 logTrace("Closing sessions");
-                if (tSession != null) tSession.close();
-                if (qSession != null) qSession.close();
+                if (tSession != null)
+                    tSession.close();
+                if (qSession != null)
+                    qSession.close();
                 tSession = null;
                 qSession = null;
             } catch (Exception e) {
@@ -199,8 +206,10 @@ public class TransactionTests extends ServiceEETest {
             }
             try {
                 logTrace("Closing connections");
-                if (tConnect != null) tConnect.close();
-                if (qConnect != null) qConnect.close();
+                if (tConnect != null)
+                    tConnect.close();
+                if (qConnect != null)
+                    qConnect.close();
                 tConnect = null;
                 qConnect = null;
             } catch (Exception e) {
@@ -286,49 +295,49 @@ public class TransactionTests extends ServiceEETest {
         }
 
         switch (status) {
-            case jakarta.transaction.Status.STATUS_ACTIVE:
-                logTrace("==== A transaction is associated with" + " the target object and it is in the active state.");
-                break;
+        case jakarta.transaction.Status.STATUS_ACTIVE:
+            logTrace("==== A transaction is associated with" + " the target object and it is in the active state.");
+            break;
 
-            case jakarta.transaction.Status.STATUS_COMMITTED:
-                logTrace("==== A transaction is associated with the target object" + " and it has been committed..");
-                break;
-            case jakarta.transaction.Status.STATUS_COMMITTING:
-                logTrace("==== A transaction is associated with the target object"
-                        + " and it is in the process of committing.");
-                break;
-            case jakarta.transaction.Status.STATUS_MARKED_ROLLBACK:
-                logTrace("==== A transaction is associated with the target object"
-                        + " and it has been marked forrollback, perhaps as a result of a setRollbackOnly operation. ");
-                break;
-            case jakarta.transaction.Status.STATUS_NO_TRANSACTION:
-                logTrace("==== No transaction is currently associated with the target object.");
-                break;
-            case jakarta.transaction.Status.STATUS_PREPARED:
-                logTrace("====A transaction is associated with the target object" + " and it has been prepared, i.e. ");
-                break;
-            case jakarta.transaction.Status.STATUS_PREPARING:
-                logTrace("==== A transaction is associated with the target object"
-                        + " and it is in the process of preparing. ");
-                break;
+        case jakarta.transaction.Status.STATUS_COMMITTED:
+            logTrace("==== A transaction is associated with the target object" + " and it has been committed..");
+            break;
+        case jakarta.transaction.Status.STATUS_COMMITTING:
+            logTrace("==== A transaction is associated with the target object"
+                    + " and it is in the process of committing.");
+            break;
+        case jakarta.transaction.Status.STATUS_MARKED_ROLLBACK:
+            logTrace("==== A transaction is associated with the target object"
+                    + " and it has been marked forrollback, perhaps as a result of a setRollbackOnly operation. ");
+            break;
+        case jakarta.transaction.Status.STATUS_NO_TRANSACTION:
+            logTrace("==== No transaction is currently associated with the target object.");
+            break;
+        case jakarta.transaction.Status.STATUS_PREPARED:
+            logTrace("====A transaction is associated with the target object" + " and it has been prepared, i.e. ");
+            break;
+        case jakarta.transaction.Status.STATUS_PREPARING:
+            logTrace("==== A transaction is associated with the target object"
+                    + " and it is in the process of preparing. ");
+            break;
 
-            case jakarta.transaction.Status.STATUS_ROLLEDBACK:
-                logTrace("==== A transaction is associated with the target object"
-                        + " and the outcome has been determined as rollback. ");
-                break;
-            case jakarta.transaction.Status.STATUS_ROLLING_BACK:
-                logTrace("==== A transaction is associated with the target object"
-                        + " and it is in the process of rolling back.");
-                break;
+        case jakarta.transaction.Status.STATUS_ROLLEDBACK:
+            logTrace("==== A transaction is associated with the target object"
+                    + " and the outcome has been determined as rollback. ");
+            break;
+        case jakarta.transaction.Status.STATUS_ROLLING_BACK:
+            logTrace("==== A transaction is associated with the target object"
+                    + " and it is in the process of rolling back.");
+            break;
 
-            case jakarta.transaction.Status.STATUS_UNKNOWN:
-                logTrace("==== A transaction is associated with the target object"
-                        + " but its current status cannot be  determined ");
-                break;
+        case jakarta.transaction.Status.STATUS_UNKNOWN:
+            logTrace("==== A transaction is associated with the target object"
+                    + " but its current status cannot be  determined ");
+            break;
 
-            default:
-                TestUtil.logTrace("??? jakarta.transaction.Status is  " + status);
-                break;
+        default:
+            TestUtil.logTrace("??? jakarta.transaction.Status is  " + status);
+            break;
         }
     }
 
@@ -337,8 +346,10 @@ public class TransactionTests extends ServiceEETest {
 
         String myMessage = "EjbWebTransaction tests";
         try {
-            if (queueTest) msg = qSession.createTextMessage();
-            else msg = tSession.createTextMessage();
+            if (queueTest)
+                msg = qSession.createTextMessage();
+            else
+                msg = tSession.createTextMessage();
             msg.setText(myMessage);
             msg.setIntProperty("TestCaseNum", num);
             msg.setStringProperty("COM_SUN_JMS_TESTNAME", TestCase);
@@ -406,8 +417,8 @@ public class TransactionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:122; JavaEE:SPEC:72; JMS:SPEC:265; JMS:SPEC:265.1;
      *
-     * @test_Strategy: Start a transaction. Send a message to Queue QUEUE_BMT.
-     * Commit the transaction. Verify that you can receive the message.
+     * @test_Strategy: Start a transaction. Send a message to Queue QUEUE_BMT. Commit the transaction. Verify that you can
+     * receive the message.
      *
      */
     public void Test01() throws Fault {
@@ -450,8 +461,8 @@ public class TransactionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:123; JavaEE:SPEC:72; JMS:SPEC:265; JMS:SPEC:265.1;
      *
-     * @test_Strategy: Start a transaction. Send a message to Queue QUEUE_BMT.
-     * Rollback the transaction. Verify that you cannot receive the message.
+     * @test_Strategy: Start a transaction. Send a message to Queue QUEUE_BMT. Rollback the transaction. Verify that you
+     * cannot receive the message.
      *
      */
     public void Test02() throws Fault {
@@ -492,9 +503,8 @@ public class TransactionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:122; JavaEE:SPEC:72; JMS:SPEC:265; JMS:SPEC:265.1;
      *
-     * @test_Strategy: Send a message to Queue QUEUE_BMT. Start a transaction.
-     * Receive the message for the queue Commit the transaction. Verify that you
-     * cannot receive the message again.
+     * @test_Strategy: Send a message to Queue QUEUE_BMT. Start a transaction. Receive the message for the queue Commit the
+     * transaction. Verify that you cannot receive the message again.
      *
      */
     public void Test03() throws Fault {
@@ -543,9 +553,8 @@ public class TransactionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:123; JavaEE:SPEC:72; JMS:SPEC:265; JMS:SPEC:265.1;
      *
-     * @test_Strategy: Send a message to Queue QUEUE_BMT. Start a transaction.
-     * Receive the message for the queue Rollback the transaction. Verify that you
-     * can receive the message again.
+     * @test_Strategy: Send a message to Queue QUEUE_BMT. Start a transaction. Receive the message for the queue Rollback
+     * the transaction. Verify that you can receive the message again.
      *
      */
     public void Test04() throws Fault {
@@ -592,8 +601,8 @@ public class TransactionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:122; JavaEE:SPEC:72; JMS:SPEC:265; JMS:SPEC:265.1;
      *
-     * @test_Strategy: Start a transaction. Send a message to Topic TOPIC_BMT.
-     * Commit the transaction. Verify that you can receive the message.
+     * @test_Strategy: Start a transaction. Send a message to Topic TOPIC_BMT. Commit the transaction. Verify that you can
+     * receive the message.
      *
      */
     public void Test05() throws Fault {
@@ -637,8 +646,8 @@ public class TransactionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:123; JavaEE:SPEC:72; JMS:SPEC:265; JMS:SPEC:265.1;
      *
-     * @test_Strategy: Start a transaction. Send a message to Topic TOPIC_BMT.
-     * Rollback the transaction. Verify that you cannot receive the message.
+     * @test_Strategy: Start a transaction. Send a message to Topic TOPIC_BMT. Rollback the transaction. Verify that you
+     * cannot receive the message.
      *
      */
     public void Test06() throws Fault {
@@ -683,9 +692,8 @@ public class TransactionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:122; JavaEE:SPEC:72; JMS:SPEC:265; JMS:SPEC:265.1;
      *
-     * @test_Strategy: Send a message to Topic TOPIC_BMT. Start a transaction.
-     * Receive the message for the topic Commit the transaction. Verify that you
-     * cannot receive the message again.
+     * @test_Strategy: Send a message to Topic TOPIC_BMT. Start a transaction. Receive the message for the topic Commit the
+     * transaction. Verify that you cannot receive the message again.
      *
      */
     public void Test07() throws Fault {
@@ -737,9 +745,8 @@ public class TransactionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:123; JavaEE:SPEC:72; JMS:SPEC:265; JMS:SPEC:265.1;
      *
-     * @test_Strategy: Send a message to Topic TOPIC_BMT. Start a transaction.
-     * Receive the message for the topic Rollback the transaction. Verify that you
-     * can receive the message again.
+     * @test_Strategy: Send a message to Topic TOPIC_BMT. Start a transaction. Receive the message for the topic Rollback
+     * the transaction. Verify that you can receive the message again.
      *
      */
     public void Test08() throws Fault {
@@ -793,12 +800,10 @@ public class TransactionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:122; JavaEE:SPEC:72; JMS:SPEC:265; JMS:SPEC:265.1;
      *
-     * @test_Strategy: Start a transaction. Send message to Queue QUEUE_BMT.
-     * Commit the transaction. Start another transaction. Send message again to
-     * Queue QUEUE_BMT. Commit the transaction. Start a transaction. Receive
-     * message from Queue QUEUE_BMT. Commit the transaction. Start a transaction.
-     * Receive message from Queue QUEUE_BMT. Commit the transaction. Verify that
-     * you can receive the message twice.
+     * @test_Strategy: Start a transaction. Send message to Queue QUEUE_BMT. Commit the transaction. Start another
+     * transaction. Send message again to Queue QUEUE_BMT. Commit the transaction. Start a transaction. Receive message from
+     * Queue QUEUE_BMT. Commit the transaction. Start a transaction. Receive message from Queue QUEUE_BMT. Commit the
+     * transaction. Verify that you can receive the message twice.
      */
     public void Test09() throws Fault {
         String TestCase = "Test09";
@@ -849,12 +854,10 @@ public class TransactionTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:122; JavaEE:SPEC:72; JMS:SPEC:265; JMS:SPEC:265.1;
      *
-     * @test_Strategy: Start a transaction. Send message to Topic TOPIC_BMT.
-     * Commit the transaction. Start another transaction. Send message again to
-     * Topic TOPIC_BMT. Commit the transaction. Start a transaction. Receive
-     * message from Topic TOPIC_BMT. Commit the transaction. Start a transaction.
-     * Receive message from Topic TOPIC_BMT. Commit the transaction. Verify that
-     * you can receive the message twice.
+     * @test_Strategy: Start a transaction. Send message to Topic TOPIC_BMT. Commit the transaction. Start another
+     * transaction. Send message again to Topic TOPIC_BMT. Commit the transaction. Start a transaction. Receive message from
+     * Topic TOPIC_BMT. Commit the transaction. Start a transaction. Receive message from Topic TOPIC_BMT. Commit the
+     * transaction. Verify that you can receive the message twice.
      */
     public void Test10() throws Fault {
         String TestCase = "Test10";

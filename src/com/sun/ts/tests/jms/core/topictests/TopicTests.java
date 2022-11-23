@@ -104,8 +104,7 @@ public class TopicTests extends ServiceEETest {
     }
 
     /*
-     * Checks passed flag for negative tests and throws exception back to caller
-     * which passes ot to harness.
+     * Checks passed flag for negative tests and throws exception back to caller which passes ot to harness.
      *
      * @param boolean Pass/Fail flag
      */
@@ -206,9 +205,8 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:153; JMS:SPEC:154; JMS:JAVADOC:122; JMS:SPEC:152;
      *
-     * @test_Strategy: Send and receive a message to/from a topic. Inactivate the
-     * subscriber, publish another message. Verify that when the subscriber is
-     * activated again that there is no messages to to receive.
+     * @test_Strategy: Send and receive a message to/from a topic. Inactivate the subscriber, publish another message.
+     * Verify that when the subscriber is activated again that there is no messages to to receive.
      */
     public void inactiveNonDurableSubscriberTopicRecTest() throws Fault {
         TopicSubscriber tSub = null;
@@ -287,12 +285,10 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:161;
      *
-     * @test_Strategy: Create connection with normal subscriber and no_local
-     * subscriber. Send x messages to topic and receive them with regular
-     * subscriber. Create second connection with subscriber. Send message from
-     * first connection and receive it with second. Send message from second
-     * connection and attempt receive with no_local subscriber. Should only get
-     * message from second connection.
+     * @test_Strategy: Create connection with normal subscriber and no_local subscriber. Send x messages to topic and
+     * receive them with regular subscriber. Create second connection with subscriber. Send message from first connection
+     * and receive it with second. Send message from second connection and attempt receive with no_local subscriber. Should
+     * only get message from second connection.
      */
     public void noLocalDeliveryTopicTest() throws Fault {
         String lookup = "MyTopicConnectionFactory";
@@ -374,8 +370,7 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:161; JMS:JAVADOC:87; JMS:JAVADOC:122;
      *
-     * @test_Strategy: Send single message to a topic and verify receipt of it
-     * with a durable subscriber.
+     * @test_Strategy: Send single message to a topic and verify receipt of it with a durable subscriber.
      *
      */
     public void simpleDurableSubscriberTopicTest() throws Fault {
@@ -426,10 +421,9 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:155; JMS:JAVADOC:93;
      *
-     * @test_Strategy: Create temporary topic and then close the connection.
-     * Verify that the temporary topic closes by trying to send a message to it.
-     * The test also sends a blank message to the temporary topic to verify that
-     * it is working.
+     * @test_Strategy: Create temporary topic and then close the connection. Verify that the temporary topic closes by
+     * trying to send a message to it. The test also sends a blank message to the temporary topic to verify that it is
+     * working.
      */
     public void temporaryTopicConnectionClosesTest() throws Fault {
         boolean passed = false;
@@ -446,8 +440,7 @@ public class TopicTests extends ServiceEETest {
 
             // open a new connection, create Session and Sender
             TestUtil.logTrace("Creating new Connection");
-            TopicConnection newTConn =
-                    (TopicConnection) tool.getNewConnection(JmsTool.TOPIC, jmsUser, jmsPassword, lookup);
+            TopicConnection newTConn = (TopicConnection) tool.getNewConnection(JmsTool.TOPIC, jmsUser, jmsPassword, lookup);
             connections.add(newTConn);
 
             TestUtil.logTrace("Create new Session");
@@ -502,10 +495,9 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:117; JMS:SPEC:243; JMS:JAVADOC:93;
      *
-     * @test_Strategy: Create temporary topic and a separate TopicSession. Try to
-     * create a receiver for the temporary topic from the new session, which
-     * should throw a JMSException. Also sends a blank message to verify that the
-     * temporary topic is working.
+     * @test_Strategy: Create temporary topic and a separate TopicSession. Try to create a receiver for the temporary topic
+     * from the new session, which should throw a JMSException. Also sends a blank message to verify that the temporary
+     * topic is working.
      */
     public void temporaryTopicNotConsumableTest() throws Fault {
         boolean passed = false;
@@ -523,8 +515,7 @@ public class TopicTests extends ServiceEETest {
 
             // open a new connection, create Session and Sender
             TestUtil.logMsg("Creating new Connection");
-            TopicConnection newTConn =
-                    (TopicConnection) tool.getNewConnection(JmsTool.TOPIC, jmsUser, jmsPassword, lookup);
+            TopicConnection newTConn = (TopicConnection) tool.getNewConnection(JmsTool.TOPIC, jmsUser, jmsPassword, lookup);
             connections.add(newTConn);
             TestUtil.logMsg("Create new Session");
             TopicSession newTSess = newTConn.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -545,7 +536,8 @@ public class TopicTests extends ServiceEETest {
             TestUtil.logMsg("Attempt to create subscriber for TemporaryTopic from another Session");
             try {
                 TopicSubscriber newTSubscriber = newTSess.createSubscriber(tempT);
-                if (newTSubscriber != null) TestUtil.logTrace("newTSubscriber=" + newTSubscriber);
+                if (newTSubscriber != null)
+                    TestUtil.logTrace("newTSubscriber=" + newTSubscriber);
             } catch (JMSException e) {
                 TestUtil.logMsg("Received expected JMSException -- GOOD");
                 TestUtil.logMsg("Received Exception:", e);
@@ -569,10 +561,9 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:38; JMS:SPEC:160; JMS:SPEC:246.9;
      *
-     * @test_Strategy: Create subscriber with a message selector that uses message
-     * header JMSType. Send two messages, one that has the matching header value
-     * and one that doesn't, and try to receive message. Should only receive one
-     * matching message.
+     * @test_Strategy: Create subscriber with a message selector that uses message header JMSType. Send two messages, one
+     * that has the matching header value and one that doesn't, and try to receive message. Should only receive one matching
+     * message.
      */
     public void msgSelectorMsgHeaderTopicTest() throws Fault {
         try {
@@ -624,9 +615,8 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:153; JMS:SPEC:154; JMS:JAVADOC:122;
      *
-     * @test_Strategy: Send and receive a message from a topic. Inactivate the
-     * subscriber, publish another message. Verify that when the subscriber is
-     * activated the message is received.
+     * @test_Strategy: Send and receive a message from a topic. Inactivate the subscriber, publish another message. Verify
+     * that when the subscriber is activated the message is received.
      */
     public void inactiveDurableSubscriberTopicRecTest() throws Fault {
         TopicSubscriber durableTS = null;
@@ -683,8 +673,7 @@ public class TopicTests extends ServiceEETest {
             connections.add(newTConn);
             tSession = newTConn.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
 
-            durableTS =
-                    tSession.createDurableSubscriber(tool.getDefaultTopic(), "inactiveDurableSubscriberTopicRecTest");
+            durableTS = tSession.createDurableSubscriber(tool.getDefaultTopic(), "inactiveDurableSubscriberTopicRecTest");
             newTConn.start();
             TestUtil.logTrace("Receiving message");
             messageReceived = (TextMessage) durableTS.receive(timeout);
@@ -710,12 +699,10 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:161; JMS:SPEC:126;
      *
-     * @test_Strategy: Create connection with normal subscriber and no_local
-     * durable subscriber. Send x messages to topic and receive them with regular
-     * subscriber. Create second connection with subscriber. Send message from
-     * first connection and receive it with second. Send message from second
-     * connection and attempt receive with no_local subscriber. Should only get
-     * message from second connection.
+     * @test_Strategy: Create connection with normal subscriber and no_local durable subscriber. Send x messages to topic
+     * and receive them with regular subscriber. Create second connection with subscriber. Send message from first
+     * connection and receive it with second. Send message from second connection and attempt receive with no_local
+     * subscriber. Should only get message from second connection.
      *
      */
     public void durableSubscriberTopicNoLocalTest() throws Fault {
@@ -807,32 +794,25 @@ public class TopicTests extends ServiceEETest {
     /*
      * @testName: durableSubscriberTopicNoLocalTest2
      *
-     * @assertion_ids: JMS:SPEC:161; JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:256;
-     * JMS:JAVADOC:99; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:SPEC:161; JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:256; JMS:JAVADOC:99; JMS:JAVADOC:334;
      *
      *
-     * @test_Strategy: 1) Create topic connection with normal subscriber and
-     * (no_local=true) durable subscriber. 2) Publish x messages to topic and
-     * receive them with normal subscriber. 3) Try and receive messages with
-     * (no_local=true) durable subscriber and verify that you cannot receive them.
-     * 4) Publish x more messages to topic. 4) Close the (no_local=true) durable
-     * subscriber. 5) Create a new (no_local=false) durable subscriber with the
-     * same subscription name and same topic as (no_local=true) durable
-     * subscriber. 6) Try and receive messages with (no_local=false) durable
-     * subscriber. Verify that you cannot receive any messages. Recreating a
-     * durable subscriber with a change to (no_local setting) causes previous
-     * durable subscription to become invalid so all the old messages are deleted
-     * and you start anew with a clean slate.
+     * @test_Strategy: 1) Create topic connection with normal subscriber and (no_local=true) durable subscriber. 2) Publish
+     * x messages to topic and receive them with normal subscriber. 3) Try and receive messages with (no_local=true) durable
+     * subscriber and verify that you cannot receive them. 4) Publish x more messages to topic. 4) Close the (no_local=true)
+     * durable subscriber. 5) Create a new (no_local=false) durable subscriber with the same subscription name and same
+     * topic as (no_local=true) durable subscriber. 6) Try and receive messages with (no_local=false) durable subscriber.
+     * Verify that you cannot receive any messages. Recreating a durable subscriber with a change to (no_local setting)
+     * causes previous durable subscription to become invalid so all the old messages are deleted and you start anew with a
+     * clean slate.
      *
-     * A client can change an existing durable subscription by creating a durable
-     * TopicSubscriber with the same name and topic but different (no_local
-     * setting). Changing a durable subscriber is equivalent to unsubscribing
-     * (deleting) the old one and creating a new one.
+     * A client can change an existing durable subscription by creating a durable TopicSubscriber with the same name and
+     * topic but different (no_local setting). Changing a durable subscriber is equivalent to unsubscribing (deleting) the
+     * old one and creating a new one.
      *
-     * So if a client subsequently changes the no_local setting, all the existing
-     * messages stored in the durable subscription become invalid since they are
-     * inconsistent with the new no_local setting. The only safe thing to do is to
-     * delete all the old messages and start anew.
+     * So if a client subsequently changes the no_local setting, all the existing messages stored in the durable
+     * subscription become invalid since they are inconsistent with the new no_local setting. The only safe thing to do is
+     * to delete all the old messages and start anew.
      */
     public void durableSubscriberTopicNoLocalTest2() throws Fault {
         TopicSubscriber tSubNoLocal = null;
@@ -958,9 +938,8 @@ public class TopicTests extends ServiceEETest {
      *
      * @assertion_ids: JMS:SPEC:165; JMS:JAVADOC:122;
      *
-     * @test_Strategy: Create 2 topics. Create a durable subscriber for the first
-     * topic. send and receive a message. Create a durable topic subscriber again,
-     * use the same name as the above but for the second topic.
+     * @test_Strategy: Create 2 topics. Create a durable subscriber for the first topic. send and receive a message. Create
+     * a durable topic subscriber again, use the same name as the above but for the second topic.
      *
      */
     public void durableSubscriberNewTopicTest() throws Fault {
@@ -1035,12 +1014,10 @@ public class TopicTests extends ServiceEETest {
     /*
      * @testName: durableSubscriberChangeSelectorTest
      *
-     * @assertion_ids: JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:122;
-     * JMS:JAVADOC:256; JMS:JAVADOC:99; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:122; JMS:JAVADOC:256; JMS:JAVADOC:99; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Create a durable subscriber for the default topic. Create a
-     * durable topic subscriber again, use the same name as the above but change
-     * the selector.
+     * @test_Strategy: Create a durable subscriber for the default topic. Create a durable topic subscriber again, use the
+     * same name as the above but change the selector.
      *
      */
     public void durableSubscriberChangeSelectorTest() throws Fault {
@@ -1127,31 +1104,24 @@ public class TopicTests extends ServiceEETest {
     /*
      * @testName: durableSubscriberChangeSelectorTest2
      *
-     * @assertion_ids: JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:122;
-     * JMS:JAVADOC:256; JMS:JAVADOC:99; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:122; JMS:JAVADOC:256; JMS:JAVADOC:99; JMS:JAVADOC:334;
      *
-     * @test_Strategy: 1) Create a durable subscription with a message selector
-     * string property of (TEST="test") for the default topic. 2) Publish first
-     * message with string property that matches the message selector
-     * (TEST="test"). 3) Publish second message with string property that does not
-     * match the message selector (TEST="test again"). 4) Verify that you can
-     * receive the first message. 5) Verify that you cannot receive the second
-     * message. 6) Close durable subscription. 7) Create a new durable
-     * subscription with the same default topic and subscription name but with a
-     * different message selector (TEST="test again") which matches the string
-     * property of the second message that was published. 8) Try to receive this
-     * second message. It should not recieve the second message. Verify that is
-     * does not receive the second message. 9) Close durable subscription.
+     * @test_Strategy: 1) Create a durable subscription with a message selector string property of (TEST="test") for the
+     * default topic. 2) Publish first message with string property that matches the message selector (TEST="test"). 3)
+     * Publish second message with string property that does not match the message selector (TEST="test again"). 4) Verify
+     * that you can receive the first message. 5) Verify that you cannot receive the second message. 6) Close durable
+     * subscription. 7) Create a new durable subscription with the same default topic and subscription name but with a
+     * different message selector (TEST="test again") which matches the string property of the second message that was
+     * published. 8) Try to receive this second message. It should not recieve the second message. Verify that is does not
+     * receive the second message. 9) Close durable subscription.
      *
-     * A client can change an existing durable subscription by creating a durable
-     * TopicSubscriber with the same name and a new topic and/or message selector.
-     * Changing a durable subscriber is equivalent to unsubscribing (deleting) the
-     * old one and creating a new one.
+     * A client can change an existing durable subscription by creating a durable TopicSubscriber with the same name and a
+     * new topic and/or message selector. Changing a durable subscriber is equivalent to unsubscribing (deleting) the old
+     * one and creating a new one.
      *
-     * So if a client subsequently changes the message selector, all the existing
-     * messages stored in the durable subscription become invalid since they are
-     * inconsistent with the new message selector. The only safe thing to do is to
-     * delete all the old messages and start anew.
+     * So if a client subsequently changes the message selector, all the existing messages stored in the durable
+     * subscription become invalid since they are inconsistent with the new message selector. The only safe thing to do is
+     * to delete all the old messages and start anew.
      */
     public void durableSubscriberChangeSelectorTest2() throws Fault {
         Topic newTestTopic;
@@ -1256,11 +1226,10 @@ public class TopicTests extends ServiceEETest {
     /*
      * @testName: msgProducerNullDestinationTopicTest
      *
-     * @assertion_ids: JMS:SPEC:139; JMS:SPEC:158; JMS:SPEC:242; JMS:JAVADOC:103;
-     * JMS:JAVADOC:105; JMS:JAVADOC:122;
+     * @assertion_ids: JMS:SPEC:139; JMS:SPEC:158; JMS:SPEC:242; JMS:JAVADOC:103; JMS:JAVADOC:105; JMS:JAVADOC:122;
      *
-     * @test_Strategy: Create Publisher with null Destination. Send with
-     * destination specified and receive single message. Verify message receipt.
+     * @test_Strategy: Create Publisher with null Destination. Send with destination specified and receive single message.
+     * Verify message receipt.
      */
 
     public void msgProducerNullDestinationTopicTest() throws Fault {
@@ -1353,17 +1322,14 @@ public class TopicTests extends ServiceEETest {
     /*
      * @testName: consumerTests
      *
-     * @assertion_ids: JMS:SPEC:196; JMS:SPEC:158; JMS:SPEC:160; JMS:SPEC:161;
-     * JMS:SPEC:126; JMS:JAVADOC:248; JMS:SPEC:266; JMS:SPEC:267;
+     * @assertion_ids: JMS:SPEC:196; JMS:SPEC:158; JMS:SPEC:160; JMS:SPEC:161; JMS:SPEC:126; JMS:JAVADOC:248; JMS:SPEC:266;
+     * JMS:SPEC:267;
      *
-     * @test_Strategy: 1. Create a new connection and send two TextMessages; 2.
-     * Create a MessageConsumer defaultConsumer to verify all messages received.
-     * 3. Create another MessageConsumer noLocalConsumer with noLocal set to true,
-     * and verify that no message can be received. 4. Create another
-     * MessageConsumer selectConsumer off the new connection with selector to
-     * verify only one message received. 5. Send a message from from default
-     * connection; 6. Verify that noLocalConsumer can receive the message from the
-     * default connection
+     * @test_Strategy: 1. Create a new connection and send two TextMessages; 2. Create a MessageConsumer defaultConsumer to
+     * verify all messages received. 3. Create another MessageConsumer noLocalConsumer with noLocal set to true, and verify
+     * that no message can be received. 4. Create another MessageConsumer selectConsumer off the new connection with
+     * selector to verify only one message received. 5. Send a message from from default connection; 6. Verify that
+     * noLocalConsumer can receive the message from the default connection
      */
 
     public void consumerTests() throws Fault {
@@ -1470,7 +1436,8 @@ public class TopicTests extends ServiceEETest {
                 TestUtil.logErr("Error closing the second Connection", ex);
             }
 
-            if (pass != true) throw new Fault(testName + " Failed!");
+            if (pass != true)
+                throw new Fault(testName + " Failed!");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);
@@ -1481,16 +1448,13 @@ public class TopicTests extends ServiceEETest {
     /*
      * @testName: tempTopicTests
      *
-     * @assertion_ids: JMS:SPEC:144; JMS:SPEC:161; JMS:JAVADOC:264;
-     * JMS:JAVADOC:124; JMS:JAVADOC:837;
+     * @assertion_ids: JMS:SPEC:144; JMS:SPEC:161; JMS:JAVADOC:264; JMS:JAVADOC:124; JMS:JAVADOC:837;
      *
-     * @test_Strategy: 1. Create a TemporaryTopic from a Session. Send a
-     * TextMessage and Receive it using the TemporaryTopic. Verify the Message
-     * received correctly. 2. Try to delete the TemporaryTopic without closing
-     * MessageConsumer, verify that JMSException is thrown. 3. Close the
-     * MessageConsumer, verify that the TemporaryTopic can be deleted. 4. Try to
-     * create a MessageConsumer using Session from a different Connection, verify
-     * that JMSException is thrown.
+     * @test_Strategy: 1. Create a TemporaryTopic from a Session. Send a TextMessage and Receive it using the
+     * TemporaryTopic. Verify the Message received correctly. 2. Try to delete the TemporaryTopic without closing
+     * MessageConsumer, verify that JMSException is thrown. 3. Close the MessageConsumer, verify that the TemporaryTopic can
+     * be deleted. 4. Try to create a MessageConsumer using Session from a different Connection, verify that JMSException is
+     * thrown.
      */
     public void tempTopicTests() throws Fault {
         boolean pass = true;
@@ -1561,12 +1525,14 @@ public class TopicTests extends ServiceEETest {
             TestUtil.logMsg("Attempt to create MessageConsumer for TemporaryTopic from another Connection");
             try {
                 MessageConsumer newReceiver = newSess.createConsumer(tempT);
-                if (newReceiver != null) TestUtil.logTrace("newReceiver=" + newReceiver);
+                if (newReceiver != null)
+                    TestUtil.logTrace("newReceiver=" + newReceiver);
             } catch (JMSException e) {
                 TestUtil.logTrace("Received expected JMSException from createConsumer.");
             }
 
-            if (!pass) throw new Fault(testName + " failed");
+            if (!pass)
+                throw new Fault(testName + " failed");
 
         } catch (Exception e) {
             TestUtil.printStackTrace(e);

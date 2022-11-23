@@ -29,16 +29,14 @@ import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
 import java.io.PrintWriter;
 
 /**
- * Test client for FunctionInfo. Implementation note, all tests are performed
- * within a TagExtraInfo class. If the test fails, a translation error will be
- * generated and a ValidationMessage array will be returned.
+ * Test client for FunctionInfo. Implementation note, all tests are performed within a TagExtraInfo class. If the test
+ * fails, a translation error will be generated and a ValidationMessage array will be returned.
  */
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -47,8 +45,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -68,9 +65,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:315
      *
-     * @test_Strategy: Validate the container properly parses the function
-     * information in the provided TLD and the method calls, in this case,
-     * FunctionInfo.getName(), returns the expected value.
+     * @test_Strategy: Validate the container properly parses the function information in the provided TLD and the method
+     * calls, in this case, FunctionInfo.getName(), returns the expected value.
      */
     public void functionInfoGetNameTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_functioninfo_web/GetNameTest.jsp HTTP/1.1");
@@ -83,9 +79,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:316
      *
-     * @test_Strategy: Validate the container properly parses the function
-     * information in the provided TLD and the method calls, in this case,
-     * FunctionInfo.getFunctionClass(), returns the expected value.
+     * @test_Strategy: Validate the container properly parses the function information in the provided TLD and the method
+     * calls, in this case, FunctionInfo.getFunctionClass(), returns the expected value.
      */
     public void functionInfoGetFunctionClassTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_functioninfo_web/GetFunctionClassTest.jsp HTTP/1.1");
@@ -98,9 +93,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:317
      *
-     * @test_Strategy: Validate the container properly parses the function
-     * information in the provided TLD and the method calls, in this case,
-     * FunctionInfo.getFunctionSignature(), returns the expected value.
+     * @test_Strategy: Validate the container properly parses the function information in the provided TLD and the method
+     * calls, in this case, FunctionInfo.getFunctionSignature(), returns the expected value.
      */
     public void functionInfoGetFunctionSignatureTest() throws Fault {
         TEST_PROPS.setProperty(REQUEST, "GET /jsp_functioninfo_web/GetFunctionSignatureTest.jsp HTTP/1.1");

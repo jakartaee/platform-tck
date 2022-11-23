@@ -35,7 +35,7 @@ import jakarta.interceptor.Interceptors;
 
 // annotations NOT to be ignored
 @Stateless(name = "StatelessAnnotationUsedRemoteCalculatorBean")
-@Remote({RemoteCalculator.class})
+@Remote({ RemoteCalculator.class })
 @ExcludeDefaultInterceptors
 
 // BusinessInterceptorNotUsed is disabled in business method remoteAdd(int,
@@ -43,7 +43,7 @@ import jakarta.interceptor.Interceptors;
 // Since interceptor methods in InterceptorNotUsed throws IllegalStateException,
 // clients of this bean should only invoke remoteAdd(int, int), or
 // remoteSubtract.
-@Interceptors({BusinessInterceptorNotUsed.class, InterceptorUsed.class})
+@Interceptors({ BusinessInterceptorNotUsed.class, InterceptorUsed.class })
 // @Interceptors({BusinessInterceptorNotUsed.class})
 
 public class StatelessAnnotationUsedRemoteCalculatorBean extends BaseRemoteCalculator implements RemoteCalculator {
@@ -52,7 +52,8 @@ public class StatelessAnnotationUsedRemoteCalculatorBean extends BaseRemoteCalcu
     @Resource(name = "sessionContext") // NOT to be ignored
     private SessionContext sessionContext;
 
-    public StatelessAnnotationUsedRemoteCalculatorBean() {}
+    public StatelessAnnotationUsedRemoteCalculatorBean() {
+    }
 
     @PostConstruct // NOT to be ignored
     public void postConstruct() {
@@ -65,13 +66,12 @@ public class StatelessAnnotationUsedRemoteCalculatorBean extends BaseRemoteCalcu
     }
 
     /**
-     * Returns a + b + postConstructCallsCount. Note that a and b may have been
-     * modified by interceptor methods. This method also checks that resource
-     * injections that are specified via annotations have been injected.
+     * Returns a + b + postConstructCallsCount. Note that a and b may have been modified by interceptor methods. This method
+     * also checks that resource injections that are specified via annotations have been injected.
      */
     @ExcludeDefaultInterceptors
     @ExcludeClassInterceptors
-    @Interceptors({InterceptorUsed.class})
+    @Interceptors({ InterceptorUsed.class })
     public int remoteAdd(int a, int b) {
         if (sessionContext == null) {
             throw new IllegalStateException("sessionContext field should have been "
@@ -84,7 +84,7 @@ public class StatelessAnnotationUsedRemoteCalculatorBean extends BaseRemoteCalcu
     @Override
     @ExcludeDefaultInterceptors
     @ExcludeClassInterceptors
-    @Interceptors({InterceptorUsed.class})
+    @Interceptors({ InterceptorUsed.class })
     public int remoteSubtract(int a, int b) {
         // do the same thing as remoteAdd(int, int)
         return postConstructCallsCount + a + b;

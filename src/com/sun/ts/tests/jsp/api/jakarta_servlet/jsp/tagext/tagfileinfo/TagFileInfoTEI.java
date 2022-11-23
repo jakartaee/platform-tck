@@ -30,15 +30,15 @@ public class TagFileInfoTEI extends BaseTCKExtraInfo {
     /**
      * Default Constructor
      */
-    public TagFileInfoTEI() {}
+    public TagFileInfoTEI() {
+    }
 
     // ------------------------------------------- Test Definitions ----------
 
     /**
      * Validate TagFileInfo.getName().
      *
-     * @return null if the test passes, or a string containing the cause of test
-     *         failure.
+     * @return null if the test passes, or a string containing the cause of test failure.
      */
     public String getName() {
         debug("in getName()");
@@ -59,8 +59,7 @@ public class TagFileInfoTEI extends BaseTCKExtraInfo {
     /**
      * Validate TagFileInfo.getPath().
      *
-     * @return null if the test passes, or a string containing the cause of test
-     *         failure.
+     * @return null if the test passes, or a string containing the cause of test failure.
      */
     public String getPath() {
         debug("in getPath()");
@@ -79,12 +78,10 @@ public class TagFileInfoTEI extends BaseTCKExtraInfo {
     }
 
     /**
-     * Validate TagFileInfo.getTagInfo(). In addition, this will verify That the
-     * directives in the Tag file are properly parsed and the TagInfo object
-     * returned by TagFileInfo.getTagInfo() is as expected.
+     * Validate TagFileInfo.getTagInfo(). In addition, this will verify That the directives in the Tag file are properly
+     * parsed and the TagInfo object returned by TagFileInfo.getTagInfo() is as expected.
      *
-     * @return null if the test passes, or a string containing the cause of test
-     *         failure.
+     * @return null if the test passes, or a string containing the cause of test failure.
      */
     public String getTagInfoTest() {
         debug("in getTagInfo()");
@@ -143,11 +140,9 @@ public class TagFileInfoTEI extends BaseTCKExtraInfo {
     }
 
     /**
-     * Calls JspTestUtil.debug() and includes this class name in the debug
-     * message.
+     * Calls JspTestUtil.debug() and includes this class name in the debug message.
      *
-     * @param message
-     *          - debug message
+     * @param message - debug message
      */
     private static void debug(String message) {
         JspTestUtil.debug("[TagFileInfoTEI] " + message);

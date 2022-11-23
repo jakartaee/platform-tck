@@ -28,7 +28,8 @@ public class Bar implements java.io.Serializable {
 
     private Float price;
 
-    public Bar() {}
+    public Bar() {
+    }
 
     public Bar(Integer id, String brandName, float price) {
         this.id = id;

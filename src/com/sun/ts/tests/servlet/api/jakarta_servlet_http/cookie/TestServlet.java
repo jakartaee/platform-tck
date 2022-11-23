@@ -123,7 +123,7 @@ public class TestServlet extends HttpTCKServlet {
 
     public void constructorIllegalArgumentExceptionTest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] invalidNameValues = {",test", ";test", " test", "\ttest", "\ntest"};
+        String[] invalidNameValues = { ",test", ";test", " test", "\ttest", "\ntest" };
 
         PrintWriter pw = response.getWriter();
 

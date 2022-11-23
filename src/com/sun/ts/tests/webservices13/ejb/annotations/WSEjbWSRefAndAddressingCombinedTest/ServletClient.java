@@ -36,31 +36,19 @@ public class ServletClient extends HttpServlet {
     private static final boolean debug = false;
 
     @Addressing
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestdefaultechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestdefaultechoport", type = Echo.class, value = EchoService.class)
     Echo defaultEchoPort = null;
 
     @Addressing(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestenabledechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestenabledechoport", type = Echo.class, value = EchoService.class)
     Echo enabledEchoPort = null;
 
     @Addressing(enabled = true, required = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestrequiredechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestrequiredechoport", type = Echo.class, value = EchoService.class)
     Echo requiredEchoPort = null;
 
     @Addressing(enabled = false)
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestdisabledechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestdisabledechoport", type = Echo.class, value = EchoService.class)
     Echo disabledEchoPort = null;
 
     @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestservice")
@@ -93,14 +81,20 @@ public class ServletClient extends HttpServlet {
             String test = harnessProps.getProperty("TEST");
             System.out.println("doGet: test to execute is: " + test);
             if (test.equals("VerifyAddrHeadersExistForRequiredEchoPort")) {
-                if (VerifyAddrHeadersExistForRequiredEchoPort()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyAddrHeadersExistForRequiredEchoPort())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else if (test.equals("VerifyAddrHeadersDoNotExistForDisabledEchoPort")) {
-                if (VerifyAddrHeadersDoNotExistForDisabledEchoPort()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyAddrHeadersDoNotExistForDisabledEchoPort())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else {
-                if (VerifyAddrHeadersMayExistForEnabledEchoPort()) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (VerifyAddrHeadersMayExistForEnabledEchoPort())
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             }
             p.list(out);
         } catch (Exception e) {

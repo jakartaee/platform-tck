@@ -35,7 +35,8 @@ public class WSOnClosePathParamServer {
     public String param(String content) {
         int i = Integer.parseInt(content);
         if (i == -1) {
-            for (int j = 0; j != p.length; j++) p[j] = "";
+            for (int j = 0; j != p.length; j++)
+                p[j] = "";
             return RESET;
         }
         return get(i);

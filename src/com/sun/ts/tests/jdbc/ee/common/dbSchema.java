@@ -29,8 +29,7 @@ import java.sql.Statement;
 import java.util.Properties;
 
 /**
- * The dbSchema class creates the database and tables using Sun's J2EE Reference
- * Implementation.
+ * The dbSchema class creates the database and tables using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -144,7 +143,8 @@ public class dbSchema extends ServiceEETest {
                 String newName = fTableName + "-" + i;
                 float newPrice = i + (float) .00;
                 int newType = i % 5;
-                if (newType == 0) newType = 5;
+                if (newType == 0)
+                    newType = 5;
                 pStmt.setInt(1, newKey);
                 pStmt.setString(2, newName);
                 pStmt.setFloat(3, newPrice);

@@ -49,7 +49,8 @@ public final class AddFilterString implements Filter {
     }
 
     // Remove the filter configuration object for this filter.
-    public void destroy() {}
+    public void destroy() {
+    }
 
     // initialize the filter configuration object for this filter.
     public void init(FilterConfig filterConfig) {

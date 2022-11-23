@@ -27,8 +27,8 @@ import jakarta.ejb.Singleton;
 import java.util.LinkedList;
 
 /**
- * This class is similar to ../bm/SingletonBean. But the latter uses java
- * language primitives like volatile and synchronized.
+ * This class is similar to ../bm/SingletonBean. But the latter uses java language primitives like volatile and
+ * synchronized.
  */
 @Singleton
 public class SingletonBean extends BeanBase implements ConcurrencyIF {

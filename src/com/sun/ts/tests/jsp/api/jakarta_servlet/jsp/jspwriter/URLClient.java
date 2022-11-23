@@ -30,8 +30,7 @@ public class URLClient extends AbstractUrlClient {
 
     private static final String EOL = "#eol#";
 
-    private static final String JSP_WRITER_VALIDATOR =
-            "com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.jspwriter.JspWriterValidator";
+    private static final String JSP_WRITER_VALIDATOR = "com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.jspwriter.JspWriterValidator";
 
     public URLClient() {
         for (short i = 33, idx = 0; i < 90; i++, idx++) {
@@ -40,9 +39,8 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -51,8 +49,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -135,8 +132,7 @@ public class URLClient extends AbstractUrlClient {
      * @test_Strategy: Validate the behavior of JspWriter.print(long).
      */
     public void jspWriterPrintLongTest() throws Fault {
-        String result =
-                new StringBuffer().append(Long.MIN_VALUE).append(Long.MAX_VALUE).toString();
+        String result = new StringBuffer().append(Long.MIN_VALUE).append(Long.MAX_VALUE).toString();
         TEST_PROPS.setProperty(APITEST1, "jspWriterPrintLongTest");
         TEST_PROPS.setProperty(SEARCH_STRING, result);
         invoke();
@@ -208,8 +204,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:80
      *
-     * @test_Strategy: Validate the behavior of JspWriter.print(String) where the
-     * argument is null.
+     * @test_Strategy: Validate the behavior of JspWriter.print(String) where the argument is null.
      */
     public void jspWriterPrintNullStringTest() throws Fault {
         TEST_PROPS.setProperty(APITEST1, "jspWriterPrintNullStringTest");
@@ -397,8 +392,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:100
      *
-     * @test_Strategy: Validate the behavior of JspWriter.println(String) where
-     * the argument is null.
+     * @test_Strategy: Validate the behavior of JspWriter.println(String) where the argument is null.
      */
     public void jspWriterPrintlnNullStringTest() throws Fault {
         TEST_PROPS.setProperty(APITEST1, "jspWriterPrintlnNullStringTest");
@@ -443,9 +437,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:JAVADOC:105
      *
-     * @test_Strategy: Validate the behavior of JspWriter.clear(). An IOException
-     * must be thrown if the response has been committed, and JspWriter.clear() is
-     * subsequently called.
+     * @test_Strategy: Validate the behavior of JspWriter.clear(). An IOException must be thrown if the response has been
+     * committed, and JspWriter.clear() is subsequently called.
      */
     public void jspWriterClearIOExceptionTest() throws Fault {
         TEST_PROPS.setProperty(APITEST, "jspWriterClearIOExceptionTest");

@@ -29,7 +29,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 
 @Stateless(name = "CallbackBean")
-@Remote({CallbackIF.class})
+@Remote({ CallbackIF.class })
 // @Interceptors(
 // {StatelessCallbackListener.class}
 // )

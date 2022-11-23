@@ -207,7 +207,7 @@ public class Client extends ServiceEETest {
      * @return boolean true if id correctly starts with ID:
      */
     private boolean chkMessageID(String id) {
-        String status[] = {"Pass", "Fail"};
+        String status[] = { "Pass", "Fail" };
         boolean retcode = true;
 
         // message id must start with ID: - unless it is null
@@ -362,8 +362,7 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.createTemporaryTopic().
      *
-     * Send and receive a message to temporary topic. Compare send and recv
-     * message for equality.
+     * Send and receive a message to temporary topic. Compare send and recv message for equality.
      */
     public void createTemporayTopicTest() throws Fault {
         boolean pass = true;
@@ -432,7 +431,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createTemporayTopicTest");
         } finally {
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
         }
@@ -447,8 +447,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:982;
      *
-     * @test_Strategy: Call JMSContext.getMetaData() to retrieve the
-     * ConnectionMetaData and then verify the ConnectionMetaData for correctness.
+     * @test_Strategy: Call JMSContext.getMetaData() to retrieve the ConnectionMetaData and then verify the
+     * ConnectionMetaData for correctness.
      */
     public void getMetaDataTest() throws Fault {
         boolean pass = true;
@@ -457,7 +457,8 @@ public class Client extends ServiceEETest {
         try {
             data = context.getMetaData();
 
-            if (!verifyMetaData(data)) pass = false;
+            if (!verifyMetaData(data))
+                pass = false;
 
         } catch (Exception e) {
             TestUtil.logMsg("Caught unexpected exception: " + e);
@@ -478,8 +479,8 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.getSessionMode().
      *
-     * Cycle through all session modes to create each JMSContext with each mode
-     * and verify that each session mode is set correctly.
+     * Cycle through all session modes to create each JMSContext with each mode and verify that each session mode is set
+     * correctly.
      */
     public void getSessionModeTest() throws Fault {
         boolean pass = true;
@@ -500,24 +501,26 @@ public class Client extends ServiceEETest {
             throw new Fault("getSessionModeTest");
         } finally {
             try {
-                if (context != null) context.close();
+                if (context != null)
+                    context.close();
             } catch (Exception e) {
             }
         }
 
         // Test non-default case
         int expSessionMode[] = {
-            JMSContext.SESSION_TRANSACTED,
-            JMSContext.AUTO_ACKNOWLEDGE,
-            JMSContext.CLIENT_ACKNOWLEDGE,
-            JMSContext.DUPS_OK_ACKNOWLEDGE,
+                JMSContext.SESSION_TRANSACTED,
+                JMSContext.AUTO_ACKNOWLEDGE,
+                JMSContext.CLIENT_ACKNOWLEDGE,
+                JMSContext.DUPS_OK_ACKNOWLEDGE,
         };
 
         // Cycle through all session modes
         for (int i = 0; i < expSessionMode.length; i++) {
             if ((vehicle.equals("ejb") || vehicle.equals("jsp") || vehicle.equals("servlet"))) {
                 if (expSessionMode[i] == JMSContext.SESSION_TRANSACTED
-                        || expSessionMode[i] == JMSContext.CLIENT_ACKNOWLEDGE) continue;
+                        || expSessionMode[i] == JMSContext.CLIENT_ACKNOWLEDGE)
+                    continue;
             }
             try {
                 TestUtil.logMsg("Creating context with session mode (" + expSessionMode[i] + ")");
@@ -533,7 +536,8 @@ public class Client extends ServiceEETest {
                 throw new Fault("getSessionModeTest");
             } finally {
                 try {
-                    if (context != null) context.close();
+                    if (context != null)
+                        context.close();
                 } catch (Exception e) {
                 }
             }
@@ -553,11 +557,9 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.getTransacted().
      *
-     * Create a JMSContext with JMSContext.AUTO_ACKNOWLEDGE and verify that
-     * JMSContext.getTransacted() returns false.
+     * Create a JMSContext with JMSContext.AUTO_ACKNOWLEDGE and verify that JMSContext.getTransacted() returns false.
      *
-     * Create a JMSContext with JMSContext.SESSION_TRANSACTED and verify that
-     * JMSContext.getTransacted() returns true.
+     * Create a JMSContext with JMSContext.SESSION_TRANSACTED and verify that JMSContext.getTransacted() returns true.
      */
     public void getTransactedTest() throws Fault {
         boolean pass = true;
@@ -578,7 +580,8 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (context != null) context.close();
+                if (context != null)
+                    context.close();
             } catch (Exception e) {
             }
         }
@@ -599,7 +602,8 @@ public class Client extends ServiceEETest {
                 throw new Fault("getTransactedTest");
             } finally {
                 try {
-                    if (context != null) context.close();
+                    if (context != null)
+                        context.close();
                 } catch (Exception e) {
                 }
             }
@@ -663,15 +667,12 @@ public class Client extends ServiceEETest {
      *
      * @test_Strategy: Test the following APIs:
      *
-     * JMSContext.createConsumer(Destination)
-     * JMSContext.createConsumer(Destination, String)
+     * JMSContext.createConsumer(Destination) JMSContext.createConsumer(Destination, String)
      * JMSContext.createConsumer(Destination, String, boolean)
      *
-     * 1. Send x text messages to a Topic. 2. Create a JMSConsumer with selector
-     * to consume just the last message in the Topic. 3. Create a JMSConsumer
-     * again to consume the rest of the messages in the Topic. 4. Test
-     * createConsumer with noLocal=false case 5. Test createConsumer with
-     * noLocal=true case
+     * 1. Send x text messages to a Topic. 2. Create a JMSConsumer with selector to consume just the last message in the
+     * Topic. 3. Create a JMSConsumer again to consume the rest of the messages in the Topic. 4. Test createConsumer with
+     * noLocal=false case 5. Test createConsumer with noLocal=true case
      */
     public void createConsumerTest() throws Fault {
         boolean pass = true;
@@ -834,7 +835,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createConsumerTest");
         } finally {
             try {
-                if (consumerSelect != null) consumerSelect.close();
+                if (consumerSelect != null)
+                    consumerSelect.close();
             } catch (Exception e) {
             }
         }
@@ -849,9 +851,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:953;
      *
-     * @test_Strategy: Creates a durable subscription with the specified name on
-     * the specified topic and creates a MessageConsumer on that durable
-     * subscription.
+     * @test_Strategy: Creates a durable subscription with the specified name on the specified topic and creates a
+     * MessageConsumer on that durable subscription.
      *
      * This uses a connection factory WITH client identifier set.
      *
@@ -859,14 +860,11 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.createDurableConsumer(Topic, String)
      *
-     * 1. Create a durable subscription with the specified name on the specified
-     * topic and create a durable MessageConsumer on that durable subscription.
-     * This uses a connection factory WITH client identifier set. 2. Send
-     * TextMessage (message1) to the Topic. 3. Consume message via MessageConsumer
-     * created. Verify message1 received. 4. Close consumer. 5. Send another
-     * TextMessage (message2) to the Topic. 6. Recreate the durable
-     * MessageConsumer on that durable subscription. 7. Consume message via
-     * MessageConsumer created. Verify message2 received.
+     * 1. Create a durable subscription with the specified name on the specified topic and create a durable MessageConsumer
+     * on that durable subscription. This uses a connection factory WITH client identifier set. 2. Send TextMessage
+     * (message1) to the Topic. 3. Consume message via MessageConsumer created. Verify message1 received. 4. Close consumer.
+     * 5. Send another TextMessage (message2) to the Topic. 6. Recreate the durable MessageConsumer on that durable
+     * subscription. 7. Consume message via MessageConsumer created. Verify message2 received.
      */
     public void createDurableConsumerTest1() throws Fault {
         boolean pass = true;
@@ -946,10 +944,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:956;
      *
-     * @test_Strategy: Creates a durable subscription with the specified name on
-     * the specified topic and creates a MessageConsumer on that durable
-     * subscription, specifying a message selector and whether messages published
-     * by its own connection should be delivered to it.
+     * @test_Strategy: Creates a durable subscription with the specified name on the specified topic and creates a
+     * MessageConsumer on that durable subscription, specifying a message selector and whether messages published by its own
+     * connection should be delivered to it.
      *
      * This uses a connection factory WITH client identifier set.
      *
@@ -957,13 +954,11 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.createDurableConsumer(Topic,String,String,boolean)
      *
-     * 1. Create a durable subscription with the specified name on the specified
-     * topic and create a durable MessageConsumer on that durable subscription
-     * specifing a message selector and whether messages published by its own
-     * connection should be delivered to it. This uses a connection factory WITH
-     * client identifier set. 2. Send a number of messages to the Topic. 3. Test
-     * both noLocal=true and noLocal=false cases. 4. Verify message with specified
-     * selector received by MessageConsumer in the noLocal=false case only.
+     * 1. Create a durable subscription with the specified name on the specified topic and create a durable MessageConsumer
+     * on that durable subscription specifing a message selector and whether messages published by its own connection should
+     * be delivered to it. This uses a connection factory WITH client identifier set. 2. Send a number of messages to the
+     * Topic. 3. Test both noLocal=true and noLocal=false cases. 4. Verify message with specified selector received by
+     * MessageConsumer in the noLocal=false case only.
      *
      */
     public void createDurableConsumerTest2() throws Fault {
@@ -1013,7 +1008,8 @@ public class Client extends ServiceEETest {
             throw new Fault("createDurableConsumerTest2", e);
         } finally {
             try {
-                if (consumer2 != null) consumer2.close();
+                if (consumer2 != null)
+                    consumer2.close();
             } catch (Exception e) {
             }
         }
@@ -1066,9 +1062,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1382;
      *
-     * @test_Strategy: Creates a shared durable subscription with the specified
-     * name on the specified topic and creates a JMSConsumer on that durable
-     * subscription.
+     * @test_Strategy: Creates a shared durable subscription with the specified name on the specified topic and creates a
+     * JMSConsumer on that durable subscription.
      *
      * This uses a connection factory WITH client identifier set.
      *
@@ -1076,14 +1071,11 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.createSharedDurableConsumer(Topic, String)
      *
-     * 1. Create a shared durable subscription with the specified name on the
-     * specified topic and create a durable JMSConsumer on that durable
-     * subscription. This uses a connection factory WITH client identifier set. 2.
-     * Create a 2nd JMSConsumer for it. 3. Send TextMessage (message1) to the
-     * Topic. 3. Consume message via 1st JMSConsumer created. Verify message1
-     * received. 4. Close 1st consumer. 5. Send another TextMessage (message2) to
-     * the Topic. 6. Consume message via 2nd JMSConsumer created. Verify message2
-     * received.
+     * 1. Create a shared durable subscription with the specified name on the specified topic and create a durable
+     * JMSConsumer on that durable subscription. This uses a connection factory WITH client identifier set. 2. Create a 2nd
+     * JMSConsumer for it. 3. Send TextMessage (message1) to the Topic. 3. Consume message via 1st JMSConsumer created.
+     * Verify message1 received. 4. Close 1st consumer. 5. Send another TextMessage (message2) to the Topic. 6. Consume
+     * message via 2nd JMSConsumer created. Verify message2 received.
      */
     public void createSharedDurableConsumerTest1() throws Fault {
         boolean pass = true;
@@ -1179,7 +1171,8 @@ public class Client extends ServiceEETest {
         } finally {
             try {
                 producer2 = null;
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
                 cleanupSubscription(consumer2, context2, durableSubscriptionName);
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
@@ -1196,10 +1189,9 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1385;
      *
-     * @test_Strategy: Creates a shared durable subscription with the specified
-     * name on the specified topic and creates a JMSConsumer on that durable
-     * subscription, specifying a message selector and whether messages published
-     * by its own connection should be delivered to it.
+     * @test_Strategy: Creates a shared durable subscription with the specified name on the specified topic and creates a
+     * JMSConsumer on that durable subscription, specifying a message selector and whether messages published by its own
+     * connection should be delivered to it.
      *
      * This uses a connection factory WITH client identifier set.
      *
@@ -1207,12 +1199,10 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.createSharedDurableConsumer(Topic,String,String)
      *
-     * 1. Create a shared durable subscription with the specified name on the
-     * specified topic and create a durable JMSConsumer on that durable
-     * subscription specifing a message selector and whether messages published by
-     * its own connection should be delivered to it. This uses a connection
-     * factory WITH client identifier set. 2. Create a 2nd JMSConsumer for it. 3.
-     * Send a number of messages to the Topic.
+     * 1. Create a shared durable subscription with the specified name on the specified topic and create a durable
+     * JMSConsumer on that durable subscription specifing a message selector and whether messages published by its own
+     * connection should be delivered to it. This uses a connection factory WITH client identifier set. 2. Create a 2nd
+     * JMSConsumer for it. 3. Send a number of messages to the Topic.
      *
      */
     public void createSharedDurableConsumerTest2() throws Fault {
@@ -1265,8 +1255,10 @@ public class Client extends ServiceEETest {
             throw new Fault("createSharedDurableConsumerTest2", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
-                if (consumer2 != null) consumer2.close();
+                if (consumer != null)
+                    consumer.close();
+                if (consumer2 != null)
+                    consumer2.close();
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
             }
@@ -1282,9 +1274,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1382;
      *
-     * @test_Strategy: Creates a shared durable subscription with the specified
-     * name on the specified topic and creates a JMSConsumer on that durable
-     * subscription.
+     * @test_Strategy: Creates a shared durable subscription with the specified name on the specified topic and creates a
+     * JMSConsumer on that durable subscription.
      *
      * This uses a connection factory WITH client identifier unset.
      *
@@ -1292,14 +1283,11 @@ public class Client extends ServiceEETest {
      *
      * JMSContext.createSharedDurableConsumer(Topic, String)
      *
-     * 1. Create a shared durable subscription with the specified name on the
-     * specified topic and create a durable JMSConsumer on that durable
-     * subscription. This uses a connection factory WITH client identifier unset.
-     * 2. Create a 2nd JMSConsumer for it. 3. Send TextMessage (message1) to the
-     * Topic. 3. Consume message via 1st JMSConsumer created. Verify message1
-     * received. 4. Close 1st consumer. 5. Send another TextMessage (message2) to
-     * the Topic. 6. Consume message via 2nd JMSConsumer created. Verify message2
-     * received.
+     * 1. Create a shared durable subscription with the specified name on the specified topic and create a durable
+     * JMSConsumer on that durable subscription. This uses a connection factory WITH client identifier unset. 2. Create a
+     * 2nd JMSConsumer for it. 3. Send TextMessage (message1) to the Topic. 3. Consume message via 1st JMSConsumer created.
+     * Verify message1 received. 4. Close 1st consumer. 5. Send another TextMessage (message2) to the Topic. 6. Consume
+     * message via 2nd JMSConsumer created. Verify message2 received.
      */
     public void createSharedDurableConsumerTest3() throws Fault {
         boolean pass = true;
@@ -1395,7 +1383,8 @@ public class Client extends ServiceEETest {
         } finally {
             try {
                 producer2 = null;
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
                 cleanupSubscription(consumer2, context, durableSubscriptionName);
             } catch (Exception e) {
                 TestUtil.logErr("Caught unexpected exception: " + e);
@@ -1412,23 +1401,19 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1151; JMS:SPEC:269;
      *
-     * @test_Strategy: Creates a shared non-durable subscription with the
-     * specified name on the specified topic, and creates a JMSConsumer on that
-     * subscription.
+     * @test_Strategy: Creates a shared non-durable subscription with the specified name on the specified topic, and creates
+     * a JMSConsumer on that subscription.
      *
      * Tests the following API method:
      *
      * JMSContext.createSharedConsumer(Topic, String)
      *
-     * 1. Creates a shared non-durable subscription with the specified name on the
-     * specified topic, and creates a JMSConsumer on that subscription. 2. Create
-     * a second JMSConsumer on that subscription. 3. Send a text message to the
-     * Topic. 4. Consume message via the first JMSConsumer and message should be
-     * received. 5. Attempt to consume message via second JMSConsumer and no
-     * message should be received. 6. Re-Send a text message to the Topic. 7.
-     * Consume message via the second JMSConsumer and message should be received.
-     * 8. Attempt to consume message via first JMSConsumer and no message should
-     * be received.
+     * 1. Creates a shared non-durable subscription with the specified name on the specified topic, and creates a
+     * JMSConsumer on that subscription. 2. Create a second JMSConsumer on that subscription. 3. Send a text message to the
+     * Topic. 4. Consume message via the first JMSConsumer and message should be received. 5. Attempt to consume message via
+     * second JMSConsumer and no message should be received. 6. Re-Send a text message to the Topic. 7. Consume message via
+     * the second JMSConsumer and message should be received. 8. Attempt to consume message via first JMSConsumer and no
+     * message should be received.
      */
     public void createSharedConsumerTest1() throws Fault {
         boolean pass = true;
@@ -1471,7 +1456,8 @@ public class Client extends ServiceEETest {
             actTextMessage = (TextMessage) consumer2.receive(timeout);
             if (actTextMessage != null) {
                 throw new Fault("Did receive TextMessage - unexpected.");
-            } else TestUtil.logMsg("Did not receive TextMessage - expected.");
+            } else
+                TestUtil.logMsg("Did not receive TextMessage - expected.");
 
             TestUtil.logMsg("Send another message to Topic");
             expTextMessage = context.createTextMessage(message);
@@ -1498,7 +1484,8 @@ public class Client extends ServiceEETest {
             actTextMessage = (TextMessage) consumer.receive(timeout);
             if (actTextMessage != null) {
                 throw new Fault("Did receive TextMessage - unexpected.");
-            } else TestUtil.logMsg("Did not receive TextMessage - expected.");
+            } else
+                TestUtil.logMsg("Did not receive TextMessage - expected.");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
@@ -1506,8 +1493,10 @@ public class Client extends ServiceEETest {
             throw new Fault("createSharedConsumerTest1", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
-                if (consumer2 != null) consumer2.close();
+                if (consumer != null)
+                    consumer.close();
+                if (consumer2 != null)
+                    consumer2.close();
             } catch (Exception e) {
                 TestUtil.logMsg("Ignoring exception closing consumers: " + e);
             }
@@ -1523,24 +1512,19 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1155; JMS:SPEC:269; JMS:SPEC:270;
      *
-     * @test_Strategy: Creates a shared non-durable subscription with the
-     * specified name on the specified topic and creates a JMSConsumer on that
-     * subscription, specifying a message selector.
+     * @test_Strategy: Creates a shared non-durable subscription with the specified name on the specified topic and creates
+     * a JMSConsumer on that subscription, specifying a message selector.
      *
      * Tests the following API method:
      *
      * JMSContext.createSharedConsumer(Topic, String, String)
      *
-     * 1. Create a shared non-durable subscription with the specified name on the
-     * specified topic, and creates a JMSConsumer on that subscription, specifying
-     * a message selector. 2. Create a second JMSConsumer on that subscription. 3.
-     * Send a text message to the Topic. 4. Consume message via first JMSConsumer
-     * and msg selector and message should be received. 5. Attempt to consume
-     * message via second JMSConsumer and msg selector and no message received. 6.
-     * Re-Send a text message to the Topic. 7. Consume message via second
-     * JMSConsumer and msg selector and message should be received. 8. Attempt to
-     * consume message via first JMSConsumer and msg selector and no message
-     * received.
+     * 1. Create a shared non-durable subscription with the specified name on the specified topic, and creates a JMSConsumer
+     * on that subscription, specifying a message selector. 2. Create a second JMSConsumer on that subscription. 3. Send a
+     * text message to the Topic. 4. Consume message via first JMSConsumer and msg selector and message should be received.
+     * 5. Attempt to consume message via second JMSConsumer and msg selector and no message received. 6. Re-Send a text
+     * message to the Topic. 7. Consume message via second JMSConsumer and msg selector and message should be received. 8.
+     * Attempt to consume message via first JMSConsumer and msg selector and no message received.
      *
      */
     public void createSharedConsumerTest2() throws Fault {
@@ -1590,7 +1574,8 @@ public class Client extends ServiceEETest {
             actTextMessage = (TextMessage) consumer2.receive(timeout);
             if (actTextMessage != null) {
                 throw new Fault("Did receive TextMessage - unexpected.");
-            } else TestUtil.logMsg("Did not receive TextMessage - expected.");
+            } else
+                TestUtil.logMsg("Did not receive TextMessage - expected.");
 
             // send "numMessages" messages to Topic
             TestUtil.logMsg("Send " + numMessages + " to Topic");
@@ -1626,7 +1611,8 @@ public class Client extends ServiceEETest {
             actTextMessage = (TextMessage) consumer.receive(timeout);
             if (actTextMessage != null) {
                 throw new Fault("Did receive TextMessage - unexpected.");
-            } else TestUtil.logMsg("Did not receive TextMessage - expected.");
+            } else
+                TestUtil.logMsg("Did not receive TextMessage - expected.");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e);
@@ -1634,8 +1620,10 @@ public class Client extends ServiceEETest {
             throw new Fault("createSharedConsumerTest2", e);
         } finally {
             try {
-                if (consumer != null) consumer.close();
-                if (consumer2 != null) consumer2.close();
+                if (consumer != null)
+                    consumer.close();
+                if (consumer2 != null)
+                    consumer2.close();
             } catch (Exception e) {
                 TestUtil.logMsg("Ignoring exception closing consumers: " + e);
             }
@@ -1651,8 +1639,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:912; JMS:SPEC:108;
      *
-     * @test_Strategy: Call close() twice on a JMSContext. This MUST NOT throw an
-     * exception.
+     * @test_Strategy: Call close() twice on a JMSContext. This MUST NOT throw an exception.
      */
     public void multipleCloseContextTest() throws Fault {
         try {
@@ -1671,12 +1658,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:1084; JMS:JAVADOC:953;
      *
-     * @test_Strategy: Send single message to a topic and verify receipt of it
-     * with a durable subscriber. This uses a connection factory WITHOUT client
-     * identifier set. Tests the use of the following API's:
+     * @test_Strategy: Send single message to a topic and verify receipt of it with a durable subscriber. This uses a
+     * connection factory WITHOUT client identifier set. Tests the use of the following API's:
      *
-     * o JMSContext.createDurableConsumer(Topic, String) o
-     * JMSContext.unsubscribe(String)
+     * o JMSContext.createDurableConsumer(Topic, String) o JMSContext.unsubscribe(String)
      */
     public void simpleDurableConsumerTest() throws Fault {
         String durableSubscriptionName = "simpleDurableConsumerTest";
@@ -1719,13 +1704,10 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JMS:JAVADOC:953; JMS:JAVADOC:1084; JMS:JAVADOC:1098;
      *
-     * @test_Strategy: Send and receive a message from a topic. Inactivate the
-     * subscriber, send another message. Verify that when the subscriber is
-     * activated the message is received. This uses a connection factory WITH
-     * client identifier set.
+     * @test_Strategy: Send and receive a message from a topic. Inactivate the subscriber, send another message. Verify that
+     * when the subscriber is activated the message is received. This uses a connection factory WITH client identifier set.
      *
-     * o JMSContext.createDurableConsumer(Topic, String) o JMSConsumer.close() o
-     * JMSContext.unsubscribe(String)
+     * o JMSContext.createDurableConsumer(Topic, String) o JMSConsumer.close() o JMSContext.unsubscribe(String)
      */
     public void inactiveDurableConsumerTopicRecTest() throws Fault {
         String durableSubscriptionName = "inactiveDurableConsumerTopicRecTest";
@@ -1793,32 +1775,24 @@ public class Client extends ServiceEETest {
     /*
      * @testName: durableConsumerTopicNoLocalTest
      *
-     * @assertion_ids: JMS:SPEC:161; JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:256;
-     * JMS:JAVADOC:99; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:SPEC:161; JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:256; JMS:JAVADOC:99; JMS:JAVADOC:334;
      *
      *
-     * @test_Strategy: 1) Create topic connection with normal consumer and
-     * (no_local=true) durable consumer. 2) Publish x messages to topic and
-     * receive them with normal consumer. 3) Try and receive messages with
-     * (no_local=true) durable consumer and verify that you cannot receive them.
-     * 4) Publish x more messages to topic. 4) Close the (no_local=true) durable
-     * consumer. 5) Create a new (no_local=false) durable consumer with the same
-     * subscription name and same topic as (no_local=true) durable consumer. 6)
-     * Try and receive messages with (no_local=false) durable consumer. Verify
-     * that you cannot receive any messages. Recreating a durable consumer with a
-     * change to (no_local setting) causes previous durable subscription to become
-     * invalid so all the old messages are deleted and you start anew with a clean
-     * slate.
+     * @test_Strategy: 1) Create topic connection with normal consumer and (no_local=true) durable consumer. 2) Publish x
+     * messages to topic and receive them with normal consumer. 3) Try and receive messages with (no_local=true) durable
+     * consumer and verify that you cannot receive them. 4) Publish x more messages to topic. 4) Close the (no_local=true)
+     * durable consumer. 5) Create a new (no_local=false) durable consumer with the same subscription name and same topic as
+     * (no_local=true) durable consumer. 6) Try and receive messages with (no_local=false) durable consumer. Verify that you
+     * cannot receive any messages. Recreating a durable consumer with a change to (no_local setting) causes previous
+     * durable subscription to become invalid so all the old messages are deleted and you start anew with a clean slate.
      *
-     * A client can change an existing durable subscription by creating a durable
-     * JMSConsumer with the same name and topic but different (no_local setting).
-     * Changing a durable consumer is equivalent to unsubscribing (deleting) the
-     * old one and creating a new one.
+     * A client can change an existing durable subscription by creating a durable JMSConsumer with the same name and topic
+     * but different (no_local setting). Changing a durable consumer is equivalent to unsubscribing (deleting) the old one
+     * and creating a new one.
      *
-     * So if a client subsequently changes the no_local setting, all the existing
-     * messages stored in the durable subscription become invalid since they are
-     * inconsistent with the new no_local setting. The only safe thing to do is to
-     * delete all the old messages and start anew.
+     * So if a client subsequently changes the no_local setting, all the existing messages stored in the durable
+     * subscription become invalid since they are inconsistent with the new no_local setting. The only safe thing to do is
+     * to delete all the old messages and start anew.
      *
      * This uses a connection factory WITH client identifier set.
      */
@@ -1934,7 +1908,8 @@ public class Client extends ServiceEETest {
             throw new Fault("durableConsumerTopicNoLocalTest2");
         } finally {
             try {
-                if (consumer2 != null) consumer2.close();
+                if (consumer2 != null)
+                    consumer2.close();
                 cleanupSubscription(tConNoLocal, context2, subscriptionName);
             } catch (Exception e) {
             }
@@ -1944,12 +1919,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: durableConsumerChangeSelectorTest
      *
-     * @assertion_ids: JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:122;
-     * JMS:JAVADOC:256; JMS:JAVADOC:99; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:122; JMS:JAVADOC:256; JMS:JAVADOC:99; JMS:JAVADOC:334;
      *
-     * @test_Strategy: Create a durable consumer for the default topic. Create a
-     * durable topic consumer again, use the same name as the above but change the
-     * selector.
+     * @test_Strategy: Create a durable consumer for the default topic. Create a durable topic consumer again, use the same
+     * name as the above but change the selector.
      *
      * This uses a connection factory WITH client identifier set.
      */
@@ -1964,8 +1937,7 @@ public class Client extends ServiceEETest {
 
             // Create a durable consumer with a specified message selector
             TestUtil.logMsg("Create DurableConsumer with MessageSelector=TEST='test' and no_local=false");
-            durableCon =
-                    context2.createDurableConsumer(topic, "durableConsumerChangeSelectorTest", "TEST = 'test'", false);
+            durableCon = context2.createDurableConsumer(topic, "durableConsumerChangeSelectorTest", "TEST = 'test'", false);
 
             // publish and receive message with specified message selector
             TestUtil.logMsg("Send and receive the message");
@@ -2033,31 +2005,24 @@ public class Client extends ServiceEETest {
     /*
      * @testName: durableConsumerChangeSelectorTest2
      *
-     * @assertion_ids: JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:122;
-     * JMS:JAVADOC:256; JMS:JAVADOC:99; JMS:JAVADOC:334;
+     * @assertion_ids: JMS:SPEC:164; JMS:SPEC:165; JMS:JAVADOC:122; JMS:JAVADOC:256; JMS:JAVADOC:99; JMS:JAVADOC:334;
      *
-     * @test_Strategy: 1) Create a durable subscription with a message selector
-     * string property of (TEST="test") for the default topic. 2) Publish first
-     * message with string property that matches the message selector
-     * (TEST="test"). 3) Publish second message with string property that does not
-     * match the message selector (TEST="test again"). 4) Verify that you can
-     * receive the first message. 5) Verify that you cannot receive the second
-     * message. 6) Close durable subscription. 7) Create a new durable
-     * subscription with the same default topic and subscription name but with a
-     * different message selector (TEST="test again") which matches the string
-     * property of the second message that was published. 8) Try to receive this
-     * second message. It should not recieve the second message. Verify that is
-     * does not receive the second message. 9) Close durable subscription.
+     * @test_Strategy: 1) Create a durable subscription with a message selector string property of (TEST="test") for the
+     * default topic. 2) Publish first message with string property that matches the message selector (TEST="test"). 3)
+     * Publish second message with string property that does not match the message selector (TEST="test again"). 4) Verify
+     * that you can receive the first message. 5) Verify that you cannot receive the second message. 6) Close durable
+     * subscription. 7) Create a new durable subscription with the same default topic and subscription name but with a
+     * different message selector (TEST="test again") which matches the string property of the second message that was
+     * published. 8) Try to receive this second message. It should not recieve the second message. Verify that is does not
+     * receive the second message. 9) Close durable subscription.
      *
-     * A client can change an existing durable subscription by creating a durable
-     * JMSConsumer with the same name and a new topic and/or message selector.
-     * Changing a durable consumer is equivalent to unsubscribing (deleting) the
-     * old one and creating a new one.
+     * A client can change an existing durable subscription by creating a durable JMSConsumer with the same name and a new
+     * topic and/or message selector. Changing a durable consumer is equivalent to unsubscribing (deleting) the old one and
+     * creating a new one.
      *
-     * So if a client subsequently changes the message selector, all the existing
-     * messages stored in the durable subscription become invalid since they are
-     * inconsistent with the new message selector. The only safe thing to do is to
-     * delete all the old messages and start anew.
+     * So if a client subsequently changes the message selector, all the existing messages stored in the durable
+     * subscription become invalid since they are inconsistent with the new message selector. The only safe thing to do is
+     * to delete all the old messages and start anew.
      *
      * This uses a connection factory WITH client identifier set.
      */
@@ -2075,8 +2040,7 @@ public class Client extends ServiceEETest {
             TestUtil.logMsg("Create durable subscription with MessageSelector=\"TEST='test'\",");
             TestUtil.logMsg("TopicName=" + topic.getTopicName() + " and SubscriptionName="
                     + "durableConsumerChangeSelectorTest2");
-            durableCon =
-                    context2.createDurableConsumer(topic, "durableConsumerChangeSelectorTest2", "TEST = 'test'", false);
+            durableCon = context2.createDurableConsumer(topic, "durableConsumerChangeSelectorTest2", "TEST = 'test'", false);
 
             TestUtil.logMsg("Create/Send first message with string property \"TEST = 'test'\"");
             messageSent = context2.createTextMessage();
@@ -2152,8 +2116,7 @@ public class Client extends ServiceEETest {
     /*
      * @testName: verifyClientIDOnAdminConfiguredIDTest
      *
-     * @assertion_ids: JMS:JAVADOC:970; JMS:JAVADOC:1040; JMS:SPEC:264.5;
-     * JMS:SPEC:173; JMS:SPEC:198; JMS:SPEC:91;
+     * @assertion_ids: JMS:JAVADOC:970; JMS:JAVADOC:1040; JMS:SPEC:264.5; JMS:SPEC:173; JMS:SPEC:198; JMS:SPEC:91;
      *
      * @test_Strategy: Test the following APIs:
      *
@@ -2188,28 +2151,19 @@ public class Client extends ServiceEETest {
     /*
      * @testName: invalidDestinationRuntimeExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:944; JMS:JAVADOC:947; JMS:JAVADOC:951;
-     * JMS:JAVADOC:955; JMS:JAVADOC:958; JMS:JAVADOC:1086; JMS:JAVADOC:1153;
-     * JMS:JAVADOC:1157; JMS:JAVADOC:1254; JMS:JAVADOC:1237; JMS:JAVADOC:1242;
-     * JMS:JAVADOC:1246; JMS:JAVADOC:1250; JMS:JAVADOC:958; JMS:JAVADOC:1383;
-     * JMS:JAVADOC:1161;
+     * @assertion_ids: JMS:JAVADOC:944; JMS:JAVADOC:947; JMS:JAVADOC:951; JMS:JAVADOC:955; JMS:JAVADOC:958;
+     * JMS:JAVADOC:1086; JMS:JAVADOC:1153; JMS:JAVADOC:1157; JMS:JAVADOC:1254; JMS:JAVADOC:1237; JMS:JAVADOC:1242;
+     * JMS:JAVADOC:1246; JMS:JAVADOC:1250; JMS:JAVADOC:958; JMS:JAVADOC:1383; JMS:JAVADOC:1161;
      *
-     * @test_Strategy: Test InvalidDestinationRuntimeException conditions from
-     * various API methods.
+     * @test_Strategy: Test InvalidDestinationRuntimeException conditions from various API methods.
      *
-     * JMSProducer.send(Destination, Message) JMSProducer.send(Destination,
-     * String) JMSProducer.send(Destination, Serializable)
-     * JMSProducer.send(Destination, byte[]) JMSProducer.send(Destination, Map)
-     * JMSContext.createConsumer(Destination)
-     * JMSContext.createConsumer(Destination, String)
-     * JMSContext.createConsumer(Destination, String, boolean)
-     * JMSContext.createDurableConsumer(Topic, String)
-     * JMSContext.createDurableConsumer(Topic, String, String, boolean)
-     * JMSContext.createSharedConsumer(Topic, String)
-     * JMSContext.createSharedConsumer(Topic, String, String)
-     * JMSContext.createSharedDurableConsumer(Topic, String)
-     * JMSContext.createSharedDurableConsumer(Topic, String, String)
-     * JMSContext.unsubscribe(String)
+     * JMSProducer.send(Destination, Message) JMSProducer.send(Destination, String) JMSProducer.send(Destination,
+     * Serializable) JMSProducer.send(Destination, byte[]) JMSProducer.send(Destination, Map)
+     * JMSContext.createConsumer(Destination) JMSContext.createConsumer(Destination, String)
+     * JMSContext.createConsumer(Destination, String, boolean) JMSContext.createDurableConsumer(Topic, String)
+     * JMSContext.createDurableConsumer(Topic, String, String, boolean) JMSContext.createSharedConsumer(Topic, String)
+     * JMSContext.createSharedConsumer(Topic, String, String) JMSContext.createSharedDurableConsumer(Topic, String)
+     * JMSContext.createSharedDurableConsumer(Topic, String, String) JMSContext.unsubscribe(String)
      */
     public void invalidDestinationRuntimeExceptionTests() throws Fault {
         boolean pass = true;
@@ -2431,17 +2385,14 @@ public class Client extends ServiceEETest {
     /*
      * @testName: invalidSelectorRuntimeExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:948; JMS:JAVADOC:952; JMS:JAVADOC:959;
-     * JMS:JAVADOC:1154; JMS:JAVADOC:1158; JMS:JAVADOC:959; JMS:JAVADOC:1162;
+     * @assertion_ids: JMS:JAVADOC:948; JMS:JAVADOC:952; JMS:JAVADOC:959; JMS:JAVADOC:1154; JMS:JAVADOC:1158;
+     * JMS:JAVADOC:959; JMS:JAVADOC:1162;
      *
-     * @test_Strategy: Test InvalidSelectorRuntimeException conditions from
-     * various API methods.
+     * @test_Strategy: Test InvalidSelectorRuntimeException conditions from various API methods.
      *
-     * JMSContext.createConsumer(Destination, String)
-     * JMSContext.createConsumer(Destination, String, boolean)
-     * JMSContext.createDurableConsumer(Topic, String, String, boolean)
-     * JMSContext.createSharedConsumer(Topic, String, String)
-     * JMSContext.createSharedDurableConsumer(Topic, String, String)
+     * JMSContext.createConsumer(Destination, String) JMSContext.createConsumer(Destination, String, boolean)
+     * JMSContext.createDurableConsumer(Topic, String, String, boolean) JMSContext.createSharedConsumer(Topic, String,
+     * String) JMSContext.createSharedDurableConsumer(Topic, String, String)
      *
      */
     public void invalidSelectorRuntimeExceptionTests() throws Fault {
@@ -2527,20 +2478,15 @@ public class Client extends ServiceEETest {
     /*
      * @testName: jMSRuntimeExceptionTests
      *
-     * @assertion_ids: JMS:JAVADOC:932; JMS:SPEC:264.2; JMS:JAVADOC:1274;
-     * JMS:JAVADOC:1260; JMS:JAVADOC:1384; JMS:JAVADOC:954; JMS:JAVADOC:1160;
-     * JMS:JAVADOC:957; JMS:JAVADOC:1152; JMS:JAVADOC:1156;
+     * @assertion_ids: JMS:JAVADOC:932; JMS:SPEC:264.2; JMS:JAVADOC:1274; JMS:JAVADOC:1260; JMS:JAVADOC:1384;
+     * JMS:JAVADOC:954; JMS:JAVADOC:1160; JMS:JAVADOC:957; JMS:JAVADOC:1152; JMS:JAVADOC:1156;
      *
-     * @test_Strategy: Test JMSRuntimeException conditions from various API
-     * methods.
+     * @test_Strategy: Test JMSRuntimeException conditions from various API methods.
      *
-     * JMSContext.createContext(int); JMSProducer.setPriority(int);
-     * JMSProducer.setDeliveryMode(long); JMSContext.createDurableConsumer(Topic,
-     * String) JMSContext.createDurableConsumer(Topic, String. String, boolean)
-     * JMSContext.createSharedConsumer(Topic, String)
-     * JMSContext.createSharedConsumer(Topic, String, String)
-     * JMSContext.createSharedDurableConsumer(Topic, String)
-     * JMSContext.createSharedDurableConsumer(Topic, String. String)
+     * JMSContext.createContext(int); JMSProducer.setPriority(int); JMSProducer.setDeliveryMode(long);
+     * JMSContext.createDurableConsumer(Topic, String) JMSContext.createDurableConsumer(Topic, String. String, boolean)
+     * JMSContext.createSharedConsumer(Topic, String) JMSContext.createSharedConsumer(Topic, String, String)
+     * JMSContext.createSharedDurableConsumer(Topic, String) JMSContext.createSharedDurableConsumer(Topic, String. String)
      */
     public void jMSRuntimeExceptionTests() throws Fault {
         boolean pass = true;
@@ -2560,7 +2506,8 @@ public class Client extends ServiceEETest {
         }
 
         try {
-            if (consumer != null) consumer.close();
+            if (consumer != null)
+                consumer.close();
         } catch (Exception e) {
         }
 
@@ -2610,8 +2557,10 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer != null) consumer.close();
-                if (consumer2 != null) consumer2.close();
+                if (consumer != null)
+                    consumer.close();
+                if (consumer2 != null)
+                    consumer2.close();
             } catch (Exception e) {
             }
         }
@@ -2639,8 +2588,10 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer != null) consumer.close();
-                if (consumer2 != null) consumer2.close();
+                if (consumer != null)
+                    consumer.close();
+                if (consumer2 != null)
+                    consumer2.close();
             } catch (Exception e) {
             }
         }
@@ -2668,7 +2619,8 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer2 != null) consumer2.close();
+                if (consumer2 != null)
+                    consumer2.close();
                 cleanupSubscription(consumer, context2, "dummySubSJMSRuntime");
             } catch (Exception e) {
             }
@@ -2697,7 +2649,8 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer2 != null) consumer2.close();
+                if (consumer2 != null)
+                    consumer2.close();
                 cleanupSubscription(consumer, context2, "dummySubDJMSRuntime");
             } catch (Exception e) {
             }
@@ -2726,7 +2679,8 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer2 != null) consumer2.close();
+                if (consumer2 != null)
+                    consumer2.close();
                 cleanupSubscription(consumer, context2, "dummySubSDJMSRuntime");
             } catch (Exception e) {
             }
@@ -2755,7 +2709,8 @@ public class Client extends ServiceEETest {
             pass = false;
         } finally {
             try {
-                if (consumer2 != null) consumer2.close();
+                if (consumer2 != null)
+                    consumer2.close();
                 cleanupSubscription(consumer, context2, "dummySubDJMSRuntime");
             } catch (Exception e) {
             }
@@ -2769,28 +2724,21 @@ public class Client extends ServiceEETest {
     /*
      * @testName: illegalStateRuntimeExceptionTest
      *
-     * @assertion_ids: JMS:JAVADOC:917; JMS:JAVADOC:994; JMS:JAVADOC:997;
-     * JMS:JAVADOC:1340; JMS:JAVADOC:1341; JMS:JAVADOC:1378;
+     * @assertion_ids: JMS:JAVADOC:917; JMS:JAVADOC:994; JMS:JAVADOC:997; JMS:JAVADOC:1340; JMS:JAVADOC:1341;
+     * JMS:JAVADOC:1378;
      *
-     * @test_Strategy: 1. Create a TextMessages and send to Topic 2. Then invoke
-     * JMSContext.commit() on a non-transacted session Verify that
-     * IllegalStateRuntimeException is thrown 3. Then test invoke
-     * JMSContext.rollback() on a non-transacted session Verify that
-     * IllegalStateRuntimeException is thrown 3. Then test invoke
-     * JMSContext.recover() on a transacted session Verify that
-     * IllegalStateRuntimeException is thrown 4. Create JMSContext with
-     * CLIENT_ACKNOWLEDGE then close JMSContext. Then test invoke
-     * JMSContext.acknowledge() on the JMSContext. Verify that
-     * IllegalStateRuntimeException is thrown 5. Verify that
-     * IllegalStateRuntimeException is thrown if nolocal=true and client id is
-     * unset for JMSContext.createSharedConsumer(...) and
-     * JMSContext.createSharedDurableConsumer(...) methods. 6. Verify that
-     * IllegalStateRuntimeException is thrown if client id is unset for
-     * JMSContext.createDurableConsumer(...) methods.
+     * @test_Strategy: 1. Create a TextMessages and send to Topic 2. Then invoke JMSContext.commit() on a non-transacted
+     * session Verify that IllegalStateRuntimeException is thrown 3. Then test invoke JMSContext.rollback() on a
+     * non-transacted session Verify that IllegalStateRuntimeException is thrown 3. Then test invoke JMSContext.recover() on
+     * a transacted session Verify that IllegalStateRuntimeException is thrown 4. Create JMSContext with CLIENT_ACKNOWLEDGE
+     * then close JMSContext. Then test invoke JMSContext.acknowledge() on the JMSContext. Verify that
+     * IllegalStateRuntimeException is thrown 5. Verify that IllegalStateRuntimeException is thrown if nolocal=true and
+     * client id is unset for JMSContext.createSharedConsumer(...) and JMSContext.createSharedDurableConsumer(...) methods.
+     * 6. Verify that IllegalStateRuntimeException is thrown if client id is unset for JMSContext.createDurableConsumer(...)
+     * methods.
      *
-     * JMSContext.commit(); JMSContext.rollback(); JMSContext.recover();
-     * JMSContext.acknowledge(); JMSContext.createDurableConsumer(Topic, String)
-     * JMSContext.createDurableConsumer(Topic, String. String, boolean)
+     * JMSContext.commit(); JMSContext.rollback(); JMSContext.recover(); JMSContext.acknowledge();
+     * JMSContext.createDurableConsumer(Topic, String) JMSContext.createDurableConsumer(Topic, String. String, boolean)
      */
     public void illegalStateRuntimeExceptionTest() throws Fault {
         boolean pass = true;
@@ -2900,7 +2848,8 @@ public class Client extends ServiceEETest {
             }
 
             try {
-                if (consumer != null) consumer.close();
+                if (consumer != null)
+                    consumer.close();
             } catch (Exception e) {
             }
 
@@ -2920,7 +2869,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             } finally {
                 try {
-                    if (consumer != null) cleanupSubscription(consumer, context, "dummySubDIllegalState1");
+                    if (consumer != null)
+                        cleanupSubscription(consumer, context, "dummySubDIllegalState1");
                 } catch (Exception e) {
                 }
             }
@@ -2942,7 +2892,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             } finally {
                 try {
-                    if (consumer != null) cleanupSubscription(consumer, context, "dummySubDIllegalState2");
+                    if (consumer != null)
+                        cleanupSubscription(consumer, context, "dummySubDIllegalState2");
                 } catch (Exception e) {
                 }
             }
@@ -2964,7 +2915,8 @@ public class Client extends ServiceEETest {
                 pass = false;
             } finally {
                 try {
-                    if (consumer != null) cleanupSubscription(consumer, context, "dummySubDIllegalState2");
+                    if (consumer != null)
+                        cleanupSubscription(consumer, context, "dummySubDIllegalState2");
                 } catch (Exception e) {
                 }
             }

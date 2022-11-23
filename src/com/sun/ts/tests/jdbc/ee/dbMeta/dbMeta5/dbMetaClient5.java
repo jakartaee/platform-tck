@@ -39,8 +39,7 @@ import javax.sql.DataSource;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The dbMetaClient5 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The dbMetaClient5 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -75,14 +74,11 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -95,11 +91,16 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
                 dbUser = p.getProperty("user1", "");
                 sPtable = p.getProperty("ptable", "TSTABLE1");
                 sFtable = p.getProperty("ftable", "TSTABLE2");
-                if (dbName.length() == 0) throw new Fault("Invalid db1  Database Name");
-                if (dbUser.length() == 0) throw new Fault("Invalid Login Id");
-                if (sPtable.length() == 0) throw new Fault("Invalid Primary table");
-                if (sFtable.length() == 0) throw new Fault("Invalid Foreign table");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (dbName.length() == 0)
+                    throw new Fault("Invalid db1  Database Name");
+                if (dbUser.length() == 0)
+                    throw new Fault("Invalid Login Id");
+                if (sPtable.length() == 0)
+                    throw new Fault("Invalid Primary table");
+                if (sFtable.length() == 0)
+                    throw new Fault("Invalid Foreign table");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
 
                 int nLocdbname = dbName.indexOf('=');
                 sCatalogName = dbName.substring(nLocdbname + 1);
@@ -131,12 +132,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsGroupByUnrelated
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:894; JDBC:JAVADOC:895;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:894; JDBC:JAVADOC:895; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsGroupByUnrelated() method on that object. It
-     * should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsGroupByUnrelated() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsGroupByUnrelated() throws Fault {
@@ -161,12 +160,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsGroupByBeyondSelect
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:896; JDBC:JAVADOC:897;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:896; JDBC:JAVADOC:897; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsGroupByBeyondSelect() method on that object.
-     * It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsGroupByBeyondSelect() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsGroupByBeyondSelect() throws Fault {
@@ -191,12 +188,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsLikeEscapeClause
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:898; JDBC:JAVADOC:899;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:898; JDBC:JAVADOC:899; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsLikeEscapeClause() method on that object. It
-     * should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsLikeEscapeClause() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsLikeEscapeClause() throws Fault {
@@ -221,12 +216,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsMultipleResultSets
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:900; JDBC:JAVADOC:901;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:900; JDBC:JAVADOC:901; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsMultipleResultSets() method on that object.
-     * It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsMultipleResultSets() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsMultipleResultSets() throws Fault {
@@ -251,12 +244,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsMultipleTransactions
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:902; JDBC:JAVADOC:903;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:902; JDBC:JAVADOC:903; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsMultipleTransactions() method on that object.
-     * It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsMultipleTransactions() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsMultipleTransactions() throws Fault {
@@ -281,12 +272,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsNonNullableColumns
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:904; JDBC:JAVADOC:905;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:904; JDBC:JAVADOC:905; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsNonNullableColumns() method on that object.
-     * It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsNonNullableColumns() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsNonNullableColumns() throws Fault {
@@ -311,12 +300,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsMinimumSQLGrammar
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:906; JDBC:JAVADOC:907;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:906; JDBC:JAVADOC:907; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsMinimumSQLGrammar() method on that object. It
-     * should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsMinimumSQLGrammar() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsMinimumSQLGrammar() throws Fault {
@@ -341,12 +328,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsCoreSQLGrammar
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:908; JDBC:JAVADOC:909;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:908; JDBC:JAVADOC:909; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsCoreSQLGrammar() method on that object. It
-     * should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsCoreSQLGrammar() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsCoreSQLGrammar() throws Fault {
@@ -371,12 +356,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsExtendedSQLGrammar
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:910; JDBC:JAVADOC:911;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:910; JDBC:JAVADOC:911; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsExtendedSQLGrammar() method on that object.
-     * It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsExtendedSQLGrammar() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsExtendedSQLGrammar() throws Fault {
@@ -401,12 +384,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsANSI92EntryLevelSQL
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:912; JDBC:JAVADOC:913;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:912; JDBC:JAVADOC:913; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsANSI92EntryLevelSQL() method on that object.
-     * It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsANSI92EntryLevelSQL() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsANSI92EntryLevelSQL() throws Fault {
@@ -431,12 +412,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsANSI92IntermediateSQL
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:914; JDBC:JAVADOC:915;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:914; JDBC:JAVADOC:915; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsANSI92IntermediateSQL() method on that
-     * object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsANSI92IntermediateSQL() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsANSI92IntermediateSQL() throws Fault {
@@ -461,12 +440,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsANSI92FullSQL
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:916; JDBC:JAVADOC:917;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:916; JDBC:JAVADOC:917; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsANSI92FullSQL() method on that object. It
-     * should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsANSI92FullSQL() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsANSI92FullSQL() throws Fault {
@@ -491,12 +468,11 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsIntegrityEnhancementFacility
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:918; JDBC:JAVADOC:919;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:918; JDBC:JAVADOC:919; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsIntegrityEnhancementFacility() method onn
-     * that object. It should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsIntegrityEnhancementFacility() method onn that object. It should return a boolean value; either true or
+     * false.
      *
      */
     public void testSupportsIntegrityEnhancementFacility() throws Fault {
@@ -521,12 +497,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsOuterJoins
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:920; JDBC:JAVADOC:921;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:920; JDBC:JAVADOC:921; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsOuterJoins() method on that object. It should
-     * return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the supportsOuterJoins()
+     * method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsOuterJoins() throws Fault {
@@ -551,12 +525,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsFullOuterJoins
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:922; JDBC:JAVADOC:923;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:922; JDBC:JAVADOC:923; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsFullOuterJoins() method on that object. It
-     * should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsFullOuterJoins() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsFullOuterJoins() throws Fault {
@@ -589,12 +561,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testSupportsLimitedOuterJoins
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:924; JDBC:JAVADOC:925;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:924; JDBC:JAVADOC:925; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the supportsLimitedOuterJoins() method on that object. It
-     * should return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the
+     * supportsLimitedOuterJoins() method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testSupportsLimitedOuterJoins() throws Fault {
@@ -619,12 +589,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetSchemaTerm
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:926; JDBC:JAVADOC:927;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:926; JDBC:JAVADOC:927; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getSchemaTerm() method on that object. It should
-     * return a String and NULL if it cannot be generated.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the getSchemaTerm()
+     * method on that object. It should return a String and NULL if it cannot be generated.
      *
      */
     public void testGetSchemaTerm() throws Fault {
@@ -649,12 +617,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetProcedureTerm
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:928; JDBC:JAVADOC:929;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:928; JDBC:JAVADOC:929; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getProcedureTerm() method on that object. It should
-     * return a String and NULL if it cannot be generated.;
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the getProcedureTerm()
+     * method on that object. It should return a String and NULL if it cannot be generated.;
      *
      */
     public void testGetProcedureTerm() throws Fault {
@@ -679,12 +645,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetCatalogTerm
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:930; JDBC:JAVADOC:931;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:930; JDBC:JAVADOC:931; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the getCatalogTerm() method on that object. It should
-     * return a String and NULL if it cannot be returned.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the getCatalogTerm()
+     * method on that object. It should return a String and NULL if it cannot be returned.
      *
      */
     public void testGetCatalogTerm() throws Fault {
@@ -709,12 +673,10 @@ public class dbMetaClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testIsCatalogAtStart
      *
-     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:932; JDBC:JAVADOC:933;
-     * JavaEE:SPEC:193;
+     * @assertion_ids: JDBC:SPEC:8; JDBC:JAVADOC:932; JDBC:JAVADOC:933; JavaEE:SPEC:193;
      *
-     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the
-     * DataBase and call the isCatalogAtStart() method on that object. It should
-     * return a boolean value; either true or false.
+     * @test_Strategy: Get the DataBaseMetaData object from the Connection to the DataBase and call the isCatalogAtStart()
+     * method on that object. It should return a boolean value; either true or false.
      *
      */
     public void testIsCatalogAtStart() throws Fault {

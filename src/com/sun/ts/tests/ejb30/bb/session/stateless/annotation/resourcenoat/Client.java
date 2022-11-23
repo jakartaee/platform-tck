@@ -150,8 +150,7 @@ public class Client extends ClientBase {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: declare and inject a reference to UserTransaction in
-     * ejb-jar.xml with <resource-env-ref> element.
+     * @test_Strategy: declare and inject a reference to UserTransaction in ejb-jar.xml with <resource-env-ref> element.
      *
      */
 

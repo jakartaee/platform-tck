@@ -29,7 +29,8 @@ public class Pinger extends Thread {
 
     protected Runnable runnable;
 
-    public Pinger() {}
+    public Pinger() {
+    }
 
     public Pinger(StatefulConcurrencyIF bean) {
         this.bean = bean;

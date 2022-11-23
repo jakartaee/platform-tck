@@ -28,9 +28,8 @@ public class URLClient extends HttpResponseClient {
     private static final String CONTEXT_ROOT = "/servlet_pluh_httpservletresponse30_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends HttpResponseClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,34 +56,29 @@ public class URLClient extends HttpResponseClient {
     /*
      * @testName: getHeadersTest
      *
-     * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:525;
-     * Servlet:JAVADOC:779;
+     * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:525; Servlet:JAVADOC:779;
      *
-     * @test_Strategy: Create a Servlet, In the servlet, set a header value; then
-     * add multiple values to it; verify that getHeaders(String) works properly
+     * @test_Strategy: Create a Servlet, In the servlet, set a header value; then add multiple values to it; verify that
+     * getHeaders(String) works properly
      */
 
     /*
      * @testName: getHeaderTest
      *
-     * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:523;
-     * Servlet:JAVADOC:777;
+     * @assertion_ids: Servlet:JAVADOC:523; Servlet:JAVADOC:523; Servlet:JAVADOC:777;
      *
-     * @test_Strategy: Create a Servlet, In the servlet, set a header value; then
-     * add multiple values to it; verify that getHeader(String) works properly
+     * @test_Strategy: Create a Servlet, In the servlet, set a header value; then add multiple values to it; verify that
+     * getHeader(String) works properly
      */
 
     /*
      * @testName: getHeaderNamesTest
      *
-     * @assertion_ids: Servlet:JAVADOC:520; Servlet:JAVADOC:522;
-     * Servlet:JAVADOC:523; Servlet:JAVADOC:525; Servlet:JAVADOC:526;
-     * Servlet:JAVADOC:527; Servlet:JAVADOC:778;
+     * @assertion_ids: Servlet:JAVADOC:520; Servlet:JAVADOC:522; Servlet:JAVADOC:523; Servlet:JAVADOC:525;
+     * Servlet:JAVADOC:526; Servlet:JAVADOC:527; Servlet:JAVADOC:778;
      *
-     * @test_Strategy: Create a Servlet, In the servlet, set multiuple header
-     * values using: #setHeader, #addHeader, #setDateHeader, #addDateHeader,
-     * #setIntHeader, and #addIntHeader, verify that getHeaderNames() works
-     * properly
+     * @test_Strategy: Create a Servlet, In the servlet, set multiuple header values using: #setHeader, #addHeader,
+     * #setDateHeader, #addDateHeader, #setIntHeader, and #addIntHeader, verify that getHeaderNames() works properly
      */
 
     /*
@@ -93,7 +86,6 @@ public class URLClient extends HttpResponseClient {
      *
      * @assertion_ids: Servlet:JAVADOC:780;
      *
-     * @test_Strategy: Create a Servlet, In the servlet, set a status value;
-     * verify that getStatus() works properly
+     * @test_Strategy: Create a Servlet, In the servlet, set a status value; verify that getStatus() works properly
      */
 }

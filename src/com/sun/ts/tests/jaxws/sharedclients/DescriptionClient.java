@@ -38,7 +38,8 @@ public class DescriptionClient implements Serializable {
     private String url;
 
     public URL getAsURL() {
-        if (url == null) return null;
+        if (url == null)
+            return null;
         try {
             return new URL(url);
         } catch (Exception e) {

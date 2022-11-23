@@ -24,4 +24,5 @@ import com.sun.ts.tests.ejb30.tx.common.session.inheritance.TxLocalIF;
 import jakarta.ejb.Stateless;
 
 @Stateless()
-public class ABean extends ABeanBase implements TxLocalIF {}
+public class ABean extends ABeanBase implements TxLocalIF {
+}

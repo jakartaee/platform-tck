@@ -63,56 +63,56 @@ public class CTSDeliverable extends AbstractDeliverable {
 
         // sample jdbc tests
         htTSValidVehicles.put(
-                "tests_samples_jdbc.service_eetest.vehicles", new String[] {"ejb", "servlet", "jsp", "appclient"});
+                "tests_samples_jdbc.service_eetest.vehicles", new String[] { "ejb", "servlet", "jsp", "appclient" });
 
         // signature tests
         htTSValidVehicles.put(
-                "tests_signaturetest.service_eetest.vehicles", new String[] {"ejb", "servlet", "jsp", "appclient"});
+                "tests_signaturetest.service_eetest.vehicles", new String[] { "ejb", "servlet", "jsp", "appclient" });
 
         // jaxp tests
         htTSValidVehicles.put(
-                "tests_jaxp.service_eetest.vehicles", new String[] {"ejb", "servlet", "jsp", "appclient"});
+                "tests_jaxp.service_eetest.vehicles", new String[] { "ejb", "servlet", "jsp", "appclient" });
 
         // jaxp com directory tests (until we figure out notserializable exc.)
-        htTSValidVehicles.put("tests_jaxp_extension_com.service_eetest.vehicles", new String[] {"appclient"});
+        htTSValidVehicles.put("tests_jaxp_extension_com.service_eetest.vehicles", new String[] { "appclient" });
 
         // interop/naming/cosnamingNoSSL
         htTSValidVehicles.put(
                 "tests_interop_naming_cosnamingNoSSL.service_eetest.vehicles",
-                new String[] {"ejb", "servlet", "jsp", "appclient"});
+                new String[] { "ejb", "servlet", "jsp", "appclient" });
 
         // jaxm tests
         htTSValidVehicles.put(
-                "tests_jaxm.service_eetest.vehicles", new String[] {"ejb", "servlet", "jsp", "appclient"});
+                "tests_jaxm.service_eetest.vehicles", new String[] { "ejb", "servlet", "jsp", "appclient" });
 
         // saaj/ee/Standalone tests
         htTSValidVehicles.put(
                 "tests_saaj_ee_Standalone.service_eetest.vehicles",
-                new String[] {"ejb", "servlet", "jsp", "appclient"});
+                new String[] { "ejb", "servlet", "jsp", "appclient" });
 
         // interop/webservices
         htTSValidVehicles.put(
                 "tests_interop_webservices.service_eetest.vehicles",
-                new String[] {"ejb", "servlet", "jsp", "appclient"});
+                new String[] { "ejb", "servlet", "jsp", "appclient" });
 
         // interop/saaj/Standalone
         htTSValidVehicles.put(
                 "tests_interop_saaj_Standalone.service_eetest.vehicles",
-                new String[] {"ejb", "servlet", "jsp", "appclient"});
+                new String[] { "ejb", "servlet", "jsp", "appclient" });
 
         // jdbc tests
         htTSValidVehicles.put(
-                "tests_jdbc_ee.service_eetest.vehicles", new String[] {"ejb", "servlet", "jsp", "appclient"});
+                "tests_jdbc_ee.service_eetest.vehicles", new String[] { "ejb", "servlet", "jsp", "appclient" });
 
         // jms tests
-        htTSValidVehicles.put("tests_jms_ee_appclient.service_eetest.vehicles", new String[] {"appclient"});
-        htTSValidVehicles.put("tests_jms_ee_web.service_eetest.vehicles", new String[] {"servlet", "jsp"});
-        htTSValidVehicles.put("tests_jms_ee_ejb.service_eetest.vehicles", new String[] {"ejb"});
+        htTSValidVehicles.put("tests_jms_ee_appclient.service_eetest.vehicles", new String[] { "appclient" });
+        htTSValidVehicles.put("tests_jms_ee_web.service_eetest.vehicles", new String[] { "servlet", "jsp" });
+        htTSValidVehicles.put("tests_jms_ee_ejb.service_eetest.vehicles", new String[] { "ejb" });
         htTSValidVehicles.put(
-                "tests_jms_ee_all.service_eetest.vehicles", new String[] {"appclient", "ejb", "servlet", "jsp"});
+                "tests_jms_ee_all.service_eetest.vehicles", new String[] { "appclient", "ejb", "servlet", "jsp" });
 
         // j2ee Management tests
-        htTSValidVehicles.put("tests_j2eetools_mgmt.service_eetest.vehicles", new String[] {"ejb"});
+        htTSValidVehicles.put("tests_j2eetools_mgmt.service_eetest.vehicles", new String[] { "ejb" });
 
         // jmx tests
         // htTSValidVehicles.put("tests_jmx.service_eetest.vehicles", new

@@ -56,7 +56,8 @@ public class NoTxManagedConnectionFactory
      *
      * @desc Default conctructor
      */
-    public NoTxManagedConnectionFactory() {}
+    public NoTxManagedConnectionFactory() {
+    }
 
     public String getUser() {
         System.out.println("NoTxManagedConnectionFactory.getUser() returning:  " + user);
@@ -238,7 +239,8 @@ public class NoTxManagedConnectionFactory
      * @exception ResourceException
      */
     @Override
-    public void setLogWriter(PrintWriter out) throws ResourceException {}
+    public void setLogWriter(PrintWriter out) throws ResourceException {
+    }
 
     /*
      * @name getLogWriter
@@ -291,11 +293,14 @@ public class NoTxManagedConnectionFactory
             return false;
         }
 
-        if (!Util.isEqual(this.password, that.getPassword())) return false;
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
 
-        if (!Util.isEqual(this.user, that.getUser())) return false;
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
 
-        if (!Util.isEqual(this.userName, that.getUserName())) return false;
+        if (!Util.isEqual(this.userName, that.getUserName()))
+            return false;
 
         return true;
     }

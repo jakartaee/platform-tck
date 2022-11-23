@@ -73,9 +73,8 @@ public class Client extends BaseUrlClient {
     private String unauthPassword = null;
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -84,8 +83,7 @@ public class Client extends BaseUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -95,8 +93,8 @@ public class Client extends BaseUrlClient {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; securedWebServicePort;
-     * user; password; authuser; authpassword; ts_home;
+     * @class.setup_props: webServerHost; webServerPort; securedWebServicePort; user; password; authuser; authpassword;
+     * ts_home;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -121,17 +119,14 @@ public class Client extends BaseUrlClient {
     /*
      * @testName: test1
      *
-     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:215; Servlet:SPEC:228;
-     * Servlet:SPEC:294; Servlet:SPEC:295; Servlet:SPEC:217; Servlet:SPEC:198;
-     * Servlet:SPEC:289; Servlet:SPEC:258.3;
+     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:215; Servlet:SPEC:228; Servlet:SPEC:294; Servlet:SPEC:295;
+     * Servlet:SPEC:217; Servlet:SPEC:198; Servlet:SPEC:289; Servlet:SPEC:258.3;
      *
-     * @assertion: 1. annotations that permit all must be supported by the Web
-     * container. However, if the metadata-complete flag == true in the DD, then
-     * the annotation must be ignored. (per assertion Servlet:SPEC:228)
+     * @assertion: 1. annotations that permit all must be supported by the Web container. However, if the metadata-complete
+     * flag == true in the DD, then the annotation must be ignored. (per assertion Servlet:SPEC:228)
      *
-     * @test_Strategy: 1. Send request to access DenyAllServlet - which is going
-     * to be granted all access via annotation but will be marked as DenyAll in
-     * the DD. The DD MUST take precedence. 2. Receive an access denied
+     * @test_Strategy: 1. Send request to access DenyAllServlet - which is going to be granted all access via annotation but
+     * will be marked as DenyAll in the DD. The DD MUST take precedence. 2. Receive an access denied
      */
     public void test1() throws Fault {
         trace("testing that we can NOT access: " + pageDeny);
@@ -159,23 +154,18 @@ public class Client extends BaseUrlClient {
     /*
      * @testName: test2
      *
-     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:217; Servlet:SPEC:218;
-     * Servlet:SPEC:228; Servlet:SPEC:294; Servlet:SPEC:295; Servlet:SPEC:198;
-     * Servlet:SPEC:289; Servlet:SPEC:258.3;
+     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:217; Servlet:SPEC:218; Servlet:SPEC:228; Servlet:SPEC:294;
+     * Servlet:SPEC:295; Servlet:SPEC:198; Servlet:SPEC:289; Servlet:SPEC:258.3;
      *
-     * @assertion: 1. Servlet 3.0 spec (section 13.4 - 3rd from last para) states:
-     * "When a security-constraint in the portable deployment descriptor includes
-     * a url-pattern that matches a request URL, the security annotations
-     * described in this section have no effect on the access policy that applies
-     * to the request URL."
+     * @assertion: 1. Servlet 3.0 spec (section 13.4 - 3rd from last para) states: "When a security-constraint in the
+     * portable deployment descriptor includes a url-pattern that matches a request URL, the security annotations described
+     * in this section have no effect on the access policy that applies to the request URL."
      *
      *
-     * @test_Strategy: 1. We have GuestPageTestServlet setup with DenyAll anno but
-     * we have DD setup with roles and security-constraints that say POST can be
-     * accessed by Manager role (via user=javajoe) and according to spec
-     * statement, the annotation must be ignored since metadata-complete=true in
-     * the DD. 2. attempt to POST & GET as user javajoe should allow access since
-     * DD grants it and since metadata-complete is true, the annotations security
+     * @test_Strategy: 1. We have GuestPageTestServlet setup with DenyAll anno but we have DD setup with roles and
+     * security-constraints that say POST can be accessed by Manager role (via user=javajoe) and according to spec
+     * statement, the annotation must be ignored since metadata-complete=true in the DD. 2. attempt to POST & GET as user
+     * javajoe should allow access since DD grants it and since metadata-complete is true, the annotations security
      * constraints do NOT get used.
      */
     public void test2() throws Fault {
@@ -212,29 +202,22 @@ public class Client extends BaseUrlClient {
     /*
      * @testName: test3
      *
-     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:216; Servlet:SPEC:217;
-     * Servlet:SPEC:228; Servlet:SPEC:294; Servlet:SPEC:295; Servlet:SPEC:198;
-     * Servlet:SPEC:289; Servlet:SPEC:258.3;
+     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:216; Servlet:SPEC:217; Servlet:SPEC:228; Servlet:SPEC:294;
+     * Servlet:SPEC:295; Servlet:SPEC:198; Servlet:SPEC:289; Servlet:SPEC:258.3;
      *
-     * @assertion: 1. Servlet 3.0 spec (section 13.4 - 3rd from last para) states:
-     * "When a security-constraint in the portable deployment descriptor includes
-     * a url-pattern that matches a request URL, the security annotations
-     * described in this section have no effect on the access policy that applies
-     * to the request URL."
+     * @assertion: 1. Servlet 3.0 spec (section 13.4 - 3rd from last para) states: "When a security-constraint in the
+     * portable deployment descriptor includes a url-pattern that matches a request URL, the security annotations described
+     * in this section have no effect on the access policy that applies to the request URL."
      *
      *
-     * @test_Strategy: This is another variation of a test which validates that DD
-     * settings override annotation settings when the url-pattern of both match
-     * AND when the DD's metadata-complete = true. 1. create ServletSecTestServlet
-     * with a declared annotation at the class level as well as a conflicting DD
-     * declaration. The annotation should get ignored and the DD should take
-     * precedence since the DD has set metadata-complete=true. 2. validate that
-     * the annotation declaration which states ServletSecTest POST can be accessed
-     * is WRONG since the DD declares that POST is set to be deny for all roles.
-     * 3. try to access GET using valid creds (for Administrator=j2ee) since the
-     * DD specifies GET for role=Adminstrator. (Note that annotation declares GET
-     * should be deny by role=Adminstrator - so verify this annotation is NOT
-     * used.)
+     * @test_Strategy: This is another variation of a test which validates that DD settings override annotation settings
+     * when the url-pattern of both match AND when the DD's metadata-complete = true. 1. create ServletSecTestServlet with a
+     * declared annotation at the class level as well as a conflicting DD declaration. The annotation should get ignored and
+     * the DD should take precedence since the DD has set metadata-complete=true. 2. validate that the annotation
+     * declaration which states ServletSecTest POST can be accessed is WRONG since the DD declares that POST is set to be
+     * deny for all roles. 3. try to access GET using valid creds (for Administrator=j2ee) since the DD specifies GET for
+     * role=Adminstrator. (Note that annotation declares GET should be deny by role=Adminstrator - so verify this annotation
+     * is NOT used.)
      *
      */
     public void test3() throws Fault {
@@ -286,20 +269,16 @@ public class Client extends BaseUrlClient {
     /*
      * @testName: test4
      *
-     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:216; Servlet:SPEC:217;
-     * Servlet:SPEC:228; Servlet:SPEC:294; Servlet:SPEC:295; Servlet:SPEC:198;
-     * Servlet:SPEC:289; Servlet:SPEC:258.3;
+     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:216; Servlet:SPEC:217; Servlet:SPEC:228; Servlet:SPEC:294;
+     * Servlet:SPEC:295; Servlet:SPEC:198; Servlet:SPEC:289; Servlet:SPEC:258.3;
      *
-     * @assertion: 1. Servlet 3.0 (section 13.4) states: "When an annotation is
-     * specified at both the class and method level, the method targeted
-     * annotation overrides that on the class (for the method) " 2. DenyAll can be
-     * applied to class and method level so here we are validating its use at the
-     * method level.
+     * @assertion: 1. Servlet 3.0 (section 13.4) states: "When an annotation is specified at both the class and method
+     * level, the method targeted annotation overrides that on the class (for the method) " 2. DenyAll can be applied to
+     * class and method level so here we are validating its use at the method level.
      *
-     * @test_Strategy: 1. create ServletSecTestServlet with annotation on the
-     * servlet that sets GET & POST to be denied access by all 2. do Post w/
-     * correct credentials (for Manager) and should be allowed since DD declares
-     * this constraint.
+     * @test_Strategy: 1. create ServletSecTestServlet with annotation on the servlet that sets GET & POST to be denied
+     * access by all 2. do Post w/ correct credentials (for Manager) and should be allowed since DD declares this
+     * constraint.
      *
      */
     public void test4() throws Fault {
@@ -319,16 +298,14 @@ public class Client extends BaseUrlClient {
     /*
      * @testName: test5
      *
-     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:215; Servlet:SPEC:217;
-     * Servlet:SPEC:228; Servlet:SPEC:294; Servlet:SPEC:295; Servlet:SPEC:198;
-     * Servlet:SPEC:289; Servlet:SPEC:258.3;
+     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:215; Servlet:SPEC:217; Servlet:SPEC:228; Servlet:SPEC:294;
+     * Servlet:SPEC:295; Servlet:SPEC:198; Servlet:SPEC:289; Servlet:SPEC:258.3;
      *
-     * @assertion: Servlet 3.0 spec (section 13.4) states: "These annotations may
-     * be specified on (that is, targeted to) an HttpServlet implementation class
-     * or on specific method(s) of the implementation class as defined below."
+     * @assertion: Servlet 3.0 spec (section 13.4) states: "These annotations may be specified on (that is, targeted to) an
+     * HttpServlet implementation class or on specific method(s) of the implementation class as defined below."
      *
-     * @test_Strategy: 1. Send request for unprotected servlet that uses the
-     * PermitAll access at the class level. 2. Receive page
+     * @test_Strategy: 1. Send request for unprotected servlet that uses the PermitAll access at the class level. 2. Receive
+     * page
      */
     public void test5() throws Fault {
 
@@ -347,19 +324,15 @@ public class Client extends BaseUrlClient {
     /*
      * @testName: test6
      *
-     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:217; Servlet:SPEC:218;
-     * Servlet:SPEC:228; Servlet:SPEC:294; Servlet:SPEC:295; Servlet:SPEC:198;
-     * Servlet:SPEC:289; Servlet:SPEC:258.3;
+     * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:217; Servlet:SPEC:218; Servlet:SPEC:228; Servlet:SPEC:294;
+     * Servlet:SPEC:295; Servlet:SPEC:198; Servlet:SPEC:289; Servlet:SPEC:258.3;
      *
-     * @assertion: This validates Servlet 3.0 spec section 13.4, which says: "When
-     * a security-constraint in the portable deployment descriptor includes a
-     * url-pattern that matches a request URL, the security annotations described
-     * in this section have no effect on the access policy that applies to the
-     * request URL."
+     * @assertion: This validates Servlet 3.0 spec section 13.4, which says: "When a security-constraint in the portable
+     * deployment descriptor includes a url-pattern that matches a request URL, the security annotations described in this
+     * section have no effect on the access policy that applies to the request URL."
      *
-     * @test_Strategy: 1. do POST or GET with incorrect authentication (ie "j2ee")
-     * should NOT allows access since "j2ee" is not in roles as defined in DD. The
-     * DD only allows role=Manager (with user=javajoe) to GET or POST.
+     * @test_Strategy: 1. do POST or GET with incorrect authentication (ie "j2ee") should NOT allows access since "j2ee" is
+     * not in roles as defined in DD. The DD only allows role=Manager (with user=javajoe) to GET or POST.
      *
      */
     public void test6() throws Fault {
@@ -421,10 +394,8 @@ public class Client extends BaseUrlClient {
     /**
      * Returns a valid HTTP/1.1 request line.
      *
-     * @param method
-     *          the request method
-     * @param path
-     *          the request path
+     * @param method the request method
+     * @param path the request path
      * @return a valid HTTP/1.1 request line
      */
     private static String getRequestLine(String method, String path) {
@@ -434,8 +405,7 @@ public class Client extends BaseUrlClient {
     /**
      * Simple wrapper around TestUtil.logTrace().
      *
-     * @param message
-     *          - the message to log
+     * @param message - the message to log
      */
     private static void trace(String message) {
         TestUtil.logMsg(CLASS_TRACE_HEADER + message);

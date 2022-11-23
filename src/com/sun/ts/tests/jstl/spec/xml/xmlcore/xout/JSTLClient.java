@@ -31,17 +31,16 @@ public class JSTLClient extends AbstractUrlClient {
      */
 
     /** Creates new JSTLClient */
-    public JSTLClient() {}
+    public JSTLClient() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         JSTLClient theTests = new JSTLClient();
@@ -50,8 +49,7 @@ public class JSTLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -66,8 +64,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:68; JSTL:SPEC:68.1; JSTL:SPEC:68.6
      *
-     * @testStrategy: Validate that the action properly displays the result of an
-     * XPath expression provided to the select attribute.
+     * @testStrategy: Validate that the action properly displays the result of an XPath expression provided to the select
+     * attribute.
      */
     public void positiveOutSelectTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveOutSelectTest");
@@ -77,13 +75,11 @@ public class JSTLClient extends AbstractUrlClient {
     /*
      * @testName: positiveOutEscXmlTest
      *
-     * @assertion_ids: JSTL:SPEC:68; JSTL:SPEC:68.2; JSTL:SPEC:68.2.1;
-     * JSTL:SPEC:68.2.2; JSTL:SPEC:68.2.3; JSTL:SPEC:68.2.4; JSTL:SPEC:68.2.5;
-     * JSTL:SPEC:68.2.6
+     * @assertion_ids: JSTL:SPEC:68; JSTL:SPEC:68.2; JSTL:SPEC:68.2.1; JSTL:SPEC:68.2.2; JSTL:SPEC:68.2.3; JSTL:SPEC:68.2.4;
+     * JSTL:SPEC:68.2.5; JSTL:SPEC:68.2.6
      *
-     * @testStrategy: Validate that the escaping of XML entities (<,>,&,',") will
-     * occur if the escapeXml is not present, or the value is true. Also validate
-     * that no escaping occurs if the value is false.
+     * @testStrategy: Validate that the escaping of XML entities (<,>,&,',") will occur if the escapeXml is not present, or
+     * the value is true. Also validate that no escaping occurs if the value is false.
      */
     public void positiveOutEscXmlTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "positiveOutEscXmlTest");
@@ -95,8 +91,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:68; JSTL:SPEC:68.5; JSTL:SPEC:68.7
      *
-     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
-     * the expression language fails to evaluate the provided XPath expression.
+     * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if the expression language fails to
+     * evaluate the provided XPath expression.
      */
     public void negativeOutSelectFailureTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "negativeOutSelectFailureTest");
@@ -108,8 +104,8 @@ public class JSTLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSTL:SPEC:68; JSTL:SPEC:68.6
      *
-     * @testStrategy: Validate that a fatal translation error is generated if the
-     * select attribute is not present in the out action.
+     * @testStrategy: Validate that a fatal translation error is generated if the select attribute is not present in the out
+     * action.
      */
     public void negativeOutSelectReqAttrTest() throws Fault {
         TEST_PROPS.setProperty(TEST_NAME, "negativeOutSelectReqAttrTest");

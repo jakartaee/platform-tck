@@ -23,9 +23,8 @@ package com.sun.ts.tests.signaturetest;
 import java.util.Properties;
 
 /**
- * This class holds the data passed to a signature test invocation during the
- * setup phase. This allows us to keep the passed data separate and reuse the
- * data between the signature test framework base classes.
+ * This class holds the data passed to a signature test invocation during the setup phase. This allows us to keep the
+ * passed data separate and reuse the data between the signature test framework base classes.
  */
 public class SigTestData {
 

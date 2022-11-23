@@ -27,7 +27,8 @@ import jakarta.websocket.EndpointConfig;
 public class ErrorEncoder implements Encoder.Text<String> {
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
     public String encode(String data) throws EncodeException {
@@ -35,5 +36,6 @@ public class ErrorEncoder implements Encoder.Text<String> {
     }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

@@ -36,7 +36,8 @@ public class Client extends PMClientBase {
 
     private final java.sql.Date dateValue = getSQLDate(2006, 04, 15);
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -60,12 +61,10 @@ public class Client extends PMClientBase {
     /*
      * @testName: fieldTypeTest1
      *
-     * @assertion_ids: PERSISTENCE:SPEC:511; PERSISTENCE:SPEC:524;
-     * PERSISTENCE:SPEC:534; PERSISTENCE:SPEC:512; PERSISTENCE:SPEC:525;
-     * PERSISTENCE:JAVADOC:14; PERSISTENCE:JAVADOC:203; PERSISTENCE:SPEC:1976
+     * @assertion_ids: PERSISTENCE:SPEC:511; PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:534; PERSISTENCE:SPEC:512;
+     * PERSISTENCE:SPEC:525; PERSISTENCE:JAVADOC:14; PERSISTENCE:JAVADOC:203; PERSISTENCE:SPEC:1976
      *
-     * @test_Strategy: The persistent field of an entity may be of the following
-     * type: Java primitive types: boolean
+     * @test_Strategy: The persistent field of an entity may be of the following type: Java primitive types: boolean
      */
 
     public void fieldTypeTest1() throws Fault {
@@ -104,17 +103,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest1 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest1 failed");
     }
 
     /*
      * @testName: fieldTypeTest2
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-     * PERSISTENCE:SPEC:513; PERSISTENCE:SPEC:1976
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525; PERSISTENCE:SPEC:513; PERSISTENCE:SPEC:1976
      *
-     * @test_Strategy: The persistent field of an entity may be of the following
-     * type: Java primitive types: byte
+     * @test_Strategy: The persistent field of an entity may be of the following type: Java primitive types: byte
      */
 
     public void fieldTypeTest2() throws Fault {
@@ -154,17 +152,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest2 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest2 failed");
     }
 
     /*
      * @testName: fieldTypeTest3
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent field of an entity may be of the following
-     * type: Java primitive types: char
+     * @test_Strategy: The persistent field of an entity may be of the following type: Java primitive types: char
      */
 
     public void fieldTypeTest3() throws Fault {
@@ -204,17 +201,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest3 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest3 failed");
     }
 
     /*
      * @testName: fieldTypeTest4
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent field of an entity may be of the following
-     * type: Java primitive types: short
+     * @test_Strategy: The persistent field of an entity may be of the following type: Java primitive types: short
      */
 
     public void fieldTypeTest4() throws Fault {
@@ -254,17 +250,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest4 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest4 failed");
     }
 
     /*
      * @testName: fieldTypeTest5
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent field of an entity may be of the following
-     * type: Java primitive types: int
+     * @test_Strategy: The persistent field of an entity may be of the following type: Java primitive types: int
      */
 
     public void fieldTypeTest5() throws Fault {
@@ -303,17 +298,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest5 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest5 failed");
     }
 
     /*
      * @testName: fieldTypeTest6
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent field of an entity may be of the following
-     * type: Java primitive types: long
+     * @test_Strategy: The persistent field of an entity may be of the following type: Java primitive types: long
      */
 
     public void fieldTypeTest6() throws Fault {
@@ -353,17 +347,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest6 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest6 failed");
     }
 
     /*
      * @testName: fieldTypeTest7
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent field of an entity may be of the following
-     * type: Java primitive types: double
+     * @test_Strategy: The persistent field of an entity may be of the following type: Java primitive types: double
      */
 
     public void fieldTypeTest7() throws Fault {
@@ -402,17 +395,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest7 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest7 failed");
     }
 
     /*
      * @testName: fieldTypeTest8
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:525; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent field of an entity may be of the following
-     * type: Java primitive types: float
+     * @test_Strategy: The persistent field of an entity may be of the following type: Java primitive types: float
      */
 
     public void fieldTypeTest8() throws Fault {
@@ -458,17 +450,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest8 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest8 failed");
     }
 
     /*
      * @testName: fieldTypeTest9
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:529;
-     * PERSISTENCE:SPEC:556; PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:556; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent field of an entity may be of the following
-     * type: enums
+     * @test_Strategy: The persistent field of an entity may be of the following type: enums
      *
      * With the Enumerated annotation and EnumType.STRING.
      */
@@ -514,21 +505,19 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest9 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest9 failed");
     }
 
     /*
      * @testName: fieldTypeTest10
      *
-     * @assertion_ids: PERSISTENCE:SPEC:536; PERSISTENCE:SPEC:540;
-     * PERSISTENCE:SPEC:550; PERSISTENCE:SPEC:1090.0; PERSISTENCE:JAVADOC:216;
-     * PERSISTENCE:JAVADOC:217; PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:536; PERSISTENCE:SPEC:540; PERSISTENCE:SPEC:550; PERSISTENCE:SPEC:1090.0;
+     * PERSISTENCE:JAVADOC:216; PERSISTENCE:JAVADOC:217; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The primary key should be one of the following types:
-     * java.util.Date
+     * @test_Strategy: The primary key should be one of the following types: java.util.Date
      *
-     * The application must not change the value of the primary key. The behavior
-     * is undefined if this occurs.
+     * The application must not change the value of the primary key. The behavior is undefined if this occurs.
      *
      * Temporal.TemporalType.DATE
      */
@@ -567,24 +556,23 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest10 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest10 failed");
     }
 
     /*
      * @testName: fieldTypeTest11
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: byte[]
+     * @test_Strategy: The persistent property of an entity may be of the following type: byte[]
      *
      */
 
     public void fieldTypeTest11() throws Fault {
 
         boolean pass = false;
-        final byte[] b = {31, 32, 33, 63, 64, 65};
+        final byte[] b = { 31, 32, 33, 63, 64, 65 };
         final byte bv = 5;
         byte[] a;
 
@@ -634,24 +622,23 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest11 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest11 failed");
     }
 
     /*
      * @testName: fieldTypeTest12
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:528; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: char[]
+     * @test_Strategy: The persistent property of an entity may be of the following type: char[]
      *
      */
 
     public void fieldTypeTest12() throws Fault {
 
         boolean pass = false;
-        final char[] charData = new char[] {'c', 't', 's'};
+        final char[] charData = new char[] { 'c', 't', 's' };
 
         try {
             getEntityTransaction().begin();
@@ -691,17 +678,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest12 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest12 failed");
     }
 
     /*
      * @testName: fieldTypeTest13
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: java.sql.Time
+     * @test_Strategy: The persistent property of an entity may be of the following type: java.sql.Time
      */
 
     public void fieldTypeTest13() throws Fault {
@@ -746,17 +732,16 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest13 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest13 failed");
     }
 
     /*
      * @testName: fieldTypeTest14
      *
-     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527;
-     * PERSISTENCE:SPEC:1976;
+     * @assertion_ids: PERSISTENCE:SPEC:524; PERSISTENCE:SPEC:527; PERSISTENCE:SPEC:1976;
      *
-     * @test_Strategy: The persistent property of an entity may be of the
-     * following type: java.sql.Timestamp
+     * @test_Strategy: The persistent property of an entity may be of the following type: java.sql.Timestamp
      */
 
     public void fieldTypeTest14() throws Fault {
@@ -801,17 +786,18 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest14 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest14 failed");
     }
 
     /*
      * @testName: fieldTypeTest15
      *
-     * @assertion_ids: PERSISTENCE:SPEC:428; PERSISTENCE:SPEC:529;
-     * PERSISTENCE:SPEC:1090.1; PERSISTENCE:SPEC:1090.2; PERSISTENCE:SPEC:1630;
+     * @assertion_ids: PERSISTENCE:SPEC:428; PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:1090.1; PERSISTENCE:SPEC:1090.2;
+     * PERSISTENCE:SPEC:1630;
      *
-     * @test_Strategy: enum_expression ::= enum_primary | (subquery) enum_primary
-     * ::= statefield_path_expression | input parameter | enum_literal
+     * @test_Strategy: enum_expression ::= enum_primary | (subquery) enum_primary ::= statefield_path_expression | input
+     * parameter | enum_literal
      *
      * statefield_path_expression
      */
@@ -864,17 +850,17 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest15 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest15 failed");
     }
 
     /*
      * @testName: fieldTypeTest16
      *
-     * @assertion_ids: PERSISTENCE:SPEC:428; PERSISTENCE:SPEC:529;
-     * PERSISTENCE:SPEC:1090.1; PERSISTENCE:SPEC:1090.2
+     * @assertion_ids: PERSISTENCE:SPEC:428; PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:1090.1; PERSISTENCE:SPEC:1090.2
      *
-     * @test_Strategy: enum_expression ::= enum_primary | (subquery) enum_primary
-     * ::= state_field_path_expression | input parameter | enum_literal
+     * @test_Strategy: enum_expression ::= enum_primary | (subquery) enum_primary ::= state_field_path_expression | input
+     * parameter | enum_literal
      *
      * named parameter
      */
@@ -927,17 +913,17 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest16 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest16 failed");
     }
 
     /*
      * @testName: fieldTypeTest17
      *
-     * @assertion_ids: PERSISTENCE:SPEC:428; PERSISTENCE:SPEC:529;
-     * PERSISTENCE:SPEC:1090.1; PERSISTENCE:SPEC:1090.2
+     * @assertion_ids: PERSISTENCE:SPEC:428; PERSISTENCE:SPEC:529; PERSISTENCE:SPEC:1090.1; PERSISTENCE:SPEC:1090.2
      *
-     * @test_Strategy: enum_expression ::= enum_primary | (subquery) enum_primary
-     * ::= state_field_path_expression | input parameter | enum_literal
+     * @test_Strategy: enum_expression ::= enum_primary | (subquery) enum_primary ::= state_field_path_expression | input
+     * parameter | enum_literal
      *
      * positional parameters
      */
@@ -993,7 +979,8 @@ public class Client extends PMClientBase {
             }
         }
 
-        if (!pass) throw new Fault("fieldTypeTest17 failed");
+        if (!pass)
+            throw new Fault("fieldTypeTest17 failed");
     }
 
     /*
@@ -1179,7 +1166,8 @@ public class Client extends PMClientBase {
             TestUtil.logErr("Caught exception: ", e);
         }
 
-        if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) throw new Fault("scalarExpressionsTest failed");
+        if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5)
+            throw new Fault("scalarExpressionsTest failed");
     }
 
     // Methods used for Tests
@@ -1188,8 +1176,8 @@ public class Client extends PMClientBase {
         try {
             getEntityTransaction().begin();
 
-            char[] cArray = {'a'};
-            byte[] bArray = {(byte) 100};
+            char[] cArray = { 'a' };
+            byte[] bArray = { (byte) 100 };
             d1 = new DataTypes(1, false, (byte) 100, 'a', (short) 100, 300, 600L, 50D, 1.0F, cArray, bArray);
             d1.setEnumData(Grade.C);
 

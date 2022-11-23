@@ -30,7 +30,8 @@ public class Dog implements java.io.Serializable {
 
     private String name = DOG_NAME;
 
-    public Dog() {}
+    public Dog() {
+    }
 
     public static Dog getInstance() {
         return instance;

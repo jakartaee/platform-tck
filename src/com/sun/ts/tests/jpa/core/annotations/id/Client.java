@@ -25,7 +25,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -86,7 +87,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("FieldIntegerIdTest failed");
+        if (!pass)
+            throw new Fault("FieldIntegerIdTest failed");
     }
 
     /*
@@ -132,7 +134,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("FieldIntIdTest failed");
+        if (!pass)
+            throw new Fault("FieldIntIdTest failed");
     }
 
     /*
@@ -178,7 +181,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("FieldBigIntegerIdTest failed");
+        if (!pass)
+            throw new Fault("FieldBigIntegerIdTest failed");
     }
 
     /*
@@ -224,7 +228,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("FieldBigDecimalIdTest failed");
+        if (!pass)
+            throw new Fault("FieldBigDecimalIdTest failed");
     }
 
     /*
@@ -270,7 +275,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("FieldStringIdTest failed");
+        if (!pass)
+            throw new Fault("FieldStringIdTest failed");
     }
 
     /*
@@ -315,7 +321,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("FieldSQLDateIdTest failed");
+        if (!pass)
+            throw new Fault("FieldSQLDateIdTest failed");
     }
 
     /*
@@ -360,7 +367,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("FieldUtilDateIdTest failed");
+        if (!pass)
+            throw new Fault("FieldUtilDateIdTest failed");
     }
 
     /*
@@ -406,7 +414,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("PropertyIntegerIdTest failed");
+        if (!pass)
+            throw new Fault("PropertyIntegerIdTest failed");
     }
 
     /*
@@ -452,7 +461,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("PropertyIntIdTest failed");
+        if (!pass)
+            throw new Fault("PropertyIntIdTest failed");
     }
 
     /*
@@ -498,7 +508,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("PropertyBigIntegerIdTest failed");
+        if (!pass)
+            throw new Fault("PropertyBigIntegerIdTest failed");
     }
 
     /*
@@ -544,7 +555,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("PropertyBigDecimalIdTest failed");
+        if (!pass)
+            throw new Fault("PropertyBigDecimalIdTest failed");
     }
 
     /*
@@ -590,7 +602,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("PropertyStringIdTest failed");
+        if (!pass)
+            throw new Fault("PropertyStringIdTest failed");
     }
 
     /*
@@ -635,7 +648,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("PropertySQLDateIdTest failed");
+        if (!pass)
+            throw new Fault("PropertySQLDateIdTest failed");
     }
 
     /*
@@ -680,7 +694,8 @@ public class Client extends PMClientBase {
             pass = false;
         }
 
-        if (!pass) throw new Fault("PropertyUtilDateIdTest failed");
+        if (!pass)
+            throw new Fault("PropertyUtilDateIdTest failed");
     }
 
     public void cleanup() throws Fault {

@@ -28,8 +28,8 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * A callback listerner for stateless session beans. Callback methods may throw
- * RuntimeException. They are declared in the throws list, though not necessary.
+ * A callback listerner for stateless session beans. Callback methods may throw RuntimeException. They are declared in
+ * the throws list, though not necessary.
  */
 public class StatelessCallbackListener {
 

@@ -23,4 +23,5 @@ package com.sun.ts.tests.ejb30.common.generics;
 import jakarta.ejb.Remote;
 
 @Remote
-public interface RemoteIntGreetingIF extends IntGreetingIF {}
+public interface RemoteIntGreetingIF extends IntGreetingIF {
+}

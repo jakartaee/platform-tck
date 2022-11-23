@@ -25,7 +25,8 @@ import java.util.Properties;
 
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -47,8 +48,8 @@ public class Client extends PMClientBase {
     /*
      * @testName: EM1XMTest
      *
-     * @assertion_ids: PERSISTENCE:SPEC:553; PERSISTENCE:SPEC:557;
-     * PERSISTENCE:SPEC:1239; PERSISTENCE:SPEC:1190; PERSISTENCE:SPEC:1191;
+     * @assertion_ids: PERSISTENCE:SPEC:553; PERSISTENCE:SPEC:557; PERSISTENCE:SPEC:1239; PERSISTENCE:SPEC:1190;
+     * PERSISTENCE:SPEC:1191;
      *
      * @test_Strategy: Use Nested embeddable class in Query
      *
@@ -78,16 +79,12 @@ public class Client extends PMClientBase {
             B newB = findB("1");
             em.refresh(newB);
 
-            final String newStreet =
-                    (String) em.createQuery("Select b.address.street from B b ").getSingleResult();
-            final String newState =
-                    (String) em.createQuery("Select b.address.state from B b ").getSingleResult();
-            final String newCity =
-                    (String) em.createQuery("Select b.address.city from B b ").getSingleResult();
+            final String newStreet = (String) em.createQuery("Select b.address.street from B b ").getSingleResult();
+            final String newState = (String) em.createQuery("Select b.address.state from B b ").getSingleResult();
+            final String newCity = (String) em.createQuery("Select b.address.city from B b ").getSingleResult();
             final String newPlusFour = (String) em.createQuery("Select b.address.zipCode.plusFour from B b ")
                     .getSingleResult();
-            final String newZip = (String)
-                    em.createQuery("Select b.address.zipCode.zip from B b ").getSingleResult();
+            final String newZip = (String) em.createQuery("Select b.address.zipCode.zip from B b ").getSingleResult();
 
             boolean pass1 = false;
             boolean pass2 = false;

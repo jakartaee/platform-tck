@@ -26,12 +26,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * This test directory contains an empty beans.xml that will be packaged in WAR
- * as WEB-INF/beans.xml. This is to verify when CDI is enabled, the overriding
- * of EJB's lifecycle methods still works. The similar tests without beans.xml
- * are in ejb30/lite/interceptor. This test directory is the same as
- * ../lifecyclecdi, except that this test directory uses 2 EJB and @Inject,
- * instead of ManagedBean.
+ * This test directory contains an empty beans.xml that will be packaged in WAR as WEB-INF/beans.xml. This is to verify
+ * when CDI is enabled, the overriding of EJB's lifecycle methods still works. The similar tests without beans.xml are
+ * in ejb30/lite/interceptor. This test directory is the same as ../lifecyclecdi, except that this test directory uses 2
+ * EJB and @Inject, instead of ManagedBean.
  */
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
@@ -50,21 +48,21 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     /*
      * @testName: overrideWithRegularMethod
      *
-     * @test_Strategy: If a PostConstruct method is overridden, it is no longer
-     * invoked. This test override with a non-PostConstruct method.
+     * @test_Strategy: If a PostConstruct method is overridden, it is no longer invoked. This test override with a
+     * non-PostConstruct method.
      */
     public void overrideWithRegularMethod() {
-        checkPostConstructRecords(overrideBean, new String[] {"OverrideBean"});
+        checkPostConstructRecords(overrideBean, new String[] { "OverrideBean" });
     }
 
     /*
      * @testName: overrideWithPostConstructBean
      *
-     * @test_Strategy: If a PostConstruct method is overridden, it is no longer
-     * invoked. This test override with a PostConstruct method.
+     * @test_Strategy: If a PostConstruct method is overridden, it is no longer invoked. This test override with a
+     * PostConstruct method.
      */
     public void overrideWithPostConstructBean() {
-        checkPostConstructRecords(overrideWithPostConstructBean, new String[] {"OverrideWithPostConstructBean"});
+        checkPostConstructRecords(overrideWithPostConstructBean, new String[] { "OverrideWithPostConstructBean" });
     }
 
     protected void checkPostConstructRecords(OverrideBeanBase b, String[] expectedPostConstruct) {

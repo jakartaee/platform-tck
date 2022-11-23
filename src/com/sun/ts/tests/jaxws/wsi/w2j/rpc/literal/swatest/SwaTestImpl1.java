@@ -31,12 +31,7 @@ import java.util.*;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
 
-@WebService(
-        portName = "SwaTestOnePort",
-        serviceName = "WSIRLSwaTestService",
-        targetNamespace = "http://SwaTestService.org/wsdl",
-        wsdlLocation = "WEB-INF/wsdl/WSW2JRLSwaTestService.wsdl",
-        endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTest1")
+@WebService(portName = "SwaTestOnePort", serviceName = "WSIRLSwaTestService", targetNamespace = "http://SwaTestService.org/wsdl", wsdlLocation = "WEB-INF/wsdl/WSW2JRLSwaTestService.wsdl", endpointInterface = "com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.SwaTest1")
 public class SwaTestImpl1 implements SwaTest1 {
     public void getMultipleAttachments(
             com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.swatest.InputRequestGet request,
@@ -101,8 +96,10 @@ public class SwaTestImpl1 implements SwaTest1 {
             }
             if (attach2 == null || attach2.value == null) {
                 System.err.println("attach2.value is null (unexpected)");
-                if (theResponse.getReason().equals("ok")) theResponse.setReason("attach2.value is null (unexpected)");
-                else theResponse.setReason(theResponse.getReason() + "\nattach2.value is null (unexpected)");
+                if (theResponse.getReason().equals("ok"))
+                    theResponse.setReason("attach2.value is null (unexpected)");
+                else
+                    theResponse.setReason(theResponse.getReason() + "\nattach2.value is null (unexpected)");
                 theResponse.setResult("not ok");
             }
             System.out.println("Leave echoMultipleAttachments() ......");
@@ -161,32 +158,42 @@ public class SwaTestImpl1 implements SwaTest1 {
             }
             if (attach2 == null || attach2.value == null) {
                 System.err.println("attach2.value is null (unexpected)");
-                if (theResponse.getReason().equals("ok")) theResponse.setReason("attach2.value is null (unexpected)");
-                else theResponse.setReason(theResponse.getReason() + "\nattach2.value is null (unexpected)");
+                if (theResponse.getReason().equals("ok"))
+                    theResponse.setReason("attach2.value is null (unexpected)");
+                else
+                    theResponse.setReason(theResponse.getReason() + "\nattach2.value is null (unexpected)");
                 theResponse.setResult("not ok");
             }
             if (attach3 == null || attach3.value == null) {
                 System.err.println("attach3.value is null (unexpected)");
-                if (theResponse.getReason().equals("ok")) theResponse.setReason("attach3.value is null (unexpected)");
-                else theResponse.setReason(theResponse.getReason() + "\nattach3.value is null (unexpected)");
+                if (theResponse.getReason().equals("ok"))
+                    theResponse.setReason("attach3.value is null (unexpected)");
+                else
+                    theResponse.setReason(theResponse.getReason() + "\nattach3.value is null (unexpected)");
                 theResponse.setResult("not ok");
             }
             if (attach4 == null || attach4.value == null) {
                 System.err.println("attach4.value is null (unexpected)");
-                if (theResponse.getReason().equals("ok")) theResponse.setReason("attach4.value is null (unexpected)");
-                else theResponse.setReason(theResponse.getReason() + "\nattach4.value is null (unexpected)");
+                if (theResponse.getReason().equals("ok"))
+                    theResponse.setReason("attach4.value is null (unexpected)");
+                else
+                    theResponse.setReason(theResponse.getReason() + "\nattach4.value is null (unexpected)");
                 theResponse.setResult("not ok");
             }
             if (attach5 == null || attach5.value == null) {
                 System.err.println("attach5.value is null (unexpected)");
-                if (theResponse.getReason().equals("ok")) theResponse.setReason("attach5.value is null (unexpected)");
-                else theResponse.setReason(theResponse.getReason() + "\nattach5.value is null (unexpected)");
+                if (theResponse.getReason().equals("ok"))
+                    theResponse.setReason("attach5.value is null (unexpected)");
+                else
+                    theResponse.setReason(theResponse.getReason() + "\nattach5.value is null (unexpected)");
                 theResponse.setResult("not ok");
             }
             if (attach6 == null || attach6.value == null) {
                 System.err.println("attach6.value is null (unexpected)");
-                if (theResponse.getReason().equals("ok")) theResponse.setReason("attach6.value is null (unexpected)");
-                else theResponse.setReason(theResponse.getReason() + "\nattach6.value is null (unexpected)");
+                if (theResponse.getReason().equals("ok"))
+                    theResponse.setReason("attach6.value is null (unexpected)");
+                else
+                    theResponse.setReason(theResponse.getReason() + "\nattach6.value is null (unexpected)");
                 theResponse.setResult("not ok");
             }
             System.out.println("Leave echoAllAttachmentTypes() ......");

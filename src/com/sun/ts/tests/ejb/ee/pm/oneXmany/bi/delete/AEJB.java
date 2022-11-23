@@ -74,8 +74,10 @@ public abstract class AEJB implements EntityBean {
 
     public boolean isB() {
         TestUtil.logTrace("isB");
-        if (getB() != null) TestUtil.logMsg("Relationship set for B ...");
-        else TestUtil.logMsg("Relationship not set for B ...");
+        if (getB() != null)
+            TestUtil.logMsg("Relationship set for B ...");
+        else
+            TestUtil.logMsg("Relationship not set for B ...");
         return getB() != null;
     }
 
@@ -107,7 +109,8 @@ public abstract class AEJB implements EntityBean {
                     ALocal a = b.getA();
                     if (!a.isIdentical((ALocal) context.getEJBObject()))
                         aDVC = new ADVC(a.getId(), a.getName(), a.getValue());
-                    else aDVC = new ADVC(getId(), getName(), getValue());
+                    else
+                        aDVC = new ADVC(getId(), getName(), getValue());
                     v.add(aDVC);
                 }
             }

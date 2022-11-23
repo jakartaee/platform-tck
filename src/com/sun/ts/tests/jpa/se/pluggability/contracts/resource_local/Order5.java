@@ -28,7 +28,8 @@ public class Order5 implements java.io.Serializable {
 
     private int total;
 
-    public Order5() {}
+    public Order5() {
+    }
 
     public Order5(int total) {
         this.total = total;

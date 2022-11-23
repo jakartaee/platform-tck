@@ -38,10 +38,13 @@ public class ComplexPK implements java.io.Serializable {
 
     public boolean equals(Object o) {
 
-        if (!(o instanceof ComplexPK)) return false;
+        if (!(o instanceof ComplexPK))
+            return false;
         ComplexPK other = (ComplexPK) o;
-        if (id.intValue() == other.id.intValue() && brandName.equals(other.brandName)) return true;
-        else return false;
+        if (id.intValue() == other.id.intValue() && brandName.equals(other.brandName))
+            return true;
+        else
+            return false;
     }
 
     public int hashCode() {

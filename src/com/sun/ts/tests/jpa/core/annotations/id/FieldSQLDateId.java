@@ -32,7 +32,8 @@ public class FieldSQLDateId implements java.io.Serializable {
     @Column(name = "DATEDATA")
     private java.sql.Date date;
 
-    public FieldSQLDateId() {}
+    public FieldSQLDateId() {
+    }
 
     public FieldSQLDateId(java.sql.Date id, java.sql.Date date) {
         this.id = id;

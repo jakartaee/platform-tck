@@ -96,8 +96,10 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -122,11 +124,9 @@ public class Client extends EETest {
             TestUtil.logMsg("JNDI lookup java:comp/env/service/wsaddrfeaturestestusingddsdisabledecho2port");
             disabledEcho2Port = (Echo2) ctx.lookup("java:comp/env/service/wsaddrfeaturestestusingddsdisabledecho2port");
             TestUtil.logMsg("JNDI lookup java:comp/env/service/wsaddrfeaturestestusingddsanonymousecho3port");
-            anonymousEcho3Port =
-                    (Echo3) ctx.lookup("java:comp/env/service/wsaddrfeaturestestusingddsanonymousecho3port");
+            anonymousEcho3Port = (Echo3) ctx.lookup("java:comp/env/service/wsaddrfeaturestestusingddsanonymousecho3port");
             TestUtil.logMsg("JNDI lookup java:comp/env/service/wsaddrfeaturestestusingddsnonanonymousecho4port");
-            nonanonymousEcho4Port =
-                    (Echo4) ctx.lookup("java:comp/env/service/wsaddrfeaturestestusingddsnonanonymousecho4port");
+            nonanonymousEcho4Port = (Echo4) ctx.lookup("java:comp/env/service/wsaddrfeaturestestusingddsnonanonymousecho4port");
             TestUtil.logMsg("AppClient DEBUG: ejbclient=" + ejbclient);
             TestUtil.logMsg("AppClient DEBUG: defaultEchoPort=" + defaultEchoPort);
             TestUtil.logMsg("AppClient DEBUG: enabledEchoPort=" + enabledEchoPort);
@@ -170,12 +170,11 @@ public class Client extends EETest {
     /*
      * @testName: VerifyAddrHeadersExistForRequiredEchoPort
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020;
      *
-     * @test_Strategy: Verify Addressing Headers MUST exist on SOAP request and
-     * SOAP response for appclient, servlet, and ejb containers. Addressing
-     * enabled/required by client/supported by endpoint.
+     * @test_Strategy: Verify Addressing Headers MUST exist on SOAP request and SOAP response for appclient, servlet, and
+     * ejb containers. Addressing enabled/required by client/supported by endpoint.
      */
     public void VerifyAddrHeadersExistForRequiredEchoPort() throws Fault {
         boolean pass = true;
@@ -208,7 +207,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
-            } else TestUtil.logMsg("Addressing Headers Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
             pass = false;
@@ -222,23 +222,24 @@ public class Client extends EETest {
             if (!passEjb) {
                 TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
                 pass = false;
-            } else TestUtil.logMsg("Addressing Headers Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyAddrHeadersExistForRequiredEchoPort failed");
+        if (!pass)
+            throw new Fault("VerifyAddrHeadersExistForRequiredEchoPort failed");
     }
 
     /*
      * @testName: VerifyAddrHeadersDoNotExistForDisabledEchoPort
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020;
      *
-     * @test_Strategy: Verify Addressing Headers MUST NOT exist on SOAP request
-     * and SOAP response for appclient, servlet, and ejb containers. Addressing
-     * disabled by client/supported by endpoint.
+     * @test_Strategy: Verify Addressing Headers MUST NOT exist on SOAP request and SOAP response for appclient, servlet,
+     * and ejb containers. Addressing disabled by client/supported by endpoint.
      */
     public void VerifyAddrHeadersDoNotExistForDisabledEchoPort() throws Fault {
         boolean pass = true;
@@ -271,7 +272,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("Addressing Headers Exist (Unexpected)");
-            } else TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers Exist (Unexpected)");
             pass = false;
@@ -285,23 +287,24 @@ public class Client extends EETest {
             if (!passEjb) {
                 TestUtil.logErr("Addressing Headers Exist (Unexpected)");
                 pass = false;
-            } else TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers Exist (Unexpected)");
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyAddrHeadersDoNotExistForDisabledEchoPort failed");
+        if (!pass)
+            throw new Fault("VerifyAddrHeadersDoNotExistForDisabledEchoPort failed");
     }
 
     /*
      * @testName: VerifyAddrHeadersMayExistForEnabledEchoPort
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020;
      *
-     * @test_Strategy: Verify Addressing Headers may exist on SOAP request and
-     * SOAP response for appclient, servlet, and ejb containers. Addressing
-     * enabled/notrequired by client/supported by endpoint.
+     * @test_Strategy: Verify Addressing Headers may exist on SOAP request and SOAP response for appclient, servlet, and ejb
+     * containers. Addressing enabled/notrequired by client/supported by endpoint.
      */
     public void VerifyAddrHeadersMayExistForEnabledEchoPort() throws Fault {
         boolean pass = true;
@@ -352,18 +355,18 @@ public class Client extends EETest {
             TestUtil.logErr("Unexpected exception: " + e.getMessage());
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyAddrHeadersMayExistForEnabledEchoPort failed");
+        if (!pass)
+            throw new Fault("VerifyAddrHeadersMayExistForEnabledEchoPort failed");
     }
 
     /*
      * @testName: VerifyExceptionThrownForRequiredEcho2Port
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020;
      *
-     * @test_Strategy: Negative test case. Verify Exception is thrown back.
-     * Addressing enabled/required by client/not supported by endpoint. Expect a
-     * WebServiceException.
+     * @test_Strategy: Negative test case. Verify Exception is thrown back. Addressing enabled/required by client/not
+     * supported by endpoint. Expect a WebServiceException.
      */
     public void VerifyExceptionThrownForRequiredEcho2Port() throws Fault {
         boolean pass = true;
@@ -399,7 +402,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("WebServiceException was not thrown back");
-            } else TestUtil.logMsg("Caught expected WebServiceException");
+            } else
+                TestUtil.logMsg("Caught expected WebServiceException");
         } catch (Exception e) {
             TestUtil.logErr("Unexpected exception: " + e.getMessage());
             pass = false;
@@ -413,23 +417,24 @@ public class Client extends EETest {
             if (!passEjb) {
                 TestUtil.logErr("WebServiceException was not thrown back");
                 pass = false;
-            } else TestUtil.logMsg("Caught expected WebServiceException");
+            } else
+                TestUtil.logMsg("Caught expected WebServiceException");
         } catch (Exception e) {
             TestUtil.logErr("Unexpected exception: " + e.getMessage());
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyExceptionThrownForRequiredEcho2Port failed");
+        if (!pass)
+            throw new Fault("VerifyExceptionThrownForRequiredEcho2Port failed");
     }
 
     /*
      * @testName: VerifyAddrHeadersDoNotExistForDisabledEcho2Port
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020;
      *
-     * @test_Strategy: Verify Addressing Headers MUST NOT exist on SOAP request
-     * and SOAP response for appclient, servlet, and ejb containers. Addressing
-     * disabled by client/not supported by endpoint.
+     * @test_Strategy: Verify Addressing Headers MUST NOT exist on SOAP request and SOAP response for appclient, servlet,
+     * and ejb containers. Addressing disabled by client/not supported by endpoint.
      */
     public void VerifyAddrHeadersDoNotExistForDisabledEcho2Port() throws Fault {
         boolean pass = true;
@@ -462,7 +467,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("Addressing Headers Exist (Unexpected)");
-            } else TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers Exist (Unexpected)");
             pass = false;
@@ -476,23 +482,24 @@ public class Client extends EETest {
             if (!passEjb) {
                 TestUtil.logErr("Addressing Headers Exist (Unexpected)");
                 pass = false;
-            } else TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers Exist (Unexpected)");
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyAddrHeadersDoNotExistForDisabledEcho2Port failed");
+        if (!pass)
+            throw new Fault("VerifyAddrHeadersDoNotExistForDisabledEcho2Port failed");
     }
 
     /*
      * @testName: VerifyAddrHeadersMayExistForEnabledEcho2Port
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020;
      *
-     * @test_Strategy: Verify Addressing Headers may exist on SOAP request and
-     * SOAP response for appclient, servlet, and ejb containers. Addressing
-     * enabled/notrequired by client/not supported by endpoint.
+     * @test_Strategy: Verify Addressing Headers may exist on SOAP request and SOAP response for appclient, servlet, and ejb
+     * containers. Addressing enabled/notrequired by client/not supported by endpoint.
      */
     public void VerifyAddrHeadersMayExistForEnabledEcho2Port() throws Fault {
         boolean pass = true;
@@ -543,18 +550,18 @@ public class Client extends EETest {
             TestUtil.logErr("Unexpected exception: " + e.getMessage());
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyAddrHeadersMayExistForEnabledEcho2Port failed");
+        if (!pass)
+            throw new Fault("VerifyAddrHeadersMayExistForEnabledEcho2Port failed");
     }
 
     /*
      * @testName: testAnonymousResponsesAssertion
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020;
      *
-     * @test_Strategy: Invocation on port marked with AnonymousResponses assertion
-     * Verify that wsa:ReplyTo in the SOAPRequest is the anonymous URI. Verify
-     * that wsa:To in the SOAPResponse is the anonymous URI.
+     * @test_Strategy: Invocation on port marked with AnonymousResponses assertion Verify that wsa:ReplyTo in the
+     * SOAPRequest is the anonymous URI. Verify that wsa:To in the SOAPResponse is the anonymous URI.
      */
     public void testAnonymousResponsesAssertion() throws Fault {
         TestUtil.logMsg("testAnonymousResponsesAssertion");
@@ -585,7 +592,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("testAnonymousResponsesAssertion failed");
-            } else TestUtil.logMsg("testAnonymousResponsesAssertion passed");
+            } else
+                TestUtil.logMsg("testAnonymousResponsesAssertion passed");
         } catch (Exception e) {
             TestUtil.logErr("testAnonymousResponsesAssertion failed");
             pass = false;
@@ -599,24 +607,25 @@ public class Client extends EETest {
             if (!passEjb) {
                 TestUtil.logErr("testAnonymousResponsesAssertion failed");
                 pass = false;
-            } else TestUtil.logMsg("testAnonymousResponsesAssertion passed");
+            } else
+                TestUtil.logMsg("testAnonymousResponsesAssertion passed");
         } catch (Exception e) {
             TestUtil.logErr("testAnonymousResponsesAssertion failed");
             pass = false;
         }
 
-        if (!pass) throw new Fault("testAnonymousResponsesAssertion failed");
+        if (!pass)
+            throw new Fault("testAnonymousResponsesAssertion failed");
     }
 
     /*
      * @testName: testNonAnonymousResponsesAssertion
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015; WS4EE:SPEC:4020;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4015;
+     * WS4EE:SPEC:4020;
      *
-     * @test_Strategy: Invocation on port marked with NonAnonymousResponses
-     * assertion. The <ReplyTo> header may or may not be set by default depending
-     * on the implementation. The test has to account for this.
+     * @test_Strategy: Invocation on port marked with NonAnonymousResponses assertion. The <ReplyTo> header may or may not
+     * be set by default depending on the implementation. The test has to account for this.
      */
     public void testNonAnonymousResponsesAssertion() throws Fault {
         TestUtil.logMsg("testNonAnonymousResponsesAssertion");
@@ -650,7 +659,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("testNonAnonymousResponsesAssertion failed");
-            } else TestUtil.logMsg("testNonAnonymousResponsesAssertion passed");
+            } else
+                TestUtil.logMsg("testNonAnonymousResponsesAssertion passed");
         } catch (Exception e) {
             TestUtil.logErr("testNonAnonymousResponsesAssertion failed");
             pass = false;
@@ -664,12 +674,14 @@ public class Client extends EETest {
             if (!passEjb) {
                 TestUtil.logErr("testNonAnonymousResponsesAssertion failed");
                 pass = false;
-            } else TestUtil.logMsg("testNonAnonymousResponsesAssertion passed");
+            } else
+                TestUtil.logMsg("testNonAnonymousResponsesAssertion passed");
         } catch (Exception e) {
             TestUtil.logErr("testNonAnonymousResponsesAssertion failed");
             pass = false;
         }
 
-        if (!pass) throw new Fault("testNonAnonymousResponsesAssertion failed");
+        if (!pass)
+            throw new Fault("testNonAnonymousResponsesAssertion failed");
     }
 }

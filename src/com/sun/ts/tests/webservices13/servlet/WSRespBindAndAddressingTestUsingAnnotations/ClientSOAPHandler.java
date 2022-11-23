@@ -94,12 +94,14 @@ public class ClientSOAPHandler extends WsaBaseSOAPHandler {
     protected String getAction(SOAPMessageContext context) throws SOAPException {
         String testName = (String) context.get("test.name");
         TestUtil.logMsg("ClientSOAPHandler.getAction(): testName=" + testName);
-        if (testName == null) return super.getAction(context);
+        if (testName == null)
+            return super.getAction(context);
         else if (testName.equals("afCltEnabledREQSvrEnabledREQrbfSvrEnabledCltEnabledTest"))
             return super.getAction(context);
         else if (testName.equals("afCltEnabledNotREQSvrNotEnabledrbfSvrEnabledCltEnabledTest"))
             return super.getActionDoesNotExist(context);
-        else return null;
+        else
+            return null;
     }
 
     protected String whichHandler() {

@@ -25,35 +25,21 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 
 /**
- * Verifies @StatefulTimeout with no-interface, local business interface and
- * remote business interface. This test directory is similar to
- * lite/stateful/timeout, which only tests local and no-interface views
+ * Verifies @StatefulTimeout with no-interface, local business interface and remote business interface. This test
+ * directory is similar to lite/stateful/timeout, which only tests local and no-interface views
  */
 @EJBs({
-    @EJB(
-            name = ClientBase.defaultUnitBeanRemoteName,
-            beanName = "DefaultUnitBean",
-            beanInterface = StatefulTimeoutRemoteIF.class),
-    @EJB(
-            name = ClientBase.secondUnitBeanRemoteName,
-            beanName = "SecondUnitBean",
-            beanInterface = StatefulTimeoutRemoteIF.class),
-    @EJB(
-            name = ClientBase.defaultUnitBeanNoInterfaceName,
-            beanName = "DefaultUnitBean",
-            beanInterface = DefaultUnitBean.class),
-    @EJB(
-            name = ClientBase.secondUnitBeanNoInterfaceName,
-            beanName = "SecondUnitBean",
-            beanInterface = SecondUnitBean.class)
+        @EJB(name = ClientBase.defaultUnitBeanRemoteName, beanName = "DefaultUnitBean", beanInterface = StatefulTimeoutRemoteIF.class),
+        @EJB(name = ClientBase.secondUnitBeanRemoteName, beanName = "SecondUnitBean", beanInterface = StatefulTimeoutRemoteIF.class),
+        @EJB(name = ClientBase.defaultUnitBeanNoInterfaceName, beanName = "DefaultUnitBean", beanInterface = DefaultUnitBean.class),
+        @EJB(name = ClientBase.secondUnitBeanNoInterfaceName, beanName = "SecondUnitBean", beanInterface = SecondUnitBean.class)
 })
 public class Client extends ClientBase {
     /*
      * @testName: defaultUnitLocal
      *
-     * @test_Strategy: the default time unit is minute for @StatefulTimeout or
-     * stateful-timeout. Verify that the target bean instance is removed after the
-     * timeout value has passed.
+     * @test_Strategy: the default time unit is minute for @StatefulTimeout or stateful-timeout. Verify that the target bean
+     * instance is removed after the timeout value has passed.
      */
     /*
      * @testName: defaultUnitRemote
@@ -68,10 +54,9 @@ public class Client extends ClientBase {
     /*
      * @testName: secondUnitLocal
      *
-     * @test_Strategy: The StatefulTimeout in the target bean (SecondUnitBean) is
-     * specified with time unit second. Verify that the target bean instance is
-     * removed after the timeout value has passed. Verify that the target bean
-     * instance is still active within the timeout limit.
+     * @test_Strategy: The StatefulTimeout in the target bean (SecondUnitBean) is specified with time unit second. Verify
+     * that the target bean instance is removed after the timeout value has passed. Verify that the target bean instance is
+     * still active within the timeout limit.
      */
     /*
      * @testName: secondUnitRemote

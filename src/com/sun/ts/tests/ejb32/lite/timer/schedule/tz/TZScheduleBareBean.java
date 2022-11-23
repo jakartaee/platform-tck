@@ -106,10 +106,8 @@ public class TZScheduleBareBean extends TimerBeanBaseWithoutTimeOutMethod {
         Timer t = findTimer(timerName);
         ScheduleExpression exp = t.getSchedule();
         sb.append("Check TZ in schedule: ").append(TimerUtil.toString(exp));
-        String expectedTrimmedUp =
-                (expected == null) ? expected : expected.trim().toUpperCase();
-        String actualTrimmedUp =
-                (exp.getTimezone() == null) ? null : exp.getTimezone().trim().toUpperCase();
+        String expectedTrimmedUp = (expected == null) ? expected : expected.trim().toUpperCase();
+        String actualTrimmedUp = (exp.getTimezone() == null) ? null : exp.getTimezone().trim().toUpperCase();
         Helper.assertEquals(" ", expectedTrimmedUp, actualTrimmedUp, sb);
         return sb.toString();
     }
@@ -143,8 +141,8 @@ public class TZScheduleBareBean extends TimerBeanBaseWithoutTimeOutMethod {
     }
 
     /**
-     * Looks for a TZ that is later than the default TZ by comparing their offset
-     * to GMT. The later TZ's offset < default TZ's offset.
+     * Looks for a TZ that is later than the default TZ by comparing their offset to GMT. The later TZ's offset < default
+     * TZ's offset.
      */
     protected String getLaterTZ() {
         TimeZone laterTZ = null;

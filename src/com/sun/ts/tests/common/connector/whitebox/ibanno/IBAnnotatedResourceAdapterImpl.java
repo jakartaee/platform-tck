@@ -40,29 +40,13 @@ import java.lang.reflect.Method;
 import javax.transaction.xa.XAResource;
 
 /**
- * This is a sample resource adapter that will use no ra.xml info. This RA is
- * used to assist with verifying the server supports annotations when there is
- * no ra.xml (Assertion 268) and the transaction support is Local. It is also
- * testing inbound messaging support.
+ * This is a sample resource adapter that will use no ra.xml info. This RA is used to assist with verifying the server
+ * supports annotations when there is no ra.xml (Assertion 268) and the transaction support is Local. It is also testing
+ * inbound messaging support.
  *
  */
-@Connector(
-        description = "CTS Test Resource Adapter with No DD",
-        displayName = "whitebox-anno_no_md.rar",
-        vendorName = "Java Software",
-        eisType = "TS EIS",
-        version = "1.6",
-        licenseDescription = "CTS License Required",
-        licenseRequired = true,
-        authMechanisms =
-                @AuthenticationMechanism(
-                        credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential,
-                        authMechanism = "BasicPassword",
-                        description = "Basic Password Authentication"),
-        reauthenticationSupport = false,
-        securityPermissions = @SecurityPermission(),
-        transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction,
-        requiredWorkContexts = {TransactionContext.class})
+@Connector(description = "CTS Test Resource Adapter with No DD", displayName = "whitebox-anno_no_md.rar", vendorName = "Java Software", eisType = "TS EIS", version = "1.6", licenseDescription = "CTS License Required", licenseRequired = true, authMechanisms = @AuthenticationMechanism(credentialInterface = AuthenticationMechanism.CredentialInterface.PasswordCredential, authMechanism = "BasicPassword", description = "Basic Password Authentication"), reauthenticationSupport = false, securityPermissions = @SecurityPermission(), transactionSupport = TransactionSupport.TransactionSupportLevel.XATransaction, requiredWorkContexts = {
+        TransactionContext.class })
 public class IBAnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.Serializable {
 
     private transient BootstrapContext bsc;
@@ -233,7 +217,7 @@ public class IBAnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.
         Method onMessageMethod = null;
         try {
             Class msgListenerClass = TSMessageListenerInterface.class;
-            Class[] paramTypes = {java.lang.String.class};
+            Class[] paramTypes = { java.lang.String.class };
             onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
 
         } catch (NoSuchMethodException ex) {
@@ -262,7 +246,8 @@ public class IBAnnotatedResourceAdapterImpl implements ResourceAdapter, java.io.
 
         IBAnnotatedResourceAdapterImpl that = (IBAnnotatedResourceAdapterImpl) obj;
 
-        if (!Util.isEqual(this.raName, that.getRaName())) return false;
+        if (!Util.isEqual(this.raName, that.getRaName()))
+            return false;
 
         return true;
     }

@@ -55,8 +55,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:34;
      *
-     * @test_Strategy: Create instance via ProtocolException() constructor. Verify
-     * ProtocolException object created successfully.
+     * @test_Strategy: Create instance via ProtocolException() constructor. Verify ProtocolException object created
+     * successfully.
      */
     public void ProtocolExceptionConstructorTest1() throws Fault {
         TestUtil.logTrace("ProtocolExceptionConstructorTest1");
@@ -76,7 +76,8 @@ public class Client extends ServiceEETest {
             throw new Fault("ProtocolExceptionConstructorTest1 failed", e);
         }
 
-        if (!pass) throw new Fault("ProtocolExceptionConstructorTest1 failed");
+        if (!pass)
+            throw new Fault("ProtocolExceptionConstructorTest1 failed");
     }
 
     /*
@@ -84,8 +85,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:36;
      *
-     * @test_Strategy: Create instance via ProtocolException(String, Throwable).
-     * Verify ProtocolException object created successfully.
+     * @test_Strategy: Create instance via ProtocolException(String, Throwable). Verify ProtocolException object created
+     * successfully.
      */
     public void ProtocolExceptionConstructorTest2() throws Fault {
         TestUtil.logTrace("ProtocolExceptionConstructorTest2");
@@ -98,7 +99,8 @@ public class Client extends ServiceEETest {
             if (e != null) {
                 TestUtil.logMsg("ProtocolException object created successfully");
                 String msg = e.getMessage();
-                if (msg.equals(detailMsg)) TestUtil.logMsg("detail message match: " + detailMsg);
+                if (msg.equals(detailMsg))
+                    TestUtil.logMsg("detail message match: " + detailMsg);
                 else {
                     TestUtil.logErr("detail message mismatch - expected: " + detailMsg + ", received: " + msg);
                     pass = false;
@@ -113,7 +115,8 @@ public class Client extends ServiceEETest {
             throw new Fault("ProtocolExceptionConstructorTest2 failed", e);
         }
 
-        if (!pass) throw new Fault("ProtocolExceptionConstructorTest2 failed");
+        if (!pass)
+            throw new Fault("ProtocolExceptionConstructorTest2 failed");
     }
 
     /*
@@ -121,8 +124,7 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:35;
      *
-     * @test_Strategy: Create instance via ProtocolException(String). Verify
-     * ProtocolException object created successfully.
+     * @test_Strategy: Create instance via ProtocolException(String). Verify ProtocolException object created successfully.
      */
     public void ProtocolExceptionConstructorTest3() throws Fault {
         TestUtil.logTrace("ProtocolExceptionConstructorTest3");
@@ -134,7 +136,8 @@ public class Client extends ServiceEETest {
             if (e != null) {
                 TestUtil.logMsg("ProtocolException object created successfully");
                 String msg = e.getMessage();
-                if (msg.equals(detailMsg)) TestUtil.logMsg("detail message match: " + detailMsg);
+                if (msg.equals(detailMsg))
+                    TestUtil.logMsg("detail message match: " + detailMsg);
                 else {
                     TestUtil.logErr("detail message mismatch - expected: " + detailMsg + ", received: " + msg);
                     pass = false;
@@ -149,7 +152,8 @@ public class Client extends ServiceEETest {
             throw new Fault("ProtocolExceptionConstructorTest3 failed", e);
         }
 
-        if (!pass) throw new Fault("ProtocolExceptionConstructorTest3 failed");
+        if (!pass)
+            throw new Fault("ProtocolExceptionConstructorTest3 failed");
     }
 
     /*
@@ -157,8 +161,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:37;
      *
-     * @test_Strategy: Create instance via ProtocolException(Throwable). Verify
-     * ProtocolException object created successfully.
+     * @test_Strategy: Create instance via ProtocolException(Throwable). Verify ProtocolException object created
+     * successfully.
      */
     public void ProtocolExceptionConstructorTest4() throws Fault {
         TestUtil.logTrace("ProtocolExceptionConstructorTest4");
@@ -179,6 +183,7 @@ public class Client extends ServiceEETest {
             throw new Fault("ProtocolExceptionConstructorTest4 failed", e);
         }
 
-        if (!pass) throw new Fault("ProtocolExceptionConstructorTest4 failed");
+        if (!pass)
+            throw new Fault("ProtocolExceptionConstructorTest4 failed");
     }
 }

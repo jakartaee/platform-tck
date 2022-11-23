@@ -115,7 +115,7 @@ public abstract class EJBContextBeanBase implements EJBContextIF {
     }
 
     public String lookupIllegalArgumentException() throws TestFailedException {
-        String[] badLookupNames = {null, "NoSuchName...", "java:comp/env/*"};
+        String[] badLookupNames = { null, "NoSuchName...", "java:comp/env/*" };
         Object obj = null;
         String result = "";
         for (String lookupName : badLookupNames) {
@@ -135,13 +135,13 @@ public abstract class EJBContextBeanBase implements EJBContextIF {
     // TODO: Workaround, should be handled better
     // jakarta.ejb.SessionContext#getMessageContext() does not exist in the API anymore
     public String getMessageContextIllegalStateException() throws TestFailedException {
-        //    try {
-        //      Object c = ((SessionContext) ejbContext).getMessageContext();
-        //      throw new TestFailedException(
-        //          "Expecting IllegalStateException, but got " + c);
-        //    } catch (IllegalStateException illegalStateException) {
+        // try {
+        // Object c = ((SessionContext) ejbContext).getMessageContext();
+        // throw new TestFailedException(
+        // "Expecting IllegalStateException, but got " + c);
+        // } catch (IllegalStateException illegalStateException) {
         return "Got expected IllegalStateException: jakarta.ejb.SessionContext#getMessageContext() does not exist in the API anymore";
-        //    }
+        // }
     }
 
     public Class<?> getInvokedBusinessInterface() {
@@ -150,7 +150,7 @@ public abstract class EJBContextBeanBase implements EJBContextIF {
 
     public String getBusinessObjectIllegalStateException() throws TestFailedException {
         String result = "";
-        Class<?>[] badBusinessInterfaces = {null, Class.class, java.io.Serializable.class, jakarta.ejb.EJB.class};
+        Class<?>[] badBusinessInterfaces = { null, Class.class, java.io.Serializable.class, jakarta.ejb.EJB.class };
         for (Class<?> i : badBusinessInterfaces) {
             try {
                 Object ob = ((SessionContext) ejbContext).getBusinessObject(i);

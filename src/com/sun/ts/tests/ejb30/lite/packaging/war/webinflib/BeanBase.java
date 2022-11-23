@@ -34,9 +34,8 @@ public abstract class BeanBase {
     private UserTransaction ut;
 
     /**
-     * @EJB injects of OneBean, TwoBean, and ThreeBeans into all 3 bean classes to
-     *      ensure the 9 ejb-refs are all scoped to the entire .war, not just each
-     *      EJB.
+     * @EJB injects of OneBean, TwoBean, and ThreeBeans into all 3 bean classes to ensure the 9 ejb-refs are all scoped to
+     * the entire .war, not just each EJB.
      */
     protected OneBean one;
 

@@ -39,7 +39,8 @@ public class Insurance implements java.io.Serializable {
 
     private Collection<Employee> employees = new java.util.ArrayList<Employee>();
 
-    public Insurance() {}
+    public Insurance() {
+    }
 
     public Insurance(int id, String carrier) {
         this.id = id;

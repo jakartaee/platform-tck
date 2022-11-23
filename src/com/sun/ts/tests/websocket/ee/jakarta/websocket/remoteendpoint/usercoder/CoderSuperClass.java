@@ -29,7 +29,9 @@ public abstract class CoderSuperClass {
     public static final boolean BOOL = false;
 
     @SuppressWarnings("unused")
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
-    public void destroy() {}
+    public void destroy() {
+    }
 }

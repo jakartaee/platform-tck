@@ -67,8 +67,7 @@ public class Client extends ServiceEETest {
 
     private QName PORT_QNAME = new QName(NAMESPACEURI, PORT_NAME);
 
-    private static final Class SERVICE_CLASS =
-            com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.DLHandlerService.class;
+    private static final Class SERVICE_CLASS = com.sun.ts.tests.jaxws.sharedclients.dlhandlerclient.DLHandlerService.class;
 
     private TSURL ctsurl = new TSURL();
 
@@ -144,8 +143,10 @@ public class Client extends ServiceEETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -203,7 +204,8 @@ public class Client extends ServiceEETest {
             if (!bindingID.equals(SOAPBinding.SOAP11HTTP_BINDING)) {
                 TestUtil.logErr("bindingID is not expected SOAP11HTTP_BINDING");
                 pass = false;
-            } else TestUtil.logMsg("bindingID is expected SOAP11HTTP_BINDING");
+            } else
+                TestUtil.logMsg("bindingID is expected SOAP11HTTP_BINDING");
         } catch (WebServiceException e) {
             TestUtil.logErr("Caught unexpected WebServiceException", e);
             pass = false;
@@ -212,7 +214,8 @@ public class Client extends ServiceEETest {
             throw new Fault("getBindingIDTest failed", e);
         }
 
-        if (!pass) throw new Fault("getBindingIDTest failed");
+        if (!pass)
+            throw new Fault("getBindingIDTest failed");
     }
 
     /*
@@ -220,8 +223,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:2; JAXWS:JAVADOC:3;
      *
-     * @test_Strategy: Sets the handler chain for a protocol binding instance.
-     * Gets the handler chain for a protocol binding instance.
+     * @test_Strategy: Sets the handler chain for a protocol binding instance. Gets the handler chain for a protocol binding
+     * instance.
      */
     public void SetAndGetHandlerChainForDispatchObjTest() throws Fault {
         TestUtil.logTrace("SetAndGetHandlerChainForDispatchObjTest");
@@ -279,7 +282,8 @@ public class Client extends ServiceEETest {
             throw new Fault("SetAndGetHandlerChainForDispatchObjTest failed", e);
         }
 
-        if (!pass) throw new Fault("SetAndGetHandlerChainForDispatchObjTest failed");
+        if (!pass)
+            throw new Fault("SetAndGetHandlerChainForDispatchObjTest failed");
     }
 
     /*
@@ -287,8 +291,8 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JAXWS:JAVADOC:2; JAXWS:JAVADOC:3;
      *
-     * @test_Strategy: Sets the handler chain for a protocol binding instance.
-     * Gets the handler chain for a protocol binding instance.
+     * @test_Strategy: Sets the handler chain for a protocol binding instance. Gets the handler chain for a protocol binding
+     * instance.
      */
     public void SetAndGetHandlerChainForStubObjTest() throws Fault {
         TestUtil.logTrace("SetAndGetHandlerChainForStubObjTest");
@@ -346,6 +350,7 @@ public class Client extends ServiceEETest {
             throw new Fault("SetAndGetHandlerChainForStubObjTest failed", e);
         }
 
-        if (!pass) throw new Fault("SetAndGetHandlerChainForStubObjTest failed");
+        if (!pass)
+            throw new Fault("SetAndGetHandlerChainForStubObjTest failed");
     }
 }

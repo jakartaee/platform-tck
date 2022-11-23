@@ -38,7 +38,8 @@ public class Client extends EETest {
         props = p;
     }
 
-    public void cleanup() throws Fault {}
+    public void cleanup() throws Fault {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -95,8 +96,7 @@ public class Client extends EETest {
      *
      * @assertion_ids:
      *
-     * @test_Strategy: cart1.equals(shoppingCart) should return false for stateful
-     * beans.
+     * @test_Strategy: cart1.equals(shoppingCart) should return false for stateful beans.
      */
     public void differentInterfaceNotEqualLookup() throws Fault {
         try {

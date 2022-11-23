@@ -100,8 +100,10 @@ public class Client extends ServiceEETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -130,8 +132,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: DoInvokeWebService1Test
      *
-     * @assertion_ids: WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4003;
-     * WS4EE:SPEC:4004; WS4EE:SPEC:4010; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4003; WS4EE:SPEC:4004; WS4EE:SPEC:4010; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
      * @test_Strategy: Invoke WebService1 endpoint.
      */
@@ -141,7 +143,8 @@ public class Client extends ServiceEETest {
 
         try {
             String ret = port1.sayServletHello("Hello Hello!!!");
-            if (!ret.equals("WSHello1Servlet: Hello Hello!!!")) throw new Fault("DoInvokeWebService1Test failed");
+            if (!ret.equals("WSHello1Servlet: Hello Hello!!!"))
+                throw new Fault("DoInvokeWebService1Test failed");
         } catch (Exception e) {
             throw new Fault("DoInvokeWebService1Test failed", e);
         }
@@ -150,8 +153,8 @@ public class Client extends ServiceEETest {
     /*
      * @testName: DoInvokeWebService2Test
      *
-     * @assertion_ids: WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4003;
-     * WS4EE:SPEC:4004; WS4EE:SPEC:4010; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4003; WS4EE:SPEC:4004; WS4EE:SPEC:4010; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
      * @test_Strategy: Invoke WebService2 endpoint.
      */
@@ -161,7 +164,8 @@ public class Client extends ServiceEETest {
 
         try {
             String ret = port2.sayServletHello("Hello Hello!!!");
-            if (!ret.equals("WSHello2Servlet: Hello Hello!!!")) throw new Fault("DoInvokeWebService2Test failed");
+            if (!ret.equals("WSHello2Servlet: Hello Hello!!!"))
+                throw new Fault("DoInvokeWebService2Test failed");
         } catch (Exception e) {
             throw new Fault("DoInvokeWebService2Test failed", e);
         }
@@ -170,11 +174,10 @@ public class Client extends ServiceEETest {
     /*
      * @testName: VerifyTargetEndpointAddressForBothWebServices
      *
-     * @assertion_ids: WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4003;
-     * WS4EE:SPEC:4004; WS4EE:SPEC:4010; WS4EE:SPEC:5000; WS4EE:SPEC:5002;
+     * @assertion_ids: WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4003; WS4EE:SPEC:4004; WS4EE:SPEC:4010; WS4EE:SPEC:5000;
+     * WS4EE:SPEC:5002;
      *
-     * @test_Strategy: Verify target endpoint address for WebService1 and
-     * WebService2.
+     * @test_Strategy: Verify target endpoint address for WebService1 and WebService2.
      *
      */
     public void VerifyTargetEndpointAddressForBothWebServices() throws Fault {

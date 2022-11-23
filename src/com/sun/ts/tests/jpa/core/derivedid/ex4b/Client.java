@@ -27,7 +27,8 @@ import java.util.Properties;
  */
 public class Client extends PMClientBase {
 
-    public Client() {}
+    public Client() {
+    }
 
     public static void main(String[] args) {
         Client theTests = new Client();
@@ -50,14 +51,11 @@ public class Client extends PMClientBase {
      * @testName: DIDTest
      * @assertion_ids: PERSISTENCE:SPEC:1339;
      * @test_Strategy: Derived Identifier
-     *                 <p/>
-     *                 The parent entity has a simple primary key Case (b): The
-     *                 primary key consists of a single attribute corresponding to
-     *                 the simple primary key of the parent entity. The dependent
-     *                 entity has a primary key attribute in addition to the
-     *                 relationship attribute corresponding to the primary key.
-     *                 This attribute is mapped to the primary key by the
-     *                 MappedByIdannotation applied to the relationship.
+     * <p/>
+     * The parent entity has a simple primary key Case (b): The primary key consists of a single attribute corresponding to
+     * the simple primary key of the parent entity. The dependent entity has a primary key attribute in addition to the
+     * relationship attribute corresponding to the primary key. This attribute is mapped to the primary key by the
+     * MappedByIdannotation applied to the relationship.
      */
     public void DIDTest() throws Fault {
         boolean pass = false;

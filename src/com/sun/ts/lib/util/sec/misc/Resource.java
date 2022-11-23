@@ -28,8 +28,7 @@ import java.util.Arrays;
 import java.util.jar.Manifest;
 
 /**
- * This class is used to represent a Resource that has been loaded from the
- * class path.
+ * This class is used to represent a Resource that has been loaded from the class path.
  *
  * @author David Connelly
  * @since 1.2
@@ -86,7 +85,7 @@ public abstract class Resource {
 
         boolean isInterrupted = Thread.interrupted();
         int len;
-        for (; ; ) {
+        for (;;) {
             try {
                 len = getContentLength();
                 break;
@@ -98,7 +97,8 @@ public abstract class Resource {
 
         try {
             b = new byte[0];
-            if (len == -1) len = Integer.MAX_VALUE;
+            if (len == -1)
+                len = Integer.MAX_VALUE;
             int pos = 0;
             while (pos < len) {
                 int bytesToRead;
@@ -145,8 +145,8 @@ public abstract class Resource {
     }
 
     /**
-     * Returns the Resource data as a ByteBuffer, but only if the input stream was
-     * implemented on top of a ByteBuffer. Return <tt>null</tt> otherwise.
+     * Returns the Resource data as a ByteBuffer, but only if the input stream was implemented on top of a ByteBuffer.
+     * Return <tt>null</tt> otherwise.
      */
     public ByteBuffer getByteBuffer() throws IOException {
         InputStream in = cachedInputStream();

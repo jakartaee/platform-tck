@@ -63,8 +63,7 @@ public class MsgBeanTopic implements MessageDrivenBean, MessageListener {
 
     public MsgBeanTopic() {
         TestUtil.logTrace("@MsgBeanTopic - @MsgBean()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("@MsgBeanTopic - @MsgBean-ejbCreate() !!");

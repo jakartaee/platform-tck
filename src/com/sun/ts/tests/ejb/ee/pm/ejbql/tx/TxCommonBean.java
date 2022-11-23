@@ -23,10 +23,9 @@ import jakarta.ejb.EJBObject;
 import java.rmi.RemoteException;
 
 /**
- * The TxCommonBean is an entity EJB. Most of the business methods of the
- * TxCommonBean class do not access the database. Instead, these business
- * methods update the instance variables, which are written to the database when
- * the EJB Container calls ejbStore().
+ * The TxCommonBean is an entity EJB. Most of the business methods of the TxCommonBean class do not access the database.
+ * Instead, these business methods update the instance variables, which are written to the database when the EJB
+ * Container calls ejbStore().
  */
 public interface TxCommonBean extends EJBObject {
 

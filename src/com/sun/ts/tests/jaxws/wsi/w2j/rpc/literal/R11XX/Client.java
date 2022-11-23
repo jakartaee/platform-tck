@@ -37,8 +37,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
     /**
      * Test entry point.
      *
-     * @param args
-     *          the command-line arguments.
+     * @param args the command-line arguments.
      */
     public static void main(String[] args) {
         Client tests = new Client();
@@ -70,8 +69,7 @@ public class Client extends ServiceEETest implements SOAPRequests {
      *
      * @assertion_ids: WSI:SPEC:R1109; WSI:SPEC:R1127
      *
-     * @test_Strategy: Make a request and inspect request soapAction HTTP header
-     *                 to ensure value is quoted
+     * @test_Strategy: Make a request and inspect request soapAction HTTP header to ensure value is quoted
      *
      * @throws com.sun.ts.lib.harness.EETest.Fault
      */

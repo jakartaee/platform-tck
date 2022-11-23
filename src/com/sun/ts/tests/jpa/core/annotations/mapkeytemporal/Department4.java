@@ -46,7 +46,8 @@ public class Department4 implements java.io.Serializable {
     @Transient
     private Map<Date, EmbeddedEmployee> lastNameEmployees;
 
-    public Department4() {}
+    public Department4() {
+    }
 
     public Department4(int id, String name) {
         this.id = id;
@@ -80,8 +81,8 @@ public class Department4 implements java.io.Serializable {
     @ElementCollection(targetClass = EmbeddedEmployee.class)
     @CollectionTable(name = "EMP_MAPKEYCOL2", joinColumns = @JoinColumn(name = "FK_DEPT5"))
     @AttributeOverrides({
-        @AttributeOverride(name = "employeeId", column = @Column(name = "ID")),
-        @AttributeOverride(name = "employeeName", column = @Column(name = "LASTNAME"))
+            @AttributeOverride(name = "employeeId", column = @Column(name = "ID")),
+            @AttributeOverride(name = "employeeName", column = @Column(name = "LASTNAME"))
     })
     @MapKeyColumn(name = "THEDATE")
     @MapKeyTemporal(TemporalType.DATE)

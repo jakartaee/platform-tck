@@ -25,9 +25,8 @@ public class StatefulTimeoutBeanBase implements StatefulTimeoutIF {
     /*
      * (non-Javadoc)
      *
-     * @see
-     * com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF#ping(
-     * )
+     * @see com.sun.ts.tests.ejb30.lite.stateful.timeout.common.StatefulTimeoutIF#ping( )
      */
-    public void ping() {}
+    public void ping() {
+    }
 }

@@ -42,7 +42,8 @@ public class DID4bMedicalHistory implements Serializable {
 
     private String doctorName;
 
-    public DID4bMedicalHistory() {}
+    public DID4bMedicalHistory() {
+    }
 
     public DID4bMedicalHistory(DID4bPerson patient, String doctorName) {
         this.patient = patient;

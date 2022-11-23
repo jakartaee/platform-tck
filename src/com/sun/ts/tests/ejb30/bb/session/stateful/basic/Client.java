@@ -66,8 +66,7 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:185; EJB:JAVADOC:147
      *
-     * @test_Strategy: PostConstruct method must be invoked even when there is no
-     * resource injection.
+     * @test_Strategy: PostConstruct method must be invoked even when there is no resource injection.
      */
     public void postConstructInvokedEvenNoResourceInjection() throws Fault {
         if (postConstructCallsCount > 0) {
@@ -84,9 +83,8 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:JAVADOC:185; EJB:JAVADOC:147
      *
-     * @test_Strategy: o using @Stateful annotation o use @Resource annotation o
-     * use @Remote annotation o use @Remove annotation o business method may throw
-     * arbitary application exceptions, which are propogated back to clients. o No
+     * @test_Strategy: o using @Stateful annotation o use @Resource annotation o use @Remote annotation o use @Remove
+     * annotation o business method may throw arbitary application exceptions, which are propogated back to clients. o No
      * Init method is used here
      */
     public void testOperations() throws Fault {

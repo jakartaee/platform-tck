@@ -28,8 +28,7 @@ public class WebLog extends SimpleLog {
     /**
      * Construct a simple log with given name.
      *
-     * @param name
-     *          log name
+     * @param name log name
      */
     public WebLog(String name) {
         super(name);
@@ -37,8 +36,7 @@ public class WebLog extends SimpleLog {
 
     /**
      * <p>
-     * Do the actual logging. This method assembles the message and then prints to
-     * <code>System.err</code>.
+     * Do the actual logging. This method assembles the message and then prints to <code>System.err</code>.
      * </p>
      */
     protected void log(int type, Object message, Throwable t) {

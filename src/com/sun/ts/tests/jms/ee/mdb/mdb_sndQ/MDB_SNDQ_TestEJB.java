@@ -69,7 +69,8 @@ public class MDB_SNDQ_TestEJB {
 
     private String jmsPassword;
 
-    public MDB_SNDQ_TestEJB() {}
+    public MDB_SNDQ_TestEJB() {
+    }
 
     public void setup(Properties props) {
         TestUtil.logTrace("MDB_SNDQ_TestEJB.askMDBToSendAMessage()");

@@ -28,13 +28,12 @@ import jakarta.interceptor.ExcludeDefaultInterceptors;
 import jakarta.interceptor.Interceptors;
 
 /**
- * A bean that does not contain any lifecycle methods. Its superclass contains
- * lifecycle methods, and also overrides/disables lifecycle methods in ITS
- * superclasses.
+ * A bean that does not contain any lifecycle methods. Its superclass contains lifecycle methods, and also
+ * overrides/disables lifecycle methods in ITS superclasses.
  */
 @Stateless(name = "Callback4Bean")
-@Remote({Callback2IF.class})
-@Interceptors({InterceptorJ.class})
+@Remote({ Callback2IF.class })
+@Interceptors({ InterceptorJ.class })
 @ExcludeDefaultInterceptors
 public class Callback4Bean extends Callback4BeanSuper {
     public Callback4Bean() {

@@ -63,8 +63,7 @@ public class ParentMsgBeanNoTx implements MessageDrivenBean, MessageListener {
 
     public ParentMsgBeanNoTx() {
         TestUtil.logTrace("@MsgBean()!");
-    }
-    ;
+    };
 
     public void ejbCreate() {
         TestUtil.logTrace("@EJBCreate()!");
@@ -118,7 +117,8 @@ public class ParentMsgBeanNoTx implements MessageDrivenBean, MessageListener {
 
             testName = msg.getStringProperty("COM_SUN_JMS_TESTNAME");
             qConnection = qFactory.createQueueConnection();
-            if (qConnection == null) throw new EJBException("MDB connection Error!");
+            if (qConnection == null)
+                throw new EJBException("MDB connection Error!");
 
             qSession = qConnection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
 

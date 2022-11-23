@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/jsp_config_charsequence_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
         setGeneralURI("/jsp/spec/configuration/charsequence");
@@ -60,11 +58,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:296
      *
-     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in
-     * which the deferred-syntax-allowed-as-literal element is set to true. Verify
-     * that when the character sequence "#{" appears in template text, the
-     * sequence is treated as literal characters.
-     * [DeferredSyntaxAllowedAsLiteralElement]
+     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in which the deferred-syntax-allowed-as-literal
+     * element is set to true. Verify that when the character sequence "#{" appears in template text, the sequence is
+     * treated as literal characters. [DeferredSyntaxAllowedAsLiteralElement]
      */
     public void deferredSyntaxAllowedAsLiteralTrueTemplateTextTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "deferredSyntaxAllowedAsLiteralTrueTemplateTextTest");
@@ -76,10 +72,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:295
      *
-     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in
-     * which the deferred-syntax-allowed-as-literal element is set to false.
-     * Verify that when the character sequence "#{" appears in template text, an
-     * internal server error results. [TranslationError#{Sequence]
+     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in which the deferred-syntax-allowed-as-literal
+     * element is set to false. Verify that when the character sequence "#{" appears in template text, an internal server
+     * error results. [TranslationError#{Sequence]
      */
     public void deferredSyntaxAllowedAsLiteralFalseTemplateTextTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -93,11 +88,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:296
      *
-     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in
-     * which the deferred-syntax-allowed-as-literal element is set to true. Verify
-     * that when the character sequence "#{" is passed as an attribute to an
-     * action, the sequence is treated as literal characters.
-     * [DeferredSyntaxAllowedAsLiteralElement]
+     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in which the deferred-syntax-allowed-as-literal
+     * element is set to true. Verify that when the character sequence "#{" is passed as an attribute to an action, the
+     * sequence is treated as literal characters. [DeferredSyntaxAllowedAsLiteralElement]
      */
     public void deferredSyntaxAllowedAsLiteralTrueActionTest() throws Fault {
         TEST_PROPS.setProperty(STANDARD, "deferredSyntaxAllowedAsLiteralTrueActionTest");
@@ -109,11 +102,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:295
      *
-     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in
-     * which the deferred-syntax-allowed-as-literal element is set to false.
-     * Verify that when the character sequence "#{" is passed as an attribute to
-     * an action, and the tld does not specify a deferred-value element for the
-     * attribute, an internal server error results. [TranslationError#{Sequence]
+     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in which the deferred-syntax-allowed-as-literal
+     * element is set to false. Verify that when the character sequence "#{" is passed as an attribute to an action, and the
+     * tld does not specify a deferred-value element for the attribute, an internal server error results.
+     * [TranslationError#{Sequence]
      */
     public void deferredSyntaxAllowedAsLiteralFalseActionTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -127,10 +119,9 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:295
      *
-     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in
-     * which there is no deferred-syntax-allowed-as-literal element. Verify that
-     * when the character sequence "#{" appears in template text, an internal
-     * server error results. [TranslationError#{Sequence]
+     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in which there is no
+     * deferred-syntax-allowed-as-literal element. Verify that when the character sequence "#{" appears in template text, an
+     * internal server error results. [TranslationError#{Sequence]
      */
     public void noDeferredSyntaxAllowedAsLiteralTemplateTextTest() throws Fault {
         TEST_PROPS.setProperty(
@@ -144,11 +135,10 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:295
      *
-     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in
-     * which there is no deferred-syntax-allowed-as-literal element. Verify that
-     * when the character sequence "#{" is passed as an attribute to an action,
-     * and the tld does not specify a deferred-value element for the attribute, an
-     * internal server error results. [TranslationError#{Sequence]
+     * @test_Strategy: Invoke a jsp that is a member of a jsp-property-group in which there is no
+     * deferred-syntax-allowed-as-literal element. Verify that when the character sequence "#{" is passed as an attribute to
+     * an action, and the tld does not specify a deferred-value element for the attribute, an internal server error results.
+     * [TranslationError#{Sequence]
      */
     public void noDeferredSyntaxAllowedAsLiteralActionTest() throws Fault {
         TEST_PROPS.setProperty(

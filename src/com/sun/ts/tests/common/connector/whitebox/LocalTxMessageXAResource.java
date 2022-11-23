@@ -26,9 +26,8 @@ import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
 
 /**
- * Be careful..... This class will log a variety of message strings that will be
- * used by client side tests. If you change any strings in this class, it is
- * likely to result in test failures unless you are sure you know what tests you
+ * Be careful..... This class will log a variety of message strings that will be used by client side tests. If you
+ * change any strings in this class, it is likely to result in test failures unless you are sure you know what tests you
  * are affecting.
  */
 public class LocalTxMessageXAResource implements XAResource {
@@ -39,10 +38,9 @@ public class LocalTxMessageXAResource implements XAResource {
     }
 
     /*
-     * This constructor takes a string val. The passed in string is a unique
-     * string that will be used in client side test verifications. Making changes
-     * to the passed in string val is likely to result in test failures - so don't
-     * muck with the value unless you know exactly what tests you are affecting..
+     * This constructor takes a string val. The passed in string is a unique string that will be used in client side test
+     * verifications. Making changes to the passed in string val is likely to result in test failures - so don't muck with
+     * the value unless you know exactly what tests you are affecting..
      */
     public LocalTxMessageXAResource(String val) {
         sHeader = val;

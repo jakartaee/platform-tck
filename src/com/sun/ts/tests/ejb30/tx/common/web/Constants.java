@@ -57,5 +57,6 @@ public class Constants {
 
     public static final String interServletTxPropagation2 = "interServletTxPropagation2";
 
-    private Constants() {}
+    private Constants() {
+    }
 }

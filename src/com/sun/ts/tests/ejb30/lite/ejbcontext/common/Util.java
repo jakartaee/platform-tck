@@ -26,12 +26,12 @@ import java.util.List;
 
 public class Util {
     static String[] lookupNames = {
-        "java:comp/EJBContext",
-        "java:comp/env/ejbContextFromDescriptorInjection",
-        "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase/ejbContext",
-        "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase/sessionContext",
-        "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1/ejbContext",
-        "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1/sessionContext"
+            "java:comp/EJBContext",
+            "java:comp/env/ejbContextFromDescriptorInjection",
+            "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase/ejbContext",
+            "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.EJBContextBeanBase/sessionContext",
+            "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1/ejbContext",
+            "java:comp/env/com.sun.ts.tests.ejb30.lite.ejbcontext.common.Interceptor1/sessionContext"
     };
 
     // called by bean base and interceptor class

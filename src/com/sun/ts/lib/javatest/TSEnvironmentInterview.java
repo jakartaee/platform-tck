@@ -34,21 +34,17 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 /**
- * This interview collects the environment parameter, by means of environment
- * (jte) files and an environment name. It is normally used as one of a series
- * of sub-interviews that collect the parameter information for a test run. It
- * is suitable for use with legacy test suites that still rely on environments
- * being provided with .jte files; more sophisticated interviews should create a
- * custom interview that collects the environment data directly.
+ * This interview collects the environment parameter, by means of environment (jte) files and an environment name. It is
+ * normally used as one of a series of sub-interviews that collect the parameter information for a test run. It is
+ * suitable for use with legacy test suites that still rely on environments being provided with .jte files; more
+ * sophisticated interviews should create a custom interview that collects the environment data directly.
  */
 public class TSEnvironmentInterview extends Interview implements Parameters.LegacyEnvParameters {
     /**
      * Create an interview.
      *
-     * @param parent
-     *          The parent interview of which this is a child.
-     * @throws Interview.Fault
-     *           if there is a problem while creating the interview.
+     * @param parent The parent interview of which this is a child.
+     * @throws Interview.Fault if there is a problem while creating the interview.
      */
     public TSEnvironmentInterview(InterviewParameters parent) throws Interview.Fault {
         super(parent, "environment");
@@ -75,8 +71,7 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
     /**
      * Set the environment files for the interview.
      *
-     * @param files
-     *          the environment files for the interview
+     * @param files the environment files for the interview
      * @see #getEnvFiles
      */
     public void setEnvFiles(File[] files) {
@@ -96,8 +91,7 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
     /**
      * Set the environment name for the interview.
      *
-     * @param name
-     *          the environment name for the interview
+     * @param name the environment name for the interview
      * @see #getEnvName
      */
     public void setEnvName(String name) {
@@ -105,11 +99,9 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
     }
 
     /**
-     * Get the environment specified by the environment files and environment
-     * name, or null, if it cannot be determined.
+     * Get the environment specified by the environment files and environment name, or null, if it cannot be determined.
      *
-     * @return the environment determined by the interview, or null if it cannot
-     *         be determined.
+     * @return the environment determined by the interview, or null if it cannot be determined.
      * @see #getEnvFiles
      * @see #getEnvName
      */
@@ -125,12 +117,13 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
     private FileListQuestion qEnvFiles = new FileListQuestion(this, "envFiles") {
         { // CF 6/17/02
             setFilter(new ExtensionFileFilter(".jte", "Environment File"));
-            setValue(new File[] {new File(TSLegacyParameters.TS_HOME, "bin/ts.jte")});
+            setValue(new File[] { new File(TSLegacyParameters.TS_HOME, "bin/ts.jte") });
         }
 
         public File getBaseDirectory() {
             TestSuite ts = parent.getTestSuite();
-            if (ts == null) return null;
+            if (ts == null)
+                return null;
             else {
                 File r = ts.getRoot();
                 return r.isDirectory() ? r : r.getParentFile();
@@ -139,9 +132,12 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
 
         protected Question getNext() {
             updateCachedEnvTable();
-            if (cachedEnvTableError != null) return qEnvTableError;
-            else if (cachedEnvTable == null || cachedEnvTable.getEnvNames().length == 0) return qNoEnvs;
-            else return qEnv;
+            if (cachedEnvTableError != null)
+                return qEnvTableError;
+            else if (cachedEnvTable == null || cachedEnvTable.getEnvNames().length == 0)
+                return qNoEnvs;
+            else
+                return qEnv;
         }
     };
 
@@ -183,7 +179,7 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
 
     private ErrorQuestion qEnvTableError = new ErrorQuestion(this, "envTableError") {
         protected Object[] getTextArgs() {
-            return new Object[] {cachedEnvTableError};
+            return new Object[] { cachedEnvTableError };
         }
     };
 
@@ -207,7 +203,8 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
             TestEnvContext envTable = getEnvTable();
             if (envTable != cachedEnvTable) {
                 String[] envNames;
-                if (envTable == null) envNames = TestUtil.EMPTY_STRING_ARRAY;
+                if (envTable == null)
+                    envNames = TestUtil.EMPTY_STRING_ARRAY;
                 else {
                     String[] names = envTable.getEnvMenuNames();
                     Arrays.sort(names);
@@ -220,11 +217,14 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
         }
 
         protected Question getNext() {
-            if (value == null) return null;
+            if (value == null)
+                return null;
             else {
                 updateCachedEnv();
-                if (cachedEnv == null) return cachedEnvError;
-                else return qEnd;
+                if (cachedEnv == null)
+                    return cachedEnvError;
+                else
+                    return qEnd;
             }
         }
 
@@ -243,21 +243,20 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
                     cachedEnv = envTable.getEnv(envName);
                     if (cachedEnv == null) {
                         cachedEnvError = qEnvNotFound;
-                        cachedEnvErrorArgs = new Object[] {envName};
+                        cachedEnvErrorArgs = new Object[] { envName };
                     } else {
                         // verify all entries defined
                         cachedEnvError = null;
                         cachedEnvErrorArgs = null;
-                        for (Iterator i = cachedEnv.elements().iterator(); i.hasNext() && cachedEnvError == null; ) {
+                        for (Iterator i = cachedEnv.elements().iterator(); i.hasNext() && cachedEnvError == null;) {
                             TestEnvironment.Element entry = (TestEnvironment.Element) (i.next());
                             if (entry.getValue().indexOf("VALUE_NOT_DEFINED") >= 0) {
                                 cachedEnv = null;
-                                String eText =
-                                        ((entry.getDefinedInEnv() == null ? "" : "env." + entry.getDefinedInEnv() + ".")
-                                                + entry.getKey()
-                                                + "=" + entry.getValue());
+                                String eText = ((entry.getDefinedInEnv() == null ? "" : "env." + entry.getDefinedInEnv() + ".")
+                                        + entry.getKey()
+                                        + "=" + entry.getValue());
                                 cachedEnvError = qEnvUndefinedEntry;
-                                cachedEnvErrorArgs = new Object[] {eText, entry.getDefinedInFile()};
+                                cachedEnvErrorArgs = new Object[] { eText, entry.getDefinedInFile() };
                             }
                         }
                     }
@@ -266,7 +265,7 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
             } catch (TestEnvironment.Fault e) {
                 cachedEnv = null;
                 cachedEnvError = qEnvError;
-                cachedEnvErrorArgs = new Object[] {e.getMessage()};
+                cachedEnvErrorArgs = new Object[] { e.getMessage() };
             }
             cachedEnv_envTable = envTable;
             cachedEnv_envName = envName;
@@ -322,12 +321,15 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
     // ---------------------------------------------------------------------
 
     private static File[] getAbsoluteFiles(File baseDir, File[] files) {
-        if (files == null) return null;
+        if (files == null)
+            return null;
 
         boolean allAbsolute = true;
-        for (int i = 0; i < files.length && allAbsolute; i++) allAbsolute = files[i].isAbsolute();
+        for (int i = 0; i < files.length && allAbsolute; i++)
+            allAbsolute = files[i].isAbsolute();
 
-        if (allAbsolute) return files;
+        if (allAbsolute)
+            return files;
 
         File[] absoluteFiles = new File[files.length];
         for (int i = 0; i < files.length; i++) {
@@ -345,12 +347,15 @@ public class TSEnvironmentInterview extends Interview implements Parameters.Lega
     }
 
     private static boolean equal(File[] f1, File[] f2) {
-        if (f1 == null || f2 == null) return (f1 == f2);
+        if (f1 == null || f2 == null)
+            return (f1 == f2);
 
-        if (f1.length != f2.length) return false;
+        if (f1.length != f2.length)
+            return false;
 
         for (int i = 0; i < f1.length; i++) {
-            if (f1[i] != f2[i]) return false;
+            if (f1[i] != f2[i])
+                return false;
         }
 
         return true;

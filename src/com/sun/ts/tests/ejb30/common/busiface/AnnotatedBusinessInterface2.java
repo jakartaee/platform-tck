@@ -23,4 +23,5 @@ package com.sun.ts.tests.ejb30.common.busiface;
 import jakarta.ejb.Remote;
 
 @Remote
-public interface AnnotatedBusinessInterface2 extends AnnotatedBusinessInterface1 {}
+public interface AnnotatedBusinessInterface2 extends AnnotatedBusinessInterface1 {
+}

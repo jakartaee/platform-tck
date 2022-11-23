@@ -235,14 +235,12 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
     /**
      * <code>setTestDir</code> sets the current test directory.
      *
-     * @param testDir
-     *          a <code>String</code> value
+     * @param testDir a <code>String</code> value
      */
     public void setTestDir(String testDir) {
         TestUtil.logTrace("[JAXRSCommonClient] setTestDir");
@@ -262,12 +260,9 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     /**
      * <code>setup</code> is by the test harness to initialize the tests.
      *
-     * @param args
-     *          a <code>String[]</code> value
-     * @param p
-     *          a <code>Properties</code> value
-     * @exception Fault
-     *              if an error occurs
+     * @param args a <code>String[]</code> value
+     * @param p a <code>Properties</code> value
+     * @exception Fault if an error occurs
      */
     public void setup(String[] args, Properties p) throws Fault {
         TestUtil.logTrace("setup method JAXRSCommonClient");
@@ -289,19 +284,16 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     }
 
     /**
-     * <code>cleanup</code> is called by the test harness to cleanup after text
-     * execution
+     * <code>cleanup</code> is called by the test harness to cleanup after text execution
      *
-     * @exception Fault
-     *              if an error occurs
+     * @exception Fault if an error occurs
      */
     public void cleanup() throws Fault {
         TestUtil.logMsg("[JAXRSCommonClient] Test cleanup OK");
     }
 
     /*
-     * protected methods
-     * ========================================================================
+     * protected methods ========================================================================
      */
     /**
      * <PRE>
@@ -310,8 +302,7 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
      * the properties in TEST_PROPS will be cleared.
      * </PRE>
      *
-     * @throws Fault
-     *           If an error occurs during the test run
+     * @throws Fault If an error occurs during the test run
      */
     protected void invoke() throws Fault {
         TestUtil.logTrace("[JAXRSCommonClient] invoke");
@@ -363,15 +354,19 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
 
         // Check for a request object. If doesn't exist, then
         // check for a REQUEST property and create the request object.
-        if (req == null) req = setWebTestCaseRequest(testCase, null);
+        if (req == null)
+            req = setWebTestCaseRequest(testCase, null);
         setWebTestCaseProperties(testCase, req);
     }
 
     protected HttpRequest setWebTestCaseRequest(WebTestCase testCase, HttpRequest req) {
         String request = TEST_PROPS.get(Property.REQUEST);
         boolean isRequest = false;
-        for (Request r : Request.values()) if (request.startsWith(r.name())) isRequest = true;
-        if (request.endsWith(HTTP10) || request.endsWith(HTTP11)) isRequest = true;
+        for (Request r : Request.values())
+            if (request.startsWith(r.name()))
+                isRequest = true;
+        if (request.endsWith(HTTP10) || request.endsWith(HTTP11))
+            isRequest = true;
         if (isRequest) {
             // user has overridden default request behavior
             req = createHttpRequest(request, _hostname, _port);
@@ -387,113 +382,112 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
         Property key = null;
         String value = null;
         // process the remainder of the properties
-        for (Enumeration<Property> e = TEST_PROPS.keys(); e.hasMoreElements(); ) {
+        for (Enumeration<Property> e = TEST_PROPS.keys(); e.hasMoreElements();) {
             key = e.nextElement();
             value = TEST_PROPS.get(key);
             switch (key) {
-                case APITEST:
-                    break;
-                case BASIC_AUTH_PASSWD:
-                case BASIC_AUTH_REALM:
-                case BASIC_AUTH_USER:
-                    String user = TEST_PROPS.get(Property.BASIC_AUTH_USER);
-                    String password = TEST_PROPS.get(Property.BASIC_AUTH_PASSWD);
-                    String realm = TEST_PROPS.get(Property.BASIC_AUTH_REALM);
-                    req.setAuthenticationCredentials(user, password, HttpRequest.BASIC_AUTHENTICATION, realm);
-                    break;
-                case CONTENT:
-                    req.setContent(value);
-                    break;
-                case DONOTUSEServletName:
-                    break;
-                case EXPECT_RESPONSE_BODY:
-                    // FIXME
-                    // setExpectResponseBody(false);
-                    break;
-                case EXPECTED_HEADERS:
-                    testCase.addExpectedHeader(value);
-                    break;
-                case FOLLOW_REDIRECT:
-                    TestUtil.logTrace("##########Found redirect Property");
-                    _redirect = true;
-                    break;
-                case GOLDENFILE:
-                    StringBuffer sb = new StringBuffer(50);
-                    sb.append(_tsHome).append(GOLDENFILEDIR);
-                    sb.append(_generalURI).append(SL);
-                    sb.append(value);
-                    testCase.setGoldenFilePath(sb.toString());
-                    break;
-                case IGNORE_BODY:
-                    // FIXME
-                    // setIgnoreResponseBody(true);
-                    testCase.setGoldenFilePath(null);
-                    break;
-                case IGNORE_STATUS_CODE:
-                    testCase.setExpectedStatusCode("-1");
-                    break;
-                case REASON_PHRASE:
-                    testCase.setExpectedReasonPhrase(value);
-                    break;
-                case REQUEST:
-                    break;
-                case REQUEST_HEADERS:
-                    req.addRequestHeader(value);
-                    break;
-                case RESPONSE_MATCH:
-                    // setResponseMatch(TEST_PROPS.getProperty(key));
-                    break;
-                case SAVE_STATE:
-                    _saveState = true;
-                    break;
-                case SEARCH_STRING:
-                    testCase.setResponseSearchString(value);
-                    break;
-                case SEARCH_STRING_IGNORE_CASE:
-                    testCase.setResponseSearchStringIgnoreCase(value);
-                    break;
-                case STANDARD:
-                    break;
-                case STATUS_CODE:
-                    if (value.contains("|")) testCase.setStrategy(CheckOneOfStatusesTokenizedValidator.class.getName());
-                    testCase.setExpectedStatusCode(value);
-                    break;
-                case STRATEGY:
-                    testCase.setStrategy(value);
-                    break;
-                case TEST_NAME:
-                    // testName = TEST_PROPS.getProperty(key);
-                    break;
-                case UNEXPECTED_HEADERS:
-                    testCase.addUnexpectedHeader(value);
-                    break;
-                case UNEXPECTED_RESPONSE_MATCH:
-                    testCase.setUnexpectedResponseSearchString(value);
-                    break;
-                case UNORDERED_SEARCH_STRING:
-                    testCase.setUnorderedSearchString(value);
-                    break;
-                case USE_SAVED_STATE:
-                    _useSavedState = true;
-                    break;
+            case APITEST:
+                break;
+            case BASIC_AUTH_PASSWD:
+            case BASIC_AUTH_REALM:
+            case BASIC_AUTH_USER:
+                String user = TEST_PROPS.get(Property.BASIC_AUTH_USER);
+                String password = TEST_PROPS.get(Property.BASIC_AUTH_PASSWD);
+                String realm = TEST_PROPS.get(Property.BASIC_AUTH_REALM);
+                req.setAuthenticationCredentials(user, password, HttpRequest.BASIC_AUTHENTICATION, realm);
+                break;
+            case CONTENT:
+                req.setContent(value);
+                break;
+            case DONOTUSEServletName:
+                break;
+            case EXPECT_RESPONSE_BODY:
+                // FIXME
+                // setExpectResponseBody(false);
+                break;
+            case EXPECTED_HEADERS:
+                testCase.addExpectedHeader(value);
+                break;
+            case FOLLOW_REDIRECT:
+                TestUtil.logTrace("##########Found redirect Property");
+                _redirect = true;
+                break;
+            case GOLDENFILE:
+                StringBuffer sb = new StringBuffer(50);
+                sb.append(_tsHome).append(GOLDENFILEDIR);
+                sb.append(_generalURI).append(SL);
+                sb.append(value);
+                testCase.setGoldenFilePath(sb.toString());
+                break;
+            case IGNORE_BODY:
+                // FIXME
+                // setIgnoreResponseBody(true);
+                testCase.setGoldenFilePath(null);
+                break;
+            case IGNORE_STATUS_CODE:
+                testCase.setExpectedStatusCode("-1");
+                break;
+            case REASON_PHRASE:
+                testCase.setExpectedReasonPhrase(value);
+                break;
+            case REQUEST:
+                break;
+            case REQUEST_HEADERS:
+                req.addRequestHeader(value);
+                break;
+            case RESPONSE_MATCH:
+                // setResponseMatch(TEST_PROPS.getProperty(key));
+                break;
+            case SAVE_STATE:
+                _saveState = true;
+                break;
+            case SEARCH_STRING:
+                testCase.setResponseSearchString(value);
+                break;
+            case SEARCH_STRING_IGNORE_CASE:
+                testCase.setResponseSearchStringIgnoreCase(value);
+                break;
+            case STANDARD:
+                break;
+            case STATUS_CODE:
+                if (value.contains("|"))
+                    testCase.setStrategy(CheckOneOfStatusesTokenizedValidator.class.getName());
+                testCase.setExpectedStatusCode(value);
+                break;
+            case STRATEGY:
+                testCase.setStrategy(value);
+                break;
+            case TEST_NAME:
+                // testName = TEST_PROPS.getProperty(key);
+                break;
+            case UNEXPECTED_HEADERS:
+                testCase.addUnexpectedHeader(value);
+                break;
+            case UNEXPECTED_RESPONSE_MATCH:
+                testCase.setUnexpectedResponseSearchString(value);
+                break;
+            case UNORDERED_SEARCH_STRING:
+                testCase.setUnorderedSearchString(value);
+                break;
+            case USE_SAVED_STATE:
+                _useSavedState = true;
+                break;
             }
         }
     }
 
     /**
-     * Create request <type> /<contextroot>/<path> HTTP/1.1. ContextRoot is
-     * defined in every client.
+     * Create request <type> /<contextroot>/<path> HTTP/1.1. ContextRoot is defined in every client.
      *
-     * @param type
-     *          PUT, GET, POST, ...
-     * @param path
-     *          path defined in a servlet
+     * @param type PUT, GET, POST, ...
+     * @param path path defined in a servlet
      * @return String representing HTTP request
      */
     protected String buildRequest(String type, String... path) {
         StringBuilder sb = new StringBuilder();
         sb.append(type).append(" ").append(_contextRoot).append(SL);
-        for (String segment : path) sb.append(segment);
+        for (String segment : path)
+            sb.append(segment);
         sb.append(HTTP11);
         return sb.toString();
     }
@@ -535,8 +529,7 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
 
     /**
      * @return http response body as string
-     * @throws Fault
-     *           when an error occur
+     * @throws Fault when an error occur
      */
     protected String getResponseBody() throws Fault {
         try {
@@ -551,21 +544,19 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
 
     /**
      * @return http response body as string
-     * @throws Fault
-     *           when an error occur
+     * @throws Fault when an error occur
      */
     protected String[] getResponseHeaders() throws Fault {
         Header[] headerEntities = _testCase.getResponse().getResponseHeaders();
         String[] headers = new String[headerEntities.length];
-        for (int i = 0; i != headerEntities.length; i++) headers[i] = headerEntities[i].toString();
+        for (int i = 0; i != headerEntities.length; i++)
+            headers[i] = headerEntities[i].toString();
         return headers;
     }
 
     /**
-     * @param s
-     *          the header to search
-     * @throws Fault
-     *           when header not found
+     * @param s the header to search
+     * @throws Fault when header not found
      */
     protected void assertResponseHeadersContain(String s) throws Fault {
         boolean found = false;
@@ -578,10 +569,8 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     }
 
     /**
-     * @param s
-     *          the entity to search
-     * @throws Fault
-     *           when entity not found
+     * @param s the entity to search
+     * @throws Fault when entity not found
      */
     protected void assertResponseBodyContain(String s) throws Fault {
         boolean found = getResponseBody().contains(s);
@@ -642,13 +631,9 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     /**
      * Asserts that a condition is true.
      *
-     * @param conditionTrue
-     *          tested condition
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when conditionTrue is not met with message provided
+     * @param conditionTrue tested condition
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when conditionTrue is not met with message provided
      */
     public static void //
             assertFault(boolean conditionTrue, Object... message) throws Fault {
@@ -658,29 +643,22 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     /**
      * Asserts that a condition is true.
      *
-     * @param condition
-     *          tested condition
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when conditionTrue is not met with message provided
+     * @param condition tested condition
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when conditionTrue is not met with message provided
      */
     public static void //
             assertTrue(boolean condition, Object... message) throws Fault {
-        if (!condition) fault(message);
+        if (!condition)
+            fault(message);
     }
 
     /**
      * Asserts that a condition is false.
      *
-     * @param condition
-     *          tested condition
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when condition is not false with message provided
+     * @param condition tested condition
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when condition is not false with message provided
      */
     public static void //
             assertFalse(boolean condition, Object... message) throws Fault {
@@ -688,58 +666,47 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     }
 
     /**
-     * Asserts that two objects are equal. When instances of Comparable, such as
-     * String, compareTo is used.
+     * Asserts that two objects are equal. When instances of Comparable, such as String, compareTo is used.
      *
-     * @param first
-     *          first object
-     * @param second
-     *          second object
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when objects are not equal with message provided
+     * @param first first object
+     * @param second second object
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when objects are not equal with message provided
      */
     @SuppressWarnings("unchecked")
-    public static <T>
-            void //
-                    assertEquals(T first, T second, Object... message) throws Fault {
-        if (first == null && second == null) return;
+    public static <T> void //
+            assertEquals(T first, T second, Object... message) throws Fault {
+        if (first == null && second == null)
+            return;
         assertFalse(first == null && second != null, message);
         assertFalse(first != null && second == null, message);
-        if (first instanceof Comparable) assertTrue(((Comparable<T>) first).compareTo(second) == 0, message);
-        else assertTrue(first.equals(second), message);
+        if (first instanceof Comparable)
+            assertTrue(((Comparable<T>) first).compareTo(second) == 0, message);
+        else
+            assertTrue(first.equals(second), message);
     }
 
-    public static <T>
-            void //
-                    assertEqualsInt(int first, int second, Object... message) throws Fault {
+    public static <T> void //
+            assertEqualsInt(int first, int second, Object... message) throws Fault {
         assertTrue(first == second, message);
     }
 
-    public static <T>
-            void //
-                    assertEqualsLong(long first, long second, Object... message) throws Fault {
+    public static <T> void //
+            assertEqualsLong(long first, long second, Object... message) throws Fault {
         assertTrue(first == second, message);
     }
 
-    public static <T>
-            void //
-                    assertEqualsBool(boolean first, boolean second, Object... message) throws Fault {
+    public static <T> void //
+            assertEqualsBool(boolean first, boolean second, Object... message) throws Fault {
         assertTrue(first == second, message);
     }
 
     /**
      * Asserts that an object is null.
      *
-     * @param object
-     *          Assert that object is not null
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when condition is not met with message provided
+     * @param object Assert that object is not null
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when condition is not met with message provided
      */
     public static void //
             assertNull(Object object, Object... message) throws Fault {
@@ -749,13 +716,9 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     /**
      * Asserts that an object is not null.
      *
-     * @param object
-     *          Assert that object is not null
-     * @param message
-     *          a space separated message[i].toString() compilation for
-     *          i=<0,message.length)
-     * @throws Fault
-     *           when condition is not met with message provided
+     * @param object Assert that object is not null
+     * @param message a space separated message[i].toString() compilation for i=<0,message.length)
+     * @throws Fault when condition is not met with message provided
      */
     public static void //
             assertNotNull(Object object, Object... message) throws Fault {
@@ -763,13 +726,10 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     }
 
     /**
-     * Throws Fault with space separated objects[1],object[2],...,object[n]
-     * message
+     * Throws Fault with space separated objects[1],object[2],...,object[n] message
      *
-     * @param objects
-     *          objects whose toString() results will be added to Fault message
-     * @throws Fault
-     *           fault with space separated objects.toString values
+     * @param objects objects whose toString() results will be added to Fault message
+     * @throws Fault fault with space separated objects.toString values
      */
     public static void fault(Object... objects) throws Fault {
         throw new Fault(objectsToString(objects));
@@ -778,29 +738,21 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     /**
      * Assert that given substring is a substring of given string
      *
-     * @param string
-     *          the string to search substring in
-     * @param substring
-     *          the substring to be searched in a given string
-     * @param message
-     *          space separated message values to be thrown
-     * @throws Fault
-     *           throws
+     * @param string the string to search substring in
+     * @param substring the substring to be searched in a given string
+     * @param message space separated message values to be thrown
+     * @throws Fault throws
      */
     public static void assertContains(String string, String substring, Object... message) throws Fault {
         assertTrue(string.contains(substring), message);
     }
 
     /**
-     * Assert that given substring is a substring of given string, case
-     * insensitive
+     * Assert that given substring is a substring of given string, case insensitive
      *
-     * @param string
-     *          the string to search substring in
-     * @param substring
-     *          the substring to be searched in a given string
-     * @param message
-     *          space separated message values to be thrown
+     * @param string the string to search substring in
+     * @param substring the substring to be searched in a given string
+     * @param message space separated message values to be thrown
      * @throws Fault
      */
     public static void assertContainsIgnoreCase(String string, String substring, Object... message) throws Fault {
@@ -810,12 +762,9 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     /**
      * Assert that given subtext.toString() subject is a substring of given text
      *
-     * @param text
-     *          the text.toString() object to search subtext.toString() in
-     * @param subtext
-     *          the subtext.toString() to be searched in a given text.toString()
-     * @param message
-     *          space separated message values to be thrown
+     * @param text the text.toString() object to search subtext.toString() in
+     * @param subtext the subtext.toString() to be searched in a given text.toString()
+     * @param message space separated message values to be thrown
      * @throws Fault
      */
     public static <T> void assertContains(T text, T subtext, Object... message) throws Fault {
@@ -823,15 +772,11 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     }
 
     /**
-     * Assert that given subtext.toString() subject is a substring of given text,
-     * case insensitive
+     * Assert that given subtext.toString() subject is a substring of given text, case insensitive
      *
-     * @param text
-     *          the text.toString() object to search subtext.toString() in
-     * @param subtext
-     *          the subtext.toString() to be searched in a given text.toString()
-     * @param message
-     *          space separated message values to be thrown
+     * @param text the text.toString() object to search subtext.toString() in
+     * @param subtext the subtext.toString() to be searched in a given text.toString()
+     * @param message space separated message values to be thrown
      * @throws Fault
      */
     public static <T> void assertContainsIgnoreCase(T text, T subtext, Object... message) throws Fault {
@@ -849,11 +794,11 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     }
 
     @SuppressWarnings("unchecked")
-    private static <T extends Throwable>
-            T //
-                    hasCause(Throwable parent, Class<? extends Throwable> cause) {
+    private static <T extends Throwable> T //
+            hasCause(Throwable parent, Class<? extends Throwable> cause) {
         while (parent != null) {
-            if (cause.isInstance(parent)) return (T) parent;
+            if (cause.isInstance(parent))
+                return (T) parent;
             parent = parent.getCause();
         }
         return null;
@@ -872,9 +817,8 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     }
 
     /**
-     * Use rather this method than
-     * {@link JaxrsUtil#iterableToString(String, Iterable)} since not all wars
-     * (for servlet vehicle, api) do contain JaxrsUtil
+     * Use rather this method than {@link JaxrsUtil#iterableToString(String, Iterable)} since not all wars (for servlet
+     * vehicle, api) do contain JaxrsUtil
      *
      * @param objects
      * @return objects in a single string , each object separated by " "
@@ -888,13 +832,13 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
      */
     protected static String objectsToString(String delimiter, Object... objects) {
         StringBuilder sb = new StringBuilder();
-        for (Object o : objects) sb.append(o).append(delimiter);
+        for (Object o : objects)
+            sb.append(o).append(delimiter);
         return sb.toString().trim();
     }
 
     /*
-     * private methods
-     * ========================================================================
+     * private methods ========================================================================
      */
     private String getTSRequest(String request) {
         TestUtil.logTrace("[JAXRSCommonClient] getTSRequest");
@@ -920,13 +864,11 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     protected String _servlet = null;
 
     /**
-     * Sets the request, testname, and a search string for test passed. A search
-     * is also added for test failure. If found, the test will fail.
+     * Sets the request, testname, and a search string for test passed. A search is also added for test failure. If found,
+     * the test will fail.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setApiTestProperties(String testValue, WebTestCase testCase) {
         TestUtil.logTrace("[JAXRSCommonClient] setApiTestProperties");
@@ -970,10 +912,8 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     /**
      * Consists of a test name, a request, and a goldenfile.
      *
-     * @param testValue
-     *          - a logical test identifier
-     * @param testCase
-     *          - the current test case
+     * @param testValue - a logical test identifier
+     * @param testCase - the current test case
      */
     private void setStandardProperties(String testValue, WebTestCase testCase) {
         TestUtil.logTrace("[JAXRSCommonClient] setStandardProperties");
@@ -1009,11 +949,9 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     }
 
     /**
-     * Sets the name of the servlet to use when building a request for a single
-     * servlet API test.
+     * Sets the name of the servlet to use when building a request for a single servlet API test.
      *
-     * @param servlet
-     *          - the name of the servlet
+     * @param servlet - the name of the servlet
      */
     protected void setServletName(String servlet) {
         TestUtil.logTrace("[JAXRSCommonClient] setServletName");
@@ -1080,7 +1018,8 @@ public abstract class JAXRSCommonClient extends ServiceEETest {
     protected String getAbsoluteUrl(String method) {
         StringBuilder sb = new StringBuilder();
         sb.append("http://").append(_hostname).append(":").append(_port).append(getContextRoot());
-        if (method != null) sb.append("/").append(method);
+        if (method != null)
+            sb.append("/").append(method);
         return sb.toString();
     }
 }

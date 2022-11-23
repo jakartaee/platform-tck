@@ -18,4 +18,5 @@ package com.sun.ts.tests.ejb30.bb.async.stateful.annotated;
 
 import com.sun.ts.tests.ejb30.bb.async.common.annotated.Async2RemoteIF;
 
-public interface StatefulAsync2RemoteIF extends Async2RemoteIF {}
+public interface StatefulAsync2RemoteIF extends Async2RemoteIF {
+}

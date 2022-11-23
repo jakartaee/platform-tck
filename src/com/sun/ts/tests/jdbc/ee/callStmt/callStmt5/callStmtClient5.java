@@ -40,8 +40,7 @@ import java.util.Properties;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The callStmtClient5 class tests methods of DatabaseMetaData interface using
- * Sun's J2EE Reference Implementation.
+ * The callStmtClient5 class tests methods of DatabaseMetaData interface using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -78,14 +77,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -94,7 +90,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             try {
                 props = p;
                 drManager = p.getProperty("DriverManager", "");
-                if (drManager.length() == 0) throw new Fault("Invalid DriverManager Name");
+                if (drManager.length() == 0)
+                    throw new Fault("Invalid DriverManager Name");
                 sqlp = p;
 
                 if (drManager.equals("yes")) {
@@ -120,16 +117,13 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject41
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-     * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267; JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType,int scale) method. Execute the stored procedure
-     * and call the getObject(int parameterIndex) method to retrieve the minimum
-     * value of the parameter from Decimal_Tab. Extract the minimum value from the
-     * tssql.stmt file.Compare this value with the value returned by the
-     * getObject(int parameterIndex) Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType,int scale) method. Execute the stored procedure and call the
+     * getObject(int parameterIndex) method to retrieve the minimum value of the parameter from Decimal_Tab. Extract the
+     * minimum value from the tssql.stmt file.Compare this value with the value returned by the getObject(int
+     * parameterIndex) Both the values should be equal.
      */
     public void testGetObject41() throws Fault {
         try {
@@ -183,14 +177,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject42
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-     * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267; JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType,int scale) method. Execute the stored procedure
-     * and call the getObject(int parameterIndex) method to retrieve the null
-     * value from Decimal_Tab.Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType,int scale) method. Execute the stored procedure and call the
+     * getObject(int parameterIndex) method to retrieve the null value from Decimal_Tab.Check if it returns null
      */
     public void testGetObject42() throws Fault {
         try {
@@ -241,16 +232,13 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject43
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-     * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267; JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Update the column Binary_Val of the Binary_Tab with a byte array
-     * using the PreparedStatement.setBytes(int columnIndex) method.Register the
-     * parameter using registerOutParameter(int parameterIndex,int sqlType)
-     * method. Execute the stored procedure and call the getObject(int
-     * parameterIndex) method to retrieve the byte array. It should return the
-     * byte array object that has been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Update the column Binary_Val of
+     * the Binary_Tab with a byte array using the PreparedStatement.setBytes(int columnIndex) method.Register the parameter
+     * using registerOutParameter(int parameterIndex,int sqlType) method. Execute the stored procedure and call the
+     * getObject(int parameterIndex) method to retrieve the byte array. It should return the byte array object that has been
+     * set.
      */
     public void testGetObject43() throws Fault {
         String binarySize = null;
@@ -323,14 +311,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject44
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-     * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267; JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType) method. Execute the stored procedure and call
-     * the getObject(int parameterIndex) method to retrieve the null value from
-     * Binary_Tab.Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType) method. Execute the stored procedure and call the getObject(int
+     * parameterIndex) method to retrieve the null value from Binary_Tab.Check if it returns null
      */
     public void testGetObject44() throws Fault {
         String binarySize = null;
@@ -351,7 +336,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             byte[] oRetVal = (byte[]) cstmt.getObject(1);
             msg.addOutputMsg("null", "" + oRetVal);
 
-            if (oRetVal == null) msg.setMsg("getObject returns the null value for type byte[]");
+            if (oRetVal == null)
+                msg.setMsg("getObject returns the null value for type byte[]");
             else {
                 msg.printTestError("getObject did not return the null value for type byte[]", "test getObject Failed!");
             }
@@ -380,16 +366,13 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject45
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-     * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267; JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Update the column Varbinary_Val of the Varbinary_tab with a byte
-     * array using the PreparedStatement.setBytes(int columnIndex) method.Register
-     * the parameter using registerOutParameter(int parameterIndex,int sqlType,int
-     * scale) method. Execute the stored procedure and call the getObject(int
-     * parameterIndex) method to retrieve the byte array. It should return the
-     * byte array object that has been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Update the column Varbinary_Val of
+     * the Varbinary_tab with a byte array using the PreparedStatement.setBytes(int columnIndex) method.Register the
+     * parameter using registerOutParameter(int parameterIndex,int sqlType,int scale) method. Execute the stored procedure
+     * and call the getObject(int parameterIndex) method to retrieve the byte array. It should return the byte array object
+     * that has been set.
      */
     public void testGetObject45() throws Fault {
         String varbinarySize = null;
@@ -465,14 +448,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject46
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-     * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267; JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType,int scale) method. Execute the stored procedure
-     * and call the getObject(int parameterIndex) method to retrieve the null
-     * value from Varbinary_Tab.Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType,int scale) method. Execute the stored procedure and call the
+     * getObject(int parameterIndex) method to retrieve the null value from Varbinary_Tab.Check if it returns null
      */
     public void testGetObject46() throws Fault {
         String varbinarySize = null;
@@ -495,7 +475,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             byte[] oRetVal = (byte[]) cstmt.getObject(1);
 
             msg.addOutputMsg("null", "" + oRetVal);
-            if (oRetVal == null) msg.setMsg("getObject returns the null value for type byte[]");
+            if (oRetVal == null)
+                msg.setMsg("getObject returns the null value for type byte[]");
             else {
                 msg.printTestError("getObject did not return the null value for type byte[]", "test getObject Failed!");
             }
@@ -523,16 +504,13 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject47
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-     * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267; JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Update the column Longvarbinary_Val of the Longvarbinary_Tab with
-     * a byte array using the PreparedStatement.setBytes(int columnIndex)
-     * method.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType) method. Execute the stored procedure and call
-     * the getObject(int parameterIndex) method.to retrieve the byte array. It
-     * should return the byte array object that has been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Update the column
+     * Longvarbinary_Val of the Longvarbinary_Tab with a byte array using the PreparedStatement.setBytes(int columnIndex)
+     * method.Register the parameter using registerOutParameter(int parameterIndex,int sqlType) method. Execute the stored
+     * procedure and call the getObject(int parameterIndex) method.to retrieve the byte array. It should return the byte
+     * array object that has been set.
      */
     public void testGetObject47() throws Fault {
         String longvarbinarySize = null;
@@ -608,14 +586,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetObject48
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267;
-     * JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1267; JDBC:JAVADOC:1268; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType) method. Execute the stored procedure and call
-     * the getObject(int parameterIndex) method to retrieve the null value from
-     * from Longvarbinary_Tab.Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType) method. Execute the stored procedure and call the getObject(int
+     * parameterIndex) method to retrieve the null value from from Longvarbinary_Tab.Check if it returns null
      */
     public void testGetObject48() throws Fault {
         try {
@@ -634,7 +609,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             byte[] oRetVal = (byte[]) cstmt.getObject(1);
 
             msg.addOutputMsg("null", "" + oRetVal);
-            if (oRetVal == null) msg.setMsg("getObject returns the null value for type byte[]");
+            if (oRetVal == null)
+                msg.setMsg("getObject returns the null value for type byte[]");
             else {
                 msg.printTestError("getObject did not return the null value for type byte[]", "test getObject Failed!");
             }
@@ -662,16 +638,12 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetFloat01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1253;
-     * JDBC:JAVADOC:1254; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1253; JDBC:JAVADOC:1254; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Execute the stored procedure and call the
-     * getFloat(int parameterIndex) method to retrieve the maximum value from
-     * Real_Tab. Extract the maximum value from the tssql.stmt file.Compare this
-     * value with the value returned by the getFloat(int parameterIndex). Both the
-     * values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Execute the stored procedure and call the getFloat(int
+     * parameterIndex) method to retrieve the maximum value from Real_Tab. Extract the maximum value from the tssql.stmt
+     * file.Compare this value with the value returned by the getFloat(int parameterIndex). Both the values should be equal.
      */
     public void testGetFloat01() throws Fault {
         try {
@@ -695,7 +667,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, new Float(fExtVal).toString());
 
-            if (fRetVal == fExtVal) msg.setMsg("getFloat returns the Maximum Value " + fRetVal);
+            if (fRetVal == fExtVal)
+                msg.setMsg("getFloat returns the Maximum Value " + fRetVal);
             else {
                 msg.printTestError("getFloat did not return the Maximum Value", "test getFloat Failed!");
             }
@@ -723,16 +696,12 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetFloat02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1253;
-     * JDBC:JAVADOC:1254; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1253; JDBC:JAVADOC:1254; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Execute the stored procedure and call the
-     * getFloat(int parameterIndex) method to retrieve the minimum value from
-     * Real_Tab. Extract the minimum value from the tssql.stmt file.Compare this
-     * value with the value returned by the getFloat(int parameterIndex). Both the
-     * values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Execute the stored procedure and call the getFloat(int
+     * parameterIndex) method to retrieve the minimum value from Real_Tab. Extract the minimum value from the tssql.stmt
+     * file.Compare this value with the value returned by the getFloat(int parameterIndex). Both the values should be equal.
      */
     public void testGetFloat02() throws Fault {
         try {
@@ -755,7 +724,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
 
             msg.addOutputMsg(sRetStr, new Float(fExtVal).toString());
 
-            if (fRetVal == fExtVal) msg.setMsg("getFloat returns the Minimum Value " + fRetVal);
+            if (fRetVal == fExtVal)
+                msg.setMsg("getFloat returns the Minimum Value " + fRetVal);
             else {
                 msg.printTestError("getFloat did not return the Minimum Value ", "test getFloat Failed!");
             }
@@ -783,14 +753,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetFloat03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1253;
-     * JDBC:JAVADOC:1254; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1253; JDBC:JAVADOC:1254; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Execute the stored procedure and call the
-     * getFloat(int parameterIndex) method to retrieve the null value from
-     * Real_Tab. Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Execute the stored procedure and call the getFloat(int
+     * parameterIndex) method to retrieve the null value from Real_Tab. Check if it returns null
      */
     public void testGetFloat03() throws Fault {
         try {
@@ -811,7 +778,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             float fRetVal = cstmt.getFloat(3);
             msg.addOutputMsg("null", new Float(fRetVal).toString());
 
-            if (cstmt.wasNull()) msg.setMsg("getFloat returns the Null Value " + fRetVal);
+            if (cstmt.wasNull())
+                msg.setMsg("getFloat returns the Null Value " + fRetVal);
             else {
                 msg.printTestError("getFloat did not return the Null Value ", "test getFloat Failed!");
             }
@@ -839,16 +807,13 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241;
-     * JDBC:JAVADOC:1242; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241; JDBC:JAVADOC:1242; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Execute the stored procedure and call the
-     * getString(int parameterIndex) method to retrieve a String value from
-     * Varchar_Tab Extract the same String value from the tssql.stmt file.Compare
-     * this value with the value returned by the getString(int parameterIndex).
-     * Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Execute the stored procedure and call the getString(int
+     * parameterIndex) method to retrieve a String value from Varchar_Tab Extract the same String value from the tssql.stmt
+     * file.Compare this value with the value returned by the getString(int parameterIndex). Both the values should be
+     * equal.
      */
     public void testGetString03() throws Fault {
         try {
@@ -871,7 +836,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             oRetVal = oRetVal.trim();
 
             msg.addOutputMsg(oExtVal, oRetVal);
-            if (oRetVal.equals(oExtVal.substring(1, oExtVal.length() - 1))) msg.setMsg("getString returns the Name ");
+            if (oRetVal.equals(oExtVal.substring(1, oExtVal.length() - 1)))
+                msg.setMsg("getString returns the Name ");
             else {
                 msg.printTestError("getString did not return the Name ", "test getString Failed!");
             }
@@ -899,14 +865,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241;
-     * JDBC:JAVADOC:1242; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241; JDBC:JAVADOC:1242; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Execute the stored procedure and call the
-     * getString(int parameterIndex) method to retrieve the null value from
-     * Varchar_Tab. Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Execute the stored procedure and call the getString(int
+     * parameterIndex) method to retrieve the null value from Varchar_Tab. Check if it returns null
      */
     public void testGetString04() throws Fault {
         try {
@@ -927,7 +890,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             String oRetVal = (String) cstmt.getString(2);
 
             msg.addOutputMsg("null", oRetVal);
-            if (oRetVal == null) msg.setMsg("getString returns the null value ");
+            if (oRetVal == null)
+                msg.setMsg("getString returns the null value ");
             else {
                 msg.printTestError("getString did not return the null value", "test getString Failed!");
             }
@@ -955,16 +919,13 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString05
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241;
-     * JDBC:JAVADOC:1242; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241; JDBC:JAVADOC:1242; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Execute the stored procedure and call the
-     * getString(int parameterIndex) method to retrieve a String value from
-     * Longvarchar_Tab. Extract the same String value from the tssql.stmt
-     * file.Compare this value with the value returned by the getString(int
-     * parameterIndex). Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Execute the stored procedure and call the getString(int
+     * parameterIndex) method to retrieve a String value from Longvarchar_Tab. Extract the same String value from the
+     * tssql.stmt file.Compare this value with the value returned by the getString(int parameterIndex). Both the values
+     * should be equal.
      */
     public void testGetString05() throws Fault {
         try {
@@ -1015,14 +976,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetString06
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241;
-     * JDBC:JAVADOC:1242; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1241; JDBC:JAVADOC:1242; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Execute the stored procedure and call the
-     * getString(int parameterIndex) method to retrieve the null value from
-     * Longvarchar_Tab. Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Execute the stored procedure and call the getString(int
+     * parameterIndex) method to retrieve the null value from Longvarchar_Tab. Check if it returns null
      */
     public void testGetString06() throws Fault {
         try {
@@ -1041,7 +999,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             msg.setMsg("invoke getString method");
             String oRetVal = (String) cstmt.getString(1);
             msg.addOutputMsg("null", oRetVal);
-            if (oRetVal == null) msg.setMsg("getString returns the null value ");
+            if (oRetVal == null)
+                msg.setMsg("getString returns the null value ");
             else {
                 msg.printTestError("getString did not return the null value", "test getString Failed!");
             }
@@ -1069,16 +1028,13 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBigDecimal04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269;
-     * JDBC:JAVADOC:1270; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269; JDBC:JAVADOC:1270; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType,int scale). Execute the stored procedure and
-     * call the getBigDecimal(int parameterIndex) method.to retrieve the maximum
-     * value from Decimal_Tab. Extract the maximum value from the tssql.stmt
-     * file.Compare this value with the value returned by the getBigDecimal(int
-     * parameterIndex).Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType,int scale). Execute the stored procedure and call the
+     * getBigDecimal(int parameterIndex) method.to retrieve the maximum value from Decimal_Tab. Extract the maximum value
+     * from the tssql.stmt file.Compare this value with the value returned by the getBigDecimal(int parameterIndex).Both the
+     * values should be equal.
      */
     public void testGetBigDecimal04() throws Fault {
         try {
@@ -1101,7 +1057,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             BigDecimal oExtVal = new BigDecimal(sRetStr);
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
-            if ((oRetVal.compareTo(oExtVal) == 0)) msg.setMsg("getBigDecimal returns the Maximum value " + oRetVal);
+            if ((oRetVal.compareTo(oExtVal) == 0))
+                msg.setMsg("getBigDecimal returns the Maximum value " + oRetVal);
             else {
                 msg.printTestError("getBigDecimal did not return the Maximum value", "test getBigDecimal Failed!");
             }
@@ -1129,16 +1086,13 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBigDecimal05
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269;
-     * JDBC:JAVADOC:1270; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269; JDBC:JAVADOC:1270; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType,int scale). Execute the stored procedure and
-     * call the getBigDecimal(int parameterIndex) method to retrieve the minimum
-     * value from Decimal_Tab. Extract the minimum value from the tssql.stmt
-     * file.Compare this value with the value returned by the getBigDecimal(int
-     * parameterIndex).Both the values should be equal.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType,int scale). Execute the stored procedure and call the
+     * getBigDecimal(int parameterIndex) method to retrieve the minimum value from Decimal_Tab. Extract the minimum value
+     * from the tssql.stmt file.Compare this value with the value returned by the getBigDecimal(int parameterIndex).Both the
+     * values should be equal.
      */
     public void testGetBigDecimal05() throws Fault {
         try {
@@ -1161,7 +1115,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             BigDecimal oExtVal = new BigDecimal(sRetStr);
 
             msg.addOutputMsg(sRetStr, oRetVal.toString());
-            if ((oRetVal.compareTo(oExtVal) == 0)) msg.setMsg("getBigDecimal returns the Minimum value " + oRetVal);
+            if ((oRetVal.compareTo(oExtVal) == 0))
+                msg.setMsg("getBigDecimal returns the Minimum value " + oRetVal);
             else {
                 msg.printTestError("getBigDecimal did not return the Minimum value", "test getBigDecimal Failed!");
             }
@@ -1189,14 +1144,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBigDecimal06
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269;
-     * JDBC:JAVADOC:1270; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1269; JDBC:JAVADOC:1270; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType, int scale). Execute the stored procedure and
-     * call the getBigDecimal(int parameterIndex) method to retrieve the null
-     * value from Decimal_Tab.Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType, int scale). Execute the stored procedure and call the
+     * getBigDecimal(int parameterIndex) method to retrieve the null value from Decimal_Tab.Check if it returns null
      */
     public void testGetBigDecimal06() throws Fault {
         try {
@@ -1216,7 +1168,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             BigDecimal oRetVal = cstmt.getBigDecimal(3);
 
             msg.addOutputMsg("null", "" + oRetVal);
-            if (oRetVal == null) msg.setMsg("getBigDecimal returns the Null value " + oRetVal);
+            if (oRetVal == null)
+                msg.setMsg("getBigDecimal returns the Null value " + oRetVal);
             else {
                 msg.printTestError("getBigDecimal did not return the Null value", "test getBigDecimal Failed!");
             }
@@ -1244,16 +1197,12 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBytes01
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259;
-     * JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259; JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Update the column Binary_Val of the Binary
-     * with a byte array using the PreparedStatement.setBytes(int columnIndex)
-     * method.Execute the stored procedure and call the getBytes(int
-     * parameterIndex) method to retrieve the byte array. It should return the
-     * byte array object that has been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Update the column Binary_Val of the Binary with a byte array
+     * using the PreparedStatement.setBytes(int columnIndex) method.Execute the stored procedure and call the getBytes(int
+     * parameterIndex) method to retrieve the byte array. It should return the byte array object that has been set.
      */
     public void testGetBytes01() throws Fault {
         String binarySize = null;
@@ -1325,14 +1274,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBytes02
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259;
-     * JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259; JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Execute the stored procedure and call the
-     * getBytes(int parameterIndex) method to retrieve the null value from
-     * Binary_Tab. Check if it returns null.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Execute the stored procedure and call the getBytes(int
+     * parameterIndex) method to retrieve the null value from Binary_Tab. Check if it returns null.
      */
     public void testGetBytes02() throws Fault {
         String binarySize = null;
@@ -1354,7 +1300,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             byte[] oRetVal = cstmt.getBytes(1);
 
             msg.addOutputMsg("null", "" + oRetVal);
-            if (oRetVal == null) msg.setMsg("getBytes returns the null value");
+            if (oRetVal == null)
+                msg.setMsg("getBytes returns the null value");
             else {
                 msg.printTestError("getBytes did not return the null value", "test getBytes Failed!");
             }
@@ -1382,16 +1329,13 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBytes03
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259;
-     * JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259; JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Update the column Varbinary_Val of the
-     * Varbinary_Tab with a byte array using the PreparedStatement.setBytes(int
-     * columnIndex) method.Execute the stored procedure and call the getBytes(int
-     * parameterIndex) method.to retrieve the byte array. It should return the
-     * byte array object that has been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Update the column Varbinary_Val of the Varbinary_Tab with a
+     * byte array using the PreparedStatement.setBytes(int columnIndex) method.Execute the stored procedure and call the
+     * getBytes(int parameterIndex) method.to retrieve the byte array. It should return the byte array object that has been
+     * set.
      */
     public void testGetBytes03() throws Fault {
         String varbinarySize = null;
@@ -1467,14 +1411,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBytes04
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259;
-     * JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259; JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Execute the stored procedure and call the
-     * getBytes(int parameterIndex) method.to retrieve the null value from
-     * Varbinary_Tab. Check if it returns null.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Execute the stored procedure and call the getBytes(int
+     * parameterIndex) method.to retrieve the null value from Varbinary_Tab. Check if it returns null.
      */
     public void testGetBytes04() throws Fault {
         String varbinarySize = null;
@@ -1495,7 +1436,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             byte[] oRetVal = cstmt.getBytes(1);
 
             msg.addOutputMsg("null", "" + oRetVal);
-            if (oRetVal == null) msg.setMsg("getBytes returns the null value");
+            if (oRetVal == null)
+                msg.setMsg("getBytes returns the null value");
             else {
                 msg.printTestError("getBytes did not return the null value", "test getBytes Failed!");
             }
@@ -1523,16 +1465,13 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBytes05
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259;
-     * JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259; JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database.Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Update the column Longvarbinary_Val of the
-     * Longvarbinary_Tab with a byte array using the
-     * PreparedStatement.setBytes(int columnIndex) method.Execute the stored
-     * procedure and call the getBytes(int parameterIndex) method.to retrieve the
-     * byte array. It should return the byte array object that has been set.
+     * @test_Strategy: Get a CallableStatement object from the connection to the database.Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Update the column Longvarbinary_Val of the Longvarbinary_Tab
+     * with a byte array using the PreparedStatement.setBytes(int columnIndex) method.Execute the stored procedure and call
+     * the getBytes(int parameterIndex) method.to retrieve the byte array. It should return the byte array object that has
+     * been set.
      */
     public void testGetBytes05() throws Fault {
         String longvarbinarySize = null;
@@ -1605,14 +1544,11 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
     /*
      * @testName: testGetBytes06
      *
-     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259;
-     * JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
+     * @assertion_ids: JDBC:SPEC:9; JDBC:SPEC:10; JDBC:JAVADOC:1259; JDBC:JAVADOC:1260; JavaEE:SPEC:183; JavaEE:SPEC:185;
      *
-     * @test_Strategy: Get a CallableStatement object from the connection to the
-     * database. Register the parameter using registerOutParameter(int
-     * parameterIndex,int sqlType). Execute the stored procedure and call the
-     * getBytes(int parameterIndex) method.to retrieve the null value from
-     * Longvarbinary_Tab.Check if it returns null
+     * @test_Strategy: Get a CallableStatement object from the connection to the database. Register the parameter using
+     * registerOutParameter(int parameterIndex,int sqlType). Execute the stored procedure and call the getBytes(int
+     * parameterIndex) method.to retrieve the null value from Longvarbinary_Tab.Check if it returns null
      *
      */
     public void testGetBytes06() throws Fault {
@@ -1632,7 +1568,8 @@ public class callStmtClient5 extends ServiceEETest implements Serializable {
             byte[] oRetVal = cstmt.getBytes(1);
 
             msg.addOutputMsg("null", "" + oRetVal);
-            if (oRetVal == null) msg.setMsg("getBytes returns the null value");
+            if (oRetVal == null)
+                msg.setMsg("getBytes returns the null value");
             else {
                 msg.printTestError("getBytes did not return the null value", "test getBytes Failed!");
             }

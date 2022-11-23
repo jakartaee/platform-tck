@@ -38,8 +38,7 @@ public class GetPreviousOutTestTag extends BodyTagSupport {
      * Validates getPreviousOut().
      *
      * @return Tag.EVAL_PAGE
-     * @throws JspException
-     *           - if an error occurs
+     * @throws JspException - if an error occurs
      */
     public int doEndTag() throws JspException {
         try {

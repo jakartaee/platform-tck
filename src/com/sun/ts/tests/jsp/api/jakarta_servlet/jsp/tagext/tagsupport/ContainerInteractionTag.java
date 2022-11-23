@@ -52,8 +52,7 @@ public class ContainerInteractionTag extends TagSupport {
     /**
      * Sets the name of the application scoped list.
      *
-     * @param result
-     *          - the name of the list
+     * @param result - the name of the list
      */
     public void setResult(String result) {
         _result = result;
@@ -75,8 +74,7 @@ public class ContainerInteractionTag extends TagSupport {
     protected String _doAfterBody = null;
 
     /**
-     * The number of times to iterate over the body content minus the intial
-     * evaluation.
+     * The number of times to iterate over the body content minus the intial evaluation.
      */
     private int _bodyCount = 0;
 
@@ -92,8 +90,7 @@ public class ContainerInteractionTag extends TagSupport {
     /**
      * Configures the return value for doStartTag().
      *
-     * @param doStartTag
-     *          - the return value
+     * @param doStartTag - the return value
      */
     public void setDoStartTag(String doStartTag) {
         _doStartTag = doStartTag;
@@ -111,30 +108,25 @@ public class ContainerInteractionTag extends TagSupport {
     /**
      * Configures the return value for doEndTag().
      *
-     * @param doEndTag
-     *          - the return value
+     * @param doEndTag - the return value
      */
     public void setDoEndTag(String doEndTag) {
         _doEndTag = doEndTag;
     }
 
     /**
-     * Returns the number of times the body content will be evaluated minus the
-     * initial evaluation.
+     * Returns the number of times the body content will be evaluated minus the initial evaluation.
      *
-     * @return the number of times the body content will be evaluated minus the
-     *         initial evaluation.
+     * @return the number of times the body content will be evaluated minus the initial evaluation.
      */
     public Integer getBodyCount() {
         return Integer.valueOf(++_bodyCount);
     }
 
     /**
-     * Sets the number of times the body will be evaluated after the initial
-     * evaluation.
+     * Sets the number of times the body will be evaluated after the initial evaluation.
      *
-     * @param bodyCount
-     *          - the body evaluation count
+     * @param bodyCount - the body evaluation count
      */
     public void setBodyCount(Integer bodyCount) {
         _bodyCount = bodyCount.intValue() - 1;
@@ -152,20 +144,17 @@ public class ContainerInteractionTag extends TagSupport {
     /**
      * Configures the return value for doAfterBody();
      *
-     * @param doAfterBody
-     *          - the return value for doAfterBody()
+     * @param doAfterBody - the return value for doAfterBody()
      */
     public void setDoAfterBody(String doAfterBody) {
         _doAfterBody = doAfterBody;
     }
 
     /**
-     * Validate container behavior when returning either EVAL_BODY_INCLUDE,
-     * SKIP_BODY, or SKIP_PAGE.
+     * Validate container behavior when returning either EVAL_BODY_INCLUDE, SKIP_BODY, or SKIP_PAGE.
      *
      * @return an int value based on the doStartTag attribute.
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doStartTag() throws JspException {
         addMethodToList("doStartTag");
@@ -180,8 +169,7 @@ public class ContainerInteractionTag extends TagSupport {
      * Validate container behavior when returning either SKIP_PAGE or EVAL_PAGE.
      *
      * @return an int value based on the doEndTag attribute.
-     * @throws JspException
-     *           if an error occurs
+     * @throws JspException if an error occurs
      */
     public int doEndTag() throws JspException {
         addMethodToList("doEndTag");
@@ -193,12 +181,10 @@ public class ContainerInteractionTag extends TagSupport {
     }
 
     /**
-     * Validate container behavior when returning either EVAL_BODY_AGAIN or
-     * SKIP_BODY.
+     * Validate container behavior when returning either EVAL_BODY_AGAIN or SKIP_BODY.
      *
      * @return an int value based on the doAfterBody attribute.
-     * @throws JspException
-     *           - if an error occurs.
+     * @throws JspException - if an error occurs.
      */
     public int doAfterBody() throws JspException {
         addMethodToList("doAfterBody");
@@ -211,12 +197,10 @@ public class ContainerInteractionTag extends TagSupport {
     }
 
     /**
-     * This will add an application scoped List to the page context based of the
-     * name (_result). The list contains the methods called against this tag
-     * handler by the container.
+     * This will add an application scoped List to the page context based of the name (_result). The list contains the
+     * methods called against this tag handler by the container.
      *
-     * @param methodName
-     *          - the method name to add to the list.
+     * @param methodName - the method name to add to the list.
      */
     protected void addMethodToList(String methodName) {
         if (_result != null) {
@@ -232,11 +216,9 @@ public class ContainerInteractionTag extends TagSupport {
     }
 
     /**
-     * Utility method to return the int value based on an Integer based
-     * PageContext attribute.
+     * Utility method to return the int value based on an Integer based PageContext attribute.
      *
-     * @param varName
-     *          - the PageContext attribute to retrieve the int value from
+     * @param varName - the PageContext attribute to retrieve the int value from
      * @return an int representation of the Integer attribute
      */
     protected int getIntValue(String varName) {

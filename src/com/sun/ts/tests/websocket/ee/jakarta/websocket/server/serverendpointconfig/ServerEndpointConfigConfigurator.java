@@ -19,4 +19,5 @@ package com.sun.ts.tests.websocket.ee.jakarta.websocket.server.serverendpointcon
 
 import jakarta.websocket.server.ServerEndpointConfig.Configurator;
 
-public class ServerEndpointConfigConfigurator extends Configurator {}
+public class ServerEndpointConfigConfigurator extends Configurator {
+}

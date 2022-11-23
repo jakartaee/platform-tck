@@ -51,7 +51,8 @@ public class ServletClient extends HttpServlet {
         super.init(config);
         System.out.println("DEBUG init: service=" + service);
         try {
-            if (service != null) getPort();
+            if (service != null)
+                getPort();
             System.out.println("DEBUG init: port=" + port);
             BindingProvider bindingprovider = (BindingProvider) port;
             java.util.Map<String, Object> context = bindingprovider.getRequestContext();
@@ -75,29 +76,37 @@ public class ServletClient extends HttpServlet {
             System.out.println("doGet: test to execute is: " + test);
             if (test.equals("test1")) {
 
-                if (service != null) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                if (service != null)
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             } else {
                 TestUtil.logMsg("Invoke hello method");
                 if (port != null) {
                     String txt = port.hello("Hello there");
-                    if (txt.equals("Hello there to you too!")) TestUtil.logMsg("Invoke of hello passed");
+                    if (txt.equals("Hello there to you too!"))
+                        TestUtil.logMsg("Invoke of hello passed");
                     else {
                         pass = false;
                         TestUtil.logErr("Invoke of hello failed");
                     }
-                } else pass = false;
+                } else
+                    pass = false;
                 TestUtil.logMsg("Invoke bye method");
                 if (port != null) {
                     String txt = port.bye("Bye");
-                    if (txt.equals("Bye and take care!")) TestUtil.logMsg("Invoke of bye passed");
+                    if (txt.equals("Bye and take care!"))
+                        TestUtil.logMsg("Invoke of bye passed");
                     else {
                         pass = false;
                         TestUtil.logErr("Invoke of bye failed");
                     }
-                } else pass = false;
-                if (pass) p.setProperty("TESTRESULT", "pass");
-                else p.setProperty("TESTRESULT", "fail");
+                } else
+                    pass = false;
+                if (pass)
+                    p.setProperty("TESTRESULT", "pass");
+                else
+                    p.setProperty("TESTRESULT", "fail");
             }
             p.list(out);
         } catch (Exception e) {

@@ -42,7 +42,7 @@ public class MethodInfoTag extends SimpleTagSupport {
 
         try {
             MethodInfo minfo = mexp.getMethodInfo(elContext);
-            Class[] paramTypes = {Object.class};
+            Class[] paramTypes = { Object.class };
             boolean pass = ExpressionTest.testMethodInfo(minfo, "add", boolean.class, 1, paramTypes, buf);
 
             if (!pass) {
@@ -51,7 +51,7 @@ public class MethodInfoTag extends SimpleTagSupport {
                 return;
             }
 
-            mexp.invoke(elContext, new Object[] {"latest member"});
+            mexp.invoke(elContext, new Object[] { "latest member" });
         } catch (Throwable t) {
             out.println("Test FAILED: Exception in tag handler\n");
             out.println("Buffer contents:\n" + buf.toString());

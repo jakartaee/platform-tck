@@ -38,7 +38,8 @@ public class Cubicle implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cubicle")
     private Set<Hardware> equipment = new HashSet();
 
-    public Cubicle() {}
+    public Cubicle() {
+    }
 
     public Integer getId() {
         return id;

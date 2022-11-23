@@ -39,14 +39,12 @@ public class BiDirMXMPerson implements Serializable {
 
     private String name;
 
-    @JoinTable(
-            name = "BIDIRMXMPERSON_BIDIRMXMPROJECT",
-            joinColumns = @JoinColumn(name = "BIDIRMXMPerson_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "BIDIRMXMProject_ID", referencedColumnName = "ID"))
+    @JoinTable(name = "BIDIRMXMPERSON_BIDIRMXMPROJECT", joinColumns = @JoinColumn(name = "BIDIRMXMPerson_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "BIDIRMXMProject_ID", referencedColumnName = "ID"))
     @ManyToMany(cascade = CascadeType.ALL)
     private Collection<BiDirMXMProject> projects;
 
-    public BiDirMXMPerson() {}
+    public BiDirMXMPerson() {
+    }
 
     public BiDirMXMPerson(Long id, String name) {
         this.id = id;

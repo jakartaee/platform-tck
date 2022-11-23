@@ -27,8 +27,7 @@ import java.util.Properties;
 
 public class Client extends EETest {
 
-    private static final String testName =
-            "com.sun.ts.tests.ejb.ee.deploy.session.stateful" + ".enventry.casesens.CaseBean";
+    private static final String testName = "com.sun.ts.tests.ejb.ee.deploy.session.stateful" + ".enventry.casesens.CaseBean";
 
     private static final String beanName = "java:comp/env/ejb/CaseBean";
 
@@ -69,11 +68,9 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:872
      *
-     * @test_Strategy: Deploy a Stateful Session bean with two String environment
-     *                 entries whose name differ only by case and are assigned to
-     *                 two distinct values. Check that we can lookup the two
-     *                 environment entries. Check that their runtime values are
-     *                 distinct and match the ones specified in the DD.
+     * @test_Strategy: Deploy a Stateful Session bean with two String environment entries whose name differ only by case and
+     * are assigned to two distinct values. Check that we can lookup the two environment entries. Check that their runtime
+     * values are distinct and match the ones specified in the DD.
      */
     public void testCaseSensitivity() throws Fault {
 

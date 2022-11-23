@@ -34,7 +34,8 @@ public class Country implements java.io.Serializable {
     @Basic
     private String code;
 
-    public Country() {}
+    public Country() {
+    }
 
     public Country(String v1, String v2) {
         country = v1;

@@ -24,14 +24,14 @@ import java.util.Arrays;
 
 public class AlgoResources4_en extends java.util.ListResourceBundle {
 
-    private static final Object[][] resources = {{"mkey", "en message"}};
+    private static final Object[][] resources = { { "mkey", "en message" } };
 
     /** Creates new AlgoResourcesr_en */
-    public AlgoResources4_en() {}
+    public AlgoResources4_en() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
     public java.lang.Object[][] getContents() {
         return Arrays.copyOf(resources, resources.length);

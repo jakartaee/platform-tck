@@ -79,8 +79,7 @@ public class Client extends RWClientBase {
     /*
      * @testName: postConstructTransaction
      *
-     * @test_Strategy: insert CoffeeEJBLite records in TestBean & TxBean's
-     * postConstruct methods, respectively using BMT & CMT, then check the
-     * existence of the records in test method postConstructTransaction
+     * @test_Strategy: insert CoffeeEJBLite records in TestBean & TxBean's postConstruct methods, respectively using BMT &
+     * CMT, then check the existence of the records in test method postConstructTransaction
      */
 }

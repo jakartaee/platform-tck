@@ -60,19 +60,16 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
     /**
      * Initializes the parser factory when the TLV is first created.
      */
-    public TagFilePageDataValidator() {}
+    public TagFilePageDataValidator() {
+    }
 
     /**
      * Validates the XML view of the JSP page using the provided PageData object.
      *
-     * @param prefix
-     *          - the tag library prefix
-     * @param uri
-     *          - the tag library URI
-     * @param page
-     *          - the PageData object.
-     * @return null if no validation errors occurred, otherwise an non-zero-length
-     *         array of ValidationMessages.
+     * @param prefix - the tag library prefix
+     * @param uri - the tag library URI
+     * @param page - the PageData object.
+     * @return null if no validation errors occurred, otherwise an non-zero-length array of ValidationMessages.
      */
     public ValidationMessage[] validate(String prefix, String uri, PageData page) {
         debug("In validate()");
@@ -127,16 +124,12 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
     }
 
     /**
-     * Initializes the SAXParserFactory. The parser will not perform any
-     * validation, but will be namespace aware and will provide namespace prefixes
-     * in the attribute lists of elements.
+     * Initializes the SAXParserFactory. The parser will not perform any validation, but will be namespace aware and will
+     * provide namespace prefixes in the attribute lists of elements.
      *
-     * @throws ParserConfigurationException
-     *           - if the parser could not be configured
-     * @throws SAXNotRecognizedException
-     *           - if namespace-prefixes is not recognized
-     * @throws SAXNotSupportedException
-     *           - if namespace-prefixes is not supported
+     * @throws ParserConfigurationException - if the parser could not be configured
+     * @throws SAXNotRecognizedException - if namespace-prefixes is not recognized
+     * @throws SAXNotSupportedException - if namespace-prefixes is not supported
      */
     private void initializeSaxParserFactory()
             throws ParserConfigurationException, SAXNotRecognizedException, SAXNotSupportedException {
@@ -150,8 +143,7 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
     /**
      * Displays the XML view of a JSP page as seen by the container.
      *
-     * @param in
-     *          - the InputStream from PageData
+     * @param in - the InputStream from PageData
      */
     private static void displayXmlView(InputStream in) {
         if (JspTestUtil.DEBUG) {
@@ -182,19 +174,17 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
     }
 
     /**
-     * Utility method to wrap JspTestUtil.debug(). This method will add this
-     * class' name to the provide message and then delegate to JspTestUtil.
+     * Utility method to wrap JspTestUtil.debug(). This method will add this class' name to the provide message and then
+     * delegate to JspTestUtil.
      *
-     * @param message
-     *          - a debug message
+     * @param message - a debug message
      */
     private static void debug(String message) {
         JspTestUtil.debug("[TagFilePageDataValidator] " + message);
     }
 
     /**
-     * An extension to the DefaultHandler to process the elements within the XML
-     * view of a tag file.
+     * An extension to the DefaultHandler to process the elements within the XML view of a tag file.
      */
     private class PageHandler extends DefaultHandler {
         // ========= tag file specific elements ==============
@@ -252,8 +242,8 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
         private static final String TCK_TAG_QN = "pagedatatagfile:test";
 
         /**
-         * The <tt>jsp:directive.include</tt> element. <tt>NOTE:</tt> this should
-         * <tt>not</tt> appear in the XML view of a tag file.
+         * The <tt>jsp:directive.include</tt> element. <tt>NOTE:</tt> this should <tt>not</tt> appear in the XML view of a tag
+         * file.
          */
         private static final String JSP_INCL_QN = "jsp:directive.include";
 
@@ -273,14 +263,12 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
         private short _exprWasFound = 0;
 
         /**
-         * Counter indicating that the <tt>pagedatatagfile:test</tt> element was
-         * found.
+         * Counter indicating that the <tt>pagedatatagfile:test</tt> element was found.
          */
         private short _tagLibWasFound = 0;
 
         /**
-         * Counter indicating that the taglib declaration as an xmlns attribute of
-         * the <tt>jsp:root</tt> element was found.
+         * Counter indicating that the taglib declaration as an xmlns attribute of the <tt>jsp:root</tt> element was found.
          */
         private short _tagDeclWasFound = 0;
 
@@ -295,27 +283,23 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
         private short _textWasFound = 0;
 
         /**
-         * Counter indicating that the jsp namespace as an xmlns attribute of the
-         * <tt>jsp:root</tt> element was found.
+         * Counter indicating that the jsp namespace as an xmlns attribute of the <tt>jsp:root</tt> element was found.
          */
         private short _jspNameSpaceFound = 0;
 
         /**
-         * Counter indicating that the <tt>jsp:directive.include</tt> element was
-         * found.
+         * Counter indicating that the <tt>jsp:directive.include</tt> element was found.
          */
         private short _includeDirectiveFound = 0;
 
         /**
-         * Counter indicating that the RT expression present in the
-         * <tt>pagedatatagfile.test</tt> element was properly converted from
-         * standard JSP syntax to syntax supported by XML.
+         * Counter indicating that the RT expression present in the <tt>pagedatatagfile.test</tt> element was properly converted
+         * from standard JSP syntax to syntax supported by XML.
          */
         private short _rtExprFound = 0;
 
         /**
-         * Counter indicating that the <tt>version</tt> attribute of the
-         * <tt>jsp:root</tt> element was found.
+         * Counter indicating that the <tt>version</tt> attribute of the <tt>jsp:root</tt> element was found.
          */
         private short _jspRootVersionFound = 0;
 
@@ -339,16 +323,11 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
         /**
          * Handles the start elements found in the XML stream by the parser.
          *
-         * @param uri
-         *          - the uri of the namespace
-         * @param localName
-         *          - the name of the element minus the namespace
-         * @param qName
-         *          - the name including the namespace
-         * @param attributes
-         *          - the attributes of this element
-         * @throws SAXException
-         *           - if an error occurs
+         * @param uri - the uri of the namespace
+         * @param localName - the name of the element minus the namespace
+         * @param qName - the name including the namespace
+         * @param attributes - the attributes of this element
+         * @throws SAXException - if an error occurs
          */
         public void startElement(String uri, String localName, String qName, Attributes attributes)
                 throws SAXException {
@@ -433,11 +412,10 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
         }
 
         /**
-         * Checks the instance variables used to count the elements processed and
-         * based on the values, will return failure messages.
+         * Checks the instance variables used to count the elements processed and based on the values, will return failure
+         * messages.
          *
-         * @return null of no errors occurred, othersise an array of
-         *         ValidationMessages noting the failures.
+         * @return null of no errors occurred, othersise an array of ValidationMessages noting the failures.
          */
         public ValidationMessage[] getParsingResults() {
             debug("Processing the results of the parse operation...");
@@ -555,7 +533,7 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
 
             if (messageList.size() != 0) {
                 List<ValidationMessage> list = new ArrayList<ValidationMessage>();
-                for (Iterator<String> i = messageList.iterator(); i.hasNext(); ) {
+                for (Iterator<String> i = messageList.iterator(); i.hasNext();) {
                     list.add(new ValidationMessage(null, i.next()));
                 }
                 vMessages = (ValidationMessage[]) list.toArray(new ValidationMessage[list.size()]);
@@ -564,14 +542,11 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
         }
 
         /**
-         * Checks that the jsp:id attribute exists in the attribute list of the
-         * specified element. If it doesn't it adds this element name to a list of
-         * elements that have a similar issue.
+         * Checks that the jsp:id attribute exists in the attribute list of the specified element. If it doesn't it adds this
+         * element name to a list of elements that have a similar issue.
          *
-         * @param elementName
-         *          - name of the element
-         * @param attributes
-         *          - attribute list
+         * @param elementName - name of the element
+         * @param attributes - attribute list
          */
         private void checkJspIdAttribute(String elementName, Attributes attributes) {
             if (!hasAttribute("jsp:id", null, attributes)) {
@@ -587,15 +562,12 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
         }
 
         /**
-         * Scans the provided attribute object for the specified attribute name and
-         * value. If value is null, then only the attribute name is checked.
+         * Scans the provided attribute object for the specified attribute name and value. If value is null, then only the
+         * attribute name is checked.
          *
-         * @param attrName
-         *          - name of the attribute to check for
-         * @param attrValue
-         *          - the expected value of this attribute
-         * @param attributes
-         *          - the element attributes
+         * @param attrName - name of the attribute to check for
+         * @param attrValue - the expected value of this attribute
+         * @param attributes - the element attributes
          * @return - true if found otherwise false
          */
         private boolean hasAttribute(String attrName, String attrValue, Attributes attributes) {
@@ -622,11 +594,9 @@ public class TagFilePageDataValidator extends TagLibraryValidator {
         }
 
         /**
-         * Returns a string representation of the Map containing elements and the
-         * occurence count.
+         * Returns a string representation of the Map containing elements and the occurence count.
          *
-         * @param map
-         *          - element map
+         * @param map - element map
          * @return String representation of the map
          */
         private String getStringFromMap(Map<String, Short> map) {

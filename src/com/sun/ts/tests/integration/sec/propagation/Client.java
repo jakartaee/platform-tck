@@ -85,8 +85,7 @@ public class Client extends EETest {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
-     * authpassword; nobodyuser;
+     * @class.setup_props: webServerHost; webServerPort; user; password; authuser; authpassword; nobodyuser;
      */
 
     public void setup(String[] args, Properties p) throws Fault {
@@ -113,16 +112,12 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:25; JavaEE:SPEC:31
      *
-     * @test_Strategy: 1. Send request for web_to_ejb_auth.jsp, a jsp page that is
-     * set up for BASIC authentication. Pass in j2ee as username and password. 2.
-     * web_to_ejb_auth.jsp looks up Bean1, a stateless session bean. 3.
-     * web_to_ejb_auth.jsp calls bean1.getCallerPrincipalName(), which returns the
-     * caller principal. 4. web_to_ejb_auth.jsp returns the caller principal as
-     * the contents of the web page as follows. <value of
-     * getUserPrincipal().getName()> <value of ejb.getCallerPrincipal().getName()>
-     * <value of second call to getUserPrincipal()> 5. Receive response from
-     * web_to_ejb_auth.jsp and ensure the principal output is "j2ee" for both the
-     * jsp and the ejb.
+     * @test_Strategy: 1. Send request for web_to_ejb_auth.jsp, a jsp page that is set up for BASIC authentication. Pass in
+     * j2ee as username and password. 2. web_to_ejb_auth.jsp looks up Bean1, a stateless session bean. 3.
+     * web_to_ejb_auth.jsp calls bean1.getCallerPrincipalName(), which returns the caller principal. 4. web_to_ejb_auth.jsp
+     * returns the caller principal as the contents of the web page as follows. <value of getUserPrincipal().getName()>
+     * <value of ejb.getCallerPrincipal().getName()> <value of second call to getUserPrincipal()> 5. Receive response from
+     * web_to_ejb_auth.jsp and ensure the principal output is "j2ee" for both the jsp and the ejb.
      */
 
     public void test_web_to_ejb_auth() throws Fault {
@@ -193,19 +188,15 @@ public class Client extends EETest {
      *
      * @assertion_ids: JavaEE:SPEC:25
      *
-     * @test_Strategy: 1. Send request for web_to_ejb_noauth.jsp, a jsp page that
-     * is set up with no authentication. 2. web_to_ejb_noauth.jsp looks up Bean1,
-     * a stateless session bean. 3. web_to_ejb_noauth.jsp calls
-     * bean1.getCallerPrincipalName(), which returns the caller principal. 4.
-     * web_to_ejb_noauth.jsp returns the caller principal as the contents of the
-     * web page as follows: <value of getUserPrincipal().getName()> call is
-     * successful or not <value of second call to getUserPrincipal()> 5. Receive
-     * response from web_to_ejb_noauth.jsp and ensure the principal output is null
-     * for both calls in the jsp and the call to the ejb is successful.
+     * @test_Strategy: 1. Send request for web_to_ejb_noauth.jsp, a jsp page that is set up with no authentication. 2.
+     * web_to_ejb_noauth.jsp looks up Bean1, a stateless session bean. 3. web_to_ejb_noauth.jsp calls
+     * bean1.getCallerPrincipalName(), which returns the caller principal. 4. web_to_ejb_noauth.jsp returns the caller
+     * principal as the contents of the web page as follows: <value of getUserPrincipal().getName()> call is successful or
+     * not <value of second call to getUserPrincipal()> 5. Receive response from web_to_ejb_noauth.jsp and ensure the
+     * principal output is null for both calls in the jsp and the call to the ejb is successful.
      *
-     * Note: The value returned for an unauthenticated caller from a call to
-     * getRemoteUserPrincipal() in a servlet must be null, and an unauthenticated
-     * caller can call an ejb successfully.
+     * Note: The value returned for an unauthenticated caller from a call to getRemoteUserPrincipal() in a servlet must be
+     * null, and an unauthenticated caller can call an ejb successfully.
      */
 
     public void test_web_to_ejb_noauth() throws Fault {
@@ -268,22 +259,17 @@ public class Client extends EETest {
      *
      * @assertion_ids: Servlet:SPEC:31
      *
-     * @test_Strategy: 1. Send request for ejb_to_ejb.jsp, a jsp page that is set
-     * up with HTTP-Basic authentication. This will establish the original caller
-     * princial as javajoe. 2. ejb_to_ejb.jsp looks up Bean1, a stateless session
-     * bean. 3. ejb_to_ejb.jsp calls bean1.getCallerPrincipalName(), which returns
-     * the caller principal. 4. ejb_to_ejb.jsp calls
-     * bean1.getPropagatedPrincipalName(), which looks up Bean2, another stateless
-     * session bean, and makes a call to bean2.getCallerPrincipalName(), which
-     * returns the caller principal after propagating. 5. ejb_to_ejb.jsp returns
-     * the caller principal as the contents of the web page as follows: <value of
-     * getUserPrincipal().getName()> <value of ejb.getCallerPrincipal().getName()>
-     * <value of propagated principal> 6. Receive response from ejb_to_ejb.jsp and
+     * @test_Strategy: 1. Send request for ejb_to_ejb.jsp, a jsp page that is set up with HTTP-Basic authentication. This
+     * will establish the original caller princial as javajoe. 2. ejb_to_ejb.jsp looks up Bean1, a stateless session bean.
+     * 3. ejb_to_ejb.jsp calls bean1.getCallerPrincipalName(), which returns the caller principal. 4. ejb_to_ejb.jsp calls
+     * bean1.getPropagatedPrincipalName(), which looks up Bean2, another stateless session bean, and makes a call to
+     * bean2.getCallerPrincipalName(), which returns the caller principal after propagating. 5. ejb_to_ejb.jsp returns the
+     * caller principal as the contents of the web page as follows: <value of getUserPrincipal().getName()> <value of
+     * ejb.getCallerPrincipal().getName()> <value of propagated principal> 6. Receive response from ejb_to_ejb.jsp and
      * ensure the principal output is javajoe for web, ejb1, and ejb2
      *
-     * Note: The value returned from a call to getCallerPrincipal in an ejb should
-     * match the value returned from a call to getCallerPrincipal in any ejb
-     * called by the original ejb or in ejbs called by called ejbs.
+     * Note: The value returned from a call to getCallerPrincipal in an ejb should match the value returned from a call to
+     * getCallerPrincipal in any ejb called by the original ejb or in ejbs called by called ejbs.
      *
      */
 

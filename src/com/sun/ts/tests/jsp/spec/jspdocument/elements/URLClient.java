@@ -28,9 +28,8 @@ public class URLClient extends AbstractUrlClient {
     private static final String CONTEXT_ROOT = "/jsp_jspdocument_elements_web";
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -39,8 +38,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,8 +56,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:177; JSP:SPEC:173.1
      *
-     * @test_Strategy: use jsp:root not as the top element of a jsp document.
-     * jsp-property-group config overrides other determiniations.
+     * @test_Strategy: use jsp:root not as the top element of a jsp document. jsp-property-group config overrides other
+     * determiniations.
      */
 
     public void negativeJspRootTest() throws Fault {
@@ -140,8 +138,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:180; JSP:SPEC:181; JSP:SPEC:182
      *
-     * @test_Strategy: use jsp:declaration, jsp:scriptlet, and jsp:expression in a
-     * jsp document.
+     * @test_Strategy: use jsp:declaration, jsp:scriptlet, and jsp:expression in a jsp document.
      */
 
     public void scriptingTest() throws Fault {
@@ -157,8 +154,7 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: JSP:SPEC:180.4; JSP:SPEC:181.2; JSP:SPEC:182.5
      *
-     * @test_Strategy: use jsp:declaration, jsp:scriptlet, and jsp:expression in a
-     * jsp page.
+     * @test_Strategy: use jsp:declaration, jsp:scriptlet, and jsp:expression in a jsp page.
      */
 
     public void scriptingInJspPageTest() throws Fault {

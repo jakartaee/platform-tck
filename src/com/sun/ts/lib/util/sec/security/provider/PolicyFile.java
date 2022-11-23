@@ -52,59 +52,45 @@ import javax.security.auth.Subject;
 import javax.security.auth.x500.X500Principal;
 
 /**
- * This class represents a default implementation for
- * <code>java.security.Policy</code>.
+ * This class represents a default implementation for <code>java.security.Policy</code>.
  *
- * Note: For backward compatibility with JAAS 1.0 it loads both java.auth.policy
- * and java.policy. However it is recommended that java.auth.policy be not used
- * and the java.policy contain all grant entries including that contain
+ * Note: For backward compatibility with JAAS 1.0 it loads both java.auth.policy and java.policy. However it is
+ * recommended that java.auth.policy be not used and the java.policy contain all grant entries including that contain
  * principal-based entries.
  *
  *
  * <p>
- * This object stores the policy for entire Java runtime, and is the
- * amalgamation of multiple static policy configurations that resides in files.
- * The algorithm for locating the policy file(s) and reading their information
+ * This object stores the policy for entire Java runtime, and is the amalgamation of multiple static policy
+ * configurations that resides in files. The algorithm for locating the policy file(s) and reading their information
  * into this <code>Policy</code> object is:
  *
  * <ol>
- * <li>Loop through the <code>java.security.Security</code> properties,
- * <i>policy.url.1</i>, <i>policy.url.2</i>, ..., <i>policy.url.X</i>" and
- * <i>auth.policy.url.1</i>, <i>auth.policy.url.2</i>, ...,
- * <i>auth.policy.url.X</i>". These properties are set in the Java security
- * properties file, which is located in the file named
- * &lt;JAVA_HOME&gt;/lib/security/java.security. &lt;JAVA_HOME&gt; refers to the
- * value of the java.home system property, and specifies the directory where the
- * JRE is installed. Each property value specifies a <code>URL</code> pointing
- * to a policy file to be loaded. Read in and load each policy.
+ * <li>Loop through the <code>java.security.Security</code> properties, <i>policy.url.1</i>, <i>policy.url.2</i>, ...,
+ * <i>policy.url.X</i>" and <i>auth.policy.url.1</i>, <i>auth.policy.url.2</i>, ..., <i>auth.policy.url.X</i>". These
+ * properties are set in the Java security properties file, which is located in the file named
+ * &lt;JAVA_HOME&gt;/lib/security/java.security. &lt;JAVA_HOME&gt; refers to the value of the java.home system property,
+ * and specifies the directory where the JRE is installed. Each property value specifies a <code>URL</code> pointing to
+ * a policy file to be loaded. Read in and load each policy.
  *
  * <i>auth.policy.url</i> is supported only for backward compatibility.
  *
- * <li>The <code>java.lang.System</code> property <i>java.security.policy</i>
- * may also be set to a <code>URL</code> pointing to another policy file (which
- * is the case when a user uses the -D switch at runtime). If this property is
- * defined, and its use is allowed by the security property file (the Security
- * property, <i>policy.allowSystemProperty</i> is set to <i>true</i>), also load
- * that policy.
+ * <li>The <code>java.lang.System</code> property <i>java.security.policy</i> may also be set to a <code>URL</code>
+ * pointing to another policy file (which is the case when a user uses the -D switch at runtime). If this property is
+ * defined, and its use is allowed by the security property file (the Security property,
+ * <i>policy.allowSystemProperty</i> is set to <i>true</i>), also load that policy.
  *
- * <li>The <code>java.lang.System</code> property
- * <i>java.security.auth.policy</i> may also be set to a <code>URL</code>
- * pointing to another policy file (which is the case when a user uses the -D
- * switch at runtime). If this property is defined, and its use is allowed by
- * the security property file (the Security property,
- * <i>policy.allowSystemProperty</i> is set to <i>true</i>), also load that
- * policy.
+ * <li>The <code>java.lang.System</code> property <i>java.security.auth.policy</i> may also be set to a <code>URL</code>
+ * pointing to another policy file (which is the case when a user uses the -D switch at runtime). If this property is
+ * defined, and its use is allowed by the security property file (the Security property,
+ * <i>policy.allowSystemProperty</i> is set to <i>true</i>), also load that policy.
  *
- * <i>java.security.auth.policy</i> is supported only for backward
- * compatibility.
+ * <i>java.security.auth.policy</i> is supported only for backward compatibility.
  *
- * If the <i>java.security.policy</i> or <i>java.security.auth.policy</i>
- * property is defined using "==" (rather than "="), then ignore all other
- * specified policies and only load this policy.
+ * If the <i>java.security.policy</i> or <i>java.security.auth.policy</i> property is defined using "==" (rather than
+ * "="), then ignore all other specified policies and only load this policy.
  * </ol>
  *
- * Each policy file consists of one or more grant entries, each of which
- * consists of a number of permission entries.
+ * Each policy file consists of one or more grant entries, each of which consists of a number of permission entries.
  *
  * <pre>
  *   grant signedBy "<b>alias</b>", codeBase "<b>URL</b>",
@@ -120,39 +106,31 @@ import javax.security.auth.x500.X500Principal;
  *   };
  * </pre>
  *
- * All non-bold items above must appear as is (although case doesn't matter and
- * some are optional, as noted below). principal entries are optional and need
- * not be present. Italicized items represent variable values.
+ * All non-bold items above must appear as is (although case doesn't matter and some are optional, as noted below).
+ * principal entries are optional and need not be present. Italicized items represent variable values.
  *
  * <p>
- * A grant entry must begin with the word <code>grant</code>. The
- * <code>signedBy</code>,<code>codeBase</code> and <code>principal</code>
- * name/value pairs are optional. If they are not present, then any signer
- * (including unsigned code) will match, and any codeBase will match. Note that
- * the <i>principalClass</i> may be set to the wildcard value, *, which allows
- * it to match any <code>Principal</code> class. In addition, the
- * <i>principalName</i> may also be set to the wildcard value, *, allowing it to
- * match any <code>Principal</code> name. When setting the <i>principalName</i>
+ * A grant entry must begin with the word <code>grant</code>. The <code>signedBy</code>,<code>codeBase</code> and
+ * <code>principal</code> name/value pairs are optional. If they are not present, then any signer (including unsigned
+ * code) will match, and any codeBase will match. Note that the <i>principalClass</i> may be set to the wildcard value,
+ * *, which allows it to match any <code>Principal</code> class. In addition, the <i>principalName</i> may also be set
+ * to the wildcard value, *, allowing it to match any <code>Principal</code> name. When setting the <i>principalName</i>
  * to the *, do not surround the * with quotes.
  *
  * <p>
- * A permission entry must begin with the word <code>permission</code>. The word
- * <code><i>Type</i></code> in the template above is a specific permission type,
- * such as <code>java.io.FilePermission</code> or
+ * A permission entry must begin with the word <code>permission</code>. The word <code><i>Type</i></code> in the
+ * template above is a specific permission type, such as <code>java.io.FilePermission</code> or
  * <code>java.lang.RuntimePermission</code>.
  *
  * <p>
- * The "<i>action</i>" is required for many permission types, such as
- * <code>java.io.FilePermission</code> (where it specifies what type of file
- * access that is permitted). It is not required for categories such as
- * <code>java.lang.RuntimePermission</code> where it is not necessary - you
- * either have the permission specified by the <code>"<i>name</i>"</code> value
- * following the type name or you don't.
+ * The "<i>action</i>" is required for many permission types, such as <code>java.io.FilePermission</code> (where it
+ * specifies what type of file access that is permitted). It is not required for categories such as
+ * <code>java.lang.RuntimePermission</code> where it is not necessary - you either have the permission specified by the
+ * <code>"<i>name</i>"</code> value following the type name or you don't.
  *
  * <p>
- * The <code>signedBy</code> name/value pair for a permission entry is optional.
- * If present, it indicates a signed permission. That is, the permission class
- * itself must be signed by the given alias in order for it to be granted. For
+ * The <code>signedBy</code> name/value pair for a permission entry is optional. If present, it indicates a signed
+ * permission. That is, the permission class itself must be signed by the given alias in order for it to be granted. For
  * example, suppose you have the following grant entry:
  *
  * <pre>
@@ -162,21 +140,17 @@ import javax.security.auth.x500.X500Principal;
  * </pre>
  *
  * <p>
- * Then this permission of type <i>Foo</i> is granted if the
- * <code>Foo.class</code> permission has been signed by the "FooSoft" alias, or
- * if XXX <code>Foo.class</code> is a system class (i.e., is found on the
- * CLASSPATH).
+ * Then this permission of type <i>Foo</i> is granted if the <code>Foo.class</code> permission has been signed by the
+ * "FooSoft" alias, or if XXX <code>Foo.class</code> is a system class (i.e., is found on the CLASSPATH).
  *
  *
  * <p>
- * Items that appear in an entry must appear in the specified order
- * (<code>permission</code>, <i>Type</i>, "<i>name</i>", and "<i>action</i>").
- * An entry is terminated with a semicolon.
+ * Items that appear in an entry must appear in the specified order (<code>permission</code>, <i>Type</i>,
+ * "<i>name</i>", and "<i>action</i>"). An entry is terminated with a semicolon.
  *
  * <p>
- * Case is unimportant for the identifiers (<code>permission</code>,
- * <code>signedBy</code>, <code>codeBase</code>, etc.) but is significant for
- * the <i>Type</i> or for any string that is passed in as a value.
+ * Case is unimportant for the identifiers (<code>permission</code>, <code>signedBy</code>, <code>codeBase</code>, etc.)
+ * but is significant for the <i>Type</i> or for any string that is passed in as a value.
  * <p>
  *
  * <p>
@@ -199,19 +173,15 @@ import javax.security.auth.x500.X500Principal;
  *
  * </pre>
  *
- * This Policy implementation supports special handling of any permission that
- * contains the string, "<b>${{self}}</b>", as part of its target name. When
- * such a permission is evaluated (such as during a security check),
- * <b>${{self}}</b> is replaced with one or more Principal class/name pairs. The
- * exact replacement performed depends upon the contents of the grant clause to
- * which the permission belongs.
+ * This Policy implementation supports special handling of any permission that contains the string, "<b>${{self}}</b>",
+ * as part of its target name. When such a permission is evaluated (such as during a security check), <b>${{self}}</b>
+ * is replaced with one or more Principal class/name pairs. The exact replacement performed depends upon the contents of
+ * the grant clause to which the permission belongs.
  * <p>
  *
- * If the grant clause does not contain any principal information, the
- * permission will be ignored (permissions containing <b>${{self}}</b> in their
- * target names are only valid in the context of a principal-based grant
- * clause). For example, BarPermission will always be ignored in the following
- * grant clause:
+ * If the grant clause does not contain any principal information, the permission will be ignored (permissions
+ * containing <b>${{self}}</b> in their target names are only valid in the context of a principal-based grant clause).
+ * For example, BarPermission will always be ignored in the following grant clause:
  *
  * <pre>
  *    grant codebase "www.foo.com", signedby "duke" {
@@ -219,11 +189,9 @@ import javax.security.auth.x500.X500Principal;
  *    };
  * </pre>
  *
- * If the grant clause contains principal information, <b>${{self}}</b> will be
- * replaced with that same principal information. For example, <b>${{self}}</b>
- * in BarPermission will be replaced by
- * <b>javax.security.auth.x500.X500Principal "cn=Duke"</b> in the following
- * grant clause:
+ * If the grant clause contains principal information, <b>${{self}}</b> will be replaced with that same principal
+ * information. For example, <b>${{self}}</b> in BarPermission will be replaced by
+ * <b>javax.security.auth.x500.X500Principal "cn=Duke"</b> in the following grant clause:
  *
  * <pre>
  *    grant principal javax.security.auth.x500.X500Principal "cn=Duke" {
@@ -231,18 +199,15 @@ import javax.security.auth.x500.X500Principal;
  *    };
  * </pre>
  *
- * If there is a comma-separated list of principals in the grant clause, then
- * <b>${{self}}</b> will be replaced by the same comma-separated list or
- * principals. In the case where both the principal class and name are
- * wildcarded in the grant clause, <b>${{self}}</b> is replaced with all the
- * principals associated with the <code>Subject</code> in the current
- * <code>AccessControlContext</code>.
+ * If there is a comma-separated list of principals in the grant clause, then <b>${{self}}</b> will be replaced by the
+ * same comma-separated list or principals. In the case where both the principal class and name are wildcarded in the
+ * grant clause, <b>${{self}}</b> is replaced with all the principals associated with the <code>Subject</code> in the
+ * current <code>AccessControlContext</code>.
  *
  *
  * <p>
- * For PrivateCredentialPermissions, you can also use "<b>self</b>" instead of
- * "<b>${{self}}</b>". However the use of "<b>self</b>" is deprecated in favour
- * of "<b>${{self}}</b>".
+ * For PrivateCredentialPermissions, you can also use "<b>self</b>" instead of "<b>${{self}}</b>". However the use of
+ * "<b>self</b>" is deprecated in favour of "<b>${{self}}</b>".
  *
  * @see java.security.CodeSource
  * @see java.security.Permissions
@@ -294,21 +259,19 @@ public class PolicyFile extends java.security.Policy {
 
     private static final Class[] PARAMS0 = {};
 
-    private static final Class[] PARAMS1 = {String.class};
+    private static final Class[] PARAMS1 = { String.class };
 
-    private static final Class[] PARAMS2 = {String.class, String.class};
+    private static final Class[] PARAMS2 = { String.class, String.class };
 
     /**
-     * Initializes the Policy object and reads the default policy configuration
-     * file(s) into the Policy object.
+     * Initializes the Policy object and reads the default policy configuration file(s) into the Policy object.
      */
     public PolicyFile() {
         init((URL) null);
     }
 
     /**
-     * Initializes the Policy object and reads the default policy from the
-     * specified URL only.
+     * Initializes the Policy object and reads the default policy from the specified URL only.
      */
     public PolicyFile(URL url) {
         this.url = url;
@@ -316,11 +279,9 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /**
-     * Initializes the Policy object and reads the default policy configuration
-     * file(s) into the Policy object.
+     * Initializes the Policy object and reads the default policy configuration file(s) into the Policy object.
      *
-     * The algorithm for locating the policy file(s) and reading their information
-     * into the Policy object is:
+     * The algorithm for locating the policy file(s) and reading their information into the Policy object is:
      *
      * <pre>
      *   loop through the Security Properties named "policy.url.1",
@@ -337,8 +298,7 @@ public class PolicyFile extends java.security.Policy {
      *     also load it.
      * </pre>
      *
-     * Each policy file consists of one or more grant entries, each of which
-     * consists of a number of permission entries.
+     * Each policy file consists of one or more grant entries, each of which consists of a number of permission entries.
      *
      * <pre>
      *   grant signedBy "<i>alias</i>", codeBase "<i>URL</i>" {
@@ -351,35 +311,29 @@ public class PolicyFile extends java.security.Policy {
      *
      * </pre>
      *
-     * All non-italicized items above must appear as is (although case doesn't
-     * matter and some are optional, as noted below). Italicized items represent
-     * variable values.
+     * All non-italicized items above must appear as is (although case doesn't matter and some are optional, as noted
+     * below). Italicized items represent variable values.
      *
      * <p>
-     * A grant entry must begin with the word <code>grant</code>. The
-     * <code>signedBy</code> and <code>codeBase</code> name/value pairs are
-     * optional. If they are not present, then any signer (including unsigned
-     * code) will match, and any codeBase will match.
+     * A grant entry must begin with the word <code>grant</code>. The <code>signedBy</code> and <code>codeBase</code>
+     * name/value pairs are optional. If they are not present, then any signer (including unsigned code) will match, and any
+     * codeBase will match.
      *
      * <p>
-     * A permission entry must begin with the word <code>permission</code>. The
-     * word <code><i>Type</i></code> in the template above would actually be a
-     * specific permission type, such as <code>java.io.FilePermission</code> or
+     * A permission entry must begin with the word <code>permission</code>. The word <code><i>Type</i></code> in the
+     * template above would actually be a specific permission type, such as <code>java.io.FilePermission</code> or
      * <code>java.lang.RuntimePermission</code>.
      *
      * <p>
-     * The "<i>action</i>" is required for many permission types, such as
-     * <code>java.io.FilePermission</code> (where it specifies what type of file
-     * access is permitted). It is not required for categories such as
-     * <code>java.lang.RuntimePermission</code> where it is not necessary - you
-     * either have the permission specified by the <code>"<i>name</i>"</code>
-     * value following the type name or you don't.
+     * The "<i>action</i>" is required for many permission types, such as <code>java.io.FilePermission</code> (where it
+     * specifies what type of file access is permitted). It is not required for categories such as
+     * <code>java.lang.RuntimePermission</code> where it is not necessary - you either have the permission specified by the
+     * <code>"<i>name</i>"</code> value following the type name or you don't.
      *
      * <p>
-     * The <code>signedBy</code> name/value pair for a permission entry is
-     * optional. If present, it indicates a signed permission. That is, the
-     * permission class itself must be signed by the given alias in order for it
-     * to be granted. For example, suppose you have the following grant entry:
+     * The <code>signedBy</code> name/value pair for a permission entry is optional. If present, it indicates a signed
+     * permission. That is, the permission class itself must be signed by the given alias in order for it to be granted. For
+     * example, suppose you have the following grant entry:
      *
      * <pre>
      *   grant {
@@ -388,20 +342,16 @@ public class PolicyFile extends java.security.Policy {
      * </pre>
      *
      * <p>
-     * Then this permission of type <i>Foo</i> is granted if the
-     * <code>Foo.class</code> permission has been signed by the "FooSoft" alias,
-     * or if <code>Foo.class</code> is a system class (i.e., is found on the
-     * CLASSPATH).
+     * Then this permission of type <i>Foo</i> is granted if the <code>Foo.class</code> permission has been signed by the
+     * "FooSoft" alias, or if <code>Foo.class</code> is a system class (i.e., is found on the CLASSPATH).
      *
      * <p>
-     * Items that appear in an entry must appear in the specified order
-     * (<code>permission</code>, <i>Type</i>, "<i>name</i>", and "<i>action</i>").
-     * An entry is terminated with a semicolon.
+     * Items that appear in an entry must appear in the specified order (<code>permission</code>, <i>Type</i>,
+     * "<i>name</i>", and "<i>action</i>"). An entry is terminated with a semicolon.
      *
      * <p>
-     * Case is unimportant for the identifiers (<code>permission</code>,
-     * <code>signedBy</code>, <code>codeBase</code>, etc.) but is significant for
-     * the <i>Type</i> or for any string that is passed in as a value.
+     * Case is unimportant for the identifiers (<code>permission</code>, <code>signedBy</code>, <code>codeBase</code>, etc.)
+     * but is significant for the <i>Type</i> or for any string that is passed in as a value.
      * <p>
      *
      * <p>
@@ -456,8 +406,7 @@ public class PolicyFile extends java.security.Policy {
         if (url != null) {
 
             /**
-             * If the caller specified a URL via Policy.getInstance, we only read from
-             * that URL
+             * If the caller specified a URL via Policy.getInstance, we only read from that URL
              */
             if (debug != null) {
                 debug.println("reading " + url);
@@ -475,15 +424,11 @@ public class PolicyFile extends java.security.Policy {
         } else {
 
             /**
-             * Caller did not specify URL via Policy.getInstance. Read from URLs
-             * listed in the java.security properties file.
+             * Caller did not specify URL via Policy.getInstance. Read from URLs listed in the java.security properties file.
              *
-             * We call initPolicyFile with POLICY , POLICY_URL and then call it with
-             * AUTH_POLICY and AUTH_POLICY_URL So first we will process the JAVA
-             * standard policy and then process the JAVA AUTH Policy. This is for
-             * backward compatibility as well as to handle cases where the user has a
-             * single unified policyfile with both java policy entries and auth
-             * entries
+             * We call initPolicyFile with POLICY , POLICY_URL and then call it with AUTH_POLICY and AUTH_POLICY_URL So first we
+             * will process the JAVA standard policy and then process the JAVA AUTH Policy. This is for backward compatibility as
+             * well as to handle cases where the user has a single unified policyfile with both java policy entries and auth entries
              */
             boolean loaded_one = initPolicyFile(POLICY, POLICY_URL, newInfo);
             // To maintain strict backward compatibility
@@ -520,8 +465,10 @@ public class PolicyFile extends java.security.Policy {
                             } else {
                                 policyURL = new URL(extra_policy);
                             }
-                            if (debug != null) debug.println("reading " + policyURL);
-                            if (init(policyURL, newInfo)) loaded_policy = true;
+                            if (debug != null)
+                                debug.println("reading " + policyURL);
+                            if (init(policyURL, newInfo))
+                                loaded_policy = true;
                         } catch (Exception e) {
                             // ignore.
                             if (debug != null) {
@@ -543,8 +490,7 @@ public class PolicyFile extends java.security.Policy {
                 while ((policy_uri = Security.getProperty(urlname + n)) != null) {
                     try {
                         URL policy_url = null;
-                        String expanded_uri =
-                                PropertyExpander.expand(policy_uri).replace(File.separatorChar, '/');
+                        String expanded_uri = PropertyExpander.expand(policy_uri).replace(File.separatorChar, '/');
 
                         if (policy_uri.startsWith("file:${java.home}/")
                                 || policy_uri.startsWith("file:${user.home}/")) {
@@ -553,14 +499,15 @@ public class PolicyFile extends java.security.Policy {
                             // the situation java.home/user.home
                             // expand to a single slash, resulting in
                             // a file://foo URI
-                            policy_url =
-                                    new File(expanded_uri.substring(5)).toURI().toURL();
+                            policy_url = new File(expanded_uri.substring(5)).toURI().toURL();
                         } else {
                             policy_url = new URI(expanded_uri).toURL();
                         }
 
-                        if (debug != null) debug.println("reading " + policy_url);
-                        if (init(policy_url, newInfo)) loaded_policy = true;
+                        if (debug != null)
+                            debug.println("reading " + policy_url);
+                        if (init(policy_url, newInfo))
+                            loaded_policy = true;
                     } catch (Exception e) {
                         if (debug != null) {
                             debug.println("error reading policy " + e);
@@ -580,8 +527,7 @@ public class PolicyFile extends java.security.Policy {
     /**
      * Reads a policy configuration into the Policy object using a Reader object.
      *
-     * @param policyFile
-     *          the policy Reader object.
+     * @param policyFile the policy Reader object.
      */
     private boolean init(URL policy, PolicyInfo newInfo) {
         boolean success = false;
@@ -624,11 +570,11 @@ public class PolicyFile extends java.security.Policy {
                 addGrantEntry(ge, keyStore, newInfo);
             }
         } catch (PolicyParser.ParsingException pe) {
-            MessageFormat form =
-                    new MessageFormat(ResourcesMgr.getString(POLICY + ": error parsing policy:\n\tmessage"));
-            Object[] source = {policy, pe.getLocalizedMessage()};
+            MessageFormat form = new MessageFormat(ResourcesMgr.getString(POLICY + ": error parsing policy:\n\tmessage"));
+            Object[] source = { policy, pe.getLocalizedMessage() };
             System.err.println(form.format(source));
-            if (debug != null) pe.printStackTrace();
+            if (debug != null)
+                pe.printStackTrace();
 
         } catch (Exception e) {
             if (debug != null) {
@@ -707,8 +653,10 @@ public class PolicyFile extends java.security.Policy {
 
         URL location;
 
-        if (ge.codeBase != null) location = new URL(ge.codeBase);
-        else location = null;
+        if (ge.codeBase != null)
+            location = new URL(ge.codeBase);
+        else
+            location = null;
 
         return (canonicalizeCodebase(new CodeSource(location, certs), false));
     }
@@ -734,13 +682,15 @@ public class PolicyFile extends java.security.Policy {
         try {
             CodeSource codesource = getCodeSource(ge, keyStore, newInfo);
             // skip if signedBy alias was unknown...
-            if (codesource == null) return;
+            if (codesource == null)
+                return;
 
             // perform keystore alias principal replacement.
             // for example, if alias resolves to X509 certificate,
             // replace principal with: <X500Principal class> <SubjectDN>
             // -- skip if alias is unknown
-            if (replacePrincipals(ge.principals, keyStore) == false) return;
+            if (replacePrincipals(ge.principals, keyStore) == false)
+                return;
             PolicyEntry entry = new PolicyEntry(codesource, ge.principals);
             Enumeration<PolicyParser.PermissionEntry> enum_ = ge.permissionElements();
             while (enum_.hasMoreElements()) {
@@ -796,12 +746,12 @@ public class PolicyFile extends java.security.Policy {
                 } catch (java.lang.reflect.InvocationTargetException ite) {
                     MessageFormat form = new MessageFormat(
                             ResourcesMgr.getString(POLICY + ": error adding Permission, perm:\n\tmessage"));
-                    Object[] source = {pe.permission, ite.getTargetException().toString()};
+                    Object[] source = { pe.permission, ite.getTargetException().toString() };
                     System.err.println(form.format(source));
                 } catch (Exception e) {
                     MessageFormat form = new MessageFormat(
                             ResourcesMgr.getString(POLICY + ": error adding Permission, perm:\n\tmessage"));
-                    Object[] source = {pe.permission, e.toString()};
+                    Object[] source = { pe.permission, e.toString() };
                     System.err.println(form.format(source));
                 }
             }
@@ -810,46 +760,37 @@ public class PolicyFile extends java.security.Policy {
             newInfo.policyEntries.add(entry);
         } catch (Exception e) {
             MessageFormat form = new MessageFormat(ResourcesMgr.getString(POLICY + ": error adding Entry:\n\tmessage"));
-            Object[] source = {e.toString()};
+            Object[] source = { e.toString() };
             System.err.println(form.format(source));
         }
-        if (debug != null) debug.println();
+        if (debug != null)
+            debug.println();
     }
 
     /**
-     * Returns a new Permission object of the given Type. The Permission is
-     * created by getting the Class object using the <code>Class.forName</code>
-     * method, and using the reflection API to invoke the (String name, String
-     * actions) constructor on the object.
+     * Returns a new Permission object of the given Type. The Permission is created by getting the Class object using the
+     * <code>Class.forName</code> method, and using the reflection API to invoke the (String name, String actions)
+     * constructor on the object.
      *
-     * @param type
-     *          the type of Permission being created.
-     * @param name
-     *          the name of the Permission being created.
-     * @param actions
-     *          the actions of the Permission being created.
+     * @param type the type of Permission being created.
+     * @param name the name of the Permission being created.
+     * @param actions the actions of the Permission being created.
      *
-     * @exception ClassNotFoundException
-     *              if the particular Permission class could not be found.
+     * @exception ClassNotFoundException if the particular Permission class could not be found.
      *
-     * @exception IllegalAccessException
-     *              if the class or initializer is not accessible.
+     * @exception IllegalAccessException if the class or initializer is not accessible.
      *
-     * @exception InstantiationException
-     *              if getInstance tries to instantiate an abstract class or an
-     *              interface, or if the instantiation fails for some other
-     *              reason.
+     * @exception InstantiationException if getInstance tries to instantiate an abstract class or an interface, or if the
+     * instantiation fails for some other reason.
      *
-     * @exception NoSuchMethodException
-     *              if the (String, String) constructor is not found.
+     * @exception NoSuchMethodException if the (String, String) constructor is not found.
      *
-     * @exception InvocationTargetException
-     *              if the underlying Permission constructor throws an exception.
+     * @exception InvocationTargetException if the underlying Permission constructor throws an exception.
      *
      */
     private static final Permission getInstance(String type, String name, String actions)
             throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException,
-                    InvocationTargetException {
+            InvocationTargetException {
         // XXX we might want to keep a hash of created factories...
         Class<?> pc = Class.forName(type);
         Permission answer = getKnownInstance(pc, name, actions);
@@ -864,31 +805,31 @@ public class PolicyFile extends java.security.Policy {
             } catch (NoSuchMethodException ne) {
                 try {
                     Constructor<?> c = pc.getConstructor(PARAMS1);
-                    return (Permission) c.newInstance(new Object[] {name});
+                    return (Permission) c.newInstance(new Object[] { name });
                 } catch (NoSuchMethodException ne1) {
                     Constructor<?> c = pc.getConstructor(PARAMS2);
-                    return (Permission) c.newInstance(new Object[] {name, actions});
+                    return (Permission) c.newInstance(new Object[] { name, actions });
                 }
             }
         } else {
             if (name != null && actions == null) {
                 try {
                     Constructor<?> c = pc.getConstructor(PARAMS1);
-                    return (Permission) c.newInstance(new Object[] {name});
+                    return (Permission) c.newInstance(new Object[] { name });
                 } catch (NoSuchMethodException ne) {
                     Constructor<?> c = pc.getConstructor(PARAMS2);
-                    return (Permission) c.newInstance(new Object[] {name, actions});
+                    return (Permission) c.newInstance(new Object[] { name, actions });
                 }
             } else {
                 Constructor<?> c = pc.getConstructor(PARAMS2);
-                return (Permission) c.newInstance(new Object[] {name, actions});
+                return (Permission) c.newInstance(new Object[] { name, actions });
             }
         }
     }
 
     /**
-     * Creates one of the well-known permissions directly instead of via
-     * reflection. Keep list short to not penalize non-JDK-defined permissions.
+     * Creates one of the well-known permissions directly instead of via reflection. Keep list short to not penalize
+     * non-JDK-defined permissions.
      */
     private static final Permission getKnownInstance(Class claz, String name, String actions) {
         // XXX shorten list to most popular ones?
@@ -907,26 +848,17 @@ public class PolicyFile extends java.security.Policy {
         } else if (claz.equals(AWTPermission.class)) {
             return new AWTPermission(name, actions);
             /*
-             * } else if (claz.equals(ReflectPermission.class)) { return new
-             * ReflectPermission(name, actions); } else if
-             * (claz.equals(SecurityPermission.class)) { return new
-             * SecurityPermission(name, actions); } else if
-             * (claz.equals(PrivateCredentialPermission.class)) { return new
-             * PrivateCredentialPermission(name, actions); } else if
-             * (claz.equals(AuthPermission.class)) { return new AuthPermission(name,
-             * actions); } else if (claz.equals(ServicePermission.class)) { return new
-             * ServicePermission(name, actions); } else if
-             * (claz.equals(DelegationPermission.class)) { return new
-             * DelegationPermission(name, actions); } else if
-             * (claz.equals(SerializablePermission.class)) { return new
-             * SerializablePermission(name, actions); } else if
-             * (claz.equals(AudioPermission.class)) { return new AudioPermission(name,
-             * actions); } else if (claz.equals(SSLPermission.class)) { return new
-             * SSLPermission(name, actions); } else if
-             * (claz.equals(LoggingPermission.class)) { return new
-             * LoggingPermission(name, actions); } else if
-             * (claz.equals(SQLPermission.class)) { return new SQLPermission(name,
-             * actions);
+             * } else if (claz.equals(ReflectPermission.class)) { return new ReflectPermission(name, actions); } else if
+             * (claz.equals(SecurityPermission.class)) { return new SecurityPermission(name, actions); } else if
+             * (claz.equals(PrivateCredentialPermission.class)) { return new PrivateCredentialPermission(name, actions); } else if
+             * (claz.equals(AuthPermission.class)) { return new AuthPermission(name, actions); } else if
+             * (claz.equals(ServicePermission.class)) { return new ServicePermission(name, actions); } else if
+             * (claz.equals(DelegationPermission.class)) { return new DelegationPermission(name, actions); } else if
+             * (claz.equals(SerializablePermission.class)) { return new SerializablePermission(name, actions); } else if
+             * (claz.equals(AudioPermission.class)) { return new AudioPermission(name, actions); } else if
+             * (claz.equals(SSLPermission.class)) { return new SSLPermission(name, actions); } else if
+             * (claz.equals(LoggingPermission.class)) { return new LoggingPermission(name, actions); } else if
+             * (claz.equals(SQLPermission.class)) { return new SQLPermission(name, actions);
              */
         } else {
             return null;
@@ -967,7 +899,8 @@ public class PolicyFile extends java.security.Policy {
             }
 
             if (cert != null) {
-                if (vcerts == null) vcerts = new ArrayList<Certificate>();
+                if (vcerts == null)
+                    vcerts = new ArrayList<Certificate>();
                 vcerts.add(cert);
             }
         }
@@ -991,16 +924,13 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /**
-     * Evaluates the the global policy for the permissions granted to the
-     * ProtectionDomain and tests whether the permission is granted.
+     * Evaluates the the global policy for the permissions granted to the ProtectionDomain and tests whether the permission
+     * is granted.
      *
-     * @param domain
-     *          the ProtectionDomain to test
-     * @param permission
-     *          the Permission object to be tested for implication.
+     * @param domain the ProtectionDomain to test
+     * @param permission the Permission object to be tested for implication.
      *
-     * @return true if "permission" is a proper subset of a permission granted to
-     *         this ProtectionDomain.
+     * @return true if "permission" is a proper subset of a permission granted to this ProtectionDomain.
      *
      * @see java.security.ProtectionDomain
      */
@@ -1026,37 +956,31 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /**
-     * Examines this <code>Policy</code> and returns the permissions granted to
-     * the specified <code>ProtectionDomain</code>. This includes the permissions
-     * currently associated with the domain as well as the policy permissions
-     * granted to the domain's CodeSource, ClassLoader, and Principals.
+     * Examines this <code>Policy</code> and returns the permissions granted to the specified <code>ProtectionDomain</code>.
+     * This includes the permissions currently associated with the domain as well as the policy permissions granted to the
+     * domain's CodeSource, ClassLoader, and Principals.
      *
      * <p>
-     * Note that this <code>Policy</code> implementation has special handling for
-     * PrivateCredentialPermissions. When this method encounters a
-     * <code>PrivateCredentialPermission</code> which specifies "self" as the
-     * <code>Principal</code> class and name, it does not add that
-     * <code>Permission</code> to the returned <code>PermissionCollection</code>.
-     * Instead, it builds a new <code>PrivateCredentialPermission</code> for each
-     * <code>Principal</code> associated with the provided <code>Subject</code>.
-     * Each new <code>PrivateCredentialPermission</code> contains the same
-     * Credential class as specified in the originally granted permission, as well
-     * as the Class and name for the respective <code>Principal</code>.
+     * Note that this <code>Policy</code> implementation has special handling for PrivateCredentialPermissions. When this
+     * method encounters a <code>PrivateCredentialPermission</code> which specifies "self" as the <code>Principal</code>
+     * class and name, it does not add that <code>Permission</code> to the returned <code>PermissionCollection</code>.
+     * Instead, it builds a new <code>PrivateCredentialPermission</code> for each <code>Principal</code> associated with the
+     * provided <code>Subject</code>. Each new <code>PrivateCredentialPermission</code> contains the same Credential class
+     * as specified in the originally granted permission, as well as the Class and name for the respective
+     * <code>Principal</code>.
      *
      * <p>
      *
-     * @param domain
-     *          the Permissions granted to this <code>ProtectionDomain</code> are
-     *          returned.
+     * @param domain the Permissions granted to this <code>ProtectionDomain</code> are returned.
      *
-     * @return the Permissions granted to the provided
-     *         <code>ProtectionDomain</code>.
+     * @return the Permissions granted to the provided <code>ProtectionDomain</code>.
      */
     @Override
     public PermissionCollection getPermissions(ProtectionDomain domain) {
         Permissions perms = new Permissions();
 
-        if (domain == null) return perms;
+        if (domain == null)
+            return perms;
 
         // first get policy perms
         getPermissions(perms, domain);
@@ -1078,13 +1002,11 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /**
-     * Examines this Policy and creates a PermissionCollection object with the set
-     * of permissions for the specified CodeSource.
+     * Examines this Policy and creates a PermissionCollection object with the set of permissions for the specified
+     * CodeSource.
      *
-     * @param CodeSource
-     *          the codesource associated with the caller. This encapsulates the
-     *          original location of the code (where the code came from) and the
-     *          public key(s) of its signer.
+     * @param CodeSource the codesource associated with the caller. This encapsulates the original location of the code
+     * (where the code came from) and the public key(s) of its signer.
      *
      * @return the set of permissions according to the policy.
      */
@@ -1094,13 +1016,11 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /**
-     * Examines the global policy and returns the provided Permissions object with
-     * additional permissions granted to the specified ProtectionDomain.
+     * Examines the global policy and returns the provided Permissions object with additional permissions granted to the
+     * specified ProtectionDomain.
      *
-     * @param perm
-     *          the Permissions to populate
-     * @param pd
-     *          the ProtectionDomain associated with the caller.
+     * @param perm the Permissions to populate
+     * @param pd the ProtectionDomain associated with the caller.
      *
      * @return the set of Permissions according to the policy.
      */
@@ -1110,7 +1030,8 @@ public class PolicyFile extends java.security.Policy {
         }
 
         final CodeSource cs = pd.getCodeSource();
-        if (cs == null) return perms;
+        if (cs == null)
+            return perms;
 
         CodeSource canonCodeSource = AccessController.doPrivileged(new java.security.PrivilegedAction<CodeSource>() {
             public CodeSource run() {
@@ -1121,15 +1042,12 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /**
-     * Examines the global policy and returns the provided Permissions object with
-     * additional permissions granted to the specified CodeSource.
+     * Examines the global policy and returns the provided Permissions object with additional permissions granted to the
+     * specified CodeSource.
      *
-     * @param permissions
-     *          the permissions to populate
-     * @param codesource
-     *          the codesource associated with the caller. This encapsulates the
-     *          original location of the code (where the code came from) and the
-     *          public key(s) of its signer.
+     * @param permissions the permissions to populate
+     * @param codesource the codesource associated with the caller. This encapsulates the original location of the code
+     * (where the code came from) and the public key(s) of its signer.
      *
      * @return the set of permissions according to the policy.
      */
@@ -1271,7 +1189,7 @@ public class PolicyFile extends java.security.Policy {
                     // dealing with a PrincipalComparator
 
                     Constructor<?> c = pClass.getConstructor(PARAMS1);
-                    PrincipalComparator pc = (PrincipalComparator) c.newInstance(new Object[] {pppe.principalName});
+                    PrincipalComparator pc = (PrincipalComparator) c.newInstance(new Object[] { pppe.principalName });
 
                     if (debug != null) {
                         debug.println(
@@ -1347,23 +1265,18 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /**
-     * This method returns, true, if the principal in the policy entry, pppe, is
-     * part of the current thread's principal array, pList. This method also
-     * returns, true, if the policy entry's principal is appropriately wildcarded.
+     * This method returns, true, if the principal in the policy entry, pppe, is part of the current thread's principal
+     * array, pList. This method also returns, true, if the policy entry's principal is appropriately wildcarded.
      *
-     * Note that the provided <i>pppe</i> argument may have wildcards (*) for both
-     * the <code>Principal</code> class and name.
+     * Note that the provided <i>pppe</i> argument may have wildcards (*) for both the <code>Principal</code> class and
+     * name.
      *
-     * @param pList
-     *          an array of principals from the current thread's
-     *          AccessControlContext.
+     * @param pList an array of principals from the current thread's AccessControlContext.
      *
-     * @param pppe
-     *          a Principal specified in a policy grant entry.
+     * @param pppe a Principal specified in a policy grant entry.
      *
-     * @return true if the current thread's pList "contains" the principal in the
-     *         policy entry, pppe. This method also returns true if the policy
-     *         entry's principal appropriately wildcarded.
+     * @return true if the current thread's pList "contains" the principal in the policy entry, pppe. This method also
+     * returns true if the policy entry's principal appropriately wildcarded.
      */
     private boolean checkEntryPs(Principal[] pList, PolicyParser.PrincipalEntry pppe) {
 
@@ -1385,19 +1298,14 @@ public class PolicyFile extends java.security.Policy {
     /**
      * <p>
      *
-     * @param sp
-     *          the SelfPermission that needs to be expanded
-     *          <p>
+     * @param sp the SelfPermission that needs to be expanded
+     * <p>
      *
-     * @param entryPs
-     *          list of principals for the Policy entry.
+     * @param entryPs list of principals for the Policy entry.
      *
-     * @param pdp
-     *          Principal array from the current ProtectionDomain.
+     * @param pdp Principal array from the current ProtectionDomain.
      *
-     * @param perms
-     *          the PermissionCollection where the individual Permissions will be
-     *          added after expansion.
+     * @param perms the PermissionCollection where the individual Permissions will be added after expansion.
      */
     private void expandSelf(
             SelfPermission sp, List<PolicyParser.PrincipalEntry> entryPs, Principal[] pdp, Permissions perms) {
@@ -1477,14 +1385,14 @@ public class PolicyFile extends java.security.Policy {
                     if (sp.getSelfActions() == null) {
                         try {
                             c = pc.getConstructor(PARAMS1);
-                            perms.add((Permission) c.newInstance(new Object[] {sb.toString()}));
+                            perms.add((Permission) c.newInstance(new Object[] { sb.toString() }));
                         } catch (NoSuchMethodException ne) {
                             c = pc.getConstructor(PARAMS2);
-                            perms.add((Permission) c.newInstance(new Object[] {sb.toString(), sp.getSelfActions()}));
+                            perms.add((Permission) c.newInstance(new Object[] { sb.toString(), sp.getSelfActions() }));
                         }
                     } else {
                         c = pc.getConstructor(PARAMS2);
-                        perms.add((Permission) c.newInstance(new Object[] {sb.toString(), sp.getSelfActions()}));
+                        perms.add((Permission) c.newInstance(new Object[] { sb.toString(), sp.getSelfActions() }));
                     }
                 } catch (Exception nme) {
                     if (debug != null) {
@@ -1500,9 +1408,8 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /**
-     * return the principal class/name pair in the 2D array. array[x][y]: x
-     * corresponds to the array length. if (y == 0), it's the principal class. if
-     * (y == 1), it's the principal name.
+     * return the principal class/name pair in the 2D array. array[x][y]: x corresponds to the array length. if (y == 0),
+     * it's the principal class. if (y == 1), it's the principal name.
      */
     private String[][] getPrincipalInfo(PolicyParser.PrincipalEntry pe, Principal[] pdp) {
 
@@ -1529,7 +1436,8 @@ public class PolicyFile extends java.security.Policy {
             // that is equal to policy entry principal class name
             List<Principal> plist = new ArrayList<Principal>();
             for (int i = 0; i < pdp.length; i++) {
-                if (pe.principalClass.equals(pdp[i].getClass().getName())) plist.add(pdp[i]);
+                if (pe.principalClass.equals(pdp[i].getClass().getName()))
+                    plist.add(pdp[i]);
             }
             String[][] info = new String[plist.size()][2];
             int i = 0;
@@ -1558,23 +1466,22 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /*
-     * Returns the signer certificates from the list of certificates associated
-     * with the given code source.
+     * Returns the signer certificates from the list of certificates associated with the given code source.
      *
-     * The signer certificates are those certificates that were used to
-     * verifysigned code originating from the codesource location.
+     * The signer certificates are those certificates that were used to verifysigned code originating from the codesource
+     * location.
      *
-     * This method assumes that in the given code source, each signer certificate
-     * is followed by its supporting certificate chain (which may be empty), and
-     * that the signer certificate and its supporting certificate chain are
-     * ordered bottom-to-top (i.e., with the signer certificate first and the
-     * (root) certificate authority last).
+     * This method assumes that in the given code source, each signer certificate is followed by its supporting certificate
+     * chain (which may be empty), and that the signer certificate and its supporting certificate chain are ordered
+     * bottom-to-top (i.e., with the signer certificate first and the (root) certificate authority last).
      */
     protected Certificate[] getSignerCertificates(CodeSource cs) {
         Certificate[] certs = null;
-        if ((certs = cs.getCertificates()) == null) return null;
+        if ((certs = cs.getCertificates()) == null)
+            return null;
         for (int i = 0; i < certs.length; i++) {
-            if (!(certs[i] instanceof X509Certificate)) return cs.getCertificates();
+            if (!(certs[i] instanceof X509Certificate))
+                return cs.getCertificates();
         }
 
         // Do we have to do anything?
@@ -1672,8 +1579,10 @@ public class PolicyFile extends java.security.Policy {
             StringBuilder palBuf = new StringBuilder("(principals ");
             for (int i = 0; i < principals.length; i++) {
                 palBuf.append(principals[i].getClass().getName() + " \"" + principals[i].getName() + "\"");
-                if (i < principals.length - 1) palBuf.append(", ");
-                else palBuf.append(")");
+                if (i < principals.length - 1)
+                    palBuf.append(", ");
+                else
+                    palBuf.append(")");
             }
             pals = palBuf.toString();
         }
@@ -1686,7 +1595,8 @@ public class PolicyFile extends java.security.Policy {
      */
     private boolean replacePrincipals(List<PolicyParser.PrincipalEntry> principals, KeyStore keystore) {
 
-        if (principals == null || principals.size() == 0 || keystore == null) return true;
+        if (principals == null || principals.size() == 0 || keystore == null)
+            return true;
 
         ListIterator<PolicyParser.PrincipalEntry> i = principals.listIterator();
         while (i.hasNext()) {
@@ -1751,23 +1661,22 @@ public class PolicyFile extends java.security.Policy {
                 // get the suffix and perform keystore alias replacement
                 if (colonIndex == -1) {
                     MessageFormat form = new MessageFormat(ResourcesMgr.getString("alias name not provided (pe.name)"));
-                    Object[] source = {pe.name};
+                    Object[] source = { pe.name };
                     throw new Exception(form.format(source));
                 }
                 suffix = value.substring(colonIndex + 1);
                 if ((suffix = getDN(suffix, keystore)) == null) {
                     MessageFormat form = new MessageFormat(
                             ResourcesMgr.getString("unable to perform substitution on alias, suffix"));
-                    Object[] source = {value.substring(colonIndex + 1)};
+                    Object[] source = { value.substring(colonIndex + 1) };
                     throw new Exception(form.format(source));
                 }
 
                 sb.append(X500PRINCIPAL + " \"" + suffix + "\"");
                 startIndex = e + 2;
             } else {
-                MessageFormat form =
-                        new MessageFormat(ResourcesMgr.getString("substitution value, prefix, unsupported"));
-                Object[] source = {prefix};
+                MessageFormat form = new MessageFormat(ResourcesMgr.getString("substitution value, prefix, unsupported"));
+                Object[] source = { prefix };
                 throw new Exception(form.format(source));
             }
         }
@@ -1805,21 +1714,21 @@ public class PolicyFile extends java.security.Policy {
             // were encoded incorrectly. create new
             // X500Principal name with correct encoding
 
-            X500Principal p =
-                    new X500Principal(x509Cert.getSubjectX500Principal().toString());
+            X500Principal p = new X500Principal(x509Cert.getSubjectX500Principal().toString());
             return p.getName();
         }
     }
 
     /**
-     * Checks public key. If it is marked as trusted in the identity database, add
-     * it to the policy with the AllPermission.
+     * Checks public key. If it is marked as trusted in the identity database, add it to the policy with the AllPermission.
      */
     private boolean checkForTrustedIdentity(final Certificate cert, PolicyInfo myInfo) {
-        if (cert == null) return false;
+        if (cert == null)
+            return false;
 
         // see if we are ignoring the identity scope or not
-        if (ignoreIdentityScope) return false;
+        if (ignoreIdentityScope)
+            return false;
 
         // try to initialize scope
         synchronized (PolicyFile.class) {
@@ -1861,7 +1770,7 @@ public class PolicyFile extends java.security.Policy {
             }
 
             // add it to the policy for future reference
-            Certificate certs[] = new Certificate[] {cert};
+            Certificate certs[] = new Certificate[] { cert };
             PolicyEntry pe = new PolicyEntry(new CodeSource(null, certs));
             pe.add(SecurityConstants.ALL_PERMISSION);
 
@@ -1892,26 +1801,21 @@ public class PolicyFile extends java.security.Policy {
     }
 
     /**
-     * Each entry in the policy configuration file is represented by a PolicyEntry
-     * object.
+     * Each entry in the policy configuration file is represented by a PolicyEntry object.
      * <p>
      *
-     * A PolicyEntry is a (CodeSource,Permission) pair. The CodeSource contains
-     * the (URL, PublicKey) that together identify where the Java bytecodes come
-     * from and who (if anyone) signed them. The URL could refer to localhost. The
-     * URL could also be null, meaning that this policy entry is given to all
-     * comers, as long as they match the signer field. The signer could be null,
-     * meaning the code is not signed.
+     * A PolicyEntry is a (CodeSource,Permission) pair. The CodeSource contains the (URL, PublicKey) that together identify
+     * where the Java bytecodes come from and who (if anyone) signed them. The URL could refer to localhost. The URL could
+     * also be null, meaning that this policy entry is given to all comers, as long as they match the signer field. The
+     * signer could be null, meaning the code is not signed.
      * <p>
      *
      * The Permission contains the (Type, Name, Action) triplet.
      * <p>
      *
-     * For now, the Policy object retrieves the public key from the X.509
-     * certificate on disk that corresponds to the signedBy alias specified in the
-     * Policy config file. For reasons of efficiency, the Policy object keeps a
-     * hashtable of certs already read in. This could be replaced by a secure
-     * internal key store.
+     * For now, the Policy object retrieves the public key from the X.509 certificate on disk that corresponds to the
+     * signedBy alias specified in the Policy config file. For reasons of efficiency, the Policy object keeps a hashtable of
+     * certs already read in. This could be replaced by a secure internal key store.
      *
      * <p>
      * For example, the entry
@@ -1950,13 +1854,10 @@ public class PolicyFile extends java.security.Policy {
         /**
          * Given a Permission and a CodeSource, create a policy entry.
          *
-         * XXX Decide if/how to add validity fields and "purpose" fields to XXX
-         * policy entries
+         * XXX Decide if/how to add validity fields and "purpose" fields to XXX policy entries
          *
-         * @param cs
-         *          the CodeSource, which encapsulates the URL and the public key
-         *          attributes from the policy config file. Validity checks are
-         *          performed on the public key before PolicyEntry is called.
+         * @param cs the CodeSource, which encapsulates the URL and the public key attributes from the policy config file.
+         * Validity checks are performed on the public key before PolicyEntry is called.
          *
          */
         PolicyEntry(CodeSource cs, List<PolicyParser.PrincipalEntry> principals) {
@@ -1974,8 +1875,8 @@ public class PolicyFile extends java.security.Policy {
         }
 
         /**
-         * add a Permission object to this entry. No need to sync add op because
-         * perms are added to entry only while entry is being initialized
+         * add a Permission object to this entry. No need to sync add op because perms are added to entry only while entry is
+         * being initialized
          */
         void add(Permission p) {
             permissions.add(p);
@@ -2012,8 +1913,7 @@ public class PolicyFile extends java.security.Policy {
         private static final long serialVersionUID = -8315562579967246806L;
 
         /**
-         * The class name of the Permission class that will be created when this
-         * self permission is expanded .
+         * The class name of the Permission class that will be created when this self permission is expanded .
          *
          * @serial
          */
@@ -2041,23 +1941,15 @@ public class PolicyFile extends java.security.Policy {
         private Certificate certs[];
 
         /**
-         * Creates a new SelfPermission containing the permission information needed
-         * later to expand the self
+         * Creates a new SelfPermission containing the permission information needed later to expand the self
          *
-         * @param type
-         *          the class name of the Permission class that will be created when
-         *          this permission is expanded and if necessary resolved.
-         * @param name
-         *          the name of the permission.
-         * @param actions
-         *          the actions of the permission.
-         * @param certs
-         *          the certificates the permission's class was signed with. This is
-         *          a list of certificate chains, where each chain is composed of a
-         *          signer certificate and optionally its supporting certificate
-         *          chain. Each chain is ordered bottom-to-top (i.e., with the
-         *          signer certificate first and the (root) certificate authority
-         *          last).
+         * @param type the class name of the Permission class that will be created when this permission is expanded and if
+         * necessary resolved.
+         * @param name the name of the permission.
+         * @param actions the actions of the permission.
+         * @param certs the certificates the permission's class was signed with. This is a list of certificate chains, where
+         * each chain is composed of a signer certificate and optionally its supporting certificate chain. Each chain is ordered
+         * bottom-to-top (i.e., with the signer certificate first and the (root) certificate authority last).
          */
         public SelfPermission(String type, String name, String actions, Certificate certs[]) {
             super(type);
@@ -2121,11 +2013,10 @@ public class PolicyFile extends java.security.Policy {
         }
 
         /**
-         * This method always returns false for SelfPermission permissions. That is,
-         * an SelfPermission never considered to imply another permission.
+         * This method always returns false for SelfPermission permissions. That is, an SelfPermission never considered to imply
+         * another permission.
          *
-         * @param p
-         *          the permission to check against.
+         * @param p the permission to check against.
          *
          * @return false.
          */
@@ -2137,26 +2028,28 @@ public class PolicyFile extends java.security.Policy {
         /**
          * Checks two SelfPermission objects for equality.
          *
-         * Checks that <i>obj</i> is an SelfPermission, and has the same type
-         * (class) name, permission name, actions, and certificates as this object.
+         * Checks that <i>obj</i> is an SelfPermission, and has the same type (class) name, permission name, actions, and
+         * certificates as this object.
          *
-         * @param obj
-         *          the object we are testing for equality with this object.
+         * @param obj the object we are testing for equality with this object.
          *
-         * @return true if obj is an SelfPermission, and has the same type (class)
-         *         name, permission name, actions, and certificates as this object.
+         * @return true if obj is an SelfPermission, and has the same type (class) name, permission name, actions, and
+         * certificates as this object.
          */
         @Override
         public boolean equals(Object obj) {
-            if (obj == this) return true;
+            if (obj == this)
+                return true;
 
-            if (!(obj instanceof SelfPermission)) return false;
+            if (!(obj instanceof SelfPermission))
+                return false;
             SelfPermission that = (SelfPermission) obj;
 
             if (!(this.type.equals(that.type) && this.name.equals(that.name) && this.actions.equals(that.actions)))
                 return false;
 
-            if (this.certs.length != that.certs.length) return false;
+            if (this.certs.length != that.certs.length)
+                return false;
 
             int i, j;
             boolean match;
@@ -2169,7 +2062,8 @@ public class PolicyFile extends java.security.Policy {
                         break;
                     }
                 }
-                if (!match) return false;
+                if (!match)
+                    return false;
             }
 
             for (i = 0; i < that.certs.length; i++) {
@@ -2180,7 +2074,8 @@ public class PolicyFile extends java.security.Policy {
                         break;
                     }
                 }
-                if (!match) return false;
+                if (!match)
+                    return false;
             }
             return true;
         }
@@ -2193,17 +2088,17 @@ public class PolicyFile extends java.security.Policy {
         @Override
         public int hashCode() {
             int hash = type.hashCode();
-            if (name != null) hash ^= name.hashCode();
-            if (actions != null) hash ^= actions.hashCode();
+            if (name != null)
+                hash ^= name.hashCode();
+            if (actions != null)
+                hash ^= actions.hashCode();
             return hash;
         }
 
         /**
-         * Returns the canonical string representation of the actions, which
-         * currently is the empty string "", since there are no actions for an
-         * SelfPermission. That is, the actions for the permission that will be
-         * created when this SelfPermission is resolved may be non-null, but an
-         * SelfPermission itself is never considered to have any actions.
+         * Returns the canonical string representation of the actions, which currently is the empty string "", since there are
+         * no actions for an SelfPermission. That is, the actions for the permission that will be created when this
+         * SelfPermission is resolved may be non-null, but an SelfPermission itself is never considered to have any actions.
          *
          * @return the empty string "".
          */
@@ -2229,9 +2124,8 @@ public class PolicyFile extends java.security.Policy {
         }
 
         /**
-         * Returns a string describing this SelfPermission. The convention is to
-         * specify the class name, the permission name, and the actions, in the
-         * following format: '(unresolved "ClassName" "name" "actions")'.
+         * Returns a string describing this SelfPermission. The convention is to specify the class name, the permission name,
+         * and the actions, in the following format: '(unresolved "ClassName" "name" "actions")'.
          *
          * @return information about this SelfPermission.
          */

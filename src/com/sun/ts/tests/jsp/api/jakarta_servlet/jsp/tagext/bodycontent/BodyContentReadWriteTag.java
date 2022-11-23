@@ -38,12 +38,10 @@ public class BodyContentReadWriteTag extends BodyTagSupport {
     }
 
     /**
-     * Validates the behavior of BodyContent.getReader() and
-     * BodyContent.getEnclosingWriter();
+     * Validates the behavior of BodyContent.getReader() and BodyContent.getEnclosingWriter();
      *
      * @return SKIP_BODY
-     * @throws JspException
-     *           - if an error occurs
+     * @throws JspException - if an error occurs
      */
     public int doAfterBody() throws JspException {
         JspTestUtil.debug("[BodyContentReadWriteTag] in doAfterBody()");

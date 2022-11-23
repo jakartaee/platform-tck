@@ -41,7 +41,8 @@ public class Department implements java.io.Serializable {
 
     private Map<String, Employee> salaryEmployees;
 
-    public Department() {}
+    public Department() {
+    }
 
     public Department(int id, String name) {
         this.id = id;
@@ -74,13 +75,7 @@ public class Department implements java.io.Serializable {
     // getters and setters for the association fields
 
     @OneToMany(mappedBy = "department")
-    @MapKeyColumn(
-            name = "OFFICE_ID",
-            nullable = false,
-            insertable = true,
-            length = 255,
-            updatable = true,
-            unique = true)
+    @MapKeyColumn(name = "OFFICE_ID", nullable = false, insertable = true, length = 255, updatable = true, unique = true)
     public Map<String, Employee> getLastNameEmployees() {
         return lastNameEmployees;
     }

@@ -116,13 +116,18 @@ public class Client extends EETest {
 
             boolean testResult = false;
 
-            if (testNum == 1) testResult = runTest1();
-            else if (testNum == 2) testResult = runTest2();
-            else if (testNum == 5) testResult = runTest5();
-            else if (testNum == 6) testResult = runTest6();
+            if (testNum == 1)
+                testResult = runTest1();
+            else if (testNum == 2)
+                testResult = runTest2();
+            else if (testNum == 5)
+                testResult = runTest5();
+            else if (testNum == 6)
+                testResult = runTest6();
 
             synchronized (lock) {
-                if (!testResult) ++errors;
+                if (!testResult)
+                    ++errors;
                 ++threadsDone;
                 lock.notifyAll();
             }
@@ -169,8 +174,7 @@ public class Client extends EETest {
             eHomeRN = (TxECMPBeanHome) nctx.lookup(tLookupERN, TxECMPBeanHome.class);
             pkeyRN = new Integer(11);
             logMsg("Creating entity EJB = " + pkeyRN.toString());
-            beanRefERN =
-                    (TxECMPBean) eHomeRN.create(tName, pkeyRN, tName + "-" + pkeyRN.intValue(), (float) 11.00, props);
+            beanRefERN = (TxECMPBean) eHomeRN.create(tName, pkeyRN, tName + "-" + pkeyRN.intValue(), (float) 11.00, props);
 
             logMsg("Setup ok");
         } catch (Exception e) {
@@ -193,7 +197,8 @@ public class Client extends EETest {
                     b2 = beanRefS2.doTest1(pkeyR, tName, i + 2);
                 }
             }
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e.getMessage(), e);
@@ -218,7 +223,8 @@ public class Client extends EETest {
                     b2 = beanRefS2.doTest2(pkeyR, tName, i + 2);
                 }
             }
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e.getMessage(), e);
@@ -243,7 +249,8 @@ public class Client extends EETest {
                     b2 = beanRefS2.doTest5(pkeyRN, tName, i + 2);
                 }
             }
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e.getMessage(), e);
@@ -268,7 +275,8 @@ public class Client extends EETest {
                     b2 = beanRefS2.doTest6(pkeyRN, tName, i + 2);
                 }
             }
-            if (b1 && b2) testResult = true;
+            if (b1 && b2)
+                testResult = true;
 
         } catch (Exception e) {
             TestUtil.logErr("Exception: " + e.getMessage(), e);
@@ -291,13 +299,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10122; EJB:SPEC:583.1; EJB:SPEC:583.2
      *
-     * @test_Strategy: Multiple Bean Managed Tx commit - Required Entity EJBs
-     * Create a Required Entity EJB with Primary Key N. Create multiple threads.
-     * Within each thread create a Session EJB. Start a new transaction within the
-     * Session Bean. Within each Session EJB lookup the previously created Entity
-     * bean using Primary Key N. Then update the data in the Entity bean from
-     * within each session bean (Synchronously). Commit the changes. Verify that
-     * the changes were made in the database and in the instance data.
+     * @test_Strategy: Multiple Bean Managed Tx commit - Required Entity EJBs Create a Required Entity EJB with Primary Key
+     * N. Create multiple threads. Within each thread create a Session EJB. Start a new transaction within the Session Bean.
+     * Within each Session EJB lookup the previously created Entity bean using Primary Key N. Then update the data in the
+     * Entity bean from within each session bean (Synchronously). Commit the changes. Verify that the changes were made in
+     * the database and in the instance data.
      *
      *
      */
@@ -360,13 +366,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10122; EJB:SPEC:583.1; EJB:SPEC:583.2
      *
-     * @test_Strategy: Multiple Bean Managed Tx commit - Required Entity EJBs
-     * Create a Required Entity EJB with Primary Key N. Create multiple threads.
-     * Within each thread create a Session EJB. Start a new transaction within the
-     * Session Bean. Within each Session EJB lookup the previously created Entity
-     * bean using Primary Key N. Then update the data in the Entity bean from
-     * within each session bean (Synchronously). Rollback the changes. Verify that
-     * the changes were not made in the database and in the instance data.
+     * @test_Strategy: Multiple Bean Managed Tx commit - Required Entity EJBs Create a Required Entity EJB with Primary Key
+     * N. Create multiple threads. Within each thread create a Session EJB. Start a new transaction within the Session Bean.
+     * Within each Session EJB lookup the previously created Entity bean using Primary Key N. Then update the data in the
+     * Entity bean from within each session bean (Synchronously). Rollback the changes. Verify that the changes were not
+     * made in the database and in the instance data.
      *
      *
      */
@@ -429,13 +433,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10122
      *
-     * @test_Strategy: Multiple Bean Managed Tx commit - RequiresNew Entity EJBs
-     * Create a RequiresNew Entity EJB with Primary Key N. Create multiple
-     * threads. Within each thread create a Session EJB. Start a new transaction
-     * within the Session Bean. Within each Session EJB lookup the previously
-     * created Entity bean using Primary Key N. Then update the data in the Entity
-     * bean from within each session bean (Synchronously). Commit the transaction.
-     * Verify that the changes were made in the database and in the instance data.
+     * @test_Strategy: Multiple Bean Managed Tx commit - RequiresNew Entity EJBs Create a RequiresNew Entity EJB with
+     * Primary Key N. Create multiple threads. Within each thread create a Session EJB. Start a new transaction within the
+     * Session Bean. Within each Session EJB lookup the previously created Entity bean using Primary Key N. Then update the
+     * data in the Entity bean from within each session bean (Synchronously). Commit the transaction. Verify that the
+     * changes were made in the database and in the instance data.
      *
      *
      */
@@ -498,13 +500,11 @@ public class Client extends EETest {
      *
      * @assertion_ids: EJB:SPEC:10122
      *
-     * @test_Strategy: Multiple Bean Managed Tx rollback - RequiresNew Entity EJBs
-     * Create a RequiresNew Entity EJB with Primary Key N. Create multiple
-     * threads. Within each thread create a Session EJB. Within each Session EJB
-     * lookup the previously Start a new transaction within the Session Bean.
-     * created Entity bean using Primary Key N. Then update the data in the Entity
-     * bean from within each session bean (Synchronously). Rollback the changes.
-     * Verify that the changes were made in the database and in the instance data.
+     * @test_Strategy: Multiple Bean Managed Tx rollback - RequiresNew Entity EJBs Create a RequiresNew Entity EJB with
+     * Primary Key N. Create multiple threads. Within each thread create a Session EJB. Within each Session EJB lookup the
+     * previously Start a new transaction within the Session Bean. created Entity bean using Primary Key N. Then update the
+     * data in the Entity bean from within each session bean (Synchronously). Rollback the changes. Verify that the changes
+     * were made in the database and in the instance data.
      *
      *
      */

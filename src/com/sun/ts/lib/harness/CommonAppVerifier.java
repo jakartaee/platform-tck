@@ -22,8 +22,7 @@ import java.util.*;
 import java.util.StringTokenizer;
 
 /**
- * This class is used by the TS harness to figure out common archives that are
- * needed by test directories.
+ * This class is used by the TS harness to figure out common archives that are needed by test directories.
  *
  * A singleton class not intended for concurrent access.
  *
@@ -49,7 +48,8 @@ public class CommonAppVerifier {
     // an uninitialized singleton instance
     private static CommonAppVerifier instance = new CommonAppVerifier();
 
-    private CommonAppVerifier() {}
+    private CommonAppVerifier() {
+    }
 
     public static CommonAppVerifier getInstance(File path) {
         if (instance == null) {
@@ -168,75 +168,54 @@ public class CommonAppVerifier {
     }
 }
 /*
- * public class CommonAppVerifier { private static Map htValidApps; private
- * String sRelativeTestPath = "";
+ * public class CommonAppVerifier { private static Map htValidApps; private String sRelativeTestPath = "";
  *
  * private CommonAppVerifier() {}
  *
- * //use specific classloader if the class-to-load is not in the classpath of
- * the current vm. private static void getDeliverableTable (ClassLoader
- * classLoader) { if (htValidApps == null) { try { htValidApps =
- * DeliverableFactory.getDeliverableInstance(classLoader).getCommonApps(); }
- * catch (Exception e) { TestUtil.
- * logHarness("ERROR:  Failed to get common apps from the Deliverable instance."
- * , e); } } }
+ * //use specific classloader if the class-to-load is not in the classpath of the current vm. private static void
+ * getDeliverableTable (ClassLoader classLoader) { if (htValidApps == null) { try { htValidApps =
+ * DeliverableFactory.getDeliverableInstance(classLoader).getCommonApps(); } catch (Exception e) { TestUtil.
+ * logHarness("ERROR:  Failed to get common apps from the Deliverable instance." , e); } } }
  *
- * public static String[] getCommonApps (String sPath) { return
- * getCommonApps(sPath, null); }
+ * public static String[] getCommonApps (String sPath) { return getCommonApps(sPath, null); }
  *
  *
- * public static String[] getCommonApps (String sPath, ClassLoader classLoader)
- * { //get the mappings from the active deliverable
- * getDeliverableTable(classLoader); String sPathCopy = sPath; String
- * sRelativeTestPath = convertSlashesToDashes(sPath); String[] sVal2 = null;
- * String sRelativeTestPathCopy = sRelativeTestPath; int iTestsIndex =
- * sPathCopy.lastIndexOf(File.separator + TestUtil.getDistString() +
- * File.separator); String sTSHome = sPathCopy.substring(0, iTestsIndex);
- * if(TestUtil.harnessDebug) TestUtil.logHarnessDebug("Try TS_HOME = " +
- * sTSHome); while (!(new File(sTSHome + File.separator + "bin")).exists()) {
- * iTestsIndex = sTSHome.lastIndexOf(File.separator + TestUtil.getDistString() +
- * File.separator); if (iTestsIndex == -1) { TestUtil.
- * logHarness("ERROR:  Failed to find the tests directory while trying to get TS_HOME from the test directory:  "
- * + sPathCopy); break; } sTSHome = sTSHome.substring(0, iTestsIndex); } int
- * iTSDirLength = sTSHome.length(); if (sPathCopy.endsWith(File.separator)) {
- * sPathCopy = sPathCopy.substring(0, sPathCopy.length() - 1); }
- * sRelativeTestPath = (sPathCopy.substring(iTSDirLength +
- * 1)).replace(File.separatorChar, '_');
+ * public static String[] getCommonApps (String sPath, ClassLoader classLoader) { //get the mappings from the active
+ * deliverable getDeliverableTable(classLoader); String sPathCopy = sPath; String sRelativeTestPath =
+ * convertSlashesToDashes(sPath); String[] sVal2 = null; String sRelativeTestPathCopy = sRelativeTestPath; int
+ * iTestsIndex = sPathCopy.lastIndexOf(File.separator + TestUtil.getDistString() + File.separator); String sTSHome =
+ * sPathCopy.substring(0, iTestsIndex); if(TestUtil.harnessDebug) TestUtil.logHarnessDebug("Try TS_HOME = " + sTSHome);
+ * while (!(new File(sTSHome + File.separator + "bin")).exists()) { iTestsIndex = sTSHome.lastIndexOf(File.separator +
+ * TestUtil.getDistString() + File.separator); if (iTestsIndex == -1) { TestUtil.
+ * logHarness("ERROR:  Failed to find the tests directory while trying to get TS_HOME from the test directory:  " +
+ * sPathCopy); break; } sTSHome = sTSHome.substring(0, iTestsIndex); } int iTSDirLength = sTSHome.length(); if
+ * (sPathCopy.endsWith(File.separator)) { sPathCopy = sPathCopy.substring(0, sPathCopy.length() - 1); }
+ * sRelativeTestPath = (sPathCopy.substring(iTSDirLength + 1)).replace(File.separatorChar, '_');
  *
- * if(TestUtil.harnessDebug) TestUtil.logHarnessDebug("sRelativeTestPath = " +
- * sRelativeTestPath);
+ * if(TestUtil.harnessDebug) TestUtil.logHarnessDebug("sRelativeTestPath = " + sRelativeTestPath);
  *
- * if (sTSHome.endsWith(File.separator)) { sTSHome = sTSHome.substring(0,
- * sTSHome.length() - 1); }
+ * if (sTSHome.endsWith(File.separator)) { sTSHome = sTSHome.substring(0, sTSHome.length() - 1); }
  *
- * if(TestUtil.harnessDebug)
- * TestUtil.logHarnessDebug("TS_HOME from backtracing=" + sTSHome); do { sVal2 =
- * (String[])htValidApps.get(sRelativeTestPathCopy + ".common_apps"); if
- * (TestUtil.harnessDebug && sVal2 != null) {
- * TestUtil.logHarnessDebug("common apps for " + sRelativeTestPathCopy + " = " +
- * Arrays.asList(sVal2).toString()); } } while ((sRelativeTestPathCopy =
- * getNextLevelUp(sRelativeTestPathCopy)) != null && sVal2 == null); if(sVal2 !=
- * null && TestUtil.harnessDebug) {
- * TestUtil.logHarnessDebug("common apps from lookup: " +
- * Arrays.asList(sVal2).toString()); } //add ctshome to each relative common app
- * path if(sVal2 == null) { return null; } String[] result = new
- * String[sVal2.length]; for (int ii = 0; ii < sVal2.length; ii++) { result[ii]
- * = sTSHome + convertDashesToSlashes(sVal2[ii]); } return result; }
+ * if(TestUtil.harnessDebug) TestUtil.logHarnessDebug("TS_HOME from backtracing=" + sTSHome); do { sVal2 =
+ * (String[])htValidApps.get(sRelativeTestPathCopy + ".common_apps"); if (TestUtil.harnessDebug && sVal2 != null) {
+ * TestUtil.logHarnessDebug("common apps for " + sRelativeTestPathCopy + " = " + Arrays.asList(sVal2).toString()); } }
+ * while ((sRelativeTestPathCopy = getNextLevelUp(sRelativeTestPathCopy)) != null && sVal2 == null); if(sVal2 != null &&
+ * TestUtil.harnessDebug) { TestUtil.logHarnessDebug("common apps from lookup: " + Arrays.asList(sVal2).toString()); }
+ * //add ctshome to each relative common app path if(sVal2 == null) { return null; } String[] result = new
+ * String[sVal2.length]; for (int ii = 0; ii < sVal2.length; ii++) { result[ii] = sTSHome +
+ * convertDashesToSlashes(sVal2[ii]); } return result; }
  *
- * private static String getNextLevelUp (String sDottedPath) { int index = 0;
- * String sNewPath = null; index = sDottedPath.lastIndexOf("-"); if (index !=
- * -1) sNewPath = sDottedPath.substring(0, index); return sNewPath; }
+ * private static String getNextLevelUp (String sDottedPath) { int index = 0; String sNewPath = null; index =
+ * sDottedPath.lastIndexOf("-"); if (index != -1) sNewPath = sDottedPath.substring(0, index); return sNewPath; }
  *
- * private static String convertSlashesToDashes (String sTestDir) { String
- * sRelativeTestPath = (sTestDir.substring(sTestDir.indexOf(File.separator +
- * "ts" + File.separator + "tests" + File.separator) +
+ * private static String convertSlashesToDashes (String sTestDir) { String sRelativeTestPath =
+ * (sTestDir.substring(sTestDir.indexOf(File.separator + "ts" + File.separator + "tests" + File.separator) +
  * 4)).replace(File.separatorChar, '-'); if(TestUtil.harnessDebug)
- * TestUtil.logHarnessDebug("convertSlashesToDashes(): sRelativeTestPath = " +
- * sRelativeTestPath); return sRelativeTestPath; }
+ * TestUtil.logHarnessDebug("convertSlashesToDashes(): sRelativeTestPath = " + sRelativeTestPath); return
+ * sRelativeTestPath; }
  *
- * private static String convertDashesToSlashes (String sTestDir) { String
- * sRelativeTestPath = sTestDir.replace('-', File.separatorChar);
- * if(TestUtil.harnessDebug)
- * TestUtil.logHarnessDebug("convertDashToSlashes(): sRelativeTestPath = " +
- * sRelativeTestPath); return sRelativeTestPath; } }
+ * private static String convertDashesToSlashes (String sTestDir) { String sRelativeTestPath = sTestDir.replace('-',
+ * File.separatorChar); if(TestUtil.harnessDebug)
+ * TestUtil.logHarnessDebug("convertDashToSlashes(): sRelativeTestPath = " + sRelativeTestPath); return
+ * sRelativeTestPath; } }
  */

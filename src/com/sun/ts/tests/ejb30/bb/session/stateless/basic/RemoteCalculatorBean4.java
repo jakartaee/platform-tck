@@ -27,13 +27,13 @@ import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
  *
  * @PostConstruct method in its superclass is invoked correctly.
  *
- *                This bean contains no resource, ejb injection, or component
- *                defining annotations. It has a post-construct method that is
- *                declared in its superclass.
+ * This bean contains no resource, ejb injection, or component defining annotations. It has a post-construct method that
+ * is declared in its superclass.
  */
 public class RemoteCalculatorBean4 extends RemoteCalculatorBean4Super implements RemoteCalculator {
 
-    public RemoteCalculatorBean4() {}
+    public RemoteCalculatorBean4() {
+    }
 
     // There may be a bug that annotation in superclass is not process when the
     // component class itself does not contain any annotation.

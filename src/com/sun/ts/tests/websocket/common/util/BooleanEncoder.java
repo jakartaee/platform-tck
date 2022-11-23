@@ -27,7 +27,8 @@ import jakarta.websocket.EndpointConfig;
 public class BooleanEncoder implements Encoder.Text<Boolean> {
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
     public String encode(Boolean b) throws EncodeException {
@@ -36,5 +37,6 @@ public class BooleanEncoder implements Encoder.Text<Boolean> {
     }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

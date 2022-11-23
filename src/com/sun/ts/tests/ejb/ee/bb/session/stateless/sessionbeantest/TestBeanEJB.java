@@ -49,26 +49,35 @@ public class TestBeanEJB implements SessionBean {
     public TestBeanEJB() {
         TestUtil.logTrace("newInstance => default constructor called");
         ejbNewInstanceFlag = true;
-        if (ejbSessionContextFlag || ejbCreateFlag) createLifeCycleFlag = false;
-        if (ejbSessionContextFlag) TestUtil.logErr("newInstance() not called before setSessionContext()");
-        if (ejbCreateFlag) TestUtil.logErr("newInstance() not called before ejbCreate()");
+        if (ejbSessionContextFlag || ejbCreateFlag)
+            createLifeCycleFlag = false;
+        if (ejbSessionContextFlag)
+            TestUtil.logErr("newInstance() not called before setSessionContext()");
+        if (ejbCreateFlag)
+            TestUtil.logErr("newInstance() not called before ejbCreate()");
     }
 
     public void ejbCreate() throws CreateException {
         TestUtil.logTrace("ejbCreate");
         ejbCreateFlag = true;
-        if (!ejbNewInstanceFlag || !ejbSessionContextFlag) createLifeCycleFlag = false;
-        if (!ejbNewInstanceFlag) TestUtil.logErr("newInstance() not called before ejbCreate()");
-        if (!ejbSessionContextFlag) TestUtil.logErr("setSessionContext() not called before ejbCreate()");
+        if (!ejbNewInstanceFlag || !ejbSessionContextFlag)
+            createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag)
+            TestUtil.logErr("newInstance() not called before ejbCreate()");
+        if (!ejbSessionContextFlag)
+            TestUtil.logErr("setSessionContext() not called before ejbCreate()");
     }
 
     public void setSessionContext(SessionContext sc) {
         TestUtil.logTrace("setSessionContext");
         this.sctx = sc;
         ejbSessionContextFlag = true;
-        if (!ejbNewInstanceFlag || ejbCreateFlag) createLifeCycleFlag = false;
-        if (!ejbNewInstanceFlag) TestUtil.logErr("newInstance() not called before setSessionContext()");
-        if (ejbCreateFlag) TestUtil.logErr("ejbCreate() called before setSessionContext()");
+        if (!ejbNewInstanceFlag || ejbCreateFlag)
+            createLifeCycleFlag = false;
+        if (!ejbNewInstanceFlag)
+            TestUtil.logErr("newInstance() not called before setSessionContext()");
+        if (ejbCreateFlag)
+            TestUtil.logErr("ejbCreate() called before setSessionContext()");
     }
 
     public void ejbRemove() {

@@ -28,7 +28,8 @@ public class MovieTicket implements Serializable {
 
     private Film film;
 
-    public MovieTicket() {}
+    public MovieTicket() {
+    }
 
     public int hashCode() {
         int hash = 0;

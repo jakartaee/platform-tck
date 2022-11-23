@@ -30,7 +30,7 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful
-@Local({LocalTxIF.class})
+@Local({ LocalTxIF.class })
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class StatefulLocalTxBean extends LocalTxBeanBase implements LocalTxIF {

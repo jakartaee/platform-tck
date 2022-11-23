@@ -32,8 +32,8 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "cart-bean")
-@Remote({CartIF.class})
-@Local({LocalCartIF.class})
+@Remote({ CartIF.class })
+@Local({ LocalCartIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
 // use BMT so we can safely remove beans
 public class CartBean
@@ -46,8 +46,10 @@ public class CartBean
         return sessionContext;
     }
 
-    public CartBean() {}
+    public CartBean() {
+    }
 
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 }

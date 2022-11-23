@@ -31,7 +31,7 @@ import jakarta.resource.spi.ResourceAdapterAssociation;
  * Connector:SPEC:282.  Since this implements ResourceAdaperAssociation, we should
  * see that the setResourceAdapter() class gets called.
  */
-@Activation(messageListeners = {com.sun.ts.tests.common.connector.util.TSMessageListenerInterface.class})
+@Activation(messageListeners = { com.sun.ts.tests.common.connector.util.TSMessageListenerInterface.class })
 public class IBAnnoActivationSpecChild extends IBAnnoActivationSpecParent
         implements ResourceAdapterAssociation, ActivationSpec {
 

@@ -23,8 +23,8 @@ package com.sun.ts.tests.jsp.spec.core_syntax.actions.setproperty;
 import java.io.Serializable;
 
 /**
- * PropertyBean.java Simple Java Bean to verify that a JSP Container will make
- * use of a Bean's PropertyEditory class if one is available.
+ * PropertyBean.java Simple Java Bean to verify that a JSP Container will make use of a Bean's PropertyEditory class if
+ * one is available.
  */
 public class PropertyBean implements Serializable {
 
@@ -52,8 +52,7 @@ public class PropertyBean implements Serializable {
     /**
      * Set the value of pString.
      *
-     * @param v
-     *          Value to assign to pString.
+     * @param v Value to assign to pString.
      */
     public void setPString(String v) {
         this._pString = v;
@@ -71,8 +70,7 @@ public class PropertyBean implements Serializable {
     /**
      * Set the value of pBoolean.
      *
-     * @param v
-     *          Value to assign to pBoolean.
+     * @param v Value to assign to pBoolean.
      */
     public void setPBoolean(Boolean v) {
         this._pBoolean = v;
@@ -90,8 +88,7 @@ public class PropertyBean implements Serializable {
     /**
      * Set the value of pInt.
      *
-     * @param v
-     *          Value to assign to pInt.
+     * @param v Value to assign to pInt.
      */
     public void setPInteger(Integer v) {
         this._pInt = v;

@@ -35,8 +35,7 @@ import java.util.TimeZone;
 // import com.merant.sequelink.jdbcx.datasource.*;
 
 /**
- * The dateTimeClient2 class tests methods of Time class using Sun's J2EE
- * Reference Implementation.
+ * The dateTimeClient2 class tests methods of Time class using Sun's J2EE Reference Implementation.
  *
  * @author
  * @version 1.7, 06/16/99
@@ -73,14 +72,11 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
 
     /* Test setup: */
     /*
-     * @class.setup_props: Driver, the Driver name; db1, the database name with
-     * url; user1, the database user name; password1, the database password; db2,
-     * the database name with url; user2, the database user name; password2, the
-     * database password; DriverManager, flag for DriverManager; ptable, the
-     * primary table; ftable, the foreign table; cofSize, the initial size of the
-     * ptable; cofTypeSize, the initial size of the ftable; binarySize, size of
-     * binary data type; varbinarySize, size of varbinary data type;
-     * longvarbinarySize, size of longvarbinary data type;
+     * @class.setup_props: Driver, the Driver name; db1, the database name with url; user1, the database user name;
+     * password1, the database password; db2, the database name with url; user2, the database user name; password2, the
+     * database password; DriverManager, flag for DriverManager; ptable, the primary table; ftable, the foreign table;
+     * cofSize, the initial size of the ptable; cofTypeSize, the initial size of the ftable; binarySize, size of binary data
+     * type; varbinarySize, size of varbinary data type; longvarbinarySize, size of longvarbinary data type;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -104,8 +100,8 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
             }
 
             /*
-             * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery","");
-             * InputStream istr= new FileInputStream(sqlStmt); sqlp.load(istr);
+             * sqlp=new Properties(); sqlStmt= p.getProperty("rsQuery",""); InputStream istr= new FileInputStream(sqlStmt);
+             * sqlp.load(istr);
              */
             sqlp = p;
             msg = new JDBCTestMsg();
@@ -119,9 +115,8 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:46;
      *
-     * @test_Strategy: Create a Time Object with a long value as an argument. Then
-     * get the String representation of that Time object. Check whether it is same
-     * as equivalent String Value in property file.
+     * @test_Strategy: Create a Time Object with a long value as an argument. Then get the String representation of that
+     * Time object. Check whether it is same as equivalent String Value in property file.
      */
     public void testTime01() throws Fault {
         String sTimeLongVal = null;
@@ -166,9 +161,8 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:46;
      *
-     * @test_Strategy: Create a Time Object with a long value as an argument. Then
-     * get the String representation of that Time object. Check whether it is same
-     * as equivalent String Value in property file.
+     * @test_Strategy: Create a Time Object with a long value as an argument. Then get the String representation of that
+     * Time object. Check whether it is same as equivalent String Value in property file.
      */
     public void testTime02() throws Fault {
         String sTimeLongVal = null;
@@ -213,10 +207,8 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:49; JDBC:JAVADOC:46;
      *
-     * @test_Strategy: Create a Time Object with a long value as an argument. Then
-     * get the String representation of that Time object. using the toString()
-     * method.Check whether it is same as equivalent String Value in property
-     * file.
+     * @test_Strategy: Create a Time Object with a long value as an argument. Then get the String representation of that
+     * Time object. using the toString() method.Check whether it is same as equivalent String Value in property file.
      */
     public void testToString01() throws Fault {
         String sTimeLongVal = null;
@@ -260,10 +252,8 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:49; JDBC:JAVADOC:46;
      *
-     * @test_Strategy: Create a Time Object with a long value as an argument. Then
-     * get the String representation of that Time object. using the toString()
-     * method.Check whether it is same as equivalent String Value in property
-     * file.
+     * @test_Strategy: Create a Time Object with a long value as an argument. Then get the String representation of that
+     * Time object. using the toString() method.Check whether it is same as equivalent String Value in property file.
      */
     public void testToString02() throws Fault {
         String sTimeLongVal = null;
@@ -308,9 +298,8 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:48; JDBC:JAVADOC:46;
      *
-     * @test_Strategy: Call valueof(String ts) static method in java.sql.Time
-     * class with a String argument to get a Time object Check whether it is same
-     * as Time object obtained from equivalent long value .
+     * @test_Strategy: Call valueof(String ts) static method in java.sql.Time class with a String argument to get a Time
+     * object Check whether it is same as Time object obtained from equivalent long value .
      *
      */
     public void testValueOf01() throws Fault {
@@ -357,9 +346,8 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:48; JDBC:JAVADOC:46;
      *
-     * @test_Strategy: Call valueof(String ts) static method in java.sql.Time
-     * class with a String argument to get a Time object Check whether it is same
-     * as Time object obtained from equivalent long value .
+     * @test_Strategy: Call valueof(String ts) static method in java.sql.Time class with a String argument to get a Time
+     * object Check whether it is same as Time object obtained from equivalent long value .
      */
     public void testValueOf02() throws Fault {
         String sTimeLongVal = null;
@@ -405,10 +393,9 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:47; JDBC:JAVADOC:46;
      *
-     * @test_Strategy: Create two Time objects with two different long values. Set
-     * the same long value in the second object as used in the first object using
-     * setTime(long) method Check whether both the Time objects are equal using
-     * equals method
+     * @test_Strategy: Create two Time objects with two different long values. Set the same long value in the second object
+     * as used in the first object using setTime(long) method Check whether both the Time objects are equal using equals
+     * method
      */
     public void testSetTime01() throws Fault {
         String sTimeLongVal1 = null;
@@ -467,10 +454,9 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: JDBC:JAVADOC:47; JDBC:JAVADOC:46;
      *
-     * @test_Strategy: Create two Time objects with two different long values. Set
-     * the same long value in the second object as used in the first object using
-     * setTime(long) method Check whether both the Time objects are equal using
-     * equals method
+     * @test_Strategy: Create two Time objects with two different long values. Set the same long value in the second object
+     * as used in the first object using setTime(long) method Check whether both the Time objects are equal using equals
+     * method
      */
     public void testSetTime02() throws Fault {
         String sTimeLongVal1 = null;
@@ -513,7 +499,8 @@ public class dateTimeClient2 extends ServiceEETest implements Serializable {
             msg.setMsg("The retTimeObj object's value is after  setting time:" + sTestTimeObjectVal2);
 
             booRetVal = sTimeObjVal1.equals(sTestTimeObjectVal2);
-            if (booRetVal) msg.setMsg("setTime method sets the Time value ");
+            if (booRetVal)
+                msg.setMsg("setTime method sets the Time value ");
             else {
                 msg.printTestError("setTime method does not set the Time value ", "call to setTime is Failed");
             }

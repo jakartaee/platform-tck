@@ -71,8 +71,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,8 +100,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:308;
      *
-     * @test_Strategy: Name.getPrefix() will return the prefix associated with
-     * this namespace object.
+     * @test_Strategy: Name.getPrefix() will return the prefix associated with this namespace object.
      *
      * Description: get prefix associated with Name
      */
@@ -114,12 +115,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getPrefixTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -128,7 +132,8 @@ public class URLClient extends EETest {
             throw new Fault("getPrefixTest failed", e);
         }
 
-        if (!pass) throw new Fault("getPrefixTest failed");
+        if (!pass)
+            throw new Fault("getPrefixTest failed");
     }
 
     /*
@@ -136,8 +141,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:309;
      *
-     * @test_Strategy: Name.getURI() will return the URI associated with this
-     * namespace object.
+     * @test_Strategy: Name.getURI() will return the URI associated with this namespace object.
      *
      * Description: get URI associated with Name
      */
@@ -151,12 +155,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getURITest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -165,7 +172,8 @@ public class URLClient extends EETest {
             throw new Fault("getURITest failed", e);
         }
 
-        if (!pass) throw new Fault("getURITest failed");
+        if (!pass)
+            throw new Fault("getURITest failed");
     }
 
     /*
@@ -173,8 +181,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:306;
      *
-     * @test_Strategy: Name.getLocalName() will return the local name associated
-     * with this namespace object.
+     * @test_Strategy: Name.getLocalName() will return the local name associated with this namespace object.
      *
      * Description: get local name associated with Name
      */
@@ -188,12 +195,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getLocalNameTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -202,7 +212,8 @@ public class URLClient extends EETest {
             throw new Fault("getLocalNameTest failed", e);
         }
 
-        if (!pass) throw new Fault("getLocalNameTest failed");
+        if (!pass)
+            throw new Fault("getLocalNameTest failed");
     }
 
     /*
@@ -210,8 +221,7 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: SAAJ:JAVADOC:307;
      *
-     * @test_Strategy: Name.getQualified() will return the qualified name
-     * associated with this namespace object.
+     * @test_Strategy: Name.getQualified() will return the qualified name associated with this namespace object.
      *
      * Description: get qualified name associated with Name
      */
@@ -225,12 +235,15 @@ public class URLClient extends EETest {
             for (int i = 0; i < 2; i++) {
                 TestUtil.logMsg("Sending post request to test servlet.....");
                 props.setProperty("TESTNAME", "getQualifiedNameTest");
-                if (i == 0) props.setProperty("SOAPVERSION", "soap11");
-                else props.setProperty("SOAPVERSION", "soap12");
+                if (i == 0)
+                    props.setProperty("SOAPVERSION", "soap11");
+                else
+                    props.setProperty("SOAPVERSION", "soap12");
                 urlConn = TestUtil.sendPostData(props, url);
                 TestUtil.logMsg("Getting response from test servlet.....");
                 Properties resProps = TestUtil.getResponseProperties(urlConn);
-                if (!resProps.getProperty("TESTRESULT").equals("pass")) pass = false;
+                if (!resProps.getProperty("TESTRESULT").equals("pass"))
+                    pass = false;
             }
 
         } catch (Exception e) {
@@ -239,6 +252,7 @@ public class URLClient extends EETest {
             throw new Fault("getQualifiedNameTest failed", e);
         }
 
-        if (!pass) throw new Fault("getQualifiedNameTest failed");
+        if (!pass)
+            throw new Fault("getQualifiedNameTest failed");
     }
 }

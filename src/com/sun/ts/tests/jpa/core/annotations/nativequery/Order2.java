@@ -27,7 +27,8 @@ public class Order2 implements java.io.Serializable {
 
     private String itemName;
 
-    public Order2() {}
+    public Order2() {
+    }
 
     public Order2(int id) {
         this.id = id;

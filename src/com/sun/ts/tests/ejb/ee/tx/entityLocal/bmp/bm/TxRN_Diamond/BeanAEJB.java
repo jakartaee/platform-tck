@@ -161,11 +161,13 @@ public class BeanAEJB implements SessionBean {
             // Verify the results
             tempName1 = RefTxEBean.getBrandName();
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
-            if (tempName1.equals(expName)) b3 = true;
+            if (tempName1.equals(expName))
+                b3 = true;
 
             tempName2 = RefTxEBean.getDbBrandName();
             TestUtil.logTrace("DB Brand Name is " + tempName2);
-            if (tempName2.equals(expName)) b4 = true;
+            if (tempName2.equals(expName))
+                b4 = true;
 
             if (!b3) {
                 TestUtil.logMsg("Brand Name instance value did not match expected value");
@@ -176,12 +178,14 @@ public class BeanAEJB implements SessionBean {
                 TestUtil.logMsg("Expected: " + expName + ", Actual: " + tempName2);
             }
 
-            if (b1 && b2 && b3 && b4) testResult = true;
+            if (b1 && b2 && b3 && b4)
+                testResult = true;
             return testResult;
 
         } catch (Exception e) {
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (SystemException se) {
                 TestUtil.logErr("Exception checking transaction status", se);
             }
@@ -246,11 +250,13 @@ public class BeanAEJB implements SessionBean {
             // Verify the results
             tempName1 = RefTxEBean.getBrandName();
             TestUtil.logTrace("Instance Brand Name is " + tempName1);
-            if (tempName1.equals(expName)) b3 = true;
+            if (tempName1.equals(expName))
+                b3 = true;
 
             tempName2 = RefTxEBean.getDbBrandName();
             TestUtil.logTrace("DB Brand Name is " + tempName2);
-            if (tempName2.equals(expName)) b4 = true;
+            if (tempName2.equals(expName))
+                b4 = true;
 
             if (!b3) {
                 TestUtil.logMsg("Brand Name instance value did not match expected value");
@@ -261,12 +267,14 @@ public class BeanAEJB implements SessionBean {
                 TestUtil.logMsg("Expected: " + expName + ", Actual: " + tempName2);
             }
 
-            if (b1 && b2 && b3 && b4) testResult = true;
+            if (b1 && b2 && b3 && b4)
+                testResult = true;
             return testResult;
 
         } catch (Exception e) {
             try {
-                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION) ut.rollback();
+                if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+                    ut.rollback();
             } catch (SystemException se) {
                 TestUtil.logErr("Exception checking transaction status", se);
             }

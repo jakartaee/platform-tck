@@ -28,12 +28,9 @@ public class ElFunctions {
     /**
      * EL Function that provides substring functionality
      *
-     * @param startIndex
-     *          - the start index for the substring operation
-     * @param endIndex
-     *          - the end index for the substring operation
-     * @param value
-     *          - the String value to perform the operation against
+     * @param startIndex - the start index for the substring operation
+     * @param endIndex - the end index for the substring operation
+     * @param value - the String value to perform the operation against
      * @return the substringed value
      */
     public static final String substring(int startIndex, int endIndex, String value) {

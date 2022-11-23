@@ -27,7 +27,7 @@ import jakarta.ejb.Stateless;
 
 @Stateless
 // @Stateless(name="StatelessLocal2Bean")
-@Local({LocalIF.class})
+@Local({ LocalIF.class })
 public class StatelessLocal2Bean extends CommonBase
 // implements LocalIF
 {

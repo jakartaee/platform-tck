@@ -23,8 +23,7 @@ package com.sun.ts.tests.ejb30.common.busiface;
 import java.rmi.RemoteException;
 
 /**
- * A business interface that extends java.rmi.Remote. Its methods can throw
- * java.rmi.RemoteException.
+ * A business interface that extends java.rmi.Remote. Its methods can throw java.rmi.RemoteException.
  */
 public interface BusinessIF1 extends java.rmi.Remote {
     public void remove() throws RemoteException; // for sfsb only

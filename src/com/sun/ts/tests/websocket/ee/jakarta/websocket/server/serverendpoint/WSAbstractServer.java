@@ -31,11 +31,16 @@ import java.lang.annotation.Annotation;
 public class WSAbstractServer {
 
     public String op(String op) {
-        if (op.equals("configurator")) return getConfigurator();
-        if (op.equals("encoders")) return getEncoders();
-        if (op.equals("decoders")) return getDecoders();
-        if (op.equals("subprotocols")) return getSubprotocols();
-        if (op.equals("value")) return getValue();
+        if (op.equals("configurator"))
+            return getConfigurator();
+        if (op.equals("encoders"))
+            return getEncoders();
+        if (op.equals("decoders"))
+            return getDecoders();
+        if (op.equals("subprotocols"))
+            return getSubprotocols();
+        if (op.equals("value"))
+            return getValue();
         return null;
     }
 

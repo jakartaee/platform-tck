@@ -24,10 +24,12 @@ import jakarta.websocket.EndpointConfig;
 public class StringListTextDecoder implements Decoder.Text<StringList> {
 
     @Override
-    public void init(EndpointConfig config) {}
+    public void init(EndpointConfig config) {
+    }
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 
     @Override
     public StringList decode(String s) throws DecodeException {

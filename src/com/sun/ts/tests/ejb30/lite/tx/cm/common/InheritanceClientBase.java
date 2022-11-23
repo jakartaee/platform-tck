@@ -27,12 +27,12 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.EJBs;
 
 @EJBs({
-    @EJB(name = "abeanLocal", beanName = "ABean", beanInterface = TxLocalIF.class, description = "<local ABean>"),
-    @EJB(name = "bbeanLocal", beanName = "BBean", beanInterface = TxLocalIF.class, description = "<local BBean>"),
-    @EJB(name = "cbeanLocal", beanName = "CBean", beanInterface = TxLocalIF.class, description = "<local CBean>"),
-    @EJB(name = "dbeanLocal", beanName = "DBean", beanInterface = TxLocalIF.class, description = "<local DBean>"),
-    @EJB(name = "ebeanLocal", beanName = "EBean", beanInterface = TxLocalIF.class, description = "<local EBean>"),
-    @EJB(name = "fbeanLocal", beanName = "FBean", beanInterface = TxLocalIF.class, description = "<local FBean>")
+        @EJB(name = "abeanLocal", beanName = "ABean", beanInterface = TxLocalIF.class, description = "<local ABean>"),
+        @EJB(name = "bbeanLocal", beanName = "BBean", beanInterface = TxLocalIF.class, description = "<local BBean>"),
+        @EJB(name = "cbeanLocal", beanName = "CBean", beanInterface = TxLocalIF.class, description = "<local CBean>"),
+        @EJB(name = "dbeanLocal", beanName = "DBean", beanInterface = TxLocalIF.class, description = "<local DBean>"),
+        @EJB(name = "ebeanLocal", beanName = "EBean", beanInterface = TxLocalIF.class, description = "<local EBean>"),
+        @EJB(name = "fbeanLocal", beanName = "FBean", beanInterface = TxLocalIF.class, description = "<local FBean>")
 })
 public abstract class InheritanceClientBase extends EJBLiteClientBase {
     /*

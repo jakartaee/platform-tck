@@ -65,8 +65,8 @@ public class URLClient extends EETest {
     /* Test setup */
 
     /*
-     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
-     * webServerHost, the web server host; webServerPort, the web server port;
+     * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial; webServerHost, the web server host;
+     * webServerPort, the web server port;
      *
      * @class.testArgs: -ap tssql.stmt
      */
@@ -77,8 +77,10 @@ public class URLClient extends EETest {
 
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -98,12 +100,10 @@ public class URLClient extends EETest {
     /*
      * @testName: webLocalAccessTest1
      *
-     * @assertion_ids: EJB:SPEC:2.4; EJB:SPEC:147.1; EJB:SPEC:147.2;
-     * EJB:SPEC:147.5
+     * @assertion_ids: EJB:SPEC:2.4; EJB:SPEC:147.1; EJB:SPEC:147.2; EJB:SPEC:147.5
      *
-     * @test_Strategy: A web component has access to the LocalHome and Local
-     * Interfaces of a Local Entity Bean (CMP20). Verify local access from JSP to
-     * a local Entity CMP20 Bean.
+     * @test_Strategy: A web component has access to the LocalHome and Local Interfaces of a Local Entity Bean (CMP20).
+     * Verify local access from JSP to a local Entity CMP20 Bean.
      */
 
     public void webLocalAccessTest1() throws Fault {
@@ -123,7 +123,8 @@ public class URLClient extends EETest {
                 pass = false;
             }
 
-            if (!pass) throw new Fault("webLocalAccessTest1 failed");
+            if (!pass)
+                throw new Fault("webLocalAccessTest1 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -137,9 +138,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: EJB:SPEC:2.4; EJB:SPEC:45.1; EJB:SPEC:45.2; EJB:SPEC:45.4
      *
-     * @test_Strategy: A web component has access to the LocalHome and Local
-     * Interfaces of a Local Stateful Session Bean. Verify local access from JSP
-     * to a local Stateful Session Bean.
+     * @test_Strategy: A web component has access to the LocalHome and Local Interfaces of a Local Stateful Session Bean.
+     * Verify local access from JSP to a local Stateful Session Bean.
      *
      *
      */
@@ -160,7 +160,8 @@ public class URLClient extends EETest {
                 pass = false;
             }
 
-            if (!pass) throw new Fault("webLocalAccessTest2 failed");
+            if (!pass)
+                throw new Fault("webLocalAccessTest2 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -172,12 +173,10 @@ public class URLClient extends EETest {
     /*
      * @testName: webLocalAccessTest3
      *
-     * @assertion_ids: EJB:SPEC:2.4; EJB:SPEC:147.1; EJB:SPEC:147.2;
-     * EJB:SPEC:147.5
+     * @assertion_ids: EJB:SPEC:2.4; EJB:SPEC:147.1; EJB:SPEC:147.2; EJB:SPEC:147.5
      *
-     * @test_Strategy: A web component has access to the LocalHome and Local
-     * Interfaces of a Local Entity BMP Bean. Verify local access from JSP to a
-     * local Entity BMP Bean.
+     * @test_Strategy: A web component has access to the LocalHome and Local Interfaces of a Local Entity BMP Bean. Verify
+     * local access from JSP to a local Entity BMP Bean.
      *
      *
      */
@@ -198,7 +197,8 @@ public class URLClient extends EETest {
                 pass = false;
             }
 
-            if (!pass) throw new Fault("webLocalAccessTest3 failed");
+            if (!pass)
+                throw new Fault("webLocalAccessTest3 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
@@ -212,9 +212,8 @@ public class URLClient extends EETest {
      *
      * @assertion_ids: EJB:SPEC:2.4; EJB:SPEC:45.1; EJB:SPEC:45.2; EJB:SPEC:45.4
      *
-     * @test_Strategy: A web component has access to the LocalHome and Local
-     * Interfaces of a Local Stateless Session Bean. Verify local access from JSP
-     * to a local Stateless Session Bean.
+     * @test_Strategy: A web component has access to the LocalHome and Local Interfaces of a Local Stateless Session Bean.
+     * Verify local access from JSP to a local Stateless Session Bean.
      */
 
     public void webLocalAccessTest4() throws Fault {
@@ -234,7 +233,8 @@ public class URLClient extends EETest {
                 pass = false;
             }
 
-            if (!pass) throw new Fault("webLocalAccessTest4 failed");
+            if (!pass)
+                throw new Fault("webLocalAccessTest4 failed");
 
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());

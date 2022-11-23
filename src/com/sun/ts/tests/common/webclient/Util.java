@@ -84,11 +84,11 @@ public class Util {
     private static final int BYTEPADSIZE = 2;
 
     /** Creates new Util */
-    private Util() {}
+    private Util() {
+    }
 
     /*
-     * public methods
-     * ========================================================================
+     * public methods ========================================================================
      */
 
     /**
@@ -102,8 +102,7 @@ public class Util {
     }
 
     /**
-     * Returns a charset encoded string based on the provided InputStream and
-     * charset encoding.
+     * Returns a charset encoded string based on the provided InputStream and charset encoding.
      *
      * @return encoding string
      */
@@ -117,18 +116,13 @@ public class Util {
     }
 
     /**
-     * <code>getHexValue</code> displays a formatted hex representation of the
-     * passed byte array. It also allows for only a specified offset and length of
-     * a particular array to be returned.
+     * <code>getHexValue</code> displays a formatted hex representation of the passed byte array. It also allows for only a
+     * specified offset and length of a particular array to be returned.
      *
-     * @param bytes
-     *          <code>byte[]</code> array to process.
-     * @param pos
-     *          <code>int</code> specifies offset to begin processing.
-     * @param len
-     *          <code>int</code> specifies the number of bytes to process.
-     * @return <code>String</code> formatted hex representation of processed
-     *         array.
+     * @param bytes <code>byte[]</code> array to process.
+     * @param pos <code>int</code> specifies offset to begin processing.
+     * @param len <code>int</code> specifies the number of bytes to process.
+     * @return <code>String</code> formatted hex representation of processed array.
      */
     public static String getHexValue(byte[] bytes, int pos, int len) {
         StringBuffer outBuf = new StringBuffer(bytes.length * 2);
@@ -198,20 +192,15 @@ public class Util {
     }
 
     /*
-     * private methods
-     * ========================================================================
+     * private methods ========================================================================
      */
 
     /**
-     * <code>paddedHexString</code> pads the passed value based on the specified
-     * wordsize and the value of the prefixFlag.
+     * <code>paddedHexString</code> pads the passed value based on the specified wordsize and the value of the prefixFlag.
      *
-     * @param val
-     *          an <code>int</code> value
-     * @param wordsize
-     *          an <code>int</code> value
-     * @param prefixFlag
-     *          a <code>boolean</code> value
+     * @param val an <code>int</code> value
+     * @param wordsize an <code>int</code> value
+     * @param prefixFlag a <code>boolean</code> value
      * @return a <code>String</code> value
      */
     private static String paddedHexString(int val, int wordsize, boolean prefixFlag) {
@@ -219,7 +208,8 @@ public class Util {
         String prefix = prefixFlag ? "0x" : "";
         String hexVal = Integer.toHexString(val);
 
-        if (hexVal.length() > wordsize) hexVal = hexVal.substring(hexVal.length() - wordsize);
+        if (hexVal.length() > wordsize)
+            hexVal = hexVal.substring(hexVal.length() - wordsize);
 
         return (prefix + (wordsize > hexVal.length() ? ZEROS.substring(0, wordsize - hexVal.length()) : "") + hexVal);
     }

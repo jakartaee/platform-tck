@@ -40,27 +40,23 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
     // may be configured as managed-property
     /////////////////////////////////////////////////////////////////////
     /**
-     * status and reason indicate test status and may be configured as
-     * managed-property. They must be updated by subclass test clients, typically
-     * indirectly via invoking pass or fail method.
+     * status and reason indicate test status and may be configured as managed-property. They must be updated by subclass
+     * test clients, typically indirectly via invoking pass or fail method.
      */
     private String status;
 
     private String reason;
 
     /**
-     * the current testName (without _from_<vehicle> suffix). When running in
-     * vehicles, this field is initialized either by container (ejblitejsf
-     * vehicle) or by runner class. When running as standalone client, need to
-     * initialize it in setup method
+     * the current testName (without _from_<vehicle> suffix). When running in vehicles, this field is initialized either by
+     * container (ejblitejsf vehicle) or by runner class. When running as standalone client, need to initialize it in setup
+     * method
      */
     private String testName;
 
     /**
-     * If annotation injections on this class are supported in the runtime
-     * environment. For example, in a servlet vehicle, this class will be
-     * reflectively instantiated by the test app, and so any annotations will be
-     * ignored.
+     * If annotation injections on this class are supported in the runtime environment. For example, in a servlet vehicle,
+     * this class will be reflectively instantiated by the test app, and so any annotations will be ignored.
      */
     private Boolean injectionSupported;
 
@@ -79,9 +75,8 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
     private Map<String, String> jndiMapping = new HashMap<String, String>();
 
     /**
-     * Additional embeddable ejb modules that are outside current classpath. Its
-     * getter method (protected) is intended for subclass to retrieve it. Its
-     * setter method is declared in EJBLiteClientIF interface.
+     * Additional embeddable ejb modules that are outside current classpath. Its getter method (protected) is intended for
+     * subclass to retrieve it. Its setter method is declared in EJBLiteClientIF interface.
      */
     private File[] additionalModules;
 
@@ -92,18 +87,15 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
     private StringBuilder reasonBuffer;
 
     /**
-     * number of times this class has been used to run test. When used as vehicle,
-     * instances of this class (actually its concrete subclass) are either not
-     * shared across multiple tests (e.g. ejblitejsf, ejblitejsp vehicles), or
-     * internal state must be reset (e.g., ejbliteservlet vehicle). This field
-     * must equal either 0 or 1.
+     * number of times this class has been used to run test. When used as vehicle, instances of this class (actually its
+     * concrete subclass) are either not shared across multiple tests (e.g. ejblitejsf, ejblitejsp vehicles), or internal
+     * state must be reset (e.g., ejbliteservlet vehicle). This field must equal either 0 or 1.
      */
     private byte accessCount;
 
     /**
-     * indicates this class is now inside a vehicle, e.g., jsf managed bean,
-     * servlet, servlet filter, etc. This field is not initialized util
-     * this.runTestInVehicle() is called.
+     * indicates this class is now inside a vehicle, e.g., jsf managed bean, servlet, servlet filter, etc. This field is not
+     * initialized util this.runTestInVehicle() is called.
      */
     private boolean inVehicle;
 
@@ -120,9 +112,8 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
     }
 
     /**
-     * Typically invoked by containers or vehicles to run the actual test method.
-     * This method must not be invoked more than once for each test. Subclass test
-     * client must not invoke this method.
+     * Typically invoked by containers or vehicles to run the actual test method. This method must not be invoked more than
+     * once for each test. Subclass test client must not invoke this method.
      */
     public String getStatus() {
         if (accessCount == 0) {
@@ -143,8 +134,8 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
     }
 
     /**
-     * Similar to getStatus() method, and subclass test client should not invoke
-     * it. However, this method is used by both standalone and vehicle clients.
+     * Similar to getStatus() method, and subclass test client should not invoke it. However, this method is used by both
+     * standalone and vehicle clients.
      */
     public String getReason() {
         if (reason == null) {
@@ -202,10 +193,9 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
     // harness-required methods
     /////////////////////////////////////////////////////////////////////
     /**
-     * setup method is invoked by harness prior to each test method. If
-     * getInjectionSupported() returns false, need to initialize those injected
-     * fields here. When running inside vehicles, setup(null, null) are called
-     * (see runTestInVehicle method)
+     * setup method is invoked by harness prior to each test method. If getInjectionSupported() returns false, need to
+     * initialize those injected fields here. When running inside vehicles, setup(null, null) are called (see
+     * runTestInVehicle method)
      */
     public void setup(String[] args, Properties p) {
         if (!inVehicle && (testName == null) && p != null) {
@@ -221,8 +211,8 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
     }
 
     /**
-     * cleanup method is invoked by harness after each test method. For vehicles,
-     * this methos is invoked only by servlet filter.
+     * cleanup method is invoked by harness after each test method. For vehicles, this methos is invoked only by servlet
+     * filter.
      */
     public void cleanup() {
         if (!inVehicle) {
@@ -266,12 +256,10 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
     }
 
     /**
-     * When running inside a vehicle, the vehicle runner class should call
-     * setInjectionSupported(true|false) to explicitly initialize it. Its default
-     * value is null. For ejblitejsf vehicle, it is set in faces-config.xml as a
-     * managed-property. For standalone client, injectionSupported field is not
-     * initialized. But if ejb spec requires injection support, we need to
-     * initialize it from a property in ts.jte.
+     * When running inside a vehicle, the vehicle runner class should call setInjectionSupported(true|false) to explicitly
+     * initialize it. Its default value is null. For ejblitejsf vehicle, it is set in faces-config.xml as a
+     * managed-property. For standalone client, injectionSupported field is not initialized. But if ejb spec requires
+     * injection support, we need to initialize it from a property in ts.jte.
      */
     public Boolean getInjectionSupported() {
         return injectionSupported;
@@ -285,7 +273,8 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
         return jndiMapping;
     }
 
-    public void setContextClassLoader() {}
+    public void setContextClassLoader() {
+    }
 
     public Map<String, Object> getContainerInitProperties() {
         return null;
@@ -300,16 +289,13 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
     /////////////////////////////////////////////////////////////////////
 
     /**
-     * In embeddable usage, only the portable global jndi name lookup is
-     * supported. In JavaEE or web environment, the following lookupName format
-     * can be used:
+     * In embeddable usage, only the portable global jndi name lookup is supported. In JavaEE or web environment, the
+     * following lookupName format can be used:
      *
-     * x will be expanded to java:comp/env/x java:comp/env/x
-     * java:global/app-name/module-name/bean-name!FQN
+     * x will be expanded to java:comp/env/x java:comp/env/x java:global/app-name/module-name/bean-name!FQN
      * java:app/module-name/bean-name!FQN java:module/bean-name!FQN
      *
-     * beanName and beanInterface is to be used in embed mode to create a
-     * java:global name
+     * beanName and beanInterface is to be used in embed mode to create a java:global name
      */
     protected Object lookup(String lookupName, String beanName, Class<?> beanInterface) {
         String nameNormalized = lookupName;
@@ -385,14 +371,11 @@ public class EJBLiteClientBase extends ServiceEETest implements EJBLiteClientIF 
     }
 
     /**
-     * A central place to clear up state. Note that we cannot call it in cleanup()
-     * since vehicle tests (at least jsf) test status is written to jsp page after
-     * cleanup method. We cannot call it in setup either, since in vehicle tests
-     * containers inject to these fields upon instantiate and we don't want to
-     * remove these field values. In vehicle tests this test is instantiated once
-     * for each test, and so it should not matter if we leave the state behind.
-     * When running in standalone, this test client should also be instantiated
-     * once per test.
+     * A central place to clear up state. Note that we cannot call it in cleanup() since vehicle tests (at least jsf) test
+     * status is written to jsp page after cleanup method. We cannot call it in setup either, since in vehicle tests
+     * containers inject to these fields upon instantiate and we don't want to remove these field values. In vehicle tests
+     * this test is instantiated once for each test, and so it should not matter if we leave the state behind. When running
+     * in standalone, this test client should also be instantiated once per test.
      */
     private void nuke() {
         accessCount = 0;

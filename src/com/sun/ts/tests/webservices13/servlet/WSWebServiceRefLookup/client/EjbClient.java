@@ -28,7 +28,7 @@ import jakarta.xml.ws.soap.*;
 import java.util.*;
 
 @Stateful(name = "WSWebServiceRefLookupClntBean")
-@Remote({EjbClientIF.class})
+@Remote({ EjbClientIF.class })
 public class EjbClient implements EjbClientIF {
 
     private Properties harnessProps = null;
@@ -110,7 +110,8 @@ public class EjbClient implements EjbClientIF {
 
         try {
             String response = port2.echoString(request);
-            if (!JAXWS_Data.compareValues(request, response, "String")) pass = false;
+            if (!JAXWS_Data.compareValues(request, response, "String"))
+                pass = false;
         } catch (Exception e) {
             TestUtil.logErr("Caught exception: " + e.getMessage());
             TestUtil.printStackTrace(e);

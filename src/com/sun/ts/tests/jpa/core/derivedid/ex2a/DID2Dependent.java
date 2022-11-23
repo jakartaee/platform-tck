@@ -39,13 +39,14 @@ public class DID2Dependent implements Serializable {
 
     @Id
     @JoinColumns({
-        @JoinColumn(name = "FIRSTNAME", referencedColumnName = "firstname"),
-        @JoinColumn(name = "LASTNAME", referencedColumnName = "lastname")
+            @JoinColumn(name = "FIRSTNAME", referencedColumnName = "firstname"),
+            @JoinColumn(name = "LASTNAME", referencedColumnName = "lastname")
     })
     @ManyToOne
     DID2Employee emp;
 
-    public DID2Dependent() {}
+    public DID2Dependent() {
+    }
 
     public DID2Dependent(DID2DependentId dId, DID2Employee emp) {
         this.name = dId.getName();

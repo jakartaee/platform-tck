@@ -26,9 +26,8 @@ import java.io.PrintWriter;
 public class URLClient extends AbstractUrlClient {
 
     /**
-     * Entry point for different-VM execution. It should delegate to method
-     * run(String[], PrintWriter, PrintWriter), and this method should not contain
-     * any test configuration.
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
      */
     public static void main(String[] args) {
         URLClient theTests = new URLClient();
@@ -37,8 +36,7 @@ public class URLClient extends AbstractUrlClient {
     }
 
     /**
-     * Entry point for same-VM execution. In different-VM execution, the main
-     * method delegates to this method.
+     * Entry point for same-VM execution. In different-VM execution, the main method delegates to this method.
      */
     public Status run(String args[], PrintWriter out, PrintWriter err) {
 
@@ -58,10 +56,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:695.2;
      *
-     * @test_Strategy: Negative test for method
-     * ServletContext.setSessionTrackingModes. Call
-     * ServletContext.setSessionTrackingModes inside a servlet; verify
-     * IllegalStateException is thrown.
+     * @test_Strategy: Negative test for method ServletContext.setSessionTrackingModes. Call
+     * ServletContext.setSessionTrackingModes inside a servlet; verify IllegalStateException is thrown.
      */
     public void setSessionTrackingModes1() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes1");
@@ -73,10 +69,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:695.2;
      *
-     * @test_Strategy: Negative test for method
-     * ServletContext.setSessionTrackingModes. Call
-     * ServletContext.setSessionTrackingModes inside a servlet; verify
-     * IllegalStateException is thrown.
+     * @test_Strategy: Negative test for method ServletContext.setSessionTrackingModes. Call
+     * ServletContext.setSessionTrackingModes inside a servlet; verify IllegalStateException is thrown.
      */
     public void setSessionTrackingModes2() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes2");
@@ -87,10 +81,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:695.2;
      *
-     * @test_Strategy: Negative test for method
-     * ServletContext.setSessionTrackingModes. Call
-     * ServletContext.setSessionTrackingModes inside a servlet; verify
-     * IllegalStateException is thrown.
+     * @test_Strategy: Negative test for method ServletContext.setSessionTrackingModes. Call
+     * ServletContext.setSessionTrackingModes inside a servlet; verify IllegalStateException is thrown.
      */
 
     public void setSessionTrackingModes3() throws Fault {
@@ -103,10 +95,8 @@ public class URLClient extends AbstractUrlClient {
      *
      * @assertion_ids: Servlet:JAVADOC:695.2;
      *
-     * @test_Strategy: Negative test for method
-     * ServletContext.setSessionTrackingModes. Call
-     * ServletContext.setSessionTrackingModes inside a servlet; verify
-     * IllegalStateException is thrown.
+     * @test_Strategy: Negative test for method ServletContext.setSessionTrackingModes. Call
+     * ServletContext.setSessionTrackingModes inside a servlet; verify IllegalStateException is thrown.
      */
     public void setSessionTrackingModes4() throws Fault {
         TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes4");

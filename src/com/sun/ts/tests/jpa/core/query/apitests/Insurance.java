@@ -43,7 +43,8 @@ public class Insurance implements java.io.Serializable {
 
     private Collection<Employee> employees = new java.util.ArrayList<Employee>();
 
-    public Insurance() {}
+    public Insurance() {
+    }
 
     public Insurance(int id, String carrier) {
         this.id = id;
@@ -87,8 +88,10 @@ public class Insurance implements java.io.Serializable {
     @Override
     public boolean equals(Object o) {
         // check for self-comparison
-        if (this == o) return true;
-        if (!(o instanceof Insurance)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Insurance))
+            return false;
 
         Insurance o1 = (Insurance) o;
 

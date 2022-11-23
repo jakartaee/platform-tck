@@ -41,8 +41,7 @@ public class ClassicSkipPage extends TagSupport {
      * Called by container to perform any at-end tag processing.
      *
      * @return Tag.SKIP_PAGE
-     * @throws JspException
-     *           - not thrown by this test
+     * @throws JspException - not thrown by this test
      */
     public int doEndTag() throws JspException {
         JspTestUtil.debug("[ClassicSkipPage] in doEndTag()");

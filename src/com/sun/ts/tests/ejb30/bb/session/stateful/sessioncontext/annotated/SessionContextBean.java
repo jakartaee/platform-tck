@@ -41,8 +41,8 @@ import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 
 @Stateful(name = "SessionContextBean")
-@Remote({Three1IF.class, Three2IF.class})
-@Local({ThreeLocal1IF.class, ThreeLocal2IF.class})
+@Remote({ Three1IF.class, Three2IF.class })
+@Local({ ThreeLocal1IF.class, ThreeLocal2IF.class })
 @RemoteHome(TwoRemoteHome.class)
 @LocalHome(TwoLocalHome.class)
 // use bmt so that it can be safely removed from the calling bean (TestBean)
@@ -59,16 +59,19 @@ public class SessionContextBean extends SessionContextBeanBase
         return sessionContext;
     }
 
-    public SessionContextBean() {}
+    public SessionContextBean() {
+    }
 
     @Remove
-    public void remove() {}
+    public void remove() {
+    }
 
     //////////////////////////////////////////////////////////////////////
     // optional ejbCreate() method because this bean has RemoteHome
     // it may throw any application exception, and possibly CreateException
     //////////////////////////////////////////////////////////////////////
-    public void ejbCreate() throws TestFailedException {}
+    public void ejbCreate() throws TestFailedException {
+    }
 
     @Init
     public void create() {

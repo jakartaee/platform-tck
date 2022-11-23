@@ -28,20 +28,20 @@ import java.util.Arrays;
 public class PropertyBeanBeanInfo extends SimpleBeanInfo {
     private PropertyDescriptor[] pd = null;
 
-    public PropertyBeanBeanInfo() {}
+    public PropertyBeanBeanInfo() {
+    }
 
     /**
      *
-     * @return an array of PropertyDescriptors describing the PropertyBean's
-     *         exposed properties.
+     * @return an array of PropertyDescriptors describing the PropertyBean's exposed properties.
      */
     public PropertyDescriptor[] getPropertyDescriptors() {
         if (pd == null) {
             try {
                 pd = new PropertyDescriptor[] {
-                    new PropertyDescriptor("PString", PropertyBean.class),
-                    new PropertyDescriptor("PBoolean", PropertyBean.class),
-                    new PropertyDescriptor("PInteger", PropertyBean.class)
+                        new PropertyDescriptor("PString", PropertyBean.class),
+                        new PropertyDescriptor("PBoolean", PropertyBean.class),
+                        new PropertyDescriptor("PInteger", PropertyBean.class)
                 };
 
                 pd[0].setPropertyEditorClass(PStringPropertyEditor.class);

@@ -26,11 +26,9 @@ import jakarta.servlet.ServletContextListener;
 public class TestListener implements ServletContextListener {
 
     /**
-     * Receives notification that the web application initialization process is
-     * starting.
+     * Receives notification that the web application initialization process is starting.
      *
-     * @param sce
-     *          The ServletContextEvent
+     * @param sce The ServletContextEvent
      */
     public void contextInitialized(ServletContextEvent sce) {
         boolean passed = true;
@@ -53,8 +51,7 @@ public class TestListener implements ServletContextListener {
     /**
      * Receives notification that the Servlet Context is about to be shut down.
      *
-     * @param sce
-     *          The Servlet Context event
+     * @param sce The Servlet Context event
      */
     public void contextDestroyed(ServletContextEvent sce) {
         // Do nothing

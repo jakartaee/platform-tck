@@ -45,9 +45,11 @@ public class ThreeTestBean implements ThreeTestIF {
         return sessionContext;
     }
 
-    public ThreeTestBean() {}
+    public ThreeTestBean() {
+    }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     public void callRemote() throws TestFailedException {
         String expected = "from3Client";

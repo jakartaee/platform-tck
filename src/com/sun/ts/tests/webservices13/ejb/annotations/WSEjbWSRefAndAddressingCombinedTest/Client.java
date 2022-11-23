@@ -57,31 +57,19 @@ public class Client extends EETest {
     private String SERVLET = "/WSEjbWSRefAndAddressingCombinedTestClnt_web/ServletTest";
 
     @Addressing
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestdefaultechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestdefaultechoport", type = Echo.class, value = EchoService.class)
     static Echo defaultEchoPort = null;
 
     @Addressing(enabled = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestenabledechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestenabledechoport", type = Echo.class, value = EchoService.class)
     static Echo enabledEchoPort = null;
 
     @Addressing(enabled = true, required = true)
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestrequiredechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestrequiredechoport", type = Echo.class, value = EchoService.class)
     static Echo requiredEchoPort = null;
 
     @Addressing(enabled = false)
-    @WebServiceRef(
-            name = "service/wsejbwsrefandaddrcombtestdisabledechoport",
-            type = Echo.class,
-            value = EchoService.class)
+    @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestdisabledechoport", type = Echo.class, value = EchoService.class)
     static Echo disabledEchoPort = null;
 
     @WebServiceRef(name = "service/wsejbwsrefandaddrcombtestservice")
@@ -106,8 +94,10 @@ public class Client extends EETest {
         boolean pass = true;
         try {
             hostname = p.getProperty(WEBSERVERHOSTPROP);
-            if (hostname == null) pass = false;
-            else if (hostname.equals("")) pass = false;
+            if (hostname == null)
+                pass = false;
+            else if (hostname.equals(""))
+                pass = false;
             try {
                 portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
             } catch (Exception e) {
@@ -147,12 +137,11 @@ public class Client extends EETest {
     /*
      * @testName: VerifyAddrHeadersExistForRequiredEchoPort
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4004; WS4EE:SPEC:4015;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4004;
+     * WS4EE:SPEC:4015;
      *
-     * @test_Strategy: Verify Addressing Headers MUST exist on SOAP request and
-     * SOAP response for appclient, servlet, and ejb containers. Addressing
-     * enabled/required by client/supported by endpoint.
+     * @test_Strategy: Verify Addressing Headers MUST exist on SOAP request and SOAP response for appclient, servlet, and
+     * ejb containers. Addressing enabled/required by client/supported by endpoint.
      */
     public void VerifyAddrHeadersExistForRequiredEchoPort() throws Fault {
         boolean pass = true;
@@ -185,7 +174,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
-            } else TestUtil.logMsg("Addressing Headers Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
             pass = false;
@@ -199,23 +189,24 @@ public class Client extends EETest {
             if (!passEjb) {
                 TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
                 pass = false;
-            } else TestUtil.logMsg("Addressing Headers Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers DO NOT Exist (Unexpected)");
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyAddrHeadersExistForRequiredEchoPort failed");
+        if (!pass)
+            throw new Fault("VerifyAddrHeadersExistForRequiredEchoPort failed");
     }
 
     /*
      * @testName: VerifyAddrHeadersDoNotExistForDisabledEchoPort
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4004; WS4EE:SPEC:4015;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4004;
+     * WS4EE:SPEC:4015;
      *
-     * @test_Strategy: Verify Addressing Headers MUST NOT exist on SOAP request
-     * and SOAP response for appclient, servlet, and ejb containers. Addressing
-     * disabled by client/supported by endpoint.
+     * @test_Strategy: Verify Addressing Headers MUST NOT exist on SOAP request and SOAP response for appclient, servlet,
+     * and ejb containers. Addressing disabled by client/supported by endpoint.
      */
     public void VerifyAddrHeadersDoNotExistForDisabledEchoPort() throws Fault {
         boolean pass = true;
@@ -248,7 +239,8 @@ public class Client extends EETest {
             if (passStr.equals("fail")) {
                 pass = false;
                 TestUtil.logErr("Addressing Headers Exist (Unexpected)");
-            } else TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers Exist (Unexpected)");
             pass = false;
@@ -262,23 +254,24 @@ public class Client extends EETest {
             if (!passEjb) {
                 TestUtil.logErr("Addressing Headers Exist (Unexpected)");
                 pass = false;
-            } else TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
+            } else
+                TestUtil.logMsg("Addressing Headers DO NOT Exist (Expected)");
         } catch (Exception e) {
             TestUtil.logErr("Addressing Headers Exist (Unexpected)");
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyAddrHeadersDoNotExistForDisabledEchoPort failed");
+        if (!pass)
+            throw new Fault("VerifyAddrHeadersDoNotExistForDisabledEchoPort failed");
     }
 
     /*
      * @testName: VerifyAddrHeadersMayExistForEnabledEchoPort
      *
-     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005;
-     * WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4004; WS4EE:SPEC:4015;
+     * @assertion_ids: WS4EE:SPEC:3002; WS4EE:SPEC:3003; WS4EE:SPEC:3005; WS4EE:SPEC:4000; WS4EE:SPEC:4002; WS4EE:SPEC:4004;
+     * WS4EE:SPEC:4015;
      *
-     * @test_Strategy: Verify addressing Headers may exist on SOAP request and
-     * SOAP response for appclient, servlet, and ejb containers. Addressing
-     * enabled/notrequired by client/supported by endpoint.
+     * @test_Strategy: Verify addressing Headers may exist on SOAP request and SOAP response for appclient, servlet, and ejb
+     * containers. Addressing enabled/notrequired by client/supported by endpoint.
      */
     public void VerifyAddrHeadersMayExistForEnabledEchoPort() throws Fault {
         boolean pass = true;
@@ -329,6 +322,7 @@ public class Client extends EETest {
             TestUtil.logErr("Unexpected exception: " + e.getMessage());
             pass = false;
         }
-        if (!pass) throw new Fault("VerifyAddrHeadersMayExistForEnabledEchoPort failed");
+        if (!pass)
+            throw new Fault("VerifyAddrHeadersMayExistForEnabledEchoPort failed");
     }
 }

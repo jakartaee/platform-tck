@@ -69,8 +69,7 @@ public class Client extends ServiceEETest {
     }
 
     /*
-     * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
-     * authpassword;
+     * @class.setup_props: webServerHost; webServerPort; user; password; authuser; authpassword;
      *
      */
     public void setup(String[] args, Properties p) throws Fault {
@@ -102,23 +101,17 @@ public class Client extends ServiceEETest {
      *
      * @assertion_ids: JACC:SPEC:29; JACC:SPEC:124
      *
-     * @test_Strategy: 1) Create a application ear file with two web modules
-     * containing one webresource each. 2) In web module one
-     * (jacc_principal2role_first_module_web.war) allow role-name Administrator to
-     * access the resource(first_resource.jsp) 3) In web module two
-     * (jacc_principal2role_second_module_web.war) allow role-name Administrator
-     * to access the resource(second_resource.jsp) 4) Set the following
-     * principal-to-role mapping for the application <security-role-mapping>
-     * <role-name>Administrator</role-name> <principal-name>j2ee</principal-name>
-     * </security-role-mapping> <security-role-mapping>
-     * <role-name>Manager</role-name> <principal-name>javajoe</principal-name>
-     * </security-role-mapping> 5) Verify the same principal-to-role mapping is
-     * applied to both web modules by performing step6 and 7 6) Verify this by
-     * accessing webresource one(first_resource.jsp) from module one using
-     * authorized user(j2ee), make sure user j2ee is allowed access. Try accessing
-     * webresource one (first_resource.jsp) using unauthorized user(javajoe), make
-     * sure user javajoe is not allowed access this resource. 7) Repeat the step 6
-     * for webresource two(second_resource.jsp)
+     * @test_Strategy: 1) Create a application ear file with two web modules containing one webresource each. 2) In web
+     * module one (jacc_principal2role_first_module_web.war) allow role-name Administrator to access the
+     * resource(first_resource.jsp) 3) In web module two (jacc_principal2role_second_module_web.war) allow role-name
+     * Administrator to access the resource(second_resource.jsp) 4) Set the following principal-to-role mapping for the
+     * application <security-role-mapping> <role-name>Administrator</role-name> <principal-name>j2ee</principal-name>
+     * </security-role-mapping> <security-role-mapping> <role-name>Manager</role-name>
+     * <principal-name>javajoe</principal-name> </security-role-mapping> 5) Verify the same principal-to-role mapping is
+     * applied to both web modules by performing step6 and 7 6) Verify this by accessing webresource one(first_resource.jsp)
+     * from module one using authorized user(j2ee), make sure user j2ee is allowed access. Try accessing webresource one
+     * (first_resource.jsp) using unauthorized user(javajoe), make sure user javajoe is not allowed access this resource. 7)
+     * Repeat the step 6 for webresource two(second_resource.jsp)
      *
      */
     public void PrincipalToRoleMapping() throws Fault {

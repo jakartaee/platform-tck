@@ -64,9 +64,8 @@ public class MDBClient extends ServiceEETest implements Serializable {
     }
 
     /*
-     * @class.setup_props: whitebox-tx, JNDI name of TS WhiteBox;
-     * whitebox-tx-param, conn w/ params; whitebox-ibanno_no_md; rauser1, user
-     * name; rapassword1, password for rauser1;
+     * @class.setup_props: whitebox-tx, JNDI name of TS WhiteBox; whitebox-tx-param, conn w/ params; whitebox-ibanno_no_md;
+     * rauser1, user name; rapassword1, password for rauser1;
      *
      * @class.testArgs: -ap tssql.stmt
      *
@@ -111,17 +110,14 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testReceiveMessage
      *
-     * @assertion_ids: Connector:SPEC:82; Connector:SPEC:285; Connector:SPEC:286;
-     * Connector:SPEC:302; Connector:JAVADOC:58; Connector:JAVADOC:314;
-     * Connector:JAVADOC:316;
+     * @assertion_ids: Connector:SPEC:82; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302; Connector:JAVADOC:58;
+     * Connector:JAVADOC:314; Connector:JAVADOC:316;
      *
-     * @test_Strategy: Deploy the MDB and whitebox, whitebox will narrows the
-     * endpoint and will deliver the message to the endpoint instance. Check
-     * whether the endpoint preferences still stays the same.
+     * @test_Strategy: Deploy the MDB and whitebox, whitebox will narrows the endpoint and will deliver the message to the
+     * endpoint instance. Check whether the endpoint preferences still stays the same.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testReceiveMessage() throws Fault {
@@ -162,16 +158,13 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testProxyInterfaceImp
      *
-     * @assertion_ids: Connector:SPEC:96; Connector:SPEC:285; Connector:SPEC:286;
-     * Connector:SPEC:302;
+     * @assertion_ids: Connector:SPEC:96; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
      *
-     * @test_Strategy: get the application proxy endpoint instance and check with
-     * through reflection package that MessageEndpoint interface and
-     * MessageListener interface is implemented.
+     * @test_Strategy: get the application proxy endpoint instance and check with through reflection package that
+     * MessageEndpoint interface and MessageListener interface is implemented.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testProxyInterfaceImp() throws Fault {
@@ -233,15 +226,14 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testUniqueMessageEndpoint
      *
-     * @assertion_ids: Connector:SPEC:114; Connector:SPEC:285; Connector:SPEC:286;
-     * Connector:SPEC:302; Connector:JAVADOC:320;
+     * @assertion_ids: Connector:SPEC:114; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
+     * Connector:JAVADOC:320;
      *
-     * @test_Strategy: create two messageEndpoint in the whitebox and compare
-     * them. If they are hashcode is not equal then tests passes.
+     * @test_Strategy: create two messageEndpoint in the whitebox and compare them. If they are hashcode is not equal then
+     * tests passes.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testUniqueMessageEndpoint() throws Fault {
@@ -282,16 +274,14 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testMessageEndpointFactoryForEquals
      *
-     * @assertion_ids: Connector:SPEC:93; Connector:SPEC:285; Connector:SPEC:286;
-     * Connector:SPEC:302;
+     * @assertion_ids: Connector:SPEC:93; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
      *
      *
-     * @test_Strategy: Deploy the whitebox and both the mdb and compare both the
-     * MessageEndpointfactory if they are not equal then the test passes.
+     * @test_Strategy: Deploy the whitebox and both the mdb and compare both the MessageEndpointfactory if they are not
+     * equal then the test passes.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testMessageEndpointFactoryForEquals() throws Fault {
@@ -332,16 +322,14 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testUniqueMessageEndpointFactory
      *
-     * @assertion_ids: Connector:SPEC:92; Connector:SPEC:285; Connector:SPEC:286;
-     * Connector:SPEC:302;
+     * @assertion_ids: Connector:SPEC:92; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
      *
      *
-     * @test_Strategy: Deploy the whitebox and mdb and check through the equals if
-     * they are different or not MessageEndpointFactory.
+     * @test_Strategy: Deploy the whitebox and mdb and check through the equals if they are different or not
+     * MessageEndpointFactory.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testUniqueMessageEndpointFactory() throws Fault {
@@ -385,13 +373,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
      * @assertion_ids: Connector:SPEC:319;
      *
      *
-     * @test_Strategy: Deploy the whitebox_ibanno_no_md and mdb and validate that
-     * the MEF is able to call getActivationName() and get a valid (non-null)
-     * activation name for our MEF.
+     * @test_Strategy: Deploy the whitebox_ibanno_no_md and mdb and validate that the MEF is able to call
+     * getActivationName() and get a valid (non-null) activation name for our MEF.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejb and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejb and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testEndpointActivationName() throws Fault {
@@ -410,8 +396,7 @@ public class MDBClient extends ServiceEETest implements Serializable {
         }
 
         // Need to link these strings to assertion
-        String toCheck1 =
-                "IBAnnotatedResourceAdapterImpl.endpointActivation() getActivationName() returned nonNull name";
+        String toCheck1 = "IBAnnotatedResourceAdapterImpl.endpointActivation() getActivationName() returned nonNull name";
 
         // Turn tracing on if you want to see the log contents
         TestUtil.logTrace(log.toString());
@@ -436,13 +421,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
      *
      * @assertion_ids: Connector:SPEC:318;
      *
-     * @test_Strategy: Deploy the whitebox_ibanno_no_md and mdb and validate that
-     * the MEF is able to call getEndpointClass() and get a valid (non-null)
-     * classname for our MEF.
+     * @test_Strategy: Deploy the whitebox_ibanno_no_md and mdb and validate that the MEF is able to call getEndpointClass()
+     * and get a valid (non-null) classname for our MEF.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testGetEndpoinClass() throws Fault {
@@ -461,8 +444,7 @@ public class MDBClient extends ServiceEETest implements Serializable {
         }
 
         // Need to link these strings to assertion
-        String toCheck1 =
-                "IBAnnotatedResourceAdapterImpl.endpointActivation() getEndpointClass() returned: com.sun.ts.tests.connector.mdb.JCAMessageBean";
+        String toCheck1 = "IBAnnotatedResourceAdapterImpl.endpointActivation() getEndpointClass() returned: com.sun.ts.tests.connector.mdb.JCAMessageBean";
 
         // Turn tracing on if you want to see the log contents
         TestUtil.logTrace(log.toString());
@@ -485,17 +467,14 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testMessageDeliveryTransacted
      *
-     * @assertion_ids: Connector:SPEC:117; Connector:SPEC:111; Connector:SPEC:99;
-     * Connector:SPEC:285; Connector:SPEC:84; Connector:SPEC:286;
-     * Connector:SPEC:302; Connector:JAVADOC:324; Connector:JAVADOC:258;
+     * @assertion_ids: Connector:SPEC:117; Connector:SPEC:111; Connector:SPEC:99; Connector:SPEC:285; Connector:SPEC:84;
+     * Connector:SPEC:286; Connector:SPEC:302; Connector:JAVADOC:324; Connector:JAVADOC:258;
      *
-     * @test_Strategy: Deploy the whitebox and transaction required mdb provide an
-     * XAResource while creating the endpoint and see if the message delivery is
-     * transacted and XAResource was called.
+     * @test_Strategy: Deploy the whitebox and transaction required mdb provide an XAResource while creating the endpoint
+     * and see if the message delivery is transacted and XAResource was called.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testMessageDeliveryTransacted() throws Fault {
@@ -568,17 +547,15 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testMessageDeliveryNonTransacted
      *
-     * @assertion_ids: Connector:SPEC:118; Connector:SPEC:285; Connector:SPEC:286;
-     * Connector:SPEC:302; Connector:JAVADOC:402;
+     * @assertion_ids: Connector:SPEC:118; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
+     * Connector:JAVADOC:402;
      *
      *
-     * @test_Strategy: Deploy the whitebox and no transaction mdb provide an
-     * XAResource while creating the endpoint and see if the message delivery is
-     * non transacted and XAResource is not called.
+     * @test_Strategy: Deploy the whitebox and no transaction mdb provide an XAResource while creating the endpoint and see
+     * if the message delivery is non transacted and XAResource is not called.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testMessageDeliveryNonTransacted() throws Fault {
@@ -656,19 +633,16 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testMessageDeliveryTransactedUsingXid
      *
-     * @assertion_ids: Connector:SPEC:115; Connector:SPEC:285; Connector:SPEC:286;
-     * Connector:SPEC:302; Connector:JAVADOC:132; Connector:JAVADOC:344;
-     * Connector:JAVADOC:367;
+     * @assertion_ids: Connector:SPEC:115; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
+     * Connector:JAVADOC:132; Connector:JAVADOC:344; Connector:JAVADOC:367;
      *
-     * @test_Strategy: Deploy the whitebox and transaction required mdb provide an
-     * XAResource while creating the endpoint associate the work object with and
-     * xid and see if the message delivery is transacted and uses Xid to commit
-     * the transaction.
+     * @test_Strategy: Deploy the whitebox and transaction required mdb provide an XAResource while creating the endpoint
+     * associate the work object with and xid and see if the message delivery is transacted and uses Xid to commit the
+     * transaction.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejb and web containers which implies the validation of
-     * assertion Connector:SPEC:285. This satisfies javadoc assertions by virtue
-     * of validation of "committed Xid" string.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejb and web containers
+     * which implies the validation of assertion Connector:SPEC:285. This satisfies javadoc assertions by virtue of
+     * validation of "committed Xid" string.
      *
      */
     public void testMessageDeliveryTransactedUsingXid() throws Fault {
@@ -746,18 +720,16 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testActivationSpeccalledOnce
      *
-     * @assertion_ids: Connector:SPEC:7; Connector:SPEC:8; Connector:SPEC:285;
-     * Connector:SPEC:286; Connector:SPEC:302;
+     * @assertion_ids: Connector:SPEC:7; Connector:SPEC:8; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
      *
-     * @test_Strategy: Check to see if LocalTxActivationSpec.setResourceAdapter
-     * was called exactly once. If it has then the test passes.
+     * @test_Strategy: Check to see if LocalTxActivationSpec.setResourceAdapter was called exactly once. If it has then the
+     * test passes.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis for end-to-end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis for end-to-end
+     * verification.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testActivationSpeccalledOnce() throws Fault {
@@ -823,19 +795,17 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testEJBExceptionNotSupported
      *
-     * @assertion_ids: Connector:SPEC:107; EJB:SPEC:639; EJB:SPEC:639.3;
-     * Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
+     * @assertion_ids: Connector:SPEC:107; EJB:SPEC:639; EJB:SPEC:639.3; Connector:SPEC:285; Connector:SPEC:286;
+     * Connector:SPEC:302;
      *
-     * @test_Strategy: Check to see if SysException thrown by Not Supported
-     * transaction demarcation MDB get re-thrown back to the Resource adapter as
-     * an EJBException
+     * @test_Strategy: Check to see if SysException thrown by Not Supported transaction demarcation MDB get re-thrown back
+     * to the Resource adapter as an EJBException
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis for end-to-end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis for end-to-end
+     * verification.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testEJBExceptionNotSupported() throws Fault {
@@ -900,19 +870,16 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testEJBExceptionRequired
      *
-     * @assertion_ids: Connector:SPEC:107; EJB:SPEC:637; Connector:SPEC:285;
-     * Connector:SPEC:286; Connector:SPEC:302;
+     * @assertion_ids: Connector:SPEC:107; EJB:SPEC:637; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
      *
-     * @test_Strategy: Check to see if SysException thrown by Required transaction
-     * demarcation MDB get re-thrown back to the Resource adapter as an
-     * EJBException.
+     * @test_Strategy: Check to see if SysException thrown by Required transaction demarcation MDB get re-thrown back to the
+     * Resource adapter as an EJBException.
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis for end-to-end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis for end-to-end
+     * verification.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testEJBExceptionRequired() throws Fault {
@@ -978,19 +945,16 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testAppExceptionNotSupported
      *
-     * @assertion_ids: Connector:SPEC:107; EJB:SPEC:638; Connector:SPEC:285;
-     * Connector:SPEC:286; Connector:SPEC:302;
+     * @assertion_ids: Connector:SPEC:107; EJB:SPEC:638; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
      *
-     * @test_Strategy: Check to see if AppException thrown by Not Supported
-     * transaction demarcation MDB get re-thrown back to the Resource adapter as
-     * an AppException
+     * @test_Strategy: Check to see if AppException thrown by Not Supported transaction demarcation MDB get re-thrown back
+     * to the Resource adapter as an AppException
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis for end-to-end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis for end-to-end
+     * verification.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testAppExceptionNotSupported() throws Fault {
@@ -1056,19 +1020,17 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testAppExceptionRequired
      *
-     * @assertion_ids: Connector:SPEC:107; EJB:SPEC:636; EJB:SPEC:636.2;
-     * Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
+     * @assertion_ids: Connector:SPEC:107; EJB:SPEC:636; EJB:SPEC:636.2; Connector:SPEC:285; Connector:SPEC:286;
+     * Connector:SPEC:302;
      *
-     * @test_Strategy: Check to see if AppException thrown by Required transaction
-     * demarcation MDB get re-thrown back to the Resource adapter as an
-     * AppException
+     * @test_Strategy: Check to see if AppException thrown by Required transaction demarcation MDB get re-thrown back to the
+     * Resource adapter as an AppException
      *
-     * Check for the validity of the connection which is returned by performing
-     * some queries to the TSeis for end-to-end verification.
+     * Check for the validity of the connection which is returned by performing some queries to the TSeis for end-to-end
+     * verification.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testAppExceptionRequired() throws Fault {
@@ -1134,20 +1096,15 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testSICMsgPrincipal
      *
-     * @assertion_ids: Connector:SPEC:232; Connector:SPEC:233; Connector:SPEC:285;
-     * Connector:SPEC:286; Connector:SPEC:302;
+     * @assertion_ids: Connector:SPEC:232; Connector:SPEC:233; Connector:SPEC:285; Connector:SPEC:286; Connector:SPEC:302;
      *
-     * @test_Strategy: We want to set the SIC on a work object that causes a a msg
-     * to be sent to an MDB. We expect the msg to have the principal set according
-     * to the SIC values. This test verifies that when MDB's are the msg
-     * endpoints, then calls to getCallerPrincipal must return the principal
-     * corresponding to the established security identity, and isCallerInRole()
-     * must return the result of testing the established security identity for
-     * role membership.
+     * @test_Strategy: We want to set the SIC on a work object that causes a a msg to be sent to an MDB. We expect the msg
+     * to have the principal set according to the SIC values. This test verifies that when MDB's are the msg endpoints, then
+     * calls to getCallerPrincipal must return the principal corresponding to the established security identity, and
+     * isCallerInRole() must return the result of testing the established security identity for role membership.
      *
-     * Also, these tests should only get run in fullEE mode which means they will
-     * be run in both ejg and web containers which implies the validation of
-     * assertion Connector:SPEC:285.
+     * Also, these tests should only get run in fullEE mode which means they will be run in both ejg and web containers
+     * which implies the validation of assertion Connector:SPEC:285.
      *
      */
     public void testSICMsgPrincipal() throws Fault {
@@ -1203,10 +1160,9 @@ public class MDBClient extends ServiceEETest implements Serializable {
      * @assertion_ids: Connector:SPEC:115; Connector:JAVADOC:257;
      *
      *
-     * @test_Strategy: Deploy the whitebox and transaction required mdb provide an
-     * XAResource while creating the endpoint associate the work object with and
-     * xid and see if the message delivery is transacted and uses Xid to commit
-     * the transaction.
+     * @test_Strategy: Deploy the whitebox and transaction required mdb provide an XAResource while creating the endpoint
+     * associate the work object with and xid and see if the message delivery is transacted and uses Xid to commit the
+     * transaction.
      *
      */
     public void testIBAnnoMsgTransactedUsingXid() throws Fault {
@@ -1247,14 +1203,12 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testActivationSpecImplRAA
      *
-     * @assertion_ids: Connector:SPEC:282; Connector:JAVADOC:257;
-     * Connector:JAVADOC:264; Connector:JAVADOC:265; Connector:JAVADOC:114;
+     * @assertion_ids: Connector:SPEC:282; Connector:JAVADOC:257; Connector:JAVADOC:264; Connector:JAVADOC:265;
+     * Connector:JAVADOC:114;
      *
-     * @test_Strategy: Verify that an ActivationSpec that implements
-     * ResourceAdapterAssociation will be associated with the RA instance. Verify
-     * by getting an Activation Spec instance and ensuring that the
-     * setResourceAdapter() method (from inherited testActivationSpecImplRAA
-     * class) was called with a valid RA passed in.
+     * @test_Strategy: Verify that an ActivationSpec that implements ResourceAdapterAssociation will be associated with the
+     * RA instance. Verify by getting an Activation Spec instance and ensuring that the setResourceAdapter() method (from
+     * inherited testActivationSpecImplRAA class) was called with a valid RA passed in.
      *
      */
     public void testActivationSpecImplRAA() throws Fault {
@@ -1302,13 +1256,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
     /*
      * @testName: testIBAnnoASConfigProp
      *
-     * @assertion_ids: Connector:SPEC:309; Connector:SPEC:315;
-     * Connector:JAVADOC:256;
+     * @assertion_ids: Connector:SPEC:309; Connector:SPEC:315; Connector:JAVADOC:256;
      *
      *
-     * @test_Strategy: Deploy the whitebox and transaction required mdb thus
-     * creating the endpointActivation, then verify that the childActivationSpec
-     * inherits the ConfigProperty anno from the parentActivationSpec.
+     * @test_Strategy: Deploy the whitebox and transaction required mdb thus creating the endpointActivation, then verify
+     * that the childActivationSpec inherits the ConfigProperty anno from the parentActivationSpec.
      *
      */
     public void testIBAnnoASConfigProp() throws Fault {
@@ -1352,14 +1304,12 @@ public class MDBClient extends ServiceEETest implements Serializable {
      * @assertion_ids: Connector:SPEC:223;
      *
      *
-     * @test_Strategy: This will check that a workContext impl can implement the
-     * WorkContextLifecycleListener iface to get fine grained notifications that
-     * will result in the contextSetupCompleted() being invoked by the
-     * workmanager. This verifies that contextSetupComplete() is called when the
-     * WorkContext instance was successfully set as the execution context for the
-     * work instance. None of the connector test code explicitly calls
-     * TSSecurityContextWithListener.contextSetupComplete() so we assume that if
-     * this was invoked, the workmanager must have done it.
+     * @test_Strategy: This will check that a workContext impl can implement the WorkContextLifecycleListener iface to get
+     * fine grained notifications that will result in the contextSetupCompleted() being invoked by the workmanager. This
+     * verifies that contextSetupComplete() is called when the WorkContext instance was successfully set as the execution
+     * context for the work instance. None of the connector test code explicitly calls
+     * TSSecurityContextWithListener.contextSetupComplete() so we assume that if this was invoked, the workmanager must have
+     * done it.
      *
      */
     public void testContextSetupCompleted() throws Fault {
